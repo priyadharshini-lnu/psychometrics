@@ -12,7 +12,9 @@ module EndUser
     def url
       return agile_user_assessment_path(object) if object.assessment.agile?
 
-      return pass_user_assessment_path(object) if object.campaign.common?
+      if object.campaign.common?
+        return object.assessment.fixed_timed? ? begin_user_assessment_path(object) : pass_user_assessment_path(object)
+      end
 
       campaign_evaluation_path(object, campaign_id: object.threesixty_campaign.id, lang: assessment_language)
     end

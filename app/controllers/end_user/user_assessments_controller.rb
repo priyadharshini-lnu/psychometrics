@@ -41,12 +41,18 @@ class EndUser::UserAssessmentsController < ApplicationController
   def show
     @user_assessment.update(last_activity_at: DateTime.current)
 
-    @selected_locale = @user_assessment.selected_locale || user_locale
+    @selected_locale = params[:lang] || @user_assessment.selected_locale || user_locale
+    @user_assessment.update(selected_locale: @selected_locale)
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
         render json: ::EndUser::DetailedUserAssessmentSerializer.new(
-          context: { current_user: current_user }
+          context: {
+            current_user: current_user,
+            campaign: @user_assessment.campaign,
+            piped_text_context: build_piped_context,
+            generate_piped_text_mapping: true
+          }
         ).serialize(@user_assessment)
       end
     end

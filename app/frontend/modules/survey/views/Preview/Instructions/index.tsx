@@ -2,7 +2,6 @@ import { FC, useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Button } from 'antd'
 import cs from 'classnames'
-import { useLocation, useParams } from 'react-router-dom'
 import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { useAudioPlayer } from '~/modules/survey/hooks/useAudioPlayer'
 import { useImageZoom } from '~/modules/survey/hooks/useImageZoom'
@@ -14,14 +13,16 @@ import { secondsLeftFromNow } from '~/utils/time'
 import styles from './Instructions.less'
 import { TimingModal } from './TimingModal'
 
-const { I18n: { uiLocale } } = window
+const { I18n } = window
 type Props = ConnectedProps<typeof connector>
 
-const Instructions: FC<Props> = ({
-  isDisconnected, timerDuration, I18n, campaignUser, assessmentName, initialized,
+type OwnPros = {
+  onBegin?: () => void
+}
+
+export const InstructionsComponent: FC<Props & OwnPros> = ({
+  isDisconnected, timerDuration, translatedInstructions, campaignExpiryDate, assessmentName, initialized, onBegin,
 }) => {
-  const { userAssessmentId } = useParams() as { userAssessmentId: string }
-  const location = useLocation()
   const containerRef = useRef<HTMLDivElement>(null)
   useImageZoom(containerRef)
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
@@ -31,30 +32,29 @@ const Instructions: FC<Props> = ({
   const contentRef = useRef(null)
   useAudioPlayer(contentRef)
 
-  const remainingCampaignTime = secondsLeftFromNow(campaignUser.expiry_date)
+  const remainingCampaignTime = secondsLeftFromNow(campaignExpiryDate)
   const remainingTime = remainingCampaignTime && remainingCampaignTime < timerDuration
-    ? secondsLeftFromNow(campaignUser.expiry_date)
+    ? secondsLeftFromNow(campaignExpiryDate)
     : timerDuration
 
-  const innerHTML = I18n.tInstructions()
+  const innerHTML = translatedInstructions
     || I18n.t('assessments.instructions.default', { time: Math.floor(remainingTime / 60) })
 
   const handleCancel = () => {
     history.back()
   }
 
-  const rtl = isRtl(uiLocale)
-  const beginLink = `/user_assessments/${userAssessmentId}/begin${location.search}`
+  const rtl = isRtl(I18n.uiLocale)
 
   const goToAssessment = () => {
-    window.location.href = beginLink
+    onBegin && onBegin()
   }
 
   const maybeShowModal = () => {
     if (remainingCampaignTime && remainingCampaignTime < timerDuration) {
       return setShowTimingConfirmation(true)
     }
-    goToAssessment()
+    onBegin && onBegin()
   }
 
   return (
@@ -97,7 +97,7 @@ const Instructions: FC<Props> = ({
       <TimingModal
         show={showTimingConfirmation}
         assessmentName={assessmentName}
-        campaignExpiryDate={campaignUser.expiry_date}
+        campaignExpiryDate={campaignExpiryDate}
         totalAssessmentTime={timerDuration}
         ok={() => goToAssessment()}
         onCancel={() => setShowTimingConfirmation(false)}
@@ -112,10 +112,9 @@ const connector = connect((state: RootState) => ({
   isDisconnected: !isConnected(state),
   assessmentName: state.preview.name,
   timerDuration: state.preview.timerDuration,
-  isTimedCampaign: state.preview.isTimedCampaign,
-  campaignUser: state.preview.campaignUser,
-  I18n: getI18n(state.preview),
+  campaignExpiryDate: state.preview.campaignUser?.expiry_date,
+  translatedInstructions: getI18n(state.preview).tInstructions(),
 }),
 {})
 
-export default connector(Instructions)
+export const Instructions = connector(InstructionsComponent)

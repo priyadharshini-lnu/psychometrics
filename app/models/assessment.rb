@@ -514,6 +514,15 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     piped_text
   end
 
+  def generate_piped_text_mapping_for_instructions(piped_text_context)
+    instructions = self.instructions
+    if instructions.present?
+      return PipedText::SubstitutionMappingGenerator.call!(instructions['content'], piped_text_context)
+    end
+
+    {}
+  end
+
   def allow_caching?
     !skill_rater? && !external?
   end
