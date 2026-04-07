@@ -85,6 +85,7 @@ en:
     maintenance_time_remaining: Time remaining
     maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
     maintenance_upcoming_title: Upcoming Maintenance
+    manage_cookies: Manage Cookies
     media_id: Media ID
     media_preview: Media Preview
     media_question_transcriptions: Media Question Transcriptions
