@@ -1,6 +1,8 @@
 import { useEffect, FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import {
+  useNavigate, useParams, useSearchParams, useLocation,
+} from 'react-router-dom'
 import {
   Col, Space, Layout, Button,
 } from 'antd'
@@ -65,7 +67,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       assessmentExtra,
       assessmentName,
       currentCampaignExpiryDate,
-      pipedTextMapping,
+      piped_text_mapping: pipedTextMapping,
       localeData,
     },
   },
@@ -75,6 +77,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const navigate = useNavigate()
   const params = useParams() as Params
   const [searchParams] = useSearchParams()
+  const location = useLocation()
   const [showPolicyAccept, setShowPolicy] = useState(true)
   const [locale, setLocale] = useState(localeData?.code)
   const [dataAvailable, setDataAvailable] = useState(false)
@@ -101,7 +104,13 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }
 
   const handleBeginAssessment = () => {
-    setShowInstructions(false)
+    if (assessmentTimer && !assessmentStartedAt
+        && !WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
+      const beginLink = `/user_assessments/${userAssessmentId}/begin${location.search}`
+      window.location.href = beginLink
+    } else {
+      setShowInstructions(false)
+    }
   }
 
 
@@ -185,7 +194,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           <div className={styles.instructionsContainer}>
             <InstructionsComponent
               initialized
-              instructions={instructions}
               isDisconnected={isDisconnected}
               assessmentName={assessmentName}
               timerDuration={assessmentTimer}
@@ -243,7 +251,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  location.href = assessmentUrl(userAssessmentData, locale || selectedLocale || I18n.currentLocale())
+  window.location.href = assessmentUrl(userAssessmentData, locale || selectedLocale || I18n.currentLocale())
 
   return null
 }

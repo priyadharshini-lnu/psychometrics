@@ -108,7 +108,6 @@ export const InstructionsComponent: FC<Props & OwnPros> = ({
 
 const connector = connect((state: RootState) => ({
   initialized: state.preview.initialized,
-  instructions: state.preview.instructions,
   isDisconnected: !isConnected(state),
   assessmentName: state.preview.name,
   timerDuration: state.preview.timerDuration,

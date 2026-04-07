@@ -75,6 +75,7 @@ export const fetchUserAssessment = (userAssessmentId, isEdit, lang) => ({
   request: {
     url: `/user_assessments/${userAssessmentId}`,
     body: { edit: isEdit, cache: new Date().valueOf(), lang },
+    camelizeExcept: ['piped_text_mapping'],
   },
 })
 
