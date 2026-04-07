@@ -24,6 +24,28 @@ describe UsersResults::Scoring::MergeAIScores do
   end
 
   describe '#call' do
+    context 'when user_assessment is auto_approved without approval flow' do
+      before do
+        user_assessment.update!(approval_status: :auto_approved)
+        allow(user_assessment).to receive(:has_ai_scoring_approval_flow?).and_return(false)
+        users_result.update!(scoring: {})
+
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: factor1,
+               question: question1,
+               score: 4.0,
+               status: :approver_approved)
+      end
+
+      it 'merges AI scores into scoring' do
+        result = described_class.call!(users_result)
+
+        expect(result.keys).to include(factor1.id.to_s)
+        expect(result[factor1.id.to_s]['results'].first['value']).to eq(4.0)
+      end
+    end
+
     context 'when user_assessment approval_status is not approver_approved' do
       it 'returns current scoring unchanged without merging AI scores' do
         users_result.update!(scoring: { '1' => { 'score' => 3.0 } })

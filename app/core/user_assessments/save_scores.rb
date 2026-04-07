@@ -63,11 +63,18 @@ module UserAssessments
     end
 
     def complete_scoring_without_ai
+      auto_approve_if_no_approval_flow!
       merge_ai_scores_if_needed!
 
-      user_assessment.auto_approve_scoring!
       PostScoringTasks.call!(user_assessment, current_user, rescore: rescore)
       broadcast :ok
+    end
+
+    def auto_approve_if_no_approval_flow!
+      return if user_assessment.has_ai_scoring_approval_flow?
+      return if user_assessment.approval_status == 'auto_approved'
+
+      user_assessment.auto_approve_scoring!
     end
 
     def merge_ai_scores_if_needed!

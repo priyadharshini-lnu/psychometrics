@@ -73,6 +73,37 @@ describe UserAssessments::SaveScores do
 
             described_class.call!(user_assessment, current_user, rescore: true, allow_ai_rescore: true)
           end
+
+          context 'when no approval flow and status is auto_approved' do
+            before do
+              allow(user_assessment).to receive(:has_ai_scoring_approval_flow?).and_return(false)
+              user_assessment.update!(approval_status: :auto_approved)
+            end
+
+            it 'still triggers AI rescore' do
+              expect(AI::ContentAnalysis::TriggerAIScoringJob).to receive(:perform_later).with(
+                user_result.id,
+                rescore: true,
+                force_regenerate: false,
+                admin_job_record_id: nil
+              )
+
+              described_class.call!(user_assessment, current_user, rescore: true, allow_ai_rescore: true)
+            end
+          end
+        end
+
+        context 'when allow_ai_rescore is false and approval flow exists' do
+          before do
+            allow(user_assessment).to receive(:has_ai_scoring_approval_flow?).and_return(true)
+            user_assessment.update!(approval_status: :pending)
+          end
+
+          it 'preserves approval status and does not auto approve' do
+            described_class.call!(user_assessment, current_user, rescore: true, allow_ai_rescore: false)
+
+            expect(user_assessment.reload.approval_status).to eq('pending')
+          end
         end
       end
     end
