@@ -9,10 +9,11 @@ import { useParams } from 'react-router-dom'
 import {
   useTransform, useSpring, motion,
 } from 'motion/react'
+import cs from 'classnames'
 import { useOnlineStatus } from './useOnlineStatus'
 import { useNetworkTest } from '~/hooks/useNetworkTest'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
+import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   useAddSystemCheckRecordMutation, useCompleteSystemCheckSessionMutation, useFetchSystemCheckRequirementsStatusQuery,
@@ -29,6 +30,7 @@ import commonStyles from '../../common-styles.less'
 import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { AlertNotification } from '../../components/AlertNotification'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
+import { convertSpeedToMbps } from './convertSpeedToMbps'
 
 const { I18n } = window
 
@@ -53,7 +55,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const {
     systemCheckSessionId = null, minimumDownloadSpeed = 0,
-    minimumUploadSpeed = 0, campaignOptions,
+    minimumUploadSpeed = 0,
   } = campaignDetailsForSystemCheck || {}
 
   const { campaignId } = useParams() as {campaignId: string}
@@ -73,6 +75,33 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
 
   const runNetworkTest = () => {
+    const generateDetails = (uploadSpeed: string, downloadSpeed: string) => {
+      const details:string[] = []
+
+      if (parseFloat(downloadSpeed) === 0 && parseFloat(uploadSpeed) === 0) {
+        details.push(I18n.t('enduser.could_not_reach_servers'))
+        return details
+      }
+
+      if (minimumUploadSpeed && convertSpeedToMbps(uploadSpeed) < minimumUploadSpeed) {
+        details.push(I18n.t('enduser.upload_speed_below_minimum', {
+          upload_speed: uploadSpeed,
+          minimum_upload_speed: minimumUploadSpeed,
+        }))
+      }
+
+      if (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeed) < minimumDownloadSpeed) {
+        details.push(I18n.t('enduser.download_speed_below_minimum', {
+          download_speed: downloadSpeed,
+          minimum_download_speed: minimumDownloadSpeed,
+        }))
+      } else {
+        details.push(I18n.t('enduser.network_speed_meets_required_detail'))
+      }
+
+      return details
+    }
+
     setIsLoading(true)
     try {
       runTest().then((res) => {
@@ -90,7 +119,11 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
           campaignId,
           record: {
             checkType: 'network',
-            data: speedData,
+            data: {
+              ...speedData,
+              details: generateDetails(formatSpeed(res?.uploadSpeedMbps as number),
+                formatSpeed(res?.downloadSpeedMbps as number)),
+            },
           },
         }).then(({ data: response }) => {
           setCheckStatus(response?.passed ? CHECK_STATUS.passed : CHECK_STATUS.failed)
@@ -102,10 +135,20 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         })
       }).catch(() => {
         setCheckStatus(CHECK_STATUS.failed)
+        addSystemCheckRecord({
+          campaignId,
+          record: {
+            checkType: 'network',
+            data: {
+              details: generateDetails('0', '0'),
+            },
+          },
+        })
         setIsLoading(false)
       })
     } catch (error) {
       setCheckStatus(CHECK_STATUS.failed)
+
       setIsLoading(false)
     }
   }
@@ -345,18 +388,21 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
         {checkStatus === CHECK_STATUS.failed && (
           <Flex gap={8} vertical style={{ width: '100%', padding: '1rem' }}>
-            <Flex justify="space-between" align="center">
+            <Flex justify="space-between">
               <Flex gap={8}>
                 {checkStatus === CHECK_STATUS.failed
                   ? (
-                    <ExclamationCircleOutlined className={commonStyles['error-icon']} />
+                    <ExclamationCircleOutlined className={cs(commonStyles['error-icon'], 'items-start')} />
                   ) : <CheckCircleOutlined className={commonStyles['success-icon']} />}
-                <Typography.Text
-                  style={{ fontWeight: 500 }}
-                  className="mb-0"
-                >
-                  {I18n.t('enduser.internet_speed_slow')}
-                </Typography.Text>
+                <Flex gap={2} vertical>
+                  <h4 className="mt-0 mb-0">{I18n.t('enduser.internet_speed_slow')}</h4>
+                  <Typography.Text className="mb-2">
+                    {I18n.t('enduser.minimum_speed_requirements', {
+                      minimum_download_speed: minimumDownloadSpeed,
+                      minimum_upload_speed: minimumUploadSpeed,
+                    })}
+                  </Typography.Text>
+                </Flex>
               </Flex>
               <FailureTag
                 style={{ height: 'fit-content' }}
@@ -385,13 +431,23 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               {I18n.t('enduser.rerun_check')}
             </Button>
           )}
-          <CountdownButton
-            disabled={isLoading || checkStatus === CHECK_STATUS.pending || (checkStatus === CHECK_STATUS.failed
-              && !campaignOptions?.allowContinueWithWarning)}
-            label={I18n.t('shared.continue')}
-            handleContinue={handleNext}
-            ref={countDownButtonRef}
-          />
+
+          {checkStatus === CHECK_STATUS.passed ? (
+            <CountdownButton
+              label={I18n.t('shared.continue')}
+              handleContinue={handleNext}
+              ref={countDownButtonRef}
+            />
+          ) : (
+            <ButtonWithArrow
+              type="primary"
+              disabled={isLoading || checkStatus === CHECK_STATUS.pending}
+              style={{ alignSelf: 'flex-end' }}
+              label={I18n.t('shared.continue')}
+              onClick={handleNext}
+            />
+          )}
+
         </Flex>
       </Flex>
     </Flex>

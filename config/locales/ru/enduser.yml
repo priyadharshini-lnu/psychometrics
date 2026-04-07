@@ -24,8 +24,6 @@ ru:
     browser_compatibility_check_description: Проверка поддержки всех необходимых функций вашим браузером
     browser_compatibility_result: Совместимость с браузерами
     browser_version_fix_description_first: 'Используйте один из поддерживаемых браузеров: Chrome, Firefox, Edge или Safari'
-    browser_version_fix_description_second: Обновите браузер до последней версии, чтобы обеспечить совместимость.
-    browser_version_fix_description_third: Попробуйте воспользоваться окном анонимного просмотра
     browser_version_fix_title: Ваша версия браузера не поддерживается.
     camera: Видео и аудио
     camera_access_blocked: Доступ к камере был запрещен или заблокирован вашим браузером. Проверьте настройки разрешений в браузере.
@@ -71,7 +69,6 @@ ru:
     max_word_limit: Должно быть не более %{max} слов
     media_recorder_api_fix_description_first: Включите JavaScript в настройках браузера
     media_recorder_api_fix_description_second: Убедитесь, что ваш браузер поддерживает API MediaRecorder, и при необходимости обновите его до последней версии.
-    media_recorder_api_fix_description_third: Попробуйте другой современный браузер, например Chrome или Firefox
     media_recorder_api_fix_title: API Media Recorder не поддерживается в вашем браузере.
     media_recorder_api_support: Поддержка API MediaRecorder
     min_word_limit: Должно быть не менее %{min} слов

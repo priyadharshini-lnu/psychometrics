@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import {
-  useState, useEffect, useMemo, useContext, useRef,
+  useState, useEffect, useMemo, useContext,
 } from 'react'
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
   Flex, Spin, Typography, Button,
 } from 'antd'
-import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
+import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { VideoCheck } from './VideoCheck'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
@@ -20,10 +20,9 @@ import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/s
 import { CHECK_STATUS, CHECK_TYPE } from '../../common'
 import { PermissionDenied } from './PermissionDenied'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
-import { SystemCheckAddedRecord } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
 import commonStyles from '../../common-styles.less'
-import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
+import { SystemCheckAddedRecord } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
 
 const { I18n } = window
 const connector = connect(null,
@@ -39,28 +38,28 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const [isDeviceRequestGranted, setIsDeviceRequestGranted] = useState<boolean>(true)
 
+  const [isAbruptlyEnded, setIsAbruptlyEnded] = useState<boolean>(true)
+
   const dispatch = useDispatch()
 
   const campaignDetailsForSystemCheck = useSelector(
     (state: RootState) => state.campaigns.systemCheck.currentCampaignForSystemCheck,
   )
 
-  const { systemCheckSessionId = null, campaignOptions } = campaignDetailsForSystemCheck || {}
+  const { systemCheckSessionId = null } = campaignDetailsForSystemCheck || {}
 
   const { campaignId } = useParams() as { campaignId: string}
 
   const { isMobile } = useContext(MediaQueryContext)
 
-  const countDownButtonRef = useRef<CountdownButtonRef>(null)
-
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
   const {
     data:
     systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
-  useEffect(() => {
-    const generateRecordId = async () => {
+  const generateRecordId = async () => {
+    try {
       const recordResponse = await addSystemCheckRecord({
         campaignId,
         record: {
@@ -68,10 +67,14 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
           passed: false,
           data: {},
         },
-      })
+      }).unwrap()
 
       return recordResponse
+    } catch (e) {
+      return null
     }
+  }
+  useEffect(() => {
     if (!systemCheckSessionId) {
       setIsLoading(true)
       fetchCampaign(`/campaigns/${campaignId}`).then(({ response }) => {
@@ -91,16 +94,20 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
             }))
           }
 
-          generateRecordId().then(({ data }: {data: SystemCheckAddedRecord}) => {
-            setRecordId(data.id.toString())
+          generateRecordId().then((response: {data: SystemCheckAddedRecord} | null) => {
+            if (response && response.data) {
+              setRecordId(response.data.id.toString())
+            }
           })
         }
       }).finally(() => {
         setIsLoading(false)
       })
     } else {
-      generateRecordId().then(({ data }: {data: SystemCheckAddedRecord}) => {
-        setRecordId(data.id.toString())
+      generateRecordId().then((response: {data: SystemCheckAddedRecord} | null) => {
+        if (response && response.data) {
+          setRecordId(response.data.id.toString())
+        }
       })
     }
   }, [systemCheckRequirementsStatus])
@@ -111,6 +118,26 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
   }, [recordId])
 
+  const generateDetails = () => {
+    const details: string[] = []
+
+    if (!isDeviceRequestGranted) {
+      details.push(I18n.t('enduser.camera_access_blocked'))
+    } else if (isDeviceRequestGranted && checkStatus === CHECK_STATUS.failed) {
+      details.push(I18n.t('enduser.error_uploading_video_detail'))
+    } else {
+      details.push(I18n.t('enduser.camera_check_passed'))
+    }
+
+    return details
+  }
+
+  const onCheckAbruptlyEnded = () => {
+    if (checkStatus === CHECK_STATUS.pending) {
+      setIsAbruptlyEnded(true)
+      setCheckStatus(CHECK_STATUS.failed)
+    }
+  }
 
   const handleNext = async () => {
     setIsLoading(true)
@@ -119,7 +146,9 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       record: {
         checkType: CHECK_TYPE.video,
         passed: checkStatus === CHECK_STATUS.passed,
-        data: {},
+        data: {
+          details: generateDetails(),
+        },
       },
     })
 
@@ -142,6 +171,10 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
     return null
   }, [recordId])
+
+  if (!isDeviceRequestGranted) {
+    return <PermissionDenied handleNext={handleNext} />
+  }
 
   return (
     <Flex
@@ -180,8 +213,6 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         )}
       </Flex>
 
-      {!isDeviceRequestGranted && <PermissionDenied handleNext={handleNext} />}
-
       {checkStatus === CHECK_STATUS.failed ? (
 
         isDeviceRequestGranted && (
@@ -200,7 +231,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               >
                 <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
                 <h4 className="mt-0">
-                  {I18n.t('enduser.error_uploading_video')}
+                  {isAbruptlyEnded ? I18n.t('enduser.camera_check_abruptly_ended') : I18n.t('enduser.error_uploading_video')}
                 </h4>
               </Flex>
 
@@ -212,18 +243,19 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               </Button>
               <Flex justify="end" gap={4} className="mt-2">
                 <Button onClick={() => {
-                  countDownButtonRef.current?.reset()
                   setCheckStatus(CHECK_STATUS.pending)
+                  setIsAbruptlyEnded(false)
                 }}
                 >
                   {I18n.t('enduser.rerun_check')}
                 </Button>
 
-                <CountdownButton
-                  disabled={!campaignOptions?.allowContinueWithWarning}
+                <ButtonWithArrow
+                  type="primary"
+                  style={{ alignSelf: 'flex-end' }}
                   label={I18n.t('shared.continue')}
-                  handleContinue={handleNext}
-                  ref={countDownButtonRef}
+                  onClick={handleNext}
+                  disabled={isAbruptlyEnded}
                 />
               </Flex>
             </Flex>
@@ -241,6 +273,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               nextStep={handleNext}
               setCheckStatus={setCheckStatus}
               setIsDeviceRequestGranted={setIsDeviceRequestGranted}
+              onCheckAbruptlyEnded={onCheckAbruptlyEnded}
             />
           )}
         </>

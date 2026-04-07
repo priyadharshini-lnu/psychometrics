@@ -24,8 +24,6 @@ hu:
     browser_compatibility_check_description: Ellenőrizze, hogy böngészője támogatja-e az összes szükséges funkciót
     browser_compatibility_result: Böngészőkompatibilitás
     browser_version_fix_description_first: 'Használjon támogatott böngészőt: Chrome, Firefox, Edge vagy Safari'
-    browser_version_fix_description_second: A kompatibilitás biztosítása érdekében frissítse böngészőjét a legújabb verzióra.
-    browser_version_fix_description_third: Próbáld meg inkognitó/privát böngészési ablakot használni
     browser_version_fix_title: A böngésződ verziója nem támogatott.
     camera: Videó és hang
     camera_access_blocked: A böngészője megtagadta vagy letiltotta a kamera hozzáférését. Kérjük, ellenőrizze a böngésző engedélyezési beállításait.
@@ -71,7 +69,6 @@ hu:
     max_word_limit: Legfeljebb %{max} szó lehet
     media_recorder_api_fix_description_first: Engedélyezze a JavaScriptet a böngésző beállításaiban
     media_recorder_api_fix_description_second: Ellenőrizze, hogy böngészője támogatja-e a MediaRecorder API-t, és szükség esetén frissítse a legújabb verzióra.
-    media_recorder_api_fix_description_third: Próbálj ki egy másik modern böngészőt, például a Chrome-ot vagy a Firefoxot
     media_recorder_api_fix_title: A böngésző nem támogatja a Media Recorder API-t.
     media_recorder_api_support: MediaRecorder API támogatás
     min_word_limit: Legalább %{min} szó kell

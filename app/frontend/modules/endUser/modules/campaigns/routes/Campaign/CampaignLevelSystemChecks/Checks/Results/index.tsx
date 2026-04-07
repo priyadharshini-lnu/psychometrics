@@ -2,7 +2,7 @@ import {
   useEffect, useState, useMemo, useContext,
 } from 'react'
 import {
-  Table, Spin, Typography, Flex, Card, Button,
+  Table, Spin, Typography, Flex, Card, Button, Alert,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -23,6 +23,7 @@ import { CHECKS } from './common'
 import { ResultDetails } from './ResultDetails'
 import { SuccessTag, FailureTag } from '../../components/StatusTags'
 import { CheckStepImage } from './CheckStepImage'
+import styles from './styles.less'
 
 const { I18n } = window
 
@@ -30,16 +31,45 @@ const connector = connect(null,
   {
     fetchCampaign,
   })
+
+const CheckDetails = ({ details, check, result }) => (
+
+  <Alert
+    type={result ? 'success' : 'error'}
+    title={(
+      <Flex className="p-2" vertical gap={8}>
+        <Typography.Title className="mt-0 mb-0" level={5}>{check}</Typography.Title>
+        <ul style={{ paddingInlineStart: '1.2rem' }}>
+          {details.map((detail, index) => (
+            <li key={index}>
+              <Typography.Text>{detail}</Typography.Text>
+            </li>
+          ))}
+        </ul>
+      </Flex>
+
+    )}
+    showIcon={false}
+  />
+
+)
+
 const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
-  const [resultsData, setResultsData] = useState<{check: string, result: boolean}[]>([])
+  const [resultsData, setResultsData] = useState<{key:string, check: string, result: boolean, details: string[]}[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const { campaignId } = useParams() as { campaignId: string}
 
-  const { data: systemCheckResults } = useFetchSystemCheckResultsQuery({ campaignId })
+  const [expandedRowKeys, setExpandedRowKeys] = useState<React.Key[]>([])
+
+  const { data: systemCheckResults } = useFetchSystemCheckResultsQuery(
+    { campaignId },
+    { refetchOnMountOrArgChange: true },
+  )
   const {
     data:
     systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
+
 
   const { isMobile } = useContext(MediaQueryContext)
   const dispatch = useDispatch()
@@ -55,6 +85,8 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
   useEffect(() => {
     completeSystemCheckSession({
       campaignId,
+    }).then(() => {
+      setIsLoading(false)
     })
   }, [])
 
@@ -89,6 +121,15 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const navigate = useNavigate()
 
+  const toggleExpand = (key) => {
+    setExpandedRowKeys((prev) => {
+      if (prev.includes(key)) {
+        return prev.filter(k => k !== key)
+      }
+      return [...prev, key]
+    })
+  }
+
   const columns = useMemo(() => ([
     {
       title: I18n.t('enduser.check'),
@@ -116,15 +157,32 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
             )}
           </Typography.Text>
         </Flex>
-      )
-      ,
+      ),
     },
-  ]), [resultsData])
+    {
+      title: <div style={{ textAlign: 'end' }}>{I18n.t('enduser.details')}</div>,
+      dataIndex: 'details',
+      key: 'details',
+      render: (_, record) => (
+        <Flex justify="end">
+          <Button className="pe-0" type="link" onClick={() => toggleExpand(record.key)}>
+            {expandedRowKeys.includes(record.key) ? I18n.t('enduser.hide_details') : I18n.t('enduser.view_details')}
+          </Button>
+        </Flex>
 
-  const formatData = data => Object.keys(data).sort().reduce((acc:{check:string, result:boolean}[], item) => {
+      ),
+    },
+  ]), [resultsData, expandedRowKeys])
+
+
+  const formatData = data => Object.keys(data).sort().reduce((acc:{key:string,
+    check:string, result:boolean, details:string[]}[],
+  item) => {
     acc = acc.concat({
+      key: CHECKS[data[item].checkType],
       check: CHECKS[data[item].checkType],
       result: data[item].passed,
+      details: data[item].data.details,
     })
     return acc
   }, [])
@@ -132,8 +190,15 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
   useEffect(() => {
     if (!systemCheckResults) return
     setResultsData(formatData(systemCheckResults?.records))
-    setIsLoading(false)
   }, [systemCheckResults])
+
+  const handleNext = () => {
+    if (systemCheckStatusPassed || campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning) {
+      onNext()
+    } else {
+      window.location.href = '/'
+    }
+  }
 
   return (
     <Flex justify="center" flex={1} style={{ width: '100%' }}>
@@ -147,7 +212,22 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
             style={{ ...(!isMobile && { padding: '1rem' }), width: '100%' }}
           >
             <ResultHeader />
-            <Table style={{ width: '100%' }} pagination={false} columns={columns} dataSource={resultsData} />
+            <Table
+              style={{ width: '100%' }}
+              pagination={false}
+              rowKey={record => record.key}
+              columns={columns}
+              className={styles['results-table']}
+              dataSource={resultsData}
+              expandable={{
+                expandedRowRender: record => (
+                  <CheckDetails check={record.check} details={record.details} result={record.result} />
+                ),
+                expandedRowKeys,
+                expandRowByClick: false,
+                showExpandColumn: false,
+              }}
+            />
 
             {!systemCheckStatusPassed
             && !campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning && (
@@ -179,27 +259,24 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
                 {I18n.t('enduser.back')}
               </Button>
               <Flex gap={4} style={{ width: '100%' }} justify="end">
-                {(systemCheckStatusPassed || (!systemCheckStatusPassed
-            && campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning)) && (
-              <Button
-                className="mt-2"
-                icon={<RedoOutlined />}
-                onClick={
+                {!systemCheckStatusPassed && (
+                  <Button
+                    className="mt-2"
+                    icon={<RedoOutlined />}
+                    onClick={
                   () => {
                     navigate(`/campaign_system_check/${campaignId}/welcome`)
                   }
                 }
-              >
-                {I18n.t('enduser.rerun_checks')}
-              </Button>
+                  >
+                    {I18n.t('enduser.rerun_checks')}
+                  </Button>
                 )}
                 <ButtonWithArrow
                   style={{ alignSelf: 'flex-end' }}
                   label={I18n.t('shared.continue')}
                   type="primary"
-                  onClick={onNext}
-                  disabled={!systemCheckStatusPassed
-                  && !campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning}
+                  onClick={handleNext}
                 />
               </Flex>
             </Flex>

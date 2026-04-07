@@ -24,8 +24,6 @@ vi:
     browser_compatibility_check_description: Kiểm tra xem trình duyệt của bạn có hỗ trợ tất cả các tính năng cần thiết hay không
     browser_compatibility_result: Khả năng tương thích với trình duyệt
     browser_version_fix_description_first: 'Hãy sử dụng trình duyệt được hỗ trợ: Chrome, Firefox, Edge hoặc Safari'
-    browser_version_fix_description_second: Hãy cập nhật trình duyệt của bạn lên phiên bản mới nhất để đảm bảo tính tương thích.
-    browser_version_fix_description_third: Hãy thử sử dụng cửa sổ duyệt web ẩn danh
     browser_version_fix_title: Phiên bản trình duyệt của bạn không được hỗ trợ.
     camera: Video và Âm thanh
     camera_access_blocked: Trình duyệt của bạn đã từ chối hoặc chặn quyền truy cập camera. Vui lòng kiểm tra quyền truy cập trong trình duyệt.
@@ -71,7 +69,6 @@ vi:
     max_word_limit: Phải có tối đa %{max} từ
     media_recorder_api_fix_description_first: Bật JavaScript trong cài đặt trình duyệt của bạn
     media_recorder_api_fix_description_second: Hãy kiểm tra xem trình duyệt của bạn có hỗ trợ API MediaRecorder hay không và cập nhật lên phiên bản mới nhất nếu cần thiết.
-    media_recorder_api_fix_description_third: Hãy thử sử dụng một trình duyệt hiện đại khác như Chrome hoặc Firefox
     media_recorder_api_fix_title: Trình ghi phương tiện (Media Recorder API) không được hỗ trợ trên trình duyệt của bạn.
     media_recorder_api_support: Hỗ trợ API MediaRecorder
     min_word_limit: Phải có ít nhất %{min} từ

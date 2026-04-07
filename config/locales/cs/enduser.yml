@@ -24,8 +24,6 @@ cs:
     browser_compatibility_check_description: Zkontrolujte, zda váš prohlížeč podporuje všechny požadované funkce
     browser_compatibility_result: Kompatibilita s prohlížeči
     browser_version_fix_description_first: 'Použijte některý z podporovaných prohlížečů: Chrome, Firefox, Edge nebo Safari'
-    browser_version_fix_description_second: Aktualizujte svůj prohlížeč na nejnovější verzi, abyste zajistili kompatibilitu.
-    browser_version_fix_description_third: Zkuste použít okno v anonymním/soukromém režimu
     browser_version_fix_title: Vaše verze prohlížeče není podporována.
     camera: Video a audio
     camera_access_blocked: Váš prohlížeč odepřel nebo zablokoval přístup k webové kameře. Zkontrolujte prosím oprávnění ve svém prohlížeči.
@@ -71,7 +69,6 @@ cs:
     max_word_limit: Musí mít maximálně %{max} slov
     media_recorder_api_fix_description_first: V nastavení prohlížeče povolte JavaScript
     media_recorder_api_fix_description_second: Zkontrolujte, zda váš prohlížeč podporuje rozhraní MediaRecorder API, a v případě potřeby proveďte aktualizaci na nejnovější verzi.
-    media_recorder_api_fix_description_third: Zkuste jiný moderní prohlížeč, například Chrome nebo Firefox
     media_recorder_api_fix_title: Váš prohlížeč nepodporuje rozhraní Media Recorder API.
     media_recorder_api_support: Podpora rozhraní API MediaRecorder
     min_word_limit: Musí mít nejméně %{min} slov

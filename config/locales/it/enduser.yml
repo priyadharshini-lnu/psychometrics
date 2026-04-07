@@ -24,8 +24,6 @@ it:
     browser_compatibility_check_description: Verifica se il tuo browser supporta tutte le funzionalità richieste
     browser_compatibility_result: Compatibilità con i browser
     browser_version_fix_description_first: 'Utilizza un browser compatibile: Chrome, Firefox, Edge o Safari'
-    browser_version_fix_description_second: Aggiorna il browser all'ultima versione per garantire la compatibilità.
-    browser_version_fix_description_third: Prova a utilizzare una finestra di navigazione in incognito
     browser_version_fix_title: La versione del tuo browser non è supportata.
     camera: Video e audio
     camera_access_blocked: L'accesso alla fotocamera è stato negato o bloccato dal tuo browser. Controlla le autorizzazioni del browser.
@@ -71,7 +69,6 @@ it:
     max_word_limit: Deve essere al massimo %{max} parole
     media_recorder_api_fix_description_first: Abilita JavaScript nelle impostazioni del browser
     media_recorder_api_fix_description_second: Verifica che il tuo browser supporti l'API MediaRecorder e, se necessario, aggiorna alla versione più recente.
-    media_recorder_api_fix_description_third: Prova un altro browser moderno, come Chrome o Firefox
     media_recorder_api_fix_title: L'API Media Recorder non è supportata dal tuo browser.
     media_recorder_api_support: Supporto dell'API MediaRecorder
     min_word_limit: Deve essere almeno %{min} parole

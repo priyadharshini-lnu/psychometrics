@@ -24,8 +24,6 @@ sr-Cyrl:
     browser_compatibility_check_description: Проверка да ли ваш прегледач подржава све потребне функције
     browser_compatibility_result: Компатибилност прегледача
     browser_version_fix_description_first: 'Користите подржани прегледач: Chrome, Firefox, Edge или Safari'
-    browser_version_fix_description_second: Ажурирајте прегледач на најновију верзију како бисте осигурали компатибилност.
-    browser_version_fix_description_third: Покушајте да користите инкогнито/приватни прозор за прегледање.
     browser_version_fix_title: Ваша верзија прегледача није подржана.
     camera: Видео и аудио
     camera_access_blocked: Приступ камери је одбијен или блокиран од стране вашег прегледача. Молимо вас да проверите дозволе у вашем прегледачу.
@@ -71,7 +69,6 @@ sr-Cyrl:
     max_word_limit: Мора да буде највише %{max} речи
     media_recorder_api_fix_description_first: Омогућите JavaScript у подешавањима свог прегледача
     media_recorder_api_fix_description_second: Проверите да ли ваш прегледач подржава MediaRecorder API и, ако је потребно, ажурирајте га на најновију верзију.
-    media_recorder_api_fix_description_third: Испробајте неки други савремени прегледач као што су Chrome или Firefox.
     media_recorder_api_fix_title: API за снимање медија није подржан у вашем прегледачу.
     media_recorder_api_support: Подршка за MediaRecorder API
     min_word_limit: Мора да има најмање %{min} речи

@@ -24,8 +24,6 @@ hi:
     browser_compatibility_check_description: जांच रहा है कि आपका ब्राउज़र सभी आवश्यक सुविधाओं का समर्थन करता है
     browser_compatibility_result: ब्राउज़र अनुकूलता
     browser_version_fix_description_first: 'समर्थित ब्राउज़र का उपयोग करें: Chrome, Firefox, Edge, या Safari'
-    browser_version_fix_description_second: संगतता सुनिश्चित करने के लिए अपने ब्राउज़र को नवीनतम संस्करण में अपडेट करें।
-    browser_version_fix_description_third: अज्ञात/निजी ब्राउज़िंग विंडो का उपयोग करने का प्रयास करें।
     browser_version_fix_title: आपका ब्राउज़र संस्करण समर्थित नहीं है।
     camera: वीडियो और ऑडियो
     camera_access_blocked: कैमरे तक की पहुँच आपके ब्राउज़र द्वारा अस्वीकार या अवरुद्ध कर दी गई है। कृपया अपने ब्राउज़र की अनुमतियाँ जाँचें।
@@ -71,7 +69,6 @@ hi:
     max_word_limit: अधिकतम %{max} शब्द होना चाहिए।
     media_recorder_api_fix_description_first: अपने ब्राउज़र सेटिंग्स में जावास्क्रिप्ट सक्षम करें
     media_recorder_api_fix_description_second: जाँचें कि आपका ब्राउज़र MediaRecorder API का समर्थन करता है और यदि आवश्यक हो तो इसे नवीनतम संस्करण में अपडेट करें।
-    media_recorder_api_fix_description_third: Chrome या Firefox जैसे किसी अन्य आधुनिक ब्राउज़र का प्रयास करें।
     media_recorder_api_fix_title: मीडिया रिकॉर्डर एपीआई आपके ब्राउज़र में समर्थित नहीं है।
     media_recorder_api_support: मीडिया रिकॉर्डर एपीआई समर्थन
     min_word_limit: कम से कम %{min} शब्द होना चाहिए।

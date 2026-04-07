@@ -24,8 +24,6 @@ bg:
     browser_compatibility_check_description: Проверка дали браузърът ви поддържа всички необходими функции
     browser_compatibility_result: Съвместимост с браузърите
     browser_version_fix_description_first: 'Използвайте поддържан браузър: Chrome, Firefox, Edge или Safari'
-    browser_version_fix_description_second: Актуализирайте браузъра си до най-новата версия, за да гарантирате съвместимостта.
-    browser_version_fix_description_third: Опитайте да използвате прозорец за сърфиране в режим „инкогнито“/„частен режим“
     browser_version_fix_title: Версията на Вашия браузър не се поддържа.
     camera: Видео и аудио
     camera_access_blocked: Достъпът до камерата е бил отказан или блокиран от браузъра ви. Моля, проверете настройките за разрешения в браузъра си.
@@ -71,7 +69,6 @@ bg:
     max_word_limit: Трябва да бъде най-много %{max} думи
     media_recorder_api_fix_description_first: Активирайте JavaScript в настройките на браузъра си
     media_recorder_api_fix_description_second: Проверете дали браузърът ви поддържа MediaRecorder API и ако е необходимо, актуализирайте го до най-новата версия.
-    media_recorder_api_fix_description_third: Опитайте с друг модерен браузър, като например Chrome или Firefox
     media_recorder_api_fix_title: API-то за запис на мултимедия не се поддържа от вашия браузър.
     media_recorder_api_support: Поддръжка на MediaRecorder API
     min_word_limit: Трябва да бъде най-малко %{min} думи

@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
+import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import { BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature } from '~/utils/uaParser'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
@@ -50,9 +50,11 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     (state: RootState) => state.campaigns.systemCheck.currentCampaignForSystemCheck,
   )
 
-  const { systemCheckSessionId = null, checksArray = [], campaignOptions } = campaignDetailsForSystemCheck || {}
+  const { systemCheckSessionId = null, checksArray = [] } = campaignDetailsForSystemCheck || {}
 
   const { campaignId } = useParams() as {campaignId: string}
+
+  const [major, minor] = [BROWSER_VERSION.split('.')[0], BROWSER_VERSION.split('.')[1] || '0']
 
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
   const {
@@ -86,8 +88,14 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
   }
 
-  const checkIfBrowserIsAboveMinimumVersion = () => Number(BROWSER_VERSION.split('.')[0])
-   >= MIN_BROWSER_VERSIONS[BROWSER_NAME]
+  const checkIfBrowserIsAboveMinimumVersion = () => {
+    const compatibleVersion = MIN_BROWSER_VERSIONS[BROWSER_NAME]
+    if (!compatibleVersion) {
+      return false
+    }
+    return Number(BROWSER_VERSION.split('.')[0]) >= compatibleVersion
+  }
+
 
   const checkBrowserForFeatureCompatibility = () => {
     setIsLoading(true)
@@ -100,11 +108,71 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
     const hasLocalStorageSupport = checkBrowserForLocalStorageSupport()
 
-    setBrowserChecks([{
-      type: BrowserCheckType.browserVersion,
-      title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${BROWSER_VERSION}`,
-      supported: hasMinimumBrowserVersion,
-    }, {
+    const generateDetails = () => {
+      const details:string[] = []
+
+
+      if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
+        details.push(I18n.t('enduser.browser_not_compatible', { browser_name: BROWSER_NAME }))
+      }
+
+      if (hasMinimumBrowserVersion && hasWebGLSupport && hasMediaRecorderAPISupport && hasLocalStorageSupport) {
+        details.push(I18n.t('enduser.browser_compatible', {
+          browser_name: BROWSER_NAME,
+          browser_version: `${major}.${minor}`,
+        }))
+        return details
+      }
+
+      if (!hasMinimumBrowserVersion) {
+        details.push(I18n.t('enduser.browser_incompatible_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: `${major}.${minor}`,
+          min_browser_version: MIN_BROWSER_VERSIONS[BROWSER_NAME],
+        }))
+      } else {
+        details.push(I18n.t('enduser.browser_compatible_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: `${major}.${minor}`,
+        }))
+      }
+
+      if (!hasWebGLSupport) {
+        details.push(I18n.t('enduser.webgl_not_supported_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: `${major}.${minor}`,
+        }))
+      }
+
+      if (!hasMediaRecorderAPISupport) {
+        details.push(I18n.t('enduser.media_recorder_api_not_supported_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: `${major}.${minor}`,
+        }))
+      }
+
+      if (!hasLocalStorageSupport) {
+        details.push(I18n.t('enduser.localstorage_not_enabled_detail'))
+      }
+      return details
+    }
+
+    const getBrowserCheckDetails = () => {
+      if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
+        return {
+          type: BrowserCheckType.browserVersion,
+          title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${major}.${minor}`,
+          supported: false,
+        }
+      }
+      return {
+        type: BrowserCheckType.browserVersion,
+        title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${major}.${minor}`,
+        supported: hasMinimumBrowserVersion,
+      }
+    }
+
+    setBrowserChecks([getBrowserCheckDetails(), {
       type: BrowserCheckType.webGL,
       title: I18n.t('enduser.webgl_api_support'),
       supported: hasWebGLSupport,
@@ -131,8 +199,9 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           webGL: hasWebGLSupport,
           localStorage: hasLocalStorageSupport,
           browserName: BROWSER_NAME,
-          browserVersion: BROWSER_VERSION,
+          browserVersion: `${major}.${minor}`,
           browserCompatibility: hasMinimumBrowserVersion,
+          details: generateDetails(),
         },
       },
     ]))
@@ -289,15 +358,22 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           >
             {I18n.t('enduser.rerun_check')}
           </Button>
-          <CountdownButton
-            disabled={
-              isLoading || checkStatus === CHECK_STATUS.pending || (checkStatus === CHECK_STATUS.failed
-                && !campaignOptions?.allowContinueWithWarning)
-            }
-            label={I18n.t('shared.continue')}
-            handleContinue={handleNext}
-            ref={countDownButtonRef}
-          />
+          {checkStatus === CHECK_STATUS.passed ? (
+            <CountdownButton
+              label={I18n.t('shared.continue')}
+              handleContinue={handleNext}
+              ref={countDownButtonRef}
+            />
+          ) : (
+            <ButtonWithArrow
+              type="primary"
+              disabled={isLoading || checkStatus === CHECK_STATUS.pending}
+              style={{ alignSelf: 'flex-end' }}
+              label={I18n.t('shared.continue')}
+              onClick={handleNext}
+            />
+          )}
+
         </Flex>
       </Flex>
     </Flex>

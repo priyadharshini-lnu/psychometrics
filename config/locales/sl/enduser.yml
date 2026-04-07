@@ -24,8 +24,6 @@ sl:
     browser_compatibility_check_description: Preverjanje, ali vaš brskalnik podpira vse potrebne funkcije
     browser_compatibility_result: Združljivost z brskalniki
     browser_version_fix_description_first: 'Uporabite podprt brskalnik: Chrome, Firefox, Edge ali Safari'
-    browser_version_fix_description_second: Posodobite brskalnik na najnovejšo različico, da zagotovite združljivost.
-    browser_version_fix_description_third: Poskusi uporabiti okno za brskanje v načinu inkognito/zasebno brskanje
     browser_version_fix_title: Vaša različica brskalnika ni podprta.
     camera: Video in avdio
     camera_access_blocked: Vaš brskalnik je zavrnil ali blokiral dostop do kamere. Preverite nastavitve dovoljenj v brskalniku.
@@ -71,7 +69,6 @@ sl:
     max_word_limit: Mora imeti največ %{max} besed
     media_recorder_api_fix_description_first: V nastavitvah brskalnika omogočite JavaScript
     media_recorder_api_fix_description_second: Preverite, ali vaš brskalnik podpira vmesnik API MediaRecorder, in ga po potrebi posodobite na najnovejšo različico.
-    media_recorder_api_fix_description_third: Poskusi z drugim sodobnim brskalnikom, kot sta Chrome ali Firefox
     media_recorder_api_fix_title: Vaš brskalnik ne podpira vmesnika API za snemanje medijev.
     media_recorder_api_support: Podpora za vmesnik API MediaRecorder
     min_word_limit: Mora imeti najmanj %{min} besed
