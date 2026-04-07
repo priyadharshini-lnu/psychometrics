@@ -261,7 +261,7 @@ const NormsEditor = () => {
       setEditingCell(null)
     }).catch((e) => {
       form.setFieldValue(`${record.key}-${dataIndex}`, record[dataIndex])
-      message.error(`Error updating cell: ${e['/fieldValue'].title}`)
+      message.error(`${e['/fieldValue'].title}`)
     })
   }
 
