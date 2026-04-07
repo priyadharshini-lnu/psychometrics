@@ -7,6 +7,10 @@ module Api
         has_permission?(:campaigns, :manage)
       end
 
+      def import?
+        index?
+      end
+
       def questions?
         index?
       end

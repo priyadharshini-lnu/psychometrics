@@ -250,6 +250,7 @@ en:
       thursday: Thursday
       tuesday: Tuesday
       wednesday: Wednesday
+    dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
@@ -1037,6 +1038,8 @@ en:
     translated_to: 'Translated to:'
     translated_with_ai_notice: AI Translated
     translation_assistant_not_configured: Translation Assistant not configured
+    translations:
+      title: Translations
     update_success: "%{readableResourceName} was updated successfully"
     upload: Upload
     upload_media: Upload Media

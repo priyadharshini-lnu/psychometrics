@@ -1402,9 +1402,15 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :dimensions do
             post :copy
+            post :export_json
+            post :export_translations
+            post :import_translations
             scope module: :dimensions do
               jsonapi_resources :factors do
                 post :copy
+                collection do
+                  post :import
+                end
                 resource :uploads, only: %i[update], controller: 'factors/uploads'
               end
               jsonapi_resources :occupations do

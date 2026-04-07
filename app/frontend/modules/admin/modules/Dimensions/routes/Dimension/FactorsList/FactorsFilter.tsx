@@ -1,11 +1,15 @@
 import { FC } from 'react'
 import { Button } from 'antd'
-import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  ImportOutlined,
+  PlusOutlined,
+  TranslationOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { Factor } from '~/modules/admin/modules/campaigns/core/factors'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 
 type Props = {
-    openModal: (modalName: string, modalProps?: unknown) => void
+  openModal: (modalName: string, modalProps?: unknown) => void
 }
 
 const { I18n } = window
@@ -21,6 +25,14 @@ export const FactorsFilter: FC<Props> = ({
     openModal('FactorsFormModal')
   }
 
+  const importFactorsModal = () => {
+    openModal('FactorsImportModal')
+  }
+
+  const handleTranslationsModal = () => {
+    openModal('FactorTranslationsModal')
+  }
+
   return (
     <Resource.Filter
       name="filterable_fields"
@@ -29,6 +41,14 @@ export const FactorsFilter: FC<Props> = ({
       <Button type="primary" disabled={tableLoading} onClick={handleCreateFactorsModal}>
         <PlusOutlined />
         {I18n.t('common.actions.create')}
+      </Button>
+      <Button disabled={tableLoading} onClick={importFactorsModal}>
+        <ImportOutlined />
+        {I18n.t('administration.dimensions.import_factors.title')}
+      </Button>
+      <Button disabled={tableLoading} onClick={handleTranslationsModal}>
+        <TranslationOutlined />
+        {I18n.t('admin.translations.title')}
       </Button>
     </Resource.Filter>
   )

@@ -4,6 +4,7 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import { Resource } from '~/modules/admin/components/Resource'
+import { DimensionImportModal } from '~/modules/admin/modules/DimensionImport'
 import { DimensionsFormModal } from './DimensionsFormModal'
 import { DimensionsTable } from './DimensionsTable'
 import { DimensionsFilter } from './DimensionsFilter'
@@ -11,6 +12,7 @@ import { RemoveDimensionModal } from './RemoveDimensionModal'
 import { DimensionsBreadcrumb } from './DimensionsBreadcrumb'
 
 const MODALS = {
+  DimensionImportModal,
   DimensionsFormModal,
   RemoveDimensionModal,
 }

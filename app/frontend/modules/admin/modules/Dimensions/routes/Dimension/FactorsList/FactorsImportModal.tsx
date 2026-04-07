@@ -1,0 +1,43 @@
+import React from 'react'
+import { Factor } from '~/modules/admin/modules/campaigns/core/factors'
+import { useResourceContext } from '~/modules/admin/components/Resource'
+import ImportModal from '~/modules/admin/modules/PortableDataImport/ImportModal'
+
+type Props = {
+  close: () => void
+}
+
+const { I18n } = window
+
+export const FactorsImportModal: React.FC<Props> = ({ close }) => {
+  const { resource } = useResourceContext<Factor>()
+
+  const submitFileImport = (file: File) => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    return resource.uploadFileAction('factors/import', formData)
+  }
+
+  return (
+    <ImportModal
+      title={I18n.t('administration.dimensions.import_factors.title')}
+      validateEndpoint=""
+      importEndpoint=""
+      translations={{
+        cancel: I18n.t('administration.close'),
+        import: I18n.t('administration.dimensions.import_factors.import'),
+      }}
+      fileAccept=".csv"
+      fileLabel={I18n.t('administration.dimensions.import_factors.title')}
+      fileErrorMessage={I18n.t('administration.errors.csv_file_required')}
+      showMappableFields={false}
+      skipValidation
+      sampleFilePath="/example_csv/factors.csv"
+      sampleFileLabel={I18n.t('administration.dimensions.import_factors.sample_file')}
+      successMessage={I18n.t('administration.dimensions.import_modal.import_scheduled')}
+      submitFileImport={submitFileImport}
+      onClose={close}
+    />
+  )
+}

@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
 import {
   Button, MenuProps,
+  message,
   Switch,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/interface'
+import * as t from 'io-ts'
 import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -14,6 +16,7 @@ type Props = {
 }
 
 const { I18n } = window
+const ExportDimensionResponseTR = t.type({ status: t.string })
 
 export const DimensionsTable: FC<Props> = ({ openModal }) => {
   const renderColumnName = ({
@@ -125,9 +128,30 @@ const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => {
     })
   }
 
+  const exportDimension = async () => {
+    try {
+      await resource.memberAction({
+        id: dimension.id,
+        action: 'export_json',
+        method: 'post',
+        responseType: ExportDimensionResponseTR,
+      })
+      message.success(
+        I18n.t('administration.dimensions.export_json.successfully', { name: dimension.name }),
+      )
+    } catch (error) {
+      message.error(I18n.t('common.error'))
+    }
+  }
+
   return (
     <ConditionalDropdown
-      menu={getActionsMenuProps({ dimension, openModal, copyDimension })}
+      menu={getActionsMenuProps({
+        dimension,
+        openModal,
+        copyDimension,
+        exportDimension,
+      })}
     />
   )
 }
@@ -136,8 +160,13 @@ const getActionsMenuProps = ({
   dimension,
   openModal,
   copyDimension,
-}: DropDownProps & { copyDimension: () => Promise<void> }): MenuProps => {
+  exportDimension,
+}: DropDownProps & {
+  copyDimension: () => Promise<void>
+  exportDimension: () => Promise<void>
+}): MenuProps => {
   const canCopy = dimension?.meta?.permissions?.copy
+  const canExportJson = dimension?.meta?.permissions?.exportJson
   const menuItems = [
     dimension && {
       key: 'edit',
@@ -170,6 +199,17 @@ const getActionsMenuProps = ({
           className="ps-0"
         >
           {I18n.t('common.actions.copy')}
+        </Button>),
+    },
+    canExportJson && {
+      key: 'export_json',
+      label: (
+        <Button
+          type="link"
+          onClick={exportDimension}
+          className="ps-0"
+        >
+          {I18n.t('administration.dimensions.resource.tooltips.export_json')}
         </Button>),
     },
   ].filter(m => m) as ItemType[]
