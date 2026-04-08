@@ -2,7 +2,7 @@ import {
   useEffect, useState, useContext, useRef,
 } from 'react'
 import {
-  Flex, Typography, Skeleton, Button, Divider,
+  Flex, Typography, Button, Divider, Progress,
 } from 'antd'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -39,10 +39,12 @@ const connector = connect(null,
     fetchCampaign,
   })
 const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
-  const { runTest, formatSpeed } = useNetworkTest()
-  const [isLoading, setIsLoading] = useState(true)
+  const {
+    runTimedTest, formatSpeed, state: testState, reset: resetTest,
+  } = useNetworkTest()
   const dispatch = useDispatch()
   const [speed, setSpeed] = useState<{ download: string; upload: string } | null>(null)
+  const completedDownloadRef = useRef<number | null>(null)
   const { isMobile } = useContext(MediaQueryContext)
   const isOnline = useOnlineStatus()
   const countDownButtonRef = useRef<CountdownButtonRef>(null)
@@ -67,73 +69,57 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       systemCheckRequirementsStatus,
   } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
 
-  const downloadSpeed = useSpring(0, { stiffness: 30, damping: 10 })
-  const uploadSpeed = useSpring(0, { stiffness: 30, damping: 10 })
+  const networkRequirements = systemCheckRequirementsStatus?.requirements?.network
 
-  const downloadDisplay = useTransform(downloadSpeed, val => val.toFixed(1))
-  const uploadDisplay = useTransform(uploadSpeed, val => val.toFixed(1))
+  const downloadSpeed = useSpring(0, { stiffness: 150, damping: 30 })
+  const uploadSpeed = useSpring(0, { stiffness: 150, damping: 30 })
 
+  const downloadDisplay = useTransform(downloadSpeed, val => val.toFixed(2))
+  const uploadDisplay = useTransform(uploadSpeed, val => val.toFixed(2))
 
-  const runNetworkTest = () => {
-    const generateDetails = (uploadSpeed: string, downloadSpeed: string) => {
-      const details:string[] = []
+  const generateDetails = (uploadSpeedStr: string, downloadSpeedStr: string) => {
+    const details: string[] = []
 
-      if (parseFloat(downloadSpeed) === 0 && parseFloat(uploadSpeed) === 0) {
-        details.push(I18n.t('enduser.could_not_reach_servers'))
-        return details
-      }
-
-      if (minimumUploadSpeed && convertSpeedToMbps(uploadSpeed) < minimumUploadSpeed) {
-        details.push(I18n.t('enduser.upload_speed_below_minimum', {
-          upload_speed: uploadSpeed,
-          minimum_upload_speed: minimumUploadSpeed,
-        }))
-      }
-
-      if (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeed) < minimumDownloadSpeed) {
-        details.push(I18n.t('enduser.download_speed_below_minimum', {
-          download_speed: downloadSpeed,
-          minimum_download_speed: minimumDownloadSpeed,
-        }))
-      } else {
-        details.push(I18n.t('enduser.network_speed_meets_required_detail'))
-      }
-
+    if (parseFloat(downloadSpeedStr) === 0 && parseFloat(uploadSpeedStr) === 0) {
+      details.push(I18n.t('enduser.could_not_reach_servers'))
       return details
     }
 
-    setIsLoading(true)
-    try {
-      runTest().then((res) => {
-        const speedData = {
-          download_speed_mbps: res?.downloadSpeedMbps as number,
-          upload_speed_mbps: res?.uploadSpeedMbps as number,
-          latency: {
-            latency: res?.latency.latency,
-            jitter: res?.latency.jitter,
-            packetLoss: res?.latency.packetLoss,
-          },
-        }
+    if (minimumUploadSpeed && convertSpeedToMbps(uploadSpeedStr) < minimumUploadSpeed) {
+      details.push(I18n.t('enduser.upload_speed_below_minimum', {
+        upload_speed: uploadSpeedStr,
+        minimum_upload_speed: minimumUploadSpeed,
+      }))
+    }
 
-        addSystemCheckRecord({
-          campaignId,
-          record: {
-            checkType: 'network',
-            data: {
-              ...speedData,
-              details: generateDetails(formatSpeed(res?.uploadSpeedMbps as number),
-                formatSpeed(res?.downloadSpeedMbps as number)),
-            },
-          },
-        }).then(({ data: response }) => {
-          setCheckStatus(response?.passed ? CHECK_STATUS.passed : CHECK_STATUS.failed)
-          setIsLoading(false)
-          setSpeed({
-            download: formatSpeed(response?.data?.downloadSpeedMbps as number),
-            upload: formatSpeed(response?.data?.uploadSpeedMbps as number),
-          })
-        })
-      }).catch(() => {
+    if (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeedStr) < minimumDownloadSpeed) {
+      details.push(I18n.t('enduser.download_speed_below_minimum', {
+        download_speed: downloadSpeedStr,
+        minimum_download_speed: minimumDownloadSpeed,
+      }))
+    } else {
+      details.push(I18n.t('enduser.network_speed_meets_required_detail'))
+    }
+
+    return details
+  }
+
+  const runNetworkTest = async () => {
+    resetTest()
+    setCheckStatus(CHECK_STATUS.pending)
+    setSpeed(null)
+    completedDownloadRef.current = null
+    downloadSpeed.set(0)
+    uploadSpeed.set(0)
+
+    try {
+      const res = await runTimedTest({
+        minimumDownloadSpeedMbps: networkRequirements?.minimumDownloadSpeed ?? minimumDownloadSpeed,
+        minimumUploadSpeedMbps: networkRequirements?.minimumUploadSpeed ?? minimumUploadSpeed,
+        stabilityDuration: networkRequirements?.stabilityDuration,
+      })
+
+      if (!res) {
         setCheckStatus(CHECK_STATUS.failed)
         addSystemCheckRecord({
           campaignId,
@@ -144,18 +130,60 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
             },
           },
         })
-        setIsLoading(false)
-      })
-    } catch (error) {
-      setCheckStatus(CHECK_STATUS.failed)
+        return
+      }
 
-      setIsLoading(false)
+      const {
+        downloadSpeedMbps, uploadSpeedMbps, latency, stable, durationSeconds,
+      } = res
+
+      const speedData = {
+        download_speed_mbps: downloadSpeedMbps,
+        upload_speed_mbps: uploadSpeedMbps,
+        latency: {
+          latency: latency.latency,
+          jitter: latency.jitter,
+          packetLoss: latency.packetLoss,
+        },
+        stable,
+        duration_seconds: durationSeconds,
+      }
+
+      const { data: response } = await addSystemCheckRecord({
+        campaignId,
+        record: {
+          checkType: 'network',
+          data: {
+            ...speedData,
+            details: generateDetails(
+              formatSpeed(uploadSpeedMbps),
+              formatSpeed(downloadSpeedMbps),
+            ),
+          },
+        },
+      })
+
+      setCheckStatus(response?.passed ? CHECK_STATUS.passed : CHECK_STATUS.failed)
+      setSpeed({
+        download: formatSpeed(response?.data?.downloadSpeedMbps as number),
+        upload: formatSpeed(response?.data?.uploadSpeedMbps as number),
+      })
+    } catch {
+      setCheckStatus(CHECK_STATUS.failed)
+      addSystemCheckRecord({
+        campaignId,
+        record: {
+          checkType: 'network',
+          data: {
+            details: generateDetails('0', '0'),
+          },
+        },
+      })
     }
   }
 
   useEffect(() => {
     if (!systemCheckSessionId) {
-      setIsLoading(true)
       fetchCampaign(`/campaigns/${campaignId}`).then(({ response }) => {
         dispatch(actions.setCampaignDetailsForSystemCheck(response))
 
@@ -174,8 +202,6 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
           }
           runNetworkTest()
         }
-      }).finally(() => {
-        setIsLoading(false)
       })
     } else {
       runNetworkTest()
@@ -188,6 +214,27 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       uploadSpeed.set(parseFloat(speed.upload.split(' ')[0]))
     }
   }, [speed])
+
+  useEffect(() => {
+    if (checkStatus !== CHECK_STATUS.pending) return
+    const { currentTest, currentSpeedMbps } = testState
+    if (!currentSpeedMbps) return
+
+    if (currentTest === 'download') {
+      downloadSpeed.set(currentSpeedMbps)
+    }
+
+    if (currentTest === 'upload') {
+      if (completedDownloadRef.current === null) {
+        completedDownloadRef.current = downloadSpeed.get()
+      }
+      uploadSpeed.set(currentSpeedMbps)
+    }
+  }, [testState.currentTest, testState.currentSpeedMbps, checkStatus])
+
+  const showDownloadSpeed = testState.currentTest === 'download'
+  const showUploadSpeed = testState.currentTest === 'upload'
+  const testCompleted = checkStatus !== CHECK_STATUS.pending
 
   const handleNext = async () => {
     dispatch(actions.setChecksArray([
@@ -236,7 +283,6 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         </Flex>
         <Flex justify="end" gap={4} className="mt-2">
           <Button onClick={() => {
-            setCheckStatus(CHECK_STATUS.pending)
             runNetworkTest()
           }}
           >
@@ -289,24 +335,35 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         justify="center"
         align="center"
         className={`${commonStyles['border-dark']} mb-2`}
+        style={{ minHeight: '350px' }}
       >
         {checkStatus !== CHECK_STATUS.failed && (
-          <Flex vertical gap={4} justify="end" style={{ width: '100%', padding: '1rem', minHeight: '300px' }}>
+          <Flex vertical gap={16} justify="center" align="center" style={{ width: '100%', padding: '1.5rem' }}>
             {checkStatus === CHECK_STATUS.pending && (
-              <Flex justify="center" align="center">
+              <Flex justify="center" align="center" vertical gap={12}>
                 <WifiLoader />
+                <Flex vertical align="center" gap={8} style={{ width: '60%' }}>
+                  <Typography.Text style={{ whiteSpace: 'nowrap', fontSize: '1rem', fontWeight: 500 }}>
+                    {testState.currentTest === 'download' && I18n.t('enduser.testing_download_speed')}
+                    {testState.currentTest === 'upload' && I18n.t('enduser.testing_upload_speed')}
+                    {testState.currentTest === 'latency' && I18n.t('enduser.checking_latency')}
+                  </Typography.Text>
+                  <Progress
+                    percent={Math.min((testState.elapsedSeconds / 20) * 100, 99)}
+                    showInfo={false}
+                    strokeColor="var(--ant-primary-color)"
+                    size="small"
+                  />
+                </Flex>
               </Flex>
             )}
 
             {checkStatus === CHECK_STATUS.passed && (
               <Flex
-                gap={4}
+                gap={8}
                 vertical
                 justify="center"
                 align="center"
-                style={{
-                  minHeight: '150px',
-                }}
               >
                 <CheckCircleOutlined style={{ color: 'var(--ant-success-color)', fontSize: '5rem' }} />
                 <Typography.Text>
@@ -315,14 +372,8 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               </Flex>
             )}
 
-            <Flex justify="space-evenly" className="mb-4" style={{ width: '100%' }}>
-              <Skeleton
-                active
-                style={{ width: '20%' }}
-                title
-                paragraph={false}
-                loading={checkStatus === CHECK_STATUS.pending}
-              >
+            <Flex justify="space-evenly" style={{ width: '100%' }}>
+              {(showDownloadSpeed || testCompleted) && (
                 <Flex vertical style={{ textAlign: 'center' }}>
                   <h1 className="mb-0 mt-0" style={{ color: 'var(--ant-primary-color)' }}>
                     <motion.span>{downloadDisplay}</motion.span>
@@ -333,16 +384,16 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                     {speed?.download.split(' ')[1]}
                   </Typography.Text>
                 </Flex>
-              </Skeleton>
+              )}
 
-              <Divider style={{ height: 'auto', borderColor: 'var(--light-grey-border)' }} orientation="vertical" />
-              <Skeleton
-                active
-                title
-                style={{ width: '20%' }}
-                paragraph={false}
-                loading={checkStatus === CHECK_STATUS.pending}
-              >
+              {testCompleted && (
+                <Divider
+                  style={{ height: 'auto', borderColor: 'var(--light-grey-border)' }}
+                  orientation="vertical"
+                />
+              )}
+
+              {(showUploadSpeed || testCompleted) && (
                 <Flex vertical style={{ textAlign: 'center' }}>
                   <h1 className="mb-0 mt-0" style={{ color: 'var(--ant-primary-color)' }}>
                     <motion.span>{uploadDisplay}</motion.span>
@@ -353,16 +404,15 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                     {speed?.upload.split(' ')[1]}
                   </Typography.Text>
                 </Flex>
-              </Skeleton>
+              )}
             </Flex>
 
             {checkStatus === CHECK_STATUS.passed && (
               <>
                 <Divider
-                  style={{ height: 'auto', borderColor: 'var(--light-grey-border)' }}
-                  className="mt-0"
+                  style={{ borderColor: 'var(--light-grey-border)', margin: 0 }}
                 />
-                <Flex justify="space-evenly" style={{ width: '100%', marginBottom: '1rem' }}>
+                <Flex justify="space-evenly" style={{ width: '100%' }}>
                   <Flex vertical style={{ textAlign: 'center' }}>
                     <h3 className="mb-0 mt-0">
                       <span>{minimumDownloadSpeed}</span>
@@ -387,8 +437,8 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         )}
 
         {checkStatus === CHECK_STATUS.failed && (
-          <Flex gap={8} vertical style={{ width: '100%', padding: '1rem' }}>
-            <Flex justify="space-between">
+          <Flex gap={12} vertical style={{ width: '100%', padding: '1.5rem' }}>
+            <Flex justify="space-between" align="center">
               <Flex gap={8}>
                 {checkStatus === CHECK_STATUS.failed
                   ? (
@@ -424,14 +474,12 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               icon={<RedoOutlined />}
               onClick={() => {
                 countDownButtonRef.current?.reset()
-                setCheckStatus(CHECK_STATUS.pending)
                 runNetworkTest()
               }}
             >
               {I18n.t('enduser.rerun_check')}
             </Button>
           )}
-
           {checkStatus === CHECK_STATUS.passed ? (
             <CountdownButton
               label={I18n.t('shared.continue')}
@@ -441,13 +489,12 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
           ) : (
             <ButtonWithArrow
               type="primary"
-              disabled={isLoading || checkStatus === CHECK_STATUS.pending}
+              disabled={checkStatus === CHECK_STATUS.pending}
               style={{ alignSelf: 'flex-end' }}
               label={I18n.t('shared.continue')}
               onClick={handleNext}
             />
           )}
-
         </Flex>
       </Flex>
     </Flex>

@@ -10,6 +10,7 @@ export const RequirementStatusTR = t.type({
       required: t.boolean,
       minimumDownloadSpeed: t.number,
       minimumUploadSpeed: t.number,
+      stabilityDuration: t.number,
     }),
     video: t.type({
       required: t.boolean,
