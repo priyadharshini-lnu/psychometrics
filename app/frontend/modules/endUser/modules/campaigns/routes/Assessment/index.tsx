@@ -104,8 +104,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }
 
   const handleBeginAssessment = () => {
-    if (assessmentTimer && !assessmentStartedAt
-        && !WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
+    if (!assessmentStartedAt && !WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
       const beginLink = `/user_assessments/${userAssessmentId}/begin${location.search}`
       window.location.href = beginLink
     } else {

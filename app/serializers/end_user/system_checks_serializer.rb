@@ -13,7 +13,7 @@ module EndUser
       return agile_user_assessment_path(object) if object.assessment.agile?
 
       if object.campaign.common?
-        return object.assessment.fixed_timed? ? begin_user_assessment_path(object) : pass_user_assessment_path(object)
+        return object.started_at? ? pass_user_assessment_path(object) : begin_user_assessment_path(object)
       end
 
       campaign_evaluation_path(object, campaign_id: object.threesixty_campaign.id, lang: assessment_language)
