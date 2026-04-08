@@ -8,6 +8,7 @@ import cs from 'classnames'
 import humps from 'humps'
 import { unset, set } from 'lodash/fp'
 import SparkMD5 from 'spark-md5'
+import * as Sentry from '@sentry/react'
 import { LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
 import styles from './VideoRecorder.less'
@@ -450,6 +451,7 @@ class VideoRecorder extends Component {
       this.resetMultipartUpload()
     } catch (error) {
       console.error(error)
+      Sentry.captureException(error)
       this.setError('complete', I18n.t('assessments.unknown_error'))
     }
   }

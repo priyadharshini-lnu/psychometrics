@@ -9,6 +9,7 @@ import _ from 'lodash'
 import { Button, Flex, Alert } from 'antd'
 import humps from 'humps'
 import SparkMD5 from 'spark-md5'
+import * as Sentry from '@sentry/react'
 import {
   DeleteOutlined, StopOutlined, VideoCameraOutlined, LoadingOutlined,
   CheckCircleFilled,
@@ -234,6 +235,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       handleRecordingSaved(camelizedData)
     } catch (error) {
       console.error('Error completing media upload:', error)
+      Sentry.captureException(error)
       setError('complete')(I18n.t('assessments.video_response.error_while_uploading'))
     }
   }
