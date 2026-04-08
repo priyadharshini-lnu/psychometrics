@@ -283,6 +283,29 @@ th:
     high: สูง
     hogan: โฮแกน
     hogan_assessment: การประเมินโฮแกน
+    idp_appearance_body: "**เนื้อหา**"
+    idp_appearance_color: สี
+    idp_appearance_cover: ปก
+    idp_appearance_dynamic_content: เนื้อหาแบบไดนามิก
+    idp_appearance_flip_background: พลิกภาพพื้นหลังบนหน้าปกและหน้าสุดท้าย
+    idp_appearance_font_family: ตระกูลฟอนต์
+    idp_appearance_guideline_position: ตำแหน่งหน้าของแนวทาง
+    idp_appearance_guideline_position_second: หน้าสอง (หลังจากปก)
+    idp_appearance_guideline_position_second_last: หน้าสุดท้ายรอง (ก่อนหน้าสุดท้าย)
+    idp_appearance_guidelines: แนวทางปฏิบัติ
+    idp_appearance_idp_skills: ทักษะ IDP
+    idp_appearance_last: ครั้งสุดท้าย
+    idp_appearance_per_page_font_settings: การตั้งค่าฟอนต์ต่อหน้า
+    idp_appearance_reflections: การสะท้อนความคิด
+    idp_appearance_report_summary: รายงานสรุป
+    idp_appearance_section_body: ส่วนเนื้อหา
+    idp_appearance_section_subtitle: หัวข้อส่วนย่อย
+    idp_appearance_section_title: หัวข้อส่วน
+    idp_appearance_select_font: เลือกแบบอักษร
+    idp_appearance_show_guidelines: หน้าคำแนะนำการแสดง
+    idp_appearance_size: ขนาด
+    idp_appearance_subtitle: คำบรรยาย
+    idp_appearance_title: ชื่อเรื่อง
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI

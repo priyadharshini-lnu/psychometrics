@@ -13,6 +13,7 @@ pl:
     all_checks_must_pass: Aby kontynuować, wszystkie testy muszą zakończyć się powodzeniem.
     approve_idp_plan: Zatwierdź plan
     back: Powrót
+    back_to_dashboard: Powrót do pulpitu nawigacyjnego
     before_you_begin: Zanim zaczniesz
     begin_message: Zanim przystąpisz do realizacji działań w ramach tej kampanii, musisz przeprowadzić test gotowości, który sprawdzi zgodność Twojego urządzenia
     bookings: Rezerwacje

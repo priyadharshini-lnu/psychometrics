@@ -283,6 +283,29 @@ hi:
     high: उच्च
     hogan: होगन
     hogan_assessment: होगन मूल्यांकन
+    idp_appearance_body: शरीर
+    idp_appearance_color: रंग
+    idp_appearance_cover: आवरण
+    idp_appearance_dynamic_content: गतिशील सामग्री
+    idp_appearance_flip_background: कवर और अंतिम पृष्ठों पर पृष्ठभूमि छवि पलटें
+    idp_appearance_font_family: फ़ॉन्ट परिवार
+    idp_appearance_guideline_position: मार्गदर्शिका पृष्ठ स्थिति
+    idp_appearance_guideline_position_second: दूसरा पृष्ठ (कवर के बाद)
+    idp_appearance_guideline_position_second_last: अंतिम से दूसरा पृष्ठ (अंतिम से पहले)
+    idp_appearance_guidelines: दिशानिर्देश
+    idp_appearance_idp_skills: आईडीपी कौशल
+    idp_appearance_last: अंतिम
+    idp_appearance_per_page_font_settings: प्रति-पृष्ठ फ़ॉन्ट सेटिंग्स
+    idp_appearance_reflections: प्रतिबिंब
+    idp_appearance_report_summary: रिपोर्ट सारांश
+    idp_appearance_section_body: अनुभाग की सामग्री
+    idp_appearance_section_subtitle: अनुभाग उपशीर्षक
+    idp_appearance_section_title: अनुभाग शीर्षक
+    idp_appearance_select_font: फ़ॉन्ट चुनें
+    idp_appearance_show_guidelines: दिशानिर्देश पृष्ठ दिखाएँ
+    idp_appearance_size: आकार
+    idp_appearance_subtitle: उपशीर्षक
+    idp_appearance_title: शीर्षक
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
     import_ai_artifacts: AI कलाकृतियों को आयात करें

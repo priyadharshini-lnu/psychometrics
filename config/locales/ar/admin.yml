@@ -283,6 +283,29 @@ ar:
     high: مرتفع
     hogan: هوجان
     hogan_assessment: تقييم هوجان
+    idp_appearance_body: النص
+    idp_appearance_color: اللون
+    idp_appearance_cover: الغلاف
+    idp_appearance_dynamic_content: المحتوى الديناميكي
+    idp_appearance_flip_background: انعكاس صورة الخلفية في الصفحتين الأولى والأخيرة
+    idp_appearance_font_family: عائلة الخطوط
+    idp_appearance_guideline_position: موضع الصفحة في الدليل
+    idp_appearance_guideline_position_second: الصفحة الثانية (بعد الغلاف)
+    idp_appearance_guideline_position_second_last: الصفحة قبل الأخيرة (قبل الأخيرة)
+    idp_appearance_guidelines: إرشادات
+    idp_appearance_idp_skills: مهارات النازحين داخلياً
+    idp_appearance_last: الأخير
+    idp_appearance_per_page_font_settings: إعدادات الخط لكل صفحة
+    idp_appearance_reflections: تأملات
+    idp_appearance_report_summary: ملخص التقرير
+    idp_appearance_section_body: نص القسم
+    idp_appearance_section_subtitle: عنوان فرعي للقسم
+    idp_appearance_section_title: عنوان القسم
+    idp_appearance_select_font: اختر الخط
+    idp_appearance_show_guidelines: عرض صفحة الإرشادات
+    idp_appearance_size: الحجم
+    idp_appearance_subtitle: العنوان الفرعي
+    idp_appearance_title: العنوان
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي

@@ -283,6 +283,29 @@ sl:
     high: Visoko
     hogan: Hogan
     hogan_assessment: Ocena Hogana
+    idp_appearance_body: Besedilo
+    idp_appearance_color: Barva
+    idp_appearance_cover: Naslovnica
+    idp_appearance_dynamic_content: Dinamična vsebina
+    idp_appearance_flip_background: Obrni sliko ozadja na naslovnici in zadnji strani
+    idp_appearance_font_family: Družina pisav
+    idp_appearance_guideline_position: Smernice za razporeditev strani
+    idp_appearance_guideline_position_second: Druga stran (za naslovnico)
+    idp_appearance_guideline_position_second_last: Predzadnja stran (pred zadnjo)
+    idp_appearance_guidelines: Smernice
+    idp_appearance_idp_skills: Veščine notranje razseljenih oseb
+    idp_appearance_last: Zadnji
+    idp_appearance_per_page_font_settings: Nastavitve pisave za posamezno stran
+    idp_appearance_reflections: Razmišljanja
+    idp_appearance_report_summary: Povzetek poročila
+    idp_appearance_section_body: Besedilo odstavka
+    idp_appearance_section_subtitle: Podnaslov poglavja
+    idp_appearance_section_title: Naslov poglavja
+    idp_appearance_select_font: Izberi pisavo
+    idp_appearance_show_guidelines: Prikaži stran s smernicami
+    idp_appearance_size: Velikost
+    idp_appearance_subtitle: Podnaslov
+    idp_appearance_title: Naslov
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
     import_ai_artifacts: Uvoz AI artefaktov

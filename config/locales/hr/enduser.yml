@@ -13,6 +13,7 @@ hr:
     all_checks_must_pass: Svi testovi moraju biti uspješni prije nego što možete nastaviti.
     approve_idp_plan: Odobri plan
     back: Natrag
+    back_to_dashboard: Povratak na nadzorni panel
     before_you_begin: Prije nego što počnete
     begin_message: Prije nego što nastavite s aktivnostima ove kampanje, trebate pokrenuti provjeru spremnosti koja će provjeriti kompatibilnost vašeg uređaja.
     bookings: Rezervacije

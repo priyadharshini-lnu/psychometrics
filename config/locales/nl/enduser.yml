@@ -13,6 +13,7 @@ nl:
     all_checks_must_pass: Alle controles moeten zijn doorlopen voordat u verder kunt gaan.
     approve_idp_plan: Plan goedkeuren
     back: Terug
+    back_to_dashboard: Terug naar het dashboard
     before_you_begin: Voordat u begint
     begin_message: Voordat u verdergaat met de activiteiten van deze campagne, moet u een compatibiliteitscontrole uitvoeren om na te gaan of uw apparaat geschikt is
     bookings: Boekingen

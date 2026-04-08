@@ -13,6 +13,7 @@ fr:
     all_checks_must_pass: Toutes les vérifications doivent être validées avant que vous puissiez continuer.
     approve_idp_plan: Approuver le plan
     back: Retour
+    back_to_dashboard: Retour au tableau de bord
     before_you_begin: Avant de commencer
     begin_message: Avant de commencer les activités de cette campagne, vous devez effectuer une vérification de la compatibilité de votre appareil
     bookings: Réservations

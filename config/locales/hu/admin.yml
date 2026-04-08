@@ -283,6 +283,29 @@ hu:
     high: Magas
     hogan: Hogan
     hogan_assessment: Hogan-értékelés
+    idp_appearance_body: Főszöveg
+    idp_appearance_color: Szín
+    idp_appearance_cover: Borító
+    idp_appearance_dynamic_content: Dinamikus tartalom
+    idp_appearance_flip_background: A borítón és az utolsó oldalon a háttérkép tükrözése
+    idp_appearance_font_family: Betűcsalád
+    idp_appearance_guideline_position: Útmutató oldalának helye
+    idp_appearance_guideline_position_second: Második oldal (a borító után)
+    idp_appearance_guideline_position_second_last: Az utolsó előtti oldal (az utolsó előtt)
+    idp_appearance_guidelines: Útmutatók
+    idp_appearance_idp_skills: IDP készségek
+    idp_appearance_last: Utolsó
+    idp_appearance_per_page_font_settings: Betűkészlet-beállítások oldalanként
+    idp_appearance_reflections: Gondolatok
+    idp_appearance_report_summary: A jelentés összefoglalása
+    idp_appearance_section_body: A szakasz szövege
+    idp_appearance_section_subtitle: A szakasz alcíme
+    idp_appearance_section_title: A szakasz címe
+    idp_appearance_select_font: Betűtípus kiválasztása
+    idp_appearance_show_guidelines: Az irányelvek oldalának megjelenítése
+    idp_appearance_size: Méret
+    idp_appearance_subtitle: Felirat
+    idp_appearance_title: Cím
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása

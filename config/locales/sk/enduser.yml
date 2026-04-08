@@ -13,6 +13,7 @@ sk:
     all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
     approve_idp_plan: Schváliť plán
     back: Späť
+    back_to_dashboard: Návrat na hlavnú stránku
     before_you_begin: Než začnete
     begin_message: Než začnete s aktivitami v rámci tejto kampane, je potrebné spustiť kontrolu pripravenosti, ktorá overí kompatibilitu vášho zariadenia
     bookings: Rezervácie

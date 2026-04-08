@@ -13,6 +13,7 @@ sl:
     all_checks_must_pass: Preden lahko nadaljujete, morajo biti vsi pregledi uspešni.
     approve_idp_plan: Odobri načrt
     back: Nazaj
+    back_to_dashboard: Nazaj na nadzorno ploščo
     before_you_begin: Preden začnete
     begin_message: Preden nadaljujete z dejavnostmi te kampanje, morate opraviti preverjanje pripravljenosti, s katerim boste preverili združljivost vaše naprave
     bookings: Rezervacije

@@ -283,6 +283,29 @@ it:
     high: Alto
     hogan: Hogan
     hogan_assessment: Valutazione Hogan
+    idp_appearance_body: Corpo
+    idp_appearance_color: Colore
+    idp_appearance_cover: Copertina
+    idp_appearance_dynamic_content: Contenuti dinamici
+    idp_appearance_flip_background: Capovolgi l'immagine di sfondo nella copertina e nell'ultima pagina
+    idp_appearance_font_family: Famiglia di caratteri
+    idp_appearance_guideline_position: Posizione della pagina delle linee guida
+    idp_appearance_guideline_position_second: Seconda pagina (dopo la copertina)
+    idp_appearance_guideline_position_second_last: Penultima pagina (prima dell'ultima)
+    idp_appearance_guidelines: Linee guida
+    idp_appearance_idp_skills: Competenze IDP
+    idp_appearance_last: Ultimo
+    idp_appearance_per_page_font_settings: Impostazioni dei caratteri per pagina
+    idp_appearance_reflections: Riflessioni
+    idp_appearance_report_summary: Sintesi del rapporto
+    idp_appearance_section_body: Corpo della sezione
+    idp_appearance_section_subtitle: Sottotitolo della sezione
+    idp_appearance_section_title: Titolo della sezione
+    idp_appearance_select_font: Seleziona il carattere
+    idp_appearance_show_guidelines: Visualizza la pagina delle linee guida
+    idp_appearance_size: Dimensioni
+    idp_appearance_subtitle: Sottotitolo
+    idp_appearance_title: Titolo
     idp_plan_reset_success: Il piano è stato resettato con successo
     idp_templates: Modelli di IDP
     import_ai_artifacts: Importazione di artefatti IA

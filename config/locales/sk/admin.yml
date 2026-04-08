@@ -283,6 +283,29 @@ sk:
     high: Vysoká
     hogan: Hogan
     hogan_assessment: Hoganovo hodnotenie
+    idp_appearance_body: Telo
+    idp_appearance_color: Farba
+    idp_appearance_cover: Obálka
+    idp_appearance_dynamic_content: Dynamický obsah
+    idp_appearance_flip_background: Otočiť obrázok na pozadí na titulnej a poslednej strane
+    idp_appearance_font_family: Rodina písem
+    idp_appearance_guideline_position: Umiestnenie stránky s pokynmi
+    idp_appearance_guideline_position_second: Druhá strana (za obálkou)
+    idp_appearance_guideline_position_second_last: Predposledná strana (pred poslednou)
+    idp_appearance_guidelines: Usmernenia
+    idp_appearance_idp_skills: Schopnosti vnútorne presídlených osôb
+    idp_appearance_last: Posledný
+    idp_appearance_per_page_font_settings: Nastavenia písma na stránke
+    idp_appearance_reflections: Úvahy
+    idp_appearance_report_summary: Zhrnutie správy
+    idp_appearance_section_body: Hlavná časť
+    idp_appearance_section_subtitle: Podnadpis sekcie
+    idp_appearance_section_title: Názov sekcie
+    idp_appearance_select_font: Vyberte písmo
+    idp_appearance_show_guidelines: Zobraziť stránku s pokynmi
+    idp_appearance_size: Veľkosť
+    idp_appearance_subtitle: Podtitul
+    idp_appearance_title: Názov
     idp_plan_reset_success: Plán bol úspešne resetovaný
     idp_templates: Šablóny IDP
     import_ai_artifacts: Import AI artefaktov

@@ -283,6 +283,29 @@ ro:
     high: Ridicat
     hogan: Hogan
     hogan_assessment: Evaluarea Hogan
+    idp_appearance_body: Corp
+    idp_appearance_color: Culoare
+    idp_appearance_cover: Coperta
+    idp_appearance_dynamic_content: Conținut dinamic
+    idp_appearance_flip_background: Răsuciți imaginea de fundal pe coperta și pe ultima pagină
+    idp_appearance_font_family: Familia de fonturi
+    idp_appearance_guideline_position: Poziția paginii cu instrucțiuni
+    idp_appearance_guideline_position_second: Pagina a doua (după copertă)
+    idp_appearance_guideline_position_second_last: Penultima pagină (înainte de ultima)
+    idp_appearance_guidelines: Linii directoare
+    idp_appearance_idp_skills: Competențe IDP
+    idp_appearance_last: Ultimul
+    idp_appearance_per_page_font_settings: Setări de fonturi pentru fiecare pagină
+    idp_appearance_reflections: Reflecții
+    idp_appearance_report_summary: Rezumatul raportului
+    idp_appearance_section_body: Corpul secțiunii
+    idp_appearance_section_subtitle: Subtitlul secțiunii
+    idp_appearance_section_title: Titlul secțiunii
+    idp_appearance_select_font: Selectează fontul
+    idp_appearance_show_guidelines: Afișează pagina cu instrucțiuni
+    idp_appearance_size: Dimensiune
+    idp_appearance_subtitle: Subtitlu
+    idp_appearance_title: Titlu
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
     import_ai_artifacts: Importul artefactelor AI

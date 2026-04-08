@@ -283,6 +283,29 @@ ru:
     high: Высокий
     hogan: Хоган
     hogan_assessment: Оценка Хогана
+    idp_appearance_body: Текст
+    idp_appearance_color: Цвет
+    idp_appearance_cover: Обложка
+    idp_appearance_dynamic_content: Динамическое содержимое
+    idp_appearance_flip_background: Перевернуть фоновое изображение на титульной и последней страницах
+    idp_appearance_font_family: Семейство шрифтов
+    idp_appearance_guideline_position: Позиция страницы в руководстве
+    idp_appearance_guideline_position_second: Вторая страница (после обложки)
+    idp_appearance_guideline_position_second_last: Предпоследняя страница (перед последней)
+    idp_appearance_guidelines: Рекомендации
+    idp_appearance_idp_skills: Навыки внутренне перемещенных лиц
+    idp_appearance_last: Последний
+    idp_appearance_per_page_font_settings: Настройки шрифта для каждой страницы
+    idp_appearance_reflections: Размышления
+    idp_appearance_report_summary: Краткое содержание отчета
+    idp_appearance_section_body: Текст раздела
+    idp_appearance_section_subtitle: Подзаголовок раздела
+    idp_appearance_section_title: Название раздела
+    idp_appearance_select_font: Выбрать шрифт
+    idp_appearance_show_guidelines: Показать страницу с рекомендациями
+    idp_appearance_size: Размер
+    idp_appearance_subtitle: Подзаголовок
+    idp_appearance_title: Название
     idp_plan_reset_success: План был успешно сброшен
     idp_templates: Шаблоны IDP
     import_ai_artifacts: Импорт артефактов искусственного интеллекта

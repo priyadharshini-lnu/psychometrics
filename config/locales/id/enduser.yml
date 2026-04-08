@@ -13,6 +13,7 @@ id:
     all_checks_must_pass: Semua pemeriksaan harus lolos terlebih dahulu sebelum Anda dapat melanjutkan.
     approve_idp_plan: Setujui Rencana
     back: Kembali
+    back_to_dashboard: Kembali ke Dasbor
     before_you_begin: Sebelum Anda mulai
     begin_message: Sebelum Anda melanjutkan ke kegiatan kampanye ini, Anda perlu melakukan pemeriksaan kesiapan untuk memastikan kompatibilitas perangkat Anda
     bookings: Pemesanan
