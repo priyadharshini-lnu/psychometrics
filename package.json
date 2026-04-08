@@ -50,6 +50,7 @@
     "@rails/activestorage": "^7.1.2",
     "@reduxjs/toolkit": "^2.2.6",
     "@sentry/react": "^8.47.0",
+    "@thetalententerprise/green-audio-player": "2.0.0",
     "@thetalententerprise/interactive-assessments": "1.10.1",
     "@thetalententerprise/jsonapi-react": "0.0.31",
     "@types/lodash": "^4.17.0",
@@ -87,7 +88,6 @@
     "fp-ts": "^2.16.5",
     "glob": "^7.1.6",
     "google-libphonenumber": "^3.2.34",
-    "green-audio-player": "git+https://github.com/TheTalentEnterprise/green-audio-player.git",
     "highcharts": "^11.1.0",
     "highcharts-custom-events": "^3.0.10",
     "history": "^4.10.1",
@@ -243,7 +243,8 @@
     "debug": "4.3.4",
     "rc-util": "^5.44.4",
     "braces": "^3.0.3",
-    "micromatch": "^4.0.8"
+    "micromatch": "^4.0.8",
+    "flatted": "^3.4.2"
   },
   "cssnano": {
     "preset": [

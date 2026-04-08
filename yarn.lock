@@ -2709,6 +2709,11 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
 
+"@thetalententerprise/green-audio-player@2.0.0":
+  version "2.0.0"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/green-audio-player/2.0.0/42abad30f68935aa23d6cfe3e29000365512c735#42abad30f68935aa23d6cfe3e29000365512c735"
+  integrity sha512-wTTXB6OrDFhvgfDISppnEErw9gRToMmA/zfD1RByKm7kAUOOYZr7GtitYHtk+QpfoDhxpP5a2GLj/Giyu8tqXA==
+
 "@thetalententerprise/interactive-assessments@1.10.1":
   version "1.10.1"
   resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.10.1/8db3ef8f7893d2a46d43731ab93ef4ced007fea9#8db3ef8f7893d2a46d43731ab93ef4ced007fea9"
@@ -6197,7 +6202,7 @@ flat-cache@^4.0.0:
     flatted "^3.2.9"
     keyv "^4.5.4"
 
-flatted@^3.2.9:
+flatted@^3.1.0, flatted@^3.4.2:
   version "3.4.2"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/flatted/-/flatted-3.4.2.tgz#f5c23c107f0f37de8dbdf24f13722b3b98d52726"
   integrity sha512-PjDse7RzhcPkIJwy5t7KPWQSZ9cAbzQXcafsetQoD7sOJRQlGikNbx7yZp2OotDnJyrDcbyRq3Ttb18iYOqkxA==
@@ -6597,9 +6602,10 @@ grapheme-splitter@^1.0.4:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
-"green-audio-player@git+https://github.com/TheTalentEnterprise/green-audio-player.git":
-  version "1.1.2"
-  resolved "git+https://github.com/TheTalentEnterprise/green-audio-player.git#e64f60cc0759878b9e88bafb6b9f52cd713a682a"
+graphemer@^1.4.0:
+  version "1.4.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
+  integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
 harmony-reflect@^1.4.6:
   version "1.6.2"
