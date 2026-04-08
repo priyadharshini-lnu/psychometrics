@@ -75,7 +75,6 @@ export default class Result<ExternalScoring = unknown> {
 
   resultsByFilter: ResultsByFilter
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   externalScoring: ExternalScoring
 
   dataSheet: object
@@ -194,7 +193,7 @@ export default class Result<ExternalScoring = unknown> {
     })
   }
 
-  // eslint-disable-next-line arrow-body-style
+
   getTopFactors = (
     from: number,
     to: number,

@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import api from '~/middleware/api'
 import flowMiddleware from '~/modules/survey/core/preview/FlowProcessor/middleware'
 import { idpApi } from '../modules/campaigns/core/idp/api'
+import { systemChecksAPI } from '../modules/campaigns/core/systemChecks/api'
 import rootReducers from '../core/rootReducers'
 import rootSagas from '../core/rootSagas'
 
@@ -14,7 +15,7 @@ const sagaMiddleware = createSagaMiddleware()
 let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
-const middleware = [api, sagaMiddleware, flowMiddleware, thunk, idpApi.middleware]
+const middleware = [api, sagaMiddleware, flowMiddleware, thunk, idpApi.middleware, systemChecksAPI.middleware]
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {

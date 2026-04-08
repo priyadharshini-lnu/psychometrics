@@ -145,6 +145,22 @@ RSpec.describe AI::Assistant, type: :model do
       expect(captured_instructions).to eq(expected_instructions.strip)
     end
 
+    describe 'skip_default_params option' do
+      it 'skips default params when skip_default_params is true' do
+        expect(chat).not_to receive(:with_params)
+
+        assistant.for_user(user, skip_default_params: true)
+      end
+
+      it 'applies default params when skip_default_params is not set' do
+        default_params = assistant.send(:default_params)
+
+        expect(chat).to receive(:with_params).with(**default_params)
+
+        assistant.for_user(user)
+      end
+    end
+
     describe 'advanced prompting' do
       let(:user) { create(:user) }
       let(:chat) { instance_double('AI::AssistantChat') }

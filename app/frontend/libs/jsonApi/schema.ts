@@ -36,12 +36,14 @@ import { Schema as developmentActionSchema } from '~/modules/admin/modules/clien
 import { Schema as skillsSchema } from '~/modules/admin/modules/client/core/skills'
 import { Schema as campaignIdpSchema } from '~/modules/admin/modules/campaigns/core/campaignIdp'
 import { Schema as idpTemplateSchema } from '~/modules/admin/modules/client/core/idp'
+import { Schema as dimensionSchema } from '~/modules/admin/modules/client/core/dimensions'
 import { Schema as proficiencyLevelSchema } from '~/modules/admin/modules/client/core/proficiencyLevels'
 import { Schema as reflectionQuestionSchema } from '~/modules/admin/modules/client/core/reflectionQuestion'
 import { Schema as interviewQuestionSchema } from '~/modules/admin/modules/client/core/interviewQuestion'
 import { Schema as aiAssistantSchema } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { Schema as userIdpPlanSchema } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { Schema as AiArtifactsSchema } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
+import { Schema as factorsSchema } from '~/modules/admin/modules/campaigns/core/factors'
 
 export const Schema = {
   clients: clientSchema,
@@ -77,10 +79,12 @@ export const Schema = {
   campaign_idps: campaignIdpSchema,
   idp_templates: idpTemplateSchema,
   user_saved_filters: userSavedFilterSchema,
+  dimensions: dimensionSchema,
   proficiency_levels: proficiencyLevelSchema,
   reflection_questions: reflectionQuestionSchema,
   interview_questions: interviewQuestionSchema,
   ai_assistants: aiAssistantSchema,
   user_idp_plans: userIdpPlanSchema,
   ai_artifacts: AiArtifactsSchema,
+  factors: factorsSchema,
 }

@@ -10,11 +10,35 @@ module ScoreApprovals
     end
 
     def call
-      # TODO: complete bulk approve
-      broadcast :ok
+      @meta = initialize_meta
+      @approved_approvals = []
+      score_approvals.each { |score_approval| process_approval(score_approval) }
+      broadcast :ok, @approved_approvals, @meta
     end
 
     private
+
+    def process_approval(score_approval)
+      unless score_approval.allow_bulk_approve?
+        @meta[:ignored] += 1
+        return
+      end
+
+      result = ScoreApprovals::ApproveAllQuestions.call(score_approval, current_user, bulk_scoring_approval: true)
+      if result[:ok].present?
+        @approved_approvals << score_approval
+        @meta[:approved] += 1
+      else
+        @meta[:ignored] += 1
+      end
+    end
+
+    def score_approvals
+      ::AI::ScoringApprovalSetting.user_tasks(current_user).
+        where(id: user_assessment_ids).
+        select('user_assessments.*', 'assessor_ids', 'approver_ids',
+               'allow_bulk_approve', 'allow_bulk_approve_scores')
+    end
 
     def initialize_meta
       {

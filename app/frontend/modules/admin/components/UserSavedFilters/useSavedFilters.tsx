@@ -8,7 +8,7 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ResourceType, UserSavedFilter } from './core'
 import { useUserSavedFiltersApi } from './useSavedFiltersApi'
-import { generateSmartFilterName } from './helpers'
+import { generateSmartFilterName, FilterOptions } from './helpers'
 import { UrlQuery } from '~/hooks/useResources/interfaces'
 
 import { FilterComponent } from './FilterComponent'
@@ -21,6 +21,7 @@ export const useSavedFilter = (
   changeFilter: (filter: string, value: string | string[] | null) => void,
   changeUrlQuery: (query: UrlQuery) => void,
   resourceType: ResourceType,
+  filterOptions?: FilterOptions,
 ) => {
   const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string[] | string }>({})
   const [selectedFilterId, setSelectedFilterId] = useState<string>('')
@@ -128,7 +129,7 @@ export const useSavedFilter = (
   useEffect(() => {
     const name = getFilterName(selectedFilterId)
     setFilterName(name || '')
-  }, [selectedFilterId, selectedFilters])
+  }, [selectedFilterId, selectedFilters, filterOptions])
 
   const handleFilterChange = (filter: string, value: string | string[] | null) => {
     if (!value) {
@@ -191,7 +192,7 @@ export const useSavedFilter = (
       }
       return ''
     }
-    return generateSmartFilterName(selectedFilters)
+    return generateSmartFilterName(selectedFilters, filterOptions)
   }
 
   const handleDeleteFilter = () => {
@@ -241,7 +242,13 @@ export const useSavedFilter = (
             )}
           </>
         )}
-        RenderTags={() => <RenderTags selectedFilters={selectedFilters} handleFilterChange={handleFilterChange} />}
+        RenderTags={() => (
+          <RenderTags
+            selectedFilters={selectedFilters}
+            handleFilterChange={handleFilterChange}
+            filterOptions={filterOptions}
+          />
+        )}
         selectedFilters={selectedFilters}
         Actions={() => (
           <>

@@ -45,8 +45,11 @@ module UserScopes
           joins(:memberships).
             where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
         when 'administrators'
-          joining { memberships.outer }.
-            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
+          left_outer_joins(:memberships).where(
+            'users.role = :super_admin OR memberships.role = :project_admin',
+            super_admin: User::SUPER_ADMIN_ROLE,
+            project_admin: Membership.roles[Membership::PROJECT_ADMIN_ROLE]
+          )
       end
     }
 

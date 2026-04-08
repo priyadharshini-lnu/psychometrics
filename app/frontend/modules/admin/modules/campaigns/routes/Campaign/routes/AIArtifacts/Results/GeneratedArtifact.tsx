@@ -27,17 +27,15 @@ type GeneratedArtifactProps={
       generatedAt: string | null
       resultStale: boolean
   }
-    generateResult: (id: string) => Promise<void>
+    generateResult: (id: string, setIsGenerating: (value: boolean) => void) => void
 }
 
 export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactName, artifactData, generateResult }) => {
   const [isGenerating, setIsGenerating] = React.useState(false)
   const [showParsedDependenciesModal, setShowParsedDependenciesModal] = React.useState(false)
 
-  const handleGenerateResult = async (id:string) => {
-    setIsGenerating(true)
-    await generateResult(id)
-    setIsGenerating(false)
+  const handleGenerateResult = (id: string) => {
+    generateResult(id, setIsGenerating)
   }
 
   return (

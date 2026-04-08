@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'

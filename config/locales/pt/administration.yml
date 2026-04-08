@@ -80,7 +80,6 @@ pt:
         title: Artefato de IA
       generate: Gerar
       generate_result_info_message: Os resultados estão sendo gerados, atualize a página para ver os resultados atualizados.
-      generated_at: Gerado em
       generated_at_time: Gerado em %{time}
       generated_value: Valor Gerado
       id: ID
@@ -1871,6 +1870,8 @@ pt:
       form:
         enable_innovation_styles: Permitir estilos de inovação
         enable_occupations: Ativar profissões
+        name: Nome
+        title: Dimensões
       import_factors:
         import: Importação
         sample_file: Ficheiro de amostra
@@ -1918,6 +1919,7 @@ pt:
         confirmations:
           delete:
             body: "<p>Tem a certeza de que pretende eliminar esta Dimensão?</p>\n"
+            message: Introduza o nome da dimensão indicado abaixo na caixa de texto para confirmar
             title: Eliminar <strong>Dimensão</strong>?
           toggle_status:
             body: "<p>Tem a certeza de que pretende %{status} esta Dimensão?</p>\n"
@@ -1982,6 +1984,7 @@ pt:
                 score: Pontuação
                 zscore: Pontuação Z
             title: Caminhos JSON para pontuações
+        predicate: Predicado
         scoring_strategies:
           custom_formula: Fórmula personalizada
           external_score: Pontuação externa
@@ -1995,10 +1998,13 @@ pt:
           sub_factors_sum: Soma ponderada dos factores
         scoring_strategies_tip: "<strong>perguntas (Média):</strong> Este é o método de pontuação atual quando há perguntas ligadas a um fator. <br /> <br /><strong>perguntas (SUM):</strong> É como as Perguntas (Média), mas usando SUM <br /> <br /><strong>perguntas de outros factores (média):</strong> É como o método de pontuação atual quando há subfactores para um fator, a única alteração é a adição de peso. <br /> <br /><strong>perguntas de outros fatores (SUM):</strong> É como Outros fatores (Média), mas usando SUM <br /> <br /><strong>soma ponderada dos factores:</strong> Aqui, as pontuações dos outros factores selecionados são multiplicadas pelos respectivos pesos e adicionadas."
         scoring_strategy: Estratégia de pontuação
+        search_factors: Critérios de pesquisa
         use_sub_factor_norm_score: Utilizar a pontuação normal dos Factores
+        value: Valor
       index:
         icon: Ícone
         new: Adicionar
+        precision: Precisão
         scoring_strategies:
           custom_formula: Fórmula personalizada
           external_score: Pontuação externa
@@ -2292,6 +2298,7 @@ pt:
       edit:
         header: Editar Estilo de inovação
       form:
+        full_description: Descrição completa
         no_icon: Nenhum ícone
       index:
         new: Adicionar
@@ -2663,8 +2670,12 @@ pt:
       edit:
         header: Editar ocupação
       form:
+        alternative_icon: Ícone alternativo
+        color: Cor
         hint:
           key_career_tracks: '"+" - lista, "*" - negrito. Exemplo: + *Biologia* - alguma descrição...'
+        indicative_roles_image: Imagem ilustrativa das funções
+        key_career_tracks_image: Imagem das principais trajetórias profissionais
         no_icon: Nenhum ícone
       index:
         new: Adicionar
@@ -2735,6 +2746,7 @@ pt:
       assessment_center: Centro de avaliação
       assessment_id: ID de avaliação
       campaign_id: ID da campanha
+      campaign_link: Link da campanha
       campaign_name: Nome da campanha
       campaigns: Campanhas
       description: Descrição
@@ -3735,8 +3747,10 @@ pt:
       id: ID
       import:
         factors: Factores da campanha de importação
+      innovation_style_removal_confirmation: Introduza o nome do estilo de inovação indicado abaixo na caixa de texto para confirmar
       name: Nome
       no_groups: Nenhum grupo presente
+      occupation_removal_confirmation: Digite o nome da profissão indicado abaixo na caixa de texto para confirmar
       output_type: Tipo de saída
       pattern_error: Só são permitidos caracteres alfanuméricos, espaços e traços.
       profile:

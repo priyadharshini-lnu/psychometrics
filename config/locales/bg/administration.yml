@@ -80,7 +80,6 @@ bg:
         title: AI артефакт
       generate: Пораждам
       generate_result_info_message: Резултатите се генерират, моля, опреснете страницата, за да видите актуализираните резултати.
-      generated_at: Генерирано в
       generated_at_time: Генерирано в %{time}
       generated_value: Генерирана стойност
       id: Документ за самоличност
@@ -1871,6 +1870,8 @@ bg:
       form:
         enable_innovation_styles: Активиране на иновационни стилове
         enable_occupations: Активиране на професии
+        name: Име
+        title: Размери
       import_factors:
         import: Внос
         sample_file: Примерен файл
@@ -1918,6 +1919,7 @@ bg:
         confirmations:
           delete:
             body: "<p>Сигурни ли сте, че искате да изтриете това измерение?</p>\n"
+            message: Въведете името на измерението, посочено по-долу, в текстовото поле, за да потвърдите
             title: Изтриване <strong>на измерение</strong> ?
           toggle_status:
             body: "<p>Сигурни ли сте, че искате %{status} това измерение?</p>\n"
@@ -1982,6 +1984,7 @@ bg:
                 score: Резултат
                 zscore: Z резултат
             title: JSON пътища за резултати
+        predicate: Предикат
         scoring_strategies:
           custom_formula: Персонализирана формула
           external_score: Външен резултат
@@ -1995,10 +1998,13 @@ bg:
           sub_factors_sum: Претеглена сума от фактори
         scoring_strategies_tip: "<strong>Въпроси (средно):</strong> Това е като текущия метод за оценяване, когато има въпроси, свързани с фактор.<br /> <br /><strong>Въпроси (SUM):</strong> Това е като въпроси (средно), но с помощта на SUM<br /> <br /><strong>Въпроси за други фактори (средно):</strong> Това е като сегашния метод за оценяване, когато има подфактори за даден фактор, единствената промяна е добавянето на теглото.<br /> <br /><strong>Въпроси за други фактори (СУМ):</strong> Това е като други фактори (средно), но с помощта на SUM<br /> <br /><strong>Претеглена сума от фактори:</strong> Тук се добавят резултатите от избраните други фактори по техните тегла."
         scoring_strategy: Стратегия за оценяване
+        search_factors: Фактори за търсене
         use_sub_factor_norm_score: Нормен резултат на факторите на използване
+        value: Стойност
       index:
         icon: Икона
         new: Добавям
+        precision: Прецизност
         scoring_strategies:
           custom_formula: Персонализирана формула
           external_score: Външен резултат
@@ -2292,6 +2298,7 @@ bg:
       edit:
         header: Редактиране на иновационен стил
       form:
+        full_description: Пълно описание
         no_icon: Няма икона
       index:
         new: Добавям
@@ -2663,8 +2670,12 @@ bg:
       edit:
         header: Редактиране на професия
       form:
+        alternative_icon: Алтернативна икона
+        color: Цвят
         hint:
           key_career_tracks: '"+" - списък, "*" - удебелен. Пример: + *Биология* - малко описание...'
+        indicative_roles_image: Илюстративна картинка на роли
+        key_career_tracks_image: Изображение на основните кариерни пътеки
         no_icon: Няма икона
       index:
         new: Добавям
@@ -2735,6 +2746,7 @@ bg:
       assessment_center: Център за оценяване
       assessment_id: Идентификационен номер на оценяването
       campaign_id: Идентификационен номер на кампанията
+      campaign_link: Връзка към кампанията
       campaign_name: Име на кампанията
       campaigns: Кампании
       description: Описание
@@ -3732,8 +3744,10 @@ bg:
       id: Ид
       import:
         factors: Импортиране на фактори на кампанията
+      innovation_style_removal_confirmation: Въведете името на стила за иновации, посочено по-долу, в текстовото поле, за да потвърдите
       name: Име
       no_groups: Няма налични групи
+      occupation_removal_confirmation: Въведете посоченото по-долу наименование на професията в текстовото поле, за да потвърдите
       output_type: Тип изход
       pattern_error: Допускат се само буквено-цифрови знаци, интервали и тирета.
       profile:

@@ -25,8 +25,6 @@
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific
 
-//= require cable
-
 // /// Translations
 //= require i18n
 

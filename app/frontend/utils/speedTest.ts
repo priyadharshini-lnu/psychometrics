@@ -2,12 +2,9 @@ import axios, { AxiosProgressEvent } from 'axios'
 import * as t from 'io-ts'
 
 export const SpeedTestProgressTypeTR = t.union([
-  t.literal('rails_download'),
-  t.literal('rails_upload'),
-  t.literal('rails_latency'),
-  t.literal('s3_download'),
-  t.literal('s3_upload'),
-  t.literal('s3_latency'),
+  t.literal('download'),
+  t.literal('upload'),
+  t.literal('latency'),
 ])
 
 export const SpeedTestProgressTR = t.intersection([
@@ -27,16 +24,9 @@ export const LatencyResultTR = t.type({
 })
 
 export const SpeedTestResultTR = t.type({
-  rails: t.type({
-    downloadSpeedMbps: t.number,
-    uploadSpeedMbps: t.number,
-    latency: LatencyResultTR,
-  }),
-  s3: t.type({
-    downloadSpeedMbps: t.number,
-    uploadSpeedMbps: t.number,
-    latency: LatencyResultTR,
-  }),
+  downloadSpeedMbps: t.number,
+  uploadSpeedMbps: t.number,
+  latency: LatencyResultTR,
 })
 
 export type SpeedTestProgressType = t.TypeOf<typeof SpeedTestProgressTypeTR>
@@ -185,78 +175,32 @@ async function measureLatency (options: MeasureLatencyOptions): Promise<LatencyR
   }
 }
 
-export async function testRailsDownloadSpeed (
-  size: number = DEFAULT_TEST_SIZE,
-  onProgress?: (progress: SpeedTestProgress) => void,
-  timeout: number = DEFAULT_TIMEOUT,
-): Promise<number> {
-  return measureDownloadSpeed({
-    url: `/speed_test/download/${size}`,
-    expectedSize: size,
-    progressType: 'rails_download',
-    timeout,
-    withCredentials: true,
-    onProgress,
-  })
-}
-
-export async function testRailsUploadSpeed (
-  size: number = DEFAULT_TEST_SIZE,
-  onProgress?: (progress: SpeedTestProgress) => void,
-  timeout: number = DEFAULT_TIMEOUT,
-): Promise<number> {
-  return measureUploadSpeed({
-    url: '/speed_test/upload',
-    method: 'POST',
-    data: new Blob([new ArrayBuffer(size)]),
-    progressType: 'rails_upload',
-    timeout,
-    onProgress,
-  })
-}
-
-export async function testRailsLatency (
-  samples: number = DEFAULT_LATENCY_SAMPLES,
-  onProgress?: (progress: SpeedTestProgress) => void,
-): Promise<LatencyResult> {
-  return measureLatency({
-    samples,
-    progressType: 'rails_latency',
-    onProgress,
-    pingFn: async () => {
-      await axios.get(`/speed_test/ping?_=${Date.now()}`, {
-        withCredentials: true,
-        headers: { 'Cache-Control': 'no-store' },
-      })
-    },
-  })
-}
-
-export async function testS3DownloadSpeed (
+export async function testDownloadSpeed (
   size: number = DEFAULT_TEST_SIZE,
   onProgress?: (progress: SpeedTestProgress) => void,
   timeout: number = DEFAULT_TIMEOUT,
 ): Promise<number> {
   const response = await axios.get<{ url: string; size: number }>(
-    `/speed_test/s3/download_url?size=${size}`,
+    `/speed_test/download_url?size=${size}`,
     { withCredentials: true },
   )
 
   return measureDownloadSpeed({
     url: response.data.url,
     expectedSize: response.data.size,
-    progressType: 's3_download',
+    progressType: 'download',
     timeout,
     onProgress,
   })
 }
-export async function testS3UploadSpeed (
+
+export async function testUploadSpeed (
   size: number = DEFAULT_TEST_SIZE,
   onProgress?: (progress: SpeedTestProgress) => void,
   timeout: number = DEFAULT_TIMEOUT,
 ): Promise<number> {
   const response = await axios.get<{ url: string }>(
-    '/speed_test/s3/upload_url',
+    '/speed_test/upload_url',
     { withCredentials: true },
   )
 
@@ -264,24 +208,24 @@ export async function testS3UploadSpeed (
     url: response.data.url,
     method: 'PUT',
     data: new Blob([new ArrayBuffer(size)]),
-    progressType: 's3_upload',
+    progressType: 'upload',
     timeout,
     onProgress,
   })
 }
 
-export async function testS3Latency (
+export async function testLatency (
   samples: number = DEFAULT_LATENCY_SAMPLES,
   onProgress?: (progress: SpeedTestProgress) => void,
 ): Promise<LatencyResult> {
   const response = await axios.get<{ url: string }>(
-    '/speed_test/s3/ping_url',
+    '/speed_test/ping_url',
     { withCredentials: true },
   )
 
   return measureLatency({
     samples,
-    progressType: 's3_latency',
+    progressType: 'latency',
     onProgress,
     pingFn: async () => {
       await axios.head(response.data.url, {
@@ -290,6 +234,7 @@ export async function testS3Latency (
     },
   })
 }
+
 export async function runComprehensiveSpeedTest (
   options: SpeedTestOptions = {},
 ): Promise<SpeedTestResult> {
@@ -299,17 +244,14 @@ export async function runComprehensiveSpeedTest (
     onProgress,
   } = options
 
-  const railsDownload = await testRailsDownloadSpeed(testFileSize, onProgress)
-  const railsUpload = await testRailsUploadSpeed(testFileSize, onProgress)
-  const railsLatency = await testRailsLatency(latencySamples, onProgress)
-
-  const s3Download = await testS3DownloadSpeed(testFileSize, onProgress)
-  const s3Upload = await testS3UploadSpeed(testFileSize, onProgress)
-  const s3Latency = await testS3Latency(latencySamples, onProgress)
+  const downloadSpeed = await testDownloadSpeed(testFileSize, onProgress)
+  const uploadSpeed = await testUploadSpeed(testFileSize, onProgress)
+  const latencyResult = await testLatency(latencySamples, onProgress)
 
   return {
-    rails: { downloadSpeedMbps: railsDownload, uploadSpeedMbps: railsUpload, latency: railsLatency },
-    s3: { downloadSpeedMbps: s3Download, uploadSpeedMbps: s3Upload, latency: s3Latency },
+    downloadSpeedMbps: downloadSpeed,
+    uploadSpeedMbps: uploadSpeed,
+    latency: latencyResult,
   }
 }
 

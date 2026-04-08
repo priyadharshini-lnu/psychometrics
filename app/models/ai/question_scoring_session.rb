@@ -22,7 +22,8 @@ class AI::QuestionScoringSession < AI::AssistedUserSession
       scores: nil,
       status: :in_progress,
       error: nil,
-      parsed_dependencies: nil
+      parsed_dependencies: nil,
+      content_checksum: nil
     )
   end
 end

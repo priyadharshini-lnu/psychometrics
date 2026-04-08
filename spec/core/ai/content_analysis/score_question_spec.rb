@@ -74,13 +74,13 @@ describe AI::ContentAnalysis::ScoreQuestion do
             session.update!(
               checkpoint: { factor.id.to_s => { 'score' => 5 } },
               status: :completed,
-              parsed_dependencies: 'dependencies'
+              content_checksum: 'dependencies'
             )
           end
         end
 
         before do
-          allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies).
+          allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies_checksum).
             and_return('dependencies')
           allow(AI::AssistantService).to receive(:new).and_raise('Should not be called')
         end
@@ -90,6 +90,41 @@ describe AI::ContentAnalysis::ScoreQuestion do
           described_class.new(question, users_result, rescore: false).on(:ok) { |res| result = res }.call
 
           expect(result).to eq({ factor.id.to_s => { 'score' => 5 } })
+        end
+      end
+
+      context 'and checksum matches with real data' do
+        let!(:existing_session) { create_scoring_session }
+        let(:current_checksum) { AI::ContentAnalysis::PayloadParser.new(question, users_result).dependencies_checksum }
+
+        before do
+          existing_session.update!(
+            checkpoint: { factor.id.to_s => { 'score' => 5 } },
+            status: :completed,
+            content_checksum: current_checksum
+          )
+          allow(AI::AssistantService).to receive(:new).and_raise(
+            'AI::AssistantService should not be called when checksum matches'
+          )
+        end
+
+        it 'returns existing scores without calling AI service' do
+          result = nil
+          described_class.new(question, users_result).on(:ok) { |res| result = res }.call
+          expect(result).to eq({ factor.id.to_s => { 'score' => 5 } })
+        end
+
+        it 'regenerates when prompt changes' do
+          ai_assistant.update!(system_prompt: 'Updated prompt')
+          question.reload
+          users_result.reload
+
+          stub_wisper_publisher('AI::AssistantService', :call, :ok, {
+            message: { 'indicator_scores' => [{ 'indicator_id' => factor.id, 'score' => 4 }] }
+          })
+
+          described_class.call(question, users_result)
+          expect(existing_session.reload.checkpoint).to eq({ factor.id.to_s => { 'score' => 4 } })
         end
       end
 
@@ -116,13 +151,13 @@ describe AI::ContentAnalysis::ScoreQuestion do
             session.update!(
               checkpoint: { factor.id.to_s => { 'score' => 5 } },
               status: :completed,
-              parsed_dependencies: 'old dependencies'
+              content_checksum: 'old dependencies'
             )
           end
         end
 
         before do
-          allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies).
+          allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies_checksum).
             and_return('new dependencies')
         end
 
@@ -137,13 +172,40 @@ describe AI::ContentAnalysis::ScoreQuestion do
       end
     end
 
-    context 'when rescore is true' do
+    context 'when rescore is true and force_regenerate is false' do
       let!(:existing_session) do
         create_scoring_session.tap do |session|
           session.update!(
             checkpoint: { factor.id.to_s => { 'score' => 5 } },
             status: :completed,
-            parsed_dependencies: 'dependencies'
+            content_checksum: 'dependencies'
+          )
+        end
+      end
+
+      before do
+        allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies_checksum).
+          and_return('dependencies')
+        allow(AI::AssistantService).to receive(:new).and_raise('Should not be called')
+      end
+
+      it 'reuses the existing scores when dependencies have not changed' do
+        result = nil
+
+        described_class.new(question, users_result, rescore: true).on(:ok) { |res| result = res }.call
+
+        expect(result).to eq({ factor.id.to_s => { 'score' => 5 } })
+        expect(existing_session.reload.checkpoint).to eq({ factor.id.to_s => { 'score' => 5 } })
+      end
+    end
+
+    context 'when force_regenerate is true' do
+      let!(:existing_session) do
+        create_scoring_session.tap do |session|
+          session.update!(
+            checkpoint: { factor.id.to_s => { 'score' => 5 } },
+            status: :completed,
+            content_checksum: 'dependencies'
           )
         end
       end
@@ -154,7 +216,7 @@ describe AI::ContentAnalysis::ScoreQuestion do
             'indicator_scores' => [{ 'indicator_id' => factor.id, 'score' => 4 }]
           }
         })
-        described_class.call(question, users_result, rescore: true)
+        described_class.call(question, users_result, rescore: true, force_regenerate: true)
 
         expect(existing_session.reload.checkpoint).to eq({ factor.id.to_s => { 'score' => 4 } })
         expect(existing_session.status).to eq('completed')
@@ -178,8 +240,10 @@ describe AI::ContentAnalysis::ScoreQuestion do
 
       before do
         stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: ai_response })
+        allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies_checksum).
+          and_return('checksum')
         allow_any_instance_of(AI::ContentAnalysis::PayloadParser).to receive(:dependencies).
-          and_return('dependencies')
+          and_return('raw dependencies')
       end
 
       it 'marks session as completed and saves scores' do
@@ -201,9 +265,11 @@ describe AI::ContentAnalysis::ScoreQuestion do
         })
       end
 
-      it 'saves parsed dependencies' do
+      it 'saves parsed dependencies and checksum' do
         described_class.call(question, users_result)
-        expect(session.reload.parsed_dependencies).to eq('dependencies')
+        session.reload
+        expect(session.parsed_dependencies).to eq('raw dependencies')
+        expect(session.content_checksum).to eq('checksum')
       end
 
       it 'demonstrates the expected shape of AI response and parsed output' do

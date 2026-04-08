@@ -48,7 +48,7 @@ class Library < ApplicationRecord
   scope :with_type, lambda { |type|
     return if type.blank?
 
-    where.has { |libraries| (libraries.type == type) | (libraries.type == :folder) }
+    where(type: [Library.types[type.to_s], Library.types['folder']])
   }
 
   #

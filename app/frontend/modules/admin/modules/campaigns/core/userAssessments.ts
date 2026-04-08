@@ -222,7 +222,6 @@ export const updateMhsNormRegion = (campaignId, campaignAssessmentId: number, bo
   type: UPDATE_MHS_NORM_REGION,
   request: {
     method: 'post',
-    // eslint-disable-next-line max-len
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mhs_norm_region`,
     body: { ...body, campaignAssessmentId },
     loader: true,
@@ -233,7 +232,6 @@ export const updateMhsNormOption = (campaignId, campaignAssessmentId: number, bo
   type: UPDATE_MHS_NORM_OPTION,
   request: {
     method: 'post',
-    // eslint-disable-next-line max-len
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mhs_norm_option`,
     body: { ...body, campaignAssessmentId },
     loader: true,

@@ -97,6 +97,7 @@ zh:
     name: 名称
     negative: 负面
     new: 新的
+    next: 下一页
     no_results_found: 未找到任何结果
     not_requested: 尚未请求
     ok: 确定
@@ -114,6 +115,8 @@ zh:
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: 录制
+    recorded: 录制
+    recording: 录音
     recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
     recording_consent_proceed_question: 你同意继续录音会议吗？
     recording_consent_title: 录音同意通知
@@ -132,6 +135,7 @@ zh:
     show_more: 显示更多
     something_wrong: 出错了，请联系管理员。
     status: 状态
+    status_unknown: 状态不明
     subject: 主题
     submit: 提交
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机

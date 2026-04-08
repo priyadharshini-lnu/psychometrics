@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
 import {
   showErrors, emptyErrors, showPage, changeElement, showEnd, hideQuestion, showQuestion,

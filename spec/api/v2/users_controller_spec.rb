@@ -94,6 +94,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
       after(:each) { sign_out(superadmin) }
       it 'check response' do
         allow(Settings.features).to receive(:[]).with(:ai_assistant_enabled).and_return(true)
+        allow(Settings.features).to receive(:dimensions_react_ui).and_return(true)
         get '/api/v2/administration/users/current_user_details'
         parsed_response = JSON.parse(response.body)['data']
         expect(parsed_response['id']).to eq(superadmin.id.to_s)
@@ -112,7 +113,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
             'communicationCenter' => '/administration/communications',
             'dataReports' => '/admin/data_reports',
             'developmentActions' => '/admin/development_actions',
-            'dimensions' => '/administration/dimensions',
+            'dimensions' => '/admin/dimensions',
             'libraries' => '/administration/libraries',
             'settings' => '/admin/settings',
             'norms' => '/admin/norms',

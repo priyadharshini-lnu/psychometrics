@@ -25,7 +25,6 @@ const connecter = connect((state: RootState) => ({
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ChangePasswordComponent: React.FC<Props> = (
   { changePassword, enabledRecaptchaAtProject },
 ) => {

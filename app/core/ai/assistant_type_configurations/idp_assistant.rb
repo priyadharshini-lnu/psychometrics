@@ -7,13 +7,12 @@ module AI
       # custom provider which is oci doesn't allows this with cohere.command-a, this should be handled
       UNSUPPORTED_STRUCTURED_OUTPUT_MODEL = %w[cohere.command-a].freeze
 
-      # Default parameters for IDP Assistant
-      def default_params
+      def base_params
         {
           temperature: 0.2,
+          max_tokens: 4000,
           response_format: { type: 'json_schema' },
-          max_tokens: 2000,
-          # This is to ensure number of database connections are not exhaused in single process
+          # This is to ensure number of database connections are not exhausted in single process
           parallel_tool_calls: false
         }
       end

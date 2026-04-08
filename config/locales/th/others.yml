@@ -873,6 +873,7 @@ th:
         export_assessment_questions: คําถามการประเมินการส่งออก
         export_campaign_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI ของแคมเปญ
         export_campaign_ai_artifacts_results: ผลลัพธ์ของแคมเปญส่งออก AI อาร์ติแฟกต์
+        export_campaign_datasheet: แผ่นข้อมูลแคมเปญการส่งออก
         export_campaign_factors: ปัจจัยแคมเปญการส่งออก
         export_campaign_scorings: ส่งออกการให้คะแนนแคมเปญ
         export_dashboard_as_file: ส่งออกแดชบอร์ดเป็นไฟล์
@@ -932,6 +933,7 @@ th:
         regenerate_report: สร้างรายงานใหม่
         regenerate_threesixty_report: สร้างรายงาน Threesixty ใหม่
         remap_report_assessment: การประเมินรายงาน Remap
+        rescore_ai_scoring: การให้คะแนนใหม่ด้วยปัญญาประดิษฐ์
         rescore_assessment: การประเมินคะแนนใหม่
         rescore_user_assessment: การประเมินคะแนนของผู้ใช้ใหม่
         send_sms_invites: ส่งคําเชิญทาง SMS
@@ -2657,6 +2659,7 @@ th:
     direct_reportee_details: รายละเอียดผู้รายงานโดยตรง
     download:
       description: 'หากต้องการดาวน์โหลดรายงาน โปรดไปที่ลิงค์: <a href=''%{url}'' target=''_blank''>ดาวน์โหลด</a> ลิงค์ใช้ได้เพียง 10 นาทีเท่านั้น'
+      title: รายงานของคุณพร้อมแล้ว!
     download_plan: ดาวน์โหลดแผน
     edit_plan: แก้ไขแผน
     edit_plan_and_add_skills: แก้ไขแผนและคลิกที่จัดการทักษะเพื่อเพิ่มทักษะ

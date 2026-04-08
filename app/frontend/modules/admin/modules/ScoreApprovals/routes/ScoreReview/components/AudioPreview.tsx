@@ -6,7 +6,7 @@ import AudioRecorder from '~/modules/survey/components/AudioRecorder'
 export const AudioPreview = ({ mediaResponse }) => (
   <Flex className={styles.video}>
     <AudioRecorder
-      mediaUrl={mediaResponse.url}
+      mediaUrl={mediaResponse?.url}
       model={mediaResponse}
       fakeUpload
       readOnly

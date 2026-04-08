@@ -30,7 +30,7 @@ const Approved: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} type="approved" />
+      <TasksList {...args} type="approved" fetch={fetch} />
     </div>
   )
 }

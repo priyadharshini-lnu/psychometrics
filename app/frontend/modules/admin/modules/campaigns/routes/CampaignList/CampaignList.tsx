@@ -289,6 +289,7 @@ const CampaignListComponent: React.FC<Props> = ({
                         openModal('CopyCampaignModal', {
                           projectId,
                           campaign,
+                          onSuccess: () => fetch(projectId, tableConfig),
                         })
                       },
                       onConvert: () => {

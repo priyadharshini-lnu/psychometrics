@@ -117,4 +117,27 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
       expect(norm_response['data']['attributes']).to include('name' => 'Copied Norm Name')
     end
   end
+
+  describe 'POST /api/v2/norms/:id/editor' do
+    let!(:norm_one) { create(:norm) }
+    let!(:factor) { create(:factor, dimension: norm_one.dimension) }
+    let!(:factors_norm_one) { create(:factors_norm, norm: norm_one, factor: factor) }
+    let!(:factors_norm_two) { create(:factors_norm, norm: norm_one, factor: factor) }
+
+    it 'returns norm editor data' do
+      post "/api/v2/administration/norms/#{norm_one.id}/editor",
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      editor_data = JSON.parse(response.body)
+      expect(editor_data).to be_an(Array)
+      expect(editor_data).to include(
+        a_hash_including(
+          'id' => factors_norm_one.factor_id,
+          'name' => factors_norm_one.factor.name,
+          'factors_norms_props' => factors_norm_one.props
+        )
+      )
+    end
+  end
 end

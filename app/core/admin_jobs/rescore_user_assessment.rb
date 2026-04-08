@@ -8,7 +8,8 @@ module AdminJobs
       recompute = ::UsersResults::Recompute.new(
         user_result, owner,
         admin_job_record_id: record.id,
-        allow_ai_rescore: record.data['allow_ai_rescore']
+        allow_ai_rescore: record.data['allow_ai_rescore'],
+        force_ai_regenerate: true
       )
       recompute.on(:ok) do
         record.increment_completed_tasks!

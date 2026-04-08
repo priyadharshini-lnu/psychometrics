@@ -873,6 +873,7 @@ bg:
         export_assessment_questions: Въпроси за оценка на износа
         export_campaign_ai_artifacts: Изкуствени артефакти от Експортната кампания
         export_campaign_ai_artifacts_results: Експортиране на резултатите от AI артефактите на кампанията
+        export_campaign_datasheet: Технически спецификации на кампанията за износ
         export_campaign_factors: Фактори на експортната кампания
         export_campaign_scorings: Експортиране на оценки на кампании
         export_dashboard_as_file: Експортиране на табло като файл
@@ -932,6 +933,7 @@ bg:
         regenerate_report: Регенериране на отчет
         regenerate_threesixty_report: Регенерирайте доклад на Threesixty
         remap_report_assessment: Оценка на доклада за пренасочване
+        rescore_ai_scoring: Преоценка с изкуствен интелект
         rescore_assessment: Оценка за преоценка
         rescore_user_assessment: Оценка на потребителите за преоценка
         send_sms_invites: Изпращане на SMS покани
@@ -2660,6 +2662,7 @@ bg:
     direct_reportee_details: Подробности за преките докладвани
     download:
       description: 'За да изтеглите отчета, моля, последвайте връзката: <a href=''%{url}'' target=''_blank''>Изтегляне</a>. Връзката е валидна само за 10 минути'
+      title: Докладът Ви е готов!
     download_plan: Изтегляне на план
     edit_plan: Редактиране на плана
     edit_plan_and_add_skills: Редактирайте План и щракнете върху Управление на уменията, за да добавите умения.

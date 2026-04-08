@@ -873,6 +873,7 @@ de:
         export_assessment_questions: Fragen zur Exportbewertung
         export_campaign_ai_artifacts: Export-Kampagnen-KI-Artefakte
         export_campaign_ai_artifacts_results: Exportieren Sie die Ergebnisse der KI-Artefakte der Kampagne
+        export_campaign_datasheet: Datenblatt zur Exportkampagne
         export_campaign_factors: Faktoren der Exportkampagne
         export_campaign_scorings: Kampagnenscorings exportieren
         export_dashboard_as_file: Dashboard als Datei exportieren
@@ -932,6 +933,7 @@ de:
         regenerate_report: Bericht "Regenerieren
         regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty
         remap_report_assessment: Remap-Bericht Bewertung
+        rescore_ai_scoring: Neubewertung durch KI
         rescore_assessment: Wiederholungsprüfung
         rescore_user_assessment: Bewertung der Benutzer neu bewerten
         send_sms_invites: SMS-Einladungen versenden
@@ -2669,6 +2671,7 @@ de:
     direct_reportee_details: Detail der direkt unterstellten Mitarbeiter
     download:
       description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Download</a>. Der Link ist nur 10 Minuten gültig'
+      title: Ihr Bericht ist fertig!
     download_plan: Plan herunterladen
     edit_plan: Plan bearbeiten
     edit_plan_and_add_skills: Plan bearbeiten und klicken Sie auf Fertigkeiten verwalten, um Fertigkeiten hinzuzufügen.

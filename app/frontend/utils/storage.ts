@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import CryptoJS from 'crypto-js'
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setItem = (key: string, value: any, token: string, expireTime = Infinity): void => {
   const expire = Date.now() + expireTime
   const data = { expire, value: CryptoJS.AES.encrypt(JSON.stringify(value), token).toString() }
@@ -19,7 +19,6 @@ export const getItem = (key: string, token: string): object | null => {
     const decrypted = bytes.toString(CryptoJS.enc.Utf8)
     return JSON.parse(decrypted)
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.warn(e)
   }
   return null

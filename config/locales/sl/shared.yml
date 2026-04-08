@@ -97,6 +97,7 @@ sl:
     name: Ime
     negative: Negativno
     new: Novo
+    next: Naprej
     no_results_found: Ni bilo najdenih rezultatov
     not_requested: Še ni zahtevano
     ok: Ok
@@ -114,6 +115,8 @@ sl:
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
     rec: REC
+    recorded: Posneto
+    recording: Snemanje
     recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.
     recording_consent_proceed_question: Se strinjate, da nadaljujete s posnetim sestankom?
     recording_consent_title: Obvestilo o snemanju soglasja
@@ -132,6 +135,7 @@ sl:
     show_more: Pokaži več
     something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
     status: Status
+    status_unknown: Status neznan
     subject: Predmet
     submit: Pošlji
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik

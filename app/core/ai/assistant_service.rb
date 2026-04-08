@@ -55,12 +55,9 @@ module AI
 
         mark_last_request_invalid(validation_message)
 
-        active_chat.with_instructions(
+        response = active_chat.ask_for_correction(
           "Error: System cannot render the message to user: #{validation_message}"
         )
-        response = active_chat.complete
-
-        validation_message = validate_response(response.content)
       end
 
       if validation_message.nil?
@@ -104,13 +101,15 @@ module AI
     def create_new_chat
       tools = options[:tools] || []
       params = options[:params] # Params for the requests
+      skip_default_params = options[:skip_default_params] || false
       prompt_template_context = options[:prompt_template_context] || {}
       chat = assistant.for_user(
         current_user,
         tools: tools,
         params: params,
         prompt_template_context: prompt_template_context,
-        contextual_information: options[:contextual_information]
+        contextual_information: options[:contextual_information],
+        skip_default_params: skip_default_params
       )
       chat.update!(ai_assisted_user_session: session) if session.present?
 

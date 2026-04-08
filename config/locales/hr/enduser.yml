@@ -1,6 +1,8 @@
 ---
 hr:
   enduser:
+    ack_subtitle: Pročitao sam i razumio gore navedene upute i spreman sam nastaviti s provjerom sustava.
+    ack_title: Potvrđujem i razumijem
     add_idp_plan_note: Dodaj napomenu...
     add_idp_plan_rejection_reason: Dodaj razlog...
     ai_idp_assistant_response_no: Ne
@@ -8,13 +10,43 @@ hr:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Da, nastavite s izradom plana.
     ai_idp_retake_step_chat_hint_no_document: Možete ponovno pokrenuti chat da podijelite više detalja, a ja ću dati sve od sebe da vam pomognem.
     ai_idp_summary_hint_no_document: Uz vaše dopuštenje, ako kažete da, mogu vam napraviti plan razvoja. Ako ne, možete ponovno pokrenuti chat kako biste podijelili više detalja.
+    all_checks_must_pass: Svi testovi moraju biti uspješni prije nego što možete nastaviti.
     approve_idp_plan: Odobri plan
+    back: Natrag
+    before_you_begin: Prije nego što počnete
+    begin_message: Prije nego što nastavite s aktivnostima ove kampanje, trebate pokrenuti provjeru spremnosti koja će provjeriti kompatibilnost vašeg uređaja.
     bookings: Rezervacije
+    browser: Preglednik
+    browser_and_device: Preglednik i uređaj
+    browser_compatbility_step: Korak kompatibilnosti preglednika
+    browser_compatibility: 'Kompatibilnost preglednika:'
+    browser_compatibility_check: Test kompatibilnosti preglednika
+    browser_compatibility_check_description: Provjeravamo podržava li vaš preglednik sve potrebne značajke
+    browser_compatibility_result: Kompatibilnost preglednika
+    browser_version_fix_description_first: 'Koristite podržani preglednik: Chrome, Firefox, Edge ili Safari'
+    browser_version_fix_description_second: Ažurirajte svoj preglednik na najnoviju verziju kako biste osigurali kompatibilnost.
+    browser_version_fix_description_third: Pokušajte koristiti prozor za incognito/privatno pregledavanje.
+    browser_version_fix_title: Vaša verzija preglednika nije podržana.
+    camera: Video i audio
+    camera_access_blocked: Pristup kameri je odbijen ili blokiran od strane vašeg preglednika. Molimo provjerite dozvole vašeg preglednika.
+    camera_check: Test kamere i mikrofona
+    camera_check_description: Provjerite radi li vaša kamera i mikrofon ispravno za snimanje.
+    camera_test_step: Korak za test videozapisa i zvuka
     campaign: Kampanja
+    chat_instructions: Upute za chat
+    check: Provjeri
+    check_video_recording: Molimo provjerite svoj videozapis reprodukcijom.
+    checking_browser_compatibility: Provjera kompatibilnosti preglednika...
     development: Razvoj
     direct_reportees: Izravni podređeni
+    download: Preuzmi
     download_pdf: Preuzmite PDF
+    environment_setup: Postavljanje okruženja
+    error_uploading_video: Greška pri učitavanju videa
+    fail: Neuspjeh
+    follow_these_steps: Slijedite ove korake kako biste riješili probleme otkrivene tijekom provjere sustava.
     home: Nadzorna ploča
+    how_to_fix: 'Kako popraviti:'
     idp_loading_fifth_step: Dohvaćanje razvojnih akcija iz predloška
     idp_loading_first_step: Analiza vašeg izvještaja o procjeni
     idp_loading_fourth_step: Odabir relevantnih vještina
@@ -22,27 +54,71 @@ hr:
     idp_loading_secondary_text: Slobodno se udaljite. Tvoj plan bit će spreman kad se vratiš.
     idp_loading_sixth_step: Kreiranje razvojnih akcija
     idp_plan_approval_note: Napomena o odobrenju
+    idp_proceed_with_plan_creation: Da, nastavite s izradom plana.
+    idp_report_being_generated: Radimo na vašem izvještaju.
+    idp_reset_chat: Resetiraj razgovor
     idp_retake_steps_continue_with_this_information: Nastavite s ovim informacijama
     insights: Uvidi
+    instruction: Pobrinite se da ste vi i vaše okruženje potpuno pripremljeni.
+    internet_speed: Brzina interneta
+    internet_speed_optimal: Vaša brzina veze je optimalna
+    internet_speed_slow: Brzina interneta je sporija nego što je potrebno za kampanju.
+    less_than_five_minutes: Manje od 5 minuta
     lighthouse_assistant: Pomoćnik svjetionika
+    localstorage_fix_description_first: Provjerite da niste u privatnom/inkognito načinu rada, jer je localStorage često onemogućen u tim načinima.
+    localstorage_fix_title: Lokalno pohranjivanje nije omogućeno u vašem pregledniku.
+    localstorage_support: LocalStorage omogućen
     max_word_limit: Mora imati najviše %{max} riječi
+    media_recorder_api_fix_description_first: Omogućite JavaScript u postavkama svog preglednika.
+    media_recorder_api_fix_description_second: Provjerite podržava li vaš preglednik MediaRecorder API i ažurirajte ga na najnoviju verziju ako je potrebno.
+    media_recorder_api_fix_description_third: Isprobajte drugi suvremeni preglednik poput Chromea ili Firefoxa.
+    media_recorder_api_fix_title: API za snimanje medija nije podržan u vašem pregledniku.
+    media_recorder_api_support: Podrška za MediaRecorder API
     min_word_limit: Mora imati najmanje %{min} riječi
     my_plan: Moj plan
+    network: Mreža
+    network_check: Test brzine interneta
+    network_check_description: Testiranje kvalitete vaše internetske veze između naših poslužitelja i vašeg uređaja.
+    network_check_fix_fifth: Ako problem i dalje traje, obratite se svom pružatelju internetskih usluga za daljnju pomoć.
+    network_check_fix_first: Zatvorite druge aplikacije koje možda koriste propusnost (streamanje videa, preuzimanja).
+    network_check_fix_fourth: Pokušajte koristiti drugu mrežnu vezu ako je dostupna.
+    network_check_fix_second: Približite se svom Wi-Fi usmjerivaču ili se povežite putem Ethernet kabela.
+    network_check_fix_third: Ponovno pokrenite ruter/modem i pokušajte ponovno.
+    network_test_step: Korak testiranja mreže
     no_audio_warning: Nije detektiran zvuk. Molimo provjerite je li vaš mikrofon priključen i ispravno radi.
+    pass: Prođi
+    pending: U čekanju
+    personal_readiness: Osobna spremnost
+    plan_text: Planirajte za cijelo trajanje. Kad započnete, odmore možda neće biti dopušteni, ovisno o vrsti procjene.
+    please_check_your_internet_connection: Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
     profile: Profil
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog odbijanja
-    recorded: snimljeno
-    recording: Snimanje
     reject_idp_plan: Plan odbijanja
     request_retry_message: Offline si. Vaši odgovori nisu mogli biti spremljeni, ali će biti automatski spremljeni čim se vratite online. Molimo vas da ne osvježavate niti zatvarate stranicu.
+    required_download_in_mbps: Potrebno preuzimanje u Mbps
+    required_upload_in_mbps: Potrebno otpremanje u Mbps
+    rerun_check: Ponovni provjer
+    rerun_checks: Ponovne provjere
+    result: Rezultat
+    results: Rezultat
     selected_count: Odabrano
     skill_type: Vrsta vještine
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed: Ovo je vremenski ograničena kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed_proctored: Ovo je vremenski ograničena i nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za početak aktivnosti.
-    status_unknown: Status nepoznat
+    start_readiness_check: Pokreni provjeru spremnosti
+    start_system_check: Pokreni provjeru sustava
+    subinstruction_eight: Ostavite neprekinuto vrijeme za cjelovitu procjenu.
+    subinstruction_five: Spremni dijeliti svoj zaslon tijekom cijele sesije
+    subinstruction_four: Funkcionalna web-kamera i mikrofon
+    subinstruction_one: Tiha, dobro osvijetljena prostorija bez drugih osoba.
+    subinstruction_seven: Provjerite je li vaš uređaj potpuno napunjen ili priključen na utičnicu.
+    subinstruction_six: Zatvorite sve nepotrebne aplikacije i kartice preglednika.
+    subinstruction_three: Stalna internetska veza (minimum 1 Mbps)
+    subinstruction_two: Čist stol bez neovlaštenih materijala
+    system_check: Provjera sustava
     system_check_access: Pristup
     system_check_audio_random_phrases:
       eight: Neka vam kava bude jaka, a dan produktivan.
@@ -55,6 +131,13 @@ hr:
       three: Testiranje, jedan, dva, tri, zvuk je jasan koliko god može biti!
       two: Žućkasti đak čita džepnu knjigu s ljubičastim šarenim ćilom.
     system_check_audio_title: Molimo, ponovite sljedeću rečenicu 3 puta.
+    system_check_complete: Provjera sustava dovršena
+    system_check_failed: Provjera sustava nije uspjela
+    system_check_failed_description: Molimo riješite probleme i ponovno pokrenite provjere sustava.
+    system_check_failed_message: Neke provjere sustava nisu uspjele. Molimo provjerite detalje i pokušajte ponovno.
+    system_check_failed_title: Ne možete nastaviti dok svi potrebni pregledi ne budu prošli.
+    system_check_not_enabled: Provjera sustava nije omogućena za ovu kampanju.
+    system_check_passed_successfully: Svi sistemski pregledi su uspješno prošli!
     system_check_proceed: Da, nastaviti
     system_check_retake: Ne, želim ponovno snimati
     system_check_run_again: Pokušati ponovno
@@ -64,4 +147,41 @@ hr:
     system_check_upload_again: Ponovno učitavanje
     system_check_uploading: Prenijeti
     system_check_video_random_phrase: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
+    system_check_warning: Upozorenje o provjeri sustava
+    system_check_warning_message: Mogući kvarovi sustava mogu utjecati na procjene—molimo nastavite tek nakon što sve provjere budu uspješne.
+    system_checks: Provjere sustava
+    task_duration: Trajanje zadatka
     tasks: Zadaci
+    time_commitment: Vremenska posvećenost
+    troubleshooting_guide: Vodič za rješavanje problema
+    troubleshooting_guide_browser_fifth: Provjerite je li LocalStorage omogućen u postavkama vašeg preglednika.
+    troubleshooting_guide_browser_first: 'Koristite podržani preglednik: Chrome, Firefox, Edge ili Safari (najnovije verzije)'
+    troubleshooting_guide_browser_fourth: Omogućite JavaScript i kolačiće u postavkama preglednika
+    troubleshooting_guide_browser_second: Očistite predmemoriju i kolačiće preglednika
+    troubleshooting_guide_browser_sixth: 'Pokušajte koristiti prozor za incognito/privatno pregledavanje (Napomena: LocalStorage može imati ograničenu ili nikakvu podršku u incognito/privatnom načinu rada)'
+    troubleshooting_guide_browser_third: Onemogućite proširenja preglednika koja bi mogla ometati pristup medijima.
+    troubleshooting_guide_network_fifth: Ako problem i dalje traje, obratite se svom pružatelju internetskih usluga za daljnju pomoć.
+    troubleshooting_guide_network_first: Zatvorite druge aplikacije koje možda koriste propusni opseg (streamanje videa, preuzimanja itd.).
+    troubleshooting_guide_network_fourth: Pokušajte koristiti drugu mrežnu vezu ako je dostupna.
+    troubleshooting_guide_network_second: Približite se svom Wi-Fi usmjerivaču ili se povežite putem Ethernet kabela.
+    troubleshooting_guide_network_third: Ponovno pokrenite ruter/modem i pokušajte ponovno.
+    troubleshooting_guide_video_fifth: 'Na Windowsima: Provjerite postavke privatnosti > pristup kameri/mikrofona'
+    troubleshooting_guide_video_first: Kliknite na ikonu lokota/informacija u adresnoj traci vašeg preglednika.
+    troubleshooting_guide_video_fourth: Ako je blokirano, možda ćete morati resetirati dozvole u postavkama preglednika.
+    troubleshooting_guide_video_second: Pronađite postavke "Kamera" i "Mikrofon" i postavite ih na "Dopusti".
+    troubleshooting_guide_video_sixth: 'Na Macu: Provjerite Postavke sustava > Sigurnost i privatnost > Kamera/Mikrofon'
+    troubleshooting_guide_video_third: Osvježite stranicu nakon promjene dozvola.
+    untimed: Bez vremenskog ograničenja
+    upload: Podiži
+    video_and_audio: Video i audio
+    video_and_audio_recording: Video i audio snimanje
+    video_check_fix_fifth: Pokušajte isključiti i ponovno priključiti kameru ako je vanjska.
+    video_check_fix_first: Kliknite 'Dopusti' kada preglednik zatraži dozvolu za kameru.
+    video_check_fix_fourth: Provjerite je li vaša kamera priključena i uključena.
+    video_check_fix_second: Idite u postavke preglednika i omogućite pristup kameri za ovu stranicu.
+    video_check_fix_sixth: Ponovno pokrenite preglednik i pokušajte ponovno.
+    video_check_fix_third: Zatvorite ostale aplikacije koje koriste kameru (Zoom, Teams itd.).
+    webgl_api_fix_description_first: Provjerite podržava li vaš preglednik WebGL i je li omogućen u postavkama.
+    webgl_api_fix_description_second: Ažurirajte grafičke upravljačke programe na najnoviju verziju.
+    webgl_api_fix_title: WebGL nije podržan ili omogućen u vašem pregledniku.
+    webgl_api_support: Podrška za WebGL API

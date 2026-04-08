@@ -81,7 +81,6 @@ const AIGeneratedDevelopmentActionsModal = ({
   developmentActions,
   fetchDevelopmentActions,
   isLoading,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onAddDevelopmentAction,
   open,
   onCancel,

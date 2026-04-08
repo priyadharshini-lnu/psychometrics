@@ -80,7 +80,6 @@ es-ES:
         title: Artefacto de IA
       generate: Generar
       generate_result_info_message: Se están generando resultados, actualice la página para ver los resultados actualizados.
-      generated_at: Generado en
       generated_at_time: Generado en %{time}
       generated_value: Valor generado
       id: IDENTIFICACIÓN
@@ -1871,6 +1870,8 @@ es-ES:
       form:
         enable_innovation_styles: Permitir estilos de innovación
         enable_occupations: Habilitar ocupaciones
+        name: Nombre
+        title: Dimensiones
       import_factors:
         import: Importar
         sample_file: Archivo de muestra
@@ -1918,6 +1919,7 @@ es-ES:
         confirmations:
           delete:
             body: "<p>¿Estás seguro de que quieres borrar esta Dimensión?</p>\n"
+            message: Introduzca el nombre de la dimensión que se indica a continuación en el cuadro de texto para confirmar
             title: "¿Borrar <strong>dimensión</strong>?"
           toggle_status:
             body: "<p>¿Estás seguro de que quieres %{status} esta Dimensión?</p>\n"
@@ -1982,6 +1984,7 @@ es-ES:
                 score: Puntuación
                 zscore: Puntuación Z
             title: Rutas JSON para puntuaciones
+        predicate: Predicado
         scoring_strategies:
           custom_formula: Fórmula personalizada
           external_score: Puntuación externa
@@ -1995,10 +1998,13 @@ es-ES:
           sub_factors_sum: Suma ponderada de factores
         scoring_strategies_tip: "<strong>preguntas (Media):</strong> Es como el método de puntuación actual cuando hay preguntas vinculadas a un factor. <br /> <br />preguntas <strong>(SUMA):</strong> Es como Preguntas (Media), pero utilizando SUMA <br /> <br /><strong>preguntas de Otros</strong> Factores <strong>(Promedio):</strong> Es como el método de puntuación actual cuando hay subfactores para un factor, el único cambio es la adición de peso. <br /> <br /><strong>preguntas de</strong> otros factores <strong>(SUM):</strong> Es como Otros factores (Promedio), pero utilizando SUM <br /> <br /><strong>suma ponderada de factores</strong>: Aquí se multiplican las puntuaciones de los otros factores seleccionados por sus pesos y se suman."
         scoring_strategy: Estrategia de puntuación
+        search_factors: Factores de búsqueda
         use_sub_factor_norm_score: Utilizar la puntuación de la norma Factores
+        value: Valor
       index:
         icon: Icono
         new: Añadir
+        precision: Precisión
         scoring_strategies:
           custom_formula: Fórmula personalizada
           external_score: Puntuación externa
@@ -2292,6 +2298,7 @@ es-ES:
       edit:
         header: Editar el estilo de innovación
       form:
+        full_description: Descripción completa
         no_icon: Sin icono
       index:
         new: Añadir
@@ -2663,8 +2670,12 @@ es-ES:
       edit:
         header: Editar ocupación
       form:
+        alternative_icon: Icono alternativo
+        color: Color
         hint:
           key_career_tracks: '"+" - lista, "*" - negrita. Ejemplo: + *Biología* - alguna descripción...'
+        indicative_roles_image: Imagen ilustrativa de los roles
+        key_career_tracks_image: Imagen de las principales trayectorias profesionales
         no_icon: Sin icono
       index:
         new: Añadir
@@ -2735,6 +2746,7 @@ es-ES:
       assessment_center: Centro de Evaluación
       assessment_id: Identificación de la evaluación
       campaign_id: ID de campaña
+      campaign_link: Enlace a la campaña
       campaign_name: Nombre de la campaña
       campaigns: Campañas
       description: Descripción
@@ -3735,8 +3747,10 @@ es-ES:
       id: ID
       import:
         factors: Factores de la campaña de importación
+      innovation_style_removal_confirmation: Introduce el nombre del estilo de innovación que se indica a continuación en el cuadro de texto para confirmar
       name: Nombre
       no_groups: No hay grupos presentes
+      occupation_removal_confirmation: Introduce el nombre de la profesión que aparece a continuación en el cuadro de texto para confirmar
       output_type: Tipo de salida
       pattern_error: Sólo se admiten caracteres alfanuméricos, espacios y guiones.
       profile:

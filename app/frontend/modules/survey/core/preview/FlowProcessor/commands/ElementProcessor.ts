@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-continue */
 import _ from 'lodash'
 import { setIn, merge } from '~/utils/immutable'

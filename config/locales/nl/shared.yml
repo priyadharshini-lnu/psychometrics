@@ -97,6 +97,7 @@ nl:
     name: Naam
     negative: Negatief
     new: Nieuw
+    next: Volgende
     no_results_found: Geen resultaten gevonden
     not_requested: Nog niet aangevraagd
     ok: Ok
@@ -114,6 +115,8 @@ nl:
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     rec: REC
+    recorded: Opgenomen
+    recording: Opname
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
     recording_consent_proceed_question: Gaat u akkoord met de opgenomen vergadering?
     recording_consent_title: Opname Toestemming Kennisgeving
@@ -132,6 +135,7 @@ nl:
     show_more: Laat meer zien
     something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
     status: Status
+    status_unknown: Status onbekend
     subject: Onderwerp
     submit: Verzenden
     switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop

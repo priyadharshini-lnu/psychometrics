@@ -873,6 +873,7 @@ nl:
         export_assessment_questions: Vragen over exportbeoordeling
         export_campaign_ai_artifacts: Exportcampagne-AI-artefacten
         export_campaign_ai_artifacts_results: Exporteer resultaten van AI-artefacten van campagnes
+        export_campaign_datasheet: Gegevensblad exportcampagne
         export_campaign_factors: Factoren voor exportcampagnes
         export_campaign_scorings: Campagne scorings exporteren
         export_dashboard_as_file: Dashboard exporteren als bestand
@@ -932,6 +933,7 @@ nl:
         regenerate_report: Regenereren Rapport
         regenerate_threesixty_report: Regenereren Drieënzestig Verslag
         remap_report_assessment: Beoordeling Remap-rapport
+        rescore_ai_scoring: Herbeoordeling met behulp van AI
         rescore_assessment: Rescore-beoordeling
         rescore_user_assessment: Rescore gebruikersbeoordeling
         send_sms_invites: SMS-uitnodigingen versturen
@@ -2655,6 +2657,7 @@ nl:
     direct_reportee_details: Details van directe verslaggevers
     download:
       description: 'Volg de link om het rapport te downloaden: <a href=''%{url}'' target=''_blank''>Download</a>. Link is slechts 10 minuten geldig'
+      title: Uw rapport is klaar!
     download_plan: Abonnement downloaden
     edit_plan: Plan bewerken
     edit_plan_and_add_skills: Bewerk Plan en en klik op Vaardigheden beheren om Vaardigheden toe te voegen.

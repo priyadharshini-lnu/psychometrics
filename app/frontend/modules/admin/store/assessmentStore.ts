@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   createStore, applyMiddleware, compose, combineReducers,
 } from 'redux'

@@ -51,7 +51,6 @@ export const checkBrowserSupportForFeature = (
     10,
   )}`
 
-  // eslint-disable-next-line no-console
   // console.table({
   //   actualBrowser: browserName,
   //   parsedBrowser: browser,

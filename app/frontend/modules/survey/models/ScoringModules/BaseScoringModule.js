@@ -6,17 +6,14 @@ class BaseScoringModule {
   }
 
   fill () {
-    // eslint-disable-next-line no-console
     console.error('should be implemented')
   }
 
   change () {
-    // eslint-disable-next-line no-console
     console.error('should be implemented')
   }
 
   toggle () {
-    // eslint-disable-next-line no-console
     console.error('should be implemented')
   }
 

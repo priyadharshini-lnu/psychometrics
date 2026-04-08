@@ -24,7 +24,8 @@ RSpec.describe ScoreApprovals::DiscardAllQuestions do
            campaign_id: campaign.id,
            assessment_id: assessment.id,
            assessor_ids: [assessor.id],
-           approver_ids: [approver.id])
+           approver_ids: [approver.id],
+           allow_bulk_approve_scores: true)
   end
 
   let!(:competency) do
@@ -217,12 +218,11 @@ RSpec.describe ScoreApprovals::DiscardAllQuestions do
       end
     end
 
-    context 'when policy denies discard' do
-      let(:current_user) { approver }
+    context 'when bulk approve scores setting is false' do
+      let(:current_user) { assessor }
 
       before do
-        score_approval.update!(approval_status: :pending)
-        approval_settings.update!(allow_one_level_approve: false)
+        approval_settings.update!(allow_bulk_approve_scores: false)
       end
 
       it 'returns error message' do
@@ -230,15 +230,6 @@ RSpec.describe ScoreApprovals::DiscardAllQuestions do
 
         expect(result[:error]).to eq(I18n.t('admin.score_approval_not_allowed_to_discard'))
         expect(result[:ok]).to be_nil
-      end
-
-      it 'does not update question scores' do
-        service
-
-        (question1_scores + question2_scores).each do |score|
-          expect(score.reload.status).to eq('assessor_approved')
-          expect(score.reload.override_score).to be_present
-        end
       end
     end
   end

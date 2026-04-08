@@ -38,10 +38,20 @@ export const ActionsDropdown: React.FC<{
 const getMenuProps = ({ onClick }: {onClick: (action: string) => void}): MenuProps => {
   const menuItems:MenuItem[] = []
 
-  menuItems.push({
-    key: 'generate_results',
-    label: <span>{I18n.t('admin.ai_artifacts_generate_results')}</span>,
-  })
+  menuItems.push(
+    {
+      key: 'generate_results',
+      label: <span>{I18n.t('admin.ai_artifacts_generate_results')}</span>,
+    },
+    {
+      key: 'mark_finalized',
+      label: <span>{I18n.t('admin.ai_artifacts_mark_finalized')}</span>,
+    },
+    {
+      key: 'mark_not_finalized',
+      label: <span>{I18n.t('admin.ai_artifacts_mark_not_finalized')}</span>,
+    },
+  )
 
   const handleMenuClick = ({ key }) => {
     onClick(key)

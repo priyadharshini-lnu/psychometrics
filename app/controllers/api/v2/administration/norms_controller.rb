@@ -2,14 +2,11 @@
 
 module Api
   class V2::Administration::NormsController < Api::V2::Administration::BaseController
-    include Api::V2::Administration::Concerns::MockedResponse
-
     skip_before_action :enforce_geo_restriction
 
-    mock_custom_actions %i[editor]
     validate_crud_requests Api::V2::Norm::Schema
 
-    before_action :set_resource, only: %i[copy]
+    before_action :set_resource, only: %i[copy editor]
 
     def export
       AdminJob.call(
@@ -43,6 +40,16 @@ module Api
       )
 
       jsonapi_render json: result
+    end
+
+    def editor
+      scope = Factor.includes(:translations).where(dimension_id: @resource.dimension_id).with_norm(
+        @resource.id
+      )
+
+      structured_hash = FactorsNorm.structured_hash(scope)
+
+      render json: structured_hash
     end
 
     private

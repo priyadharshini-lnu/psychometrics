@@ -97,6 +97,7 @@ cs:
     name: Název
     negative: Negativní
     new: Nové
+    next: Další
     no_results_found: Nenalezeny žádné výsledky
     not_requested: Dosud nepožadováno
     ok: OK
@@ -114,6 +115,8 @@ cs:
     question_id: ID otázky
     question_transcription_disabled: Přepis je pro tuto otázku zakázán.
     rec: NAHRÁVÁNÍ
+    recorded: Nahrávka
+    recording: Nahrávání
     recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
     recording_consent_proceed_question: Souhlasíte s pokračováním v zaznamenaném setkání?
     recording_consent_title: Oznámení o souhlasu s nahráváním
@@ -132,6 +135,7 @@ cs:
     show_more: Zobrazit více
     something_wrong: Něco se pokazilo. Kontaktujte správce.
     status: Stav
+    status_unknown: Stav neznámý
     subject: Předmět
     submit: Odeslat
     switch_to_laptop_or_desktop: Přepnout na notebook nebo stolní počítač

@@ -53,7 +53,6 @@ module AdminJobs
             end
           end
         end
-        job_record.complete!
       end
     end
 

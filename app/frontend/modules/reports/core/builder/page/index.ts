@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
 import { createReducer } from '~/utils/redux'
 import { updateIn, setIn } from '~/utils/immutable'

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './InlineEditor.less'

@@ -145,8 +145,9 @@ class Report < ApplicationRecord
     joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
   }
   scope :available_to_view, lambda {
-    joins(:assessments).where.
-      has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.zone.now) }
+    joins(:assessments).
+      where(assessments: { access_reports_at: nil }).
+      or(joins(:assessments).where('assessments.access_reports_at <= ?', Time.zone.now))
   }
   scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }

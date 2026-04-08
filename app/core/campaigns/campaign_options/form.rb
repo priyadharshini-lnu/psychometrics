@@ -17,6 +17,11 @@ module Campaigns
       attribute :rules, Hash
       attribute :description, String
       attribute :enable_video_call_recording, { String => Boolean }
+      attribute :system_check_enabled, Boolean
+      attribute :system_check_validity, Integer
+      attribute :allow_continue_with_warning, Boolean
+      attribute :minimum_upload_speed, Integer
+      attribute :minimum_download_speed, Integer
 
       validates :campaign_id, presence: true
       validates :fixed_time_duration, numericality: { only_integer: true }, allow_nil: true

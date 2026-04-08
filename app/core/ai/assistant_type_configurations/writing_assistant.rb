@@ -3,7 +3,7 @@
 module AI
   module AssistantTypeConfigurations
     class WritingAssistant < Base
-      def default_params
+      def base_params
         {
           temperature: 0.5,
           response_format: { type: 'json_schema' },

@@ -2,14 +2,17 @@
 
 module UsersResults
   class Recompute < BaseCommand
-    private_attr_reader :user_result, :user_assessment, :current_user, :allow_ai_rescore, :admin_job_record_id
+    private_attr_reader :user_result, :user_assessment, :current_user, :allow_ai_rescore, :admin_job_record_id,
+                        :force_ai_regenerate
 
-    def initialize(user_result, current_user, allow_ai_rescore: false, admin_job_record_id: nil)
+    def initialize(user_result, current_user, allow_ai_rescore: false, admin_job_record_id: nil,
+                   force_ai_regenerate: false)
       @user_result = user_result
       @user_assessment = user_result.user_assessment
       @current_user = current_user
       @admin_job_record_id = admin_job_record_id
       @allow_ai_rescore = allow_ai_rescore
+      @force_ai_regenerate = force_ai_regenerate
     end
 
     def call
@@ -27,7 +30,8 @@ module UsersResults
         user_assessment, current_user,
         admin_job_record_id: admin_job_record_id,
         rescore: true,
-        allow_ai_rescore: allow_ai_rescore
+        allow_ai_rescore: allow_ai_rescore,
+        force_ai_regenerate: force_ai_regenerate
       )
       save_scores.on(:ok)      { broadcast :ok }
       save_scores.on(:waiting) { broadcast :waiting }

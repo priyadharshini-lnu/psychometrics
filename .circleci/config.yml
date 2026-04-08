@@ -157,7 +157,7 @@ commands:
           name: Create webpack-files.txt
           command: |
             find ./app/frontend ./.circleci -type f -exec md5sum {} + > webpack-files.txt
-            md5sum *.cjs *.ts *.json yarn.lock .eslintrc .node-version >> webpack-files.txt
+            md5sum *.cjs *.ts *.json yarn.lock eslint.config.mjs .node-version >> webpack-files.txt
             find ./app ./spec ./config ./db ./lib ./.circleci  -type f -exec md5sum {} + > rspec-files.txt
             md5sum .ruby-version Gemfile Gemfile.lock >> rspec-files.txt
             sort rspec-files.txt -o rspec-files.txt

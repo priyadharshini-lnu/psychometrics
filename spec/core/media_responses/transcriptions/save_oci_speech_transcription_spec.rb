@@ -24,7 +24,7 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
 
   let(:s3_client) { instance_double(Aws::S3::Client) }
   let(:bucket) { 'private_bucket' }
-  let(:oci_json) { { 'transcriptions' => [{ 'transcription' => transcription_text }] } }
+  let(:oci_json) { { 'transcriptions' => [{ 'transcription' => transcription_text, 'confidence' => '0.95' }] } }
   let(:response_body) { StringIO.new(oci_json.to_json) }
   let(:s3_response) { instance_double(Aws::S3::Types::GetObjectOutput, body: response_body) }
 
@@ -89,7 +89,7 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       end
 
       it 'saves the transcription as completed with extracted text' do
-        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text)
+        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text, metadata: anything)
         command.call
       end
 
@@ -123,7 +123,7 @@ describe MediaResponses::Transcriptions::SaveOciSpeechTranscription do
       end
 
       it 'saves the transcription using save_transcription_completed!' do
-        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text)
+        expect(media_response).to receive(:save_transcription_completed!).with(transcription_text, metadata: anything)
         command.call
       end
     end

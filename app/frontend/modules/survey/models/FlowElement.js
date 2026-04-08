@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import _ from 'lodash'
 import { v4 as genUUID } from 'uuid'
 import { EventEmitter } from 'fbemitter'

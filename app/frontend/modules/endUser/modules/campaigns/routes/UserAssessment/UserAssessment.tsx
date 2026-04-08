@@ -1,4 +1,6 @@
-import { useEffect, FC, useContext } from 'react'
+import {
+  useEffect, FC, useContext, useState,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import {
@@ -25,7 +27,7 @@ import { Notification } from '~/glint/components/CountdownTimer'
 import {
   PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon, FontsizeModifier,
 } from '~/glint'
-
+import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import styles from './UserAssessment.less'
 
 const connector = connect((state: RootState) => ({
@@ -36,6 +38,7 @@ const connector = connect((state: RootState) => ({
 }),
 {
   fetchAssessment,
+  fetchCampaigns,
   validateSession,
   markAssessmentTimedOut,
   setInvalidated,
@@ -66,7 +69,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       evaluation_session_id: evaluationSessionId,
       campaign_options: campaignOptions,
     },
-  }, fetchAssessment,
+  }, fetchAssessment, fetchCampaigns,
   preview: {
     initialized,
     enableProgress,
@@ -82,9 +85,28 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const { isProctored, proctoringCheckInProgress } = useIsProctored()
   const params = useParams() as Params
   const location = useLocation()
+
+  const [isCampaignLoading, setIsCampaignLoading] = useState(true)
+
+  const getCampaignSystemCheckDetails = async (campaignId) => {
+    if (!campaignId) {
+      return
+    }
+    const { response } = await fetchCampaigns()
+    const currentCampaign = response.filter(campaign => campaign.id === campaignId)[0]
+
+    if (currentCampaign.isSystemCheckEnabled
+        && !currentCampaign.systemCheckStatus?.isValid
+        && currentCampaign?.progressStatus !== 'completed') {
+      window.location.href = '/dashboard'
+    } else { setIsCampaignLoading(false) }
+  }
+
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
-    fetchAssessment(params.userAssessmentId, edit)
+    fetchAssessment(params.userAssessmentId, edit).then(({ response } : { response: { campaign_id: string } }) => {
+      getCampaignSystemCheckDetails(response.campaign_id)
+    })
   }, [])
 
   const [showInvalidSession, setShowInvalidSession] = useAvoidMultipleEvaluation(
@@ -185,7 +207,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           gap={[10, 0]}
           rotate={-15}
         >
-          {loaded ? (
+          {loaded && !isCampaignLoading ? (
             <>
               <PageHeader
                 className={styles.campaignHeader}

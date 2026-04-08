@@ -80,7 +80,6 @@ zh-HK:
         title: 人工智能产物
       generate: 生成
       generate_result_info_message: 正在生成结果，请刷新页面查看最新结果。
-      generated_at: 生成于
       generated_at_time: 生成于 %{time}
       generated_value: 创造的价值
       id: ID
@@ -1871,6 +1870,8 @@ zh-HK:
       form:
         enable_innovation_styles: 启用创新风格
         enable_occupations: 启用职业
+        name: 姓名
+        title: 尺寸
       import_factors:
         import: 导入
         sample_file: 示例文件
@@ -1918,6 +1919,7 @@ zh-HK:
         confirmations:
           delete:
             body: "<p>您确定要删除此维度吗？</p>\n"
+            message: 请在文本框中输入下方的维度名称以确认
             title: 删除 <strong>维度</strong> ？
           toggle_status:
             body: "<p>您确定要将此维度%{status}吗？</p>\n"
@@ -1982,6 +1984,7 @@ zh-HK:
                 score: 得分
                 zscore: Z分
             title: 用于评分的JSON路径
+        predicate: 谓语
         scoring_strategies:
           custom_formula: 自定义配方
           external_score: 外部评分
@@ -1995,10 +1998,13 @@ zh-HK:
           sub_factors_sum: 加权因子总和
         scoring_strategies_tip: " <strong>问题（平均值）：</strong> 当某个因素关联多个问题时，此项类似于当前计分方式。 <br /> <br /> <strong>问题（SUM）：</strong> 这类似于问题（平均），但使用 SUM <br /> <br /> <strong>其他因素的问题（平均）：</strong> 这类似于当前评分方法，当一个因素有子因素时，唯一的改变是添加了权重。 <br /> <br /> <strong>其他因素的题目（总和）：</strong> 这类似于其他因素（平均值），但使用总和计算。<br /> <br /> <strong>因素的加权总和：</strong> 在这里，所选其他因素的得分乘以其权重后相加。"
         scoring_strategy: 计分策略
+        search_factors: 搜索因素
         use_sub_factor_norm_score: 使用因子标准分
+        value: 值
       index:
         icon: 图标
         new: 添加
+        precision: 精度
         scoring_strategies:
           custom_formula: 自定义配方
           external_score: 外部评分
@@ -2292,6 +2298,7 @@ zh-HK:
       edit:
         header: 编辑创新风格
       form:
+        full_description: 完整描述
         no_icon: 无图标
       index:
         new: 添加
@@ -2663,8 +2670,12 @@ zh-HK:
       edit:
         header: 编辑职业
       form:
+        alternative_icon: 备用图标
+        color: 颜色
         hint:
           key_career_tracks: '"+" - 列表项，"*" - 粗体。示例：+ *生物学* - 部分描述...'
+        indicative_roles_image: 角色示意图
+        key_career_tracks_image: 主要职业发展路径图
         no_icon: 无图标
       index:
         new: 添加
@@ -2735,6 +2746,7 @@ zh-HK:
       assessment_center: 评估中心
       assessment_id: 评估ID
       campaign_id: 活动ID
+      campaign_link: 活动链接
       campaign_name: 活动名称
       campaigns: 活动
       description: 描述
@@ -3735,8 +3747,10 @@ zh-HK:
       id: ID
       import:
         factors: 导入活动因素
+      innovation_style_removal_confirmation: 请在文本框中输入下方的创新风格名称以确认
       name: 名称
       no_groups: 没有组存在
+      occupation_removal_confirmation: 请在文本框中输入下方的职业名称以确认
       output_type: 输出类型
       pattern_error: 仅允许使用字母数字字符、空格和连字符。
       profile:

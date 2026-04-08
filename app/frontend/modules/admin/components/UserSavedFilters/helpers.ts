@@ -1,25 +1,86 @@
 
 import { UserSavedFilter } from './core'
 
+const { I18n } = window
+
 const predicates = ['cont', 'in']
 
-export const toTitleCase = (str: string): string => str
+export type FilterOption = { id: string | number, name: string }
+
+export type FilterOptions = {
+  clients?: FilterOption[]
+  projects?: FilterOption[]
+  campaigns?: FilterOption[]
+  assessments?: FilterOption[]
+  reports?: FilterOption[]
+  qcUsers?: FilterOption[]
+  approvers?: FilterOption[]
+  [key: string]: FilterOption[] | undefined
+}
+
+/**
+ * Maps filter keys to their corresponding filterOptions keys.
+ * Update this when adding new _id_in filters that need name resolution.
+ */
+const filterKeyToOptionsMapping: Record<string, string> = {
+  client_id_in: 'clients',
+  project_id_in: 'projects',
+  campaign_id_in: 'campaigns',
+  assessment_id_in: 'assessments',
+  report_id_in: 'reports',
+  qc_user_id_in: 'qcUsers',
+  approver_user_id_in: 'approvers',
+}
+
+const toTitleCase = (str: string): string => str
   .split('_')
   .filter(part => !predicates.includes(part))
   .map(part => part.charAt(0).toUpperCase() + part.slice(1))
   .join(' ')
 
+export const getFilterLabel = (filterKey: string): string => {
+  const translationKey = `admin.saved_filter_label.${filterKey}`
+  const translated = I18n.t(translationKey)
+  if (translated !== translationKey) return translated
+  return toTitleCase(filterKey)
+}
+
 export const getFilterDetails = (savedFilters: UserSavedFilter[],
   label: string) => savedFilters.filter((item: UserSavedFilter) => item.name === label)
 
-export const generateSmartFilterName = (selectedFilters:
-  { [key: string]: string[] | string }) => Object.entries(selectedFilters).map(([key, value]) => {
-  const filterLabel = toTitleCase(key)
-  let filterValue: string
-  if (Array.isArray(value)) {
-    filterValue = value.join(', ')
-  } else {
-    filterValue = value
+const lookupFilterValueName = (
+  filterKey: string,
+  value: string,
+  filterOptions?: FilterOptions,
+): string => {
+  if (!filterOptions) return value
+
+  const optionsKey = filterKeyToOptionsMapping[filterKey]
+  if (!optionsKey) return value
+
+  const options = filterOptions[optionsKey]
+  if (!options) return value
+
+  const matchedOption = options.find(opt => String(opt.id) === String(value))
+  return matchedOption ? matchedOption.name : value
+}
+
+export const resolveFilterValues = (
+  filterKey: string,
+  values: string[] | string,
+  filterOptions?: FilterOptions,
+): string => {
+  if (Array.isArray(values)) {
+    return values.map(v => lookupFilterValueName(filterKey, v, filterOptions)).join(', ')
   }
+  return lookupFilterValueName(filterKey, values, filterOptions)
+}
+
+export const generateSmartFilterName = (
+  selectedFilters: { [key: string]: string[] | string },
+  filterOptions?: FilterOptions,
+) => Object.entries(selectedFilters).map(([key, value]) => {
+  const filterLabel = getFilterLabel(key)
+  const filterValue = resolveFilterValues(key, value, filterOptions)
   return `${filterLabel}: ${filterValue}`
 }).join(' | ')

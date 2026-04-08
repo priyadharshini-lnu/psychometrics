@@ -2,10 +2,14 @@
 
 module EndUser
   class ShortCampaignSerializer < Panko::Serializer
+    include SystemCheckSessions::SystemCheckStatusSerializable
+
     attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available,
-               :description, :timing, :scheduled_at, :scheduled_in
+               :description, :timing, :scheduled_at, :scheduled_in, :is_system_check_enabled,
+               :allow_continue_with_warning, :system_check_validity, :system_check_status
 
     delegate :scheduled_at, :scheduled_in, to: :campaign_user, allow_nil: true
+    delegate :system_check_validity, to: :object
 
     def completion_percentage
       uas = context[:current_user].user_assessments.where(campaign: object)
@@ -33,6 +37,24 @@ module EndUser
 
     def campaign_user
       object.campaign_users.find_by(user_id: context[:current_user])
+    end
+
+    def is_system_check_enabled
+      object.system_check_enabled?
+    end
+
+    def allow_continue_with_warning
+      object.allow_continue_with_warning?
+    end
+
+    def system_check_status # rubocop:disable Lint/UselessMethodDefinition
+      super
+    end
+
+    private
+
+    def system_check_campaign
+      object
     end
   end
 end

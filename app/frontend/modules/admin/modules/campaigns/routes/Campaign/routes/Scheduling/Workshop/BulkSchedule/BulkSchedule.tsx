@@ -21,6 +21,7 @@ interface Props {
   onClose: () => void
   onSave: (data) => void
   workshopStartTime: string,
+  campaignAssessmentGroupId: string | null,
 }
 
 interface PayloadData {
@@ -31,7 +32,12 @@ interface PayloadData {
 }
 
 export const BulkSchedule: React.FC<Props> = ({
-  open, subjects, onClose, onSave, workshopStartTime,
+  open,
+  subjects,
+  onClose,
+  onSave,
+  workshopStartTime,
+  campaignAssessmentGroupId,
 }) => {
   const {
     id, campaignId,
@@ -50,7 +56,21 @@ export const BulkSchedule: React.FC<Props> = ({
   })
 
   useEffect(() => {
-    fetch().then((response) => {
+    if (!open) {
+      return
+    }
+
+    const filter = {
+      workshop_activity_eq: 'true',
+      campaign_id_eq: campaignId,
+      ...(campaignAssessmentGroupId ? { campaign_assessment_group_id_eq: campaignAssessmentGroupId } : {}),
+    }
+
+    fetch({
+      apiConfig: {
+        filter,
+      },
+    }).then((response) => {
       setData(response.data.map(({ assessment }) => ({
         assessmentId: assessment.id,
         assessmentName: assessment.name,
@@ -58,7 +78,7 @@ export const BulkSchedule: React.FC<Props> = ({
         time: null,
       })))
     })
-  }, [])
+  }, [open, campaignId, campaignAssessmentGroupId])
 
   const [overrideExists, setOverrideExists] = useState(false)
   const [data, setData] = useState<PayloadData[]>([])

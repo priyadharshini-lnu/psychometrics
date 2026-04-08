@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class Campaign < ApplicationRecord
   include GeoFilterable
 
@@ -189,6 +190,34 @@ class Campaign < ApplicationRecord
     fixed_time? && fixed_time_duration.present?
   end
 
+  def system_check_enabled?
+    system_check_option('system_check_enabled', default: false)
+  end
+
+  def system_check_validity
+    system_check_option('system_check_validity', default: 86_400)
+  end
+
+  def allow_continue_with_warning?
+    system_check_option('allow_continue_with_warning', default: false)
+  end
+
+  def minimum_upload_speed
+    system_check_option('minimum_upload_speed')
+  end
+
+  def minimum_download_speed
+    system_check_option('minimum_download_speed')
+  end
+
+  def calculated_minimum_download_speed(campaign_user = nil)
+    SystemCheckSessions::MinimumSpeedCalculator.call!(campaign_user: campaign_user, campaign: self)[:download]
+  end
+
+  def calculated_minimum_upload_speed(campaign_user = nil)
+    SystemCheckSessions::MinimumSpeedCalculator.call!(campaign_user: campaign_user, campaign: self)[:upload]
+  end
+
   def log_attribute_for_delete
     slice(:name, :project_id)
   end
@@ -221,4 +250,15 @@ class Campaign < ApplicationRecord
     ].compact.join('-')
     save!
   end
+
+  def system_check_option(key, default: nil)
+    if threesixty_campaign.present?
+      val = threesixty_option&.participants&.dig('global', key)
+      return val.nil? ? default : val
+    end
+
+    campaign_val = campaign_options&.public_send(key) if campaign_options.respond_to?(key)
+    campaign_val.nil? ? default : campaign_val
+  end
 end
+# rubocop:enable Metrics/ClassLength

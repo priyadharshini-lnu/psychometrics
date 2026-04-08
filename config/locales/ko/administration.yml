@@ -80,7 +80,6 @@ ko:
         title: AI 아티팩트
       generate: 창조하다
       generate_result_info_message: 결과가 생성되고 있으니 페이지를 새로 고쳐 업데이트된 결과를 확인하세요.
-      generated_at: 생성 날짜
       generated_at_time: "%{time}에 생성됨"
       generated_value: 생성된 가치
       id: 아이디
@@ -1871,6 +1870,8 @@ ko:
       form:
         enable_innovation_styles: 혁신 스타일 활성화
         enable_occupations: 직종 사용
+        name: 이름
+        title: 치수
       import_factors:
         import: 가져오기
         sample_file: 샘플 파일
@@ -1918,6 +1919,7 @@ ko:
         confirmations:
           delete:
             body: "<p>이 차원을 삭제하시겠습니까?</p>\n"
+            message: 확인하려면 아래에 제시된 차원 이름을 텍스트 상자에 입력하세요
             title: "<strong>차원</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 차원을 %{status}화하시겠습니까?</p>\n"
@@ -1982,6 +1984,7 @@ ko:
                 score: 점수
                 zscore: Z 점수
             title: 점수의 JSON 경로
+        predicate: 술어
         scoring_strategies:
           custom_formula: 사용자 지정 공식
           external_score: 외부 점수
@@ -1995,10 +1998,13 @@ ko:
           sub_factors_sum: 요소의 가중치 합계
         scoring_strategies_tip: "<strong>문제(평균):</strong> 요인에 연결된 문제가 있는 경우 현재 채점 방법과 같습니다. <br /> <br />문제 <strong>(합계):</strong> 문제(평균)과 비슷하지만, 합계가 사용됩니다 <br /> <br /><strong>기타 요인의 문제(평균):</strong> 한 요인에 하위 요인이 있는 경우 현재 채점 방식과 같지만 가중치가 추가된다는 점만 변경됩니다. <br /> <br />기타 요인 <strong>(합계) 문제:</strong> 기타 요인(평균)과 비슷하지만 합계가 사용됩니다 <br /> <br /><strong>가중치 합산:</strong> 선택한 다른 요인의 점수에 가중치를 곱하여 합산합니다."
         scoring_strategy: 득점 전략
+        search_factors: 검색 요소
         use_sub_factor_norm_score: 팩터 표준 점수 사용
+        value: 값
       index:
         icon: 아이콘
         new: 추가
+        precision: 정밀도
         scoring_strategies:
           custom_formula: 사용자 지정 공식
           external_score: 외부 점수
@@ -2292,6 +2298,7 @@ ko:
       edit:
         header: 혁신 스타일 편집
       form:
+        full_description: 전체 설명
         no_icon: 아이콘 없음
       index:
         new: 추가
@@ -2663,8 +2670,12 @@ ko:
       edit:
         header: 직업 수정
       form:
+        alternative_icon: 대체 아이콘
+        color: 색상
         hint:
           key_career_tracks: '"+" - 목록, "*" - 굵게 예: + *생물학* - 일부 설명...'
+        indicative_roles_image: 역할 예시 이미지
+        key_career_tracks_image: 주요 경력 경로 이미지
         no_icon: 아이콘 없음
       index:
         new: 추가
@@ -2735,6 +2746,7 @@ ko:
       assessment_center: 평가 센터
       assessment_id: 평가 ID
       campaign_id: 캠페인 ID
+      campaign_link: 캠페인 링크
       campaign_name: 캠페인 이름
       campaigns: 캠페인
       description: 설명
@@ -3735,8 +3747,10 @@ ko:
       id: ID
       import:
         factors: 캠페인 요소 가져오기
+      innovation_style_removal_confirmation: 확인하려면 아래에 제시된 혁신 스타일 이름을 텍스트 상자에 입력하세요
       name: 이름
       no_groups: 현재 그룹 없음
+      occupation_removal_confirmation: 확인하려면 아래에 제시된 직종명을 텍스트 상자에 입력하세요
       output_type: 출력 유형
       pattern_error: 영숫자, 공백 및 대시만 허용됩니다.
       profile:

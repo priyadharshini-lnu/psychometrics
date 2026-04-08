@@ -41,6 +41,12 @@ sk:
         skills_not_belong_to_project: Vybrané zručnosti musia patriť k zadanému projektu.
         skills_required: Vyberte aspoň jednu zručnosť.
       exceeded_subjects_count: Na pozvánku môžete pridať iba %{count} predmetov
+      factors_norms:
+        invalid_field_name: Názov poľa musí byť buď „score_from“, alebo „score_to“.
+        invalid_float: Hodnota musí byť platné číslo typu float.
+        invalid_level: Neplatná úroveň. Platné úrovne sú%{levels}
+        score_from_less_than_score_to: hodnota_od musí byť menšia ako hodnota_do
+        score_to_greater_than_score_from: hodnota_do musí byť väčšia ako hodnota_od
       filled?: nemôže byť prázdny
       idp_template:
         content_required: Obsah je potrebný pre pokyny

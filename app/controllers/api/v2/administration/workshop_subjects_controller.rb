@@ -2,6 +2,7 @@
 
 module Api
   class V2::Administration::WorkshopSubjectsController < Api::V2::Administration::BaseController
+    skip_before_action :enforce_geo_restriction, only: %i[index metadata_for_filters]
     validate_crud_requests Api::V2::WorkshopSubject::Schema
     validates_request_schema :create, -> { Api::V2::WorkshopSubject::CreateContract.new }
     validates_request_schema :re_enroll, -> { Api::V2::WorkshopSubject::ReEnrollContract.new }
@@ -46,6 +47,12 @@ module Api
       end
     end
 
+    def metadata_for_filters
+      response = WorkshopSubjects::MetadataForFiltersFetcher.call!(current_user, filter: params[:filter])
+
+      render json: response
+    end
+
     def meta_details
       {
         permissions: lambda {
@@ -66,7 +73,7 @@ module Api
     end
 
     def campaign_id
-      super || model?.campaign_id
+      super || model&.campaign_id
     end
   end
 end

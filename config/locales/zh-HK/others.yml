@@ -883,6 +883,7 @@ zh-HK:
         export_assessment_questions: 出口評估問題
         export_campaign_ai_artifacts: 輸出戰役 AI 工件
         export_campaign_ai_artifacts_results: 导出活动AI成果
+        export_campaign_datasheet: 导出活动数据表
         export_campaign_factors: 出動因素
         export_campaign_scorings: 出口運動得分
         export_dashboard_as_file: 將儀表板匯出為檔案
@@ -942,6 +943,7 @@ zh-HK:
         regenerate_report: 重生報告
         regenerate_threesixty_report: 再生三百六十報告
         remap_report_assessment: Remap 報告評估
+        rescore_ai_scoring: AI重新评分
         rescore_assessment: 重新評分評估
         rescore_user_assessment: 重新評分使用者評估
         send_sms_invites: 發送簡訊邀請
@@ -2684,6 +2686,7 @@ zh-HK:
     direct_reportee_details: 直接報告者詳細資料
     download:
       description: 要下載報告，請點擊以下鏈接：<a href=''%{url}'' target=''_blank''>下載</a>。連結有效期僅為 10 分鐘
+      title: 您的报告已准备就绪！
     download_plan: 下載方案
     edit_plan: 編輯計畫
     edit_plan_and_add_skills: 編輯計劃，然後按一下管理技能以新增技能。

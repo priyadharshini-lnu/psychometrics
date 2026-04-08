@@ -12,7 +12,6 @@ const {
 
 export class SavePopUp extends Component {
   overrideZIndex = () => {
-    // eslint-disable-next-line no-underscore-dangle
     // TODO: Find a fix, refs are empty after react upgrade
     // this.modal._modal.refs.backdrop.style.zIndex = 10000
   }

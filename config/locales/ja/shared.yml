@@ -97,6 +97,7 @@ ja:
     name: 名称
     negative: 否定
     new: 新規
+    next: 次へ
     no_results_found: 検索結果が見つかりませんでした
     not_requested: まだリクエストされていません
     ok: OK
@@ -114,6 +115,8 @@ ja:
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
     rec: REC
+    recorded: 録音
+    recording: 録音
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
     recording_consent_proceed_question: 録画された面談を進めることに同意しますか?
     recording_consent_title: 同意書の記録通知
@@ -132,6 +135,7 @@ ja:
     show_more: 続きを表示
     something_wrong: 管理者に連絡してください。
     status: ステータス
+    status_unknown: 状況不明
     subject: 件名
     submit: 送信
     switch_to_laptop_or_desktop: ノートパソコンまたはデスクトップに切り替える

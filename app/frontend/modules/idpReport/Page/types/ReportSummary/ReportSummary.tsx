@@ -9,7 +9,8 @@ import learningIcon from '../../../assets/FormalLearning.svg'
 import aiIcon from '../../../assets/GenerativeAi.svg'
 import customIcon from '../../../assets/Custom.svg'
 import libIcon from '../../../assets/IDPLibrary.svg'
-import { useAppSelector } from '~/modules/idpReport/hooks/redux'
+import { useUserIdp } from '~/modules/idpReport/hooks/useIdpData'
+import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 import { useI18n } from '~/modules/idpReport/I18nContext'
 import { DevelopmentActionSourceType } from '~/components/IdpShared/DevelopmentActions/Constants'
 
@@ -20,7 +21,9 @@ const COLORS = {
   dark: '#565656',
 }
 
-const Card = ({ skill }) => {
+const Card = ({
+  skill, sectionTitleStyle, sectionSubtitleStyle, sectionBodyStyle,
+}) => {
   const I18n = useI18n()
 
   const actions = _.groupBy(skill.user_idp_development_actions,
@@ -40,10 +43,10 @@ const Card = ({ skill }) => {
       <Flex vertical gap={16}>
         <Flex justify="space-between" align="center">
           <Flex vertical>
-            <div className={styles.title}>
+            <div className={styles.title} style={sectionTitleStyle}>
               {skill.name}
             </div>
-            <div className={styles.type}>
+            <div className={styles.type} style={sectionSubtitleStyle}>
               {I18n.t(`idp.pdf.skill_categories.${skill.skill_type}`)}
             </div>
           </Flex>
@@ -53,6 +56,12 @@ const Card = ({ skill }) => {
             type="circle"
             strokeWidth={20}
             percent={average}
+            format={percent => (
+              <span style={sectionBodyStyle}>
+                {percent}
+                %
+              </span>
+            )}
             strokeColor={{
               '0%': COLORS.blue,
               '100%': COLORS.green,
@@ -63,7 +72,7 @@ const Card = ({ skill }) => {
           {actions.on_the_job && (
             <Flex vertical>
               <Flex align="end" justify="space-between" flex={1}>
-                <div className={styles.label}>
+                <div className={styles.label} style={sectionBodyStyle}>
                   {jobPercent}
                   %
                 </div>
@@ -84,7 +93,7 @@ const Card = ({ skill }) => {
           {actions.learning_from_others && (
             <Flex vertical justify="space-between">
               <Flex align="center" justify="space-between" flex={1}>
-                <div className={styles.label}>
+                <div className={styles.label} style={sectionBodyStyle}>
                   {collaborativePercent}
                   %
                 </div>
@@ -105,7 +114,7 @@ const Card = ({ skill }) => {
           {actions.structured_learning && (
             <Flex vertical justify="space-between">
               <Flex align="center" justify="space-between" flex={1}>
-                <div className={styles.label}>
+                <div className={styles.label} style={sectionBodyStyle}>
                   {structuredPercent}
                   %
                 </div>
@@ -131,8 +140,14 @@ const Card = ({ skill }) => {
 
 const ReportSummary = ({ rtl }) => {
   const I18n = useI18n()
-  const idp = useAppSelector(state => state.idp.userIdp)
+  const idp = useUserIdp()
   const skills = idp.user_idp_skills
+  const {
+    titleStyle, subtitleStyle, bodyStyle, sectionTitleStyle, sectionSubtitleStyle, sectionBodyStyle,
+  } = usePageFontStyles('report_summary')
+  const subtitleNumStyle = subtitleStyle
+    ? { color: subtitleStyle.color, fontFamily: subtitleStyle.fontFamily }
+    : undefined
 
   const das = _.flatten(skills.map(skill => skill.user_idp_development_actions))
   const daTypes = _.groupBy(das, 'source_type')
@@ -147,10 +162,10 @@ const ReportSummary = ({ rtl }) => {
             <Flex vertical style={{ height: '100%' }} justify="space-between">
               <Flex gap={20} vertical>
                 <Flex justify="space-between" align="center">
-                  <h1 className={styles.header}>
+                  <h1 className={styles.header} style={titleStyle}>
                     {I18n.t('idp.pdf.summary.title')}
                   </h1>
-                  <Flex gap={16} align="center">
+                  <Flex gap={16} align="center" style={bodyStyle}>
                     {I18n.t('idp.status')}
                     <div className={cs(styles.statusBox, styles.active)}>
                       {I18n.t(`idp.pdf.statuses.${idp.status}`)}
@@ -159,25 +174,29 @@ const ReportSummary = ({ rtl }) => {
                 </Flex>
                 <Flex gap={20} className={styles.counters}>
                   <Flex vertical className={cs(styles.count, styles.skillCount)} gap={16}>
-                    <div className={styles.label}>{I18n.t('idp.pdf.summary.skills_count')}</div>
-                    <div className={styles.num}>{skills.length}</div>
+                    <div className={styles.label} style={subtitleStyle}>{I18n.t('idp.pdf.summary.skills_count')}</div>
+                    <div className={styles.num} style={subtitleNumStyle}>{skills.length}</div>
                   </Flex>
                   <Flex className={styles.daCounts} flex={1}>
                     <Flex className={styles.count} vertical gap={16}>
-                      <div className={styles.label}>{I18n.t('idp.pdf.summary.da_count')}</div>
-                      <div className={styles.num}>{das.length}</div>
+                      <div className={styles.label} style={subtitleStyle}>{I18n.t('idp.pdf.summary.da_count')}</div>
+                      <div className={styles.num} style={subtitleNumStyle}>{das.length}</div>
                     </Flex>
                     <Flex className={styles.count} justify="space-between">
                       <Flex vertical gap={16}>
-                        <div className={styles.label}>{I18n.t('idp.pdf.summary.custom_count')}</div>
-                        <div className={styles.num}>{daTypes[DevelopmentActionSourceType.CUSTOM]?.length || 0}</div>
+                        <div className={styles.label} style={subtitleStyle}>
+                          {I18n.t('idp.pdf.summary.custom_count')}
+                        </div>
+                        <div className={styles.num} style={subtitleNumStyle}>
+                          {daTypes[DevelopmentActionSourceType.CUSTOM]?.length || 0}
+                        </div>
                       </Flex>
                       <img src={customIcon} className={cs(styles.icon, 'self-start')} />
                     </Flex>
                     <Flex className={styles.count} justify="space-between">
                       <Flex vertical gap={16}>
-                        <div className={styles.label}>{I18n.t('idp.pdf.summary.ai_count')}</div>
-                        <div className={styles.num}>
+                        <div className={styles.label} style={subtitleStyle}>{I18n.t('idp.pdf.summary.ai_count')}</div>
+                        <div className={styles.num} style={subtitleNumStyle}>
                           {daTypes[DevelopmentActionSourceType.AI_GENERATED]?.length
                         || 0}
                         </div>
@@ -186,8 +205,12 @@ const ReportSummary = ({ rtl }) => {
                     </Flex>
                     <Flex className={styles.count} justify="space-between">
                       <Flex vertical gap={16}>
-                        <div className={styles.label}>{I18n.t('idp.pdf.summary.lib_count')}</div>
-                        <div className={styles.num}>{daTypes[DevelopmentActionSourceType.PLATFORM]?.length || 0}</div>
+                        <div className={styles.label} style={subtitleStyle}>
+                          {I18n.t('idp.pdf.summary.lib_count')}
+                        </div>
+                        <div className={styles.num} style={subtitleNumStyle}>
+                          {daTypes[DevelopmentActionSourceType.PLATFORM]?.length || 0}
+                        </div>
                       </Flex>
                       <img src={libIcon} className={cs(styles.icon, 'self-start')} />
                     </Flex>
@@ -195,11 +218,17 @@ const ReportSummary = ({ rtl }) => {
                 </Flex>
                 <Flex gap={20} wrap="wrap">
                   {chunk.map((skill, i) => (
-                    <Card skill={skill} key={i} />
+                    <Card
+                      skill={skill}
+                      key={i}
+                      sectionTitleStyle={sectionTitleStyle}
+                      sectionSubtitleStyle={sectionSubtitleStyle}
+                      sectionBodyStyle={sectionBodyStyle}
+                    />
                   ))}
                 </Flex>
               </Flex>
-              <Flex justify="space-between" className={styles.footer}>
+              <Flex justify="space-between" className={styles.footer} style={bodyStyle}>
                 <Flex align="center" gap={16}>
                   <div className={styles.label}>
                     {I18n.t('idp.pdf.summary.learn_pathway')}
@@ -208,7 +237,7 @@ const ReportSummary = ({ rtl }) => {
                   <Space>
                     <img src={jobIcon} className={styles.icon} />
                     <div>
-                      <strong>70%</strong>
+                      <strong style={bodyStyle}>70%</strong>
                       {' '}
                       {I18n.t('idp.pdf.summary.learn_on_job')}
                     </div>
@@ -216,7 +245,7 @@ const ReportSummary = ({ rtl }) => {
                   <Space>
                     <img src={collaborativeIcon} className={styles.icon} />
                     <div>
-                      <strong>20%</strong>
+                      <strong style={bodyStyle}>20%</strong>
                       {' '}
                       {I18n.t('idp.pdf.summary.collaborative_learn')}
                     </div>
@@ -224,7 +253,7 @@ const ReportSummary = ({ rtl }) => {
                   <Space>
                     <img src={learningIcon} className={styles.icon} />
                     <div>
-                      <strong>10%</strong>
+                      <strong style={bodyStyle}>10%</strong>
                       {' '}
                       {I18n.t('idp.pdf.summary.formal_learn')}
                     </div>

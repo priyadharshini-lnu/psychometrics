@@ -10,6 +10,7 @@ import AppearanceForm from './AppearanceForm'
 import IntroMessageForm from './IntroMessageForm'
 import ReflectionQuestionsForm from './ReflectionQuestionsForm'
 import InterviewQuestionsForm from './InterviewQuestionsForm'
+import ChatInstructions from './ChatInstructions'
 
 const IdpDetails: React.FC = () => {
   const { projectId, id } = useParams() as { projectId: string, id: string }
@@ -84,6 +85,11 @@ const IdpDetails: React.FC = () => {
             key: 'intro_message',
             label: 'Intro Message',
             children: <IntroMessageForm idp={idp} fetch={fetch} />,
+          },
+          {
+            key: 'chat_instructions',
+            label: 'Chat Instructions',
+            children: <ChatInstructions idp={idp} fetch={fetch} />,
           },
           {
             key: 'appearance',

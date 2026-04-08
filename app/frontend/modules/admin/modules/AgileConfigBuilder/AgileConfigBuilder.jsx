@@ -55,7 +55,6 @@ const AgileConfigBuilder = ({
 
     if (!valid) {
       message.error('Invalid configuration')
-      // eslint-disable-next-line no-console
       console.error(validate.errors)
       return
     }

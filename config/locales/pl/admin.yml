@@ -23,7 +23,15 @@ pl:
     ai_artifact_result_generation_admin_job_failed: Nie można wygenerować artefaktu „%{artifact_name}” dla użytkownika „%{user_email}”.
     ai_artifact_result_stale: Wynik może być nieaktualny, ponieważ zależności artefaktu AI uległy zmianie od czasu wygenerowania ostatniego wyniku. Rozważ ponowne wygenerowanie artefaktu, aby uwzględnić najnowsze zależności.
     ai_artifacts: Artefakty SI
+    ai_artifacts_finalized_at: Sfinalizowano w dniu
+    ai_artifacts_generate_result_confirm: Wygenerowanie wyników artefaktu dla użytkownika „%{email}” spowoduje usunięcie istniejącego raportu, który opiera się na tym artefakcie AI. Czy na pewno chcesz kontynuować?
     ai_artifacts_generate_results: Generuj wyniki
+    ai_artifacts_mark_finalized: Oznaczono jako zakończone
+    ai_artifacts_mark_finalized_bulk_confirm: Sfinalizowanie wyników artefaktów dla wszystkich wybranych użytkowników spowoduje wygenerowanie raportów wykorzystujących artefakty AI. Czy na pewno chcesz kontynuować?
+    ai_artifacts_mark_finalized_confirm: Sfinalizowanie wyników artefaktu dla użytkownika „%{email}” spowoduje wygenerowanie raportu wykorzystującego artefakt AI dla tego użytkownika. Czy na pewno chcesz kontynuować?
+    ai_artifacts_mark_not_finalized: Ocena nie została jeszcze ustalona
+    ai_artifacts_mark_not_finalized_bulk_confirm: Usunięcie statusu „finalize” ze wszystkich wybranych użytkowników spowoduje usunięcie wygenerowanych raportów, w których wykorzystano artefakty AI. Czy na pewno chcesz kontynuować?
+    ai_artifacts_mark_not_finalized_confirm: Usunięcie oznaczenia „finalize” z konta użytkownika „%{email}” spowoduje usunięcie wygenerowanego raportu, który wykorzystuje artefakt AI dla tego użytkownika. Czy na pewno chcesz kontynuować?
     ai_artifacts_output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
     ai_artifacts_results_export: Eksportuj wyniki
     ai_artifacts_results_export_job_scheduled: Zadanie eksportu wyników AI Artifacts zostało pomyślnie zaplanowane.
@@ -78,12 +86,32 @@ pl:
     ai_scoring_appoval_score_not_applicable: Wynik nie ma zastosowania
     ai_scoring_approval: Zatwierdzanie wyników AI
     ai_scoring_approval_settings: Ustawienia zatwierdzania wyników AI
+    ai_scoring_approval_stale_description: Zmiany w konfiguracji wprowadzone od ostatniego uruchomienia mogły wpłynąć na wynik. Przelicz wynik, aby zaktualizować go zgodnie z najnowszymi ustawieniami.
+    ai_scoring_approval_stale_title: Wynik może być nieaktualny
     ai_scoring_approvals: Zatwierdzanie wyników AI
+    ai_scoring_refresh_score: Odśwież wynik
+    ai_scoring_refresh_score_confirm_description: Spowoduje to ponowne przeprowadzenie oceny AI dla tego testu przy użyciu najnowszej konfiguracji. Czy na pewno chcesz to zrobić?
+    ai_scoring_refresh_score_confirm_title: Odświeżyć wyniki AI?
+    ai_scoring_rescore_queued: Ponowna ocena przez sztuczną inteligencję została dodana do kolejki. Proszę odświeżyć stronę za chwilę.
     ai_translation: Tłumaczenie AI
     all_corner_rounded: Wszystkie rogi zaokrąglone
     allow_ai_rescoring: Zezwól na ponowne ocenianie przez sztuczną inteligencję
+    allow_continue_with_warning_system_check: Zezwól użytkownikom na kontynuowanie działania pomimo wyświetlenia ostrzeżeń w przypadku niepowodzenia kontroli systemu
     api_keys: Klucze API
     apply_to_existing_users: Zastosuj tę zmianę do obecnych użytkowników w tej kampanii
+    assessment_center_activity: Zajęcia
+    assessment_center_assessor: rzeczoznawca
+    assessment_center_attendance: Obecność
+    assessment_center_attendance_status: Status obecności
+    assessment_center_campaigns_tab: Kampanie
+    assessment_center_date_and_time: Data i godzina
+    assessment_center_join_room: Dołącz do pokoju
+    assessment_center_meeting_link: Link do spotkania
+    assessment_center_participants_tab: Uczestnicy
+    assessment_center_prework: Przygotowanie
+    assessment_center_schedule_time: Zaplanuj czas
+    assessment_center_scheduling_status: Status planowania
+    assessment_center_search_participants: Wyszukaj uczestników...
     assessment_question_not_supported: Ten typ pytania nie jest obecnie obsługiwany.
     assessments: Oceny
     assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
@@ -99,6 +127,7 @@ pl:
     auto_placeholder: Auto
     availability: Dostępność
     available_languages: Raport dostępny w językach
+    average: Średnia
     back_to_main: Menu główne
     bulk_assets_modal_choose_csv: Wybierz plik CSV
     bulk_assets_modal_choose_zip: Wybierz plik ZIP
@@ -138,7 +167,9 @@ pl:
     cancel: Anuluj
     cancellation_and_rescheduling_disabled: Anulowanie i zmiana terminu są wyłączone.
     casual: Nieformalny
+    cell_save_msg: Prawidłowe zmiany są automatycznie zapisywane po opuszczeniu komórki po edycji.
     characters: postacie
+    chat_instructions_success: Instrukcje dotyczące czatu zostały pomyślnie zapisane
     children_factor_type: Typ czynnika dziecięcego
     client: Dzierżawa klienta
     client_admins: Administratorzy klienta
@@ -152,6 +183,7 @@ pl:
     configure_model_answer_title: Skonfiguruj modelową odpowiedź i słowa kluczowe
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
     copied: Skopiowano
+    copy_ai_artifacts: Skopiuj artefakty AI
     country: Kraj
     create_client: Utwórz klienta
     create_indicator: Utwórz wskaźnik
@@ -193,6 +225,7 @@ pl:
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
     download_bulk_asset_download_example_csv: Pobierz przykładowy plik CSV.
+    duration: Czas trwania
     edit_campaign_admin: Edytuj administratora kampanii
     edit_client_admin: Edytowanie administratora klienta
     edit_indicator: Edytuj wskaźnik
@@ -201,10 +234,12 @@ pl:
     edit_permission_denied: Nie masz uprawnień do edycji administratora '%{name}'
     edit_project_admin: Edytowanie administratora projektu
     edit_threesixty_campaign_admin: Edytuj administratora kampanii
+    empty: Puste
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
     enable_enhance_with_ai_client_level: Włącz funkcję „Ulepsz za pomocą AI” na poziomie klienta.
     enable_maintenance: Włącz konserwację
     enable_mobile_proctoring: Włącz nadzór mobilny
+    enable_system_check: Włącz sprawdzanie systemu
     enable_transcription: Włącz transkrypcję
     enable_transcription_msg: Włącz transkrypcję, aby korzystać z oceny AI w pytaniach z odpowiedziami wideo/audio.
     end_time: Czas zakończenia
@@ -218,10 +253,12 @@ pl:
     evaluation_status: Status oceny
     evaluation_status_not_done: Status oceny nie jest "Zakończony" dla jednego lub więcej wybranych przedmiotów. Prosimy o to, by wszyscy wybrani użytkownicy ukończyli oceny lub oznaczyli je jako ukończone.
     export_admin_roles_permissions: Eksport ról i uprawnień administratora
+    export_campaigns_queued: Zlecenia eksportu zostały umieszczone w kolejce. Sprawdź powiadomienia, aby uzyskać linki do pobrania.
     export_compact_completion_status: Kompaktowy
     export_completion_status: Status zakończenia eksportu
     export_completion_statuses_scheduled: Zadanie eksportu statusów ukończenia zostało pomyślnie zaplanowane.
     export_detailed_completion_status: Szczegółowy
+    factors: Czynniki
     feature_ai_assistants_description: Włącz asystentów opartych na sztucznej inteligencji, aby poprawić komfort użytkowania.
     feature_ai_assisted_idp_description: Wykorzystaj sztuczną inteligencję do pomocy w tworzeniu zaleceń dotyczących indywidualnych planów rozwoju.
     feature_ai_content_analysis_description: Włącz analizę treści opartą na sztucznej inteligencji do celów oceny
@@ -240,8 +277,12 @@ pl:
     final_score_empty_msg: Rachunek końcowy nie może być pusty.
     fix_grammar: Popraw gramatykę
     formal: Formalny
+    from: Od
     generate_transcription: Wygeneruj transkrypcję
     hide_middle_scores: Ukryj wyniki średnie
+    high: Wysoki
+    hogan: Hogan
+    hogan_assessment: Ocena Hogana
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
     import_ai_artifacts: Import artefaktów AI
@@ -281,6 +322,7 @@ pl:
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     licenses: Licencje
+    low: Niski
     maintenance: Konserwacja
     maintenance_settings: Ustawienia konserwacji
     maintenance_settings_description: Zarządzanie oknami konserwacji systemu i ustawieniami
@@ -297,6 +339,8 @@ pl:
     mhs_session_id: Identyfikator sesji Mhs
     min_value: Wartość minimalna
     minimum_10_words: Minimum 10 słów
+    minimum_download_speed: Minimalna prędkość pobierania (w Mb/s)
+    minimum_upload_speed: Minimalna prędkość wysyłania (w Mb/s)
     missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
     model_answer: Odpowiedź modelowa
     model_answer_placeholder: Wprowadź wzorcową odpowiedź do oceny przez sztuczną inteligencję.
@@ -305,6 +349,7 @@ pl:
     name_required: Wymagane jest imię
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
+    no_status: Brak statusu
     norms: Normy
     not_completed: Nieukończone
     not_completed_tooltip: Przydzielani są %{completed} oceniający, ale tylko %{submitted} zakończyli oceny
@@ -837,6 +882,19 @@ pl:
     saml_settings: Ustawienia SAML
     save: Zapisz
     save_assessment_for_scoring_management: Zapisz ocenę przed rozpoczęciem punktacji.
+    saved_filter_label:
+      approval_status_in: Status zatwierdzenia
+      approver_user_id_in: Osoba zatwierdzająca
+      assessment_id_in: Ocena
+      campaign_id_in: Kampania
+      client_id_in: Klient
+      project_id_in: Projekt
+      qc_user_id_in: Użytkownik QC
+      report_id_in: Raport
+      subject_email_cont: Temat wiadomości e-mail
+      subject_full_name_cont: Nazwa przedmiotu
+      user_email_cont: Adres e-mail użytkownika
+      user_full_name_cont: Nazwa użytkownika
     scheduling: Planowania
     score: Wynik
     score_approval_not_allowed_to_approve: Nie wolno zatwierdzać tego wyniku.
@@ -893,7 +951,9 @@ pl:
     subject_part_of_other_invite: Osoba o adresie e-mail %{user_email} została już zaproszona do „%{workshop_invite_name}”.
     target_job_role: Docelowa rola zawodowa
     this_field_is_required: To pole jest wymagane.
+    threesixty: Kampania 360
     timezone: Strefa czasowa
+    to: Do
     tone: Ton
     toolbar_ai_insight: Wgląd w sztuczną inteligencję
     toolbar_ai_suggestion: Sugestia AI
@@ -917,6 +977,9 @@ pl:
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
     validation_error: Proszę wypełnić wszystkie wymagane pola.
+    validity: Okres ważności
+    very_high: Bardzo wysoki
+    very_low: Bardzo niski
     view_licenses: Zobacz licencje
     waiting: Czekanie
     weight: Waga

@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState, useRef } from 'react'
 import {
   Flex, Typography, Empty, Checkbox,

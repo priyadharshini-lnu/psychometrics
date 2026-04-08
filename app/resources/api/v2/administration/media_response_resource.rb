@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::BaseResource
   attributes :id, :question_id, :transcription_text, :question_type, :transcription_status,
-             :transcription_enabled, :asset_url, :media_id, :question_text
+             :transcription_enabled, :asset_url, :media_id, :question_text, :error_details
 
   def self.records(opts = {})
     user_assessment_id = opts[:context][:user_assessment_id]
@@ -31,6 +31,10 @@ class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::
 
   def transcription_status
     @model.transcription&.status || 'not_requested'
+  end
+
+  def error_details
+    @model.transcription&.error_details
   end
 
   def transcription_enabled

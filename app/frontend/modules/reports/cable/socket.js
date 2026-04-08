@@ -1,8 +1,8 @@
-const { App } = window
+import consumer from '~/core/consumer'
 
 export default class Socket {
   constructor (channel, data, opts) {
-    this.channel = App.cable.subscriptions.create({ channel, ...data }, {
+    this.channel = consumer().subscriptions.create({ channel, ...data }, {
       connected () {
         opts.onConnect()
       },
@@ -16,7 +16,7 @@ export default class Socket {
   }
 
   remove () {
-    App.cable.subscriptions.remove(this.channel)
+    consumer().subscriptions.remove(this.channel)
   }
 
   unsubscribe () {}

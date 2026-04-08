@@ -873,6 +873,7 @@ en:
         export_assessment_questions: Export Assessment Questions
         export_campaign_ai_artifacts: Export Campaign AI Artifacts
         export_campaign_ai_artifacts_results: Export Campaign AI Artifacts Results
+        export_campaign_datasheet: Export Campaign Datasheet
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_dashboard_as_file: Export Dashboard as file
@@ -932,6 +933,7 @@ en:
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
         remap_report_assessment: Remap Report Assessment
+        rescore_ai_scoring: AI Rescoring
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
@@ -2601,7 +2603,7 @@ en:
       add_development_action: Add Development Action
       add_development_actions_from_below_options: Add Development Actions from below options.
       add_development_actions_modal_title: Development Actions Library for
-      add_from_library: Add from Library
+      add_from_library: Pick from our development library
       add_more: Add More Development Actions
       add_selected_development_actions: Add Selected Development Actions
       all: All
@@ -2612,8 +2614,8 @@ en:
         not_started: Not Started
       completion: Completion
       create_custom_development_action_title: Create my own development action for
-      create_development_actions_with_ai: Create development actions with AI for
-      create_from_ai: Create from AI
+      create_development_actions_with_ai: Preparing development actions for
+      create_from_ai: Create with AI
       create_my_own: Create my own
       custom: Custom
       custom_da_description: Create a custom development action to address unique development needs.
@@ -2630,10 +2632,10 @@ en:
       generate_by_ai: Generate by AI
       generate_more: Generate More
       generating_development_actions: Generating development actions...
-      generative_ai: Generative AI
+      generative_ai: AI Coach
       generative_ai_description_msg: Let our AI generate a tailored development action
       heading: Skills/Development Actions
-      idp_library: IDP Library
+      idp_library: Development Library
       idp_library_description: Select a proven development action from our expert-curated library.
       incomplete_error: Incomplete Development Actions
       incomplete_error_message: Some development actions are incomplete. Please complete them before submitting your IDP.
@@ -2671,7 +2673,8 @@ en:
       write_here: Write here...
     direct_reportee_details: Direct Reportees Detail
     download:
-      description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>. Link is only valid for 10 minutes'
+      description: Download it using this <a href='%{url}' target='_blank'>link</a>. This link will expire in 10 minutes.
+      title: Your report is ready!
     download_plan: Download Plan
     edit_plan: Edit Plan
     edit_plan_and_add_skills: Edit Plan and click on Manage Skills to add Skills.
@@ -2831,7 +2834,7 @@ en:
         pending_approval: Pending Approval
         rejected: Rejected
       summary:
-        ai_count: Generative AI
+        ai_count: AI Coach
         collaborative_learn: Collaborative Learning
         created_by: Created by
         current_status: IDP Current Status
@@ -2839,11 +2842,11 @@ en:
         custom_count: Custom
         da_count: Development Action Count
         formal_learn: Formal Learning
-        generated_ai: Generative AI
+        generated_ai: AI Coach
         learn_on_job: Learning on the job
         learn_pathway: Learning Pathway
-        lib_count: IDP Library
-        library: IDP Library
+        lib_count: Development Library
+        library: Development Library
         skills_count: Skills Count
         title: Report Summary
     plan: Plan

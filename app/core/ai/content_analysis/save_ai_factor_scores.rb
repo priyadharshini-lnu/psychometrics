@@ -27,6 +27,8 @@ module AI
             question_ids = factor_question_map[factor_id.to_s] || []
             persist_factor_scores(factor_id, data, question_ids)
           end
+
+          cleanup_abandoned_factor_scores!
         end
 
         complete_admin_job!
@@ -63,7 +65,11 @@ module AI
             factor = ai_scored_factors_by_id[factor_id.to_i]
             next unless factor
 
-            score = data['score'].to_f
+            score = effective_score_for_scoring_map(
+              factor_id: factor_id.to_i,
+              question_id: session.assistable_id,
+              ai_score: data['score'].to_f
+            )
 
             map[factor_id]['results'] << {
               'value' => score,
@@ -82,6 +88,25 @@ module AI
         map
       end
 
+      def effective_score_for_scoring_map(factor_id:, question_id:, ai_score:)
+        existing_score = existing_ai_scores_by_pair[[factor_id, question_id]]
+        return ai_score unless existing_score
+        return ai_score if existing_score.override_score.nil? && !existing_score.not_applicable?
+
+        existing_score.final_score.to_f
+      end
+
+      def existing_ai_scores_by_pair
+        @existing_ai_scores_by_pair ||= AI::FactorScore.
+                                        where(
+                                          users_result: users_result,
+                                          factor_id: ai_scored_factors_by_id.keys,
+                                          question_id: scorable_question_ids,
+                                          scoring_type: :ai
+                                        ).
+                                        index_by { |record| [record.factor_id, record.question_id] }
+      end
+
       def ai_scored_factors_by_id
         @ai_scored_factors_by_id ||= begin
           factor_ids = sessions.flat_map { |s| s.scores.to_h.keys }.map(&:to_i).uniq
@@ -90,7 +115,7 @@ module AI
       end
 
       def full_scoring_map
-        calculate_extended_scoring(question_scores_map, factor_ids_scope)
+        @full_scoring_map ||= calculate_extended_scoring(question_scores_map, factor_ids_scope)
       end
 
       def factor_question_map
@@ -101,11 +126,22 @@ module AI
         end
       end
 
+      def ai_score_pairs
+        @ai_score_pairs ||= question_scores_map.each_with_object([]) do |(factor_id, data), pairs|
+          (data['results'] || []).each do |result|
+            next if result['question_id'].blank?
+
+            pairs << [factor_id.to_i, result['question_id'].to_i]
+          end
+        end.uniq
+      end
+
       def persist_factor_scores(factor_id, data, question_ids)
         if question_ids.any?
           factor = factors_by_id[factor_id.to_i]
           parent_factor_id = factor&.parent_factors&.first&.id
           persist_with_question_details(factor_id, data, question_ids, parent_factor_id)
+          return if parent_factor_id
         end
         persist_aggregated_score(factor_id, data['score'])
       end
@@ -143,6 +179,35 @@ module AI
           parent_factor_id: nil,
           scoring_type: :aggregated
         )
+      end
+
+      def cleanup_abandoned_factor_scores!
+        cleanup_abandoned_ai_scores!
+        cleanup_abandoned_aggregated_scores!
+      end
+
+      def cleanup_abandoned_ai_scores!
+        scope = users_result.ai_factor_scores.scoring_type_ai
+        return scope.delete_all if ai_score_pairs.empty?
+
+        pair_predicate = ai_score_pairs.map { '(factor_id = ? AND question_id = ?)' }.join(' OR ')
+        valid_scope = scope.where(pair_predicate, *ai_score_pairs.flatten)
+        scope.where.not(id: valid_scope.select(:id)).delete_all
+      end
+
+      def cleanup_abandoned_aggregated_scores!
+        scope = users_result.ai_factor_scores.scoring_type_aggregated
+        valid_factor_ids = aggregated_factor_ids
+
+        return scope.delete_all if valid_factor_ids.empty?
+
+        scope.where.not(factor_id: valid_factor_ids).delete_all
+      end
+
+      def aggregated_factor_ids
+        @aggregated_factor_ids ||= full_scoring_map.keys.map(&:to_i).reject do |factor_id|
+          factors_by_id[factor_id]&.parent_factors&.first.present?
+        end
       end
 
       def factors_by_id

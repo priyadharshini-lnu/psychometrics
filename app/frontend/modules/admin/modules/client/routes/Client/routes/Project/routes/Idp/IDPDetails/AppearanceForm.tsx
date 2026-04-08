@@ -12,25 +12,10 @@ import {
   Idp, IdpTR,
 } from '~/modules/admin/modules/client/core/idp'
 import { useResources } from '~/hooks/useResources'
-
-
-const LOGO_TYPE = {
-  both: 'both',
-  mercer_only: 'mercer_only',
-  client_only: 'client_only',
-  none: 'none',
-}
-
-const FIELDS = [
-  'name',
-  'current_job_role',
-  'target_job_role',
-  'assigned_date',
-  'division',
-  'approval_date',
-  'publish_date',
-  'completion_date',
-]
+import {
+  LOGO_TYPE, FIELDS, DEFAULT_PAGE_STYLES,
+} from './constants'
+import PageFontSettings from './PageFontSettings'
 
 const { I18n } = window
 
@@ -47,6 +32,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
   const [form] = Form.useForm()
   const background = Form.useWatch('background', form)
   const clientLogo = Form.useWatch('clientLogo', form)
+  const allFormValues = Form.useWatch([], form)
 
   const baseApiConfig = {
     basePath: `projects/${projectId}`,
@@ -76,6 +62,10 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
       fields: values.fields,
       showReflections: values.showReflections,
       translations: translations || {},
+      guidelinePosition: values.guidelinePosition,
+      showGuidelines: values.showGuidelines,
+      flipBackground: values.flipBackground,
+      pageStyles: values.pageStyles,
     }
 
     setLoading(true)
@@ -144,7 +134,26 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
     subtitleText: translations[lang]?.subtitleText || '',
     fields: idp?.fields || [],
     showReflections: idp?.showReflections || false,
+    showGuidelines: idp?.showGuidelines ?? true,
+    guidelinePosition: idp?.guidelinePosition || 'second',
+    flipBackground: idp?.flipBackground || false,
+    pageStyles: _.merge({}, DEFAULT_PAGE_STYLES, idp?.pageStyles),
   }), [idp])
+
+  const currentLang = I18n.locale
+  const currentTranslation = (translations || {})[currentLang] || {}
+
+  const previewTemplate = useMemo(() => ({
+    fields: (allFormValues?.fields as string[]) || idp?.fields || [],
+    background: idp?.background || undefined,
+    clientLogo: idp?.clientLogo || undefined,
+    logoType: (allFormValues?.logoType as string) || idp?.logoType || 'both',
+    titleText: (currentTranslation as Record<string, string>)?.titleText || '',
+    subtitleText: (currentTranslation as Record<string, string>)?.subtitleText || '',
+    guidelinePosition: (allFormValues?.guidelinePosition as string) || idp?.guidelinePosition || 'second',
+    flipBackground: (allFormValues?.flipBackground as boolean) || false,
+    pageStyles: allFormValues?.pageStyles || idp?.pageStyles || {},
+  }), [allFormValues, idp, currentTranslation])
 
   return (
     <Form form={form} layout="vertical" initialValues={initialValues}>
@@ -227,10 +236,20 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   </Form.Item>
                 )}
               </Card>
+
+              <Form.Item
+                name="flipBackground"
+                valuePropName="checked"
+                style={{ marginTop: 16 }}
+              >
+                <Checkbox>
+                  {I18n.t('admin.idp_appearance_flip_background')}
+                </Checkbox>
+              </Form.Item>
             </Card>
           </Col>
           <Col xs={24} md={12}>
-            <Card title="Dynamic Content">
+            <Card title={I18n.t('admin.idp_appearance_dynamic_content')}>
               <Flex justify="flex-end">
                 <LangDropdown
                   currentLocale={lang}
@@ -264,9 +283,36 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   {I18n.t('administration.idp.show_reflections')}
                 </Checkbox>
               </Form.Item>
+
+              <Form.Item name="showGuidelines" valuePropName="checked">
+                <Checkbox>
+                  {I18n.t('admin.idp_appearance_show_guidelines')}
+                </Checkbox>
+              </Form.Item>
+
+              <Form.Item name="guidelinePosition" label={I18n.t('admin.idp_appearance_guideline_position')}>
+                <Radio.Group>
+                  <Radio value="second">{I18n.t('admin.idp_appearance_guideline_position_second')}</Radio>
+                  <Radio value="second_last">{I18n.t('admin.idp_appearance_guideline_position_second_last')}</Radio>
+                </Radio.Group>
+              </Form.Item>
             </Card>
           </Col>
         </Row>
+
+        <PageFontSettings form={form} previewTemplate={previewTemplate} />
+
+      </Space>
+      <div
+        style={{
+          position: 'sticky',
+          bottom: 0,
+          background: '#fff',
+          padding: '12px 0',
+          zIndex: 10,
+          borderTop: '1px solid #f0f0f0',
+        }}
+      >
         <Button
           key="submit"
           type="primary"
@@ -275,7 +321,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
         >
           {I18n.t('common.actions.update')}
         </Button>
-      </Space>
+      </div>
     </Form>
   )
 }

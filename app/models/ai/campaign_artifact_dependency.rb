@@ -14,6 +14,6 @@ class AI::CampaignArtifactDependency < ApplicationRecord
   private
 
   def update_artifact_checksum
-    campaign_ai_artifact.recalculate_dependencies_checksum!
+    campaign_ai_artifact&.recalculate_dependencies_checksum!
   end
 end

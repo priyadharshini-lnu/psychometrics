@@ -15,7 +15,7 @@ const routes = [
   {
     redirect: true,
     from: '/assessors/assessment_centers',
-    to: 'current',
+    to: 'campaigns',
   },
   {
     path: '/assessment_centers/:tab',

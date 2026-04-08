@@ -20,9 +20,9 @@ import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import AdminJob from './AdminJob'
+import consumer from '~/core/consumer'
 
 const {
-  App,
   I18n,
 } = window
 
@@ -76,8 +76,8 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
         setUser(data)
       })
     fetch(adminJobs.length)
-    if (App.cable) {
-      App.cable.subscriptions.create({ channel: 'AdminJobChannel' }, {
+    if (consumer()) {
+      consumer().subscriptions.create({ channel: 'AdminJobChannel' }, {
         received ({
           action,
           job,

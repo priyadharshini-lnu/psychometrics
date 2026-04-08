@@ -41,6 +41,12 @@ ko:
         skills_not_belong_to_project: 선택한 스킬은 지정된 프로젝트에 속해야 합니다.
         skills_required: 스킬을 하나 이상 선택해 주세요.
       exceeded_subjects_count: 초대당 %{count}명의 피사체만 추가할 수 있습니다
+      factors_norms:
+        invalid_field_name: 필드 이름은 'score_from' 또는 'score_to' 중 하나여야 합니다.
+        invalid_float: 값은 유효한 실수형이어야 합니다.
+        invalid_level: '잘못된 레벨입니다. 유효한 레벨은 다음과 같습니다: %{levels}'
+        score_from_less_than_score_to: score_from은 score_to보다 작아야 합니다
+        score_to_greater_than_score_from: score_to는 score_from보다 커야 합니다
       filled?: 비어있을 수 없습니다
       idp_template:
         content_required: 지침에는 내용이 필요합니다

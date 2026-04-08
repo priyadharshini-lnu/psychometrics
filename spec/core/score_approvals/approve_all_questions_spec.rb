@@ -24,7 +24,8 @@ RSpec.describe ScoreApprovals::ApproveAllQuestions do
            campaign_id: campaign.id,
            assessment_id: assessment.id,
            assessor_ids: [assessor.id],
-           approver_ids: [approver.id])
+           approver_ids: [approver.id],
+           allow_bulk_approve_scores: true)
   end
 
   let!(:competency) do
@@ -104,8 +105,10 @@ RSpec.describe ScoreApprovals::ApproveAllQuestions do
       end
     end
 
-    context 'two level approval not allowed to approve on first level' do
-      let(:current_user) { approver }
+    context 'when bulk approve scores setting is false' do
+      before do
+        approval_settings.update!(allow_bulk_approve_scores: false)
+      end
 
       it 'returns an error' do
         result = subject

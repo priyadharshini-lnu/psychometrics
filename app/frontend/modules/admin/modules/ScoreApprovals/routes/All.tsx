@@ -27,7 +27,7 @@ const All: React.FC = () => {
 
   return (
     <div>
-      <TasksList {...args} />
+      <TasksList {...args} fetch={fetch} />
     </div>
   )
 }

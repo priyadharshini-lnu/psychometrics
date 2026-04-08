@@ -1,6 +1,8 @@
 ---
 th:
   enduser:
+    ack_subtitle: ข้าพเจ้าได้อ่านและเข้าใจคำแนะนำข้างต้นแล้ว และพร้อมที่จะดำเนินการตรวจสอบระบบต่อไป
+    ack_title: ข้าพเจ้ายอมรับและเข้าใจ
     add_idp_plan_note: เพิ่มหมายเหตุ...
     add_idp_plan_rejection_reason: เพิ่มเหตุผล...
     ai_idp_assistant_response_no: ไม่ใช่
@@ -8,13 +10,43 @@ th:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: ใช่ ดําเนินการสร้างแผนต่อไป
     ai_idp_retake_step_chat_hint_no_document: คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติม และฉันจะพยายามอย่างเต็มที่เพื่อช่วยเหลือคุณ
     ai_idp_summary_hint_no_document: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติมได้
+    all_checks_must_pass: ต้องผ่านการตรวจสอบทั้งหมดก่อนจึงจะสามารถดำเนินการต่อได้
     approve_idp_plan: อนุมัติแผน
+    back: กลับ
+    before_you_begin: ก่อนที่คุณจะเริ่มต้น
+    begin_message: ก่อนที่คุณจะดำเนินการกับกิจกรรมของแคมเปญนี้ คุณจำเป็นต้องเริ่มการตรวจสอบความพร้อม ซึ่งจะตรวจสอบความเข้ากันได้ของอุปกรณ์ของคุณ
     bookings: การจอง
+    browser: เบราว์เซอร์
+    browser_and_device: เบราว์เซอร์และอุปกรณ์
+    browser_compatbility_step: ความเข้ากันได้ของเบราว์เซอร์ ขั้นตอน
+    browser_compatibility: 'ความเข้ากันได้ของเบราว์เซอร์:'
+    browser_compatibility_check: การทดสอบความเข้ากันได้ของเบราว์เซอร์
+    browser_compatibility_check_description: ตรวจสอบว่าเบราว์เซอร์ของคุณรองรับคุณสมบัติที่ต้องการทั้งหมดหรือไม่
+    browser_compatibility_result: ความเข้ากันได้ของเบราว์เซอร์
+    browser_version_fix_description_first: 'ใช้เบราว์เซอร์ที่รองรับ: Chrome, Firefox, Edge หรือ Safari'
+    browser_version_fix_description_second: อัปเดตเบราว์เซอร์ของคุณเป็นเวอร์ชันล่าสุดเพื่อให้แน่ใจว่ามีความเข้ากันได้
+    browser_version_fix_description_third: ลองใช้หน้าต่างการท่องเว็บแบบไม่ระบุตัวตน/ส่วนตัว
+    browser_version_fix_title: เวอร์ชันเบราว์เซอร์ของคุณไม่รองรับ
+    camera: วิดีโอและเสียง
+    camera_access_blocked: การเข้าถึงกล้องถูกปฏิเสธหรือถูกบล็อกโดยเบราว์เซอร์ของคุณ โปรดตรวจสอบสิทธิ์การเข้าถึงของเบราว์เซอร์ของคุณ
+    camera_check: ทดสอบกล้องและไมโครโฟน
+    camera_check_description: ตรวจสอบให้แน่ใจว่ากล้องและไมโครโฟนของคุณทำงานได้อย่างถูกต้องสำหรับการบันทึก
+    camera_test_step: ขั้นตอนการทดสอบวิดีโอและเสียง
     campaign: รณรงค์
+    chat_instructions: คำแนะนำในการแชท
+    check: ตรวจสอบ
+    check_video_recording: กรุณาตรวจสอบการบันทึกวิดีโอของคุณโดยการเล่นกลับ
+    checking_browser_compatibility: กำลังตรวจสอบความเข้ากันได้ของเบราว์เซอร์...
     development: การพัฒนา
     direct_reportees: ผู้รายงานโดยตรง
+    download: ดาวน์โหลด
     download_pdf: ดาวน์โหลดไฟล์ PDF
+    environment_setup: การตั้งค่าสภาพแวดล้อม
+    error_uploading_video: เกิดข้อผิดพลาดในการอัปโหลดวิดีโอ
+    fail: ล้มเหลว
+    follow_these_steps: ทำตามขั้นตอนเหล่านี้เพื่อแก้ไขปัญหาที่ตรวจพบระหว่างการตรวจสอบระบบ
     home: แดชบอร์ด
+    how_to_fix: 'วิธีแก้ไข:'
     idp_loading_fifth_step: การดึงการดําเนินการพัฒนาจากเทมเพลต
     idp_loading_first_step: การวิเคราะห์รายงานการประเมินของคุณ
     idp_loading_fourth_step: การเลือกทักษะที่เกี่ยวข้อง
@@ -22,27 +54,71 @@ th:
     idp_loading_secondary_text: อย่าลังเลที่จะก้าวออกไป แผนของคุณจะพร้อมเมื่อคุณกลับมา
     idp_loading_sixth_step: การสร้างการดําเนินการเพื่อการพัฒนา
     idp_plan_approval_note: หมายเหตุการอนุมัติ
+    idp_proceed_with_plan_creation: ใช่ กรุณาดำเนินการสร้างแผนต่อไป
+    idp_report_being_generated: เรากำลังทำงานเกี่ยวกับรายงานของคุณ
+    idp_reset_chat: รีเซ็ตแชท
     idp_retake_steps_continue_with_this_information: ดําเนินการต่อด้วยข้อมูลนี้
     insights: ข้อมูลเชิงลึก
+    instruction: ตรวจสอบให้แน่ใจว่าคุณและสภาพแวดล้อมของคุณพร้อมอย่างเต็มที่
+    internet_speed: ความเร็วอินเทอร์เน็ต
+    internet_speed_optimal: ความเร็วในการเชื่อมต่อของคุณอยู่ในระดับที่เหมาะสม
+    internet_speed_slow: ความเร็วอินเทอร์เน็ตช้ากว่าที่ต้องการสำหรับแคมเปญ
+    less_than_five_minutes: น้อยกว่า 5 นาที
     lighthouse_assistant: ผู้ช่วยประภาคาร
+    localstorage_fix_description_first: โปรดตรวจสอบว่าคุณไม่ได้อยู่ในโหมดส่วนตัว/ไม่ระบุตัวตน เนื่องจาก localStorage มักถูกปิดใช้งานในโหมดเหล่านี้
+    localstorage_fix_title: การเก็บข้อมูลในเครื่องไม่ได้รับการเปิดใช้งานในเบราว์เซอร์ของคุณ
+    localstorage_support: เปิดใช้งาน LocalStorage
     max_word_limit: ต้องมีไม่เกิน %{max} คำ
+    media_recorder_api_fix_description_first: เปิดใช้งาน JavaScript ในการตั้งค่าเบราว์เซอร์ของคุณ
+    media_recorder_api_fix_description_second: ตรวจสอบว่าเบราว์เซอร์ของคุณรองรับ MediaRecorder API และอัปเดตเป็นเวอร์ชันล่าสุดหากจำเป็น
+    media_recorder_api_fix_description_third: ลองใช้เบราว์เซอร์สมัยใหม่ตัวอื่น เช่น Chrome หรือ Firefox
+    media_recorder_api_fix_title: API บันทึกสื่อไม่รองรับในเบราว์เซอร์ของคุณ
+    media_recorder_api_support: การสนับสนุน API ของ MediaRecorder
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
     my_plan: แผนของฉัน
+    network: เครือข่าย
+    network_check: ทดสอบความเร็วอินเทอร์เน็ต
+    network_check_description: กำลังทดสอบคุณภาพการเชื่อมต่ออินเทอร์เน็ตของคุณระหว่างเซิร์ฟเวอร์ของเราและอุปกรณ์ของคุณ
+    network_check_fix_fifth: หากปัญหายังคงอยู่ กรุณาติดต่อผู้ให้บริการอินเทอร์เน็ตของคุณเพื่อขอความช่วยเหลือเพิ่มเติม
+    network_check_fix_first: ปิดแอปพลิเคชันอื่น ๆ ที่อาจกำลังใช้แบนด์วิดท์ (เช่น การสตรีมวิดีโอ การดาวน์โหลด)
+    network_check_fix_fourth: ลองใช้การเชื่อมต่อเครือข่ายอื่นหากมี
+    network_check_fix_second: ขยับเข้าใกล้เราเตอร์ Wi-Fi ของคุณหรือเชื่อมต่อผ่านสายเคเบิลอีเธอร์เน็ต
+    network_check_fix_third: รีสตาร์ทเราเตอร์/โมเด็มของคุณแล้วลองอีกครั้ง
+    network_test_step: ขั้นตอนการทดสอบเครือข่าย
     no_audio_warning: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
+    pass: ผ่าน
+    pending: รอดำเนินการ
+    personal_readiness: ความพร้อมส่วนบุคคล
+    plan_text: วางแผนสำหรับระยะเวลาทั้งหมด เมื่อเริ่มต้นแล้ว อาจไม่อนุญาตให้หยุดพัก ขึ้นอยู่กับประเภทของการประเมิน
+    please_check_your_internet_connection: กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง
     profile: โปรไฟล์
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
-    recorded: บันทึก
-    recording: การบันทึก
     reject_idp_plan: ปฏิเสธแผน
     request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
+    required_download_in_mbps: จำเป็นต้องดาวน์โหลดใน Mbps
+    required_upload_in_mbps: ไฟล์ที่ต้องอัปโหลดใน Mbps
+    rerun_check: รันตรวจสอบซ้ำ
+    rerun_checks: ทำการตรวจสอบซ้ำ
+    result: ผลลัพธ์
+    results: ผลลัพธ์
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed: นี่เป็นแคมเปญแบบกําหนดเวลา โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
-    status_unknown: ไม่ทราบสถานะ
+    start_readiness_check: เริ่มการตรวจสอบความพร้อม
+    start_system_check: เริ่มการตรวจสอบระบบ
+    subinstruction_eight: จัดสรรเวลาที่ไม่มีการรบกวนสำหรับการประเมินอย่างเต็มรูปแบบ
+    subinstruction_five: พร้อมที่จะแชร์หน้าจอของคุณตลอดการประชุม
+    subinstruction_four: เว็บแคมและไมโครโฟนที่ใช้งานได้
+    subinstruction_one: ห้องเงียบสงบ มีแสงสว่างเพียงพอ และไม่มีผู้อื่นอยู่
+    subinstruction_seven: ตรวจสอบให้แน่ใจว่าอุปกรณ์ของคุณชาร์จเต็มหรือเสียบปลั๊กเรียบร้อยแล้ว
+    subinstruction_six: ปิดแอปพลิเคชันและแท็บเบราว์เซอร์ที่ไม่จำเป็นทั้งหมด
+    subinstruction_three: การเชื่อมต่ออินเทอร์เน็ตที่เสถียร (ขั้นต่ำ 1 Mbps)
+    subinstruction_two: โต๊ะทำงานสะอาดปราศจากวัสดุที่ไม่ได้รับอนุญาต
+    system_check: การตรวจสอบระบบ
     system_check_access: การเข้าถึง
     system_check_audio_random_phrases:
       eight: ขอให้กาแฟของคุณเข้มข้น และขอให้เป็นวันที่คุณทำงานได้อย่างมีประสิทธิภาพนะ
@@ -55,6 +131,13 @@ th:
       three: ทดสอบ หนึ่ง สอง สาม เสียงชัดเจนสุดๆ!.
       two: สุนัขจิ้งจอกสีน้ำตาลกระโดดข้ามสุนัขขี้เกียจ
     system_check_audio_title: กรุณาพูดประโยคต่อไปนี้ซ้ำ 3 ครั้ง
+    system_check_complete: การตรวจสอบระบบเสร็จสมบูรณ์
+    system_check_failed: การตรวจสอบระบบล้มเหลว
+    system_check_failed_description: กรุณาแก้ไขปัญหาและทำการตรวจสอบระบบอีกครั้ง
+    system_check_failed_message: การตรวจสอบระบบบางส่วนล้มเหลว กรุณาตรวจสอบรายละเอียดและลองใหม่อีกครั้ง
+    system_check_failed_title: คุณไม่สามารถดำเนินการต่อได้จนกว่าการตรวจสอบที่จำเป็นทั้งหมดจะผ่าน
+    system_check_not_enabled: ระบบตรวจสอบไม่ได้รับการเปิดใช้งานสำหรับแคมเปญนี้
+    system_check_passed_successfully: การตรวจสอบระบบทั้งหมดผ่านเรียบร้อยแล้ว!
     system_check_proceed: ใช่ ตกลงเพื่อดำเนินการต่อ
     system_check_retake: ไม่ ฉันต้องการสอบใหม่
     system_check_run_again: ทดสอบอีกครั้ง
@@ -64,4 +147,41 @@ th:
     system_check_upload_again: อัปโหลดอีกครั้ง
     system_check_uploading: กำลังอัพโหลด
     system_check_video_random_phrase: เซ็มพร้อม นี่คือการทดสอบเพื่อยืนยันว่าไมโครโฟนและกล้องของฉันทำงานอย่างถูกต้อง
+    system_check_warning: คำเตือนการตรวจสอบระบบ
+    system_check_warning_message: ระบบอาจเกิดข้อผิดพลาดได้ ซึ่งอาจส่งผลต่อการประเมิน—กรุณาดำเนินการต่อเมื่อผ่านการตรวจสอบทั้งหมดแล้วเท่านั้น
+    system_checks: การตรวจสอบระบบ
+    task_duration: ระยะเวลาของงาน
     tasks: งาน
+    time_commitment: เวลาที่ต้องใช้
+    troubleshooting_guide: คู่มือการแก้ไขปัญหา
+    troubleshooting_guide_browser_fifth: ตรวจสอบให้แน่ใจว่า LocalStorage เปิดใช้งานแล้วในการตั้งค่าเบราว์เซอร์ของคุณ
+    troubleshooting_guide_browser_first: 'ใช้เบราว์เซอร์ที่รองรับ: Chrome, Firefox, Edge หรือ Safari (เวอร์ชันล่าสุด)'
+    troubleshooting_guide_browser_fourth: เปิดใช้งาน JavaScript และคุกกี้ในการตั้งค่าเบราว์เซอร์
+    troubleshooting_guide_browser_second: ล้างแคชและคุกกี้ของเบราว์เซอร์ของคุณ
+    troubleshooting_guide_browser_sixth: 'ลองใช้หน้าต่างการท่องเว็บแบบไม่ระบุตัวตน/ส่วนตัว (หมายเหตุ: LocalStorage อาจมีการรองรับที่จำกัดหรือไม่มีเลยในโหมดไม่ระบุตัวตน/ส่วนตัว)'
+    troubleshooting_guide_browser_third: ปิดการใช้งานส่วนขยายของเบราว์เซอร์ที่อาจรบกวนการเข้าถึงสื่อ
+    troubleshooting_guide_network_fifth: หากปัญหายังคงอยู่ กรุณาติดต่อผู้ให้บริการอินเทอร์เน็ตของคุณเพื่อขอความช่วยเหลือเพิ่มเติม
+    troubleshooting_guide_network_first: ปิดแอปพลิเคชันอื่น ๆ ที่อาจกำลังใช้แบนด์วิดท์ (เช่น การสตรีมวิดีโอ การดาวน์โหลด ฯลฯ)
+    troubleshooting_guide_network_fourth: ลองใช้การเชื่อมต่อเครือข่ายอื่นหากมี
+    troubleshooting_guide_network_second: ขยับเข้าใกล้เราเตอร์ Wi-Fi ของคุณหรือเชื่อมต่อผ่านสายเคเบิลอีเธอร์เน็ต
+    troubleshooting_guide_network_third: รีสตาร์ทเราเตอร์/โมเด็มของคุณแล้วลองอีกครั้ง
+    troubleshooting_guide_video_fifth: 'บน Windows: ตรวจสอบการตั้งค่าความเป็นส่วนตัว > การเข้าถึงกล้อง/ไมโครโฟน'
+    troubleshooting_guide_video_first: คลิกที่ไอคอนรูปกุญแจ/ข้อมูลในแถบที่อยู่ของเบราว์เซอร์ของคุณ
+    troubleshooting_guide_video_fourth: หากถูกบล็อก คุณอาจต้องรีเซ็ตสิทธิ์ในตั้งค่าเบราว์เซอร์
+    troubleshooting_guide_video_second: ค้นหาการตั้งค่า "กล้อง" และ "ไมโครโฟน" แล้วตั้งค่าเป็น "อนุญาต"
+    troubleshooting_guide_video_sixth: 'บน Mac: ตรวจสอบที่ การตั้งค่าระบบ > ความปลอดภัยและความเป็นส่วนตัว > กล้อง/ไมโครโฟน'
+    troubleshooting_guide_video_third: รีเฟรชหน้าหลังจากเปลี่ยนสิทธิ์
+    untimed: ไม่จำกัดเวลา
+    upload: อัปโหลด
+    video_and_audio: วิดีโอและเสียง
+    video_and_audio_recording: การบันทึกวิดีโอและเสียง
+    video_check_fix_fifth: ลองถอดปลั๊กและเสียบกล้องใหม่หากเป็นกล้องภายนอก
+    video_check_fix_first: คลิก 'อนุญาต' เมื่อเบราว์เซอร์ขอสิทธิ์ใช้กล้อง
+    video_check_fix_fourth: ตรวจสอบว่ากล้องของคุณเชื่อมต่อและเปิดใช้งานแล้ว
+    video_check_fix_second: ไปที่การตั้งค่าเบราว์เซอร์และเปิดใช้งานการเข้าถึงกล้องสำหรับเว็บไซต์นี้
+    video_check_fix_sixth: รีสตาร์ทเบราว์เซอร์ของคุณแล้วลองอีกครั้ง
+    video_check_fix_third: ปิดแอปพลิเคชันอื่นที่ใช้กล้อง (Zoom, Teams, ฯลฯ)
+    webgl_api_fix_description_first: ตรวจสอบให้แน่ใจว่าเบราว์เซอร์ของคุณรองรับ WebGL และเปิดใช้งานแล้วในตั้งค่า
+    webgl_api_fix_description_second: อัปเดตไดรเวอร์กราฟิกของคุณเป็นเวอร์ชันล่าสุด
+    webgl_api_fix_title: WebGL ไม่รองรับหรือเปิดใช้งานในเบราว์เซอร์ของคุณ
+    webgl_api_support: การรองรับ WebGL API

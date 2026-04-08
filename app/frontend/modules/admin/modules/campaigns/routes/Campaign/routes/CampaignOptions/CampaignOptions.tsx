@@ -58,6 +58,8 @@ const CampaignOptions: React.FC<Props> = ({
   const [localFixedTime, setLocalFixedTime] = useState<boolean>(false)
   const inputDurationRef = useRef<InputRef>(null)
 
+  const inputValidityRef = useRef<InputRef>(null)
+
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
@@ -181,6 +183,19 @@ const CampaignOptions: React.FC<Props> = ({
     ref: inputDurationRef,
   })
 
+  const parametersForSystemCheckValidity = ({
+    value: options.systemCheckValidity ? options.systemCheckValidity : '1d',
+    onChange: (value: number) => {
+      update(
+        parsedProjectId, parsedCampaignId, {
+          ...options,
+          systemCheckValidity: value,
+        },
+      )
+    },
+    ref: inputValidityRef,
+  })
+
   const parametersForRules = name => ({
     value: !!(options.rules || {})[name],
     onChange: (value: boolean) => update(
@@ -214,7 +229,6 @@ const CampaignOptions: React.FC<Props> = ({
       },
     ),
   })
-
 
   return (
     <div className="pt-4 pb-4 ps-4 pe-4">
@@ -304,6 +318,7 @@ const CampaignOptions: React.FC<Props> = ({
                 </Row>
               </div>
 
+
               <div className="mbl">
                 <Row>
                   <Col span={24}>
@@ -373,7 +388,72 @@ const CampaignOptions: React.FC<Props> = ({
                 </Row>
               </div>
             </div>
+
+
           </div>
+        </div>
+
+        <div className="mbl">
+
+          <Option
+            label={I18n.t('admin.enable_system_check')}
+            {...parametersForField('systemCheckEnabled')}
+          />
+
+          {options.systemCheckEnabled && (
+            <>
+              <Row className="mbl" align="middle">
+                <Col offset={2}>
+                  <label>{I18n.t('admin.validity')}</label>
+                </Col>
+                <Col offset={1}>
+                  <InputDuration
+                    masked
+                    placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                    {...parametersForSystemCheckValidity}
+                  />
+                </Col>
+              </Row>
+
+              <Row className="mbl" gutter={16} align="middle">
+                <Col offset={2} span={22}>
+                  <Option
+                    label={I18n.t('admin.allow_continue_with_warning_system_check')}
+                    {...parametersForField('allowContinueWithWarning')}
+                  />
+                </Col>
+              </Row>
+
+              {/* <Row className="mbl" align="middle">
+                <Col offset={2}>
+                  <label>{I18n.t('admin.minimum_download_speed')}</label>
+                </Col>
+                <Col offset={1}>
+                  <Input
+                    value={options.minimumDownloadSpeed ? options.minimumDownloadSpeed : 0}
+                    onChange={e => update(
+                      parsedProjectId, parsedCampaignId, { ...options, minimumDownloadSpeed: Number(e.target.value) },
+                    )}
+                  />
+                </Col>
+              </Row>
+
+              <Row className="mbl" align="middle">
+                <Col offset={2}>
+                  <label>{I18n.t('admin.minimum_upload_speed')}</label>
+                </Col>
+                <Col offset={1}>
+                  <Input
+                    value={options.minimumUploadSpeed ? options.minimumUploadSpeed : 0}
+                    onChange={e => update(
+                      parsedProjectId, parsedCampaignId, { ...options, minimumUploadSpeed: Number(e.target.value) },
+                    )}
+                  />
+                </Col>
+              </Row> */}
+            </>
+          )}
+
         </div>
 
         <Option

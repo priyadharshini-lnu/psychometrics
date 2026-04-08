@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import type { ColumnsType } from 'antd/es/table'
 import {
   Table, Pagination, Flex, Input, Skeleton, Popover, message, Typography,
-  Tooltip,
+  Tooltip, App,
 } from 'antd'
 import * as t from 'io-ts'
 import {
@@ -27,6 +27,7 @@ const { Search } = Input
 
 export const Result = () => {
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { modal } = App.useApp()
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [selectedAIArtifact, setSelectedAIArtifact] = useState<CampaignAiArtifactDataSource | null>(null)
 
@@ -54,6 +55,7 @@ export const Result = () => {
 
   const {
     collectionAction: resultsCollectionAction,
+    memberAction: resultsMemberAction,
   } = useResources<CampaignAiArtifactResult>('ai_artifact_results', {
     basePath: `/campaigns/${campaignId}`,
   })
@@ -96,12 +98,58 @@ export const Result = () => {
               }
             }, {}),
             generatedAt: item.generatedAt,
+            artifactResultsFinalizedAt: item.artifactResultsFinalizedAt,
           })
           return acc
         }, [])
     }
     return []
   }, [aiArtifact])
+
+  const handleIndividualFinalizeAction = (action: string, record: CampaignAiArtifactDataSource) => {
+    const finalized = action === 'mark_finalized'
+    resultsMemberAction({
+      id: record.participantId,
+      action: 'change_finalized_artifact_results',
+      method: 'post',
+      body: { finalized },
+    }).then(() => {
+      setData(aiArtifact.map((item) => {
+        if (item.user.data.id === record.participantId) {
+          return {
+            ...item,
+            artifactResultsFinalizedAt: finalized ? new Date().toISOString() : null,
+          }
+        }
+        return item
+      }))
+      message.success(I18n.t('frontend.resource.update_success', { readableResourceName: record.email }))
+    })
+  }
+
+  const handleIndividualConfirmAction = (action: string, record: CampaignAiArtifactDataSource) => {
+    if (action === 'generate_results') {
+      collectionAction({
+        action: 'bulk_generate',
+        method: 'post',
+        body: { userIds: [record.participantId] },
+        responseType: t.type({}),
+      }).then(() => {
+        message.info(I18n.t('administration.ai_artifacts.generate_result_info_message'))
+      })
+      return
+    }
+    const isFinalize = action === 'mark_finalized'
+    const titleKey = isFinalize ? 'admin.ai_artifacts_mark_finalized' : 'admin.ai_artifacts_mark_not_finalized'
+    const contentKey = isFinalize
+      ? 'admin.ai_artifacts_mark_finalized_confirm'
+      : 'admin.ai_artifacts_mark_not_finalized_confirm'
+    modal.confirm({
+      title: I18n.t(titleKey),
+      content: I18n.t(contentKey, { email: record.email }),
+      onOk: () => handleIndividualFinalizeAction(action, record),
+    })
+  }
 
   const tableColumns: ColumnsType<CampaignAiArtifactDataSource> = useMemo(() => {
     if (dataSource.length === 0) {
@@ -111,9 +159,11 @@ export const Result = () => {
 
     const artifactColumns = Object.keys(artifactsData)
       .map(art => ({
+        className: styles.artifactResultsColumns,
         title: <div>{art}</div>,
         key: art,
         children: artifactsData[art].results.map(result => ({
+          className: styles.artifactResultsColumns,
           title: <div style={{ textAlign: 'left' }}>{result.key}</div>,
           key: result.key,
           render: (_, record) => {
@@ -195,12 +245,22 @@ export const Result = () => {
       },
       ...artifactColumns,
       {
-        title: <div style={{ textAlign: 'left' }}>{I18n.t('administration.ai_artifacts.generated_at')}</div>,
-        dataIndex: 'generatedAt',
-        key: 'generatedAt',
+        title: <div style={{ textAlign: 'left' }}>{I18n.t('admin.ai_artifacts_finalized_at')}</div>,
+        dataIndex: 'artifactResultsFinalizedAt',
+        key: 'artifactResultsFinalizedAt',
         width: 200,
+        render: finalizedAt => (finalizedAt ? <span>{formatedDate(finalizedAt)}</span> : '-'),
+      },
+      {
+        title: <div style={{ textAlign: 'left' }}>{I18n.t('admin.actions')}</div>,
+        key: 'actions',
+        width: 80,
         fixed: 'right',
-        render: generatedAt => (generatedAt ? <span>{formatedDate(generatedAt)}</span> : ''),
+        render: (_, record) => (
+          <ActionsDropdown
+            onClick={action => handleIndividualConfirmAction(action, record)}
+          />
+        ),
       },
     ]
   }, [dataSource])
@@ -222,7 +282,35 @@ export const Result = () => {
   const handleBulkConfirmAction = (action: string) => {
     if (action === 'generate_results') {
       handleBulkAction('generate_results')
+    } else if (action === 'mark_finalized' || action === 'mark_not_finalized') {
+      const isFinalize = action === 'mark_finalized'
+      const titleKey = isFinalize ? 'admin.ai_artifacts_mark_finalized' : 'admin.ai_artifacts_mark_not_finalized'
+      const contentKey = isFinalize
+        ? 'admin.ai_artifacts_mark_finalized_bulk_confirm'
+        : 'admin.ai_artifacts_mark_not_finalized_bulk_confirm'
+      modal.confirm({
+        title: I18n.t(titleKey),
+        content: I18n.t(contentKey),
+        onOk: () => handleBulkFinalizeAction(action),
+      })
     }
+  }
+
+  const handleBulkFinalizeAction = (action: string) => {
+    const finalized = action === 'mark_finalized'
+    resultsCollectionAction({
+      action: 'change_finalized_artifact_results_bulk',
+      method: 'post',
+      body: {
+        userIds: isAllSelected ? excludedKeys : selectedKeys,
+        finalized,
+      },
+      responseType: t.literal('ok'),
+    }).then(() => {
+      const nameKey = finalized ? 'admin.ai_artifacts_mark_finalized' : 'admin.ai_artifacts_mark_not_finalized'
+      message.success(I18n.t('frontend.resource.update_success',
+        { readableResourceName: I18n.t(nameKey) }))
+    })
   }
 
   const handleToolConfirmAction = (action: string) => {

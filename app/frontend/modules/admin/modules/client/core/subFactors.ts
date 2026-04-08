@@ -1,0 +1,14 @@
+import * as t from 'io-ts'
+
+export const SubFactorsTR = t.type({
+  id: t.string,
+  name: t.union([t.string, t.undefined]),
+  factorName: t.union([t.string, t.undefined]),
+  condition: t.union([t.string, t.undefined]),
+  predicate: t.union([t.string, t.undefined]),
+  position: t.union([t.string, t.number, t.undefined]),
+  createdAt: t.union([t.string, t.undefined]),
+  updatedAt: t.union([t.string, t.undefined]),
+})
+
+export type SubFactors = t.TypeOf<typeof SubFactorsTR>

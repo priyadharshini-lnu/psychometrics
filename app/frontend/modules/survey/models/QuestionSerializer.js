@@ -1,6 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable default-case */
 import _ from 'lodash'
 import seedrandom from 'seedrandom'
 import DefaultProps from '~/modules/survey/constants/DefaultProps'

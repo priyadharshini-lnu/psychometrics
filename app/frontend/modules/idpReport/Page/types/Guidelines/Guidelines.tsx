@@ -5,15 +5,18 @@ import _ from 'lodash'
 import styles from './Guidelines.less'
 import Page from '../../Page'
 import { useI18n } from '~/modules/idpReport/I18nContext'
+import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 
 
 const Guidelines = ({ rtl }) => {
   const I18n = useI18n()
+  const { titleStyle, subtitleStyle, bodyStyle } = usePageFontStyles('guidelines')
+
   return (
     <Page rtl={rtl}>
       <div className={cs(styles.content)}>
         <Flex vertical gap={16} style={{ height: '100%' }}>
-          <h1 className={styles.header}>
+          <h1 className={styles.header} style={titleStyle}>
             {I18n.t('idp.pdf.guidelines.title')}
           </h1>
           {/* <Flex>
@@ -65,7 +68,7 @@ const Guidelines = ({ rtl }) => {
             </div>
           </Flex> */}
           <Flex>
-            <div className={styles.text}>
+            <div className={styles.text} style={bodyStyle}>
               <p>{I18n.t('idp.pdf.guidelines.content.main')}</p>
               <ol className={styles.list}>
                 <li>
@@ -95,9 +98,10 @@ const Guidelines = ({ rtl }) => {
             <div className={styles.learnCard}>
               <div
                 className={styles.title}
+                style={subtitleStyle}
                 dangerouslySetInnerHTML={{ __html: I18n.t('idp.pdf.guidelines.learn_cards.job.title') }}
               />
-              <div className={styles.text}>
+              <div className={styles.text} style={bodyStyle}>
                 <ol className={styles.list}>
                   {_.map(I18n.t('idp.pdf.guidelines.learn_cards.job.list'), (item, index) => (
                     <li key={index}><p>{item}</p></li>
@@ -108,9 +112,10 @@ const Guidelines = ({ rtl }) => {
             <div className={styles.learnCard}>
               <div
                 className={styles.title}
+                style={subtitleStyle}
                 dangerouslySetInnerHTML={{ __html: I18n.t('idp.pdf.guidelines.learn_cards.collaboration.title') }}
               />
-              <div className={styles.text}>
+              <div className={styles.text} style={bodyStyle}>
                 <ol className={styles.list}>
                   {_.map(I18n.t('idp.pdf.guidelines.learn_cards.collaboration.list'), (item, index) => (
                     <li key={index}><p>{item}</p></li>
@@ -121,9 +126,10 @@ const Guidelines = ({ rtl }) => {
             <div className={styles.learnCard}>
               <div
                 className={styles.title}
+                style={subtitleStyle}
                 dangerouslySetInnerHTML={{ __html: I18n.t('idp.pdf.guidelines.learn_cards.learn.title') }}
               />
-              <div className={styles.text}>
+              <div className={styles.text} style={bodyStyle}>
                 <ol className={styles.list}>
                   {_.map(I18n.t('idp.pdf.guidelines.learn_cards.learn.list'), (item, index) => (
                     <li key={index}><p>{item}</p></li>
