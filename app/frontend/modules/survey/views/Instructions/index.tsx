@@ -1,9 +1,13 @@
-import { FC, useState, useRef } from 'react'
+import {
+  FC, useState, useRef, useEffect,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { isRtl } from '~/utils/locales'
 import { updateInstructionsContent } from '~/modules/survey/core/builder/assessment/actions'
 import Editor from '~/components/Editor'
 import styles from './Instructions.less'
+import pipedText from '~/libs/Editor/commands/pipedText'
+import store from '~/modules/survey/store'
 
 const { I18n } = window
 
@@ -16,9 +20,14 @@ const Instructions: FC<Props> = (props) => {
     updateInstructionsContent,
   } = props
 
-  if (!instructions.enabled) { return null }
   const [opened, setOpened] = useState(true)
   const editorRef = useRef(null)
+
+  useEffect(() => {
+    pipedText(store)
+  }, [])
+
+  if (!instructions.enabled) { return null }
 
   const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
   return (

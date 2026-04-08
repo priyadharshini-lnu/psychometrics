@@ -22,6 +22,7 @@ import { useReactMediaRecorder } from '~/components/MediaRecorder/components/Med
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { getRandomVideoTestPhrase } from '../services/service'
+import { useMediaPreview, VIDEO_RESOLUTION } from '~/hooks/useMediaPreview'
 
 
 const { I18n } = window
@@ -47,28 +48,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
   const [visualizing, setVisualizing] = useState<boolean>(false)
-  const [devices, setDevices] = useState<{ videoDevices: MediaDeviceInfo[]; audioDevices: MediaDeviceInfo[] }>(
-    { videoDevices: [], audioDevices: [] },
-  )
-  const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
-  const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
-
-  const getDevices = React.useCallback(async () => {
-    const devices = await navigator.mediaDevices.enumerateDevices()
-    const videoDevices = devices.filter(device => device.kind === 'videoinput')
-    const audioDevices = devices.filter(device => device.kind === 'audioinput')
-
-    setDevices({ videoDevices, audioDevices })
-
-    // Set default devices on first enumeration
-    if (videoDevices.length > 0 && !selectedVideoDevice) {
-      setSelectedVideoDevice(videoDevices[0].deviceId)
-    }
-
-    if (audioDevices.length > 0 && !selectedAudioDevice) {
-      setSelectedAudioDevice(audioDevices[0].deviceId)
-    }
-  }, [selectedVideoDevice, selectedAudioDevice])
+  const isRerunningRef = useRef<boolean>(false)
 
   const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
@@ -92,9 +72,21 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     stopStreamsOnStop: false,
   })
 
-  useEffect(() => {
-    getDevices()
-  }, [getDevices])
+  const {
+    previewStream,
+    permissionGranted,
+    devices,
+    selectedVideoDevice,
+    selectedAudioDevice,
+    setSelectedVideoDevice,
+    setSelectedAudioDevice,
+    setPreviewStream,
+  } = useMediaPreview({
+    shouldSkipPreview: !!mediaBlobUrl || isRerunningRef.current,
+    isRecording: status === 'recording',
+    requestMediaStream,
+    onError: () => dispatch(updateAccess(CheckListStatus.Failed)),
+  })
 
   useEffect(() => {
     if ((mediaBlobUrl) && videoRef.current) {
@@ -113,30 +105,37 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       videoUpload()
     }
   }, [videoBlob, status])
-
   const requestAccess = async () => {
     if (!videoRef.current) return
 
     try {
-      const audioConstraints = selectedAudioDevice
-        ? { deviceId: { exact: selectedAudioDevice } }
-        : true
-      const videoConstraints = selectedVideoDevice
-        ? { deviceId: { exact: selectedVideoDevice } }
-        : true
+      if (previewStream) {
+        mediaStreamRef.current = previewStream
+        if (videoRef.current) {
+          videoRef.current.srcObject = previewStream
+        }
+      } else {
+        const audioConstraints = selectedAudioDevice
+          ? { deviceId: { exact: selectedAudioDevice } }
+          : true
 
-      const mediaStream = await requestMediaStream({
-        audio: audioConstraints,
-        video: videoConstraints,
-      })
+        const videoConstraints = selectedVideoDevice
+          ? { deviceId: { exact: selectedVideoDevice }, ...VIDEO_RESOLUTION }
+          : VIDEO_RESOLUTION
 
-      if (!mediaStream) {
-        dispatch(updateAccess(CheckListStatus.Failed))
-        return
-      }
-      mediaStreamRef.current = mediaStream
-      if (videoRef.current) {
-        videoRef.current.srcObject = mediaStream
+        const mediaStream = await requestMediaStream({
+          audio: audioConstraints,
+          video: videoConstraints,
+        })
+
+        if (!mediaStream) {
+          dispatch(updateAccess(CheckListStatus.Failed))
+          return
+        }
+        mediaStreamRef.current = mediaStream
+        if (videoRef.current) {
+          videoRef.current.srcObject = mediaStream
+        }
       }
       dispatch(updateAccess(CheckListStatus.Done))
       startRecording()
@@ -183,6 +182,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '' },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
+      isRerunningRef.current = false
     }).catch(() => {
       dispatch(updateUploading(CheckListStatus.Failed))
     })
@@ -192,6 +192,11 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
     try {
       stopRecording()
       setVisualizing(false)
+
+      if (previewStream) {
+        previewStream.getTracks().forEach(track => track.stop())
+        setPreviewStream(null)
+      }
 
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach(track => track.stop())
@@ -231,13 +236,20 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
   )
 
   const rerun = async () => {
+    isRerunningRef.current = true
     clearBlobUrl()
     setVideoBlob(null)
     dispatch(updateUploading(CheckListStatus.Pending))
+    dispatch(updateAccess(CheckListStatus.Pending))
 
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
       mediaStreamRef.current = null
+    }
+
+    if (previewStream) {
+      previewStream.getTracks().forEach(track => track.stop())
+      setPreviewStream(null)
     }
 
     if (videoRef.current) {
@@ -249,14 +261,6 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
 
   const handleVideoPlay = (): void => {
     setVisualizing(true)
-  }
-
-  const handleChangeVideoDevice = (deviceId: string) => {
-    setSelectedVideoDevice(deviceId)
-  }
-
-  const handleChangeAudioDevice = async (deviceId: string) => {
-    setSelectedAudioDevice(deviceId)
   }
 
   const renderProgressAndChecklist = () => (
@@ -342,18 +346,18 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       <VideoPlayer
         videoRef={videoRef}
         mediaUrl={mediaBlobUrl}
-        permissionGranted={state.access === CheckListStatus.Done}
+        permissionGranted={permissionGranted || state.access === CheckListStatus.Done}
         status={status}
         showCountdownTimer
         duration={MAX_DURATION}
         onFinish={handleStopRecording}
         onPlay={handleVideoPlay}
         visualizing={visualizing}
-        stream={mediaStreamRef.current}
+        stream={previewStream || mediaStreamRef.current}
         videoDevices={devices.videoDevices}
         audioDevices={devices.audioDevices}
-        onChangeVideoDevice={handleChangeVideoDevice}
-        onChangeAudioDevice={handleChangeAudioDevice}
+        onChangeVideoDevice={setSelectedVideoDevice}
+        onChangeAudioDevice={setSelectedAudioDevice}
       />
 
       <Controls />

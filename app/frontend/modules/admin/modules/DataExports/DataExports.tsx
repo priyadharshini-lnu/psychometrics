@@ -163,7 +163,7 @@ const DataExportsComponent:FC<Props> = ({
 
     exportUserReportEvents({
       action: 'export',
-      method: 'get',
+      method: 'post',
       body,
       responseType: t.literal('ok'),
     }).then(() => {

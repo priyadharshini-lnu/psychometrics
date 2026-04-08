@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './AliasModal.less'

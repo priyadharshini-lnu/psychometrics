@@ -23,7 +23,15 @@ sr-Latn:
     ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
     ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта са најновијим зависностима.
     ai_artifacts: AI artefakti
+    ai_artifacts_finalized_at: Завршено у
+    ai_artifacts_generate_result_confirm: Генерисање резултата артефакта за корисника '%{email}' ће уклонити постојећи извештај који зависи од овог AI артефакта. Да ли сте сигурни да желите да наставите?
     ai_artifacts_generate_results: Генериши резултате
+    ai_artifacts_mark_finalized: Марк је финализован
+    ai_artifacts_mark_finalized_bulk_confirm: Завршетак резултата артефаката за све изабране кориснике генерисаће извештаје који користе АИ артефакте. Да ли сте сигурни да желите да наставите?
+    ai_artifacts_mark_finalized_confirm: Завршетак резултата артефакта за корисника "%{email}" ће генерисати извештај који користи AI артефакт за корисника. Да ли сте сигурни да желите да наставите?
+    ai_artifacts_mark_not_finalized: Ознака није коначна
+    ai_artifacts_mark_not_finalized_bulk_confirm: Уклањање "finalize" са свих изабраних корисника ће уклонити генерисане извештаје који користе АИ артефакте. Да ли сте сигурни да желите да наставите?
+    ai_artifacts_mark_not_finalized_confirm: Уклањање коначне обраде за корисника "%{email}" ће уклонити генерисани извештај који користи АИ артефакт за тог корисника. Да ли сте сигурни да желите да наставите?
     ai_artifacts_output_schema_key_constraint: Ključ mora početi malim slovom i može sadržavati samo mala slova, brojeve i podvlake
     ai_artifacts_results_export: Извези резултате
     ai_artifacts_results_export_job_scheduled: Задатак за извоз резултата AI Artifacts успешно је заказан.
@@ -78,12 +86,32 @@ sr-Latn:
     ai_scoring_appoval_score_not_applicable: Резултат није примењив
     ai_scoring_approval: Одобрење вештачке интелигенције
     ai_scoring_approval_settings: Подешавања за одобрење бодовања вештачке интелигенције
+    ai_scoring_approval_stale_description: Ажурирања конфигурације од последњег покретања могла су променити резултат. Поново оцените да бисте га ажурирали користећи најновија подешавања.
+    ai_scoring_approval_stale_title: Резултат може бити застарео
     ai_scoring_approvals: АИ оцењивање одобрења
+    ai_scoring_refresh_score: Освежи резултат
+    ai_scoring_refresh_score_confirm_description: Ово ће поново извршити AI бодовање за ову процену користећи најновију конфигурацију. Јесте ли сигурни?
+    ai_scoring_refresh_score_confirm_title: Освежи АИ резултате?
+    ai_scoring_rescore_queued: Поновно оцењивање вештачком интелигенцијом је стављено у ред. Молимо вас да освежите страницу за неколико тренутака.
     ai_translation: Превод вештачке интелигенције
     all_corner_rounded: Сви углови заобљени
     allow_ai_rescoring: Дозволите поновно бодовање вештачке интелигенције
+    allow_continue_with_warning_system_check: Дозволите корисницима да наставе са упозорењима када системска провера не успе.
     api_keys: API ključevi
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи
+    assessment_center_activity: Активност
+    assessment_center_assessor: Процењивач
+    assessment_center_attendance: Посећеност
+    assessment_center_attendance_status: Статус присуства
+    assessment_center_campaigns_tab: Кампање
+    assessment_center_date_and_time: Датум и време
+    assessment_center_join_room: Придружи се соби
+    assessment_center_meeting_link: Линк за састанак
+    assessment_center_participants_tab: Учесници
+    assessment_center_prework: Припремна вежба
+    assessment_center_schedule_time: Закажи време
+    assessment_center_scheduling_status: Статус распореда
+    assessment_center_search_participants: Претрага учесника...
     assessment_question_not_supported: Ова врста питања тренутно није подржана.
     assessments: Procene
     assessments_not_mhs: Свака процена мора бити типа MHS.
@@ -99,6 +127,7 @@ sr-Latn:
     auto_placeholder: Ауто
     availability: Raspoloživost
     available_languages: Izveštaj dostupan na jezicima
+    average: Просечно
     back_to_main: Glavni meni
     bulk_assets_modal_choose_csv: Изаберите CSV фајл
     bulk_assets_modal_choose_zip: Изаберите ZIP фајл
@@ -138,7 +167,9 @@ sr-Latn:
     cancel: Откажи
     cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
     casual: Неформално
+    cell_save_msg: Важеће измене се аутоматски сачувају чим напустите ћелију након уређивања.
     characters: ликови
+    chat_instructions_success: Упутства за ћаскање су успешно сачувана
     children_factor_type: Тип деце
     client: Zakup klijenta
     client_admins: Administratori klijenata
@@ -152,6 +183,7 @@ sr-Latn:
     configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Da li ste sigurni da želite da uklonite administratora korisnika sa imejlom '%{email}'?
     copied: Копирано
+    copy_ai_artifacts: Копирајте АИ артефакте
     country: Država
     create_client: Kreiraj klijenta
     create_indicator: Креирајте индикатор
@@ -193,6 +225,7 @@ sr-Latn:
     done: Uradio
     done_tooltip: Za ovog korisnika se više ne može dostaviti evaluacija jer je evaluacija ovog korisnika označena kao urađeno od strane %{marked_by}
     download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
+    duration: Трајање
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi administratora klijenta
     edit_indicator: Уреди индикатор
@@ -201,10 +234,12 @@ sr-Latn:
     edit_permission_denied: Nemate dozvolu za uređivanje admin '%{name}'
     edit_project_admin: Uredi Administrator projekta
     edit_threesixty_campaign_admin: Uredi administratora kampanje
+    empty: Празно
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
     enable_maintenance: Омогући одржавање
     enable_mobile_proctoring: Омогући мобилно надгледање
+    enable_system_check: Омогући преглед система
     enable_transcription: Омогући транскрипцију
     enable_transcription_msg: Омогућите транскрипцију за коришћење АИ бодовања на видео/аудио питањима са одговорима.
     end_time: Кrajње време
@@ -218,10 +253,12 @@ sr-Latn:
     evaluation_status: Status evaluacije
     evaluation_status_not_done: Status evaluacije nije "Gotovo" za jedan ili više odabranih predmeta. Proverite da li su svi izabrani korisnici završili evaluacije ili označili kao urađeno.
     export_admin_roles_permissions: Uloge administratora i izvoz dozvola
+    export_campaigns_queued: Послови извоза су стављени у ред. Проверите обавештења за линкове за преузимање.
     export_compact_completion_status: Компактни
     export_completion_status: Статус завршетка извоза
     export_completion_statuses_scheduled: Извоз задатака за статусе завршетка је успешно заказан
     export_detailed_completion_status: Детаљно
+    factors: Фактори
     feature_ai_assistants_description: Омогућите асистенте покретане вештачком интелигенцијом за унапређено корисничко искуство
     feature_ai_assisted_idp_description: Користите вештачку интелигенцију за помоћ у препорукама за индивидуално планирање развоја.
     feature_ai_content_analysis_description: Омогућите анализу садржаја засновану на вештачкој интелигенцији за процене
@@ -240,8 +277,35 @@ sr-Latn:
     final_score_empty_msg: Коначан резултат не може бити празан.
     fix_grammar: Поправите граматику
     formal: Формално
+    from: Од
     generate_transcription: Генеришите транскрипцију
     hide_middle_scores: Сакриј средње резултате
+    high: Високо
+    hogan: Хоган
+    hogan_assessment: Хоган процена
+    idp_appearance_body: Тело
+    idp_appearance_color: Боја
+    idp_appearance_cover: Поклопац
+    idp_appearance_dynamic_content: Динамички садржај
+    idp_appearance_flip_background: Окрени позадинску слику на насловној и последњој страници
+    idp_appearance_font_family: Породица фонтова
+    idp_appearance_guideline_position: Позиција странице упутства
+    idp_appearance_guideline_position_second: Друга страница (након корице)
+    idp_appearance_guideline_position_second_last: Претпоследња страница (пре последње)
+    idp_appearance_guidelines: Смернице
+    idp_appearance_idp_skills: IDP вештине
+    idp_appearance_last: Последњи
+    idp_appearance_per_page_font_settings: Подешавања фонта по страници
+    idp_appearance_reflections: Осврти
+    idp_appearance_report_summary: Сажетак извештаја
+    idp_appearance_section_body: Текст одељка
+    idp_appearance_section_subtitle: Поднаслов одељка
+    idp_appearance_section_title: Наслов одељка
+    idp_appearance_select_font: Изаберите фонт
+    idp_appearance_show_guidelines: Прикажи страницу са упутствима
+    idp_appearance_size: Величина
+    idp_appearance_subtitle: Поднаслов
+    idp_appearance_title: Наслов
     idp_plan_reset_success: Plan je uspešno resetovan
     idp_templates: IDP Šabloni
     import_ai_artifacts: Uvoz AI artefakata
@@ -281,6 +345,7 @@ sr-Latn:
     libraries: Biblioteka medija
     library_invalid_type: Neispravna stavka biblioteke
     licenses: Licence
+    low: Ниско
     maintenance: Одрживање
     maintenance_settings: Подешавања одржавања
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
@@ -297,6 +362,8 @@ sr-Latn:
     mhs_session_id: ID сесије Mhs
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
+    minimum_download_speed: Минимална брзина преузимања (у Mbps)
+    minimum_upload_speed: Минимална брзина отпремања (у Mbps)
     missing_min_max_values: Потребне су минималне и максималне вредности.
     model_answer: Узорни одговор
     model_answer_placeholder: Унесите моделски одговор за оцењивање вештачке интелигенције.
@@ -305,6 +372,7 @@ sr-Latn:
     name_required: Ime je obavezno
     no_file_selected: Nijedan fajl nije izabran
     no_notifications: Nema obaveštenja
+    no_status: Без статуса
     norms: Norme
     not_completed: Nije završeno
     not_completed_tooltip: "%{completed} evaluatori su dodeljeni, ali samo %{submitted} su završili evaluacije"
@@ -837,6 +905,19 @@ sr-Latn:
     saml_settings: SAML podešavanja
     save: Сачувај
     save_assessment_for_scoring_management: Сачувајте процену пре него што започнете са бодовањем.
+    saved_filter_label:
+      approval_status_in: Статус одобрења
+      approver_user_id_in: Одобривач
+      assessment_id_in: Оцењивање
+      campaign_id_in: Кампања
+      client_id_in: Клијент
+      project_id_in: Пројекат
+      qc_user_id_in: QC корисник
+      report_id_in: Извештај
+      subject_email_cont: Предмет е-поште
+      subject_full_name_cont: Име адресата
+      user_email_cont: Имејл корисника
+      user_full_name_cont: Име корисника
     scheduling: Planiranje
     score: Резултат
     score_approval_not_allowed_to_approve: Немате дозволу да одобрите овај резултат.
@@ -893,7 +974,9 @@ sr-Latn:
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
     target_job_role: Циљна радна улога
     this_field_is_required: Ово поље је обавезно
+    threesixty: 360 кампања
     timezone: Временска зона
+    to: Да
     tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције
     toolbar_ai_suggestion: Предлог вештачке интелигенције
@@ -917,6 +1000,9 @@ sr-Latn:
     user_report_events: Događaji Izveštaja korisnika
     users: Korisnici
     validation_error: Молимо вас да попуните сва обавезна поља.
+    validity: Важећност
+    very_high: Веома високо
+    very_low: Врло ниско
     view_licenses: Pogledaj licence
     waiting: Иeka
     weight: Тежина

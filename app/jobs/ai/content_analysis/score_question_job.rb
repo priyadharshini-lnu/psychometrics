@@ -16,12 +16,17 @@ module AI
 
       private attr_reader :users_result, :question, :admin_job_record_id
 
-      def perform(users_result_id, question_id, rescore: false, admin_job_record_id: nil)
+      def perform(users_result_id, question_id, rescore: false, force_regenerate: false, admin_job_record_id: nil)
         @users_result = UsersResult.find(users_result_id)
         @question = Question.includes(:factors_scorings).find(question_id)
         @admin_job_record_id = admin_job_record_id
 
-        ScoreQuestion.call!(question, users_result, rescore: rescore)
+        ScoreQuestion.call!(
+          question,
+          users_result,
+          rescore: rescore,
+          force_regenerate: force_regenerate
+        )
         SyncScoringStatus.call!(users_result, rescore: rescore, admin_job_record_id: admin_job_record_id)
       end
     end

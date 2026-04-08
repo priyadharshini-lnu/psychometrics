@@ -1,9 +1,9 @@
 import BehaviouralPage from './BehaviouralPage'
 import TechnicalPage from './TechnicalPage'
-import { useAppSelector } from '~/modules/idpReport/hooks/redux'
+import { useUserIdp } from '~/modules/idpReport/hooks/useIdpData'
 
 const IDP = ({ rtl }) => {
-  const { user_idp_skills: skills, status } = useAppSelector(state => state.idp.userIdp)
+  const { user_idp_skills: skills, status } = useUserIdp()
 
   const behavioralSkills = skills.filter(skill => skill.skill_type === 'behavioral')
   const technicalSkills = skills.filter(skill => skill.skill_type === 'technical')

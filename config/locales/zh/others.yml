@@ -873,6 +873,7 @@ zh:
         export_assessment_questions: 出口评估问题
         export_campaign_ai_artifacts: 出口战役AI工件
         export_campaign_ai_artifacts_results: 导出活动AI成果
+        export_campaign_datasheet: 导出活动数据表
         export_campaign_factors: 出口活动因素
         export_campaign_scorings: 出口活动扫描
         export_dashboard_as_file: 将 Dashboard 导出为文件
@@ -932,6 +933,7 @@ zh:
         regenerate_report: 再生报告
         regenerate_threesixty_report: 再生三六零报告
         remap_report_assessment: 重绘报告评估
+        rescore_ai_scoring: AI重新评分
         rescore_assessment: 重新评估
         rescore_user_assessment: 重核用户评估
         send_sms_invites: 发送短信邀请
@@ -2647,6 +2649,7 @@ zh:
     direct_reportee_details: 直接报告者详细信息
     download:
       description: 要下载报告，请点击以下链接：<a href=''%{url}'' target=''_blank''>下载</a>。链接仅在 10 分钟内有效
+      title: 您的报告已准备就绪！
     download_plan: 下载计划
     edit_plan: 编辑计划
     edit_plan_and_add_skills: 编辑计划，然后单击管理技能以添加技能。

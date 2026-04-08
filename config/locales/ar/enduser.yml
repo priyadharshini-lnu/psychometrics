@@ -1,48 +1,125 @@
 ---
 ar:
   enduser:
+    ack_subtitle: لقد قرأتُ وفهمت التعليمات أعلاه وأنا مستعد للمتابعة لإجراء فحص النظام
+    ack_title: أقرّ بفهمي للتعليمات
     add_idp_plan_note: إضافة ملاحظة...
     add_idp_plan_rejection_reason: إضافة سبب...
     ai_idp_assistant_response_no: لا
     ai_idp_assistant_response_upload_different_document: أريد رفع مستند مختلف.
     ai_idp_assistant_response_yes_proceed_with_plan_creation: نعم، تابع في وضع الخطة.
     ai_idp_retake_step_chat_hint_no_document: يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل، وسأبذل قصارى جهدي لمساعدتك.
-    ai_idp_summary_hint_no_document: بإذنك، إذا قلت نعم، يمكنني إعداد خطة تطوير لك. إذا لم يكن كذلك، يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل.
+    ai_idp_summary_hint_no_document: يمكنني الآن إعداد خطة تطويرية مخصّصة تتضمن خطوات عمليّة لدعم نمو مسيرتك المهنية. كما يمكنك إعادة بدء المحادثة لتعديل مدخلاتك عند الحاجة.
+    all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
     approve_idp_plan: الموافقة على الخطة
+    back: خلف
+    back_to_dashboard: العودة إلى لوحة التحكم
+    before_you_begin: قبل أن تبدأ
+    begin_message: قبل المتابعة في أنشطة هذا التقييم، يجب بدء فحص الجاهزية للتحقق من توافق جهازك
     bookings: الحجوزات
+    browser: المتصفح
+    browser_and_device: المتصفح والجهاز
+    browser_compatbility_step: خطوة التحقق من توافق المتصفح
+    browser_compatibility: 'توافق المتصفح:'
+    browser_compatibility_check: توافق المتصفح
+    browser_compatibility_check_description: التحقق مما إذا كان متصفحك يدعم جميع الميزات المطلوبة
+    browser_compatibility_result: نتيجة توافق المتصفحات
+    browser_version_fix_description_first: 'استخدم متصفحًا مدعومًا: جوجل كروم ( Chrome ) أو فايرفوكس (Firefox) أو مايكروسوفت ايدج (Edge) أو سفاري (Safari)'
+    browser_version_fix_description_second: حدّث متصفحك إلى أحدث إصدار لضمان التوافق مع جهازك
+    browser_version_fix_description_third: جرّب استخدام نافذة التصفح الخفي/ الخاص
+    browser_version_fix_title: إصدار المتصفح الذي تستخدمه غير مدعوم
+    camera: الكاميرا
+    camera_access_blocked: تم رفض الوصول إلى الكاميرا أو حظره من قِبَل متصفحك. يُرجى التحقق من أذونات المتصفح.
+    camera_check: اختبار الكاميرا والميكروفون
+    camera_check_description: تحقق من أن الكاميرا والميكروفون يعملان بشكل صحيح للتسجيل.
+    camera_test_step: خطوة اختبار الفيديو والصوت
     campaign: الحملة
+    chat_instructions: تعليمات الدردشة
+    check: التحقق
+    check_video_recording: يُرجى التحقق من تسجيل الفيديو الخاص بك عن طريق إعادة تشغيله.
+    checking_browser_compatibility: جاري التحقق من توافق المتصفح...
     development: تطوير
     direct_reportees: الموظفين المباشرين
+    download: تنزيل
     download_pdf: تحميل ملف PDF
+    environment_setup: إعداد البيئة
+    error_uploading_video: حدث خطأ أثناء رفع الفيديو
+    fail: يفشل
+    follow_these_steps: اتبع الخطوات التالية لحل المشكلات التي تم اكتشافها أثناء فحص النظام
     home: لوحة التحكم
+    how_to_fix: 'كيفية الإصلاح:'
     idp_loading_fifth_step: جلب إجراءات التطوير من القالب
-    idp_loading_first_step: تحليل تقرير التقييم الخاص بك
-    idp_loading_fourth_step: اختيار المهارات ذات الصلة
+    idp_loading_first_step: جاري تحليل مدخلاتك. يُرجى الانتظار، ستكون خطتك جاهزة قريبًا
+    idp_loading_fourth_step: خطّتك على وشك الاكتمال! أقوم حالياً بإضافة بعض الأنشطة وتعديلها بما يتناسب مع تفضيلاتك
     idp_loading_second_step: تحديد تفضيلاتك المذكورة في الدردشة
     idp_loading_secondary_text: يمكنك اخذ استراحة الان،خطتك ستكون جاهزة عند عودتك
     idp_loading_sixth_step: إنشاء إجراءات التطوير
     idp_plan_approval_note: مذكرة الموافقة
+    idp_proceed_with_plan_creation: نعم، تابع عملية إنشاء الخطة
+    idp_report_being_generated: جاري إعداد تقريرك
+    idp_reset_chat: إعادة ضبط الدردشة
     idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
     insights: البصائر
-    lighthouse_assistant: المساعد الشخصي
+    instruction: تأكد من أنك وبيئة العمل من حولك جاهزون تماماً
+    internet_speed: سرعة الإنترنت
+    internet_speed_optimal: سرعة اتصالك بالإنترنت مناسبة
+    internet_speed_slow: سرعة الإنترنت أبطأ من المطلوب لهذا التقييم
+    less_than_five_minutes: أقل من 5 دقائق
+    lighthouse_assistant: دليل التطوير الخاص بك
+    localstorage_fix_description_first: تأكد من أنك لا تستخدم وضع التصفح الخفي/ الخاص، لأن خاصية التخزين المحلي (LocalStorage) غالباً تكون معطلة في هذه الحالة
+    localstorage_fix_title: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك
+    localstorage_support: خاصية التخزين المحلي (Local Storage) مفعّلة
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
+    media_recorder_api_fix_description_first: فعّل JavaScript في إعدادات المتصفح
+    media_recorder_api_fix_description_second: تحقّق من أن متصفحك يدعم MediaRecorder API وقم بالتحديث إلى أحدث إصدار إذا لزم الأمر
+    media_recorder_api_fix_description_third: جرّب متصفح حديث آخر مثل Chrome أو Firefox
+    media_recorder_api_fix_title: متصفحك لا يدعم MediaRecorder API
+    media_recorder_api_support: دعم MediaRecorder API
     min_word_limit: يجب أن تكون على الأقل %{min} كلمة
     my_plan: خطتي
+    network: الشبكة
+    network_check: اختبار سرعة الإنترنت
+    network_check_description: جاري اختبار جودة اتصال الإنترنت بين خوادمنا وجهازك
+    network_check_fix_fifth: في حال استمرت المشكلة، تواصل مع مزود خدمة الإنترنت للحصول على المساعدة
+    network_check_fix_first: أغلق التطبيقات الأخرى التي قد تستهلك الإنترنت (مثل بث الفيديو، أو التنزيلات)
+    network_check_fix_fourth: حاول استخدام شبكة اتصال مختلفة (إن وجدت)
+    network_check_fix_second: اقترب من جهاز الواي فاي WiFi أو قم بالاتصال عبر كابل Ethernet
+    network_check_fix_third: أعد تشغيل الراوتر/المودم ثم حاول مرة أخرى
+    network_test_step: خطوة اختبار الشبكة
     no_audio_warning: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون وتشغيله بشكل صحيح.
+    pass: يمر
+    pending: قيد الانتظار
+    personal_readiness: الجاهزية الشخصية
+    plan_text: خطّط لإجراء التقييم بشكل كامل. بعد البدء، قد لا يُسمح ببأخذ استراحات، وذلك حسب نوع التقييم
+    please_check_your_internet_connection: يُرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
     profile: تفاصيلي
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
-    recorded: تم التسجيل
-    recording: التسجيل
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
+    required_download_in_mbps: سرعة التنزيل المطلوبة (Mbps)
+    required_upload_in_mbps: سرعة الرفع المطلوبة (Mbps)
+    rerun_check: إعادة تشغيل الفحص
+    rerun_checks: إعادة تشغيل عمليات الفحص
+    result: النتيجة
+    results: النتيجة
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_campaign_message_timed_proctored: هذه حملة محددة بالوقت وتحت المراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
-    status_unknown: الحالة غير معروفة
+    start_readiness_check: بدء التحقق من الجاهزية
+    start_system_check: بدء فحص النظام
+    subinstruction_eight: خصّص وقت كافي لإجراء التقييم بالكامل دون انقطاع
+    subinstruction_five: كن مستعداً لمشاركة شاشتك طوال مدة الجلسة
+    subinstruction_four: تأكد من أن الكاميرا والميكروفون يعملات بشكل صحيح
+    subinstruction_one: تأكد من التواجد بمكان هادئ ومضاء بشكل جيد، مع عدم وجود أشخاص آخرين في المكان
+    subinstruction_seven: تأكد من أن جهازك مشحون بالكامل أو موصول بالكهرباء
+    subinstruction_six: أغلق جميع التطبيقات وعلامات التبويب غير الضرورية في المتصفح
+    subinstruction_three: تأكد من توفر اتصال إنترنت مستقر (بسرعة لا تقل عن 1 ميغابت في الثانية)
+    subinstruction_two: احرص على أن يكون المكتب خاليًا من أي مواد أو أدوات غير مصرح بها
+    system_check: فحص النظام
     system_check_access: إذن الدخول
     system_check_audio_random_phrases:
       eight: نرجو أن تكون قهوتك قوية ويومك مثمرًا.
@@ -55,6 +132,13 @@ ar:
       three: اختبار، واحد اثنان ثلاثة، الصوت واضح قدر الإمكان!.
       two: يقفز الثعلب البني السريع فوق الكلب الكسول.
     system_check_audio_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
+    system_check_complete: اكتمل فحص النظام
+    system_check_failed: فشل فحص النظام
+    system_check_failed_description: يرجى حل المشكلات وإعادة تشغيل فحص النظام
+    system_check_failed_message: فشلت بعض اختبارات النظام، يرجى مراجعة التفاصيل والمحاولة مرة أخرى
+    system_check_failed_title: لا يمكنك المتابعة حتى يتم اجتياز جميع الفحوصات المطلوبة
+    system_check_not_enabled: لم يتم تمكين فحص النظام لهذه الحملة
+    system_check_passed_successfully: تم اجتياز جميع الفحوصات بنجاح!
     system_check_proceed: نعم موافق للمضي قدما
     system_check_retake: لا، أريد أن أستعيد
     system_check_run_again: تشغيل مرة أخرى
@@ -64,4 +148,41 @@ ar:
     system_check_upload_again: تحميل مرة أخرى
     system_check_uploading: جاري التحميل
     system_check_video_random_phrase: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الفيديو والميكروفون يعملان بشكل صحيح.
+    system_check_warning: تنبيه فحص النظام
+    system_check_warning_message: قد تؤثر الأعطال المحتملة في النظام على سير التقييمات - يرجى المتابعة فقط بعد اجتياز جميع الفحوصات
+    system_checks: فحوصات النظام
+    task_duration: مدة المهمة
     tasks: مهامي
+    time_commitment: الوقت المطلوب لإكمال المهمة
+    troubleshooting_guide: دليل استكشاف الأخطاء وإصلاحها
+    troubleshooting_guide_browser_fifth: تأكد من تفعيل التخزين المحلي (LocalStorag) في إعداد المتصفح
+    troubleshooting_guide_browser_first: 'استخدم متصفحًا مدعومًا: جوجل كروم ( Chrome ) أو فايرفوكس (Firefox) أو مايكروسوفت ايدج (Edge) أو سفاري (Safari) - يجب أن يتوفر المتصفح بأحدث إصدار'
+    troubleshooting_guide_browser_fourth: تأكد من تفعيل JavaScript وملفات تعريف الارتباط (Cookies) في إعدادت المتصفح
+    troubleshooting_guide_browser_second: امسح ذاكرة التخزين المؤقت (Cache) وملفات تعريف الارتباط (Cookies) من المتصفح
+    troubleshooting_guide_browser_sixth: قم بتجربة استخدام نافذة المتصفح الخفي/ الخاص (Incognito/ Private)
+    troubleshooting_guide_browser_third: قم بتعطيل إضافات المتصفح (Extensions) التي قد تتداخل مع الوصول إلى الوسائط
+    troubleshooting_guide_network_fifth: في حال استمرت المشكلة، تواصل مع مزود خدمة الإنترنت للحصول على المساعدة
+    troubleshooting_guide_network_first: أغلق التطبيقات الأخرى التي قد تستهلك الإنترنت (مثل بث الفيديو، أو التنزيلات)
+    troubleshooting_guide_network_fourth: حاول استخدام شبكة اتصال مختلفة (إن وجدت)
+    troubleshooting_guide_network_second: اقترب من جهاز الواي فاي WiFi أو قم بالاتصال عبر كابل Ethernet
+    troubleshooting_guide_network_third: أعد تشغيل الراوتر/المودم ثم حاول مرة أخرى
+    troubleshooting_guide_video_fifth: 'في نظام Windows: تحقق من إعداد الخصوصية> الوصول إلى الكاميرا/ الميكروفون'
+    troubleshooting_guide_video_first: انقر على أيقونة القفل/المعلومات في شريط عنوان المتصفح
+    troubleshooting_guide_video_fourth: إذا كان المتصفح محظور، قد تحتاج إلى إعادة ضبط الأذونات في إعدادات المتصفح
+    troubleshooting_guide_video_second: ابحث عن إعدادات الكاميرا والميكروفون وقم بضبطها على سماح (Allow)
+    troubleshooting_guide_video_sixth: 'في نظام: تحقق من تفضيلات النظام> الأمان والخصوصية> الكاميرا/ الميكروفون'
+    troubleshooting_guide_video_third: قم بتحديث الصفحة بعد تغيير الأذونات
+    untimed: غير محدد بوقت
+    upload: تحميل/ رفع
+    video_and_audio: الفيديو والصوت
+    video_and_audio_recording: تسجيل الفيديو والصوت
+    video_check_fix_fifth: جرب فصل الكاميرا وإعادة توصيلها إذا كانت الكاميرا خارجية
+    video_check_fix_first: اضغط على سماح (Allow) عندما يطلب المتصفح الإذن باستخدام الكاميرا
+    video_check_fix_fourth: تأكد من أن الكاميرا متصلة ومشغّلة
+    video_check_fix_second: انتقل إلى إعدادات المتصفح وفعّل الوصول إلى الكاميرا لهذا الموقع
+    video_check_fix_sixth: أعد تشغيل المتصفح ثم حاول مرة أخرى
+    video_check_fix_third: أغلق التطبيقات الأخرى التي قد تستخدم الكاميرا (مثل Zoom أو Teams وغيرها)
+    webgl_api_fix_description_first: تأكد من أن متصفحك يدعم WebGL وأنه مفعّل في الإعدادات
+    webgl_api_fix_description_second: حدّث تعريفات برامج تشغيل الرسومات إلى أحدث إصدار
+    webgl_api_fix_title: متصفح لا يدعم WebGL أو أن هذه الميزة غير مفعّلة
+    webgl_api_support: دعم واجهة WebGL API

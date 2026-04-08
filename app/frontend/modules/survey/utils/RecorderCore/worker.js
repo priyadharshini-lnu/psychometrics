@@ -45,7 +45,6 @@ function exportWAV () {
     buffers.push(mergeBuffers(recBuffers[channel], recLength))
   }
   if (numChannels === 2) {
-    // eslint-disable-next-line prefer-destructuring
     interleaved = interleave(buffers[0], buffers[1])
   } else {
     // eslint-disable-next-line prefer-destructuring

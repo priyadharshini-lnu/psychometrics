@@ -41,6 +41,12 @@ nl:
         skills_not_belong_to_project: De geselecteerde vaardigheden moeten bij het opgegeven project horen.
         skills_required: Selecteer minstens één vaardigheid.
       exceeded_subjects_count: Je kunt alleen %{count} onderwerpen per uitnodiging toevoegen
+      factors_norms:
+        invalid_field_name: De veldnaam moet 'score_from' of 'score_to' zijn.
+        invalid_float: De waarde moet een geldig getal van het type float zijn.
+        invalid_level: Ongeldig niveau. Geldige niveaus zijn%{levels}
+        score_from_less_than_score_to: score_from moet kleiner zijn dan score_to
+        score_to_greater_than_score_from: score_to moet groter zijn dan score_from
       filled?: kan niet leeg zijn
       idp_template:
         content_required: Inhoud is vereist voor instructies

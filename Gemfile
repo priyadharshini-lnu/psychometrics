@@ -35,13 +35,11 @@ gem 'devise_saml_authenticatable', '~> 1.9.1'
 gem 'saml_idp', '~> 1.0.0'
 
 gem 'dotiw', '~> 5.3.3'
-gem 'icalendar', '~> 2.9.0'
+gem 'icalendar', '~> 2.12.2'
 
-# two_factor_authentication should be before devise-security, so that 2fa is required before changing expired password
-# rubocop:disable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
-gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
-  branch: 'fix_deprecated_methods'
-# rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
+# Two factor authentication (inlined from gem into lib/two_factor_authentication)
+gem 'rotp', '~> 6.3'
+
 gem 'devise-security', '~> 0.18.0'
 
 gem 'pundit', '~> 2.1.1'
@@ -110,14 +108,11 @@ gem 'acts-as-taggable-on', '~> 12.0'
 gem 'sentry-rails', '~> 6.2.0'
 gem 'sentry-sidekiq', '~> 6.2.0'
 
-# DSL for activerecord
-gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
-
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.2'
 
 gem 'active_storage_base64', '~> 2.0'
-gem 'active_storage_svg_sanitizer', git: 'https://github.com/TheTalentEnterprise/active_storage_svg_sanitizer'
+gem 'active_storage_svg_sanitizer'
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
 gem 'audited', '~> 5.6'
@@ -177,7 +172,6 @@ gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 1.0.1'
 gem 'twilio-ruby', '~> 7.8.3'
-gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'tte-master'
 gem 'workflow-activerecord', '~> 4.1.2'
 
 group :development, :test do
@@ -274,11 +268,12 @@ gem 'oci', '~> 2.22.0'
 gem 'sidekiq-throttled', '~> 1.5.2'
 
 gem 'recaptcha', require: 'recaptcha/rails'
+
 # To integrate with LLMs
-gem 'ruby_llm', '~> 1.7.1'
+gem 'ruby_llm', git: 'https://github.com/crmne/ruby_llm', tag: '1.13.2'
 
 # TO handle structured data in LLM responses
-gem 'ruby_llm-schema', '~> 0.1.6'
+gem 'ruby_llm-schema', '~> 0.2.1'
 
 # Pure Ruby GeoIP2 MaxMind DB reader
 gem 'maxminddb'
@@ -288,3 +283,9 @@ gem 'neighbor'
 
 # for prompt templating and other templating
 gem 'liquid'
+
+# webhook_system dependencies
+gem 'faraday-encoding'
+gem 'oauth2', '~> 2.0'
+gem 'ph_model'
+gem 'validate_url', '~> 1.0'

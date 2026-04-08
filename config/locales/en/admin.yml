@@ -23,7 +23,15 @@ en:
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
+    ai_artifacts_finalized_at: Finalized At
+    ai_artifacts_generate_result_confirm: Generating artifact results for user '%{email}' will remove the existing report which depends on this AI artifact. Are you sure you want to proceed?
     ai_artifacts_generate_results: Generate Results
+    ai_artifacts_mark_finalized: Mark Finalized
+    ai_artifacts_mark_finalized_bulk_confirm: Finalizing artifact results for all selected users will generate the reports which use AI artifacts. Are you sure you want to proceed?
+    ai_artifacts_mark_finalized_confirm: Finalizing artifact results for user '%{email}' will generate the report which uses AI artifact for the user. Are you sure you want to proceed?
+    ai_artifacts_mark_not_finalized: Mark Not Finalized
+    ai_artifacts_mark_not_finalized_bulk_confirm: Removing finalize from all selected users will remove the generated reports which use AI artifacts. Are you sure you want to proceed?
+    ai_artifacts_mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses AI artifact for the user. Are you sure you want to proceed?
     ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     ai_artifacts_results_export: Export Results
     ai_artifacts_results_export_job_scheduled: AI Artifacts results export job was scheduled successfully
@@ -78,12 +86,32 @@ en:
     ai_scoring_appoval_score_not_applicable: Score not applicable
     ai_scoring_approval: AI Scoring Approval
     ai_scoring_approval_settings: AI Scoring Approval Settings
+    ai_scoring_approval_stale_description: Configuration updates since the last run may have changed the score. Rescore to update it using the latest settings.
+    ai_scoring_approval_stale_title: Score May Be Outdated
     ai_scoring_approvals: AI Scoring Approvals
+    ai_scoring_refresh_score: Refresh Score
+    ai_scoring_refresh_score_confirm_description: This will re-run AI scoring for this assessment using the latest configuration. Are you sure?
+    ai_scoring_refresh_score_confirm_title: Refresh AI Scores?
+    ai_scoring_rescore_queued: AI rescoring has been queued. Please refresh after a few moments.
     ai_translation: AI Translation
     all_corner_rounded: All corner rounded
     allow_ai_rescoring: Allow AI Rescoring
+    allow_continue_with_warning_system_check: Allow users to continue with warnings when system check fails
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
+    assessment_center_activity: Activity
+    assessment_center_assessor: Assessor
+    assessment_center_attendance: Attendance
+    assessment_center_attendance_status: Attendance status
+    assessment_center_campaigns_tab: Campaigns
+    assessment_center_date_and_time: Date & Time
+    assessment_center_join_room: Join Room
+    assessment_center_meeting_link: Meeting Link
+    assessment_center_participants_tab: Participants
+    assessment_center_prework: Prework
+    assessment_center_schedule_time: Schedule Time
+    assessment_center_scheduling_status: Scheduling status
+    assessment_center_search_participants: Search Participants...
     assessment_question_not_supported: This question type is not currently supported.
     assessments: Assessments
     assessments_not_mhs: All Assessment must be a MHS type
@@ -99,6 +127,7 @@ en:
     auto_placeholder: Auto
     availability: Availability
     available_languages: Report Available in Languages
+    average: Average
     back_to_main: Main Menu
     bulk_assets_modal_choose_csv: Choose CSV File
     bulk_assets_modal_choose_zip: Choose ZIP File
@@ -146,7 +175,9 @@ en:
     cancel: Cancel
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     casual: Casual
+    cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     characters: characters
+    chat_instructions_success: Chat Instructions were saved successfully
     children_factor_type: Children Factor Type
     client: Client
     client_admins: Client Admins
@@ -160,6 +191,7 @@ en:
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     copied: Copied
+    copy_ai_artifacts: Copy AI Artifacts
     country: Country
     create_client: Create Client
     create_indicator: Create Indicator
@@ -201,6 +233,7 @@ en:
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
+    duration: Duration
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
     edit_indicator: Edit Indicator
@@ -209,10 +242,12 @@ en:
     edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
+    empty: Empty
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
     enable_maintenance: Enable Maintenance
     enable_mobile_proctoring: Enable Mobile Proctoring
+    enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
     end_time: End Time
@@ -226,10 +261,12 @@ en:
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
     export_admin_roles_permissions: Admin Roles and Permissions export
+    export_campaigns_queued: Export jobs have been queued. Check your notifications for download links.
     export_compact_completion_status: Compact
     export_completion_status: Export Completion Status
     export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
     export_detailed_completion_status: Detailed
+    factors: Factors
     feature_ai_assistants_description: Enable AI-powered assistants for enhanced user experience
     feature_ai_assisted_idp_description: Use AI to assist with Individual Development Planning recommendations
     feature_ai_content_analysis_description: Enable AI-powered content analysis for assessments
@@ -248,8 +285,35 @@ en:
     final_score_empty_msg: Итоговый счет не может быть пустым.
     fix_grammar: Fix Grammar
     formal: Formal
+    from: From
     generate_transcription: Generate Transcription
     hide_middle_scores: Hide middle scores
+    high: High
+    hogan: Hogan
+    hogan_assessment: Hogan Assessment
+    idp_appearance_body: Body
+    idp_appearance_color: Color
+    idp_appearance_cover: Cover
+    idp_appearance_dynamic_content: Dynamic Content
+    idp_appearance_flip_background: Flip background image on Cover and Last pages
+    idp_appearance_font_family: Font Family
+    idp_appearance_guideline_position: Guideline Page Position
+    idp_appearance_guideline_position_second: Second page (after Cover)
+    idp_appearance_guideline_position_second_last: Second last page (before Last)
+    idp_appearance_guidelines: Guidelines
+    idp_appearance_idp_skills: IDP Skills
+    idp_appearance_last: Last
+    idp_appearance_per_page_font_settings: Per-Page Font Settings
+    idp_appearance_reflections: Reflections
+    idp_appearance_report_summary: Report Summary
+    idp_appearance_section_body: Section Body
+    idp_appearance_section_subtitle: Section Subtitle
+    idp_appearance_section_title: Section Title
+    idp_appearance_select_font: Select font
+    idp_appearance_show_guidelines: Show Guidelines Page
+    idp_appearance_size: Size
+    idp_appearance_subtitle: Subtitle
+    idp_appearance_title: Title
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
     import_ai_artifacts: Import AI Artifacts
@@ -289,6 +353,7 @@ en:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    low: Low
     maintenance: Maintenance
     maintenance_settings: Maintenance Settings
     maintenance_settings_description: Manage system maintenance windows and settings
@@ -305,6 +370,8 @@ en:
     mhs_session_id: Mhs Session ID
     min_value: Min value
     minimum_10_words: Minimum 10 words
+    minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
@@ -313,6 +380,7 @@ en:
     name_required: Name is required
     no_file_selected: No file selected
     no_notifications: No Notifications
+    no_status: No Status
     norms: Norms
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
@@ -845,6 +913,19 @@ en:
     saml_settings: SAML Settings
     save: Save
     save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
+    saved_filter_label:
+      approval_status_in: Approval Status
+      approver_user_id_in: Approver
+      assessment_id_in: Assessment
+      campaign_id_in: Campaign
+      client_id_in: Client
+      project_id_in: Project
+      qc_user_id_in: QC User
+      report_id_in: Report
+      subject_email_cont: Subject Email
+      subject_full_name_cont: Subject Name
+      user_email_cont: User Email
+      user_full_name_cont: User Name
     scheduling: Scheduling
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
@@ -901,7 +982,9 @@ en:
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
     target_job_role: Target Job Role
     this_field_is_required: This field is required
+    threesixty: 360 Campaign
     timezone: TimeZone
+    to: To
     tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
@@ -925,6 +1008,9 @@ en:
     user_report_events: User Report Events
     users: Users
     validation_error: Please fill in all required fields
+    validity: Validity
+    very_high: Very High
+    very_low: Very Low
     view_licenses: View Licenses
     waiting: Waiting
     weight: Weight

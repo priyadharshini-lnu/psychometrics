@@ -912,6 +912,7 @@ ar:
         export_assessment_questions: أسئلة تقييم التصدير
         export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
         export_campaign_ai_artifacts_results: تصدير نتائج حملة AI Artifacts
+        export_campaign_datasheet: ورقة بيانات حملة التصدير
         export_campaign_factors: عوامل حملة التصدير
         export_campaign_scorings: حملات التصدير
         export_dashboard_as_file: تصدير لوحة المعلومات كملف
@@ -971,6 +972,7 @@ ar:
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
         remap_report_assessment: إعادة تعيين تقييم التقرير
+        rescore_ai_scoring: إعادة تقييم النتائج باستخدام الذكاء الاصطناعي
         rescore_assessment: تقييم إعادة التسجيل
         rescore_user_assessment: إعادة تسجيل تقييم المستخدم
         send_sms_invites: إرسال دعوات عبر الرسائل النصية القصيرة
@@ -2641,7 +2643,7 @@ ar:
       add_development_action: إضافة إجراء تطويري
       add_development_actions_from_below_options: أضف إجراءات التطوير من الخيارات أدناه.
       add_development_actions_modal_title: مكتبة إجراءات التطوير
-      add_from_library: إضافة من المكتبة
+      add_from_library: الاختيار من مكتبة خطط التطوير الخاصة بنا
       add_more: إضافة المزيد من إجراءات التطوير
       add_selected_development_actions: إضافة إجراءات تطوير محددة
       all: الكل
@@ -2652,9 +2654,9 @@ ar:
         not_started: لم يبدأ بعد
       completion: الإنجاز
       create_custom_development_action_title: إنشاء إجراء التطوير الخاص بي
-      create_development_actions_with_ai: إنشاء إجراءات التطوير باستخدام الذكاء الاصطناعي
-      create_from_ai: الإنشاء من الذكاء الاصطناعي
-      create_my_own: إنشاء خاص بي
+      create_development_actions_with_ai: جاري إعداد الإجراءات التطويرية لِـ
+      create_from_ai: إعداد خطتي باستخدام الذكاء الاصطناعي
+      create_my_own: إعداد خطتي الخاصة
       custom: إنشائي
       custom_da_description: قم بإنشاء إجراء تطوير مخصص لتلبية احتياجات التطوير الفريدة.
       date_range: تاريخ البداية - تاريخ النهاية
@@ -2670,7 +2672,7 @@ ar:
       generate_by_ai: توليد بواسطة الذكاء الاصطناعي
       generate_more: توليد المزيد
       generating_development_actions: جاري توليد إجراءات التطوير...
-      generative_ai: الذكاء الاصطناعي التوليدي
+      generative_ai: المدرّب الذكي
       generative_ai_description_msg: دع الذكاء الاصطناعي ينشئ إجراء تطوير مخصصا لك فقط
       heading: إجراءات التطوير
       idp_library: مكتبة خطط التطوير
@@ -2711,7 +2713,8 @@ ar:
       write_here: اكتب هنا...
     direct_reportee_details: تفاصيل المبلغين المباشرين
     download:
-      description: 'لتنزيل التقرير ، يرجى اتباع الرابط: <a href = ''%{url}'' target = ''_blank'' > تنزيل</a>. الرابط صالح لمدة 10 دقائق فقط'
+      description: يمكنك تحميله من خلال هذا <a href='%{url}' target='_blank'>الرابط</a> ، علمًا بأنه صلاحية هذا الرابط ستنتهي خلال 10 دقائق
+      title: أصبح تقريرك جاهز !
     download_plan: تحميل الخطة
     edit_plan: تعديل الخطة
     edit_plan_and_add_skills: قم بتحرير الخطة وانقر فوق إدارة المهارات لإضافة المهارات.
@@ -2871,7 +2874,7 @@ ar:
         pending_approval: قيد المراجعة
         rejected: نبيذ
       summary:
-        ai_count: الذكاء الاصطناعي التوليدي
+        ai_count: المدرّب الذكي
         collaborative_learn: التعلم التعاوني
         created_by: أنشئ بواسطة
         current_status: الحالة الحالية لخطة التطوير الفردية
@@ -2879,7 +2882,7 @@ ar:
         custom_count: إنشائي
         da_count: عدد إجراءات التطوير
         formal_learn: التعلم الرسمي
-        generated_ai: الذكاء الاصطناعي التوليدي
+        generated_ai: المدرّب الذكي
         learn_on_job: التعلم أثناء العمل
         learn_pathway: مسار التعلم
         lib_count: مكتبة خطط التطوير

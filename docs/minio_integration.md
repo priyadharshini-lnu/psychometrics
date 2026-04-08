@@ -44,6 +44,8 @@ brew services stop minio/stable/minio
 
 ## 2. Create Buckets
 
+### Option A: Using MinIO Console
+
 1. Access MinIO Console:
    - Open http://localhost:9001
    - Login with:
@@ -54,11 +56,19 @@ brew services stop minio/stable/minio
    - s3-public-bucket
    - s3-private-bucket
 
-3. Set public access for bucket
-   ```
-   mc alias set local http://127.0.0.1:9000 'minioadmin' 'minioadmin'
-   mc anonymous set download local/s3-public-bucket
-   ```
+### Option B: Using MinIO CLI
+
+```bash
+# Set up MinIO CLI alias
+mc alias set local http://127.0.0.1:9000 minioadmin minioadmin
+
+# Create the required buckets
+mc mb local/s3-public-bucket
+mc mb local/s3-private-bucket
+
+# Set public download access for public bucket
+mc anonymous set download local/s3-public-bucket
+```
 
 ## 3. Configuration Files
 

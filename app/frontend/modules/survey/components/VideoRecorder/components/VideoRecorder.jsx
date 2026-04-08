@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable no-template-curly-in-string */
-/* eslint-disable import/no-webpack-loader-syntax */
-/* eslint-disable import/no-unresolved */
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
@@ -12,6 +8,7 @@ import cs from 'classnames'
 import humps from 'humps'
 import { unset, set } from 'lodash/fp'
 import SparkMD5 from 'spark-md5'
+import * as Sentry from '@sentry/react'
 import { LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
 import styles from './VideoRecorder.less'
@@ -199,13 +196,11 @@ class VideoRecorder extends Component {
       batchForUpload.batchedBlobs = null
       this.removeError('upload')
     }).catch((err) => {
-      // eslint-disable-next-line no-console
       console.error(err)
       this.setError('upload', err.message)
     })
   }
 
-  // eslint-disable-next-line react/sort-comp
   initPlayer () {
     const { mediaResponse } = this.props
 
@@ -328,14 +323,12 @@ class VideoRecorder extends Component {
       this.player.on('finishRecord', this.handleFinishRecording)
 
       this.player.on('error', (element, error) => {
-        // eslint-disable-next-line no-console
         console.warn(error)
       })
       this.player.on('deviceError', () => {
         const btnAllow = document.querySelector('#btn-allow-record')
         btnAllow.classList.add('vjs-hidden')
 
-        // eslint-disable-next-line no-console
         console.error('Device Error:', this.player.deviceErrorCode)
       })
     })
@@ -458,6 +451,7 @@ class VideoRecorder extends Component {
       this.resetMultipartUpload()
     } catch (error) {
       console.error(error)
+      Sentry.captureException(error)
       this.setError('complete', I18n.t('assessments.unknown_error'))
     }
   }

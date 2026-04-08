@@ -28,7 +28,7 @@ RSpec.describe AI::AssistantChat, type: :model do
 
     context 'when service is :openai_response_api' do
       let(:llm_chat) { double('LLM Chat') }
-      let(:mock_content) { double('Content', text: message, attachments: []) }
+      let(:mock_content) { RubyLLM::Content.new(message) }
       let(:response_message) do
         double('Response Message',
                content: 'AI Response',
@@ -52,8 +52,6 @@ RSpec.describe AI::AssistantChat, type: :model do
 
         allow(AI::Services::OpenaiResponseApi).to receive(:call!).and_return(response_message)
 
-        allow(RubyLLM::Content).to receive(:new).and_return(mock_content)
-
         allow(RubyLLM::Attachment).to receive(:new).and_return(
           double('Attachment',
                  content: 'mock content',
@@ -70,6 +68,7 @@ RSpec.describe AI::AssistantChat, type: :model do
 
       it 'creates LLM chat object and adds message without persisting to DB initially' do
         expect(chat).to receive(:to_llm).and_return(llm_chat)
+        allow(RubyLLM::Content).to receive(:new).and_call_original
         expect(RubyLLM::Content).to receive(:new).with(message, attachment_url).and_return(mock_content)
         expect(llm_chat).to receive(:add_message).with(role: :user, content: mock_content)
 
@@ -163,7 +162,7 @@ RSpec.describe AI::AssistantChat, type: :model do
     context 'when service is nil (default behavior)' do
       before do
         allow(chat).to receive_message_chain(:to_llm, :complete).and_return('response')
-        allow(chat).to receive(:create_user_message)
+        allow(chat).to receive(:add_message)
       end
 
       it 'does not call OpenaiResponseApi service' do
@@ -173,7 +172,7 @@ RSpec.describe AI::AssistantChat, type: :model do
       end
 
       it 'calls the parent ask method' do
-        expect(chat).to receive(:create_user_message).with(message, with: attachment_url)
+        expect(chat).to receive(:add_message).with(role: :user, content: instance_of(RubyLLM::Content))
 
         chat.ask(message, with: attachment_url)
       end
@@ -291,6 +290,41 @@ RSpec.describe AI::AssistantChat, type: :model do
 
       result = chat.with_assistant_context(tools: tools, params: params)
       expect(result).to eq(chat)
+    end
+  end
+
+  describe '#ask_for_correction' do
+    let(:user) { create(:user) }
+    let(:assistant) { create(:assistant) }
+    let(:chat) { create(:assistant_chat, ai_assistant: assistant, user: user) }
+    let(:correction_message) { 'Error: System cannot render the message to user: must be valid JSON' }
+    let(:complete_response) do
+      instance_double(RubyLLM::Message, content: '{"key": "value"}', input_tokens: 10, output_tokens: 5)
+    end
+
+    before do
+      allow(chat).to receive(:complete).and_return(complete_response)
+    end
+
+    it 'creates a user message with the correction content' do
+      expect { chat.ask_for_correction(correction_message) }.
+        to change { chat.messages.where(role: 'user').count }.by(1)
+
+      user_message = chat.messages.where(role: 'user').last
+      expect(user_message.content).to eq(correction_message)
+    end
+
+    it 'sets request_status to correction on the created message' do
+      chat.ask_for_correction(correction_message)
+
+      user_message = chat.messages.where(role: 'user').last
+      expect(user_message.request_status_correction?).to be true
+    end
+
+    it 'calls complete and returns the response' do
+      result = chat.ask_for_correction(correction_message)
+
+      expect(result).to eq(complete_response)
     end
   end
 end

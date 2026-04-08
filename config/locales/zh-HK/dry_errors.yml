@@ -41,6 +41,12 @@ zh-HK:
         skills_not_belong_to_project: 選取的技能必須屬於指定的專案。
         skills_required: 請至少選擇一種技能。
       exceeded_subjects_count: 每個邀請只能新增%{count}個主題
+      factors_norms:
+        invalid_field_name: 字段名称必须是“score_from”或“score_to”。
+        invalid_float: 该值必须是有效的浮点数。
+        invalid_level: 级别无效。有效级别为：%{levels}
+        score_from_less_than_score_to: score_from 必须小于 score_to
+        score_to_greater_than_score_from: score_to 必须大于 score_from
       filled?: 不能是空白的
       idp_template:
         content_required: 說明需要內容

@@ -1,6 +1,8 @@
 ---
 hu:
   enduser:
+    ack_subtitle: Elolvastam és megértettem a fenti utasításokat, és készen állok a rendszerellenőrzés elvégzésére.
+    ack_title: Tudomásul veszem és megértem
     add_idp_plan_note: Megjegyzés hozzáadása...
     add_idp_plan_rejection_reason: Elutasítási ok hozzáadása...
     ai_idp_assistant_response_no: Nem
@@ -8,13 +10,44 @@ hu:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Igen, folytasd a terv elkészítésével.
     ai_idp_retake_step_chat_hint_no_document: Újraindíthatod a csevegést, hogy részletezhesd, és mindent megteszek, hogy segítsek.
     ai_idp_summary_hint_no_document: Ha engedélyed van, ha igent mondasz, készíthetek neked fejlesztési tervet. Ha nem, újraindíthatod a csevegést, hogy részletesebben osszd meg.
+    all_checks_must_pass: Minden ellenőrzésnek sikeresnek kell lennie, mielőtt továbbhaladhatna.
     approve_idp_plan: Terv jóváhagyása
+    back: Vissza
+    back_to_dashboard: Vissza a kezelőfelületre
+    before_you_begin: Mielőtt elkezdené
+    begin_message: Mielőtt elkezdené a kampány tevékenységeit, el kell indítania egy előkészítő ellenőrzést, amely megvizsgálja az eszköz kompatibilitását
     bookings: Foglalások
+    browser: Böngésző
+    browser_and_device: Böngésző és eszköz
+    browser_compatbility_step: Böngészőkompatibilitási lépés
+    browser_compatibility: 'Böngészőkompatibilitás:'
+    browser_compatibility_check: Böngészőkompatibilitási teszt
+    browser_compatibility_check_description: Ellenőrizze, hogy böngészője támogatja-e az összes szükséges funkciót
+    browser_compatibility_result: Böngészőkompatibilitás
+    browser_version_fix_description_first: 'Használjon támogatott böngészőt: Chrome, Firefox, Edge vagy Safari'
+    browser_version_fix_description_second: A kompatibilitás biztosítása érdekében frissítse böngészőjét a legújabb verzióra.
+    browser_version_fix_description_third: Próbáld meg inkognitó/privát böngészési ablakot használni
+    browser_version_fix_title: A böngésződ verziója nem támogatott.
+    camera: Videó és hang
+    camera_access_blocked: A böngészője megtagadta vagy letiltotta a kamera hozzáférését. Kérjük, ellenőrizze a böngésző engedélyezési beállításait.
+    camera_check: Kamera- és mikrofonpróba
+    camera_check_description: Ellenőrizze, hogy a kamera és a mikrofon megfelelően működik-e a felvételhez
+    camera_test_step: Videó- és hangteszt lépés
     campaign: Kampány
+    chat_instructions: Csevegési útmutató
+    check: Ellenőrizze
+    check_video_recording: Kérjük, ellenőrizze a videofelvételt lejátszással.
+    checking_browser_compatibility: A böngésző kompatibilitásának ellenőrzése...
     development: Fejlesztés
     direct_reportees: Közvetlen beosztottak
+    download: Letöltés
     download_pdf: Letöltés PDF
+    environment_setup: A környezet beállítása
+    error_uploading_video: Hiba a videó feltöltése közben
+    fail: Hiba
+    follow_these_steps: Kövesse az alábbi lépéseket a rendszerellenőrzés során észlelt problémák megoldásához
     home: Irányítópult
+    how_to_fix: 'Hogyan lehet kijavítani:'
     idp_loading_fifth_step: Fejlesztési műveletek lekérése a sablonból
     idp_loading_first_step: Az értékelési jelentés elemzése
     idp_loading_fourth_step: Megfelelő készségek kiválasztása
@@ -22,27 +55,71 @@ hu:
     idp_loading_secondary_text: Nyugodtan lépj távol. A terved készen lesz, amikor visszatérsz.
     idp_loading_sixth_step: Fejlesztési intézkedések létrehozása
     idp_plan_approval_note: Jóváhagyási megjegyzés
+    idp_proceed_with_plan_creation: Igen, folytassa a terv elkészítésével
+    idp_report_being_generated: Jelenleg az Ön jelentésén dolgozunk
+    idp_reset_chat: Csevegés visszaállítása
     idp_retake_steps_continue_with_this_information: Folytasd ezzel az információval
     insights: Betekintés
+    instruction: Győződjön meg róla, hogy Ön és a környezete teljes mértékben felkészült
+    internet_speed: Internet-sebesség
+    internet_speed_optimal: A kapcsolat sebessége optimális
+    internet_speed_slow: Az internet sebessége alacsonyabb, mint amennyire a kampányhoz szükség lenne
+    less_than_five_minutes: Kevesebb mint 5 perc
     lighthouse_assistant: Világítótorony asszisztens
+    localstorage_fix_description_first: Győződjön meg arról, hogy nem privát/inkognitó módban van, mivel ezekben a módokban a localStorage gyakran le van tiltva.
+    localstorage_fix_title: A böngészőben a helyi tárolás nincs engedélyezve
+    localstorage_support: A LocalStorage engedélyezve
     max_word_limit: Legfeljebb %{max} szó lehet
+    media_recorder_api_fix_description_first: Engedélyezze a JavaScriptet a böngésző beállításaiban
+    media_recorder_api_fix_description_second: Ellenőrizze, hogy böngészője támogatja-e a MediaRecorder API-t, és szükség esetén frissítse a legújabb verzióra.
+    media_recorder_api_fix_description_third: Próbálj ki egy másik modern böngészőt, például a Chrome-ot vagy a Firefoxot
+    media_recorder_api_fix_title: A böngésző nem támogatja a Media Recorder API-t.
+    media_recorder_api_support: MediaRecorder API támogatás
     min_word_limit: Legalább %{min} szó kell
     my_plan: A tervem
+    network: Hálózat
+    network_check: Internet-sebességmérő
+    network_check_description: Ellenőrizzük az internetkapcsolat minőségét a szerverünk és az Ön készüléke között.
+    network_check_fix_fifth: Ha a probléma továbbra is fennáll, forduljon az internetszolgáltatójához további segítségért
+    network_check_fix_first: Zárja be az összes olyan alkalmazást, amely sávszélességet igényel (videó streaming, letöltések)
+    network_check_fix_fourth: Ha lehetséges, próbáljon meg egy másik hálózati kapcsolatot használni
+    network_check_fix_second: Közelebb kell mennie a Wi-Fi útválasztóhoz, vagy Ethernet-kábellel kell csatlakoznia
+    network_check_fix_third: Indítsa újra az útválasztót/modemet, majd próbálja meg újra
+    network_test_step: Hálózati tesztlépés
     no_audio_warning: Nincs hangjelzés. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
+    pass: Tovább
+    pending: Függőben
+    personal_readiness: Személyes felkészültség
+    plan_text: Tervezzen a teljes időtartamra. A vizsga megkezdése után – a vizsga típusától függően – szünetek nem engedélyezettek.
+    please_check_your_internet_connection: Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
     profile: Profil
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}
     reason_for_idp_plan_rejection: Az elutasítás oka
-    recorded: Felvétel
-    recording: Felvétel
     reject_idp_plan: Elutasít tervet
     request_retry_message: Offline vagy. A válaszaid nem menthetők el, de automatikusan mentődni fognak, amint újra online vagy. Kérjük, ne frissítse vagy zárja be az oldalt.
+    required_download_in_mbps: Szükséges letöltési sebesség (Mbps)
+    required_upload_in_mbps: Szükséges feltöltési sebesség (Mbps)
+    rerun_check: Ellenőrzés megismétlése
+    rerun_checks: Ellenőrzések megismétlése
+    result: Eredmény
+    results: Eredmény
     selected_count: Kiválasztott
     skill_type: Képesség típusa
     start_campaign_message_proctored: Ez egy felügyelt kampány, kérjük, kattintson a '%{buttonText}' gombra a tevékenységek elindításához.
     start_campaign_message_timed: Ez egy időzített kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
     start_campaign_message_timed_proctored: Ez egy időzített és felügyelt kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
-    status_unknown: Állapot ismeretlen
+    start_readiness_check: Indítsa el az indulás előtti ellenőrzést
+    start_system_check: Rendszerellenőrzés indítása
+    subinstruction_eight: Szánjon rá zavartalan időt a teljes értékelésre
+    subinstruction_five: Készen állsz a képernyő megosztására a munkamenet során?
+    subinstruction_four: Működő webkamera és mikrofon
+    subinstruction_one: Egy csendes, jól megvilágított szoba, ahol nincs más ember
+    subinstruction_seven: Győződjön meg arról, hogy készüléke teljesen feltöltve van, vagy csatlakoztatva van a konnektorhoz
+    subinstruction_six: Zárjon be minden felesleges alkalmazást és böngészőfület
+    subinstruction_three: Stabil internetkapcsolat (legalább 1 Mbps)
+    subinstruction_two: Rendezett íróasztal, amelyen nincs helye felesleges tárgyaknak
+    system_check: Rendszerellenőrzés
     system_check_access: Hozzáférés
     system_check_audio_random_phrases:
       eight: Legyen erős a kávéja, és legyen termékeny a napja.
@@ -55,6 +132,13 @@ hu:
       three: Tesztelés, egy kettő három, a hang tiszta, mint lehet!.
       two: A gyors barna róka átugrik a lusta kutyán.
     system_check_audio_title: Kérem, beszéljen és ismételje meg a következő mondatot háromszor.
+    system_check_complete: A rendszerellenőrzés befejeződött
+    system_check_failed: A rendszerellenőrzés sikertelen
+    system_check_failed_description: Kérjük, oldja meg a problémákat, majd futtassa újra a rendszerellenőrzéseket.
+    system_check_failed_message: Néhány rendszerellenőrzés sikertelen volt. Kérjük, ellenőrizze a részleteket, majd próbálja meg újra.
+    system_check_failed_title: Addig nem folytathatja a műveletet, amíg az összes szükséges ellenőrzés sikeresen lezárul.
+    system_check_not_enabled: A rendszerellenőrzés nincs engedélyezve ehhez a kampányhoz
+    system_check_passed_successfully: Minden rendszerellenőrzés sikeresen lezajlott!
     system_check_proceed: Igen, oké a folytatáshoz
     system_check_retake: Nem, újra akarom venni
     system_check_run_again: Fuss újra
@@ -64,4 +148,41 @@ hu:
     system_check_upload_again: Feltöltés újra
     system_check_uploading: A  feltöltése
     system_check_video_random_phrase: Készen állok. Ez egy tesztfelvétel, hogy megbizonyosodjak arról, hogy a videóm és a mikrofonom megfelelően működik.
+    system_check_warning: Rendszerellenőrzési figyelmeztetés
+    system_check_warning_message: Az esetleges rendszerhibák befolyásolhatják az értékeléseket – kérjük, csak akkor folytassa, ha minden ellenőrzés sikeres volt.
+    system_checks: Rendszerellenőrzések
+    task_duration: A feladat időtartama
     tasks: Feladatok
+    time_commitment: Időigény
+    troubleshooting_guide: Hibaelhárítási útmutató
+    troubleshooting_guide_browser_fifth: Győződjön meg arról, hogy a böngésző beállításaiban engedélyezve van a LocalStorage
+    troubleshooting_guide_browser_first: 'Használjon támogatott böngészőt: Chrome, Firefox, Edge vagy Safari (legújabb verziók)'
+    troubleshooting_guide_browser_fourth: Engedélyezze a JavaScriptet és a cookie-kat a böngésző beállításaiban
+    troubleshooting_guide_browser_second: Törölje a böngésző gyorsítótárát és a cookie-kat
+    troubleshooting_guide_browser_sixth: 'Próbáld meg inkognitó/privát böngészési ablakot használni (Megjegyzés: a LocalStorage támogatása inkognitó/privát módban korlátozott lehet, vagy egyáltalán nem elérhető)'
+    troubleshooting_guide_browser_third: Tiltsa le azokat a böngészőbővítményeket, amelyek zavarhatják a médiafájlok elérését
+    troubleshooting_guide_network_fifth: Ha a probléma továbbra is fennáll, forduljon az internetszolgáltatójához további segítségért
+    troubleshooting_guide_network_first: Zárja be az összes olyan alkalmazást, amely sávszélességet igényel (videó streaming, letöltések stb.)
+    troubleshooting_guide_network_fourth: Ha lehetséges, próbáljon meg egy másik hálózati kapcsolatot használni
+    troubleshooting_guide_network_second: Közelebb kell mennie a Wi-Fi útválasztóhoz, vagy Ethernet-kábellel kell csatlakoznia
+    troubleshooting_guide_network_third: Indítsa újra az útválasztót/modemet, majd próbálja meg újra
+    troubleshooting_guide_video_fifth: 'Windows rendszerben: Ellenőrizze az Adatvédelmi beállításokat > Kamera/mikrofon hozzáférés'
+    troubleshooting_guide_video_first: Kattintson a böngésző címsorában található lakat/információ ikonra
+    troubleshooting_guide_video_fourth: Ha blokkolva van, előfordulhat, hogy vissza kell állítania a jogosultságokat a böngésző beállításaiban
+    troubleshooting_guide_video_second: Keresse meg a „Kamera” és a „Mikrofon” beállításokat, és állítsa őket „Engedélyezve” értékre
+    troubleshooting_guide_video_sixth: 'Mac esetén: Nyissa meg a Rendszerbeállítások > Biztonság és adatvédelem > Kamera/Mikrofon menüpontot'
+    troubleshooting_guide_video_third: A jogosultságok módosítása után frissítse az oldalt
+    untimed: Időkorlát nélkül
+    upload: Feltöltés
+    video_and_audio: Videó és hang
+    video_and_audio_recording: Videó- és hangfelvétel
+    video_check_fix_fifth: Ha a fényképezőgép külső eszköz, próbálja meg kihúzni a csatlakozóját, majd újra csatlakoztatni
+    video_check_fix_first: Kattints az „Engedélyezés” gombra, amikor a böngésző a kamera használatához kéri az engedélyt
+    video_check_fix_fourth: Ellenőrizze, hogy a fényképezőgép csatlakoztatva van-e és be van-e kapcsolva
+    video_check_fix_second: Nyisd meg a böngésző beállításait, és engedélyezd a kamera használatát ezen az oldalon
+    video_check_fix_sixth: Indítsd újra a böngészőt, és próbáld meg újra
+    video_check_fix_third: Zárja be a kamerát használó egyéb alkalmazásokat (Zoom, Teams stb.)
+    webgl_api_fix_description_first: Győződjön meg arról, hogy a böngészője támogatja a WebGL-t, és hogy az be van kapcsolva a beállításokban
+    webgl_api_fix_description_second: Frissítse a grafikus illesztőprogramokat a legújabb verzióra
+    webgl_api_fix_title: A böngészője nem támogatja vagy nem engedélyezte a WebGL-t
+    webgl_api_support: WebGL API támogatás

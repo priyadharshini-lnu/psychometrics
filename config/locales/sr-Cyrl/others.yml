@@ -873,6 +873,7 @@ sr-Cyrl:
         export_assessment_questions: Питања за процену извоза
         export_campaign_ai_artifacts: Извозна кампања АИ артефаката
         export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
+        export_campaign_datasheet: Радни лист кампање за извоз
         export_campaign_factors: Фактори извозне кампање
         export_campaign_scorings: Резултати извозне кампање
         export_dashboard_as_file: Извози контролну таблу као датотеку
@@ -932,6 +933,7 @@ sr-Cyrl:
         regenerate_report: Регенеришите извештај
         regenerate_threesixty_report: Регенерате Тхреесиxтy Репорт
         remap_report_assessment: Процена извештаја о ремапирању
+        rescore_ai_scoring: Поновно бодовање вештачке интелигенције
         rescore_assessment: Ресцоре Процена
         rescore_user_assessment: Поновите процену корисника
         send_sms_invites: Пошаљи СМС позивнице
@@ -2654,6 +2656,7 @@ sr-Cyrl:
     direct_reportee_details: Директни извештавачи Детаљ
     download:
       description: 'Да бисте преузели извештај, пратите линк: < а хреф =''ИНТЕРПОЛАТИОН_ВАР_0'' таргет =''_бланк''> Довнлоад </а>. Веза важи само 10 минута'
+      title: Ваш извештај је спреман!
     download_plan: План за преузимање
     edit_plan: Измени план
     edit_plan_and_add_skills: Уредите план и кликните на Управљање вештинама да бисте додали вештине.

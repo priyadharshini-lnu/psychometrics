@@ -5,8 +5,8 @@
 
 module EndUser
   class CampaignOptionsSchema < BaseSchema
-    def self.schema(_, _)
-      Dry::Schema.JSON do
+    def self.schema(_, _) # rubocop:disable Metrics/AbcSize
+      Dry::Schema.JSON do # rubocop:disable Metrics/BlockLength
         config.validate_keys = true
 
         required(:time_zone).maybe(:str?)
@@ -34,6 +34,11 @@ module EndUser
         required(:workshop_booking_requires_prework_completion).filled(:bool?)
         required(:show_watermark).filled(:bool?)
         required(:watermark_content).maybe(:str?)
+        required(:system_check_enabled).filled(:bool?)
+        required(:system_check_validity).maybe(:int?)
+        required(:allow_continue_with_warning).filled(:bool?)
+        required(:minimum_upload_speed).maybe(:int?)
+        required(:minimum_download_speed).maybe(:int?)
       end
     end
   end

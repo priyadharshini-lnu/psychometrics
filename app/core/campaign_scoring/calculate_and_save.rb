@@ -2,18 +2,27 @@
 
 module CampaignScoring
   class CalculateAndSave < BaseCommand
-    private_attr_reader :campaign, :user, :campaign_user, :existing_campaign_factor_values
+    private_attr_reader :campaign, :user, :campaign_user
 
     def initialize(campaign, user)
       @campaign = campaign
       @user = user
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
-      @existing_campaign_factor_values =
-        campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
     end
 
     def call
+      lock_manager.lock!(lock_key, 1.minute.in_milliseconds) do
+        calculate_and_save_scores
+      end
+    end
+
+    private
+
+    def calculate_and_save_scores
       return broadcast :campaign_scores_unchanged if campaign_user.campaign_scores_finalized?
+
+      existing_campaign_factor_values =
+        campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
 
       indexed_factor_values = CampaignScoring::Calculate.call!(campaign, user)
       campaign_factor_values = indexed_factor_values.flat_map do |cf, factor_value|
@@ -37,6 +46,14 @@ module CampaignScoring
       campaign_user.update!(campaign_user_attrs)
 
       broadcast :ok, campaign_factor_values, indexed_factor_values
+    end
+
+    def lock_key
+      "locks/calculate_and_save/#{campaign.id}/#{campaign_user.id}"
+    end
+
+    def lock_manager
+      @lock_manager ||= Redlock::Client.new([$redis]) # rubocop:disable Style/GlobalVars
     end
   end
 end

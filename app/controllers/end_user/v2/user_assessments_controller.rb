@@ -12,7 +12,8 @@ class EndUser::V2::UserAssessmentsController < ApplicationController
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
     serialized = Assessments::CacheService.new(@user_assessment.assessment,
-                                               @selected_locale, build_piped_context).fetch_serialized_assessment
+                                               @selected_locale, build_piped_context,
+                                               @user_assessment.campaign_id).fetch_serialized_assessment
     render json: serialized
   end
 

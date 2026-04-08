@@ -23,7 +23,15 @@ nl:
     ai_artifact_result_generation_admin_job_failed: Het artefact '%{artifact_name}' kan niet worden gegenereerd voor gebruiker '%{user_email}'.
     ai_artifact_result_stale: Het resultaat kan verouderd zijn, aangezien de afhankelijkheden van het AI-artefact zijn gewijzigd sinds het laatste resultaat werd gegenereerd. Overweeg het artefact opnieuw te genereren met de nieuwste afhankelijkheden.
     ai_artifacts: AI-artefacten
+    ai_artifacts_finalized_at: Vastgesteld op
+    ai_artifacts_generate_result_confirm: Als u artefactresultaten genereert voor gebruiker '%{email}', wordt het bestaande rapport verwijderd dat afhankelijk is van dit AI-artefact. Weet u zeker dat u wilt doorgaan?
     ai_artifacts_generate_results: Resultaten genereren
+    ai_artifacts_mark_finalized: Mark is voltooid
+    ai_artifacts_mark_finalized_bulk_confirm: Als u de resultaten van de artefacten voor alle geselecteerde gebruikers definitief vastlegt, worden er rapporten gegenereerd waarin AI-artefacten worden gebruikt. Weet u zeker dat u wilt doorgaan?
+    ai_artifacts_mark_finalized_confirm: Als u de resultaten van het artefact voor gebruiker '%{email}' definitief vastlegt, wordt het rapport gegenereerd waarin het AI-artefact voor deze gebruiker wordt gebruikt. Weet u zeker dat u wilt doorgaan?
+    ai_artifacts_mark_not_finalized: Markering nog niet definitief
+    ai_artifacts_mark_not_finalized_bulk_confirm: Als u de status ‘voltooid’ bij alle geselecteerde gebruikers verwijdert, worden de gegenereerde rapporten waarin AI-artefacten zijn gebruikt, verwijderd. Weet u zeker dat u door wilt gaan?
+    ai_artifacts_mark_not_finalized_confirm: Als u 'finalize' verwijdert uit de gebruikersmap '%{email}', wordt het gegenereerde rapport verwijderd dat gebruikmaakt van het AI-artefact voor de gebruiker. Weet u zeker dat u door wilt gaan?
     ai_artifacts_output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
     ai_artifacts_results_export: Resultaten exporteren
     ai_artifacts_results_export_job_scheduled: De exporttaak voor AI-artefacten is succesvol gepland.
@@ -78,12 +86,32 @@ nl:
     ai_scoring_appoval_score_not_applicable: Score niet van toepassing
     ai_scoring_approval: Goedkeuring van AI-scores
     ai_scoring_approval_settings: Instellingen voor goedkeuring van AI-scores
+    ai_scoring_approval_stale_description: Configuratie-updates sinds de laatste uitvoering kunnen de score hebben gewijzigd. Voer een nieuwe beoordeling uit om de score bij te werken met de nieuwste instellingen.
+    ai_scoring_approval_stale_title: De score is mogelijk verouderd
     ai_scoring_approvals: AI-scoring goedkeuringen
+    ai_scoring_refresh_score: Score vernieuwen
+    ai_scoring_refresh_score_confirm_description: Hiermee wordt de AI-beoordeling voor deze toets opnieuw uitgevoerd met de nieuwste instellingen. Weet u het zeker?
+    ai_scoring_refresh_score_confirm_title: AI-scores vernieuwen?
+    ai_scoring_rescore_queued: Het opnieuw beoordelen door AI staat in de wachtrij. Vernieuw de pagina na enkele ogenblikken.
     ai_translation: AI-vertaling
     all_corner_rounded: Alle hoeken afgerond
     allow_ai_rescoring: AI-herbeoordeling toestaan
+    allow_continue_with_warning_system_check: Gebruikers toestaan door te gaan ondanks waarschuwingen wanneer de systeemcontrole mislukt
     api_keys: API-sleutels
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+    assessment_center_activity: Activiteit
+    assessment_center_assessor: Beoordelaar
+    assessment_center_attendance: Aanwezigheid
+    assessment_center_attendance_status: Aanwezigheidsstatus
+    assessment_center_campaigns_tab: Campagnes
+    assessment_center_date_and_time: Datum en tijd
+    assessment_center_join_room: Ga naar de chatroom
+    assessment_center_meeting_link: Link naar de vergadering
+    assessment_center_participants_tab: Deelnemers
+    assessment_center_prework: Voorbereiding
+    assessment_center_schedule_time: Tijd inplannen
+    assessment_center_scheduling_status: Status van de planning
+    assessment_center_search_participants: Deelnemers zoeken...
     assessment_question_not_supported: Dit type vraag wordt momenteel niet ondersteund.
     assessments: Beoordeling
     assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
@@ -99,6 +127,7 @@ nl:
     auto_placeholder: Auto
     availability: Beschikbaarheid
     available_languages: Rapport beschikbaar in talen
+    average: Gemiddeld
     back_to_main: Hoofdmenu
     bulk_assets_modal_choose_csv: Kies CSV-bestand
     bulk_assets_modal_choose_zip: Kies ZIP-bestand
@@ -138,7 +167,9 @@ nl:
     cancel: Annuleren
     cancellation_and_rescheduling_disabled: Annuleren en verzetten is uitgeschakeld
     casual: Casual
+    cell_save_msg: Geldige wijzigingen worden automatisch opgeslagen zodra u de cel na het bewerken verlaat.
     characters: tekens
+    chat_instructions_success: De chatinstructies zijn succesvol opgeslagen
     children_factor_type: Kinderen Factor Type
     client: Huurder
     client_admins: Klanten-admins
@@ -152,6 +183,7 @@ nl:
     configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
     copied: Gekopieerd
+    copy_ai_artifacts: AI-artefacten kopiëren
     country: Land
     create_client: Klant maken
     create_indicator: Indicator aanmaken
@@ -193,6 +225,7 @@ nl:
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
+    duration: Duur
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
     edit_indicator: Indicator bewerken
@@ -201,10 +234,12 @@ nl:
     edit_permission_denied: Je hebt geen toestemming om admin-'%{name}' te bewerken
     edit_project_admin: Projectbeheer bewerken
     edit_threesixty_campaign_admin: Campagnebeheer bewerken
+    empty: Leeg
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
     enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
     enable_maintenance: Onderhoud inschakelen
     enable_mobile_proctoring: Mobiel toezicht inschakelen
+    enable_system_check: Systeemcontrole inschakelen
     enable_transcription: Transcriptie inschakelen
     enable_transcription_msg: Schakel transcriptie in om AI-scores te gebruiken voor vragen met video-/audio-antwoorden.
     end_time: Eindtijd
@@ -218,10 +253,12 @@ nl:
     evaluation_status: Evaluatiestatus
     evaluation_status_not_done: De evaluatiestatus is niet 'Klaar' voor één of meer geselecteerde proefpersonen. Zorg ervoor dat alle geselecteerde gebruikers evaluaties hebben afgerond of markeer als voltooid.
     export_admin_roles_permissions: Beheerdersrollen en -rechten exporteren
+    export_campaigns_queued: De exportopdrachten zijn in de wachtrij geplaatst. Kijk in je meldingen voor de downloadlinks.
     export_compact_completion_status: Compact
     export_completion_status: Status van voltooiing van export
     export_completion_statuses_scheduled: De exporttaak voor voltooiingsstatussen is succesvol gepland.
     export_detailed_completion_status: Gedetailleerd
+    factors: Factoren
     feature_ai_assistants_description: Schakel AI-aangedreven assistenten in voor een verbeterde gebruikerservaring
     feature_ai_assisted_idp_description: Gebruik AI om te helpen bij aanbevelingen voor individuele ontwikkelingsplannen
     feature_ai_content_analysis_description: AI-gestuurde inhoudsanalyse inschakelen voor beoordelingen
@@ -240,8 +277,35 @@ nl:
     final_score_empty_msg: Het eindresultaat mag niet leeg zijn.
     fix_grammar: Grammatica corrigeren
     formal: Formeel
+    from: Van
     generate_transcription: Transcriptie genereren
     hide_middle_scores: Verberg middelste scores
+    high: Hoog
+    hogan: Hogan
+    hogan_assessment: Hogan-beoordeling
+    idp_appearance_body: Hoofdtekst
+    idp_appearance_color: Kleur
+    idp_appearance_cover: Omslag
+    idp_appearance_dynamic_content: Dynamische inhoud
+    idp_appearance_flip_background: Achtergrondafbeelding op de omslag en de laatste pagina's spiegelen
+    idp_appearance_font_family: Lettertypefamilie
+    idp_appearance_guideline_position: 'Richtlijn: Pagina-indeling'
+    idp_appearance_guideline_position_second: Tweede pagina (na de omslag)
+    idp_appearance_guideline_position_second_last: Voorlaatste pagina (vóór de laatste)
+    idp_appearance_guidelines: Richtlijnen
+    idp_appearance_idp_skills: Vaardigheden van ontheemden
+    idp_appearance_last: Laatste
+    idp_appearance_per_page_font_settings: Lettertype-instellingen per pagina
+    idp_appearance_reflections: Overpeinzingen
+    idp_appearance_report_summary: Samenvatting van het rapport
+    idp_appearance_section_body: Hoofdtekst
+    idp_appearance_section_subtitle: Ondertitel van de paragraaf
+    idp_appearance_section_title: Titel van de paragraaf
+    idp_appearance_select_font: Lettertype selecteren
+    idp_appearance_show_guidelines: Pagina met richtlijnen weergeven
+    idp_appearance_size: Maat
+    idp_appearance_subtitle: Ondertitel
+    idp_appearance_title: Titel
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
     import_ai_artifacts: AI-artefacten importeren
@@ -281,6 +345,7 @@ nl:
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     licenses: Licenties
+    low: Laag
     maintenance: Onderhoud
     maintenance_settings: Onderhoudsinstellingen
     maintenance_settings_description: Beheer onderhoudsvensters en instellingen van het systeem
@@ -297,6 +362,8 @@ nl:
     mhs_session_id: Mhs-sessie-ID
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
+    minimum_download_speed: Minimale downloadsnelheid (in Mbps)
+    minimum_upload_speed: Minimale uploadsnelheid (in Mbps)
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
     model_answer: Modelantwoord
     model_answer_placeholder: Voer het modelantwoord in voor AI-scoring.
@@ -305,6 +372,7 @@ nl:
     name_required: Naam is vereist
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
+    no_status: Geen status
     norms: Normen
     not_completed: Niet voltooid
     not_completed_tooltip: "%{completed} evaluators worden toegewezen, maar alleen %{submitted} de evaluaties hebben afgerond"
@@ -837,6 +905,19 @@ nl:
     saml_settings: SAML-instellingen
     save: Opslaan
     save_assessment_for_scoring_management: Sla de beoordeling op voordat u begint met scoren.
+    saved_filter_label:
+      approval_status_in: Goedkeuringsstatus
+      approver_user_id_in: Goedkeurder
+      assessment_id_in: Beoordeling
+      campaign_id_in: Campagne
+      client_id_in: Klant
+      project_id_in: Project
+      qc_user_id_in: QC-gebruiker
+      report_id_in: Verslag
+      subject_email_cont: Onderwerp E-mail
+      subject_full_name_cont: Onderwerpnaam
+      user_email_cont: E-mailadres van de gebruiker
+      user_full_name_cont: Gebruikersnaam
     scheduling: Planning
     score: Score
     score_approval_not_allowed_to_approve: Je mag deze score niet goedkeuren.
@@ -893,7 +974,9 @@ nl:
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
     target_job_role: Beoogde functie
     this_field_is_required: Dit veld is verplicht
+    threesixty: 360°-campagne
     timezone: Tijdzone
+    to: Aan
     tone: Toon
     toolbar_ai_insight: AI-inzicht
     toolbar_ai_suggestion: AI-suggestie
@@ -917,6 +1000,9 @@ nl:
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
     validation_error: Vul alle verplichte velden in.
+    validity: Geldigheid
+    very_high: Zeer hoog
+    very_low: Zeer laag
     view_licenses: Licenties bekijken
     waiting: Wachten
     weight: Gewicht

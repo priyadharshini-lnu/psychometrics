@@ -97,6 +97,7 @@ vi:
     name: Tên
     negative: Tiêu cực
     new: Mới
+    next: Tiếp theo
     no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi
@@ -114,6 +115,8 @@ vi:
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     rec: GHI NHẬN
+    recorded: được ghi lại
+    recording: Ghi âm
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
     recording_consent_proceed_question: Bạn có đồng ý tiến hành cuộc họp được ghi âm không?
     recording_consent_title: Thông báo đồng ý ghi âm
@@ -132,6 +135,7 @@ vi:
     show_more: Hiển thị nhiều hơn
     something_wrong: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
     status: Trạng thái
+    status_unknown: Trạng thái không xác định
     subject: Chủ đề
     submit: Gửi
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn

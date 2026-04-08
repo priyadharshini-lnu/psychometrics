@@ -1,4 +1,3 @@
-/* eslint-disable prefer-spread */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-rest-params */
 import event from '../Event'

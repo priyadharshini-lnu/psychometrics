@@ -148,4 +148,37 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
       )
     end
   end
+
+  describe 'POST /api/v2/administration/campaigns/{campaign_id}/' \
+           'ai_artifact_results/{user_id}/change_finalized_artifact_results' do
+    it 'updates the finalized state for a single user' do
+      url = "/api/v2/administration/campaigns/#{campaign_id}/" \
+            "ai_artifact_results/#{user.id}/change_finalized_artifact_results"
+      post url,
+           params: { data: { attributes: { finalized: true } } },
+           headers: { 'Authorization' => authorization },
+           as: :json
+
+      expect(response).to have_http_status(200)
+      expect(campaign_user.reload.campaign_artifact_results_finalized).to be(true)
+      expect(campaign_user.reload.campaign_artifact_results_finalized_at).not_to be_nil
+    end
+  end
+
+  describe 'POST /api/v2/administration/campaigns/{campaign_id}/' \
+           'ai_artifact_results/change_finalized_artifact_results_bulk' do
+    let!(:second_user) { create(:user) }
+    let!(:second_campaign_user) { create(:campaign_user, campaign: campaign, user: second_user) }
+
+    it 'updates the finalized state for multiple users' do
+      post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results/change_finalized_artifact_results_bulk",
+           params: { data: { attributes: { finalized: true, user_ids: [user.id, second_user.id] } } },
+           headers: { 'Authorization' => authorization },
+           as: :json
+
+      expect(response).to have_http_status(200)
+      expect(campaign_user.reload.campaign_artifact_results_finalized).to be(true)
+      expect(second_campaign_user.reload.campaign_artifact_results_finalized).to be(true)
+    end
+  end
 end

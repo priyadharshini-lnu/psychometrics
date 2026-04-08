@@ -1,6 +1,8 @@
 ---
 it:
   enduser:
+    ack_subtitle: Ho letto e compreso le istruzioni riportate sopra e sono pronto a procedere con il controllo del sistema.
+    ack_title: Prendo atto e comprendo
     add_idp_plan_note: Aggiungi Nota...
     add_idp_plan_rejection_reason: Aggiungi Motivo...
     ai_idp_assistant_response_no: 'No'
@@ -8,13 +10,44 @@ it:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Sì, procedi con la creazione del piano.
     ai_idp_retake_step_chat_hint_no_document: Puoi riavviare la chat per condividere più dettagli, e farò del mio meglio per aiutarti.
     ai_idp_summary_hint_no_document: Con il tuo permesso, se dici di sì, posso creare un piano di sviluppo per te. Se no, puoi riavviare la chat per condividere più dettagli.
+    all_checks_must_pass: È necessario che tutti i controlli abbiano esito positivo prima di poter procedere.
     approve_idp_plan: Approva Piano
+    back: Indietro
+    back_to_dashboard: Torna alla dashboard
+    before_you_begin: Prima di iniziare
+    begin_message: Prima di procedere con le attività di questa campagna, è necessario eseguire un controllo di preparazione che verificherà la compatibilità del dispositivo
     bookings: Prenotazioni
+    browser: Browser
+    browser_and_device: Browser e dispositivo
+    browser_compatbility_step: Compatibilità con i browser
+    browser_compatibility: 'Compatibilità con i browser:'
+    browser_compatibility_check: Test di compatibilità con i browser
+    browser_compatibility_check_description: Verifica se il tuo browser supporta tutte le funzionalità richieste
+    browser_compatibility_result: Compatibilità con i browser
+    browser_version_fix_description_first: 'Utilizza un browser compatibile: Chrome, Firefox, Edge o Safari'
+    browser_version_fix_description_second: Aggiorna il browser all'ultima versione per garantire la compatibilità.
+    browser_version_fix_description_third: Prova a utilizzare una finestra di navigazione in incognito
+    browser_version_fix_title: La versione del tuo browser non è supportata.
+    camera: Video e audio
+    camera_access_blocked: L'accesso alla fotocamera è stato negato o bloccato dal tuo browser. Controlla le autorizzazioni del browser.
+    camera_check: Test della videocamera e del microfono
+    camera_check_description: Verifica che la videocamera e il microfono funzionino correttamente per la registrazione
+    camera_test_step: Fase di verifica audio e video
     campaign: Campagna
+    chat_instructions: Istruzioni per la chat
+    check: Controlla
+    check_video_recording: Ti preghiamo di controllare la registrazione video riproducendola.
+    checking_browser_compatibility: Verifica della compatibilità del browser...
     development: Sviluppo
     direct_reportees: Collegati
+    download: Scarica
     download_pdf: Scarica PDF
+    environment_setup: Configurazione dell'ambiente
+    error_uploading_video: Errore durante il caricamento del video
+    fail: Errore
+    follow_these_steps: Segui questi passaggi per risolvere i problemi rilevati durante il controllo del sistema
     home: Dashboard
+    how_to_fix: 'Come risolvere il problema:'
     idp_loading_fifth_step: Recupero delle azioni di sviluppo dal template
     idp_loading_first_step: Analisi del tuo rapporto di valutazione
     idp_loading_fourth_step: Selezione delle competenze rilevanti
@@ -22,27 +55,71 @@ it:
     idp_loading_secondary_text: Sentiti libero di allontanarti. Il tuo piano sarà pronto al tuo ritorno.
     idp_loading_sixth_step: Creazione di azioni di sviluppo
     idp_plan_approval_note: Nota di Approvazione
+    idp_proceed_with_plan_creation: Sì, procedi con la creazione del piano
+    idp_report_being_generated: Stiamo lavorando al tuo rapporto
+    idp_reset_chat: Resetta chat
     idp_retake_steps_continue_with_this_information: Continua con queste informazioni
     insights: Approfondimenti
+    instruction: Assicurati che tu e chi ti circonda siate perfettamente preparati
+    internet_speed: Velocità di Internet
+    internet_speed_optimal: La velocità della tua connessione è ottimale
+    internet_speed_slow: La velocità di Internet è inferiore a quella richiesta per la campagna
+    less_than_five_minutes: Meno di 5 minuti
     lighthouse_assistant: Assistente al faro
+    localstorage_fix_description_first: Assicurati di non trovarti in modalità privata o in incognito, poiché in queste modalità localStorage è spesso disabilitato.
+    localstorage_fix_title: La memorizzazione locale non è abilitata nel tuo browser
+    localstorage_support: LocalStorage abilitato
     max_word_limit: Deve essere al massimo %{max} parole
+    media_recorder_api_fix_description_first: Abilita JavaScript nelle impostazioni del browser
+    media_recorder_api_fix_description_second: Verifica che il tuo browser supporti l'API MediaRecorder e, se necessario, aggiorna alla versione più recente.
+    media_recorder_api_fix_description_third: Prova un altro browser moderno, come Chrome o Firefox
+    media_recorder_api_fix_title: L'API Media Recorder non è supportata dal tuo browser.
+    media_recorder_api_support: Supporto dell'API MediaRecorder
     min_word_limit: Deve essere almeno %{min} parole
     my_plan: Il mio piano
+    network: Rete
+    network_check: Test di velocità Internet
+    network_check_description: Verifica della qualità della tua connessione Internet tra i nostri server e il tuo dispositivo.
+    network_check_fix_fifth: Se il problema persiste, contatta il tuo provider di servizi Internet per ulteriore assistenza
+    network_check_fix_first: Chiudi le altre applicazioni che potrebbero occupare la larghezza di banda (streaming video, download)
+    network_check_fix_fourth: Prova a utilizzare una connessione di rete diversa, se disponibile
+    network_check_fix_second: Avvicinati al router Wi-Fi oppure collegati tramite cavo Ethernet
+    network_check_fix_third: Riavvia il router/modem e riprova
+    network_test_step: Fase di test della rete
     no_audio_warning: Nessun audio rilevato. Verifica che il microfono sia collegato e funzioni correttamente.
+    pass: Passa
+    pending: In attesa
+    personal_readiness: Preparazione personale
+    plan_text: Organizzati per l'intera durata. Una volta iniziata la prova, potrebbero non essere consentite interruzioni, a seconda del tipo di valutazione.
+    please_check_your_internet_connection: Controlla la tua connessione Internet e riprova.
     profile: Profilo
     profile_details: Dettagli
     question_counter: Domanda %{current} di %{total}
     reason_for_idp_plan_rejection: Motivo del rifiuto
-    recorded: Registrato
-    recording: Registrazione
     reject_idp_plan: Rifiuta il piano
     request_retry_message: Sei offline. Le tue risposte non potevano essere salvate, ma lo saranno automaticamente una volta che sarai di nuovo online. Per favore, non aggiornare o chiudere la pagina.
+    required_download_in_mbps: Velocità di download richiesta in Mbps
+    required_upload_in_mbps: Velocità di upload richiesta in Mbps
+    rerun_check: Verifica di ripetizione
+    rerun_checks: Ripetere i controlli
+    result: Risultato
+    results: Risultato
     selected_count: Selezionato
     skill_type: Tipo di abilità
     start_campaign_message_proctored: Questa è una campagna sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
     start_campaign_message_timed: Questa è una campagna a tempo, clicca sul pulsante '%{buttonText}' per iniziare le attività.
     start_campaign_message_timed_proctored: Questa è una campagna a tempo e sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
-    status_unknown: Stato sconosciuto
+    start_readiness_check: Avvia il controllo di preparazione
+    start_system_check: Avvia il controllo del sistema
+    subinstruction_eight: Riservatevi un po' di tempo senza interruzioni per la valutazione completa
+    subinstruction_five: Sei pronto a condividere lo schermo per tutta la durata della sessione
+    subinstruction_four: Webcam e microfono funzionanti
+    subinstruction_one: Una stanza tranquilla e ben illuminata, senza altre persone presenti
+    subinstruction_seven: Assicurati che il tuo dispositivo sia completamente carico o collegato alla presa di corrente
+    subinstruction_six: Chiudi tutte le applicazioni e le schede del browser non necessarie
+    subinstruction_three: Connessione Internet stabile (minimo 1 Mbps)
+    subinstruction_two: Scrivania pulita e priva di oggetti non autorizzati
+    system_check: Controllo del sistema
     system_check_access: Accesso
     system_check_audio_random_phrases:
       eight: Che il vostro caffè sia forte e la vostra giornata produttiva.
@@ -55,6 +132,13 @@ it:
       three: Prova, uno due tre, il suono è chiarissimo!
       two: La volpe marrone veloce salta il cane pigro.
     system_check_audio_title: Parlate e ripetete la seguente frase per 3 volte.
+    system_check_complete: Controllo del sistema completato
+    system_check_failed: Controllo del sistema non riuscito
+    system_check_failed_description: Si prega di risolvere i problemi ed eseguire nuovamente i controlli di sistema.
+    system_check_failed_message: Alcuni controlli di sistema non sono andati a buon fine. Controlla i dettagli e riprova.
+    system_check_failed_title: Non è possibile procedere finché non saranno stati superati tutti i controlli richiesti.
+    system_check_not_enabled: Il controllo del sistema non è abilitato per questa campagna
+    system_check_passed_successfully: Tutti i controlli di sistema sono stati superati con successo!
     system_check_proceed: Sì, è possibile procedere
     system_check_retake: No, voglio rifare il test
     system_check_run_again: Correre di nuovo
@@ -64,4 +148,41 @@ it:
     system_check_upload_again: Caricare di nuovo
     system_check_uploading: Caricamento
     system_check_video_random_phrase: Sono pronto. Questa è una registrazione di prova per assicurarmi che il mio video e il mio microfono funzionino correttamente.
+    system_check_warning: Avviso di controllo del sistema
+    system_check_warning_message: 'Eventuali malfunzionamenti del sistema potrebbero influire sulle valutazioni: si prega di procedere solo dopo aver superato tutti i controlli.'
+    system_checks: Controlli di sistema
+    task_duration: Durata dell'attività
     tasks: Campagne
+    time_commitment: Impegno in termini di tempo
+    troubleshooting_guide: Guida alla risoluzione dei problemi
+    troubleshooting_guide_browser_fifth: Assicurati che LocalStorage sia abilitato nelle impostazioni del browser
+    troubleshooting_guide_browser_first: 'Utilizza un browser compatibile: Chrome, Firefox, Edge o Safari (versioni più recenti)'
+    troubleshooting_guide_browser_fourth: Abilita JavaScript e i cookie nelle impostazioni del browser
+    troubleshooting_guide_browser_second: Svuota la cache e i cookie del browser
+    troubleshooting_guide_browser_sixth: 'Prova a utilizzare una finestra di navigazione in incognito (Nota: il supporto per LocalStorage potrebbe essere limitato o assente in modalità incognito)'
+    troubleshooting_guide_browser_third: Disattiva le estensioni del browser che potrebbero interferire con l'accesso ai contenuti multimediali
+    troubleshooting_guide_network_fifth: Se il problema persiste, contatta il tuo provider di servizi Internet per ulteriore assistenza
+    troubleshooting_guide_network_first: Chiudi le altre applicazioni che potrebbero occupare la larghezza di banda (streaming video, download, ecc.)
+    troubleshooting_guide_network_fourth: Prova a utilizzare una connessione di rete diversa, se disponibile
+    troubleshooting_guide_network_second: Avvicinati al router Wi-Fi oppure collegati tramite cavo Ethernet
+    troubleshooting_guide_network_third: Riavvia il router/modem e riprova
+    troubleshooting_guide_video_fifth: 'Su Windows: controlla le impostazioni sulla privacy > Accesso a fotocamera/microfono'
+    troubleshooting_guide_video_first: Clicca sull'icona del lucchetto/informazioni nella barra degli indirizzi del browser
+    troubleshooting_guide_video_fourth: Se l'accesso è bloccato, potrebbe essere necessario ripristinare le autorizzazioni nelle impostazioni del browser
+    troubleshooting_guide_video_second: Cerca le impostazioni "Fotocamera" e "Microfono" e imposta "Consenti"
+    troubleshooting_guide_video_sixth: 'Su Mac: vai su Preferenze di Sistema > Sicurezza e privacy > Fotocamera/Microfono'
+    troubleshooting_guide_video_third: Aggiorna la pagina dopo aver modificato le autorizzazioni
+    untimed: Senza limite di tempo
+    upload: Carica
+    video_and_audio: Video e audio
+    video_and_audio_recording: Registrazione video e audio
+    video_check_fix_fifth: Se la fotocamera è esterna, prova a scollegarla e ricollegarla
+    video_check_fix_first: Clicca su "Consenti" quando il browser richiede l'autorizzazione per l'uso della fotocamera
+    video_check_fix_fourth: Verifica che la fotocamera sia collegata e accesa
+    video_check_fix_second: Vai alle impostazioni del browser e abilita l'accesso alla fotocamera per questo sito
+    video_check_fix_sixth: Riavvia il browser e riprova
+    video_check_fix_third: Chiudi le altre applicazioni che utilizzano la fotocamera (Zoom, Teams, ecc.)
+    webgl_api_fix_description_first: Assicurati che il tuo browser supporti WebGL e che questa funzione sia abilitata nelle impostazioni
+    webgl_api_fix_description_second: Aggiorna i driver della scheda grafica all'ultima versione
+    webgl_api_fix_title: WebGL non è supportato o abilitato nel tuo browser
+    webgl_api_support: Supporto API WebGL

@@ -25,7 +25,8 @@ RSpec.describe AI::ContentAnalysis::ScoreQuestionJob, type: :job do
       expect(AI::ContentAnalysis::ScoreQuestion).to have_received(:call!).with(
         question,
         users_result,
-        rescore: false
+        rescore: false,
+        force_regenerate: false
       )
     end
 
@@ -46,7 +47,21 @@ RSpec.describe AI::ContentAnalysis::ScoreQuestionJob, type: :job do
         expect(AI::ContentAnalysis::ScoreQuestion).to have_received(:call!).with(
           question,
           users_result,
-          rescore: true
+          rescore: true,
+          force_regenerate: false
+        )
+      end
+    end
+
+    context 'with force_regenerate option' do
+      it 'passes the force_regenerate flag to ScoreQuestion' do
+        described_class.perform_now(users_result.id, question.id, rescore: true, force_regenerate: true)
+
+        expect(AI::ContentAnalysis::ScoreQuestion).to have_received(:call!).with(
+          question,
+          users_result,
+          rescore: true,
+          force_regenerate: true
         )
       end
     end

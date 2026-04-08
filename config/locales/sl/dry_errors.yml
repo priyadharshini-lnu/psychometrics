@@ -41,6 +41,12 @@ sl:
         skills_not_belong_to_project: Izbrana znanja morajo pripadati določenemu projektu.
         skills_required: Izberite vsaj eno spretnost.
       exceeded_subjects_count: Na povabilo lahko dodate samo %{count} predmetov
+      factors_norms:
+        invalid_field_name: Ime polja mora biti »score_from« ali »score_to«.
+        invalid_float: Vrednost mora biti veljavna številka tipa float.
+        invalid_level: Neveljavna stopnja. Veljavne stopnje so%{levels}
+        score_from_less_than_score_to: vrednost_od mora biti manjša od vrednosti_do
+        score_to_greater_than_score_from: vrednost_v_cilju mora biti večja od vrednosti_na_začetku
       filled?: Ne more biti prazno
       idp_template:
         content_required: Vsebina je potrebna za navodila

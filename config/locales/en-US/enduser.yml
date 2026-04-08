@@ -1,6 +1,8 @@
 ---
 en-US:
   enduser:
+    ack_subtitle: I have read and understood the instructions above and am ready to proceed with the system check.
+    ack_title: I acknowledge and understand
     add_idp_plan_note: Add Note...
     add_idp_plan_rejection_reason: Add Reason...
     ai_idp_assistant_response_no: 'No'
@@ -8,13 +10,44 @@ en-US:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Yes, proceed with plan creation.
     ai_idp_retake_step_chat_hint_no_document: You can restart the chat to share more details, and I'll do my best to assist you.
     ai_idp_summary_hint_no_document: With your permission, if you say yes, I can create a development plan for you. If not, you can restart the chat to share more details.
+    all_checks_must_pass: All checks must pass before you can proceed.
     approve_idp_plan: Approve Plan
+    back: Back
+    back_to_dashboard: Return to Dashboard
+    before_you_begin: Before you begin
+    begin_message: Before you proceed with the activities of this campaign, you need to start a readiness check which will check your device compatibility
     bookings: Bookings
+    browser: Browser
+    browser_and_device: Browser & Device
+    browser_compatbility_step: Browser Compatibility Step
+    browser_compatibility: 'Browser Compatibility:'
+    browser_compatibility_check: Browser Compatibility Test
+    browser_compatibility_check_description: Checking if your browser supports all required features
+    browser_compatibility_result: Browser Compatibility
+    browser_version_fix_description_first: 'Use a supported browser: Chrome, Firefox, Edge, or Safari'
+    browser_version_fix_description_second: Update your browser to the latest version to ensure compatibility.
+    browser_version_fix_description_third: Try using an incognito/private browsing window
+    browser_version_fix_title: Your browser version is not supported.
+    camera: Video and Audio
+    camera_access_blocked: Camera access was denied or blocked by your browser. Please check your browser permissions.
+    camera_check: Camera and Microphone Test
+    camera_check_description: Verify your camera and microphone are working properly for recording
+    camera_test_step: Video and Audio Test Step
     campaign: Campaign
+    chat_instructions: Chat Instructions
+    check: Check
+    check_video_recording: Please check your video recording by playing it back.
+    checking_browser_compatibility: Checking browser compatibility...
     development: Development
     direct_reportees: Direct Reportees
+    download: Download
     download_pdf: Download PDF
+    environment_setup: Environment Setup
+    error_uploading_video: Error uploading video
+    fail: Fail
+    follow_these_steps: Follow these steps to resolve the issues detected during the system check
     home: Dashboard
+    how_to_fix: 'How to fix:'
     idp_loading_fifth_step: Fetching development actions from the template
     idp_loading_first_step: Analyzing your assessment report
     idp_loading_fourth_step: Selecting relevant skills
@@ -22,27 +55,71 @@ en-US:
     idp_loading_secondary_text: Feel free to step away. Your plan will be ready when you return.
     idp_loading_sixth_step: Creating development actions
     idp_plan_approval_note: Approval Note
+    idp_proceed_with_plan_creation: Yes, proceed with plan creation
+    idp_report_being_generated: We're working on your report
+    idp_reset_chat: Reset Chat
     idp_retake_steps_continue_with_this_information: Continue with this information
     insights: Insights
-    lighthouse_assistant: Lighthouse Assistant
+    instruction: Make sure you and your environment are fully prepared
+    internet_speed: Internet Speed
+    internet_speed_optimal: Your connection speed is optimal
+    internet_speed_slow: Internet speed is slower than required for the campaign
+    less_than_five_minutes: Less than 5 minutes
+    lighthouse_assistant: Your Development Guide
+    localstorage_fix_description_first: Ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
+    localstorage_fix_title: Local Storage is not enabled in your browser
+    localstorage_support: LocalStorage Enabled
     max_word_limit: Must be at most %{max} words
+    media_recorder_api_fix_description_first: Enable JavaScript in your browser settings
+    media_recorder_api_fix_description_second: Check that your browser supports MediaRecorder API and update to the latest version if necessary.
+    media_recorder_api_fix_description_third: Try a different modern browser like Chrome or Firefox
+    media_recorder_api_fix_title: Media Recorder API is not supported in your browser.
+    media_recorder_api_support: MediaRecorder API Support
     min_word_limit: Must be at least %{min} words
     my_plan: My Plan
+    network: Network
+    network_check: Internet Speed Test
+    network_check_description: Testing the quality of your internet connection between our servers and your device.
+    network_check_fix_fifth: If the issue persists, contact your internet service provider for further assistance
+    network_check_fix_first: Close other applications that may be using bandwidth (video streaming, downloads)
+    network_check_fix_fourth: Try using a different network connection if available
+    network_check_fix_second: Move closer to your Wi-Fi router or connect via ethernet cable
+    network_check_fix_third: Restart your router/modem and try again
+    network_test_step: Network Test Step
     no_audio_warning: No audio detected. Please check if your microphone is connected and working properly.
+    pass: Pass
+    pending: Pending
+    personal_readiness: Personal Readiness
+    plan_text: Plan for the full duration. Once started, breaks may not be allowed depending on the assessment type.
+    please_check_your_internet_connection: Please check your internet connection and try again.
     profile: Profile
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
-    recorded: recorded
-    recording: recording
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
+    required_download_in_mbps: Required Download in Mbps
+    required_upload_in_mbps: Required Upload in Mbps
+    rerun_check: Re-run Check
+    rerun_checks: Re-run Checks
+    result: Result
+    results: Result
     selected_count: Selected
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
-    status_unknown: Status Unknown
+    start_readiness_check: Start Readiness Check
+    start_system_check: Start System Check
+    subinstruction_eight: Set aside uninterrupted time for the full assessment
+    subinstruction_five: Ready to share your screen throughout the session
+    subinstruction_four: Working webcam and microphone
+    subinstruction_one: A quiet, well-lit room with no other people present
+    subinstruction_seven: Ensure your device is fully charged or plugged into socket
+    subinstruction_six: Close all unnecessary applications and browser tabs
+    subinstruction_three: Stable internet connection (minimum 1 Mbps)
+    subinstruction_two: Clean desk with no unauthorized materials
+    system_check: System Check
     system_check_access: Access
     system_check_audio_random_phrases:
       eight: May your coffee be strong and your day be productive.
@@ -55,6 +132,13 @@ en-US:
       three: Testing, one two three, the sound is clear as can be!.
       two: The quick brown fox jumps over the lazy dog.
     system_check_audio_title: Please speak and repeat the following sentence 3 times.
+    system_check_complete: System Check Complete
+    system_check_failed: System Check Failed
+    system_check_failed_description: Please resolve the issues and re-run the system checks.
+    system_check_failed_message: Some system checks failed. Please review the details and try again.
+    system_check_failed_title: You cannot proceed until all required checks pass.
+    system_check_not_enabled: System check is not enabled for this campaign
+    system_check_passed_successfully: All system checks passed successfully!
     system_check_proceed: Yes, Ok to proceed
     system_check_retake: No, I want to retake
     system_check_run_again: Run again
@@ -64,4 +148,41 @@ en-US:
     system_check_upload_again: Upload again
     system_check_uploading: Uploading
     system_check_video_random_phrase: I am ready. This is a test recording to confirm that my video and microphone are working properly.
+    system_check_warning: System Check Warning
+    system_check_warning_message: Potential system failures may affect assessments—please proceed only after all checks pass.
+    system_checks: System Checks
+    task_duration: Task Duration
     tasks: Tasks
+    time_commitment: Time Commitment
+    troubleshooting_guide: Troubleshooting Guide
+    troubleshooting_guide_browser_fifth: Ensure LocalStorage is enabled in your browser settings
+    troubleshooting_guide_browser_first: 'Use a supported browser: Chrome, Firefox, Edge, or Safari (latest versions)'
+    troubleshooting_guide_browser_fourth: Enable JavaScript and cookies in browser settings
+    troubleshooting_guide_browser_second: Clear your browser cache and cookies
+    troubleshooting_guide_browser_sixth: 'Try using an incognito/private browsing window (Note: LocalStorage may have limited or no support in incognito/private mode)'
+    troubleshooting_guide_browser_third: Disable browser extensions that might interfere with media access
+    troubleshooting_guide_network_fifth: If the issue persists, contact your internet service provider for further assistance
+    troubleshooting_guide_network_first: Close other applications that may be using bandwidth (video streaming, downloads, etc.)
+    troubleshooting_guide_network_fourth: Try using a different network connection if available
+    troubleshooting_guide_network_second: Move closer to your Wi-Fi router or connect via ethernet cable
+    troubleshooting_guide_network_third: Restart your router/modem and try again
+    troubleshooting_guide_video_fifth: 'On Windows: Check Privacy Settings > Camera/Microphone access'
+    troubleshooting_guide_video_first: Click the lock/info icon in your browser's address bar
+    troubleshooting_guide_video_fourth: If blocked, you may need to reset permissions in browser settings
+    troubleshooting_guide_video_second: Find "Camera" and "Microphone" settings and set them to "Allow"
+    troubleshooting_guide_video_sixth: 'On Mac: Check System Preferences > Security & Privacy > Camera/Microphone'
+    troubleshooting_guide_video_third: Refresh the page after changing permissions
+    untimed: Untimed
+    upload: Upload
+    video_and_audio: Video & Audio
+    video_and_audio_recording: Video and Audio Recording
+    video_check_fix_fifth: Try unplugging and reconnecting your camera if it's external
+    video_check_fix_first: Click 'Allow' when the browser asks for camera permission
+    video_check_fix_fourth: Check if your camera is connected and powered on
+    video_check_fix_second: Go to browser settings and enable camera access for this site
+    video_check_fix_sixth: Restart your browser and try again
+    video_check_fix_third: Close other applications using the camera (Zoom, Teams, etc.)
+    webgl_api_fix_description_first: Ensure that your browser supports WebGL and that it is enabled in the settings
+    webgl_api_fix_description_second: Update your graphics drivers to the latest version
+    webgl_api_fix_title: WebGL is not supported or enabled in your browser
+    webgl_api_support: WebGL API Support

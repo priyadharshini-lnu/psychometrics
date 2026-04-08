@@ -18,7 +18,6 @@ const Socket = () => next => (action) => {
     RequestsPool[data.request_id](data.data)
     delete RequestsPool[data.request_id]
   } else {
-    // eslint-disable-next-line no-console
     console.warn('Unhandled socket message', action)
   }
 }

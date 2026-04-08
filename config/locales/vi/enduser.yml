@@ -1,6 +1,8 @@
 ---
 vi:
   enduser:
+    ack_subtitle: Tôi đã đọc và hiểu các hướng dẫn ở trên và sẵn sàng tiến hành kiểm tra hệ thống.
+    ack_title: Tôi xác nhận và hiểu rõ
     add_idp_plan_note: Thêm ghi chú...
     add_idp_plan_rejection_reason: Thêm lý do...
     ai_idp_assistant_response_no: Không
@@ -8,13 +10,44 @@ vi:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Có, tiến hành tạo kế hoạch.
     ai_idp_retake_step_chat_hint_no_document: Bạn có thể khởi động lại cuộc trò chuyện để chia sẻ thêm chi tiết và tôi sẽ cố gắng hết sức để hỗ trợ bạn.
     ai_idp_summary_hint_no_document: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện để chia sẻ thêm chi tiết.
+    all_checks_must_pass: Tất cả các bước kiểm tra phải được hoàn tất trước khi bạn có thể tiếp tục.
     approve_idp_plan: Phê duyệt kế hoạch
+    back: Quay lại
+    back_to_dashboard: Quay lại Trang tổng quan
+    before_you_begin: Trước khi bắt đầu
+    begin_message: Trước khi bắt đầu các hoạt động của chiến dịch này, bạn cần thực hiện kiểm tra sẵn sàng để xác minh tính tương thích của thiết bị
     bookings: Đặt chỗ
+    browser: Trình duyệt
+    browser_and_device: Trình duyệt & Thiết bị
+    browser_compatbility_step: Bước kiểm tra khả năng tương thích trình duyệt
+    browser_compatibility: 'Khả năng tương thích với trình duyệt:'
+    browser_compatibility_check: Kiểm tra khả năng tương thích trình duyệt
+    browser_compatibility_check_description: Kiểm tra xem trình duyệt của bạn có hỗ trợ tất cả các tính năng cần thiết hay không
+    browser_compatibility_result: Khả năng tương thích với trình duyệt
+    browser_version_fix_description_first: 'Hãy sử dụng trình duyệt được hỗ trợ: Chrome, Firefox, Edge hoặc Safari'
+    browser_version_fix_description_second: Hãy cập nhật trình duyệt của bạn lên phiên bản mới nhất để đảm bảo tính tương thích.
+    browser_version_fix_description_third: Hãy thử sử dụng cửa sổ duyệt web ẩn danh
+    browser_version_fix_title: Phiên bản trình duyệt của bạn không được hỗ trợ.
+    camera: Video và Âm thanh
+    camera_access_blocked: Trình duyệt của bạn đã từ chối hoặc chặn quyền truy cập camera. Vui lòng kiểm tra quyền truy cập trong trình duyệt.
+    camera_check: Kiểm tra camera và micrô
+    camera_check_description: Hãy kiểm tra xem camera và micrô của bạn có hoạt động bình thường để ghi âm không
+    camera_test_step: Bước kiểm tra video và âm thanh
     campaign: Chiến dịch
+    chat_instructions: Hướng dẫn trò chuyện
+    check: Kiểm tra
+    check_video_recording: Vui lòng kiểm tra đoạn video đã quay bằng cách phát lại.
+    checking_browser_compatibility: Đang kiểm tra tính tương thích của trình duyệt...
     development: Phát triển
     direct_reportees: Người báo cáo trực tiếp
+    download: Tải xuống
     download_pdf: Tải PDF
+    environment_setup: Cài đặt môi trường
+    error_uploading_video: Lỗi khi tải video lên
+    fail: Thất bại
+    follow_these_steps: Hãy làm theo các bước sau để khắc phục các sự cố được phát hiện trong quá trình kiểm tra hệ thống
     home: Bảng điều khiển
+    how_to_fix: 'Cách khắc phục:'
     idp_loading_fifth_step: Tìm nạp hành động phát triển từ mẫu
     idp_loading_first_step: Phân tích báo cáo đánh giá của bạn
     idp_loading_fourth_step: Lựa chọn các kỹ năng liên quan
@@ -22,27 +55,71 @@ vi:
     idp_loading_secondary_text: Hãy thoải mái bước đi. Kế hoạch của bạn sẽ sẵn sàng khi bạn trở lại.
     idp_loading_sixth_step: Tạo hành động phát triển
     idp_plan_approval_note: Ghi chú phê duyệt
+    idp_proceed_with_plan_creation: Vâng, hãy tiếp tục lập kế hoạch
+    idp_report_being_generated: Chúng tôi đang xử lý báo cáo của bạn
+    idp_reset_chat: Xóa lịch sử trò chuyện
     idp_retake_steps_continue_with_this_information: Tiếp tục với thông tin này
     insights: Thông tin chi tiết
+    instruction: Hãy đảm bảo rằng bạn và môi trường xung quanh đã sẵn sàng mọi thứ
+    internet_speed: Tốc độ Internet
+    internet_speed_optimal: Tốc độ kết nối của bạn đang ở mức tối ưu
+    internet_speed_slow: Tốc độ Internet chậm hơn mức yêu cầu cho chiến dịch
+    less_than_five_minutes: Chưa đầy 5 phút
     lighthouse_assistant: Trợ lý ngọn hải đăng
+    localstorage_fix_description_first: Hãy đảm bảo rằng bạn không đang ở chế độ riêng tư/ẩn danh, vì localStorage thường bị tắt trong các chế độ này.
+    localstorage_fix_title: Tính năng Lưu trữ cục bộ chưa được bật trong trình duyệt của bạn
+    localstorage_support: Đã bật LocalStorage
     max_word_limit: Phải có tối đa %{max} từ
+    media_recorder_api_fix_description_first: Bật JavaScript trong cài đặt trình duyệt của bạn
+    media_recorder_api_fix_description_second: Hãy kiểm tra xem trình duyệt của bạn có hỗ trợ API MediaRecorder hay không và cập nhật lên phiên bản mới nhất nếu cần thiết.
+    media_recorder_api_fix_description_third: Hãy thử sử dụng một trình duyệt hiện đại khác như Chrome hoặc Firefox
+    media_recorder_api_fix_title: Trình ghi phương tiện (Media Recorder API) không được hỗ trợ trên trình duyệt của bạn.
+    media_recorder_api_support: Hỗ trợ API MediaRecorder
     min_word_limit: Phải có ít nhất %{min} từ
     my_plan: Kế hoạch của tôi
+    network: Mạng
+    network_check: Kiểm tra tốc độ Internet
+    network_check_description: Đang kiểm tra chất lượng kết nối internet giữa máy chủ của chúng tôi và thiết bị của bạn.
+    network_check_fix_fifth: Nếu sự cố vẫn tiếp diễn, vui lòng liên hệ với nhà cung cấp dịch vụ internet của bạn để được hỗ trợ thêm
+    network_check_fix_first: Đóng các ứng dụng khác có thể đang chiếm dụng băng thông (xem video trực tuyến, tải xuống)
+    network_check_fix_fourth: Hãy thử sử dụng kết nối mạng khác nếu có
+    network_check_fix_second: Hãy đến gần bộ định tuyến Wi-Fi hơn hoặc kết nối qua cáp Ethernet
+    network_check_fix_third: Hãy khởi động lại bộ định tuyến/bộ điều chế và thử lại
+    network_test_step: Bước kiểm tra mạng
     no_audio_warning: Không phát hiện âm thanh. Vui lòng kiểm tra xem micro của bạn đã được kết nối và hoạt động bình thường chưa.
+    pass: Bỏ qua
+    pending: Đang chờ xử lý
+    personal_readiness: Sự chuẩn bị cá nhân
+    plan_text: Hãy lên kế hoạch cho toàn bộ thời gian thi. Một khi đã bắt đầu, tùy thuộc vào loại hình đánh giá, có thể sẽ không được phép nghỉ giải lao.
+    please_check_your_internet_connection: Vui lòng kiểm tra kết nối internet của bạn và thử lại.
     profile: Hồ sơ
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     reason_for_idp_plan_rejection: Lý do từ chối
-    recorded: được ghi lại
-    recording: Ghi âm
     reject_idp_plan: Kế hoạch từ chối
     request_retry_message: Bạn đang ngoại tuyến. Câu trả lời của bạn không thể được lưu nhưng sẽ được lưu tự động khi bạn trực tuyến trở lại. Vui lòng không làm mới hoặc đóng trang.
+    required_download_in_mbps: Tốc độ tải xuống yêu cầu (Mbps)
+    required_upload_in_mbps: Tốc độ tải lên yêu cầu (Mbps)
+    rerun_check: Kiểm tra lại
+    rerun_checks: Kiểm tra lại
+    result: Kết quả
+    results: Kết quả
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
     start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
-    status_unknown: Trạng thái không xác định
+    start_readiness_check: Bắt đầu kiểm tra sự sẵn sàng
+    start_system_check: Bắt đầu kiểm tra hệ thống
+    subinstruction_eight: Hãy dành ra một khoảng thời gian không bị gián đoạn để tiến hành đánh giá toàn diện
+    subinstruction_five: Bạn đã sẵn sàng chia sẻ màn hình trong suốt buổi họp chưa?
+    subinstruction_four: Webcam và micrô hoạt động bình thường
+    subinstruction_one: Một căn phòng yên tĩnh, đủ ánh sáng và không có ai khác ở đó
+    subinstruction_seven: Hãy đảm bảo thiết bị của bạn đã được sạc đầy hoặc đang được cắm vào ổ cắm
+    subinstruction_six: Đóng tất cả các ứng dụng và tab trình duyệt không cần thiết
+    subinstruction_three: Kết nối internet ổn định (tối thiểu 1 Mbps)
+    subinstruction_two: Bàn làm việc gọn gàng, không có vật dụng không được phép
+    system_check: Kiểm tra hệ thống
     system_check_access: Truy cập
     system_check_audio_random_phrases:
       eight: Chúc bạn có một tách cà phê ngon và một ngày làm việc hiệu quả.
@@ -55,6 +132,13 @@ vi:
       three: Kiểm tra, một hai ba, âm thanh rõ ràng nhất có thể!.
       two: Con cáo nâu nhanh nhẹn nhảy qua con chó lười.
     system_check_audio_title: Hãy nói và lặp lại câu sau 3 lần.
+    system_check_complete: Hoàn tất kiểm tra hệ thống
+    system_check_failed: Kiểm tra hệ thống không thành công
+    system_check_failed_description: Vui lòng khắc phục các sự cố và chạy lại các kiểm tra hệ thống.
+    system_check_failed_message: Một số kiểm tra hệ thống đã không thành công. Vui lòng xem lại chi tiết và thử lại.
+    system_check_failed_title: Bạn không thể tiếp tục cho đến khi tất cả các bước kiểm tra bắt buộc đều đạt yêu cầu.
+    system_check_not_enabled: Tính năng kiểm tra hệ thống chưa được bật cho chiến dịch này
+    system_check_passed_successfully: Tất cả các kiểm tra hệ thống đều đã hoàn tất thành công!
     system_check_proceed: Vâng, Ok để tiếp tục
     system_check_retake: Không, tôi muốn thi lại
     system_check_run_again: Chạy lại
@@ -64,4 +148,41 @@ vi:
     system_check_upload_again: Tải lên lại
     system_check_uploading: Đang tải lên
     system_check_video_random_phrase: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
+    system_check_warning: Cảnh báo kiểm tra hệ thống
+    system_check_warning_message: Các sự cố hệ thống có thể xảy ra có thể ảnh hưởng đến quá trình đánh giá — vui lòng chỉ tiếp tục sau khi tất cả các bước kiểm tra đều thành công.
+    system_checks: Kiểm tra hệ thống
+    task_duration: Thời gian thực hiện nhiệm vụ
     tasks: Nhiệm vụ
+    time_commitment: Thời gian cam kết
+    troubleshooting_guide: Hướng dẫn khắc phục sự cố
+    troubleshooting_guide_browser_fifth: Hãy đảm bảo rằng LocalStorage đã được bật trong cài đặt trình duyệt của bạn
+    troubleshooting_guide_browser_first: 'Hãy sử dụng trình duyệt được hỗ trợ: Chrome, Firefox, Edge hoặc Safari (phiên bản mới nhất)'
+    troubleshooting_guide_browser_fourth: Bật JavaScript và cookie trong cài đặt trình duyệt
+    troubleshooting_guide_browser_second: Xóa bộ nhớ cache và cookie của trình duyệt
+    troubleshooting_guide_browser_sixth: 'Hãy thử sử dụng cửa sổ duyệt web ẩn danh (Lưu ý: LocalStorage có thể bị hạn chế hoặc không được hỗ trợ trong chế độ ẩn danh)'
+    troubleshooting_guide_browser_third: Vui lòng tắt các tiện ích mở rộng trình duyệt có thể gây cản trở việc truy cập nội dung đa phương tiện
+    troubleshooting_guide_network_fifth: Nếu sự cố vẫn tiếp diễn, vui lòng liên hệ với nhà cung cấp dịch vụ internet của bạn để được hỗ trợ thêm
+    troubleshooting_guide_network_first: Đóng các ứng dụng khác có thể đang chiếm dụng băng thông (xem video trực tuyến, tải xuống, v.v.)
+    troubleshooting_guide_network_fourth: Hãy thử sử dụng kết nối mạng khác nếu có
+    troubleshooting_guide_network_second: Hãy đến gần bộ định tuyến Wi-Fi hơn hoặc kết nối qua cáp Ethernet
+    troubleshooting_guide_network_third: Hãy khởi động lại bộ định tuyến/bộ điều chế và thử lại
+    troubleshooting_guide_video_fifth: 'Trên Windows: Kiểm tra Cài đặt quyền riêng tư > Quyền truy cập camera/micro'
+    troubleshooting_guide_video_first: Nhấp vào biểu tượng ổ khóa/thông tin trên thanh địa chỉ của trình duyệt
+    troubleshooting_guide_video_fourth: Nếu bị chặn, bạn có thể cần phải thiết lập lại quyền truy cập trong cài đặt trình duyệt
+    troubleshooting_guide_video_second: Tìm các tùy chọn "Camera" và "Microphone" rồi chọn "Cho phép"
+    troubleshooting_guide_video_sixth: 'Trên máy Mac: Vào Tùy chọn Hệ thống > Bảo mật & Quyền riêng tư > Camera/Microphone'
+    troubleshooting_guide_video_third: Hãy làm mới trang sau khi thay đổi quyền truy cập
+    untimed: Không giới hạn thời gian
+    upload: Tải lên
+    video_and_audio: Video & Âm thanh
+    video_and_audio_recording: Ghi hình và ghi âm
+    video_check_fix_fifth: Nếu máy ảnh của bạn là loại gắn ngoài, hãy thử rút phích cắm ra rồi cắm lại
+    video_check_fix_first: Nhấp vào 'Cho phép' khi trình duyệt yêu cầu quyền truy cập camera
+    video_check_fix_fourth: Kiểm tra xem máy ảnh của bạn đã được kết nối và bật nguồn chưa
+    video_check_fix_second: Vào cài đặt trình duyệt và bật quyền truy cập camera cho trang web này
+    video_check_fix_sixth: Hãy khởi động lại trình duyệt và thử lại
+    video_check_fix_third: Đóng các ứng dụng khác đang sử dụng camera (Zoom, Teams, v.v.)
+    webgl_api_fix_description_first: Hãy đảm bảo rằng trình duyệt của bạn hỗ trợ WebGL và tính năng này đã được bật trong phần cài đặt
+    webgl_api_fix_description_second: Cập nhật trình điều khiển đồ họa của bạn lên phiên bản mới nhất
+    webgl_api_fix_title: Trình duyệt của bạn không hỗ trợ hoặc chưa bật WebGL
+    webgl_api_support: Hỗ trợ API WebGL

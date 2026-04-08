@@ -26,6 +26,13 @@ import { SafeHTML } from '~/components/SafeHTML'
 import styles from './styles.less'
 import { TextModuleContent } from './TextModuleContent'
 
+const FROALA_TOOLBAR_OPTIONS = ['fontFamily', 'fontSize', 'textColor', 'bold', 'italic', 'underline', 'strikeThrough',
+  'subscript', 'superscript', 'formatOL', 'formatUL', 'rightToLeft', 'leftToRight', 'paragraphFormat', 'align',
+  'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertTable', 'insertHR', 'clearFormatting', 'help',
+  'undo', 'redo', 'insertVideo', 'html']
+
+const configOverrides = { ...config, toolbarButtons: FROALA_TOOLBAR_OPTIONS }
+
 const connector = connect(
   (state: RootState, { rstore, module }: {rstore: Store, module: ModuleInterface}) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
@@ -156,7 +163,7 @@ const OverrideComponent: FC<Props> = ({
           <FroalaEditor
             key="editor"
             ref={editrRef}
-            config={config}
+            config={configOverrides}
             model={content || TextModuleContent.run(module, questions)}
             onModelChange={content => setContent(content)}
           />
@@ -166,7 +173,7 @@ const OverrideComponent: FC<Props> = ({
         <FroalaEditor
           key="editor"
           ref={editrRef}
-          config={config}
+          config={configOverrides}
           model={content || TextModuleContent.run(module, questions)}
           onModelChange={content => setContent(content)}
         />

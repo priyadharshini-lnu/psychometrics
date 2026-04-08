@@ -35,6 +35,8 @@ import {
 import { ChangeStatus } from './ChangeStatus'
 import { ChangeHistory } from './ChangeHistory'
 import { PlanChangeStatus } from '../../../core/idp/utils'
+import { Separator } from '~/components/IdpShared/Separator'
+
 
 const { RangePicker } = DatePicker
 
@@ -282,7 +284,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
       {editMode && changeStatus !== PlanChangeStatus.REMOVED ? (
         <Flex
           className={`mt-4 ${(isMobile) ? styles.daOptions : 'mb-2 '}`}
-          gap={isTablet ? 8 : 64}
+          gap={8}
           vertical={isTablet}
           justify="start"
         >
@@ -318,6 +320,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           >
             {I18n.t('idp.development_actions.create_my_own')}
           </Button>
+          {!isMobile && <Separator vertical style={{ height: '2rem' }} />}
           <Button
             type="link"
             icon={<PlusOutlined />}
@@ -326,6 +329,7 @@ const DevelopmentActionLandscapeCardComponent: React.FC<SkillCardProps> = ({
           >
             {I18n.t('idp.development_actions.add_from_library')}
           </Button>
+          {!isMobile && <Separator vertical style={{ height: '2rem' }} />}
           {aiAssistantsEnabled && (
             <Button
               type="link"

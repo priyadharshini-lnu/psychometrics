@@ -23,7 +23,15 @@ hu:
     ai_artifact_result_generation_admin_job_failed: A „%{artifact_name}” műtárgy nem hozható létre a „%{user_email}” felhasználó számára.
     ai_artifact_result_stale: Az eredmény elavult lehet, mivel az AI-artefaktum függőségei az utolsó eredmény generálása óta megváltoztak. Fontolja meg az artefaktum újragenerálását a legfrissebb függőségekkel.
     ai_artifacts: AI-összetevők
+    ai_artifacts_finalized_at: 'Véglegesítve:'
+    ai_artifacts_generate_result_confirm: A „%{email}” felhasználó számára történő artefaktum-eredmények generálása eltávolítja a meglévő jelentést, amely ettől az AI-artefaktumtól függ. Biztosan folytatni szeretné?
     ai_artifacts_generate_results: Eredmények generálása
+    ai_artifacts_mark_finalized: Jelölés véglegesítve
+    ai_artifacts_mark_finalized_bulk_confirm: Az összes kiválasztott felhasználó esetében az artefaktumok eredményeinek véglegesítése olyan jelentéseket generál, amelyek mesterséges intelligencia-artefaktumokat használnak. Biztosan folytatni szeretné?
+    ai_artifacts_mark_finalized_confirm: A „%{email}” felhasználóhoz tartozó artefaktumok eredményeinek véglegesítése a felhasználó számára az AI-artefaktumot felhasználó jelentés létrehozását eredményezi. Biztosan folytatni szeretné?
+    ai_artifacts_mark_not_finalized: A jelölés még nem végleges
+    ai_artifacts_mark_not_finalized_bulk_confirm: Ha a „finalize” jelölést eltávolítja az összes kijelölt felhasználóról, az AI-műalkotásokat tartalmazó generált jelentések is törlődnek. Biztosan folytatni szeretné?
+    ai_artifacts_mark_not_finalized_confirm: A „%{email}” felhasználóhoz tartozó „finalize” művelet eltávolításával törlődik az a generált jelentés, amely az adott felhasználó AI-műalkotását használja. Biztosan folytatni szeretné?
     ai_artifacts_output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
     ai_artifacts_results_export: Eredmények exportálása
     ai_artifacts_results_export_job_scheduled: Az AI Artifacts eredmények exportálási feladata sikeresen ütemezésre került.
@@ -78,12 +86,32 @@ hu:
     ai_scoring_appoval_score_not_applicable: Pontszám nem alkalmazható
     ai_scoring_approval: AI pontszám jóváhagyás
     ai_scoring_approval_settings: AI pontozás jóváhagyási beállítások
+    ai_scoring_approval_stale_description: A legutóbbi futtatás óta végrehajtott konfigurációs frissítések megváltoztathatták az értékelést. Az értékelés frissítéséhez hajtsa végre az újbóli értékelést a legfrissebb beállítások alapján.
+    ai_scoring_approval_stale_title: Az eredmény elavult lehet
     ai_scoring_approvals: AI pontszámok jóváhagyása
+    ai_scoring_refresh_score: Pontszám frissítése
+    ai_scoring_refresh_score_confirm_description: Ezzel a legújabb beállítások alapján újra futtatja az értékelés mesterséges intelligenciás pontozását. Biztosan ezt szeretné?
+    ai_scoring_refresh_score_confirm_title: Frissítsd az AI-pontszámokat?
+    ai_scoring_rescore_queued: Az AI-alapú újraértékelés feldolgozásra vár. Kérjük, néhány pillanat múlva frissítse az oldalt.
     ai_translation: AI fordítás
     all_corner_rounded: Minden sarok lekerekített
     allow_ai_rescoring: AI újrapontszámítás engedélyezése
+    allow_continue_with_warning_system_check: Lehetővé teszi a felhasználók számára, hogy a rendszerellenőrzés sikertelensége esetén is folytassák a műveletet
     api_keys: API-kulcsok
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
+    assessment_center_activity: Tevékenység
+    assessment_center_assessor: értékelő
+    assessment_center_attendance: Jelenlét
+    assessment_center_attendance_status: Jelenléti státusz
+    assessment_center_campaigns_tab: Kampányok
+    assessment_center_date_and_time: Dátum és idő
+    assessment_center_join_room: Csatlakozz a szobához
+    assessment_center_meeting_link: A találkozó linkje
+    assessment_center_participants_tab: Résztvevők
+    assessment_center_prework: Előkészítő feladatok
+    assessment_center_schedule_time: Időpontfoglalás
+    assessment_center_scheduling_status: Ütemezés állapota
+    assessment_center_search_participants: Résztvevők keresése...
     assessment_question_not_supported: Ez a kérdés típus jelenleg nem támogatott.
     assessments: Értékelések
     assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
@@ -99,6 +127,7 @@ hu:
     auto_placeholder: Auto
     availability: Elérhetőség
     available_languages: Jelentés elérhető nyelveken
+    average: Átlag
     back_to_main: Főmenü
     bulk_assets_modal_choose_csv: CSV fájl kiválasztása
     bulk_assets_modal_choose_zip: ZIP fájl kiválasztása
@@ -138,7 +167,9 @@ hu:
     cancel: Mégse
     cancellation_and_rescheduling_disabled: A lemondás és az átütemezés funkció le van tiltva.
     casual: Alkalmi
+    cell_save_msg: A szerkesztés után, amint elhagyja a cellát, a érvényes módosítások automatikusan mentésre kerülnek.
     characters: szereplők
+    chat_instructions_success: A csevegési utasítások mentése sikeresen megtörtént
     children_factor_type: Gyermekek tényező típusa
     client: Ügyfél bérleti joga
     client_admins: Ügyféladminisztrátorok
@@ -152,6 +183,7 @@ hu:
     configure_model_answer_title: Modellválasz és kulcsszavak konfigurálása
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
     copied: Másolva
+    copy_ai_artifacts: AI-műalkotások másolása
     country: Ország
     create_client: Ügyfél létrehozása
     create_indicator: Indikátor létrehozása
@@ -193,6 +225,7 @@ hu:
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     download_bulk_asset_download_example_csv: Példa CSV letöltése.
+    duration: Időtartam
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
     edit_indicator: Jelzőszerkesztés
@@ -201,10 +234,12 @@ hu:
     edit_permission_denied: Nincs engedélyed az admin '%{name}' szerkesztésére
     edit_project_admin: Projektadminisztrátorának szerkesztése
     edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
+    empty: Üres
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
     enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
     enable_maintenance: Karbantartás engedélyezése
     enable_mobile_proctoring: Mobil felügyelet engedélyezése
+    enable_system_check: Rendszerellenőrzés engedélyezése
     enable_transcription: Feliratozás engedélyezése
     enable_transcription_msg: Engedélyezze a Transcription számára az AI-pontozás használatát a videó/audio válaszok kérdéseinél.
     end_time: Végidő
@@ -218,10 +253,12 @@ hu:
     evaluation_status: Értékelési állapot
     evaluation_status_not_done: Az értékelési státusz nem 'Kész' egy vagy több kiválasztott tantárgy esetében. Kérjük, minden kiválasztott felhasználó elvégezte az értékeléseket vagy jelölje meg.
     export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
+    export_campaigns_queued: Az exportálási feladatok sorba álltak. Kérjük, ellenőrizze az értesítéseit a letöltési linkekért.
     export_compact_completion_status: Kompakt
     export_completion_status: Exportálás befejezési állapota
     export_completion_statuses_scheduled: A befejezési állapotok exportálási feladata sikeresen ütemezésre került.
     export_detailed_completion_status: Részletes
+    factors: Tényezők
     feature_ai_assistants_description: Az AI-alapú asszisztensek engedélyezése a felhasználói élmény javítása érdekében
     feature_ai_assisted_idp_description: Használja az AI-t az egyéni fejlesztési terv ajánlásainak kidolgozásához
     feature_ai_content_analysis_description: Engedélyezze az AI-alapú tartalomelemzést az értékelésekhez
@@ -240,8 +277,35 @@ hu:
     final_score_empty_msg: A végösszeg nem lehet üres.
     fix_grammar: Helyesírás javítása
     formal: Hivatalos
+    from: Tól
     generate_transcription: Átírás létrehozása
     hide_middle_scores: Középső pontszámok elrejtése
+    high: Magas
+    hogan: Hogan
+    hogan_assessment: Hogan-értékelés
+    idp_appearance_body: Főszöveg
+    idp_appearance_color: Szín
+    idp_appearance_cover: Borító
+    idp_appearance_dynamic_content: Dinamikus tartalom
+    idp_appearance_flip_background: A borítón és az utolsó oldalon a háttérkép tükrözése
+    idp_appearance_font_family: Betűcsalád
+    idp_appearance_guideline_position: Útmutató oldalának helye
+    idp_appearance_guideline_position_second: Második oldal (a borító után)
+    idp_appearance_guideline_position_second_last: Az utolsó előtti oldal (az utolsó előtt)
+    idp_appearance_guidelines: Útmutatók
+    idp_appearance_idp_skills: IDP készségek
+    idp_appearance_last: Utolsó
+    idp_appearance_per_page_font_settings: Betűkészlet-beállítások oldalanként
+    idp_appearance_reflections: Gondolatok
+    idp_appearance_report_summary: A jelentés összefoglalása
+    idp_appearance_section_body: A szakasz szövege
+    idp_appearance_section_subtitle: A szakasz alcíme
+    idp_appearance_section_title: A szakasz címe
+    idp_appearance_select_font: Betűtípus kiválasztása
+    idp_appearance_show_guidelines: Az irányelvek oldalának megjelenítése
+    idp_appearance_size: Méret
+    idp_appearance_subtitle: Felirat
+    idp_appearance_title: Cím
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
     import_ai_artifacts: MI tárgyak importálása
@@ -281,6 +345,7 @@ hu:
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
+    low: Alacsony
     maintenance: Karbantartás
     maintenance_settings: Karbantartási beállítások
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
@@ -297,6 +362,8 @@ hu:
     mhs_session_id: Mhs munkamenet azonosító
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
+    minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
+    minimum_upload_speed: Minimális feltöltési sebesség (Mbps-ben)
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     model_answer: Minta válasz
     model_answer_placeholder: Írja be a modellválaszt az AI pontozáshoz.
@@ -305,6 +372,7 @@ hu:
     name_required: Név szükséges
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
+    no_status: Nincs állapot
     norms: Normák
     not_completed: Nem befejezve
     not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
@@ -837,6 +905,19 @@ hu:
     saml_settings: SAML beállítások
     save: Mentés
     save_assessment_for_scoring_management: Mentsd el az értékelést, mielőtt elkezdenéd a pontozást.
+    saved_filter_label:
+      approval_status_in: Jóváhagyási állapot
+      approver_user_id_in: Jóváhagyó
+      assessment_id_in: Értékelés
+      campaign_id_in: Kampány
+      client_id_in: Ügyfél
+      project_id_in: Projekt
+      qc_user_id_in: QC-felhasználó
+      report_id_in: Jelentés
+      subject_email_cont: Tárgy E-mail
+      subject_full_name_cont: Tárgy neve
+      user_email_cont: Felhasználói e-mail-cím
+      user_full_name_cont: Felhasználónév
     scheduling: Ütemezés
     score: Pontszám
     score_approval_not_allowed_to_approve: Nem engedélyezheti ezt az eredményt.
@@ -893,7 +974,9 @@ hu:
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
     target_job_role: Célkitűzés
     this_field_is_required: Ez a mező kötelező
+    threesixty: 360°-os kampány
     timezone: Időzóna
+    to: 'Címzett:'
     tone: Hangszín
     toolbar_ai_insight: AI betekintés
     toolbar_ai_suggestion: AI javaslat
@@ -917,6 +1000,9 @@ hu:
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
     validation_error: Kérjük, töltse ki az összes kötelező mezőt!
+    validity: Érvényesség
+    very_high: Rendkívül magas
+    very_low: Nagyon alacsony
     view_licenses: Licencek megtekintése
     waiting: Várakozás
     weight: Súly

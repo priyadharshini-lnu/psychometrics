@@ -109,7 +109,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
 
   const canBeginCampaign = !campaignClosedForUser && !hasStartedCampaign
     && fixedTimed && !isCampaignInterrupted
-  // eslint-disable-next-line max-len
+
   const canContinueCampaign = (isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
     && !campaignClosedForUser && !campaignUserTimedOut && fixedTimed
 

@@ -80,7 +80,6 @@ ar:
         title: قطعة أثرية الذكاء الاصطناعي
       generate: ولد
       generate_result_info_message: يتم إنشاء النتائج ، يرجى تحديث الصفحة لرؤية النتائج المحدثة.
-      generated_at: تم إنشاؤه في
       generated_at_time: تم إنشاؤه في %{time}
       generated_value: القيمة المولدة
       id: معرف
@@ -1871,6 +1870,8 @@ ar:
       form:
         enable_innovation_styles: تمكين أنماط الابتكار
         enable_occupations: تمكين المهن
+        name: الاسم
+        title: الأبعاد
       import_factors:
         import: الاستيراد
         sample_file: نموذج ملف العينة
@@ -1918,6 +1919,7 @@ ar:
         confirmations:
           delete:
             body: "<p>هل أنت متأكد أنك تريد حذف هذا البعد؟</p>\n"
+            message: أدخل اسم البعد المذكور أدناه في مربع النص للتأكيد
             title: حذف <strong>البعد</strong>؟
           toggle_status:
             body: "<p>هل أنت متأكد أنك تريد %{status} هذا البعد؟</p>\n"
@@ -1982,6 +1984,7 @@ ar:
                 score: Score
                 zscore: Z Score
             title: JSON Paths for Scores
+        predicate: الفاعل
         scoring_strategies:
           custom_formula: Custom Formula
           external_score: External Score
@@ -1995,10 +1998,13 @@ ar:
           sub_factors_sum: Weighted Sum of Factors
         scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
         scoring_strategy: Scoring strategy
+        search_factors: عوامل البحث
         use_sub_factor_norm_score: Use Factors norm score
+        value: القيمة
       index:
         icon: Icon
         new: Add
+        precision: الدقة
         scoring_strategies:
           custom_formula: Custom Formula
           external_score: External Score
@@ -2292,6 +2298,7 @@ ar:
       edit:
         header: Edit Innovation Style
       form:
+        full_description: الوصف الكامل
         no_icon: No icon
       index:
         new: Add
@@ -2663,8 +2670,12 @@ ar:
       edit:
         header: Edit occupation
       form:
+        alternative_icon: رمز بديل
+        color: اللون
         hint:
           key_career_tracks: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
+        indicative_roles_image: صورة توضح الأدوار
+        key_career_tracks_image: صورة لمسارات مهنية رئيسية
         no_icon: No icon
       index:
         new: Add
@@ -2735,6 +2746,7 @@ ar:
       assessment_center: مركز التقييم
       assessment_id: Assessment ID
       campaign_id: Campaign ID
+      campaign_link: رابط الحملة
       campaign_name: اسم الحملة
       campaigns: الحملات
       description: الوصف
@@ -3735,8 +3747,10 @@ ar:
       id: المعرف
       import:
         factors: Import Campaign Factors
+      innovation_style_removal_confirmation: أدخل اسم نمط الابتكار المذكور أدناه في مربع النص للتأكيد
       name: Name
       no_groups: No groups present
+      occupation_removal_confirmation: أدخل اسم المهنة المذكور أدناه في مربع النص للتأكيد
       output_type: Output Type
       pattern_error: Only alphanumeric characters, spaces and dashes are allowed.
       profile:

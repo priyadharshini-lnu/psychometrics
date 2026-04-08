@@ -41,6 +41,12 @@ hi:
         skills_not_belong_to_project: चुने गए कौशल निर्दिष्ट परियोजना से संबंधित होने चाहिए।
         skills_required: कृपया कम से कम एक कौशल चुनें।
       exceeded_subjects_count: आप प्रति निमंत्रण केवल %{count} विषय जोड़ सकते हैं।
+      factors_norms:
+        invalid_field_name: फ़ील्ड का नाम 'score_from' या 'score_to' होना चाहिए।
+        invalid_float: मूल्य एक मान्य फ्लोट होना चाहिए।
+        invalid_level: अमान्य स्तर। मान्य स्तर हैं %{levels}
+        score_from_less_than_score_to: score_from को score_to से कम होना चाहिए।
+        score_to_greater_than_score_from: score_to, score_from से अधिक होना चाहिए।
       filled?: खाली नहीं हो सकता
       idp_template:
         content_required: निर्देशों के लिए सामग्री आवश्यक है।

@@ -7,8 +7,13 @@ module Administration
                  :proctoring_enabled, :rules, :identification, :description, :integration_type,
                  :proctoring_trial, :workshop_booking_requires_prework_completion, :show_watermark, :watermark_content,
                  :proctoring_type, :workshop_invite_requires_prework_completion,
-                 :proctoring_enabled_on_workshop_activity, :enable_mobile_proctoring, :enable_video_call_recording,
-                 :allow_video_call_recording
+                 :proctoring_enabled_on_workshop_activity, :enable_video_call_recording,
+                 :enable_mobile_proctoring, :allow_video_call_recording, :system_check_enabled,
+                 :system_check_validity, :allow_continue_with_warning, :minimum_upload_speed, :minimum_download_speed,
+                 :calculated_minimum_upload_speed, :calculated_minimum_download_speed
+
+      delegate :campaign, to: :object
+      delegate :calculated_minimum_upload_speed, :calculated_minimum_download_speed, to: :campaign
     end
   end
 end

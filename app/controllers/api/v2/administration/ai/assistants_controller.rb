@@ -14,9 +14,7 @@ module Api
             params[:id],
             current_user,
             params.dig(:data, :attributes, :prompt),
-            params: {
-              tool_choice: nil # Assistant context is not available at super admin level
-            }
+            skip_default_params: true
           )
           if result[:ok]
             response = result[:ok]

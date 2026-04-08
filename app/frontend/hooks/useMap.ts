@@ -12,7 +12,6 @@ export interface Actions<T extends object> extends StableActions<T> {
 }
 
 // This is a bug in eslint which is fixed in the latest version
-// eslint-disable-next-line arrow-parens
 const useMap = <T extends object>(initialMap: T = {} as T): [T, Actions<T>] => {
   const [map, set] = useState<T>(initialMap)
 

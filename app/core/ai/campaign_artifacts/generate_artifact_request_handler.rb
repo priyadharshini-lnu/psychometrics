@@ -54,12 +54,14 @@ module AI
           Api::V2::Administration::Campaigns::AIArtifactResultResource.new(artifact_result, resource_context)
         )
 
+        campaign_user = CampaignUser.find_by(campaign_id: campaign.id, user_id: user.id)
         jsonapi_response[:meta] = {
           user: JSONAPI::ResourceSerializer.new(
             Api::V2::Administration::UserResource
           ).serialize_to_hash(
             Api::V2::Administration::UserResource.new(user, resource_context)
-          )
+          ),
+          artifact_results_finalized_at: campaign_user&.campaign_artifact_results_finalized_at
         }
 
         jsonapi_response

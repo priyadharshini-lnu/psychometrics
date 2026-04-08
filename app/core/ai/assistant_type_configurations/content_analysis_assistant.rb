@@ -3,7 +3,7 @@
 module AI
   module AssistantTypeConfigurations
     class ContentAnalysisAssistant < Base
-      def default_params
+      def base_params
         {
           temperature: 0.1,
           response_format: { type: 'json_schema' },

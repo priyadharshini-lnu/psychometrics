@@ -4,6 +4,7 @@ require_relative '../../lib/devise_failure_app'
 require_relative '../../lib/saml/get_identity_provider_settings'
 require_relative '../../lib/saml/resource_locator'
 require_relative '../../lib/saml/failed_callback_handler'
+require_relative '../../lib/two_factor_authentication'
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.

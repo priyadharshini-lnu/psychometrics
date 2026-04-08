@@ -41,6 +41,12 @@ de:
         skills_not_belong_to_project: Die ausgewählten Fähigkeiten müssen zu dem angegebenen Projekt gehören.
         skills_required: Bitte wählen Sie mindestens eine Fähigkeit aus.
       exceeded_subjects_count: Sie können nur %{count} Themen pro Einladung hinzufügen
+      factors_norms:
+        invalid_field_name: Der Feldname muss entweder „score_from“ oder „score_to“ lauten.
+        invalid_float: Der Wert muss eine gültige Fließkommazahl sein.
+        invalid_level: Ungültige Stufe. Gültige Stufen sind%{levels}
+        score_from_less_than_score_to: score_from muss kleiner sein als score_to
+        score_to_greater_than_score_from: score_to muss größer sein als score_from
       filled?: kann nicht leer sein
       idp_template:
         content_required: Für die Anleitung wird der Inhalt benötigt

@@ -1,16 +1,26 @@
 @import "~/styles/antv4.variable.less";
+@import "~/styles/spacing.less";
 
 .container {
   overflow: hidden;
 }
 
+.videoPlayerContainer{
+  width: 100%;
+}
+
 .videoContainer {
-  width: 500px;
-  height: 281px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   background-color: black;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+}
+
+.videoPlayerWrapper{
+  padding-inline: @space-8;
+  width: 100%;
 }
 
 .video {
@@ -88,5 +98,11 @@
 }
 
 .controls {
-  width: 500px;
+  width: 100%;
+
+  :global {
+    .ant-select-disabled {
+      background: transparent;
+    }
+  }
 }

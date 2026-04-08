@@ -41,6 +41,12 @@ sr-Cyrl:
         skills_not_belong_to_project: Одабране вештине морају да припадају наведеном пројекту.
         skills_required: Изаберите бар једну вештину.
       exceeded_subjects_count: Можете додати само ИНТЕРПОЛАТИОН_ВАР_0 предмета по позиву
+      factors_norms:
+        invalid_field_name: Име поља мора бити или 'score_from' или 'score_to'.
+        invalid_float: Вредност мора бити важећи флоат.
+        invalid_level: Ниво није важећи. Важећи нивои су %{levels}
+        score_from_less_than_score_to: score_from мора бити мање од score_to
+        score_to_greater_than_score_from: score_to мора бити веће од score_from
       filled?: не може бити празан
       idp_template:
         content_required: Садржај је неопходан за упутства

@@ -5,7 +5,8 @@ module EndUser
     attributes :fixed_time, :time_zone, :fixed_time_duration, :instructions_enabled, :instructions,
                :proctoring_enabled, :identification, :rules, :integration_type,
                :workshop_booking_requires_prework_completion, :show_watermark, :watermark_content,
-               :proctoring_enabled_on_workshop_activity, :enable_mobile_proctoring
+               :proctoring_enabled_on_workshop_activity, :system_check_enabled, :system_check_validity,
+               :allow_continue_with_warning, :enable_mobile_proctoring
 
     def proctoring_enabled
       Settings.features.proctoring && object.proctoring_enabled

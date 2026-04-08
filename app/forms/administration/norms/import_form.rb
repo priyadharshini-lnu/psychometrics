@@ -35,7 +35,7 @@ module Administration
             I18n.t(
               'administration.imports.errors.norm.dimension_not_found',
               dimension_name: headers[1],
-              client_name: @owner&.name || 'TTE'
+              client_name: owner&.name || 'TTE'
             )
           )
         end
@@ -46,7 +46,7 @@ module Administration
       end
 
       def owner
-        @owner ||= Client.find_by(id: owner_id)
+        Client.find_by(id: owner_id)
       end
 
       def headers

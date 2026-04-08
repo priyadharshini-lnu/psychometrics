@@ -1,11 +1,9 @@
-import ReportTransport from './ReportChannel'
 import LibraryTransport from './LibraryChannel'
 
 const singleton = Symbol('singleton')
 const singletonEnforcer = Symbol('singletonEnforcer')
 
 const Providers = {
-  ReportTransport,
 }
 
 class Socket {

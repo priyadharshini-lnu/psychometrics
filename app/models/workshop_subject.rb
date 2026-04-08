@@ -36,7 +36,7 @@ class WorkshopSubject < ApplicationRecord
   }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id user_id campaign_id]
+    %w[id user_id campaign_id workshop_id attendance_status scheduling_status]
   end
 
   def self.ransackable_associations(_auth_object = nil)

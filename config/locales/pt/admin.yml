@@ -23,7 +23,15 @@ pt:
     ai_artifact_result_generation_admin_job_failed: O artefato "%{artifact_name}" não pode ser gerado para o usuário "%{user_email}".
     ai_artifact_result_stale: O resultado pode estar desatualizado, pois as dependências do artefato de IA foram alteradas desde que o último resultado foi gerado. Considere regenerar o artefato para gerá-lo com as dependências mais recentes.
     ai_artifacts: Artefatos de IA
+    ai_artifacts_finalized_at: Concluído em
+    ai_artifacts_generate_result_confirm: A geração de resultados do artefacto para o utilizador «%{email}» irá remover o relatório existente que depende deste artefacto de IA. Tem a certeza de que deseja continuar?
     ai_artifacts_generate_results: Gerar resultados
+    ai_artifacts_mark_finalized: Marca finalizada
+    ai_artifacts_mark_finalized_bulk_confirm: A finalização dos resultados dos artefactos para todos os utilizadores selecionados irá gerar os relatórios que utilizam artefactos de IA. Tem a certeza de que deseja continuar?
+    ai_artifacts_mark_finalized_confirm: A finalização dos resultados do artefacto para o utilizador «%{email}» irá gerar o relatório que utiliza o artefacto de IA para esse utilizador. Tem a certeza de que deseja continuar?
+    ai_artifacts_mark_not_finalized: Nota não finalizada
+    ai_artifacts_mark_not_finalized_bulk_confirm: A remoção da finalização de todos os utilizadores selecionados irá eliminar os relatórios gerados que utilizam artefactos de IA. Tem a certeza de que deseja continuar?
+    ai_artifacts_mark_not_finalized_confirm: A remoção da finalização do utilizador «%{email}» irá eliminar o relatório gerado que utiliza o artefacto de IA desse utilizador. Tem a certeza de que deseja continuar?
     ai_artifacts_output_schema_key_constraint: A tonalidade deve começar com uma letra minúscula e só pode conter letras minúsculas, números e sublinhados
     ai_artifacts_results_export: Exportar resultados
     ai_artifacts_results_export_job_scheduled: A tarefa de exportação dos resultados dos artefatos de IA foi agendada com sucesso.
@@ -78,12 +86,32 @@ pt:
     ai_scoring_appoval_score_not_applicable: Pontuação não aplicável
     ai_scoring_approval: Aprovação da pontuação da IA
     ai_scoring_approval_settings: Configurações de aprovação de pontuação de IA
+    ai_scoring_approval_stale_description: As atualizações de configuração realizadas desde a última execução podem ter alterado a pontuação. Refaça a pontuação para atualizá-la utilizando as configurações mais recentes.
+    ai_scoring_approval_stale_title: A pontuação pode estar desatualizada
     ai_scoring_approvals: Aprovações de pontuação de IA
+    ai_scoring_refresh_score: Atualizar pontuação
+    ai_scoring_refresh_score_confirm_description: Isto irá repetir a pontuação da IA para esta avaliação utilizando a configuração mais recente. Tem a certeza?
+    ai_scoring_refresh_score_confirm_title: Atualizar pontuações de IA?
+    ai_scoring_rescore_queued: A reavaliação por IA foi colocada na fila. Por favor, atualize a página daqui a alguns instantes.
     ai_translation: Tradução por IA
     all_corner_rounded: Todos os cantos arredondados
     allow_ai_rescoring: Permitir nova pontuação por IA
+    allow_continue_with_warning_system_check: Permitir que os utilizadores continuem com avisos quando a verificação do sistema falhar
     api_keys: Chaves API
     apply_to_existing_users: Aplicar esta alteração aos usuários existentes nesta campanha
+    assessment_center_activity: Atividade
+    assessment_center_assessor: Assessor
+    assessment_center_attendance: Assiduidade
+    assessment_center_attendance_status: Situação de presença
+    assessment_center_campaigns_tab: Campanhas
+    assessment_center_date_and_time: Data e hora
+    assessment_center_join_room: Entrar na sala
+    assessment_center_meeting_link: Link para a reunião
+    assessment_center_participants_tab: Participantes
+    assessment_center_prework: Trabalho prévio
+    assessment_center_schedule_time: Agendar hora
+    assessment_center_scheduling_status: Estado da programação
+    assessment_center_search_participants: Pesquisar participantes...
     assessment_question_not_supported: Este tipo de pergunta não é suportado atualmente.
     assessments: Avaliações
     assessments_not_mhs: Todas as avaliações devem ser do tipo MHS.
@@ -99,6 +127,7 @@ pt:
     auto_placeholder: Automóvel
     availability: Disponibilidade
     available_languages: Relatório disponível em idiomas
+    average: Média
     back_to_main: Menu principal
     bulk_assets_modal_choose_csv: Escolha o arquivo CSV
     bulk_assets_modal_choose_zip: Escolha o arquivo ZIP
@@ -138,7 +167,9 @@ pt:
     cancel: Cancelar
     cancellation_and_rescheduling_disabled: O cancelamento e o reagendamento estão desativados.
     casual: Casual
+    cell_save_msg: As alterações válidas são guardadas automaticamente assim que sair da célula após a edição.
     characters: personagens
+    chat_instructions_success: As instruções do chat foram guardadas com sucesso
     children_factor_type: Tipo de fator infantil
     client: Locação de clientes
     client_admins: Administradores de clientes
@@ -152,6 +183,7 @@ pt:
     configure_model_answer_title: Configurar resposta modelo e palavras-chave
     confirm_remove_admin: Tem a certeza de que pretende remover o utilizador administrativo com o e-mail '%{email}'?
     copied: Copiado
+    copy_ai_artifacts: Copiar artefactos de IA
     country: País
     create_client: Criar cliente
     create_indicator: Criar indicador
@@ -193,6 +225,7 @@ pt:
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
     download_bulk_asset_download_example_csv: Baixar exemplo CSV.
+    duration: Duração
     edit_campaign_admin: Editar administração da campanha
     edit_client_admin: Editar administrador de clientes
     edit_indicator: Editar indicador
@@ -201,10 +234,12 @@ pt:
     edit_permission_denied: Você não tem permissão para editar o '%{name}' de administrador
     edit_project_admin: Editar administrador do projeto
     edit_threesixty_campaign_admin: Editar administração da campanha
+    empty: Vazio
     empty_csv_file: CSV não contém nenhum dado.
     enable_enhance_with_ai_client_level: Ative o recurso Aprimorar com IA no nível do cliente.
     enable_maintenance: Ativar manutenção
     enable_mobile_proctoring: Ativar supervisão móvel
+    enable_system_check: Ativar verificação do sistema
     enable_transcription: Ativar transcrição
     enable_transcription_msg: Habilite a transcrição para usar a pontuação de IA em perguntas de resposta em vídeo/áudio.
     end_time: Hora do fim
@@ -218,10 +253,12 @@ pt:
     evaluation_status: Status de Avaliação
     evaluation_status_not_done: O status de avaliação não é 'Concluído' para um ou mais sujeitos selecionados. Por favor, certifique-se de que todos os usuários selecionados tenham concluído as avaliações ou marquem como concluídos.
     export_admin_roles_permissions: Exportação de funções e permissões de administrador
+    export_campaigns_queued: As tarefas de exportação foram colocadas na fila. Verifique as suas notificações para obter os links de download.
     export_compact_completion_status: Compacto
     export_completion_status: Status de conclusão da exportação
     export_completion_statuses_scheduled: A tarefa de exportação dos status de conclusão foi agendada com sucesso.
     export_detailed_completion_status: Detalhado
+    factors: Fatores
     feature_ai_assistants_description: Habilite assistentes com tecnologia de IA para melhorar a experiência do usuário
     feature_ai_assisted_idp_description: Use a IA para auxiliar nas recomendações do Planejamento de Desenvolvimento Individual
     feature_ai_content_analysis_description: Habilite a análise de conteúdo com tecnologia de IA para avaliações
@@ -240,8 +277,35 @@ pt:
     final_score_empty_msg: A conta final não pode estar vazia.
     fix_grammar: Corrigir gramática
     formal: Formal
+    from: De
     generate_transcription: Gerar transcrição
     hide_middle_scores: Ocultar pontuações médias
+    high: Elevado
+    hogan: Hogan
+    hogan_assessment: Avaliação Hogan
+    idp_appearance_body: Corpo
+    idp_appearance_color: Cor
+    idp_appearance_cover: Capa
+    idp_appearance_dynamic_content: Conteúdo dinâmico
+    idp_appearance_flip_background: Inverter a imagem de fundo na capa e na última página
+    idp_appearance_font_family: Família de tipos de letra
+    idp_appearance_guideline_position: Posição da página de orientações
+    idp_appearance_guideline_position_second: Segunda página (após a capa)
+    idp_appearance_guideline_position_second_last: Penúltima página (antes da última)
+    idp_appearance_guidelines: Orientações
+    idp_appearance_idp_skills: Competências em IDP
+    idp_appearance_last: Último
+    idp_appearance_per_page_font_settings: Definições de tipo de letra por página
+    idp_appearance_reflections: Reflexões
+    idp_appearance_report_summary: Resumo do relatório
+    idp_appearance_section_body: Corpo da secção
+    idp_appearance_section_subtitle: Subtítulo da secção
+    idp_appearance_section_title: Título da secção
+    idp_appearance_select_font: Selecionar tipo de letra
+    idp_appearance_show_guidelines: Mostrar a página de diretrizes
+    idp_appearance_size: Tamanho
+    idp_appearance_subtitle: Subtítulo
+    idp_appearance_title: Título
     idp_plan_reset_success: O plano foi reiniciado com sucesso
     idp_templates: Modelos de PDI
     import_ai_artifacts: Importar artefatos de IA
@@ -281,6 +345,7 @@ pt:
     libraries: Biblioteca multimédia
     library_invalid_type: Item da Biblioteca Inválido
     licenses: Licenças
+    low: Baixo
     maintenance: Manutenção
     maintenance_settings: Configurações de manutenção
     maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
@@ -297,6 +362,8 @@ pt:
     mhs_session_id: ID da sessão Mhs
     min_value: Valor mínimo
     minimum_10_words: Mínimo de 10 palavras
+    minimum_download_speed: Velocidade mínima de download (em Mbps)
+    minimum_upload_speed: Velocidade mínima de envio (em Mbps)
     missing_min_max_values: Os valores mínimo e máximo são obrigatórios.
     model_answer: Resposta modelo
     model_answer_placeholder: Insira a resposta modelo para pontuação da IA.
@@ -305,6 +372,7 @@ pt:
     name_required: O nome é necessário
     no_file_selected: Nenhum arquivo selecionado
     no_notifications: Sem notificações
+    no_status: Sem estado
     norms: Normas
     not_completed: Não Concluído
     not_completed_tooltip: "%{completed} avaliadores são designados, mas apenas %{submitted} completaram as avaliações"
@@ -837,6 +905,19 @@ pt:
     saml_settings: Configurações SAML
     save: Salvar
     save_assessment_for_scoring_management: Salve a avaliação antes de começar a pontuação.
+    saved_filter_label:
+      approval_status_in: Estado da aprovação
+      approver_user_id_in: Responsável pela aprovação
+      assessment_id_in: Avaliação
+      campaign_id_in: Campanha
+      client_id_in: Cliente
+      project_id_in: Projeto
+      qc_user_id_in: Utilizador QC
+      report_id_in: Relatório
+      subject_email_cont: Assunto do e-mail
+      subject_full_name_cont: Nome da disciplina
+      user_email_cont: E-mail do utilizador
+      user_full_name_cont: Nome de utilizador
     scheduling: Programação
     score: Pontuação
     score_approval_not_allowed_to_approve: Você não tem permissão para aprovar esta pontuação.
@@ -893,7 +974,9 @@ pt:
     subject_part_of_other_invite: O destinatário com o e-mail %{user_email} já foi convidado para o "%{workshop_invite_name}".
     target_job_role: Função alvo
     this_field_is_required: Este campo é obrigatório
+    threesixty: Campanha 360
     timezone: Fuso horário
+    to: Para
     tone: Tom
     toolbar_ai_insight: Visão sobre IA
     toolbar_ai_suggestion: Sugestão de IA
@@ -917,6 +1000,9 @@ pt:
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
     validation_error: Preencha todos os campos obrigatórios
+    validity: Validade
+    very_high: Muito elevado
+    very_low: Muito baixo
     view_licenses: Ver licenças
     waiting: Espera
     weight: Peso

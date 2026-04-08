@@ -23,7 +23,15 @@ ar:
     ai_artifact_result_generation_admin_job_failed: لا يمكن إنشاء الأداة "%{artifact_name}" للمستخدم "%{user_email}"
     ai_artifact_result_stale: قد تكون النتيجة قديمة لأن تبعيات أداة الذكاء الاصطناعي قد تغيرت منذ إنشاء النتيجة الأخيرة. ضع في اعتبارك إعادة إنشاء الأداة لإنشاء أحدث التبعيات.
     ai_artifacts: قطع الذكاء الاصطناعي
+    ai_artifacts_finalized_at: تم الانتهاء منه في
+    ai_artifacts_generate_result_confirm: سيؤدي إنشاء نتائج الأداة للمستخدم "%{email}" إلى إزالة التقرير الحالي الذي يعتمد على هذه الأداة التي تعمل بالذكاء الاصطناعي. هل أنت متأكد من أنك تريد المتابعة؟
     ai_artifacts_generate_results: توليد النتائج
+    ai_artifacts_mark_finalized: تم الانتهاء من وضع العلامة
+    ai_artifacts_mark_finalized_bulk_confirm: سيؤدي إنهاء نتائج العناصر لجميع المستخدمين المحددين إلى إنشاء التقارير التي تستخدم عناصر الذكاء الاصطناعي. هل أنت متأكد من رغبتك في المتابعة؟
+    ai_artifacts_mark_finalized_confirm: سيؤدي إنهاء نتائج الأداة الخاصة بالمستخدم "%{email}" إلى إنشاء التقرير الذي يستخدم أداة الذكاء الاصطناعي الخاصة بهذا المستخدم. هل أنت متأكد من أنك تريد المتابعة؟
+    ai_artifacts_mark_not_finalized: لم يتم إتمام العلامة
+    ai_artifacts_mark_not_finalized_bulk_confirm: ستؤدي إزالة "finalize" من جميع المستخدمين المحددين إلى حذف التقارير التي تم إنشاؤها والتي تستخدم عناصر الذكاء الاصطناعي. هل أنت متأكد من أنك تريد المتابعة؟
+    ai_artifacts_mark_not_finalized_confirm: ستؤدي إزالة الإعداد النهائي للمستخدم "%{email}" إلى حذف التقرير الذي تم إنشاؤه والذي يستخدم أداة الذكاء الاصطناعي الخاصة بهذا المستخدم. هل أنت متأكد من أنك تريد المتابعة؟
     ai_artifacts_output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
     ai_artifacts_results_export: تصدير النتائج
     ai_artifacts_results_export_job_scheduled: تمت جدولة مهمة تصدير نتائج AI Artifacts بنجاح
@@ -78,12 +86,32 @@ ar:
     ai_scoring_appoval_score_not_applicable: النتيجة غير قابلة للتطبيق
     ai_scoring_approval: الموافقة على التقييم بالذكاء الاصطناعي
     ai_scoring_approval_settings: إعدادات الموافقة على التقييم بالذكاء الاصطناعي
+    ai_scoring_approval_stale_description: ربما تكون تحديثات الإعدادات التي تمت منذ آخر عملية تشغيل قد أدت إلى تغيير النتيجة. أعد التقييم لتحديث النتيجة باستخدام أحدث الإعدادات.
+    ai_scoring_approval_stale_title: قد تكون النتيجة قديمة
     ai_scoring_approvals: الموافقات على التقييمات باستخدام الذكاء الاصطناعي
+    ai_scoring_refresh_score: تحديث النتيجة
+    ai_scoring_refresh_score_confirm_description: سيؤدي هذا إلى إعادة إجراء التقييم بالذكاء الاصطناعي لهذا الاختبار باستخدام أحدث إعدادات التكوين. هل أنت متأكد؟
+    ai_scoring_refresh_score_confirm_title: هل تريد تحديث نتائج الذكاء الاصطناعي؟
+    ai_scoring_rescore_queued: تم إدراج عملية إعادة التقييم باستخدام الذكاء الاصطناعي في قائمة الانتظار. يرجى تحديث الصفحة بعد بضع لحظات.
     ai_translation: ترجمة بالذكاء الاصطناعي
     all_corner_rounded: جميع الزوايا مستديرة
     allow_ai_rescoring: السماح بإعادة تقييم الذكاء الاصطناعي
+    allow_continue_with_warning_system_check: السماح للمستخدمين بالمتابعة مع ظهور تحذيرات عند فشل فحص النظام
     api_keys: مفاتيح API
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
+    assessment_center_activity: النشاط
+    assessment_center_assessor: مُقيِّم
+    assessment_center_attendance: الحضور
+    assessment_center_attendance_status: حالة الحضور
+    assessment_center_campaigns_tab: الحملات
+    assessment_center_date_and_time: التاريخ والوقت
+    assessment_center_join_room: انضم إلى الغرفة
+    assessment_center_meeting_link: رابط الاجتماع
+    assessment_center_participants_tab: المشاركون
+    assessment_center_prework: التحضير المسبق
+    assessment_center_schedule_time: تحديد موعد
+    assessment_center_scheduling_status: حالة الجدولة
+    assessment_center_search_participants: البحث عن المشاركين...
     assessment_question_not_supported: هذا النوع من الأسئلة غير مدعوم حاليًا.
     assessments: التقييمات
     assessments_not_mhs: يجب أن تكون جميع التقييمات من نوع MHS
@@ -99,6 +127,7 @@ ar:
     auto_placeholder: السيارات
     availability: التوفر
     available_languages: التقرير متوفر باللغات
+    average: المتوسط
     back_to_main: القائمة الرئيسية
     bulk_assets_modal_choose_csv: اختر ملف CSV
     bulk_assets_modal_choose_zip: اختر ملف ZIP
@@ -138,7 +167,9 @@ ar:
     cancel: إلغاء
     cancellation_and_rescheduling_disabled: تم تعطيل الإلغاء وإعادة الجدولة
     casual: غير رسمي
+    cell_save_msg: يتم حفظ التغييرات الصحيحة تلقائيًا بمجرد مغادرة الخلية بعد التعديل.
     characters: شخصيات
+    chat_instructions_success: تم حفظ تعليمات الدردشة بنجاح
     children_factor_type: نوع عامل الأطفال
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
@@ -152,6 +183,7 @@ ar:
     configure_model_answer_title: تكوين نموذج الإجابة والكلمات المفتاحية
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
     copied: نسخ
+    copy_ai_artifacts: نسخ أعمال الفن الاصطناعي
     country: البلد
     create_client: إنشاء عميل
     create_indicator: إنشاء مؤشر
@@ -193,6 +225,7 @@ ar:
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     download_bulk_asset_download_example_csv: تنزيل مثال CSV.
+    duration: المدة
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
     edit_indicator: تحرير المؤشر
@@ -201,10 +234,12 @@ ar:
     edit_permission_denied: ليس لديك إذن بتعديل '%{name}' المسؤول
     edit_project_admin: تعديل مسؤول مشروع
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
+    empty: فارغ
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
     enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
     enable_maintenance: تمكين الصيانة
     enable_mobile_proctoring: تمكين المراقبة عبر الهاتف المحمول
+    enable_system_check: تمكين فحص النظام
     enable_transcription: تمكين النسخ
     enable_transcription_msg: تمكين النسخ لاستخدام التقييم بالذكاء الاصطناعي في أسئلة الردود بالفيديو/الصوت.
     end_time: نهاية الوقت
@@ -218,10 +253,12 @@ ar:
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
     export_admin_roles_permissions: تصدير أدوار وأذونات المسؤولين
+    export_campaigns_queued: تم وضع مهام التصدير في قائمة الانتظار. يرجى التحقق من إشعاراتك للحصول على روابط التنزيل.
     export_compact_completion_status: مضغوط
     export_completion_status: حالة إتمام التصدير
     export_completion_statuses_scheduled: تمت جدولة مهمة تصدير حالات الإنجاز بنجاح
     export_detailed_completion_status: مفصل
+    factors: العوامل
     feature_ai_assistants_description: تمكين المساعدين المدعومين بالذكاء الاصطناعي لتحسين تجربة المستخدم
     feature_ai_assisted_idp_description: استخدام الذكاء الاصطناعي للمساعدة في توصيات تخطيط التنمية الفردية
     feature_ai_content_analysis_description: تمكين تحليل المحتوى المدعوم بالذكاء الاصطناعي للتقييمات
@@ -240,8 +277,35 @@ ar:
     final_score_empty_msg: لا يمكن أن يكون الحساب النهائي فارغًا.
     fix_grammar: تصحيح القواعد النحوية
     formal: رسمي
+    from: من
     generate_transcription: إنشاء نسخة مكتوبة
     hide_middle_scores: إخفاء النتائج المتوسطة
+    high: مرتفع
+    hogan: هوجان
+    hogan_assessment: تقييم هوجان
+    idp_appearance_body: النص
+    idp_appearance_color: اللون
+    idp_appearance_cover: الغلاف
+    idp_appearance_dynamic_content: المحتوى الديناميكي
+    idp_appearance_flip_background: انعكاس صورة الخلفية في الصفحتين الأولى والأخيرة
+    idp_appearance_font_family: عائلة الخطوط
+    idp_appearance_guideline_position: موضع الصفحة في الدليل
+    idp_appearance_guideline_position_second: الصفحة الثانية (بعد الغلاف)
+    idp_appearance_guideline_position_second_last: الصفحة قبل الأخيرة (قبل الأخيرة)
+    idp_appearance_guidelines: إرشادات
+    idp_appearance_idp_skills: مهارات النازحين داخلياً
+    idp_appearance_last: الأخير
+    idp_appearance_per_page_font_settings: إعدادات الخط لكل صفحة
+    idp_appearance_reflections: تأملات
+    idp_appearance_report_summary: ملخص التقرير
+    idp_appearance_section_body: نص القسم
+    idp_appearance_section_subtitle: عنوان فرعي للقسم
+    idp_appearance_section_title: عنوان القسم
+    idp_appearance_select_font: اختر الخط
+    idp_appearance_show_guidelines: عرض صفحة الإرشادات
+    idp_appearance_size: الحجم
+    idp_appearance_subtitle: العنوان الفرعي
+    idp_appearance_title: العنوان
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
@@ -281,6 +345,7 @@ ar:
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
+    low: منخفض
     maintenance: الصيانة
     maintenance_settings: إعدادات الصيانة
     maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
@@ -297,6 +362,8 @@ ar:
     mhs_session_id: معرف جلسة Mhs
     min_value: القيمة الدنيا
     minimum_10_words: 10 كلمات على الأقل
+    minimum_download_speed: الحد الأدنى لسرعة التنزيل (بالميجابت في الثانية)
+    minimum_upload_speed: الحد الأدنى لسرعة التحميل (بالميجابت في الثانية)
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     model_answer: نموذج الإجابة
     model_answer_placeholder: أدخل الإجابة النموذجية لتقييم الذكاء الاصطناعي.
@@ -305,6 +372,7 @@ ar:
     name_required: الاسم مطلوب
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
+    no_status: لا يوجد حالة
     norms: المعايير
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
@@ -837,6 +905,19 @@ ar:
     saml_settings: إعدادات SAML
     save: حفظ
     save_assessment_for_scoring_management: احفظ التقييم قبل البدء في التسجيل.
+    saved_filter_label:
+      approval_status_in: حالة الموافقة
+      approver_user_id_in: الموافق
+      assessment_id_in: التقييم
+      campaign_id_in: حملة
+      client_id_in: العميل
+      project_id_in: المشروع
+      qc_user_id_in: مستخدم QC
+      report_id_in: تقرير
+      subject_email_cont: موضوع البريد الإلكتروني
+      subject_full_name_cont: اسم المادة
+      user_email_cont: البريد الإلكتروني للمستخدم
+      user_full_name_cont: اسم المستخدم
     scheduling: الجدولة
     score: النتيجة
     score_approval_not_allowed_to_approve: لا يجوز لك الموافقة على هذه النتيجة.
@@ -893,7 +974,9 @@ ar:
     subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
     target_job_role: الوظيفة المستهدفة
     this_field_is_required: هذا الحقل مطلوب
+    threesixty: حملة 360
     timezone: المنطقة الزمنية
+    to: إلى
     tone: نغمة
     toolbar_ai_insight: رؤية الذكاء الاصطناعي
     toolbar_ai_suggestion: اقتراح الذكاء الاصطناعي
@@ -917,6 +1000,9 @@ ar:
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
     validation_error: يرجى ملء جميع الحقول المطلوبة
+    validity: الصلاحية
+    very_high: مرتفع جدًا
+    very_low: منخفض جدًا
     view_licenses: عرض التراخيص
     waiting: انتظار
     weight: الوزن

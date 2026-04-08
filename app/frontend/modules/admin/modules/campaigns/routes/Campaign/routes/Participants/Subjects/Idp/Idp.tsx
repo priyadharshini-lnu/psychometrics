@@ -157,7 +157,6 @@ const Idp: React.FC<PropsFromRedux> = ({
             {campaignPermissions.manageIdpPlans && (
               <Button
                 onClick={() => {
-                  // eslint-disable-next-line max-len
                   navigate(`${activeIdpPlan?.id}/step/getting_started`)
                 }}
               >

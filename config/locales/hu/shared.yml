@@ -97,6 +97,7 @@ hu:
     name: Név
     negative: Negatív
     new: Új
+    next: Következő
     no_results_found: Nincs találat
     not_requested: Még nem kért
     ok: Oké
@@ -114,6 +115,8 @@ hu:
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     rec: REC
+    recorded: Felvétel
+    recording: Felvétel
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
     recording_consent_proceed_question: Beleegyezik a rögzített találkozó folytatásába?
     recording_consent_title: Felvételi beleegyezési értesítés
@@ -132,6 +135,7 @@ hu:
     show_more: Több
     something_wrong: Valami elromlott. Forduljon a rendszergazdához.
     status: Állapot
+    status_unknown: Állapot ismeretlen
     subject: Tárgy
     submit: Beküldés
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre

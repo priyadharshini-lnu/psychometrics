@@ -22,6 +22,9 @@ import { DirectReportDetails } from './idp/DirectReportees/Details'
 import { AIStartPage } from './idp/AIAssistant/AIStartPage'
 import { AIChat } from './idp/AIAssistant/AIChat'
 import { SkillGapReport } from './idp/AIAssistant/SkillGapReport'
+import { SystemChecksStepper } from './Campaign/CampaignLevelSystemChecks/SystemChecksStepper'
+import { Welcome as CampaignLevelSystemChecksWelcome } from './Campaign/CampaignLevelSystemChecks/Welcome'
+import { ChatInstructions } from './idp/AIAssistant/ChatInstructions'
 
 const CWizard = () => {
   const { assessmentId, id } = useParams() as { assessmentId: string, id: string }
@@ -40,6 +43,14 @@ const routes = [
   {
     path: '/campaigns/:campaignId',
     component: <Campaign />,
+  },
+  {
+    path: '/campaign_system_check/:campaignId/welcome',
+    component: <CampaignLevelSystemChecksWelcome />,
+  },
+  {
+    path: '/campaign_system_check/:campaignId/:step',
+    component: <SystemChecksStepper />,
   },
   {
     path: '/threesixty_campaigns/:campaignId',
@@ -104,6 +115,10 @@ const routes = [
   {
     path: '/idp/ai_assistant/skill_gap_report',
     component: <SkillGapReport />,
+  },
+  {
+    path: '/idp/ai_assistant/chat_instructions',
+    component: <ChatInstructions />,
   },
   {
     path: '/idp/ai_assistant/chat',

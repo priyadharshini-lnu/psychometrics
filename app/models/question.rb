@@ -45,19 +45,32 @@ class Question < ApplicationRecord
   }
 
   scope :ams, lambda {
-    selecting do
-      ['questions.*',
-       coalesce(template.props, props).as('props'),
-       coalesce(template.type, type).as('type'),
-       coalesce(template.name, name).as('name'),
-       '(CASE WHEN templates_questions.id IS NOT NULL
- THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
-       '(CASE WHEN blocks.template_id IS NOT NULL
- THEN templates_questions.position ELSE questions.position END) AS reposition']
-    end.
-      joining { template.outer }.
-      joining { block }.
-      where.has { (template.disabled == false) | (template.id == nil) }.
+    template_table = Question.arel_table.alias('templates_questions')
+    questions_table = Question.arel_table
+
+    coalesce_props = Arel::Nodes::NamedFunction.
+                     new('COALESCE', [template_table[:props], questions_table[:props]]).as('props')
+    coalesce_type = Arel::Nodes::NamedFunction.
+                    new('COALESCE', [template_table[:type], questions_table[:type]]).as('type')
+    coalesce_name = Arel::Nodes::NamedFunction.
+                    new('COALESCE', [template_table[:name], questions_table[:name]]).as('name')
+
+    deleted_at_case = Arel.sql(
+      '(CASE WHEN templates_questions.id IS NOT NULL
+ THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at'
+    )
+    reposition_case = Arel.sql(
+      '(CASE WHEN blocks.template_id IS NOT NULL
+ THEN templates_questions.position ELSE questions.position END) AS reposition'
+    )
+
+    template_not_disabled = template_table[:disabled].eq(false)
+    template_not_present = template_table[:id].eq(nil)
+
+    joins(:block).
+      left_outer_joins(:template).
+      select('questions.*', coalesce_props, coalesce_type, coalesce_name, deleted_at_case, reposition_case).
+      where(template_not_disabled.or(template_not_present)).
       reorder('reposition ASC')
   }
 

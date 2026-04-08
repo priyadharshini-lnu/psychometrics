@@ -23,7 +23,15 @@ th:
     ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
     ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
+    ai_artifacts_finalized_at: เสร็จสิ้นที่
+    ai_artifacts_generate_result_confirm: การสร้างผลลัพธ์ของอาร์ติแฟกต์สำหรับผู้ใช้ '%{email}' จะลบรายงานที่มีอยู่ซึ่งขึ้นอยู่กับอาร์ติแฟกต์ AI นี้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
     ai_artifacts_generate_results: สร้างผลลัพธ์
+    ai_artifacts_mark_finalized: มาร์คเสร็จสิ้น
+    ai_artifacts_mark_finalized_bulk_confirm: การสรุปผลลัพธ์ของวัตถุสำหรับผู้ใช้ที่เลือกทั้งหมดจะสร้างรายงานที่ใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    ai_artifacts_mark_finalized_confirm: กำลังสรุปผลลัพธ์ของอาร์ติแฟกต์สำหรับผู้ใช้ '%{email}' ซึ่งจะสร้างรายงานที่ใช้ AI อาร์ติแฟกต์สำหรับผู้ใช้ดังกล่าว คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    ai_artifacts_mark_not_finalized: ยังไม่ได้รับการอนุมัติขั้นสุดท้าย
+    ai_artifacts_mark_not_finalized_bulk_confirm: การลบ finalize จากผู้ใช้ที่เลือกทั้งหมดจะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    ai_artifacts_mark_not_finalized_confirm: การลบ finalize จากผู้ใช้ '%{email}' จะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifact สำหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
     ai_artifacts_output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
     ai_artifacts_results_export: ผลลัพธ์การส่งออก
     ai_artifacts_results_export_job_scheduled: งานส่งออกผลลัพธ์ของ AI Artifacts ได้รับการกำหนดเวลาเรียบร้อยแล้ว
@@ -78,12 +86,32 @@ th:
     ai_scoring_appoval_score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
     ai_scoring_approval: การอนุมัติคะแนนโดย AI
     ai_scoring_approval_settings: การตั้งค่าการอนุมัติคะแนน AI
+    ai_scoring_approval_stale_description: การอัปเดตการกำหนดค่าตั้งแต่การรันครั้งล่าสุดอาจทำให้คะแนนเปลี่ยนแปลงได้ ให้ทำการคำนวณคะแนนใหม่โดยใช้การตั้งค่าล่าสุดเพื่ออัปเดตคะแนน
+    ai_scoring_approval_stale_title: คะแนนอาจล้าสมัย
     ai_scoring_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
+    ai_scoring_refresh_score: รีเฟรชคะแนน
+    ai_scoring_refresh_score_confirm_description: นี่จะทำการประเมินคะแนน AI สำหรับการประเมินนี้ใหม่โดยใช้การตั้งค่าล่าสุด คุณแน่ใจหรือไม่?
+    ai_scoring_refresh_score_confirm_title: รีเฟรชคะแนน AI?
+    ai_scoring_rescore_queued: การให้คะแนนใหม่โดย AI ได้ถูกจัดคิวแล้ว กรุณารีเฟรชหลังจากผ่านไปสักครู่
     ai_translation: การแปลโดยปัญญาประดิษฐ์
     all_corner_rounded: มุมทั้งหมดโค้งมน
     allow_ai_rescoring: อนุญาตให้ AI คะแนนใหม่
+    allow_continue_with_warning_system_check: อนุญาตให้ผู้ใช้ดำเนินการต่อได้เมื่อการตรวจสอบระบบล้มเหลว
     api_keys: กุญแจ API
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
+    assessment_center_activity: กิจกรรม
+    assessment_center_assessor: ผู้ประเมิน
+    assessment_center_attendance: การเข้าร่วม
+    assessment_center_attendance_status: สถานะการเข้าร่วม
+    assessment_center_campaigns_tab: แคมเปญ
+    assessment_center_date_and_time: วันที่ & เวลา
+    assessment_center_join_room: เข้าร่วมห้อง
+    assessment_center_meeting_link: ลิงก์การประชุม
+    assessment_center_participants_tab: ผู้เข้าร่วม
+    assessment_center_prework: งานเตรียมก่อนเรียน
+    assessment_center_schedule_time: กำหนดเวลา
+    assessment_center_scheduling_status: สถานะการจัดตาราง
+    assessment_center_search_participants: ค้นหาผู้เข้าร่วม...
     assessment_question_not_supported: ประเภทคำถามนี้ยังไม่รองรับในขณะนี้
     assessments: การประเมิน
     assessments_not_mhs: การประเมินทั้งหมดต้องเป็นประเภท MHS
@@ -99,6 +127,7 @@ th:
     auto_placeholder: ออโต้
     availability: กำหนดการ
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
+    average: ค่าเฉลี่ย
     back_to_main: เมนูหลัก
     bulk_assets_modal_choose_csv: เลือกไฟล์ CSV
     bulk_assets_modal_choose_zip: เลือกไฟล์ ZIP
@@ -138,7 +167,9 @@ th:
     cancel: ยกเลิก
     cancellation_and_rescheduling_disabled: การยกเลิกและการเลื่อนกำหนดการถูกปิดใช้งาน
     casual: ลำลอง
+    cell_save_msg: การเปลี่ยนแปลงที่ถูกต้องจะถูกบันทึกโดยอัตโนมัติเมื่อคุณออกจากเซลล์หลังจากแก้ไข
     characters: ตัวอักษร
+    chat_instructions_success: คำแนะนำการแชทถูกบันทึกไว้เรียบร้อยแล้ว
     children_factor_type: ประเภทปัจจัยของเด็ก
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
@@ -152,6 +183,7 @@ th:
     configure_model_answer_title: กำหนดค่าคำตอบแบบจำลองและคำสำคัญ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
     copied: คัดลอกแล้ว
+    copy_ai_artifacts: คัดลอกสิ่งประดิษฐ์ของ AI
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
     create_indicator: สร้างตัวชี้วัด
@@ -193,6 +225,7 @@ th:
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
+    duration: ระยะเวลา
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
     edit_indicator: แก้ไขตัวบ่งชี้
@@ -201,10 +234,12 @@ th:
     edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
     edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
+    empty: ว่างเปล่า
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
     enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
     enable_maintenance: เปิดใช้งานการบำรุงรักษา
     enable_mobile_proctoring: เปิดใช้งานการตรวจสอบการสอบผ่านมือถือ
+    enable_system_check: เปิดใช้งานการตรวจสอบระบบ
     enable_transcription: เปิดใช้งานการถอดเสียง
     enable_transcription_msg: เปิดใช้งานการถอดเสียงเพื่อใช้การให้คะแนนด้วย AI สำหรับคำถามที่ตอบด้วยวิดีโอ/เสียง
     end_time: เวลาสิ้นสุด
@@ -218,10 +253,12 @@ th:
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    export_campaigns_queued: งานส่งออกได้ถูกจัดคิวแล้ว กรุณาตรวจสอบการแจ้งเตือนของคุณเพื่อดูลิงก์สำหรับดาวน์โหลด
     export_compact_completion_status: กะทัดรัด
     export_completion_status: สถานะการส่งออกเสร็จสมบูรณ์
     export_completion_statuses_scheduled: งานส่งออกสถานะการเสร็จสิ้นถูกกำหนดเวลาสำเร็จ
     export_detailed_completion_status: ละเอียด
+    factors: ปัจจัย
     feature_ai_assistants_description: เปิดใช้งานผู้ช่วยอัจฉริยะด้วย AI เพื่อประสบการณ์ผู้ใช้ที่ดียิ่งขึ้น
     feature_ai_assisted_idp_description: ใช้ AI เพื่อช่วยในการให้คำแนะนำสำหรับการวางแผนพัฒนาบุคคล
     feature_ai_content_analysis_description: เปิดใช้งานการวิเคราะห์เนื้อหาด้วย AI สำหรับการประเมินผล
@@ -240,8 +277,35 @@ th:
     final_score_empty_msg: ยอดรวมสุดท้ายต้องไม่ว่างเปล่า
     fix_grammar: แก้ไขไวยากรณ์
     formal: ทางการ
+    from: จาก
     generate_transcription: สร้างการถอดความ
     hide_middle_scores: ซ่อนคะแนนกลาง
+    high: สูง
+    hogan: โฮแกน
+    hogan_assessment: การประเมินโฮแกน
+    idp_appearance_body: "**เนื้อหา**"
+    idp_appearance_color: สี
+    idp_appearance_cover: ปก
+    idp_appearance_dynamic_content: เนื้อหาแบบไดนามิก
+    idp_appearance_flip_background: พลิกภาพพื้นหลังบนหน้าปกและหน้าสุดท้าย
+    idp_appearance_font_family: ตระกูลฟอนต์
+    idp_appearance_guideline_position: ตำแหน่งหน้าของแนวทาง
+    idp_appearance_guideline_position_second: หน้าสอง (หลังจากปก)
+    idp_appearance_guideline_position_second_last: หน้าสุดท้ายรอง (ก่อนหน้าสุดท้าย)
+    idp_appearance_guidelines: แนวทางปฏิบัติ
+    idp_appearance_idp_skills: ทักษะ IDP
+    idp_appearance_last: ครั้งสุดท้าย
+    idp_appearance_per_page_font_settings: การตั้งค่าฟอนต์ต่อหน้า
+    idp_appearance_reflections: การสะท้อนความคิด
+    idp_appearance_report_summary: รายงานสรุป
+    idp_appearance_section_body: ส่วนเนื้อหา
+    idp_appearance_section_subtitle: หัวข้อส่วนย่อย
+    idp_appearance_section_title: หัวข้อส่วน
+    idp_appearance_select_font: เลือกแบบอักษร
+    idp_appearance_show_guidelines: หน้าคำแนะนำการแสดง
+    idp_appearance_size: ขนาด
+    idp_appearance_subtitle: คำบรรยาย
+    idp_appearance_title: ชื่อเรื่อง
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
@@ -281,6 +345,7 @@ th:
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
+    low: ต่ำ
     maintenance: การบำรุงรักษา
     maintenance_settings: การตั้งค่าการบำรุงรักษา
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
@@ -297,6 +362,8 @@ th:
     mhs_session_id: รหัสเซสชันของนักศึกษา
     min_value: ค่าต่ำสุด
     minimum_10_words: อย่างน้อย 10 คำ
+    minimum_download_speed: ความเร็วในการดาวน์โหลดขั้นต่ำ (ใน Mbps)
+    minimum_upload_speed: ความเร็วในการอัปโหลดขั้นต่ำ (ใน Mbps)
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     model_answer: คำตอบตัวอย่าง
     model_answer_placeholder: กรุณากรอกคำตอบตัวอย่างสำหรับการให้คะแนนโดย AI
@@ -305,6 +372,7 @@ th:
     name_required: ต้องระบุชื่อ
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
+    no_status: ไม่มีสถานะ
     norms: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
@@ -837,6 +905,19 @@ th:
     saml_settings: การตั้งค่า SAML
     save: บันทึก
     save_assessment_for_scoring_management: บันทึกการประเมินก่อนเริ่มต้นการให้คะแนน
+    saved_filter_label:
+      approval_status_in: สถานะการอนุมัติ
+      approver_user_id_in: ผู้อนุมัติ
+      assessment_id_in: การประเมิน
+      campaign_id_in: แคมเปญ
+      client_id_in: ลูกค้า
+      project_id_in: โครงการ
+      qc_user_id_in: ผู้ใช้ QC
+      report_id_in: รายงาน
+      subject_email_cont: หัวข้ออีเมล
+      subject_full_name_cont: ชื่อเรื่อง
+      user_email_cont: อีเมลผู้ใช้
+      user_full_name_cont: ชื่อผู้ใช้
     scheduling: กำหนดการ
     score: คะแนน
     score_approval_not_allowed_to_approve: คุณไม่ได้รับอนุญาตให้อนุมัติคะแนนนี้
@@ -893,7 +974,9 @@ th:
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
     target_job_role: ตำแหน่งงานเป้าหมาย
     this_field_is_required: ฟิลด์นี้จำเป็นต้องกรอก
+    threesixty: แคมเปญ 360
     timezone: เขตเวลา
+    to: ถึง
     tone: โทน
     toolbar_ai_insight: AI อินไซต์
     toolbar_ai_suggestion: คำแนะนำจาก AI
@@ -917,6 +1000,9 @@ th:
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
     validation_error: กรุณากรอกข้อมูลในทุกช่องที่จำเป็น
+    validity: ความถูกต้อง
+    very_high: สูงมาก
+    very_low: ต่ำมาก
     view_licenses: ดูใบอนุญาต
     waiting: การรอคอย
     weight: น้ำหนัก

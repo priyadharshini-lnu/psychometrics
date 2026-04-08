@@ -64,17 +64,11 @@ module Api
     end
 
     def update_instructions
-      locale = params[:data][:attributes][:locale] || I18n.default_locale
-      instructions = params[:data][:attributes][:instructions]
+      update_instructions_field(instructions: params[:data][:attributes][:instructions])
+    end
 
-      Mobility.with_locale(locale) do
-        @model.update!(instructions: instructions)
-        jsonapi_render json: @model
-      end
-    rescue StandardError
-      render json: {
-        error: t('administration.idp.errors.update')
-      }, status: :bad_request
+    def update_chat_instructions
+      update_instructions_field(chat_instructions: params[:data][:attributes][:chat_instructions])
     end
 
     def uploads
@@ -112,6 +106,19 @@ module Api
 
     private
 
+    def update_instructions_field(instructions)
+      locale = params[:data][:attributes][:locale] || I18n.default_locale
+
+      Mobility.with_locale(locale) do
+        @model.update!(instructions)
+        jsonapi_render json: @model
+      end
+    rescue StandardError
+      render json: {
+        error: t('administration.idp.errors.update')
+      }, status: :bad_request
+    end
+
     def set_user_idp_plan
       @user_idp_plan = UserIdpPlan.find_by(idp_template_id: params[:id])
     end
@@ -119,7 +126,8 @@ module Api
     def appearance_params
       params.required(:data).required(:attributes).permit(:title_text, :subtitle_text, :logo_type,
                                                           :show_reflections, :show_reflection_questions,
-                                                          fields: [], translations: {})
+                                                          :show_guidelines, :guideline_position, :flip_background,
+                                                          fields: [], translations: {}, page_styles: {})
     end
 
     def uploads_params

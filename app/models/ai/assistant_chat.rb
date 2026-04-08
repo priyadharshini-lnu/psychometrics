@@ -32,22 +32,10 @@ class AI::AssistantChat < ApplicationRecord
     self
   end
 
-  # Overriding to_llm to set assume_model_exists flag
-  # Original at lib/ruby_llm/active_record/chat_methods.rb#78
-  def to_llm
-    model_record = model_association
-    @chat ||= (context || RubyLLM).chat(
-      model: model_record.model_id,
-      provider: model_record.provider.to_sym,
-      assume_model_exists: assume_model_exists || false
-    )
-    @chat.reset_messages!
-
-    messages_association.each do |msg|
-      @chat.add_message(msg.to_llm)
-    end
-
-    setup_persistence_callbacks
+  def ask_for_correction(correction_message)
+    message = create_user_message(correction_message)
+    message.update!(request_status: :correction)
+    complete
   end
 
   private

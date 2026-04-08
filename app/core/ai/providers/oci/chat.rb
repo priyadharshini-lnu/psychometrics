@@ -17,7 +17,8 @@ module AI
         DEFAULT_SAFETY_MODE = 'STRICT'
 
         # rubocop:disable Metrics/ParameterLists, Lint/UnusedMethodArgument
-        def render_payload(messages, tools:, temperature:, model: nil, stream: false, schema: nil)
+        def render_payload(messages, tools:, temperature:, model: nil, stream: false, schema: nil,
+                           thinking: nil, tool_prefs: nil)
           formatted_messages = format_messages(messages)
           formatted_tools = format_tools(tools)
 
@@ -68,11 +69,11 @@ module AI
           messages.filter_map do |msg|
             case msg.role
               when :system
-                { role: 'SYSTEM', message: msg.content.to_s }
+                { role: 'SYSTEM', message: extract_text_content(msg.content) }
               when :user
-                { role: 'USER', message: msg.content.to_s }
+                { role: 'USER', message: extract_text_content(msg.content) }
               when :assistant
-                data = { role: 'CHATBOT', message: msg.content.to_s }
+                data = { role: 'CHATBOT', message: extract_text_content(msg.content) }
                 data[:tool_calls] = msg.tool_calls if msg.tool_call?
                 data
               when :tool
@@ -80,12 +81,23 @@ module AI
                 # Tool results will be handled separately by OCI API
                 {
                   role: 'TOOL',
-                  message: msg.content.to_s,
+                  message: extract_text_content(msg.content),
                   tool_call_id: msg.tool_call_id,
                   tool_call_name: parent_tool_call&.name,
                   tool_call_parameters: parent_tool_call&.arguments
                 }
             end
+          end
+        end
+
+        def extract_text_content(content)
+          if content.is_a?(RubyLLM::Content::Raw)
+            value = content.value
+            value.is_a?(Hash) || value.is_a?(Array) ? JSON.generate(value) : value.to_s
+          elsif content.is_a?(RubyLLM::Content)
+            content.text.to_s
+          else
+            content.to_s
           end
         end
 
@@ -330,16 +342,15 @@ module AI
         end
 
         def format_schema_for_oci(schema)
-          # Remove unsupported fields and convert symbol keys to strings
-          # OCI doesn't support 'strict', '$defs', and other OpenAI-specific fields
-          cleaned_schema = schema.dup
+          # RubyLLM wraps the schema as {name:, schema:, strict:}
+          # OCI's CohereResponseJsonFormat expects just the inner JSON Schema object
+          schema_def = schema[:schema] || schema['schema'] || schema
 
-          cleaned_schema.delete(:strict)
-          cleaned_schema.delete('strict')
-          cleaned_schema.delete(:$defs)
-          cleaned_schema.delete('$defs')
+          cleaned = schema_def.dup
+          cleaned.delete(:$defs)
+          cleaned.delete('$defs')
 
-          stringify_keys_recursively(cleaned_schema)
+          stringify_keys_recursively(cleaned)
         end
 
         def stringify_keys_recursively(obj)
@@ -348,6 +359,8 @@ module AI
               obj.transform_keys(&:to_s).transform_values { |v| stringify_keys_recursively(v) }
             when Array
               obj.map { |item| stringify_keys_recursively(item) }
+            when Symbol
+              obj.to_s
             else
               obj
           end

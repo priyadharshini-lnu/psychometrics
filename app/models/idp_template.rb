@@ -6,7 +6,7 @@ class IdpTemplate < ApplicationRecord
   include RansackSearchableFields
   include ActiveStorageAttachable
 
-  translates :instructions, :title_text, :subtitle_text
+  translates :instructions, :title_text, :subtitle_text, :chat_instructions
   belongs_to :project, class_name: 'Client'
   belongs_to :report
   belongs_to :one_click_ai_assistant, class_name: 'AI::Assistant', optional: true
@@ -29,6 +29,7 @@ class IdpTemplate < ApplicationRecord
 
   enum :status, { draft: 0, published: 1 }, prefix: true
   enum :skill_source_preference, { from_template: 0, from_ai: 1 }, prefix: true
+  enum :guideline_position, { second: 0, second_last: 1 }, prefix: true
 
   store_accessor :skill_settings, %i[behavioral_global behavioral_client], suffix: true
   store_accessor :skill_settings, %i[technical_global technical_client], suffix: true

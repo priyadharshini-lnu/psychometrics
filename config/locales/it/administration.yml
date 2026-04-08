@@ -80,7 +80,6 @@ it:
         title: Artefatto AI
       generate: Generare
       generate_result_info_message: I risultati sono in fase di generazione, aggiorna la pagina per vedere i risultati aggiornati.
-      generated_at: Generato il
       generated_at_time: Generato a %{time}
       generated_value: Valore Generato
       id: ID
@@ -1871,6 +1870,8 @@ it:
       form:
         enable_innovation_styles: Abilitare gli stili di innovazione
         enable_occupations: Abilitare le professioni
+        name: Nome
+        title: Dimensioni
       import_factors:
         import: Importazione
         sample_file: File di esempio
@@ -1918,6 +1919,7 @@ it:
         confirmations:
           delete:
             body: "<p>Siete sicuri di voler cancellare questa Dimensione?</p>\n"
+            message: Inserisci il nome della dimensione indicato di seguito nella casella di testo per confermare
             title: Cancellare la <strong>dimensione</strong>?
           toggle_status:
             body: "<p>Sei sicuro di volere %{status} questa Dimensione?</p>\n"
@@ -1982,6 +1984,7 @@ it:
                 score: Punteggio
                 zscore: Punteggio Z
             title: Percorsi JSON per i punteggi
+        predicate: Predicato
         scoring_strategies:
           custom_formula: Formula personalizzata
           external_score: Punteggio esterno
@@ -1995,10 +1998,13 @@ it:
           sub_factors_sum: Somma ponderata dei fattori
         scoring_strategies_tip: "<strong>domande (media):</strong> è come il metodo di punteggio attuale quando ci sono domande collegate a un fattore. <br /> <br /><strong>domande (Somma):</strong> è come le domande (media), ma utilizza la somma <br /> <br /><strong>domande di altri fattori (media):</strong> è come il metodo di punteggio attuale quando ci sono sottofattori per un fattore, l'unica modifica è l'aggiunta del peso. <br /> <br /><strong>domande di altri fattori (somma):</strong> è come le domande di altri fattori (media), ma con l'uso della somma <br /> <br /><strong>somma ponderata dei fattori:</strong> qui i punteggi degli altri fattori selezionati vengono moltiplicati per i loro pesi e sommati."
         scoring_strategy: Strategia di punteggio
+        search_factors: Fattori di ricerca
         use_sub_factor_norm_score: Utilizzare il punteggio della norma dei fattori
+        value: Valore
       index:
         icon: Icona
         new: Aggiungi
+        precision: Precisione
         scoring_strategies:
           custom_formula: Formula personalizzata
           external_score: Punteggio esterno
@@ -2292,6 +2298,7 @@ it:
       edit:
         header: Modifica lo stile dell'innovazione
       form:
+        full_description: Descrizione completa
         no_icon: Nessuna icona
       index:
         new: Aggiungi
@@ -2663,8 +2670,12 @@ it:
       edit:
         header: Modifica occupazione
       form:
+        alternative_icon: Icona alternativa
+        color: Colore
         hint:
           key_career_tracks: '"+" - elenco, "*" - grassetto. Esempio: + *Biologia* - qualche descrizione...'
+        indicative_roles_image: Immagine illustrativa dei ruoli
+        key_career_tracks_image: Immagine dei principali percorsi professionali
         no_icon: Nessuna icona
       index:
         new: Aggiungi
@@ -2735,6 +2746,7 @@ it:
       assessment_center: Centro di valutazione
       assessment_id: ID di valutazione
       campaign_id: ID campagna
+      campaign_link: Link alla campagna
       campaign_name: Nome della campagna
       campaigns: Campagne
       description: Descrizione
@@ -3735,8 +3747,10 @@ it:
       id: ID
       import:
         factors: Fattori della campagna di importazione
+      innovation_style_removal_confirmation: Inserisci il nome dello stile di innovazione indicato di seguito nella casella di testo per confermare
       name: Nome
       no_groups: Nessun gruppo presente
+      occupation_removal_confirmation: Inserisci il nome della professione indicato di seguito nella casella di testo per confermare
       output_type: Tipo di uscita
       pattern_error: Sono ammessi solo caratteri alfanumerici, spazi e trattini.
       profile:

@@ -873,6 +873,7 @@ ko:
         export_assessment_questions: 수출 평가 질문
         export_campaign_ai_artifacts: 수출 캠페인 AI 아티팩트
         export_campaign_ai_artifacts_results: 캠페인 AI 아티팩트 결과 내보내기
+        export_campaign_datasheet: 캠페인 데이터시트 내보내기
         export_campaign_factors: 수출 캠페인 요소
         export_campaign_scorings: 내보내기 캠페인 점수
         export_dashboard_as_file: 대시보드를 파일로 내보내기
@@ -932,6 +933,7 @@ ko:
         regenerate_report: 보고서 다시 생성
         regenerate_threesixty_report: 삼십육 보고서 재생성
         remap_report_assessment: 리매핑 보고서 평가
+        rescore_ai_scoring: AI 재채점
         rescore_assessment: 평가 재채점
         rescore_user_assessment: 사용자 평가 재채점
         send_sms_invites: SMS 초대 보내기
@@ -2643,6 +2645,7 @@ ko:
     direct_reportee_details: 직접 보고자 세부 정보
     download:
       description: 보고서를 다운로드하려면 <a href=''%{url}'' target=''_blank''>Download.</a> 링크는 10분 동안만 유효합니다.
+      title: 보고서가 준비되었습니다!
     download_plan: 플랜 다운로드
     edit_plan: 계획 편집
     edit_plan_and_add_skills: 계획을 편집하고 스킬 관리를 클릭하여 스킬을 추가합니다.

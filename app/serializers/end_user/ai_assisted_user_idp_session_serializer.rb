@@ -10,6 +10,7 @@ module EndUser
 
       messages = ai_assistant_chat.messages.
                  where(role: %w[user assistant]).
+                 where.not(request_status: %i[invalid correction]).
                  where.missing(:tool_calls).order(created_at: :asc).offset(1)
 
       Panko::ArraySerializer.new(messages, each_serializer: EndUser::IdpAIChatMessageSerializer).to_a

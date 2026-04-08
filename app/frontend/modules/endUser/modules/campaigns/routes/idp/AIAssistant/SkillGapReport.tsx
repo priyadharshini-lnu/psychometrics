@@ -3,14 +3,21 @@
 import {
   useNavigate,
 } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import IdpPageLayoutWrapper from '~/components/IdpShared/IdpPageLayoutWrapper'
 import { SkillGapReportStep } from '../InitialSteps/SkillGapReport'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
 export const SkillGapReport = () => {
   const navigate = useNavigate()
+  const showChatInstructions = useSelector((state: RootState) => state.campaigns.idp.showChatInstructions)
 
   const handleNext = () => {
-    navigate('/idp/ai_assistant/chat')
+    if (showChatInstructions) {
+      navigate('/idp/ai_assistant/chat_instructions')
+    } else {
+      navigate('/idp/ai_assistant/chat')
+    }
   }
 
   const handlePrev = () => {

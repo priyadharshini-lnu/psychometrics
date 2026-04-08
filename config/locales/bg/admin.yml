@@ -23,7 +23,15 @@ bg:
     ai_artifact_result_generation_admin_job_failed: Артефактът „%{artifact_name}” не може да бъде генериран за потребителя „%{user_email}”.
     ai_artifact_result_stale: Резултатът може да е неактуален, тъй като зависимостите на AI артефакта са се променили от момента на генериране на последния резултат. Обмислете да генерирате артефакта отново, за да използвате най-новите зависимости.
     ai_artifacts: Артефакти с изкуствен интелект
+    ai_artifacts_finalized_at: Окончателно прието на
+    ai_artifacts_generate_result_confirm: Създаването на резултати от артефакта за потребителя „%{email}“ ще доведе до премахване на съществуващия отчет, който зависи от този AI артефакт. Сигурен ли сте, че искате да продължите?
     ai_artifacts_generate_results: Генериране на резултати
+    ai_artifacts_mark_finalized: Марк приключи
+    ai_artifacts_mark_finalized_bulk_confirm: Окончателното формиране на резултатите от артефактите за всички избрани потребители ще доведе до генерирането на отчети, които използват артефакти, създадени с изкуствен интелект. Сигурен ли сте, че искате да продължите?
+    ai_artifacts_mark_finalized_confirm: Окончателното оформяне на резултатите от артефакта за потребителя „%{email}“ ще генерира отчет, който използва AI артефакта за този потребител. Сигурен ли сте, че искате да продължите?
+    ai_artifacts_mark_not_finalized: Маркировката не е финализирана
+    ai_artifacts_mark_not_finalized_bulk_confirm: Премахването на финализирането за всички избрани потребители ще доведе до изтриване на генерираните отчети, които използват AI артефакти. Сигурен ли сте, че искате да продължите?
+    ai_artifacts_mark_not_finalized_confirm: Премахването на финализацията от потребителя „%{email}“ ще доведе до изтриване на генерирания отчет, който използва AI артефакта за този потребител. Сигурен ли сте, че искате да продължите?
     ai_artifacts_output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
     ai_artifacts_results_export: Експортиране на резултати
     ai_artifacts_results_export_job_scheduled: Задачата за експортиране на резултатите от AI Artifacts беше успешно планирана.
@@ -78,12 +86,32 @@ bg:
     ai_scoring_appoval_score_not_applicable: Резултатът не се прилага
     ai_scoring_approval: Одобрение на AI оценка
     ai_scoring_approval_settings: Настройки за одобрение на AI оценката
+    ai_scoring_approval_stale_description: Възможно е резултатът да се е променил вследствие на актуализации в конфигурацията, извършени след последното изпълнение. Извършете преизчисление, за да го актуализирате, като използвате най-новите настройки.
+    ai_scoring_approval_stale_title: Резултатът може да е остарял
     ai_scoring_approvals: Одобрения на AI оценки
+    ai_scoring_refresh_score: Актуализиране на резултата
+    ai_scoring_refresh_score_confirm_description: Това ще доведе до повторно изчисляване на оценката чрез изкуствен интелект за тази оценка, като се използва най-новата конфигурация. Сигурен ли сте?
+    ai_scoring_refresh_score_confirm_title: Да се обновят оценките на AI?
+    ai_scoring_rescore_queued: Преизчисляването с изкуствен интелект е поставено в опашката. Моля, обновете страницата след малко.
     ai_translation: AI превод
     all_corner_rounded: Всички ъгли са заоблени
     allow_ai_rescoring: Разреши AI преоценка
+    allow_continue_with_warning_system_check: Да се позволи на потребителите да продължат, като се показват предупреждения, когато проверката на системата се провали
     api_keys: API ключове
     apply_to_existing_users: Приложи тази промяна към съществуващите потребители в тази кампания
+    assessment_center_activity: Дейност
+    assessment_center_assessor: Оценител
+    assessment_center_attendance: Присъствие
+    assessment_center_attendance_status: Статус на присъствието
+    assessment_center_campaigns_tab: Кампании
+    assessment_center_date_and_time: Дата и час
+    assessment_center_join_room: Влез в стаята
+    assessment_center_meeting_link: Връзка към срещата
+    assessment_center_participants_tab: Участници
+    assessment_center_prework: Подготвителна работа
+    assessment_center_schedule_time: Запазете час
+    assessment_center_scheduling_status: Статус на планирането
+    assessment_center_search_participants: Търсене на участници...
     assessment_question_not_supported: Този тип въпрос понастоящем не се поддържа.
     assessments: Оценки
     assessments_not_mhs: Всички оценки трябва да бъдат от тип MHS.
@@ -99,6 +127,7 @@ bg:
     auto_placeholder: Авто
     availability: Наличност
     available_languages: Докладът е наличен на езици
+    average: Средна стойност
     back_to_main: Главно меню
     bulk_assets_modal_choose_csv: Изберете CSV файл
     bulk_assets_modal_choose_zip: Изберете ZIP файл
@@ -138,7 +167,9 @@ bg:
     cancel: Отмени
     cancellation_and_rescheduling_disabled: Отмяната и пренасрочването са деактивирани
     casual: Неформален
+    cell_save_msg: Валидните промени се запазват автоматично, веднага щом излезете от клетката след редактиране.
     characters: герои
+    chat_instructions_success: Инструкциите за чата бяха запазени успешно
     children_factor_type: Тип фактор „Деца“
     client: Наемане на клиенти
     client_admins: Администратори на клиенти
@@ -152,6 +183,7 @@ bg:
     configure_model_answer_title: Конфигуриране на моделни отговори и ключови думи
     confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
     copied: Копирано
+    copy_ai_artifacts: Копиране на AI-артефакти
     country: Държава
     create_client: Създайте клиент
     create_indicator: Създаване на индикатор
@@ -193,6 +225,7 @@ bg:
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     download_bulk_asset_download_example_csv: Изтеглете пример за CSV.
+    duration: Продължителност
     edit_campaign_admin: Редактиране на администратора на кампанията
     edit_client_admin: Редактиране на администратор на клиента
     edit_indicator: Редактиране на индикатор
@@ -201,10 +234,12 @@ bg:
     edit_permission_denied: Нямате разрешение да редактирате администраторски '%{name}'
     edit_project_admin: Редактиране на администратора на проекта
     edit_threesixty_campaign_admin: Редактиране на администратора на кампанията
+    empty: Празно
     empty_csv_file: CSV файлът не съдържа никакви данни.
     enable_enhance_with_ai_client_level: Моля, активирайте функцията „Подобрение с AI“ на ниво клиент.
     enable_maintenance: Активиране на поддръжка
     enable_mobile_proctoring: Активиране на мобилно наблюдение
+    enable_system_check: Активиране на проверка на системата
     enable_transcription: Активиране на транскрипция
     enable_transcription_msg: Активирайте транскрипцията, за да използвате AI оценяване на въпросите с видео/аудио отговор.
     end_time: Край на времето
@@ -218,10 +253,12 @@ bg:
     evaluation_status: Статус на оценката
     evaluation_status_not_done: Статусът на оценяване не е "Завършен" за един или повече избрани предмети. Моля, уверете се, че всички избрани потребители са завършили оценките или са оценили като изпълнени.
     export_admin_roles_permissions: Експортиране на администраторски роли и разрешения
+    export_campaigns_queued: Задачите за експортиране са поставени в опашката. Проверете уведомленията си за линкове за изтегляне.
     export_compact_completion_status: Компактен
     export_completion_status: Статус на завършване на експорта
     export_completion_statuses_scheduled: Задачата за експортиране на статусите на завършеност беше успешно планирана.
     export_detailed_completion_status: Подробно
+    factors: Фактори
     feature_ai_assistants_description: Активирайте AI-базирани асистенти за подобрено потребителско преживяване
     feature_ai_assisted_idp_description: Използвайте изкуствен интелект, за да подпомогнете препоръките за индивидуално планиране на развитието
     feature_ai_content_analysis_description: Активиране на анализ на съдържанието, базиран на изкуствен интелект, за оценки
@@ -240,8 +277,35 @@ bg:
     final_score_empty_msg: Крайната сметка не може да бъде празна.
     fix_grammar: Поправи граматиката
     formal: Официален
+    from: От
     generate_transcription: Генериране на транскрипция
     hide_middle_scores: Скриване на средните резултати
+    high: Висока
+    hogan: Хоган
+    hogan_assessment: Оценка на Хоган
+    idp_appearance_body: Текст
+    idp_appearance_color: Цвят
+    idp_appearance_cover: Корица
+    idp_appearance_dynamic_content: Динамично съдържание
+    idp_appearance_flip_background: Обърни фоновото изображение на корицата и последната страница
+    idp_appearance_font_family: Семейство шрифтове
+    idp_appearance_guideline_position: Позиция на страницата с указания
+    idp_appearance_guideline_position_second: Втора страница (след корицата)
+    idp_appearance_guideline_position_second_last: Предпоследна страница (преди последната)
+    idp_appearance_guidelines: Насоки
+    idp_appearance_idp_skills: Умения на вътрешно разселените лица
+    idp_appearance_last: Последно
+    idp_appearance_per_page_font_settings: Настройки на шрифта за всяка страница
+    idp_appearance_reflections: Размисли
+    idp_appearance_report_summary: Обобщение на доклада
+    idp_appearance_section_body: Текст на раздела
+    idp_appearance_section_subtitle: Подзаглавие на раздела
+    idp_appearance_section_title: Заглавие на раздела
+    idp_appearance_select_font: Изберете шрифт
+    idp_appearance_show_guidelines: Покажи страницата с указания
+    idp_appearance_size: Размер
+    idp_appearance_subtitle: Подзаглавие
+    idp_appearance_title: Заглавие
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
     import_ai_artifacts: Импортиране на AI артефакти
@@ -281,6 +345,7 @@ bg:
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
     licenses: Лицензи
+    low: Ниска
     maintenance: Поддръжка
     maintenance_settings: Настройки за поддръжка
     maintenance_settings_description: Управление на прозорците и настройките за поддръжка на системата
@@ -297,6 +362,8 @@ bg:
     mhs_session_id: Mhs сесиен идентификатор
     min_value: Минимална стойност
     minimum_10_words: Минимум 10 думи
+    minimum_download_speed: Минимална скорост на изтегляне (в Mbps)
+    minimum_upload_speed: Минимална скорост на качване (в Mbps)
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     model_answer: Модел на отговор
     model_answer_placeholder: Въведете моделния отговор за AI оценяване.
@@ -305,6 +372,7 @@ bg:
     name_required: Задължително е име
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
+    no_status: Без статус
     norms: Норми
     not_completed: Не е завършено
     not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
@@ -837,6 +905,19 @@ bg:
     saml_settings: SAML настройки
     save: Запази
     save_assessment_for_scoring_management: Запазете оценката, преди да започнете с точкуването.
+    saved_filter_label:
+      approval_status_in: Статус на одобрение
+      approver_user_id_in: Одобряващ
+      assessment_id_in: Оценка
+      campaign_id_in: Кампания
+      client_id_in: Клиент
+      project_id_in: Проект
+      qc_user_id_in: Потребител на QC
+      report_id_in: Доклад
+      subject_email_cont: 'Относно: Имейл'
+      subject_full_name_cont: Наименование на предмета
+      user_email_cont: Имейл на потребителя
+      user_full_name_cont: Потребителско име
     scheduling: Планиране
     score: Резултат
     score_approval_not_allowed_to_approve: Не е позволено да одобрявате този резултат.
@@ -893,7 +974,9 @@ bg:
     subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
     target_job_role: Целева длъжност
     this_field_is_required: Това поле е задължително
+    threesixty: Кампания 360
     timezone: Часова зона
+    to: Към
     tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение за изкуствен интелект
@@ -917,6 +1000,9 @@ bg:
     user_report_events: Събития с потребителски отчет
     users: Потребители
     validation_error: Моля, попълнете всички задължителни полета
+    validity: Валидност
+    very_high: Много висока
+    very_low: Много ниско
     view_licenses: Преглед на лицензи
     waiting: Чакат
     weight: Тегло

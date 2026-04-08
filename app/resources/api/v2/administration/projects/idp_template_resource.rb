@@ -10,7 +10,8 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
              :background, :client_logo, :show_reflections, :reflection_questions,
              :instructions, :translations, :available_locales, :status, :allow_edit,
              :ai_enabled, :ai_assisted_idp_enabled, :one_click_idp_enabled, :interview_questions,
-             :skill_source_preference
+             :skill_source_preference, :chat_instructions, :show_chat_instructions,
+             :guideline_position, :flip_background, :page_styles, :show_guidelines
 
   has_one :project, class_name: 'Client'
   has_one :report

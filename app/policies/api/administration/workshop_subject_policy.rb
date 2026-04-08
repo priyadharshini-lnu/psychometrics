@@ -39,6 +39,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def metadata_for_filters?
+        can_view_workshop?
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           return scope if user.superadmin?

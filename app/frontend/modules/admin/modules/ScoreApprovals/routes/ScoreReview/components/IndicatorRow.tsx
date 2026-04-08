@@ -74,7 +74,8 @@ const IndicatorHeader = ({
               open={open}
               content={(
                 <EditScore
-                  value={factor.score}
+                  value={factor.overrideScore ?? factor.score}
+                  notApplicable={factor.notApplicable}
                   onSubmit={updateScore}
                   onClose={() => setOpen(false)}
                 />

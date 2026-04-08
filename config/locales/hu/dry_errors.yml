@@ -41,6 +41,12 @@ hu:
         skills_not_belong_to_project: A kiválasztott készségeknek a megadott projekthez kell tartozniuk.
         skills_required: Kérjük, válasszon ki legalább egy készséget.
       exceeded_subjects_count: Meghívónként csak %{count} témát adhat hozzá
+      factors_norms:
+        invalid_field_name: A mező nevének „score_from” vagy „score_to” kell lennie.
+        invalid_float: Az értéknek érvényes lebegőpontos számnak kell lennie.
+        invalid_level: 'Érvénytelen szint. Az érvényes szintek: %{levels}'
+        score_from_less_than_score_to: a score_from értéknek kisebbnek kell lennie, mint a score_to érték
+        score_to_greater_than_score_from: a score_to értéknek nagyobbnak kell lennie, mint a score_from érték
       filled?: Nem lehet üres
       idp_template:
         content_required: Az utasításokhoz tartalom szükséges

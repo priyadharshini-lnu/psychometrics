@@ -41,6 +41,12 @@ ro:
         skills_not_belong_to_project: Competențele selectate trebuie să aparțină proiectului specificat.
         skills_required: Vă rugăm să selectați cel puțin o competență.
       exceeded_subjects_count: Puteți adăuga doar %{count} subiecte per invitație
+      factors_norms:
+        invalid_field_name: Numele câmpului trebuie să fie fie „score_from”, fie „score_to”.
+        invalid_float: Valoarea trebuie să fie un număr real valid.
+        invalid_level: Nivel nevalid. Nivelurile valide sunt%{levels}
+        score_from_less_than_score_to: valoarea_de_la trebuie să fie mai mică decât valoarea_până la
+        score_to_greater_than_score_from: valoarea_la_care_se_ajunge trebuie să fie mai mare decât valoarea_de_la_care_se_pornește
       filled?: nu poate fi gol
       idp_template:
         content_required: Conținutul este necesar pentru instrucțiuni

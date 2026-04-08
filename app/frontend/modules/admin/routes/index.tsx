@@ -15,6 +15,7 @@ import DashboardRoutes from '~/modules/admin/modules/Dashboard/routes'
 import NormsRoutes from '~/modules/admin/modules/Norms/routes'
 import Skills from '~/modules/admin/modules/SkillsTaxonomy/routes'
 import DevelopmentActionRoutes from '~/modules/admin/modules/DevelopmentActions/routes'
+import DimensionsRoutes from '~/modules/admin/modules/Dimensions/routes'
 import AiAssitantRoutes from '~/modules/admin/modules/AiAssitant/routes'
 
 const routes = [
@@ -35,6 +36,7 @@ const routes = [
   ...Skills,
   ...DevelopmentActionRoutes,
   ...AiAssitantRoutes,
+  ...DimensionsRoutes,
   ...SettingsRoutes,
 ]
 

@@ -873,6 +873,7 @@ fr:
         export_assessment_questions: Questions d'évaluation des exportations
         export_campaign_ai_artifacts: Artefacts IA des campagnes d’exportation
         export_campaign_ai_artifacts_results: Exporter les résultats des artefacts IA de la campagne
+        export_campaign_datasheet: Fiche technique de la campagne d'exportation
         export_campaign_factors: Facteurs de la campagne d'exportation
         export_campaign_scorings: Scores de la campagne d'exportation
         export_dashboard_as_file: Exporter le tableau de bord sous forme de fichier
@@ -932,6 +933,7 @@ fr:
         regenerate_report: Rapport sur la régénération
         regenerate_threesixty_report: Rapport Regenerate Threesixty
         remap_report_assessment: Évaluation du rapport Remap
+        rescore_ai_scoring: Réévaluation par IA
         rescore_assessment: Évaluation de la relecture
         rescore_user_assessment: Évaluation des utilisateurs de Rescore
         send_sms_invites: Envoyer des invitations par SMS
@@ -2655,6 +2657,7 @@ fr:
     direct_reportee_details: Détail des rapports directs
     download:
       description: 'Pour télécharger le rapport, veuillez suivre le lien : <a href=''%{url}'' target=''_blank''>Télécharger</a>. Le lien n’est valable que pendant 10 minutes'
+      title: Votre rapport est prêt !
     download_plan: Télécharger le plan
     edit_plan: Modifier le plan
     edit_plan_and_add_skills: Modifiez le plan et cliquez sur Gérer les compétences pour ajouter des compétences.

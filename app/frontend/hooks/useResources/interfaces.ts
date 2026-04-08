@@ -83,7 +83,6 @@ export type CreateResource<R> =
 export type UpdateResource<R> =
   (attribute: { id: string } & PartialDeep<AdditionRelationshipAttribute<R>>, args?: ExtraArgs) => Promise<R>
 
-
 export type AddRelationship = (resourceType: string, ids: string[], args?: ExtraArgs) => Promise<void>
 export type RemoveResource = (id: string, args?: ExtraArgs) => Promise<void>
 export type RemoveRelationships = (resourceType: string, ids: string[], args?: ExtraArgs) => Promise<void>

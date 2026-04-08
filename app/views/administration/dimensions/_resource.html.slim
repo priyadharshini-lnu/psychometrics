@@ -18,5 +18,5 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting')}
         span.fa.fa-times
     - if policy(resource, { project_id: resource.owner_id }).export_json?
-      = link_to [:export_json, :administration, resource], remote: true, class: 'btn btn-default', data: { toggle: 'tooltip', title: t('.tooltips.export_json') }
+      = link_to [:export_json, :administration, resource], method: :post, remote: true, class: 'btn btn-default', data: { toggle: 'tooltip', title: t('.tooltips.export_json') }
         span.fa.fa-download

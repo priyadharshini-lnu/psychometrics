@@ -149,7 +149,6 @@ const SkillRater = ({ model, updateBlockProps, showOptions }) => {
 
   const handleFieldsChange = () => {
     const allFormFields = form.getFieldsValue()
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { required_validation, not_applicable, ...skillsConfig } = allFormFields
 
     const notApplicableData = {

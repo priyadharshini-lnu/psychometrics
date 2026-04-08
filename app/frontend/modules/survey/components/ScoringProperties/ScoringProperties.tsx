@@ -15,7 +15,6 @@ const { enhance_with_ai_enabled } = window.PsyGlobalState.features
 
 interface Props {
   model,
-  update: () => void,
 }
 
 export const ScoringProperties: FC<Props> = ({ model }) => {

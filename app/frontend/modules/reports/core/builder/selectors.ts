@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
 import { camelizeKeys } from '~/utils/object'
@@ -27,7 +26,7 @@ export const getPageModules = (state: any, pageId: number): ModuleInterface[] =>
 }
 
 export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
-  state.modules, m => m.props.showOnAllPages && !m.removed,
+  state.modules, m => m.props?.showOnAllPages && !m.removed,
 )
 
 export const getSelected = (state: any) => state.selected

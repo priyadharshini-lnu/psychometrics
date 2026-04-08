@@ -80,7 +80,6 @@ id:
         title: Artefak AI
       generate: Menghasilkan
       generate_result_info_message: Hasil sedang dibuat, silakan segarkan halaman untuk melihat hasil yang diperbarui.
-      generated_at: Dihasilkan Pada
       generated_at_time: Dihasilkan pada %{time}
       generated_value: Nilai yang Dihasilkan
       id: ID
@@ -1871,6 +1870,8 @@ id:
       form:
         enable_innovation_styles: Aktifkan Gaya Inovasi
         enable_occupations: Aktifkan Pekerjaan
+        name: Nama
+        title: Dimensi
       import_factors:
         import: Mengimpor
         sample_file: File Sampel
@@ -1918,6 +1919,7 @@ id:
         confirmations:
           delete:
             body: "<p>Apakah Anda yakin ingin menghapus Dimensi ini?</p>\n"
+            message: Masukkan nama dimensi yang tercantum di bawah ini ke dalam kotak teks untuk mengonfirmasi
             title: Hapus <strong>Dimensi</strong> ?
           toggle_status:
             body: "<p>Apakah Anda yakin ingin %{status} Dimensi ini?</p>\n"
@@ -1982,6 +1984,7 @@ id:
                 score: Skor
                 zscore: Skor Z
             title: Jalur JSON untuk Skor
+        predicate: Predikat
         scoring_strategies:
           custom_formula: Rumus Kustom
           external_score: Skor Eksternal
@@ -1995,10 +1998,13 @@ id:
           sub_factors_sum: Jumlah Faktor Tertimbang
         scoring_strategies_tip: "<strong>Pertanyaan (Rata-rata):</strong> Ini seperti metode penilaian saat ini ketika ada pertanyaan yang terkait dengan suatu faktor.<br /> <br /><strong>Pertanyaan (JUMLAH):</strong> Ini seperti Pertanyaan (Rata-rata), tetapi menggunakan SUM<br /> <br /><strong>Pertanyaan tentang Faktor Lain (Rata-rata):</strong> Ini seperti metode penilaian saat ini ketika ada sub-faktor untuk suatu faktor, hanya perubahan adalah penambahan bobot.<br /> <br /><strong>Pertanyaan Faktor Lain (SUM):</strong> Ini seperti Faktor Lain (Rata-rata), tetapi menggunakan SUM<br /> <br /><strong>Jumlah Faktor Berbobot:</strong> Di sini skor dari faktor lain yang dipilih dikalikan dengan bobotnya ditambahkan."
         scoring_strategy: Strategi penilaian
+        search_factors: Faktor pencarian
         use_sub_factor_norm_score: Skor norma Faktor Penggunaan
+        value: Nilai
       index:
         icon: Ikon
         new: Tambah
+        precision: Ketepatan
         scoring_strategies:
           custom_formula: Rumus Kustom
           external_score: Skor Eksternal
@@ -2292,6 +2298,7 @@ id:
       edit:
         header: Edit Gaya Inovasi
       form:
+        full_description: Deskripsi lengkap
         no_icon: Tidak ada ikon
       index:
         new: Tambah
@@ -2663,8 +2670,12 @@ id:
       edit:
         header: Pekerjaan suntingan
       form:
+        alternative_icon: Ikon alternatif
+        color: Warna
         hint:
           key_career_tracks: '"+" - daftar, "*" - tebal. Contoh: + *Biologi* - beberapa deskripsi...'
+        indicative_roles_image: Gambar ilustrasi peran
+        key_career_tracks_image: Gambar jalur karier utama
         no_icon: Tidak ada ikon
       index:
         new: Tambah
@@ -2735,6 +2746,7 @@ id:
       assessment_center: Pusat Penilaian
       assessment_id: ID Penilaian
       campaign_id: ID Kampanye
+      campaign_link: Tautan Kampanye
       campaign_name: Nama Kampanye
       campaigns: Kampanye
       description: Deskripsi
@@ -3732,8 +3744,10 @@ id:
       id: ID
       import:
         factors: Impor Faktor Kampanye
+      innovation_style_removal_confirmation: Masukkan nama gaya inovasi yang tercantum di bawah ini ke dalam kotak teks untuk mengonfirmasi
       name: Nama
       no_groups: Tidak ada grup yang hadir
+      occupation_removal_confirmation: Masukkan nama pekerjaan yang tercantum di bawah ini ke dalam kotak teks untuk mengonfirmasi
       output_type: Jenis Keluaran
       pattern_error: Hanya karakter alfanumerik, spasi, dan tanda hubung yang diizinkan.
       profile:

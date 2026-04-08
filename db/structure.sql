@@ -18,6 +18,13 @@ CREATE SCHEMA bi_models;
 
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -164,9 +171,9 @@ CREATE TABLE public.assessments (
 --
 
 CREATE VIEW bi_models.assessments AS
- SELECT assessments.id,
-    assessments.name,
-    assessments.category
+ SELECT id,
+    name,
+    category
    FROM public.assessments;
 
 
@@ -189,10 +196,10 @@ CREATE TABLE public.campaign_factor_groups (
 --
 
 CREATE VIEW bi_models.campaign_factor_group AS
- SELECT campaign_factor_groups.id,
-    campaign_factor_groups.campaign_id,
-    campaign_factor_groups.name,
-    campaign_factor_groups."position"
+ SELECT id,
+    campaign_id,
+    name,
+    "position"
    FROM public.campaign_factor_groups;
 
 
@@ -315,9 +322,9 @@ CREATE VIEW bi_models.campaign_factors AS
 --
 
 CREATE VIEW bi_models.campaigns AS
- SELECT campaigns.id,
-    campaigns.name,
-    campaigns.project_id
+ SELECT id,
+    name,
+    project_id
    FROM public.campaigns;
 
 
@@ -443,8 +450,8 @@ CREATE TABLE public.factors (
 --
 
 CREATE VIEW bi_models.factors AS
- SELECT factors.id,
-    factors.name
+ SELECT id,
+    name
    FROM public.factors;
 
 
@@ -771,11 +778,11 @@ CREATE TABLE public.users (
 --
 
 CREATE VIEW bi_models.users AS
- SELECT users.id,
-    users.project_id,
-    users.first_name,
-    users.last_name,
-    users.email
+ SELECT id,
+    project_id,
+    first_name,
+    last_name,
+    email
    FROM public.users;
 
 
@@ -1141,7 +1148,13 @@ CREATE TABLE public.ai_assistant_requests (
     ai_assistant_tool_call_id bigint,
     ai_model_registry_id bigint,
     request_status integer DEFAULT 0 NOT NULL,
-    meta jsonb
+    meta jsonb,
+    cached_tokens integer,
+    cache_creation_tokens integer,
+    content_raw json,
+    thinking_text text,
+    thinking_signature text,
+    thinking_tokens integer
 );
 
 
@@ -1175,7 +1188,8 @@ CREATE TABLE public.ai_assistant_tool_calls (
     name character varying NOT NULL,
     arguments jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    thought_signature character varying
 );
 
 
@@ -2416,6 +2430,11 @@ CREATE TABLE public.campaign_options (
     workshop_invite_requires_prework_completion boolean DEFAULT false,
     proctoring_enabled_on_workshop_activity boolean DEFAULT true,
     enable_video_call_recording boolean DEFAULT false NOT NULL,
+    system_check_enabled boolean DEFAULT false NOT NULL,
+    system_check_validity integer,
+    allow_continue_with_warning boolean DEFAULT false NOT NULL,
+    minimum_upload_speed integer,
+    minimum_download_speed integer,
     enable_mobile_proctoring boolean DEFAULT false
 );
 
@@ -2541,7 +2560,8 @@ CREATE TABLE public.campaign_users (
     current_job_role_id bigint,
     target_job_role_id bigint,
     campaign_artifact_results_finalized boolean DEFAULT false,
-    level integer
+    level integer,
+    campaign_artifact_results_finalized_at timestamp(6) without time zone
 );
 
 
@@ -4157,7 +4177,8 @@ CREATE TABLE public.idp_template_translations (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     title_text character varying,
-    subtitle_text character varying
+    subtitle_text character varying,
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb
 );
 
 
@@ -4217,7 +4238,13 @@ CREATE TABLE public.idp_templates (
     one_click_ai_assistant_id bigint,
     skill_source_preference integer DEFAULT 0,
     document_analysis_ai_assistant_id bigint,
-    skill_gap_report_analysis_ai_assistant_id bigint
+    skill_gap_report_analysis_ai_assistant_id bigint,
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
+    show_chat_instructions boolean DEFAULT false,
+    guideline_position integer DEFAULT 0,
+    flip_background boolean DEFAULT false,
+    page_styles jsonb DEFAULT '{}'::jsonb NOT NULL,
+    show_guidelines boolean DEFAULT true
 );
 
 
@@ -5106,13 +5133,13 @@ ALTER SEQUENCE public.mhs_user_assessments_id_seq OWNED BY public.mhs_user_asses
 --
 
 CREATE VIEW public.normalized_factor_scores AS
- SELECT user_assessment_factor_scores.id,
-    user_assessment_factor_scores.factor_id,
-    user_assessment_factor_scores.user_assessment_id,
-    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
-    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
-    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
-    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+ SELECT id,
+    factor_id,
+    user_assessment_id,
+    ((scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((scores ->> 'score'::text))::double precision AS score,
+    ((scores ->> 'zscore'::text))::double precision AS zscore,
+    ((scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -7335,6 +7362,73 @@ ALTER SEQUENCE public.smtp_settings_id_seq OWNED BY public.smtp_settings.id;
 
 
 --
+-- Name: system_check_records; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.system_check_records (
+    id bigint NOT NULL,
+    system_check_session_id bigint NOT NULL,
+    check_type character varying NOT NULL,
+    passed boolean DEFAULT false NOT NULL,
+    data jsonb,
+    finished_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: system_check_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.system_check_records_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: system_check_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.system_check_records_id_seq OWNED BY public.system_check_records.id;
+
+
+--
+-- Name: system_check_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.system_check_sessions (
+    id bigint NOT NULL,
+    finished_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_id bigint NOT NULL
+);
+
+
+--
+-- Name: system_check_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.system_check_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: system_check_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.system_check_sessions_id_seq OWNED BY public.system_check_sessions.id;
+
+
+--
 -- Name: taggings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7914,7 +8008,8 @@ CREATE TABLE public.transcriptions (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     error_details jsonb DEFAULT '{}'::jsonb NOT NULL,
-    status integer DEFAULT 0 NOT NULL
+    status integer DEFAULT 0 NOT NULL,
+    metadata jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -10528,6 +10623,20 @@ ALTER TABLE ONLY public.smtp_settings ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: system_check_records id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records ALTER COLUMN id SET DEFAULT nextval('public.system_check_records_id_seq'::regclass);
+
+
+--
+-- Name: system_check_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions ALTER COLUMN id SET DEFAULT nextval('public.system_check_sessions_id_seq'::regclass);
+
+
+--
 -- Name: taggings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12398,6 +12507,22 @@ ALTER TABLE ONLY public.sms_records
 
 ALTER TABLE ONLY public.smtp_settings
     ADD CONSTRAINT smtp_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_check_records system_check_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records
+    ADD CONSTRAINT system_check_records_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_check_sessions system_check_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions
+    ADD CONSTRAINT system_check_sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -15935,6 +16060,20 @@ CREATE INDEX index_smtp_settings_on_project_id ON public.smtp_settings USING btr
 
 
 --
+-- Name: index_system_check_records_on_system_check_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_system_check_records_on_system_check_session_id ON public.system_check_records USING btree (system_check_session_id);
+
+
+--
+-- Name: index_system_check_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_system_check_sessions_on_user_id ON public.system_check_sessions USING btree (user_id);
+
+
+--
 -- Name: index_taggings_on_context; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17668,6 +17807,14 @@ ALTER TABLE ONLY public.client_features
 
 
 --
+-- Name: system_check_records fk_rails_31829aa176; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records
+    ADD CONSTRAINT fk_rails_31829aa176 FOREIGN KEY (system_check_session_id) REFERENCES public.system_check_sessions(id);
+
+
+--
 -- Name: license_usages fk_rails_3268c52319; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19108,6 +19255,14 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 
 
 --
+-- Name: system_check_sessions fk_rails_b07f269d86; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions
+    ADD CONSTRAINT fk_rails_b07f269d86 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: innovation_styles_factors fk_rails_b0b768b7ef; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20122,12 +20277,18 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260325000001'),
+('20260323084342'),
+('20260311085954'),
+('20260306120000'),
+('20260306090626'),
 ('20260320102153'),
 ('20260305110830'),
+('20260304133958'),
+('20260228091708'),
 ('20260225062612'),
 ('20260225060929'),
 ('20260224071226'),
-('20260304133958'),
 ('20260223114729'),
 ('20260218075116'),
 ('20260217103234'),
@@ -20135,11 +20296,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260213112719'),
 ('20260213095708'),
 ('20260212093958'),
-('20260228091708'),
 ('20260212060354'),
 ('20260211083300'),
+('20260211000144'),
+('20260210181932'),
 ('20260210130000'),
 ('20260210084851'),
+('20260209204914'),
 ('20260209123134'),
 ('20260209114529'),
 ('20260209112420'),
@@ -21135,4 +21298,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

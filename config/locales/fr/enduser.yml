@@ -1,6 +1,8 @@
 ---
 fr:
   enduser:
+    ack_subtitle: J'ai lu et compris les instructions ci-dessus et je suis prêt à procéder à la vérification du système.
+    ack_title: Je prends acte et comprends
     add_idp_plan_note: Ajouter une note...
     add_idp_plan_rejection_reason: Ajouter une raison...
     ai_idp_assistant_response_no: Non
@@ -8,13 +10,44 @@ fr:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Oui, procédez à la création du plan.
     ai_idp_retake_step_chat_hint_no_document: Vous pouvez relancer le chat pour partager plus de détails, et je ferai de mon mieux pour vous aider.
     ai_idp_summary_hint_no_document: Avec votre permission, si vous dites oui, je peux créer un plan de développement pour vous. Sinon, vous pouvez relancer le chat pour partager plus de détails.
+    all_checks_must_pass: Toutes les vérifications doivent être validées avant que vous puissiez continuer.
     approve_idp_plan: Approuver le plan
+    back: Retour
+    back_to_dashboard: Retour au tableau de bord
+    before_you_begin: Avant de commencer
+    begin_message: Avant de commencer les activités de cette campagne, vous devez effectuer une vérification de la compatibilité de votre appareil
     bookings: Réservations
+    browser: Navigateur
+    browser_and_device: Navigateur et appareil
+    browser_compatbility_step: Étape relative à la compatibilité des navigateurs
+    browser_compatibility: 'Compatibilité avec les navigateurs :'
+    browser_compatibility_check: Test de compatibilité avec les navigateurs
+    browser_compatibility_check_description: Vérification de la prise en charge de toutes les fonctionnalités requises par votre navigateur
+    browser_compatibility_result: Compatibilité avec les navigateurs
+    browser_version_fix_description_first: 'Utilisez un navigateur pris en charge : Chrome, Firefox, Edge ou Safari'
+    browser_version_fix_description_second: Mettez votre navigateur à jour pour garantir la compatibilité.
+    browser_version_fix_description_third: Essayez d'utiliser une fenêtre de navigation privée
+    browser_version_fix_title: La version de votre navigateur n'est pas prise en charge.
+    camera: Vidéo et audio
+    camera_access_blocked: L'accès à la caméra a été refusé ou bloqué par votre navigateur. Veuillez vérifier les autorisations de votre navigateur.
+    camera_check: Test de la caméra et du microphone
+    camera_check_description: Vérifiez que votre caméra et votre microphone fonctionnent correctement pour l'enregistrement
+    camera_test_step: Étape de test vidéo et audio
     campaign: Campagne
+    chat_instructions: Instructions pour le chat
+    check: Vérifier
+    check_video_recording: Veuillez vérifier votre enregistrement vidéo en le visionnant.
+    checking_browser_compatibility: Vérification de la compatibilité du navigateur...
     development: Développement
     direct_reportees: Subordonnés
+    download: Télécharger
     download_pdf: Télécharger PDF
+    environment_setup: Configuration de l'environnement
+    error_uploading_video: Erreur lors du téléchargement de la vidéo
+    fail: Échec
+    follow_these_steps: Suivez ces étapes pour résoudre les problèmes détectés lors de la vérification du système
     home: Tableau de bord
+    how_to_fix: 'Comment résoudre le problème :'
     idp_loading_fifth_step: Récupération des actions de développement à partir du modèle
     idp_loading_first_step: Analyse de votre rapport d’évaluation
     idp_loading_fourth_step: Sélection des compétences pertinentes
@@ -22,27 +55,71 @@ fr:
     idp_loading_secondary_text: N’hésitez pas à vous éloigner. Votre plan sera prêt à votre retour.
     idp_loading_sixth_step: Création d’actions de développement
     idp_plan_approval_note: Note d'approbation
+    idp_proceed_with_plan_creation: Oui, passez à la création du plan
+    idp_report_being_generated: Nous travaillons actuellement sur votre rapport
+    idp_reset_chat: Réinitialiser la discussion
     idp_retake_steps_continue_with_this_information: Poursuivez avec ces informations
     insights: Perspectives
+    instruction: Assurez-vous que vous et votre entourage soyez parfaitement préparés
+    internet_speed: Débit Internet
+    internet_speed_optimal: Votre vitesse de connexion est optimale
+    internet_speed_slow: La vitesse de connexion Internet est inférieure à celle requise pour la campagne
+    less_than_five_minutes: Moins de 5 minutes
     lighthouse_assistant: Assistant de phare
+    localstorage_fix_description_first: Assurez-vous de ne pas être en mode privé ou incognito, car localStorage est souvent désactivé dans ces modes.
+    localstorage_fix_title: Le stockage local n'est pas activé dans votre navigateur
+    localstorage_support: LocalStorage activé
     max_word_limit: Doit contenir au maximum %{max} mots
+    media_recorder_api_fix_description_first: Activez JavaScript dans les paramètres de votre navigateur
+    media_recorder_api_fix_description_second: Vérifiez que votre navigateur prend en charge l'API MediaRecorder et, si nécessaire, mettez-le à jour avec la dernière version.
+    media_recorder_api_fix_description_third: Essayez un autre navigateur moderne, comme Chrome ou Firefox
+    media_recorder_api_fix_title: L'API Media Recorder n'est pas prise en charge par votre navigateur.
+    media_recorder_api_support: Prise en charge de l'API MediaRecorder
     min_word_limit: Doit contenir au minimum %{min} mots
     my_plan: Mon plan
+    network: Réseau
+    network_check: Test de vitesse Internet
+    network_check_description: Nous vérifions la qualité de votre connexion Internet entre nos serveurs et votre appareil.
+    network_check_fix_fifth: Si le problème persiste, contactez votre fournisseur d'accès Internet pour obtenir de l'aide
+    network_check_fix_first: Fermez les autres applications susceptibles d'utiliser de la bande passante (streaming vidéo, téléchargements)
+    network_check_fix_fourth: Essayez d'utiliser une autre connexion réseau si possible
+    network_check_fix_second: Rapprochez-vous de votre routeur Wi-Fi ou connectez-vous à l'aide d'un câble Ethernet
+    network_check_fix_third: Redémarrez votre routeur/modem et réessayez
+    network_test_step: Étape de test du réseau
     no_audio_warning: Aucun son détecté. Veuillez vérifier que votre microphone est connecté et fonctionne correctement.
+    pass: Passer
+    pending: En attente
+    personal_readiness: Préparation personnelle
+    plan_text: Prévoyez du temps pour toute la durée de l'épreuve. Une fois l'épreuve commencée, les pauses ne seront peut-être pas autorisées, selon le type d'évaluation.
+    please_check_your_internet_connection: Veuillez vérifier votre connexion Internet et réessayer.
     profile: Profil
     profile_details: Détails
     question_counter: Question %{current} sur %{total}
     reason_for_idp_plan_rejection: Raison du rejet
-    recorded: Enregistré
-    recording: Enregistrement
     reject_idp_plan: Plan de rejet
     request_retry_message: Tu es hors ligne. Vos réponses n’ont pas pu être sauvegardées mais le seront automatiquement une fois que vous serez de nouveau en ligne. Merci de ne pas actualiser ni fermer la page.
+    required_download_in_mbps: Débit de téléchargement requis en Mbps
+    required_upload_in_mbps: Débit de téléchargement requis en Mbps
+    rerun_check: Vérification de la nouvelle exécution
+    rerun_checks: Réexécuter les vérifications
+    result: Résultat
+    results: Résultat
     selected_count: Sélectionné
     skill_type: Type de compétence
     start_campaign_message_proctored: Il s’agit d’une campagne surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_campaign_message_timed: Il s’agit d’une campagne chronométrée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_campaign_message_timed_proctored: Il s’agit d’une campagne chronométrée et surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
-    status_unknown: Statut inconnu
+    start_readiness_check: Lancer la vérification de l'état de préparation
+    start_system_check: Lancer la vérification du système
+    subinstruction_eight: Prévoyez du temps sans interruption pour réaliser l'évaluation dans son intégralité
+    subinstruction_five: Prêt à partager votre écran pendant toute la session
+    subinstruction_four: Webcam et microphone en état de marche
+    subinstruction_one: Une pièce calme et bien éclairée, sans personne d'autre
+    subinstruction_seven: Assurez-vous que votre appareil est complètement chargé ou branché sur une prise
+    subinstruction_six: Fermez toutes les applications et tous les onglets de navigateur inutiles
+    subinstruction_three: Connexion Internet stable (au moins 1 Mbps)
+    subinstruction_two: Un bureau bien rangé, sans documents non autorisés
+    system_check: Vérification du système
     system_check_access: Accès
     system_check_audio_random_phrases:
       eight: Que votre café soit fort et que votre journée soit productive.
@@ -55,6 +132,13 @@ fr:
       three: Test, un deux trois, le son est clair comme de l'eau de roche !
       two: Le renard brun et rapide saute par-dessus le chien paresseux.
     system_check_audio_title: Veuillez prononcer et répéter la phrase suivante trois fois.
+    system_check_complete: Vérification du système terminée
+    system_check_failed: Échec de la vérification du système
+    system_check_failed_description: Veuillez résoudre ces problèmes, puis relancer les vérifications du système.
+    system_check_failed_message: Certaines vérifications du système ont échoué. Veuillez consulter les détails et réessayer.
+    system_check_failed_title: Vous ne pouvez pas continuer tant que toutes les vérifications requises n'ont pas été effectuées avec succès.
+    system_check_not_enabled: La vérification du système n'est pas activée pour cette campagne
+    system_check_passed_successfully: Toutes les vérifications du système ont été effectuées avec succès !
     system_check_proceed: Oui, Ok pour continuer
     system_check_retake: Non, je veux repasser
     system_check_run_again: Recommencer
@@ -64,4 +148,41 @@ fr:
     system_check_upload_again: Télécharger à nouveau
     system_check_uploading: Téléchargement
     system_check_video_random_phrase: Je suis prêt. Ceci est un enregistrement test pour confirmer que ma vidéo et mon microphone fonctionnent correctement.
+    system_check_warning: Avertissement relatif à la vérification du système
+    system_check_warning_message: Des défaillances potentielles du système pourraient affecter les évaluations ; veuillez ne poursuivre que si toutes les vérifications ont été effectuées avec succès.
+    system_checks: Vérifications du système
+    task_duration: Durée de la tâche
     tasks: Tâches
+    time_commitment: Temps à consacrer
+    troubleshooting_guide: Guide de dépannage
+    troubleshooting_guide_browser_fifth: Assurez-vous que LocalStorage est activé dans les paramètres de votre navigateur
+    troubleshooting_guide_browser_first: 'Utilisez un navigateur pris en charge : Chrome, Firefox, Edge ou Safari (dernières versions)'
+    troubleshooting_guide_browser_fourth: Activez JavaScript et les cookies dans les paramètres de votre navigateur
+    troubleshooting_guide_browser_second: Videz le cache et supprimez les cookies de votre navigateur
+    troubleshooting_guide_browser_sixth: 'Essayez d''utiliser une fenêtre de navigation privée (Remarque : la prise en charge de LocalStorage peut être limitée, voire inexistante, en mode de navigation privée)'
+    troubleshooting_guide_browser_third: Désactivez les extensions de navigateur susceptibles d'interférer avec l'accès aux fichiers multimédias
+    troubleshooting_guide_network_fifth: Si le problème persiste, contactez votre fournisseur d'accès Internet pour obtenir de l'aide
+    troubleshooting_guide_network_first: Fermez les autres applications susceptibles d'utiliser de la bande passante (streaming vidéo, téléchargements, etc.)
+    troubleshooting_guide_network_fourth: Essayez d'utiliser une autre connexion réseau si possible
+    troubleshooting_guide_network_second: Rapprochez-vous de votre routeur Wi-Fi ou connectez-vous à l'aide d'un câble Ethernet
+    troubleshooting_guide_network_third: Redémarrez votre routeur/modem et réessayez
+    troubleshooting_guide_video_fifth: 'Sous Windows : vérifiez les paramètres de confidentialité > Accès à la caméra/au microphone'
+    troubleshooting_guide_video_first: Cliquez sur l'icône représentant un cadenas ou une info dans la barre d'adresse de votre navigateur
+    troubleshooting_guide_video_fourth: Si l'accès est bloqué, vous devrez peut-être réinitialiser les autorisations dans les paramètres du navigateur
+    troubleshooting_guide_video_second: Recherchez les paramètres « Caméra » et « Microphone » et réglez-les sur « Autoriser »
+    troubleshooting_guide_video_sixth: 'Sur Mac : allez dans Préférences Système > Sécurité et confidentialité > Caméra/Microphone'
+    troubleshooting_guide_video_third: Actualisez la page après avoir modifié les autorisations
+    untimed: Sans limite de temps
+    upload: Télécharger
+    video_and_audio: Vidéo et audio
+    video_and_audio_recording: Enregistrement vidéo et audio
+    video_check_fix_fifth: Si votre appareil photo est externe, essayez de le débrancher puis de le rebrancher
+    video_check_fix_first: Cliquez sur « Autoriser » lorsque le navigateur vous demande l'autorisation d'utiliser la caméra
+    video_check_fix_fourth: Vérifiez que votre caméra est connectée et allumée
+    video_check_fix_second: Accédez aux paramètres de votre navigateur et autorisez l'accès à la caméra pour ce site
+    video_check_fix_sixth: Redémarrez votre navigateur et réessayez
+    video_check_fix_third: Fermez les autres applications qui utilisent la caméra (Zoom, Teams, etc.)
+    webgl_api_fix_description_first: Assurez-vous que votre navigateur prend en charge WebGL et que cette fonctionnalité est activée dans les paramètres
+    webgl_api_fix_description_second: Mettez à jour vos pilotes graphiques vers la dernière version
+    webgl_api_fix_title: WebGL n'est pas pris en charge ou n'est pas activé dans votre navigateur
+    webgl_api_support: Prise en charge de l'API WebGL

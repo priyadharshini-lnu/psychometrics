@@ -873,6 +873,7 @@ vi:
         export_assessment_questions: Câu hỏi đánh giá xuất khẩu
         export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
         export_campaign_ai_artifacts_results: Kết quả của Chiến dịch Xuất khẩu Các Tác phẩm Nghệ thuật Trí tuệ Nhân tạo
+        export_campaign_datasheet: Bảng dữ liệu chiến dịch xuất khẩu
         export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
         export_campaign_scorings: Xuất chấm điểm chiến dịch
         export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
@@ -932,6 +933,7 @@ vi:
         regenerate_report: Báo cáo tái tạo
         regenerate_threesixty_report: Báo cáo tái tạo Threesixty
         remap_report_assessment: Đánh giá báo cáo Remap
+        rescore_ai_scoring: Đánh giá lại bằng trí tuệ nhân tạo
         rescore_assessment: Đánh giá điểm lại
         rescore_user_assessment: Đánh giá người dùng lại
         send_sms_invites: Gửi lời mời SMS
@@ -2654,6 +2656,7 @@ vi:
     direct_reportee_details: Chi tiết người được báo cáo trực tiếp
     download:
       description: 'Để tải xuống báo cáo, vui lòng theo liên kết: <a href=''%{url}'' target=''_blank''>Download</a>. Link chỉ có giá trị trong 10 phút'
+      title: Báo cáo của bạn đã sẵn sàng!
     download_plan: Tải xuống gói
     edit_plan: Chỉnh sửa kế hoạch
     edit_plan_and_add_skills: Chỉnh sửa Kế hoạch và nhấp vào Quản lý Kỹ năng để thêm Kỹ năng.

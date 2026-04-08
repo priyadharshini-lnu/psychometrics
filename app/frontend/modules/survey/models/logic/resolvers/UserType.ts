@@ -4,7 +4,7 @@ export default class UserTypeResolver {
     field?: string
     predicate?: string
     value?: string
-  }, public context) {} // eslint-disable-line no-empty-function
+  }, public context) {}
 
   resolve () {
     return this[this.condition.predicate as string]()

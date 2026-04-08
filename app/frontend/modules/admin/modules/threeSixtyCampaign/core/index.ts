@@ -101,7 +101,7 @@ export const markAsDone = (
 export const exportCompletionStatuses = (campaignId: number) => ({
   type: EXPORT_COMPLETION_STATUSES,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/export_completion_status`,
   },
 })
@@ -109,7 +109,7 @@ export const exportCompletionStatuses = (campaignId: number) => ({
 export const exportRawResults = (campaignId: number, withLabels = false) => ({
   type: EXPORT_RAW_RESULTS,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/export_results`,
     body: { withLabels },
   },
@@ -129,7 +129,7 @@ export const importRawResults = (campaignId: number, body: Body) => ({
 export const exportThreeSixtyScores = (campaignId: number) => ({
   type: EXPORT_COMPLETION_STATUSES,
   request: {
-    method: 'get',
+    method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/export_threesixty_scores`,
   },
 })

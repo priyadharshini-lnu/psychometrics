@@ -77,8 +77,14 @@ module AI
       end
 
       def auto_finalize_campaign_artifact_result!
-        if campaign_user.all_campaign_artifact_results_present?
-          campaign_user.update!(campaign_artifact_results_finalized: true)
+        campaign_user.with_lock do
+          campaign_user.reload
+          if campaign_user.all_campaign_artifact_results_present?
+            campaign_user.update!(
+              campaign_artifact_results_finalized: true,
+              campaign_artifact_results_finalized_at: Time.current
+            )
+          end
         end
       end
     end

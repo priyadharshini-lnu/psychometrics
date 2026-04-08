@@ -4,20 +4,25 @@ import bg from '../../../assets/MainBackground.png'
 import mercer from '../../../assets/MercerLogo.svg'
 import styles from './Last.less'
 import Page from '../../Page'
-import { useAppSelector } from '~/modules/idpReport/hooks/redux'
+import { useTemplate } from '~/modules/idpReport/hooks/useIdpData'
+import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 import { useI18n } from '~/modules/idpReport/I18nContext'
 
 
 const Last = ({ rtl }) => {
-  const template = useAppSelector(state => state.idp.template)
+  const template = useTemplate()
   const { background, client_logo, logo_type } = template
   const I18n = useI18n()
+
+  const { titleStyle } = usePageFontStyles('last')
+
+  const shouldFlip = template.flip_background ?? rtl
 
   return (
     <Page rtl={rtl}>
       <div className={cs(styles.content)}>
         <div
-          className={cs(styles.background)}
+          className={cs(styles.background, { [styles.flipped]: shouldFlip })}
           style={{ backgroundImage: `url(${background || bg})` }}
         />
         {(logo_type === 'both' || logo_type === 'mercer_only') && (
@@ -31,7 +36,7 @@ const Last = ({ rtl }) => {
           </div>
         )}
         <Flex justify="center" vertical style={{ height: '100%' }}>
-          <h1 className={styles.title}>
+          <h1 className={styles.title} style={titleStyle}>
             {I18n.t('idp.pdf.last.end_report')}
           </h1>
         </Flex>

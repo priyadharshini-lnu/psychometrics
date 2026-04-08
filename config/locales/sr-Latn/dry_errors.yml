@@ -41,6 +41,12 @@ sr-Latn:
         skills_not_belong_to_project: Izabrane veštine moraju pripadati navedenom projektu.
         skills_required: Izaberite bar jednu veštinu.
       exceeded_subjects_count: Možete dodati samo %{count} predmeta po pozivu
+      factors_norms:
+        invalid_field_name: Име поља мора бити или 'score_from' или 'score_to'.
+        invalid_float: Вредност мора бити важећи флоат.
+        invalid_level: Ниво није важећи. Важећи нивои су %{levels}
+        score_from_less_than_score_to: score_from мора бити мање од score_to
+        score_to_greater_than_score_from: score_to мора бити веће од score_from
       filled?: ne može biti prazan
       idp_template:
         content_required: Sadržaj je potreban za uputstva

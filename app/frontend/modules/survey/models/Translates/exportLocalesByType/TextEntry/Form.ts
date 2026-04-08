@@ -12,7 +12,6 @@ const Form = ({ choices, choicesTexts, formTypes = [] }, result: object): object
   }, extendedResult)
 }
 
-// eslint-disable-next-line arrow-body-style
 const extendByOptionsLocales = (
   optionList: string[] | { [key: string]: string },
   typeIndex: number,

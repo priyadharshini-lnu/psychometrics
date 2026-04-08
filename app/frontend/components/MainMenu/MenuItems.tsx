@@ -79,6 +79,10 @@ export const getSelected = (): string => {
     return 'dimensions'
   }
 
+  if (location.href.match(/\/admin(\/)(dimensions)/)) {
+    return 'dimensions'
+  }
+
   if (location.href.match(/\/admin(\/)(users)/)) {
     return 'users'
   }

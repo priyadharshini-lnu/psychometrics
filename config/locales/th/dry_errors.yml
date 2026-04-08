@@ -41,6 +41,12 @@ th:
         skills_not_belong_to_project: ทักษะที่เลือกต้องเป็นของโครงการที่ระบุไว้
         skills_required: กรุณาเลือกอย่างน้อยหนึ่งทักษะ
       exceeded_subjects_count: คุณสามารถเพิ่มได้เฉพาะ %{count} หัวเรื่องต่อการเชิญ
+      factors_norms:
+        invalid_field_name: ชื่อฟิลด์ต้องเป็น 'score_from' หรือ 'score_to' เท่านั้น
+        invalid_float: ค่าต้องเป็นตัวเลขทศนิยมที่ถูกต้อง
+        invalid_level: ระดับไม่ถูกต้อง ระดับที่ถูกต้องคือ %{levels}
+        score_from_less_than_score_to: score_from ต้องน้อยกว่า score_to
+        score_to_greater_than_score_from: score_to ต้องมากกว่า score_from
       filled?: ไม่สามารถว่างเปล่าได้
       idp_template:
         content_required: จําเป็นต้องมีเนื้อหาสําหรับคําแนะนํา

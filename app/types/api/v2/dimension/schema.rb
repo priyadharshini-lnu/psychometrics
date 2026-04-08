@@ -21,6 +21,12 @@ module Api
         def self.links?
           false
         end
+
+        def self.relationships(_)
+          [
+            { name: :owner, resource: :clients, relationship: :one, required: false, allowed_blank: true }
+          ]
+        end
       end
     end
   end

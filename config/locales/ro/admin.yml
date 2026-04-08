@@ -23,7 +23,15 @@ ro:
     ai_artifact_result_generation_admin_job_failed: Artefactul „%{artifact_name}” nu poate fi generat pentru utilizatorul „%{user_email}”.
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
+    ai_artifacts_finalized_at: Finalizat la
+    ai_artifacts_generate_result_confirm: Generarea rezultatelor artefactului pentru utilizatorul „%{email}” va șterge raportul existent care depinde de acest artefact AI. Sunteți sigur că doriți să continuați?
     ai_artifacts_generate_results: Generați rezultate
+    ai_artifacts_mark_finalized: Marcaj finalizat
+    ai_artifacts_mark_finalized_bulk_confirm: Finalizarea rezultatelor artefactelor pentru toți utilizatorii selectați va genera rapoartele care utilizează artefactele AI. Sunteți sigur că doriți să continuați?
+    ai_artifacts_mark_finalized_confirm: Finalizarea rezultatelor artefactului pentru utilizatorul „%{email}” va genera raportul care utilizează artefactul AI pentru utilizator. Sunteți sigur că doriți să continuați?
+    ai_artifacts_mark_not_finalized: Marcaj nefinalizat
+    ai_artifacts_mark_not_finalized_bulk_confirm: Dacă anulați finalizarea pentru toți utilizatorii selectați, rapoartele generate care utilizează artefacte AI vor fi șterse. Sunteți sigur că doriți să continuați?
+    ai_artifacts_mark_not_finalized_confirm: Dacă eliminați finalizarea din contul utilizatorului „%{email}”, se va șterge raportul generat care utilizează artefactul AI pentru acest utilizator. Sunteți sigur că doriți să continuați?
     ai_artifacts_output_schema_key_constraint: Cheia trebuie să înceapă cu literă mică și poate conține doar litere mici, cifre și sublinii
     ai_artifacts_results_export: Exportați rezultatele
     ai_artifacts_results_export_job_scheduled: Sarcina de exportare a rezultatelor AI Artifacts a fost programată cu succes.
@@ -78,12 +86,32 @@ ro:
     ai_scoring_appoval_score_not_applicable: Scorul nu se aplică
     ai_scoring_approval: Aprobarea scorului AI
     ai_scoring_approval_settings: Setări de aprobare a punctajului AI
+    ai_scoring_approval_stale_description: Este posibil ca actualizările de configurare efectuate de la ultima rulare să fi modificat scorul. Efectuați o nouă evaluare pentru a-l actualiza folosind cele mai recente setări.
+    ai_scoring_approval_stale_title: Scorul ar putea fi depășit
     ai_scoring_approvals: Aprobări de scoruri AI
+    ai_scoring_refresh_score: Actualizează scorul
+    ai_scoring_refresh_score_confirm_description: Aceasta va rula din nou evaluarea AI pentru această probă, utilizând cea mai recentă configurație. Ești sigur?
+    ai_scoring_refresh_score_confirm_title: Să reîmprospătez scorurile AI?
+    ai_scoring_rescore_queued: Reevaluarea cu ajutorul IA a fost pusă în așteptare. Vă rugăm să reîmprospătați pagina după câteva momente.
     ai_translation: Traducere AI
     all_corner_rounded: Toate colțurile rotunjite
     allow_ai_rescoring: Permiteți reevaluarea AI
+    allow_continue_with_warning_system_check: Permite utilizatorilor să continue cu afișarea unor avertismente atunci când verificarea sistemului eșuează
     api_keys: Chei API
     apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
+    assessment_center_activity: Activitate
+    assessment_center_assessor: Evaluator
+    assessment_center_attendance: Prezența
+    assessment_center_attendance_status: Starea prezenței
+    assessment_center_campaigns_tab: Campanii
+    assessment_center_date_and_time: Data și ora
+    assessment_center_join_room: Intră în cameră
+    assessment_center_meeting_link: Link către întâlnire
+    assessment_center_participants_tab: Participanți
+    assessment_center_prework: Pregătire prealabilă
+    assessment_center_schedule_time: Programați o întâlnire
+    assessment_center_scheduling_status: Starea programării
+    assessment_center_search_participants: Căutare participanți...
     assessment_question_not_supported: Acest tip de întrebare nu este acceptat în prezent.
     assessments: Evaluări
     assessments_not_mhs: Toate evaluările trebuie să fie de tip MHS.
@@ -99,6 +127,7 @@ ro:
     auto_placeholder: Auto
     availability: Disponibilitate
     available_languages: Raport disponibil în limbi
+    average: Medie
     back_to_main: Meniul principal
     bulk_assets_modal_choose_csv: Alegeți fișierul CSV
     bulk_assets_modal_choose_zip: Alegeți fișierul ZIP
@@ -138,7 +167,9 @@ ro:
     cancel: Anulează
     cancellation_and_rescheduling_disabled: Anularea și reprogramarea sunt dezactivate
     casual: Casual
+    cell_save_msg: Modificările valide sunt salvate automat imediat ce ieșiți din celulă după editare.
     characters: caractere
+    chat_instructions_success: Instrucțiunile pentru chat au fost salvate cu succes
     children_factor_type: Tipul factorului copii
     client: Închirierea clientului
     client_admins: Administratori clienți
@@ -152,6 +183,7 @@ ro:
     configure_model_answer_title: Configurați răspunsul model și cuvintele cheie
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
     copied: Copiată
+    copy_ai_artifacts: Copiere artefacte AI
     country: Țara
     create_client: Creare client
     create_indicator: Creați indicator
@@ -193,6 +225,7 @@ ro:
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     download_bulk_asset_download_example_csv: Descărcați exemplul CSV.
+    duration: Durată
     edit_campaign_admin: Editați administratorul campaniei
     edit_client_admin: Editați administratorul clientului
     edit_indicator: Editare indicator
@@ -201,10 +234,12 @@ ro:
     edit_permission_denied: Nu ai permisiunea să editezi "%{name}" de administrator
     edit_project_admin: Editați administratorul proiectului
     edit_threesixty_campaign_admin: Editați administratorul campaniei
+    empty: Gol
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
     enable_enhance_with_ai_client_level: Vă rugăm să activați funcția Îmbunătățire cu AI la nivel de client.
     enable_maintenance: Activați întreținerea
     enable_mobile_proctoring: Activați supravegherea mobilă
+    enable_system_check: Activează verificarea sistemului
     enable_transcription: Activați transcrierea
     enable_transcription_msg: Activați transcrierea pentru a utiliza punctajul AI la întrebările cu răspunsuri video/audio.
     end_time: Ora de încheiere
@@ -218,10 +253,12 @@ ro:
     evaluation_status: Stare de evaluare
     evaluation_status_not_done: Starea evaluării nu este "Finalizată" pentru unul sau mai mulți subiecte selectate. Vă rugăm să vă asigurați că toți utilizatorii selectați au finalizat evaluările sau să marcheze ca fiind făcute.
     export_admin_roles_permissions: Exportul rolurilor și permisiunilor de administrator
+    export_campaigns_queued: Sarcinile de export au fost puse în coadă. Verificați notificările pentru a găsi linkurile de descărcare.
     export_compact_completion_status: Compact
     export_completion_status: Starea finalizării exportului
     export_completion_statuses_scheduled: Sarcina de exportare a stărilor de finalizare a fost programată cu succes
     export_detailed_completion_status: Detaliat
+    factors: Factori
     feature_ai_assistants_description: Activați asistenții bazati pe inteligență artificială pentru o experiență îmbunătățită a utilizatorului
     feature_ai_assisted_idp_description: Utilizați IA pentru a vă ajuta cu recomandările privind planificarea dezvoltării individuale
     feature_ai_content_analysis_description: Activați analiza conținutului bazată pe inteligență artificială pentru evaluări
@@ -240,8 +277,35 @@ ro:
     final_score_empty_msg: Suma finală nu poate fi goală.
     fix_grammar: Corectează gramatica
     formal: Formal
+    from: De la
     generate_transcription: Generați transcrierea
     hide_middle_scores: Ascunde scorurile medii
+    high: Ridicat
+    hogan: Hogan
+    hogan_assessment: Evaluarea Hogan
+    idp_appearance_body: Corp
+    idp_appearance_color: Culoare
+    idp_appearance_cover: Coperta
+    idp_appearance_dynamic_content: Conținut dinamic
+    idp_appearance_flip_background: Răsuciți imaginea de fundal pe coperta și pe ultima pagină
+    idp_appearance_font_family: Familia de fonturi
+    idp_appearance_guideline_position: Poziția paginii cu instrucțiuni
+    idp_appearance_guideline_position_second: Pagina a doua (după copertă)
+    idp_appearance_guideline_position_second_last: Penultima pagină (înainte de ultima)
+    idp_appearance_guidelines: Linii directoare
+    idp_appearance_idp_skills: Competențe IDP
+    idp_appearance_last: Ultimul
+    idp_appearance_per_page_font_settings: Setări de fonturi pentru fiecare pagină
+    idp_appearance_reflections: Reflecții
+    idp_appearance_report_summary: Rezumatul raportului
+    idp_appearance_section_body: Corpul secțiunii
+    idp_appearance_section_subtitle: Subtitlul secțiunii
+    idp_appearance_section_title: Titlul secțiunii
+    idp_appearance_select_font: Selectează fontul
+    idp_appearance_show_guidelines: Afișează pagina cu instrucțiuni
+    idp_appearance_size: Dimensiune
+    idp_appearance_subtitle: Subtitlu
+    idp_appearance_title: Titlu
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
     import_ai_artifacts: Importul artefactelor AI
@@ -281,6 +345,7 @@ ro:
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     licenses: Licenţe
+    low: Scăzut
     maintenance: Întreținere
     maintenance_settings: Setări de întreținere
     maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
@@ -297,6 +362,8 @@ ro:
     mhs_session_id: ID sesiune Mhs
     min_value: Valoarea minimă
     minimum_10_words: Minimum 10 cuvinte
+    minimum_download_speed: Viteza minimă de descărcare (în Mbps)
+    minimum_upload_speed: Viteza minimă de încărcare (în Mbps)
     missing_min_max_values: Sunt necesare valorile minime și maxime.
     model_answer: Răspuns model
     model_answer_placeholder: Introduceți răspunsul model pentru evaluarea AI.
@@ -305,6 +372,7 @@ ro:
     name_required: Este necesar numele
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
+    no_status: Fără statut
     norms: Normele
     not_completed: Nefinalizat
     not_completed_tooltip: "%{completed} evaluatori sunt atribuiți, dar doar %{submitted} au finalizat evaluările"
@@ -837,6 +905,19 @@ ro:
     saml_settings: Setări SAML
     save: Salvați
     save_assessment_for_scoring_management: Salvați evaluarea înainte de a începe cu punctajul.
+    saved_filter_label:
+      approval_status_in: Starea aprobării
+      approver_user_id_in: Persoană cu drept de aprobare
+      assessment_id_in: Evaluare
+      campaign_id_in: Campanie
+      client_id_in: Client
+      project_id_in: Proiect
+      qc_user_id_in: Utilizator QC
+      report_id_in: Raport
+      subject_email_cont: Subiectul e-mailului
+      subject_full_name_cont: Numele subiectului
+      user_email_cont: Adresa de e-mail a utilizatorului
+      user_full_name_cont: Nume de utilizator
     scheduling: Programarea
     score: Scor
     score_approval_not_allowed_to_approve: Nu aveți voie să aprobați acest scor.
@@ -893,7 +974,9 @@ ro:
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
     target_job_role: Postul vizat
     this_field_is_required: Acest câmp este obligatoriu
+    threesixty: Campania 360
     timezone: Fus orar
+    to: Către
     tone: Ton
     toolbar_ai_insight: Perspectivă AI
     toolbar_ai_suggestion: Sugestie AI
@@ -917,6 +1000,9 @@ ro:
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
     validation_error: Vă rugăm să completați toate câmpurile obligatorii
+    validity: Valabilitate
+    very_high: Foarte ridicat
+    very_low: Foarte scăzut
     view_licenses: Vizualizați licențele
     waiting: Așteptare
     weight: Greutate

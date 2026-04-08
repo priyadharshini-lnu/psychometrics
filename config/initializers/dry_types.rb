@@ -11,6 +11,8 @@ Dry::Validation::Contract.config.messages.load_paths += dry_error_translation_fi
 
 module Types
   include Dry.Types()
+
+  IntOrFloat = Integer | Float
 end
 
 Dry::Schema::Macros::Key.class_eval do

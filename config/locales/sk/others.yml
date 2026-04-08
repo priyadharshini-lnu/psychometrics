@@ -873,6 +873,7 @@ sk:
         export_assessment_questions: Otázky na hodnotenie exportu
         export_campaign_ai_artifacts: AI artefakty exportnej kampane
         export_campaign_ai_artifacts_results: Exportovať výsledky kampane AI artefaktov
+        export_campaign_datasheet: Technický list exportnej kampane
         export_campaign_factors: Export faktorov kampane
         export_campaign_scorings: Prieskumy exportných kampaní
         export_dashboard_as_file: Exportovať tabuľu ako súbor
@@ -932,6 +933,7 @@ sk:
         regenerate_report: Znovu vygenerovať správu
         regenerate_threesixty_report: Obnoviť správu Threesixty
         remap_report_assessment: Posúdenie správy o zmene mapy
+        rescore_ai_scoring: Prehodnotenie výsledkov pomocou umelej inteligencie
         rescore_assessment: Hodnotenie opätovného skóre
         rescore_user_assessment: Opätovné hodnotenie používateľa
         send_sms_invites: Posielanie SMS pozvánok
@@ -2660,6 +2662,7 @@ sk:
     direct_reportee_details: Podrobnosti o priamych hlásiteľoch
     download:
       description: 'Ak si chcete stiahnuť správu, kliknite na odkaz: <a href=''%{url}'' target=''_blank''>Download</a>. Odkaz je platný len 10 minút'
+      title: Vaša správa je hotová!
     download_plan: Stiahnuť plán
     edit_plan: Upraviť plán
     edit_plan_and_add_skills: Upraviť plán a kliknutím na Spravovať zručnosti pridajte zručnosti.

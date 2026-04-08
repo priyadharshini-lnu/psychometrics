@@ -873,6 +873,7 @@ pt:
         export_assessment_questions: Perguntas de avaliação das exportações
         export_campaign_ai_artifacts: Artefatos de IA da Campanha de Exportação
         export_campaign_ai_artifacts_results: Exportar resultados da campanha de artefatos de IA
+        export_campaign_datasheet: Ficha técnica da campanha de exportação
         export_campaign_factors: Factores da campanha de exportação
         export_campaign_scorings: Pontuações de campanhas de exportação
         export_dashboard_as_file: Exportar painel como arquivo
@@ -932,6 +933,7 @@ pt:
         regenerate_report: Relatório Regenerar
         regenerate_threesixty_report: Relatório Regenerate Threesixty
         remap_report_assessment: Avaliação do relatório Remap
+        rescore_ai_scoring: Reavaliação por IA
         rescore_assessment: Avaliação de novo registo
         rescore_user_assessment: Avaliação do utilizador Rescore
         send_sms_invites: Enviar convites por SMS
@@ -2668,6 +2670,7 @@ pt:
     direct_reportee_details: Detalhe dos subordinados diretos
     download:
       description: 'Para baixar o relatório, siga o link: <a href=''%{url}'' target=''_blank''>Download</a>. O link é válido apenas por 10 minutos'
+      title: O seu relatório está pronto!
     download_plan: Plano de download
     edit_plan: Editar plano
     edit_plan_and_add_skills: Edite o plano e clique em Gerenciar habilidades para adicionar habilidades.

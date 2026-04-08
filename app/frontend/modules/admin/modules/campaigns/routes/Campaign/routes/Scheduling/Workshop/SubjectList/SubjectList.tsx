@@ -295,6 +295,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           onClose={() => setOpenForm(false)}
           onSave={updateSubjects}
           workshopStartTime={workshop.startTime}
+          campaignAssessmentGroupId={workshop.campaignAssessmentGroupId}
         />
       )}
       {openSubjectForm && (<AddSubjectForm close={() => setOpenSubjectForm(false)} />)}

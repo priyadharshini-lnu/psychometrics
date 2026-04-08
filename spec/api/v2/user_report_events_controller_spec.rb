@@ -12,7 +12,7 @@ RSpec.describe Api::V2::Administration::UserReportEventsController, type: :reque
 
   describe 'GET /api/v2/administration/user_report_events/export' do
     it 'exports user report events' do
-      get '/api/v2/administration/user_report_events/export', params: { campaign_id: campaign.id.to_s },
+      post '/api/v2/administration/user_report_events/export', params: { campaign_id: campaign.id.to_s },
 headers: { 'Authorization' => authorization }
 
       expect(response).to have_http_status(:ok)
@@ -24,7 +24,7 @@ headers: { 'Authorization' => authorization }
       normal_authorization = "Basic #{Base64.strict_encode64("#{normal_api_key.key}:#{normal_api_key.token}")}"
       sign_in(normal_user)
 
-      get '/api/v2/administration/user_report_events/export', headers: { 'Authorization' => normal_authorization }
+      post '/api/v2/administration/user_report_events/export', headers: { 'Authorization' => normal_authorization }
 
       expect(response).to have_http_status(:forbidden)
     end

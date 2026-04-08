@@ -11,7 +11,7 @@ const { I18n } = window
 
 interface UseLtiLaunchRequestProps {
   url: string,
-  onFailure?: (response: unknown) => void, // eslint-disable-line @typescript-eslint/no-explicit-any
+  onFailure?: (response: unknown) => void,
 }
 
 const LtiLaunchResponseTR = t.type({

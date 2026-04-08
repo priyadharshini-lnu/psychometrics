@@ -880,6 +880,7 @@ sr-Latn:
         export_assessment_questions: Pitanja za procenu izvoza
         export_campaign_ai_artifacts: Izvozna kampanja AI artefakata
         export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
+        export_campaign_datasheet: Радни лист кампање за извоз
         export_campaign_factors: Faktori izvozne kampanje
         export_campaign_scorings: Izvozna kampanja Scorings
         export_dashboard_as_file: Izvozi kontrolnu tablu kao datoteku
@@ -939,6 +940,7 @@ sr-Latn:
         regenerate_report: Regeneriši izveštaj
         regenerate_threesixty_report: Regenerišite Threesixty izveštaj
         remap_report_assessment: Procena izveštaja o ponovnoj mapi
+        rescore_ai_scoring: Поновно бодовање вештачке интелигенције
         rescore_assessment: Rescore Procena
         rescore_user_assessment: Ponovite procenu korisnika
         send_sms_invites: Pošalji SMS pozivnice
@@ -2679,6 +2681,7 @@ sr-Latn:
     direct_reportee_details: Direktni izveštavači Detalj
     download:
       description: 'Da biste preuzeli izveštaj, pratite link: <a href=''%{url}'' target =''_blank''>Dovnload</a>. Veza važi samo 10 minuta'
+      title: Ваш извештај је спреман!
     download_plan: Plan za preuzimanje
     edit_plan: Uredi plan
     edit_plan_and_add_skills: Uredite plan i kliknite na Upravljanje veštinama da biste dodali veštine.

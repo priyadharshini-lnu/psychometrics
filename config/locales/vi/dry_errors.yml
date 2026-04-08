@@ -41,6 +41,12 @@ vi:
         skills_not_belong_to_project: Các kỹ năng được chọn phải thuộc về dự án đã được chỉ định.
         skills_required: Vui lòng chọn ít nhất một kỹ năng.
       exceeded_subjects_count: Bạn chỉ có thể thêm %{count} chủ đề cho mỗi lời mời
+      factors_norms:
+        invalid_field_name: Tên trường phải là 'score_from' hoặc 'score_to'.
+        invalid_float: Giá trị phải là một số thực hợp lệ.
+        invalid_level: Mức không hợp lệ. Các mức hợp lệ là%{levels}
+        score_from_less_than_score_to: giá trị_ban_đầu phải nhỏ hơn giá trị_cuối
+        score_to_greater_than_score_from: score_to phải lớn hơn score_from
       filled?: không thể để trống
       idp_template:
         content_required: Nội dung là bắt buộc để được hướng dẫn

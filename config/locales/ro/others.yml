@@ -873,6 +873,7 @@ ro:
         export_assessment_questions: Întrebări de evaluare a exporturilor
         export_campaign_ai_artifacts: Artefacte AI din campaniile de export
         export_campaign_ai_artifacts_results: Exportați rezultatele campaniei AI Artifacts
+        export_campaign_datasheet: Fișă tehnică a campaniei de export
         export_campaign_factors: Factorii campaniei de export
         export_campaign_scorings: Exportați scorurile campaniei
         export_dashboard_as_file: Exportați tabloul de bord ca fișier
@@ -932,6 +933,7 @@ ro:
         regenerate_report: Regenerarea raportului
         regenerate_threesixty_report: Regenerarea raportului Threesixty
         remap_report_assessment: Evaluarea raportului de remapare
+        rescore_ai_scoring: Reevaluarea cu ajutorul IA
         rescore_assessment: Evaluarea rescorului
         rescore_user_assessment: Rescorarea evaluării utilizatorului
         send_sms_invites: Trimiteți invitații prin SMS
@@ -2660,6 +2662,7 @@ ro:
     direct_reportee_details: Detalii raportoare directe
     download:
       description: 'Pentru a descărca raportul, vă rugăm să urmați linkul: <a href=''%{url}'' target=''_blank''>Download</a>. Linkul este valabil doar 10 minute'
+      title: Raportul dumneavoastră este gata!
     download_plan: Descărcați planul
     edit_plan: Editați planul
     edit_plan_and_add_skills: Editați planul și faceți clic pe Gestionați abilitățile pentru a adăuga abilități.

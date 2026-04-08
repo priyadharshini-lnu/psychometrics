@@ -61,6 +61,8 @@ features:
   idp_enabled: <%= ENV.fetch('IDP_ENABLED', 'false') == 'true' %>
   skill_rater_enabled: <%= ENV.fetch('SKILL_RATER_ENABLED', 'false') == 'true' %>
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
+  norm_editor_new_ui: <%= ENV.fetch('NORM_EDITOR_NEW_UI', 'false') == 'true' %>
+  dimensions_react_ui: <%= ENV.fetch('DIMENSIONS_REACT_UI', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
   skip_session_limitable: <%= ENV.fetch('SKIP_SESSION_LIMITABLE', 'false') == 'true' %>
@@ -2530,11 +2532,6 @@ saml:
   name_identifier_format: <%= ENV.fetch('SAML_NAME_IDENTIFIER_FORMAT', 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress') %>
   idp_entity_id: <%= ENV.fetch('SAML_IDP_ENTITY_ID', nil) %>
   idp_sso_service_url: <%= ENV.fetch('SAML_IDP_SSO_SERVICE_URL', nil) %>
-mmc_openai:
-  headers: &mmc_openai_headers
-      'X-Trusted-Broker-Service': openai
-      'x-trusted-broker-destination': <%= ENV.fetch('MMC_TRUSTED_BROKER_DESTINATION', nil) %>
-      'X-Api-Key': <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
 ai_providers:
   - model_id: <%= ENV.fetch('AZURE_OPENAI_MODEL_ID', 'gpt-4o') %>
     model: <%= ENV.fetch('AZURE_OPENAI_MODEL', 'gpt-4o') %>
@@ -2555,48 +2552,60 @@ ai_providers:
     context:
       oci_model_id: <%= ENV.fetch('OCI_COHERE_COMMAND_A_MODEL_ID', nil) %>
       oci_generative_ai_api_base: <%= ENV.fetch('OCI_GENERATIVE_AI_API_BASE', nil) %>
-  - model_id: azure-gpt-5-mini
-    model: gpt-5-mini
-    provider: Azure
-    name: GPT-5 Mini
-    description: "GPT-5 mini by openai on Azure with 128k context"
-    region: SWEDEN
-    context:
-      openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY_GPT_5_MINI', nil) %>
-      openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT_GPT_5_MINI', nil) %>
-  - model_id: azure-gpt-4o-mini
-    model: gpt-4o-mini
-    provider: Azure
-    name: GPT-4o Mini
-    description: "GPT-4o Mini by openai on Azure with 128k context"
-    region: UAE
-    context:
-      openai_api_key: <%= ENV.fetch('AZURE_OPENAI_API_KEY_GPT_4O_MINI', nil) %>
-      openai_api_base: <%= ENV.fetch('AZURE_OPENAI_API_BASE_ENDPOINT_GPT_4O_MINI', nil) %>
   - model_id: mmc-tech-gpt-5-mini
     model: gpt-5-mini
     provider: mmc
     name: GPT-5 Mini (MMC, 272k)
-    description: "Lightweight GPT-5 Mini model on MMC with 272k context."
-    headers: *mmc_openai_headers
+    description: "Lightweight GPT-5 Mini model on MMC with 272k context. Reasoning capabilities"
     context:
       openai_api_base: <%= ENV.fetch('MMC_OPENAI_BASE_ENDPOINT_GPT_5_MINI', nil) %>
+      openai_api_key: <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
+      openai_use_system_role: true
+  - model_id: mmc-tech-gpt-5-chat
+    model: gpt-5-chat-latest
+    provider: mmc
+    name: GPT-5 Chat (MMC, 128k)
+    description: "GPT-5 Chat model on MMC with 128k chat window context. No tools or reasoning capabilities. Should not be used with assistants which requires tool calls"
+    context:
+      openai_api_base: <%= ENV.fetch('MMC_OPENAI_BASE_ENDPOINT_GPT_5_CHAT', nil) %>
+      openai_api_key: <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
+      openai_use_system_role: true
   - model_id: mmc-tech-gpt-5
     model: gpt-5
     provider: mmc
-    name: GPT-5 Chat (MMC, 128k)
-    description: "GPT-5 Chat model on MMC with 128k chat window context."
-    headers: *mmc_openai_headers
+    name: GPT-5 (MMC, 272k)
+    description: "GPT-5 model on MMC with 272k chat window context. Reasoning is available"
     context:
       openai_api_base: <%= ENV.fetch('MMC_OPENAI_BASE_ENDPOINT_GPT_5', nil) %>
+      openai_api_key: <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
+      openai_use_system_role: true
   - model_id: mmc-tech-gpt-5-nano
     model: gpt-5-nano
     provider: mmc
     name: GPT-5 Nano (MMC, 272k)
-    description: "Ultra-compact GPT-5 Nano variant optimized for efficiency."
-    headers: *mmc_openai_headers
+    description: "Ultra-compact GPT-5 Nano variant optimized for efficiency. Reasoning is available"
     context:
       openai_api_base: <%= ENV.fetch('MMC_OPENAI_BASE_ENDPOINT_GPT_5_NANO', nil) %>
+      openai_api_key: <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
+      openai_use_system_role: true
+  - model_id: mmc-tech-gpt-52-chat
+    model: gpt-5.2-chat-latest
+    provider: mmc
+    name: GPT-5.2 Chat (MMC, 128K)
+    description: "GPT-5.2 Chat model on MMC with 128k chat window context."
+    context:
+      openai_api_base: <%= ENV.fetch('MMC_OPENAI_BASE_ENDPOINT_GPT_5_2_CHAT', nil) %>
+      openai_api_key: <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
+      openai_use_system_role: true
+  - model_id: mmc-tech-o3
+    model: o3
+    provider: mmc
+    name: O3 (MMC, 200K)
+    description: "O3 model provided by MMC with 200K context window has reasoning capabilities"
+    context:
+      openai_api_base: <%= ENV.fetch('MMC_OPENAI_BASE_ENDPOINT_O3', nil) %>
+      openai_api_key: <%= ENV.fetch('MMC_OPENAI_API_KEY', nil) %>
+      openai_use_system_role: true
 
 available_ai_providers: <%= ENV.fetch('AVAILABLE_AI_PROVIDERS', nil) %>
 

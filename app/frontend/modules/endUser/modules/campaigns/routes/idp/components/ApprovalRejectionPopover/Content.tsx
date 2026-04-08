@@ -42,7 +42,9 @@ export const Content = ({
           width: 300,
         }}
         autoSize={{ minRows: 3, maxRows: 5 }}
-        onChange={e => setReason(e.target.value)}
+        onChange={(e) => {
+          setReason(e.target.value)
+        }}
         placeholder={placeholder}
       />
       <ButtonWithArrow

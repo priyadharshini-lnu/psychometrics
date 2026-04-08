@@ -1,6 +1,8 @@
 ---
 id:
   enduser:
+    ack_subtitle: Saya telah membaca dan memahami petunjuk di atas dan siap untuk melanjutkan ke pemeriksaan sistem.
+    ack_title: Saya menyadari dan memahami
     add_idp_plan_note: Tambah Catatan...
     add_idp_plan_rejection_reason: Tambah Alasan...
     ai_idp_assistant_response_no: Tidak
@@ -8,13 +10,44 @@ id:
     ai_idp_assistant_response_yes_proceed_with_plan_creation: Ya, lanjutkan dengan pembuatan rencana.
     ai_idp_retake_step_chat_hint_no_document: Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut, dan saya akan melakukan yang terbaik untuk membantu Anda.
     ai_idp_summary_hint_no_document: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut.
+    all_checks_must_pass: Semua pemeriksaan harus lolos terlebih dahulu sebelum Anda dapat melanjutkan.
     approve_idp_plan: Setujui Rencana
+    back: Kembali
+    back_to_dashboard: Kembali ke Dasbor
+    before_you_begin: Sebelum Anda mulai
+    begin_message: Sebelum Anda melanjutkan ke kegiatan kampanye ini, Anda perlu melakukan pemeriksaan kesiapan untuk memastikan kompatibilitas perangkat Anda
     bookings: Pemesanan
+    browser: Peramban
+    browser_and_device: Browser & Perangkat
+    browser_compatbility_step: Langkah Kompatibilitas Browser
+    browser_compatibility: 'Kompatibilitas Browser:'
+    browser_compatibility_check: Uji Kompatibilitas Browser
+    browser_compatibility_check_description: Memeriksa apakah browser Anda mendukung semua fitur yang diperlukan
+    browser_compatibility_result: Kompatibilitas Peramban
+    browser_version_fix_description_first: 'Gunakan browser yang didukung: Chrome, Firefox, Edge, atau Safari'
+    browser_version_fix_description_second: Perbarui browser Anda ke versi terbaru untuk memastikan kompatibilitasnya.
+    browser_version_fix_description_third: Coba gunakan jendela penjelajahan penyamaran
+    browser_version_fix_title: Versi browser Anda tidak didukung.
+    camera: Video dan Audio
+    camera_access_blocked: Akses ke kamera ditolak atau diblokir oleh browser Anda. Silakan periksa izin browser Anda.
+    camera_check: Uji Kamera dan Mikrofon
+    camera_check_description: Pastikan kamera dan mikrofon Anda berfungsi dengan baik untuk merekam
+    camera_test_step: Langkah Pengujian Video dan Audio
     campaign: Kampanye
+    chat_instructions: Petunjuk Obrolan
+    check: Periksa
+    check_video_recording: Silakan periksa rekaman video Anda dengan memutarnya kembali.
+    checking_browser_compatibility: Memeriksa kompatibilitas browser...
     development: Pengembangan
     direct_reportees: Bawahan Langsung
+    download: Unduh
     download_pdf: Unduh PDF
+    environment_setup: Pengaturan Lingkungan
+    error_uploading_video: Terjadi kesalahan saat mengunggah video
+    fail: Gagal
+    follow_these_steps: Ikuti langkah-langkah berikut untuk mengatasi masalah yang terdeteksi selama pemeriksaan sistem
     home: Beranda
+    how_to_fix: 'Cara memperbaikinya:'
     idp_loading_fifth_step: Mengambil tindakan pengembangan dari templat
     idp_loading_first_step: Menganalisis laporan penilaian Anda
     idp_loading_fourth_step: Memilih keterampilan yang relevan
@@ -22,27 +55,71 @@ id:
     idp_loading_secondary_text: Jangan ragu untuk menjauh. Paket Anda akan siap saat Anda kembali.
     idp_loading_sixth_step: Membuat tindakan pengembangan
     idp_plan_approval_note: Catatan Persetujuan
+    idp_proceed_with_plan_creation: Ya, lanjutkan dengan pembuatan rencana
+    idp_report_being_generated: Kami sedang mengerjakan laporan Anda
+    idp_reset_chat: Atur Ulang Obrolan
     idp_retake_steps_continue_with_this_information: Lanjutkan dengan informasi ini
     insights: Wawasan
+    instruction: Pastikan Anda dan lingkungan sekitar Anda sudah benar-benar siap
+    internet_speed: Kecepatan Internet
+    internet_speed_optimal: Kecepatan koneksi Anda optimal
+    internet_speed_slow: Kecepatan internet lebih lambat dari yang dibutuhkan untuk kampanye ini
+    less_than_five_minutes: Kurang dari 5 menit
     lighthouse_assistant: Asisten Mercusuar
+    localstorage_fix_description_first: Pastikan Anda tidak berada dalam mode privat/inkognito, karena localStorage sering kali dinonaktifkan dalam mode-mode tersebut.
+    localstorage_fix_title: Penyimpanan Lokal tidak diaktifkan di browser Anda
+    localstorage_support: LocalStorage Diaktifkan
     max_word_limit: Maksimal %{max} kata
+    media_recorder_api_fix_description_first: Aktifkan JavaScript di pengaturan browser Anda
+    media_recorder_api_fix_description_second: Pastikan browser Anda mendukung API MediaRecorder dan perbarui ke versi terbaru jika perlu.
+    media_recorder_api_fix_description_third: Cobalah browser modern lain seperti Chrome atau Firefox
+    media_recorder_api_fix_title: API Media Recorder tidak didukung di browser Anda.
+    media_recorder_api_support: Dukungan API MediaRecorder
     min_word_limit: Minimal %{min} kata
     my_plan: Rencanaku
+    network: Jaringan
+    network_check: Tes Kecepatan Internet
+    network_check_description: Memeriksa kualitas koneksi internet Anda antara server kami dan perangkat Anda.
+    network_check_fix_fifth: Jika masalah tersebut masih berlanjut, hubungi penyedia layanan internet Anda untuk mendapatkan bantuan lebih lanjut
+    network_check_fix_first: Tutup aplikasi lain yang mungkin menggunakan bandwidth (streaming video, pengunduhan)
+    network_check_fix_fourth: Cobalah gunakan koneksi jaringan lain jika tersedia
+    network_check_fix_second: Dekati router Wi-Fi Anda atau sambungkan melalui kabel Ethernet
+    network_check_fix_third: Mulai ulang router/modem Anda, lalu coba lagi
+    network_test_step: Langkah Pengujian Jaringan
     no_audio_warning: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda terhubung dan berfungsi dengan baik.
+    pass: Lewati
+    pending: Sedang diproses
+    personal_readiness: Kesiapan Pribadi
+    plan_text: Rencanakan untuk seluruh durasi. Setelah dimulai, istirahat mungkin tidak diperbolehkan, tergantung pada jenis penilaian.
+    please_check_your_internet_connection: Silakan periksa koneksi internet Anda dan coba lagi.
     profile: Profil
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
     reason_for_idp_plan_rejection: Alasan Penolakan
-    recorded: direkam
-    recording: Rekaman
     reject_idp_plan: Tolak Paket
     request_retry_message: Anda offline. Jawaban Anda tidak dapat disimpan tetapi akan disimpan secara otomatis setelah Anda kembali online. Tolong jangan menyegarkan atau menutup halaman.
+    required_download_in_mbps: Kecepatan Unduh yang Diperlukan dalam Mbps
+    required_upload_in_mbps: Kecepatan Unggah yang Diperlukan dalam Mbps
+    rerun_check: Periksa Ulang
+    rerun_checks: Periksa Ulang
+    result: Hasil
+    results: Hasil
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
-    status_unknown: Status Tidak Diketahui
+    start_readiness_check: Mulai Pemeriksaan Kesiapan
+    start_system_check: Mulai Pemeriksaan Sistem
+    subinstruction_eight: Sisihkan waktu yang tidak terganggu untuk penilaian menyeluruh
+    subinstruction_five: Siap untuk membagikan layar Anda selama sesi berlangsung
+    subinstruction_four: Webcam dan mikrofon berfungsi dengan baik
+    subinstruction_one: Sebuah ruangan yang tenang dan terang benderang tanpa ada orang lain di dalamnya
+    subinstruction_seven: Pastikan perangkat Anda sudah terisi penuh atau terhubung ke stopkontak
+    subinstruction_six: Tutup semua aplikasi dan tab browser yang tidak diperlukan
+    subinstruction_three: Koneksi internet yang stabil (minimal 1 Mbps)
+    subinstruction_two: Meja yang rapi dan bebas dari barang-barang yang tidak sah
+    system_check: Pemeriksaan Sistem
     system_check_access: Akses
     system_check_audio_random_phrases:
       eight: Semoga kopi Anda kuat dan hari Anda menjadi produktif. (May your coffee be strong and your day be productive.)
@@ -55,6 +132,13 @@ id:
       three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
       two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
     system_check_audio_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
+    system_check_complete: Pemeriksaan Sistem Telah Selesai
+    system_check_failed: Pemeriksaan Sistem Gagal
+    system_check_failed_description: Mohon selesaikan masalah tersebut dan jalankan kembali pemeriksaan sistem.
+    system_check_failed_message: Beberapa pemeriksaan sistem gagal. Silakan periksa detailnya dan coba lagi.
+    system_check_failed_title: Anda tidak dapat melanjutkan sebelum semua pemeriksaan yang diperlukan lulus.
+    system_check_not_enabled: Fitur pemeriksaan sistem tidak diaktifkan untuk kampanye ini
+    system_check_passed_successfully: Semua pemeriksaan sistem telah berhasil dilalui!
     system_check_proceed: Ya, Oke untuk melanjutkan
     system_check_retake: Tidak, saya ingin mengulang
     system_check_run_again: Jalankan lagi
@@ -64,4 +148,41 @@ id:
     system_check_upload_again: Unggah lagi
     system_check_uploading: Mengunggah
     system_check_video_random_phrase: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.
+    system_check_warning: Peringatan Pemeriksaan Sistem
+    system_check_warning_message: Kemungkinan terjadinya kegagalan sistem dapat memengaruhi penilaian—harap lanjutkan hanya setelah semua pemeriksaan lolos.
+    system_checks: Pemeriksaan Sistem
+    task_duration: Durasi Tugas
     tasks: Tugas
+    time_commitment: Waktu yang Diperlukan
+    troubleshooting_guide: Panduan Pemecahan Masalah
+    troubleshooting_guide_browser_fifth: Pastikan LocalStorage telah diaktifkan di pengaturan browser Anda
+    troubleshooting_guide_browser_first: 'Gunakan browser yang didukung: Chrome, Firefox, Edge, atau Safari (versi terbaru)'
+    troubleshooting_guide_browser_fourth: Aktifkan JavaScript dan cookie di pengaturan browser
+    troubleshooting_guide_browser_second: Hapus cache dan cookie browser Anda
+    troubleshooting_guide_browser_sixth: 'Coba gunakan jendela penjelajahan penyamaran (Catatan: LocalStorage mungkin tidak didukung sepenuhnya atau sama sekali tidak didukung dalam mode penyamaran)'
+    troubleshooting_guide_browser_third: Nonaktifkan ekstensi browser yang mungkin mengganggu akses ke media
+    troubleshooting_guide_network_fifth: Jika masalah tersebut masih berlanjut, hubungi penyedia layanan internet Anda untuk mendapatkan bantuan lebih lanjut
+    troubleshooting_guide_network_first: Tutup aplikasi lain yang mungkin menggunakan bandwidth (streaming video, pengunduhan, dll.)
+    troubleshooting_guide_network_fourth: Cobalah gunakan koneksi jaringan lain jika tersedia
+    troubleshooting_guide_network_second: Dekati router Wi-Fi Anda atau sambungkan melalui kabel Ethernet
+    troubleshooting_guide_network_third: Mulai ulang router/modem Anda, lalu coba lagi
+    troubleshooting_guide_video_fifth: 'Di Windows: Periksa Pengaturan Privasi > Akses Kamera/Mikrofon'
+    troubleshooting_guide_video_first: Klik ikon gembok/info di bilah alamat browser Anda
+    troubleshooting_guide_video_fourth: Jika diblokir, Anda mungkin perlu mengatur ulang izin di pengaturan browser
+    troubleshooting_guide_video_second: Cari pengaturan "Kamera" dan "Mikrofon", lalu atur menjadi "Izinkan"
+    troubleshooting_guide_video_sixth: 'Di Mac: Buka Preferensi Sistem > Keamanan & Privasi > Kamera/Mikrofon'
+    troubleshooting_guide_video_third: Segarkan halaman setelah mengubah izin
+    untimed: Tanpa batas waktu
+    upload: Unggah
+    video_and_audio: Video & Audio
+    video_and_audio_recording: Perekaman Video dan Audio
+    video_check_fix_fifth: Coba cabut dan pasang kembali kabel kamera Anda jika kamera tersebut terhubung secara eksternal
+    video_check_fix_first: Klik 'Izinkan' saat browser meminta izin untuk menggunakan kamera
+    video_check_fix_fourth: Pastikan kamera Anda sudah terhubung dan dalam keadaan menyala
+    video_check_fix_second: Buka pengaturan browser dan aktifkan akses kamera untuk situs ini
+    video_check_fix_sixth: Mulai ulang browser Anda dan coba lagi
+    video_check_fix_third: Tutup aplikasi lain yang menggunakan kamera (Zoom, Teams, dll.)
+    webgl_api_fix_description_first: Pastikan browser Anda mendukung WebGL dan fitur tersebut telah diaktifkan di pengaturan
+    webgl_api_fix_description_second: Perbarui driver grafis Anda ke versi terbaru
+    webgl_api_fix_title: WebGL tidak didukung atau diaktifkan di browser Anda
+    webgl_api_support: Dukungan API WebGL
