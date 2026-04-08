@@ -1,4 +1,4 @@
-import 'green-audio-player/dist/css/green-audio-player.css'
-import GreenAudioPlayer from 'green-audio-player/dist/js/green-audio-player.js'
+import '@thetalententerprise/green-audio-player/dist/css/green-audio-player.min.css'
+import GreenAudioPlayer from '@thetalententerprise/green-audio-player'
 
 window.GreenAudioPlayer = GreenAudioPlayer
