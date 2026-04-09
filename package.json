@@ -110,7 +110,6 @@
     "normalize.css": "^4.1.1",
     "normalizr": "^3.6.2",
     "noty": "^2.3.8",
-    "path-to-regexp": "0.1.12",
     "pluralize": "^8.0.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^16.1.0",
