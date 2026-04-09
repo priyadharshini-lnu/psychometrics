@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class DeviseFailureApp < Devise::FailureApp
+  # Temporary code, which can be remove in few days
+  def respond
+    Utility::Cookie.expire_auth_cookies(response) if warden_message == :timeout
+    super
+  end
+
   def redirect_url
     force_saml = request.params[:force_saml] == 'true'
     return super unless force_saml
