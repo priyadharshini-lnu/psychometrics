@@ -1400,7 +1400,9 @@ CREATE TABLE public.ai_scoring_approval_settings (
     campaign_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    allow_one_level_approve boolean DEFAULT false
+    allow_one_level_approve boolean DEFAULT false,
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
+    do_not_send_notifications boolean DEFAULT false
 );
 
 
@@ -20358,6 +20360,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260331100000'),
 ('20260401053041'),
 ('20260401045303'),
 ('20260401031414'),
@@ -20365,10 +20368,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260320100000'),
 ('20260325000001'),
 ('20260323084342'),
+('20260320102153'),
 ('20260311085954'),
 ('20260306120000'),
 ('20260306090626'),
-('20260320102153'),
 ('20260305110830'),
 ('20260304133958'),
 ('20260228091708'),

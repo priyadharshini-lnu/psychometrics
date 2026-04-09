@@ -800,6 +800,10 @@ Rails.application.routes.draw do
     get 'report_approvals/*all', to: 'report_approvals#app',
       constraints: { all: /.*/, format: :html }, as: :report_approvals_all
 
+    get 'ai_scoring_approvals', to: 'ai_scoring_approvals#app', as: :ai_scoring_approvals
+    get 'ai_scoring_approvals/*all', to: 'ai_scoring_approvals#app',
+      constraints: { all: /.*/, format: :html }, as: :ai_scoring_approvals_all
+
     resources :report_families, only: [:index] do
       scope module: :report_families do
         resources :reports, only: %i[index]

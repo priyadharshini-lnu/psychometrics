@@ -17,6 +17,8 @@ class AI::ScoreApproval < ApplicationRecord
   belongs_to :score_assessed_by, class_name: 'User'
   belongs_to :score_approved_by, class_name: 'User'
 
+  attr_accessor :skip_event_emails
+
   workflow_column :approval_status
   workflow do
     state :pending do
@@ -34,6 +36,10 @@ class AI::ScoreApproval < ApplicationRecord
 
     on_transition do |_from, to, _event, *_|
       update(approval_status_updated_at: Time.current)
+      unless setting&.do_not_send_notifications? || skip_event_emails
+        ::ScoreApprovals::NotifyApprovers.call!(self) if to == :assessor_approved
+        ::ScoreApprovals::NotifyApprovalNotifications.call!(self) if to == :approver_approved
+      end
       merge_and_run_post_scoring_tasks! if to == :approver_approved
     end
   end
