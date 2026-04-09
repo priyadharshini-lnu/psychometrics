@@ -197,7 +197,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               assessmentName={assessmentName}
               timerDuration={assessmentTimer}
               campaignExpiryDate={currentCampaignExpiryDate}
-              translatedInstructions={substituteTextWithPipedData(instructions?.content, pipedTextMapping)}
+              translatedInstructions={
+                instructions?.enabled ? substituteTextWithPipedData(instructions?.content, pipedTextMapping) : ''
+              }
               onBegin={handleBeginAssessment}
             />
           </div>
