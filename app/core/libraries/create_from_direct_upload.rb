@@ -19,11 +19,13 @@ module Libraries
       library = nil
 
       permanent_key = nil
+      source_copy_path = nil
 
       ActiveRecord::Base.transaction do
         library = build_library_resource
         library.save!(validate: false)
         permanent_key = attach_file_to_library!(library, temporary_upload, checksum)
+        source_copy_path = copy_source_path(temporary_upload)
 
         # Reload so attachment-dependent callbacks/validations see the new file association.
         library.reload
@@ -31,7 +33,7 @@ module Libraries
       end
 
       client.copy_object(
-        copy_source: "#{temporary_upload.bucket}/#{temporary_upload.file_key}",
+        copy_source: source_copy_path,
         bucket: Settings.secrets.s3_compatible_storage[:public_bucket],
         key: permanent_key,
         acl: 'public-read'
@@ -103,6 +105,11 @@ module Libraries
       )
 
       permanent_key
+    end
+
+    def copy_source_path(temporary_upload)
+      encoded_key = URI.encode_uri_component(temporary_upload.file_key.to_s)
+      "#{temporary_upload.bucket}/#{encoded_key}"
     end
   end
 end

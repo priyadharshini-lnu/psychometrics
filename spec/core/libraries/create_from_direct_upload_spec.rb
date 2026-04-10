@@ -46,6 +46,27 @@ RSpec.describe Libraries::CreateFromDirectUpload do
     expect(subject[:ok]).to eq(library)
   end
 
+  context 'when temporary upload key has spaces' do
+    let(:temporary_upload) do
+      create(
+        :temporary_upload,
+        user: user,
+        filename: 'Screenshot 2026-04-06 at 3.24.12 PM.png',
+        file_key: 'tmp/uploads/abc123/Screenshot 2026-04-06 at 3.24.12 PM.png'
+      )
+    end
+
+    it 'copies object using an encoded copy_source path' do
+      subject
+
+      expect(@s3_client_mock).to have_received(:copy_object).with(
+        hash_including(
+          copy_source: 'public-bucket/tmp%2Fuploads%2Fabc123%2FScreenshot%202026-04-06%20at%203.24.12%20PM.png'
+        )
+      )
+    end
+  end
+
   context 'when upload id is not found' do
     let(:params) { { temporary_upload_id: 0, name: 'Test' } }
 
