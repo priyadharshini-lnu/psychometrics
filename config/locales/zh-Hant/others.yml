@@ -2002,8 +2002,6 @@ zh-Hant:
         subject: Lighthouse邀請函
       confirmation_instructions:
         subject: 確認指示
-      copyright:
-        text: Lighthouse. 版權所有
       invitation_instructions:
         body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員 '
         login: 登入 Lighthouse
@@ -2016,8 +2014,6 @@ zh-Hant:
         body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
         regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
-      powered_by:
-        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。 '
         change_password: 變更密碼
@@ -2693,13 +2689,7 @@ zh-Hant:
     my_plan:
       development_plan: 發展計劃
       graphs:
-        behavioural: 行為
         categories: 類別
-        learning_on_job: 在職 (%{count})
-        learning_others: 向他人學習 (%{count})
-        learning_structured: 有系統的學習 (%{count})
-        other: 其他
-        technical: 技術
       save_skills: 儲存技能
     new_comments: 新評論
     no_plan_changes_found: 自你上次審查以來，計畫沒有做任何修改。

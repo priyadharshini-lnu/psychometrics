@@ -2015,8 +2015,6 @@ ja:
         subject: ライトハウスへの招待
       confirmation_instructions:
         subject: 確認事項
-      copyright:
-        text: Lighthouse. すべての権利を保有します
       invitation_instructions:
         body: 'こんにちは、%{name}, あなたは次のセクションの管理者としてLighthouseに追加されました。 '
         login: ライトハウスにサインイン
@@ -2029,8 +2027,6 @@ ja:
         body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。 '
         regards: 'ライトハウス・チーム '
         subject: ライトハウスのパスワードが変更されました
-      powered_by:
-        text: Powered by Lighthouse.
       reset_password_instructions:
         body: 'こんにちは、%{name}さん！パスワード変更用のリンクをリクエストされました。 以下のリンクから変更できます。 '
         change_password: パスワードの変更

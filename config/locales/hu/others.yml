@@ -4248,8 +4248,6 @@ hu:
     min_character: A válasznak legalább %{min} karaktert kell tartalmaznia.
     min_factor: A válasznak legalább %{min} tényező visszajelzést kell tartalmaznia.
     min_word: A válasznak legalább %{min} szót kell tartalmaznia
-    most:
-      one: Kérjük, válasszon legfeljebb %{max} választási lehetőség(eke)t
     must_rank_between: Kérjük, adjon meg egy értéket %{min} és %{max} között minden egyes elemhez. Az értékek nem ismétlődhetnek.
     must_select: Kérjük, válasszon a %{min} és %{max} közötti lehetőségek közül
     not_in_future: A kiválasztott dátum nem lehet a jövőben

@@ -1019,7 +1019,6 @@ pt:
       new_response: Nova resposta
       next_assessment: Passar para a avaliação seguinte
       pending_tasks:
-        many: ''
         one: Tem 1 tarefa pendente
         other: Você tem %{count} tarefas pendentes
       re_evaluate: Clique aqui para reavaliar
@@ -1991,8 +1990,6 @@ pt:
     invalid_captcha: A introdução do captcha era inválida.
     invalid_security_question: A resposta à pergunta de segurança era inválida.
     invitations:
-      confirmation_instructions:
-        subject: Instruções de confirmação
       edit:
         confirm_password_label: Confirmar a palavra-passe
         header: Definir a sua palavra-passe
@@ -2025,23 +2022,6 @@ pt:
           client: 'Arrendamento do cliente: %{section_name}'
           project: 'Projeto: %{section_name}'
         subject: Convite para o Lighthouse
-      invitation_removed: O seu convite foi retirado.
-      invitation_token_invalid: O código de convite fornecido não é válido!
-      mailer:
-        accept: Clique aqui para aceitar o convite.
-        admin_invitation_instructions:
-        body: 'Olá %{name}, Foi convidado a aceder ao painel de administração da plataforma de avaliação Lighthouse - The Talent Enterprise. %{accept} Ou pode ignorar esta mensagem de correio eletrónico. Não partilhe as suas credenciais de acesso com ninguém.
-
-          '
-        copyright:
-          text: Lighthouse. Todos os direitos reservados
-        powered_by:
-          text: Powered by Lighthouse.
-        subject: Convite para o Lighthouse
-      new:
-        header: Enviar convite
-        submit_button: Enviar um convite
-      no_invitations_remaining: Não restam convites
       password_change:
         body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com '
         regards: 'Cumprimentos, Equipa Lighthouse '
@@ -2052,15 +2032,12 @@ pt:
         footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
         regards: 'Cumprimentos, Equipa Lighthouse '
         subject: Instruções para repor a sua palavra-passe
-      send_instructions: Foi enviado um convite por correio eletrónico para %{email}.
       unlock_instructions:
         body: 'Olá %{name}! A sua conta foi bloqueada devido a um número excessivo de tentativas de início de sessão sem êxito. Clique na ligação abaixo para desbloquear a sua conta: '
         footer: Se não o solicitou, pode ignorar esta mensagem de correio eletrónico. A sua palavra-passe não será alterada até aceder à ligação acima e criar uma nova.
         regards: 'Cumprimentos, Equipa Lighthouse '
         subject: Instruções para desbloquear a sua conta
         unlock_account: Desbloquear a minha conta
-      updated: A sua palavra-passe foi definida com êxito. Está agora ligado.
-      updated_not_active: A sua palavra-passe foi definida com êxito.
     omniauth_callbacks:
       failure: Não foi possível autenticá-lo a partir de %{kind} porque "%{reason}".
       success: Autenticação bem sucedida da conta %{kind}.
@@ -2724,13 +2701,7 @@ pt:
     my_plan:
       development_plan: Plano de desenvolvimento
       graphs:
-        behavioural: Comportamental
         categories: Categorias
-        learning_on_job: No emprego (%{count})
-        learning_others: Aprender com os outros (%{contagem})
-        learning_structured: Aprendizagem estruturada (%{contagem})
-        other: Outros
-        technical: Técnica
       save_skills: Salvar competências
     new_comments: Novo(s) comentário(s)
     no_plan_changes_found: Nenhuma revisão foi feita no plano desde sua última avaliação.

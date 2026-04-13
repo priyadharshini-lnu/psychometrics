@@ -827,16 +827,6 @@ zh-HK:
           min_assessment_count: 最低評量數量為%{min}
         skill_gap_report:
           not_found: 技能差距報告未找到
-        taxonomies_import_form:
-          attributes:
-            file:
-              duplicate_value: 第 %{row} 行：欄位 %{field} 的數值 %{value} 重複
-              invalid_format: 請上傳 xlsx 檔案
-              missing_headers: "%{sheet_name} 工作表缺少必要標題：%{headers}"
-              missing_sheets: 缺少必要的工作表：%{sheets}
-              missing_value: 第 %{row} 行：欄位 %{field} 缺少數值
-            project:
-              must_exist: 項目必須存在
         user:
           attributes:
             current_password:

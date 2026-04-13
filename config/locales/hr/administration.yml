@@ -4510,7 +4510,6 @@ hr:
         new:
           header: Uvoz prijevoda
       import:
-        successfully: Prijevodi su uspješno uvezeni
         successfully_scheduled: Uvoz prijevoda uspješno je zakazan.
       reports:
         export: Izvoz prijevoda

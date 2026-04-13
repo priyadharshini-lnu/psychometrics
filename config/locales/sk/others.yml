@@ -4261,8 +4261,6 @@ sk:
     min_character: Vaša odpoveď musí obsahovať aspoň %{min} znakov.
     min_factor: Vaša odpoveď musí obsahovať aspoň %{min} faktorovú spätnú väzbu.
     min_word: Vaša odpoveď musí mať aspoň %{min} slov
-    most:
-      one: Vyberte najviac %{max} možností
     must_rank_between: Pre každú položku priraďte hodnotu od %{min} do %{max}. Hodnoty sa nesmú opakovať.
     must_select: Prosím, vyberte z možností %{min} až %{max}
     not_in_future: Vybraný dátum by nemal byť v budúcnosti

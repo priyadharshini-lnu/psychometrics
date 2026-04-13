@@ -4270,9 +4270,6 @@ sl:
     min_character: Vaš odgovor mora imeti najmanj %{min} znakov.
     min_factor: Vaš odgovor mora vsebovati vsaj %{min} povratne informacije.
     min_word: Vaš odgovor mora imeti najmanj %{min} besed
-    most:
-      one: Izberite največ 1 možnost
-      other: Izberite največ %{max} možnosti
     must_rank_between: Vsaki postavki dodelite vrednost od %{min} do %{max}. Vrednosti se ne smejo ponavljati.
     must_select: Izberite med %{min} in %{max} možnostmi
     not_in_future: Izbrani datum ne sme biti v prihodnosti

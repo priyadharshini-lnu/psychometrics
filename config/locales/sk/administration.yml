@@ -4510,7 +4510,6 @@ sk:
         new:
           header: Importovať preklady
       import:
-        successfully: Preklady boli úspešne importované
         successfully_scheduled: Import prekladu bol úspešne naplánovaný.
       reports:
         export: Exportovať preklady

@@ -4255,9 +4255,6 @@ vi:
     min_character: Phản hồi của bạn phải chứa ít nhất %{min} ký tự.
     min_factor: Câu trả lời của bạn phải chứa ít nhất %{min} phản hồi yếu tố.
     min_word: Câu trả lời của bạn phải dài ít nhất %{min} từ
-    most:
-      one: ''
-      other: Vui lòng chọn tối đa %{max} lựa chọn
     must_rank_between: Vui lòng chỉ định giá trị từ %{min} đến %{max} cho mỗi mục. Giá trị không được lặp lại.
     must_select: Vui lòng chọn từ %{min} đến %{max} lựa chọn
     not_in_future: Ngày đã chọn không nên là trong tương lai
