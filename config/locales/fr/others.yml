@@ -929,6 +929,7 @@ fr:
         normalize_factor_scores: Normaliser les scores des facteurs
         project_compact_completion_status_export: Exportation compacte de l'état d'avancement
         project_completion_status_export: Exportation de l'état d'avancement
+        regenerate_assessment_transcriptions: Recréer les transcriptions des évaluations
         regenerate_campaign_reports: Régénérer les rapports de campagne
         regenerate_report: Rapport sur la régénération
         regenerate_threesixty_report: Rapport Regenerate Threesixty
@@ -4037,9 +4038,11 @@ fr:
       import_reports: Importer des rapports et des évaluations
   user_assessment:
     column:
+      completed_at: Terminé le
       dimension_id: Dimension ID
       id: ID d'évaluation de l'utilisateur
       norm_id: ID de la norme
+      started_at: Date de début
     drawer:
       copied: "%{name} copié dans le presse-papiers."
       copy: Copier dans le presse-papiers

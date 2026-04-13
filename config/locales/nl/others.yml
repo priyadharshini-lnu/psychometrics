@@ -929,6 +929,7 @@ nl:
         normalize_factor_scores: Factorscores normaliseren
         project_compact_completion_status_export: Compacte voltooiingsstatus exporteren
         project_completion_status_export: Export voltooiingsstatus
+        regenerate_assessment_transcriptions: Transcripties van beoordelingen opnieuw genereren
         regenerate_campaign_reports: Campagneverslagen opnieuw genereren
         regenerate_report: Regenereren Rapport
         regenerate_threesixty_report: Regenereren Drieënzestig Verslag
@@ -4037,9 +4038,11 @@ nl:
       import_reports: Rapporten en beoordelingen importeren
   user_assessment:
     column:
+      completed_at: Voltooid op
       dimension_id: Afmeting ID
       id: ID gebruikersbeoordeling
       norm_id: Norm ID
+      started_at: Begonnen op
     drawer:
       copied: "%{name} gekopieerd naar klembord."
       copy: Kopiëren naar klembord

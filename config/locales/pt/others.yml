@@ -929,6 +929,7 @@ pt:
         normalize_factor_scores: Normalizar as pontuações dos factores
         project_compact_completion_status_export: Exportação compacta do status de conclusão
         project_completion_status_export: Status de conclusão Exportar
+        regenerate_assessment_transcriptions: Regenerar transcrições de avaliação
         regenerate_campaign_reports: Regenerar relatórios de campanha
         regenerate_report: Relatório Regenerar
         regenerate_threesixty_report: Relatório Regenerate Threesixty
@@ -4049,9 +4050,11 @@ pt:
       import_reports: Importar relatórios e avaliações
   user_assessment:
     column:
+      completed_at: Concluído em
       dimension_id: ID da dimensão
       id: ID de avaliação do utilizador
       norm_id: ID da norma
+      started_at: Iniciou em
     drawer:
       copied: "%{name} copiado para a área de transferência."
       copy: Copiar para a área de transferência

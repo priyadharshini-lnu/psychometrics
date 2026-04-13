@@ -44,6 +44,8 @@ pl:
     copy: Kopiuj
     created_at: Utworzono w
     created_date: Data utworzenia
+    custom_acknowledgment_text: Niestandardowy tekst podziękowania
+    custom_acknowledgment_text_required: W przypadku roli danych kontrolera wymagany jest niestandardowy tekst potwierdzenia
     custom_consent_text: Tekst zgody niestandardowej
     custom_consent_text_required: Wymagany jest niestandardowy tekst zgody dla roli administratora danych.
     data_role: Rola danych
@@ -83,6 +85,7 @@ pl:
     maintenance_time_remaining: Pozostały czas
     maintenance_upcoming_description: W celu poprawy jakości usług serwis %{date} będzie poddany planowej konserwacji przez około %{duration}. W tym czasie nie będzie można uzyskać dostępu do serwisu ani wykonać żadnych przypisanych zadań. Dziękujemy za cierpliwość.
     maintenance_upcoming_title: Nadchodząca konserwacja
+    manage_cookies: Zarządzaj plikami cookie
     media_id: Identyfikator mediów
     media_preview: Zapowiedź medialna
     media_question_transcriptions: Transkrypcje pytań mediów
@@ -139,6 +142,15 @@ pl:
     subject: Temat
     submit: Prześlij
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
+    table:
+      entries:
+        selected:
+          one: Wybrano 1 wiersz
+          other: Wybrano {{count}} wierszy
+        total:
+          one: 'Razem: 1'
+          other: 'Razem: {{count}}'
+          zero: 'Razem: 0'
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
     tools: Narzędzia
     transcription: Transkrypcja

@@ -929,6 +929,7 @@ id:
         normalize_factor_scores: Menormalkan Skor Faktor
         project_compact_completion_status_export: Ekspor Status Penyelesaian Kompak
         project_completion_status_export: Status Penyelesaian Ekspor
+        regenerate_assessment_transcriptions: Buat Ulang Transkrip Penilaian
         regenerate_campaign_reports: Buat Ulang Laporan Kampanye
         regenerate_report: Buat ulang laporan
         regenerate_threesixty_report: Buat Ulang Laporan Threesixty
@@ -4068,9 +4069,11 @@ id:
       import_reports: Impor Laporan dan Penilaian
   user_assessment:
     column:
+      completed_at: Selesai pada
       dimension_id: ID Dimensi
       id: ID Penilaian Pengguna
       norm_id: ID Norma
+      started_at: Dimulai pada
     drawer:
       copied: "%{name} disalin ke clipboard."
       copy: Salin ke Clipboard

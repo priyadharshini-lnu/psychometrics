@@ -44,6 +44,8 @@ hu:
     copy: Másolás
     created_at: Létrehozva
     created_date: Létrehozás dátuma
+    custom_acknowledgment_text: Egyéni köszönőüzenet
+    custom_acknowledgment_text_required: A vezérlő adat szerepköréhez egyéni köszönőüzenet megadása szükséges
     custom_consent_text: Egyéni hozzájárulási szöveg
     custom_consent_text_required: Az adatkezelő adatkezelői szerepköréhez egyéni hozzájárulási szöveg szükséges.
     data_role: Adat szerep
@@ -83,6 +85,7 @@ hu:
     maintenance_time_remaining: Maradék idő
     maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
     maintenance_upcoming_title: Közelgő karbantartás
+    manage_cookies: A cookie-k kezelése
     media_id: Média azonosító
     media_preview: Média előzetes
     media_question_transcriptions: Média kérdések átirata
@@ -139,6 +142,15 @@ hu:
     subject: Tárgy
     submit: Beküldés
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
+    table:
+      entries:
+        selected:
+          one: 1 sor van kijelölve
+          other: "{{count}} sor lett kijelölve"
+        total:
+          one: 'Összesen: 1'
+          other: 'Összesen: {{count}}'
+          zero: 'Összesen: 0'
     terms_conditions_privacy: Adatvédelmi nyilatkozat
     tools: Eszközök
     transcription: Átírás

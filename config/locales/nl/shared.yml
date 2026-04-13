@@ -44,6 +44,8 @@ nl:
     copy: Kopieer
     created_at: Gemaakt op
     created_date: Datum aangemaakt
+    custom_acknowledgment_text: Aangepaste bedanktekst
+    custom_acknowledgment_text_required: Voor de rol 'Controllergegevens' is een aangepaste bevestigingstekst vereist
     custom_consent_text: Aangepaste toestemmingstekst
     custom_consent_text_required: Aangepaste toestemmingstekst is vereist voor de gegevensrol van de verwerkingsverantwoordelijke
     data_role: Gegevensrol
@@ -83,6 +85,7 @@ nl:
     maintenance_time_remaining: Resterende tijd
     maintenance_upcoming_description: We voeren gepland onderhoud uit op %{date} gedurende ongeveer %{duration} om uw ervaring te verbeteren. Gedurende deze periode kunt u geen toegang krijgen tot toegewezen taken en deze ook niet voltooien. Wij danken u voor uw geduld.
     maintenance_upcoming_title: Aankomend onderhoud
+    manage_cookies: Cookies beheren
     media_id: Media-ID
     media_preview: Media Preview
     media_question_transcriptions: Transcripties van vragen van de media

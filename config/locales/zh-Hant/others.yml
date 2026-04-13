@@ -929,6 +929,7 @@ zh-Hant:
         normalize_factor_scores: 標準化因子分數
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
+        regenerate_assessment_transcriptions: 重新生成评估记录
         regenerate_campaign_reports: 再生活動報告
         regenerate_report: 再生報告
         regenerate_threesixty_report: 再生三六零報告
@@ -4037,9 +4038,11 @@ zh-Hant:
       import_reports: 匯入報告和評估
   user_assessment:
     column:
+      completed_at: 完成于
       dimension_id: 尺寸 ID
       id: 使用者評估 ID
       norm_id: 標準 ID
+      started_at: 始于
     drawer:
       copied: "%{name} 已複製到剪貼簿。"
       copy: 複製到剪貼簿

@@ -929,6 +929,7 @@ sr-Latn:
         normalize_factor_scores: Normalizujte rezultate faktora
         project_compact_completion_status_export: Компактни извоз статуса завршетка
         project_completion_status_export: Извоз статуса завршетка
+        regenerate_assessment_transcriptions: Поново генеришите транскрипте процене
         regenerate_campaign_reports: Regenerišite izveštaje o kampanji
         regenerate_report: Regeneriši izveštaj
         regenerate_threesixty_report: Regenerišite Threesixty izveštaj
@@ -4067,9 +4068,11 @@ sr-Latn:
       import_reports: Uvezi izveštaje i procene
   user_assessment:
     column:
+      completed_at: Завршено у
       dimension_id: Dimenzija ID
       id: ID za procenu korisnika
       norm_id: Norma ID
+      started_at: Почео у
     drawer:
       copied: "%{name} kopiran u ostavu."
       copy: Kopiraj u ostavu
@@ -4264,6 +4267,7 @@ sr-Latn:
     min_character: Vaš odgovor mora da sadrži najmanje %{min} znakova.
     min_factor: Vaš odgovor mora da sadrži najmanje %{min} faktor povratne informacije.
     min_word: Vaš odgovor mora biti najmanje %{min} reči
+    most: Молимо изаберите највише %{max} избора
     must_rank_between: Molimo dodelite vrednost od %{min} do %{max} za svaku stavku. Vrednosti se ne smeju ponavljati.
     must_select: Molimo vas da izaberete od %{min} do %{max} izbora
     not_in_future: Izabrani datum ne bi trebalo da bude u budućnosti

@@ -44,6 +44,8 @@ ro:
     copy: Copiere
     created_at: Creat la
     created_date: Data creării
+    custom_acknowledgment_text: Text personalizat de mulțumire
+    custom_acknowledgment_text_required: Pentru rolul de date al controlerului este necesar un text personalizat de confirmare
     custom_consent_text: Text personalizat pentru consimțământ
     custom_consent_text_required: Este necesar un text personalizat de consimțământ pentru rolul de controlor de date
     data_role: Rolul datelor
@@ -83,6 +85,7 @@ ro:
     maintenance_time_remaining: Timp rămas
     maintenance_upcoming_description: Vom efectua lucrări de întreținere programate pe %{date} timp de aproximativ %{duration} pentru a îmbunătăți experiența dvs. În acest interval, nu veți putea accesa sau finaliza niciuna dintre sarcinile atribuite. Vă mulțumim pentru răbdare.
     maintenance_upcoming_title: Întreținere viitoare
+    manage_cookies: Gestionarea cookie-urilor
     media_id: ID media
     media_preview: Previzualizare media
     media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
@@ -139,6 +142,15 @@ ro:
     subject: Subiect
     submit: Trimite
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop
+    table:
+      entries:
+        selected:
+          one: 1 rând selectat
+          other: S-au selectat {{count}} rânduri
+        total:
+          one: 'Total: 1'
+          other: 'Total: {{count}}'
+          zero: 'Total: 0'
     terms_conditions_privacy: Declarație de confidențialitate
     tools: Instrumente
     transcription: Transcriere

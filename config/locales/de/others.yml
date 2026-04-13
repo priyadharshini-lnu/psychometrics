@@ -929,6 +929,7 @@ de:
         normalize_factor_scores: Faktorwerte normalisieren
         project_compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         project_completion_status_export: Export des Fertigstellungsstatus
+        regenerate_assessment_transcriptions: Transkripte der Beurteilung neu generieren
         regenerate_campaign_reports: Kampagnenberichte neu generieren
         regenerate_report: Bericht "Regenerieren
         regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty
@@ -4051,9 +4052,11 @@ de:
       import_reports: Berichte und Beurteilungen importieren
   user_assessment:
     column:
+      completed_at: Abgeschlossen am
       dimension_id: Dimension ID
       id: Benutzer-Assessment-ID
       norm_id: Norm-ID
+      started_at: Begonnen am
     drawer:
       copied: "%{name} in die Zwischenablage kopiert."
       copy: In die Zwischenablage kopieren

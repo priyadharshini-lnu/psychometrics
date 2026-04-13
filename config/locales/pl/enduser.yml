@@ -24,27 +24,43 @@ pl:
     browser_compatibility_check: Test zgodności z przeglądarkami
     browser_compatibility_check_description: Sprawdź, czy Twoja przeglądarka obsługuje wszystkie wymagane funkcje
     browser_compatibility_result: Zgodność z przeglądarkami
+    browser_compatible: Twoja przeglądarka %{browser_name} w wersji %{browser_version} jest zgodna z tą kampanią.
+    browser_compatible_detail: Korzystasz z przeglądarki %{browser_name} w wersji %{browser_version}, która spełnia minimalne wymagania tej kampanii.
+    browser_incompatible_detail: Korzystasz z programu „%{browser_name}” w wersji %{browser_version}. Aby zapewnić zgodność, zaktualizuj program „%{browser_name}” do wersji %{min_browser_version}.
+    browser_not_compatible: Twoja przeglądarka %{browser_name} nie jest zgodna z tą kampanią. Aby zapewnić sobie najlepsze wrażenia podczas korzystania ze strony, użyj najnowszej wersji przeglądarki Chrome, Firefox, Safari lub Edge.
     browser_version_fix_description_first: 'Użyj obsługiwanej przeglądarki: Chrome, Firefox, Edge lub Safari'
     browser_version_fix_title: Twoja wersja przeglądarki nie jest obsługiwana.
     camera: Wideo i audio
     camera_access_blocked: Dostęp do kamery został zablokowany przez przeglądarkę. Sprawdź uprawnienia przeglądarki.
     camera_check: Test kamery i mikrofonu
+    camera_check_abruptly_ended: Kamera została nagle wyłączona. Proszę włączyć kamerę i ponownie przeprowadzić kontrolę.
     camera_check_description: Sprawdź, czy kamera i mikrofon działają prawidłowo podczas nagrywania
+    camera_check_passed: Sprawdzenie obrazu i dźwięku zakończyło się powodzeniem
     camera_test_step: 'Krok: Test obrazu i dźwięku'
     campaign: Kampania
     chat_instructions: Instrukcje dotyczące czatu
     check: Sprawdź
     check_video_recording: Proszę sprawdzić nagranie, odtwarzając je.
     checking_browser_compatibility: Sprawdzam zgodność przeglądarek...
+    checking_latency: Sprawdzanie opóźnienia...
+    could_not_reach_servers: Nie udało się połączyć z naszymi serwerami w celu sprawdzenia prędkości sieci. Sprawdź połączenie internetowe i spróbuj ponownie.
+    day: dzień
+    day_plural: dni
+    details: Szczegóły
     development: Rozwój
     direct_reportees: Bezpośredni podwładni
     download: Pobierz
     download_pdf: Pobierz PDF
+    download_speed_below_minimum: Prędkość pobierania ${download_speed} jest niższa od minimalnej wymaganej prędkości pobierania wynoszącej ${minimum_download_speed} Mb/s
     environment_setup: Konfiguracja środowiska
     error_uploading_video: Wystąpił błąd podczas przesyłania filmu
+    error_uploading_video_detail: Wystąpił błąd podczas przesyłania filmu
     fail: Niepowodzenie
     follow_these_steps: Aby rozwiązać problemy wykryte podczas sprawdzania systemu, wykonaj poniższe czynności
+    hide_details: Ukryj szczegóły
     home: Deska rozdzielcza
+    hour: godzina
+    hour_plural: godziny
     how_to_fix: 'Jak to naprawić:'
     idp_loading_fifth_step: Pobieranie akcji rozwojowych z szablonu
     idp_loading_first_step: Analiza raportu z oceny
@@ -66,13 +82,18 @@ pl:
     lighthouse_assistant: Asystent latarni morskiej
     localstorage_fix_description_first: Upewnij się, że nie korzystasz z trybu prywatnego ani incognito, ponieważ w tych trybach funkcja localStorage jest często wyłączona.
     localstorage_fix_title: W Twojej przeglądarce nie włączono funkcji lokalnego przechowywania danych
+    localstorage_not_enabled_detail: W Twojej przeglądarce nie jest włączona pamięć lokalna. Upewnij się, że nie korzystasz z trybu prywatnego/incognito, ponieważ w tych trybach pamięć lokalna jest często wyłączona.
     localstorage_support: Włączono LocalStorage
     max_word_limit: Musi mieć maksymalnie %{max} słów
     media_recorder_api_fix_description_first: Włącz obsługę JavaScript w ustawieniach przeglądarki
     media_recorder_api_fix_description_second: Sprawdź, czy Twoja przeglądarka obsługuje interfejs API MediaRecorder, a w razie potrzeby zaktualizuj ją do najnowszej wersji.
     media_recorder_api_fix_title: Twoja przeglądarka nie obsługuje interfejsu API Media Recorder.
+    media_recorder_api_not_supported_detail: Korzystasz z przeglądarki %{browser_name} w wersji %{browser_version}, która nie obsługuje interfejsu API MediaRecorder. Aby zapewnić zgodność, zaktualizuj przeglądarkę do najnowszej wersji.
     media_recorder_api_support: Obsługa interfejsu API MediaRecorder
     min_word_limit: Musi mieć co najmniej %{min} słów
+    minimum_speed_requirements: W ramach tej promocji wymagana jest minimalna prędkość pobierania wynosząca ${minimum_download_speed} Mb/s oraz minimalna prędkość wysyłania wynosząca ${minimum_upload_speed} Mb/s.
+    minute: minuta
+    minute_plural: protokół
     my_plan: Mój plan
     network: Sieć
     network_check: Test prędkości Internetu
@@ -82,6 +103,7 @@ pl:
     network_check_fix_fourth: Spróbuj skorzystać z innego połączenia sieciowego, jeśli jest dostępne
     network_check_fix_second: Przesuń się bliżej routera Wi-Fi lub podłącz się za pomocą kabla Ethernet
     network_check_fix_third: Zrestartuj router/modem i spróbuj ponownie
+    network_speed_meets_required_detail: Twoja prędkość Internetu spełnia minimalne wymagania kampanii
     network_test_step: Etap testowania sieci
     no_audio_warning: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
     pass: Przejdź dalej
@@ -150,6 +172,8 @@ pl:
     system_checks: Kontrole systemu
     task_duration: Czas trwania zadania
     tasks: Zadania
+    testing_download_speed: Sprawdzam prędkość pobierania...
+    testing_upload_speed: Sprawdzam prędkość wysyłania...
     time_commitment: Wymagany nakład czasu
     troubleshooting_guide: Przewodnik po rozwiązywaniu problemów
     troubleshooting_guide_browser_fifth: Upewnij się, że w ustawieniach przeglądarki włączono funkcję LocalStorage
@@ -171,6 +195,7 @@ pl:
     troubleshooting_guide_video_third: Po zmianie uprawnień odśwież stronę
     untimed: Bez limitu czasowego
     upload: Prześlij
+    upload_speed_below_minimum: Prędkość wysyłania danych wynosząca ${upload_speed} jest niższa od minimalnej wymaganej prędkości wysyłania wynoszącej ${minimum_upload_speed} Mb/s
     video_and_audio: Wideo i audio
     video_and_audio_recording: Nagrywanie obrazu i dźwięku
     video_check_fix_fifth: Jeśli aparat jest podłączony zewnętrznie, spróbuj go odłączyć i podłączyć ponownie
@@ -179,7 +204,9 @@ pl:
     video_check_fix_second: Przejdź do ustawień przeglądarki i zezwól tej witrynie na dostęp do kamery
     video_check_fix_sixth: Uruchom ponownie przeglądarkę i spróbuj jeszcze raz
     video_check_fix_third: Zamknij inne aplikacje korzystające z kamery (Zoom, Teams itp.)
+    view_details: Zobacz szczegóły
     webgl_api_fix_description_first: Upewnij się, że Twoja przeglądarka obsługuje WebGL i że funkcja ta jest włączona w ustawieniach
     webgl_api_fix_description_second: Zaktualizuj sterowniki graficzne do najnowszej wersji
     webgl_api_fix_title: Twoja przeglądarka nie obsługuje lub nie ma włączonej obsługi WebGL
     webgl_api_support: Obsługa interfejsu API WebGL
+    webgl_not_supported_detail: Korzystasz z przeglądarki %{browser_name} w wersji %{browser_version}, która nie obsługuje WebGL. Aby zapewnić zgodność, zaktualizuj przeglądarkę do najnowszej wersji.

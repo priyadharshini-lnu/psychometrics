@@ -929,6 +929,7 @@ zh-HK:
         normalize_factor_scores: 標準化因子分數
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
+        regenerate_assessment_transcriptions: 重新生成评估记录
         regenerate_campaign_reports: Regenerate Campaign 報告
         regenerate_report: 重生報告
         regenerate_threesixty_report: 再生三百六十報告
@@ -4075,9 +4076,11 @@ zh-HK:
       import_reports: 進口報告與評估
   user_assessment:
     column:
+      completed_at: 完成于
       dimension_id: 維度識別碼
       id: 使用者評估識別碼
       norm_id: 範式識別
+      started_at: 始于
     drawer:
       copied: "%{name}複製到夾板上。"
       copy: 複製到夾板
