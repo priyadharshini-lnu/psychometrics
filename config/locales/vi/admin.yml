@@ -283,6 +283,29 @@ vi:
     high: Cao
     hogan: Hogan
     hogan_assessment: Đánh giá Hogan
+    idp_appearance_body: Nội dung
+    idp_appearance_color: Màu sắc
+    idp_appearance_cover: Bìa
+    idp_appearance_dynamic_content: Nội dung động
+    idp_appearance_flip_background: Đảo ngược hình nền trên trang bìa và trang cuối
+    idp_appearance_font_family: Gia đình phông chữ
+    idp_appearance_guideline_position: Vị trí trang hướng dẫn
+    idp_appearance_guideline_position_second: Trang thứ hai (sau trang bìa)
+    idp_appearance_guideline_position_second_last: Trang áp chót (trước trang cuối cùng)
+    idp_appearance_guidelines: Hướng dẫn
+    idp_appearance_idp_skills: Kỹ năng của người di dời nội địa
+    idp_appearance_last: Cuối cùng
+    idp_appearance_per_page_font_settings: Cài đặt phông chữ cho từng trang
+    idp_appearance_reflections: Những suy ngẫm
+    idp_appearance_report_summary: Tóm tắt báo cáo
+    idp_appearance_section_body: Nội dung phần
+    idp_appearance_section_subtitle: Tiêu đề phụ của phần
+    idp_appearance_section_title: Tiêu đề phần
+    idp_appearance_select_font: Chọn phông chữ
+    idp_appearance_show_guidelines: Hiển thị trang hướng dẫn
+    idp_appearance_size: Kích thước
+    idp_appearance_subtitle: Phụ đề
+    idp_appearance_title: Tiêu đề
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
     import_ai_artifacts: Nhập hiện vật AI

@@ -94,8 +94,10 @@ export const useMediaPreview = ({
 
         if (mediaStream) {
           mediaStreamRef.current = mediaStream
-          setPreviewStream(mediaStream)
-          setPermissionGranted(true)
+          setTimeout(() => {
+            setPreviewStream(mediaStream)
+            setPermissionGranted(true)
+          }, 1000)
         }
       } catch (error) {
         console.error('Failed to get preview:', error)

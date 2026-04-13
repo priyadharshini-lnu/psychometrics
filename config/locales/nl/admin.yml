@@ -283,6 +283,29 @@ nl:
     high: Hoog
     hogan: Hogan
     hogan_assessment: Hogan-beoordeling
+    idp_appearance_body: Hoofdtekst
+    idp_appearance_color: Kleur
+    idp_appearance_cover: Omslag
+    idp_appearance_dynamic_content: Dynamische inhoud
+    idp_appearance_flip_background: Achtergrondafbeelding op de omslag en de laatste pagina's spiegelen
+    idp_appearance_font_family: Lettertypefamilie
+    idp_appearance_guideline_position: 'Richtlijn: Pagina-indeling'
+    idp_appearance_guideline_position_second: Tweede pagina (na de omslag)
+    idp_appearance_guideline_position_second_last: Voorlaatste pagina (vóór de laatste)
+    idp_appearance_guidelines: Richtlijnen
+    idp_appearance_idp_skills: Vaardigheden van ontheemden
+    idp_appearance_last: Laatste
+    idp_appearance_per_page_font_settings: Lettertype-instellingen per pagina
+    idp_appearance_reflections: Overpeinzingen
+    idp_appearance_report_summary: Samenvatting van het rapport
+    idp_appearance_section_body: Hoofdtekst
+    idp_appearance_section_subtitle: Ondertitel van de paragraaf
+    idp_appearance_section_title: Titel van de paragraaf
+    idp_appearance_select_font: Lettertype selecteren
+    idp_appearance_show_guidelines: Pagina met richtlijnen weergeven
+    idp_appearance_size: Maat
+    idp_appearance_subtitle: Ondertitel
+    idp_appearance_title: Titel
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
     import_ai_artifacts: AI-artefacten importeren

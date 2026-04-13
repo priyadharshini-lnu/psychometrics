@@ -283,6 +283,29 @@ bg:
     high: Висока
     hogan: Хоган
     hogan_assessment: Оценка на Хоган
+    idp_appearance_body: Текст
+    idp_appearance_color: Цвят
+    idp_appearance_cover: Корица
+    idp_appearance_dynamic_content: Динамично съдържание
+    idp_appearance_flip_background: Обърни фоновото изображение на корицата и последната страница
+    idp_appearance_font_family: Семейство шрифтове
+    idp_appearance_guideline_position: Позиция на страницата с указания
+    idp_appearance_guideline_position_second: Втора страница (след корицата)
+    idp_appearance_guideline_position_second_last: Предпоследна страница (преди последната)
+    idp_appearance_guidelines: Насоки
+    idp_appearance_idp_skills: Умения на вътрешно разселените лица
+    idp_appearance_last: Последно
+    idp_appearance_per_page_font_settings: Настройки на шрифта за всяка страница
+    idp_appearance_reflections: Размисли
+    idp_appearance_report_summary: Обобщение на доклада
+    idp_appearance_section_body: Текст на раздела
+    idp_appearance_section_subtitle: Подзаглавие на раздела
+    idp_appearance_section_title: Заглавие на раздела
+    idp_appearance_select_font: Изберете шрифт
+    idp_appearance_show_guidelines: Покажи страницата с указания
+    idp_appearance_size: Размер
+    idp_appearance_subtitle: Подзаглавие
+    idp_appearance_title: Заглавие
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
     import_ai_artifacts: Импортиране на AI артефакти

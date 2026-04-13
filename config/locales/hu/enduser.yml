@@ -13,6 +13,7 @@ hu:
     all_checks_must_pass: Minden ellenőrzésnek sikeresnek kell lennie, mielőtt továbbhaladhatna.
     approve_idp_plan: Terv jóváhagyása
     back: Vissza
+    back_to_dashboard: Vissza a kezelőfelületre
     before_you_begin: Mielőtt elkezdené
     begin_message: Mielőtt elkezdené a kampány tevékenységeit, el kell indítania egy előkészítő ellenőrzést, amely megvizsgálja az eszköz kompatibilitását
     bookings: Foglalások

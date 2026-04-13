@@ -283,6 +283,29 @@ id:
     high: Tinggi
     hogan: Hogan
     hogan_assessment: Penilaian Hogan
+    idp_appearance_body: Isi
+    idp_appearance_color: Warna
+    idp_appearance_cover: Sampul
+    idp_appearance_dynamic_content: Konten Dinamis
+    idp_appearance_flip_background: Balikkan gambar latar belakang pada halaman Sampul dan halaman Terakhir
+    idp_appearance_font_family: Keluarga Font
+    idp_appearance_guideline_position: Halaman Panduan Posisi
+    idp_appearance_guideline_position_second: Halaman kedua (setelah Sampul)
+    idp_appearance_guideline_position_second_last: Halaman kedua dari belakang (sebelum halaman terakhir)
+    idp_appearance_guidelines: Pedoman
+    idp_appearance_idp_skills: Keterampilan IDP
+    idp_appearance_last: Terakhir
+    idp_appearance_per_page_font_settings: Pengaturan Font per Halaman
+    idp_appearance_reflections: Renungan
+    idp_appearance_report_summary: Ringkasan Laporan
+    idp_appearance_section_body: Isi Bagian
+    idp_appearance_section_subtitle: Subjudul Bagian
+    idp_appearance_section_title: Judul Bagian
+    idp_appearance_select_font: Pilih jenis huruf
+    idp_appearance_show_guidelines: Tampilkan Halaman Panduan
+    idp_appearance_size: Ukuran
+    idp_appearance_subtitle: Subjudul
+    idp_appearance_title: Judul
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
     import_ai_artifacts: Impor Artefak AI

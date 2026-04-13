@@ -13,6 +13,7 @@ ro:
     all_checks_must_pass: Toate verificările trebuie să fie efectuate cu succes înainte de a putea continua.
     approve_idp_plan: Aprobă planul
     back: Înapoi
+    back_to_dashboard: Înapoi la Tabloul de bord
     before_you_begin: Înainte de a începe
     begin_message: Înainte de a începe activitățile din cadrul acestei campanii, trebuie să efectuați o verificare a pregătirii, care va verifica compatibilitatea dispozitivului dumneavoastră
     bookings: Rezervări

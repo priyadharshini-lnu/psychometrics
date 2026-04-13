@@ -283,6 +283,29 @@ sr-Latn:
     high: Високо
     hogan: Хоган
     hogan_assessment: Хоган процена
+    idp_appearance_body: Тело
+    idp_appearance_color: Боја
+    idp_appearance_cover: Поклопац
+    idp_appearance_dynamic_content: Динамички садржај
+    idp_appearance_flip_background: Окрени позадинску слику на насловној и последњој страници
+    idp_appearance_font_family: Породица фонтова
+    idp_appearance_guideline_position: Позиција странице упутства
+    idp_appearance_guideline_position_second: Друга страница (након корице)
+    idp_appearance_guideline_position_second_last: Претпоследња страница (пре последње)
+    idp_appearance_guidelines: Смернице
+    idp_appearance_idp_skills: IDP вештине
+    idp_appearance_last: Последњи
+    idp_appearance_per_page_font_settings: Подешавања фонта по страници
+    idp_appearance_reflections: Осврти
+    idp_appearance_report_summary: Сажетак извештаја
+    idp_appearance_section_body: Текст одељка
+    idp_appearance_section_subtitle: Поднаслов одељка
+    idp_appearance_section_title: Наслов одељка
+    idp_appearance_select_font: Изаберите фонт
+    idp_appearance_show_guidelines: Прикажи страницу са упутствима
+    idp_appearance_size: Величина
+    idp_appearance_subtitle: Поднаслов
+    idp_appearance_title: Наслов
     idp_plan_reset_success: Plan je uspešno resetovan
     idp_templates: IDP Šabloni
     import_ai_artifacts: Uvoz AI artefakata

@@ -82,7 +82,7 @@ class AssessmentContainer extends Component {
       <ThemeWrapper
         renderedByEnduser={renderedByEnduser}
       >
-        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
+        <ErrorBoundary fallbackRender={({ error }) => <ErrorWarning error={error} />}>
           <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
             {/* <ConnectionCheck
             onConnected={() => rstore.dispatch(connected())}

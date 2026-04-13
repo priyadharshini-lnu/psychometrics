@@ -283,6 +283,29 @@ ja:
     high: 高い
     hogan: ホーガン
     hogan_assessment: ホーガン・アセスメント
+    idp_appearance_body: 本文
+    idp_appearance_color: 色
+    idp_appearance_cover: 表紙
+    idp_appearance_dynamic_content: 動的コンテンツ
+    idp_appearance_flip_background: 表紙と最終ページの背景画像を反転させる
+    idp_appearance_font_family: フォントファミリー
+    idp_appearance_guideline_position: ガイドラインのページ位置
+    idp_appearance_guideline_position_second: 2ページ目（表紙の次）
+    idp_appearance_guideline_position_second_last: 最後から2ページ目（最終ページの前）
+    idp_appearance_guidelines: ガイドライン
+    idp_appearance_idp_skills: IDPのスキル
+    idp_appearance_last: 最後
+    idp_appearance_per_page_font_settings: ページごとのフォント設定
+    idp_appearance_reflections: 回想
+    idp_appearance_report_summary: 報告書の概要
+    idp_appearance_section_body: 本文
+    idp_appearance_section_subtitle: セクションのサブタイトル
+    idp_appearance_section_title: セクションタイトル
+    idp_appearance_select_font: フォントを選択
+    idp_appearance_show_guidelines: ガイドラインページを表示
+    idp_appearance_size: サイズ
+    idp_appearance_subtitle: 字幕
+    idp_appearance_title: タイトル
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
     import_ai_artifacts: AIアーティファクトのインポート

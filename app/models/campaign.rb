@@ -79,7 +79,7 @@ class Campaign < ApplicationRecord
   has_many :assessors, dependent: :destroy
   has_many :sms_invites, dependent: :destroy
   has_many :sms_records, dependent: :destroy
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :report_approval_settings, dependent: :destroy
   has_many :ai_scoring_approval_settings, dependent: :destroy, class_name: 'AI::ScoringApprovalSetting'

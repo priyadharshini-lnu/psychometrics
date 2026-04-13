@@ -57,6 +57,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 }) => {
   const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
   const { isMobile } = useContext(MediaQueryContext)
+  const isRecording = status === 'recording'
+  const deviceControlColor = isRecording ? 'var(--grey-text)' : 'var(--ant-text-color)'
+
 
   useEffect(() => {
     if (!videoRef.current) return
@@ -112,17 +115,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   return (
     <Flex vertical className={styles.videoPlayerContainer}>
       <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
-        <AudioOutlined style={{ alignSelf: 'center' }} />
+        <AudioOutlined style={{ alignSelf: 'center', color: deviceControlColor }} />
         <Select
           placeholder={(
-            <p style={{ color: 'var(--ant-text-color)', margin: 0 }}>
+            <p style={{ color: deviceControlColor, margin: 0 }}>
               {I18n.t('assessments.video_response.device_selection.mic')}
             </p>
           )}
           onChange={onChangeAudioDevice}
-          suffixIcon={<DownOutlined style={{ color: 'var(--ant-text-color)', pointerEvents: 'none' }} />}
+          suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
           variant="borderless"
-          disabled={status === 'recording'}
+          disabled={isRecording}
           styles={{
             root: { maxWidth: '40%' },
             popup: { root: { width: '300px', ...(isMobile ? { right: '-100%', width: '200px' } : {}) } },
@@ -130,14 +133,15 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           options={getMicrophoneDevices()}
           getPopupContainer={trigger => trigger}
         />
-        <VideoCameraOutlined style={{ alignSelf: 'center' }} />
+        <VideoCameraOutlined style={{ alignSelf: 'center', color: deviceControlColor }} />
         <Select
-          disabled={status === 'recording'}
+          disabled={isRecording}
           placeholder={(
-            <p style={{ color: 'var(--ant-text-color)', margin: 0 }}>
+            <p style={{ color: deviceControlColor, margin: 0 }}>
               {I18n.t('assessments.video_response.device_selection.camera')}
             </p>
           )}
+          suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
           styles={{
             root: { maxWidth: '40%' },
             popup: {
@@ -147,7 +151,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               },
             },
           }}
-          suffixIcon={<DownOutlined style={{ color: 'var(--ant-text-color)', pointerEvents: 'none' }} />}
           onChange={onChangeVideoDevice}
           variant="borderless"
           options={getCameraDevices()}
@@ -161,6 +164,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           playsInline
           muted={!mediaUrl}
           controls={!!mediaUrl}
+          disablePictureInPicture
           className={styles.video}
           onPlay={onPlay}
           onLoadedMetadata={handleLoadedMetadata}
@@ -170,7 +174,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <p>{I18n.t('shared.camera_preview')}</p>
           </div>
         )}
-        {status === 'recording' ? (
+        {isRecording ? (
           <Flex justify="center" align="center" className={styles.recordingIndicator}>
             <div className={styles.dot} />
             <Typography.Text className={styles.rec}>
@@ -181,7 +185,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           </Flex>
         ) : null}
       </Flex>
-      {visualizing && status === 'recording' ? (
+      {visualizing && isRecording ? (
         <div className={styles.audioIndicator}>
           <AudioWaveVisualizer
             stream={stream}
@@ -189,7 +193,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           />
         </div>
       ) : null}
-      {showAudioWarning && status === 'recording' && (
+      {showAudioWarning && isRecording && (
         <Alert
           title={I18n.t('enduser.no_audio_warning')}
           type="warning"

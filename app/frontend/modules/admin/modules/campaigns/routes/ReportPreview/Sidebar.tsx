@@ -58,7 +58,7 @@ function Sidebar ({
   if (!(userReport && userReport.loaded)) { return null }
 
   const scrollTo = (id) => {
-    ScrollDispatcher.scroll(id)
+    ScrollDispatcher.scrollIntoView(id, { offset: 85 })
   }
 
   const scrollToModule = (id) => {

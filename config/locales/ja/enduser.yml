@@ -13,6 +13,7 @@ ja:
     all_checks_must_pass: すべてのチェックに合格してからでないと、先に進むことはできません。
     approve_idp_plan: プランを承認
     back: 戻る
+    back_to_dashboard: ダッシュボードに戻る
     before_you_begin: 始める前に
     begin_message: このキャンペーンのアクティビティを進める前に、お使いのデバイスの互換性を確認する準備チェックを開始する必要があります
     bookings: 予約

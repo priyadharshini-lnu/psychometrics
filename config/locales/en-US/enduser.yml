@@ -13,6 +13,7 @@ en-US:
     all_checks_must_pass: All checks must pass before you can proceed.
     approve_idp_plan: Approve Plan
     back: Back
+    back_to_dashboard: Return to Dashboard
     before_you_begin: Before you begin
     begin_message: Before you proceed with the activities of this campaign, you need to start a readiness check which will check your device compatibility
     bookings: Bookings

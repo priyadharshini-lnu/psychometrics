@@ -13,6 +13,7 @@ es-ES:
     all_checks_must_pass: Todas las comprobaciones deben superarse antes de poder continuar.
     approve_idp_plan: Aprobar Plan
     back: Atrás
+    back_to_dashboard: Volver al panel de control
     before_you_begin: Antes de empezar
     begin_message: Antes de continuar con las actividades de esta campaña, debes realizar una comprobación de preparación que verificará la compatibilidad de tu dispositivo
     bookings: Reservas

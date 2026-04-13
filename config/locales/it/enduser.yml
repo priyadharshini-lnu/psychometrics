@@ -13,6 +13,7 @@ it:
     all_checks_must_pass: È necessario che tutti i controlli abbiano esito positivo prima di poter procedere.
     approve_idp_plan: Approva Piano
     back: Indietro
+    back_to_dashboard: Torna alla dashboard
     before_you_begin: Prima di iniziare
     begin_message: Prima di procedere con le attività di questa campagna, è necessario eseguire un controllo di preparazione che verificherà la compatibilità del dispositivo
     bookings: Prenotazioni
