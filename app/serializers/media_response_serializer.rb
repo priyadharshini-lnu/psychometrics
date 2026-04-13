@@ -2,7 +2,7 @@
 
 class MediaResponseSerializer < Panko::Serializer
   attributes :id, :user_selected, :filename, :question_id, :url, :created_at, :encoded_file_url, :file_extension,
-             :transcription_text, :question_type, :transcription_status, :transcription_enabled
+             :transcription_text, :transcription_segments, :question_type, :transcription_status, :transcription_enabled
 
   def url
     object.asset.url(expires_in: 1.week)
@@ -18,6 +18,10 @@ class MediaResponseSerializer < Panko::Serializer
 
   def transcription_text
     object.transcription&.text
+  end
+
+  def transcription_segments
+    object.transcription&.segments || []
   end
 
   def question_type

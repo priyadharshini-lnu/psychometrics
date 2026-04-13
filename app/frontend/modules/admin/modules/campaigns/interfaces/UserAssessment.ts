@@ -57,6 +57,8 @@ export default interface UserAssessment {
   normName: string
   dimensionId: number
   status: string
+  startedAt?: string | null
+  completedAt?: string | null
   norms?: Norm[]
   mettlScheduleRecordId?: string,
   reportIds: number[]

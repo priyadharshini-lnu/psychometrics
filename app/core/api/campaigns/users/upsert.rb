@@ -54,6 +54,8 @@ module Api
                 response[:ok]
               end.sample
             end
+
+            update_user_profile
           end
 
           broadcast :ok, user
@@ -73,6 +75,14 @@ module Api
             external_id: form.try(:user_external_id) || user.external_id
           )
           user.user_profile.update!(gender: form.gender) if form.gender.present?
+        end
+
+        def update_user_profile
+          return unless user
+          return if form.locale.blank? && form.custom_profile_fields.blank?
+
+          user.user_profile.update!(locale: form.locale) if form.locale.present?
+          user.user_profile.custom_fields = form.resolved_custom_profile_fields if form.custom_profile_fields.present?
         end
 
         def create_or_update_project_datasheet

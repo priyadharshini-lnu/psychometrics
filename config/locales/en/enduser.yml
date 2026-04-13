@@ -24,29 +24,43 @@ en:
     browser_compatibility_check: Browser Compatibility Test
     browser_compatibility_check_description: Checking if your browser supports all required features
     browser_compatibility_result: Browser Compatibility
-    browser_version_fix_description_first: 'Use a supported browser: Chrome, Firefox, Edge, or Safari'
-    browser_version_fix_description_second: Update your browser to the latest version to ensure compatibility.
-    browser_version_fix_description_third: Try using an incognito/private browsing window
-    browser_version_fix_title: Your browser version is not supported.
+    browser_compatible: Your browser %{browser_name} version %{browser_version} is compatible with this campaign.
+    browser_compatible_detail: You're using %{browser_name} version %{browser_version} which meets the minimum requirement for this campaign.
+    browser_incompatible_detail: You're are using %{browser_name} version %{browser_version}. Please update your %{browser_name} to the version %{min_browser_version} to ensure compatibility.
+    browser_not_compatible: Your browser %{browser_name} is not compatible with this campaign. Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
+    browser_version_fix_description_first: Update your %{browser_name} browser to the version %{updated_version} or above to ensure compatibility
+    browser_version_fix_title: You're are using %{browser_name} version %{browser_version} which is not compatible
     camera: Video and Audio
     camera_access_blocked: Camera access was denied or blocked by your browser. Please check your browser permissions.
     camera_check: Camera and Microphone Test
+    camera_check_abruptly_ended: Camera was turned off abruptly. Please enable your camera and re-run the check.
     camera_check_description: Verify your camera and microphone are working properly for recording
+    camera_check_passed: Video and Audio check passed successfully
     camera_test_step: Video and Audio Test Step
     campaign: Campaign
     chat_instructions: Chat Instructions
     check: Check
     check_video_recording: Please check your video recording by playing it back.
     checking_browser_compatibility: Checking browser compatibility...
+    checking_latency: Checking latency...
+    could_not_reach_servers: Could not reach our servers to check network speed. Please check your internet connection and try again.
+    day: day
+    day_plural: days
+    details: Details
     development: Development
     direct_reportees: Direct Reportees
     download: Download
     download_pdf: Download PDF
+    download_speed_below_minimum: Download speed ${download_speed} is below the minimum required download speed of ${minimum_download_speed} Mbps
     environment_setup: Environment Setup
     error_uploading_video: Error uploading video
+    error_uploading_video_detail: There was some error while uploading the video
     fail: Fail
     follow_these_steps: Follow these steps to resolve the issues detected during the system check
+    hide_details: Hide Details
     home: Home
+    hour: hour
+    hour_plural: hours
     how_to_fix: 'How to fix:'
     idp_loading_fifth_step: Fetching development actions from the template
     idp_loading_first_step: I'm busy analyzing your insights. Hang in there! Your plan will be ready shortly
@@ -68,14 +82,18 @@ en:
     lighthouse_assistant: Your Development Guide
     localstorage_fix_description_first: Ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
     localstorage_fix_title: Local Storage is not enabled in your browser
+    localstorage_not_enabled_detail: Local Storage is not enabled in your browser. Please ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
     localstorage_support: LocalStorage Enabled
     max_word_limit: Must be at most %{max} words
     media_recorder_api_fix_description_first: Enable JavaScript in your browser settings
     media_recorder_api_fix_description_second: Check that your browser supports MediaRecorder API and update to the latest version if necessary.
-    media_recorder_api_fix_description_third: Try a different modern browser like Chrome or Firefox
     media_recorder_api_fix_title: Media Recorder API is not supported in your browser.
+    media_recorder_api_not_supported_detail: You're using %{browser_name} version %{browser_version} which does not support the MediaRecorder API. Please update your browser to the latest version to ensure compatibility.
     media_recorder_api_support: MediaRecorder API Support
     min_word_limit: Must be at least %{min} words
+    minimum_speed_requirements: Minimum Download Speed of ${minimum_download_speed} Mbps and Minimum Upload Speed of ${minimum_upload_speed} Mbps required for this campaign.
+    minute: minute
+    minute_plural: minutes
     my_plan: My Plan
     network: Network
     network_check: Internet Speed Test
@@ -85,6 +103,7 @@ en:
     network_check_fix_fourth: Try using a different network connection if available
     network_check_fix_second: Move closer to your Wi-Fi router or connect via ethernet cable
     network_check_fix_third: Restart your router/modem and try again
+    network_speed_meets_required_detail: Your Internet speed meets the minimum requirements for the campaign
     network_test_step: Network Test Step
     no_audio_warning: No audio detected. Please check if your microphone is connected and working properly.
     pass: Pass
@@ -153,6 +172,8 @@ en:
     system_checks: System Checks
     task_duration: Task Duration
     tasks: Tasks
+    testing_download_speed: Testing download speed...
+    testing_upload_speed: Testing upload speed...
     time_commitment: Time Commitment
     troubleshooting_guide: Troubleshooting Guide
     troubleshooting_guide_browser_fifth: Ensure LocalStorage is enabled in your browser settings
@@ -174,6 +195,7 @@ en:
     troubleshooting_guide_video_third: Refresh the page after changing permissions
     untimed: Untimed
     upload: Upload
+    upload_speed_below_minimum: Upload speed ${upload_speed} is below the minimum required upload speed of ${minimum_upload_speed} Mbps
     video_and_audio: Video & Audio
     video_and_audio_recording: Video and Audio Recording
     video_check_fix_fifth: Try unplugging and reconnecting your camera if it's external
@@ -182,7 +204,9 @@ en:
     video_check_fix_second: Go to browser settings and enable camera access for this site
     video_check_fix_sixth: Restart your browser and try again
     video_check_fix_third: Close other applications using the camera (Zoom, Teams, etc.)
+    view_details: View Details
     webgl_api_fix_description_first: Ensure that your browser supports WebGL and that it is enabled in the settings
     webgl_api_fix_description_second: Update your graphics drivers to the latest version
     webgl_api_fix_title: WebGL is not supported or enabled in your browser
     webgl_api_support: WebGL API Support
+    webgl_not_supported_detail: You're using %{browser_name} version %{browser_version} which does not support WebGL. Please update your browser to the latest version to ensure compatibility.

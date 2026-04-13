@@ -236,6 +236,7 @@ export const ScoreReview = () => {
         indicators={scoreApproval.indicators[question.id]}
         result={scoreApproval.results[question.id]}
         mediaResponse={scoreApproval.mediaResponses[question.id]}
+        highlightAnchors={scoreApproval.highlightAnchors?.[question.id]}
         overrideScore={overrideScore}
         discardScore={discardScore}
         approveQuestion={approveQuestion}

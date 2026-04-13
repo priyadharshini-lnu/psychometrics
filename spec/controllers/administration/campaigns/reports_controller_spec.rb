@@ -273,7 +273,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     report_response = parsed_response['reports'].first
     expect(report_response.keys).to contain_exactly(
       *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report
-          auto_assign available_languages report_locales effective_default_language internal custom_upload]
+          auto_assign available_languages report_locales effective_default_language internal custom_upload
+          assessment_ids external_settings report_provider schema_validation_error status user_report_id]
     )
     expect(report_response).to include({
       'name' => report.name,

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+# rubocop:disable Metrics/AbcSize
+
 module EndUser
   class DetailedUserAssessmentSchema < BaseSchema
     def self.schema(_, _)
@@ -26,7 +29,18 @@ module EndUser
         required(:selected_locale).maybe(:str?)
         optional(:privacy_consent_required).maybe(:bool?)
         required(:campaign_id).maybe(:int?)
+        required(:started_at).maybe(:str?)
+        required(:current_campaign_expiry_date).maybe(:str?)
+        required(:locale_data).hash do
+          required(:code).filled(:str?)
+          required(:name).filled(:str?)
+          required(:direction).filled(:str?)
+        end
+        required(:piped_text_mapping).maybe(:hash?)
       end
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
+# rubocop:enable Metrics/AbcSize

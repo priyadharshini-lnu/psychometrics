@@ -3,35 +3,42 @@ export const ASSISTANT_TYPES = {
     id: 'content_writer',
     name: 'Content Writer',
     supportedDependencies: ['datasheet', 'assessments', 'campaign_factors'],
+    advancedPromptingEnabled: true,
   },
   idp_assistant: {
     id: 'idp_assistant',
     name: 'IDP Assistant',
     supportedDependencies: ['assessments'],
+    advancedPromptingEnabled: true,
   },
   assistant_tool: {
     id: 'assistant_tool',
     name: 'Assistant Tool',
     supportedDependencies: [],
+    advancedPromptingEnabled: false,
   },
   development_actions_assistant: {
     id: 'development_actions_assistant',
     name: 'Development Actions Assistant',
     supportedDependencies: [],
+    advancedPromptingEnabled: false,
   },
   writing_assistant: {
     id: 'writing_assistant',
     name: 'Writing Assistant',
     supportedDependencies: [],
+    advancedPromptingEnabled: false,
   },
   translation_assistant: {
     id: 'translation_assistant',
     name: 'Translation Assistant',
     supportedDependencies: [],
+    advancedPromptingEnabled: false,
   },
   content_analysis_assistant: {
     id: 'content_analysis_assistant',
     name: 'Content Analysis Assistant',
+    advancedPromptingEnabled: false,
   },
 }
 

@@ -13,6 +13,7 @@ import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAss
 import RawJSON from './RawJSON'
 import MhsDetails from './MhsDetails'
 import TranscriptionDetails from './TranscriptionDetails'
+import { formatedDate } from '~/utils/time'
 
 const { I18n } = window
 
@@ -56,6 +57,8 @@ export const DetailsDrawer: FC<Props> = ({
   }
 
   const { projectId } = useParams<{ projectId: string }>()
+
+  const formatDrawerDate = (date?: string | null) => (date ? formatedDate(date) : '-')
 
   return (
     <Drawer
@@ -103,6 +106,20 @@ export const DetailsDrawer: FC<Props> = ({
             className="va-t"
           >
             {assessment.normId}
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('user_assessment.column.started_at')}
+            key="started_at"
+            className="va-t"
+          >
+            {formatDrawerDate(assessment.startedAt)}
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('user_assessment.column.completed_at')}
+            key="completed_at"
+            className="va-t"
+          >
+            {formatDrawerDate(assessment.completedAt)}
           </Descriptions.Item>
         </Descriptions>
 

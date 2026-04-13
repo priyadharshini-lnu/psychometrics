@@ -11,7 +11,7 @@ import commonStyles from '../../common-styles.less'
 const { I18n } = window
 
 export const PermissionDenied = ({ handleNext }) => (
-  <Flex style={{ width: '100%' }} vertical>
+  <Flex style={{ width: '100%' }} vertical gap={8}>
     <Flex
       vertical
       justify="center"

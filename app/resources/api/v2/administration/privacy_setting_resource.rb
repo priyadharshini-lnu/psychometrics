@@ -8,7 +8,8 @@ class Api::V2::Administration::PrivacySettingResource < Api::V2::Administration:
              :mask_identity_for_yoodli, :disable_data_processing, :mask_identity_for_mhs,
              :allow_video_call_recording,
              :enable_video_call_recording_for_all_new_campaigns,
-             :video_call_recording_expiry_in_seconds
+             :video_call_recording_expiry_in_seconds,
+             :custom_privacy_acknowledgment_texts
 
   has_one :project
 
@@ -25,6 +26,21 @@ class Api::V2::Administration::PrivacySettingResource < Api::V2::Administration:
       {
         locale: locale,
         text: @model.custom_privacy_consent_text(locale: locale)
+      }
+    end
+  end
+
+  def custom_privacy_acknowledgment_texts=(texts)
+    texts.each do |text|
+      @model.send(:custom_privacy_acknowledgment_text=, text[:text], locale: text[:locale])
+    end
+  end
+
+  def custom_privacy_acknowledgment_texts
+    (@model.project.locales.presence || ['en']).map do |locale|
+      {
+        locale: locale,
+        text: @model.custom_privacy_acknowledgment_text(locale: locale)
       }
     end
   end

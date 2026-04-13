@@ -37,15 +37,30 @@ module Faas
       end
 
       def handle_completed_transcription
+        full_text = data['text']
+        words = data['words'] || []
+        segments = MediaResponses::Transcriptions::SegmentParser.from_azure_words(words, full_text)
+
         transcribable_record.save_transcription_completed!(
-          data['text'],
-          metadata: data['metadata'] || {}
+          full_text,
+          metadata: data['metadata'] || {},
+          segments: segments
         )
         update_admin_job_progress
       end
 
       def update_admin_job_failed
-        admin_job&.update!(status: :failed, error_messages: [data['error']])
+        return unless admin_job
+
+        formatted_error = "MediaResponse ##{transcribable_record&.id}: #{data['error']}"
+        admin_job.with_lock do
+          current_errors = admin_job.error_messages || []
+          admin_job.update!(
+            status: :failed,
+            error_messages: current_errors + [formatted_error]
+          )
+        end
+        admin_job.increment_completed_tasks!
       end
 
       def update_admin_job_progress

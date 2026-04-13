@@ -7,6 +7,12 @@ class ScheduledDigestEmailsJob < ApplicationJob
 
       ::ReportApprovals::DigestEmailSender.send_for(setting)
     end
+
+    AI::ScoringApprovalSetting.where(send_digest_emails: true, digest_delivery_mode: 'scheduled').find_each do |setting|
+      next unless due_for_digest?(setting)
+
+      ::ScoreApprovals::DigestEmailSender.send_for(setting)
+    end
   end
 
   private
@@ -25,7 +31,7 @@ class ScheduledDigestEmailsJob < ApplicationJob
     return false unless due_now?(now, target_time)
     return true if last_sent.nil?
 
-    last_sent < now
+    last_sent < target_time
   end
 
   def due_today?(setting, now)

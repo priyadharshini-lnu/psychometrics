@@ -35,9 +35,17 @@ module CampaignFactors
     def validate_rows
       return if errors.present?
 
+      existing_codes = campaign.campaign_factors.pluck(:code)
+      existing_names = campaign.campaign_factors.pluck(:name)
+
       processed_rows.each_with_index do |row, index|
         row.transform_values! { |value| Utility::String.remove_csv_injection_marker(value) }
-        form = ::CampaignFactors::ProcessedRowForm.new(row).with_context(campaign: context.campaign)
+        # Sending existing_codes and existing_names to the form to avoid n+1 queries when validating each row
+        form = ::CampaignFactors::ProcessedRowForm.new(row).with_context(
+          campaign: context.campaign,
+          existing_codes: existing_codes,
+          existing_names: existing_names
+        )
         next if form.valid?
 
         form.errors.full_messages.each do |message|

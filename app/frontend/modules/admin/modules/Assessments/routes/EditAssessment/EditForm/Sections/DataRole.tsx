@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   Button, Col, Row, Select, Form, App, Spin,
-  InputNumber,
+  InputNumber, Input,
 } from 'antd'
 import _ from 'lodash'
 import { useResources } from '~/hooks/useResources/useResources'
@@ -12,12 +12,15 @@ import {
 } from '~/modules/admin/modules/client/core/assessmentConsentSetting'
 import Editor from '~/components/Editor'
 
+const { TextArea } = Input
+
 interface Props {
   assessment: Assessment
 }
 
 interface ValidationError {
   customConsentTexts?: { title: string }
+  customAcknowledgmentTexts?: { title: string }
 }
 
 const { I18n } = window
@@ -25,6 +28,9 @@ const { I18n } = window
 export const DataRole: React.FC<Props> = ({ assessment }) => {
   const { availableLocales } = I18n
   const [customConsentTexts, setCustomConsentTexts] = useState<{
+      locale: string, text: string | null
+    }[]>([])
+  const [customAcknowledgmentTexts, setCustomAcknowledgmentTexts] = useState<{
       locale: string, text: string | null
     }[]>([])
   const [selectedLocale, setSelectedLocale] = useState('en')
@@ -60,6 +66,7 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
       const response = await fetchAssessmentConsentSetting({ id: assessment.id }) as AssessmentConsentSetting
       form.setFieldsValue(response)
       setCustomConsentTexts(response.customConsentTexts || [])
+      setCustomAcknowledgmentTexts(response.customAcknowledgmentTexts || [])
     } catch (error) {
       console.error('Error fetching consent setting:', error, typeof error)
     }
@@ -69,6 +76,10 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
     const consentLocaleText = _.find(customConsentTexts, { locale })
     if (!consentLocaleText) {
       setCustomConsentTexts([...customConsentTexts, { locale, text: '' }])
+    }
+    const acknowledgmentLocaleText = _.find(customAcknowledgmentTexts, { locale })
+    if (!acknowledgmentLocaleText) {
+      setCustomAcknowledgmentTexts([...customAcknowledgmentTexts, { locale, text: '' }])
     }
     setSelectedLocale(locale)
   }
@@ -86,6 +97,20 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
     setCustomConsentTexts(updatedCustomConsentTexts)
   }
 
+
+  const updateCustomAcknowledgmentText = (value, locale) => {
+    const updatedCustomAcknowledgmentTexts = customAcknowledgmentTexts.map((customAcknowledgmentText) => {
+      if (customAcknowledgmentText.locale === locale) {
+        return {
+          ...customAcknowledgmentText,
+          text: value,
+        }
+      }
+      return customAcknowledgmentText
+    })
+    setCustomAcknowledgmentTexts(updatedCustomAcknowledgmentTexts)
+  }
+
   const onFinish = async (values: AssessmentConsentSetting) => {
     setIsUpdating(true)
 
@@ -94,6 +119,7 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
       policyVersion: values.policyVersion,
       dataRole: values.dataRole,
       customConsentTexts,
+      customAcknowledgmentTexts,
     }
 
     try {
@@ -103,7 +129,15 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
     } catch (error: unknown) {
       const validationError = error as ValidationError
       if (validationError?.customConsentTexts?.title) {
-        form.setFields([{ name: 'customConsentTexts', errors: [validationError.customConsentTexts.title] }])
+        form.setFields([{
+          name: 'customConsentTexts',
+          errors: [validationError.customConsentTexts.title],
+        }])
+      } else if (validationError?.customAcknowledgmentTexts?.title) {
+        form.setFields([{
+          name: 'customAcknowledgmentTexts',
+          errors: [validationError.customAcknowledgmentTexts.title],
+        }])
       } else {
         message.error(I18n.t('shared.update_failed'))
       }
@@ -113,7 +147,7 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
   }
 
   const selectedLocaleConsentText = _.find(customConsentTexts, { locale: selectedLocale })
-
+  const selectedLocaleAcknowledgmentText = _.find(customAcknowledgmentTexts, { locale: selectedLocale })
   if (isAssessmentConsentSettingLoading('fetch')) {
     return <Spin />
   }
@@ -171,6 +205,18 @@ export const DataRole: React.FC<Props> = ({ assessment }) => {
                     className="flex1"
                     content={selectedLocaleConsentText?.text}
                     handleContentChange={(value) => { updateCustomConsentText(value, selectedLocale) }}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24} className="mbl">
+                <Form.Item
+                  label={I18n.t('shared.custom_acknowledgment_text')}
+                >
+                  <TextArea
+                    key={selectedLocaleAcknowledgmentText?.locale}
+                    value={selectedLocaleAcknowledgmentText?.text || ''}
+                    onChange={e => updateCustomAcknowledgmentText(e.target.value, selectedLocale)}
+                    rows={3}
                   />
                 </Form.Item>
               </Col>

@@ -126,7 +126,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
           variant="borderless"
           disabled={isRecording}
-          styles={{ popup: { root: { minWidth: '300px', ...(isMobile ? { left: 'calc(-100% - 75px)' } : {}) } } }}
+          styles={{
+            root: { maxWidth: '40%' },
+            popup: { root: { width: '300px', ...(isMobile ? { right: '-100%', width: '200px' } : {}) } },
+          }}
           options={getMicrophoneDevices()}
           getPopupContainer={trigger => trigger}
         />
@@ -138,8 +141,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               {I18n.t('assessments.video_response.device_selection.camera')}
             </p>
           )}
-          styles={{ popup: { root: { minWidth: '300px' } } }}
           suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
+          styles={{
+            root: { maxWidth: '40%' },
+            popup: {
+              root: {
+                width: '300px',
+                ...(isMobile ? { width: '200px' } : {}),
+              },
+            },
+          }}
           onChange={onChangeVideoDevice}
           variant="borderless"
           options={getCameraDevices()}

@@ -1,6 +1,7 @@
 doctype html
 html lang="en"
   head
+    = render 'layouts/osano_script'
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
@@ -47,4 +48,3 @@ html lang="en"
       .clearfix
 
     = render partial: 'administration/base/confirm_modal'
-    = render partial: 'layouts/consent_banner'

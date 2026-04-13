@@ -241,7 +241,7 @@ module Api
     end
 
     def pundit_authorize
-      per_action_authorize_method = "authorize_#{params[:action]}"
+      per_action_authorize_method = "authorize_#{action_name}"
       return send(per_action_authorize_method) if respond_to?(per_action_authorize_method, true)
 
       authorize(

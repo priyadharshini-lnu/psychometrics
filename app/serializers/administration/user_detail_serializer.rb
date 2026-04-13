@@ -50,6 +50,7 @@ module Administration
         :pearson_user_assessment,
         :saville_user_assessment,
         :simulation_user_assessment,
+        :project_assessments,
         assessment: [:norms]
       )
 

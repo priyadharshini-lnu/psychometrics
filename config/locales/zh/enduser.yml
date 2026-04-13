@@ -25,8 +25,6 @@ zh:
     browser_compatibility_check_description: 检查您的浏览器是否支持所有必需的功能
     browser_compatibility_result: 浏览器兼容性
     browser_version_fix_description_first: 请使用支持的浏览器：Chrome、Firefox、Edge 或 Safari
-    browser_version_fix_description_second: 请将浏览器更新至最新版本，以确保兼容性。
-    browser_version_fix_description_third: 请尝试使用无痕/隐私浏览窗口
     browser_version_fix_title: 您的浏览器版本不受支持。
     camera: 视频和音频
     camera_access_blocked: 您的浏览器拒绝或阻止了摄像头访问。请检查浏览器权限。
@@ -72,7 +70,6 @@ zh:
     max_word_limit: 最多不能超过 %{max} 个字
     media_recorder_api_fix_description_first: 请在浏览器设置中启用 JavaScript
     media_recorder_api_fix_description_second: 请确认您的浏览器是否支持 MediaRecorder API，如有必要，请更新至最新版本。
-    media_recorder_api_fix_description_third: 请尝试使用其他现代浏览器，例如 Chrome 或 Firefox
     media_recorder_api_fix_title: 您的浏览器不支持 Media Recorder API。
     media_recorder_api_support: MediaRecorder API 支持
     min_word_limit: 最少需要 %{min} 个字

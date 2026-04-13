@@ -110,6 +110,17 @@ module Administration
         render json: :ok
       end
 
+      def regenerate_transcriptions
+        audit! :regenerate_transcriptions, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        AdminJob.call(
+          :regenerate_assessment_transcriptions,
+          { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id },
+          current_user
+        )
+        render json: :ok
+      end
+
       def destroy
         remove_user_assessments = current_user.is?(:superadmin) && params[:remove_user_assessments]
         audit! :delete, campaign_assessment, campaign: campaign,

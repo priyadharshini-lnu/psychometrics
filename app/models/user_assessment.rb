@@ -398,7 +398,11 @@ class UserAssessment < ApplicationRecord
   end
 
   def project_assessment
-    project_assessments.find_by(assessment_id: assessment_id)
+    if project_assessments.loaded?
+      project_assessments.find { |pa| pa.assessment_id == assessment_id }
+    else
+      project_assessments.find_by(assessment_id: assessment_id)
+    end
   end
 
   def update_mettl_schedule!(mettl_schedule_record_id)

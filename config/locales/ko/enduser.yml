@@ -25,8 +25,6 @@ ko:
     browser_compatibility_check_description: 사용 중인 브라우저가 필요한 모든 기능을 지원하는지 확인하기
     browser_compatibility_result: 브라우저 호환성
     browser_version_fix_description_first: '지원되는 브라우저를 사용하세요: Chrome, Firefox, Edge 또는 Safari'
-    browser_version_fix_description_second: 호환성을 보장하려면 브라우저를 최신 버전으로 업데이트하세요.
-    browser_version_fix_description_third: 시크릿 모드(비공개 브라우징) 창을 사용해 보세요
     browser_version_fix_title: 사용 중인 브라우저 버전은 지원되지 않습니다.
     camera: 동영상 및 오디오
     camera_access_blocked: 브라우저에서 카메라 접근이 거부되거나 차단되었습니다. 브라우저의 권한 설정을 확인해 주세요.
@@ -72,7 +70,6 @@ ko:
     max_word_limit: 최대 %{max}단어여야 합니다
     media_recorder_api_fix_description_first: 브라우저 설정에서 자바스크립트를 활성화하세요
     media_recorder_api_fix_description_second: 사용 중인 브라우저가 MediaRecorder API를 지원하는지 확인하고, 필요한 경우 최신 버전으로 업데이트하십시오.
-    media_recorder_api_fix_description_third: Chrome이나 Firefox 같은 다른 최신 브라우저를 사용해 보세요
     media_recorder_api_fix_title: 사용 중인 브라우저에서는 미디어 레코더 API를 지원하지 않습니다.
     media_recorder_api_support: MediaRecorder API 지원
     min_word_limit: 최소 %{min}단어여야 합니다

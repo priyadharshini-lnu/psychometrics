@@ -267,18 +267,6 @@ const UserList: React.FC<Props> = ({
               width={200}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.created_by')}
-              key="createdBy"
-              dataIndex="createdBy"
-              width={200}
-            />
-            <Column
-              title={I18n.t('administration.campaigns.users.updated_by')}
-              key="updatedBy"
-              dataIndex="updatedBy"
-              width={200}
-            />
-            <Column
               title={I18n.t('administration.campaigns.users.completion_status')}
               key="campaignUsersCompletionStatus"
               dataIndex="completionStatus"
@@ -310,6 +298,18 @@ const UserList: React.FC<Props> = ({
                   {I18n.t(`campaign_users.details.statuses.${status}`)}
                 </Tag>
               )}
+              width={200}
+            />
+            <Column
+              title={I18n.t('administration.campaigns.users.created_by')}
+              key="createdBy"
+              dataIndex="createdBy"
+              width={200}
+            />
+            <Column
+              title={I18n.t('administration.campaigns.users.updated_by')}
+              key="updatedBy"
+              dataIndex="updatedBy"
               width={200}
             />
             <Column

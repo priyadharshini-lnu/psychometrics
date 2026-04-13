@@ -15,6 +15,8 @@ const connector = connect((state:RootState) => ({
 }), {})
 
 const checkIntersection = (a, b) => {
+  if (!a || !b) { return false }
+
   const aRight = a.left + a.width
   const aBottom = a.top + a.height
   const bRight = b.left + b.width

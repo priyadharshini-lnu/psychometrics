@@ -5,6 +5,8 @@ export const get = (state: RootState) => _.get(state, ['config'])
 export const getlighthousePrivacyUrl = (state: RootState) => _.get(state, ['config', 'lighthousePrivacyUrl'])
 export const getprivacyPolicyVersion = (state: RootState) => _.get(state, ['config', 'privacyPolicyVersion'])
 export const getCustomPrivacyConsentText = (state: RootState) => _.get(state, ['config', 'customPrivacyConsentText'])
+export const getCustomPrivacyAcknowledgmentText = (state: RootState) => _.get(state,
+  ['config', 'customPrivacyAcknowledgmentText'])
 export const getShowBookings = (state: RootState) => _.get(state, ['config', 'showBookings'])
 export const getShowMaintenanceAlert = (state: RootState): boolean => (
   _.get(state, ['config', 'showMaintenanceAlert'], false)

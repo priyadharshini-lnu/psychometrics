@@ -25,16 +25,16 @@ module CookieNotice
     'ar' => 'ar-sa', 'fi' => 'fi-fi', 'id' => 'id-id', 'zh' => 'zh-cn'
   }.freeze
 
+  COOKIE_NOTICE_URLS = SUPPORTED_COOKIE_NOTICE_LOCALES.each_with_object({}) do |locale, urls|
+    locale_path = locale == 'en' ? '' : "/#{locale}"
+    urls[locale] = "#{COOKIE_NOTICE_BASE_URL}#{locale_path}#{COOKIE_NOTICE_PATH}"
+  end.freeze
+
   private
 
   def cookie_notice_url_for(locale)
     normalized_locale = normalize_cookie_notice_locale(locale)
-    build_cookie_notice_url(normalized_locale)
-  end
-
-  def build_cookie_notice_url(locale)
-    locale_path = locale == 'en' ? '' : "/#{locale}"
-    "#{COOKIE_NOTICE_BASE_URL}#{locale_path}#{COOKIE_NOTICE_PATH}"
+    COOKIE_NOTICE_URLS.fetch(normalized_locale, COOKIE_NOTICE_URLS.fetch('en'))
   end
 
   def normalize_cookie_notice_locale(locale)

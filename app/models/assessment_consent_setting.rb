@@ -5,5 +5,5 @@ class AssessmentConsentSetting < ApplicationRecord
 
   belongs_to :assessment
 
-  translates :custom_consent_text
+  translates :custom_consent_text, :custom_acknowledgment_text
 end

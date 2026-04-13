@@ -16,7 +16,7 @@ RSpec.describe Api::V2::FactorsNorm::UpdateContract do
           factor_id: factors_norm.factor_id,
           level: 'Low',
           field_name: 'score_from',
-          field_value: '2.00'
+          field_value: '1.00'
         }
       }
     }

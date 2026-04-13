@@ -79,7 +79,7 @@ module UsersResults
             'value_sum' => record.final_score.to_f,
             'ai_metadata' => {
               'confidence' => record.confidence,
-              'citations' => record.citations,
+              'citations' => sanitized_citations(record.citations),
               'rationale' => record.rationale
             }
           }
@@ -110,6 +110,17 @@ module UsersResults
         end
 
         non_duplicate_existing + ai_results
+      end
+
+      def sanitized_citations(citations)
+        Array.wrap(citations).map do |citation|
+          next citation unless citation.is_a?(Hash)
+
+          {
+            'text' => citation['text'],
+            'sentiment' => citation['sentiment']
+          }.compact
+        end
       end
     end
   end

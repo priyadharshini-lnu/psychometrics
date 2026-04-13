@@ -15,6 +15,7 @@ import footerLogo from './media/TTE_Logo_Color_Monogram.png'
 import { RootState } from './core/reducers'
 import { DefaultAntThemeWrapper } from '~/glint'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
+import { ManageCookiesButton } from '~/components/ManageCookiesButton'
 
 
 const { I18n } = window
@@ -97,6 +98,7 @@ export const LayoutComponent = ({ config }) => {
                     { cookies_url: `/cookies-statement?lang=${I18n.currentLocale()}` }),
                 }}
                 />
+                <ManageCookiesButton />
               </Space>
               {config.secondary_logo && <img src={config.secondary_logo} className={styles.footerLogo} />}
             </Layout.Footer>

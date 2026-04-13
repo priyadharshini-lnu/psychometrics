@@ -11,8 +11,10 @@ export const ScoringApprovalSettingsTR = t.intersection([
   t.type({
     assessors: t.array(UserDataTR),
     approvers: t.array(UserDataTR),
+    approvalNotificationUsers: t.array(UserDataTR),
     allowBulkApprove: t.boolean,
     allowBulkApproveScores: t.boolean,
+    doNotSendNotifications: t.boolean,
     sendDigestEmails: t.boolean,
     allowOneLevelApprove: t.boolean,
     digestFrequency: t.union([t.string, t.null]),

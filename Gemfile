@@ -5,6 +5,7 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
+gem 'erb',                        '< 5.0' # Pin to avoid frozen string issues in ERB 6.0+ with Ruby 3.4
 gem 'rack',                       '~> 2.2.22'
 
 gem 'barnes',                     '~> 0.0.7'
@@ -27,7 +28,7 @@ gem 'vite_rails'
 gem 'vite_ruby'
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.9.4'
+gem 'devise',                     '~> 5.0.3'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'

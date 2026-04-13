@@ -43,6 +43,7 @@ type Props = PropsFromRedux & {
   postRecordingCallbackURL?: string
   setCheckStatus: (status: CHECK_STATUS.passed | CHECK_STATUS.failed | CHECK_STATUS.pending) => void
   setIsDeviceRequestGranted: (granted: boolean) => void
+  onCheckAbruptlyEnded: () => void
 }
 
 interface DeviceDetails {
@@ -52,6 +53,7 @@ interface DeviceDetails {
 
 const VideoCheckComponent: React.FC<Props> = ({
   nextStep, setCheckStatus, directUploadURL = '', postRecordingCallbackURL = '', setIsDeviceRequestGranted,
+  onCheckAbruptlyEnded,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
@@ -179,6 +181,7 @@ const VideoCheckComponent: React.FC<Props> = ({
     audio: true,
     onChunkAvailable: uploadPart,
     onStop,
+    onEnded: onCheckAbruptlyEnded,
   })
 
   const requestAccess = async () => {

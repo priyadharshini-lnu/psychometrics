@@ -1,10 +1,12 @@
 import React, { FC } from 'react'
 import {
   Button, MenuProps,
+  message,
   Switch,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/interface'
-import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
+import * as t from 'io-ts'
+import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -14,6 +16,7 @@ type Props = {
 }
 
 const { I18n } = window
+const ExportDimensionResponseTR = t.type({ status: t.string })
 
 export const DimensionsTable: FC<Props> = ({ openModal }) => {
   const renderColumnName = ({
@@ -51,7 +54,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         />
         <Resource.Column<Dimension>
           title={I18n.t('common.column.active')}
-          id="id"
+          id="disabled"
           sorter
           render={dimension => <ActiveSwitch dimension={dimension} />}
           width={100}
@@ -66,7 +69,6 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Dimension>
           title={I18n.t('common.column.owner')}
           id="owner"
-          sorter
           render={dimension => (
             dimension.owner?.name
           )}
@@ -76,6 +78,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.created_at')}
           id="created_at"
           dataIndex="createdAt"
+          sorter
           render={createdAt => (
             dayjs(createdAt).format('lll')
           )}
@@ -85,6 +88,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.updated_at')}
           id="updated_at"
           dataIndex="updatedAt"
+          sorter
           render={updatedAt => (
             dayjs(updatedAt).format('lll')
           )}
@@ -110,15 +114,59 @@ type DropDownProps = {
   dimension: Dimension,
   openModal: (modalName: string, modalProps?: unknown) => void
 }
-const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => (
-  <ConditionalDropdown
-    menu={getActionsMenuProps({ dimension, openModal })}
-  />
-)
 
-const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps => {
+const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => {
+  const { resource } = useResourceContext<Dimension>()
+
+  const copyDimension = async () => {
+    await resource.memberAction({
+      id: dimension.id,
+      action: 'copy',
+      method: 'post',
+      updateStore: true,
+      responseType: DimensionTR,
+    })
+  }
+
+  const exportDimension = async () => {
+    try {
+      await resource.memberAction({
+        id: dimension.id,
+        action: 'export_json',
+        method: 'post',
+        responseType: ExportDimensionResponseTR,
+      })
+      message.success(
+        I18n.t('administration.dimensions.export_json.successfully', { name: dimension.name }),
+      )
+    } catch (error) {
+      message.error(I18n.t('common.error'))
+    }
+  }
+
+  return (
+    <ConditionalDropdown
+      menu={getActionsMenuProps({
+        dimension,
+        openModal,
+        copyDimension,
+        exportDimension,
+      })}
+    />
+  )
+}
+
+const getActionsMenuProps = ({
+  dimension,
+  openModal,
+  copyDimension,
+  exportDimension,
+}: DropDownProps & {
+  copyDimension: () => Promise<void>
+  exportDimension: () => Promise<void>
+}): MenuProps => {
   const canCopy = dimension?.meta?.permissions?.copy
-
+  const canExportJson = dimension?.meta?.permissions?.exportJson
   const menuItems = [
     dimension && {
       key: 'edit',
@@ -147,9 +195,21 @@ const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps
       label: (
         <Button
           type="link"
+          onClick={copyDimension}
           className="ps-0"
         >
           {I18n.t('common.actions.copy')}
+        </Button>),
+    },
+    canExportJson && {
+      key: 'export_json',
+      label: (
+        <Button
+          type="link"
+          onClick={exportDimension}
+          className="ps-0"
+        >
+          {I18n.t('administration.dimensions.resource.tooltips.export_json')}
         </Button>),
     },
   ].filter(m => m) as ItemType[]
