@@ -42,6 +42,7 @@ ar:
     check: التحقق
     check_video_recording: يُرجى التحقق من تسجيل الفيديو الخاص بك عن طريق إعادة تشغيله.
     checking_browser_compatibility: جاري التحقق من توافق المتصفح...
+    checking_latency: التحقق من زمن الاستجابة...
     could_not_reach_servers: لم نتمكن من الوصول إلى خوادمنا للتحقق من سرعة الشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
     day: يوم
     day_plural: أيام
@@ -171,6 +172,8 @@ ar:
     system_checks: فحوصات النظام
     task_duration: مدة المهمة
     tasks: مهامي
+    testing_download_speed: اختبار سرعة التنزيل...
+    testing_upload_speed: اختبار سرعة التحميل...
     time_commitment: الوقت المطلوب لإكمال المهمة
     troubleshooting_guide: دليل استكشاف الأخطاء وإصلاحها
     troubleshooting_guide_browser_fifth: تأكد من تفعيل التخزين المحلي (LocalStorag) في إعداد المتصفح

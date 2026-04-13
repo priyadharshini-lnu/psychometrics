@@ -44,6 +44,8 @@ sr-Cyrl:
     copy: Копирај
     created_at: Креирано у
     created_date: Датум креирања
+    custom_acknowledgment_text: Прилагођени текст захвалнице
+    custom_acknowledgment_text_required: За улогу података контролера потребан је прилагођени текст захвалнице.
     custom_consent_text: Прилагођени текст сагласности
     custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
     data_role: Улога података
@@ -83,6 +85,7 @@ sr-Cyrl:
     maintenance_time_remaining: Преостало време
     maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
     maintenance_upcoming_title: Предстојеће одржавање
+    manage_cookies: Управљај колачићима
     media_id: ИД медија
     media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања

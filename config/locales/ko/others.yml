@@ -929,6 +929,7 @@ ko:
         normalize_factor_scores: 팩터 점수 정규화
         project_compact_completion_status_export: 컴팩트 완료 상태 내보내기
         project_completion_status_export: 완료 상태 내보내기
+        regenerate_assessment_transcriptions: 평가 녹취록 재생성
         regenerate_campaign_reports: 캠페인 보고서 재생성
         regenerate_report: 보고서 다시 생성
         regenerate_threesixty_report: 삼십육 보고서 재생성
@@ -4043,9 +4044,11 @@ ko:
       import_reports: 보고서 및 평가 가져오기
   user_assessment:
     column:
+      completed_at: 완료일
       dimension_id: 차원 ID
       id: 사용자 평가 ID
       norm_id: 표준 ID
+      started_at: 시작일
     drawer:
       copied: "%{name} 클립보드에 복사되었습니다."
       copy: 클립보드에 복사

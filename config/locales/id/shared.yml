@@ -44,6 +44,8 @@ id:
     copy: Salin
     created_at: Dibuat di
     created_date: Tanggal Dibuat
+    custom_acknowledgment_text: Teks Ucapan Terima Kasih yang Disesuaikan
+    custom_acknowledgment_text_required: Teks ucapan terima kasih khusus diperlukan untuk peran data pengontrol
     custom_consent_text: Teks Persetujuan Khusus
     custom_consent_text_required: Teks persetujuan khusus diperlukan untuk peran data pengontrol.
     data_role: Peran Data
@@ -83,6 +85,7 @@ id:
     maintenance_time_remaining: Sisa Waktu
     maintenance_upcoming_description: Kami akan melakukan pemeliharaan terjadwal pada %{date} selama sekitar %{duration} untuk meningkatkan pengalaman Anda. Selama periode ini, Anda tidak akan dapat mengakses atau menyelesaikan tugas yang telah ditugaskan. Kami menghargai kesabaran Anda.
     maintenance_upcoming_title: Pemeliharaan Mendatang
+    manage_cookies: Kelola Cookie
     media_id: Media ID
     media_preview: Pratinjau Media
     media_question_transcriptions: Transkrip Pertanyaan Media
@@ -139,6 +142,15 @@ id:
     subject: Subjek
     submit: Kirim
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
+    table:
+      entries:
+        selected:
+          one: 1 baris dipilih
+          other: "{{count}} baris telah dipilih"
+        total:
+          one: 'Jumlah : 1'
+          other: 'Jumlah : {{count}}'
+          zero: 'Total : 0'
     terms_conditions_privacy: Pernyataan Privasi
     tools: Perkakas
     transcription: Transkripsi

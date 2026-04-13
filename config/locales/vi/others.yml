@@ -929,6 +929,7 @@ vi:
         normalize_factor_scores: Chuẩn hóa điểm số yếu tố
         project_compact_completion_status_export: Xuất trạng thái hoàn thành gọn nhẹ
         project_completion_status_export: Tình trạng hoàn thành xuất khẩu
+        regenerate_assessment_transcriptions: Tạo lại bản ghi chép đánh giá
         regenerate_campaign_reports: Tạo lại báo cáo chiến dịch
         regenerate_report: Báo cáo tái tạo
         regenerate_threesixty_report: Báo cáo tái tạo Threesixty
@@ -4058,9 +4059,11 @@ vi:
       import_reports: Nhập báo cáo và đánh giá
   user_assessment:
     column:
+      completed_at: Hoàn thành tại
       dimension_id: ID thứ nguyên
       id: ID đánh giá người dùng
       norm_id: ID định mức
+      started_at: Bắt đầu từ
     drawer:
       copied: "%{name} được sao chép vào khay nhớ tạm."
       copy: Sao chép vào khay nhớ tạm
@@ -4255,6 +4258,7 @@ vi:
     min_character: Phản hồi của bạn phải chứa ít nhất %{min} ký tự.
     min_factor: Câu trả lời của bạn phải chứa ít nhất %{min} phản hồi yếu tố.
     min_word: Câu trả lời của bạn phải dài ít nhất %{min} từ
+    most: Vui lòng chọn tối đa %{max} lựa chọn
     must_rank_between: Vui lòng chỉ định giá trị từ %{min} đến %{max} cho mỗi mục. Giá trị không được lặp lại.
     must_select: Vui lòng chọn từ %{min} đến %{max} lựa chọn
     not_in_future: Ngày đã chọn không nên là trong tương lai

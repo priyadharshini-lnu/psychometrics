@@ -929,6 +929,7 @@ zh:
         normalize_factor_scores: 因子得分标准化
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
+        regenerate_assessment_transcriptions: 重新生成评估记录
         regenerate_campaign_reports: 再生活动报告
         regenerate_report: 再生报告
         regenerate_threesixty_report: 再生三六零报告
@@ -4047,9 +4048,11 @@ zh:
       import_reports: 导入报告和评估
   user_assessment:
     column:
+      completed_at: 完成于
       dimension_id: 尺寸 ID
       id: 用户评估 ID
       norm_id: 常模 ID
+      started_at: 始于
     drawer:
       copied: "%{name} 已复制到剪贴板。"
       copy: 复制到剪贴板

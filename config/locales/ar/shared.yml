@@ -44,6 +44,8 @@ ar:
     copy: نسخ
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء
+    custom_acknowledgment_text: نص شكر مخصص
+    custom_acknowledgment_text_required: يلزم إدخال نص إقرار مخصص لدور بيانات وحدة التحكم
     custom_consent_text: نص الموافقة المخصص
     custom_consent_text_required: نص الموافقة المخصص مطلوب لدور بيانات وحدة التحكم
     data_role: دور البيانات
@@ -83,6 +85,7 @@ ar:
     maintenance_time_remaining: الوقت المتبقي
     maintenance_upcoming_description: سنقوم بإجراء صيانة مجدولة على %{date} لمدة تقارب %{duration} لتحسين تجربتك. خلال هذه الفترة، لن تتمكن من الوصول إلى أي مهام مخصصة أو إكمالها. نقدر صبرك.
     maintenance_upcoming_title: الصيانة القادمة
+    manage_cookies: إدارة ملفات تعريف الارتباط
     media_id: معرف الوسائط
     media_preview: معاينة وسائل الإعلام
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام

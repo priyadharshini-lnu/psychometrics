@@ -929,6 +929,7 @@ ar:
         normalize_factor_scores: تطبيع درجات العامل
         project_compact_completion_status_export: تصدير حالة الإكمال المضغوط
         project_completion_status_export: حالة الإكمال التصدير
+        regenerate_assessment_transcriptions: إعادة إنشاء نصوص التقييم
         regenerate_campaign_reports: إعادة إنشاء تقارير الحملة
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
@@ -4076,9 +4077,11 @@ ar:
       import_reports: تقارير الاستيراد والتقييمات
   user_assessment:
     column:
+      completed_at: تم الانتهاء منه في
       dimension_id: معرف البعد
       id: معرف تقييم المستخدم
       norm_id: معرف القاعدة
+      started_at: تاريخ البدء
     drawer:
       copied: "%{name} تم نسخها إلى الحافظة."
       copy: نسخ إلى الحافظة
@@ -4251,6 +4254,7 @@ ar:
     date: يجب أن يكون تاريخ صالح (mm/dd/y)
     each_group_contains: يجب أن تحتوي كل مجموعة على ما لا يقل عن %{min} عنصر ولا تزيد عن %{max} عنصر
     email: يجب أن تعطينا بريدًا إلكترونيًا صالحًا
+    exact: يرجى تحديد خيار (خيارات) واحدة (واحدة) بالضبط من خيارات "%{count}"
     file_upload:
       BadRequest: لم يتم تحميل الملف حيث فشل الطلب الأخير. قد يكون هذا بسبب عدم عمل الإنترنت لديك. إذا كان الإنترنت الخاص بك يعمل، فيرجى الاتصال بالمسؤول
       EntityTooLarge: يجب أن يكون حجم الملف أقل من %{maxFileSize} ميغابايت
@@ -4272,6 +4276,7 @@ ar:
     min_character: يجب أن تكون الاستجابة على الأقل %{min} حرفاً.
     min_factor: يجب أن يحتوي ردك على %{min} على الأقل من ملاحظات العوامل.
     min_word: الاجابه لا تقل عن %{min} كلمه
+    most: يرجى اختيار ما لا يزيد عن %{max} خيارًا
     must_rank_between: الرجاء تعيين قيمة من %{min} إلى %{max} لكل عنصر. لا يسمح تكرار القيم.
     must_select: الرجاء تحديد من %{min} إلى %{max} الاختيارات
     not_in_future: يجب ألا يكون التاريخ المحدد في المستقبل

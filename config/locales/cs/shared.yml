@@ -44,6 +44,8 @@ cs:
     copy: Kopírovat
     created_at: Vytvořeno v
     created_date: Datum vytvoření
+    custom_acknowledgment_text: Vlastní text poděkování
+    custom_acknowledgment_text_required: Pro roli „Data“ řadiče je vyžadován vlastní text potvrzení
     custom_consent_text: Vlastní text souhlasu
     custom_consent_text_required: Pro roli správce dat je vyžadován vlastní text souhlasu.
     data_role: Role dat
@@ -83,6 +85,7 @@ cs:
     maintenance_time_remaining: Zbývající čas
     maintenance_upcoming_description: Budeme provádět plánovanou údržbu na %{date} po dobu přibližně %{duration}, abychom vylepšili vaše uživatelské prostředí. Během této doby nebudete moci přistupovat k žádným přiděleným úkolům ani je dokončovat. Děkujeme za vaši trpělivost.
     maintenance_upcoming_title: Nadcházející údržba
+    manage_cookies: Správa souborů cookie
     media_id: Identifikátor média
     media_preview: Náhled pro média
     media_question_transcriptions: Přepisy otázek médií

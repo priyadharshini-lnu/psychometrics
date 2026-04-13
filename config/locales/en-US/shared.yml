@@ -44,6 +44,8 @@ en-US:
     copy: Copy
     created_at: Created At
     created_date: Created Date
+    custom_acknowledgment_text: Custom Acknowledgment Text
+    custom_acknowledgment_text_required: Custom acknowledgment text is required for controller data role
     custom_consent_text: Custom Consent Text
     custom_consent_text_required: Custom consent text is required for controller data role
     data_role: Data Role
@@ -140,6 +142,15 @@ en-US:
     subject: Subject
     submit: Submit
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
     terms_conditions_privacy: Privacy Statement
     tools: Tools
     transcription: Transcription

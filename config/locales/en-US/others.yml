@@ -929,6 +929,7 @@ en-US:
         normalize_factor_scores: Normalize Factor Scores
         project_compact_completion_status_export: Compact Completion Status Export
         project_completion_status_export: Completion Status Export
+        regenerate_assessment_transcriptions: Regenerate Assessment Transcriptions
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
@@ -4258,6 +4259,7 @@ en-US:
     min_character: Your response must contain at least %{min} characters.
     min_factor: Your response must contain at least %{min} factor feedbacks.
     min_word: Your response must be atleast %{min} words
+    most: Please select at most %{max} choice(s)
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
     must_select: Please select from %{min} to %{max} choices
     not_in_future: Selected date should not be in future

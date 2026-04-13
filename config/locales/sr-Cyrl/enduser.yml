@@ -24,27 +24,43 @@ sr-Cyrl:
     browser_compatibility_check: Тест компатибилности прегледача
     browser_compatibility_check_description: Проверка да ли ваш прегледач подржава све потребне функције
     browser_compatibility_result: Компатибилност прегледача
+    browser_compatible: Ваш прегледач %{browser_name} верзије %{browser_version} компатибилан је са овом кампањом.
+    browser_compatible_detail: Користите верзију "%{browser_name}" бр. %{browser_version}, која испуњава минималне захтеве за ову кампању.
+    browser_incompatible_detail: Користите верзију %{browser_name} %{browser_version}. Молимо ажурирајте свој %{browser_name} на верзију %{min_browser_version} како бисте осигурали компатибилност.
+    browser_not_compatible: Ваш прегледач %{browser_name} није компатибилан са овом кампањом. Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
     browser_version_fix_description_first: 'Користите подржани прегледач: Chrome, Firefox, Edge или Safari'
     browser_version_fix_title: Ваша верзија прегледача није подржана.
     camera: Видео и аудио
     camera_access_blocked: Приступ камери је одбијен или блокиран од стране вашег прегледача. Молимо вас да проверите дозволе у вашем прегледачу.
     camera_check: Тест камере и микрофона
+    camera_check_abruptly_ended: Камера је изненада искључена. Молимо омогућите камеру и поново покрените проверу.
     camera_check_description: Проверите да ли ваша камера и микрофон исправно раде за снимање.
+    camera_check_passed: Провера видео и аудио записа успешно прошла
     camera_test_step: Корак за тест видео и аудио
     campaign: Кампања
     chat_instructions: Упутства за ћаскање
     check: Провери
     check_video_recording: Молимо вас да проверите снимак видео записа репродукцијом.
     checking_browser_compatibility: Провера компатибилности прегледача...
+    checking_latency: Провера латенције...
+    could_not_reach_servers: Није могуће да се повежемо са нашим серверима како бисмо проверили брзину мреже. Молимо вас да проверите вашу интернет везу и покушате поново.
+    day: дан
+    day_plural: дани
+    details: Детаљи
     development: Развој
     direct_reportees: Директни извештачи
     download: Преузми
     download_pdf: Преузмите ПДФ
+    download_speed_below_minimum: Брзина преузимања ${download_speed} је испод минималне потребне брзине преузимања од ${minimum_download_speed} Mbps.
     environment_setup: Подешавање окружења
     error_uploading_video: Грешка при отпремању видео записа
+    error_uploading_video_detail: Дошло је до грешке приликом отпремања видео записа.
     fail: Неуспех
     follow_these_steps: Пратите ове кораке да бисте решили проблеме откривене током провере система.
+    hide_details: Сакриј детаље
     home: Почетна
+    hour: сат
+    hour_plural: сати
     how_to_fix: 'Како поправити:'
     idp_loading_fifth_step: Преузимање акција развоја из шаблона
     idp_loading_first_step: Анализа вашег извештаја о процењивању
@@ -66,13 +82,18 @@ sr-Cyrl:
     lighthouse_assistant: Помагач светионика
     localstorage_fix_description_first: Уверите се да нисте у приватном/инкогнито режиму, јер је localStorage често онемогућен у тим режимима.
     localstorage_fix_title: Локално складиште није омогућено у вашем прегледачу
+    localstorage_not_enabled_detail: Локално складиштење није омогућено у вашем прегледачу. Молимо вас да проверите да нисте у приватном/инкогнито режиму, јер је локално складиштење често онемогућено у тим режимима.
     localstorage_support: LocalStorage омогућен
     max_word_limit: Мора да буде највише %{max} речи
     media_recorder_api_fix_description_first: Омогућите JavaScript у подешавањима свог прегледача
     media_recorder_api_fix_description_second: Проверите да ли ваш прегледач подржава MediaRecorder API и, ако је потребно, ажурирајте га на најновију верзију.
     media_recorder_api_fix_title: API за снимање медија није подржан у вашем прегледачу.
+    media_recorder_api_not_supported_detail: Користите верзију прегледача "%{browser_name}" која не подржава API MediaRecorder. Молимо ажурирајте прегледач на најновију верзију како бисте осигурали компатибилност.
     media_recorder_api_support: Подршка за MediaRecorder API
     min_word_limit: Мора да има најмање %{min} речи
+    minimum_speed_requirements: Минимална брзина преузимања од ${minimum_download_speed} Mbps и минимална брзина отпремања од ${minimum_upload_speed} Mbps су потребне за ову кампању.
+    minute: минут
+    minute_plural: минута
     my_plan: Мој план
     network: Мрежа
     network_check: Тест брзине интернета
@@ -82,6 +103,7 @@ sr-Cyrl:
     network_check_fix_fourth: Покушајте да користите другу мрежну везу ако је доступна.
     network_check_fix_second: Приђите ближе вашем Wi-Fi рутеру или се повежите преко етернет кабла.
     network_check_fix_third: Поново покрените рутер/модем и покушајте поново.
+    network_speed_meets_required_detail: Ваша интернет брзина испуњава минималне захтеве за кампању.
     network_test_step: Корак мрежног теста
     no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     pass: Проћи
@@ -150,6 +172,8 @@ sr-Cyrl:
     system_checks: Провере система
     task_duration: Трајање задатка
     tasks: Задаци
+    testing_download_speed: Тестирање брзине преузимања...
+    testing_upload_speed: Тестирање брзине отпремања...
     time_commitment: Временска посвећеност
     troubleshooting_guide: Водич за решавање проблема
     troubleshooting_guide_browser_fifth: Уверите се да је LocalStorage омогућен у подешавањима вашег прегледача.
@@ -171,6 +195,7 @@ sr-Cyrl:
     troubleshooting_guide_video_third: Освежите страницу након промене дозвола
     untimed: Без временског ограничења
     upload: Отпреми
+    upload_speed_below_minimum: Брзина отпремања ${upload_speed} је испод минималне потребне брзине отпремања од ${minimum_upload_speed} Mbps.
     video_and_audio: Видео и аудио
     video_and_audio_recording: Видео и аудио снимање
     video_check_fix_fifth: Пробајте да искључите и поново прикључите камеру ако је спољна.
@@ -179,7 +204,9 @@ sr-Cyrl:
     video_check_fix_second: Идите у подешавања прегледача и омогућите приступ камери за ову веб-страницу.
     video_check_fix_sixth: Поново покрените прегледач и покушајте поново.
     video_check_fix_third: Затворите друге апликације које користе камеру (Zoom, Teams итд.)
+    view_details: Прикажи детаље
     webgl_api_fix_description_first: Уверите се да ваш прегледач подржава WebGL и да је он омогућен у подешавањима.
     webgl_api_fix_description_second: Ажурирајте графичке драјвере на најновију верзију.
     webgl_api_fix_title: WebGL није подржан или омогућен у вашем прегледачу
     webgl_api_support: Подршка за WebGL API
+    webgl_not_supported_detail: Користите верзију прегледача "%{browser_name}" (%{browser_version}) која не подржава WebGL. Молимо ажурирајте свој прегледач на најновију верзију како бисте осигурали компатибилност.

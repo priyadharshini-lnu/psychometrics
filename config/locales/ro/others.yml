@@ -929,6 +929,7 @@ ro:
         normalize_factor_scores: Normalizați scorurile factorilor
         project_compact_completion_status_export: Exportare stare finalizare compactă
         project_completion_status_export: Stare finalizare Export
+        regenerate_assessment_transcriptions: Regenerare transcrieri evaluări
         regenerate_campaign_reports: Regenerarea rapoartelor de campanie
         regenerate_report: Regenerarea raportului
         regenerate_threesixty_report: Regenerarea raportului Threesixty
@@ -4064,9 +4065,11 @@ ro:
       import_reports: Importați rapoarte și evaluări
   user_assessment:
     column:
+      completed_at: Finalizat la
       dimension_id: ID dimensiune
       id: ID de evaluare a utilizatorului
       norm_id: ID normă
+      started_at: A început la
     drawer:
       copied: "%{name} copiat în clipboard."
       copy: Copiați în Clipboard
@@ -4261,6 +4264,7 @@ ro:
     min_character: Răspunsul dvs. trebuie să conțină cel puțin %{min} caractere.
     min_factor: Răspunsul tău trebuie să conțină cel puțin %{min} feedback-uri factoriale.
     min_word: Răspunsul dvs. trebuie să fie de cel puțin %{min} cuvinte
+    most: Vă rugăm să selectați cel mult%{max}ă opțiune
     must_rank_between: Vă rugăm să atribuiți o valoare de la %{min} la %{max} pentru fiecare element. Valorile nu pot fi repetate.
     must_select: Vă rugăm să selectați de la %{min} la %{max} opțiuni
     not_in_future: Data selectată nu ar trebui să fie în viitor

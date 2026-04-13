@@ -929,6 +929,7 @@ sr-Cyrl:
         normalize_factor_scores: Нормализујте резултате фактора
         project_compact_completion_status_export: Компактни извоз статуса завршетка
         project_completion_status_export: Извоз статуса завршетка
+        regenerate_assessment_transcriptions: Поново генеришите транскрипте процене
         regenerate_campaign_reports: Регенеришите извештаје о кампањи
         regenerate_report: Регенеришите извештај
         regenerate_threesixty_report: Регенерате Тхреесиxтy Репорт
@@ -4055,9 +4056,11 @@ sr-Cyrl:
       import_reports: Извештаји о увозу и процене
   user_assessment:
     column:
+      completed_at: Завршено у
       dimension_id: Димензија ИД
       id: ИД процене корисника
       norm_id: Норма ИД
+      started_at: Почео у
     drawer:
       copied: ИНТЕРПОЛАТИОН _ВАР _0 копира у клипборд.
       copy: Копирај у међуспремник
@@ -4252,6 +4255,7 @@ sr-Cyrl:
     min_character: Ваш одговор мора да садржи најмање %{min} знакова.
     min_factor: Ваш одговор мора садржавати најмање ИНТЕРПОЛАТИОН_ВАР_0 повратне информације о фактору.
     min_word: Ваш одговор мора имати најмање %{min} речи
+    most: Молимо изаберите највише %{max} избора
     must_rank_between: Молимо вас да доделите вредност од %{min} до %{max} за сваку ставку. Вредности се не смеју понављати.
     must_select: Изаберите од %{min} до %{max} опција
     not_in_future: Изабрани датум не би требало да буде у будућности
