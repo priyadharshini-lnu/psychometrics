@@ -139,10 +139,6 @@ pl:
     subject: Temat
     submit: Prześlij
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
-    table:
-      entries:
-        selected: Wybrano 1 wiersz
-        total: 'Ogółem : 1'
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
     tools: Narzędzia
     transcription: Transkrypcja

@@ -139,10 +139,6 @@ hr:
     subject: Predmet
     submit: Pošalji
     switch_to_laptop_or_desktop: Prebacite na prijenosno ili stolno računalo
-    table:
-      entries:
-        selected: Odabran 1 redak
-        total: 'Ukupno : 1'
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alati
     transcription: Transkripcija

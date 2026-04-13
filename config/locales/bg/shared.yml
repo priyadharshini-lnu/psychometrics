@@ -139,10 +139,6 @@ bg:
     subject: Тема
     submit: Изпрати
     switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър
-    table:
-      entries:
-        selected: Избран е 1 ред
-        total: 'Общо : 1'
     terms_conditions_privacy: Декларация за поверителност
     tools: Инструменти
     transcription: Транскрипция

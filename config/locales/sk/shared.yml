@@ -139,10 +139,6 @@ sk:
     subject: Predmet
     submit: Odoslať
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
-    table:
-      entries:
-        selected: Vybraný 1 riadok
-        total: 'Celkom : 1'
     terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
     tools: Náradie
     transcription: Prepis

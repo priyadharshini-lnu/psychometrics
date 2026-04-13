@@ -139,10 +139,6 @@ hu:
     subject: Tárgy
     submit: Beküldés
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
-    table:
-      entries:
-        selected: 1 sor kiválasztva
-        total: 'Összesen : 1'
     terms_conditions_privacy: Adatvédelmi nyilatkozat
     tools: Eszközök
     transcription: Átírás

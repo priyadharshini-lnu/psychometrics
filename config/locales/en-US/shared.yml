@@ -140,10 +140,6 @@ en-US:
     subject: Subject
     submit: Submit
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
-    table:
-      entries:
-        selected: 1 row selected
-        total: 'Total : 1'
     terms_conditions_privacy: Privacy Statement
     tools: Tools
     transcription: Transcription

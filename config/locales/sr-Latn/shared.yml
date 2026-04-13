@@ -139,10 +139,6 @@ sr-Latn:
     subject: Предмет
     submit: Пошаљи
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
-    table:
-      entries:
-        selected: Izabran 1 red
-        total: 'Ukupno : 1'
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alatke
     transcription: Транскрипција

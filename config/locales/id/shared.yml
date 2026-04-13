@@ -139,10 +139,6 @@ id:
     subject: Subjek
     submit: Kirim
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
-    table:
-      entries:
-        selected: 1 baris dipilih
-        total: 'Jumlah : 1'
     terms_conditions_privacy: Pernyataan Privasi
     tools: Perkakas
     transcription: Transkripsi

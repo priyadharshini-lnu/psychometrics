@@ -139,10 +139,6 @@ ro:
     subject: Subiect
     submit: Trimite
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop
-    table:
-      entries:
-        selected: 1 rând selectat
-        total: 'Total: 1'
     terms_conditions_privacy: Declarație de confidențialitate
     tools: Instrumente
     transcription: Transcriere

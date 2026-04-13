@@ -139,10 +139,6 @@ sl:
     subject: Predmet
     submit: Pošlji
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
-    table:
-      entries:
-        selected: Izbrana 1 vrstica
-        total: 'Skupaj : 1'
     terms_conditions_privacy: Izjava o zasebnosti
     tools: Orodja
     transcription: Transkripcija

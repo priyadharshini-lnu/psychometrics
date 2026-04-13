@@ -139,10 +139,6 @@ th:
     subject: เรื่อง
     submit: ส่ง
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
-    table:
-      entries:
-        selected: เลือก 1 แถว
-        total: 'รวม : 1'
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
     tools: เครื่อง มือ
     transcription: การถอดเสียง
