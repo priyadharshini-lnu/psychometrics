@@ -8,6 +8,7 @@ sk:
     add_campaign_admin: Pridanie správcu kampane
     add_client_admin: Pridať správcu klienta
     add_indicator: Pridať indikátor
+    add_new_folder: Pridať nový priečinok
     add_project: Pridať projekt
     add_project_admin: Pridanie správcu projektu
     add_threesixty_campaign_admin: Pridanie správcu kampane
@@ -85,6 +86,19 @@ sk:
     ai_scoring_appoval_responses: Odpovede umelej inteligencie
     ai_scoring_appoval_score_not_applicable: Skóre sa neuplatňuje
     ai_scoring_approval: Schválenie bodovania AI
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Schválenia bodového hodnotenia nájdete na nasledujúcom odkaze:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Boli schválené nasledujúce výsledky.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Tento e-mail ste dostali, pretože ste boli pridaní ako kontakt, ktorý má dostávať oznámenia o schválení bodového hodnotenia.
+    ai_scoring_approval_digest_mailer_approved_subject: Schválené výsledky
+    ai_scoring_approval_digest_mailer_assessment_label: 'Hodnotenie: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Nasledujúce hodnotenia sú pripravené na schválenie a vyžadujú si vašu reakciu.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Tento e-mail ste dostali, pretože ste boli pridaní ako schvaľovateľ hodnotení, ktoré vyžadujú schválenie.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Výsledky čakajúce na schválenie
+    ai_scoring_approval_digest_mailer_campaign_label: 'Kampaň: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Počet gólov: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Vážený %{name},
+    ai_scoring_approval_digest_mailer_link_text: Schvaľovanie bodového hodnotenia
+    ai_scoring_approval_digest_mailer_project_label: 'Projekt: %{value}'
     ai_scoring_approval_settings: Nastavenia schvaľovania bodovania AI
     ai_scoring_approval_stale_description: Zmeny v konfigurácii od posledného spustenia mohli ovplyvniť výsledok. Vykonajte nové vyhodnotenie, aby sa výsledok aktualizoval na základe najnovších nastavení.
     ai_scoring_approval_stale_title: Výsledok môže byť neaktuálny
@@ -136,6 +150,7 @@ sk:
     bulk_assets_modal_title: Nahrať súbory CSV a ZIP
     bulk_upload_ai_artifacts: Hromadné nahrávanie AI artefaktov
     campaign_ai_artifact_updated_successfully: Artefakty AI kampane boli úspešne aktualizované
+    campaign_ai_artifacts_instruction_templating_tooltip: Môžete využívať pokročilé príkazy pomocou šablón výzvy so syntaxou šablón Liquid a dostupnými premennými. Ďalšie informácie nájdete v dokumentácii.
     campaign_ai_artifacts_results_export_details: Výsledky generované artefaktmi kampane AI
     campaign_assessment_actions_disable_caching: Vypnúť cache hodnotenia
     campaign_assessment_actions_enable_caching: Povoliť cache hodnotenia
@@ -161,6 +176,24 @@ sk:
     campaign_assessment_modals_enable_caching_title: Povoliť cache hodnotenia?
     campaign_factors: Faktory kampane
     campaign_name: Názov kampane
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: ID externej správy
+          language_id: Kód jazyka
+          norm: Norma
+          norm_id: Identifikačné číslo normy
+          suitability_id: Identifikačný kód vhodnosti
+        labels:
+          assessment_ids: Identifikačné čísla hodnotenia
+          available_languages: Dostupné jazyky
+          campaign_report_id: ID správy o kampani
+          check_details: Pozri si podrobnosti
+          default_language: Predvolený jazyk
+          external_settings: Externé nastavenia
+          provider: Poskytovateľ
+          report_pdf_status: Stav správy v PDF
+          user_report_id: ID hlásenia používateľa
     campaign_templates: Šablóny kampaní
     campaign_user_job_roles_cannot_be_same: Cieľová pracovná pozícia sa musí líšiť od súčasnej pracovnej pozície.
     campaigns: Kampane
@@ -183,7 +216,9 @@ sk:
     configure_model_answer_title: Nakonfigurujte vzorové odpovede a kľúčové slová
     confirm_remove_admin: Naozaj chcete odstrániť správcu používateľa s e-mailom '%{email}'?
     copied: Kopírované
+    copied_url_success: URL bola úspešne skopírovaná do schránky
     copy_ai_artifacts: Kopírovať umelecké diela vytvorené umelou inteligenciou
+    copy_image_url: Skopíruj adresu URL obrázka
     country: Krajina
     create_client: Vytvoriť klienta
     create_indicator: Vytvoriť indikátor
@@ -221,6 +256,7 @@ sk:
       thursday: štvrtok
       tuesday: utorok
       wednesday: streda
+    dimension_translations_export_scheduled: Export prekladov naplánovaný pre dimenziu „%{name}“.
     dimensions: Rozmery
     done: Robené
     done_tooltip: Pre tohto používateľa už nie je možné vykonať ďalšie hodnotenie, pretože hodnotenie je označené ako vykonané %{marked_by}
@@ -228,9 +264,11 @@ sk:
     duration: Trvanie
     edit_campaign_admin: Upraviť správcu kampane
     edit_client_admin: Upraviť správcu klienta
+    edit_folder: Upraviť priečinok
     edit_indicator: Upraviť indikátor
     edit_job_roles: Upraviť pracovné pozície
     edit_level: Úroveň úprav
+    edit_media: Upraviť médiá
     edit_permission_denied: Nemáte povolenie upravovať administrátorský '%{name}'
     edit_project_admin: Upraviť správcu projektu
     edit_threesixty_campaign_admin: Upraviť správcu kampane
@@ -272,6 +310,8 @@ sk:
     feature_global_skills_description: Prístup k globálnej knižnici zručností pre hodnotenia
     feature_idp_description: Aktivovať individuálne plánovanie rozvoja pre účastníkov
     feature_sms_notification_description: Povoliť SMS upozornenia na pozvánky a pripomienky týkajúce sa kampaní
+    file_size_must_be_less_than_mb: Súbor {{name}} presahuje maximálnu veľkosť {{max_size_mb}} MB
+    file_upload_failed: Nepodarilo sa nahrať {{name}}
     fill_empty_score_msg: Vyplňte všetky konečné skóre pred uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nemôže byť prázdne.
     final_score_empty_msg: Konečný účet nemôže byť prázdny.
@@ -351,6 +391,8 @@ sk:
     maintenance_settings_description: Správa okien a nastavení údržby systému
     manager_approval_required: Report for %{user} vyžaduje schválenie manažéra pred stiahnutím
     max_value: Maximálna hodnota
+    media_files_label: Súbory
+    media_library: Mediálna knižnica
     messages: Správy
     mhs: MHS
     mhs_assessment: Hodnotenie MHS
@@ -370,6 +412,7 @@ sk:
     name: Meno
     name_max_length: Názov nesmie presiahnuť %{length} znakov
     name_required: Meno je potrebné
+    new_folder: Nový priečinok
     no_file_selected: Žiadny súbor nevybraný
     no_notifications: Žiadne upozornenia
     no_status: Bez stavu
@@ -832,9 +875,15 @@ sk:
     questions: Otázky
     range_min_max: ROZSAH%{min} - %{max}
     reflection_questions: Otázky na zamyslenie
+    regenerate_transcriptions_action: Obnoviť prepisy
+    regenerate_transcriptions_confirm_content: Naozaj chcete vygenerovať nové prepisy pre toto hodnotenie? Týmto sa znovu spracujú všetky neúplné prepisy.
+    regenerate_transcriptions_confirm_title: Obnoviť prepisy
+    regenerate_transcriptions_scheduled: Úloha na regeneráciu prepisov bola úspešne naplánovaná
     registration_codes: Registračné kódy
     registration_settings: Nastavenia registrácie
     remove_children_to_change_type: Odstráňte všetky deti, aby ste zmenili typ
+    remove_confirmation: Naozaj chcete túto položku odstrániť?
+    remove_successfully: Mediálny súbor bol úspešne odstránený.
     report_approvals: Schválenia správ
     report_condition_not_met: Potrebuje %{required} %{relationship} vyšetrenie, ale má len %{actual}
     report_conditions_not_met_detailed: Report for %{user} nespĺňa podmienky dostupnosti. %{conditions}
@@ -938,7 +987,9 @@ sk:
     scoring_approval_approvers: Schvaľovatelia
     scoring_approval_assessment: Hodnotenie
     scoring_approval_assessor_users: Používatelia hodnotiteľov
+    scoring_approval_do_not_send_notifications: Nezasielať upozornenia
     scoring_approval_modal_title: Nastavenia schvaľovania bodovania
+    scoring_approval_notification_users: Oznámenie o schválení – používatelia
     scoring_approval_remove_modal_success: 'Nastavenie schválenia pre identifikátor hodnotenia: %{assessmentId} bolo úspešne odstránené.'
     scoring_approval_remove_modal_text: 'Naozaj chcete odstrániť toto nastavenie pre identifikačný kód hodnotenia: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Bodovanie je povolené iba pri otázkach s podporou umelej inteligencie pre aktuálne vybraný faktor.
@@ -995,7 +1046,12 @@ sk:
     translated_to: 'Preložené do:'
     translated_with_ai_notice: Preložené umelou inteligenciou
     translation_assistant_not_configured: Prekladateľský asistent nie je nakonfigurovaný
+    translations:
+      title: Preklady
     update_success: "%{readableResourceName} bol úspešne aktualizovaný"
+    upload: Nahrať
+    upload_media: Nahrať multimediálny obsah
+    upload_required: Prosím, pridajte aspoň jeden súbor na nahratie
     upload_success: Úspešne nahrané
     user_report_events: Udalosti v hlásení používateľa
     users: Používateľov
@@ -1004,6 +1060,7 @@ sk:
     very_high: Veľmi vysoká
     very_low: Veľmi nízka
     view_licenses: Zobraziť licencie
+    wait_for_upload_completion: Počkajte, kým sa dokončí nahrávanie všetkých súborov
     waiting: Čakanie
     weight: Hmotnosť
     what_to_look_for: Čo hľadať

@@ -24,27 +24,43 @@ hi:
     browser_compatibility_check: ब्राउज़र अनुकूलता परीक्षण
     browser_compatibility_check_description: जांच रहा है कि आपका ब्राउज़र सभी आवश्यक सुविधाओं का समर्थन करता है
     browser_compatibility_result: ब्राउज़र अनुकूलता
+    browser_compatible: आपका ब्राउज़र %{browser_name} संस्करण %{browser_version} इस अभियान के साथ संगत है।
+    browser_compatible_detail: आप %{browser_name} संस्करण %{browser_version} का उपयोग कर रहे हैं, जो इस अभियान के लिए न्यूनतम आवश्यकता को पूरा करता है।
+    browser_incompatible_detail: आप %{browser_name} का संस्करण %{browser_version} उपयोग कर रहे हैं।  कृपया संगतता सुनिश्चित करने के लिए अपने %{browser_name} को संस्करण %{min_browser_version} में अपडेट करें।
+    browser_not_compatible: आपका ब्राउज़र %{browser_name} इस अभियान के साथ संगत नहीं है। सर्वोत्तम अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
     browser_version_fix_description_first: 'समर्थित ब्राउज़र का उपयोग करें: Chrome, Firefox, Edge, या Safari'
     browser_version_fix_title: आपका ब्राउज़र संस्करण समर्थित नहीं है।
     camera: वीडियो और ऑडियो
     camera_access_blocked: कैमरे तक की पहुँच आपके ब्राउज़र द्वारा अस्वीकार या अवरुद्ध कर दी गई है। कृपया अपने ब्राउज़र की अनुमतियाँ जाँचें।
     camera_check: कैमरा और माइक्रोफ़ोन परीक्षण
+    camera_check_abruptly_ended: कैमरा अचानक बंद हो गया। कृपया अपना कैमरा चालू करें और जाँच को फिर से चलाएँ।
     camera_check_description: रिकॉर्डिंग के लिए अपने कैमरे और माइक्रोफोन की सही से काम कर रहे हैं, यह सत्यापित करें।
+    camera_check_passed: वीडियो और ऑडियो जाँच सफलतापूर्वक पूरी हो गई।
     camera_test_step: वीडियो और ऑडियो परीक्षण चरण
     campaign: अभियान
     chat_instructions: चैट निर्देश
     check: जाँचें
     check_video_recording: कृपया अपनी वीडियो रिकॉर्डिंग को वापस चलाकर जांचें।
     checking_browser_compatibility: ब्राउज़र संगतता की जाँच...
+    checking_latency: विलंबता की जाँच...
+    could_not_reach_servers: नेटवर्क गति की जाँच करने के लिए हमारे सर्वर से जुड़ने में असमर्थ। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से प्रयास करें।
+    day: दिन
+    day_plural: दिन
+    details: विवरण
     development: विकास
     direct_reportees: प्रत्यक्ष अधीनस्थ
     download: डाउनलोड
     download_pdf: पीडीएफ डाउनलोड करें
+    download_speed_below_minimum: डाउनलोड गति ${download_speed} न्यूनतम आवश्यक डाउनलोड गति ${minimum_download_speed} एमबीपीएस से कम है।
     environment_setup: पर्यावरण सेटअप
     error_uploading_video: वीडियो अपलोड करने में त्रुटि
+    error_uploading_video_detail: वीडियो अपलोड करते समय कोई त्रुटि हुई।
     fail: असफल
     follow_these_steps: सिस्टम जाँच के दौरान पाए गए मुद्दों को हल करने के लिए इन चरणों का पालन करें।
+    hide_details: विवरण छिपाएँ
     home: होम
+    hour: घंटा
+    hour_plural: घंटे
     how_to_fix: 'कैसे ठीक करें:'
     idp_loading_fifth_step: टेम्पलेट से विकास क्रियाएँ प्राप्त करना
     idp_loading_first_step: आपकी मूल्यांकन रिपोर्ट का विश्लेषण
@@ -66,13 +82,18 @@ hi:
     lighthouse_assistant: लाइटहाउस सहायक
     localstorage_fix_description_first: सुनिश्चित करें कि आप निजी/अज्ञात मोड में नहीं हैं, क्योंकि इन मोड में अक्सर localStorage अक्षम हो जाता है।
     localstorage_fix_title: आपके ब्राउज़र में लोकल स्टोरेज सक्षम नहीं है।
+    localstorage_not_enabled_detail: आपके ब्राउज़र में लोकल स्टोरेज सक्षम नहीं है। कृपया सुनिश्चित करें कि आप प्राइवेट/इंकोग्निटो मोड में नहीं हैं, क्योंकि इन मोड्स में अक्सर लोकल स्टोरेज अक्षम हो जाता है।
     localstorage_support: लोकलस्टोरेज सक्षम
     max_word_limit: अधिकतम %{max} शब्द होना चाहिए।
     media_recorder_api_fix_description_first: अपने ब्राउज़र सेटिंग्स में जावास्क्रिप्ट सक्षम करें
     media_recorder_api_fix_description_second: जाँचें कि आपका ब्राउज़र MediaRecorder API का समर्थन करता है और यदि आवश्यक हो तो इसे नवीनतम संस्करण में अपडेट करें।
     media_recorder_api_fix_title: मीडिया रिकॉर्डर एपीआई आपके ब्राउज़र में समर्थित नहीं है।
+    media_recorder_api_not_supported_detail: आप '%{browser_name}' का संस्करण '%{browser_version}' उपयोग कर रहे हैं, जो MediaRecorder API का समर्थन नहीं करता। अनुकूलता सुनिश्चित करने के लिए कृपया अपने ब्राउज़र को नवीनतम संस्करण में अपडेट करें।
     media_recorder_api_support: मीडिया रिकॉर्डर एपीआई समर्थन
     min_word_limit: कम से कम %{min} शब्द होना चाहिए।
+    minimum_speed_requirements: इस अभियान के लिए न्यूनतम डाउनलोड गति ${minimum_download_speed} एमबीपीएस और न्यूनतम अपलोड गति ${minimum_upload_speed} एमबीपीएस आवश्यक है।
+    minute: एक मिनट
+    minute_plural: मिनट
     my_plan: मेरी योजना
     network: नेटवर्क
     network_check: इंटरनेट गति परीक्षण
@@ -82,6 +103,7 @@ hi:
     network_check_fix_fourth: यदि उपलब्ध हो तो एक अलग नेटवर्क कनेक्शन का उपयोग करने का प्रयास करें।
     network_check_fix_second: अपने वाई-फाई राउटर के करीब जाएँ या ईथरनेट केबल से कनेक्ट करें।
     network_check_fix_third: अपने राउटर/मॉडेम को पुनः आरंभ करें और फिर से प्रयास करें।
+    network_speed_meets_required_detail: आपकी इंटरनेट गति अभियान के लिए न्यूनतम आवश्यकताओं को पूरा करती है।
     network_test_step: नेटवर्क परीक्षण चरण
     no_audio_warning: ऑडियो का पता नहीं चल रहा है। कृपया जांचें कि आपका माइक्रोफ़ोन जुड़ा हुआ है और ठीक से काम कर रहा है।
     pass: पास
@@ -150,6 +172,8 @@ hi:
     system_checks: प्रणाली जाँच
     task_duration: कार्य अवधि
     tasks: कार्य
+    testing_download_speed: डाउनलोड गति की जाँच...
+    testing_upload_speed: अपलोड गति की जाँच...
     time_commitment: समय की प्रतिबद्धता
     troubleshooting_guide: समस्या निवारण मार्गदर्शिका
     troubleshooting_guide_browser_fifth: सुनिश्चित करें कि आपके ब्राउज़र सेटिंग्स में LocalStorage सक्षम है।
@@ -171,6 +195,7 @@ hi:
     troubleshooting_guide_video_third: अनुमति बदलने के बाद पेज रिफ्रेश करें
     untimed: अनियंत्रित
     upload: अपलोड
+    upload_speed_below_minimum: अपलोड गति ${upload_speed} न्यूनतम आवश्यक अपलोड गति ${minimum_upload_speed} Mbps से कम है।
     video_and_audio: वीडियो और ऑडियो
     video_and_audio_recording: वीडियो और ऑडियो रिकॉर्डिंग
     video_check_fix_fifth: यदि आपका कैमरा बाहरी है, तो उसे अनप्लग करके फिर से कनेक्ट करने का प्रयास करें।
@@ -179,7 +204,9 @@ hi:
     video_check_fix_second: ब्राउज़र सेटिंग्स में जाएँ और इस साइट के लिए कैमरा एक्सेस सक्षम करें।
     video_check_fix_sixth: अपने ब्राउज़र को पुनः आरंभ करें और फिर से प्रयास करें।
     video_check_fix_third: कैमरे वाले अन्य अनुप्रयोग (ज़ूम, टीम्स आदि) बंद करें।
+    view_details: विवरण देखें
     webgl_api_fix_description_first: सुनिश्चित करें कि आपका ब्राउज़र WebGL का समर्थन करता है और यह सेटिंग्स में सक्षम है।
     webgl_api_fix_description_second: अपने ग्राफिक्स ड्राइवरों को नवीनतम संस्करण में अपडेट करें।
     webgl_api_fix_title: आपके ब्राउज़र में WebGL समर्थित या सक्षम नहीं है।
     webgl_api_support: WebGL एपीआई समर्थन
+    webgl_not_supported_detail: आप '%{browser_name}' का संस्करण '%{browser_version}' उपयोग कर रहे हैं, जो WebGL का समर्थन नहीं करता। अनुकूलता सुनिश्चित करने के लिए कृपया अपने ब्राउज़र को नवीनतम संस्करण में अपडेट करें।

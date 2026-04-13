@@ -929,6 +929,7 @@ hu:
         normalize_factor_scores: Faktorpontszámok normalizálása
         project_compact_completion_status_export: Kompakt befejezési állapot export
         project_completion_status_export: Befejezési állapot exportálása
+        regenerate_assessment_transcriptions: Az értékelési jegyzetek újragenerálása
         regenerate_campaign_reports: Kampányjelentések újragenerálása
         regenerate_report: Jelentés újragenerálása
         regenerate_threesixty_report: Újra generálás a Threesixty jelentést
@@ -4051,9 +4052,11 @@ hu:
       import_reports: Jelentések és értékelések importálása
   user_assessment:
     column:
+      completed_at: 'Befejezve:'
       dimension_id: Dimenzió azonosítója
       id: Felhasználói értékelési azonosító
       norm_id: Norma azonosító
+      started_at: Kezdődött
     drawer:
       copied: "%{name} a vágólapra másolva."
       copy: Másolás a vágólapra
@@ -4248,8 +4251,7 @@ hu:
     min_character: A válasznak legalább %{min} karaktert kell tartalmaznia.
     min_factor: A válasznak legalább %{min} tényező visszajelzést kell tartalmaznia.
     min_word: A válasznak legalább %{min} szót kell tartalmaznia
-    most:
-      one: Kérjük, válasszon legfeljebb %{max} választási lehetőség(eke)t
+    most: Kérjük, legfeljebb %{max} választást jelöljön meg
     must_rank_between: Kérjük, adjon meg egy értéket %{min} és %{max} között minden egyes elemhez. Az értékek nem ismétlődhetnek.
     must_select: Kérjük, válasszon a %{min} és %{max} közötti lehetőségek közül
     not_in_future: A kiválasztott dátum nem lehet a jövőben

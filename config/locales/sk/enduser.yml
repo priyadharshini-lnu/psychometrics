@@ -24,27 +24,43 @@ sk:
     browser_compatibility_check: Test kompatibility prehliadačov
     browser_compatibility_check_description: Overenie, či váš prehliadač podporuje všetky potrebné funkcie
     browser_compatibility_result: Kompatibilita s prehliadačmi
+    browser_compatible: Váš prehliadač %{browser_name} verzie %{browser_version} je kompatibilný s touto kampaňou.
+    browser_compatible_detail: Používate verziu prehliadača %{browser_name} %{browser_version}, ktorá spĺňa minimálne požiadavky pre túto kampaň.
+    browser_incompatible_detail: Používate verziu %{browser_name} %{browser_version}. Aktualizujte prosím svoj %{browser_name} na verziu %{min_browser_version}, aby ste zaistili kompatibilitu.
+    browser_not_compatible: Váš prehliadač %{browser_name} nie je kompatibilný s touto kampaňou. Pre optimálne fungovanie stránky použite najnovšie verzie prehliadačov Chrome, Firefox, Safari alebo Edge.
     browser_version_fix_description_first: 'Použite niektorý z podporovaných prehliadačov: Chrome, Firefox, Edge alebo Safari'
     browser_version_fix_title: Vaša verzia prehliadača nie je podporovaná.
     camera: Video a audio
     camera_access_blocked: Váš prehliadač zamietol alebo zablokoval prístup k kamere. Skontrolujte prosím oprávnenia vo vašom prehliadači.
     camera_check: Test kamery a mikrofónu
+    camera_check_abruptly_ended: Kamera bola náhle vypnutá. Zapnite kameru a skontrolujte to znovu.
     camera_check_description: Skontrolujte, či vaša kamera a mikrofón správne fungujú na účely nahrávania
+    camera_check_passed: Kontrola obrazu a zvuku prebehla úspešne
     camera_test_step: Krok na otestovanie obrazu a zvuku
     campaign: Kampaň
     chat_instructions: Pokyny pre chat
     check: Skontrolujte
     check_video_recording: Skontrolujte si prosím svoj videozáznam jeho prehrávaním.
     checking_browser_compatibility: Overovanie kompatibility prehliadača...
+    checking_latency: Kontrola latencie...
+    could_not_reach_servers: Nepodarilo sa pripojiť k našim serverom na overenie rýchlosti siete. Skontrolujte si pripojenie k internetu a skúste to znovu.
+    day: deň
+    day_plural: dni
+    details: Podrobnosti
     development: Vývoj
     direct_reportees: Priami podriadení
     download: Stiahnuť
     download_pdf: Stiahnuť PDF
+    download_speed_below_minimum: Rýchlosť sťahovania ${download_speed} je nižšia ako minimálna požadovaná rýchlosť sťahovania ${minimum_download_speed} Mbps
     environment_setup: Nastavenie prostredia
     error_uploading_video: Chyba pri nahrávaní videa
+    error_uploading_video_detail: Pri nahrávaní videa došlo k chybe
     fail: Neúspech
     follow_these_steps: Postupujte podľa týchto krokov, aby ste vyriešili problémy zistené pri kontrole systému
+    hide_details: Skryť podrobnosti
     home: Domov
+    hour: hodina
+    hour_plural: hodiny
     how_to_fix: 'Ako to napraviť:'
     idp_loading_fifth_step: Načítanie vývojových akcií zo šablóny
     idp_loading_first_step: Analýza vašej hodnotiacej správy
@@ -66,13 +82,18 @@ sk:
     lighthouse_assistant: Asistent majáka
     localstorage_fix_description_first: Uistite sa, že nepoužívate súkromný režim ani režim inkognito, pretože v týchto režimoch je funkcia localStorage často deaktivovaná.
     localstorage_fix_title: V tvojom prehliadači nie je povolené lokálne ukladanie
+    localstorage_not_enabled_detail: V tvojom prehliadači nie je povolené lokálne ukladanie. Uisti sa, že nie si v režime súkromného prehliadania, pretože v týchto režimoch je lokálne ukladanie často vypnuté.
     localstorage_support: Funkcia LocalStorage je povolená
     max_word_limit: Musí mať najviac %{max} slov
     media_recorder_api_fix_description_first: V nastaveniach prehliadača povolte JavaScript
     media_recorder_api_fix_description_second: Skontrolujte, či váš prehliadač podporuje rozhranie MediaRecorder API, a v prípade potreby ho aktualizujte na najnovšiu verziu.
     media_recorder_api_fix_title: Váš prehliadač nepodporuje rozhranie Media Recorder API.
+    media_recorder_api_not_supported_detail: Používate prehliadač %{browser_name} vo verzii %{browser_version}, ktorý nepodporuje rozhranie MediaRecorder API. Aktualizujte svoj prehliadač na najnovšiu verziu, aby ste zaistili kompatibilitu.
     media_recorder_api_support: Podpora rozhrania API MediaRecorder
     min_word_limit: Musí mať najmenej %{min} slov
+    minimum_speed_requirements: Pre túto kampaň je potrebná minimálna rýchlosť sťahovania ${minimum_download_speed} Mbps a minimálna rýchlosť odosielania ${minimum_upload_speed} Mbps.
+    minute: minúta
+    minute_plural: zápisnica
     my_plan: Môj plán
     network: Sieť
     network_check: Test rýchlosti internetu
@@ -82,6 +103,7 @@ sk:
     network_check_fix_fourth: Skúste použiť iné sieťové pripojenie, ak je k dispozícii
     network_check_fix_second: Presuňte sa bližšie k Wi-Fi routeru alebo sa pripojte pomocou ethernetového kábla
     network_check_fix_third: Reštartujte router/modem a skúste to znova
+    network_speed_meets_required_detail: Vaša rýchlosť internetu spĺňa minimálne požiadavky kampane
     network_test_step: Krok testovania siete
     no_audio_warning: Nebol zaznamenaný žiadny zvuk. Skontrolujte, či je mikrofón pripojený a funguje správne.
     pass: Preskočiť
@@ -150,6 +172,8 @@ sk:
     system_checks: Kontroly systému
     task_duration: Trvanie úlohy
     tasks: Úlohy
+    testing_download_speed: Testovanie rýchlosti sťahovania...
+    testing_upload_speed: Testovanie rýchlosti odosielania...
     time_commitment: Časová náročnosť
     troubleshooting_guide: Príručka na riešenie problémov
     troubleshooting_guide_browser_fifth: Uistite sa, že máte v nastaveniach prehliadača povolenú funkciu LocalStorage
@@ -171,6 +195,7 @@ sk:
     troubleshooting_guide_video_third: Po zmene oprávnení obnovte stránku
     untimed: Bez časového obmedzenia
     upload: Nahrať
+    upload_speed_below_minimum: Rýchlosť odosielania ${upload_speed} je nižšia ako minimálna požadovaná rýchlosť odosielania ${minimum_upload_speed} Mbps
     video_and_audio: Video a audio
     video_and_audio_recording: Nahrávanie videa a zvuku
     video_check_fix_fifth: Ak máte externý fotoaparát, skúste ho odpojiť a znovu pripojiť
@@ -179,7 +204,9 @@ sk:
     video_check_fix_second: Prejdite do nastavení prehliadača a povolte tejto stránke prístup k kamere
     video_check_fix_sixth: Reštartujte prehliadač a skúste to znova
     video_check_fix_third: Zatvorte ostatné aplikácie, ktoré používajú kameru (Zoom, Teams atď.)
+    view_details: Zobraziť podrobnosti
     webgl_api_fix_description_first: Uistite sa, že váš prehliadač podporuje WebGL a že je táto funkcia v nastaveniach zapnutá
     webgl_api_fix_description_second: Aktualizujte ovládače grafickej karty na najnovšiu verziu
     webgl_api_fix_title: Váš prehliadač nepodporuje alebo nemá povolenú technológiu WebGL
     webgl_api_support: Podpora rozhrania WebGL API
+    webgl_not_supported_detail: Používate prehliadač %{browser_name} vo verzii %{browser_version}, ktorý nepodporuje WebGL. Aktualizujte prosím prehliadač na najnovšiu verziu, aby ste zaistili kompatibilitu.

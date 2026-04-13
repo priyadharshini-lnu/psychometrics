@@ -4518,7 +4518,6 @@ it:
         new:
           header: Importazione di traduzioni
       import:
-        successfully: Le traduzioni sono state importate con successo
         successfully_scheduled: L'importazione delle traduzioni è stata pianificata correttamente.
       reports:
         export: Traduzioni per l'esportazione

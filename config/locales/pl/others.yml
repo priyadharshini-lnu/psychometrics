@@ -929,6 +929,7 @@ pl:
         normalize_factor_scores: Normalizowanie wyników czynników
         project_compact_completion_status_export: Eksport stanu ukończenia kompaktowego
         project_completion_status_export: Status ukończenia Eksport
+        regenerate_assessment_transcriptions: Odśwież transkrypcje ocen
         regenerate_campaign_reports: Ponowne generowanie raportów kampanii
         regenerate_report: Ponowne generowanie raportu
         regenerate_threesixty_report: Raport Regenerate Threesixty
@@ -4068,9 +4069,11 @@ pl:
       import_reports: Importowanie raportów i ocen
   user_assessment:
     column:
+      completed_at: Zakończono o godz.
       dimension_id: Identyfikator wymiaru
       id: Identyfikator oceny użytkownika
       norm_id: Identyfikator normy
+      started_at: Rozpoczęto
     drawer:
       copied: "%{name} skopiowane do schowka."
       copy: Kopiuj do schowka

@@ -44,6 +44,8 @@ sl:
     copy: Kopiraj
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne
+    custom_acknowledgment_text: Besedilo zahvale po meri
+    custom_acknowledgment_text_required: Za vlogo »Podatki krmilnika« je potrebno vnesti lastno besedilo potrditve
     custom_consent_text: Besedilo soglasja po meri
     custom_consent_text_required: Za vlogo upravljavca podatkov je potrebno prilagojeno besedilo soglasja.
     data_role: Vloga podatkov
@@ -83,6 +85,7 @@ sl:
     maintenance_time_remaining: Preostali čas
     maintenance_upcoming_description: Na spletni strani %{date} bomo izvedli redno vzdrževanje, ki bo trajalo približno %{duration}, da bi izboljšali vašo izkušnjo. V tem času ne boste mogli dostopati do dodeljenih nalog ali jih opraviti. Zahvaljujemo se vam za potrpežljivost.
     maintenance_upcoming_title: Prihajajoče vzdrževanje
+    manage_cookies: Upravljanje piškotkov
     media_id: Medijska identifikacijska številka
     media_preview: Predogled za medije
     media_question_transcriptions: Prepisi vprašanj medijev
@@ -141,8 +144,13 @@ sl:
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
     table:
       entries:
-        selected: Izbrana 1 vrstica
-        total: 'Skupaj : 1'
+        selected:
+          one: Izbran je 1 vrstica
+          other: Izbranih je {{count}} vrstic
+        total:
+          one: 'Skupaj: 1'
+          other: 'Skupaj: {{count}}'
+          zero: 'Skupaj: 0'
     terms_conditions_privacy: Izjava o zasebnosti
     tools: Orodja
     transcription: Transkripcija

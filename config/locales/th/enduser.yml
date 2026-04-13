@@ -24,27 +24,43 @@ th:
     browser_compatibility_check: การทดสอบความเข้ากันได้ของเบราว์เซอร์
     browser_compatibility_check_description: ตรวจสอบว่าเบราว์เซอร์ของคุณรองรับคุณสมบัติที่ต้องการทั้งหมดหรือไม่
     browser_compatibility_result: ความเข้ากันได้ของเบราว์เซอร์
+    browser_compatible: เบราว์เซอร์ของคุณ %{browser_name} เวอร์ชัน %{browser_version} สามารถใช้งานกับแคมเปญนี้ได้
+    browser_compatible_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} ซึ่งตรงตามข้อกำหนดขั้นต่ำสำหรับแคมเปญนี้
+    browser_incompatible_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} กรุณาอัปเดต %{browser_name} ของคุณเป็นรุ่น %{min_browser_version} เพื่อให้แน่ใจว่ามีความเข้ากันได้
+    browser_not_compatible: เบราว์เซอร์ของคุณ %{browser_name} ไม่รองรับแคมเปญนี้ กรุณาใช้เวอร์ชันล่าสุดของ Chrome, Firefox, Safari หรือ Edge เพื่อประสบการณ์ที่ดีที่สุด
     browser_version_fix_description_first: 'ใช้เบราว์เซอร์ที่รองรับ: Chrome, Firefox, Edge หรือ Safari'
     browser_version_fix_title: เวอร์ชันเบราว์เซอร์ของคุณไม่รองรับ
     camera: วิดีโอและเสียง
     camera_access_blocked: การเข้าถึงกล้องถูกปฏิเสธหรือถูกบล็อกโดยเบราว์เซอร์ของคุณ โปรดตรวจสอบสิทธิ์การเข้าถึงของเบราว์เซอร์ของคุณ
     camera_check: ทดสอบกล้องและไมโครโฟน
+    camera_check_abruptly_ended: กล้องถูกปิดอย่างกะทันหัน กรุณาเปิดกล้องของคุณและทำการตรวจสอบใหม่อีกครั้ง
     camera_check_description: ตรวจสอบให้แน่ใจว่ากล้องและไมโครโฟนของคุณทำงานได้อย่างถูกต้องสำหรับการบันทึก
+    camera_check_passed: การตรวจสอบวิดีโอและเสียงผ่านเรียบร้อยแล้ว
     camera_test_step: ขั้นตอนการทดสอบวิดีโอและเสียง
     campaign: รณรงค์
     chat_instructions: คำแนะนำในการแชท
     check: ตรวจสอบ
     check_video_recording: กรุณาตรวจสอบการบันทึกวิดีโอของคุณโดยการเล่นกลับ
     checking_browser_compatibility: กำลังตรวจสอบความเข้ากันได้ของเบราว์เซอร์...
+    checking_latency: กำลังตรวจสอบความหน่วง...
+    could_not_reach_servers: ไม่สามารถติดต่อเซิร์ฟเวอร์ของเราเพื่อตรวจสอบความเร็วเครือข่ายได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองใหม่อีกครั้ง
+    day: วัน
+    day_plural: วัน
+    details: รายละเอียด
     development: การพัฒนา
     direct_reportees: ผู้รายงานโดยตรง
     download: ดาวน์โหลด
     download_pdf: ดาวน์โหลดไฟล์ PDF
+    download_speed_below_minimum: ความเร็วในการดาวน์โหลด ${download_speed} ต่ำกว่าความเร็วในการดาวน์โหลดขั้นต่ำที่ต้องการ ${minimum_download_speed} Mbps
     environment_setup: การตั้งค่าสภาพแวดล้อม
     error_uploading_video: เกิดข้อผิดพลาดในการอัปโหลดวิดีโอ
+    error_uploading_video_detail: เกิดข้อผิดพลาดขณะอัปโหลดวิดีโอ
     fail: ล้มเหลว
     follow_these_steps: ทำตามขั้นตอนเหล่านี้เพื่อแก้ไขปัญหาที่ตรวจพบระหว่างการตรวจสอบระบบ
+    hide_details: ซ่อนรายละเอียด
     home: แดชบอร์ด
+    hour: ชั่วโมง
+    hour_plural: ชั่วโมง
     how_to_fix: 'วิธีแก้ไข:'
     idp_loading_fifth_step: การดึงการดําเนินการพัฒนาจากเทมเพลต
     idp_loading_first_step: การวิเคราะห์รายงานการประเมินของคุณ
@@ -66,13 +82,18 @@ th:
     lighthouse_assistant: ผู้ช่วยประภาคาร
     localstorage_fix_description_first: โปรดตรวจสอบว่าคุณไม่ได้อยู่ในโหมดส่วนตัว/ไม่ระบุตัวตน เนื่องจาก localStorage มักถูกปิดใช้งานในโหมดเหล่านี้
     localstorage_fix_title: การเก็บข้อมูลในเครื่องไม่ได้รับการเปิดใช้งานในเบราว์เซอร์ของคุณ
+    localstorage_not_enabled_detail: การเก็บข้อมูลในเครื่องไม่ได้เปิดใช้งานในเบราว์เซอร์ของคุณ โปรดตรวจสอบว่าคุณไม่ได้อยู่ในโหมดส่วนตัว/ไม่ระบุตัวตน เนื่องจาก localStorage มักถูกปิดใช้งานในโหมดเหล่านี้
     localstorage_support: เปิดใช้งาน LocalStorage
     max_word_limit: ต้องมีไม่เกิน %{max} คำ
     media_recorder_api_fix_description_first: เปิดใช้งาน JavaScript ในการตั้งค่าเบราว์เซอร์ของคุณ
     media_recorder_api_fix_description_second: ตรวจสอบว่าเบราว์เซอร์ของคุณรองรับ MediaRecorder API และอัปเดตเป็นเวอร์ชันล่าสุดหากจำเป็น
     media_recorder_api_fix_title: API บันทึกสื่อไม่รองรับในเบราว์เซอร์ของคุณ
+    media_recorder_api_not_supported_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} ซึ่งไม่รองรับ MediaRecorder API กรุณาอัปเดตเบราว์เซอร์ของคุณเป็นเวอร์ชันล่าสุดเพื่อให้แน่ใจว่าใช้งานได้
     media_recorder_api_support: การสนับสนุน API ของ MediaRecorder
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
+    minimum_speed_requirements: ความเร็วในการดาวน์โหลดขั้นต่ำ ${minimum_download_speed} Mbps และความเร็วในการอัปโหลดขั้นต่ำ ${minimum_upload_speed} Mbps ที่จำเป็นสำหรับแคมเปญนี้
+    minute: นาที
+    minute_plural: นาที
     my_plan: แผนของฉัน
     network: เครือข่าย
     network_check: ทดสอบความเร็วอินเทอร์เน็ต
@@ -82,6 +103,7 @@ th:
     network_check_fix_fourth: ลองใช้การเชื่อมต่อเครือข่ายอื่นหากมี
     network_check_fix_second: ขยับเข้าใกล้เราเตอร์ Wi-Fi ของคุณหรือเชื่อมต่อผ่านสายเคเบิลอีเธอร์เน็ต
     network_check_fix_third: รีสตาร์ทเราเตอร์/โมเด็มของคุณแล้วลองอีกครั้ง
+    network_speed_meets_required_detail: ความเร็วอินเทอร์เน็ตของคุณตรงตามข้อกำหนดขั้นต่ำสำหรับแคมเปญ
     network_test_step: ขั้นตอนการทดสอบเครือข่าย
     no_audio_warning: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
     pass: ผ่าน
@@ -150,6 +172,8 @@ th:
     system_checks: การตรวจสอบระบบ
     task_duration: ระยะเวลาของงาน
     tasks: งาน
+    testing_download_speed: กำลังทดสอบความเร็วในการดาวน์โหลด...
+    testing_upload_speed: กำลังทดสอบความเร็วในการอัปโหลด...
     time_commitment: เวลาที่ต้องใช้
     troubleshooting_guide: คู่มือการแก้ไขปัญหา
     troubleshooting_guide_browser_fifth: ตรวจสอบให้แน่ใจว่า LocalStorage เปิดใช้งานแล้วในการตั้งค่าเบราว์เซอร์ของคุณ
@@ -171,6 +195,7 @@ th:
     troubleshooting_guide_video_third: รีเฟรชหน้าหลังจากเปลี่ยนสิทธิ์
     untimed: ไม่จำกัดเวลา
     upload: อัปโหลด
+    upload_speed_below_minimum: ความเร็วในการอัปโหลด ${upload_speed} ต่ำกว่าความเร็วในการอัปโหลดขั้นต่ำที่กำหนดไว้ที่ ${minimum_upload_speed} Mbps
     video_and_audio: วิดีโอและเสียง
     video_and_audio_recording: การบันทึกวิดีโอและเสียง
     video_check_fix_fifth: ลองถอดปลั๊กและเสียบกล้องใหม่หากเป็นกล้องภายนอก
@@ -179,7 +204,9 @@ th:
     video_check_fix_second: ไปที่การตั้งค่าเบราว์เซอร์และเปิดใช้งานการเข้าถึงกล้องสำหรับเว็บไซต์นี้
     video_check_fix_sixth: รีสตาร์ทเบราว์เซอร์ของคุณแล้วลองอีกครั้ง
     video_check_fix_third: ปิดแอปพลิเคชันอื่นที่ใช้กล้อง (Zoom, Teams, ฯลฯ)
+    view_details: ดูรายละเอียด
     webgl_api_fix_description_first: ตรวจสอบให้แน่ใจว่าเบราว์เซอร์ของคุณรองรับ WebGL และเปิดใช้งานแล้วในตั้งค่า
     webgl_api_fix_description_second: อัปเดตไดรเวอร์กราฟิกของคุณเป็นเวอร์ชันล่าสุด
     webgl_api_fix_title: WebGL ไม่รองรับหรือเปิดใช้งานในเบราว์เซอร์ของคุณ
     webgl_api_support: การรองรับ WebGL API
+    webgl_not_supported_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} ซึ่งไม่รองรับ WebGL กรุณาอัปเดตเบราว์เซอร์ของคุณเป็นเวอร์ชันล่าสุดเพื่อให้แน่ใจว่าใช้งานได้

@@ -8,6 +8,7 @@ fr:
     add_campaign_admin: Ajouter un administrateur de campagne
     add_client_admin: Ajouter un administrateur client
     add_indicator: Ajouter un indicateur
+    add_new_folder: Ajouter un nouveau dossier
     add_project: Ajouter un projet
     add_project_admin: Ajouter un administrateur de projet
     add_threesixty_campaign_admin: Ajouter un administrateur de campagne
@@ -85,6 +86,19 @@ fr:
     ai_scoring_appoval_responses: Réponses de l'IA
     ai_scoring_appoval_score_not_applicable: Score non applicable
     ai_scoring_approval: Approbation du score IA
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Vous pouvez accéder aux validations des notes via le lien suivant :'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Les résultats suivants ont été approuvés.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Vous recevez cet e-mail car vous avez été ajouté comme contact chargé de recevoir les notifications d'approbation des notes.
+    ai_scoring_approval_digest_mailer_approved_subject: Résultats approuvés
+    ai_scoring_approval_digest_mailer_assessment_label: 'Évaluation : %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Les partitions suivantes sont prêtes à être validées et nécessitent votre intervention.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Vous recevez cet e-mail car vous avez été désigné comme validateur pour les évaluations qui doivent être approuvées.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Résultats en attente de validation
+    ai_scoring_approval_digest_mailer_campaign_label: 'Campagne : %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Nombre de buts marqués : %{value}'
+    ai_scoring_approval_digest_mailer_dear: Chère %{name},
+    ai_scoring_approval_digest_mailer_link_text: Approbations de notation
+    ai_scoring_approval_digest_mailer_project_label: 'Projet : %{value}'
     ai_scoring_approval_settings: Paramètres d'approbation des scores IA
     ai_scoring_approval_stale_description: Les modifications apportées à la configuration depuis la dernière exécution ont peut-être modifié le score. Effectuez un nouveau calcul pour l'actualiser en utilisant les derniers paramètres.
     ai_scoring_approval_stale_title: Le score est peut-être obsolète
@@ -136,6 +150,7 @@ fr:
     bulk_assets_modal_title: Télécharger des fichiers CSV et ZIP
     bulk_upload_ai_artifacts: Téléversement massif d’artefacts IA
     campaign_ai_artifact_updated_successfully: Les artefacts de l’IA de la campagne ont été mis à jour avec succès
+    campaign_ai_artifacts_instruction_templating_tooltip: Vous pouvez utiliser des instructions avancées en recourant à la création de modèles d'invite avec la syntaxe Liquid et les variables disponibles. Consultez la documentation pour plus de détails.
     campaign_ai_artifacts_results_export_details: Les artefacts de l'IA de campagne ont généré des résultats
     campaign_assessment_actions_disable_caching: Désactiver la mise en cache d’évaluation
     campaign_assessment_actions_enable_caching: Activer la mise en cache par évaluation
@@ -161,6 +176,24 @@ fr:
     campaign_assessment_modals_enable_caching_title: Activer la mise en cache des évaluations ?
     campaign_factors: Facteurs de campagne
     campaign_name: Nom de la campagne
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Référence du rapport externe
+          language_id: Code de langue
+          norm: norme
+          norm_id: Référence de la norme
+          suitability_id: Code d'adéquation
+        labels:
+          assessment_ids: Références d'évaluation
+          available_languages: Langues disponibles
+          campaign_report_id: Référence du rapport de campagne
+          check_details: Voir les détails
+          default_language: Langue par défaut
+          external_settings: Paramètres externes
+          provider: Fournisseur
+          report_pdf_status: État du rapport PDF
+          user_report_id: Identifiant du rapport utilisateur
     campaign_templates: Modèles de campagne
     campaign_user_job_roles_cannot_be_same: Le poste visé doit être différent du poste actuel.
     campaigns: Campagnes
@@ -183,7 +216,9 @@ fr:
     configure_model_answer_title: Configurer les réponses types et les mots-clés
     confirm_remove_admin: Êtes-vous sûr de vouloir supprimer l'utilisateur administrateur dont l'adresse électronique est "%{email}" ?
     copied: Copié
+    copied_url_success: L'URL a été copiée dans le presse-papiers
     copy_ai_artifacts: Copier les artefacts IA
+    copy_image_url: Copier l'URL de l'image
     country: Pays
     create_client: Créer un client
     create_indicator: Créer un indicateur
@@ -221,6 +256,7 @@ fr:
       thursday: jeudi
       tuesday: mardi
       wednesday: mercredi
+    dimension_translations_export_scheduled: Exportation des traductions prévue pour la dimension «%{name}».
     dimensions: Dimensions
     done: Fait
     done_tooltip: Aucune autre évaluation ne peut être soumise pour cet utilisateur, car celle-ci est marquée comme effectuée par %{marked_by}
@@ -228,9 +264,11 @@ fr:
     duration: Durée
     edit_campaign_admin: Modifier l'administration de la campagne
     edit_client_admin: Modifier l'administration du client
+    edit_folder: Modifier le dossier
     edit_indicator: Modifier l'indicateur
     edit_job_roles: Modifier les rôles professionnels
     edit_level: Modifier le niveau
+    edit_media: Modifier les médias
     edit_permission_denied: Vous n’avez pas la permission de modifier le '%{name}' admin
     edit_project_admin: Modifier l'administration du projet
     edit_threesixty_campaign_admin: Modifier l'administration de la campagne
@@ -272,6 +310,8 @@ fr:
     feature_global_skills_description: Accédez à la bibliothèque mondiale de compétences pour les évaluations
     feature_idp_description: Activer la planification du développement individuel pour les participants
     feature_sms_notification_description: Activer les notifications par SMS pour les invitations et les rappels de campagne
+    file_size_must_be_less_than_mb: Le fichier {{name}} dépasse la taille maximale de {{max_size_mb}} Mo
+    file_upload_failed: Échec du téléchargement de {{name}}
     fill_empty_score_msg: Remplissez tous les scores finaux avant de sauvegarder.
     final_score_empty_err_msg: Le score final d'%{factor_name} ne peut pas être vide.
     final_score_empty_msg: Le compte final ne peut pas être vide.
@@ -351,6 +391,8 @@ fr:
     maintenance_settings_description: Gérer les fenêtres et les paramètres de maintenance du système
     manager_approval_required: Rapport pour %{user} nécessite l’approbation du manager avant téléchargement
     max_value: Valeur maximale
+    media_files_label: Fichiers
+    media_library: Bibliothèque multimédia
     messages: Messages
     mhs: MHS
     mhs_assessment: Évaluation MHS
@@ -370,6 +412,7 @@ fr:
     name: Nom
     name_max_length: Le nom ne peut pas dépasser %{length} caractères.
     name_required: Le nom est requis
+    new_folder: Nouveau dossier
     no_file_selected: Aucun fichier sélectionné
     no_notifications: Aucune notification
     no_status: Sans statut
@@ -832,9 +875,15 @@ fr:
     questions: Questions
     range_min_max: "%{min}S SUR LA GAMME - %{max}"
     reflection_questions: Questions de réflexion
+    regenerate_transcriptions_action: Recréer les transcriptions
+    regenerate_transcriptions_confirm_content: Êtes-vous sûr de vouloir régénérer les transcriptions pour cette évaluation ? Cela entraînera un nouveau traitement de toutes les transcriptions incomplètes.
+    regenerate_transcriptions_confirm_title: Recréer les transcriptions
+    regenerate_transcriptions_scheduled: La tâche de régénération des transcriptions a été planifiée avec succès
     registration_codes: Codes d'enregistrement
     registration_settings: Paramètres d'enregistrement
     remove_children_to_change_type: Supprimer tous les enfants pour changer de type
+    remove_confirmation: Êtes-vous sûr de vouloir supprimer cet élément ?
+    remove_successfully: Le fichier multimédia a été supprimé avec succès.
     report_approvals: Approbation des rapports
     report_condition_not_met: Nécessite %{required} %{relationship} évaluation(s), mais n’a que %{actual}
     report_conditions_not_met_detailed: Le rapport pour %{user} ne remplit pas les conditions de disponibilité. %{conditions}
@@ -938,7 +987,9 @@ fr:
     scoring_approval_approvers: Approbateurs
     scoring_approval_assessment: Évaluation
     scoring_approval_assessor_users: Utilisateurs évaluateurs
+    scoring_approval_do_not_send_notifications: Ne pas envoyer de notifications
     scoring_approval_modal_title: Paramètres d'approbation des notes
+    scoring_approval_notification_users: Utilisateurs de la notification d'approbation
     scoring_approval_remove_modal_success: 'Le paramètre d''approbation pour l''identifiant d''évaluation : %{assessmentId} a été supprimé avec succès.'
     scoring_approval_remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant d''évaluation : %{assessmentId} ?'
     scoring_supported_only_for_ai_questions: La notation n'est autorisée que pour les questions activées par l'IA pour le facteur actuellement sélectionné.
@@ -995,7 +1046,12 @@ fr:
     translated_to: 'Traduit en :'
     translated_with_ai_notice: Traduit par l'IA
     translation_assistant_not_configured: Assistant de traduction non configuré
+    translations:
+      title: Traductions
     update_success: la mise à jour de %{readableResourceName} a été effectuée avec succès
+    upload: Télécharger
+    upload_media: Télécharger un fichier multimédia
+    upload_required: Veuillez ajouter au moins un fichier à télécharger
     upload_success: Téléversement réussi
     user_report_events: Rapport de l'utilisateur Événements
     users: Utilisateurs
@@ -1004,6 +1060,7 @@ fr:
     very_high: Très élevé
     very_low: Très faible
     view_licenses: Voir les licences
+    wait_for_upload_completion: Veuillez patienter jusqu'à ce que tous les fichiers aient fini de se télécharger
     waiting: Attente
     weight: Poids
     what_to_look_for: Ce qu'il faut rechercher

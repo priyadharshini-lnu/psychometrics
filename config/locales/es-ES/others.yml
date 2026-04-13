@@ -929,6 +929,7 @@ es-ES:
         normalize_factor_scores: Normalizar las puntuaciones de los factores
         project_compact_completion_status_export: Exportación del estado de finalización compacto
         project_completion_status_export: Estado de finalización Exportar
+        regenerate_assessment_transcriptions: Regenerar transcripciones de evaluaciones
         regenerate_campaign_reports: Regenerar informes de campaña
         regenerate_report: Informe Regenerar
         regenerate_threesixty_report: Informe Regenerar Threesixty
@@ -1019,7 +1020,6 @@ es-ES:
       new_response: Nueva respuesta
       next_assessment: Pasar a la siguiente evaluación
       pending_tasks:
-        many:
         one: Tiene 1 tarea pendiente
         other: Tiene %{count} tareas pendientes
       re_evaluate: Haga clic aquí para volver a evaluar
@@ -1993,8 +1993,6 @@ es-ES:
     invalid_captcha: El captcha introducido no es válido.
     invalid_security_question: La respuesta a la pregunta de seguridad no es válida.
     invitations:
-      confirmation_instructions:
-        subject: Instrucciones de confirmación
       edit:
         confirm_password_label: Confirmar contraseña
         header: Establezca su contraseña
@@ -2003,62 +2001,13 @@ es-ES:
         submit: Establecer nueva contraseña
         submit_button: Establecer mi contraseña
         title: Crear contraseña
-      invitation_instructions:
-        body: 'Hola %{name}, Se le ha añadido a Lighthouse como administrador de la siguiente sección
-
-          '
-        login: Iniciar sesión en Lighthouse
-        sections:
-          campaign: 'Campaña: %{section_name}'
-          client: 'Cliente Tenencia: %{section_name}'
-          project: 'Proyecto: %{section_name}'
-        subject: Invitación a Lighthouse
       invitation_removed: Tu invitación ha sido retirada.
       invitation_token_invalid: El código de invitación proporcionado no es válido
-      mailer:
-        accept: Haga clic aquí para aceptar la invitación.
-        admin_invitation_instructions:
-        body: 'Hola %{name}, Ha sido invitado a acceder al panel de administración de Lighthouse - The Talent Enterprise assessment platform. %{accept} O puede ignorar este correo con total seguridad. Por favor, no comparta sus credenciales de acceso con nadie.
-
-          '
-        copyright:
-          text: Lighthouse. Todos los derechos reservados
-        powered_by:
-          text: Powered by Lighthouse.
-        subject: Invitación a Lighthouse
       new:
         header: Enviar invitación
         submit_button: Enviar una invitación
       no_invitations_remaining: No quedan invitaciones
-      password_change:
-        body: 'Hola %{name}! Su contraseña ha sido cambiada. Si no ha realizado esta solicitud, póngase en contacto con el servicio de asistencia inmediatamente en mte.support@mercer.com
-
-          '
-        regards: 'Saludos, Equipo Lighthouse
-
-          '
-        subject: Tu contraseña de Lighthouse ha cambiado
-      reset_password_instructions:
-        body: 'Hola %{name}! Alguien ha solicitado un enlace para cambiar su contraseña. Puede hacerlo a través del enlace que aparece a continuación.
-
-          '
-        change_password: Cambiar contraseña
-        footer: Si no lo has solicitado, puedes ignorar este correo. Tu contraseña no cambiará hasta que accedas al enlace anterior y crees una nueva.
-        regards: 'Saludos, Equipo Lighthouse
-
-          '
-        subject: Instrucciones para restablecer la contraseña
       send_instructions: Se ha enviado un correo electrónico de invitación a %{email}.
-      unlock_instructions:
-        body: 'Hola %{name}! Tu cuenta ha sido bloqueada debido a un número excesivo de intentos fallidos de inicio de sesión. Haz clic en el siguiente enlace para desbloquear tu cuenta:
-
-          '
-        footer: Si no lo has solicitado, puedes ignorar este correo. Tu contraseña no cambiará hasta que accedas al enlace anterior y crees una nueva.
-        regards: 'Saludos, Equipo Lighthouse
-
-          '
-        subject: Instrucciones para desbloquear su cuenta
-        unlock_account: Desbloquear mi cuenta
       updated: Su contraseña se ha establecido correctamente. Ya ha iniciado sesión.
       updated_not_active: Su contraseña se ha establecido correctamente.
     mailer:
@@ -4127,9 +4076,11 @@ es-ES:
       import_reports: Importar informes y evaluaciones
   user_assessment:
     column:
+      completed_at: Finalizado en
       dimension_id: Dimensión ID
       id: ID de evaluación del usuario
       norm_id: Norma ID
+      started_at: 'Fecha de inicio:'
     drawer:
       copied: "%{name} copiado al portapapeles."
       copy: Copiar al portapapeles
@@ -4335,7 +4286,6 @@ es-ES:
     required: Responda esta pregunta
     text: Su respuesta no debe contener cifras
     title:
-      many:
       one: Hay un error, por favor compruebe sus respuestas
       other: Hay %{count} errores, por favor compruebe sus respuestas
     user_self_skill_rating_disabled: La autocalificación está desactivada para esta plantilla

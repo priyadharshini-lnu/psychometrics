@@ -44,6 +44,8 @@ fr:
     copy: Copier
     created_at: Créé à
     created_date: Date de création
+    custom_acknowledgment_text: Texte de remerciement personnalisé
+    custom_acknowledgment_text_required: Un texte de confirmation personnalisé est requis pour le rôle « Données du contrôleur »
     custom_consent_text: Texte de consentement personnalisé
     custom_consent_text_required: Un texte de consentement personnalisé est requis pour le rôle de contrôleur des données.
     data_role: Rôle des données
@@ -83,6 +85,7 @@ fr:
     maintenance_time_remaining: Temps restant
     maintenance_upcoming_description: Nous effectuerons une maintenance programmée sur %{date} pendant environ %{duration} afin d'améliorer votre expérience. Pendant cette période, vous ne pourrez ni accéder aux tâches qui vous ont été assignées ni les accomplir. Nous vous remercions de votre patience.
     maintenance_upcoming_title: Maintenance à venir
+    manage_cookies: Gérer les cookies
     media_id: Identifiant média
     media_preview: Aperçu pour les médias
     media_question_transcriptions: Transcriptions des questions des médias

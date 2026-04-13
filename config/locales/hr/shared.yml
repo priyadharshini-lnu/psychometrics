@@ -44,6 +44,8 @@ hr:
     copy: Kopiraj
     created_at: Kreirano u
     created_date: Datum izrade
+    custom_acknowledgment_text: Prilagođeni tekst zahvale
+    custom_acknowledgment_text_required: Prilagođeni tekst zahvale potreban je za ulogu podataka kontrolera.
     custom_consent_text: Prilagođeni tekst pristanka
     custom_consent_text_required: Prilagođeni tekst pristanka je obavezan za ulogu podataka kontrolera.
     data_role: Uloga podataka
@@ -83,6 +85,7 @@ hr:
     maintenance_time_remaining: Preostalo vrijeme
     maintenance_upcoming_description: Obavit ćemo planirano održavanje na %{date}u otprilike od %{duration} do  kako bismo poboljšali vaše iskustvo. Tijekom tog razdoblja nećete moći pristupiti niti dovršiti nijedan dodijeljeni zadatak. Cijenimo vaše strpljenje.
     maintenance_upcoming_title: Nadolazeće održavanje
+    manage_cookies: Upravljanje kolačićima
     media_id: ID medija
     media_preview: Pregled za medije
     media_question_transcriptions: Transkripti medijskih pitanja
@@ -141,8 +144,13 @@ hr:
     switch_to_laptop_or_desktop: Prebacite na prijenosno ili stolno računalo
     table:
       entries:
-        selected: Odabran 1 redak
-        total: 'Ukupno : 1'
+        selected:
+          one: Odabran je 1 redak
+          other: "{{count}} redaka odabrano"
+        total:
+          one: 'Ukupno : 1'
+          other: 'Ukupno : {{count}}'
+          zero: 'Ukupno : 0'
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alati
     transcription: Transkripcija

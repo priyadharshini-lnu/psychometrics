@@ -929,6 +929,7 @@ zh:
         normalize_factor_scores: 因子得分标准化
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
+        regenerate_assessment_transcriptions: 重新生成评估记录
         regenerate_campaign_reports: 再生活动报告
         regenerate_report: 再生报告
         regenerate_threesixty_report: 再生三六零报告
@@ -2012,8 +2013,6 @@ zh:
         subject: Lighthouse 邀请函
       confirmation_instructions:
         subject: 确认说明
-      copyright:
-        text: Lighthouse. 版权所有
       invitation_instructions:
         body: '您好 %{name}，您已被添加到 Lighthouse，成为以下部分的管理员 '
         login: 登录 Lighthouse
@@ -2026,8 +2025,6 @@ zh:
         body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
         regards: 'Lighthouse 团队 '
         subject: 您的Lighthouse 密码已更改
-      powered_by:
-        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好 %{name}！有人请求提供更改密码的链接。 您可以通过下面的链接进行更改。 '
         change_password: 更改密码
@@ -2703,13 +2700,7 @@ zh:
     my_plan:
       development_plan: 发展计划
       graphs:
-        behavioural: 行为
         categories: 类别
-        learning_on_job: 在职 (%{count})
-        learning_others: 向他人学习 (%{count})
-        learning_structured: 结构化学习（%{count})
-        other: 其他
-        technical: 技术
       save_skills: 保存技能
     new_comments: 新评论
     no_plan_changes_found: 自你上次审查以来，计划没有任何修改。
@@ -4057,9 +4048,11 @@ zh:
       import_reports: 导入报告和评估
   user_assessment:
     column:
+      completed_at: 完成于
       dimension_id: 尺寸 ID
       id: 用户评估 ID
       norm_id: 常模 ID
+      started_at: 始于
     drawer:
       copied: "%{name} 已复制到剪贴板。"
       copy: 复制到剪贴板

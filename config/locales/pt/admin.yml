@@ -8,6 +8,7 @@ pt:
     add_campaign_admin: Adicionar administrador da campanha
     add_client_admin: Adicionar administrador de cliente
     add_indicator: Adicionar indicador
+    add_new_folder: Adicionar nova pasta
     add_project: Adicionar projeto
     add_project_admin: Adicionar administrador de projeto
     add_threesixty_campaign_admin: Adicionar administrador da campanha
@@ -85,6 +86,19 @@ pt:
     ai_scoring_appoval_responses: Respostas da IA
     ai_scoring_appoval_score_not_applicable: Pontuação não aplicável
     ai_scoring_approval: Aprovação da pontuação da IA
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Pode aceder às aprovações de pontuação através do seguinte link:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Foram aprovadas as seguintes pontuações.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Está a receber este e-mail porque foi adicionado como contacto para receber notificações de aprovação de pontuação.
+    ai_scoring_approval_digest_mailer_approved_subject: Resultados aprovados
+    ai_scoring_approval_digest_mailer_assessment_label: 'Avaliação: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: As seguintes pontuações estão prontas para aprovação e requerem a sua intervenção.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Está a receber este e-mail porque foi adicionado como aprovador das pontuações, que requerem aprovação.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Pontuações pendentes de aprovação
+    ai_scoring_approval_digest_mailer_campaign_label: 'Campanha: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Contagem de golos: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Prezada %{name},
+    ai_scoring_approval_digest_mailer_link_text: Aprovações de pontuação
+    ai_scoring_approval_digest_mailer_project_label: 'Projeto: %{value}'
     ai_scoring_approval_settings: Configurações de aprovação de pontuação de IA
     ai_scoring_approval_stale_description: As atualizações de configuração realizadas desde a última execução podem ter alterado a pontuação. Refaça a pontuação para atualizá-la utilizando as configurações mais recentes.
     ai_scoring_approval_stale_title: A pontuação pode estar desatualizada
@@ -136,6 +150,7 @@ pt:
     bulk_assets_modal_title: Carregar arquivos CSV e ZIP
     bulk_upload_ai_artifacts: Artefatos de IA por Upload em Massa
     campaign_ai_artifact_updated_successfully: Artefatos de IA da campanha atualizados com sucesso
+    campaign_ai_artifacts_instruction_templating_tooltip: Pode utilizar instruções avançadas através do uso de modelos de prompt com a sintaxe de modelos Liquid e as variáveis disponíveis. Consulte a documentação para obter mais detalhes.
     campaign_ai_artifacts_results_export_details: Artefatos de IA da campanha geraram resultados
     campaign_assessment_actions_disable_caching: Desativar o cache de avaliação
     campaign_assessment_actions_enable_caching: Habilitar o cache de avaliação
@@ -161,6 +176,24 @@ pt:
     campaign_assessment_modals_enable_caching_title: Habilitar o cache de avaliação?
     campaign_factors: Fatores da campanha
     campaign_name: Nome da campanha
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: ID do relatório externo
+          language_id: Identificação do idioma
+          norm: Norm
+          norm_id: ID da norma
+          suitability_id: Código de adequação
+        labels:
+          assessment_ids: Números de identificação das avaliações
+          available_languages: Idiomas disponíveis
+          campaign_report_id: ID do relatório da campanha
+          check_details: Ver detalhes
+          default_language: Idioma predefinido
+          external_settings: Configurações externas
+          provider: Fornecedor
+          report_pdf_status: Verificar o estado do relatório em PDF
+          user_report_id: ID do relatório do utilizador
     campaign_templates: Modelos de campanha
     campaign_user_job_roles_cannot_be_same: A função alvo deve ser diferente da função atual.
     campaigns: Campanhas
@@ -183,7 +216,9 @@ pt:
     configure_model_answer_title: Configurar resposta modelo e palavras-chave
     confirm_remove_admin: Tem a certeza de que pretende remover o utilizador administrativo com o e-mail '%{email}'?
     copied: Copiado
+    copied_url_success: O URL foi copiado para a área de transferência com sucesso
     copy_ai_artifacts: Copiar artefactos de IA
+    copy_image_url: Copiar URL da imagem
     country: País
     create_client: Criar cliente
     create_indicator: Criar indicador
@@ -221,6 +256,7 @@ pt:
       thursday: quinta-feira
       tuesday: terça-feira
       wednesday: Quarta-feira
+    dimension_translations_export_scheduled: Exportar traduções agendadas para a dimensão «%{name}».
     dimensions: Dimensões
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
@@ -228,9 +264,11 @@ pt:
     duration: Duração
     edit_campaign_admin: Editar administração da campanha
     edit_client_admin: Editar administrador de clientes
+    edit_folder: Editar pasta
     edit_indicator: Editar indicador
     edit_job_roles: Editar funções de trabalho
     edit_level: Editar nível
+    edit_media: Editar multimédia
     edit_permission_denied: Você não tem permissão para editar o '%{name}' de administrador
     edit_project_admin: Editar administrador do projeto
     edit_threesixty_campaign_admin: Editar administração da campanha
@@ -272,6 +310,8 @@ pt:
     feature_global_skills_description: Acesse a biblioteca global de habilidades para avaliações
     feature_idp_description: Habilitar o Planejamento de Desenvolvimento Individual para os participantes
     feature_sms_notification_description: Ativar notificações por SMS para convites e lembretes de campanhas
+    file_size_must_be_less_than_mb: O ficheiro {{name}} excede o tamanho máximo de {{max_size_mb}} MB
+    file_upload_failed: Não foi possível carregar {{name}}
     fill_empty_score_msg: Preencha todas as pontuações finais antes de salvar.
     final_score_empty_err_msg: A pontuação final de %{factor_name} não pode estar vazia.
     final_score_empty_msg: A conta final não pode estar vazia.
@@ -351,6 +391,8 @@ pt:
     maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
     max_value: Valor máximo
+    media_files_label: Ficheiros
+    media_library: Biblioteca multimédia
     messages: Mensagens
     mhs: MHS
     mhs_assessment: Avaliação MHS
@@ -370,6 +412,7 @@ pt:
     name: Nome
     name_max_length: O nome não pode exceder %{length} caracteres
     name_required: O nome é necessário
+    new_folder: Nova pasta
     no_file_selected: Nenhum arquivo selecionado
     no_notifications: Sem notificações
     no_status: Sem estado
@@ -832,9 +875,15 @@ pt:
     questions: Perguntas
     range_min_max: GAMA %{min} - %{max}
     reflection_questions: Perguntas de reflexão
+    regenerate_transcriptions_action: Regenerar transcrições
+    regenerate_transcriptions_confirm_content: Tem a certeza de que deseja regenerar as transcrições desta avaliação? Isto irá reprocessar todas as transcrições incompletas.
+    regenerate_transcriptions_confirm_title: Regenerar transcrições
+    regenerate_transcriptions_scheduled: A tarefa de regeneração das transcrições foi agendada com sucesso
     registration_codes: Códigos de registo
     registration_settings: Definições de registo
     remove_children_to_change_type: Remova todas as crianças para alterar o tipo
+    remove_confirmation: Tem a certeza de que deseja eliminar este item?
+    remove_successfully: O item multimédia foi removido com sucesso.
     report_approvals: Aprovações de relatórios
     report_condition_not_met: Precisa de avaliação %{required} %{relationship}, mas só tem %{actual}
     report_conditions_not_met_detailed: Reporte para %{user} não atende às condições de disponibilidade. %{conditions}
@@ -938,7 +987,9 @@ pt:
     scoring_approval_approvers: Aprovadores
     scoring_approval_assessment: Avaliação
     scoring_approval_assessor_users: Usuários avaliadores
+    scoring_approval_do_not_send_notifications: Não enviar notificações
     scoring_approval_modal_title: Configurações de aprovação de pontuação
+    scoring_approval_notification_users: Notificação de aprovação aos utilizadores
     scoring_approval_remove_modal_success: 'A configuração de aprovação para o ID de avaliação: %{assessmentId} foi excluída com sucesso.'
     scoring_approval_remove_modal_text: 'Tem certeza de que deseja excluir esta configuração para o ID de avaliação: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: A pontuação é permitida apenas em perguntas habilitadas para IA para o fator selecionado atualmente.
@@ -995,7 +1046,12 @@ pt:
     translated_to: 'Traduzido para:'
     translated_with_ai_notice: Traduzido por IA
     translation_assistant_not_configured: Assistente de tradução não configurado
+    translations:
+      title: Traduções
     update_success: "%{readableResourceName} atualizado com êxito"
+    upload: Carregar
+    upload_media: Carregar ficheiros multimédia
+    upload_required: Por favor, adicione pelo menos um ficheiro para carregar
     upload_success: Carregado com sucesso
     user_report_events: Eventos do relatório do utilizador
     users: Utilizadores
@@ -1004,6 +1060,7 @@ pt:
     very_high: Muito elevado
     very_low: Muito baixo
     view_licenses: Ver licenças
+    wait_for_upload_completion: Aguarde até que todos os ficheiros tenham terminado de ser carregados
     waiting: Espera
     weight: Peso
     what_to_look_for: O que procurar
