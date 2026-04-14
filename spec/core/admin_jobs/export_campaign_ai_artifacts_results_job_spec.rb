@@ -302,5 +302,37 @@ RSpec.describe AdminJobs::ExportCampaignAIArtifactsResultsJob do
         expect(csv.size).to eq(1)
       end
     end
+
+    context 'when campaign is a 360 campaign' do
+      let(:threesixty_base_campaign) { create(:campaign, :threesixty) }
+      let(:threesixty_campaign) { create(:threesixty_campaign, campaign: threesixty_base_campaign) }
+      let(:threesixty_artifact) do
+        create(:campaign_ai_artifact, campaign: threesixty_base_campaign, ai_assistant: ai_assistant)
+      end
+      let(:threesixty_job_record) do
+        create(:admin_job_record,
+               operation: :export_campaign_ai_artifacts_results,
+               data: { 'campaign_id' => threesixty_base_campaign.id })
+      end
+      let(:subject_user) { create(:user, email: 'subject@example.com', first_name: 'Subject', last_name: 'User') }
+      let(:evaluator_user) { create(:user, email: 'evaluator@example.com', first_name: 'Evaluator', last_name: 'User') }
+
+      before do
+        threesixty_artifact
+        create(:campaign_user, campaign: threesixty_base_campaign, user: subject_user)
+        create(:campaign_user, campaign: threesixty_base_campaign, user: evaluator_user)
+        create(:threesixty_subject, campaign: threesixty_base_campaign, user: subject_user)
+      end
+
+      it 'only exports subjects, not evaluators' do
+        described_class.call!(threesixty_job_record)
+
+        csv = CsvUtf8.to_array(active_storage_file_path(threesixty_job_record.file))
+        exported_emails = csv[1..].pluck(1)
+
+        expect(exported_emails).to include('subject@example.com')
+        expect(exported_emails).not_to include('evaluator@example.com')
+      end
+    end
   end
 end

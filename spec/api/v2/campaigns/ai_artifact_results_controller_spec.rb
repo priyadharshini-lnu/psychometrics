@@ -181,4 +181,32 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
       expect(second_campaign_user.reload.campaign_artifact_results_finalized).to be(true)
     end
   end
+
+  describe 'GET index for 360 campaign' do
+    let!(:threesixty_base_campaign) { create(:campaign, :threesixty) }
+    let!(:threesixty_campaign) { create(:threesixty_campaign, campaign: threesixty_base_campaign) }
+    let!(:threesixty_artifact) do
+      create(:campaign_ai_artifact, campaign: threesixty_base_campaign, ai_assistant: ai_assistant)
+    end
+    let!(:subject_user) { create(:user) }
+    let!(:evaluator_user) { create(:user) }
+
+    before do
+      threesixty_base_campaign.project.client.client_feature.update!(ai_assistants: true)
+      threesixty_base_campaign.project.project_feature.update!(ai_assistants: true)
+      create(:campaign_user, campaign: threesixty_base_campaign, user: subject_user)
+      create(:campaign_user, campaign: threesixty_base_campaign, user: evaluator_user)
+      create(:threesixty_subject, campaign: threesixty_base_campaign, user: subject_user)
+    end
+
+    it 'only includes subjects, not evaluators' do
+      get "/api/v2/administration/campaigns/#{threesixty_base_campaign.id}/ai_artifact_results",
+          headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(200)
+      returned_ids = JSON.parse(response.body)['data'].map { |d| d['id'].to_i }
+      expect(returned_ids).to include(subject_user.id)
+      expect(returned_ids).not_to include(evaluator_user.id)
+    end
+  end
 end

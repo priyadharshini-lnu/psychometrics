@@ -36,7 +36,8 @@ module Reports
                 ).serialize(report).to_json,
                 locales: translations(piped_text_context).to_json,
                 available_translations: available_translations,
-                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json
+                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json,
+                campaign_ai_artifact_results: campaign_ai_artifact_results.to_json
     end
 
     def serialize_results
@@ -61,6 +62,19 @@ module Reports
         piped_text_context: piped_text_context,
         locale: @lang
       )
+    end
+
+    def campaign_ai_artifact_results
+      return [] unless user_report
+
+      results = Campaigns::AIArtifactResultsQuery.new(
+        user_report.campaign_id, user_report.user_id
+      ).query
+
+      Panko::ArraySerializer.new(
+        results,
+        each_serializer: AI::CampaignArtifactResultSerializer
+      ).to_a
     end
   end
 end

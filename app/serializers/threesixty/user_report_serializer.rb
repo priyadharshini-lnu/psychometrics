@@ -4,7 +4,7 @@ module Threesixty
   class UserReportSerializer < Panko::Serializer
     attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status,
                :evalaution_completed_for_subject, :report_data, :permissions, :campaign, :module_overrides, :options,
-               :user, :qc_approval_status, :report
+               :user, :qc_approval_status, :report, :campaign_ai_artifact_results
 
     def user
       ::Reports::UserSerializer.new(context: { campaign: object.campaign }).serialize(object.user)
@@ -54,6 +54,17 @@ module Threesixty
           current_user: current_user
         }
       ).serialize(current_option)
+    end
+
+    def campaign_ai_artifact_results
+      results = ::Campaigns::AIArtifactResultsQuery.new(
+        object.campaign_id, object.user_id
+      ).query
+
+      Panko::ArraySerializer.new(
+        results,
+        each_serializer: AI::CampaignArtifactResultSerializer
+      ).to_a
     end
 
     def evalaution_completed_for_subject
