@@ -51,7 +51,7 @@ vi:
     direct_reportees: Người báo cáo trực tiếp
     download: Tải xuống
     download_pdf: Tải PDF
-    download_speed_below_minimum: Tốc độ tải xuống ${download_speed} thấp hơn tốc độ tải xuống tối thiểu yêu cầu là ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Tốc độ tải xuống %{download_speed} thấp hơn tốc độ tải xuống tối thiểu yêu cầu là %{minimum_download_speed} Mbps
     environment_setup: Cài đặt môi trường
     error_uploading_video: Lỗi khi tải video lên
     error_uploading_video_detail: Đã xảy ra lỗi trong quá trình tải video lên
@@ -91,7 +91,7 @@ vi:
     media_recorder_api_not_supported_detail: Bạn đang sử dụng phiên bản %{browser_name}%{browser_version}, phiên bản này không hỗ trợ API MediaRecorder. Vui lòng cập nhật trình duyệt của bạn lên phiên bản mới nhất để đảm bảo tính tương thích.
     media_recorder_api_support: Hỗ trợ API MediaRecorder
     min_word_limit: Phải có ít nhất %{min} từ
-    minimum_speed_requirements: Chiến dịch này yêu cầu tốc độ tải xuống tối thiểu là ${minimum_download_speed} Mbps và tốc độ tải lên tối thiểu là ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Chiến dịch này yêu cầu tốc độ tải xuống tối thiểu là %{minimum_download_speed} Mbps và tốc độ tải lên tối thiểu là %{minimum_upload_speed} Mbps.
     minute: phút
     minute_plural: biên bản
     my_plan: Kế hoạch của tôi
@@ -195,7 +195,7 @@ vi:
     troubleshooting_guide_video_third: Hãy làm mới trang sau khi thay đổi quyền truy cập
     untimed: Không giới hạn thời gian
     upload: Tải lên
-    upload_speed_below_minimum: Tốc độ tải lên ${upload_speed} thấp hơn tốc độ tải lên tối thiểu yêu cầu là ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Tốc độ tải lên %{upload_speed} thấp hơn tốc độ tải lên tối thiểu yêu cầu là %{minimum_upload_speed} Mbps
     video_and_audio: Video & Âm thanh
     video_and_audio_recording: Ghi hình và ghi âm
     video_check_fix_fifth: Nếu máy ảnh của bạn là loại gắn ngoài, hãy thử rút phích cắm ra rồi cắm lại

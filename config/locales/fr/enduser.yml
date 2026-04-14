@@ -51,7 +51,7 @@ fr:
     direct_reportees: Subordonnés
     download: Télécharger
     download_pdf: Télécharger PDF
-    download_speed_below_minimum: La vitesse de téléchargement ${download_speed} est inférieure à la vitesse minimale requise de ${minimum_download_speed} Mbps
+    download_speed_below_minimum: La vitesse de téléchargement %{download_speed} est inférieure à la vitesse minimale requise de %{minimum_download_speed} Mbps
     environment_setup: Configuration de l'environnement
     error_uploading_video: Erreur lors du téléchargement de la vidéo
     error_uploading_video_detail: Une erreur s'est produite lors du téléchargement de la vidéo
@@ -91,7 +91,7 @@ fr:
     media_recorder_api_not_supported_detail: Vous utilisez la version %{browser_version} d'%{browser_name}, qui ne prend pas en charge l'API MediaRecorder. Veuillez mettre à jour votre navigateur vers la dernière version pour garantir la compatibilité.
     media_recorder_api_support: Prise en charge de l'API MediaRecorder
     min_word_limit: Doit contenir au minimum %{min} mots
-    minimum_speed_requirements: Une vitesse de téléchargement minimale de ${minimum_download_speed} Mbps et une vitesse de chargement minimale de ${minimum_upload_speed} Mbps sont requises pour cette offre.
+    minimum_speed_requirements: Une vitesse de téléchargement minimale de %{minimum_download_speed} Mbps et une vitesse de chargement minimale de %{minimum_upload_speed} Mbps sont requises pour cette offre.
     minute: minute
     minute_plural: procès-verbal
     my_plan: Mon plan
@@ -195,7 +195,7 @@ fr:
     troubleshooting_guide_video_third: Actualisez la page après avoir modifié les autorisations
     untimed: Sans limite de temps
     upload: Télécharger
-    upload_speed_below_minimum: La vitesse de téléchargement ${upload_speed} est inférieure à la vitesse minimale requise de ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: La vitesse de téléchargement %{upload_speed} est inférieure à la vitesse minimale requise de %{minimum_upload_speed} Mbps
     video_and_audio: Vidéo et audio
     video_and_audio_recording: Enregistrement vidéo et audio
     video_check_fix_fifth: Si votre appareil photo est externe, essayez de le débrancher puis de le rebrancher

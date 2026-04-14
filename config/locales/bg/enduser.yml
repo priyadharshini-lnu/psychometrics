@@ -51,7 +51,7 @@ bg:
     direct_reportees: Преки докладвани
     download: Изтегли
     download_pdf: Изтеглете PDF
-    download_speed_below_minimum: Скоростта на изтегляне ${download_speed} е по-ниска от минималната изисквана скорост на изтегляне от ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Скоростта на изтегляне %{download_speed} е по-ниска от минималната изисквана скорост на изтегляне от %{minimum_download_speed} Mbps
     environment_setup: Настройки на средата
     error_uploading_video: Грешка при качването на видеоклипа
     error_uploading_video_detail: Възникна грешка при качването на видеото
@@ -91,7 +91,7 @@ bg:
     media_recorder_api_not_supported_detail: Използвате браузъра „%{browser_name}“ версия %{browser_version}, който не поддържа API-то на MediaRecorder. Моля, актуализирайте браузъра си до най-новата версия, за да гарантирате съвместимостта.
     media_recorder_api_support: Поддръжка на MediaRecorder API
     min_word_limit: Трябва да бъде най-малко %{min} думи
-    minimum_speed_requirements: За тази кампания се изисква минимална скорост на изтегляне от ${minimum_download_speed} Mbps и минимална скорост на качване от ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: За тази кампания се изисква минимална скорост на изтегляне от %{minimum_download_speed} Mbps и минимална скорост на качване от %{minimum_upload_speed} Mbps.
     minute: минута
     minute_plural: протоколи
     my_plan: Моят план
@@ -195,7 +195,7 @@ bg:
     troubleshooting_guide_video_third: Опреснете страницата след промяна на правата
     untimed: Без ограничение във времето
     upload: Качи
-    upload_speed_below_minimum: Скоростта на качване ${upload_speed} е по-ниска от минималната изисквана скорост на качване от ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Скоростта на качване %{upload_speed} е по-ниска от минималната изисквана скорост на качване от %{minimum_upload_speed} Mbps
     video_and_audio: Видео и аудио
     video_and_audio_recording: Запис на видео и аудио
     video_check_fix_fifth: Опитайте да изключите и отново да включите камерата, ако тя е външна

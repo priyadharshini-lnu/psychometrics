@@ -58,7 +58,7 @@ ar:
     direct_reportees: الموظفين المباشرين
     download: تنزيل
     download_pdf: تحميل ملف PDF
-    download_speed_below_minimum: سرعة التنزيل ${download_speed} أقل من الحد الأدنى المطلوب لسرعة التنزيل وهو ${minimum_download_speed} ميغابت في الثانية
+    download_speed_below_minimum: سرعة التنزيل %{download_speed} أقل من الحد الأدنى المطلوب لسرعة التنزيل وهو %{minimum_download_speed} ميغابت في الثانية
     environment_setup: إعداد البيئة
     error_uploading_audio: خطأ في رفع الملف الصوتي
     error_uploading_video: حدث خطأ أثناء رفع الفيديو
@@ -213,7 +213,7 @@ ar:
     troubleshooting_guide_video_third: قم بتحديث الصفحة بعد تغيير الأذونات
     untimed: غير محدد بوقت
     upload: تحميل/ رفع
-    upload_speed_below_minimum: سرعة الرفع ${upload_speed} أقل من الحد الأدنى المطلوب لسرعة الرفع وهو ${minimum_upload_speed} ميغابت في الثانية
+    upload_speed_below_minimum: سرعة الرفع %{upload_speed} أقل من الحد الأدنى المطلوب لسرعة الرفع وهو %{minimum_upload_speed} ميغابت في الثانية
     video_and_audio: الفيديو والصوت
     video_and_audio_recording: تسجيل الفيديو والصوت
     video_check_fix_fifth: جرب فصل الكاميرا وإعادة توصيلها إذا كانت الكاميرا خارجية

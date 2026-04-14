@@ -51,7 +51,7 @@ en-US:
     direct_reportees: Direct Reportees
     download: Download
     download_pdf: Download PDF
-    download_speed_below_minimum: Download speed ${download_speed} is below the minimum required download speed of ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Download speed %{download_speed} is below the minimum required download speed of %{minimum_download_speed} Mbps
     environment_setup: Environment Setup
     error_uploading_video: Error uploading video
     error_uploading_video_detail: There was some error while uploading the video
@@ -91,7 +91,7 @@ en-US:
     media_recorder_api_not_supported_detail: You're using %{browser_name} version %{browser_version} which does not support the MediaRecorder API. Please update your browser to the latest version to ensure compatibility.
     media_recorder_api_support: MediaRecorder API Support
     min_word_limit: Must be at least %{min} words
-    minimum_speed_requirements: Minimum Download Speed of ${minimum_download_speed} Mbps and Minimum Upload Speed of ${minimum_upload_speed} Mbps required for this campaign.
+    minimum_speed_requirements: Minimum Download Speed of %{minimum_download_speed} Mbps and Minimum Upload Speed of %{minimum_upload_speed} Mbps required for this campaign.
     minute: minute
     minute_plural: minutes
     my_plan: My Plan
@@ -195,7 +195,7 @@ en-US:
     troubleshooting_guide_video_third: Refresh the page after changing permissions
     untimed: Untimed
     upload: Upload
-    upload_speed_below_minimum: Upload speed ${upload_speed} is below the minimum required upload speed of ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Upload speed %{upload_speed} is below the minimum required upload speed of %{minimum_upload_speed} Mbps
     video_and_audio: Video & Audio
     video_and_audio_recording: Video and Audio Recording
     video_check_fix_fifth: Try unplugging and reconnecting your camera if it's external

@@ -51,7 +51,7 @@ zh-Hant:
     direct_reportees: 直屬下級
     download: 下载
     download_pdf: 下載 PDF
-    download_speed_below_minimum: 下载速度 ${download_speed} 低于 ${minimum_download_speed} Mbps 的最低要求下载速度
+    download_speed_below_minimum: 下载速度 %{download_speed} 低于 %{minimum_download_speed} Mbps 的最低要求下载速度
     environment_setup: 环境设置
     error_uploading_video: 上传视频时出错
     error_uploading_video_detail: 上传视频时出现了一些错误
@@ -91,7 +91,7 @@ zh-Hant:
     media_recorder_api_not_supported_detail: 您当前使用的浏览器是%{browser_name}版本%{browser_version}，该版本不支持MediaRecorder API。请将浏览器更新至最新版本以确保兼容性。
     media_recorder_api_support: MediaRecorder API 支持
     min_word_limit: 至少需要 %{min} 個字
-    minimum_speed_requirements: 此活动要求最低下载速度为 ${minimum_download_speed} Mbps，最低上传速度为 ${minimum_upload_speed} Mbps。
+    minimum_speed_requirements: 此活动要求最低下载速度为 %{minimum_download_speed} Mbps，最低上传速度为 %{minimum_upload_speed} Mbps。
     minute: 分钟
     minute_plural: 会议纪要
     my_plan: 我的計劃
@@ -195,7 +195,7 @@ zh-Hant:
     troubleshooting_guide_video_third: 更改权限后请刷新页面
     untimed: 不限时
     upload: 上传
-    upload_speed_below_minimum: 上传速度 ${upload_speed} 低于 ${minimum_upload_speed} Mbps 的最低要求上传速度
+    upload_speed_below_minimum: 上传速度 %{upload_speed} 低于 %{minimum_upload_speed} Mbps 的最低要求上传速度
     video_and_audio: 视频与音频
     video_and_audio_recording: 视频和音频录制
     video_check_fix_fifth: 如果相机是外接的，请尝试将其拔下再重新连接

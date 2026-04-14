@@ -51,7 +51,7 @@ cs:
     direct_reportees: Přímí zástupci
     download: Stáhnout
     download_pdf: Stáhněte si PDF
-    download_speed_below_minimum: Rychlost stahování ${download_speed} je nižší než minimální požadovaná rychlost stahování ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Rychlost stahování %{download_speed} je nižší než minimální požadovaná rychlost stahování %{minimum_download_speed} Mbps
     environment_setup: Nastavení prostředí
     error_uploading_video: Chyba při nahrávání videa
     error_uploading_video_detail: Při nahrávání videa došlo k chybě
@@ -91,7 +91,7 @@ cs:
     media_recorder_api_not_supported_detail: Používáte prohlížeč %{browser_name} ve verzi %{browser_version}, který nepodporuje rozhraní MediaRecorder API. Pro zajištění kompatibility prosím aktualizujte prohlížeč na nejnovější verzi.
     media_recorder_api_support: Podpora rozhraní API MediaRecorder
     min_word_limit: Musí mít nejméně %{min} slov
-    minimum_speed_requirements: Pro tuto akci je vyžadována minimální rychlost stahování ${minimum_download_speed} Mbps a minimální rychlost nahrávání ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Pro tuto akci je vyžadována minimální rychlost stahování %{minimum_download_speed} Mbps a minimální rychlost nahrávání %{minimum_upload_speed} Mbps.
     minute: minuta
     minute_plural: zápis
     my_plan: Můj plán
@@ -195,7 +195,7 @@ cs:
     troubleshooting_guide_video_third: Po změně oprávnění stránku aktualizujte
     untimed: Bez časového limitu
     upload: Nahrát
-    upload_speed_below_minimum: Rychlost odesílání ${upload_speed} je nižší než minimální požadovaná rychlost odesílání ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Rychlost odesílání %{upload_speed} je nižší než minimální požadovaná rychlost odesílání %{minimum_upload_speed} Mbps
     video_and_audio: Video a audio
     video_and_audio_recording: Záznam videa a zvuku
     video_check_fix_fifth: Pokud máte externí kameru, zkuste ji odpojit a znovu připojit

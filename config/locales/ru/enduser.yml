@@ -51,7 +51,7 @@ ru:
     direct_reportees: Непосредственные подчиненные
     download: Скачать
     download_pdf: Скачать PDF
-    download_speed_below_minimum: Скорость загрузки ${download_speed} ниже минимальной требуемой скорости загрузки, равной ${minimum_download_speed} Мбит/с
+    download_speed_below_minimum: Скорость загрузки %{download_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_download_speed} Мбит/с
     environment_setup: Настройка среды
     error_uploading_video: Ошибка при загрузке видео
     error_uploading_video_detail: При загрузке видео произошла ошибка
@@ -91,7 +91,7 @@ ru:
     media_recorder_api_not_supported_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который не поддерживает API MediaRecorder. Для обеспечения совместимости обновите браузер до последней версии.
     media_recorder_api_support: Поддержка API MediaRecorder
     min_word_limit: Должно быть не менее %{min} слов
-    minimum_speed_requirements: Для участия в этой акции требуется минимальная скорость загрузки ${minimum_download_speed} Мбит/с и минимальная скорость отправки ${minimum_upload_speed} Мбит/с.
+    minimum_speed_requirements: Для участия в этой акции требуется минимальная скорость загрузки %{minimum_download_speed} Мбит/с и минимальная скорость отправки %{minimum_upload_speed} Мбит/с.
     minute: минута
     minute_plural: протокол
     my_plan: Мой план
@@ -195,7 +195,7 @@ ru:
     troubleshooting_guide_video_third: Обновите страницу после изменения прав доступа
     untimed: Без ограничения по времени
     upload: Загрузить
-    upload_speed_below_minimum: Скорость загрузки ${upload_speed} ниже минимальной требуемой скорости загрузки, равной ${minimum_upload_speed} Мбит/с
+    upload_speed_below_minimum: Скорость загрузки %{upload_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_upload_speed} Мбит/с
     video_and_audio: Видео и аудио
     video_and_audio_recording: Запись видео и аудио
     video_check_fix_fifth: Если камера подключена внешне, попробуйте отключить её от источника питания и подключить заново

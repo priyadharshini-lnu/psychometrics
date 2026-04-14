@@ -51,7 +51,7 @@ pt:
     direct_reportees: Subordinados Diretos
     download: Descarregar
     download_pdf: Baixar PDF
-    download_speed_below_minimum: A velocidade de download ${download_speed} está abaixo da velocidade mínima exigida de ${minimum_download_speed} Mbps
+    download_speed_below_minimum: A velocidade de download %{download_speed} está abaixo da velocidade mínima exigida de %{minimum_download_speed} Mbps
     environment_setup: Configuração do ambiente
     error_uploading_video: Erro ao carregar o vídeo
     error_uploading_video_detail: Ocorreu um erro ao carregar o vídeo
@@ -91,7 +91,7 @@ pt:
     media_recorder_api_not_supported_detail: Está a utilizar a versão %{browser_version} do %{browser_name}, que não suporta a API MediaRecorder. Atualize o seu navegador para a versão mais recente para garantir a compatibilidade.
     media_recorder_api_support: Suporte à API MediaRecorder
     min_word_limit: Deve ter pelo menos %{min} palavras
-    minimum_speed_requirements: Para esta campanha, é necessária uma velocidade mínima de download de ${minimum_download_speed} Mbps e uma velocidade mínima de upload de ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Para esta campanha, é necessária uma velocidade mínima de download de %{minimum_download_speed} Mbps e uma velocidade mínima de upload de %{minimum_upload_speed} Mbps.
     minute: minuto
     minute_plural: minutos
     my_plan: Meu plano
@@ -195,7 +195,7 @@ pt:
     troubleshooting_guide_video_third: Atualize a página após alterar as permissões
     untimed: Sem limite de tempo
     upload: Carregar
-    upload_speed_below_minimum: A velocidade de envio ${upload_speed} está abaixo da velocidade mínima exigida de ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: A velocidade de envio %{upload_speed} está abaixo da velocidade mínima exigida de %{minimum_upload_speed} Mbps
     video_and_audio: Vídeo e Áudio
     video_and_audio_recording: Gravação de vídeo e áudio
     video_check_fix_fifth: Se a câmara for externa, tente desligá-la e voltar a ligá-la

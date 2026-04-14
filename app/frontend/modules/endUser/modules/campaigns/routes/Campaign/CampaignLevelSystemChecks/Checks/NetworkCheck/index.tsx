@@ -85,20 +85,25 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       return details
     }
 
-    if (minimumUploadSpeed && convertSpeedToMbps(uploadSpeedStr) < minimumUploadSpeed) {
-      details.push(I18n.t('enduser.upload_speed_below_minimum', {
-        upload_speed: uploadSpeedStr,
-        minimum_upload_speed: minimumUploadSpeed,
-      }))
-    }
+    const hasRequiredSpeeds = (minimumUploadSpeed && convertSpeedToMbps(uploadSpeedStr)
+     >= minimumUploadSpeed) && (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeedStr) >= minimumDownloadSpeed)
 
-    if (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeedStr) < minimumDownloadSpeed) {
-      details.push(I18n.t('enduser.download_speed_below_minimum', {
-        download_speed: downloadSpeedStr,
-        minimum_download_speed: minimumDownloadSpeed,
-      }))
-    } else {
+    if (hasRequiredSpeeds) {
       details.push(I18n.t('enduser.network_speed_meets_required_detail'))
+    } else {
+      if (minimumUploadSpeed && convertSpeedToMbps(uploadSpeedStr) < minimumUploadSpeed) {
+        details.push(I18n.t('enduser.upload_speed_below_minimum', {
+          upload_speed: uploadSpeedStr,
+          minimum_upload_speed: minimumUploadSpeed,
+        }))
+      }
+
+      if (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeedStr) < minimumDownloadSpeed) {
+        details.push(I18n.t('enduser.download_speed_below_minimum', {
+          download_speed: downloadSpeedStr,
+          minimum_download_speed: minimumDownloadSpeed,
+        }))
+      }
     }
 
     return details

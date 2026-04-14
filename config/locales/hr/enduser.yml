@@ -51,7 +51,7 @@ hr:
     direct_reportees: Izravni podređeni
     download: Preuzmi
     download_pdf: Preuzmite PDF
-    download_speed_below_minimum: Brzina preuzimanja ${download_speed} je ispod minimalne potrebne brzine preuzimanja od ${minimum_download_speed} Mbps.
+    download_speed_below_minimum: Brzina preuzimanja %{download_speed} je ispod minimalne potrebne brzine preuzimanja od %{minimum_download_speed} Mbps.
     environment_setup: Postavljanje okruženja
     error_uploading_video: Greška pri učitavanju videa
     error_uploading_video_detail: Došlo je do pogreške pri učitavanju videa.
@@ -91,7 +91,7 @@ hr:
     media_recorder_api_not_supported_detail: Koristite verziju preglednika%{browser_name} %{browser_version} koja ne podržava MediaRecorder API. Molimo ažurirajte svoj preglednik na najnoviju verziju kako biste osigurali kompatibilnost.
     media_recorder_api_support: Podrška za MediaRecorder API
     min_word_limit: Mora imati najmanje %{min} riječi
-    minimum_speed_requirements: Minimalna brzina preuzimanja od ${minimum_download_speed} Mbps i minimalna brzina slanja od ${minimum_upload_speed} Mbps potrebne su za ovu kampanju.
+    minimum_speed_requirements: Minimalna brzina preuzimanja od %{minimum_download_speed} Mbps i minimalna brzina slanja od %{minimum_upload_speed} Mbps potrebne su za ovu kampanju.
     minute: minuta
     minute_plural: minute
     my_plan: Moj plan
@@ -195,7 +195,7 @@ hr:
     troubleshooting_guide_video_third: Osvježite stranicu nakon promjene dozvola.
     untimed: Bez vremenskog ograničenja
     upload: Podiži
-    upload_speed_below_minimum: Brzina prijenosa ${upload_speed} je ispod minimalne potrebne brzine prijenosa od ${minimum_upload_speed} Mbps.
+    upload_speed_below_minimum: Brzina prijenosa %{upload_speed} je ispod minimalne potrebne brzine prijenosa od %{minimum_upload_speed} Mbps.
     video_and_audio: Video i audio
     video_and_audio_recording: Video i audio snimanje
     video_check_fix_fifth: Pokušajte isključiti i ponovno priključiti kameru ako je vanjska.

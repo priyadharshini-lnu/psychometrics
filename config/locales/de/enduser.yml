@@ -51,7 +51,7 @@ de:
     direct_reportees: Direkte Berichte
     download: Herunterladen
     download_pdf: PDF herunterladen
-    download_speed_below_minimum: Die Download-Geschwindigkeit von ${download_speed} liegt unter der erforderlichen Mindest-Download-Geschwindigkeit von ${minimum_download_speed} Mbit/s
+    download_speed_below_minimum: Die Download-Geschwindigkeit von %{download_speed} liegt unter der erforderlichen Mindest-Download-Geschwindigkeit von %{minimum_download_speed} Mbit/s
     environment_setup: Einrichtung der Umgebung
     error_uploading_video: Fehler beim Hochladen des Videos
     error_uploading_video_detail: Beim Hochladen des Videos ist ein Fehler aufgetreten
@@ -91,7 +91,7 @@ de:
     media_recorder_api_not_supported_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die die MediaRecorder-API nicht unterstützt. Bitte aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.
     media_recorder_api_support: Unterstützung der MediaRecorder-API
     min_word_limit: Muss mindestens %{min} Wörter haben
-    minimum_speed_requirements: Für diese Aktion sind eine Mindest-Download-Geschwindigkeit von ${minimum_download_speed} Mbit/s und eine Mindest-Upload-Geschwindigkeit von ${minimum_upload_speed} Mbit/s erforderlich.
+    minimum_speed_requirements: Für diese Aktion sind eine Mindest-Download-Geschwindigkeit von %{minimum_download_speed} Mbit/s und eine Mindest-Upload-Geschwindigkeit von %{minimum_upload_speed} Mbit/s erforderlich.
     minute: Minute
     minute_plural: Protokoll
     my_plan: Mein Plan
@@ -195,7 +195,7 @@ de:
     troubleshooting_guide_video_third: Aktualisieren Sie die Seite, nachdem Sie die Berechtigungen geändert haben
     untimed: Ohne Zeitangabe
     upload: Hochladen
-    upload_speed_below_minimum: Die Upload-Geschwindigkeit von ${upload_speed} liegt unter der erforderlichen Mindest-Upload-Geschwindigkeit von ${minimum_upload_speed} Mbit/s
+    upload_speed_below_minimum: Die Upload-Geschwindigkeit von %{upload_speed} liegt unter der erforderlichen Mindest-Upload-Geschwindigkeit von %{minimum_upload_speed} Mbit/s
     video_and_audio: Video & Audio
     video_and_audio_recording: Video- und Audioaufzeichnung
     video_check_fix_fifth: Versuchen Sie, Ihre Kamera vom Stromnetz zu trennen und wieder anzuschließen, falls es sich um ein externes Gerät handelt

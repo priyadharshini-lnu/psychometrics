@@ -51,7 +51,7 @@ hi:
     direct_reportees: प्रत्यक्ष अधीनस्थ
     download: डाउनलोड
     download_pdf: पीडीएफ डाउनलोड करें
-    download_speed_below_minimum: डाउनलोड गति ${download_speed} न्यूनतम आवश्यक डाउनलोड गति ${minimum_download_speed} एमबीपीएस से कम है।
+    download_speed_below_minimum: डाउनलोड गति %{download_speed} न्यूनतम आवश्यक डाउनलोड गति %{minimum_download_speed} एमबीपीएस से कम है।
     environment_setup: पर्यावरण सेटअप
     error_uploading_video: वीडियो अपलोड करने में त्रुटि
     error_uploading_video_detail: वीडियो अपलोड करते समय कोई त्रुटि हुई।
@@ -91,7 +91,7 @@ hi:
     media_recorder_api_not_supported_detail: आप '%{browser_name}' का संस्करण '%{browser_version}' उपयोग कर रहे हैं, जो MediaRecorder API का समर्थन नहीं करता। अनुकूलता सुनिश्चित करने के लिए कृपया अपने ब्राउज़र को नवीनतम संस्करण में अपडेट करें।
     media_recorder_api_support: मीडिया रिकॉर्डर एपीआई समर्थन
     min_word_limit: कम से कम %{min} शब्द होना चाहिए।
-    minimum_speed_requirements: इस अभियान के लिए न्यूनतम डाउनलोड गति ${minimum_download_speed} एमबीपीएस और न्यूनतम अपलोड गति ${minimum_upload_speed} एमबीपीएस आवश्यक है।
+    minimum_speed_requirements: इस अभियान के लिए न्यूनतम डाउनलोड गति %{minimum_download_speed} एमबीपीएस और न्यूनतम अपलोड गति %{minimum_upload_speed} एमबीपीएस आवश्यक है।
     minute: एक मिनट
     minute_plural: मिनट
     my_plan: मेरी योजना
@@ -195,7 +195,7 @@ hi:
     troubleshooting_guide_video_third: अनुमति बदलने के बाद पेज रिफ्रेश करें
     untimed: अनियंत्रित
     upload: अपलोड
-    upload_speed_below_minimum: अपलोड गति ${upload_speed} न्यूनतम आवश्यक अपलोड गति ${minimum_upload_speed} Mbps से कम है।
+    upload_speed_below_minimum: अपलोड गति %{upload_speed} न्यूनतम आवश्यक अपलोड गति %{minimum_upload_speed} Mbps से कम है।
     video_and_audio: वीडियो और ऑडियो
     video_and_audio_recording: वीडियो और ऑडियो रिकॉर्डिंग
     video_check_fix_fifth: यदि आपका कैमरा बाहरी है, तो उसे अनप्लग करके फिर से कनेक्ट करने का प्रयास करें।

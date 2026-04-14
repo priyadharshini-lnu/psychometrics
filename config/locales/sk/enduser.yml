@@ -51,7 +51,7 @@ sk:
     direct_reportees: Priami podriadení
     download: Stiahnuť
     download_pdf: Stiahnuť PDF
-    download_speed_below_minimum: Rýchlosť sťahovania ${download_speed} je nižšia ako minimálna požadovaná rýchlosť sťahovania ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Rýchlosť sťahovania %{download_speed} je nižšia ako minimálna požadovaná rýchlosť sťahovania %{minimum_download_speed} Mbps
     environment_setup: Nastavenie prostredia
     error_uploading_video: Chyba pri nahrávaní videa
     error_uploading_video_detail: Pri nahrávaní videa došlo k chybe
@@ -91,7 +91,7 @@ sk:
     media_recorder_api_not_supported_detail: Používate prehliadač %{browser_name} vo verzii %{browser_version}, ktorý nepodporuje rozhranie MediaRecorder API. Aktualizujte svoj prehliadač na najnovšiu verziu, aby ste zaistili kompatibilitu.
     media_recorder_api_support: Podpora rozhrania API MediaRecorder
     min_word_limit: Musí mať najmenej %{min} slov
-    minimum_speed_requirements: Pre túto kampaň je potrebná minimálna rýchlosť sťahovania ${minimum_download_speed} Mbps a minimálna rýchlosť odosielania ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Pre túto kampaň je potrebná minimálna rýchlosť sťahovania %{minimum_download_speed} Mbps a minimálna rýchlosť odosielania %{minimum_upload_speed} Mbps.
     minute: minúta
     minute_plural: zápisnica
     my_plan: Môj plán
@@ -195,7 +195,7 @@ sk:
     troubleshooting_guide_video_third: Po zmene oprávnení obnovte stránku
     untimed: Bez časového obmedzenia
     upload: Nahrať
-    upload_speed_below_minimum: Rýchlosť odosielania ${upload_speed} je nižšia ako minimálna požadovaná rýchlosť odosielania ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Rýchlosť odosielania %{upload_speed} je nižšia ako minimálna požadovaná rýchlosť odosielania %{minimum_upload_speed} Mbps
     video_and_audio: Video a audio
     video_and_audio_recording: Nahrávanie videa a zvuku
     video_check_fix_fifth: Ak máte externý fotoaparát, skúste ho odpojiť a znovu pripojiť

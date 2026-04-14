@@ -51,7 +51,7 @@ sl:
     direct_reportees: Neposredni podrejeni
     download: Prenesi
     download_pdf: Prenesi PDF
-    download_speed_below_minimum: Hitrost prenosa ${download_speed} je nižja od minimalne zahtevane hitrosti prenosa, ki znaša ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Hitrost prenosa %{download_speed} je nižja od minimalne zahtevane hitrosti prenosa, ki znaša %{minimum_download_speed} Mbps
     environment_setup: Nastavitve okolja
     error_uploading_video: Napaka pri nalaganju videoposnetka
     error_uploading_video_detail: Pri nalaganju videoposnetka je prišlo do napake
@@ -91,7 +91,7 @@ sl:
     media_recorder_api_not_supported_detail: Uporabljate brskalnik %{browser_name} različice %{browser_version}, ki ne podpira vmesnika API MediaRecorder. Za zagotovitev združljivosti posodobite brskalnik na najnovejšo različico.
     media_recorder_api_support: Podpora za vmesnik API MediaRecorder
     min_word_limit: Mora imeti najmanj %{min} besed
-    minimum_speed_requirements: Za to akcijo je potrebna minimalna hitrost prenosa podatkov ${minimum_download_speed} Mbps in minimalna hitrost pošiljanja podatkov ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Za to akcijo je potrebna minimalna hitrost prenosa podatkov %{minimum_download_speed} Mbps in minimalna hitrost pošiljanja podatkov %{minimum_upload_speed} Mbps.
     minute: minuta
     minute_plural: zapisnik
     my_plan: Moj načrt
@@ -195,7 +195,7 @@ sl:
     troubleshooting_guide_video_third: Po spremembi dovoljenj osvežite stran
     untimed: Brez časovne omejitve
     upload: Naloži
-    upload_speed_below_minimum: Hitrost nalaganja ${upload_speed} je nižja od minimalne zahtevane hitrosti nalaganja, ki znaša ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Hitrost nalaganja %{upload_speed} je nižja od minimalne zahtevane hitrosti nalaganja, ki znaša %{minimum_upload_speed} Mbps
     video_and_audio: Video in avdio
     video_and_audio_recording: Snemanje videa in zvoka
     video_check_fix_fifth: Če gre za zunanjo kamero, jo poskusite odklopiti in ponovno priključiti

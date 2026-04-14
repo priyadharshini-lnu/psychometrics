@@ -51,7 +51,7 @@ id:
     direct_reportees: Bawahan Langsung
     download: Unduh
     download_pdf: Unduh PDF
-    download_speed_below_minimum: Kecepatan unduh ${download_speed} lebih rendah dari kecepatan unduh minimum yang disyaratkan sebesar ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Kecepatan unduh %{download_speed} lebih rendah dari kecepatan unduh minimum yang disyaratkan sebesar %{minimum_download_speed} Mbps
     environment_setup: Pengaturan Lingkungan
     error_uploading_video: Terjadi kesalahan saat mengunggah video
     error_uploading_video_detail: Terjadi kesalahan saat mengunggah video
@@ -91,7 +91,7 @@ id:
     media_recorder_api_not_supported_detail: Anda sedang menggunakan %{browser_name} versi %{browser_version} yang tidak mendukung API MediaRecorder. Silakan perbarui browser Anda ke versi terbaru untuk memastikan kompatibilitas.
     media_recorder_api_support: Dukungan API MediaRecorder
     min_word_limit: Minimal %{min} kata
-    minimum_speed_requirements: Kecepatan unduh minimum sebesar ${minimum_download_speed} Mbps dan kecepatan unggah minimum sebesar ${minimum_upload_speed} Mbps diperlukan untuk kampanye ini.
+    minimum_speed_requirements: Kecepatan unduh minimum sebesar %{minimum_download_speed} Mbps dan kecepatan unggah minimum sebesar %{minimum_upload_speed} Mbps diperlukan untuk kampanye ini.
     minute: menit
     minute_plural: notulen
     my_plan: Rencanaku
@@ -195,7 +195,7 @@ id:
     troubleshooting_guide_video_third: Segarkan halaman setelah mengubah izin
     untimed: Tanpa batas waktu
     upload: Unggah
-    upload_speed_below_minimum: Kecepatan unggah ${upload_speed} lebih rendah dari kecepatan unggah minimum yang disyaratkan sebesar ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Kecepatan unggah %{upload_speed} lebih rendah dari kecepatan unggah minimum yang disyaratkan sebesar %{minimum_upload_speed} Mbps
     video_and_audio: Video & Audio
     video_and_audio_recording: Perekaman Video dan Audio
     video_check_fix_fifth: Coba cabut dan pasang kembali kabel kamera Anda jika kamera tersebut terhubung secara eksternal

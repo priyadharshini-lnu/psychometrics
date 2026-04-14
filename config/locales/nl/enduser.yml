@@ -51,7 +51,7 @@ nl:
     direct_reportees: Directe rapporten
     download: Downloaden
     download_pdf: Download PDF
-    download_speed_below_minimum: De downloadsnelheid ${download_speed} ligt onder de vereiste minimale downloadsnelheid van ${minimum_download_speed} Mbps
+    download_speed_below_minimum: De downloadsnelheid %{download_speed} ligt onder de vereiste minimale downloadsnelheid van %{minimum_download_speed} Mbps
     environment_setup: Omgeving instellen
     error_uploading_video: Fout bij het uploaden van de video
     error_uploading_video_detail: Er is een fout opgetreden tijdens het uploaden van de video
@@ -91,7 +91,7 @@ nl:
     media_recorder_api_not_supported_detail: Je gebruikt %{browser_name} versie %{browser_version}, die de MediaRecorder-API niet ondersteunt. Werk je browser bij naar de nieuwste versie om compatibiliteit te garanderen.
     media_recorder_api_support: Ondersteuning voor de MediaRecorder-API
     min_word_limit: Moet minstens %{min} woorden bevatten
-    minimum_speed_requirements: Voor deze actie is een minimale downloadsnelheid van ${minimum_download_speed} Mbps en een minimale uploadsnelheid van ${minimum_upload_speed} Mbps vereist.
+    minimum_speed_requirements: Voor deze actie is een minimale downloadsnelheid van %{minimum_download_speed} Mbps en een minimale uploadsnelheid van %{minimum_upload_speed} Mbps vereist.
     minute: minuut
     minute_plural: notulen
     my_plan: Mijn plan
@@ -195,7 +195,7 @@ nl:
     troubleshooting_guide_video_third: Verfris de pagina nadat je de machtigingen hebt gewijzigd
     untimed: Zonder tijdslimiet
     upload: Uploaden
-    upload_speed_below_minimum: De uploadsnelheid ${upload_speed} ligt onder de vereiste minimale uploadsnelheid van ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: De uploadsnelheid %{upload_speed} ligt onder de vereiste minimale uploadsnelheid van %{minimum_upload_speed} Mbps
     video_and_audio: Video en audio
     video_and_audio_recording: Video- en audio-opname
     video_check_fix_fifth: Probeer de stekker van je camera uit het stopcontact te halen en weer aan te sluiten als het een externe camera betreft

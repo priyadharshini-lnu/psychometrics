@@ -51,7 +51,7 @@ ro:
     direct_reportees: Raportări directe
     download: Descărcați
     download_pdf: Descarcă PDF
-    download_speed_below_minimum: Viteza de descărcare ${download_speed} este sub viteza minimă necesară de descărcare de ${minimum_download_speed} Mbps
+    download_speed_below_minimum: Viteza de descărcare %{download_speed} este sub viteza minimă necesară de descărcare de %{minimum_download_speed} Mbps
     environment_setup: Configurarea mediului
     error_uploading_video: Eroare la încărcarea videoclipului
     error_uploading_video_detail: A apărut o eroare în timpul încărcării videoclipului
@@ -91,7 +91,7 @@ ro:
     media_recorder_api_not_supported_detail: Utilizați versiunea %{browser_name} %{browser_version}, care nu acceptă API-ul MediaRecorder. Vă rugăm să actualizați browserul la cea mai recentă versiune pentru a asigura compatibilitatea.
     media_recorder_api_support: Suport pentru API-ul MediaRecorder
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
-    minimum_speed_requirements: Pentru această campanie sunt necesare o viteză minimă de descărcare de ${minimum_download_speed} Mbps și o viteză minimă de încărcare de ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Pentru această campanie sunt necesare o viteză minimă de descărcare de %{minimum_download_speed} Mbps și o viteză minimă de încărcare de %{minimum_upload_speed} Mbps.
     minute: minut
     minute_plural: procese verbale
     my_plan: Planul meu
@@ -195,7 +195,7 @@ ro:
     troubleshooting_guide_video_third: Reîmprospătează pagina după ce modifici permisiunile
     untimed: Fără limită de timp
     upload: Încărcare
-    upload_speed_below_minimum: Viteza de încărcare ${upload_speed} este sub viteza minimă necesară de încărcare de ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: Viteza de încărcare %{upload_speed} este sub viteza minimă necesară de încărcare de %{minimum_upload_speed} Mbps
     video_and_audio: Video și audio
     video_and_audio_recording: Înregistrare video și audio
     video_check_fix_fifth: Încearcă să deconectezi și să reconectezi camera, dacă aceasta este externă

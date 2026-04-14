@@ -51,7 +51,7 @@ es-ES:
     direct_reportees: Subordinados Directos
     download: Descargar
     download_pdf: Descargar PDF
-    download_speed_below_minimum: La velocidad de descarga ${download_speed} es inferior a la velocidad mínima requerida de ${minimum_download_speed} Mbps
+    download_speed_below_minimum: La velocidad de descarga %{download_speed} es inferior a la velocidad mínima requerida de %{minimum_download_speed} Mbps
     environment_setup: Configuración del entorno
     error_uploading_video: Error al subir el vídeo
     error_uploading_video_detail: Se ha producido un error al subir el vídeo
@@ -91,7 +91,7 @@ es-ES:
     media_recorder_api_not_supported_detail: Estás utilizando una versión de %{browser_name} (%{browser_version}) que no es compatible con la API de MediaRecorder. Actualiza tu navegador a la última versión para garantizar la compatibilidad.
     media_recorder_api_support: Compatibilidad con la API de MediaRecorder
     min_word_limit: Debe tener al menos %{min} palabras
-    minimum_speed_requirements: Para esta promoción se requiere una velocidad mínima de descarga de ${minimum_download_speed} Mbps y una velocidad mínima de subida de ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Para esta promoción se requiere una velocidad mínima de descarga de %{minimum_download_speed} Mbps y una velocidad mínima de subida de %{minimum_upload_speed} Mbps.
     minute: minuto
     minute_plural: minutos
     my_plan: Mi plan
@@ -195,7 +195,7 @@ es-ES:
     troubleshooting_guide_video_third: Actualiza la página después de cambiar los permisos
     untimed: Sin límite de tiempo
     upload: Subir
-    upload_speed_below_minimum: La velocidad de subida ${upload_speed} es inferior a la velocidad mínima requerida de ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: La velocidad de subida %{upload_speed} es inferior a la velocidad mínima requerida de %{minimum_upload_speed} Mbps
     video_and_audio: Vídeo y audio
     video_and_audio_recording: Grabación de vídeo y audio
     video_check_fix_fifth: Prueba a desconectar y volver a conectar la cámara si es externa

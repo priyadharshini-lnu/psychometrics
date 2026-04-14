@@ -51,7 +51,7 @@ th:
     direct_reportees: ผู้รายงานโดยตรง
     download: ดาวน์โหลด
     download_pdf: ดาวน์โหลดไฟล์ PDF
-    download_speed_below_minimum: ความเร็วในการดาวน์โหลด ${download_speed} ต่ำกว่าความเร็วในการดาวน์โหลดขั้นต่ำที่ต้องการ ${minimum_download_speed} Mbps
+    download_speed_below_minimum: ความเร็วในการดาวน์โหลด %{download_speed} ต่ำกว่าความเร็วในการดาวน์โหลดขั้นต่ำที่ต้องการ %{minimum_download_speed} Mbps
     environment_setup: การตั้งค่าสภาพแวดล้อม
     error_uploading_video: เกิดข้อผิดพลาดในการอัปโหลดวิดีโอ
     error_uploading_video_detail: เกิดข้อผิดพลาดขณะอัปโหลดวิดีโอ
@@ -91,7 +91,7 @@ th:
     media_recorder_api_not_supported_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} ซึ่งไม่รองรับ MediaRecorder API กรุณาอัปเดตเบราว์เซอร์ของคุณเป็นเวอร์ชันล่าสุดเพื่อให้แน่ใจว่าใช้งานได้
     media_recorder_api_support: การสนับสนุน API ของ MediaRecorder
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
-    minimum_speed_requirements: ความเร็วในการดาวน์โหลดขั้นต่ำ ${minimum_download_speed} Mbps และความเร็วในการอัปโหลดขั้นต่ำ ${minimum_upload_speed} Mbps ที่จำเป็นสำหรับแคมเปญนี้
+    minimum_speed_requirements: ความเร็วในการดาวน์โหลดขั้นต่ำ %{minimum_download_speed} Mbps และความเร็วในการอัปโหลดขั้นต่ำ %{minimum_upload_speed} Mbps ที่จำเป็นสำหรับแคมเปญนี้
     minute: นาที
     minute_plural: นาที
     my_plan: แผนของฉัน
@@ -195,7 +195,7 @@ th:
     troubleshooting_guide_video_third: รีเฟรชหน้าหลังจากเปลี่ยนสิทธิ์
     untimed: ไม่จำกัดเวลา
     upload: อัปโหลด
-    upload_speed_below_minimum: ความเร็วในการอัปโหลด ${upload_speed} ต่ำกว่าความเร็วในการอัปโหลดขั้นต่ำที่กำหนดไว้ที่ ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: ความเร็วในการอัปโหลด %{upload_speed} ต่ำกว่าความเร็วในการอัปโหลดขั้นต่ำที่กำหนดไว้ที่ %{minimum_upload_speed} Mbps
     video_and_audio: วิดีโอและเสียง
     video_and_audio_recording: การบันทึกวิดีโอและเสียง
     video_check_fix_fifth: ลองถอดปลั๊กและเสียบกล้องใหม่หากเป็นกล้องภายนอก

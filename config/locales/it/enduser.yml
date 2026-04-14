@@ -51,7 +51,7 @@ it:
     direct_reportees: Collegati
     download: Scarica
     download_pdf: Scarica PDF
-    download_speed_below_minimum: La velocità di download ${download_speed} è inferiore alla velocità minima richiesta di ${minimum_download_speed} Mbps
+    download_speed_below_minimum: La velocità di download %{download_speed} è inferiore alla velocità minima richiesta di %{minimum_download_speed} Mbps
     environment_setup: Configurazione dell'ambiente
     error_uploading_video: Errore durante il caricamento del video
     error_uploading_video_detail: Si è verificato un errore durante il caricamento del video
@@ -91,7 +91,7 @@ it:
     media_recorder_api_not_supported_detail: Stai utilizzando una versione di %{browser_name} (%{browser_version}) che non supporta l'API MediaRecorder. Ti invitiamo ad aggiornare il browser all'ultima versione per garantire la compatibilità.
     media_recorder_api_support: Supporto dell'API MediaRecorder
     min_word_limit: Deve essere almeno %{min} parole
-    minimum_speed_requirements: Per questa campagna sono richiesti una velocità minima di download di ${minimum_download_speed} Mbps e una velocità minima di upload di ${minimum_upload_speed} Mbps.
+    minimum_speed_requirements: Per questa campagna sono richiesti una velocità minima di download di %{minimum_download_speed} Mbps e una velocità minima di upload di %{minimum_upload_speed} Mbps.
     minute: minuto
     minute_plural: verbali
     my_plan: Il mio piano
@@ -195,7 +195,7 @@ it:
     troubleshooting_guide_video_third: Aggiorna la pagina dopo aver modificato le autorizzazioni
     untimed: Senza limite di tempo
     upload: Carica
-    upload_speed_below_minimum: La velocità di upload ${upload_speed} è inferiore alla velocità minima richiesta di ${minimum_upload_speed} Mbps
+    upload_speed_below_minimum: La velocità di upload %{upload_speed} è inferiore alla velocità minima richiesta di %{minimum_upload_speed} Mbps
     video_and_audio: Video e audio
     video_and_audio_recording: Registrazione video e audio
     video_check_fix_fifth: Se la fotocamera è esterna, prova a scollegarla e ricollegarla

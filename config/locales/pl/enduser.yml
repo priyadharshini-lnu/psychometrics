@@ -51,7 +51,7 @@ pl:
     direct_reportees: Bezpośredni podwładni
     download: Pobierz
     download_pdf: Pobierz PDF
-    download_speed_below_minimum: Prędkość pobierania ${download_speed} jest niższa od minimalnej wymaganej prędkości pobierania wynoszącej ${minimum_download_speed} Mb/s
+    download_speed_below_minimum: Prędkość pobierania %{download_speed} jest niższa od minimalnej wymaganej prędkości pobierania wynoszącej %{minimum_download_speed} Mb/s
     environment_setup: Konfiguracja środowiska
     error_uploading_video: Wystąpił błąd podczas przesyłania filmu
     error_uploading_video_detail: Wystąpił błąd podczas przesyłania filmu
@@ -91,7 +91,7 @@ pl:
     media_recorder_api_not_supported_detail: Korzystasz z przeglądarki %{browser_name} w wersji %{browser_version}, która nie obsługuje interfejsu API MediaRecorder. Aby zapewnić zgodność, zaktualizuj przeglądarkę do najnowszej wersji.
     media_recorder_api_support: Obsługa interfejsu API MediaRecorder
     min_word_limit: Musi mieć co najmniej %{min} słów
-    minimum_speed_requirements: W ramach tej promocji wymagana jest minimalna prędkość pobierania wynosząca ${minimum_download_speed} Mb/s oraz minimalna prędkość wysyłania wynosząca ${minimum_upload_speed} Mb/s.
+    minimum_speed_requirements: W ramach tej promocji wymagana jest minimalna prędkość pobierania wynosząca %{minimum_download_speed} Mb/s oraz minimalna prędkość wysyłania wynosząca %{minimum_upload_speed} Mb/s.
     minute: minuta
     minute_plural: protokół
     my_plan: Mój plan
@@ -195,7 +195,7 @@ pl:
     troubleshooting_guide_video_third: Po zmianie uprawnień odśwież stronę
     untimed: Bez limitu czasowego
     upload: Prześlij
-    upload_speed_below_minimum: Prędkość wysyłania danych wynosząca ${upload_speed} jest niższa od minimalnej wymaganej prędkości wysyłania wynoszącej ${minimum_upload_speed} Mb/s
+    upload_speed_below_minimum: Prędkość wysyłania danych wynosząca %{upload_speed} jest niższa od minimalnej wymaganej prędkości wysyłania wynoszącej %{minimum_upload_speed} Mb/s
     video_and_audio: Wideo i audio
     video_and_audio_recording: Nagrywanie obrazu i dźwięku
     video_check_fix_fifth: Jeśli aparat jest podłączony zewnętrznie, spróbuj go odłączyć i podłączyć ponownie

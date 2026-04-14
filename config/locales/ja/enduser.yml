@@ -51,7 +51,7 @@ ja:
     direct_reportees: 直下のレポート
     download: ダウンロード
     download_pdf: PDFをダウンロード
-    download_speed_below_minimum: ダウンロード速度 ${download_speed} は、必要最低限のダウンロード速度である ${minimum_download_speed} Mbps を下回っています
+    download_speed_below_minimum: ダウンロード速度 %{download_speed} は、必要最低限のダウンロード速度である %{minimum_download_speed} Mbps を下回っています
     environment_setup: 環境設定
     error_uploading_video: 動画のアップロードに失敗しました
     error_uploading_video_detail: 動画のアップロード中にエラーが発生しました
@@ -91,7 +91,7 @@ ja:
     media_recorder_api_not_supported_detail: 現在、%{browser_name}のバージョン%{browser_version}をご利用ですが、このバージョンではMediaRecorder APIがサポートされていません。互換性を確保するため、ブラウザを最新バージョンに更新してください。
     media_recorder_api_support: MediaRecorder API のサポート
     min_word_limit: 最小%{min}語以上にしてください
-    minimum_speed_requirements: このキャンペーンに参加するには、ダウンロード速度が${minimum_download_speed} Mbps以上、アップロード速度が${minimum_upload_speed} Mbps以上である必要があります。
+    minimum_speed_requirements: このキャンペーンに参加するには、ダウンロード速度が%{minimum_download_speed} Mbps以上、アップロード速度が%{minimum_upload_speed} Mbps以上である必要があります。
     minute: 分
     minute_plural: 議事録
     my_plan: 私の計画
@@ -195,7 +195,7 @@ ja:
     troubleshooting_guide_video_third: 権限を変更したら、ページを更新してください
     untimed: 制限時間なし
     upload: アップロード
-    upload_speed_below_minimum: アップロード速度 ${upload_speed} は、必要最低限のアップロード速度である ${minimum_upload_speed} Mbps を下回っています
+    upload_speed_below_minimum: アップロード速度 %{upload_speed} は、必要最低限のアップロード速度である %{minimum_upload_speed} Mbps を下回っています
     video_and_audio: 映像・音声
     video_and_audio_recording: 動画および音声の録音
     video_check_fix_fifth: カメラが外部接続型の場合は、一度電源ケーブルを抜いてから再度接続してみてください

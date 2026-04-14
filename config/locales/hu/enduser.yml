@@ -51,7 +51,7 @@ hu:
     direct_reportees: Közvetlen beosztottak
     download: Letöltés
     download_pdf: Letöltés PDF
-    download_speed_below_minimum: A letöltési sebesség (${download_speed}) alacsonyabb a szükséges minimális letöltési sebességnél (${minimum_download_speed} Mbps)
+    download_speed_below_minimum: A letöltési sebesség (%{download_speed}) alacsonyabb a szükséges minimális letöltési sebességnél (%{minimum_download_speed} Mbps)
     environment_setup: A környezet beállítása
     error_uploading_video: Hiba a videó feltöltése közben
     error_uploading_video_detail: Hiba történt a videó feltöltése közben
@@ -91,7 +91,7 @@ hu:
     media_recorder_api_not_supported_detail: "%{browser_name}-es böngészőjét használja (%{browser_version}), amely nem támogatja a MediaRecorder API-t. A kompatibilitás biztosítása érdekében kérjük, frissítse böngészőjét a legújabb verzióra."
     media_recorder_api_support: MediaRecorder API támogatás
     min_word_limit: Legalább %{min} szó kell
-    minimum_speed_requirements: Ehhez az akcióhoz legalább ${minimum_download_speed} Mbps letöltési és legalább ${minimum_upload_speed} Mbps feltöltési sebesség szükséges.
+    minimum_speed_requirements: Ehhez az akcióhoz legalább %{minimum_download_speed} Mbps letöltési és legalább %{minimum_upload_speed} Mbps feltöltési sebesség szükséges.
     minute: perc
     minute_plural: jegyzőkönyv
     my_plan: A tervem
@@ -195,7 +195,7 @@ hu:
     troubleshooting_guide_video_third: A jogosultságok módosítása után frissítse az oldalt
     untimed: Időkorlát nélkül
     upload: Feltöltés
-    upload_speed_below_minimum: A feltöltési sebesség (${upload_speed}) alacsonyabb a szükséges minimális feltöltési sebességnél (${minimum_upload_speed} Mbps)
+    upload_speed_below_minimum: A feltöltési sebesség (%{upload_speed}) alacsonyabb a szükséges minimális feltöltési sebességnél (%{minimum_upload_speed} Mbps)
     video_and_audio: Videó és hang
     video_and_audio_recording: Videó- és hangfelvétel
     video_check_fix_fifth: Ha a fényképezőgép külső eszköz, próbálja meg kihúzni a csatlakozóját, majd újra csatlakoztatni
