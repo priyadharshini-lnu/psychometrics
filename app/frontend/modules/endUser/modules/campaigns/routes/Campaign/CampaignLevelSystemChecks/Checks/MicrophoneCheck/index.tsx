@@ -7,29 +7,29 @@ import { useParams } from 'react-router-dom'
 import {
   Flex, Spin, Typography, Button,
 } from 'antd'
-import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
-import { VideoCheck } from './VideoCheck'
+import { MediaQueryContext, ButtonWithArrow } from '~/glint'
+import { AudioCheck } from './AudioCheck'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import {
-  VideoCameraOutlined, ExclamationCircleOutlined,
+  AudioOutlined, ExclamationCircleOutlined, ArrowLeftOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import { CHECK_STATUS, CHECK_TYPE } from '../../common'
 import { PermissionDenied } from '../../components/PermissionDenied'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
+import { SystemCheckAddedRecord } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
 import commonStyles from '../../common-styles.less'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
-import { SystemCheckAddedRecord } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
 
 const { I18n } = window
 const connector = connect(null,
   {
     fetchCampaign,
   })
-export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
+export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   const [recordId, setRecordId] = useState<string | null>(null)
@@ -38,7 +38,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const [isDeviceRequestGranted, setIsDeviceRequestGranted] = useState<boolean>(true)
 
-  const [isAbruptlyEnded, setIsAbruptlyEnded] = useState<boolean>(false)
+  const [noAudioDetected, setNoAudioDetected] = useState<boolean>(false)
 
   const dispatch = useDispatch()
 
@@ -56,25 +56,26 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const {
     data:
     systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
 
-  const generateRecordId = async () => {
-    try {
-      const recordResponse = await addSystemCheckRecord({
-        campaignId,
-        record: {
-          checkType: CHECK_TYPE.video,
-          passed: false,
-          data: {},
-        },
-      }).unwrap()
-
-      return recordResponse
-    } catch (e) {
-      return null
-    }
-  }
   useEffect(() => {
+    const generateRecordId = async () => {
+      try {
+        const recordResponse = await addSystemCheckRecord({
+          campaignId,
+          record: {
+            checkType: CHECK_TYPE.audio,
+            passed: false,
+            data: {},
+          },
+        }).unwrap()
+
+        return recordResponse
+      } catch (e) {
+        return null
+      }
+    }
+
     if (!systemCheckSessionId) {
       setIsLoading(true)
       fetchCampaign(`/campaigns/${campaignId}`).then(({ response }) => {
@@ -87,12 +88,13 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
           dispatch(actions.setRequiredSystemChecks(validChecks))
 
-          if (validChecks.includes('network')) {
+          if (validChecks.includes(CHECK_TYPE.network)) {
             dispatch(actions.setNetworkSpeeds({
               minimumDownloadSpeed: systemCheckRequirementsStatus?.requirements?.network?.minimumDownloadSpeed,
               minimumUploadSpeed: systemCheckRequirementsStatus?.requirements?.network?.minimumUploadSpeed,
             }))
           }
+
 
           generateRecordId().then((data: SystemCheckAddedRecord | null) => {
             if (data) {
@@ -118,25 +120,23 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
   }, [recordId])
 
+
   const generateDetails = () => {
     const details: string[] = []
 
     if (!isDeviceRequestGranted) {
-      details.push(I18n.t('enduser.camera_access_blocked'))
-    } else if (isDeviceRequestGranted && checkStatus === CHECK_STATUS.failed) {
-      details.push(I18n.t('enduser.error_uploading_video_detail'))
+      details.push(I18n.t('enduser.microphone_access_blocked'))
+    } else if (checkStatus === CHECK_STATUS.failed) {
+      if (noAudioDetected) {
+        details.push(I18n.t('enduser.no_audio_detected'))
+      } else {
+        details.push(I18n.t('enduser.error_uploading_audio_detail'))
+      }
     } else {
-      details.push(I18n.t('enduser.camera_check_passed'))
+      details.push(I18n.t('enduser.microphone_check_passed'))
     }
 
     return details
-  }
-
-  const onCheckAbruptlyEnded = () => {
-    if (checkStatus === CHECK_STATUS.pending) {
-      setIsAbruptlyEnded(true)
-      setCheckStatus(CHECK_STATUS.failed)
-    }
   }
 
   const handleNext = async () => {
@@ -144,7 +144,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     await addSystemCheckRecord({
       campaignId,
       record: {
-        checkType: CHECK_TYPE.video,
+        checkType: CHECK_TYPE.audio,
         passed: checkStatus === CHECK_STATUS.passed,
         data: {
           details: generateDetails(),
@@ -172,8 +172,9 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     return null
   }, [recordId])
 
-  if (!isDeviceRequestGranted) {
-    return <PermissionDenied handleNext={handleNext} checkType={CHECK_TYPE.video} />
+
+  if (!isDeviceRequestGranted && checkStatus === CHECK_STATUS.failed) {
+    return <PermissionDenied handleNext={handleNext} checkType={CHECK_TYPE.audio} />
   }
 
   return (
@@ -185,13 +186,13 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     >
       <Flex justify="space-between">
         <Flex gap={8}>
-          <VideoCameraOutlined style={{ fontSize: '1.5rem', color: 'var(--ant-primary-color)', alignSelf: 'flex-start' }} />
+          <AudioOutlined style={{ fontSize: '1.5rem', color: 'var(--ant-primary-color)', alignSelf: 'flex-start' }} />
           <Flex vertical>
             <h4 className="mt-0 mb-2">
-              {I18n.t('enduser.camera_check')}
+              {I18n.t('enduser.audio_check')}
             </h4>
             <Typography.Text className="mb-4">
-              {I18n.t('enduser.camera_check_description')}
+              {I18n.t('enduser.audio_check_description')}
             </Typography.Text>
           </Flex>
         </Flex>
@@ -231,31 +232,28 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               >
                 <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
                 <h4 className="mt-0">
-                  {isAbruptlyEnded ? I18n.t('enduser.camera_check_abruptly_ended') : I18n.t('enduser.error_uploading_video')}
+                  {noAudioDetected ? I18n.t('enduser.no_audio_detected') : I18n.t('enduser.error_uploading_audio')}
                 </h4>
               </Flex>
 
             </Flex>
 
             <Flex style={{ width: '100%' }} justify="space-between">
-              <Button className="mt-2" icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
+              <Button className="mt-2" icon={<ArrowLeftOutlined />} onClick={onPrev}>
                 {I18n.t('enduser.back')}
               </Button>
               <Flex justify="end" gap={4} className="mt-2">
                 <Button onClick={() => {
                   setCheckStatus(CHECK_STATUS.pending)
-                  setIsAbruptlyEnded(false)
                 }}
                 >
                   {I18n.t('enduser.rerun_check')}
                 </Button>
-
                 <ButtonWithArrow
                   type="primary"
                   style={{ alignSelf: 'flex-end' }}
                   label={I18n.t('shared.continue')}
                   onClick={handleNext}
-                  disabled={isAbruptlyEnded}
                 />
               </Flex>
             </Flex>
@@ -267,13 +265,13 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
           && <Spin />}
           {!isLoading
           && (
-            <VideoCheck
+            <AudioCheck
               directUploadURL={directUploadURL || ''}
               postRecordingCallbackURL={postRecordingCallbackURL || ''}
               nextStep={handleNext}
               setCheckStatus={setCheckStatus}
               setIsDeviceRequestGranted={setIsDeviceRequestGranted}
-              onCheckAbruptlyEnded={onCheckAbruptlyEnded}
+              setNoAudioDetected={setNoAudioDetected}
             />
           )}
         </>
@@ -283,5 +281,4 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   )
 }
 
-
-export const CameraCheck = connector(CameraCheckComponent)
+export const MicrophoneCheck = connector(MicrophoneCheckComponent)

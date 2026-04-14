@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, useMemo, useContext,
+  useEffect, useState, useMemo, useContext, useCallback,
 } from 'react'
 import {
   Table, Spin, Typography, Flex, Card, Button, Alert,
@@ -61,7 +61,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const [expandedRowKeys, setExpandedRowKeys] = useState<React.Key[]>([])
 
-  const { data: systemCheckResults } = useFetchSystemCheckResultsQuery(
+  const { data: systemCheckResults, isLoading: isSystemCheckResultLoading } = useFetchSystemCheckResultsQuery(
     { campaignId },
     { refetchOnMountOrArgChange: true },
   )
@@ -80,7 +80,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
     (state: RootState) => state.campaigns.systemCheck.currentCampaignForSystemCheck,
   )
 
-  const { systemCheckSessionId = null, systemCheckStatusPassed = false } = campaignDetailsForSystemCheck || {}
+  const { systemCheckSessionId = null } = campaignDetailsForSystemCheck || {}
 
   useEffect(() => {
     completeSystemCheckSession({
@@ -129,6 +129,16 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
       return [...prev, key]
     })
   }
+
+  const getOverallResult = useCallback(() => {
+    if (systemCheckResults) {
+      const allChecksPassed = Object.keys(systemCheckResults.records).every(
+        key => systemCheckResults.records[key].passed === true,
+      )
+      return allChecksPassed
+    }
+    return false
+  }, [systemCheckResults])
 
   const columns = useMemo(() => ([
     {
@@ -193,16 +203,17 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
   }, [systemCheckResults])
 
   const handleNext = () => {
-    if (systemCheckStatusPassed || campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning) {
+    if (getOverallResult() || campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning) {
       onNext()
     } else {
       window.location.href = '/'
     }
   }
 
+
   return (
     <Flex justify="center" flex={1} style={{ width: '100%' }}>
-      {isLoading ? <Spin />
+      {(isLoading || isSystemCheckResultLoading) ? <Spin />
         : (
           <Flex
             gap={8}
@@ -211,7 +222,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
             align="center"
             style={{ ...(!isMobile && { padding: '1rem' }), width: '100%' }}
           >
-            <ResultHeader />
+            <ResultHeader isLoading={isSystemCheckResultLoading} result={getOverallResult()} />
             <Table
               style={{ width: '100%' }}
               pagination={false}
@@ -229,7 +240,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
               }}
             />
 
-            {!systemCheckStatusPassed
+            {!getOverallResult()
             && !campaignDetailsForSystemCheck?.campaignOptions.allowContinueWithWarning && (
               <Card style={{ width: '100%', padding: '1rem', backgroundColor: 'rgba(240, 240, 240, 1)' }}>
                 <Flex
@@ -259,7 +270,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
                 {I18n.t('enduser.back')}
               </Button>
               <Flex gap={4} style={{ width: '100%' }} justify="end">
-                {!systemCheckStatusPassed && (
+                {!getOverallResult() && (
                   <Button
                     className="mt-2"
                     icon={<RedoOutlined />}

@@ -1,8 +1,12 @@
 
-import { BROWSER_NAME, BROWSER_VERSION } from '~/utils/uaParser'
+import { BROWSER_NAME } from '~/utils/uaParser'
 
 const { I18n } = window
 
+export const safariProctoring = {
+  title: I18n.t('enduser.safari_proctoring_title'),
+  description: [I18n.t('enduser.safari_proctoring_description')],
+}
 
 export const MIN_BROWSER_VERSIONS = {
   Chrome: 144,
@@ -16,7 +20,6 @@ export const browserCheckErrorMessage = {
     ...(MIN_BROWSER_VERSIONS[BROWSER_NAME] ? {
       title: I18n.t('enduser.browser_version_fix_title', {
         browser_name: BROWSER_NAME,
-        browser_version: BROWSER_VERSION,
         updated_version: MIN_BROWSER_VERSIONS[BROWSER_NAME],
       }),
       description: [
@@ -26,9 +29,9 @@ export const browserCheckErrorMessage = {
         }),
       ],
     } : {
-      title: `Your browser ${BROWSER_NAME} is not compatible with this campaign. `,
+      title: I18n.t('enduser.browser_not_compatible', { browser_name: BROWSER_NAME }),
       description: [
-        'Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.',
+        I18n.t('enduser.browser_not_compatible_description'),
       ],
     }),
   },

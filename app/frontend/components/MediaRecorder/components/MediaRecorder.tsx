@@ -119,14 +119,6 @@ export function useReactMediaRecorder ({
 
     setup()
     setInit(true)
-
-    return () => {
-      if (mediaStream.current) {
-        mediaStream.current.getVideoTracks()[0].removeEventListener('ended', () => {
-          onEnded()
-        })
-      }
-    }
   }, [])
 
   const getMediaStream = useCallback(async (overrideConstraints?: MediaStreamConstraints) => {

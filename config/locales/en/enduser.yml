@@ -12,6 +12,11 @@ en:
     ai_idp_summary_hint_no_document: I can now create a tailored plan with practical actions to support your growth. You can also restart the chat to refine your inputs, if needed.
     all_checks_must_pass: All checks must pass before you can proceed.
     approve_idp_plan: Approve Plan
+    audio: Audio
+    audio_check: Microphone Test
+    audio_check_description: Verify your microphone is working properly for recording
+    audio_recording: Audio Recording
+    audio_test_step: Audio Test Step
     back: Back
     back_to_dashboard: Return to Dashboard
     before_you_begin: Before you begin
@@ -26,18 +31,21 @@ en:
     browser_compatibility_result: Browser Compatibility
     browser_compatible: Your browser %{browser_name} version %{browser_version} is compatible with this campaign.
     browser_compatible_detail: You're using %{browser_name} version %{browser_version} which meets the minimum requirement for this campaign.
-    browser_incompatible_detail: You're are using %{browser_name} version %{browser_version}. Please update your %{browser_name} to the version %{min_browser_version} to ensure compatibility.
-    browser_not_compatible: Your browser %{browser_name} is not compatible with this campaign. Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
+    browser_incompatible_detail: You're are using %{browser_name} version %{browser_version}. Please update your %{browser_name} to the version %{min_browser_version} or above to ensure compatibility.
+    browser_not_compatible: Your browser %{browser_name} is not compatible with this campaign.
+    browser_not_compatible_description: Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
+    browser_not_compatible_detail: Your browser %{browser_name} is not compatible with this campaign. Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
     browser_version_fix_description_first: Update your %{browser_name} browser to the version %{updated_version} or above to ensure compatibility
-    browser_version_fix_title: You're are using %{browser_name} version %{browser_version} which is not compatible
+    browser_version_fix_title: Your current %{browser_name} does not meet the minimum required version (%{updated_version})  for this campaign
     camera: Video and Audio
-    camera_access_blocked: Camera access was denied or blocked by your browser. Please check your browser permissions.
+    camera_access_blocked: Camera/Microphone access was denied or blocked by your browser. Please check your browser permissions.
     camera_check: Camera and Microphone Test
     camera_check_abruptly_ended: Camera was turned off abruptly. Please enable your camera and re-run the check.
     camera_check_description: Verify your camera and microphone are working properly for recording
     camera_check_passed: Video and Audio check passed successfully
     camera_test_step: Video and Audio Test Step
     campaign: Campaign
+    campaign_check_status: 'Status: %{status}'
     chat_instructions: Chat Instructions
     check: Check
     check_video_recording: Please check your video recording by playing it back.
@@ -53,6 +61,8 @@ en:
     download_pdf: Download PDF
     download_speed_below_minimum: Download speed ${download_speed} is below the minimum required download speed of ${minimum_download_speed} Mbps
     environment_setup: Environment Setup
+    error_uploading_audio: Error uploading audio
+    error_uploading_audio_detail: There was an error uploading your audio
     error_uploading_video: Error uploading video
     error_uploading_video_detail: There was some error while uploading the video
     fail: Fail
@@ -90,8 +100,10 @@ en:
     media_recorder_api_fix_title: Media Recorder API is not supported in your browser.
     media_recorder_api_not_supported_detail: You're using %{browser_name} version %{browser_version} which does not support the MediaRecorder API. Please update your browser to the latest version to ensure compatibility.
     media_recorder_api_support: MediaRecorder API Support
+    microphone_access_blocked: Microphone access was denied or blocked by your browser. Please check your browser permissions.
+    microphone_check_passed: Microphone check passed successfully
     min_word_limit: Must be at least %{min} words
-    minimum_speed_requirements: Minimum Download Speed of ${minimum_download_speed} Mbps and Minimum Upload Speed of ${minimum_upload_speed} Mbps required for this campaign.
+    minimum_speed_requirements: Minimum Download Speed of %{minimum_download_speed} Mbps and Minimum Upload Speed of %{minimum_upload_speed} Mbps required for this campaign.
     minute: minute
     minute_plural: minutes
     my_plan: My Plan
@@ -105,6 +117,7 @@ en:
     network_check_fix_third: Restart your router/modem and try again
     network_speed_meets_required_detail: Your Internet speed meets the minimum requirements for the campaign
     network_test_step: Network Test Step
+    no_audio_detected: No audio detected. Please check if your microphone is connected and working properly.
     no_audio_warning: No audio detected. Please check if your microphone is connected and working properly.
     pass: Pass
     pending: Pending
@@ -123,6 +136,8 @@ en:
     rerun_checks: Re-run Checks
     result: Result
     results: Result
+    safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome أو Firefox.
+    safari_proctoring_title: Safari Browser Detected
     selected_count: "%{count} selected"
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
@@ -130,9 +145,10 @@ en:
     start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
     start_system_check: Start System Check
+    subinstruction_audio: Working microphone
     subinstruction_eight: Set aside uninterrupted time for the full assessment
     subinstruction_five: Ready to share your screen throughout the session
-    subinstruction_four: Working webcam and microphone
+    subinstruction_four: Working camera and microphone
     subinstruction_one: A quiet, well-lit room with no other people present
     subinstruction_seven: Ensure your device is fully charged or plugged into socket
     subinstruction_six: Close all unnecessary applications and browser tabs
@@ -176,6 +192,12 @@ en:
     testing_upload_speed: Testing upload speed...
     time_commitment: Time Commitment
     troubleshooting_guide: Troubleshooting Guide
+    troubleshooting_guide_audio_fifth: 'On Windows: Check Privacy Settings > Microphone access'
+    troubleshooting_guide_audio_first: Click the lock/info icon in your browser's address bar
+    troubleshooting_guide_audio_fourth: If blocked, you may need to reset permissions in browser settings
+    troubleshooting_guide_audio_second: Find "Microphone" settings and set them to "Allow"
+    troubleshooting_guide_audio_sixth: 'On Mac: Check System Preferences > Security'
+    troubleshooting_guide_audio_third: Refresh the page after changing permissions
     troubleshooting_guide_browser_fifth: Ensure LocalStorage is enabled in your browser settings
     troubleshooting_guide_browser_first: 'Use a supported browser: Chrome, Firefox, Edge, or Safari (latest versions)'
     troubleshooting_guide_browser_fourth: Enable JavaScript and cookies in browser settings
@@ -196,6 +218,7 @@ en:
     untimed: Untimed
     upload: Upload
     upload_speed_below_minimum: Upload speed ${upload_speed} is below the minimum required upload speed of ${minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Video and Audio Recording
     video_check_fix_fifth: Try unplugging and reconnecting your camera if it's external

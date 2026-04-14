@@ -275,11 +275,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       stub_wisper_publisher(
         'SystemCheckSessions::RequirementsCalculator', :call, :ok,
         { browser: { required: true }, network: { required: true, minimum_download_speed: 1, minimum_upload_speed: 1 },
-          video: { required: false } }
-      )
-      stub_wisper_publisher(
-        'SystemCheckSessions::GetSystemCheckStatus', :call, :ok,
-        { browser: :satisfied, network: :unsatisfied, video: :not_required }
+          video: { required: false }, audio: { required: false } }
       )
     end
 
@@ -294,7 +290,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     end
   end
 
-  describe '#upload_video_url' do
+  describe '#upload_media_url' do
     let(:system_check_session) { create(:system_check_session, user: user) }
     let(:system_check_record) do
       create(:system_check_record, :video, system_check_session: system_check_session)
@@ -312,7 +308,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       end
 
       it 'returns multipart upload data' do
-        post :upload_video_url, params: {
+        post :upload_media_url, params: {
           campaign_id: campaign.id,
           id: system_check_record.id
         }
@@ -331,12 +327,33 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       end
 
       it 'returns error' do
-        post :upload_video_url, params: {
+        post :upload_media_url, params: {
           campaign_id: campaign.id,
           id: system_check_record.id
         }
 
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'with audio check type' do
+      let(:system_check_record) do
+        create(:system_check_record, :audio, system_check_session: system_check_session)
+      end
+
+      before do
+        stub_rectify_command(SystemCheckRecords::GetMultipartUploadUrls, ok_payload: lambda {
+          { 'upload_id' => 'upload_2', 'asset_key' => 'asset_2', 'urls' => ['https://example.com/part1'] }
+        })
+      end
+
+      it 'returns multipart upload data for audio' do
+        post :upload_media_url, params: {
+          campaign_id: campaign.id,
+          id: system_check_record.id
+        }
+
+        expect(response).to have_http_status(:ok)
       end
     end
   end

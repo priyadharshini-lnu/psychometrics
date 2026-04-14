@@ -59,8 +59,10 @@ module EndUser
       raise "Not supported hogan type #{type}"
     end
 
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def completion_percent
       result = object.users_result
+      return 0 unless result
       return 100 if completed_without_timed_out?(result)
 
       return result.progress == 100 ? 99 : result.progress if result.progress.present?
@@ -74,6 +76,7 @@ module EndUser
 
       progress
     end
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     def assessment_extra
       object.assessment.extra

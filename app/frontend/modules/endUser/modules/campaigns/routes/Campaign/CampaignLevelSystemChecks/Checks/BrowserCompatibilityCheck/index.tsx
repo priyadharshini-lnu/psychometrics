@@ -9,7 +9,9 @@ import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
-import { BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature } from '~/utils/uaParser'
+import {
+  BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature, getExactBrowserVersionSync,
+} from '~/utils/uaParser'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   CheckCircleOutlined,
@@ -19,12 +21,15 @@ import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import { CHECK_STATUS, CHECK_TYPE } from '../../common'
-import { MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage } from './constants'
+import {
+  MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage, safariProctoring,
+} from './constants'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
 import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { AlertNotification } from '../../components/AlertNotification'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
+
 
 type BrowserCheckStatus = {
   type: BrowserCheckType;
@@ -50,17 +55,15 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     (state: RootState) => state.campaigns.systemCheck.currentCampaignForSystemCheck,
   )
 
-  const { systemCheckSessionId = null, checksArray = [] } = campaignDetailsForSystemCheck || {}
+  const { systemCheckSessionId = null, checksArray = [], campaignOptions } = campaignDetailsForSystemCheck || {}
 
   const { campaignId } = useParams() as {campaignId: string}
-
-  const [major, minor] = [BROWSER_VERSION.split('.')[0], BROWSER_VERSION.split('.')[1] || '0']
 
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
   const {
     data:
         systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
   const dispatch = useDispatch()
 
@@ -88,18 +91,25 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
   }
 
+  const checkBrowserForProctoringSupport = () => {
+    if (BROWSER_NAME === 'Safari' && campaignOptions?.proctoringEnabled) {
+      browserCheckErrorMessage.browserVersion = { ...safariProctoring }
+      return false
+    }
+    return true
+  }
+
   const checkIfBrowserIsAboveMinimumVersion = () => {
     const compatibleVersion = MIN_BROWSER_VERSIONS[BROWSER_NAME]
     if (!compatibleVersion) {
       return false
     }
-    return Number(BROWSER_VERSION.split('.')[0]) >= compatibleVersion
+    return checkBrowserForProctoringSupport() && Number(BROWSER_VERSION.split('.')[0]) >= compatibleVersion
   }
 
 
-  const checkBrowserForFeatureCompatibility = () => {
+  const checkBrowserForFeatureCompatibility = async () => {
     setIsLoading(true)
-
     const hasMinimumBrowserVersion = checkIfBrowserIsAboveMinimumVersion()
     const hasWebGLSupport = checkBrowserSupportForWebGLAPI()
     const hasMediaRecorderAPISupport = checkBrowserSupportForFeature(
@@ -113,13 +123,13 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
 
       if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
-        details.push(I18n.t('enduser.browser_not_compatible', { browser_name: BROWSER_NAME }))
+        details.push(I18n.t('enduser.browser_not_compatible_detail', { browser_name: BROWSER_NAME }))
       }
 
       if (hasMinimumBrowserVersion && hasWebGLSupport && hasMediaRecorderAPISupport && hasLocalStorageSupport) {
         details.push(I18n.t('enduser.browser_compatible', {
           browser_name: BROWSER_NAME,
-          browser_version: `${major}.${minor}`,
+          browser_version: getExactBrowserVersionSync(),
         }))
         return details
       }
@@ -127,27 +137,27 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
       if (!hasMinimumBrowserVersion) {
         details.push(I18n.t('enduser.browser_incompatible_detail', {
           browser_name: BROWSER_NAME,
-          browser_version: `${major}.${minor}`,
+          browser_version: getExactBrowserVersionSync(),
           min_browser_version: MIN_BROWSER_VERSIONS[BROWSER_NAME],
         }))
       } else {
         details.push(I18n.t('enduser.browser_compatible_detail', {
           browser_name: BROWSER_NAME,
-          browser_version: `${major}.${minor}`,
+          browser_version: getExactBrowserVersionSync(),
         }))
       }
 
       if (!hasWebGLSupport) {
         details.push(I18n.t('enduser.webgl_not_supported_detail', {
           browser_name: BROWSER_NAME,
-          browser_version: `${major}.${minor}`,
+          browser_version: getExactBrowserVersionSync(),
         }))
       }
 
       if (!hasMediaRecorderAPISupport) {
         details.push(I18n.t('enduser.media_recorder_api_not_supported_detail', {
           browser_name: BROWSER_NAME,
-          browser_version: `${major}.${minor}`,
+          browser_version: getExactBrowserVersionSync(),
         }))
       }
 
@@ -161,13 +171,13 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
       if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
         return {
           type: BrowserCheckType.browserVersion,
-          title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${major}.${minor}`,
+          title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${getExactBrowserVersionSync()}`,
           supported: false,
         }
       }
       return {
         type: BrowserCheckType.browserVersion,
-        title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${major}.${minor}`,
+        title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${getExactBrowserVersionSync()}`,
         supported: hasMinimumBrowserVersion,
       }
     }
@@ -199,7 +209,7 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           webGL: hasWebGLSupport,
           localStorage: hasLocalStorageSupport,
           browserName: BROWSER_NAME,
-          browserVersion: `${major}.${minor}`,
+          browserVersion: getExactBrowserVersionSync(),
           browserCompatibility: hasMinimumBrowserVersion,
           details: generateDetails(),
         },

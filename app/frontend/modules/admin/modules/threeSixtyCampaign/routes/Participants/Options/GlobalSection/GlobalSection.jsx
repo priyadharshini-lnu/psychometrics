@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
-  Row, Col, Tooltip,
+  Row, Col, Tooltip, Input, Button, Flex,
 } from 'antd'
-import { QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { QuestionCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import OptionSection from '~/modules/admin/components/Options/Section'
 import ExpandableOption from '~/modules/admin/components/Options/Expandable'
 import { MaskedInput } from '~/glint'
+import InputDuration from '~/components/InputDuration'
 
 const { I18n } = window
 
@@ -16,24 +17,34 @@ export default function GlobalSection ({
 }) {
   const [watermarkContent, setWatermarkContent] = useState(options.watermarkContent)
   const OBJECT_KEY = 'global'
-  // const inputDurationRef = useRef(null)
+  const inputDurationRef = useRef(null)
+
+  const [isEditingDownloadSpeed, setIsEditingDownloadSpeed] = useState(false)
+  const [isEditingUploadSpeed, setIsEditingUploadSpeed] = useState(false)
+  const [downloadSpeed, setDownloadSpeed] = useState(options.calculatedMinimumDownloadSpeed)
+  const [uploadSpeed, setUploadSpeed] = useState(options.calculatedMinimumUploadSpeed)
 
   useEffect(() => {
     setWatermarkContent(options.watermarkContent || '')
   }, [options.watermarkContent])
+
+  useEffect(() => {
+    setDownloadSpeed(options.minimumDownloadSpeed || options.calculatedMinimumDownloadSpeed)
+    setUploadSpeed(options.minimumUploadSpeed || options.calculatedMinimumUploadSpeed)
+  }, [options.calculatedMinimumDownloadSpeed, options.calculatedMinimumUploadSpeed])
 
   const parametersForSwitch = name => ({
     value: options[name],
     onChange: updateParticipantOptions([OBJECT_KEY, name]),
   })
 
-  // const parametersForSystemCheckValidity = ({
-  //   value: options.systemCheckValidity ? options.systemCheckValidity : '1d',
-  //   onChange: (value) => {
-  //     updateParticipantOptions([OBJECT_KEY, 'systemCheckValidity'], value)
-  //   },
-  //   ref: inputDurationRef,
-  // })
+  const parametersForSystemCheckValidity = ({
+    value: options.systemCheckValidity ? options.systemCheckValidity : '1d',
+    onChange: (value) => {
+      updateParticipantOptions([OBJECT_KEY, 'systemCheckValidity'], value)
+    },
+    ref: inputDurationRef,
+  })
 
   return (
     <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.global')}>
@@ -78,64 +89,101 @@ export default function GlobalSection ({
           </Row>
         )
       }
-      {/* <ExpandableOption
+      <ExpandableOption
         label={I18n.t('admin.enable_system_check')}
         {...parametersForSwitch('systemCheckEnabled')}
-      /> */}
-      {/* {
-                          options.systemCheckEnabled
-                       && (
-                         <>
+      />
+      {
+          options.systemCheckEnabled
+        && (
+          <>
+            <Row className="mb-4" align="middle">
+              <Col offset={2}>
+                <label>{I18n.t('admin.validity')}</label>
+              </Col>
+              <Col offset={1}>
+                <InputDuration
+                  masked
+                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                  {...parametersForSystemCheckValidity}
+                />
+              </Col>
+            </Row>
+            <Row gutter={16} align="top">
+              <Col offset={2} span={22}>
+                <ExpandableOption
+                  label={I18n.t('admin.allow_continue_with_warning_system_check')}
+                  {...parametersForSwitch('allowContinueWithWarning')}
+                />
+              </Col>
+            </Row>
 
-                           <Row align="middle">
-                             <Col offset={2}>
-                               <label>{I18n.t('admin.validity')}</label>
-                             </Col>
-                             <Col offset={1}>
-                               <InputDuration
-                                 masked
-                                 placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                                 {...parametersForSystemCheckValidity}
-                               />
-                             </Col>
-                           </Row>
-                           <Row className="mbl" gutter={16} align="middle">
-                             <Col offset={2} span={22}>
-                               <ExpandableOption
-                                 label={I18n.t('admin.allow_continue_with_warning_system_check')}
-                                 {...parametersForSwitch('allowContinueWithWarning')}
-                               />
-                             </Col>
-                           </Row>
+            <Row className="mbl" align="middle">
+              <Col flex="200px" offset={2}>
+                <label>{I18n.t('admin.minimum_download_speed')}</label>
+              </Col>
+              <Col offset={1}>
+                <Flex flex="300px" gap={4}>
+                  <Input
+                    style={{ width: '200px' }}
+                    disabled={!isEditingDownloadSpeed}
+                    value={downloadSpeed}
+                    onChange={(e) => {
+                      setDownloadSpeed(Number(e.target.value))
+                      updateParticipantOptions([OBJECT_KEY,
+                        'minimumDownloadSpeed'], Number(e.target.value))
+                    }}
+                  />
+                  {!isEditingDownloadSpeed ? (
+                    <EditOutlined
+                      className="ms-2"
+                      onClick={() => {
+                        setIsEditingDownloadSpeed(true)
+                      }}
+                    />
+                  ) : (
+                    <Button type="link" onClick={() => setIsEditingDownloadSpeed(false)}>
+                      Save
+                    </Button>
+                  ) }
+                </Flex>
+              </Col>
+            </Row>
 
-                           <Row className="mbl" align="middle">
-                             <Col offset={2}>
-                               <label>{I18n.t('admin.minimum_download_speed')}</label>
-                             </Col>
-                             <Col offset={1}>
-                               <Input
-                                 value={options.minimumDownloadSpeed ? options.minimumDownloadSpeed : 0}
-                                 onChange={e => updateParticipantOptions([OBJECT_KEY,
-                                   'minimumDownloadSpeed'], Number(e.target.value))}
-                               />
-                             </Col>
-                           </Row>
+            <Row className="mbl" align="middle">
+              <Col flex="200px" offset={2}>
+                <label>{I18n.t('admin.minimum_upload_speed')}</label>
+              </Col>
 
-                           <Row className="mbl" align="middle">
-                             <Col offset={2}>
-                               <label>{I18n.t('admin.minimum_upload_speed')}</label>
-                             </Col>
-                             <Col offset={1}>
-                               <Input
-                                 value={options.minimumUploadSpeed ? options.minimumUploadSpeed : 0}
-                                 onChange={e => updateParticipantOptions([OBJECT_KEY,
-                                   'minimumUploadSpeed'], Number(e.target.value))}
-                               />
-                             </Col>
-                           </Row>
-                         </>
-
-                       )} */}
+              <Col flex="300px" offset={1}>
+                <Flex gap={4}>
+                  <Input
+                    style={{ width: '200px' }}
+                    disabled={!isEditingUploadSpeed}
+                    value={uploadSpeed}
+                    onChange={(e) => {
+                      setUploadSpeed(Number(e.target.value))
+                      updateParticipantOptions([OBJECT_KEY,
+                        'minimumUploadSpeed'], Number(e.target.value))
+                    }}
+                  />
+                  {!isEditingUploadSpeed ? (
+                    <EditOutlined
+                      className="ms-2"
+                      onClick={() => {
+                        setIsEditingUploadSpeed(true)
+                      }}
+                    />
+                  ) : (
+                    <Button type="link" onClick={() => setIsEditingUploadSpeed(false)}>
+                      Save
+                    </Button>
+                  )}
+                </Flex>
+              </Col>
+            </Row>
+          </>
+        )}
     </OptionSection>
   )
 }

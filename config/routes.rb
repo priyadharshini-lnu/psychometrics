@@ -959,7 +959,7 @@ as: :simulation_progress_notification
 
         resources :system_check_records, only: [], controller: 'system_check_sessions' do
           member do
-            post :upload_video_url
+            post :upload_media_url
             put :complete_multipart_upload
           end
         end

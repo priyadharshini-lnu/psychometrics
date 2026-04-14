@@ -67,7 +67,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const {
     data:
       systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
   const networkRequirements = systemCheckRequirementsStatus?.requirements?.network
 
@@ -121,12 +121,13 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
       if (!res) {
         setCheckStatus(CHECK_STATUS.failed)
+        setSpeed(null)
         addSystemCheckRecord({
           campaignId,
           record: {
             checkType: 'network',
             data: {
-              details: generateDetails('0', '0'),
+              details: generateDetails('0Mbps', '0Mbps'),
             },
           },
         })
@@ -281,13 +282,24 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
             {I18n.t('enduser.please_check_your_internet_connection')}
           </h4>
         </Flex>
-        <Flex justify="end" gap={4} className="mt-2">
-          <Button onClick={() => {
-            runNetworkTest()
-          }}
-          >
-            {I18n.t('enduser.rerun_check')}
+        <Flex justify="space-between" className="mt-2">
+          <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
+            {I18n.t('enduser.back')}
           </Button>
+          <Flex justify="end" gap={4}>
+            <Button onClick={() => {
+              runNetworkTest()
+            }}
+            >
+              {I18n.t('enduser.rerun_check')}
+            </Button>
+            <ButtonWithArrow
+              type="primary"
+              style={{ alignSelf: 'flex-end' }}
+              label={I18n.t('shared.continue')}
+              onClick={handleNext}
+            />
+          </Flex>
         </Flex>
       </Flex>
 
@@ -456,6 +468,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               </Flex>
               <FailureTag
                 style={{ height: 'fit-content' }}
+                className="self-start"
               />
             </Flex>
             <AlertNotification errorMessageList={errorMessageList} />
@@ -463,7 +476,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         )}
       </Flex>
 
-      <Flex style={{ width: '100%' }} justify="space-between">
+      <Flex className="w-100" justify="space-between">
         <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
           {I18n.t('enduser.back')}
         </Button>
@@ -490,7 +503,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
             <ButtonWithArrow
               type="primary"
               disabled={checkStatus === CHECK_STATUS.pending}
-              style={{ alignSelf: 'flex-end' }}
+              className="self-end"
               label={I18n.t('shared.continue')}
               onClick={handleNext}
             />

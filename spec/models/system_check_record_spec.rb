@@ -23,7 +23,8 @@ RSpec.describe SystemCheckRecord, type: :model do
       expect(described_class.check_types).to eq(
         'browser' => 'browser',
         'network' => 'network',
-        'video' => 'video'
+        'video' => 'video',
+        'audio' => 'audio'
       )
     end
   end
@@ -120,36 +121,43 @@ RSpec.describe SystemCheckRecord, type: :model do
   describe '#attachment_storage_path' do
     let(:user) { create(:user) }
     let(:session) { create(:system_check_session, user: user) }
-    let(:record) { create(:system_check_record, system_check_session: session) }
+    let(:record) { create(:system_check_record, :video, system_check_session: session) }
 
     it 'returns the correct storage path format' do
-      path = record.attachment_storage_path(:video, 'test_video.webm')
+      path = record.attachment_storage_path(:media, 'test_video.webm')
       expected_path = "private/system_check_videos/users/#{user.id}/sessions/" \
                       "#{session.id}/#{record.id}/video/test_video.webm"
 
       expect(path).to eq(expected_path)
     end
+
+    it 'uses check_type in the path' do
+      audio_record = create(:system_check_record, :audio, system_check_session: session)
+      path = audio_record.attachment_storage_path(:media, 'test_audio.webm')
+
+      expect(path).to include('/audio/')
+    end
   end
 
-  describe '#video_url' do
+  describe '#media_url' do
     let(:record) { create(:system_check_record, :video) }
 
-    context 'when video is not attached' do
+    context 'when media is not attached' do
       it 'returns nil' do
-        expect(record.video_url).to be_nil
+        expect(record.media_url).to be_nil
       end
     end
 
-    context 'when video is attached' do
+    context 'when media is attached' do
       before do
-        allow(record).to receive_message_chain(:video, :attached?).and_return(true)
-        allow(record).to receive_message_chain(:video, :url).
+        allow(record).to receive_message_chain(:media, :attached?).and_return(true)
+        allow(record).to receive_message_chain(:media, :url).
           with(expires_in: 1.hour).
           and_return('https://example.com/video.webm')
       end
 
       it 'returns a signed URL' do
-        expect(record.video_url).to eq('https://example.com/video.webm')
+        expect(record.media_url).to eq('https://example.com/video.webm')
       end
     end
   end

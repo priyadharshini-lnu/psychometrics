@@ -89,7 +89,9 @@ export interface CampaignOptions {
   trial: boolean
   enableVideoCallRecording?: boolean;
   allowVideoCallRecording?: boolean;
-  minimumUploadSpeed?: number | null;
-  minimumDownloadSpeed?: number | null;
+  minimumUploadSpeed?: number;
+  minimumDownloadSpeed?: number;
+  calculatedMinimumUploadSpeed: number;
+  calculatedMinimumDownloadSpeed: number;
   allowContinueWithWarning: boolean;
 }

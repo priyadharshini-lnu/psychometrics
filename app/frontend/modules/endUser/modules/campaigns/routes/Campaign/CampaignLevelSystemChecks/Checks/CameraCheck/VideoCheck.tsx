@@ -74,7 +74,6 @@ const VideoCheckComponent: React.FC<Props> = ({
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [visualizing, setVisualizing] = useState<boolean>(false)
-  const [showAudioWarning, setShowAudioWarning] = useState<boolean>(false)
   const [devices, setDevices] = useState<DeviceDetails>({ videoDevices: [], audioDevices: [] })
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
@@ -212,6 +211,12 @@ const VideoCheckComponent: React.FC<Props> = ({
         setIsDeviceRequestGranted(false)
         return
       }
+
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach(track => track.stop())
+        mediaStreamRef.current = null
+      }
+
       mediaStreamRef.current = mediaStream
       setStream(mediaStream)
       if (videoRef.current) {
@@ -231,8 +236,8 @@ const VideoCheckComponent: React.FC<Props> = ({
           audioDetectedRef,
         },
         {
-          onAudioDetected: () => setShowAudioWarning(false),
-          onNoAudio: () => setShowAudioWarning(true),
+          onAudioDetected: () => {},
+          onNoAudio: () => {},
         },
       )
     } catch (e) {
@@ -254,7 +259,8 @@ const VideoCheckComponent: React.FC<Props> = ({
     const random = getRandomVideoTestPhrase()
     dispatch(updateSpeechTestText(random))
     requestAccess()
-  }, [directUploadURL, postRecordingCallbackURL])
+  }, [directUploadURL, postRecordingCallbackURL, selectedVideoDevice, selectedAudioDevice])
+
 
   const videoUpload = async () => {
     if (!videoBlob) {
@@ -345,7 +351,6 @@ const VideoCheckComponent: React.FC<Props> = ({
     setCheckStatus(CHECK_STATUS.pending)
     clearBlobUrl()
     setVideoBlob(null)
-    setShowAudioWarning(false)
     dispatch(updateUploading(CheckListStatus.Pending))
 
     // Reset upload refs
@@ -455,18 +460,20 @@ const VideoCheckComponent: React.FC<Props> = ({
     <Flex align="center" vertical gap={4}>
       <h3>{I18n.t('checking_wizard.video_check.title')}</h3>
       <p>{I18n.t('checking_wizard.video_check.description')}</p>
-      {
+      <section style={{ minHeight: '100px' }}>
+        {
          ['idle', 'recording'].includes(status)
         && (
-          <>
-            <h3 className={styles.testMessage}>
-              &#8220;
-              {state.speechTestText}
-              &#8221;
-            </h3>
-          </>
+
+          <h3 className={styles.testMessage}>
+            &#8220;
+            {state.speechTestText}
+            &#8221;
+          </h3>
+
         )
       }
+      </section>
       <Flex className={styles['video-player-parent']}>
 
         <VideoPlayer
@@ -486,15 +493,6 @@ const VideoCheckComponent: React.FC<Props> = ({
           onChangeAudioDevice={handleChangeAudioDevice}
         />
       </Flex>
-
-
-      {showAudioWarning && status === 'recording' && (
-        <Alert
-          title={I18n.t('enduser.no_audio_warning')}
-          type="warning"
-          className="mt-4"
-        />
-      )}
 
       <Controls />
       {
