@@ -28,10 +28,10 @@ export const PermissionDenied = ({ handleNext, checkType }: {
       }}
     >
       <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
-      <p style={{ width: '400px' }}>
+      <h4 style={{ maxWidth: '500px' }} className="mt-0">
         {checkType === CHECK_TYPE.audio
           ? I18n.t('enduser.microphone_access_blocked') : I18n.t('enduser.camera_access_blocked')}
-      </p>
+      </h4>
     </Flex>
 
     <Alert

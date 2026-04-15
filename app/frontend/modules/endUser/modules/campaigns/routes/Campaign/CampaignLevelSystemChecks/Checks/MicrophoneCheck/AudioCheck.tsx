@@ -92,6 +92,7 @@ const AudioCheckComponent: React.FC<Props> = ({
   const { isMobile } = useContext(MediaQueryContext)
 
   const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
+    dispatch(updateUploading(CheckListStatus.InProgress))
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
     }
@@ -203,14 +204,6 @@ const AudioCheckComponent: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    if (!devicesLoaded) {
-      return
-    }
-
-    if (devices.audioDevices.length > 0 && !selectedAudioDevice) {
-      return
-    }
-
     const random = getRandomAudioTestPhrase(RANDOM_CONSTS_ARRAY)
     dispatch(updateSpeechTestText(random))
     requestAccess()
@@ -279,7 +272,6 @@ const AudioCheckComponent: React.FC<Props> = ({
     if (!audioRef.current) {
       return
     }
-
 
     try {
       const audioConstraints = selectedAudioDevice

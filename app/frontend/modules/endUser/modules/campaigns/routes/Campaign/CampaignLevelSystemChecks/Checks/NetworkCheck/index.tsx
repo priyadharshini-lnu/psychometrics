@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, useContext, useRef,
+  useEffect, useState, useRef,
 } from 'react'
 import {
   Flex, Typography, Button, Divider, Progress,
@@ -13,7 +13,7 @@ import cs from 'classnames'
 import { useOnlineStatus } from './useOnlineStatus'
 import { useNetworkTest } from '~/hooks/useNetworkTest'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
+import { ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   useAddSystemCheckRecordMutation, useCompleteSystemCheckSessionMutation, useFetchSystemCheckRequirementsStatusQuery,
@@ -45,7 +45,6 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const dispatch = useDispatch()
   const [speed, setSpeed] = useState<{ download: string; upload: string } | null>(null)
   const completedDownloadRef = useRef<number | null>(null)
-  const { isMobile } = useContext(MediaQueryContext)
   const isOnline = useOnlineStatus()
   const countDownButtonRef = useRef<CountdownButtonRef>(null)
 
@@ -57,7 +56,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const {
     systemCheckSessionId = null, minimumDownloadSpeed = 0,
-    minimumUploadSpeed = 0,
+    minimumUploadSpeed = 0, checksArray,
   } = campaignDetailsForSystemCheck || {}
 
   const { campaignId } = useParams() as {campaignId: string}
@@ -109,7 +108,24 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     return details
   }
 
-  const runNetworkTest = async () => {
+  const runNetworkTest = async (checkPreloaded = true) => {
+    if (checkPreloaded) {
+      const preloadedCheck = checksArray?.find(check => check.checkType === CHECK_TYPE.network)
+      if (preloadedCheck) {
+        setCheckStatus(preloadedCheck.passed ? CHECK_STATUS.passed : CHECK_STATUS.failed)
+
+        setSpeed({
+          download: preloadedCheck.data.downloadSpeed
+            ? `${preloadedCheck.data.downloadSpeed} `
+            : '0 Mbps',
+          upload: preloadedCheck.data.uploadSpeed
+            ? `${preloadedCheck.data.uploadSpeed} `
+            : '0 Mbps',
+        })
+        return
+      }
+    }
+
     resetTest()
     setCheckStatus(CHECK_STATUS.pending)
     setSpeed(null)
@@ -206,7 +222,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               minimumUploadSpeed: systemCheckRequirementsStatus?.requirements?.network?.minimumUploadSpeed,
             }))
           }
-          runNetworkTest()
+          runNetworkTest(false)
         }
       })
     } else {
@@ -270,7 +286,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   if (!isOnline) {
     return (
-      <Flex vertical>
+      <Flex vertical className="w-100">
         <Flex
           vertical
           justify="center"
@@ -293,7 +309,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
           </Button>
           <Flex justify="end" gap={4}>
             <Button onClick={() => {
-              runNetworkTest()
+              runNetworkTest(false)
             }}
             >
               {I18n.t('enduser.rerun_check')}
@@ -303,6 +319,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               style={{ alignSelf: 'flex-end' }}
               label={I18n.t('shared.continue')}
               onClick={handleNext}
+              disabled={!isOnline}
             />
           </Flex>
         </Flex>
@@ -315,7 +332,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     <Flex
       justify="center"
       className="mb-2"
-      style={{ ...(!isMobile && { padding: '1rem' }), width: '100%', alignSelf: 'center' }}
+      style={{ width: '100%', alignSelf: 'center' }}
       vertical
       gap={8}
     >
@@ -352,25 +369,45 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         justify="center"
         align="center"
         className={`${commonStyles['border-dark']} mb-2`}
-        style={{ minHeight: '350px' }}
       >
         {checkStatus !== CHECK_STATUS.failed && (
-          <Flex vertical gap={16} justify="center" align="center" style={{ width: '100%', padding: '1.5rem' }}>
+          <Flex
+            vertical
+            gap={16}
+            justify="center"
+            align="center"
+            style={{
+              width: '100%',
+              padding: '1.5rem',
+              minHeight: '370px',
+            }}
+          >
             {checkStatus === CHECK_STATUS.pending && (
               <Flex justify="center" align="center" vertical gap={12}>
                 <WifiLoader />
-                <Flex vertical align="center" gap={8} style={{ width: '60%' }}>
+                <Flex
+                  vertical
+                  align="center"
+                  justify="space-between"
+                  gap={8}
+                  style={{
+                    width: '60%',
+                  }}
+                >
                   <Typography.Text style={{ whiteSpace: 'nowrap', fontSize: '1rem', fontWeight: 500 }}>
+                    {testState.currentTest === null && I18n.t('enduser.initializing')}
                     {testState.currentTest === 'download' && I18n.t('enduser.testing_download_speed')}
                     {testState.currentTest === 'upload' && I18n.t('enduser.testing_upload_speed')}
                     {testState.currentTest === 'latency' && I18n.t('enduser.checking_latency')}
                   </Typography.Text>
-                  <Progress
-                    percent={Math.min((testState.elapsedSeconds / 20) * 100, 99)}
-                    showInfo={false}
-                    strokeColor="var(--ant-primary-color)"
-                    size="small"
-                  />
+                  {testState.status === 'testing' && (
+                    <Progress
+                      percent={Math.min((testState.elapsedSeconds / 20) * 100, 99)}
+                      showInfo={false}
+                      strokeColor="var(--ant-primary-color)"
+                      size="small"
+                    />
+                  )}
                 </Flex>
               </Flex>
             )}
@@ -492,7 +529,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               icon={<RedoOutlined />}
               onClick={() => {
                 countDownButtonRef.current?.reset()
-                runNetworkTest()
+                runNetworkTest(false)
               }}
             >
               {I18n.t('enduser.rerun_check')}

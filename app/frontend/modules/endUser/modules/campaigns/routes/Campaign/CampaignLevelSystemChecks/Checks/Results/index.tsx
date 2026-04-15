@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, useMemo, useContext, useCallback,
+  useEffect, useState, useMemo, useCallback,
 } from 'react'
 import {
   Table, Spin, Typography, Flex, Card, Button, Alert,
@@ -15,7 +15,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import { ButtonWithArrow, MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
+import { ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import { ResultHeader } from './ResultHeader'
@@ -70,8 +70,6 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
     systemCheckRequirementsStatus,
   } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
-
-  const { isMobile } = useContext(MediaQueryContext)
   const dispatch = useDispatch()
 
   const [completeSystemCheckSession] = useCompleteSystemCheckSessionMutation()
@@ -220,7 +218,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
             vertical
             justify="center"
             align="center"
-            style={{ ...(!isMobile && { padding: '1rem' }), width: '100%' }}
+            style={{ width: '100%' }}
           >
             <ResultHeader isLoading={isSystemCheckResultLoading} result={getOverallResult()} />
             <Table

@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
 import {
-  useState, useEffect, useMemo, useContext,
+  useState, useEffect, useMemo,
 } from 'react'
 import { useSelector, useDispatch, connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Flex, Spin, Typography, Button,
+  Flex, Typography, Button, Skeleton,
 } from 'antd'
-import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
+import { ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { VideoCheck } from './VideoCheck'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
@@ -49,8 +49,6 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const { systemCheckSessionId = null } = campaignDetailsForSystemCheck || {}
 
   const { campaignId } = useParams() as { campaignId: string}
-
-  const { isMobile } = useContext(MediaQueryContext)
 
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
   const {
@@ -181,7 +179,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       justify="center"
       vertical
       gap={8}
-      style={{ ...(!isMobile && { padding: '1rem' }), width: '100%', alignSelf: 'center' }}
+      style={{ width: '100%', alignSelf: 'center' }}
     >
       <Flex justify="space-between">
         <Flex gap={8}>
@@ -264,20 +262,22 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       ) : (
         <>
           {isLoading
-          && <Spin />}
-          {!isLoading
-          && (
-            <VideoCheck
-              directUploadURL={directUploadURL || ''}
-              postRecordingCallbackURL={postRecordingCallbackURL || ''}
-              nextStep={handleNext}
-              setCheckStatus={setCheckStatus}
-              setIsDeviceRequestGranted={setIsDeviceRequestGranted}
-              onCheckAbruptlyEnded={onCheckAbruptlyEnded}
-            />
-          )}
+            ? (
+              <Skeleton.Input
+                active
+                style={{ width: '100%', height: '100%' }}
+              />
+            ) : (
+              <VideoCheck
+                directUploadURL={directUploadURL || ''}
+                postRecordingCallbackURL={postRecordingCallbackURL || ''}
+                nextStep={handleNext}
+                setCheckStatus={setCheckStatus}
+                setIsDeviceRequestGranted={setIsDeviceRequestGranted}
+                onCheckAbruptlyEnded={onCheckAbruptlyEnded}
+              />
+            )}
         </>
-
       )}
     </Flex>
   )

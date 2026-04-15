@@ -83,6 +83,7 @@ en:
     idp_report_being_generated: We're working on your report
     idp_reset_chat: Reset Chat
     idp_retake_steps_continue_with_this_information: Continue with this information
+    initializing: Initializing...
     insights: Insights
     instruction: Make sure you and your environment are fully prepared
     internet_speed: Internet Speed

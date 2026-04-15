@@ -151,7 +151,7 @@ const SystemChecksStepperCompnent = () => {
             className="pt-4 mb-4"
           >
             <Steps
-              direction="horizontal"
+              orientation="horizontal"
               responsive={false}
               current={currentStepIndex === -1 ? 0 : currentStepIndex}
               items={isMobile || isTablet || isDesktop ? visibleSteps.map(() => ({ title: '' }))

@@ -80,6 +80,7 @@ const VideoCheckComponent: React.FC<Props> = ({
 
   const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
     setVisualizing(false)
+    dispatch(updateUploading(CheckListStatus.InProgress))
     if (stream) {
       stream.getTracks().forEach(track => track.stop())
     }

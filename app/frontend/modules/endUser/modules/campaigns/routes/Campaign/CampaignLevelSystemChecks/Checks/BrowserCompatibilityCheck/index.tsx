@@ -1,5 +1,5 @@
 import {
-  useState, useEffect, useContext, useRef,
+  useState, useEffect, useRef,
 } from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import {
@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext, ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
+import { ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import {
   BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature, getExactBrowserVersionSync,
@@ -15,7 +15,7 @@ import {
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   CheckCircleOutlined,
-  GlobalOutlined, ExclamationCircleOutlined, RedoOutlined,
+  GlobalOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
@@ -66,8 +66,6 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
   } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
   const dispatch = useDispatch()
-
-  const { isMobile } = useContext(MediaQueryContext)
 
   const countDownButtonRef = useRef<CountdownButtonRef>(null)
 
@@ -260,7 +258,7 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
   }
 
   return (
-    <Flex justify="center" flex={1} style={{ ...(!isMobile && { padding: '1rem' }) }} vertical>
+    <Flex justify="center" flex={1} vertical>
       <Flex justify="space-between">
         <Flex gap={8}>
           <GlobalOutlined style={{
@@ -357,17 +355,6 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           {I18n.t('enduser.back')}
         </Button>
         <Flex justify="end" gap={12}>
-          <Button
-            icon={<RedoOutlined />}
-            onClick={() => {
-              checkBrowserForFeatureCompatibility()
-              if (countDownButtonRef.current) {
-                countDownButtonRef.current.reset()
-              }
-            }}
-          >
-            {I18n.t('enduser.rerun_check')}
-          </Button>
           {checkStatus === CHECK_STATUS.passed ? (
             <CountdownButton
               label={I18n.t('shared.continue')}
