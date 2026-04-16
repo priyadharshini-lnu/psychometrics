@@ -169,7 +169,7 @@ gem 'tty-progressbar', '~> 0.10.1', require: false
 gem 'activerecord-import', '~> 1.7.0'
 gem 'possessive', '~> 1.0.1'
 
-gem 'addressable', '~> 2.7'
+gem 'addressable', '~> 2.9.0'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 1.0.1'
 gem 'twilio-ruby', '~> 7.8.3'
