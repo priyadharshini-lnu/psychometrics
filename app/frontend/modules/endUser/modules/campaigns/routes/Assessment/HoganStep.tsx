@@ -92,7 +92,7 @@ export const HoganStep: FC<Props> = ({
               <RedirectIcon />
             </div>
             <div>
-              {I18n.t('user_assessments.redirect')}
+              {I18n.t('enduser.redirect_to_external_assessment')}
             </div>
             <div className={styles.redirectFooter}>
               <Space>

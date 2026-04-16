@@ -4118,7 +4118,6 @@ sl:
     normalize_factor_scores:
       no_scoring_data: Normalizacije faktorskih rezultatov ni mogoče dokončati, ker podatki o točkovanju niso na voljo.
     progress_label: Napredek ocenjevanja
-    redirect: Za to ocenjevanje boste preusmerjeni na zunanje spletno mesto. Kliknite »Nadaljuj«, če želite začeti.
     status:
       completed: Dokončano
       in_progress: V teku

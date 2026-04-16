@@ -4096,7 +4096,6 @@ de:
     normalize_factor_scores:
       no_scoring_data: Die Normalisierung der Faktorwerte kann nicht abgeschlossen werden, da keine Daten zur Bewertung vorliegen.
     progress_label: Bewertung der Fortschritte
-    redirect: Du wirst für diese Bewertung auf die Website eines Drittanbieters weitergeleitet. Bitte klicke auf „Fortfahren“, wenn du die Aufgabe starten möchtest.
     status:
       completed: Abgeschlossen
       in_progress: In Arbeit

@@ -4082,7 +4082,6 @@ fr:
     normalize_factor_scores:
       no_scoring_data: La normalisation des scores des facteurs ne peut pas être réalisée car aucune donnée de score n'est disponible.
     progress_label: Progrès de l'évaluation
-    redirect: Vous serez redirigé vers le site d'un tiers pour cette évaluation. Veuillez cliquer sur continuer si vous voulez commencer l'évaluation.
     status:
       completed: Terminé
       in_progress: En cours

@@ -4082,7 +4082,6 @@ zh-Hant:
     normalize_factor_scores:
       no_scoring_data: 由於沒有計分資料，因此無法完成因子分數的標準化。
     progress_label: 評估進度
-    redirect: 您會被重定向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
     status:
       completed: 已完成
       in_progress: 進行中

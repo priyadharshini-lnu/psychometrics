@@ -4112,7 +4112,6 @@ sr-Latn:
     normalize_factor_scores:
       no_scoring_data: Normalizacija rezultata faktora ne može se završiti jer nisu dostupni podaci o bodovanju.
     progress_label: Napredak u proceni
-    redirect: Bićete preusmereni na sajt treće strane za ovu procenu. Kliknite na dugme Nastavi ako želite da započnete procenu.
     status:
       completed: Završeno
       in_progress: U toku

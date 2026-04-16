@@ -4095,7 +4095,6 @@ ja:
     normalize_factor_scores:
       no_scoring_data: 得点データがないため、因子得点の正規化は完了していない。
     progress_label: 評価の進捗状況
-    redirect: アセスメントを開始する場合は、続けるをクリックしてください。
     status:
       completed: 完成
       in_progress: 進行中

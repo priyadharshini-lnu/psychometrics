@@ -4109,7 +4109,6 @@ hr:
     normalize_factor_scores:
       no_scoring_data: Normalizacija faktorskih rezultata ne može se dovršiti jer nisu dostupni podaci o bodovanju.
     progress_label: Napredak procjene
-    redirect: Za ovu procjenu bit ćete preusmjereni na web stranicu treće strane. Molimo, kliknite Nastavi ako želite započeti procjenu.
     status:
       completed: Završeno
       in_progress: U tijeku

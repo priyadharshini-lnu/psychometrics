@@ -4113,7 +4113,6 @@ pl:
     normalize_factor_scores:
       no_scoring_data: Nie można ukończyć normalizacji wyników czynników, ponieważ nie są dostępne żadne dane dotyczące punktacji.
     progress_label: Postęp oceny
-    redirect: Zostaniesz przekierowany do witryny innej firmy w celu przeprowadzenia tej oceny. Kliknij Kontynuuj, jeśli chcesz rozpocząć ocenę.
     status:
       completed: Zakończone
       in_progress: W toku

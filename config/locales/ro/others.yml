@@ -4109,7 +4109,6 @@ ro:
     normalize_factor_scores:
       no_scoring_data: Normalizarea scorurilor factorilor nu poate fi finalizată, deoarece nu sunt disponibile date de punctaj.
     progress_label: Progresul evaluării
-    redirect: Veți fi redirecționat către site-ul unei terțe părți pentru această evaluare. Vă rugăm să faceți clic pe continuare dacă doriți să începeți evaluarea.
     status:
       completed: Completat
       in_progress: În curs de desfășurare

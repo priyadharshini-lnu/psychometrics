@@ -128,6 +128,7 @@ en:
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
+    redirect_to_external_assessment: You will be redirected to the assessment site. Please click continue if you want to start the assessment.
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
     required_download_in_mbps: Required Download in Mbps

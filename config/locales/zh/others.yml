@@ -4092,7 +4092,6 @@ zh:
     normalize_factor_scores:
       no_scoring_data: 由于没有评分数据，无法完成因子得分的标准化。
     progress_label: 评估进展
-    redirect: 您将会被转至第三方网站进行本次评估。如果您想开始评估，请点击继续。
     status:
       completed: 已完成
       in_progress: 进行中

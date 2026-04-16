@@ -4094,7 +4094,6 @@ cs:
     normalize_factor_scores:
       no_scoring_data: Normalizaci skóre faktorů nelze dokončit, protože nejsou k dispozici žádné údaje o skóre.
     progress_label: Pokrok v hodnocení
-    redirect: Pro účely tohoto hodnocení budete přesměrováni na stránky třetích stran. Chcete-li zahájit hodnocení, klikněte na tlačítko Pokračovat.
     status:
       completed: Dokončeno
       in_progress: Probíhá

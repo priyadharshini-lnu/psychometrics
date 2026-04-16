@@ -4113,7 +4113,6 @@ id:
     normalize_factor_scores:
       no_scoring_data: Normalisasi skor faktor tidak dapat diselesaikan karena tidak ada data penilaian yang tersedia.
     progress_label: Kemajuan Penilaian
-    redirect: Anda akan diarahkan ke situs pihak ketiga untuk penilaian ini. Silakan klik lanjutkan jika Anda ingin memulai penilaian.
     status:
       completed: Selesai
       in_progress: Sedang Berlangsung

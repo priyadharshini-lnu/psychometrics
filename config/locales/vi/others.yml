@@ -4103,7 +4103,6 @@ vi:
     normalize_factor_scores:
       no_scoring_data: Không thể hoàn thành chuẩn hóa điểm số yếu tố vì không có dữ liệu tính điểm.
     progress_label: Tiến độ đánh giá
-    redirect: Bạn sẽ được chuyển hướng đến trang web của bên thứ ba để đánh giá này. Vui lòng nhấp vào tiếp tục nếu bạn muốn bắt đầu đánh giá.
     status:
       completed: Hoàn thành
       in_progress: Đang tiến hành

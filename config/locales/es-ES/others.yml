@@ -4120,7 +4120,6 @@ es-ES:
     normalize_factor_scores:
       no_scoring_data: La normalización de las puntuaciones de los factores no puede completarse porque no se dispone de datos de puntuación.
     progress_label: Progreso de la evaluación
-    redirect: Si desea iniciar la evaluación, haga clic en Continuar.
     status:
       completed: Completado
       in_progress: En curso
