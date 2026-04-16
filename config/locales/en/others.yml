@@ -3205,7 +3205,7 @@ en:
         signin_link: Signin Link
       subject: Signin link for Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by Mercer.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity
