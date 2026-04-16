@@ -4510,7 +4510,6 @@ th:
         new:
           header: นําเข้าคําแปล
       import:
-        successfully: นําเข้าคําแปลเรียบร้อยแล้ว
         successfully_scheduled: การนําเข้าการแปลถูกกําหนดเวลาเรียบร้อยแล้ว
       reports:
         export: ส่งออกคําแปล

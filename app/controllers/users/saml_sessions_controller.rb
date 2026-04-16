@@ -2,17 +2,7 @@
 
 class Users::SamlSessionsController < Devise::SamlSessionsController
   before_action :force_logout_existing_user, only: [:new]
-  before_action :set_saml_auth_session, only: [:new]
-  after_action :reset_saml_auth_session, only: [:create]
   after_action :after_saml_login, only: [:create]
-
-  def set_saml_auth_session
-    session['saml_auth'] = true
-  end
-
-  def reset_saml_auth_session
-    session['saml_auth'] = nil
-  end
 
   def force_logout_existing_user
     if user_signed_in?

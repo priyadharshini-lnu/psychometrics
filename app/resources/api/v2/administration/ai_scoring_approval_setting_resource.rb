@@ -4,9 +4,10 @@
 class Api::V2::Administration::AIScoringApprovalSettingResource < Api::V2::Administration::BaseResource
   model_name 'AI::ScoringApprovalSetting'
 
-  attributes :assessor_ids, :approver_ids, :assessors, :approvers, :allow_bulk_approve, :allow_bulk_approve_scores,
-             :send_digest_emails, :digest_delivery_mode, :digest_frequency, :digest_weekdays, :digest_time,
-             :digest_timezone, :allow_one_level_approve
+  attributes :assessor_ids, :approver_ids, :approval_notification_user_ids, :assessors, :approvers,
+             :approval_notification_users, :allow_bulk_approve, :allow_bulk_approve_scores,
+             :do_not_send_notifications, :send_digest_emails, :digest_delivery_mode, :digest_frequency,
+             :digest_weekdays, :digest_time, :digest_timezone, :allow_one_level_approve
 
   has_one :campaign
   has_one :assessment
@@ -14,7 +15,7 @@ class Api::V2::Administration::AIScoringApprovalSettingResource < Api::V2::Admin
   before_create -> { @model.campaign = context[:campaign] }
 
   def fetchable_fields
-    super - %i[assessor_ids approver_ids]
+    super - %i[assessor_ids approver_ids approval_notification_user_ids]
   end
 
   def self.creatable_fields(_)
@@ -37,6 +38,10 @@ class Api::V2::Administration::AIScoringApprovalSettingResource < Api::V2::Admin
     user_details(approver_ids)
   end
 
+  def approval_notification_users
+    user_details(approval_notification_user_ids)
+  end
+
   def digest_time
     return nil unless @model.digest_time
 
@@ -53,6 +58,6 @@ class Api::V2::Administration::AIScoringApprovalSettingResource < Api::V2::Admin
   end
 
   def users
-    @users ||= User.where(id: assessor_ids + approver_ids).index_by(&:id)
+    @users ||= User.where(id: assessor_ids + approver_ids + approval_notification_user_ids).index_by(&:id)
   end
 end

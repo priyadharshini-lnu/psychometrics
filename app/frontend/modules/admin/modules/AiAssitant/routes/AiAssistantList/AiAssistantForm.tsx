@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   Form, Input, Select, Button, Row, Col, Typography, Flex, message, Spin, Popover,
-  Descriptions, Switch,
-  Tooltip,
+  Descriptions, Switch, Tooltip, App,
 } from 'antd'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -28,6 +27,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   }
   const resource = useResources('assistants', config)
   const [form] = Form.useForm()
+  const { modal } = App.useApp()
 
   const [listError, setListError] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -39,6 +39,8 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
 
   const selectedModelId = Form.useWatch('modelId', form)
   const selectedProvider = availableAiProviders.find(p => p.model_id === selectedModelId)
+  const originalProvider = availableAiProviders.find(p => p.model_id === aiAssistant?.modelId)
+  const providerChanged = aiAssistant?.providerPreviouslyUsed && selectedModelId !== aiAssistant?.modelId
 
   const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form) || []
   const assistantType = Form.useWatch('assistantType', form)
@@ -53,45 +55,60 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     dep => supportedDependencies.includes(dep.id),
   )
 
+  const submitForm = () => {
+    setIsLoading(true)
+    const data = {
+      ...form.getFieldsValue(),
+      advancedPromptingEnabled: isAdvancedPrompt,
+    }
+
+    if (aiAssistant?.id) {
+      const existingKeyIdsInForm = assistantOutputSchemaKeys
+        .filter(key => key.id)
+        .map(key => key.id.toString())
+
+      const removedKeys = aiAssistant.assistantOutputSchemaKeysAttributes
+        ?.filter(keyInRecord => !existingKeyIdsInForm.includes(keyInRecord.id.toString()))
+        .map(key => ({ ...key, _destroy: true })) || []
+
+      resource.updateResource({
+        id: aiAssistant.id,
+        ...data,
+        assistantOutputSchemaKeysAttributes: [
+          ...assistantOutputSchemaKeys,
+          ...removedKeys,
+        ],
+      }).then(() => {
+        message.success(I18n.t('administration.ai_assistants.updated_successfully'))
+        navigate('/admin/ai_assistants')
+      }).finally(() => setIsLoading(false))
+      return
+    }
+
+    resource.createResource(data).then(() => {
+      message.success(I18n.t('administration.ai_assistants.created_successfully'))
+      navigate('/admin/ai_assistants')
+    }).catch((error) => {
+      if (error?.assistantType) {
+        message.error(error?.assistantType.title)
+      }
+    }).finally(() => setIsLoading(false))
+  }
+
   const handleSubmit = () => {
     form.validateFields().then(() => {
-      setIsLoading(true)
-      const data = {
-        ...form.getFieldsValue(),
-        advancedPromptingEnabled: isAdvancedPrompt,
-      }
-
-      if (aiAssistant?.id) {
-        const existingKeyIdsInForm = assistantOutputSchemaKeys
-          .filter(key => key.id)
-          .map(key => key.id.toString())
-
-        const removedKeys = aiAssistant.assistantOutputSchemaKeysAttributes
-          ?.filter(keyInRecord => !existingKeyIdsInForm.includes(keyInRecord.id.toString()))
-          .map(key => ({ ...key, _destroy: true })) || []
-
-        resource.updateResource({
-          id: aiAssistant.id,
-          ...data,
-          assistantOutputSchemaKeysAttributes: [
-            ...assistantOutputSchemaKeys,
-            ...removedKeys,
-          ],
-        }).then(() => {
-          message.success(I18n.t('administration.ai_assistants.updated_successfully'))
-          navigate('/admin/ai_assistants')
+      if (providerChanged) {
+        modal.confirm({
+          title: I18n.t('admin.ai_assistants_provider_change_confirm_title'),
+          content: I18n.t('admin.ai_assistants_provider_previously_used_warning', {
+            from: originalProvider?.name ?? aiAssistant?.modelId,
+            to: selectedProvider?.name ?? selectedModelId,
+          }),
+          onOk: submitForm,
         })
         return
       }
-
-      resource.createResource(data).then(() => {
-        message.success(I18n.t('administration.ai_assistants.created_successfully'))
-        navigate('/admin/ai_assistants')
-      }).catch((error) => {
-        if (error?.assistantType) {
-          message.error(error?.assistantType.title)
-        }
-      })
+      submitForm()
     }).catch((error) => {
       if (error
         && error.errorFields.find(field => field.name.includes('assistantOutputSchemaKeysAttributesValidator'))) {
@@ -99,8 +116,6 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
       } else {
         setListError('')
       }
-    }).finally(() => {
-      setIsLoading(false)
     })
   }
 
@@ -126,8 +141,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     return Promise.resolve()
   }
 
-  // Only allow advanced prompting for idp assistant type for now
-  const allowAdvancedPrompting = assistantType === ASSISTANT_TYPES.idp_assistant.id
+  const allowAdvancedPrompting = currentAssistantTypeConfig?.advancedPromptingEnabled ?? false
 
   if (isLoading) {
     return <Spin size="large" />
@@ -222,8 +236,9 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           <Form.Item
             name="assistantType"
             label={I18n.t('administration.ai_assistants.form.type')}
+            tooltip={aiAssistant?.inUse ? I18n.t('admin.ai_assistants_type_locked_tooltip') : undefined}
           >
-            <Select>
+            <Select disabled={aiAssistant?.inUse}>
               {Object.values(ASSISTANT_TYPES).map(type => (
                 <Select.Option key={type.id} value={type.id}>
                   {type.name}

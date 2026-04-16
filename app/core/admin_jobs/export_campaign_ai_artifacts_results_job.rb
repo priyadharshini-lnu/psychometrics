@@ -101,7 +101,11 @@ module AdminJobs
     def users
       return campaign.users.none if campaign_artifacts.empty?
 
-      campaign.users.order(:id)
+      if campaign.threesixty?
+        campaign.users.where(id: campaign.subjects.select(:user_id)).order(:id)
+      else
+        campaign.users.order(:id)
+      end
     end
 
     def record_count

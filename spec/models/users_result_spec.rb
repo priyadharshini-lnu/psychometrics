@@ -10,13 +10,6 @@ RSpec.describe UsersResult, type: :model do
 
     subject(:result) { users_result.all_transcriptions_completed? }
 
-    before do
-      allow_any_instance_of(MediaResponse).to receive(:customize_attachment_path)
-      allow_any_instance_of(MediaResponse).
-        to receive_message_chain(:asset, :attached?).
-        and_return(true)
-    end
-
     def create_question(type:, props: {})
       create(
         :question,
@@ -25,6 +18,23 @@ RSpec.describe UsersResult, type: :model do
         type:,
         props:
       )
+    end
+
+    def create_media_response_with_asset(question:, transcription_status:, user_selected: nil)
+      attrs = {
+        users_result: users_result,
+        question: question,
+        transcription_status: transcription_status
+      }
+      attrs[:user_selected] = user_selected if user_selected
+
+      response = create(:media_response, **attrs)
+      response.asset.attach(
+        io: StringIO.new('dummy media'),
+        filename: "media-response-#{response.id}.mp4",
+        content_type: 'video/mp4'
+      )
+      response
     end
 
     context 'when there are no transcription enabled media questions' do
@@ -54,9 +64,10 @@ RSpec.describe UsersResult, type: :model do
       end
 
       before do
-        create(:media_response,
-               users_result:, question:,
-               transcription_status: :processing)
+        create_media_response_with_asset(
+          question: question,
+          transcription_status: :processing
+        )
       end
 
       it { is_expected.to be(false) }
@@ -69,10 +80,11 @@ RSpec.describe UsersResult, type: :model do
       end
 
       before do
-        create(:media_response,
-               users_result:, question:,
-               user_selected: true,
-               transcription_status: :completed)
+        create_media_response_with_asset(
+          question: question,
+          user_selected: true,
+          transcription_status: :completed
+        )
       end
 
       it { is_expected.to be(true) }
@@ -85,15 +97,17 @@ RSpec.describe UsersResult, type: :model do
       end
 
       before do
-        create(:media_response,
-               users_result:, question:,
-               user_selected: true,
-               transcription_status: :completed)
+        create_media_response_with_asset(
+          question: question,
+          user_selected: true,
+          transcription_status: :completed
+        )
 
-        create(:media_response,
-               users_result:, question:,
-               user_selected: true,
-               transcription_status: :processing)
+        create_media_response_with_asset(
+          question: question,
+          user_selected: true,
+          transcription_status: :processing
+        )
       end
 
       it { is_expected.to be(false) }
@@ -106,13 +120,15 @@ RSpec.describe UsersResult, type: :model do
       end
 
       before do
-        create(:media_response,
-               users_result:, question:,
-               transcription_status: :completed)
+        create_media_response_with_asset(
+          question: question,
+          transcription_status: :completed
+        )
 
-        create(:media_response,
-               users_result:, question:,
-               transcription_status: :processing)
+        create_media_response_with_asset(
+          question: question,
+          transcription_status: :processing
+        )
       end
 
       it { is_expected.to be(false) }
@@ -125,14 +141,9 @@ RSpec.describe UsersResult, type: :model do
       end
 
       before do
-        mr = create(:media_response,
-                    users_result:, question:,
-                    transcription_status: :completed)
-
-        allow(mr).to receive_message_chain(:asset, :attached?).and_return(false)
-        allow(users_result).
-          to receive(:media_responses).
-          and_return(MediaResponse.where(id: mr.id))
+        create(:media_response,
+               users_result:, question:,
+               transcription_status: :completed)
       end
 
       it { is_expected.to be(true) }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import {
   Table, MenuProps, Row, Col, Switch, App,
@@ -13,6 +13,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import UserReport from '~/modules/admin/modules/campaigns/interfaces/UserReport'
+import DetailsDrawer from '../DetailsDrawer'
 
 const { Column } = Table
 const { I18n } = window
@@ -34,12 +35,20 @@ const ReportList: React.FC<Props> = ({
   toggleUserAccess,
   removeFile,
 }) => {
-  const { campaignId, projectId, id: userId } = useParams() as { campaignId: string, projectId: string, id: string }
+  const [drawerReport, setDrawerReport] = useState<UserReport | undefined>()
+  const { campaignId, projectId, id: userId } = useParams() as {
+    campaignId: string
+    projectId: string
+    id: string
+  }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedProjectId = parseInt(projectId, 10)
   const { modal, message } = App.useApp()
 
-  const handleRegenerateReports = (selectedReports: { [key: string]: string[] }, reportId: number) => {
+  const handleRegenerateReports = (
+    selectedReports: { [key: string]: string[] },
+    reportId: number,
+  ) => {
     regenerateReports(parsedCampaignId, selectedReports, userId, [reportId]).then(() => {
       message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
@@ -52,12 +61,11 @@ const ReportList: React.FC<Props> = ({
           className="mtm"
           rowKey="id"
           dataSource={list}
-          pagination={false}
           rowSelection={{
             type: 'checkbox',
             onChange: (ids: number[]) => { selectRecords(ids) },
             getCheckboxProps: record => ({
-              disabled: record.reportProvider === 'custom_upload',
+              disabled: !record.permissions.downloadReport,
             }),
           }}
         >
@@ -72,7 +80,9 @@ const ReportList: React.FC<Props> = ({
             dataIndex="name"
             render={(text, record: UserReport) => (
               <>
-                {text}
+                <a onClick={() => setDrawerReport(record)}>
+                  {text}
+                </a>
                 {record.hoganParticipantId && (
                   <Typography.Text style={{ display: 'block', fontSize: '0.8em' }}>
                     (
@@ -134,6 +144,12 @@ const ReportList: React.FC<Props> = ({
             )}
           />
         </Table>
+        {drawerReport ? (
+          <DetailsDrawer
+            close={() => setDrawerReport(undefined)}
+            report={drawerReport}
+          />
+        ) : null}
       </Col>
     </Row>
   )

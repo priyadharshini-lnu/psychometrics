@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::AssessmentConsentSettingResource < Api::V2::Administration::BaseResource
-  attributes :id, :assessment_id, :custom_consent_texts, :data_role, :policy_version
+  attributes :id, :assessment_id, :custom_consent_texts, :data_role, :policy_version, :custom_acknowledgment_texts
 
   has_one :assessment, class_name: 'Assessment'
 
@@ -32,6 +32,21 @@ class Api::V2::Administration::AssessmentConsentSettingResource < Api::V2::Admin
       {
         locale: locale,
         text: @model.custom_consent_text(locale: locale)
+      }
+    end
+  end
+
+  def custom_acknowledgment_texts=(texts)
+    texts&.each do |text|
+      @model.send(:custom_acknowledgment_text=, text[:text], locale: text[:locale])
+    end
+  end
+
+  def custom_acknowledgment_texts
+    (I18n.available_locales || ['en']).map do |locale|
+      {
+        locale: locale,
+        text: @model.custom_acknowledgment_text(locale: locale)
       }
     end
   end

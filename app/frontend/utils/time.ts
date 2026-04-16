@@ -2,6 +2,8 @@ import _ from 'lodash'
 import dayjs from '~/utils/dayjs'
 import { normalizeTimeZone } from '~/hooks/useTimezones'
 
+const { I18n } = window
+
 export const SECONDS_IN_HOUR = 86400
 const FORMAT = 'DD MMM YYYY / HH:mm'
 
@@ -157,14 +159,14 @@ export const secondsToDuration = (totalSeconds: number): string => {
 
   if (safeSeconds >= SECONDS_IN_DAY) {
     const days = Math.floor(safeSeconds / SECONDS_IN_DAY)
-    return `${days} day${days === 1 ? '' : 's'}`
+    return `${days} ${I18n.t(`enduser.${days === 1 ? 'day' : 'day_plural'}`)}`
   }
 
   if (safeSeconds >= SECONDS_IN_HOUR) {
     const hours = Math.floor(safeSeconds / SECONDS_IN_HOUR)
-    return `${hours} hour${hours === 1 ? '' : 's'}`
+    return `${hours} ${I18n.t(`enduser.${hours === 1 ? 'hour' : 'hour_plural'}`)}`
   }
 
   const minutes = Math.floor(safeSeconds / SECONDS_IN_MINUTE)
-  return `${minutes} minute${minutes === 1 ? '' : 's'}`
+  return `${minutes} ${I18n.t(`enduser.${minutes === 1 ? 'minute' : 'minute_plural'}`)}`
 }

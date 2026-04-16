@@ -8,6 +8,7 @@ hu:
     add_campaign_admin: Kampányadminisztrátor hozzáadása
     add_client_admin: Ügyfél-adminisztrátor hozzáadása
     add_indicator: Indikátor hozzáadása
+    add_new_folder: Új mappa hozzáadása
     add_project: Projekt hozzáadása
     add_project_admin: Projektadminisztrátor hozzáadása
     add_threesixty_campaign_admin: Kampányadminisztrátor hozzáadása
@@ -85,6 +86,19 @@ hu:
     ai_scoring_appoval_responses: AI válaszok
     ai_scoring_appoval_score_not_applicable: Pontszám nem alkalmazható
     ai_scoring_approval: AI pontszám jóváhagyás
+    ai_scoring_approval_digest_mailer_access_link_intro: 'A pontozási jóváhagyásokhoz a következő linken keresztül férhet hozzá:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: A következő pontszámokat hagyták jóvá.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Ezt az e-mailt azért kapja, mert felvették Önt a pontszám-jóváhagyási értesítések címzettjei közé.
+    ai_scoring_approval_digest_mailer_approved_subject: A pontszámok jóváhagyva
+    ai_scoring_approval_digest_mailer_assessment_label: 'Értékelés: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Az alábbi értékelések jóváhagyásra készek, és az Ön intézkedését igénylik.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Ezt az e-mailt azért kapja, mert jóváhagyóként felvették azokat az értékeléseket, amelyek jóváhagyást igényelnek.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Jóváhagyásra váró pontszámok
+    ai_scoring_approval_digest_mailer_campaign_label: 'Kampány: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Gólok száma: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Kedves %{name}!
+    ai_scoring_approval_digest_mailer_link_text: Pontszámok jóváhagyása
+    ai_scoring_approval_digest_mailer_project_label: 'Projekt: %{value}'
     ai_scoring_approval_settings: AI pontozás jóváhagyási beállítások
     ai_scoring_approval_stale_description: A legutóbbi futtatás óta végrehajtott konfigurációs frissítések megváltoztathatták az értékelést. Az értékelés frissítéséhez hajtsa végre az újbóli értékelést a legfrissebb beállítások alapján.
     ai_scoring_approval_stale_title: Az eredmény elavult lehet
@@ -136,6 +150,7 @@ hu:
     bulk_assets_modal_title: CSV és ZIP fájlok feltöltése
     bulk_upload_ai_artifacts: Tömeges feltöltési AI tárgyak
     campaign_ai_artifact_updated_successfully: Kampány MI tárgyak sikeresen frissítették
+    campaign_ai_artifacts_instruction_templating_tooltip: A parancssori sablonok segítségével fejlett utasításokat adhat meg a Liquid sablonnyelv és a rendelkezésre álló változók használatával. További részletekért olvassa el a dokumentációt.
     campaign_ai_artifacts_results_export_details: A kampány AI-artefaktumai eredményeket hoztak
     campaign_assessment_actions_disable_caching: Letiltott értékelési gyorsítótár
     campaign_assessment_actions_enable_caching: Engedélyezze az értékelési gyorsítótár használatát
@@ -161,6 +176,24 @@ hu:
     campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
     campaign_factors: Kampány tényezők
     campaign_name: Kampány neve
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Külső jelentés azonosítója
+          language_id: Nyelv azonosító
+          norm: Norm
+          norm_id: Norma azonosító
+          suitability_id: Alkalmassági azonosító
+        labels:
+          assessment_ids: Értékelési azonosítók
+          available_languages: Elérhető nyelvek
+          campaign_report_id: Kampányjelentés azonosítója
+          check_details: Részletek megtekintése
+          default_language: Alapértelmezett nyelv
+          external_settings: Külső beállítások
+          provider: Szolgáltató
+          report_pdf_status: Jelentés PDF-formátumban
+          user_report_id: Felhasználói jelentés azonosítója
     campaign_templates: Kampány sablonok
     campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
     campaigns: Kampányok
@@ -183,7 +216,9 @@ hu:
     configure_model_answer_title: Modellválasz és kulcsszavak konfigurálása
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
     copied: Másolva
+    copied_url_success: Az URL sikeresen a vágólapra lett másolva
     copy_ai_artifacts: AI-műalkotások másolása
+    copy_image_url: Kép URL-jének másolása
     country: Ország
     create_client: Ügyfél létrehozása
     create_indicator: Indikátor létrehozása
@@ -221,6 +256,7 @@ hu:
       thursday: csütörtök
       tuesday: kedd
       wednesday: Szerda
+    dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
@@ -228,9 +264,11 @@ hu:
     duration: Időtartam
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
+    edit_folder: Mappa szerkesztése
     edit_indicator: Jelzőszerkesztés
     edit_job_roles: Munkakörök szerkesztése
     edit_level: Szinten szerkesztés
+    edit_media: Média szerkesztése
     edit_permission_denied: Nincs engedélyed az admin '%{name}' szerkesztésére
     edit_project_admin: Projektadminisztrátorának szerkesztése
     edit_threesixty_campaign_admin: Kampányadminisztrátor szerkesztése
@@ -272,6 +310,8 @@ hu:
     feature_global_skills_description: Hozzáférés a globális készségek könyvtárához az értékelésekhez
     feature_idp_description: Engedélyezze az egyéni fejlesztési terv készítését a résztvevők számára
     feature_sms_notification_description: SMS-értesítések engedélyezése kampánymeghívók és emlékeztetők esetén
+    file_size_must_be_less_than_mb: A {{name}} fájl meghaladja a {{max_size_mb}} MB-os maximális méretet
+    file_upload_failed: A {{name}} feltöltése nem sikerült
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
     final_score_empty_msg: A végösszeg nem lehet üres.
@@ -351,6 +391,8 @@ hu:
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     max_value: Maximális érték
+    media_files_label: Fájlok
+    media_library: Médiakönyvtár
     messages: Üzenetek
     mhs: MHS
     mhs_assessment: MHS értékelés
@@ -370,6 +412,7 @@ hu:
     name: Név
     name_max_length: A név nem haladhatja meg a %{length} karaktert.
     name_required: Név szükséges
+    new_folder: Új mappa
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
     no_status: Nincs állapot
@@ -832,9 +875,15 @@ hu:
     questions: Kérdések
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Reflexiós kérdések
+    regenerate_transcriptions_action: A leírások újragenerálása
+    regenerate_transcriptions_confirm_content: Biztosan újra szeretné generálni az értékeléshez tartozó átírásokat? Ezzel az összes befejezetlen átírás újra feldolgozásra kerül.
+    regenerate_transcriptions_confirm_title: A leírások újragenerálása
+    regenerate_transcriptions_scheduled: A leírások újrateremtésének feladata sikeresen be lett ütemezve
     registration_codes: Regisztrációs kódok
     registration_settings: Regisztrációs beállítások
     remove_children_to_change_type: Az összes gyermeket eltávolítani a típus megváltoztatásához
+    remove_confirmation: Biztosan el akarja távolítani ezt az elemet?
+    remove_successfully: A médiaelem sikeresen eltávolításra került.
     report_approvals: Jelentés jóváhagyása
     report_condition_not_met: Értékelésre %{required} %{relationship} szüksége, de csak %{actual}
     report_conditions_not_met_detailed: A jelentés %{user} nem felel meg a rendelkezésre állási feltételeknek. %{conditions}
@@ -938,7 +987,9 @@ hu:
     scoring_approval_approvers: Jóváhagyók
     scoring_approval_assessment: Értékelés
     scoring_approval_assessor_users: Értékelő felhasználók
+    scoring_approval_do_not_send_notifications: Ne küldj értesítéseket
     scoring_approval_modal_title: Pontszám jóváhagyási beállítások
+    scoring_approval_notification_users: Jóváhagyási értesítés címzettjei
     scoring_approval_remove_modal_success: 'Az értékelés azonosítószámának jóváhagyási beállítása: %{assessmentId} sikeresen törölve.'
     scoring_approval_remove_modal_text: 'Biztosan törölni szeretné ezt a beállítást az értékelési azonosítóhoz: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Pontszám csak az aktuálisan kiválasztott tényező AI-kompatibilis kérdéseinél adható.
@@ -995,7 +1046,12 @@ hu:
     translated_to: 'Fordítás:'
     translated_with_ai_notice: AI fordítás
     translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
+    translations:
+      title: Fordítások
     update_success: "%{readableResourceName} sikeresen frissült"
+    upload: Feltöltés
+    upload_media: Média feltöltése
+    upload_required: Kérjük, töltsön fel legalább egy fájlt
     upload_success: Sikeresen feltöltve
     user_report_events: Felhasználói jelentés eseményei
     users: Felhasználók
@@ -1004,6 +1060,7 @@ hu:
     very_high: Rendkívül magas
     very_low: Nagyon alacsony
     view_licenses: Licencek megtekintése
+    wait_for_upload_completion: Kérjük, várja meg, amíg az összes fájl feltöltése befejeződik
     waiting: Várakozás
     weight: Súly
     what_to_look_for: Mit kell keresni

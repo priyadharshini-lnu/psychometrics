@@ -17,7 +17,7 @@ export const RemoveDimensionModal: React.FC<Props> = ({ close, dimension }) => {
   const { id, name } = dimension
 
   const handleOnConfirm = () => removeResource(id).then(() => {
-    message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: name }))
+    message.info(I18n.t('administration.dimensions.destroy.successfully', { name }))
     close()
   }).catch((error) => {
     message.error(error)

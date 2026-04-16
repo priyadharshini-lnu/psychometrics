@@ -33,6 +33,7 @@ module Administration
             user: logged_in_user,
             payload: { email: logged_in_user.email }
           )
+          Utility::Cookie.expire_auth_cookies(response)
           WardenAuthLogger.log_sign_out(logged_in_user, request, scope: :user)
         end
       end

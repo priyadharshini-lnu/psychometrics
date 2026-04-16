@@ -262,7 +262,7 @@ export interface UserDetails {
     id: number | null
     name: string | null
     email: string | null
-  }
+  } | null
   level: string | null
   currentJobRole: {
     id: number
@@ -354,8 +354,11 @@ const HANDLERS = {
     ...state, current: response,
   }),
   [ADD_MANAGER]: (state: State, { response }: AddManagerActionType) => {
-    const { name, email } = response.data.attributes
-    const manager = { id: response.data.id, name, email }
+    let manager: { id: number | null; name: string | null; email: string | null } | null = null
+    if (response?.data) {
+      const { name, email } = response.data.attributes
+      manager = { id: response.data.id, name, email }
+    }
 
     return {
       ...state,

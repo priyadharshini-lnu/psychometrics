@@ -69,7 +69,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
 
   const { campaignId } = useParams() as { campaignId: string }
-  const { message } = App.useApp()
+  const { message, modal } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
@@ -115,6 +115,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       exportExternalResults,
                       optionsOverrides: { remove: false, updateExternalConfig: false },
                       message,
+                      modal,
                     })
                   }
                   innerElement={(

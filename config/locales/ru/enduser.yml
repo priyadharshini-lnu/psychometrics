@@ -24,29 +24,43 @@ ru:
     browser_compatibility_check: Тест на совместимость с браузерами
     browser_compatibility_check_description: Проверка поддержки всех необходимых функций вашим браузером
     browser_compatibility_result: Совместимость с браузерами
+    browser_compatible: Ваш браузер %{browser_name} версии %{browser_version} поддерживает эту рекламную кампанию.
+    browser_compatible_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который соответствует минимальным требованиям данной кампании.
+    browser_incompatible_detail: Вы используете версию %{browser_name} %{browser_version}. Для обеспечения совместимости обновите %{browser_name} до версии %{min_browser_version}.
+    browser_not_compatible: Ваш браузер %{browser_name} не поддерживает эту рекламную кампанию. Для оптимальной работы сайта используйте последние версии Chrome, Firefox, Safari или Edge.
     browser_version_fix_description_first: 'Используйте один из поддерживаемых браузеров: Chrome, Firefox, Edge или Safari'
-    browser_version_fix_description_second: Обновите браузер до последней версии, чтобы обеспечить совместимость.
-    browser_version_fix_description_third: Попробуйте воспользоваться окном анонимного просмотра
     browser_version_fix_title: Ваша версия браузера не поддерживается.
     camera: Видео и аудио
     camera_access_blocked: Доступ к камере был запрещен или заблокирован вашим браузером. Проверьте настройки разрешений в браузере.
     camera_check: Проверка камеры и микрофона
+    camera_check_abruptly_ended: Камера была внезапно отключена. Пожалуйста, включите камеру и повторите проверку.
     camera_check_description: Убедитесь, что ваша камера и микрофон работают исправно для записи
+    camera_check_passed: Проверка видео и аудио прошла успешно
     camera_test_step: Этап проверки видео и аудио
     campaign: Кампания
     chat_instructions: Инструкции по использованию чата
     check: Проверить
     check_video_recording: Пожалуйста, проверьте видеозапись, воспроизведя её.
     checking_browser_compatibility: Проверка совместимости браузеров...
+    checking_latency: Проверка задержки...
+    could_not_reach_servers: Не удалось подключиться к нашим серверам для проверки скорости сети. Проверьте подключение к Интернету и повторите попытку.
+    day: день
+    day_plural: дней
+    details: Подробности
     development: Разработка
     direct_reportees: Непосредственные подчиненные
     download: Скачать
     download_pdf: Скачать PDF
+    download_speed_below_minimum: Скорость загрузки %{download_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_download_speed} Мбит/с
     environment_setup: Настройка среды
     error_uploading_video: Ошибка при загрузке видео
+    error_uploading_video_detail: При загрузке видео произошла ошибка
     fail: Неудача
     follow_these_steps: Выполните следующие действия, чтобы устранить проблемы, обнаруженные в ходе проверки системы
+    hide_details: Скрыть подробности
     home: Главная
+    hour: час
+    hour_plural: часов
     how_to_fix: 'Как исправить:'
     idp_loading_fifth_step: Извлечение действий разработки из шаблона
     idp_loading_first_step: Анализ вашего отчета об оценке
@@ -68,14 +82,18 @@ ru:
     lighthouse_assistant: Помощник маяка
     localstorage_fix_description_first: Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах localStorage часто отключено.
     localstorage_fix_title: В вашем браузере не включено локальное хранилище
+    localstorage_not_enabled_detail: В вашем браузере отключена функция локального хранилища. Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах локальное хранилище часто отключено.
     localstorage_support: LocalStorage включено
     max_word_limit: Должно быть не более %{max} слов
     media_recorder_api_fix_description_first: Включите JavaScript в настройках браузера
     media_recorder_api_fix_description_second: Убедитесь, что ваш браузер поддерживает API MediaRecorder, и при необходимости обновите его до последней версии.
-    media_recorder_api_fix_description_third: Попробуйте другой современный браузер, например Chrome или Firefox
     media_recorder_api_fix_title: API Media Recorder не поддерживается в вашем браузере.
+    media_recorder_api_not_supported_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который не поддерживает API MediaRecorder. Для обеспечения совместимости обновите браузер до последней версии.
     media_recorder_api_support: Поддержка API MediaRecorder
     min_word_limit: Должно быть не менее %{min} слов
+    minimum_speed_requirements: Для участия в этой акции требуется минимальная скорость загрузки %{minimum_download_speed} Мбит/с и минимальная скорость отправки %{minimum_upload_speed} Мбит/с.
+    minute: минута
+    minute_plural: протокол
     my_plan: Мой план
     network: Сеть
     network_check: Тест скорости интернета
@@ -85,8 +103,8 @@ ru:
     network_check_fix_fourth: Попробуйте воспользоваться другим сетевым подключением, если оно доступно
     network_check_fix_second: Переместитесь поближе к роутеру Wi-Fi или подключитесь с помощью кабеля Ethernet
     network_check_fix_third: Перезагрузите роутер/модем и попробуйте ещё раз
+    network_speed_meets_required_detail: Скорость вашего интернет-соединения соответствует минимальным требованиям акции
     network_test_step: Этап тестирования сети
-    no_audio_warning: Аудио не обнаружено. Проверьте, подключен ли микрофон и работает ли он правильно.
     pass: Пропустить
     pending: В процессе рассмотрения
     personal_readiness: Личная готовность
@@ -153,6 +171,8 @@ ru:
     system_checks: Проверка системы
     task_duration: Продолжительность задачи
     tasks: Задачи
+    testing_download_speed: Проверка скорости загрузки...
+    testing_upload_speed: Проверка скорости загрузки...
     time_commitment: Время, которое необходимо уделить
     troubleshooting_guide: Руководство по устранению неисправностей
     troubleshooting_guide_browser_fifth: Убедитесь, что в настройках браузера включена функция LocalStorage
@@ -174,6 +194,7 @@ ru:
     troubleshooting_guide_video_third: Обновите страницу после изменения прав доступа
     untimed: Без ограничения по времени
     upload: Загрузить
+    upload_speed_below_minimum: Скорость загрузки %{upload_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_upload_speed} Мбит/с
     video_and_audio: Видео и аудио
     video_and_audio_recording: Запись видео и аудио
     video_check_fix_fifth: Если камера подключена внешне, попробуйте отключить её от источника питания и подключить заново
@@ -182,7 +203,9 @@ ru:
     video_check_fix_second: Перейдите в настройки браузера и разрешите этому сайту доступ к камере
     video_check_fix_sixth: Перезапустите браузер и попробуйте ещё раз
     video_check_fix_third: Закройте другие приложения, использующие камеру (Zoom, Teams и т. д.)
+    view_details: Посмотреть подробности
     webgl_api_fix_description_first: Убедитесь, что ваш браузер поддерживает WebGL и что эта функция включена в настройках
     webgl_api_fix_description_second: Обновите драйверы графической карты до последней версии
     webgl_api_fix_title: WebGL не поддерживается или не включен в вашем браузере
     webgl_api_support: Поддержка API WebGL
+    webgl_not_supported_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который не поддерживает WebGL. Для обеспечения совместимости обновите браузер до последней версии.

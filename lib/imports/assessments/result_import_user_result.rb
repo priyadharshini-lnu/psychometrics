@@ -270,7 +270,7 @@ module Imports
           end
 
           validation_errors = ::Questions::Validation.call!(question, value)
-          next if validation_errors.nil?
+          next if validation_errors.blank?
 
           errors.add(:base, I18n.t('administration.imports.errors.result.answer_invalid',
                                    row: index + SKIP_ROWS, question_id: qid, error: validation_errors.join(',')))

@@ -929,6 +929,7 @@ sl:
         normalize_factor_scores: Normalizirajte rezultate faktorjev
         project_compact_completion_status_export: Izvoz stanja zaključka kompaktnega izvoza
         project_completion_status_export: Izvoz stanja dokončanja
+        regenerate_assessment_transcriptions: Obnovi prepise ocen
         regenerate_campaign_reports: Vnovična generacija poročil o oglaševalskih akcijah
         regenerate_report: Poročilo o ponovni vzpostavitvi
         regenerate_threesixty_report: Obnovi poročilo Threesixty
@@ -4073,9 +4074,11 @@ sl:
       import_reports: Uvoz poročil in ocen
   user_assessment:
     column:
+      completed_at: Zaključeno ob
       dimension_id: ID kategorija
       id: ID ocenjenega uporabnika
       norm_id: ID norma
+      started_at: Začetek ob
     drawer:
       copied: "%{name} kopirano v odložišče."
       copy: Kopiraj v odložišče
@@ -4115,7 +4118,6 @@ sl:
     normalize_factor_scores:
       no_scoring_data: Normalizacije faktorskih rezultatov ni mogoče dokončati, ker podatki o točkovanju niso na voljo.
     progress_label: Napredek ocenjevanja
-    redirect: Za to ocenjevanje boste preusmerjeni na zunanje spletno mesto. Kliknite »Nadaljuj«, če želite začeti.
     status:
       completed: Dokončano
       in_progress: V teku
@@ -4270,9 +4272,7 @@ sl:
     min_character: Vaš odgovor mora imeti najmanj %{min} znakov.
     min_factor: Vaš odgovor mora vsebovati vsaj %{min} povratne informacije.
     min_word: Vaš odgovor mora imeti najmanj %{min} besed
-    most:
-      one: Izberite največ 1 možnost
-      other: Izberite največ %{max} možnosti
+    most: Izberite največ %{max} možnost(-i)
     must_rank_between: Vsaki postavki dodelite vrednost od %{min} do %{max}. Vrednosti se ne smejo ponavljati.
     must_select: Izberite med %{min} in %{max} možnostmi
     not_in_future: Izbrani datum ne sme biti v prihodnosti

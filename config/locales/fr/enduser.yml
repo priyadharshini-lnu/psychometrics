@@ -24,29 +24,43 @@ fr:
     browser_compatibility_check: Test de compatibilité avec les navigateurs
     browser_compatibility_check_description: Vérification de la prise en charge de toutes les fonctionnalités requises par votre navigateur
     browser_compatibility_result: Compatibilité avec les navigateurs
+    browser_compatible: Votre navigateur %{browser_name} version %{browser_version} est compatible avec cette campagne.
+    browser_compatible_detail: Vous utilisez la version %{browser_version} d'%{browser_name}, qui répond aux exigences minimales requises pour cette campagne.
+    browser_incompatible_detail: Vous utilisez la version %{browser_version} d'%{browser_name}. Veuillez mettre à jour votre %{browser_name} vers la version %{min_browser_version} afin de garantir la compatibilité.
+    browser_not_compatible: La version de votre navigateur %{browser_name} n'est pas compatible avec cette campagne. Pour une expérience optimale, veuillez utiliser les dernières versions de Chrome, Firefox, Safari ou Edge.
     browser_version_fix_description_first: 'Utilisez un navigateur pris en charge : Chrome, Firefox, Edge ou Safari'
-    browser_version_fix_description_second: Mettez votre navigateur à jour pour garantir la compatibilité.
-    browser_version_fix_description_third: Essayez d'utiliser une fenêtre de navigation privée
     browser_version_fix_title: La version de votre navigateur n'est pas prise en charge.
     camera: Vidéo et audio
     camera_access_blocked: L'accès à la caméra a été refusé ou bloqué par votre navigateur. Veuillez vérifier les autorisations de votre navigateur.
     camera_check: Test de la caméra et du microphone
+    camera_check_abruptly_ended: La caméra s'est éteinte brusquement. Veuillez activer votre caméra et relancer la vérification.
     camera_check_description: Vérifiez que votre caméra et votre microphone fonctionnent correctement pour l'enregistrement
+    camera_check_passed: Le test vidéo et audio s'est déroulé avec succès
     camera_test_step: Étape de test vidéo et audio
     campaign: Campagne
     chat_instructions: Instructions pour le chat
     check: Vérifier
     check_video_recording: Veuillez vérifier votre enregistrement vidéo en le visionnant.
     checking_browser_compatibility: Vérification de la compatibilité du navigateur...
+    checking_latency: Vérification de la latence...
+    could_not_reach_servers: Nous n'avons pas pu nous connecter à nos serveurs pour vérifier la vitesse du réseau. Veuillez vérifier votre connexion Internet et réessayer.
+    day: jour
+    day_plural: jours
+    details: Détails
     development: Développement
     direct_reportees: Subordonnés
     download: Télécharger
     download_pdf: Télécharger PDF
+    download_speed_below_minimum: La vitesse de téléchargement %{download_speed} est inférieure à la vitesse minimale requise de %{minimum_download_speed} Mbps
     environment_setup: Configuration de l'environnement
     error_uploading_video: Erreur lors du téléchargement de la vidéo
+    error_uploading_video_detail: Une erreur s'est produite lors du téléchargement de la vidéo
     fail: Échec
     follow_these_steps: Suivez ces étapes pour résoudre les problèmes détectés lors de la vérification du système
+    hide_details: Masquer les détails
     home: Tableau de bord
+    hour: heure
+    hour_plural: heures
     how_to_fix: 'Comment résoudre le problème :'
     idp_loading_fifth_step: Récupération des actions de développement à partir du modèle
     idp_loading_first_step: Analyse de votre rapport d’évaluation
@@ -68,14 +82,18 @@ fr:
     lighthouse_assistant: Assistant de phare
     localstorage_fix_description_first: Assurez-vous de ne pas être en mode privé ou incognito, car localStorage est souvent désactivé dans ces modes.
     localstorage_fix_title: Le stockage local n'est pas activé dans votre navigateur
+    localstorage_not_enabled_detail: Le stockage local n'est pas activé dans votre navigateur. Veuillez vous assurer que vous n'êtes pas en mode privé ou incognito, car le stockage local est souvent désactivé dans ces modes.
     localstorage_support: LocalStorage activé
     max_word_limit: Doit contenir au maximum %{max} mots
     media_recorder_api_fix_description_first: Activez JavaScript dans les paramètres de votre navigateur
     media_recorder_api_fix_description_second: Vérifiez que votre navigateur prend en charge l'API MediaRecorder et, si nécessaire, mettez-le à jour avec la dernière version.
-    media_recorder_api_fix_description_third: Essayez un autre navigateur moderne, comme Chrome ou Firefox
     media_recorder_api_fix_title: L'API Media Recorder n'est pas prise en charge par votre navigateur.
+    media_recorder_api_not_supported_detail: Vous utilisez la version %{browser_version} d'%{browser_name}, qui ne prend pas en charge l'API MediaRecorder. Veuillez mettre à jour votre navigateur vers la dernière version pour garantir la compatibilité.
     media_recorder_api_support: Prise en charge de l'API MediaRecorder
     min_word_limit: Doit contenir au minimum %{min} mots
+    minimum_speed_requirements: Une vitesse de téléchargement minimale de %{minimum_download_speed} Mbps et une vitesse de chargement minimale de %{minimum_upload_speed} Mbps sont requises pour cette offre.
+    minute: minute
+    minute_plural: procès-verbal
     my_plan: Mon plan
     network: Réseau
     network_check: Test de vitesse Internet
@@ -85,8 +103,8 @@ fr:
     network_check_fix_fourth: Essayez d'utiliser une autre connexion réseau si possible
     network_check_fix_second: Rapprochez-vous de votre routeur Wi-Fi ou connectez-vous à l'aide d'un câble Ethernet
     network_check_fix_third: Redémarrez votre routeur/modem et réessayez
+    network_speed_meets_required_detail: Votre débit Internet répond aux exigences minimales de la campagne
     network_test_step: Étape de test du réseau
-    no_audio_warning: Aucun son détecté. Veuillez vérifier que votre microphone est connecté et fonctionne correctement.
     pass: Passer
     pending: En attente
     personal_readiness: Préparation personnelle
@@ -153,6 +171,8 @@ fr:
     system_checks: Vérifications du système
     task_duration: Durée de la tâche
     tasks: Tâches
+    testing_download_speed: Test de la vitesse de téléchargement...
+    testing_upload_speed: Test de la vitesse de téléchargement...
     time_commitment: Temps à consacrer
     troubleshooting_guide: Guide de dépannage
     troubleshooting_guide_browser_fifth: Assurez-vous que LocalStorage est activé dans les paramètres de votre navigateur
@@ -174,6 +194,7 @@ fr:
     troubleshooting_guide_video_third: Actualisez la page après avoir modifié les autorisations
     untimed: Sans limite de temps
     upload: Télécharger
+    upload_speed_below_minimum: La vitesse de téléchargement %{upload_speed} est inférieure à la vitesse minimale requise de %{minimum_upload_speed} Mbps
     video_and_audio: Vidéo et audio
     video_and_audio_recording: Enregistrement vidéo et audio
     video_check_fix_fifth: Si votre appareil photo est externe, essayez de le débrancher puis de le rebrancher
@@ -182,7 +203,9 @@ fr:
     video_check_fix_second: Accédez aux paramètres de votre navigateur et autorisez l'accès à la caméra pour ce site
     video_check_fix_sixth: Redémarrez votre navigateur et réessayez
     video_check_fix_third: Fermez les autres applications qui utilisent la caméra (Zoom, Teams, etc.)
+    view_details: Voir les détails
     webgl_api_fix_description_first: Assurez-vous que votre navigateur prend en charge WebGL et que cette fonctionnalité est activée dans les paramètres
     webgl_api_fix_description_second: Mettez à jour vos pilotes graphiques vers la dernière version
     webgl_api_fix_title: WebGL n'est pas pris en charge ou n'est pas activé dans votre navigateur
     webgl_api_support: Prise en charge de l'API WebGL
+    webgl_not_supported_detail: Vous utilisez la version %{browser_version} d'%{browser_name}, qui ne prend pas en charge WebGL. Veuillez mettre à jour votre navigateur vers la dernière version pour garantir la compatibilité.

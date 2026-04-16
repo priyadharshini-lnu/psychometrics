@@ -4510,7 +4510,6 @@ id:
         new:
           header: Impor Terjemahan
       import:
-        successfully: Terjemahan berhasil diimpor
         successfully_scheduled: Impor Terjemahan berhasil dijadwalkan.
       reports:
         export: Ekspor Terjemahan

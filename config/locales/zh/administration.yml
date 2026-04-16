@@ -4518,7 +4518,6 @@ zh:
         new:
           header: 进口翻译
       import:
-        successfully: 翻译已成功导入
         successfully_scheduled: 已成功安排翻译导入。
       reports:
         export: 出口翻译

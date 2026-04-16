@@ -44,6 +44,8 @@ pt:
     copy: Copiar
     created_at: Criado em
     created_date: Data de criação
+    custom_acknowledgment_text: Texto de agradecimento personalizado
+    custom_acknowledgment_text_required: É necessário um texto de confirmação personalizado para a função de dados do controlador
     custom_consent_text: Texto de consentimento personalizado
     custom_consent_text_required: É necessário um texto de consentimento personalizado para a função de dados do controlador
     data_role: Função dos dados
@@ -83,6 +85,7 @@ pt:
     maintenance_time_remaining: Tempo restante
     maintenance_upcoming_description: Realizaremos uma manutenção programada no site %{date} por aproximadamente %{duration} para melhorar sua experiência. Durante esse período, você não poderá acessar ou concluir nenhuma tarefa atribuída. Agradecemos sua paciência.
     maintenance_upcoming_title: Manutenção prevista
+    manage_cookies: Gerir cookies
     media_id: ID da mídia
     media_preview: Prévia para a mídia
     media_question_transcriptions: Transcrições de perguntas da mídia
@@ -98,6 +101,7 @@ pt:
     negative: Negativo
     new: Novo
     next: Próximo
+    no_audio_warning: Não foi detectado áudio. Verifique se o microfone está conectado e funcionando corretamente.
     no_results_found: Não foram encontrados resultados
     not_requested: Ainda não solicitado
     ok: OK

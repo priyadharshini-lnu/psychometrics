@@ -53,9 +53,13 @@ module Api
 
       if user.update(manager_id: params[:manager_id])
         audit! :add_manager, user, payload: params
-        jsonapi_render json: user.manager, options: { resource: V2::Administration::ManagerResource }
+        if user.manager.present?
+          jsonapi_render json: user.manager, options: { resource: V2::Administration::ManagerResource }
+        else
+          head :no_content
+        end
       else
-        jsonapi_render_errors u.errors
+        jsonapi_render_errors user.errors
       end
     end
 

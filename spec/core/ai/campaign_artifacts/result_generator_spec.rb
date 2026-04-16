@@ -372,8 +372,73 @@ describe AI::CampaignArtifacts::ResultGenerator do
           ai_assistant.id,
           current_user,
           'parsed dependencies',
-          chat: anything
+          chat: anything,
+          prompt_template_context: anything
         )
+      end
+    end
+
+    context 'prompt_template_context passed to for_user' do
+      let(:assistant_chat) { create(:assistant_chat, ai_assistant: ai_assistant, user: current_user) }
+
+      before do
+        allow(assistant_chat).to receive(:with_tools).and_return(assistant_chat)
+        allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
+        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'response' })
+      end
+
+      it 'passes campaign and user in prompt_template_context in non-test mode' do
+        expect(ai_assistant).to receive(:for_user).with(
+          current_user,
+          prompt_template_context: { campaign: campaign, user: user }
+        ).and_return(assistant_chat)
+
+        described_class.new(ai_artifact, user, { current_user: current_user }).call
+      end
+
+      it 'uses current_user as the user in prompt_template_context when in test mode' do
+        expect(ai_assistant).to receive(:for_user).with(
+          current_user,
+          prompt_template_context: { campaign: campaign, user: current_user }
+        ).and_return(assistant_chat)
+
+        described_class.new(ai_artifact, nil, { test_mode: true, current_user: current_user }).call
+      end
+    end
+
+    context 'when advanced prompting is enabled on the assistant' do
+      let(:assistant_chat) { create(:assistant_chat, ai_assistant: ai_assistant, user: current_user) }
+
+      before do
+        ai_assistant.update!(advanced_prompting_enabled: true, system_prompt: 'Hello {{user.first_name}}')
+        allow_any_instance_of(AI::Utils::CampaignArtifactParser).to receive(:call!).and_return('parsed dependencies')
+        stub_wisper_publisher('AI::AssistantService', :call, :ok, { message: 'response' })
+        allow(ai_assistant).to receive(:create_chat_for_user).and_return(assistant_chat)
+        allow(ai_assistant).to receive(:configure_chat)
+        allow(assistant_chat).to receive(:with_instructions)
+        allow(assistant_chat).to receive(:with_tools).and_return(assistant_chat)
+      end
+
+      it 'calls AI::PromptTemplate::Renderer.call! with the system prompt and prompt_template_context' do
+        allow(AI::PromptTemplate::Renderer).to receive(:call!).and_return('rendered')
+        expect(AI::PromptTemplate::Renderer).to receive(:call!).with(
+          'Hello {{user.first_name}}',
+          campaign: campaign,
+          user: user
+        ).and_return('Hello John')
+
+        described_class.new(ai_artifact, user, { current_user: current_user }).call
+      end
+
+      it 'renders the parsed dependencies data through AI::PromptTemplate::Renderer' do
+        allow(AI::PromptTemplate::Renderer).to receive(:call!).and_return('rendered')
+        expect(AI::PromptTemplate::Renderer).to receive(:call!).with(
+          'parsed dependencies',
+          campaign: campaign,
+          user: user
+        ).and_return('rendered parsed dependencies')
+
+        described_class.new(ai_artifact, user, { current_user: current_user }).call
       end
     end
   end

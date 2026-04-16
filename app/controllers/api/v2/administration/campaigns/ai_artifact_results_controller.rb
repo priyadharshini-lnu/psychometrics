@@ -111,8 +111,14 @@ module Api
     def users
       return @campaign.campaign_users.none if @campaign_artifacts.blank?
 
-      User.joins(:campaign_users).
-        where(campaign_users: { campaign_id: @campaign.id })
+      if @campaign.threesixty?
+        User.joins(:campaign_users).
+          where(campaign_users: { campaign_id: @campaign.id }).
+          where(id: @campaign.subjects.select(:user_id))
+      else
+        User.joins(:campaign_users).
+          where(campaign_users: { campaign_id: @campaign.id })
+      end
     end
 
     def load_user

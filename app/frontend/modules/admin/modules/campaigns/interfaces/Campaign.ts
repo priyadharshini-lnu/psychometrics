@@ -50,6 +50,7 @@ export default interface Campaign {
   permissions: CommonCampaignPermissions
   practiceCampaign?: boolean | null
   isTemplate?: boolean
+  tagList?: string[]
 }
 
 export interface Entity {
@@ -89,7 +90,9 @@ export interface CampaignOptions {
   trial: boolean
   enableVideoCallRecording?: boolean;
   allowVideoCallRecording?: boolean;
-  minimumUploadSpeed?: number | null;
-  minimumDownloadSpeed?: number | null;
+  minimumUploadSpeed?: number;
+  minimumDownloadSpeed?: number;
+  calculatedMinimumUploadSpeed: number;
+  calculatedMinimumDownloadSpeed: number;
   allowContinueWithWarning: boolean;
 }

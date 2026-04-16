@@ -929,6 +929,7 @@ nl:
         normalize_factor_scores: Factorscores normaliseren
         project_compact_completion_status_export: Compacte voltooiingsstatus exporteren
         project_completion_status_export: Export voltooiingsstatus
+        regenerate_assessment_transcriptions: Transcripties van beoordelingen opnieuw genereren
         regenerate_campaign_reports: Campagneverslagen opnieuw genereren
         regenerate_report: Regenereren Rapport
         regenerate_threesixty_report: Regenereren Drieënzestig Verslag
@@ -1978,8 +1979,6 @@ nl:
     invalid_captcha: De captcha-invoer was ongeldig.
     invalid_security_question: Het antwoord op de beveiligingsvraag was ongeldig.
     invitations:
-      confirmation_instructions:
-        subject: Instructies voor bevestiging
       edit:
         confirm_password_label: Wachtwoord bevestigen
         header: Wachtwoord instellen
@@ -2012,23 +2011,6 @@ nl:
           client: 'Huurder: %{section_name}'
           project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
-      invitation_removed: Je uitnodiging is verwijderd.
-      invitation_token_invalid: Het verstrekte uitnodigingstoken is niet geldig!
-      mailer:
-        accept: Klik hier om de uitnodiging te accepteren.
-        admin_invitation_instructions:
-        body: 'Hallo %{name}, U bent uitgenodigd om toegang te krijgen tot het beheerpaneel van Lighthouse - The Talent Enterprise assessment platform. %{accept} Of u kunt deze e-mail negeren. Deel uw toegangsgegevens met niemand.
-
-          '
-        copyright:
-          text: Lighthouse. Alle rechten voorbehouden
-        powered_by:
-          text: Powered by Lighthouse.
-        subject: Uitnodiging voor Lighthouse
-      new:
-        header: Uitnodiging versturen
-        submit_button: Een uitnodiging sturen
-      no_invitations_remaining: Geen uitnodigingen meer
       password_change:
         body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com '
         regards: 'Groeten, Lighthouse Team '
@@ -2039,15 +2021,12 @@ nl:
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
         regards: 'Groeten, Lighthouse Team '
         subject: Instructies om je wachtwoord opnieuw in te stellen
-      send_instructions: Er is een uitnodigingsmail verstuurd naar %{email}.
       unlock_instructions:
         body: 'Hallo %{name}! Uw account is vergrendeld vanwege een buitensporig aantal mislukte aanmeldingspogingen. Klik op de onderstaande koppeling om uw account te ontgrendelen: '
         footer: Als je dit niet hebt aangevraagd, kun je deze e-mail gerust negeren. Je wachtwoord zal pas veranderen als je de bovenstaande link opent en een nieuw wachtwoord aanmaakt.
         regards: 'Groeten, Lighthouse Team '
         subject: Instructies voor het deblokkeren van je account
         unlock_account: Mijn account deblokkeren
-      updated: Uw wachtwoord is succesvol ingesteld. U bent nu aangemeld.
-      updated_not_active: Uw wachtwoord is succesvol ingesteld.
     omniauth_callbacks:
       failure: Kan u niet verifiëren van %{kind} omdat "%{reason}".
       success: Succesvol geverifieerd van %{kind} account.
@@ -4059,9 +4038,11 @@ nl:
       import_reports: Rapporten en beoordelingen importeren
   user_assessment:
     column:
+      completed_at: Voltooid op
       dimension_id: Afmeting ID
       id: ID gebruikersbeoordeling
       norm_id: Norm ID
+      started_at: Begonnen op
     drawer:
       copied: "%{name} gekopieerd naar klembord."
       copy: Kopiëren naar klembord
@@ -4101,7 +4082,6 @@ nl:
     normalize_factor_scores:
       no_scoring_data: Normalisatie van factorscores kan niet worden voltooid omdat er geen scoringsgegevens beschikbaar zijn.
     progress_label: Voortgangsbeoordeling
-    redirect: Je wordt doorgestuurd naar de site van een derde partij voor deze beoordeling. Klik op Doorgaan als je de beoordeling wilt starten.
     status:
       completed: Voltooid
       in_progress: In uitvoering

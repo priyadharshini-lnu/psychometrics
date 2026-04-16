@@ -8,6 +8,7 @@ ru:
     add_campaign_admin: Добавить администратора кампании
     add_client_admin: Добавить администратора клиента
     add_indicator: Добавить индикатор
+    add_new_folder: Добавить новую папку
     add_project: Добавить проект
     add_project_admin: Добавить администратора проекта
     add_threesixty_campaign_admin: Добавить администратора кампании
@@ -85,6 +86,19 @@ ru:
     ai_scoring_appoval_responses: Ответы ИИ
     ai_scoring_appoval_score_not_applicable: Оценка не применима
     ai_scoring_approval: Утверждение оценки ИИ
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Вы можете перейти к утверждениям оценок по следующей ссылке:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Утверждены следующие результаты.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Вы получили это письмо, поскольку вас добавили в качестве контактного лица для получения уведомлений об утверждении оценок.
+    ai_scoring_approval_digest_mailer_approved_subject: Результаты утверждены
+    ai_scoring_approval_digest_mailer_assessment_label: 'Оценка: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Следующие партитуры готовы к утверждению и требуют вашего решения.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Вы получили это письмо, поскольку вас добавили в качестве лица, утверждающего оценки, которые требуют одобрения.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Оценки, ожидающие утверждения
+    ai_scoring_approval_digest_mailer_campaign_label: 'Кампания: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Подсчет очков: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Уважаемый сайт %{name},
+    ai_scoring_approval_digest_mailer_link_text: Утверждение оценок
+    ai_scoring_approval_digest_mailer_project_label: 'Проект: %{value}'
     ai_scoring_approval_settings: Настройки утверждения оценки ИИ
     ai_scoring_approval_stale_description: Изменения в настройках, внесенные после последнего запуска, могли повлиять на результат. Выполните повторный расчет, чтобы обновить результат с учетом последних настроек.
     ai_scoring_approval_stale_title: Результат может быть устаревшим
@@ -136,6 +150,7 @@ ru:
     bulk_assets_modal_title: Загрузить файлы CSV и ZIP
     bulk_upload_ai_artifacts: Массовая загрузка артефактов искусственного интеллекта
     campaign_ai_artifact_updated_successfully: Артефакты искусственного интеллекта кампании успешно обновлены
+    campaign_ai_artifacts_instruction_templating_tooltip: Вы можете использовать расширенные команды с помощью шаблонов командной строки, опирающихся на синтаксис шаблонов Liquid и доступные переменные. Более подробную информацию см. в документации.
     campaign_ai_artifacts_results_export_details: Результаты, полученные с помощью искусственного интеллекта кампании
     campaign_assessment_actions_disable_caching: Отключить кэширование оценок
     campaign_assessment_actions_enable_caching: Включить кэширование оценок
@@ -161,6 +176,24 @@ ru:
     campaign_assessment_modals_enable_caching_title: Включить кэширование оценок?
     campaign_factors: Факторы кампании
     campaign_name: Название кампании
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Идентификатор внешнего отчета
+          language_id: Идентификатор языка
+          norm: Норм
+          norm_id: Идентификатор нормы
+          suitability_id: Идентификатор соответствия
+        labels:
+          assessment_ids: Идентификаторы оценки
+          available_languages: Доступные языки
+          campaign_report_id: Идентификатор отчета о кампании
+          check_details: Просмотреть подробности
+          default_language: Язык по умолчанию
+          external_settings: Внешние настройки
+          provider: Поставщик
+          report_pdf_status: Отчет о состоянии в формате PDF
+          user_report_id: Идентификатор отчета пользователя
     campaign_templates: Шаблоны кампаний
     campaign_user_job_roles_cannot_be_same: Целевая должность должна отличаться от текущей должности.
     campaigns: Кампании
@@ -183,7 +216,9 @@ ru:
     configure_model_answer_title: Настройте образец ответа и ключевые слова
     confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
     copied: Скопировано
+    copied_url_success: URL успешно скопирован в буфер обмена
     copy_ai_artifacts: Копировать артефакты искусственного интеллекта
+    copy_image_url: Скопировать URL изображения
     country: Страна
     create_client: Создать клиента
     create_indicator: Создать индикатор
@@ -221,6 +256,7 @@ ru:
       thursday: четверг
       tuesday: вторник
       wednesday: среда
+    dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
@@ -228,9 +264,11 @@ ru:
     duration: Продолжительность
     edit_campaign_admin: Редактировать кампанию Администратор
     edit_client_admin: Редактировать клиентский админ
+    edit_folder: Изменить папку
     edit_indicator: Редактировать индикатор
     edit_job_roles: Редактировать должностные обязанности
     edit_level: Уровень редактирования
+    edit_media: Редактировать медиафайлы
     edit_permission_denied: У вас нет прав на редактирование администратора «%{name}»
     edit_project_admin: Редактировать проект Администратор
     edit_threesixty_campaign_admin: Редактировать кампанию Администратор
@@ -272,6 +310,8 @@ ru:
     feature_global_skills_description: Доступ к глобальной библиотеке навыков для оценки
     feature_idp_description: Включить индивидуальное планирование развития для участников
     feature_sms_notification_description: Включить SMS-уведомления о приглашениях и напоминаниях о кампаниях
+    file_size_must_be_less_than_mb: Файл {{name}} превышает максимальный размер в {{max_size_mb}} МБ
+    file_upload_failed: Не удалось загрузить {{name}}
     fill_empty_score_msg: Заполните все окончательные результаты перед сохранением.
     final_score_empty_err_msg: Итоговый счет «%{factor_name}» не может быть пустым.
     final_score_empty_msg: Итоговый счет не может быть пустым.
@@ -351,6 +391,8 @@ ru:
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     max_value: Максимальное значение
+    media_files_label: Файлы
+    media_library: Медиатека
     messages: Сообщения
     mhs: MHS
     mhs_assessment: Оценка MHS
@@ -370,6 +412,7 @@ ru:
     name: Имя
     name_max_length: Имя не может превышать %{length} символов
     name_required: Имя обязательно
+    new_folder: Новая папка
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
     no_status: Без статуса
@@ -832,9 +875,15 @@ ru:
     questions: Вопросы
     range_min_max: ДИАПАЗОН%{min} - %{max}
     reflection_questions: Вопросы для размышления
+    regenerate_transcriptions_action: Восстановить транскрипции
+    regenerate_transcriptions_confirm_content: Вы уверены, что хотите пересчитать оценки по данной работе? При этом будут пересчитаны все незавершенные оценки.
+    regenerate_transcriptions_confirm_title: Восстановить транскрипции
+    regenerate_transcriptions_scheduled: Задание по обновлению транскрипций успешно запланировано
     registration_codes: Регистрационные коды
     registration_settings: Настройки регистрации
     remove_children_to_change_type: Удалить всех детей, чтобы изменить тип
+    remove_confirmation: Вы уверены, что хотите удалить этот элемент?
+    remove_successfully: Медиафайл удален успешно.
     report_approvals: Утверждение отчетов
     report_condition_not_met: Требуется оценка %{required} %{relationship}, но имеется только %{actual}
     report_conditions_not_met_detailed: Отчет для %{user} не соответствует условиям доступности. %{conditions}
@@ -938,7 +987,9 @@ ru:
     scoring_approval_approvers: Утверждающие лица
     scoring_approval_assessment: Оценка
     scoring_approval_assessor_users: Пользователи-оценщики
+    scoring_approval_do_not_send_notifications: Не отправлять уведомления
     scoring_approval_modal_title: Настройки утверждения оценки
+    scoring_approval_notification_users: Пользователи, получающие уведомления об одобрении
     scoring_approval_remove_modal_success: 'Настройка утверждения для идентификатора оценки: %{assessmentId} была успешно удалена.'
     scoring_approval_remove_modal_text: 'Вы уверены, что хотите удалить эту настройку для идентификатора оценки: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Оценка допускается только по вопросам с включенным ИИ для выбранного в данный момент фактора.
@@ -995,7 +1046,12 @@ ru:
     translated_to: 'Переведено на:'
     translated_with_ai_notice: Перевод с помощью ИИ
     translation_assistant_not_configured: Помощник перевода не настроен
+    translations:
+      title: Переводы
     update_success: "%{readableResourceName} был успешно обновлен"
+    upload: Загрузить
+    upload_media: Загрузить медиафайлы
+    upload_required: Пожалуйста, добавьте хотя бы один файл для загрузки
     upload_success: Загрузка успешно завершена
     user_report_events: Сообщения пользователей о событиях
     users: Пользователи
@@ -1004,6 +1060,7 @@ ru:
     very_high: Очень высокий
     very_low: Очень низкий
     view_licenses: Просмотр лицензий
+    wait_for_upload_completion: Пожалуйста, подождите, пока все файлы не будут загружены
     waiting: Ожидание
     weight: Вес
     what_to_look_for: На что обратить внимание

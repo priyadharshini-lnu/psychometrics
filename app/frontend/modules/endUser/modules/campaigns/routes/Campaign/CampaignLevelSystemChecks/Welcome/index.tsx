@@ -42,7 +42,7 @@ const WelcomeComponent = ({ fetchCampaign }) => {
   const {
     data:
     systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
   const onChange = (e) => {
     setAcknowledged(e.target.checked)
@@ -95,7 +95,7 @@ const WelcomeComponent = ({ fetchCampaign }) => {
                 vertical
                 className={`p-4 ${commonStyles['border-dark']} ${commonStyles['bg-off-white']}`}
               >
-                <Checkbox onChange={onChange}>
+                <Checkbox onChange={onChange} disabled={!requiredSystemChecks.length}>
                   {I18n.t('enduser.ack_title')}
                 </Checkbox>
                 <Typography.Text style={{ paddingInlineStart: '24px' }}>

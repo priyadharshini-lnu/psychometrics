@@ -7,7 +7,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
              :tag_list, :translations_migrated
 
   ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq
-                     project_id_eq owned_by_client_or_tte owner_id_eq name_cont]
+                     project_id_eq owned_by_client_or_tte owner_id_eq name_cont with_ai_questions]
 
   add_tag_filter
 
@@ -48,7 +48,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def self.records(opts)
-    super.with_attached_icon.with_attached_poster.includes(:dimension, :owner)
+    super.with_attached_icon.with_attached_poster.includes(:dimension, :owner, taggings: :tag)
   end
 
   def icon_url

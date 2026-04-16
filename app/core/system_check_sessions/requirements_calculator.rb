@@ -14,7 +14,8 @@ module SystemCheckSessions
       requirements = {
         browser: browser_requirements,
         network: network_requirements,
-        video: video_requirements
+        video: video_requirements,
+        audio: audio_requirements
       }
 
       broadcast :ok, requirements
@@ -52,8 +53,16 @@ module SystemCheckSessions
       { required: has_video_questions? }
     end
 
+    def audio_requirements
+      { required: has_audio_questions? && !has_video_questions? }
+    end
+
     def has_video_questions?
       user_question_types.include?('VideoResponse')
+    end
+
+    def has_audio_questions?
+      user_question_types.include?('AudioResponse')
     end
 
     def user_question_types

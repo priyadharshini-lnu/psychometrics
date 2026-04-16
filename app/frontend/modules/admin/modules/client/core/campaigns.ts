@@ -40,6 +40,7 @@ const ThreesixtyCampaignPermissionsTR = t.type({
   editReportOptions: t.union([t.boolean, t.undefined]),
   manageAdmins: t.union([t.boolean, t.undefined]),
   viewDatasheets: t.union([t.boolean, t.undefined]),
+  viewAiArtifacts: t.union([t.boolean, t.undefined]),
 })
 export const CampaignTR = t.intersection([
   ResourceIdentifierTR,

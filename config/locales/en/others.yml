@@ -929,6 +929,7 @@ en:
         normalize_factor_scores: Normalize Factor Scores
         project_compact_completion_status_export: Compact Completion Status Export
         project_completion_status_export: Completion Status Export
+        regenerate_assessment_transcriptions: Regenerate Assessment Transcriptions
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
@@ -4143,9 +4144,11 @@ en:
       import_reports: Import Reports and Assessments
   user_assessment:
     column:
+      completed_at: Completed At
       dimension_id: Dimension ID
       id: User Assessment ID
       norm_id: Norm ID
+      started_at: Started At
     drawer:
       copied: "%{name} copied to clipboard."
       copy: Copy to Clipboard
@@ -4185,7 +4188,6 @@ en:
     normalize_factor_scores:
       no_scoring_data: Normalization of factor scores cannot be completed as no scoring data is available.
     progress_label: Assessment Progress
-    redirect: You will be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
     status:
       completed: Completed
       in_progress: In Progress

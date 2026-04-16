@@ -7,6 +7,7 @@ class Campaign < ApplicationRecord
   audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
 
   include RansackSearchableFields
+  include Taggable
 
   self.inheritance_column = :_type_disabled
 
@@ -18,6 +19,9 @@ class Campaign < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
   belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :project_id
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option

@@ -102,6 +102,14 @@ export const ScoreApprovalTR = t.type({
   assessmentName: t.string,
   assessedBy: t.union([t.string, t.undefined]),
   approvedBy: t.union([t.string, t.undefined]),
+  highlightAnchors: t.union([t.record(t.string, t.array(t.type({
+    segmentIndex: t.number,
+    startChar: t.number,
+    endChar: t.number,
+    sentiment: t.keyof({
+      positive: null, negative: null, mixed: null, neutral: null,
+    }),
+  }))), t.undefined]),
 })
 
 
@@ -114,6 +122,26 @@ export type Task = t.TypeOf<typeof TaskTR>
 export type ScoreApproval = t.TypeOf<typeof ScoreApprovalTR>
 export type Indicator = t.TypeOf<typeof IndicatorTR>
 export type Competency = t.TypeOf<typeof CompetencyTR>
+
+export interface Citation {
+  text: string
+  sentiment: 'positive' | 'negative' | 'neutral'
+  startTime: number | null
+  endTime: number | null
+}
+
+export interface TranscriptionSegment {
+  startTime: number
+  endTime: number
+  text: string
+}
+
+export interface HighlightAnchor {
+  segmentIndex: number
+  startChar: number
+  endChar: number
+  sentiment: 'positive' | 'negative' | 'mixed' | 'neutral'
+}
 
 
 export const Schema = {

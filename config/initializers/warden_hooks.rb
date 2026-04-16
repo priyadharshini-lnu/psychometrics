@@ -2,8 +2,8 @@
 
 require 'warden_auth_logger'
 
-Warden::Manager.after_authentication do |user, auth, _opts|
-  WardenAuthLogger.log_success(user, auth)
+Warden::Manager.after_authentication do |user, auth, opts|
+  WardenAuthLogger.log_success(user, auth, opts)
 end
 
 Warden::Manager.after_set_user do |user, auth, opts|

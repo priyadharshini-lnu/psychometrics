@@ -24,29 +24,43 @@ es-ES:
     browser_compatibility_check: Prueba de compatibilidad con navegadores
     browser_compatibility_check_description: Comprueba si tu navegador es compatible con todas las funciones necesarias
     browser_compatibility_result: Compatibilidad con navegadores
+    browser_compatible: Tu navegador %{browser_name}, versión %{browser_version}, es compatible con esta campaña.
+    browser_compatible_detail: Estás utilizando la versión %{browser_version} de %{browser_name}, que cumple los requisitos mínimos para esta campaña.
+    browser_incompatible_detail: Estás utilizando la versión %{browser_version} de %{browser_name}. Actualiza tu %{browser_name} a la versión %{min_browser_version} para garantizar la compatibilidad.
+    browser_not_compatible: Tu navegador %{browser_name} no es compatible con esta campaña. Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
     browser_version_fix_description_first: 'Utiliza un navegador compatible: Chrome, Firefox, Edge o Safari'
-    browser_version_fix_description_second: Actualiza tu navegador a la última versión para garantizar la compatibilidad.
-    browser_version_fix_description_third: Prueba a utilizar una ventana de navegación de incógnito o privada
     browser_version_fix_title: Tu versión del navegador no es compatible.
     camera: Vídeo y audio
     camera_access_blocked: Tu navegador ha denegado o bloqueado el acceso a la cámara. Comprueba los permisos de tu navegador.
     camera_check: Prueba de cámara y micrófono
+    camera_check_abruptly_ended: La cámara se ha apagado de forma repentina. Activa la cámara y vuelve a realizar la comprobación.
     camera_check_description: Comprueba que la cámara y el micrófono funcionen correctamente para la grabación
+    camera_check_passed: La comprobación de vídeo y audio se ha realizado correctamente
     camera_test_step: Paso de prueba de vídeo y audio
     campaign: Campaña
     chat_instructions: Instrucciones para el chat
     check: Comprobar
     check_video_recording: Comprueba la grabación de vídeo reproduciéndola.
     checking_browser_compatibility: Comprobando la compatibilidad del navegador...
+    checking_latency: Comprobando la latencia...
+    could_not_reach_servers: No se ha podido conectar con nuestros servidores para comprobar la velocidad de la red. Comprueba tu conexión a Internet e inténtalo de nuevo.
+    day: día
+    day_plural: días
+    details: Detalles
     development: Desarrollo
     direct_reportees: Subordinados Directos
     download: Descargar
     download_pdf: Descargar PDF
+    download_speed_below_minimum: La velocidad de descarga %{download_speed} es inferior a la velocidad mínima requerida de %{minimum_download_speed} Mbps
     environment_setup: Configuración del entorno
     error_uploading_video: Error al subir el vídeo
+    error_uploading_video_detail: Se ha producido un error al subir el vídeo
     fail: Fallo
     follow_these_steps: Sigue estos pasos para resolver los problemas detectados durante la comprobación del sistema
+    hide_details: Ocultar detalles
     home: Cuadro de mandos
+    hour: hora
+    hour_plural: horas
     how_to_fix: 'Cómo solucionarlo:'
     idp_loading_fifth_step: Obtención de acciones de desarrollo desde la plantilla
     idp_loading_first_step: Análisis de tu informe de evaluación
@@ -68,14 +82,18 @@ es-ES:
     lighthouse_assistant: Asistente de Faro
     localstorage_fix_description_first: Asegúrate de que no estés en modo privado o de incógnito, ya que localStorage suele estar desactivado en estos modos.
     localstorage_fix_title: El almacenamiento local no está habilitado en tu navegador
+    localstorage_not_enabled_detail: El almacenamiento local no está habilitado en tu navegador. Asegúrate de que no te encuentras en modo privado o de incógnito, ya que el almacenamiento local suele estar desactivado en estos modos.
     localstorage_support: LocalStorage habilitado
     max_word_limit: Debe tener como máximo %{max} palabras
     media_recorder_api_fix_description_first: Activa JavaScript en la configuración de tu navegador
     media_recorder_api_fix_description_second: Comprueba que tu navegador sea compatible con la API MediaRecorder y actualízalo a la última versión si es necesario.
-    media_recorder_api_fix_description_third: Prueba con otro navegador moderno, como Chrome o Firefox
     media_recorder_api_fix_title: Tu navegador no es compatible con la API de grabación multimedia.
+    media_recorder_api_not_supported_detail: Estás utilizando una versión de %{browser_name} (%{browser_version}) que no es compatible con la API de MediaRecorder. Actualiza tu navegador a la última versión para garantizar la compatibilidad.
     media_recorder_api_support: Compatibilidad con la API de MediaRecorder
     min_word_limit: Debe tener al menos %{min} palabras
+    minimum_speed_requirements: Para esta promoción se requiere una velocidad mínima de descarga de %{minimum_download_speed} Mbps y una velocidad mínima de subida de %{minimum_upload_speed} Mbps.
+    minute: minuto
+    minute_plural: minutos
     my_plan: Mi plan
     network: Red
     network_check: Prueba de velocidad de Internet
@@ -85,8 +103,8 @@ es-ES:
     network_check_fix_fourth: Prueba a utilizar otra conexión de red, si hay alguna disponible
     network_check_fix_second: Acércate al router Wi-Fi o conéctate mediante un cable Ethernet
     network_check_fix_third: Reinicia tu router o módem y vuelve a intentarlo
+    network_speed_meets_required_detail: Tu velocidad de Internet cumple los requisitos mínimos de la campaña
     network_test_step: Paso de prueba de red
-    no_audio_warning: No se detecta audio. Comprueba que el micrófono esté conectado y funcione correctamente.
     pass: Pasar
     pending: Pendiente
     personal_readiness: Preparación personal
@@ -153,6 +171,8 @@ es-ES:
     system_checks: Comprobaciones del sistema
     task_duration: Duración de la tarea
     tasks: Tareas
+    testing_download_speed: Comprobando la velocidad de descarga...
+    testing_upload_speed: Comprobando la velocidad de subida...
     time_commitment: Tiempo que hay que dedicarle
     troubleshooting_guide: Guía de resolución de problemas
     troubleshooting_guide_browser_fifth: Asegúrate de que LocalStorage esté habilitado en la configuración de tu navegador
@@ -174,6 +194,7 @@ es-ES:
     troubleshooting_guide_video_third: Actualiza la página después de cambiar los permisos
     untimed: Sin límite de tiempo
     upload: Subir
+    upload_speed_below_minimum: La velocidad de subida %{upload_speed} es inferior a la velocidad mínima requerida de %{minimum_upload_speed} Mbps
     video_and_audio: Vídeo y audio
     video_and_audio_recording: Grabación de vídeo y audio
     video_check_fix_fifth: Prueba a desconectar y volver a conectar la cámara si es externa
@@ -182,7 +203,9 @@ es-ES:
     video_check_fix_second: Ve a la configuración del navegador y habilita el acceso a la cámara para este sitio web
     video_check_fix_sixth: Reinicia el navegador e inténtalo de nuevo
     video_check_fix_third: Cierra las demás aplicaciones que utilicen la cámara (Zoom, Teams, etc.)
+    view_details: Ver detalles
     webgl_api_fix_description_first: Asegúrate de que tu navegador sea compatible con WebGL y de que esté activado en la configuración
     webgl_api_fix_description_second: Actualiza los controladores gráficos a la última versión
     webgl_api_fix_title: Tu navegador no es compatible con WebGL o no lo tiene activado
     webgl_api_support: Compatibilidad con la API WebGL
+    webgl_not_supported_detail: Estás utilizando la versión %{browser_version} de %{browser_name}, que no es compatible con WebGL. Actualiza tu navegador a la última versión para garantizar la compatibilidad.

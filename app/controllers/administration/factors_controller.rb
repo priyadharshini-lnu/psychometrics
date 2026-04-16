@@ -14,7 +14,7 @@ class Administration::FactorsController < Administration::BaseController
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     @_filter_form = policy_scope(resource_class).with_dimension(@dimension.id).
                     without_indicators.
-                    includes(:sub_factors).
+                    includes(:translations, sub_factors: :translations).
                     ransack(params[:q])
 
     @_resources = filter_form.result.page(params[:page])

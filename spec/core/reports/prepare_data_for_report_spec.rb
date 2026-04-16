@@ -6,6 +6,42 @@ describe Reports::PrepareDataForReport do
   let!(:assessment) { create(:assessment, :with_report, name: 'first assessment') }
   let(:project) { create(:project) }
 
+  describe '#call' do
+    let(:threesixty_campaign) { create(:threesixty_campaign) }
+    let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
+    let(:artifact) { create(:campaign_ai_artifact, campaign: threesixty_campaign.campaign) }
+    let(:user_report) do
+      create(:user_report, report: threesixty_campaign.report,
+                           campaign: threesixty_campaign.campaign, user_id: subject.user_id)
+    end
+    let(:args) do
+      {
+        project: project,
+        user_report: user_report,
+        current_user: subject.user
+      }
+    end
+
+    before do
+      allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(false)
+      allow(Reports::GetTranslationWithPipetextReplaced).to receive(:call!).and_return({})
+    end
+
+    it 'includes artifact results for the user in the broadcast' do
+      create(:campaign_ai_artifact_result, campaign_ai_artifact: artifact, user: subject.user)
+
+      result = described_class.call!(args)
+
+      expect(JSON.parse(result[:campaign_ai_artifact_results])).not_to be_empty
+    end
+
+    it 'handles empty campaign_ai_artifact_results when none exist' do
+      result = described_class.call!(args)
+
+      expect(JSON.parse(result[:campaign_ai_artifact_results])).to be_empty
+    end
+  end
+
   describe '#lookup_results' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
     let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }

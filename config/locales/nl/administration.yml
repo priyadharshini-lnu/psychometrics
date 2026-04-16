@@ -4518,7 +4518,6 @@ nl:
         new:
           header: Vertalingen importeren
       import:
-        successfully: Vertalingen zijn succesvol geïmporteerd
         successfully_scheduled: Het importeren van vertalingen is gepland.
       reports:
         export: Vertalingen exporteren

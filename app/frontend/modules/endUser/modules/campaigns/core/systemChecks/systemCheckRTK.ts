@@ -28,6 +28,7 @@ type CampaignDetails = {
 
 type CampaignOptions = {
   allowContinueWithWarning: boolean
+  proctoringEnabled: boolean
 }
 
 type CampaignDetailsForSystemCheck = {

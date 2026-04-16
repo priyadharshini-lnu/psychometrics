@@ -15,7 +15,10 @@ const { I18n } = window
 const MAX_TAG_BATCH_SIZE = 100
 
 export type TagFilterConfig = {
-  taggable_resource_type: TaggableResourceType.Assessment | TaggableResourceType.Report | TaggableResourceType.Skill
+  taggable_resource_type: TaggableResourceType.Assessment
+    | TaggableResourceType.Report
+    | TaggableResourceType.Skill
+    | TaggableResourceType.Campaign
 }
 
 type Props = {

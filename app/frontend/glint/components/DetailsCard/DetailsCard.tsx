@@ -85,6 +85,11 @@ export const DetailsCard: FC<DetailsCardProps> = ({
     progressBarSpanXs = 6
   }
 
+  if (showReadinessCheck) {
+    progressBarSpanLg = 10
+    progressBarSpanXs = 8
+  }
+
   return (
     <Card className={cs({ [styles.detailsCard]: true, [styles.withFooter]: footer, [`${className}`]: className })}>
       {showStatusAtTop && (
@@ -110,7 +115,11 @@ export const DetailsCard: FC<DetailsCardProps> = ({
         </div>
       </Space>
       <Row className={styles.cardFooter}>
-        <Col lg={progressBarSpanLg} md={8} xs={progressBarSpanXs}>
+        <Col
+          lg={progressBarSpanLg}
+          md={8}
+          xs={progressBarSpanXs}
+        >
           {progressPercentage !== undefined && (
             <Progress
               aria-label={progressLabelAria}
@@ -132,6 +141,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                 onClick={onReadinessCheckClick}
                 style={{
                   marginInlineEnd: '0.25rem',
+
                 }}
               >
                 {I18n.t('enduser.start_readiness_check')}

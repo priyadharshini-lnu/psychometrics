@@ -35,7 +35,7 @@ module SystemCheckRecords
         service_name: Settings.storage.private_storage_service
       )
 
-      system_check_record.video = blob.signed_id
+      system_check_record.media = blob.signed_id
       system_check_record.passed = true
       system_check_record.save!
 

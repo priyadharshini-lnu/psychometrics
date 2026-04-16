@@ -21,14 +21,18 @@ module Administration
         unless current_user.campaign_admin_campaigns.exists?(project_id: params[:project_id])
           authorize(Campaign, nil, { project_id: params[:project_id] })
         end
-        respond_to do |format|
+        respond_to do |format| # rubocop:disable Metrics/BlockLength
           format.html
           format.json do
-            campaigns = policy_scope(resource_class).where(project_id: project.id).
-                        ransack(params[:filters]).
+            campaigns = policy_scope(resource_class).where(project_id: project.id)
+            if params.dig(:filters, :tagged_with).present?
+              campaigns = campaigns.tagged_with(params[:filters][:tagged_with])
+            end
+            campaigns = campaigns.ransack(ransack_filters).
                         result.
                         includes(
                           :project, :threesixty_campaign, :campaign_options,
+                          taggings: :tag,
                           assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
                           reports: { icon_attachment: { blob: :variant_records } }
                         )
@@ -89,6 +93,7 @@ module Administration
         form = ::Campaigns::Form.from_params(@campaign.attributes.merge(campaign_params))
         if form.valid?
           @campaign.update!(form.attributes)
+          save_campaign_tags(@campaign)
           audit! :update, @campaign, payload: resource_params, campaign: @campaign
           render json: Administration::Campaigns::CampaignSerializer.new(
             context: {
@@ -196,15 +201,28 @@ module Administration
 
       def set_campaign
         @campaign = policy_scope(Campaign).includes(
+          taggings: :tag,
           assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
           reports: { icon_attachment: { blob: :variant_records } }
         ).find_by(project_id: params[:project_id], id: params[:id])
+      end
+
+      def ransack_filters
+        params[:filters]&.except(:tagged_with)
+      end
+
+      def save_campaign_tags(campaign)
+        return unless resource_params.key?(:tag_list)
+
+        campaign.save_tag_with_ownership(resource_params[:tag_list] || [])
+        campaign.save!
       end
 
       def create_common_campaign
         form = ::Campaigns::Form.from_params(resource_params)
         if form.valid?
           campaign = Campaign.create!(form.attributes.merge(project_id: project.id))
+          save_campaign_tags(campaign)
           audit! :create, campaign, payload: resource_params, campaign: campaign
           render json: Administration::Campaigns::CampaignSerializer.new(
             context: {
@@ -233,7 +251,7 @@ module Administration
 
       def campaign_params
         resource_params.permit(:name, :status, :type, :start_date, :end_date, :copy_campaign_factors,
-                               :copy_campaign_ai_artifacts)
+                               :copy_campaign_ai_artifacts, tag_list: [])
       end
 
       def campaign_options_params

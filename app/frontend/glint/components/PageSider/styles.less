@@ -14,7 +14,8 @@
 }
 
 .siderItemsContainer {
-  min-height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100 - var(--osano-banner-height, 0px));
+  overflow-y: auto;
   border: 1px solid @border-color-base;
   position: fixed;
 }

@@ -10,7 +10,7 @@ const { I18n } = window
 interface Props {
   show: boolean
   assessmentName: string
-  campaignExpiryDate: string
+  campaignExpiryDate: string | null
   totalAssessmentTime: number
   ok: () => void
   onCancel: () => void
@@ -19,7 +19,11 @@ interface Props {
 export const TimingModal: React.FC<Props> = ({
   show, assessmentName, campaignExpiryDate, totalAssessmentTime, ok, onCancel,
 }) => {
-  const remainingCampaignTime = secondsLeftFromNow(campaignExpiryDate)
+  const remainingCampaignTime = campaignExpiryDate && secondsLeftFromNow(campaignExpiryDate)
+
+  if (!remainingCampaignTime || !totalAssessmentTime) {
+    return null
+  }
   return (
     <Modal
       open={show}

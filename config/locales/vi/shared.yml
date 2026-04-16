@@ -44,6 +44,8 @@ vi:
     copy: Sao chép
     created_at: Được tạo ra tại
     created_date: Ngày tạo
+    custom_acknowledgment_text: Nội dung lời cảm ơn tùy chỉnh
+    custom_acknowledgment_text_required: Vai trò dữ liệu bộ điều khiển yêu cầu phải có văn bản xác nhận tùy chỉnh
     custom_consent_text: Nội dung đồng ý tùy chỉnh
     custom_consent_text_required: Văn bản đồng ý tùy chỉnh là bắt buộc cho vai trò dữ liệu của bộ điều khiển.
     data_role: Vai trò dữ liệu
@@ -83,6 +85,7 @@ vi:
     maintenance_time_remaining: Thời gian còn lại
     maintenance_upcoming_description: Chúng tôi sẽ tiến hành bảo trì định kỳ trên %{date} trong khoảng thời gian %{duration} để nâng cao trải nghiệm của bạn. Trong thời gian này, bạn sẽ không thể truy cập hoặc hoàn thành bất kỳ tác vụ nào được giao. Chúng tôi xin cảm ơn sự thông cảm của bạn.
     maintenance_upcoming_title: Bảo trì sắp tới
+    manage_cookies: Quản lý cookie
     media_id: Mã định danh phương tiện truyền thông
     media_preview: Xem trước truyền thông
     media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
@@ -98,6 +101,7 @@ vi:
     negative: Tiêu cực
     new: Mới
     next: Tiếp theo
+    no_audio_warning: Không phát hiện âm thanh. Vui lòng kiểm tra xem micro của bạn đã được kết nối và hoạt động bình thường chưa.
     no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi
@@ -141,8 +145,13 @@ vi:
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
     table:
       entries:
-        selected: 1 hàng đã chọn
-        total: 'Tổng số : 1'
+        selected:
+          one: Đã chọn 1 hàng
+          other: Đã chọn {{count}} hàng
+        total:
+          one: 'Tổng cộng: 1'
+          other: 'Tổng cộng: {{count}}'
+          zero: 'Tổng cộng: 0'
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
     tools: Công cụ
     transcription: Phiên âm

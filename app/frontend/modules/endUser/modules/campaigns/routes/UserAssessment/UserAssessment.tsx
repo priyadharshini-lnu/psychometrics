@@ -274,6 +274,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                       rstore={store}
                       valuationSessionId={evaluationSessionId}
                       renderedByEnduser
+                      skipInstructions
                     />
                   </ResourcesTabs>
                 )}

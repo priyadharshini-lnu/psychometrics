@@ -23,6 +23,7 @@ export type ReactMediaRecorderRenderProps = {
     previewAudioStream: MediaStream | null;
   clearBlobUrl: () => void;
   requestMediaStream: (constraints?: MediaStreamConstraints) => Promise<MediaStream | null>;
+  onEnded: () => void;
 };
 
 export type ReactMediaRecorderHookProps = {
@@ -38,6 +39,7 @@ export type ReactMediaRecorderHookProps = {
     askPermissionOnMount?: boolean;
     onChunkAvailable?: (chunk: Blob) => void; // Callback for incremental chunk handling
     chunkSize?: number; // Default chunk size 5 MB
+    onEnded?: () => void;
 };
 export type ReactMediaRecorderProps = ReactMediaRecorderHookProps & {
     render: (props: ReactMediaRecorderRenderProps) => ReactElement;
@@ -84,6 +86,7 @@ export function useReactMediaRecorder ({
   askPermissionOnMount = false,
   onChunkAvailable = () => null, // Callback for incremental chunk handling
   chunkSize = 5 * 1024 * 1024, // Default chunk size 5 MB
+  onEnded = () => null,
 }: ReactMediaRecorderHookProps): ReactMediaRecorderRenderProps {
   const mediaRecorder = useRef<IMediaRecorder | null>(null)
   const mediaChunks = useRef<Blob[]>([])
@@ -150,6 +153,11 @@ export function useReactMediaRecorder ({
         )
         mediaStream.current = stream
       }
+
+      mediaStream.current.getVideoTracks()[0].addEventListener('ended', () => {
+        onEnded()
+      })
+
       setStatus('idle')
     } catch (error) {
       setError(error.name)
@@ -364,6 +372,7 @@ export function useReactMediaRecorder ({
       setStatus('idle')
     },
     requestMediaStream: getMediaStream,
+    onEnded,
   }
 }
 

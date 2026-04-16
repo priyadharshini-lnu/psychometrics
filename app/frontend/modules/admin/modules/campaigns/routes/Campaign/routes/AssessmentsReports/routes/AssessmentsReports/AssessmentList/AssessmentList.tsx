@@ -25,6 +25,7 @@ const AssessmentList: React.FC<Props> = ({
   isLoadingAssessmentsAndReports,
   openModal,
   rescoreResponses,
+  regenerateTranscriptions,
   exportRawResults,
   exportScoringResults,
   exportNormedResults,
@@ -50,7 +51,7 @@ const AssessmentList: React.FC<Props> = ({
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
-  const { message } = App.useApp()
+  const { message, modal } = App.useApp()
 
   const handleTogglePrework = (assessment: Assessment, parsedCampaignId: number, checked: boolean) => {
     openModal('ApplyToExistingUsersFormModal', {
@@ -243,6 +244,9 @@ const AssessmentList: React.FC<Props> = ({
                     rescoreResponses: (
                       aiRescore = false,
                     ) => rescoreResponses(parsedCampaignId, assessment.id, aiRescore),
+                    regenerateTranscriptions: (
+                      () => regenerateTranscriptions(parsedCampaignId, assessment.id)
+                    ),
                     exportRawResults,
                     exportScoringResults,
                     exportNormedResults,
@@ -254,6 +258,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportExternalResults,
                     updateExternalConfig,
                     message,
+                    modal,
                   })
                 }
                 innerElement={(

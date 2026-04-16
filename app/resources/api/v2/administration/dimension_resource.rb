@@ -13,7 +13,7 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
           Api::Administration::DimensionPolicy,
           context[:user],
           @model,
-          %w[copy],
+          %w[copy export_json],
           {
             project_id: @model.owner_id
           }

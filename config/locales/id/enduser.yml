@@ -24,29 +24,43 @@ id:
     browser_compatibility_check: Uji Kompatibilitas Browser
     browser_compatibility_check_description: Memeriksa apakah browser Anda mendukung semua fitur yang diperlukan
     browser_compatibility_result: Kompatibilitas Peramban
+    browser_compatible: Browser Anda %{browser_name} versi %{browser_version} kompatibel dengan kampanye ini.
+    browser_compatible_detail: Anda menggunakan versi %{browser_name} %{browser_version} yang memenuhi persyaratan minimum untuk kampanye ini.
+    browser_incompatible_detail: Anda sedang menggunakan versi %{browser_name} %{browser_version}. Silakan perbarui %{browser_name} ke versi %{min_browser_version} untuk memastikan kompatibilitas.
+    browser_not_compatible: Browser Anda %{browser_name} tidak kompatibel dengan kampanye ini. Gunakan versi terbaru Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
     browser_version_fix_description_first: 'Gunakan browser yang didukung: Chrome, Firefox, Edge, atau Safari'
-    browser_version_fix_description_second: Perbarui browser Anda ke versi terbaru untuk memastikan kompatibilitasnya.
-    browser_version_fix_description_third: Coba gunakan jendela penjelajahan penyamaran
     browser_version_fix_title: Versi browser Anda tidak didukung.
     camera: Video dan Audio
     camera_access_blocked: Akses ke kamera ditolak atau diblokir oleh browser Anda. Silakan periksa izin browser Anda.
     camera_check: Uji Kamera dan Mikrofon
+    camera_check_abruptly_ended: Kamera tiba-tiba dimatikan. Silakan nyalakan kamera Anda dan jalankan kembali pemeriksaan tersebut.
     camera_check_description: Pastikan kamera dan mikrofon Anda berfungsi dengan baik untuk merekam
+    camera_check_passed: Pemeriksaan video dan audio telah berhasil dilalui
     camera_test_step: Langkah Pengujian Video dan Audio
     campaign: Kampanye
     chat_instructions: Petunjuk Obrolan
     check: Periksa
     check_video_recording: Silakan periksa rekaman video Anda dengan memutarnya kembali.
     checking_browser_compatibility: Memeriksa kompatibilitas browser...
+    checking_latency: Memeriksa latensi...
+    could_not_reach_servers: Tidak dapat terhubung ke server kami untuk memeriksa kecepatan jaringan. Silakan periksa koneksi internet Anda dan coba lagi.
+    day: hari
+    day_plural: hari
+    details: Rincian
     development: Pengembangan
     direct_reportees: Bawahan Langsung
     download: Unduh
     download_pdf: Unduh PDF
+    download_speed_below_minimum: Kecepatan unduh %{download_speed} lebih rendah dari kecepatan unduh minimum yang disyaratkan sebesar %{minimum_download_speed} Mbps
     environment_setup: Pengaturan Lingkungan
     error_uploading_video: Terjadi kesalahan saat mengunggah video
+    error_uploading_video_detail: Terjadi kesalahan saat mengunggah video
     fail: Gagal
     follow_these_steps: Ikuti langkah-langkah berikut untuk mengatasi masalah yang terdeteksi selama pemeriksaan sistem
+    hide_details: Sembunyikan Detail
     home: Beranda
+    hour: jam
+    hour_plural: jam
     how_to_fix: 'Cara memperbaikinya:'
     idp_loading_fifth_step: Mengambil tindakan pengembangan dari templat
     idp_loading_first_step: Menganalisis laporan penilaian Anda
@@ -68,14 +82,18 @@ id:
     lighthouse_assistant: Asisten Mercusuar
     localstorage_fix_description_first: Pastikan Anda tidak berada dalam mode privat/inkognito, karena localStorage sering kali dinonaktifkan dalam mode-mode tersebut.
     localstorage_fix_title: Penyimpanan Lokal tidak diaktifkan di browser Anda
+    localstorage_not_enabled_detail: Penyimpanan Lokal tidak diaktifkan di browser Anda. Pastikan Anda tidak sedang berada dalam mode privat/inkognito, karena localStorage sering kali dinonaktifkan dalam mode-mode tersebut.
     localstorage_support: LocalStorage Diaktifkan
     max_word_limit: Maksimal %{max} kata
     media_recorder_api_fix_description_first: Aktifkan JavaScript di pengaturan browser Anda
     media_recorder_api_fix_description_second: Pastikan browser Anda mendukung API MediaRecorder dan perbarui ke versi terbaru jika perlu.
-    media_recorder_api_fix_description_third: Cobalah browser modern lain seperti Chrome atau Firefox
     media_recorder_api_fix_title: API Media Recorder tidak didukung di browser Anda.
+    media_recorder_api_not_supported_detail: Anda sedang menggunakan %{browser_name} versi %{browser_version} yang tidak mendukung API MediaRecorder. Silakan perbarui browser Anda ke versi terbaru untuk memastikan kompatibilitas.
     media_recorder_api_support: Dukungan API MediaRecorder
     min_word_limit: Minimal %{min} kata
+    minimum_speed_requirements: Kecepatan unduh minimum sebesar %{minimum_download_speed} Mbps dan kecepatan unggah minimum sebesar %{minimum_upload_speed} Mbps diperlukan untuk kampanye ini.
+    minute: menit
+    minute_plural: notulen
     my_plan: Rencanaku
     network: Jaringan
     network_check: Tes Kecepatan Internet
@@ -85,8 +103,8 @@ id:
     network_check_fix_fourth: Cobalah gunakan koneksi jaringan lain jika tersedia
     network_check_fix_second: Dekati router Wi-Fi Anda atau sambungkan melalui kabel Ethernet
     network_check_fix_third: Mulai ulang router/modem Anda, lalu coba lagi
+    network_speed_meets_required_detail: Kecepatan internet Anda memenuhi persyaratan minimum untuk kampanye ini
     network_test_step: Langkah Pengujian Jaringan
-    no_audio_warning: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda terhubung dan berfungsi dengan baik.
     pass: Lewati
     pending: Sedang diproses
     personal_readiness: Kesiapan Pribadi
@@ -153,6 +171,8 @@ id:
     system_checks: Pemeriksaan Sistem
     task_duration: Durasi Tugas
     tasks: Tugas
+    testing_download_speed: Sedang menguji kecepatan unduh...
+    testing_upload_speed: Memeriksa kecepatan unggah...
     time_commitment: Waktu yang Diperlukan
     troubleshooting_guide: Panduan Pemecahan Masalah
     troubleshooting_guide_browser_fifth: Pastikan LocalStorage telah diaktifkan di pengaturan browser Anda
@@ -174,6 +194,7 @@ id:
     troubleshooting_guide_video_third: Segarkan halaman setelah mengubah izin
     untimed: Tanpa batas waktu
     upload: Unggah
+    upload_speed_below_minimum: Kecepatan unggah %{upload_speed} lebih rendah dari kecepatan unggah minimum yang disyaratkan sebesar %{minimum_upload_speed} Mbps
     video_and_audio: Video & Audio
     video_and_audio_recording: Perekaman Video dan Audio
     video_check_fix_fifth: Coba cabut dan pasang kembali kabel kamera Anda jika kamera tersebut terhubung secara eksternal
@@ -182,7 +203,9 @@ id:
     video_check_fix_second: Buka pengaturan browser dan aktifkan akses kamera untuk situs ini
     video_check_fix_sixth: Mulai ulang browser Anda dan coba lagi
     video_check_fix_third: Tutup aplikasi lain yang menggunakan kamera (Zoom, Teams, dll.)
+    view_details: Lihat Detail
     webgl_api_fix_description_first: Pastikan browser Anda mendukung WebGL dan fitur tersebut telah diaktifkan di pengaturan
     webgl_api_fix_description_second: Perbarui driver grafis Anda ke versi terbaru
     webgl_api_fix_title: WebGL tidak didukung atau diaktifkan di browser Anda
     webgl_api_support: Dukungan API WebGL
+    webgl_not_supported_detail: Anda sedang menggunakan %{browser_name} versi %{browser_version} yang tidak mendukung WebGL. Silakan perbarui browser Anda ke versi terbaru untuk memastikan kompatibilitasnya.

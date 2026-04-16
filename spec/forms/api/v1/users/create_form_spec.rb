@@ -82,4 +82,56 @@ describe Api::V1::Users::CreateForm do
       expect(form.valid?).to eq(true)
     end
   end
+
+  context 'validate_custom_profile_fields' do
+    let!(:question) do
+      create(:question, props: { questionText: 'Department', type: 'SingleAnswer',
+                                 choices: 3, choicesTexts: %w[1 2 3] })
+    end
+    let!(:profile_field) do
+      create(:profile_field, profile_setting: campaign.project.profile_setting, question: question)
+    end
+
+    it 'is valid when custom_profile_fields contains a known field' do
+      form = described_class.new(normalized_params.merge(custom_profile_fields: { 'Department' => 'Engineering' })).
+             with_context(project: campaign.project)
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'is invalid when custom_profile_fields contains an unknown field name' do
+      form = described_class.new(normalized_params.merge(custom_profile_fields: { 'Unknown Field' => 'value' })).
+             with_context(project: campaign.project)
+      expect(form.valid?).to eq(false)
+      expect(form.errors[:custom_profile_fields]).to include('Unknown field: Unknown Field')
+    end
+
+    it 'is valid when custom_profile_fields is empty' do
+      form = described_class.new(normalized_params.merge(custom_profile_fields: {})).
+             with_context(project: campaign.project)
+      expect(form.valid?).to eq(true)
+    end
+  end
+
+  context 'with locale' do
+    it 'is valid when locale matches a project allowed locale' do
+      campaign.project.update!(locales: %w[en ar])
+      form = described_class.new(normalized_params.merge(locale: 'ar')).
+             with_context(project: campaign.project)
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'is invalid when locale is not in allowed project locales' do
+      campaign.project.update!(locales: ['en'])
+      form = described_class.new(normalized_params.merge(locale: 'fr')).
+             with_context(project: campaign.project)
+      expect(form.valid?).to eq(false)
+      expect(form.errors[:locale].first).to include('must be one from available locale: [en]')
+    end
+
+    it 'is valid when locale is blank' do
+      form = described_class.new(normalized_params.merge(locale: nil)).
+             with_context(project: campaign.project)
+      expect(form.valid?).to eq(true)
+    end
+  end
 end

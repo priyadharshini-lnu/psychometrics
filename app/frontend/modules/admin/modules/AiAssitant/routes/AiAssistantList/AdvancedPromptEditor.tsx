@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {
-  Button, Input, Card, Typography, Row, Col, Spin, message, Tooltip,
+  Button, Input, Card, Typography, Row, Col, Spin, message, Tooltip, Space,
 } from 'antd'
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import { PlayCircleOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -11,6 +11,7 @@ import styles from './styles.less'
 type AdvancedPromptEditorProps = {
   value?: string
   onChange?: (value: string) => void
+  campaignId?: string
 }
 
 const { I18n } = window
@@ -18,8 +19,9 @@ const { I18n } = window
 export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
   value,
   onChange,
+  campaignId: campaignIdProp,
 }) => {
-  const [campaignId, setCampaignId] = useState<string>('')
+  const [campaignId, setCampaignId] = useState<string>(campaignIdProp || '')
   const [renderedOutput, setRenderedOutput] = useState<string>('')
   const [isRendering, setIsRendering] = useState<boolean>(false)
   const codemirrorRef = useRef(null)
@@ -104,14 +106,22 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
         className={styles['advanced-prompt-editor-test-card']}
       >
         <Row gutter={[16, 16]} align="middle">
-          <Col span={8}>
-            <Input
-              placeholder={I18n.t('admin.ai_assistants_campaign_id_placeholder')}
-              value={campaignId}
-              onChange={e => setCampaignId(e.target.value)}
-              addonBefore={I18n.t('shared.campaign_id')}
-            />
-          </Col>
+          {!campaignIdProp && (
+            <Col span={8}>
+              <Space.Compact style={{ width: '100%' }}>
+                <Input
+                  disabled
+                  value={I18n.t('shared.campaign_id')}
+                  style={{ width: 'auto', cursor: 'default' }}
+                />
+                <Input
+                  placeholder={I18n.t('admin.ai_assistants_campaign_id_placeholder')}
+                  value={campaignId}
+                  onChange={e => setCampaignId(e.target.value)}
+                />
+              </Space.Compact>
+            </Col>
+          )}
           <Col>
             <Button
               type="primary"

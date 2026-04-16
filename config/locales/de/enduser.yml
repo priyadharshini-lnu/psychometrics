@@ -24,29 +24,43 @@ de:
     browser_compatibility_check: Browser-Kompatibilitätstest
     browser_compatibility_check_description: Überprüfen, ob Ihr Browser alle erforderlichen Funktionen unterstützt
     browser_compatibility_result: Browser-Kompatibilität
+    browser_compatible: Ihr Browser %{browser_name} Version %{browser_version} ist mit dieser Kampagne kompatibel.
+    browser_compatible_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die die Mindestanforderungen für diese Kampagne erfüllt.
+    browser_incompatible_detail: Sie verwenden die Version %{browser_version} von „%{browser_name}“. Bitte aktualisieren Sie „%{browser_name}“ auf die Version %{min_browser_version}, um die Kompatibilität sicherzustellen.
+    browser_not_compatible: Ihr Browser %{browser_name} ist mit dieser Kampagne nicht kompatibel. Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
     browser_version_fix_description_first: 'Verwenden Sie einen unterstützten Browser: Chrome, Firefox, Edge oder Safari'
-    browser_version_fix_description_second: Aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.
-    browser_version_fix_description_third: Versuchen Sie es mit einem Inkognito- oder privaten Browserfenster
     browser_version_fix_title: Die Version Ihres Browsers wird nicht unterstützt.
     camera: Video und Audio
     camera_access_blocked: Der Zugriff auf die Kamera wurde von Ihrem Browser verweigert oder blockiert. Bitte überprüfen Sie die Berechtigungen Ihres Browsers.
     camera_check: Kamera- und Mikrofontest
+    camera_check_abruptly_ended: Die Kamera wurde plötzlich ausgeschaltet. Bitte schalten Sie Ihre Kamera ein und führen Sie die Überprüfung erneut durch.
     camera_check_description: Bitte überprüfen Sie, ob Ihre Kamera und Ihr Mikrofon für die Aufnahme ordnungsgemäß funktionieren
+    camera_check_passed: Video- und Audio-Test erfolgreich bestanden
     camera_test_step: Schritt zur Überprüfung von Bild und Ton
     campaign: Kampagne
     chat_instructions: Anleitung für den Chat
     check: Überprüfen
     check_video_recording: Bitte überprüfen Sie Ihre Videoaufnahme, indem Sie sie abspielen.
     checking_browser_compatibility: Browserkompatibilität wird überprüft...
+    checking_latency: Latenz wird überprüft...
+    could_not_reach_servers: Unsere Server konnten nicht erreicht werden, um die Netzwerkgeschwindigkeit zu überprüfen. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
+    day: Tag
+    day_plural: Tage
+    details: Details
     development: Entwicklung
     direct_reportees: Direkte Berichte
     download: Herunterladen
     download_pdf: PDF herunterladen
+    download_speed_below_minimum: Die Download-Geschwindigkeit von %{download_speed} liegt unter der erforderlichen Mindest-Download-Geschwindigkeit von %{minimum_download_speed} Mbit/s
     environment_setup: Einrichtung der Umgebung
     error_uploading_video: Fehler beim Hochladen des Videos
+    error_uploading_video_detail: Beim Hochladen des Videos ist ein Fehler aufgetreten
     fail: Fehlschlag
     follow_these_steps: Befolgen Sie diese Schritte, um die bei der Systemprüfung festgestellten Probleme zu beheben
+    hide_details: Details ausblenden
     home: Dashboard
+    hour: Stunde
+    hour_plural: Stunden
     how_to_fix: 'So beheben Sie das Problem:'
     idp_loading_fifth_step: Entwicklungsaktionen aus der Vorlage abrufen
     idp_loading_first_step: Analyse Ihres Bewertungsberichts
@@ -68,14 +82,18 @@ de:
     lighthouse_assistant: Leuchtturmassistent
     localstorage_fix_description_first: Stellen Sie sicher, dass Sie sich nicht im privaten Modus oder Inkognito-Modus befinden, da „localStorage“ in diesen Modi häufig deaktiviert ist.
     localstorage_fix_title: Der lokale Speicher ist in Ihrem Browser nicht aktiviert
+    localstorage_not_enabled_detail: Lokaler Speicher ist in Ihrem Browser nicht aktiviert. Bitte stellen Sie sicher, dass Sie sich nicht im privaten/Inkognito-Modus befinden, da der lokale Speicher in diesen Modi häufig deaktiviert ist.
     localstorage_support: LocalStorage aktiviert
     max_word_limit: Darf höchstens %{max} Wörter haben
     media_recorder_api_fix_description_first: Aktivieren Sie JavaScript in Ihren Browsereinstellungen
     media_recorder_api_fix_description_second: Überprüfen Sie, ob Ihr Browser die MediaRecorder-API unterstützt, und aktualisieren Sie ihn gegebenenfalls auf die neueste Version.
-    media_recorder_api_fix_description_third: Probieren Sie einen anderen modernen Browser wie Chrome oder Firefox aus
     media_recorder_api_fix_title: Die Media Recorder API wird in Ihrem Browser nicht unterstützt.
+    media_recorder_api_not_supported_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die die MediaRecorder-API nicht unterstützt. Bitte aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.
     media_recorder_api_support: Unterstützung der MediaRecorder-API
     min_word_limit: Muss mindestens %{min} Wörter haben
+    minimum_speed_requirements: Für diese Aktion sind eine Mindest-Download-Geschwindigkeit von %{minimum_download_speed} Mbit/s und eine Mindest-Upload-Geschwindigkeit von %{minimum_upload_speed} Mbit/s erforderlich.
+    minute: Minute
+    minute_plural: Protokoll
     my_plan: Mein Plan
     network: Netzwerk
     network_check: Internet-Geschwindigkeitstest
@@ -85,8 +103,8 @@ de:
     network_check_fix_fourth: Versuchen Sie es mit einer anderen Netzwerkverbindung, falls verfügbar
     network_check_fix_second: Gehen Sie näher an Ihren WLAN-Router heran oder stellen Sie eine Verbindung über ein Ethernet-Kabel her
     network_check_fix_third: Starten Sie Ihren Router/Ihr Modem neu und versuchen Sie es erneut
+    network_speed_meets_required_detail: Ihre Internetgeschwindigkeit erfüllt die Mindestanforderungen für die Aktion
     network_test_step: Netzwerktestschritt
-    no_audio_warning: Es wurde kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
     pass: Überspringen
     pending: In Bearbeitung
     personal_readiness: Persönliche Bereitschaft
@@ -153,6 +171,8 @@ de:
     system_checks: Systemprüfungen
     task_duration: Auftragsdauer
     tasks: Aufgaben
+    testing_download_speed: Download-Geschwindigkeit wird getestet...
+    testing_upload_speed: Upload-Geschwindigkeit wird getestet...
     time_commitment: Zeitaufwand
     troubleshooting_guide: Leitfaden zur Fehlerbehebung
     troubleshooting_guide_browser_fifth: Stellen Sie sicher, dass LocalStorage in Ihren Browsereinstellungen aktiviert ist
@@ -174,6 +194,7 @@ de:
     troubleshooting_guide_video_third: Aktualisieren Sie die Seite, nachdem Sie die Berechtigungen geändert haben
     untimed: Ohne Zeitangabe
     upload: Hochladen
+    upload_speed_below_minimum: Die Upload-Geschwindigkeit von %{upload_speed} liegt unter der erforderlichen Mindest-Upload-Geschwindigkeit von %{minimum_upload_speed} Mbit/s
     video_and_audio: Video & Audio
     video_and_audio_recording: Video- und Audioaufzeichnung
     video_check_fix_fifth: Versuchen Sie, Ihre Kamera vom Stromnetz zu trennen und wieder anzuschließen, falls es sich um ein externes Gerät handelt
@@ -182,7 +203,9 @@ de:
     video_check_fix_second: Gehe zu den Browsereinstellungen und erlaube dieser Website den Zugriff auf die Kamera
     video_check_fix_sixth: Starten Sie Ihren Browser neu und versuchen Sie es erneut
     video_check_fix_third: Schließen Sie andere Anwendungen, die die Kamera nutzen (Zoom, Teams usw.)
+    view_details: Details anzeigen
     webgl_api_fix_description_first: Stellen Sie sicher, dass Ihr Browser WebGL unterstützt und dass diese Funktion in den Einstellungen aktiviert ist
     webgl_api_fix_description_second: Aktualisieren Sie Ihre Grafiktreiber auf die neueste Version
     webgl_api_fix_title: WebGL wird in Ihrem Browser nicht unterstützt oder ist nicht aktiviert
     webgl_api_support: Unterstützung der WebGL-API
+    webgl_not_supported_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die WebGL nicht unterstützt. Bitte aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.

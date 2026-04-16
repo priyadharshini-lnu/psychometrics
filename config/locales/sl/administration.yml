@@ -4510,7 +4510,6 @@ sl:
         new:
           header: Uvoz prevodov
       import:
-        successfully: Prevodi so bili uspešno uvoženi
         successfully_scheduled: Uvoz prevoda je bil uspešno načrtovan.
       reports:
         export: Izvoz prevodov

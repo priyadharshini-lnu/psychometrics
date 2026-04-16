@@ -26,6 +26,10 @@ FactoryBot.define do
       check_type { :video }
     end
 
+    trait :audio do
+      check_type { :audio }
+    end
+
     trait :passed do
       passed { true }
     end

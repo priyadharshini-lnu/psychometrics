@@ -44,6 +44,8 @@ sk:
     copy: Kopírovať
     created_at: Vytvorené v
     created_date: Dátum vytvorenia
+    custom_acknowledgment_text: Vlastný text poďakovania
+    custom_acknowledgment_text_required: Pre úlohu „Dáta ovládača“ je potrebný vlastný text potvrdenia
     custom_consent_text: Vlastný text súhlasu
     custom_consent_text_required: Pre rolu správcu údajov je potrebný vlastný text súhlasu.
     data_role: Úloha údajov
@@ -83,6 +85,7 @@ sk:
     maintenance_time_remaining: Zostávajúci čas
     maintenance_upcoming_description: Na stránke %{date} budeme vykonávať plánovanú údržbu, ktorá potrvá približne %{duration}, aby sme vám poskytli lepší zážitok. Počas tejto doby nebudete mať prístup k žiadnym prideleným úlohám ani ich nebudete môcť dokončiť. Ďakujeme za trpezlivosť.
     maintenance_upcoming_title: Nadchádzajúca údržba
+    manage_cookies: Správa súborov cookie
     media_id: Identifikačný kód médií
     media_preview: Prehľad médií
     media_question_transcriptions: Prepisy otázok médií
@@ -98,6 +101,7 @@ sk:
     negative: Negatívny
     new: Nové
     next: Ďalej
+    no_audio_warning: Nebol zaznamenaný žiadny zvuk. Skontrolujte, či je mikrofón pripojený a funguje správne.
     no_results_found: Nenašli sa žiadne výsledky
     not_requested: Ešte nebolo požiadané
     ok: Ok
@@ -141,8 +145,13 @@ sk:
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
     table:
       entries:
-        selected: Vybraný 1 riadok
-        total: 'Celkom : 1'
+        selected:
+          one: Je vybraný 1 riadok
+          other: Je vybraných {{count}} riadkov
+        total:
+          one: 'Spolu: 1'
+          other: 'Spolu: {{count}}'
+          zero: 'Spolu: 0'
     terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
     tools: Náradie
     transcription: Prepis

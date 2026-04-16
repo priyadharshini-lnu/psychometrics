@@ -2,7 +2,7 @@
 
 module EndUser
   class SystemCheckRecordSerializer < Panko::Serializer
-    attributes :id, :check_type, :passed, :data, :created_at, :finished_at, :video_url
+    attributes :id, :check_type, :passed, :data, :created_at, :finished_at, :media_url
 
     def passed
       campaign_user = context&.[](:campaign_user)

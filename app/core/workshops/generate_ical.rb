@@ -11,10 +11,10 @@ module Workshops
     end
 
     def call
-      start_time = workshop.start_time
-      end_time = workshop.end_time
+      tzid = workshop.timezone
+      start_time = workshop.start_time.in_time_zone(tzid)
+      end_time = workshop.end_time.in_time_zone(tzid)
       cal = Icalendar::Calendar.new
-      tzid = 'Asia/Dubai'
       tz_info = TZInfo::Timezone.get tzid
       cal.add_timezone tz_info.ical_timezone(start_time)
       add_event_to_calendar(cal, start_time, end_time, tzid)

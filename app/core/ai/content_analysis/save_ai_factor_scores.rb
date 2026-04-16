@@ -2,7 +2,7 @@
 
 module AI
   module ContentAnalysis
-    class SaveAIFactorScores < BaseCommand
+    class SaveAIFactorScores < BaseCommand # rubocop:disable Metrics/ClassLength
       include Concerns::ScoringHelper
       include AdminJobs::Concerns::Syncable
 
@@ -154,17 +154,40 @@ module AI
           next unless question_ids.include?(question_id)
 
           ai_metadata = result['ai_metadata'] || {}
+          citations = enrich_citations_with_timestamps(ai_metadata['citations'], question_id)
 
           upsert_factor_score(
             factor_id: factor_id,
             question_id: question_id,
             score: result['value'],
             confidence: ai_metadata['confidence'],
-            citations: ai_metadata['citations'],
+            citations: citations,
             rationale: ai_metadata['rationale'],
             parent_factor_id: parent_factor_id,
             scoring_type: :ai
           )
+        end
+      end
+
+      def enrich_citations_with_timestamps(citations, question_id)
+        return citations if citations.blank?
+
+        media_response = questions_with_media_response[question_id]
+        return citations if media_response.blank?
+
+        segments = media_response.transcription&.segments
+        return citations if segments.blank?
+
+        CitationTimestampMatcher.call(citations, segments)
+      end
+
+      def questions_with_media_response
+        @questions_with_media_response ||= begin
+          questions = assessment.questions.where(id: scorable_question_ids).to_a
+
+          questions.to_h do |question|
+            [question.id, users_result.active_media_response(question)]
+          end
         end
       end
 

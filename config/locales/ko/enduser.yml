@@ -24,29 +24,43 @@ ko:
     browser_compatibility_check: 브라우저 호환성 테스트
     browser_compatibility_check_description: 사용 중인 브라우저가 필요한 모든 기능을 지원하는지 확인하기
     browser_compatibility_result: 브라우저 호환성
+    browser_compatible: 사용 중인 브라우저%{browser_name}의 버전%{browser_version}은 이 캠페인과 호환됩니다.
+    browser_compatible_detail: 현재 사용 중인 %{browser_name} 버전은 %{browser_version}이며, 이는 본 캠페인의 최소 요구 사항을 충족합니다.
+    browser_incompatible_detail: 현재 %{browser_name} 버전 %{browser_version}을(를) 사용 중입니다. 호환성을 보장하려면 %{browser_name}을(를) %{min_browser_version} 버전으로 업데이트해 주십시오.
+    browser_not_compatible: 사용 중인 브라우저%{browser_name}는 이 캠페인과 호환되지 않습니다. 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
     browser_version_fix_description_first: '지원되는 브라우저를 사용하세요: Chrome, Firefox, Edge 또는 Safari'
-    browser_version_fix_description_second: 호환성을 보장하려면 브라우저를 최신 버전으로 업데이트하세요.
-    browser_version_fix_description_third: 시크릿 모드(비공개 브라우징) 창을 사용해 보세요
     browser_version_fix_title: 사용 중인 브라우저 버전은 지원되지 않습니다.
     camera: 동영상 및 오디오
     camera_access_blocked: 브라우저에서 카메라 접근이 거부되거나 차단되었습니다. 브라우저의 권한 설정을 확인해 주세요.
     camera_check: 카메라 및 마이크 테스트
+    camera_check_abruptly_ended: 카메라가 갑자기 꺼졌습니다. 카메라를 켜고 검사를 다시 실행해 주세요.
     camera_check_description: 녹화를 위해 카메라와 마이크가 제대로 작동하는지 확인하세요
+    camera_check_passed: 영상 및 음향 점검을 성공적으로 마쳤습니다
     camera_test_step: 영상 및 오디오 테스트 단계
     campaign: 캠페인
     chat_instructions: 채팅 안내
     check: 확인
     check_video_recording: 동영상을 재생하여 확인해 주세요.
     checking_browser_compatibility: 브라우저 호환성 확인 중...
+    checking_latency: 지연 시간 확인 중...
+    could_not_reach_servers: 네트워크 속도를 확인하기 위해 서버에 연결할 수 없습니다. 인터넷 연결 상태를 확인한 후 다시 시도해 주세요.
+    day: 날
+    day_plural: 일
+    details: 상세 정보
     development: 개발
     direct_reportees: 직접 보고서
     download: 다운로드
     download_pdf: PDF 다운로드
+    download_speed_below_minimum: 다운로드 속도 %{download_speed}는 최소 요구 다운로드 속도인 %{minimum_download_speed} Mbps보다 낮습니다.
     environment_setup: 환경 설정
     error_uploading_video: 동영상 업로드 오류
+    error_uploading_video_detail: 동영상을 업로드하는 과정에서 오류가 발생했습니다
     fail: 실패
     follow_these_steps: 시스템 점검 중에 발견된 문제를 해결하려면 다음 단계를 따르십시오
+    hide_details: 상세 정보 숨기기
     home: 대시보드
+    hour: 시간
+    hour_plural: 시간
     how_to_fix: '해결 방법:'
     idp_loading_fifth_step: 템플릿에서 개발 액션 가져오기
     idp_loading_first_step: 평가 보고서 분석
@@ -68,14 +82,18 @@ ko:
     lighthouse_assistant: 등대 보조
     localstorage_fix_description_first: 현재 비공개/시크릿 모드가 아닌지 확인하세요. 이러한 모드에서는 localStorage가 비활성화되는 경우가 많기 때문입니다.
     localstorage_fix_title: 사용 중인 브라우저에서 로컬 스토리지가 활성화되어 있지 않습니다
+    localstorage_not_enabled_detail: 사용 중인 브라우저에서 로컬 스토리지가 활성화되어 있지 않습니다. 이러한 모드에서는 로컬 스토리지가 비활성화되는 경우가 많으므로, 현재 시크릿 모드나 인코그니토 모드가 아닌지 확인해 주십시오.
     localstorage_support: LocalStorage 활성화됨
     max_word_limit: 최대 %{max}단어여야 합니다
     media_recorder_api_fix_description_first: 브라우저 설정에서 자바스크립트를 활성화하세요
     media_recorder_api_fix_description_second: 사용 중인 브라우저가 MediaRecorder API를 지원하는지 확인하고, 필요한 경우 최신 버전으로 업데이트하십시오.
-    media_recorder_api_fix_description_third: Chrome이나 Firefox 같은 다른 최신 브라우저를 사용해 보세요
     media_recorder_api_fix_title: 사용 중인 브라우저에서는 미디어 레코더 API를 지원하지 않습니다.
+    media_recorder_api_not_supported_detail: 현재 사용 중인 %{browser_name}의 버전(%{browser_version})은 MediaRecorder API를 지원하지 않습니다. 호환성을 보장하려면 브라우저를 최신 버전으로 업데이트해 주세요.
     media_recorder_api_support: MediaRecorder API 지원
     min_word_limit: 최소 %{min}단어여야 합니다
+    minimum_speed_requirements: 이 프로모션을 이용하려면 최소 다운로드 속도 %{minimum_download_speed} Mbps 및 최소 업로드 속도 %{minimum_upload_speed} Mbps가 필요합니다.
+    minute: 분
+    minute_plural: 회의록
     my_plan: 내 계획
     network: 네트워크
     network_check: 인터넷 속도 측정
@@ -85,8 +103,8 @@ ko:
     network_check_fix_fourth: 가능하다면 다른 네트워크 연결을 사용해 보세요
     network_check_fix_second: Wi-Fi 라우터에 더 가까이 가거나 이더넷 케이블로 연결하세요
     network_check_fix_third: 라우터/모뎀을 재시작한 후 다시 시도해 보세요
+    network_speed_meets_required_detail: 귀하의 인터넷 속도는 본 캠페인의 최소 요구 사항을 충족합니다
     network_test_step: 네트워크 테스트 단계
-    no_audio_warning: 오디오가 감지되지 않았습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
     pass: 건너뛰기
     pending: 처리 중
     personal_readiness: 개인적 준비 상태
@@ -153,6 +171,8 @@ ko:
     system_checks: 시스템 점검
     task_duration: 작업 소요 시간
     tasks: 작업
+    testing_download_speed: 다운로드 속도 측정 중...
+    testing_upload_speed: 업로드 속도 측정 중...
     time_commitment: 소요 시간
     troubleshooting_guide: 문제 해결 가이드
     troubleshooting_guide_browser_fifth: 브라우저 설정에서 LocalStorage가 활성화되어 있는지 확인하세요
@@ -174,6 +194,7 @@ ko:
     troubleshooting_guide_video_third: 권한을 변경한 후 페이지를 새로 고침하세요
     untimed: 시간 제한 없음
     upload: 업로드
+    upload_speed_below_minimum: 업로드 속도 %{upload_speed}는 최소 요구 업로드 속도인 %{minimum_upload_speed} Mbps보다 낮습니다.
     video_and_audio: 동영상 및 오디오
     video_and_audio_recording: 영상 및 음성 녹화
     video_check_fix_fifth: 외장 카메라라면 전원을 뽑았다가 다시 연결해 보세요
@@ -182,7 +203,9 @@ ko:
     video_check_fix_second: 브라우저 설정으로 이동하여 이 사이트에 대한 카메라 사용을 허용하세요
     video_check_fix_sixth: 브라우저를 다시 시작하고 다시 시도해 주세요
     video_check_fix_third: 카메라를 사용하는 다른 애플리케이션(Zoom, Teams 등)을 닫으세요.
+    view_details: 자세히 보기
     webgl_api_fix_description_first: 사용 중인 브라우저가 WebGL을 지원하는지 확인하고, 설정에서 WebGL이 활성화되어 있는지 확인하세요
     webgl_api_fix_description_second: 그래픽 드라이버를 최신 버전으로 업데이트하세요
     webgl_api_fix_title: 사용 중인 브라우저에서 WebGL이 지원되지 않거나 활성화되어 있지 않습니다.
     webgl_api_support: WebGL API 지원
+    webgl_not_supported_detail: 현재 사용 중인 %{browser_name}(버전 %{browser_version})은 WebGL을 지원하지 않습니다. 호환성을 보장하려면 브라우저를 최신 버전으로 업데이트해 주세요.

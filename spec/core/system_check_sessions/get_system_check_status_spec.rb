@@ -3,25 +3,34 @@
 require 'rails_helper'
 
 RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
-  subject(:result) { described_class.call!(session: system_check_session, requirements: requirements) }
+  subject(:call_result) { described_class.call!(session_id: system_check_session&.id, campaign_user: campaign_user) }
 
   let(:user) { create(:user) }
+  let(:campaign) { create(:campaign) }
+  let(:campaign_user) { create(:campaign_user, user: user, campaign: campaign) }
   let(:system_check_session) { create(:system_check_session, :completed, user: user) }
 
   let(:requirements) do
     {
       browser: { required: true },
       network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
-      video: { required: false }
+      video: { required: false },
+      audio: { required: false }
     }
+  end
+
+  before do
+    allow(SystemCheckSessions::RequirementsCalculator).to receive(:call!).and_return(requirements)
   end
 
   describe '#call' do
     context 'when session is nil' do
       let(:system_check_session) { nil }
 
-      it 'returns nil' do
-        expect(result).to be_nil
+      it 'returns is_valid false with nil session_id' do
+        expect(call_result[:session_id]).to be_nil
+        expect(call_result[:requirements]).to eq(requirements)
+        expect(call_result[:is_valid]).to be false
       end
     end
 
@@ -33,20 +42,13 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
                                                data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
       end
 
-      it 'returns satisfied for browser' do
-        expect(result[:browser]).to eq(:satisfied)
-      end
-
-      it 'returns satisfied for network' do
-        expect(result[:network]).to eq(:satisfied)
-      end
-
-      it 'returns not_required for video' do
-        expect(result[:video]).to eq(:not_required)
+      it 'returns is_valid true with session_id' do
+        expect(call_result[:is_valid]).to be true
+        expect(call_result[:session_id]).to eq(system_check_session.id)
       end
     end
 
-    context 'when browser check failed' do
+    context 'when browser check fails' do
       before do
         create(:system_check_record, :browser, system_check_session: system_check_session, passed: false)
         create(:system_check_record, :network, system_check_session: system_check_session,
@@ -54,8 +56,8 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
                                                data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
       end
 
-      it 'returns unsatisfied for browser' do
-        expect(result[:browser]).to eq(:unsatisfied)
+      it 'returns is_valid false' do
+        expect(call_result[:is_valid]).to be false
       end
     end
 
@@ -67,8 +69,8 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
                                                data: { 'download_speed_mbps' => 5, 'upload_speed_mbps' => 2 })
       end
 
-      it 'returns unsatisfied for network' do
-        expect(result[:network]).to eq(:unsatisfied)
+      it 'returns is_valid false' do
+        expect(call_result[:is_valid]).to be false
       end
     end
 
@@ -77,7 +79,8 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
         {
           browser: { required: true },
           network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
-          video: { required: true }
+          video: { required: true },
+          audio: { required: false }
         }
       end
 
@@ -88,8 +91,8 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
                                                data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
       end
 
-      it 'returns unsatisfied for video' do
-        expect(result[:video]).to eq(:unsatisfied)
+      it 'returns is_valid false' do
+        expect(call_result[:is_valid]).to be false
       end
     end
 
@@ -98,7 +101,8 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
         {
           browser: { required: true },
           network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
-          video: { required: true }
+          video: { required: true },
+          audio: { required: false }
         }
       end
 
@@ -110,20 +114,113 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
         create(:system_check_record, :video, system_check_session: system_check_session, passed: true)
       end
 
-      it 'returns satisfied for video' do
-        expect(result[:video]).to eq(:satisfied)
+      it 'returns is_valid true' do
+        expect(call_result[:is_valid]).to be true
       end
     end
 
     context 'when no records exist' do
-      it 'returns unsatisfied for required checks' do
-        expect(result[:browser]).to eq(:unsatisfied)
-        expect(result[:network]).to eq(:unsatisfied)
+      it 'returns is_valid false' do
+        expect(call_result[:is_valid]).to be false
+      end
+    end
+
+    context 'when audio is required but missing' do
+      let(:requirements) do
+        {
+          browser: { required: true },
+          network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
+          video: { required: false },
+          audio: { required: true }
+        }
       end
 
-      it 'returns not_required for non-required checks' do
-        expect(result[:video]).to eq(:not_required)
+      before do
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
+        create(:system_check_record, :network, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
       end
+
+      it 'returns is_valid false' do
+        expect(call_result[:is_valid]).to be false
+      end
+    end
+
+    context 'when audio is required and passed' do
+      let(:requirements) do
+        {
+          browser: { required: true },
+          network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
+          video: { required: false },
+          audio: { required: true }
+        }
+      end
+
+      before do
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
+        create(:system_check_record, :network, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
+        create(:system_check_record, :audio, system_check_session: system_check_session, passed: true)
+      end
+
+      it 'returns is_valid true' do
+        expect(call_result[:is_valid]).to be true
+      end
+    end
+
+    context 'when audio is required but satisfied by a passed video check' do
+      let(:requirements) do
+        {
+          browser: { required: true },
+          network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
+          video: { required: false },
+          audio: { required: true }
+        }
+      end
+
+      before do
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
+        create(:system_check_record, :network, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
+        create(:system_check_record, :video, system_check_session: system_check_session, passed: true)
+      end
+
+      it 'returns is_valid true' do
+        expect(call_result[:is_valid]).to be true
+      end
+    end
+
+    context 'when session is expired' do
+      let(:system_check_session) do
+        create(:system_check_session, :completed, user: user, finished_at: 2.hours.ago)
+      end
+
+      before do
+        allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
+      end
+
+      it 'returns nil session_id and is_valid false' do
+        expect(call_result[:session_id]).to be_nil
+        expect(call_result[:is_valid]).to be false
+      end
+    end
+
+    context 'when allow_continue_with_warning is true' do
+      before do
+        allow_any_instance_of(Campaign).to receive(:allow_continue_with_warning?).and_return(true)
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: false)
+      end
+
+      it 'returns is_valid true despite unsatisfied checks' do
+        expect(call_result[:is_valid]).to be true
+      end
+    end
+
+    it 'always returns requirements' do
+      expect(call_result[:requirements]).to eq(requirements)
     end
   end
 end

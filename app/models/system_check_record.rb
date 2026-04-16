@@ -6,9 +6,9 @@ class SystemCheckRecord < ApplicationRecord
   belongs_to :system_check_session
   has_one :user, through: :system_check_session
 
-  has_one_attachment :video, service: Settings.storage.private_storage_service
+  has_one_attachment :media, service: Settings.storage.private_storage_service
 
-  enum :check_type, { browser: 'browser', network: 'network', video: 'video' }
+  enum :check_type, { browser: 'browser', network: 'network', video: 'video', audio: 'audio' }
 
   validates :check_type, presence: true
   validates :passed, inclusion: { in: [true, false] }
@@ -21,17 +21,17 @@ class SystemCheckRecord < ApplicationRecord
   scope :completed, -> { where.not(finished_at: nil) }
   scope :in_progress, -> { where(finished_at: nil) }
 
-  def attachment_storage_path(attribute_name, filename)
+  def attachment_storage_path(_, filename)
     user_id = system_check_session.user_id
 
     "private/system_check_videos/users/#{user_id}/sessions/" \
-      "#{system_check_session_id}/#{id}/#{attribute_name}/#{filename}"
+      "#{system_check_session_id}/#{id}/#{check_type}/#{filename}"
   end
 
-  def video_url
-    return unless video.attached?
+  def media_url
+    return unless media.attached?
 
-    video.url(expires_in: 1.hour)
+    media.url(expires_in: 1.hour)
   end
 
   def meets_network_requirements?(minimum_download_speed:, minimum_upload_speed:)

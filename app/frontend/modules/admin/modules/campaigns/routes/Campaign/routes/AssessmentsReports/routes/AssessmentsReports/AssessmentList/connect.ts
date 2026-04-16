@@ -8,7 +8,7 @@ import {
   updatePrework, updateWorkshopActivity, toggleRequireScheduling, toggleAutoAssign, updateMettlSchedule,
   normalizeFactorScores, updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
   updatePearsonVariation, toggleAssessmentCaching, updateMhsConfidenceInterval, updateMhsLeadershipBar,
-  updateMhsNormRegion, updateMhsNormOption,
+  updateMhsNormRegion, updateMhsNormOption, regenerateTranscriptions,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -25,6 +25,7 @@ const connecter = connect(
   {
     openModal,
     rescoreResponses,
+    regenerateTranscriptions,
     remove,
     exportRawResults,
     exportScoringResults,

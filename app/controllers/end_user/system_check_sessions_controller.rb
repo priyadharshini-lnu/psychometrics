@@ -6,22 +6,18 @@ module EndUser
 
     before_action :set_campaign_user
     before_action :set_system_check_session,
-                  only: %i[show add_record complete results upload_video_url complete_multipart_upload]
+                  only: %i[show add_record complete results upload_media_url complete_multipart_upload]
     before_action :set_system_check_record,
-                  only: %i[upload_video_url complete_multipart_upload]
+                  only: %i[upload_media_url complete_multipart_upload]
     before_action :validate_system_check_enabled, only: %i[create requirements_status]
 
     def requirements_status
-      session = find_valid_session
-      requirements = SystemCheckSessions::RequirementsCalculator.call!(@campaign_user)
-      status = SystemCheckSessions::GetSystemCheckStatus.call!(session: session, requirements: requirements)
-      is_valid = compute_is_valid(status, session)
+      result = SystemCheckSessions::GetSystemCheckStatus.call!(
+        session_id: stored_session_id,
+        campaign_user: @campaign_user
+      )
 
-      render json: {
-        session_id: session&.id,
-        is_valid: is_valid,
-        requirements: requirements
-      }
+      render json: result
     end
 
     def show
@@ -54,8 +50,8 @@ module EndUser
       }
     end
 
-    def upload_video_url
-      file_name = "#{SecureRandom.uuid}_video.webm"
+    def upload_media_url
+      file_name = "#{SecureRandom.uuid}_#{@system_check_record.check_type}.webm"
       duration = params[:duration].to_i
       SystemCheckRecords::GetMultipartUploadUrls.call(@system_check_record, file_name, duration: duration) do
         on(:ok) { |data| render json: data }
@@ -105,13 +101,6 @@ module EndUser
       params.permit(:check_type, :passed, data: {})
     end
 
-    def compute_is_valid(status, system_check_session)
-      return false if system_check_session.blank?
-
-      all_satisfied = status&.none? { |_check, result| result == :unsatisfied } || false
-      all_satisfied || campaign.allow_continue_with_warning?
-    end
-
     def serialize_session(session)
       EndUser::SystemCheckSessionSerializer.new.serialize(session)
     end
@@ -126,16 +115,6 @@ module EndUser
 
     def stored_session_id
       session[:system_check_session_id]
-    end
-
-    def find_valid_session
-      session_id = stored_session_id
-      return nil if session_id.blank?
-
-      system_check_session = SystemCheckSession.find_by(id: session_id, user: current_user)
-      return nil unless system_check_session&.valid_for_campaign?(campaign)
-
-      system_check_session
     end
   end
 end

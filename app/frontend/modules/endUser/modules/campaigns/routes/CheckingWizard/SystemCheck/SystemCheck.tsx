@@ -1,8 +1,10 @@
 import React, { useEffect, useReducer } from 'react'
 import { Button, Card, Flex } from 'antd'
+import { VIDEO_RESOLUTION } from '~/hooks/useMediaPreview'
 import { RightOutlined, WarningOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import { BROWSER_NAME, checkBrowserSupportForFeature } from '~/utils/uaParser'
+import { Checks } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
 import reducer, {
   initialState, updateAccess,
   updateSystemCheck,
@@ -13,10 +15,11 @@ import { CheckList } from '../CheckList'
 
 interface Props {
   nextStep: () => void
+  checks: Checks
 }
 const { I18n } = window
 
-export const SystemCheck: React.FC<Props> = ({ nextStep }) => {
+export const SystemCheck: React.FC<Props> = ({ nextStep, checks }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const { isBrowserSupported } = checkBrowserSupportForFeature(
@@ -29,7 +32,14 @@ export const SystemCheck: React.FC<Props> = ({ nextStep }) => {
     if (isBrowserSupported) {
       dispatch(updateSystemCheck(CheckListStatus.Done))
       try {
-        await navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        let mediaConstraints : MediaStreamConstraints = { audio: false, video: false }
+        if (checks.audio) {
+          mediaConstraints = { audio: true }
+        }
+        if (checks.video) {
+          mediaConstraints = { video: true && { ...VIDEO_RESOLUTION }, audio: true }
+        }
+        await navigator.mediaDevices.getUserMedia(mediaConstraints)
         dispatch(updateAccess(CheckListStatus.Done))
       } catch (e) {
         dispatch(updateAccess(CheckListStatus.Failed))

@@ -33,6 +33,12 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
       end
     end
 
+    context 'when campaign has no audio questions' do
+      it 'returns audio as not required' do
+        expect(result[:audio]).to eq({ required: false })
+      end
+    end
+
     context 'when campaign has audio response questions' do
       before do
         create(:question, assessment: assessment, type: 'AudioResponse')
@@ -40,6 +46,25 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
 
       it 'returns network as required' do
         expect(result[:network][:required]).to be true
+      end
+
+      it 'returns audio as required' do
+        expect(result[:audio]).to eq({ required: true })
+      end
+    end
+
+    context 'when campaign has both audio and video questions' do
+      before do
+        create(:question, assessment: assessment, type: 'AudioResponse')
+        create(:question, assessment: assessment, type: 'VideoResponse')
+      end
+
+      it 'returns video as required' do
+        expect(result[:video]).to eq({ required: true })
+      end
+
+      it 'returns audio as not required since video covers audio' do
+        expect(result[:audio]).to eq({ required: false })
       end
     end
 

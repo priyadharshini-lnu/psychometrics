@@ -30,7 +30,11 @@ module Questions::Validations
 
     def call
       invalid = conditions.all? do |condition|
-        !PREDICATERS[condition['predicate']].call!(condition, value)
+        predicate_handler = PREDICATERS[condition['predicate']]
+        # Skip validation if predicate handler is not defined
+        next false if predicate_handler.nil?
+
+        !predicate_handler.call!(condition, value)
       end
 
       broadcast :ok, invalid ? [message] : nil
