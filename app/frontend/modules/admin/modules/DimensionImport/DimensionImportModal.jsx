@@ -13,6 +13,7 @@ const DimensionImportModal = (props) => {
       validateEndpoint="/administration/dimensions/validate_import"
       importEndpoint="/administration/dimensions/import"
       translations={translations}
+      showFileErrorAlert={false}
       {...props}
     />
   )

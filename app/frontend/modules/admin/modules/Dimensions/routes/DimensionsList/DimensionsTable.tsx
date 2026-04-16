@@ -221,7 +221,7 @@ const ActiveSwitch: React.FC<{ dimension: Dimension }> = ({ dimension }) => {
   const { resource } = useResourceContext<Dimension>()
   return (
     <Switch
-      checked={dimension.disabled}
+      checked={!dimension.disabled}
       onChange={() => {
         resource.updateResource({ id: dimension.id, disabled: !dimension.disabled })
       }}

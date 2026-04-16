@@ -27,6 +27,7 @@ const ImportModal = (props) => {
     successMessage,
     topActionLabel,
     onTopAction,
+    showFileErrorAlert = true,
   } = props
   const [show, setShow] = useState(isOpen)
   const [file, setFile] = useState(null)
@@ -248,7 +249,7 @@ const ImportModal = (props) => {
           onChange={handleFileChange}
         />
       </Form.Item>
-      {fileError && (
+      {showFileErrorAlert && fileError && (
         <Alert
           message={I18n.t('administration.dimensions.import_modal.error')}
           description={fileError}
