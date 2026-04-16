@@ -2619,7 +2619,7 @@ ai_embedding_provider:
 
 ai_transcription_provider:
   provider: <%= ENV.fetch('TRANSCRIPTION_PROVIDER', 'oci') %>
-  model: <%= ENV.fetch('TRANSCRIPTION_MODEL', 'WHISPER_MEDIUM') %>
+  model: <%= ENV.fetch('TRANSCRIPTION_MODEL', 'WHISPER_LARGE_V3T') %>
 
 # Default SMTP throttling limits used when a project has no SMTP setting
 smtp_default:
