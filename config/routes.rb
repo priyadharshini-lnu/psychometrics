@@ -1512,7 +1512,7 @@ only: %i[index create update]
             end
           end
 
-          resources :campaigns, only: %i[update show] do
+          resources :campaigns, only: %i[update show], concerns: :taggable do
             member do
               get :all_assessments
             end

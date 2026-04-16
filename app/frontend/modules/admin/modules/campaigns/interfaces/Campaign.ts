@@ -50,6 +50,7 @@ export default interface Campaign {
   permissions: CommonCampaignPermissions
   practiceCampaign?: boolean | null
   isTemplate?: boolean
+  tagList?: string[]
 }
 
 export interface Entity {
