@@ -46,13 +46,17 @@ en:
     ai_assistants: AI Assistants
     ai_assistants_advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
     ai_assistants_campaign_id_placeholder: Enter campaign ID
+    ai_assistants_cannot_change_type_when_in_use: Cannot change the type of AI Assistant '%{name}' because it is currently in use.
     ai_assistants_no_rendered_output: No rendered output available
+    ai_assistants_provider_change_confirm_title: Change Provider?
+    ai_assistants_provider_previously_used_warning: This assistant has previously generated results with "%{from}". Changing to "%{to}" may alter the assistant's behaviour for future generation requests.
     ai_assistants_render_button: Render Template
     ai_assistants_rendered_prompt: Rendered Prompt
     ai_assistants_template_and_campaign_required: Please provide both template and campaign ID
     ai_assistants_template_render_failed: Failed to render template
     ai_assistants_test_render: Test Render
     ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
+    ai_assistants_type_locked_tooltip: This assistant is currently in use and its type cannot be changed.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP is disabled by client
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
     ai_idp_assistant_configure_dependencies: Configure AI Dependencies

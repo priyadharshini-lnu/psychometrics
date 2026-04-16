@@ -17,13 +17,17 @@ RSpec.describe Api::V2::Administration::AI::AssistantsController, type: :request
     }
   end
   let(:mock_provider_config) do
-    config_double = double('ProviderConfig')
-    allow(config_double).to receive(:id).and_return('azure-openai')
-    allow(config_double).to receive(:provider).and_return('AzureOpenai')
-    allow(config_double).to receive(:api_key).and_return('test-api-key')
-    allow(config_double).to receive(:endpoint).and_return('https://test-endpoint.com/openai/deployments/gpt-4o/chat/completions')
-    allow(config_double).to receive(:api_version).and_return('2023-05-15')
-    config_double
+    {
+      'model_id' => 'azure-openai',
+      'model' => 'gpt-4o',
+      'name' => 'Azure OpenAI GPT-4o',
+      'custom_provider' => nil,
+      'context' => {
+        'azure_api_key' => 'test-api-key',
+        'azure_endpoint' => 'https://test-endpoint.com/openai/deployments/gpt-4o/chat/completions',
+        'azure_api_version' => '2023-05-15'
+      }
+    }
   end
 
   before do
