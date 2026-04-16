@@ -101,6 +101,7 @@ sl:
     negative: Negativno
     new: Novo
     next: Naprej
+    no_audio_warning: Zvok ni zaznan. Preverite, ali je mikrofon priključen in deluje pravilno.
     no_results_found: Ni bilo najdenih rezultatov
     not_requested: Še ni zahtevano
     ok: Ok

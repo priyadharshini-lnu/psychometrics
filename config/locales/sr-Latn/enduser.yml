@@ -105,7 +105,6 @@ sr-Latn:
     network_check_fix_third: Поново покрените рутер/модем и покушајте поново.
     network_speed_meets_required_detail: Ваша интернет брзина испуњава минималне захтеве за кампању.
     network_test_step: Корак мрежног теста
-    no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     pass: Проћи
     pending: Учешће
     personal_readiness: Лична спремност

@@ -101,6 +101,7 @@ hu:
     negative: Negatív
     new: Új
     next: Következő
+    no_audio_warning: Nincs hangjelzés. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
     no_results_found: Nincs találat
     not_requested: Még nem kért
     ok: Oké

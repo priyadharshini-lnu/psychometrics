@@ -101,6 +101,7 @@ vi:
     negative: Tiêu cực
     new: Mới
     next: Tiếp theo
+    no_audio_warning: Không phát hiện âm thanh. Vui lòng kiểm tra xem micro của bạn đã được kết nối và hoạt động bình thường chưa.
     no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi

@@ -105,7 +105,6 @@ zh-Hant:
     network_check_fix_third: 请重启路由器/调制解调器，然后重试
     network_speed_meets_required_detail: 您的网速符合本次活动的最低要求
     network_test_step: 网络测试步骤
-    no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
     pass: 跳过
     pending: 待定
     personal_readiness: 个人准备情况

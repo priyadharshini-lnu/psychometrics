@@ -119,7 +119,6 @@ en:
     network_speed_meets_required_detail: Your Internet speed meets the minimum requirements for the campaign
     network_test_step: Network Test Step
     no_audio_detected: No audio detected. Please check if your microphone is connected and working properly.
-    no_audio_warning: No audio detected. Please check if your microphone is connected and working properly.
     pass: Pass
     pending: Pending
     personal_readiness: Personal Readiness

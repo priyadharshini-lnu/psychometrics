@@ -105,7 +105,6 @@ cs:
     network_check_fix_third: Restartujte router/modem a zkuste to znovu
     network_speed_meets_required_detail: Vaše rychlost internetového připojení splňuje minimální požadavky této kampaně
     network_test_step: Krok testování sítě
-    no_audio_warning: Nebylo detekováno žádné zvukové zařízení. Zkontrolujte, zda je mikrofon připojen a správně funguje.
     pass: Přeskočit
     pending: V řešení
     personal_readiness: Osobní připravenost

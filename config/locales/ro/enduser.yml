@@ -105,7 +105,6 @@ ro:
     network_check_fix_third: Reporniți routerul/modemul și încercați din nou
     network_speed_meets_required_detail: Viteza ta de internet îndeplinește cerințele minime pentru campanie
     network_test_step: Etapa de testare a rețelei
-    no_audio_warning: Nu s-a detectat sunet. Verificați dacă microfonul este conectat și funcționează corect.
     pass: Treci
     pending: În așteptare
     personal_readiness: Pregătirea personală

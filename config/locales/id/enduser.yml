@@ -105,7 +105,6 @@ id:
     network_check_fix_third: Mulai ulang router/modem Anda, lalu coba lagi
     network_speed_meets_required_detail: Kecepatan internet Anda memenuhi persyaratan minimum untuk kampanye ini
     network_test_step: Langkah Pengujian Jaringan
-    no_audio_warning: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda terhubung dan berfungsi dengan baik.
     pass: Lewati
     pending: Sedang diproses
     personal_readiness: Kesiapan Pribadi

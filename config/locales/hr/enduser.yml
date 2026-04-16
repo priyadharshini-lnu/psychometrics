@@ -105,7 +105,6 @@ hr:
     network_check_fix_third: Ponovno pokrenite ruter/modem i pokušajte ponovno.
     network_speed_meets_required_detail: Vaša internetska brzina zadovoljava minimalne zahtjeve za kampanju.
     network_test_step: Korak testiranja mreže
-    no_audio_warning: Nije detektiran zvuk. Molimo provjerite je li vaš mikrofon priključen i ispravno radi.
     pass: Prođi
     pending: U čekanju
     personal_readiness: Osobna spremnost

@@ -101,6 +101,7 @@ pl:
     negative: Negatywny
     new: Nowy
     next: Dalej
+    no_audio_warning: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
     no_results_found: Nie znaleziono żadnych wyników
     not_requested: Jeszcze nie zgłoszone
     ok: Ok

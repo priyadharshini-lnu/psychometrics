@@ -105,7 +105,6 @@ sl:
     network_check_fix_third: Ponovno zaženite usmerjevalnik/modem in poskusite še enkrat
     network_speed_meets_required_detail: Vaša hitrost internetne povezave izpolnjuje minimalne zahteve za kampanjo
     network_test_step: Korak preizkušanja omrežja
-    no_audio_warning: Zvok ni zaznan. Preverite, ali je mikrofon priključen in deluje pravilno.
     pass: Preskoči
     pending: V obravnavi
     personal_readiness: Osebna pripravljenost

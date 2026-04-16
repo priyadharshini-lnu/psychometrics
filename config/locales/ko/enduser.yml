@@ -105,7 +105,6 @@ ko:
     network_check_fix_third: 라우터/모뎀을 재시작한 후 다시 시도해 보세요
     network_speed_meets_required_detail: 귀하의 인터넷 속도는 본 캠페인의 최소 요구 사항을 충족합니다
     network_test_step: 네트워크 테스트 단계
-    no_audio_warning: 오디오가 감지되지 않았습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
     pass: 건너뛰기
     pending: 처리 중
     personal_readiness: 개인적 준비 상태

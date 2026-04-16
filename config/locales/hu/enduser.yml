@@ -105,7 +105,6 @@ hu:
     network_check_fix_third: Indítsa újra az útválasztót/modemet, majd próbálja meg újra
     network_speed_meets_required_detail: Az internetkapcsolatod sebessége megfelel a kampány minimális követelményeinek
     network_test_step: Hálózati tesztlépés
-    no_audio_warning: Nincs hangjelzés. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
     pass: Tovább
     pending: Függőben
     personal_readiness: Személyes felkészültség

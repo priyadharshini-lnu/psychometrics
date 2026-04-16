@@ -101,6 +101,7 @@ fr:
     negative: Négatif
     new: Nouveau
     next: Suivant
+    no_audio_warning: Aucun son détecté. Veuillez vérifier que votre microphone est connecté et fonctionne correctement.
     no_results_found: Aucun résultat trouvé
     not_requested: Pas encore demandé
     ok: Ok

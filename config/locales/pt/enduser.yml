@@ -105,7 +105,6 @@ pt:
     network_check_fix_third: Reinicie o seu router/modem e tente novamente
     network_speed_meets_required_detail: A velocidade da sua ligação à Internet cumpre os requisitos mínimos para a campanha
     network_test_step: Etapa de teste da rede
-    no_audio_warning: Não foi detectado áudio. Verifique se o microfone está conectado e funcionando corretamente.
     pass: Passe
     pending: Em espera
     personal_readiness: Preparação pessoal

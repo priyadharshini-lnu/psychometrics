@@ -101,6 +101,7 @@ id:
     negative: Negatif
     new: Baru
     next: Selanjutnya
+    no_audio_warning: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda terhubung dan berfungsi dengan baik.
     no_results_found: Tidak ditemukan hasil
     not_requested: Belum Diminta
     ok: Ok

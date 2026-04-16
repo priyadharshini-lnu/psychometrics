@@ -105,7 +105,6 @@ fr:
     network_check_fix_third: Redémarrez votre routeur/modem et réessayez
     network_speed_meets_required_detail: Votre débit Internet répond aux exigences minimales de la campagne
     network_test_step: Étape de test du réseau
-    no_audio_warning: Aucun son détecté. Veuillez vérifier que votre microphone est connecté et fonctionne correctement.
     pass: Passer
     pending: En attente
     personal_readiness: Préparation personnelle

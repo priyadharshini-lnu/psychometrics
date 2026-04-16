@@ -195,7 +195,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       ) : null}
       {showAudioWarning && isRecording && (
         <Alert
-          title={I18n.t('enduser.no_audio_warning')}
+          title={I18n.t('shared.no_audio_warning')}
           type="warning"
           className={styles.controls}
         />

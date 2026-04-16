@@ -105,7 +105,6 @@ vi:
     network_check_fix_third: Hãy khởi động lại bộ định tuyến/bộ điều chế và thử lại
     network_speed_meets_required_detail: Tốc độ Internet của bạn đáp ứng các yêu cầu tối thiểu của chiến dịch
     network_test_step: Bước kiểm tra mạng
-    no_audio_warning: Không phát hiện âm thanh. Vui lòng kiểm tra xem micro của bạn đã được kết nối và hoạt động bình thường chưa.
     pass: Bỏ qua
     pending: Đang chờ xử lý
     personal_readiness: Sự chuẩn bị cá nhân

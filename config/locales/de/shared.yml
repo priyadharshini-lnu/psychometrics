@@ -101,6 +101,7 @@ de:
     negative: Negativ
     new: Neu
     next: Weiter
+    no_audio_warning: Es wurde kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
     no_results_found: Keine Ergebnisse gefunden
     not_requested: Noch nicht angefordert
     ok: Ok

@@ -101,6 +101,7 @@ ko:
     negative: 부정적
     new: 새로 만들기
     next: 다음
+    no_audio_warning: 오디오가 감지되지 않았습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
     no_results_found: 검색 결과 없음
     not_requested: 아직 요청되지 않음
     ok: 확인

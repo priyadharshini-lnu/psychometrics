@@ -101,6 +101,7 @@ ro:
     negative: Negativ
     new: Nou
     next: Următorul
+    no_audio_warning: Nu s-a detectat sunet. Verificați dacă microfonul este conectat și funcționează corect.
     no_results_found: Nu s-au găsit rezultate
     not_requested: Nu a fost încă solicitat
     ok: Bine

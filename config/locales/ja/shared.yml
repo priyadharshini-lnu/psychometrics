@@ -101,6 +101,7 @@ ja:
     negative: 否定
     new: 新規
     next: 次へ
+    no_audio_warning: 音声が検出されません。マイクが接続され、正常に動作しているかご確認ください。
     no_results_found: 検索結果が見つかりませんでした
     not_requested: まだリクエストされていません
     ok: OK

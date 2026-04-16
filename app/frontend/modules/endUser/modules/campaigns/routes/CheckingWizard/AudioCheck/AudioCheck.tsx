@@ -342,14 +342,13 @@ const AudioCheckComponent: React.FC<Props> = ({
 
         {showAudioWarning && status === 'recording' && (
           <Alert
-            title={I18n.t('enduser.no_audio_warning')}
+            title={I18n.t('shared.no_audio_warning')}
             type="warning"
             className="mt-4"
           />
         )}
 
         <Controls />
-
         {
           status === 'stopped' && (
             <>

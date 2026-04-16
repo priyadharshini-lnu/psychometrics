@@ -101,6 +101,7 @@ nl:
     negative: Negatief
     new: Nieuw
     next: Volgende
+    no_audio_warning: Er is geen geluid gedetecteerd. Controleer of uw microfoon is aangesloten en goed werkt.
     no_results_found: Geen resultaten gevonden
     not_requested: Nog niet aangevraagd
     ok: Ok

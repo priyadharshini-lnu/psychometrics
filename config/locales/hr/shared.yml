@@ -101,6 +101,7 @@ hr:
     negative: Negativno
     new: Novi
     next: Sljedeće
+    no_audio_warning: Nije detektiran zvuk. Molimo provjerite je li vaš mikrofon priključen i ispravno radi.
     no_results_found: Nisu pronađeni rezultati
     not_requested: Još nije zatraženo
     ok: U redu

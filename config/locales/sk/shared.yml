@@ -101,6 +101,7 @@ sk:
     negative: Negatívny
     new: Nové
     next: Ďalej
+    no_audio_warning: Nebol zaznamenaný žiadny zvuk. Skontrolujte, či je mikrofón pripojený a funguje správne.
     no_results_found: Nenašli sa žiadne výsledky
     not_requested: Ešte nebolo požiadané
     ok: Ok

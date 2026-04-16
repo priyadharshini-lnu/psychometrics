@@ -101,6 +101,7 @@ pt:
     negative: Negativo
     new: Novo
     next: Próximo
+    no_audio_warning: Não foi detectado áudio. Verifique se o microfone está conectado e funcionando corretamente.
     no_results_found: Não foram encontrados resultados
     not_requested: Ainda não solicitado
     ok: OK

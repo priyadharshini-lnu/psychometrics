@@ -115,7 +115,6 @@ ar:
     network_check_fix_third: أعد تشغيل الراوتر/المودم ثم حاول مرة أخرى
     network_speed_meets_required_detail: سرعة الإنترنت لديك تلبي الحد الأدنى من المتطلبات للحملة
     network_test_step: خطوة اختبار الشبكة
-    no_audio_warning: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون وتشغيله بشكل صحيح.
     pass: يمر
     pending: قيد الانتظار
     personal_readiness: الجاهزية الشخصية
