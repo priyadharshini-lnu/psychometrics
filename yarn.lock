@@ -3545,17 +3545,7 @@ ajv@^8.0.0:
     json-schema-traverse "^1.0.0"
     require-from-string "^2.0.2"
 
-ajv@^8.1.0:
-  version "8.12.0"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/ajv/-/ajv-8.12.0.tgz#d1a0527323e22f53562c567c00991577dfbe19d1"
-  integrity sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA==
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    json-schema-traverse "^1.0.0"
-    require-from-string "^2.0.2"
-    uri-js "^4.2.2"
-
-ajv@~8.18.0:
+ajv@^8.18.0, ajv@~8.18.0:
   version "8.18.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/ajv/-/ajv-8.18.0.tgz#8864186b6738d003eb3a933172bb3833e10cefbc"
   integrity sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A==
@@ -4046,10 +4036,10 @@ base64-js@^1.3.1:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-basic-ftp@^5.0.2:
-  version "5.2.0"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/basic-ftp/-/basic-ftp-5.2.0.tgz#7c2dff63c918bde60e6bad1f2ff93dcf5137a40a"
-  integrity sha512-VoMINM2rqJwJgfdHq6RiUudKt2BV+FY5ZFezP/ypmwayk68+NzzAQy4XXLlqsGD4MCzq3DrmNFD/uUmBJuGoXw==
+basic-ftp@^5.0.2, basic-ftp@^5.2.2:
+  version "5.2.2"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/basic-ftp/-/basic-ftp-5.2.2.tgz#4cb2422deddf432896bdb3c9b8f13b944ad4842c"
+  integrity sha512-1tDrzKsdCg70WGvbFss/ulVAxupNauGnOlgpyjKzeQxzyllBLS0CGLV7tjIXTK3ZQA9/FBEm9qyFFN1bciA6pw==
 
 binary-extensions@^2.0.0:
   version "2.2.0"
@@ -12299,10 +12289,10 @@ yallist@^4.0.0:
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-yaml@^1.10.0:
-  version "1.10.2"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"
-  integrity sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==
+yaml@^1.10.0, yaml@^1.10.3:
+  version "1.10.3"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/yaml/-/yaml-1.10.3.tgz#76e407ed95c42684fb8e14641e5de62fe65bbcb3"
+  integrity sha512-vIYeF1u3CjlhAFekPPAk2h/Kv4T3mAkMox5OymRiJQB0spDP10LHvt+K7G9Ny6NuuMAb25/6n1qyUjAcGNf/AA==
 
 yargs-parser@^21.1.1:
   version "21.1.1"
