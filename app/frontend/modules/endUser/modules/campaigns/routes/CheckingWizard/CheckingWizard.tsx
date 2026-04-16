@@ -175,7 +175,7 @@ const CheckingWizardComponent: React.FC<Props> = ({
             />
             <Content className={styles.pageLayout}>
               <Flex justify="center" align="center">
-                {CurrentCheck && <CurrentCheck nextStep={nextStep} config={config} />}
+                {CurrentCheck && <CurrentCheck nextStep={nextStep} config={config} checks={checks} />}
               </Flex>
             </Content>
           </>

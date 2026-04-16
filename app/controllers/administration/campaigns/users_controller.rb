@@ -170,7 +170,7 @@ module Administration
           {
             campaign_id: campaign.id,
             filters: params[:filters],
-            export_sign_in_url: params[:export_sign_in_url] == 'true'
+            export_sign_in_url: params[:export_sign_in_url] == true
           },
           current_user
         )
