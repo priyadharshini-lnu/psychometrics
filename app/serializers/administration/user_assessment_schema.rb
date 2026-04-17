@@ -47,6 +47,8 @@ module Administration
         required(:schedule_time).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
         required(:prework).maybe(:bool?)
+        required(:started_at).maybe(:str?)
+        required(:completed_at).maybe(:str?)
         required(:dimension_id).maybe(:int?)
         required(:users_result_id).maybe(:int?)
         required(:simulation_content_variations).maybe do

@@ -8,6 +8,10 @@ export const AssessmentConsentSettingTR = t.type({
     locale: t.string,
     text: t.union([t.string, t.null]),
   })),
+  customAcknowledgmentTexts: t.array(t.type({
+    locale: t.string,
+    text: t.union([t.string, t.null]),
+  })),
   policyVersion: t.union([t.number, t.null]),
 })
 

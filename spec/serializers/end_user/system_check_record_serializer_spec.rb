@@ -25,32 +25,32 @@ RSpec.describe EndUser::SystemCheckRecordSerializer do
       expect(result['data']).to eq({ 'user_agent' => 'Chrome', 'version' => '100' })
       expect(result['created_at']).to be_present
       expect(result['finished_at']).to be_present
-      expect(result).to have_key('video_url')
+      expect(result).to have_key('media_url')
     end
   end
 
-  describe '#video_url' do
-    context 'when video is not attached' do
+  describe '#media_url' do
+    context 'when media is not attached' do
       it 'returns nil' do
-        expect(subject['video_url']).to be_nil
+        expect(subject['media_url']).to be_nil
       end
     end
 
-    context 'when video is attached' do
+    context 'when media is attached' do
       before do
-        allow(system_check_record).to receive(:video_url).and_return('https://example.com/video.webm')
+        allow(system_check_record).to receive(:media_url).and_return('https://example.com/video.webm')
       end
 
-      it 'returns the video URL' do
+      it 'returns the media URL' do
         result = described_class.new.serialize(system_check_record)
 
-        expect(result['video_url']).to eq('https://example.com/video.webm')
+        expect(result['media_url']).to eq('https://example.com/video.webm')
       end
     end
   end
 
   describe 'different check types' do
-    %i[browser network video].each do |check_type|
+    %i[browser network video audio].each do |check_type|
       context "with #{check_type} check type" do
         let(:system_check_record) do
           create(:system_check_record, system_check_session: system_check_session, check_type: check_type)

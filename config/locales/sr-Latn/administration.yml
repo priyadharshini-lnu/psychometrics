@@ -4510,7 +4510,6 @@ sr-Latn:
         new:
           header: Uvezi prevod
       import:
-        successfully: Prevodi su uspešno uvezeni
         successfully_scheduled: Uvoz prevoda je uspešno zakazan.
       reports:
         export: Izvezi prevode

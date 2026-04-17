@@ -4518,7 +4518,6 @@ zh-Hant:
         new:
           header: 進口翻譯
       import:
-        successfully: 翻譯已成功匯入
         successfully_scheduled: 翻譯匯入已成功排程。
       reports:
         export: 出口翻譯

@@ -4518,7 +4518,6 @@ cs:
         new:
           header: Importovat překlady
       import:
-        successfully: Překlady byly úspěšně importovány
         successfully_scheduled: Import překladu byl úspěšně naplánován.
       reports:
         export: Exportní překlady

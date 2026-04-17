@@ -44,6 +44,8 @@ th:
     copy: คัดลอก
     created_at: สร้างเมื่อ
     created_date: วันที่สร้าง
+    custom_acknowledgment_text: ข้อความยืนยันการรับทราบแบบกำหนดเอง
+    custom_acknowledgment_text_required: จำเป็นต้องมีข้อความยืนยันที่กำหนดเองสำหรับบทบาทข้อมูลของผู้ควบคุม
     custom_consent_text: ข้อความยินยอมที่กำหนดเอง
     custom_consent_text_required: จำเป็นต้องมีข้อความยินยอมที่กำหนดเองสำหรับบทบาทผู้ควบคุมข้อมูล
     data_role: บทบาทด้านข้อมูล
@@ -83,6 +85,7 @@ th:
     maintenance_time_remaining: เวลาที่เหลืออยู่
     maintenance_upcoming_description: เราจะทำการบำรุงรักษาตามกำหนดเวลาที่ %{date} เป็นเวลาประมาณ %{duration} เพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ในระหว่างนี้ คุณจะไม่สามารถเข้าถึงหรือดำเนินการงานที่ได้รับมอบหมายใดๆ ได้ เราขอขอบคุณสำหรับความอดทนของคุณ
     maintenance_upcoming_title: การบำรุงรักษาที่กำลังจะมาถึง
+    manage_cookies: จัดการคุกกี้
     media_id: รหัสสื่อ
     media_preview: การพรีวิวสื่อ
     media_question_transcriptions: ถอดความคำถามจากสื่อ
@@ -98,6 +101,7 @@ th:
     negative: เชิงลบ
     new: ใหม่
     next: ถัดไป
+    no_audio_warning: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
     no_results_found: ไม่พบผลลัพธ์
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
@@ -141,8 +145,13 @@ th:
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
     table:
       entries:
-        selected: เลือก 1 แถว
-        total: 'รวม : 1'
+        selected:
+          one: เลือก 1 แถว
+          other: "{{count}} แถวที่เลือก"
+        total:
+          one: 'ทั้งหมด : 1'
+          other: 'ทั้งหมด: {{count}}'
+          zero: 'รวม: 0'
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
     tools: เครื่อง มือ
     transcription: การถอดเสียง

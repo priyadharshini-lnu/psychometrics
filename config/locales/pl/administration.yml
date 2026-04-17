@@ -4510,7 +4510,6 @@ pl:
         new:
           header: Importowanie tłumaczeń
       import:
-        successfully: Tłumaczenia zostały zaimportowane pomyślnie
         successfully_scheduled: Import tłumaczeń został zaplanowany pomyślnie.
       reports:
         export: Eksport tłumaczeń

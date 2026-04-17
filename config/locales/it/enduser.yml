@@ -12,6 +12,11 @@ it:
     ai_idp_summary_hint_no_document: Con il tuo permesso, se dici di sì, posso creare un piano di sviluppo per te. Se no, puoi riavviare la chat per condividere più dettagli.
     all_checks_must_pass: È necessario che tutti i controlli abbiano esito positivo prima di poter procedere.
     approve_idp_plan: Approva Piano
+    audio: Audio
+    audio_check: Prova del microfono
+    audio_check_description: Verifica che il microfono funzioni correttamente per la registrazione
+    audio_recording: Registrazione audio
+    audio_test_step: Fase di prova audio
     back: Indietro
     back_to_dashboard: Torna alla dashboard
     before_you_begin: Prima di iniziare
@@ -24,29 +29,48 @@ it:
     browser_compatibility_check: Test di compatibilità con i browser
     browser_compatibility_check_description: Verifica se il tuo browser supporta tutte le funzionalità richieste
     browser_compatibility_result: Compatibilità con i browser
+    browser_compatible: Il tuo browser %{browser_name} versione %{browser_version} è compatibile con questa campagna.
+    browser_compatible_detail: Stai utilizzando una versione di %{browser_name} (%{browser_version}) che soddisfa i requisiti minimi per questa campagna.
+    browser_incompatible_detail: Stai utilizzando la versione %{browser_version} di %{browser_name}. Ti invitiamo ad aggiornare %{browser_name} alla versione %{min_browser_version} per garantire la compatibilità.
+    browser_not_compatible: Il tuo browser %{browser_name} non è compatibile con questa campagna. Per un'esperienza ottimale, utilizza le versioni più recenti di Chrome, Firefox, Safari o Edge.
+    browser_not_compatible_description: Per un'esperienza ottimale, utilizza le ultime versioni di Chrome, Firefox, Safari o Edge.
+    browser_not_compatible_detail: Il tuo browser %{browser_name} non è compatibile con questa campagna. Per un'esperienza ottimale, utilizza le versioni più recenti di Chrome, Firefox, Safari o Edge.
     browser_version_fix_description_first: 'Utilizza un browser compatibile: Chrome, Firefox, Edge o Safari'
-    browser_version_fix_description_second: Aggiorna il browser all'ultima versione per garantire la compatibilità.
-    browser_version_fix_description_third: Prova a utilizzare una finestra di navigazione in incognito
     browser_version_fix_title: La versione del tuo browser non è supportata.
     camera: Video e audio
     camera_access_blocked: L'accesso alla fotocamera è stato negato o bloccato dal tuo browser. Controlla le autorizzazioni del browser.
     camera_check: Test della videocamera e del microfono
+    camera_check_abruptly_ended: La videocamera si è spenta improvvisamente. Attiva la videocamera ed esegui nuovamente il controllo.
     camera_check_description: Verifica che la videocamera e il microfono funzionino correttamente per la registrazione
+    camera_check_passed: Il controllo audio e video è stato superato con successo
     camera_test_step: Fase di verifica audio e video
     campaign: Campagna
+    campaign_check_status: 'Stato: %{status}'
     chat_instructions: Istruzioni per la chat
     check: Controlla
     check_video_recording: Ti preghiamo di controllare la registrazione video riproducendola.
     checking_browser_compatibility: Verifica della compatibilità del browser...
+    checking_latency: Verifica della latenza...
+    could_not_reach_servers: Impossibile connettersi ai nostri server per verificare la velocità di rete. Controlla la tua connessione Internet e riprova.
+    day: giorno
+    day_plural: giorni
+    details: Dettagli
     development: Sviluppo
     direct_reportees: Collegati
     download: Scarica
     download_pdf: Scarica PDF
+    download_speed_below_minimum: La velocità di download %{download_speed} è inferiore alla velocità minima richiesta di %{minimum_download_speed} Mbps
     environment_setup: Configurazione dell'ambiente
+    error_uploading_audio: Errore durante il caricamento dell'audio
+    error_uploading_audio_detail: Si è verificato un errore durante il caricamento del file audio
     error_uploading_video: Errore durante il caricamento del video
+    error_uploading_video_detail: Si è verificato un errore durante il caricamento del video
     fail: Errore
     follow_these_steps: Segui questi passaggi per risolvere i problemi rilevati durante il controllo del sistema
+    hide_details: Nascondi dettagli
     home: Dashboard
+    hour: ora
+    hour_plural: ore
     how_to_fix: 'Come risolvere il problema:'
     idp_loading_fifth_step: Recupero delle azioni di sviluppo dal template
     idp_loading_first_step: Analisi del tuo rapporto di valutazione
@@ -59,6 +83,7 @@ it:
     idp_report_being_generated: Stiamo lavorando al tuo rapporto
     idp_reset_chat: Resetta chat
     idp_retake_steps_continue_with_this_information: Continua con queste informazioni
+    initializing: Inizializzazione in corso...
     insights: Approfondimenti
     instruction: Assicurati che tu e chi ti circonda siate perfettamente preparati
     internet_speed: Velocità di Internet
@@ -68,14 +93,20 @@ it:
     lighthouse_assistant: Assistente al faro
     localstorage_fix_description_first: Assicurati di non trovarti in modalità privata o in incognito, poiché in queste modalità localStorage è spesso disabilitato.
     localstorage_fix_title: La memorizzazione locale non è abilitata nel tuo browser
+    localstorage_not_enabled_detail: La memoria locale non è abilitata nel tuo browser. Assicurati di non trovarti in modalità privata o in incognito, poiché in queste modalità la memoria locale è spesso disabilitata.
     localstorage_support: LocalStorage abilitato
     max_word_limit: Deve essere al massimo %{max} parole
     media_recorder_api_fix_description_first: Abilita JavaScript nelle impostazioni del browser
     media_recorder_api_fix_description_second: Verifica che il tuo browser supporti l'API MediaRecorder e, se necessario, aggiorna alla versione più recente.
-    media_recorder_api_fix_description_third: Prova un altro browser moderno, come Chrome o Firefox
     media_recorder_api_fix_title: L'API Media Recorder non è supportata dal tuo browser.
+    media_recorder_api_not_supported_detail: Stai utilizzando una versione di %{browser_name} (%{browser_version}) che non supporta l'API MediaRecorder. Ti invitiamo ad aggiornare il browser all'ultima versione per garantire la compatibilità.
     media_recorder_api_support: Supporto dell'API MediaRecorder
+    microphone_access_blocked: L'accesso al microfono è stato negato o bloccato dal tuo browser. Controlla le autorizzazioni del browser.
+    microphone_check_passed: Il test del microfono è andato a buon fine
     min_word_limit: Deve essere almeno %{min} parole
+    minimum_speed_requirements: Per questa campagna sono richiesti una velocità minima di download di %{minimum_download_speed} Mbps e una velocità minima di upload di %{minimum_upload_speed} Mbps.
+    minute: minuto
+    minute_plural: verbali
     my_plan: Il mio piano
     network: Rete
     network_check: Test di velocità Internet
@@ -85,8 +116,9 @@ it:
     network_check_fix_fourth: Prova a utilizzare una connessione di rete diversa, se disponibile
     network_check_fix_second: Avvicinati al router Wi-Fi oppure collegati tramite cavo Ethernet
     network_check_fix_third: Riavvia il router/modem e riprova
+    network_speed_meets_required_detail: La tua velocità di connessione Internet soddisfa i requisiti minimi previsti dalla campagna
     network_test_step: Fase di test della rete
-    no_audio_warning: Nessun audio rilevato. Verifica che il microfono sia collegato e funzioni correttamente.
+    no_audio_detected: Non viene rilevato alcun segnale audio. Verifica che il microfono sia collegato e funzioni correttamente.
     pass: Passa
     pending: In attesa
     personal_readiness: Preparazione personale
@@ -96,6 +128,7 @@ it:
     profile_details: Dettagli
     question_counter: Domanda %{current} di %{total}
     reason_for_idp_plan_rejection: Motivo del rifiuto
+    redirect_to_external_assessment: Verrai reindirizzato al sito della valutazione. Clicca su "Continua" se desideri iniziare la valutazione.
     reject_idp_plan: Rifiuta il piano
     request_retry_message: Sei offline. Le tue risposte non potevano essere salvate, ma lo saranno automaticamente una volta che sarai di nuovo online. Per favore, non aggiornare o chiudere la pagina.
     required_download_in_mbps: Velocità di download richiesta in Mbps
@@ -104,6 +137,8 @@ it:
     rerun_checks: Ripetere i controlli
     result: Risultato
     results: Risultato
+    safari_proctoring_description: Sembra che tu stia utilizzando il browser Safari, che potrebbe presentare alcune limitazioni per quanto riguarda le funzionalità di monitoraggio attivate per questa campagna. Per un'esperienza ottimale, ti consigliamo di utilizzare i browser Chrome o Firefox.
+    safari_proctoring_title: Rilevato il browser Safari
     selected_count: Selezionato
     skill_type: Tipo di abilità
     start_campaign_message_proctored: Questa è una campagna sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
@@ -111,6 +146,7 @@ it:
     start_campaign_message_timed_proctored: Questa è una campagna a tempo e sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
     start_readiness_check: Avvia il controllo di preparazione
     start_system_check: Avvia il controllo del sistema
+    subinstruction_audio: Microfono funzionante
     subinstruction_eight: Riservatevi un po' di tempo senza interruzioni per la valutazione completa
     subinstruction_five: Sei pronto a condividere lo schermo per tutta la durata della sessione
     subinstruction_four: Webcam e microfono funzionanti
@@ -153,8 +189,16 @@ it:
     system_checks: Controlli di sistema
     task_duration: Durata dell'attività
     tasks: Campagne
+    testing_download_speed: Verifica della velocità di download...
+    testing_upload_speed: Verifica della velocità di upload...
     time_commitment: Impegno in termini di tempo
     troubleshooting_guide: Guida alla risoluzione dei problemi
+    troubleshooting_guide_audio_fifth: 'Su Windows: controlla le impostazioni sulla privacy > Accesso al microfono'
+    troubleshooting_guide_audio_first: Clicca sull'icona del lucchetto/informazioni nella barra degli indirizzi del browser
+    troubleshooting_guide_audio_fourth: Se l'accesso è bloccato, potrebbe essere necessario ripristinare le autorizzazioni nelle impostazioni del browser
+    troubleshooting_guide_audio_second: Cerca le impostazioni "Microfono" e imposta l'opzione su "Consenti"
+    troubleshooting_guide_audio_sixth: 'Su Mac: vai su Preferenze di Sistema > Sicurezza'
+    troubleshooting_guide_audio_third: Aggiorna la pagina dopo aver modificato le autorizzazioni
     troubleshooting_guide_browser_fifth: Assicurati che LocalStorage sia abilitato nelle impostazioni del browser
     troubleshooting_guide_browser_first: 'Utilizza un browser compatibile: Chrome, Firefox, Edge o Safari (versioni più recenti)'
     troubleshooting_guide_browser_fourth: Abilita JavaScript e i cookie nelle impostazioni del browser
@@ -174,6 +218,8 @@ it:
     troubleshooting_guide_video_third: Aggiorna la pagina dopo aver modificato le autorizzazioni
     untimed: Senza limite di tempo
     upload: Carica
+    upload_speed_below_minimum: La velocità di upload %{upload_speed} è inferiore alla velocità minima richiesta di %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video e audio
     video_and_audio_recording: Registrazione video e audio
     video_check_fix_fifth: Se la fotocamera è esterna, prova a scollegarla e ricollegarla
@@ -182,7 +228,9 @@ it:
     video_check_fix_second: Vai alle impostazioni del browser e abilita l'accesso alla fotocamera per questo sito
     video_check_fix_sixth: Riavvia il browser e riprova
     video_check_fix_third: Chiudi le altre applicazioni che utilizzano la fotocamera (Zoom, Teams, ecc.)
+    view_details: Visualizza i dettagli
     webgl_api_fix_description_first: Assicurati che il tuo browser supporti WebGL e che questa funzione sia abilitata nelle impostazioni
     webgl_api_fix_description_second: Aggiorna i driver della scheda grafica all'ultima versione
     webgl_api_fix_title: WebGL non è supportato o abilitato nel tuo browser
     webgl_api_support: Supporto API WebGL
+    webgl_not_supported_detail: Stai utilizzando una versione di %{browser_name} (%{browser_version}) che non supporta WebGL. Ti invitiamo ad aggiornare il browser all'ultima versione per garantire la compatibilità.

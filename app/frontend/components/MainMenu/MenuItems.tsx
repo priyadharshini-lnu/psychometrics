@@ -98,6 +98,11 @@ export const getSelected = (): string => {
   if (location.href.match(/\/administration(\/)(libraries)/)) {
     return 'libraries'
   }
+
+  if (location.href.match(/\/admin(\/)(libraries)/)) {
+    return 'libraries'
+  }
+
   if (location.href.match(/\/administration(\/)(communications)/)) {
     return 'communicationCenter'
   }

@@ -18,8 +18,9 @@ module CampaignFactors
       end
 
       transaction do
+        valid_factor_ids = fetch_valid_assessor_scoring_factor_ids
         params[:scores].each do |score|
-          next unless CampaignFactor.exists?(id: score[:campaign_factor_id], factor_type: :assessor_scoring)
+          next unless valid_factor_ids.include?(score[:campaign_factor_id].to_i)
 
           factor_value = campaign.campaign_factor_values.find_or_create_by(
             campaign_factor_id: score[:campaign_factor_id],
@@ -31,6 +32,13 @@ module CampaignFactors
       end
 
       broadcast :ok
+    end
+
+    private
+
+    def fetch_valid_assessor_scoring_factor_ids
+      score_factor_ids = params[:scores].pluck(:campaign_factor_id)
+      CampaignFactor.where(id: score_factor_ids, factor_type: :assessor_scoring).pluck(:id).to_a
     end
   end
 end

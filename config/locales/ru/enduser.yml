@@ -12,6 +12,11 @@ ru:
     ai_idp_summary_hint_no_document: С вашего разрешения, если вы согласитесь, я могу составить для вас план развития. Если нет, вы можете перезапустить чат, чтобы поделиться более подробной информацией.
     all_checks_must_pass: Прежде чем продолжить, необходимо пройти все проверки.
     approve_idp_plan: Утвердить план
+    audio: Аудио
+    audio_check: Проверка микрофона
+    audio_check_description: Убедитесь, что ваш микрофон исправно работает для записи
+    audio_recording: Аудиозапись
+    audio_test_step: Этап проверки звука
     back: Назад
     back_to_dashboard: Вернуться на главную страницу
     before_you_begin: Прежде чем начать
@@ -24,29 +29,48 @@ ru:
     browser_compatibility_check: Тест на совместимость с браузерами
     browser_compatibility_check_description: Проверка поддержки всех необходимых функций вашим браузером
     browser_compatibility_result: Совместимость с браузерами
+    browser_compatible: Ваш браузер %{browser_name} версии %{browser_version} поддерживает эту рекламную кампанию.
+    browser_compatible_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который соответствует минимальным требованиям данной кампании.
+    browser_incompatible_detail: Вы используете версию %{browser_name} %{browser_version}. Для обеспечения совместимости обновите %{browser_name} до версии %{min_browser_version}.
+    browser_not_compatible: Ваш браузер %{browser_name} не поддерживает эту рекламную кампанию. Для оптимальной работы сайта используйте последние версии Chrome, Firefox, Safari или Edge.
+    browser_not_compatible_description: Для оптимальной работы сайта рекомендуется использовать последние версии браузеров Chrome, Firefox, Safari или Edge.
+    browser_not_compatible_detail: Ваш браузер %{browser_name} не поддерживает эту рекламную кампанию. Для оптимальной работы сайта используйте последние версии Chrome, Firefox, Safari или Edge.
     browser_version_fix_description_first: 'Используйте один из поддерживаемых браузеров: Chrome, Firefox, Edge или Safari'
-    browser_version_fix_description_second: Обновите браузер до последней версии, чтобы обеспечить совместимость.
-    browser_version_fix_description_third: Попробуйте воспользоваться окном анонимного просмотра
     browser_version_fix_title: Ваша версия браузера не поддерживается.
     camera: Видео и аудио
     camera_access_blocked: Доступ к камере был запрещен или заблокирован вашим браузером. Проверьте настройки разрешений в браузере.
     camera_check: Проверка камеры и микрофона
+    camera_check_abruptly_ended: Камера была внезапно отключена. Пожалуйста, включите камеру и повторите проверку.
     camera_check_description: Убедитесь, что ваша камера и микрофон работают исправно для записи
+    camera_check_passed: Проверка видео и аудио прошла успешно
     camera_test_step: Этап проверки видео и аудио
     campaign: Кампания
+    campaign_check_status: 'Статус: %{status}'
     chat_instructions: Инструкции по использованию чата
     check: Проверить
     check_video_recording: Пожалуйста, проверьте видеозапись, воспроизведя её.
     checking_browser_compatibility: Проверка совместимости браузеров...
+    checking_latency: Проверка задержки...
+    could_not_reach_servers: Не удалось подключиться к нашим серверам для проверки скорости сети. Проверьте подключение к Интернету и повторите попытку.
+    day: день
+    day_plural: дней
+    details: Подробности
     development: Разработка
     direct_reportees: Непосредственные подчиненные
     download: Скачать
     download_pdf: Скачать PDF
+    download_speed_below_minimum: Скорость загрузки %{download_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_download_speed} Мбит/с
     environment_setup: Настройка среды
+    error_uploading_audio: Ошибка при загрузке аудиофайла
+    error_uploading_audio_detail: Произошла ошибка при загрузке аудиофайла
     error_uploading_video: Ошибка при загрузке видео
+    error_uploading_video_detail: При загрузке видео произошла ошибка
     fail: Неудача
     follow_these_steps: Выполните следующие действия, чтобы устранить проблемы, обнаруженные в ходе проверки системы
+    hide_details: Скрыть подробности
     home: Главная
+    hour: час
+    hour_plural: часов
     how_to_fix: 'Как исправить:'
     idp_loading_fifth_step: Извлечение действий разработки из шаблона
     idp_loading_first_step: Анализ вашего отчета об оценке
@@ -59,6 +83,7 @@ ru:
     idp_report_being_generated: Мы работаем над вашим отчетом
     idp_reset_chat: Сбросить чат
     idp_retake_steps_continue_with_this_information: Продолжить с этой информацией
+    initializing: Инициализация...
     insights: Инсайты
     instruction: Убедитесь, что вы и ваше окружение полностью готовы
     internet_speed: Скорость интернета
@@ -68,14 +93,20 @@ ru:
     lighthouse_assistant: Помощник маяка
     localstorage_fix_description_first: Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах localStorage часто отключено.
     localstorage_fix_title: В вашем браузере не включено локальное хранилище
+    localstorage_not_enabled_detail: В вашем браузере отключена функция локального хранилища. Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах локальное хранилище часто отключено.
     localstorage_support: LocalStorage включено
     max_word_limit: Должно быть не более %{max} слов
     media_recorder_api_fix_description_first: Включите JavaScript в настройках браузера
     media_recorder_api_fix_description_second: Убедитесь, что ваш браузер поддерживает API MediaRecorder, и при необходимости обновите его до последней версии.
-    media_recorder_api_fix_description_third: Попробуйте другой современный браузер, например Chrome или Firefox
     media_recorder_api_fix_title: API Media Recorder не поддерживается в вашем браузере.
+    media_recorder_api_not_supported_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который не поддерживает API MediaRecorder. Для обеспечения совместимости обновите браузер до последней версии.
     media_recorder_api_support: Поддержка API MediaRecorder
+    microphone_access_blocked: Ваш браузер запретил или заблокировал доступ к микрофону. Проверьте настройки прав доступа в браузере.
+    microphone_check_passed: Проверка микрофона прошла успешно
     min_word_limit: Должно быть не менее %{min} слов
+    minimum_speed_requirements: Для участия в этой акции требуется минимальная скорость загрузки %{minimum_download_speed} Мбит/с и минимальная скорость отправки %{minimum_upload_speed} Мбит/с.
+    minute: минута
+    minute_plural: протокол
     my_plan: Мой план
     network: Сеть
     network_check: Тест скорости интернета
@@ -85,8 +116,9 @@ ru:
     network_check_fix_fourth: Попробуйте воспользоваться другим сетевым подключением, если оно доступно
     network_check_fix_second: Переместитесь поближе к роутеру Wi-Fi или подключитесь с помощью кабеля Ethernet
     network_check_fix_third: Перезагрузите роутер/модем и попробуйте ещё раз
+    network_speed_meets_required_detail: Скорость вашего интернет-соединения соответствует минимальным требованиям акции
     network_test_step: Этап тестирования сети
-    no_audio_warning: Аудио не обнаружено. Проверьте, подключен ли микрофон и работает ли он правильно.
+    no_audio_detected: Звук не обнаружен. Проверьте, подключен ли микрофон и работает ли он исправно.
     pass: Пропустить
     pending: В процессе рассмотрения
     personal_readiness: Личная готовность
@@ -96,6 +128,7 @@ ru:
     profile_details: Подробности
     question_counter: Вопрос %{current} из %{total}
     reason_for_idp_plan_rejection: Причина отказа
+    redirect_to_external_assessment: Вы будете перенаправлены на сайт тестирования. Нажмите «Продолжить», если хотите приступить к тестированию.
     reject_idp_plan: Отклонить план
     request_retry_message: Вы не подключены к Интернету. Ваши ответы не могут быть сохранены, но будут сохранены автоматически, как только вы снова подключитесь к Интернету. Пожалуйста, не обновляйте и не закрывайте страницу.
     required_download_in_mbps: Требуемая скорость загрузки (Мбит/с)
@@ -104,6 +137,8 @@ ru:
     rerun_checks: Повторная проверка
     result: Результат
     results: Результат
+    safari_proctoring_description: Похоже, вы используете браузер Safari, который может иметь некоторые ограничения в отношении функций отслеживания, активированных в рамках этой кампании. Для оптимальной работы мы рекомендуем использовать браузеры Chrome или Firefox.
+    safari_proctoring_title: Обнаружен браузер Safari
     selected_count: "%{count} выбранный"
     skill_type: Тип навыка
     start_campaign_message_proctored: Это контролируемая кампания, пожалуйста, нажмите кнопку «%{buttonText}» (Начать), чтобы приступить к выполнению заданий.
@@ -111,6 +146,7 @@ ru:
     start_campaign_message_timed_proctored: Это кампания с ограниченным временем и под наблюдением, пожалуйста, нажмите кнопку «%{buttonText}» (Начать кампанию), чтобы приступить к действиям.
     start_readiness_check: Начать проверку готовности
     start_system_check: Запустить проверку системы
+    subinstruction_audio: Рабочий микрофон
     subinstruction_eight: Выделите достаточно времени для проведения полной оценки
     subinstruction_five: Готовы ли вы открыть доступ к своему экрану на время сеанса?
     subinstruction_four: Работающая веб-камера и микрофон
@@ -153,8 +189,16 @@ ru:
     system_checks: Проверка системы
     task_duration: Продолжительность задачи
     tasks: Задачи
+    testing_download_speed: Проверка скорости загрузки...
+    testing_upload_speed: Проверка скорости загрузки...
     time_commitment: Время, которое необходимо уделить
     troubleshooting_guide: Руководство по устранению неисправностей
+    troubleshooting_guide_audio_fifth: 'В Windows: проверьте настройки конфиденциальности > доступ к микрофону'
+    troubleshooting_guide_audio_first: Нажмите на значок замка/сведения в адресной строке браузера
+    troubleshooting_guide_audio_fourth: Если доступ заблокирован, возможно, вам потребуется сбросить настройки прав доступа в настройках браузера
+    troubleshooting_guide_audio_second: Найдите настройки «Микрофон» и установите для них значение «Разрешить»
+    troubleshooting_guide_audio_sixth: 'На Mac: перейдите в «Системные настройки» > «Безопасность»'
+    troubleshooting_guide_audio_third: Обновите страницу после изменения прав доступа
     troubleshooting_guide_browser_fifth: Убедитесь, что в настройках браузера включена функция LocalStorage
     troubleshooting_guide_browser_first: 'Используйте один из поддерживаемых браузеров: Chrome, Firefox, Edge или Safari (последние версии)'
     troubleshooting_guide_browser_fourth: Включите JavaScript и файлы cookie в настройках браузера
@@ -174,6 +218,8 @@ ru:
     troubleshooting_guide_video_third: Обновите страницу после изменения прав доступа
     untimed: Без ограничения по времени
     upload: Загрузить
+    upload_speed_below_minimum: Скорость загрузки %{upload_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_upload_speed} Мбит/с
+    video: Видео
     video_and_audio: Видео и аудио
     video_and_audio_recording: Запись видео и аудио
     video_check_fix_fifth: Если камера подключена внешне, попробуйте отключить её от источника питания и подключить заново
@@ -182,7 +228,9 @@ ru:
     video_check_fix_second: Перейдите в настройки браузера и разрешите этому сайту доступ к камере
     video_check_fix_sixth: Перезапустите браузер и попробуйте ещё раз
     video_check_fix_third: Закройте другие приложения, использующие камеру (Zoom, Teams и т. д.)
+    view_details: Посмотреть подробности
     webgl_api_fix_description_first: Убедитесь, что ваш браузер поддерживает WebGL и что эта функция включена в настройках
     webgl_api_fix_description_second: Обновите драйверы графической карты до последней версии
     webgl_api_fix_title: WebGL не поддерживается или не включен в вашем браузере
     webgl_api_support: Поддержка API WebGL
+    webgl_not_supported_detail: Вы используете браузер %{browser_name} версии %{browser_version}, который не поддерживает WebGL. Для обеспечения совместимости обновите браузер до последней версии.

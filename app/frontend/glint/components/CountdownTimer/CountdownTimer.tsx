@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from 'react'
+import {
+  FC, useEffect, useMemo, useRef, useState,
+} from 'react'
 import { Statistic, notification as antdNotification, StatisticProps } from 'antd'
 import cs from 'classnames'
 
 import styles from './styles.less'
-
-const { setTimeout, clearTimeout } = window
 
 export type Notification = {
   timeRemaining: number
@@ -23,6 +23,7 @@ type CountdownTimerProps = StatisticProps & {
 const SECONDS_PER_DAY = 60 * 60 * 24
 const SECONDS_PER_HOUR = 60 * 60
 const SECONDS_PER_MINUTE = 60
+const NOTIFICATION_CHECK_INTERVAL_MS = 10000
 
 const formatData = {
   minute: { format: 'm[m] s[s]', units: SECONDS_PER_MINUTE },
@@ -58,7 +59,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   seconds,
   onFinish,
   shouldAnnounceRemainingTime = false,
-  notificationPoints = [],
+  notificationPoints,
   notificationTemplate,
   notificationDuration = 15,
   className,
@@ -67,61 +68,60 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   const [countDownValue, setCountDownValue] = useState<number | undefined>(undefined)
   const [timerFormat, setTimerFormat] = useState(seconds ? getFormat(seconds) : undefined)
   const [announcement, setAnnouncement] = useState<string>('')
+  const stableNotificationPoints = useMemo(
+    () => notificationPoints || [],
+    [notificationPoints],
+  )
+  const firedNotificationsRef = useRef(new Set<number>())
 
 
   useEffect(() => {
     if (!seconds) return
     const countDownValue = Date.now() + seconds * 1000
+    firedNotificationsRef.current = new Set<number>()
 
     setCountDownValue(countDownValue)
     setTimerFormat(getFormat(seconds))
   }, [seconds])
 
   useEffect(() => {
-    if (!seconds || !countDownValue) return
+    if (!seconds || !countDownValue || !stableNotificationPoints.length) return
 
-    const notifications = notificationPoints.map(
-      notificationPoint => notificationSetTimeout(
-        notificationPoint.timeRemaining,
-        countDownValue,
-        notificationPoint.type,
-      ),
-    )
+    const firedSet = firedNotificationsRef.current
 
-    return () => {
-      notifications.forEach(notification => clearTimeout(notification))
+    const checkNotifications = () => {
+      const remainingSeconds = Math.floor((countDownValue - Date.now()) / 1000)
+
+      stableNotificationPoints.forEach(({ timeRemaining, type }) => {
+        if (firedSet.has(timeRemaining)) return
+        if (remainingSeconds > timeRemaining) return
+
+        firedSet.add(timeRemaining)
+        const minutes = Math.floor(timeRemaining / 60)
+        antdNotification[type]({
+          message: notificationTemplate && notificationTemplate(minutes),
+          duration: notificationDuration,
+        })
+      })
     }
-  }, [seconds, notificationPoints])
 
-  const handleTimerChange = (value: number) => {
+    checkNotifications()
+    const intervalId = setInterval(checkNotifications, NOTIFICATION_CHECK_INTERVAL_MS)
+
+    return () => clearInterval(intervalId)
+  }, [
+    seconds,
+    countDownValue,
+    stableNotificationPoints,
+    notificationTemplate,
+    notificationDuration,
+  ])
+
+  const handleTimerChange = (value?: string | number) => {
+    if (typeof value !== 'number') return
     const newFormat = getFormat(value / 1000)
     newFormat !== timerFormat && setTimerFormat(newFormat)
   }
-
-  const notificationSetTimeout = (
-    timeRemaining: number,
-    totalSeconds: number,
-    type: Notification['type'],
-  ) => {
-    const now = Date.now()
-    const fireAt = totalSeconds - (timeRemaining * 1000)
-    const delay = fireAt - now
-
-    if (delay > 0) {
-      const minutes = Math.floor(timeRemaining / 60)
-      return setTimeout(() => {
-        if (notificationPoints.length) {
-          antdNotification[type]({
-            message: notificationTemplate && notificationTemplate(minutes),
-            duration: notificationDuration,
-          })
-        }
-      }, delay)
-    }
-
-    return undefined
-  }
-
 
   useEffect(() => {
     if (!seconds || !countDownValue || !shouldAnnounceRemainingTime) return

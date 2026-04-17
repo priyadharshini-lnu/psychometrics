@@ -7,6 +7,7 @@ import {
   DatabaseOutlined,
   MessageOutlined,
   SolutionOutlined,
+  RobotOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { MenuItem } from '~/interfaces/Antd'
@@ -48,6 +49,9 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     if (pathname.includes('/datasheet')) {
       return ['datasheet']
     }
+    if (pathname.includes('/ai_artifacts')) {
+      return ['ai_artifacts']
+    }
     return undefined
   }
   const menuItems: MenuItem[] = [{
@@ -73,6 +77,12 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     key: 'datasheet',
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
+  })
+
+  campaignPermissions.viewAIArtifacts && menuItems.push({
+    key: 'ai_artifacts',
+    icon: <RobotOutlined />,
+    label: I18n.t('admin.ai_artifacts'),
   })
 
   campaignPermissions.manageAdmins && menuItems.push({

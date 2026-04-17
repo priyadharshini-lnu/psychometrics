@@ -9,9 +9,13 @@ import { FactorsTable } from './FactorsTable'
 import { FactorsFilter } from './FactorsFilter'
 import { RemoveFactorModal } from './RemoveFactorModal'
 import { FactorTR } from '~/modules/admin/modules/campaigns/core/factors'
+import { FactorsImportModal } from './FactorsImportModal'
+import { FactorTranslationsModal } from './FactorTranslationsModal'
 
 const MODALS = {
   FactorsFormModal,
+  FactorsImportModal,
+  FactorTranslationsModal,
   RemoveFactorModal,
 }
 
@@ -34,6 +38,7 @@ const FactorsList: React.FC<PropsFromRedux> = ({ openModal }) => {
     responseType: FactorTR,
     apiConfig: {
       include: ['sub_factors'],
+      include_resource_meta: ['permissions'],
     },
   }
 

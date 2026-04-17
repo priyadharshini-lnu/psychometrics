@@ -16,6 +16,7 @@ import lighthouseLogo from '~/assets/tte-logo-no-text-raster.png'
 import { useIsProctored } from '~/hooks/useProctoringState'
 
 import { PageFooter } from '~/glint'
+import { ManageCookiesButton } from '~/components/ManageCookiesButton'
 import styles from './styles.less'
 
 const { I18n } = window
@@ -111,6 +112,7 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
           {I18n.t('shared.cookie_notice')}
         </Button>
         {privacyLink}
+        <ManageCookiesButton />
       </Space>
     </Space>
   )

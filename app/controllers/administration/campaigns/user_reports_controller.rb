@@ -16,7 +16,7 @@ module Administration
       before_action :pundit_authorize
 
       async_request :translate, handler: ::AI::Translations::UserReport,
-                  permit_params: ->(params) { params.permit! }
+                  permit_params: ->(params) { permit_translate_params(params) }
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
@@ -217,6 +217,11 @@ module Administration
       end
 
       private
+
+      def permit_translate_params(params)
+        texts_hash = params[:texts].present? ? params[:texts].to_unsafe_h : {}
+        params.permit(:lang).merge(texts: texts_hash)
+      end
 
       def meta_data
         {

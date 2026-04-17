@@ -21,6 +21,7 @@ react_dev:
   assessments: false
 privacy_url: <%= ENV.fetch('PRIVACY_URL', 'https://thetalententerprise.com/privacy-statement/') %>
 terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-service/') %>
+osano_enabled: <%= ENV.fetch('OSANO_ENABLED', 'true') == 'true' %>
 osano_key: <%= ENV.fetch('OSANO_KEY', '16CFuWSuPfE35eNP/8292079f-6816-474d-acf8-0a6feed3b869') %>
 short_url_host: <%= ENV.fetch('SHORT_URL_HOST', nil) %>
 oac:
@@ -64,6 +65,7 @@ features:
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
   norm_editor_new_ui: <%= ENV.fetch('NORM_EDITOR_NEW_UI', 'false') == 'true' %>
   dimensions_react_ui: <%= ENV.fetch('DIMENSIONS_REACT_UI', 'false') == 'true' %>
+  libraries_react_ui: <%= ENV.fetch('LIBRARIES_REACT_UI', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
   skip_session_limitable: <%= ENV.fetch('SKIP_SESSION_LIMITABLE', 'false') == 'true' %>
@@ -2618,7 +2620,7 @@ ai_embedding_provider:
 
 ai_transcription_provider:
   provider: <%= ENV.fetch('TRANSCRIPTION_PROVIDER', 'oci') %>
-  model: <%= ENV.fetch('TRANSCRIPTION_MODEL', 'WHISPER_MEDIUM') %>
+  model: <%= ENV.fetch('TRANSCRIPTION_MODEL', 'WHISPER_LARGE_V3T') %>
 
 # Default SMTP throttling limits used when a project has no SMTP setting
 smtp_default:

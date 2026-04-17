@@ -118,4 +118,8 @@ RSpec.describe Api::V2::Administration::CampaignsController, type: :request do
       end
     end
   end
+
+  describe 'taggable API endpoints' do
+    include_examples 'taggable API endpoints', Campaign
+  end
 end

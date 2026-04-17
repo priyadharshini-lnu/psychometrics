@@ -2,6 +2,7 @@ export default interface UserReport {
   id: number
   name: string
   reportId: number
+  assessmentIds?: number[]
   userAccess: boolean
   reportFamilyName: string
   reportProvider: string
@@ -14,6 +15,7 @@ export default interface UserReport {
   effectiveDefaultLanguage: string
   reportIconUrl: string | null
   reportDownloadUrls: Record<string, string>[]
+  status?: string
   approvalStatus: 'not_ready' | 'pending_qc' | 'qc_in_progress' | 'qc_completed' | 'change_requested' | 'approved'
   permissions: {
     downloadReport: boolean

@@ -12,6 +12,11 @@ cs:
     ai_idp_summary_hint_no_document: S vaším svolením, pokud řeknete ano, mohu pro vás vytvořit plán rozvoje. Pokud ne, můžete chat znovu spustit a sdílet více detailů.
     all_checks_must_pass: Než budete moci pokračovat, musí být všechny kontroly úspěšné.
     approve_idp_plan: Schválit plán
+    audio: Zvuk
+    audio_check: Test mikrofonu
+    audio_check_description: Zkontrolujte, zda váš mikrofon správně funguje pro nahrávání
+    audio_recording: Zvukový záznam
+    audio_test_step: Krok pro test zvuku
     back: Zpět
     back_to_dashboard: Zpět na hlavní stránku
     before_you_begin: Než začnete
@@ -24,29 +29,48 @@ cs:
     browser_compatibility_check: Test kompatibility s prohlížeči
     browser_compatibility_check_description: Zkontrolujte, zda váš prohlížeč podporuje všechny požadované funkce
     browser_compatibility_result: Kompatibilita s prohlížeči
+    browser_compatible: Váš prohlížeč %{browser_name} verze %{browser_version} je s touto kampaní kompatibilní.
+    browser_compatible_detail: Používáte verzi prohlížeče %{browser_name} (%{browser_version}), která splňuje minimální požadavky této kampaně.
+    browser_incompatible_detail: Používáte verzi %{browser_name} %{browser_version}. Pro zajištění kompatibility prosím aktualizujte svůj %{browser_name} na verzi %{min_browser_version}.
+    browser_not_compatible: Váš prohlížeč %{browser_name} není s touto kampaní kompatibilní. Pro optimální fungování použijte nejnovější verzi prohlížeče Chrome, Firefox, Safari nebo Edge.
+    browser_not_compatible_description: Pro optimální fungování webu používejte nejnovější verze prohlížečů Chrome, Firefox, Safari nebo Edge.
+    browser_not_compatible_detail: Váš prohlížeč %{browser_name} není s touto kampaní kompatibilní. Pro optimální fungování použijte nejnovější verzi prohlížeče Chrome, Firefox, Safari nebo Edge.
     browser_version_fix_description_first: 'Použijte některý z podporovaných prohlížečů: Chrome, Firefox, Edge nebo Safari'
-    browser_version_fix_description_second: Aktualizujte svůj prohlížeč na nejnovější verzi, abyste zajistili kompatibilitu.
-    browser_version_fix_description_third: Zkuste použít okno v anonymním/soukromém režimu
     browser_version_fix_title: Vaše verze prohlížeče není podporována.
     camera: Video a audio
     camera_access_blocked: Váš prohlížeč odepřel nebo zablokoval přístup k webové kameře. Zkontrolujte prosím oprávnění ve svém prohlížeči.
     camera_check: Test kamery a mikrofonu
+    camera_check_abruptly_ended: Kamera byla náhle vypnuta. Zapněte prosím kameru a zkontrolujte to znovu.
     camera_check_description: Zkontrolujte, zda kamera a mikrofon správně fungují pro nahrávání
+    camera_check_passed: Kontrola obrazu a zvuku proběhla úspěšně
     camera_test_step: Krok pro testování obrazu a zvuku
     campaign: Kampaň
+    campaign_check_status: 'Stav: %{status}'
     chat_instructions: Pokyny k chatu
     check: Zkontrolovat
     check_video_recording: Zkontrolujte prosím svůj videozáznam jeho přehráním.
     checking_browser_compatibility: Zjišťuji kompatibilitu prohlížeče...
+    checking_latency: Zjišťuji latenci...
+    could_not_reach_servers: Při ověřování rychlosti připojení se nepodařilo navázat spojení s našimi servery. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
+    day: den
+    day_plural: dny
+    details: Podrobnosti
     development: Vývoj
     direct_reportees: Přímí zástupci
     download: Stáhnout
     download_pdf: Stáhněte si PDF
+    download_speed_below_minimum: Rychlost stahování %{download_speed} je nižší než minimální požadovaná rychlost stahování %{minimum_download_speed} Mbps
     environment_setup: Nastavení prostředí
+    error_uploading_audio: Chyba při nahrávání zvuku
+    error_uploading_audio_detail: Při nahrávání zvukového souboru došlo k chybě
     error_uploading_video: Chyba při nahrávání videa
+    error_uploading_video_detail: Při nahrávání videa došlo k chybě
     fail: Neúspěch
     follow_these_steps: Postupujte podle následujících kroků, abyste vyřešili problémy zjištěné při kontrole systému
+    hide_details: Skrýt podrobnosti
     home: Přístrojová deska
+    hour: hodina
+    hour_plural: hodiny
     how_to_fix: 'Jak to opravit:'
     idp_loading_fifth_step: Načítání vývojových akcí ze šablony
     idp_loading_first_step: Analýza vaší hodnotící zprávy
@@ -59,6 +83,7 @@ cs:
     idp_report_being_generated: Pracujeme na vaší zprávě
     idp_reset_chat: Vynulovat chat
     idp_retake_steps_continue_with_this_information: Pokračujte s těmito informacemi
+    initializing: Probíhá inicializace...
     insights: Poznatky
     instruction: Ujistěte se, že jste vy i vaše okolí dokonale připraveni
     internet_speed: Rychlost internetu
@@ -68,14 +93,20 @@ cs:
     lighthouse_assistant: Asistent majáku
     localstorage_fix_description_first: Ujistěte se, že nepoužíváte režim soukromého prohlížení nebo anonymního prohlížení, protože v těchto režimech je často funkce localStorage deaktivována.
     localstorage_fix_title: Ve vašem prohlížeči není povoleno lokální úložiště
+    localstorage_not_enabled_detail: Ve vašem prohlížeči není povoleno lokální úložiště. Ujistěte se prosím, že nepoužíváte režim soukromého prohlížení, protože v těchto režimech bývá lokální úložiště často zakázáno.
     localstorage_support: Funkce LocalStorage je povolena
     max_word_limit: Musí mít maximálně %{max} slov
     media_recorder_api_fix_description_first: V nastavení prohlížeče povolte JavaScript
     media_recorder_api_fix_description_second: Zkontrolujte, zda váš prohlížeč podporuje rozhraní MediaRecorder API, a v případě potřeby proveďte aktualizaci na nejnovější verzi.
-    media_recorder_api_fix_description_third: Zkuste jiný moderní prohlížeč, například Chrome nebo Firefox
     media_recorder_api_fix_title: Váš prohlížeč nepodporuje rozhraní Media Recorder API.
+    media_recorder_api_not_supported_detail: Používáte prohlížeč %{browser_name} ve verzi %{browser_version}, který nepodporuje rozhraní MediaRecorder API. Pro zajištění kompatibility prosím aktualizujte prohlížeč na nejnovější verzi.
     media_recorder_api_support: Podpora rozhraní API MediaRecorder
+    microphone_access_blocked: Váš prohlížeč odepřel nebo zablokoval přístup k mikrofonu. Zkontrolujte prosím oprávnění ve svém prohlížeči.
+    microphone_check_passed: Zkouška mikrofonu proběhla úspěšně
     min_word_limit: Musí mít nejméně %{min} slov
+    minimum_speed_requirements: Pro tuto akci je vyžadována minimální rychlost stahování %{minimum_download_speed} Mbps a minimální rychlost nahrávání %{minimum_upload_speed} Mbps.
+    minute: minuta
+    minute_plural: zápis
     my_plan: Můj plán
     network: Síť
     network_check: Test rychlosti internetu
@@ -85,8 +116,9 @@ cs:
     network_check_fix_fourth: Zkuste použít jiné síťové připojení, pokud je k dispozici
     network_check_fix_second: Přejděte blíže k routeru Wi-Fi nebo se připojte pomocí ethernetového kabelu
     network_check_fix_third: Restartujte router/modem a zkuste to znovu
+    network_speed_meets_required_detail: Vaše rychlost internetového připojení splňuje minimální požadavky této kampaně
     network_test_step: Krok testování sítě
-    no_audio_warning: Nebylo detekováno žádné zvukové zařízení. Zkontrolujte, zda je mikrofon připojen a správně funguje.
+    no_audio_detected: Nebylo zjištěno žádné zvukové zařízení. Zkontrolujte prosím, zda je mikrofon připojen a zda správně funguje.
     pass: Přeskočit
     pending: V řešení
     personal_readiness: Osobní připravenost
@@ -96,6 +128,7 @@ cs:
     profile_details: Detaily
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Důvod zamítnutí plánu
+    redirect_to_external_assessment: Budete přesměrováni na stránku s testem. Pokud chcete začít s testem, klikněte prosím na tlačítko „Pokračovat“.
     reject_idp_plan: Zamítnout plán
     request_retry_message: Jste offline. Vaše odpovědi nemohly být uloženy, ale automaticky se uloží, jakmile se vrátíte online. Prosím, neobnovujte ani nezavírejte stránku.
     required_download_in_mbps: Požadovaná rychlost stahování v Mbps
@@ -104,6 +137,8 @@ cs:
     rerun_checks: Opakované kontroly
     result: Výsledek
     results: Výsledek
+    safari_proctoring_description: Zdá se, že používáte prohlížeč Safari, který může mít určitá omezení, pokud jde o funkce sledování aktivované v rámci této kampaně. Pro co nejlepší zážitek doporučujeme používat prohlížeče Chrome nebo Firefox.
+    safari_proctoring_title: Zjištěn prohlížeč Safari
     selected_count: Vybrané stránky
     skill_type: Typ dovednosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
@@ -111,6 +146,7 @@ cs:
     start_campaign_message_timed_proctored: Jedná se o časově omezenou a dozorovanou kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_readiness_check: Spustit kontrolu připravenosti
     start_system_check: Spustit kontrolu systému
+    subinstruction_audio: Fungující mikrofon
     subinstruction_eight: Vyhraďte si na kompletní posouzení čas, během kterého vás nikdo nebude rušit
     subinstruction_five: Jste připraveni sdílet svou obrazovku po celou dobu relace?
     subinstruction_four: Fungující webová kamera a mikrofon
@@ -153,8 +189,16 @@ cs:
     system_checks: Kontroly systému
     task_duration: Doba trvání úkolu
     tasks: Úkoly
+    testing_download_speed: Testování rychlosti stahování...
+    testing_upload_speed: Testuji rychlost nahrávání...
     time_commitment: Časová náročnost
     troubleshooting_guide: Průvodce řešením problémů
+    troubleshooting_guide_audio_fifth: 'Ve Windows: Zkontrolujte nastavení ochrany osobních údajů > Přístup k mikrofonu'
+    troubleshooting_guide_audio_first: Klikněte na ikonu zámku/informací v adresním řádku prohlížeče
+    troubleshooting_guide_audio_fourth: Pokud se stránka nezobrazí, možná bude nutné obnovit oprávnění v nastavení prohlížeče
+    troubleshooting_guide_audio_second: Najděte nastavení „Mikrofon“ a nastavte je na „Povolit“
+    troubleshooting_guide_audio_sixth: 'Na počítači Mac: Přejděte do nabídky Předvolby systému > Zabezpečení'
+    troubleshooting_guide_audio_third: Po změně oprávnění stránku aktualizujte
     troubleshooting_guide_browser_fifth: Zkontrolujte, zda je ve vašem prohlížeči povoleno LocalStorage
     troubleshooting_guide_browser_first: 'Použijte některý z podporovaných prohlížečů: Chrome, Firefox, Edge nebo Safari (nejnovější verze)'
     troubleshooting_guide_browser_fourth: V nastavení prohlížeče povolte JavaScript a soubory cookie
@@ -174,6 +218,8 @@ cs:
     troubleshooting_guide_video_third: Po změně oprávnění stránku aktualizujte
     untimed: Bez časového limitu
     upload: Nahrát
+    upload_speed_below_minimum: Rychlost odesílání %{upload_speed} je nižší než minimální požadovaná rychlost odesílání %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video a audio
     video_and_audio_recording: Záznam videa a zvuku
     video_check_fix_fifth: Pokud máte externí kameru, zkuste ji odpojit a znovu připojit
@@ -182,7 +228,9 @@ cs:
     video_check_fix_second: Přejděte do nastavení prohlížeče a povolte této stránce přístup k fotoaparátu
     video_check_fix_sixth: Restartujte prohlížeč a zkuste to znovu
     video_check_fix_third: Ukončete ostatní aplikace, které využívají kameru (Zoom, Teams atd.)
+    view_details: Zobrazit podrobnosti
     webgl_api_fix_description_first: Ujistěte se, že váš prohlížeč podporuje WebGL a že je tato funkce v nastavení zapnutá
     webgl_api_fix_description_second: Aktualizujte ovladače grafické karty na nejnovější verzi
     webgl_api_fix_title: Váš prohlížeč nepodporuje nebo nemá povolenou technologii WebGL
     webgl_api_support: Podpora rozhraní WebGL API
+    webgl_not_supported_detail: Používáte prohlížeč %{browser_name} ve verzi %{browser_version}, který nepodporuje WebGL. Pro zajištění kompatibility prosím aktualizujte prohlížeč na nejnovější verzi.

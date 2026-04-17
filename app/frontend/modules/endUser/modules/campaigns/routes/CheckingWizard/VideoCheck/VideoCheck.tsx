@@ -334,13 +334,13 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       {
          ['idle', 'recording'].includes(status)
         && (
-          <>
+          <div style={{ maxWidth: '620px', textAlign: 'center' }}>
             <h3 className={styles.testMessage}>
               &#8220;
               {state.speechTestText}
               &#8221;
             </h3>
-          </>
+          </div>
         )
       }
       <VideoPlayer

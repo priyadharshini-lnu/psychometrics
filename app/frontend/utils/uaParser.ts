@@ -100,3 +100,19 @@ const getSupportedBrowsersFromList = (
 
   return supportedBrowsers
 }
+
+const exactBrowserVersionCache = { version: null as string | null }
+
+export const getExactBrowserVersion = async () => {
+  if (exactBrowserVersionCache.version) {
+    return exactBrowserVersionCache.version
+  }
+
+  const res = await uaParser.getBrowser().withClientHints()
+  exactBrowserVersionCache.version = res.version ?? null
+  return exactBrowserVersionCache.version
+}
+
+export const getExactBrowserVersionSync = () => exactBrowserVersionCache.version
+
+getExactBrowserVersion()

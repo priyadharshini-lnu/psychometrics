@@ -19,6 +19,7 @@ export const DimensionTR = t.type({
     t.type({
       permissions: t.type({
         copy: t.boolean,
+        exportJson: t.boolean,
       }),
     }),
     t.undefined,

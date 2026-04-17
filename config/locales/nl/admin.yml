@@ -8,6 +8,7 @@ nl:
     add_campaign_admin: Campagne-admin toevoegen
     add_client_admin: Client-admin toevoegen
     add_indicator: Indicator toevoegen
+    add_new_folder: Nieuwe map toevoegen
     add_project: Project toevoegen
     add_project_admin: Projectbeheerder toevoegen
     add_threesixty_campaign_admin: Campagne-admin toevoegen
@@ -45,13 +46,17 @@ nl:
     ai_assistants: AI assistenten
     ai_assistants_advanced_mode_tooltip: Gebruik de geavanceerde modus voor prompt-templates met vloeibare template en beschikbare variabelen. Raadpleeg de documentatie voor meer details.
     ai_assistants_campaign_id_placeholder: Voer campagne-ID in
+    ai_assistants_cannot_change_type_when_in_use: Het type AI-assistent '%{name}' kan niet worden gewijzigd omdat deze momenteel in gebruik is.
     ai_assistants_no_rendered_output: Geen gerenderde output beschikbaar
+    ai_assistants_provider_change_confirm_title: Van aanbieder veranderen?
+    ai_assistants_provider_previously_used_warning: Deze assistent heeft eerder resultaten gegenereerd met "%{from}". Als u dit wijzigt in "%{to}", kan dit het gedrag van de assistent bij toekomstige generatieverzoeken beïnvloeden.
     ai_assistants_render_button: Rendertemplate
     ai_assistants_rendered_prompt: Gerenderde prompt
     ai_assistants_template_and_campaign_required: Geef zowel het sjabloon als de campagne-ID
     ai_assistants_template_render_failed: Sjabloon niet kunnen renderen
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
+    ai_assistants_type_locked_tooltip: Deze assistent is momenteel in gebruik en het type kan niet worden gewijzigd.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP is uitgeschakeld door de klant
     ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
     ai_idp_assistant_configure_dependencies: AI-afhankelijkheden configureren
@@ -85,6 +90,19 @@ nl:
     ai_scoring_appoval_responses: AI-reacties
     ai_scoring_appoval_score_not_applicable: Score niet van toepassing
     ai_scoring_approval: Goedkeuring van AI-scores
+    ai_scoring_approval_digest_mailer_access_link_intro: 'U kunt de goedkeuringen van de scores via de volgende link bekijken:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: De volgende scores zijn goedgekeurd.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: U ontvangt deze e-mail omdat u bent toegevoegd als contactpersoon voor het ontvangen van meldingen over goedkeuring van scores.
+    ai_scoring_approval_digest_mailer_approved_subject: Scores goedgekeurd
+    ai_scoring_approval_digest_mailer_assessment_label: 'Beoordeling: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: De volgende beoordelingen zijn klaar voor goedkeuring en vereisen uw actie.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: U ontvangt deze e-mail omdat u bent toegevoegd als goedkeurder voor de beoordelingen, die moeten worden goedgekeurd.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Scores in afwachting van goedkeuring
+    ai_scoring_approval_digest_mailer_campaign_label: 'Campagne: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Aantal doelpunten: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Beste %{name},
+    ai_scoring_approval_digest_mailer_link_text: Goedkeuringen toekennen
+    ai_scoring_approval_digest_mailer_project_label: 'Project: %{value}'
     ai_scoring_approval_settings: Instellingen voor goedkeuring van AI-scores
     ai_scoring_approval_stale_description: Configuratie-updates sinds de laatste uitvoering kunnen de score hebben gewijzigd. Voer een nieuwe beoordeling uit om de score bij te werken met de nieuwste instellingen.
     ai_scoring_approval_stale_title: De score is mogelijk verouderd
@@ -136,6 +154,7 @@ nl:
     bulk_assets_modal_title: CSV- en ZIP-bestanden uploaden
     bulk_upload_ai_artifacts: Bulk upload AI-artefacten
     campaign_ai_artifact_updated_successfully: Campagne-AI-artefacten worden succesvol bijgewerkt
+    campaign_ai_artifacts_instruction_templating_tooltip: Je kunt geavanceerde opdrachten gebruiken door middel van prompt-sjablonen met Liquid-sjabloonsyntaxis en beschikbare variabelen. Raadpleeg de documentatie voor meer informatie.
     campaign_ai_artifacts_results_export_details: Campagne AI-artefacten hebben resultaten opgeleverd
     campaign_assessment_actions_disable_caching: Uitschakel beoordelingscaching
     campaign_assessment_actions_enable_caching: Mogelijk maken van beoordelingscachen mogelijk
@@ -161,6 +180,24 @@ nl:
     campaign_assessment_modals_enable_caching_title: Assessment caching mogelijk maken?
     campaign_factors: Campagne factoren
     campaign_name: Campagnenaam
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Extern rapport-ID
+          language_id: Taalcode
+          norm: Norm
+          norm_id: Norm-ID
+          suitability_id: Geschiktheids-ID
+        labels:
+          assessment_ids: Beoordelings-ID's
+          available_languages: Beschikbare talen
+          campaign_report_id: Campagneverslag-ID
+          check_details: Bekijk de details
+          default_language: Standaardtaal
+          external_settings: Externe instellingen
+          provider: Aanbieder
+          report_pdf_status: Status van het rapport (PDF)
+          user_report_id: Gebruikersrapport-ID
     campaign_templates: Campagnesjablonen
     campaign_user_job_roles_cannot_be_same: De beoogde functie moet verschillen van de huidige functie.
     campaigns: Campagnes
@@ -183,7 +220,9 @@ nl:
     configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
     copied: Gekopieerd
+    copied_url_success: De URL is succesvol naar het klembord gekopieerd
     copy_ai_artifacts: AI-artefacten kopiëren
+    copy_image_url: URL van afbeelding kopiëren
     country: Land
     create_client: Klant maken
     create_indicator: Indicator aanmaken
@@ -221,6 +260,7 @@ nl:
       thursday: donderdag
       tuesday: dinsdag
       wednesday: woensdag
+    dimension_translations_export_scheduled: De vertalingen voor de dimensie '%{name}' staan gepland om te worden geëxporteerd.
     dimensions: Afmetingen
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
@@ -228,9 +268,11 @@ nl:
     duration: Duur
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
+    edit_folder: Map bewerken
     edit_indicator: Indicator bewerken
     edit_job_roles: Functies bewerken
     edit_level: Bewerk niveau
+    edit_media: Media bewerken
     edit_permission_denied: Je hebt geen toestemming om admin-'%{name}' te bewerken
     edit_project_admin: Projectbeheer bewerken
     edit_threesixty_campaign_admin: Campagnebeheer bewerken
@@ -272,6 +314,8 @@ nl:
     feature_global_skills_description: Toegang tot de wereldwijde vaardighedenbibliotheek voor beoordelingen
     feature_idp_description: Individuele ontwikkelingsplanning voor deelnemers inschakelen
     feature_sms_notification_description: SMS-meldingen inschakelen voor campagne-uitnodigingen en herinneringen
+    file_size_must_be_less_than_mb: Het bestand {{name}} overschrijdt de maximale grootte van {{max_size_mb}} MB
+    file_upload_failed: Het uploaden van {{name}} is mislukt
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
     final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
     final_score_empty_msg: Het eindresultaat mag niet leeg zijn.
@@ -351,6 +395,8 @@ nl:
     maintenance_settings_description: Beheer onderhoudsvensters en instellingen van het systeem
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
     max_value: Maximale waarde
+    media_files_label: Bestanden
+    media_library: Mediabibliotheek
     messages: Berichten
     mhs: MHS
     mhs_assessment: MHS-beoordeling
@@ -370,6 +416,7 @@ nl:
     name: Naam
     name_max_length: De naam mag niet langer zijn dan %{length} tekens.
     name_required: Naam is vereist
+    new_folder: Nieuwe map
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
     no_status: Geen status
@@ -832,9 +879,15 @@ nl:
     questions: Vragen
     range_min_max: ASSORTIMENT %{min} - %{max}
     reflection_questions: Reflectie vragen
+    regenerate_transcriptions_action: Transcripties opnieuw genereren
+    regenerate_transcriptions_confirm_content: Weet u zeker dat u de transcripties voor deze beoordeling opnieuw wilt genereren? Hierdoor worden alle onvolledige transcripties opnieuw verwerkt.
+    regenerate_transcriptions_confirm_title: Transcripties opnieuw genereren
+    regenerate_transcriptions_scheduled: De taak voor het opnieuw genereren van transcripties is succesvol ingepland
     registration_codes: Registratiecodes
     registration_settings: Registratie-instellingen
     remove_children_to_change_type: Verwijder alle kinderen om het type te wijzigen
+    remove_confirmation: Weet u zeker dat u dit item wilt verwijderen?
+    remove_successfully: Het media-item is succesvol verwijderd.
     report_approvals: Goedkeuringen
     report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
     report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
@@ -938,7 +991,9 @@ nl:
     scoring_approval_approvers: Goedkeurders
     scoring_approval_assessment: Beoordeling
     scoring_approval_assessor_users: Beoordelaars Gebruikers
+    scoring_approval_do_not_send_notifications: Geen meldingen versturen
     scoring_approval_modal_title: Instellingen voor goedkeuring van scores
+    scoring_approval_notification_users: Gebruikers van goedkeuringsmeldingen
     scoring_approval_remove_modal_success: 'De goedkeuringsinstelling voor beoordelings-id: %{assessmentId} is succesvol verwijderd.'
     scoring_approval_remove_modal_text: 'Weet u zeker dat u deze instelling voor beoordelings-id: %{assessmentId} wilt verwijderen?'
     scoring_supported_only_for_ai_questions: Scoren is alleen toegestaan op AI-vragen voor de momenteel geselecteerde factor.
@@ -995,7 +1050,12 @@ nl:
     translated_to: 'Vertaald naar:'
     translated_with_ai_notice: AI vertaald
     translation_assistant_not_configured: Vertaalassistent niet geconfigureerd
+    translations:
+      title: Vertalingen
     update_success: "%{readableResourceName} is succesvol bijgewerkt"
+    upload: Uploaden
+    upload_media: Media uploaden
+    upload_required: Voeg ten minste één bestand toe om te uploaden
     upload_success: Succesvol geüpload
     user_report_events: Gebeurtenissen gebruikersrapport
     users: Gebruikers
@@ -1004,6 +1064,7 @@ nl:
     very_high: Zeer hoog
     very_low: Zeer laag
     view_licenses: Licenties bekijken
+    wait_for_upload_completion: Wacht even tot alle bestanden zijn geüpload
     waiting: Wachten
     weight: Gewicht
     what_to_look_for: Waar u op moet letten

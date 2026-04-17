@@ -8,7 +8,8 @@ module EndUser
                :assessment_extra, :assessment_id, :available_locales,
                :selected_locale, :privacy_consent_required, :campaign_id,
                :custom_consent_text, :custom_consent_policy_version, :data_role,
-               :is_data_controller
+               :is_data_controller, :instructions, :started_at, :current_campaign_expiry_date,
+               :piped_text_mapping, :locale_data, :custom_acknowledgment_text
 
     def privacy_consent_required
       return true if is_data_controller
@@ -17,7 +18,15 @@ module EndUser
     end
 
     def custom_consent_text
+      return unless is_data_controller
+
       object.assessment.custom_consent_text
+    end
+
+    def custom_acknowledgment_text
+      return unless is_data_controller
+
+      object.assessment.custom_acknowledgment_text
     end
 
     def custom_consent_policy_version
@@ -64,6 +73,14 @@ module EndUser
       extra.merge(audio_and_video_check_data)
     end
 
+    def current_campaign_user
+      campaign.campaign_users.find_by(user_id: current_user.id) if current_user
+    end
+
+    def current_campaign_expiry_date
+      current_campaign_user&.real_expiry_date
+    end
+
     def timing
       object.assessment.timing
     end
@@ -72,7 +89,49 @@ module EndUser
       object.assessment.category
     end
 
+    def instructions
+      object.assessment&.instructions
+    end
+
+    def piped_text_mapping
+      if generate_piped_text_mapping?
+        object.assessment.generate_piped_text_mapping_for_instructions(piped_text_context)
+      end
+    end
+
+    def locale_data
+      {
+        code: locale,
+        name: I18n.t("languages.#{locale}"),
+        direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
+      }
+    end
+
     private
+
+    def campaign
+      context[:campaign]
+    end
+
+    def current_user
+      context[:current_user]
+    end
+
+    def piped_text_context
+      context[:piped_text_context] || {}
+    end
+
+    def generate_piped_text_mapping?
+      context[:generate_piped_text_mapping] || false
+    end
+
+    def current_participant
+      context[:participant]
+    end
+
+    def locale
+      context[:locale] || object.selected_locale || I18n.default_locale
+    end
 
     def has_question_type(type)
       available_questions = object.assessment.questions.not_deleted.uniq { |q| q[:type] }

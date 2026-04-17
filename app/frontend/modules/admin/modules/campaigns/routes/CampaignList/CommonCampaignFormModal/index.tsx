@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {
-  Form, Input, Select, DatePicker, Alert, Space, Switch,
+  Form, Input, Select, DatePicker, Alert, Space, Switch, Spin,
 } from 'antd'
 import _ from 'lodash'
 import dayjs from '~/utils/dayjs'
 import { STATUSES, TYPES } from '~/constants/campaign'
 import ResourceFormModal from '~/components/ResourceFormModal'
+import { useResources } from '~/hooks/useResources'
+import { Tag } from '~/modules/admin/core/tags'
+import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 
 const { I18n } = window
 const { Option } = Select
@@ -19,6 +22,7 @@ interface Props {
     startDate?: Date,
     endDate?: Date,
     isFixedTime: boolean,
+    tagList?: string[],
   }
 }
 
@@ -31,12 +35,30 @@ const notices = {
   inactive: I18n.t('administration.campaigns.form.inactive_notice'),
 }
 
+const MAX_TAG_BATCH_SIZE = 100
+
 const CommonCampaignFormModal: React.FC<Props> = ({
   projectId,
   close,
   campaign,
 }) => {
   const [notice, setNotice] = useState<string | null>(null)
+
+  const {
+    data: tags, fetch: fetchTags, isLoading: isTagsLoading,
+  } = useResources<Tag>('tags', {
+    apiConfig: { query: { taggable_resource_type: TaggableResourceType.Campaign } },
+  })
+
+  const debouncedFetchTags = useCallback(_.debounce((value) => {
+    fetchTags({
+      apiConfig: {
+        filter: { name_cont: value },
+        fields: { tags: ['name'] },
+        page: { size: MAX_TAG_BATCH_SIZE },
+      },
+    })
+  }, 300), [])
 
   useEffect(() => {
     if (campaign && campaign.isFixedTime) setNotice(notices[campaign.status])
@@ -69,7 +91,10 @@ const CommonCampaignFormModal: React.FC<Props> = ({
       showSuccessMessages
       close={close}
       modalProps={{ width: 550 }}
-      formProps={{ initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON }, onValuesChange: handleValuesChange }}
+      formProps={{
+        initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON, tagList: campaign?.tagList || [] },
+        onValuesChange: handleValuesChange,
+      }}
       transformValues={transformValues}
     >
       {() => (
@@ -113,6 +138,22 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             extra={isEdit ? I18n.t('admin.only_editable_on_create') : ''}
           >
             <Switch disabled={isEdit} />
+          </Form.Item>
+          <Form.Item
+            name="tagList"
+            label={I18n.t('common.column.tags')}
+          >
+            <Select
+              mode="tags"
+              style={{ width: '100%' }}
+              placeholder={I18n.t('common.column.tags')}
+              showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
+              notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+            >
+              {tags.map(({ name }) => (
+                <Select.Option key={name} value={name}>{name}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
           <Space>
             {notice && <Alert message="Note" description={notice} type="warning" showIcon />}

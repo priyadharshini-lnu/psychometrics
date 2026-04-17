@@ -288,4 +288,33 @@ describe Campaign, type: :model do
       end
     end
   end
+
+  describe 'tagging' do
+    let!(:superadmin) { create(:superadmin) }
+
+    before do
+      set_current_user(superadmin)
+    end
+
+    it 'can be tagged' do
+      campaign.add_tag('important')
+      campaign.save
+      expect(campaign.reload.all_tags_list).to include('important')
+    end
+
+    it 'can remove a tag' do
+      campaign.add_tag('removable')
+      campaign.save
+      campaign.reload
+
+      campaign.remove_tag('removable')
+      expect(campaign.reload.all_tags_list).not_to include('removable')
+    end
+
+    it 'scopes tags by project_id' do
+      campaign.add_tag('scoped-tag')
+      campaign.save
+      expect(campaign.taggings.last.tenant).to eq(campaign.project_id.to_s)
+    end
+  end
 end

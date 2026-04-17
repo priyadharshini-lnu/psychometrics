@@ -1,7 +1,10 @@
 import {
-  Divider, Flex, Typography, Button, Space, Popconfirm,
+  Flex, Typography, Button, Space, Popconfirm,
 } from 'antd'
 import _ from 'lodash'
+import {
+  useCallback, useEffect, useRef, useState,
+} from 'react'
 import { ReloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './ScoreReview.less'
@@ -9,6 +12,11 @@ import { VideoPreview } from './components/VideoPreview'
 import { AudioPreview } from './components/AudioPreview'
 import { CompetencyRow } from './components/CompetencyRow'
 import { AIEditorIcon } from '~/glint/icons/AIEditorIcon'
+import type { HighlightAnchor, TranscriptionSegment } from '../../core'
+import {
+  formatTimestamp,
+  renderHighlightedText,
+} from './utils'
 
 const { I18n } = window
 
@@ -17,10 +25,38 @@ const QuestionTypes = {
   AudioResponse: AudioPreview,
 }
 
+const TranscriptSegments = ({ segments, anchors }: {
+  segments: TranscriptionSegment[]
+  anchors: HighlightAnchor[]
+}) => (
+  <Flex vertical gap={2}>
+    {segments.map((segment, i) => {
+      const segmentAnchors = anchors.filter(a => a.segmentIndex === i)
+      return (
+        <div key={i} className={styles.transcriptSegment}>
+          <Typography.Text
+            type="secondary"
+            className={styles.segmentTimestamp}
+          >
+            {`[${formatTimestamp(segment.startTime)} - ${formatTimestamp(segment.endTime)}]`}
+          </Typography.Text>
+          <Typography.Text>
+            {renderHighlightedText(segment.text, segmentAnchors)}
+          </Typography.Text>
+        </div>
+      )
+    })}
+  </Flex>
+)
+
 export const QuestionScore = ({
   question, competencies, indicators, result, mediaResponse, overrideScore, approveQuestion, discardScore,
-  nextQuestion, lastQuestion, approved, allowApprove, discardQuestion,
+  nextQuestion, lastQuestion, approved, allowApprove, discardQuestion, highlightAnchors,
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const playerRef = useRef<any>(null)
+  const videoContainerRef = useRef<HTMLDivElement>(null)
+  const [playingCitationKey, setPlayingCitationKey] = useState<string | null>(null)
   const QuestionPreview = QuestionTypes[question.type]
 
   const getCompetency = factorId => competencies.find(c => c.factorId.toString() === factorId)
@@ -33,6 +69,45 @@ export const QuestionScore = ({
 
   const questionCompetencis = competencies.filter(c => c.questionId === question.id)
 
+  const isMediaQuestion = question.type === 'VideoResponse' || question.type === 'AudioResponse'
+  const segments: TranscriptionSegment[] = mediaResponse?.[0]?.transcriptionSegments || []
+  const hasSegments = segments.length > 0
+  const anchors: HighlightAnchor[] = highlightAnchors || []
+
+  const seekTo = useCallback((seconds: number) => {
+    const player = playerRef.current?.player
+    if (!player) return
+
+    const citationKey = `${seconds}`
+    if (playingCitationKey === citationKey) {
+      player.pause()
+      setPlayingCitationKey(null)
+    } else {
+      videoContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      player.currentTime(seconds)
+      player.play()
+      setPlayingCitationKey(citationKey)
+    }
+  }, [playingCitationKey])
+
+  useEffect(() => {
+    const player = playerRef.current?.player
+    if (!player) return undefined
+
+    const onPause = () => setPlayingCitationKey(null)
+    const onEnded = () => setPlayingCitationKey(null)
+
+    player.on('pause', onPause)
+    player.on('ended', onEnded)
+
+    return () => {
+      player.off('pause', onPause)
+      player.off('ended', onEnded)
+    }
+  }, [playerRef.current?.player])
+
+  const onSeek = isMediaQuestion ? seekTo : undefined
+
   return (
     <Flex vertical gap={24}>
       <Flex vertical gap={8} align="center">
@@ -42,11 +117,14 @@ export const QuestionScore = ({
         </Flex>
 
         {QuestionPreview && (
-          <QuestionPreview
-            question={question}
-            mediaResponse={mediaResponse?.[0]}
-            result={result}
-          />
+          <div ref={videoContainerRef}>
+            <QuestionPreview
+              question={question}
+              mediaResponse={mediaResponse?.[0]}
+              result={result}
+              playerRef={question.type === 'VideoResponse' ? playerRef : undefined}
+            />
+          </div>
         )}
       </Flex>
 
@@ -55,7 +133,6 @@ export const QuestionScore = ({
           <AIEditorIcon style={{ color: 'var(--ant-primary-color)', fontSize: 22 }} />
           {I18n.t('admin.ai_scoring_appoval_responses')}
         </Space>
-        <Divider size="small" />
       </Typography.Title>
       <Flex gap={24} align="flex-start">
         <Flex vertical flex={1} gap={16} style={{ maxWidth: '50%' }}>
@@ -73,6 +150,8 @@ export const QuestionScore = ({
                   approved={approved}
                   allowApprove={allowApprove}
                   isFirst={index === 0}
+                  onSeek={onSeek}
+                  playingCitationKey={playingCitationKey}
                 />
               )
             })}
@@ -87,6 +166,8 @@ export const QuestionScore = ({
                 approved={approved}
                 allowApprove={allowApprove}
                 isFirst={_.isEmpty(groupedIndicators) && index === 0}
+                onSeek={onSeek}
+                playingCitationKey={playingCitationKey}
               />
             ))}
           </Space>
@@ -94,17 +175,24 @@ export const QuestionScore = ({
 
         <Flex vertical flex={1} gap={16} className={styles.stickyTranscription}>
           <div className={styles.transcriptionContainer}>
-            {(question.type === 'VideoResponse' || question.type === 'AudioResponse') && (
+            {isMediaQuestion && (
               <>
                 <Typography.Title level={5}>
                   {I18n.t('shared.transcription')}
                 </Typography.Title>
                 <div className={styles.transcriptionText}>
-                  <SafeHTML html={
-                    mediaResponse?.[0]?.transcriptionText
-                    || I18n.t('admin.ai_score_approval_no_transcription')
-                  }
-                  />
+                  {hasSegments ? (
+                    <TranscriptSegments
+                      segments={segments}
+                      anchors={anchors}
+                    />
+                  ) : (
+                    <SafeHTML html={
+                      mediaResponse?.[0]?.transcriptionText
+                      || I18n.t('admin.ai_score_approval_no_transcription')
+                    }
+                    />
+                  )}
                 </div>
               </>
             )}

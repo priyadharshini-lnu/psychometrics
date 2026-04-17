@@ -17,6 +17,10 @@ export const ProjectPrivacySettingsTR = t.type({
     text: t.union([t.string, t.null]),
   })),
   customPrivacyPolicyVersion: t.union([t.number, t.null]),
+  customPrivacyAcknowledgmentTexts: t.array(t.type({
+    locale: t.string,
+    text: t.union([t.string, t.null]),
+  })),
   privacyLinkText: t.union([t.string, t.null]),
   privacyLinkUrl: t.union([t.string, t.null]),
   enablePrivacyLink: t.boolean,

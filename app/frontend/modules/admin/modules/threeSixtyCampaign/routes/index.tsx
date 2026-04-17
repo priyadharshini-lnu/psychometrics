@@ -3,6 +3,7 @@ import { Admins } from './Admins'
 import Datasheet from './Datasheet'
 import Reports from './Reports'
 import Messages from './Messages'
+import { AIArtifacts } from './AIArtifacts'
 
 
 const routes = [
@@ -26,6 +27,10 @@ const routes = [
   {
     path: 'datasheet/*',
     component: <Datasheet />,
+  },
+  {
+    path: 'ai_artifacts/*',
+    component: <AIArtifacts />,
   },
 ]
 

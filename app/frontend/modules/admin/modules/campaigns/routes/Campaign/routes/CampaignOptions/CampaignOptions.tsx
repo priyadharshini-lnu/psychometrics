@@ -2,11 +2,13 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Row, Col, Radio, Tooltip, InputRef,
+  Row, Col, Radio, Tooltip, InputRef, Input, Button, Flex,
 } from 'antd'
 import snakeCase from 'lodash/snakeCase'
-import { QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-
+import {
+  QuestionCircleOutlined,
+  EditOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { CampaignOptions as ICampaignOptions } from '~/modules/admin/modules/campaigns/interfaces/Campaign'
@@ -15,7 +17,6 @@ import {
   update,
   get as getCampaignOptions,
 } from '~/modules/admin/modules/campaigns/core/campaignOptions'
-
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import InputDuration from '~/components/InputDuration'
 import Section from '~/modules/admin/components/Options/Section'
@@ -56,6 +57,12 @@ const CampaignOptions: React.FC<Props> = ({
   const [watermarkContent, setWatermarkContent] = useState<string>('')
 
   const [localFixedTime, setLocalFixedTime] = useState<boolean>(false)
+
+  const [isEditingDownloadSpeed, setIsEditingDownloadSpeed] = useState<boolean>(false)
+  const [isEditingUploadSpeed, setIsEditingUploadSpeed] = useState<boolean>(false)
+  const [downloadSpeed, setDownloadSpeed] = useState<number>(options.calculatedMinimumDownloadSpeed)
+  const [uploadSpeed, setUploadSpeed] = useState<number>(options.calculatedMinimumUploadSpeed)
+
   const inputDurationRef = useRef<InputRef>(null)
 
   const inputValidityRef = useRef<InputRef>(null)
@@ -74,6 +81,11 @@ const CampaignOptions: React.FC<Props> = ({
   useEffect(() => {
     setWatermarkContent(options.watermarkContent || '')
   }, [options.watermarkContent])
+
+  useEffect(() => {
+    setDownloadSpeed(options.minimumDownloadSpeed || options.calculatedMinimumDownloadSpeed)
+    setUploadSpeed(options.minimumUploadSpeed || options.calculatedMinimumUploadSpeed)
+  }, [options.calculatedMinimumDownloadSpeed, options.calculatedMinimumUploadSpeed])
 
   useEffect(() => {
     if (options && Object.keys(options).length > 0) {
@@ -424,33 +436,74 @@ const CampaignOptions: React.FC<Props> = ({
                 </Col>
               </Row>
 
-              {/* <Row className="mbl" align="middle">
-                <Col offset={2}>
+              <Row justify="start" className="mbl" align="middle">
+                <Col flex="200px" offset={2}>
                   <label>{I18n.t('admin.minimum_download_speed')}</label>
                 </Col>
-                <Col offset={1}>
-                  <Input
-                    value={options.minimumDownloadSpeed ? options.minimumDownloadSpeed : 0}
-                    onChange={e => update(
-                      parsedProjectId, parsedCampaignId, { ...options, minimumDownloadSpeed: Number(e.target.value) },
-                    )}
-                  />
+                <Col flex="300px" offset={1}>
+                  <Flex gap={4}>
+                    <Input
+                      style={{ width: '200px' }}
+                      disabled={!isEditingDownloadSpeed}
+                      value={downloadSpeed}
+                      onChange={(e) => {
+                        setDownloadSpeed(Number(e.target.value))
+                        update(
+                          parsedProjectId, parsedCampaignId,
+                          { ...options, minimumDownloadSpeed: Number(e.target.value) },
+                        )
+                      }}
+                    />
+                    {!isEditingDownloadSpeed ? (
+                      <EditOutlined
+                        className="ms-2"
+                        onClick={() => {
+                          setIsEditingDownloadSpeed(true)
+                        }}
+                      />
+                    ) : (
+                      <Button type="link" onClick={() => setIsEditingDownloadSpeed(false)}>
+                        Save
+                      </Button>
+                    ) }
+                  </Flex>
                 </Col>
               </Row>
 
-              <Row className="mbl" align="middle">
-                <Col offset={2}>
+              <Row justify="start" className="mbl" align="middle">
+                <Col flex="200px" offset={2}>
                   <label>{I18n.t('admin.minimum_upload_speed')}</label>
                 </Col>
-                <Col offset={1}>
-                  <Input
-                    value={options.minimumUploadSpeed ? options.minimumUploadSpeed : 0}
-                    onChange={e => update(
-                      parsedProjectId, parsedCampaignId, { ...options, minimumUploadSpeed: Number(e.target.value) },
+                <Col flex="300px" offset={1}>
+                  <Flex gap={4}>
+                    <Input
+                      style={{ width: '200px' }}
+                      disabled={!isEditingUploadSpeed}
+                      value={uploadSpeed}
+                      onChange={(e) => {
+                        setUploadSpeed(Number(e.target.value))
+                        update(
+                          parsedProjectId, parsedCampaignId,
+                          { ...options, minimumUploadSpeed: Number(e.target.value) },
+                        )
+                      }}
+                    />
+                    {!isEditingUploadSpeed ? (
+                      <EditOutlined
+                        className="ms-2"
+                        onClick={() => {
+                          setIsEditingUploadSpeed(true)
+                        }}
+                      />
+                    ) : (
+                      <Button type="link" onClick={() => setIsEditingUploadSpeed(false)}>
+                        Save
+                      </Button>
                     )}
-                  />
+                  </Flex>
+
                 </Col>
-              </Row> */}
+              </Row>
             </>
           )}
 

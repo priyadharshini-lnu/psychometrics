@@ -17,7 +17,7 @@ interface Props extends ConnectedProps<typeof connector> {
     id: number,
     name: string
     email: string
-  }
+  } | null
 }
 
 const connector = connect(
@@ -36,7 +36,7 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
   } = useResources<User>('seach_user',
     { basePath: `/projects/${projectId}/`, responseType: UserTR })
 
-  const [selectedManagerId, setSelectedManagerId] = useState<number | undefined>(manager.id)
+  const [selectedManagerId, setSelectedManagerId] = useState<number | undefined>(manager?.id)
 
   const assignManager = (userId: number) => {
     addManager(projectId, userId, selectedManagerId || null)
@@ -95,7 +95,7 @@ export const AssignManagerFormModalComponent: React.FC<Props> = ({
           <Form
             form={form}
             initialValues={
-              manager.id
+              manager?.id
                 ? { managerId: `${manager.name}  (${manager.email})` } : {}
             }
           >

@@ -11,8 +11,8 @@ module WardenAuthLogger
 
       return if request.env[:sso].present?
 
-      session = request.env['action_dispatch.request.unsigned_session_cookie']
-      action = session&.dig('saml_auth').present? ? :saml_login : :sign_in
+      is_saml = request.params['SAMLResponse'].present?
+      action = is_saml ? :saml_login : :sign_in
       reason = opts[:message] ? "devise.#{opts[:message]}" : "devise.#{opts[:action]}"
 
       AuditLogModule.audit! action,
@@ -36,10 +36,10 @@ module WardenAuthLogger
                                      authentication_channel: auth_channel, identity_provider: identity_provider)
     end
 
-    def log_success(user, auth)
+    def log_success(user, auth, opts = {})
       request = auth.request
 
-      is_saml = request.env['action_dispatch.request.unsigned_session_cookie']['saml_auth'].present?
+      is_saml = auth.winning_strategies[opts[:scope]].is_a?(Devise::Strategies::SamlAuthenticatable)
 
       unless is_saml
         AuditLogModule.audit! :sign_in,

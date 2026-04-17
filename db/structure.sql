@@ -1400,7 +1400,9 @@ CREATE TABLE public.ai_scoring_approval_settings (
     campaign_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    allow_one_level_approve boolean DEFAULT false
+    allow_one_level_approve boolean DEFAULT false,
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
+    do_not_send_notifications boolean DEFAULT false
 );
 
 
@@ -1550,7 +1552,8 @@ CREATE TABLE public.assessment_consent_setting_translations (
     locale character varying NOT NULL,
     assessment_consent_setting_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_acknowledgment_text text
 );
 
 
@@ -1583,7 +1586,8 @@ CREATE TABLE public.assessment_consent_settings (
     policy_version integer DEFAULT 1 NOT NULL,
     assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_acknowledgment_text text
 );
 
 
@@ -5578,7 +5582,8 @@ CREATE TABLE public.privacy_setting_translations (
     locale character varying NOT NULL,
     privacy_setting_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_privacy_acknowledgment_text text
 );
 
 
@@ -5627,7 +5632,8 @@ CREATE TABLE public.privacy_settings (
     enable_video_call_recording_for_all_new_campaigns boolean DEFAULT false NOT NULL,
     video_call_recording_expiry_in_seconds integer,
     mask_identity_for_yoodli boolean DEFAULT false,
-    mask_identity_for_mhs boolean DEFAULT false NOT NULL
+    mask_identity_for_mhs boolean DEFAULT false NOT NULL,
+    custom_privacy_acknowledgment_text text
 );
 
 
@@ -7531,6 +7537,45 @@ ALTER SEQUENCE public.taxonomy_levels_id_seq OWNED BY public.taxonomy_levels.id;
 
 
 --
+-- Name: temporary_uploads; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.temporary_uploads (
+    id bigint NOT NULL,
+    file_key character varying NOT NULL,
+    filename character varying NOT NULL,
+    content_type character varying NOT NULL,
+    byte_size bigint NOT NULL,
+    checksum character varying,
+    service_name character varying NOT NULL,
+    bucket character varying NOT NULL,
+    status integer DEFAULT 0 NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: temporary_uploads_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.temporary_uploads_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: temporary_uploads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.temporary_uploads_id_seq OWNED BY public.temporary_uploads.id;
+
+
+--
 -- Name: text_module_overrides; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8009,6 +8054,7 @@ CREATE TABLE public.transcriptions (
     updated_at timestamp(6) without time zone NOT NULL,
     error_details jsonb DEFAULT '{}'::jsonb NOT NULL,
     status integer DEFAULT 0 NOT NULL,
+    segments jsonb DEFAULT '[]'::jsonb NOT NULL,
     metadata jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
@@ -10658,6 +10704,13 @@ ALTER TABLE ONLY public.taxonomy_levels ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: temporary_uploads id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.temporary_uploads ALTER COLUMN id SET DEFAULT nextval('public.temporary_uploads_id_seq'::regclass);
+
+
+--
 -- Name: text_module_overrides id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12547,6 +12600,14 @@ ALTER TABLE ONLY public.tags
 
 ALTER TABLE ONLY public.taxonomy_levels
     ADD CONSTRAINT taxonomy_levels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: temporary_uploads temporary_uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.temporary_uploads
+    ADD CONSTRAINT temporary_uploads_pkey PRIMARY KEY (id);
 
 
 --
@@ -16151,6 +16212,20 @@ CREATE INDEX index_taxonomy_levels_on_project_id ON public.taxonomy_levels USING
 
 
 --
+-- Name: index_temporary_uploads_on_status_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_temporary_uploads_on_status_and_created_at ON public.temporary_uploads USING btree (status, created_at);
+
+
+--
+-- Name: index_temporary_uploads_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_temporary_uploads_on_user_id ON public.temporary_uploads USING btree (user_id);
+
+
+--
 -- Name: index_text_module_overrides_on_editor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17740,6 +17815,14 @@ ALTER TABLE ONLY public.campaign_option_translations
 
 ALTER TABLE ONLY public.campaign_reports
     ADD CONSTRAINT fk_rails_2acc607ab4 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: temporary_uploads fk_rails_2aedf92c49; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.temporary_uploads
+    ADD CONSTRAINT fk_rails_2aedf92c49 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -20277,12 +20360,18 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260331100000'),
+('20260401053041'),
+('20260401045303'),
+('20260401031414'),
+('20260401030425'),
+('20260320100000'),
 ('20260325000001'),
 ('20260323084342'),
+('20260320102153'),
 ('20260311085954'),
 ('20260306120000'),
 ('20260306090626'),
-('20260320102153'),
 ('20260305110830'),
 ('20260304133958'),
 ('20260228091708'),
@@ -20313,6 +20402,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260124061828'),
 ('20260123131309'),
 ('20260123090109'),
+('20260310164641'),
 ('20260123071239'),
 ('20260122074311'),
 ('20260122034210'),

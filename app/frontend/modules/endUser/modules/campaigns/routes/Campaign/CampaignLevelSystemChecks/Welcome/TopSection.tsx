@@ -9,7 +9,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { MediaQueryContext } from '~/glint'
 import {
   ClockCircleOutlined, DesktopOutlined,
-  WifiOutlined, VideoCameraOutlined,
+  WifiOutlined, VideoCameraOutlined, AudioOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { secondsToDuration } from '~/utils/time'
 import styles from './styles.less'
@@ -143,21 +143,30 @@ export const TopSection = () => {
           <Col span={24}>
             <Row justify="space-between" gutter={[16, 16]}>
               <Col>
-                {requiredSystemChecks?.includes(CHECK_TYPE.video) ? (
+                {requiredSystemChecks?.includes(CHECK_TYPE.video)
+                || requiredSystemChecks?.includes(CHECK_TYPE.audio) ? (
                   <Row align="middle" gutter={[8, 8]}>
                     <Col>
-                      <VideoCameraOutlined style={{ fontSize: '1rem' }} />
+                      {requiredSystemChecks?.includes(CHECK_TYPE.video)
+                      && <VideoCameraOutlined style={{ fontSize: '1rem' }} />}
+
+                      {requiredSystemChecks?.includes(CHECK_TYPE.audio)
+                       && <AudioOutlined style={{ fontSize: '1rem' }} />}
                     </Col>
                     <Col>
-                      <Typography.Text>{I18n.t('enduser.video_and_audio')}</Typography.Text>
+                      {requiredSystemChecks?.includes(CHECK_TYPE.video)
+                      && <Typography.Text>{I18n.t('enduser.video_and_audio')}</Typography.Text>}
+
+                      {requiredSystemChecks?.includes(CHECK_TYPE.audio)
+                       && <Typography.Text>{I18n.t('enduser.audio')}</Typography.Text>}
                     </Col>
                   </Row>
-                ) : (
-                  <Row align="middle" gutter={[8, 8]}>
-                    <Col style={{ height: '1.5rem' }} />
-                    <Col />
-                  </Row>
-                )}
+                  ) : (
+                    <Row align="middle" gutter={[8, 8]}>
+                      <Col style={{ height: '1.5rem' }} />
+                      <Col />
+                    </Row>
+                  )}
               </Col>
             </Row>
           </Col>

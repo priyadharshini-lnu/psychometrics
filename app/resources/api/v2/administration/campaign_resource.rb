@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseResource
-  attributes :name, :project_id, :type, :status
+  attributes :name, :project_id, :type, :status, :tag_list
+
+  add_tag_filter
 
   has_one :default_idp_template, foreign_key_on: :default_idp_template_id
   has_one :dashboard, foreign_key_on: :related
   has_one :threesixty_campaign, foreign_key_on: :related
   has_many :campaign_assessments, foreign_key_on: :related
   has_many :campaign_reports, foreign_key_on: :related
+
+  def self.records(opts = {})
+    super.includes(taggings: :tag)
+  end
 
   def meta_details
     {
@@ -58,5 +64,13 @@ class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseR
       )
     }
     # rubocop:enable Metrics/BlockLength
+  end
+
+  def tag_list
+    @model.all_tags_list
+  end
+
+  def tag_list=(tags)
+    @model.save_tag_with_ownership(tags)
   end
 end

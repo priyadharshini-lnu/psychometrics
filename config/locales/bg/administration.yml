@@ -4510,7 +4510,6 @@ bg:
         new:
           header: Импортиране на преводи
       import:
-        successfully: Преводите бяха импортирани успешно
         successfully_scheduled: Импортирането на преводи беше планирано успешно.
       reports:
         export: Експортиране на преводи

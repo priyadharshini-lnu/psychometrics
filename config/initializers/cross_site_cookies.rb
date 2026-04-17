@@ -47,7 +47,7 @@ class CrossSiteCookies
   end
 
   def convert_to_cross_site(cookie)
-    cookie.gsub('SameSite=Lax', 'SameSite=None')
+    cookie.gsub('SameSite=Lax', 'SameSite=None; Partitioned;')
   end
 end
 

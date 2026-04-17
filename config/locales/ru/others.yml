@@ -929,6 +929,7 @@ ru:
         normalize_factor_scores: Нормализация факторных оценок
         project_compact_completion_status_export: Экспорт статуса завершения компактного формата
         project_completion_status_export: Статус завершения Экспорт
+        regenerate_assessment_transcriptions: Восстановить стенограммы оценок
         regenerate_campaign_reports: Восстановить отчеты по кампании
         regenerate_report: Восстановить отчет
         regenerate_threesixty_report: Восстановить отчет Threesixty
@@ -4075,9 +4076,11 @@ ru:
       import_reports: Импорт отчетов и оценок
   user_assessment:
     column:
+      completed_at: Завершено в
       dimension_id: Идентификатор измерения
       id: Идентификатор оценки пользователя
       norm_id: Идентификатор нормы
+      started_at: Начало работы
     drawer:
       copied: "%{name} скопировано в буфер обмена."
       copy: Копировать в буфер обмена
@@ -4117,7 +4120,6 @@ ru:
     normalize_factor_scores:
       no_scoring_data: Нормализация баллов факторов не может быть выполнена, так как данные для подсчета баллов отсутствуют.
     progress_label: Ход оценки
-    redirect: Вы будете перенаправлены на сторонний сайт для прохождения этой оценки. Нажмите «Продолжить», если хотите начать оценку.
     status:
       completed: Завершено
       in_progress: В процессе

@@ -54,6 +54,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
           <Form.Item
             name="name"
             label={I18n.t('administration.dimensions.form.name')}
+            rules={[{ required: true, message: I18n.t('admin.name_required') }]}
           >
             <Input />
           </Form.Item>
@@ -62,6 +63,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
             name="ownerId"
             label={I18n.t('common.column.owner')}
             initialValue={dimension?.owner?.id || null}
+            rules={[{ required: true }]}
           >
             <Select
               showSearch

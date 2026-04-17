@@ -42,7 +42,7 @@ const ReportComponent = ({
       other_languages: otherLanguages,
       available_languages: availableLanguages,
     }, report, results, user, campaign, approvalStatus, isSelf,
-    moduleOverrides,
+    moduleOverrides, campaignAiArtifactResults,
   },
   fetchReport, updateStatus, downloadReport, checkReport,
   options: { approval: { managerApprovesReports }, access: { disableDownloadReport } },
@@ -158,7 +158,7 @@ const ReportComponent = ({
               user={JSON.stringify(user)}
               locales={locales}
               selectedLocale={lang ? { code: lang } : defaultLanguage}
-              userReport={{ moduleOverrides }}
+              userReport={{ moduleOverrides, campaignAiArtifactResults }}
             />
           </Col>
         </Row>

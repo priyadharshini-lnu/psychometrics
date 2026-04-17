@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { CHECKS } from './common'
 import {
-  QuestionCircleOutlined, GlobalOutlined, WifiOutlined, VideoCameraOutlined,
+  QuestionCircleOutlined, GlobalOutlined, WifiOutlined, VideoCameraOutlined, AudioOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import commonStyles from '../../common-styles.less'
 
@@ -50,6 +50,19 @@ const troubleShootingGuide = {
       I18n.t('enduser.troubleshooting_guide_video_fifth'),
       I18n.t('enduser.troubleshooting_guide_video_sixth'),
 
+    ],
+  },
+
+  [CHECKS.audio]: {
+    heading: I18n.t('enduser.audio_recording'),
+    Icon: AudioOutlined,
+    steps: [
+      I18n.t('enduser.troubleshooting_guide_audio_first'),
+      I18n.t('enduser.troubleshooting_guide_audio_second'),
+      I18n.t('enduser.troubleshooting_guide_audio_third'),
+      I18n.t('enduser.troubleshooting_guide_audio_fourth'),
+      I18n.t('enduser.troubleshooting_guide_audio_fifth'),
+      I18n.t('enduser.troubleshooting_guide_audio_sixth'),
     ],
   },
 }

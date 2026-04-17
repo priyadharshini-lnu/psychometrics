@@ -360,13 +360,6 @@ ar:
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: يجب تمكين نوع واحد على الأقل من المهارة مع اختيار دور وظيفي %{block_name}
               invalid_job_role_type: 'وظيفة غير صالحة %{job_role} %{skill_type} %{block_name}. الخيارات الصحيحة: %{valid_options}'
               props_missing: تكوين المهارات مفقود بالنسبة %{block_name}
-        skills_rater_block_form:
-          attributes:
-            base:
-              at_least_one_job_role_required: مطلوب دور وظيفي واحد على الأقل لـ %{skill_type} لـ %{block_name}
-              at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: يجب تمكين نوع مهارة واحدة على الأقل مع تحديد دور وظيفي لـ %{block_name}
-              invalid_job_role_type: 'الدور الوظيفي غير صالح %{job_role} لـ %{skill_type} لـ %{block_name}. الخيارات الصالحة: %{valid_options}'
-              props_missing: تكوين المهارات مفقود بالنسبة ل %{block_name}
         skillvue:
           attributes:
             name:
@@ -848,38 +841,6 @@ ar:
           attributes:
             assessment_ids:
               invalid_assessment_type: يمكن فقط اختيار التقييمات من نوع "القياسات النفسية" و"استطلاع المنظمة"
-      register:
-        attributes:
-          mobile_number:
-            blank: رقم الجوال مطلوب
-            invalid: رقم الجوال غير صالح
-            verification_expired: لقد انتهت صلاحية رمز التحقق. يمكنك محاولة التحقق مرة أخرى.
-        user:
-          attributes:
-            current_password:
-              invalid: كلمة المرور الحالية غير صحيحة
-      taxonomies_import_form:
-        attributes:
-          file:
-            duplicate_value: 'الصف %{row}: القيمة المكررة %{value} للحقل %{field}'
-            invalid_format: يرجى تحميل ملف xlsx
-            missing_headers: 'ورقة %{sheet_name} تفتقد الرؤوس المطلوبة: %{headers}'
-            missing_sheets: 'الأوراق المطلوبة المفقودة: %{sheets}'
-            missing_value: 'الصف %{row}: القيمة مفقودة للحقل %{field}'
-          project:
-            must_exist: يجب أن يوجد المشروع
-        register:
-          attributes:
-            mobile_number:
-              blank: رقم الجوال مطلوب
-              invalid: رقم الجوال غير صالح
-              verification_expired: لقد انتهت صلاحية رمز التحقق. يمكنك محاولة التحقق مرة أخرى.
-        user:
-          attributes:
-            current_password:
-              invalid: كلمة المرور الحالية غير صحيحة
-            manager_id:
-              cannot_be_self: لا يمكن تعيين المستخدم كمدير لنفسه
   admin_jobs:
     attrs:
       operations:
@@ -968,6 +929,7 @@ ar:
         normalize_factor_scores: تطبيع درجات العامل
         project_compact_completion_status_export: تصدير حالة الإكمال المضغوط
         project_completion_status_export: حالة الإكمال التصدير
+        regenerate_assessment_transcriptions: إعادة إنشاء نصوص التقييم
         regenerate_campaign_reports: إعادة إنشاء تقارير الحملة
         regenerate_report: إعادة إنشاء التقرير
         regenerate_threesixty_report: إعادة إنشاء تقرير Threesixty
@@ -1060,7 +1022,6 @@ ar:
       pending_tasks:
         one: لديك مهمة واحدة متبقية
         other: لديك %{count} مهام متبقية
-        two: لديك مهمتان متبقيتان
       re_evaluate: انقر هنا لإعادة التقييم
       reevaluate: إعادة التقييم
       remove:
@@ -4116,9 +4077,11 @@ ar:
       import_reports: تقارير الاستيراد والتقييمات
   user_assessment:
     column:
+      completed_at: تم الانتهاء منه في
       dimension_id: معرف البعد
       id: معرف تقييم المستخدم
       norm_id: معرف القاعدة
+      started_at: تاريخ البدء
     drawer:
       copied: "%{name} تم نسخها إلى الحافظة."
       copy: نسخ إلى الحافظة
@@ -4158,7 +4121,6 @@ ar:
     normalize_factor_scores:
       no_scoring_data: لا يمكن إكمال تطبيع درجات العوامل نظرا لعدم توفر بيانات التسجيل.
     progress_label: تقدم التقييم
-    redirect: سيتم إعادة توجيهك إلى موقع طرف ثالث لإجراء هذا التقييم. يُرجى النقر على متابعة إذا كنت ترغب في بدء التقييم.
     status:
       completed: اكمال
       in_progress: قيد التنفيذ
@@ -4291,10 +4253,7 @@ ar:
     date: يجب أن يكون تاريخ صالح (mm/dd/y)
     each_group_contains: يجب أن تحتوي كل مجموعة على ما لا يقل عن %{min} عنصر ولا تزيد عن %{max} عنصر
     email: يجب أن تعطينا بريدًا إلكترونيًا صالحًا
-    exact:
-      one: الرجاء تحديد واحد بالضبط
-      other: الرجاء التحديد بالضبط %{count}
-      two: الرجاء تحديد اثنين بالضبط
+    exact: يرجى تحديد خيار (خيارات) واحدة (واحدة) بالضبط من خيارات "%{count}"
     file_upload:
       BadRequest: لم يتم تحميل الملف حيث فشل الطلب الأخير. قد يكون هذا بسبب عدم عمل الإنترنت لديك. إذا كان الإنترنت الخاص بك يعمل، فيرجى الاتصال بالمسؤول
       EntityTooLarge: يجب أن يكون حجم الملف أقل من %{maxFileSize} ميغابايت
@@ -4316,10 +4275,7 @@ ar:
     min_character: يجب أن تكون الاستجابة على الأقل %{min} حرفاً.
     min_factor: يجب أن يحتوي ردك على %{min} على الأقل من ملاحظات العوامل.
     min_word: الاجابه لا تقل عن %{min} كلمه
-    most:
-      one: الرجاء تحديد واحد على الأكثر
-      other: الرجاء تحديد %{max} على الأكثر
-      two: الرجاء تحديد اثنين على الأكثر
+    most: يرجى اختيار ما لا يزيد عن %{max} خيارًا
     must_rank_between: الرجاء تعيين قيمة من %{min} إلى %{max} لكل عنصر. لا يسمح تكرار القيم.
     must_select: الرجاء تحديد من %{min} إلى %{max} الاختيارات
     not_in_future: يجب ألا يكون التاريخ المحدد في المستقبل
@@ -4332,7 +4288,6 @@ ar:
     title:
       one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
       other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
-      two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك
     user_self_skill_rating_disabled: تم تعطيل التصنيف الذاتي لهذا القالب
     word_count: 'عدد الكلمات '
     word_range: يجب ألا تقل إجابتك عن %{min} ولا تزيد عن %{max} من الكلمات.

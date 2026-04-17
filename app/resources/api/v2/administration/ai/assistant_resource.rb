@@ -8,7 +8,7 @@ module Api
         attributes :name, :description, :assistant_type, :user_prompt, :system_prompt,
                    :created_at, :updated_at, :model_id, :status, :dependencies,
                    :assistant_output_schema_keys_attributes,
-                   :advanced_prompting_enabled
+                   :advanced_prompting_enabled, :in_use, :provider_previously_used
 
         has_one :owner, class_name: 'Client'
         has_one :last_modified_by, class_name: 'User'
@@ -21,6 +21,14 @@ module Api
         end
 
         delegate :assistant_output_schema_keys_attributes=, to: :@model
+
+        def in_use
+          @model.in_use?
+        end
+
+        def provider_previously_used
+          @model.provider_previously_used?
+        end
 
         def assistant_output_schema_keys_attributes
           @model.assistant_output_schema_keys.map do |schema_key|

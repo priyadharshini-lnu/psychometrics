@@ -45,7 +45,7 @@ export const LTIAssessment: FC<Props> = ({
         <div className={styles.icon}>
           <RedirectIcon />
         </div>
-        <div>{I18n.t('user_assessments.redirect')}</div>
+        <div>{I18n.t('enduser.redirect_to_external_assessment')}</div>
         <div className={styles.redirectFooter}>
           <Space>
             <Button onClick={onCancel}>

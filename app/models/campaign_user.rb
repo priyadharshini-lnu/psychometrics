@@ -240,8 +240,9 @@ class CampaignUser < ApplicationRecord
     ::AI::CampaignArtifactResult.joins(:campaign_ai_artifact).
       where(
         campaign_ai_artifacts: { campaign_id: campaign_id },
-        user_id: user_id
-      ).count == campaign_ai_artifacts.count
+        user_id: user_id,
+        error: nil
+      ).where.not(checkpoint: nil).count == campaign_ai_artifacts.count
   end
 
   private

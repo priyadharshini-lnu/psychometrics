@@ -1,5 +1,6 @@
 import { MenuProps } from 'antd'
 import { MessageInstance } from 'antd/es/message/interface'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { MenuItem } from '~/interfaces/Antd'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { Props as AssessmentListProps } from './AssessmentList'
@@ -20,6 +21,7 @@ export interface ActionMenuData {
   campaignId: number
   assessment: Assessment
   message: MessageInstance
+  modal: Omit<ModalStaticFunctions, 'warn'>
   optionsOverrides?: Partial<Options>
   openModal(name: string, data?: {
     ids?: [number, number],
@@ -36,6 +38,7 @@ export interface ActionMenuData {
     campaignId?: number, campaignAssessmentId?: number
   }): void
   rescoreResponses(aiRescore?: boolean): void
+  regenerateTranscriptions?: () => void
   exportRawResults: AssessmentListProps['exportRawResults']
   exportScoringResults: AssessmentListProps['exportScoringResults']
   exportNormedResults: AssessmentListProps['exportNormedResults']
@@ -47,9 +50,9 @@ export interface ActionMenuData {
 }
 
 export const getActionsMenuProps = ({
-  projectId, campaignId, assessment, openModal, rescoreResponses, exportRawResults,
+  projectId, campaignId, assessment, openModal, rescoreResponses, regenerateTranscriptions, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores, normalizeFactorScores,
-  exportExternalResults, updateExternalConfig, optionsOverrides, message, exportOccupations,
+  exportExternalResults, updateExternalConfig, optionsOverrides, message, modal, exportOccupations,
 }:ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
   const actions = { ...DEFAULT_OPTIONS, ...optionsOverrides || {} }
@@ -122,6 +125,21 @@ export const getActionsMenuProps = ({
     }
   }
 
+  const handleRegenerateTranscriptions = () => {
+    if (regenerateTranscriptions) {
+      modal.confirm({
+        title: I18n.t('admin.regenerate_transcriptions_confirm_title'),
+        content: I18n.t('admin.regenerate_transcriptions_confirm_content'),
+        okText: I18n.t('common.text.confirm'),
+        cancelText: I18n.t('common.text.cancel'),
+        onOk: () => {
+          regenerateTranscriptions()
+          message.success(I18n.t('admin.regenerate_transcriptions_scheduled'))
+        },
+      })
+    }
+  }
+
   const exportGroupItems: MenuItem[] = []
   permissions.exportOccupations && exportGroupItems.push({
     key: 'export_occupations',
@@ -163,6 +181,10 @@ export const getActionsMenuProps = ({
     { key: 'rescoring', label: I18n.t('campaign_assessment.modals.rescore_response.title') },
   ]
 
+  const regenerateTranscriptionItems:MenuItem[] = [
+    { key: 'regenerate_transcriptions', label: I18n.t('admin.regenerate_transcriptions_action') },
+  ]
+
   const removeMenuItems:MenuItem[] = [
     { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
@@ -183,6 +205,7 @@ export const getActionsMenuProps = ({
     children: importGroupItems,
   })
   permissions.rescoreResponses && menuItems.push(...rescoreMenuItems)
+  permissions.regenerateTranscriptions && menuItems.push(...regenerateTranscriptionItems)
   permissions.updateExternalConfig && actions.updateExternalConfig && menuItems.push(...configMenuItems)
   permissions.scheduleAssessment && menuItems.push({ key: 'schedule', label: I18n.t('common.actions.schedule') })
   permissions.normalizeFactorScores && menuItems.push(
@@ -223,6 +246,9 @@ export const getActionsMenuProps = ({
     }
     if (key === 'rescoring') {
       return handleRescoreResponse()
+    }
+    if (key === 'regenerate_transcriptions') {
+      return handleRegenerateTranscriptions()
     }
     if (key === 'remove') {
       return openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })

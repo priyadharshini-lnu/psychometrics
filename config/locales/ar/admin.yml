@@ -8,6 +8,7 @@ ar:
     add_campaign_admin: إضافة مسؤول حملة
     add_client_admin: إضافة مسؤول عميل
     add_indicator: إضافة مؤشر
+    add_new_folder: إضافة مجلد جديد
     add_project: Add Project
     add_project_admin: إضافة مسؤول مشروع
     add_threesixty_campaign_admin: إضافة مسؤول حملة
@@ -45,13 +46,17 @@ ar:
     ai_assistants: مساعدو الذكاء الاصطناعي
     ai_assistants_advanced_mode_tooltip: استخدم الوضع المتقدم لقالب الأوامر باستخدام قالب سائل مع المتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
     ai_assistants_campaign_id_placeholder: ادخل معرف الحملة
+    ai_assistants_cannot_change_type_when_in_use: لا يمكن تغيير نوع المساعد الذكي "%{name}" لأنه قيد الاستخدام حاليًا.
     ai_assistants_no_rendered_output: لا يوجد مخرج مرسوم متوفر
+    ai_assistants_provider_change_confirm_title: هل تريد تغيير المزود؟
+    ai_assistants_provider_previously_used_warning: كان هذا المساعد قد أنشأ نتائج سابقًا باستخدام "%{from}". وقد يؤدي التغيير إلى "%{to}" إلى تغيير سلوك المساعد في طلبات الإنشاء المستقبلية.
     ai_assistants_render_button: قالب العرض
     ai_assistants_rendered_prompt: الرسالة المعرضة
     ai_assistants_template_and_campaign_required: يرجى تقديم كل من القالب ومعرف الحملة
     ai_assistants_template_render_failed: فشل في عرض القالب
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
+    ai_assistants_type_locked_tooltip: هذا المساعد قيد الاستخدام حاليًا ولا يمكن تغيير نوعه.
     ai_assisted_idp_disabled_by_client: تم تعطيل AI Assisted IDP من قبل العميل
     ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
     ai_idp_assistant_configure_dependencies: تكوين تبعيات الذكاء الاصطناعي
@@ -85,6 +90,19 @@ ar:
     ai_scoring_appoval_responses: ردود الذكاء الاصطناعي
     ai_scoring_appoval_score_not_applicable: النتيجة غير قابلة للتطبيق
     ai_scoring_approval: الموافقة على التقييم بالذكاء الاصطناعي
+    ai_scoring_approval_digest_mailer_access_link_intro: 'يمكنك الوصول إلى موافقات التقييم عبر الرابط التالي:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: تمت الموافقة على النتائج التالية.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: تتلقى هذه الرسالة الإلكترونية لأنك أُضيفت كجهة اتصال لتلقي إشعار الموافقة على التقييم.
+    ai_scoring_approval_digest_mailer_approved_subject: تمت الموافقة على النتائج
+    ai_scoring_approval_digest_mailer_assessment_label: 'التقييم: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: التقييمات التالية جاهزة للموافقة وتحتاج إلى إجراء من جانبك.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: تتلقى هذه الرسالة الإلكترونية لأنك أُضيفت كمسؤول عن الموافقة على التقييمات التي تتطلب موافقة.
+    ai_scoring_approval_digest_mailer_awaiting_subject: النتائج في انتظار الموافقة
+    ai_scoring_approval_digest_mailer_campaign_label: 'الحملة: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'عدد الأهداف: %{value}'
+    ai_scoring_approval_digest_mailer_dear: عزيزي %{name}،
+    ai_scoring_approval_digest_mailer_link_text: الموافقات على التقييم
+    ai_scoring_approval_digest_mailer_project_label: 'المشروع: %{value}'
     ai_scoring_approval_settings: إعدادات الموافقة على التقييم بالذكاء الاصطناعي
     ai_scoring_approval_stale_description: ربما تكون تحديثات الإعدادات التي تمت منذ آخر عملية تشغيل قد أدت إلى تغيير النتيجة. أعد التقييم لتحديث النتيجة باستخدام أحدث الإعدادات.
     ai_scoring_approval_stale_title: قد تكون النتيجة قديمة
@@ -136,6 +154,7 @@ ar:
     bulk_assets_modal_title: تحميل ملفات CSV و ZIP
     bulk_upload_ai_artifacts: التحف الذكاء الاصطناعي بالتحميل الجماعي
     campaign_ai_artifact_updated_successfully: تم تحديث قطع الذكاء الاصطناعي للحملة بنجاح
+    campaign_ai_artifacts_instruction_templating_tooltip: يمكنك استخدام تعليمات متقدمة من خلال قوالب الأوامر باستخدام صيغة قوالب Liquid والمتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
     campaign_ai_artifacts_results_export_details: نتائج تم إنشاؤها بواسطة أداة الذكاء الاصطناعي للحملة
     campaign_assessment_actions_disable_caching: تعطيل التخزين المؤقت للتقييم
     campaign_assessment_actions_enable_caching: تمكين التخزين المؤقت للتقييم
@@ -161,6 +180,24 @@ ar:
     campaign_assessment_modals_enable_caching_title: تمكين التخزين المؤقت للتقييم؟
     campaign_factors: عوامل الحملة
     campaign_name: اسم الحملة
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: رقم التقرير الخارجي
+          language_id: معرف اللغة
+          norm: القاعدة
+          norm_id: رقم المعيار
+          suitability_id: رقم الملاءمة
+        labels:
+          assessment_ids: معرّفات التقييم
+          available_languages: اللغات المتاحة
+          campaign_report_id: رقم تقرير الحملة
+          check_details: تحقق من التفاصيل
+          default_language: اللغة الافتراضية
+          external_settings: الإعدادات الخارجية
+          provider: المزود
+          report_pdf_status: حالة ملف PDF
+          user_report_id: رقم تقرير المستخدم
     campaign_templates: قوالب الحملات
     campaign_user_job_roles_cannot_be_same: يجب أن تكون الوظيفة المستهدفة مختلفة عن الوظيفة الحالية
     campaigns: الحملات
@@ -183,7 +220,9 @@ ar:
     configure_model_answer_title: تكوين نموذج الإجابة والكلمات المفتاحية
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
     copied: نسخ
+    copied_url_success: تم نسخ عنوان URL إلى الحافظة بنجاح
     copy_ai_artifacts: نسخ أعمال الفن الاصطناعي
+    copy_image_url: نسخ عنوان URL للصورة
     country: البلد
     create_client: إنشاء عميل
     create_indicator: إنشاء مؤشر
@@ -221,6 +260,7 @@ ar:
       thursday: الخميس
       tuesday: الثلاثاء
       wednesday: الأربعاء
+    dimension_translations_export_scheduled: تصدير الترجمات المجدولة للبعد %{name}.
     dimensions: الأبعاد
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
@@ -228,9 +268,11 @@ ar:
     duration: المدة
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
+    edit_folder: تحرير المجلد
     edit_indicator: تحرير المؤشر
     edit_job_roles: تحرير أدوار الوظائف
     edit_level: تحرير المستوى
+    edit_media: تحرير الوسائط
     edit_permission_denied: ليس لديك إذن بتعديل '%{name}' المسؤول
     edit_project_admin: تعديل مسؤول مشروع
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
@@ -272,6 +314,8 @@ ar:
     feature_global_skills_description: الوصول إلى مكتبة المهارات العالمية للتقييمات
     feature_idp_description: تمكين تخطيط التنمية الفردية للمشاركين
     feature_sms_notification_description: تمكين إشعارات الرسائل القصيرة لدعوات الحملات والتذكيرات
+    file_size_must_be_less_than_mb: يتجاوز حجم الملف {{name}} الحد الأقصى المسموح به البالغ {{max_size_mb}} ميغابايت
+    file_upload_failed: فشل تحميل {{name}}
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
     final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
     final_score_empty_msg: لا يمكن أن يكون الحساب النهائي فارغًا.
@@ -351,6 +395,8 @@ ar:
     maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     max_value: القيمة القصوى
+    media_files_label: الملفات
+    media_library: مكتبة الوسائط
     messages: Messages
     mhs: MHS
     mhs_assessment: تقييم MHS
@@ -370,6 +416,7 @@ ar:
     name: الاسم
     name_max_length: لا يمكن أن يتجاوز الاسم %{length} حرفًا
     name_required: الاسم مطلوب
+    new_folder: مجلد جديد
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
     no_status: لا يوجد حالة
@@ -832,9 +879,15 @@ ar:
     questions: أسئلة
     range_min_max: النطاق%{min} - %{max}
     reflection_questions: أسئلة للتفكير
+    regenerate_transcriptions_action: إعادة إنشاء النصوص
+    regenerate_transcriptions_confirm_content: هل أنت متأكد من رغبتك في إعادة إنشاء النصوص المكتوبة لهذا التقييم؟ سيؤدي ذلك إلى إعادة معالجة جميع النصوص المكتوبة غير المكتملة.
+    regenerate_transcriptions_confirm_title: إعادة إنشاء النصوص
+    regenerate_transcriptions_scheduled: تمت جدولة مهمة إعادة إنشاء النصوص بنجاح
     registration_codes: رموز التسجيل
     registration_settings: إعدادات التسجيل
     remove_children_to_change_type: إزالة جميع الأطفال لتغيير النوع
+    remove_confirmation: هل أنت متأكد من أنك تريد حذف هذا العنصر؟
+    remove_successfully: تمت إزالة العنصر الإعلامي بنجاح.
     report_approvals: موافقات التقارير
     report_condition_not_met: يحتاج %{required} %{relationship} تقييم(أو تقييمات)، لكنه لديه فقط %{actual}
     report_conditions_not_met_detailed: الإبلاغ عن %{user} لا يستوفي شروط التوفر. %{conditions}
@@ -938,7 +991,9 @@ ar:
     scoring_approval_approvers: الموافقون
     scoring_approval_assessment: التقييم
     scoring_approval_assessor_users: مستخدمو المقيّم
+    scoring_approval_do_not_send_notifications: لا ترسل إشعارات
     scoring_approval_modal_title: إعدادات الموافقة على التقييم
+    scoring_approval_notification_users: المستخدمون الذين تلقوا إشعارًا بالموافقة
     scoring_approval_remove_modal_success: 'تم حذف إعداد الموافقة لمعرف التقييم: %{assessmentId} بنجاح'
     scoring_approval_remove_modal_text: 'هل أنت متأكد من أنك تريد حذف هذا الإعداد الخاص برقم التقييم: %{assessmentId}؟'
     scoring_supported_only_for_ai_questions: يُسمح بالتسجيل فقط في الأسئلة التي تدعم الذكاء الاصطناعي للعامل المحدد حاليًا.
@@ -995,7 +1050,12 @@ ar:
     translated_to: 'ترجم إلى:'
     translated_with_ai_notice: ترجمة بالذكاء الاصطناعي
     translation_assistant_not_configured: مساعد الترجمة غير مهيأ
+    translations:
+      title: الترجمات
     update_success: "%{readableResourceName} تم تحديثه بنجاح"
+    upload: تحميل
+    upload_media: تحميل الوسائط
+    upload_required: يرجى إضافة ملف واحد على الأقل لتحميله
     upload_success: تم الرفع بنجاح
     user_report_events: أحداث تقارير المستخدم
     users: المستخدمون
@@ -1004,6 +1064,7 @@ ar:
     very_high: مرتفع جدًا
     very_low: منخفض جدًا
     view_licenses: عرض التراخيص
+    wait_for_upload_completion: يرجى الانتظار حتى ينتهي تحميل جميع الملفات
     waiting: انتظار
     weight: الوزن
     what_to_look_for: ما الذي يجب البحث عنه

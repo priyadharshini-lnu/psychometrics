@@ -44,6 +44,8 @@ hi:
     copy: प्रतिलिपि
     created_at: पर बनाया गया
     created_date: निर्मित तिथि
+    custom_acknowledgment_text: अनुकूलित आभार पाठ
+    custom_acknowledgment_text_required: कंट्रोलर डेटा भूमिका के लिए कस्टम स्वीकृति पाठ आवश्यक है।
     custom_consent_text: अनुकूलित सहमति पाठ
     custom_consent_text_required: कंट्रोलर डेटा भूमिका के लिए अनुकूलित सहमति पाठ आवश्यक है।
     data_role: डेटा भूमिका
@@ -83,6 +85,7 @@ hi:
     maintenance_time_remaining: शेष समय
     maintenance_upcoming_description: हम आपके अनुभव को बेहतर बनाने के लिए %{date} पर लगभग %{duration} तक निर्धारित रखरखाव करेंगे। इस दौरान आप किसी भी सौंपे गए कार्य तक पहुँच या उन्हें पूरा नहीं कर पाएँगे। हम आपके धैर्य की सराहना करते हैं।
     maintenance_upcoming_title: आगामी रखरखाव
+    manage_cookies: कुकीज़ प्रबंधित करें
     media_id: मीडिया आईडी
     media_preview: मीडिया पूर्वावलोकन
     media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
@@ -98,6 +101,7 @@ hi:
     negative: नकारात्मक
     new: नया
     next: अगला
+    no_audio_warning: ऑडियो का पता नहीं चल रहा है। कृपया जांचें कि आपका माइक्रोफ़ोन जुड़ा हुआ है और ठीक से काम कर रहा है।
     no_results_found: कोई परिणाम नहीं मिला
     not_requested: अभी तक अनुरोध नहीं किया गया
     ok: ठीक है

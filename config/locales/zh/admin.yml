@@ -8,6 +8,7 @@ zh:
     add_campaign_admin: 添加活动管理
     add_client_admin: 添加客户管理员
     add_indicator: 添加指示器
+    add_new_folder: 添加新文件夹
     add_project: 添加项目
     add_project_admin: 添加项目管理
     add_threesixty_campaign_admin: 添加活动管理
@@ -45,13 +46,17 @@ zh:
     ai_assistants: 人工智能助理
     ai_assistants_advanced_mode_tooltip: 使用高级模式使用带有可用变量的液态模板进行提示模板。详情请参阅相关文档。
     ai_assistants_campaign_id_placeholder: 这时，活动ID
+    ai_assistants_cannot_change_type_when_in_use: 无法更改 AI 助手“%{name}”的类型，因为它当前正在使用中。
     ai_assistants_no_rendered_output: 没有渲染输出可用
+    ai_assistants_provider_change_confirm_title: 更换服务商？
+    ai_assistants_provider_previously_used_warning: 该助手此前曾使用“%{from}”生成过结果。若将该值更改为“%{to}”，可能会影响该助手在后续生成请求中的行为。
     ai_assistants_render_button: 渲染模板
     ai_assistants_rendered_prompt: 渲染提示
     ai_assistants_template_and_campaign_required: 请同时提供模板和战役ID
     ai_assistants_template_render_failed: 模板渲染失败
     ai_assistants_test_render: 测试渲染
     ai_assistants_test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
+    ai_assistants_type_locked_tooltip: 该助手目前正在使用中，无法更改其类型。
     ai_assisted_idp_disabled_by_client: AI辅助IDP功能已被客户端禁用
     ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
     ai_idp_assistant_configure_dependencies: 配置 AI 依赖项
@@ -85,6 +90,19 @@ zh:
     ai_scoring_appoval_responses: AI 回应
     ai_scoring_appoval_score_not_applicable: 分数不适用
     ai_scoring_approval: AI评分审批
+    ai_scoring_approval_digest_mailer_access_link_intro: 您可以通过以下链接查看评分审批情况：
+    ai_scoring_approval_digest_mailer_approved_body_intro: 以下评分结果已获批准。
+    ai_scoring_approval_digest_mailer_approved_contact_reason: 您收到这封邮件，是因为您已被添加为接收评分审批通知的联系人。
+    ai_scoring_approval_digest_mailer_approved_subject: 比分已确认
+    ai_scoring_approval_digest_mailer_assessment_label: 评估：%{value}
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: 以下评分已准备就绪，待您审批，请予以处理。
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: 您收到此邮件是因为您已被添加为评分审批人，这些评分需要经您批准。
+    ai_scoring_approval_digest_mailer_awaiting_subject: 待审核的评分
+    ai_scoring_approval_digest_mailer_campaign_label: 活动：%{value}
+    ai_scoring_approval_digest_mailer_count_label: 进球数统计：%{value}
+    ai_scoring_approval_digest_mailer_dear: 亲爱的 %{name}，
+    ai_scoring_approval_digest_mailer_link_text: 评分审批
+    ai_scoring_approval_digest_mailer_project_label: 项目：%{value}
     ai_scoring_approval_settings: AI评分审批设置
     ai_scoring_approval_stale_description: 自上次运行以来，配置更新可能已导致评分发生变化。请重新评分以使用最新设置更新评分。
     ai_scoring_approval_stale_title: 分数可能已过时
@@ -136,6 +154,7 @@ zh:
     bulk_assets_modal_title: 上传CSV和ZIP文件
     bulk_upload_ai_artifacts: 批量上传AI伪影
     campaign_ai_artifact_updated_successfully: 战役AI工件已成功更新
+    campaign_ai_artifacts_instruction_templating_tooltip: 您可以利用提示符模板功能，结合 Liquid 模板语法和可用变量来使用高级指令。更多详情请参阅文档。
     campaign_ai_artifacts_results_export_details: 活动人工智能生成物产出结果
     campaign_assessment_actions_disable_caching: 关闭评估缓存
     campaign_assessment_actions_enable_caching: 启用评估缓存
@@ -161,6 +180,24 @@ zh:
     campaign_assessment_modals_enable_caching_title: 启用评估缓存？
     campaign_factors: 活动因素
     campaign_name: 活动名称
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: 外部报告编号
+          language_id: 语言代码
+          norm: 诺姆
+          norm_id: 规范编号
+          suitability_id: 适用性标识
+        labels:
+          assessment_ids: 评估ID
+          available_languages: 可用语言
+          campaign_report_id: 活动报告编号
+          check_details: 查看详情
+          default_language: 默认语言
+          external_settings: 外部设置
+          provider: 服务提供商
+          report_pdf_status: 报告 PDF 状态
+          user_report_id: 用户报告编号
     campaign_templates: 活动模板
     campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
     campaigns: 活动
@@ -183,7 +220,9 @@ zh:
     configure_model_answer_title: 配置模型答案和关键词
     confirm_remove_admin: 您确定要删除电子邮件地址为"%{email}"的管理员用户吗？
     copied: 复制
+    copied_url_success: URL 已成功复制到剪贴板
     copy_ai_artifacts: 复制 AI 生成内容
+    copy_image_url: 复制图片网址
     country: 国家
     create_client: 创建客户
     create_indicator: 创建指标
@@ -221,6 +260,7 @@ zh:
       thursday: 星期四
       tuesday: 星期二
       wednesday: 星期三
+    dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
     done: 做
     done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
@@ -228,9 +268,11 @@ zh:
     duration: 时长
     edit_campaign_admin: 编辑活动管理
     edit_client_admin: 编辑客户管理员
+    edit_folder: 编辑文件夹
     edit_indicator: 编辑指示器
     edit_job_roles: 编辑职位角色
     edit_level: 编辑级别
+    edit_media: 编辑媒体
     edit_permission_denied: 你没有权限编辑管理员的“%{name}”
     edit_project_admin: 编辑项目管理
     edit_threesixty_campaign_admin: 编辑活动管理
@@ -272,6 +314,8 @@ zh:
     feature_global_skills_description: 访问全球技能库进行评估
     feature_idp_description: 为参与者启用个人发展规划
     feature_sms_notification_description: 为活动邀请和提醒启用短信通知
+    file_size_must_be_less_than_mb: 文件 {{name}} 的大小超过了 {{max_size_mb}} MB 的上限
+    file_upload_failed: 上传 {{name}} 失败
     fill_empty_score_msg: 保存前填写所有最终分数。
     final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
     final_score_empty_msg: 最终账单不能为空。
@@ -351,6 +395,8 @@ zh:
     maintenance_settings_description: 管理系统维护窗口和设置
     manager_approval_required: "%{user}报告下载前需要经理批准"
     max_value: 最大值
+    media_files_label: 文件
+    media_library: 媒体库
     messages: 信息
     mhs: MHS
     mhs_assessment: MHS评估
@@ -370,6 +416,7 @@ zh:
     name: 名称
     name_max_length: 名称不能超过%{length}个字符
     name_required: 需要命名
+    new_folder: 新建文件夹
     no_file_selected: 未选择文件
     no_notifications: 没有通知
     no_status: 无状态
@@ -832,9 +879,15 @@ zh:
     questions: 问题
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: 思考题
+    regenerate_transcriptions_action: 重新生成转录文本
+    regenerate_transcriptions_confirm_content: 您确定要为本次评估重新生成转录文本吗？此操作将重新处理所有未完成的转录文本。
+    regenerate_transcriptions_confirm_title: 重新生成转录文本
+    regenerate_transcriptions_scheduled: "“重新生成转录任务”已成功安排"
     registration_codes: 注册码
     registration_settings: 注册设置
     remove_children_to_change_type: 移除所有子节点以更改类型
+    remove_confirmation: 您确定要删除此项目吗？
+    remove_successfully: 媒体项目已成功删除。
     report_approvals: 报告批准
     report_condition_not_met: 需要%{required} %{relationship}评估，但只有%{actual}
     report_conditions_not_met_detailed: "%{user}报告不符合可用性条件。%{conditions}"
@@ -938,7 +991,9 @@ zh:
     scoring_approval_approvers: 审批人
     scoring_approval_assessment: 评估
     scoring_approval_assessor_users: 评估师用户
+    scoring_approval_do_not_send_notifications: 请勿发送通知
     scoring_approval_modal_title: 评分审批设置
+    scoring_approval_notification_users: 审批通知用户
     scoring_approval_remove_modal_success: 评估ID为%{assessmentId}的审批设置已成功删除
     scoring_approval_remove_modal_text: 您确定要删除评估ID为%{assessmentId}的此设置吗？
     scoring_supported_only_for_ai_questions: 当前选定因素仅允许在启用AI的题目上进行评分。
@@ -995,7 +1050,12 @@ zh:
     translated_to: 翻译为：
     translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
+    translations:
+      title: 翻译
     update_success: 已成功更新 %{readableResourceName}
+    upload: 上传
+    upload_media: 上传媒体
+    upload_required: 请至少添加一个文件进行上传
     upload_success: 上传成功
     user_report_events: 用户报告事件
     users: 用户
@@ -1004,6 +1064,7 @@ zh:
     very_high: 极高
     very_low: 极低
     view_licenses: 查看许可证
+    wait_for_upload_completion: 请等待所有文件上传完成
     waiting: 等待
     weight: 重量
     what_to_look_for: 需要关注什么

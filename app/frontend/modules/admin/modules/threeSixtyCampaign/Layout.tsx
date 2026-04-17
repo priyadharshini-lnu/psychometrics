@@ -10,6 +10,7 @@ import { Admins } from './routes/Admins'
 import Datasheet from './routes/Datasheet'
 import Reports from './routes/Reports'
 import Messages from './routes/Messages'
+import { AIArtifacts } from './routes/AIArtifacts'
 
 const Main: React.FC = () => (
   <Suspense fallback={(
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
   {
     path: `${settings.urlPrefix}/datasheets/*`,
     element: <Datasheet />,
+  },
+  {
+    path: `${settings.urlPrefix}/ai_artifacts/*`,
+    element: <AIArtifacts />,
   },
   { path: '*', element: <Main /> },
 ])

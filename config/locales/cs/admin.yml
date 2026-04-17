@@ -8,6 +8,7 @@ cs:
     add_campaign_admin: Přidání správce kampaně
     add_client_admin: Přidání správce klienta
     add_indicator: Přidat indikátor
+    add_new_folder: Přidat novou složku
     add_project: Přidat projekt
     add_project_admin: Přidání správce projektu
     add_threesixty_campaign_admin: Přidání správce kampaně
@@ -45,13 +46,17 @@ cs:
     ai_assistants: Asistenti AI
     ai_assistants_advanced_mode_tooltip: Použijte pokročilý režim pro šablonování promptů pomocí tekuté šablony s dostupnými proměnnými. Pro více informací se podívejte na dokumentaci.
     ai_assistants_campaign_id_placeholder: Vstup do kampaně ID
+    ai_assistants_cannot_change_type_when_in_use: Typ AI asistenta „%{name}“ nelze změnit, protože je právě používán.
     ai_assistants_no_rendered_output: Žádný vykreslený výstup není k dispozici
+    ai_assistants_provider_change_confirm_title: Změnit poskytovatele?
+    ai_assistants_provider_previously_used_warning: Tento asistent dosud generoval výsledky s adresou „%{from}“. Změna na adresu „%{to}“ může ovlivnit chování asistenta při budoucích požadavcích na generování.
     ai_assistants_render_button: Šablona renderu
     ai_assistants_rendered_prompt: Vykreslený prompt
     ai_assistants_template_and_campaign_required: Prosím, uveďte jak šablonu, tak ID kampaně
     ai_assistants_template_render_failed: Nepodařilo se vykreslit šablonu
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
+    ai_assistants_type_locked_tooltip: Tento asistent je momentálně v provozu a jeho typ nelze změnit.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP je deaktivováno klientem
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
     ai_idp_assistant_configure_dependencies: Konfigurace závislostí AI
@@ -85,6 +90,19 @@ cs:
     ai_scoring_appoval_responses: Odpovědi AI
     ai_scoring_appoval_score_not_applicable: Skóre se nevztahuje
     ai_scoring_approval: Schválení bodování AI
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Schválení bodového hodnocení najdete na následujícím odkazu:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Byly schváleny následující výsledky.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Tento e-mail jste obdrželi, protože jste byli přidáni jako kontakt pro zasílání oznámení o schválení hodnocení.
+    ai_scoring_approval_digest_mailer_approved_subject: Schválené výsledky
+    ai_scoring_approval_digest_mailer_assessment_label: 'Hodnocení: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Následující partitury jsou připraveny ke schválení a vyžadují váš zásah.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Tento e-mail jste obdrželi, protože jste byli přidáni jako schvalovatel hodnocení, která vyžadují schválení.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Výsledky čekající na schválení
+    ai_scoring_approval_digest_mailer_campaign_label: 'Kampaň: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Počet gólů: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Vážení %{name},
+    ai_scoring_approval_digest_mailer_link_text: Schvalování bodového hodnocení
+    ai_scoring_approval_digest_mailer_project_label: 'Projekt: %{value}'
     ai_scoring_approval_settings: Nastavení schvalování bodování AI
     ai_scoring_approval_stale_description: Skóre se mohlo změnit v důsledku aktualizací konfigurace od posledního spuštění. Proveďte nové vyhodnocení, aby se skóre aktualizovalo podle nejnovějších nastavení.
     ai_scoring_approval_stale_title: Výsledek může být zastaralý
@@ -136,6 +154,7 @@ cs:
     bulk_assets_modal_title: Nahrát soubory CSV a ZIP
     bulk_upload_ai_artifacts: Hromadné AI artefakty
     campaign_ai_artifact_updated_successfully: Artefakty AI kampaně byly úspěšně aktualizovány
+    campaign_ai_artifacts_instruction_templating_tooltip: Můžete využívat pokročilé příkazy pomocí šablonování příkazového řádku se syntaxí šablon Liquid a dostupnými proměnnými. Další podrobnosti najdete v dokumentaci.
     campaign_ai_artifacts_results_export_details: Výsledky generované artefakty AI kampaně
     campaign_assessment_actions_disable_caching: Vypnout cache hodnocení
     campaign_assessment_actions_enable_caching: Povolit cache hodnocení
@@ -161,6 +180,24 @@ cs:
     campaign_assessment_modals_enable_caching_title: Povolit cache hodnocení?
     campaign_factors: Faktory kampaně
     campaign_name: Název kampaně
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Externí ID zprávy
+          language_id: ID jazyka
+          norm: Norm
+          norm_id: Identifikační číslo normy
+          suitability_id: Identifikátor vhodnosti
+        labels:
+          assessment_ids: Identifikační čísla hodnocení
+          available_languages: Dostupné jazyky
+          campaign_report_id: ID zprávy o kampani
+          check_details: Zobrazit podrobnosti
+          default_language: Výchozí jazyk
+          external_settings: Externí nastavení
+          provider: Poskytovatel
+          report_pdf_status: Zpráva o stavu (PDF)
+          user_report_id: ID uživatelské zprávy
     campaign_templates: Šablony kampaní
     campaign_user_job_roles_cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
     campaigns: Kampaně
@@ -183,7 +220,9 @@ cs:
     configure_model_answer_title: Nakonfigurujte vzorovou odpověď a klíčová slova
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
     copied: Zkopírováno
+    copied_url_success: URL byla úspěšně zkopírována do schránky
     copy_ai_artifacts: Kopírovat artefakty AI
+    copy_image_url: Zkopírovat adresu URL obrázku
     country: Země
     create_client: Vytvořit klienta
     create_indicator: Vytvořit indikátor
@@ -221,6 +260,7 @@ cs:
       thursday: čtvrtek
       tuesday: úterý
       wednesday: středa
+    dimension_translations_export_scheduled: Export překladů naplánovaný pro dimenzi „%{name}“.
     dimensions: Rozměry
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
@@ -228,9 +268,11 @@ cs:
     duration: Doba trvání
     edit_campaign_admin: Upravit správce kampaně
     edit_client_admin: Upravit správce klienta
+    edit_folder: Upravit složku
     edit_indicator: Upravit indikátor
     edit_job_roles: Upravit pracovní role
     edit_level: Úroveň úprav
+    edit_media: Upravit média
     edit_permission_denied: Nemáte oprávnění upravovat administrátorské '%{name}'
     edit_project_admin: Upravit správce projektu
     edit_threesixty_campaign_admin: Upravit správce kampaně
@@ -272,6 +314,8 @@ cs:
     feature_global_skills_description: Přístup k globální knihovně dovedností pro hodnocení
     feature_idp_description: Povolit individuální plánování rozvoje pro účastníky
     feature_sms_notification_description: Povolit SMS oznámení pro pozvánky a připomenutí kampaní
+    file_size_must_be_less_than_mb: Soubor {{name}} překračuje maximální velikost {{max_size_mb}} MB
+    file_upload_failed: Nepodařilo se nahrát {{name}}
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
     final_score_empty_msg: Konečný účet nemůže být prázdný.
@@ -351,6 +395,8 @@ cs:
     maintenance_settings_description: Správa časových oken a nastavení údržby systému
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
     max_value: Maximální hodnota
+    media_files_label: Soubory
+    media_library: Mediální knihovna
     messages: Zprávy
     mhs: MHS
     mhs_assessment: Hodnocení MHS
@@ -370,6 +416,7 @@ cs:
     name: Jméno
     name_max_length: Název nesmí překročit %{length} znaků.
     name_required: Jméno je vyžadováno
+    new_folder: Nová složka
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
     no_status: Bez statusu
@@ -832,9 +879,15 @@ cs:
     questions: Otázky
     range_min_max: ROZSAH%{min} - %{max}
     reflection_questions: Otázky k zamyšlení
+    regenerate_transcriptions_action: Obnovit přepisy
+    regenerate_transcriptions_confirm_content: Opravdu chcete znovu vygenerovat přepisy pro toto hodnocení? Tím dojde k novému zpracování všech neúplných přepisů.
+    regenerate_transcriptions_confirm_title: Obnovit přepisy
+    regenerate_transcriptions_scheduled: Úloha regenerace přepisů byla úspěšně naplánována
     registration_codes: Registrační kódy
     registration_settings: Nastavení registrace
     remove_children_to_change_type: Odebrat všechny děti pro změnu typu
+    remove_confirmation: Opravdu chcete tuto položku odstranit?
+    remove_successfully: Mediální položka byla úspěšně odstraněna.
     report_approvals: Schvalování zpráv
     report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
     report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
@@ -938,7 +991,9 @@ cs:
     scoring_approval_approvers: Schvalovatelé
     scoring_approval_assessment: Hodnocení
     scoring_approval_assessor_users: Uživatelé hodnotitelů
+    scoring_approval_do_not_send_notifications: Nezasílat oznámení
     scoring_approval_modal_title: Nastavení schvalování bodování
+    scoring_approval_notification_users: Uživatelé s oprávněním k přijímání oznámení
     scoring_approval_remove_modal_success: 'Nastavení schválení pro identifikační číslo hodnocení: %{assessmentId} bylo úspěšně smazáno.'
     scoring_approval_remove_modal_text: 'Opravdu chcete smazat toto nastavení pro identifikační číslo hodnocení: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Bodování je povoleno pouze u otázek s podporou AI pro aktuálně vybraný faktor.
@@ -995,7 +1050,12 @@ cs:
     translated_to: 'Přeloženo do:'
     translated_with_ai_notice: Přeloženo umělou inteligencí
     translation_assistant_not_configured: Překladač není nakonfigurován
+    translations:
+      title: Překlady
     update_success: Zdroj %{readableResourceName} byl úspěšně aktualizován
+    upload: Nahrát
+    upload_media: Nahrát média
+    upload_required: Přidejte prosím alespoň jeden soubor k nahrání
     upload_success: Úspěšně nahráno
     user_report_events: Hlášení uživatele Události
     users: Uživatelé
@@ -1004,6 +1064,7 @@ cs:
     very_high: Velmi vysoká
     very_low: Velmi nízká
     view_licenses: Zobrazit licence
+    wait_for_upload_completion: Počkejte, prosím, až se všechny soubory dokončí nahrávání
     waiting: Čekání
     weight: Hmotnost
     what_to_look_for: Co hledat

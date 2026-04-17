@@ -8,7 +8,7 @@ import { ItemType } from 'antd/lib/menu/interface'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { Factor } from '~/modules/admin/modules/campaigns/core/factors'
+import { Factor, FactorTR } from '~/modules/admin/modules/campaigns/core/factors'
 import { ResourceAvatar } from '~/glint/components/ResourceAvatar/ResourceAvatar'
 
 type Props = {
@@ -113,13 +113,33 @@ type DropDownProps = {
   factor: Factor,
   openModal: (modalName: string, modalProps?: unknown) => void
 }
-const Dropdown: React.FC<DropDownProps> = ({ factor, openModal }) => (
-  <ConditionalDropdown
-    menu={getActionsMenuProps({ factor, openModal })}
-  />
-)
 
-const getActionsMenuProps = ({ factor, openModal }: DropDownProps): MenuProps => {
+const Dropdown: React.FC<DropDownProps> = ({ factor, openModal }) => {
+  const { resource } = useResourceContext<Factor>()
+
+  const copyFactor = async () => {
+    await resource.memberAction({
+      id: factor.id,
+      action: 'copy',
+      method: 'post',
+      updateStore: true,
+      responseType: FactorTR,
+    })
+  }
+
+  return (
+    <ConditionalDropdown
+      menu={getActionsMenuProps({ factor, openModal, copyFactor })}
+    />
+  )
+}
+
+const getActionsMenuProps = ({
+  factor,
+  openModal,
+  copyFactor,
+}: DropDownProps & { copyFactor: () => Promise<void> }): MenuProps => {
+  const canCopy = factor?.meta?.permissions?.copy
   const menuItems = [
     factor && {
       key: 'edit',
@@ -143,11 +163,12 @@ const getActionsMenuProps = ({ factor, openModal }: DropDownProps): MenuProps =>
           {I18n.t('common.actions.remove')}
         </Button>),
     },
-    {
+    canCopy && {
       key: 'copy',
       label: (
         <Button
           type="link"
+          onClick={copyFactor}
           className="ps-0"
         >
           {I18n.t('common.actions.copy')}
@@ -159,13 +180,28 @@ const getActionsMenuProps = ({ factor, openModal }: DropDownProps): MenuProps =>
 }
 
 const ActiveSwitch: React.FC<{ factor: Factor }> = ({ factor }) => {
+  const [loading, setLoading] = React.useState(false)
+  const [displayedDisabled, setDisplayedDisabled] = React.useState(factor.disabled)
   const { resource } = useResourceContext<Factor>()
+
+  React.useEffect(() => {
+    setDisplayedDisabled(factor.disabled)
+  }, [factor.disabled])
+
+  const handleToggle = () => {
+    setLoading(true)
+    resource.updateResource({ id: factor.id, disabled: !displayedDisabled }).then(() => {
+      setLoading(false)
+    }).catch(() => {
+      setLoading(false)
+    })
+  }
+
   return (
     <Switch
-      checked={factor.parent}
-      onChange={() => {
-        resource.updateResource({ id: factor.id, parent: !factor.parent })
-      }}
+      checked={!displayedDisabled}
+      onChange={handleToggle}
+      disabled={loading}
     />
   )
 }

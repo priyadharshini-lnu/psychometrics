@@ -74,7 +74,7 @@ class AssessmentContainer extends Component {
   render () {
     const {
       disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser, showEnhanceWithAI = false,
-      preventOverflow,
+      preventOverflow, skipInstructions,
     } = this.props
 
     const { loading } = this.state
@@ -82,7 +82,7 @@ class AssessmentContainer extends Component {
       <ThemeWrapper
         renderedByEnduser={renderedByEnduser}
       >
-        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
+        <ErrorBoundary fallbackRender={({ error }) => <ErrorWarning error={error} />}>
           <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
             {/* <ConnectionCheck
             onConnected={() => rstore.dispatch(connected())}
@@ -107,6 +107,7 @@ class AssessmentContainer extends Component {
                         type={type}
                         defaultLanguage={data.default_language}
                         preventOverflow={preventOverflow}
+                        skipInstructions={skipInstructions}
                       />
                     </RecordingProvider>
                   )

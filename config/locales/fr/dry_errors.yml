@@ -118,9 +118,6 @@ fr:
       workshops:
         no_available_assessor_slots: Aucun créneau disponible pour l'évaluateur %{assessor}
         no_available_manager_slots: Aucun emplacement disponible pour le manager %{manager}
-    idp_template:
-      content_required: Le contenu est requis pour les instructions
-      tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
     users:
       registrations:
         new:

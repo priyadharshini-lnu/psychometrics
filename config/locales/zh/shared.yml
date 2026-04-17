@@ -44,6 +44,8 @@ zh:
     copy: 复制
     created_at: 创建时间
     created_date: 创建日期
+    custom_acknowledgment_text: 自定义致谢文本
+    custom_acknowledgment_text_required: 控制器数据角色需要自定义确认文本
     custom_consent_text: 自定义同意文本
     custom_consent_text_required: 控制器数据角色需要自定义同意文本
     data_role: 数据角色
@@ -83,6 +85,7 @@ zh:
     maintenance_time_remaining: 剩余时间
     maintenance_upcoming_description: 我们将对 %{date} 进行计划维护，预计持续约 %{duration}，以提升您的使用体验。在此期间，您将无法访问或完成任何分配的任务。感谢您的耐心等待。
     maintenance_upcoming_title: 即将进行的维护
+    manage_cookies: 管理Cookie
     media_id: 媒体ID
     media_preview: 媒体预览
     media_question_transcriptions: 媒体提问实录
@@ -98,6 +101,7 @@ zh:
     negative: 负面
     new: 新的
     next: 下一页
+    no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
     no_results_found: 未找到任何结果
     not_requested: 尚未请求
     ok: 确定

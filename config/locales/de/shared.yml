@@ -44,6 +44,8 @@ de:
     copy: Kopie
     created_at: Erstellt am
     created_date: Erstellt am
+    custom_acknowledgment_text: Benutzerdefinierter Danksagungstext
+    custom_acknowledgment_text_required: Für die Rolle „Controller-Daten“ ist ein benutzerdefinierter Bestätigungstext erforderlich
     custom_consent_text: Benutzerdefinierter Einwilligungstext
     custom_consent_text_required: Für die Datenrolle des Verantwortlichen ist ein benutzerdefinierter Einwilligungstext erforderlich.
     data_role: Datenrolle
@@ -83,6 +85,7 @@ de:
     maintenance_time_remaining: Verbleibende Zeit
     maintenance_upcoming_description: Wir führen planmäßige Wartungsarbeiten an %{date} für etwa %{duration} durch, um Ihre Benutzererfahrung zu verbessern. Während dieser Zeit können Sie nicht auf zugewiesene Aufgaben zugreifen oder diese erledigen. Wir danken Ihnen für Ihre Geduld.
     maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
+    manage_cookies: Cookies verwalten
     media_id: Medien-ID
     media_preview: Medienvorschau
     media_question_transcriptions: Transkriptionen von Medienfragen
@@ -98,6 +101,7 @@ de:
     negative: Negativ
     new: Neu
     next: Weiter
+    no_audio_warning: Es wurde kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
     no_results_found: Keine Ergebnisse gefunden
     not_requested: Noch nicht angefordert
     ok: Ok

@@ -106,6 +106,7 @@ const CompetencyHeader = ({
 
 const CompetencyContent = ({
   competency, hasIndicators, indicators, overrideScore, discardScore, approved, allowApprove,
+  onSeek, playingCitationKey,
 }) => (
   <Flex vertical gap={8}>
     <Flex style={{ padding: 16 }}>
@@ -121,6 +122,8 @@ const CompetencyContent = ({
             discardScore={discardScore}
             approved={approved}
             allowApprove={allowApprove}
+            onSeek={onSeek}
+            playingCitationKey={playingCitationKey}
           />
         ))}
       </Flex>
@@ -136,10 +139,13 @@ const CompetencyContent = ({
         <Typography.Text strong>
           {I18n.t('admin.ai_scoring_appoval_evidence_from_transcript')}
         </Typography.Text>
-        {competency.citations.map((evidence, i) => (
-          <Evidence key={i}>
-            {evidence}
-          </Evidence>
+        {competency.citations.map((citation, i) => (
+          <Evidence
+            key={i}
+            citation={citation}
+            onSeek={onSeek}
+            isPlaying={playingCitationKey === `${citation.startTime}`}
+          />
         ))}
         <ChangeLog logs={competency.changeLog} factor={competency} />
       </Flex>
@@ -148,7 +154,8 @@ const CompetencyContent = ({
 )
 
 export const CompetencyRow = ({
-  competency, indicators, aggregatedScore = null, overrideScore, discardScore, approved, allowApprove, isFirst = false,
+  competency, indicators, overrideScore, discardScore, approved, allowApprove, aggregatedScore = null,
+  isFirst = false, onSeek, playingCitationKey,
 }) => {
   const [open, setOpen] = useState(false)
   const hasIndicators = indicators?.length > 0
@@ -209,6 +216,8 @@ export const CompetencyRow = ({
             discardScore={discardScore}
             approved={approved}
             allowApprove={allowApprove}
+            onSeek={onSeek}
+            playingCitationKey={playingCitationKey}
           />
         ),
       }]}
