@@ -12,6 +12,11 @@ sk:
     ai_idp_summary_hint_no_document: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať a zdieľať viac detailov.
     all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
     approve_idp_plan: Schváliť plán
+    audio: Audio
+    audio_check: Test mikrofónu
+    audio_check_description: Skontrolujte, či mikrofón správne funguje pri nahrávaní
+    audio_recording: Zvukový záznam
+    audio_test_step: Krok testovania zvuku
     back: Späť
     back_to_dashboard: Návrat na hlavnú stránku
     before_you_begin: Než začnete
@@ -28,6 +33,8 @@ sk:
     browser_compatible_detail: Používate verziu prehliadača %{browser_name} %{browser_version}, ktorá spĺňa minimálne požiadavky pre túto kampaň.
     browser_incompatible_detail: Používate verziu %{browser_name} %{browser_version}. Aktualizujte prosím svoj %{browser_name} na verziu %{min_browser_version}, aby ste zaistili kompatibilitu.
     browser_not_compatible: Váš prehliadač %{browser_name} nie je kompatibilný s touto kampaňou. Pre optimálne fungovanie stránky použite najnovšie verzie prehliadačov Chrome, Firefox, Safari alebo Edge.
+    browser_not_compatible_description: Pre optimálny zážitok používajte najnovšie verzie prehliadačov Chrome, Firefox, Safari alebo Edge.
+    browser_not_compatible_detail: Váš prehliadač %{browser_name} nie je kompatibilný s touto kampaňou. Pre optimálne fungovanie stránky použite najnovšie verzie prehliadačov Chrome, Firefox, Safari alebo Edge.
     browser_version_fix_description_first: 'Použite niektorý z podporovaných prehliadačov: Chrome, Firefox, Edge alebo Safari'
     browser_version_fix_title: Vaša verzia prehliadača nie je podporovaná.
     camera: Video a audio
@@ -38,6 +45,7 @@ sk:
     camera_check_passed: Kontrola obrazu a zvuku prebehla úspešne
     camera_test_step: Krok na otestovanie obrazu a zvuku
     campaign: Kampaň
+    campaign_check_status: 'Stav: %{status}'
     chat_instructions: Pokyny pre chat
     check: Skontrolujte
     check_video_recording: Skontrolujte si prosím svoj videozáznam jeho prehrávaním.
@@ -53,6 +61,8 @@ sk:
     download_pdf: Stiahnuť PDF
     download_speed_below_minimum: Rýchlosť sťahovania %{download_speed} je nižšia ako minimálna požadovaná rýchlosť sťahovania %{minimum_download_speed} Mbps
     environment_setup: Nastavenie prostredia
+    error_uploading_audio: Chyba pri nahrávaní zvukového súboru
+    error_uploading_audio_detail: Pri nahrávaní zvukového súboru došlo k chybe
     error_uploading_video: Chyba pri nahrávaní videa
     error_uploading_video_detail: Pri nahrávaní videa došlo k chybe
     fail: Neúspech
@@ -73,6 +83,7 @@ sk:
     idp_report_being_generated: Pracujeme na vašej správe
     idp_reset_chat: Vynulovať konverzáciu
     idp_retake_steps_continue_with_this_information: Pokračujte s týmito informáciami
+    initializing: Inicializácia...
     insights: Postrehy
     instruction: Uistite sa, že vy aj vaše okolie ste na to dokonale pripravení
     internet_speed: Rýchlosť internetu
@@ -90,6 +101,8 @@ sk:
     media_recorder_api_fix_title: Váš prehliadač nepodporuje rozhranie Media Recorder API.
     media_recorder_api_not_supported_detail: Používate prehliadač %{browser_name} vo verzii %{browser_version}, ktorý nepodporuje rozhranie MediaRecorder API. Aktualizujte svoj prehliadač na najnovšiu verziu, aby ste zaistili kompatibilitu.
     media_recorder_api_support: Podpora rozhrania API MediaRecorder
+    microphone_access_blocked: Váš prehliadač zamietol alebo zablokoval prístup k mikrofónu. Skontrolujte prosím oprávnenia vo vašom prehliadači.
+    microphone_check_passed: Skúška mikrofónu prebehla úspešne
     min_word_limit: Musí mať najmenej %{min} slov
     minimum_speed_requirements: Pre túto kampaň je potrebná minimálna rýchlosť sťahovania %{minimum_download_speed} Mbps a minimálna rýchlosť odosielania %{minimum_upload_speed} Mbps.
     minute: minúta
@@ -105,6 +118,7 @@ sk:
     network_check_fix_third: Reštartujte router/modem a skúste to znova
     network_speed_meets_required_detail: Vaša rýchlosť internetu spĺňa minimálne požiadavky kampane
     network_test_step: Krok testovania siete
+    no_audio_detected: Nebolo zistené žiadne zvukové signály. Skontrolujte, či je mikrofón pripojený a správne funguje.
     pass: Preskočiť
     pending: V riešení
     personal_readiness: Osobná pripravenosť
@@ -114,6 +128,7 @@ sk:
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Dôvod odmietnutia
+    redirect_to_external_assessment: Budete presmerovaní na stránku s testom. Ak chcete začať s testom, kliknite na tlačidlo Pokračovať.
     reject_idp_plan: Plán odmietnuť
     request_retry_message: Si offline. Vaše odpovede sa nedajú uložiť automaticky, keď sa opäť pripojíte. Prosím, neobnovujte ani nezatvárajte stránku.
     required_download_in_mbps: Požadovaná rýchlosť sťahovania v Mbps
@@ -122,6 +137,8 @@ sk:
     rerun_checks: Opakované kontroly
     result: Výsledok
     results: Výsledok
+    safari_proctoring_description: Zdá sa, že používate prehliadač Safari, ktorý môže mať určité obmedzenia, pokiaľ ide o funkcie sledovania aktivované v rámci tejto kampane. Pre optimálny zážitok odporúčame používať prehliadače Chrome alebo Firefox.
+    safari_proctoring_title: Zistený prehliadač Safari
     selected_count: Vybrané
     skill_type: Typ zručnosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
@@ -129,6 +146,7 @@ sk:
     start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_readiness_check: Spustiť kontrolu pripravenosti
     start_system_check: Spustiť kontrolu systému
+    subinstruction_audio: Fungujúci mikrofón
     subinstruction_eight: Vyhraďte si na kompletné posúdenie čas bez prerušenia
     subinstruction_five: Ste pripravení zdieľať svoju obrazovku počas celej relácie?
     subinstruction_four: Funkčná webová kamera a mikrofón
@@ -175,6 +193,12 @@ sk:
     testing_upload_speed: Testovanie rýchlosti odosielania...
     time_commitment: Časová náročnosť
     troubleshooting_guide: Príručka na riešenie problémov
+    troubleshooting_guide_audio_fifth: 'V systéme Windows: Skontrolujte nastavenia ochrany osobných údajov > Prístup k mikrofónu'
+    troubleshooting_guide_audio_first: Kliknite na ikonu zámku/informácií v adresnom riadku prehliadača
+    troubleshooting_guide_audio_fourth: Ak sa stránka nezobrazuje, môže byť potrebné obnoviť oprávnenia v nastaveniach prehliadača
+    troubleshooting_guide_audio_second: Vyhľadajte nastavenia položky „Mikrofón“ a nastavte ich na „Povoliť“
+    troubleshooting_guide_audio_sixth: 'V systéme Mac: Prejdite do časti Systémové nastavenia > Bezpečnosť'
+    troubleshooting_guide_audio_third: Po zmene oprávnení obnovte stránku
     troubleshooting_guide_browser_fifth: Uistite sa, že máte v nastaveniach prehliadača povolenú funkciu LocalStorage
     troubleshooting_guide_browser_first: 'Použite niektorý z podporovaných prehliadačov: Chrome, Firefox, Edge alebo Safari (najnovšie verzie)'
     troubleshooting_guide_browser_fourth: V nastaveniach prehliadača povolte JavaScript a súbory cookie
@@ -195,6 +219,7 @@ sk:
     untimed: Bez časového obmedzenia
     upload: Nahrať
     upload_speed_below_minimum: Rýchlosť odosielania %{upload_speed} je nižšia ako minimálna požadovaná rýchlosť odosielania %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video a audio
     video_and_audio_recording: Nahrávanie videa a zvuku
     video_check_fix_fifth: Ak máte externý fotoaparát, skúste ho odpojiť a znovu pripojiť

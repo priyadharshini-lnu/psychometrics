@@ -12,6 +12,11 @@ bg:
     ai_idp_summary_hint_no_document: С твоето позволение, ако кажеш да, мога да създам план за развитие за теб. Ако не, можете да рестартирате чата, за да споделите повече подробности.
     all_checks_must_pass: Всички проверки трябва да бъдат успешни, преди да продължите.
     approve_idp_plan: Одобри план
+    audio: Аудио
+    audio_check: Тест на микрофона
+    audio_check_description: Уверете се, че микрофонът ви работи правилно за запис
+    audio_recording: Аудиозапис
+    audio_test_step: Стъпка за тестване на аудиото
     back: Назад
     back_to_dashboard: Върни се към таблото
     before_you_begin: Преди да започнете
@@ -28,6 +33,8 @@ bg:
     browser_compatible_detail: Използвате версия %{browser_version} на %{browser_name}, която отговаря на минималните изисквания за тази кампания.
     browser_incompatible_detail: Използвате версия %{browser_version} на %{browser_name}. Моля, актуализирайте %{browser_name} до версия %{min_browser_version}, за да гарантирате съвместимостта.
     browser_not_compatible: Вашият браузър %{browser_name} не е съвместим с тази кампания. За най-добро преживяване използвайте най-новите версии на Chrome, Firefox, Safari или Edge.
+    browser_not_compatible_description: За най-добро преживяване използвайте най-новите версии на Chrome, Firefox, Safari или Edge.
+    browser_not_compatible_detail: Вашият браузър %{browser_name} не е съвместим с тази кампания. За най-добро преживяване използвайте най-новите версии на Chrome, Firefox, Safari или Edge.
     browser_version_fix_description_first: 'Използвайте поддържан браузър: Chrome, Firefox, Edge или Safari'
     browser_version_fix_title: Версията на Вашия браузър не се поддържа.
     camera: Видео и аудио
@@ -38,6 +45,7 @@ bg:
     camera_check_passed: Проверката на видеото и аудиото премина успешно
     camera_test_step: Стъпка за тестване на видео и аудио
     campaign: Кампания
+    campaign_check_status: 'Статус: %{status}'
     chat_instructions: Инструкции за чата
     check: Провери
     check_video_recording: Моля, проверете видеозаписа, като го възпроизведете.
@@ -53,6 +61,8 @@ bg:
     download_pdf: Изтеглете PDF
     download_speed_below_minimum: Скоростта на изтегляне %{download_speed} е по-ниска от минималната изисквана скорост на изтегляне от %{minimum_download_speed} Mbps
     environment_setup: Настройки на средата
+    error_uploading_audio: Грешка при качването на аудиофайл
+    error_uploading_audio_detail: Възникна грешка при качването на аудиофайла
     error_uploading_video: Грешка при качването на видеоклипа
     error_uploading_video_detail: Възникна грешка при качването на видеото
     fail: Неуспех
@@ -73,6 +83,7 @@ bg:
     idp_report_being_generated: Работим по вашия сигнал
     idp_reset_chat: Изчисти чата
     idp_retake_steps_continue_with_this_information: Продължете с тази информация
+    initializing: Зареждане...
     insights: Прозрения
     instruction: Уверете се, че вие и вашето обкръжение сте напълно подготвени
     internet_speed: Скорост на интернет
@@ -90,6 +101,8 @@ bg:
     media_recorder_api_fix_title: API-то за запис на мултимедия не се поддържа от вашия браузър.
     media_recorder_api_not_supported_detail: Използвате браузъра „%{browser_name}“ версия %{browser_version}, който не поддържа API-то на MediaRecorder. Моля, актуализирайте браузъра си до най-новата версия, за да гарантирате съвместимостта.
     media_recorder_api_support: Поддръжка на MediaRecorder API
+    microphone_access_blocked: Достъпът до микрофона е бил отказан или блокиран от браузъра ви. Моля, проверете настройките за разрешенията на браузъра си.
+    microphone_check_passed: Проверката на микрофона премина успешно
     min_word_limit: Трябва да бъде най-малко %{min} думи
     minimum_speed_requirements: За тази кампания се изисква минимална скорост на изтегляне от %{minimum_download_speed} Mbps и минимална скорост на качване от %{minimum_upload_speed} Mbps.
     minute: минута
@@ -105,6 +118,7 @@ bg:
     network_check_fix_third: Рестартирайте рутера/модема си и опитайте отново
     network_speed_meets_required_detail: Скоростта на вашия интернет отговаря на минималните изисквания за кампанията
     network_test_step: Етап на тестване на мрежата
+    no_audio_detected: Не се открива звук. Моля, проверете дали микрофонът ви е свързан и работи правилно.
     pass: Пропусни
     pending: В очакване
     personal_readiness: Лична готовност
@@ -114,6 +128,7 @@ bg:
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
+    redirect_to_external_assessment: Ще бъдете пренасочени към сайта за оценяване. Моля, натиснете „Продължи“, ако искате да започнете оценяването.
     reject_idp_plan: Отхвърляне на плана
     request_retry_message: Ти си офлайн. Отговорите ви не могат да бъдат запазени, но ще бъдат запазени автоматично, след като сте отново онлайн. Моля, не обновявайте и не затваряйте страницата.
     required_download_in_mbps: Необходима скорост на изтегляне в Mbps
@@ -122,6 +137,8 @@ bg:
     rerun_checks: Повторно изпълнение на проверки
     result: Резултат
     results: Резултат
+    safari_proctoring_description: Изглежда, че използвате браузъра Safari, който може да има някои ограничения по отношение на активираните функции за проследяване в тази кампания. За да се възползвате от най-доброто преживяване, препоръчваме да използвате браузърите Chrome или Firefox.
+    safari_proctoring_title: Засечен браузър Safari
     selected_count: Избран
     skill_type: Тип умение
     start_campaign_message_proctored: Това е кампания с проктор, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
@@ -129,6 +146,7 @@ bg:
     start_campaign_message_timed_proctored: Това е кампания с ограничено време и наблюдение, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_readiness_check: Започнете проверка на готовността
     start_system_check: Започни проверка на системата
+    subinstruction_audio: Работещ микрофон
     subinstruction_eight: Отделете достатъчно време, без да ви прекъсват, за да се извърши пълната оценка
     subinstruction_five: Готови ли сте да споделите екрана си по време на сесията?
     subinstruction_four: Работеща уеб камера и микрофон
@@ -175,6 +193,12 @@ bg:
     testing_upload_speed: Проверявам скоростта на качване...
     time_commitment: Време, което трябва да отделите
     troubleshooting_guide: Ръководство за отстраняване на неизправности
+    troubleshooting_guide_audio_fifth: 'В Windows: Проверете настройките за поверителност > Достъп до микрофона'
+    troubleshooting_guide_audio_first: Кликнете върху иконата с катинара/информацията в адресната лента на браузъра си
+    troubleshooting_guide_audio_fourth: Ако достъпът е блокиран, може да се наложи да възстановите правата в настройките на браузъра
+    troubleshooting_guide_audio_second: Намерете настройките за „Микрофон“ и ги задайте на „Разреши“
+    troubleshooting_guide_audio_sixth: 'На Mac: Отворете „Системни настройки“ > „Сигурност“'
+    troubleshooting_guide_audio_third: Опреснете страницата след промяна на правата
     troubleshooting_guide_browser_fifth: Уверете се, че LocalStorage е активирана в настройките на браузъра ви
     troubleshooting_guide_browser_first: 'Използвайте поддържан браузър: Chrome, Firefox, Edge или Safari (последните версии)'
     troubleshooting_guide_browser_fourth: Активирайте JavaScript и бисквитките в настройките на браузъра
@@ -195,6 +219,7 @@ bg:
     untimed: Без ограничение във времето
     upload: Качи
     upload_speed_below_minimum: Скоростта на качване %{upload_speed} е по-ниска от минималната изисквана скорост на качване от %{minimum_upload_speed} Mbps
+    video: Видео
     video_and_audio: Видео и аудио
     video_and_audio_recording: Запис на видео и аудио
     video_check_fix_fifth: Опитайте да изключите и отново да включите камерата, ако тя е външна

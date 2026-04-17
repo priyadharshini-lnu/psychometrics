@@ -46,13 +46,17 @@ nl:
     ai_assistants: AI assistenten
     ai_assistants_advanced_mode_tooltip: Gebruik de geavanceerde modus voor prompt-templates met vloeibare template en beschikbare variabelen. Raadpleeg de documentatie voor meer details.
     ai_assistants_campaign_id_placeholder: Voer campagne-ID in
+    ai_assistants_cannot_change_type_when_in_use: Het type AI-assistent '%{name}' kan niet worden gewijzigd omdat deze momenteel in gebruik is.
     ai_assistants_no_rendered_output: Geen gerenderde output beschikbaar
+    ai_assistants_provider_change_confirm_title: Van aanbieder veranderen?
+    ai_assistants_provider_previously_used_warning: Deze assistent heeft eerder resultaten gegenereerd met "%{from}". Als u dit wijzigt in "%{to}", kan dit het gedrag van de assistent bij toekomstige generatieverzoeken beïnvloeden.
     ai_assistants_render_button: Rendertemplate
     ai_assistants_rendered_prompt: Gerenderde prompt
     ai_assistants_template_and_campaign_required: Geef zowel het sjabloon als de campagne-ID
     ai_assistants_template_render_failed: Sjabloon niet kunnen renderen
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
+    ai_assistants_type_locked_tooltip: Deze assistent is momenteel in gebruik en het type kan niet worden gewijzigd.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP is uitgeschakeld door de klant
     ai_assisted_idp_feature_disabled: De AI-ondersteunde IDP-functie is voor dit project uitgeschakeld.
     ai_idp_assistant_configure_dependencies: AI-afhankelijkheden configureren

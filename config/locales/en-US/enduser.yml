@@ -12,6 +12,11 @@ en-US:
     ai_idp_summary_hint_no_document: With your permission, if you say yes, I can create a development plan for you. If not, you can restart the chat to share more details.
     all_checks_must_pass: All checks must pass before you can proceed.
     approve_idp_plan: Approve Plan
+    audio: Audio
+    audio_check: Microphone Test
+    audio_check_description: Verify your microphone is working properly for recording
+    audio_recording: Audio Recording
+    audio_test_step: Audio Test Step
     back: Back
     back_to_dashboard: Return to Dashboard
     before_you_begin: Before you begin
@@ -28,6 +33,8 @@ en-US:
     browser_compatible_detail: You're using %{browser_name} version %{browser_version} which meets the minimum requirement for this campaign.
     browser_incompatible_detail: You're are using %{browser_name} version %{browser_version}. Please update your %{browser_name} to the version %{min_browser_version} to ensure compatibility.
     browser_not_compatible: Your browser %{browser_name} is not compatible with this campaign. Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
+    browser_not_compatible_description: Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
+    browser_not_compatible_detail: Your browser %{browser_name} is not compatible with this campaign. Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
     browser_version_fix_description_first: 'Use a supported browser: Chrome, Firefox, Edge, or Safari'
     browser_version_fix_title: Your browser version is not supported.
     camera: Video and Audio
@@ -38,6 +45,7 @@ en-US:
     camera_check_passed: Video and Audio check passed successfully
     camera_test_step: Video and Audio Test Step
     campaign: Campaign
+    campaign_check_status: 'Status: %{status}'
     chat_instructions: Chat Instructions
     check: Check
     check_video_recording: Please check your video recording by playing it back.
@@ -53,6 +61,8 @@ en-US:
     download_pdf: Download PDF
     download_speed_below_minimum: Download speed %{download_speed} is below the minimum required download speed of %{minimum_download_speed} Mbps
     environment_setup: Environment Setup
+    error_uploading_audio: Error uploading audio
+    error_uploading_audio_detail: There was an error uploading your audio
     error_uploading_video: Error uploading video
     error_uploading_video_detail: There was some error while uploading the video
     fail: Fail
@@ -73,6 +83,7 @@ en-US:
     idp_report_being_generated: We're working on your report
     idp_reset_chat: Reset Chat
     idp_retake_steps_continue_with_this_information: Continue with this information
+    initializing: Initializing...
     insights: Insights
     instruction: Make sure you and your environment are fully prepared
     internet_speed: Internet Speed
@@ -90,6 +101,8 @@ en-US:
     media_recorder_api_fix_title: Media Recorder API is not supported in your browser.
     media_recorder_api_not_supported_detail: You're using %{browser_name} version %{browser_version} which does not support the MediaRecorder API. Please update your browser to the latest version to ensure compatibility.
     media_recorder_api_support: MediaRecorder API Support
+    microphone_access_blocked: Microphone access was denied or blocked by your browser. Please check your browser permissions.
+    microphone_check_passed: Microphone check passed successfully
     min_word_limit: Must be at least %{min} words
     minimum_speed_requirements: Minimum Download Speed of %{minimum_download_speed} Mbps and Minimum Upload Speed of %{minimum_upload_speed} Mbps required for this campaign.
     minute: minute
@@ -105,6 +118,7 @@ en-US:
     network_check_fix_third: Restart your router/modem and try again
     network_speed_meets_required_detail: Your Internet speed meets the minimum requirements for the campaign
     network_test_step: Network Test Step
+    no_audio_detected: No audio detected. Please check if your microphone is connected and working properly.
     pass: Pass
     pending: Pending
     personal_readiness: Personal Readiness
@@ -114,6 +128,7 @@ en-US:
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
+    redirect_to_external_assessment: You will be redirected to the assessment site. Please click continue if you want to start the assessment.
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
     required_download_in_mbps: Required Download in Mbps
@@ -122,6 +137,8 @@ en-US:
     rerun_checks: Re-run Checks
     result: Result
     results: Result
+    safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome أو Firefox.
+    safari_proctoring_title: Safari Browser Detected
     selected_count: Selected
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
@@ -129,6 +146,7 @@ en-US:
     start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
     start_system_check: Start System Check
+    subinstruction_audio: Working microphone
     subinstruction_eight: Set aside uninterrupted time for the full assessment
     subinstruction_five: Ready to share your screen throughout the session
     subinstruction_four: Working webcam and microphone
@@ -175,6 +193,12 @@ en-US:
     testing_upload_speed: Testing upload speed...
     time_commitment: Time Commitment
     troubleshooting_guide: Troubleshooting Guide
+    troubleshooting_guide_audio_fifth: 'On Windows: Check Privacy Settings > Microphone access'
+    troubleshooting_guide_audio_first: Click the lock/info icon in your browser's address bar
+    troubleshooting_guide_audio_fourth: If blocked, you may need to reset permissions in browser settings
+    troubleshooting_guide_audio_second: Find "Microphone" settings and set them to "Allow"
+    troubleshooting_guide_audio_sixth: 'On Mac: Check System Preferences > Security'
+    troubleshooting_guide_audio_third: Refresh the page after changing permissions
     troubleshooting_guide_browser_fifth: Ensure LocalStorage is enabled in your browser settings
     troubleshooting_guide_browser_first: 'Use a supported browser: Chrome, Firefox, Edge, or Safari (latest versions)'
     troubleshooting_guide_browser_fourth: Enable JavaScript and cookies in browser settings
@@ -195,6 +219,7 @@ en-US:
     untimed: Untimed
     upload: Upload
     upload_speed_below_minimum: Upload speed %{upload_speed} is below the minimum required upload speed of %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Video and Audio Recording
     video_check_fix_fifth: Try unplugging and reconnecting your camera if it's external

@@ -46,13 +46,17 @@ hi:
     ai_assistants: एआई सहायक
     ai_assistants_advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
     ai_assistants_campaign_id_placeholder: अभियान आईडी दर्ज करें
+    ai_assistants_cannot_change_type_when_in_use: AI सहायक '%{name}' का प्रकार नहीं बदला जा सकता क्योंकि यह वर्तमान में उपयोग में है।
     ai_assistants_no_rendered_output: कोई रेंडर आउटपुट उपलब्ध नहीं है
+    ai_assistants_provider_change_confirm_title: प्रदाता बदलें?
+    ai_assistants_provider_previously_used_warning: इस सहायक ने पहले "%{from}" के साथ परिणाम उत्पन्न किए हैं। "%{to}" में बदलने से भविष्य की जेनरेशन अनुरोधों के लिए सहायक का व्यवहार बदल सकता है।
     ai_assistants_render_button: रेंडर टेम्पलेट
     ai_assistants_rendered_prompt: प्रस्तुत अनुरोध
     ai_assistants_template_and_campaign_required: कृपया टेम्पलेट और अभियान दोनों आईडी प्रदान करें।
     ai_assistants_template_render_failed: टेम्पलेट रेंडर करने में असफल
     ai_assistants_test_render: परीक्षण रेंडर
     ai_assistants_test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
+    ai_assistants_type_locked_tooltip: यह सहायक वर्तमान में उपयोग में है और इसके प्रकार को बदला नहीं जा सकता।
     ai_assisted_idp_disabled_by_client: क्लाइंट द्वारा एआई-सहायित आईडीपी अक्षम कर दिया गया है।
     ai_assisted_idp_feature_disabled: इस परियोजना के लिए AI-सहायक IDP सुविधा अक्षम कर दी गई है।
     ai_idp_assistant_configure_dependencies: एआई निर्भरताओं को कॉन्फ़िगर करें

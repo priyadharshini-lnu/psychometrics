@@ -46,13 +46,17 @@ vi:
     ai_assistants: Trợ lý AI
     ai_assistants_advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
     ai_assistants_campaign_id_placeholder: Nhập mã chiến dịch
+    ai_assistants_cannot_change_type_when_in_use: Không thể thay đổi loại Trợ lý AI “%{name}” vì nó hiện đang được sử dụng.
     ai_assistants_no_rendered_output: Không có đầu ra được hiển thị
+    ai_assistants_provider_change_confirm_title: Thay đổi nhà cung cấp?
+    ai_assistants_provider_previously_used_warning: Trợ lý này trước đây đã tạo ra kết quả với "%{from}". Việc thay đổi thành "%{to}" có thể làm thay đổi cách thức hoạt động của trợ lý đối với các yêu cầu tạo kết quả trong tương lai.
     ai_assistants_render_button: Mẫu kết xuất
     ai_assistants_rendered_prompt: Lời nhắc được hiển thị
     ai_assistants_template_and_campaign_required: Vui lòng cung cấp cả mẫu và ID chiến dịch
     ai_assistants_template_render_failed: Không thể hiển thị mẫu
     ai_assistants_test_render: Kết xuất thử nghiệm
     ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
+    ai_assistants_type_locked_tooltip: Trợ lý này hiện đang được sử dụng và không thể thay đổi loại của nó.
     ai_assisted_idp_disabled_by_client: Chức năng AI Assisted IDP đã bị vô hiệu hóa bởi khách hàng.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
     ai_idp_assistant_configure_dependencies: Cấu hình các phụ thuộc của AI

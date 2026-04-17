@@ -12,6 +12,11 @@ hi:
     ai_idp_summary_hint_no_document: आपकी अनुमति से, यदि आप हाँ कहें तो मैं आपके लिए एक विकास योजना बना सकता हूँ। यदि नहीं, तो आप अधिक विवरण साझा करने के लिए चैट फिर से शुरू कर सकते हैं।
     all_checks_must_pass: आगे बढ़ने से पहले सभी जांचें पास होनी चाहिए।
     approve_idp_plan: योजना को अनुमोदित करें
+    audio: ऑडियो
+    audio_check: माइक्रोफ़ोन परीक्षण
+    audio_check_description: रिकॉर्डिंग के लिए अपने माइक्रोफ़ोन का ठीक से काम करना सुनिश्चित करें।
+    audio_recording: ऑडियो रिकॉर्डिंग
+    audio_test_step: ऑडियो परीक्षण चरण
     back: वापस
     back_to_dashboard: डैशबोर्ड पर लौटें
     before_you_begin: शुरू करने से पहले
@@ -28,6 +33,8 @@ hi:
     browser_compatible_detail: आप %{browser_name} संस्करण %{browser_version} का उपयोग कर रहे हैं, जो इस अभियान के लिए न्यूनतम आवश्यकता को पूरा करता है।
     browser_incompatible_detail: आप %{browser_name} का संस्करण %{browser_version} उपयोग कर रहे हैं।  कृपया संगतता सुनिश्चित करने के लिए अपने %{browser_name} को संस्करण %{min_browser_version} में अपडेट करें।
     browser_not_compatible: आपका ब्राउज़र %{browser_name} इस अभियान के साथ संगत नहीं है। सर्वोत्तम अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
+    browser_not_compatible_description: बेहतरीन अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
+    browser_not_compatible_detail: आपका ब्राउज़र %{browser_name} इस अभियान के साथ संगत नहीं है। सर्वोत्तम अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
     browser_version_fix_description_first: 'समर्थित ब्राउज़र का उपयोग करें: Chrome, Firefox, Edge, या Safari'
     browser_version_fix_title: आपका ब्राउज़र संस्करण समर्थित नहीं है।
     camera: वीडियो और ऑडियो
@@ -38,6 +45,7 @@ hi:
     camera_check_passed: वीडियो और ऑडियो जाँच सफलतापूर्वक पूरी हो गई।
     camera_test_step: वीडियो और ऑडियो परीक्षण चरण
     campaign: अभियान
+    campaign_check_status: 'स्थिति: %{status}'
     chat_instructions: चैट निर्देश
     check: जाँचें
     check_video_recording: कृपया अपनी वीडियो रिकॉर्डिंग को वापस चलाकर जांचें।
@@ -53,6 +61,8 @@ hi:
     download_pdf: पीडीएफ डाउनलोड करें
     download_speed_below_minimum: डाउनलोड गति %{download_speed} न्यूनतम आवश्यक डाउनलोड गति %{minimum_download_speed} एमबीपीएस से कम है।
     environment_setup: पर्यावरण सेटअप
+    error_uploading_audio: ऑडियो अपलोड करने में त्रुटि
+    error_uploading_audio_detail: आपका ऑडियो अपलोड करते समय एक त्रुटि हुई।
     error_uploading_video: वीडियो अपलोड करने में त्रुटि
     error_uploading_video_detail: वीडियो अपलोड करते समय कोई त्रुटि हुई।
     fail: असफल
@@ -73,6 +83,7 @@ hi:
     idp_report_being_generated: हम आपकी रिपोर्ट पर काम कर रहे हैं।
     idp_reset_chat: चैट रीसेट करें
     idp_retake_steps_continue_with_this_information: इस जानकारी के साथ जारी रखें
+    initializing: आरंभ हो रहा है...
     insights: अंतर्दृष्टियाँ
     instruction: सुनिश्चित करें कि आप और आपका परिवेश पूरी तरह से तैयार हैं।
     internet_speed: इंटरनेट की गति
@@ -90,6 +101,8 @@ hi:
     media_recorder_api_fix_title: मीडिया रिकॉर्डर एपीआई आपके ब्राउज़र में समर्थित नहीं है।
     media_recorder_api_not_supported_detail: आप '%{browser_name}' का संस्करण '%{browser_version}' उपयोग कर रहे हैं, जो MediaRecorder API का समर्थन नहीं करता। अनुकूलता सुनिश्चित करने के लिए कृपया अपने ब्राउज़र को नवीनतम संस्करण में अपडेट करें।
     media_recorder_api_support: मीडिया रिकॉर्डर एपीआई समर्थन
+    microphone_access_blocked: आपके ब्राउज़र ने माइक्रोफ़ोन तक पहुँच अस्वीकार या अवरुद्ध कर दी है। कृपया अपने ब्राउज़र की अनुमतियाँ जाँचें।
+    microphone_check_passed: माइक्रोफ़ोन जाँच सफलतापूर्वक पूरी हो गई।
     min_word_limit: कम से कम %{min} शब्द होना चाहिए।
     minimum_speed_requirements: इस अभियान के लिए न्यूनतम डाउनलोड गति %{minimum_download_speed} एमबीपीएस और न्यूनतम अपलोड गति %{minimum_upload_speed} एमबीपीएस आवश्यक है।
     minute: एक मिनट
@@ -105,6 +118,7 @@ hi:
     network_check_fix_third: अपने राउटर/मॉडेम को पुनः आरंभ करें और फिर से प्रयास करें।
     network_speed_meets_required_detail: आपकी इंटरनेट गति अभियान के लिए न्यूनतम आवश्यकताओं को पूरा करती है।
     network_test_step: नेटवर्क परीक्षण चरण
+    no_audio_detected: ऑडियो का पता नहीं चल रहा है। कृपया जांचें कि आपका माइक्रोफ़ोन जुड़ा हुआ है और ठीक से काम कर रहा है।
     pass: पास
     pending: लंबित
     personal_readiness: व्यक्तिगत तत्परता
@@ -114,6 +128,7 @@ hi:
     profile_details: विवरण
     question_counter: प्रश्न %{current} का %{total}
     reason_for_idp_plan_rejection: अस्वीकृति का कारण
+    redirect_to_external_assessment: आपको मूल्यांकन साइट पर पुनर्निर्देशित किया जाएगा। यदि आप मूल्यांकन शुरू करना चाहते हैं तो कृपया जारी रखें पर क्लिक करें।
     reject_idp_plan: योजना अस्वीकार करें
     request_retry_message: आप ऑफ़लाइन हैं। आपके उत्तर सहेजे नहीं जा सके, लेकिन आप ऑनलाइन होते ही वे स्वचालित रूप से सहेज लिए जाएँगे। कृपया पेज को रिफ्रेश या बंद न करें।
     required_download_in_mbps: आवश्यक डाउनलोड (एमबीपीएस में)
@@ -122,6 +137,8 @@ hi:
     rerun_checks: पुनः जाँचें
     result: परिणाम
     results: परिणाम
+    safari_proctoring_description: ऐसा लगता है कि आप Safari ब्राउज़र का उपयोग कर रहे हैं, जिसमें इस अभियान की सक्रिय निगरानी सुविधाओं के संबंध में कुछ प्रतिबंध हो सकते हैं। बेहतर अनुभव के लिए, हम Chrome या Firefox ब्राउज़र का उपयोग करने की सलाह देते हैं।
+    safari_proctoring_title: सफारी ब्राउज़र का पता चला
     selected_count: "%{count} चयनित"
     skill_type: कौशल का प्रकार
     start_campaign_message_proctored: यह एक पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
@@ -129,6 +146,7 @@ hi:
     start_campaign_message_timed_proctored: यह एक समयबद्ध और पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
     start_readiness_check: तैयारी जाँच शुरू करें
     start_system_check: सिस्टम जाँच शुरू करें
+    subinstruction_audio: कार्यशील माइक्रोफ़ोन
     subinstruction_eight: पूर्ण मूल्यांकन के लिए बिना रुकावट का समय अलग रखें।
     subinstruction_five: सत्र भर अपनी स्क्रीन साझा करने के लिए तैयार
     subinstruction_four: कार्यशील वेबकैम और माइक्रोफ़ोन
@@ -175,6 +193,12 @@ hi:
     testing_upload_speed: अपलोड गति की जाँच...
     time_commitment: समय की प्रतिबद्धता
     troubleshooting_guide: समस्या निवारण मार्गदर्शिका
+    troubleshooting_guide_audio_fifth: 'Windows पर: गोपनीयता सेटिंग्स > माइक्रोफ़ोन तक पहुँच जांचें'
+    troubleshooting_guide_audio_first: अपने ब्राउज़र के एड्रेस बार में लॉक/जानकारी आइकन पर क्लिक करें।
+    troubleshooting_guide_audio_fourth: यदि अवरुद्ध हो, तो आपको ब्राउज़र सेटिंग्स में अनुमतियाँ रीसेट करनी पड़ सकती हैं।
+    troubleshooting_guide_audio_second: '"माइक्रोफ़ोन" सेटिंग्स खोजें और उन्हें "अनुमति दें" पर सेट करें।'
+    troubleshooting_guide_audio_sixth: 'Mac पर: सिस्टम प्राथमिकताएँ > सुरक्षा देखें'
+    troubleshooting_guide_audio_third: अनुमति बदलने के बाद पेज रिफ्रेश करें
     troubleshooting_guide_browser_fifth: सुनिश्चित करें कि आपके ब्राउज़र सेटिंग्स में LocalStorage सक्षम है।
     troubleshooting_guide_browser_first: 'समर्थित ब्राउज़र का उपयोग करें: Chrome, Firefox, Edge, या Safari (नवीनतम संस्करण)'
     troubleshooting_guide_browser_fourth: ब्राउज़र सेटिंग्स में जावास्क्रिप्ट और कुकीज़ सक्षम करें
@@ -195,6 +219,7 @@ hi:
     untimed: अनियंत्रित
     upload: अपलोड
     upload_speed_below_minimum: अपलोड गति %{upload_speed} न्यूनतम आवश्यक अपलोड गति %{minimum_upload_speed} Mbps से कम है।
+    video: वीडियो
     video_and_audio: वीडियो और ऑडियो
     video_and_audio_recording: वीडियो और ऑडियो रिकॉर्डिंग
     video_check_fix_fifth: यदि आपका कैमरा बाहरी है, तो उसे अनप्लग करके फिर से कनेक्ट करने का प्रयास करें।

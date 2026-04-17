@@ -12,6 +12,11 @@ id:
     ai_idp_summary_hint_no_document: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut.
     all_checks_must_pass: Semua pemeriksaan harus lolos terlebih dahulu sebelum Anda dapat melanjutkan.
     approve_idp_plan: Setujui Rencana
+    audio: Audio
+    audio_check: Uji Mikrofon
+    audio_check_description: Pastikan mikrofon Anda berfungsi dengan baik untuk merekam
+    audio_recording: Perekaman Audio
+    audio_test_step: Langkah Uji Audio
     back: Kembali
     back_to_dashboard: Kembali ke Dasbor
     before_you_begin: Sebelum Anda mulai
@@ -28,6 +33,8 @@ id:
     browser_compatible_detail: Anda menggunakan versi %{browser_name} %{browser_version} yang memenuhi persyaratan minimum untuk kampanye ini.
     browser_incompatible_detail: Anda sedang menggunakan versi %{browser_name} %{browser_version}. Silakan perbarui %{browser_name} ke versi %{min_browser_version} untuk memastikan kompatibilitas.
     browser_not_compatible: Browser Anda %{browser_name} tidak kompatibel dengan kampanye ini. Gunakan versi terbaru Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
+    browser_not_compatible_description: Gunakan versi terbaru Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
+    browser_not_compatible_detail: Browser Anda %{browser_name} tidak kompatibel dengan kampanye ini. Gunakan versi terbaru dari Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
     browser_version_fix_description_first: 'Gunakan browser yang didukung: Chrome, Firefox, Edge, atau Safari'
     browser_version_fix_title: Versi browser Anda tidak didukung.
     camera: Video dan Audio
@@ -38,6 +45,7 @@ id:
     camera_check_passed: Pemeriksaan video dan audio telah berhasil dilalui
     camera_test_step: Langkah Pengujian Video dan Audio
     campaign: Kampanye
+    campaign_check_status: 'Status: %{status}'
     chat_instructions: Petunjuk Obrolan
     check: Periksa
     check_video_recording: Silakan periksa rekaman video Anda dengan memutarnya kembali.
@@ -53,6 +61,8 @@ id:
     download_pdf: Unduh PDF
     download_speed_below_minimum: Kecepatan unduh %{download_speed} lebih rendah dari kecepatan unduh minimum yang disyaratkan sebesar %{minimum_download_speed} Mbps
     environment_setup: Pengaturan Lingkungan
+    error_uploading_audio: Terjadi kesalahan saat mengunggah audio
+    error_uploading_audio_detail: Terjadi kesalahan saat mengunggah audio Anda
     error_uploading_video: Terjadi kesalahan saat mengunggah video
     error_uploading_video_detail: Terjadi kesalahan saat mengunggah video
     fail: Gagal
@@ -73,6 +83,7 @@ id:
     idp_report_being_generated: Kami sedang mengerjakan laporan Anda
     idp_reset_chat: Atur Ulang Obrolan
     idp_retake_steps_continue_with_this_information: Lanjutkan dengan informasi ini
+    initializing: Sedang dimuat...
     insights: Wawasan
     instruction: Pastikan Anda dan lingkungan sekitar Anda sudah benar-benar siap
     internet_speed: Kecepatan Internet
@@ -90,6 +101,8 @@ id:
     media_recorder_api_fix_title: API Media Recorder tidak didukung di browser Anda.
     media_recorder_api_not_supported_detail: Anda sedang menggunakan %{browser_name} versi %{browser_version} yang tidak mendukung API MediaRecorder. Silakan perbarui browser Anda ke versi terbaru untuk memastikan kompatibilitas.
     media_recorder_api_support: Dukungan API MediaRecorder
+    microphone_access_blocked: Akses mikrofon ditolak atau diblokir oleh browser Anda. Silakan periksa izin browser Anda.
+    microphone_check_passed: Uji mikrofon berhasil
     min_word_limit: Minimal %{min} kata
     minimum_speed_requirements: Kecepatan unduh minimum sebesar %{minimum_download_speed} Mbps dan kecepatan unggah minimum sebesar %{minimum_upload_speed} Mbps diperlukan untuk kampanye ini.
     minute: menit
@@ -105,6 +118,7 @@ id:
     network_check_fix_third: Mulai ulang router/modem Anda, lalu coba lagi
     network_speed_meets_required_detail: Kecepatan internet Anda memenuhi persyaratan minimum untuk kampanye ini
     network_test_step: Langkah Pengujian Jaringan
+    no_audio_detected: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda sudah terhubung dan berfungsi dengan baik.
     pass: Lewati
     pending: Sedang diproses
     personal_readiness: Kesiapan Pribadi
@@ -114,6 +128,7 @@ id:
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
     reason_for_idp_plan_rejection: Alasan Penolakan
+    redirect_to_external_assessment: Anda akan dialihkan ke situs penilaian. Silakan klik "Lanjutkan" jika Anda ingin memulai penilaian.
     reject_idp_plan: Tolak Paket
     request_retry_message: Anda offline. Jawaban Anda tidak dapat disimpan tetapi akan disimpan secara otomatis setelah Anda kembali online. Tolong jangan menyegarkan atau menutup halaman.
     required_download_in_mbps: Kecepatan Unduh yang Diperlukan dalam Mbps
@@ -122,6 +137,8 @@ id:
     rerun_checks: Periksa Ulang
     result: Hasil
     results: Hasil
+    safari_proctoring_description: Sepertinya Anda menggunakan peramban Safari, yang mungkin memiliki beberapa batasan terkait fitur pelacakan yang diaktifkan untuk kampanye ini. Untuk pengalaman terbaik, kami menyarankan Anda menggunakan peramban Chrome atau Firefox.
+    safari_proctoring_title: Browser Safari Terdeteksi
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
@@ -129,6 +146,7 @@ id:
     start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_readiness_check: Mulai Pemeriksaan Kesiapan
     start_system_check: Mulai Pemeriksaan Sistem
+    subinstruction_audio: Mikrofon berfungsi
     subinstruction_eight: Sisihkan waktu yang tidak terganggu untuk penilaian menyeluruh
     subinstruction_five: Siap untuk membagikan layar Anda selama sesi berlangsung
     subinstruction_four: Webcam dan mikrofon berfungsi dengan baik
@@ -175,6 +193,12 @@ id:
     testing_upload_speed: Memeriksa kecepatan unggah...
     time_commitment: Waktu yang Diperlukan
     troubleshooting_guide: Panduan Pemecahan Masalah
+    troubleshooting_guide_audio_fifth: 'Di Windows: Periksa Pengaturan Privasi > Akses Mikrofon'
+    troubleshooting_guide_audio_first: Klik ikon gembok/info di bilah alamat browser Anda
+    troubleshooting_guide_audio_fourth: Jika diblokir, Anda mungkin perlu mengatur ulang izin di pengaturan browser
+    troubleshooting_guide_audio_second: Cari pengaturan "Mikrofon" dan atur menjadi "Izinkan"
+    troubleshooting_guide_audio_sixth: 'Di Mac: Buka Preferensi Sistem > Keamanan'
+    troubleshooting_guide_audio_third: Segarkan halaman setelah mengubah izin
     troubleshooting_guide_browser_fifth: Pastikan LocalStorage telah diaktifkan di pengaturan browser Anda
     troubleshooting_guide_browser_first: 'Gunakan browser yang didukung: Chrome, Firefox, Edge, atau Safari (versi terbaru)'
     troubleshooting_guide_browser_fourth: Aktifkan JavaScript dan cookie di pengaturan browser
@@ -195,6 +219,7 @@ id:
     untimed: Tanpa batas waktu
     upload: Unggah
     upload_speed_below_minimum: Kecepatan unggah %{upload_speed} lebih rendah dari kecepatan unggah minimum yang disyaratkan sebesar %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Perekaman Video dan Audio
     video_check_fix_fifth: Coba cabut dan pasang kembali kabel kamera Anda jika kamera tersebut terhubung secara eksternal

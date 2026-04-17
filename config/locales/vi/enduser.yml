@@ -12,6 +12,11 @@ vi:
     ai_idp_summary_hint_no_document: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện để chia sẻ thêm chi tiết.
     all_checks_must_pass: Tất cả các bước kiểm tra phải được hoàn tất trước khi bạn có thể tiếp tục.
     approve_idp_plan: Phê duyệt kế hoạch
+    audio: Âm thanh
+    audio_check: Kiểm tra micro
+    audio_check_description: Hãy kiểm tra xem micrô của bạn có hoạt động bình thường để ghi âm không
+    audio_recording: Ghi âm
+    audio_test_step: Bước kiểm tra âm thanh
     back: Quay lại
     back_to_dashboard: Quay lại Trang tổng quan
     before_you_begin: Trước khi bắt đầu
@@ -28,6 +33,8 @@ vi:
     browser_compatible_detail: Bạn đang sử dụng phiên bản %{browser_name} %{browser_version}, đáp ứng yêu cầu tối thiểu cho chiến dịch này.
     browser_incompatible_detail: Bạn đang sử dụng phiên bản %{browser_name} tại %{browser_version}. Vui lòng cập nhật %{browser_name} lên phiên bản %{min_browser_version} để đảm bảo tính tương thích.
     browser_not_compatible: Trình duyệt của bạn %{browser_name} không tương thích với chiến dịch này. Vui lòng sử dụng các phiên bản mới nhất của Chrome, Firefox, Safari hoặc Edge để có trải nghiệm tốt nhất.
+    browser_not_compatible_description: Hãy sử dụng các phiên bản mới nhất của Chrome, Firefox, Safari hoặc Edge để có trải nghiệm tốt nhất.
+    browser_not_compatible_detail: Trình duyệt của bạn %{browser_name} không tương thích với chiến dịch này. Vui lòng sử dụng các phiên bản mới nhất của Chrome, Firefox, Safari hoặc Edge để có trải nghiệm tốt nhất.
     browser_version_fix_description_first: 'Hãy sử dụng trình duyệt được hỗ trợ: Chrome, Firefox, Edge hoặc Safari'
     browser_version_fix_title: Phiên bản trình duyệt của bạn không được hỗ trợ.
     camera: Video và Âm thanh
@@ -38,6 +45,7 @@ vi:
     camera_check_passed: Kiểm tra video và âm thanh đã hoàn tất thành công
     camera_test_step: Bước kiểm tra video và âm thanh
     campaign: Chiến dịch
+    campaign_check_status: 'Trạng thái: %{status}'
     chat_instructions: Hướng dẫn trò chuyện
     check: Kiểm tra
     check_video_recording: Vui lòng kiểm tra đoạn video đã quay bằng cách phát lại.
@@ -53,6 +61,8 @@ vi:
     download_pdf: Tải PDF
     download_speed_below_minimum: Tốc độ tải xuống %{download_speed} thấp hơn tốc độ tải xuống tối thiểu yêu cầu là %{minimum_download_speed} Mbps
     environment_setup: Cài đặt môi trường
+    error_uploading_audio: Lỗi khi tải lên tệp âm thanh
+    error_uploading_audio_detail: Đã xảy ra lỗi khi tải lên tệp âm thanh của bạn
     error_uploading_video: Lỗi khi tải video lên
     error_uploading_video_detail: Đã xảy ra lỗi trong quá trình tải video lên
     fail: Thất bại
@@ -73,6 +83,7 @@ vi:
     idp_report_being_generated: Chúng tôi đang xử lý báo cáo của bạn
     idp_reset_chat: Xóa lịch sử trò chuyện
     idp_retake_steps_continue_with_this_information: Tiếp tục với thông tin này
+    initializing: Đang khởi động...
     insights: Thông tin chi tiết
     instruction: Hãy đảm bảo rằng bạn và môi trường xung quanh đã sẵn sàng mọi thứ
     internet_speed: Tốc độ Internet
@@ -90,6 +101,8 @@ vi:
     media_recorder_api_fix_title: Trình ghi phương tiện (Media Recorder API) không được hỗ trợ trên trình duyệt của bạn.
     media_recorder_api_not_supported_detail: Bạn đang sử dụng phiên bản %{browser_name}%{browser_version}, phiên bản này không hỗ trợ API MediaRecorder. Vui lòng cập nhật trình duyệt của bạn lên phiên bản mới nhất để đảm bảo tính tương thích.
     media_recorder_api_support: Hỗ trợ API MediaRecorder
+    microphone_access_blocked: Trình duyệt của bạn đã từ chối hoặc chặn quyền truy cập vào micrô. Vui lòng kiểm tra quyền truy cập trong trình duyệt.
+    microphone_check_passed: Kiểm tra micro đã thành công
     min_word_limit: Phải có ít nhất %{min} từ
     minimum_speed_requirements: Chiến dịch này yêu cầu tốc độ tải xuống tối thiểu là %{minimum_download_speed} Mbps và tốc độ tải lên tối thiểu là %{minimum_upload_speed} Mbps.
     minute: phút
@@ -105,6 +118,7 @@ vi:
     network_check_fix_third: Hãy khởi động lại bộ định tuyến/bộ điều chế và thử lại
     network_speed_meets_required_detail: Tốc độ Internet của bạn đáp ứng các yêu cầu tối thiểu của chiến dịch
     network_test_step: Bước kiểm tra mạng
+    no_audio_detected: Không phát hiện thấy âm thanh. Vui lòng kiểm tra xem micrô của bạn đã được kết nối và hoạt động bình thường chưa.
     pass: Bỏ qua
     pending: Đang chờ xử lý
     personal_readiness: Sự chuẩn bị cá nhân
@@ -114,6 +128,7 @@ vi:
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     reason_for_idp_plan_rejection: Lý do từ chối
+    redirect_to_external_assessment: Bạn sẽ được chuyển hướng đến trang đánh giá. Vui lòng nhấp vào “Tiếp tục” nếu bạn muốn bắt đầu bài đánh giá.
     reject_idp_plan: Kế hoạch từ chối
     request_retry_message: Bạn đang ngoại tuyến. Câu trả lời của bạn không thể được lưu nhưng sẽ được lưu tự động khi bạn trực tuyến trở lại. Vui lòng không làm mới hoặc đóng trang.
     required_download_in_mbps: Tốc độ tải xuống yêu cầu (Mbps)
@@ -122,6 +137,8 @@ vi:
     rerun_checks: Kiểm tra lại
     result: Kết quả
     results: Kết quả
+    safari_proctoring_description: Có vẻ như bạn đang sử dụng trình duyệt Safari, trình duyệt này có thể có một số hạn chế liên quan đến các tính năng theo dõi được kích hoạt trong chiến dịch này. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Chrome hoặc Firefox.
+    safari_proctoring_title: Đã phát hiện trình duyệt Safari
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
     start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
@@ -129,6 +146,7 @@ vi:
     start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_readiness_check: Bắt đầu kiểm tra sự sẵn sàng
     start_system_check: Bắt đầu kiểm tra hệ thống
+    subinstruction_audio: Microphone đang hoạt động
     subinstruction_eight: Hãy dành ra một khoảng thời gian không bị gián đoạn để tiến hành đánh giá toàn diện
     subinstruction_five: Bạn đã sẵn sàng chia sẻ màn hình trong suốt buổi họp chưa?
     subinstruction_four: Webcam và micrô hoạt động bình thường
@@ -175,6 +193,12 @@ vi:
     testing_upload_speed: Đang kiểm tra tốc độ tải lên...
     time_commitment: Thời gian cam kết
     troubleshooting_guide: Hướng dẫn khắc phục sự cố
+    troubleshooting_guide_audio_fifth: 'Trên Windows: Kiểm tra Cài đặt quyền riêng tư > Quyền truy cập micrô'
+    troubleshooting_guide_audio_first: Nhấp vào biểu tượng ổ khóa/thông tin trên thanh địa chỉ của trình duyệt
+    troubleshooting_guide_audio_fourth: Nếu bị chặn, bạn có thể cần phải thiết lập lại quyền truy cập trong cài đặt trình duyệt
+    troubleshooting_guide_audio_second: Tìm mục "Microphone" và chọn "Cho phép"
+    troubleshooting_guide_audio_sixth: 'Trên máy Mac: Vào Tùy chọn Hệ thống > Bảo mật'
+    troubleshooting_guide_audio_third: Hãy làm mới trang sau khi thay đổi quyền truy cập
     troubleshooting_guide_browser_fifth: Hãy đảm bảo rằng LocalStorage đã được bật trong cài đặt trình duyệt của bạn
     troubleshooting_guide_browser_first: 'Hãy sử dụng trình duyệt được hỗ trợ: Chrome, Firefox, Edge hoặc Safari (phiên bản mới nhất)'
     troubleshooting_guide_browser_fourth: Bật JavaScript và cookie trong cài đặt trình duyệt
@@ -195,6 +219,7 @@ vi:
     untimed: Không giới hạn thời gian
     upload: Tải lên
     upload_speed_below_minimum: Tốc độ tải lên %{upload_speed} thấp hơn tốc độ tải lên tối thiểu yêu cầu là %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video & Âm thanh
     video_and_audio_recording: Ghi hình và ghi âm
     video_check_fix_fifth: Nếu máy ảnh của bạn là loại gắn ngoài, hãy thử rút phích cắm ra rồi cắm lại

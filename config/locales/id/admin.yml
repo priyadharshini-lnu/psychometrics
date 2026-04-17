@@ -46,13 +46,17 @@ id:
     ai_assistants: Asisten AI
     ai_assistants_advanced_mode_tooltip: Gunakan mode lanjutan untuk templat prompt menggunakan templat cair dengan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
     ai_assistants_campaign_id_placeholder: Masukkan ID kampanye
+    ai_assistants_cannot_change_type_when_in_use: Jenis Asisten AI '%{name}' tidak dapat diubah karena sedang digunakan.
     ai_assistants_no_rendered_output: Tidak ada output yang dirender yang tersedia
+    ai_assistants_provider_change_confirm_title: Ingin mengganti penyedia layanan?
+    ai_assistants_provider_previously_used_warning: Asisten ini sebelumnya telah menghasilkan hasil dengan "%{from}". Mengubahnya menjadi "%{to}" dapat memengaruhi perilaku asisten pada permintaan pembangkitan di masa mendatang.
     ai_assistants_render_button: Templat Render
     ai_assistants_rendered_prompt: Prompt yang Dirender
     ai_assistants_template_and_campaign_required: Harap berikan template dan ID kampanye
     ai_assistants_template_render_failed: Gagal merender templat
     ai_assistants_test_render: Uji Render
     ai_assistants_test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
+    ai_assistants_type_locked_tooltip: Asisten ini sedang digunakan dan jenisnya tidak dapat diubah.
     ai_assisted_idp_disabled_by_client: Fitur IDP yang didukung AI dinonaktifkan oleh klien.
     ai_assisted_idp_feature_disabled: Fitur IDP Berbantuan AI telah dinonaktifkan untuk proyek ini.
     ai_idp_assistant_configure_dependencies: Konfigurasikan Ketergantungan AI

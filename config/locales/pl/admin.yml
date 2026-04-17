@@ -46,13 +46,17 @@ pl:
     ai_assistants: Asystenci AI
     ai_assistants_advanced_mode_tooltip: Użyj zaawansowanego trybu szablonowego promptu za pomocą szablonu płynnego z dostępnymi zmiennymi. Więcej szczegółów można znaleźć w dokumentacji.
     ai_assistants_campaign_id_placeholder: Na scenę wchodzi identyfikacja kampanii
+    ai_assistants_cannot_change_type_when_in_use: Nie można zmienić typu asystenta AI „%{name}”, ponieważ jest on obecnie używany.
     ai_assistants_no_rendered_output: Brak dostępnego renderowanego wyjścia
+    ai_assistants_provider_change_confirm_title: Zmienić dostawcę?
+    ai_assistants_provider_previously_used_warning: Ten asystent wygenerował wcześniej wyniki przy użyciu adresu „%{from}”. Zmiana adresu na „%{to}” może wpłynąć na działanie asystenta w przypadku przyszłych żądań generowania wyników.
     ai_assistants_render_button: Szablon renderowania
     ai_assistants_rendered_prompt: Renderowany prompt
     ai_assistants_template_and_campaign_required: Prosimy o podanie zarówno szablonu, jak i identyfikatora kampanii
     ai_assistants_template_render_failed: Nie udało się wyrenderować szablonu
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
+    ai_assistants_type_locked_tooltip: Ten asystent jest obecnie używany i nie można zmienić jego typu.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP jest wyłączone przez klienta
     ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
     ai_idp_assistant_configure_dependencies: Skonfiguruj zależności AI

@@ -12,6 +12,11 @@ ja:
     ai_idp_summary_hint_no_document: もし許可があれば、開発計画を作成できます。もしそうでなければ、チャットを再開して詳細を共有してください。
     all_checks_must_pass: すべてのチェックに合格してからでないと、先に進むことはできません。
     approve_idp_plan: プランを承認
+    audio: 音声
+    audio_check: マイクテスト
+    audio_check_description: 録音のために、マイクが正常に動作しているか確認してください
+    audio_recording: 音声録音
+    audio_test_step: 音声テスト手順
     back: 戻る
     back_to_dashboard: ダッシュボードに戻る
     before_you_begin: 始める前に
@@ -28,6 +33,8 @@ ja:
     browser_compatible_detail: 現在、%{browser_name}のバージョン%{browser_version}をご利用いただいていますが、これは本キャンペーンの最低要件を満たしています。
     browser_incompatible_detail: 現在、%{browser_name}のバージョン%{browser_version}をご利用中です。互換性を確保するため、%{browser_name}をバージョン%{min_browser_version}に更新してください。
     browser_not_compatible: お使いのブラウザ「%{browser_name}」は、このキャンペーンに対応していません。最適な環境でお楽しみいただくには、Chrome、Firefox、Safari、またはEdgeの最新版をご利用ください。
+    browser_not_compatible_description: 最適な環境でお使いいただくには、Chrome、Firefox、Safari、またはEdgeの最新版をご利用ください。
+    browser_not_compatible_detail: お使いのブラウザ「%{browser_name}」は、このキャンペーンに対応していません。最適な環境でお楽しみいただくには、Chrome、Firefox、Safari、またはEdgeの最新版をご利用ください。
     browser_version_fix_description_first: 対応しているブラウザをご利用ください：Chrome、Firefox、Edge、またはSafari
     browser_version_fix_title: お使いのブラウザのバージョンはサポート対象外です。
     camera: 動画と音声
@@ -38,6 +45,7 @@ ja:
     camera_check_passed: 映像と音声のチェックに正常に合格しました
     camera_test_step: 映像・音声テスト手順
     campaign: キャンペーン
+    campaign_check_status: ステータス：%{status}
     chat_instructions: チャットの使い方
     check: 確認
     check_video_recording: 録画した映像を再生して確認してください。
@@ -53,6 +61,8 @@ ja:
     download_pdf: PDFをダウンロード
     download_speed_below_minimum: ダウンロード速度 %{download_speed} は、必要最低限のダウンロード速度である %{minimum_download_speed} Mbps を下回っています
     environment_setup: 環境設定
+    error_uploading_audio: 音声のアップロードに失敗しました
+    error_uploading_audio_detail: 音声のアップロード中にエラーが発生しました
     error_uploading_video: 動画のアップロードに失敗しました
     error_uploading_video_detail: 動画のアップロード中にエラーが発生しました
     fail: 失敗
@@ -73,6 +83,7 @@ ja:
     idp_report_being_generated: 現在、ご依頼のレポートを作成中です
     idp_reset_chat: チャットをリセット
     idp_retake_steps_continue_with_this_information: この情報を続けてください
+    initializing: 初期化中...
     insights: インサイト
     instruction: ご自身と周囲の環境が万全の準備ができていることを確認してください
     internet_speed: インターネットの速度
@@ -90,6 +101,8 @@ ja:
     media_recorder_api_fix_title: お使いのブラウザでは、Media Recorder API がサポートされていません。
     media_recorder_api_not_supported_detail: 現在、%{browser_name}のバージョン%{browser_version}をご利用ですが、このバージョンではMediaRecorder APIがサポートされていません。互換性を確保するため、ブラウザを最新バージョンに更新してください。
     media_recorder_api_support: MediaRecorder API のサポート
+    microphone_access_blocked: お使いのブラウザによって、マイクへのアクセスが拒否またはブロックされています。ブラウザの設定を確認してください。
+    microphone_check_passed: マイクチェックは正常に完了しました
     min_word_limit: 最小%{min}語以上にしてください
     minimum_speed_requirements: このキャンペーンに参加するには、ダウンロード速度が%{minimum_download_speed} Mbps以上、アップロード速度が%{minimum_upload_speed} Mbps以上である必要があります。
     minute: 分
@@ -105,6 +118,7 @@ ja:
     network_check_fix_third: ルーターまたはモデムを再起動して、もう一度お試しください
     network_speed_meets_required_detail: お客様のインターネット回線速度は、本キャンペーンの最低要件を満たしています
     network_test_step: ネットワークテスト手順
+    no_audio_detected: 音声が検出されません。マイクが接続されており、正常に動作しているかご確認ください。
     pass: スキップ
     pending: 保留中
     personal_readiness: 個人の準備状況
@@ -114,6 +128,7 @@ ja:
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒否理由
+    redirect_to_external_assessment: 評価サイトへ移動します。評価を開始する場合は、「続行」をクリックしてください。
     reject_idp_plan: 計画を拒否する
     request_retry_message: あなたはオフラインです。回答は保存できませんでしたが、オンラインに戻ったら自動的に保存されます。ページを更新したり閉じたりしないでください。
     required_download_in_mbps: 必要なダウンロード速度（Mbps）
@@ -122,6 +137,8 @@ ja:
     rerun_checks: 再チェック
     result: 結果
     results: 結果
+    safari_proctoring_description: Safariをご利用のようですが、このキャンペーンで有効になっている追跡防止機能に関して、一部制限が生じる可能性があります。最適な環境でお楽しみいただくため、ChromeまたはFirefoxのご利用をお勧めします。
+    safari_proctoring_title: Safariブラウザが検出されました
     selected_count: 選択済み
     skill_type: スキルの種類
     start_campaign_message_proctored: これは監督付きキャンペーンです。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
@@ -129,6 +146,7 @@ ja:
     start_campaign_message_timed_proctored: このキャンペーンは時間制限付きで監督制です。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_readiness_check: 準備チェックを開始
     start_system_check: システムチェックを開始
+    subinstruction_audio: 正常に動作するマイク
     subinstruction_eight: 評価を最後まで行うために、中断されない時間を確保してください
     subinstruction_five: セッション中、いつでも画面を共有できます
     subinstruction_four: 正常に動作するウェブカメラとマイク
@@ -175,6 +193,12 @@ ja:
     testing_upload_speed: アップロード速度を測定中...
     time_commitment: 所要時間
     troubleshooting_guide: トラブルシューティングガイド
+    troubleshooting_guide_audio_fifth: Windowsの場合：[プライバシー設定] > [マイクへのアクセス] を確認してください
+    troubleshooting_guide_audio_first: ブラウザのアドレスバーにある鍵／情報アイコンをクリックしてください
+    troubleshooting_guide_audio_fourth: ブロックされている場合は、ブラウザの設定で権限をリセットする必要があるかもしれません
+    troubleshooting_guide_audio_second: "「マイク」の設定を探し、「許可」に設定してください"
+    troubleshooting_guide_audio_sixth: Macの場合：「システム環境設定」＞「セキュリティ」を確認してください
+    troubleshooting_guide_audio_third: 権限を変更したら、ページを更新してください
     troubleshooting_guide_browser_fifth: ブラウザの設定でLocalStorageが有効になっていることを確認してください
     troubleshooting_guide_browser_first: 対応ブラウザをご利用ください：Chrome、Firefox、Edge、またはSafari（最新バージョン）
     troubleshooting_guide_browser_fourth: ブラウザの設定でJavaScriptとCookieを有効にしてください
@@ -195,6 +219,7 @@ ja:
     untimed: 制限時間なし
     upload: アップロード
     upload_speed_below_minimum: アップロード速度 %{upload_speed} は、必要最低限のアップロード速度である %{minimum_upload_speed} Mbps を下回っています
+    video: 動画
     video_and_audio: 映像・音声
     video_and_audio_recording: 動画および音声の録音
     video_check_fix_fifth: カメラが外部接続型の場合は、一度電源ケーブルを抜いてから再度接続してみてください

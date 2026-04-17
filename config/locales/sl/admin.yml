@@ -46,13 +46,17 @@ sl:
     ai_assistants: Pomočniki za umetno inteligenco
     ai_assistants_advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
     ai_assistants_campaign_id_placeholder: Vnesite ID kampanje
+    ai_assistants_cannot_change_type_when_in_use: Vrste AI-pomočnika »%{name}« ni mogoče spremeniti, ker je trenutno v uporabi.
     ai_assistants_no_rendered_output: Na voljo ni prikazanih izhodov
+    ai_assistants_provider_change_confirm_title: Želite zamenjati ponudnika?
+    ai_assistants_provider_previously_used_warning: Ta pomočnik je doslej ustvarjal rezultate z »%{from}«. Prehod na »%{to}« lahko spremeni delovanje pomočnika pri prihodnjih zahtevah za ustvarjanje.
     ai_assistants_render_button: Predloga za upodabljanje
     ai_assistants_rendered_prompt: Upodobljen poziv
     ai_assistants_template_and_campaign_required: Prosimo, navedite tako predlogo kot ID kampanje
     ai_assistants_template_render_failed: Predloga ni uspela izrisati
     ai_assistants_test_render: Testni upodabljanje
     ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
+    ai_assistants_type_locked_tooltip: Ta pomočnik je trenutno v uporabi in njegovega tipa ni mogoče spremeniti.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP je onemogočen s strani stranke
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
     ai_idp_assistant_configure_dependencies: Konfigurirajte odvisnosti AI

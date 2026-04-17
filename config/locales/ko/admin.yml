@@ -46,13 +46,17 @@ ko:
     ai_assistants: AI 어시스턴트
     ai_assistants_advanced_mode_tooltip: 고급 모드를 사용해 액체 템플릿과 사용 가능한 변수를 사용해 프롬프트 템플릿을 작성하세요. 자세한 내용은 문서를 참고하세요.
     ai_assistants_campaign_id_placeholder: 캠페인 ID 등장
+    ai_assistants_cannot_change_type_when_in_use: AI 어시스턴트 '%{name}'는 현재 사용 중이므로 유형을 변경할 수 없습니다.
     ai_assistants_no_rendered_output: 렌더링된 출력은 제공되지 않습니다
+    ai_assistants_provider_change_confirm_title: 서비스 제공업체를 변경하시겠습니까?
+    ai_assistants_provider_previously_used_warning: 이 어시스턴트는 이전에 "%{from}"을 사용하여 결과를 생성한 적이 있습니다. "%{to}"으로 변경하면 향후 생성 요청 시 어시스턴트의 동작이 달라질 수 있습니다.
     ai_assistants_render_button: 렌더 템플릿
     ai_assistants_rendered_prompt: 렌더링된 프롬프트
     ai_assistants_template_and_campaign_required: 템플릿과 캠페인 ID를 모두 제공해 주세요
     ai_assistants_template_render_failed: 템플릿 렌더링에 실패함
     ai_assistants_test_render: 테스트 렌더링
     ai_assistants_test_render_tooltip: 프롬프트 템플릿을 캠페인 데이터로 테스트해 AI 어시스턴트에 어떤 내용이 전송될지 확인하세요.
+    ai_assistants_type_locked_tooltip: 이 어시스턴트는 현재 사용 중이므로 유형을 변경할 수 없습니다.
     ai_assisted_idp_disabled_by_client: 클라이언트에 의해 AI 지원 IDP가 비활성화되었습니다.
     ai_assisted_idp_feature_disabled: 이 프로젝트에서는 AI 지원 국내 인류 처리 기능이 비활성화되었습니다.
     ai_idp_assistant_configure_dependencies: AI 종속성 구성

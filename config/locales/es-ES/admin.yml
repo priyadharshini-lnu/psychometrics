@@ -46,13 +46,17 @@ es-ES:
     ai_assistants: Asistentes de IA
     ai_assistants_advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
     ai_assistants_campaign_id_placeholder: Introduce el ID de campaña
+    ai_assistants_cannot_change_type_when_in_use: No se puede cambiar el tipo del asistente de IA «%{name}» porque está en uso actualmente.
     ai_assistants_no_rendered_output: No hay salida renderizada disponible
+    ai_assistants_provider_change_confirm_title: "¿Cambiar de proveedor?"
+    ai_assistants_provider_previously_used_warning: Este asistente ha generado resultados anteriormente con «%{from}». Cambiar a «%{to}» podría alterar el comportamiento del asistente en futuras solicitudes de generación.
     ai_assistants_render_button: Plantilla de renderizado
     ai_assistants_rendered_prompt: Prompt renderizado
     ai_assistants_template_and_campaign_required: Por favor, proporciona tanto la plantilla como el ID de campaña
     ai_assistants_template_render_failed: No se ha podido renderizar la plantilla
     ai_assistants_test_render: Renderizado de prueba
     ai_assistants_test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
+    ai_assistants_type_locked_tooltip: Este asistente está actualmente en uso y no es posible cambiar su tipo.
     ai_assisted_idp_disabled_by_client: El IDP asistido por IA está desactivado por el cliente.
     ai_assisted_idp_feature_disabled: La función de desplazados internos asistidos por IA ha sido deshabilitada para este proyecto.
     ai_idp_assistant_configure_dependencies: Configurar dependencias de IA

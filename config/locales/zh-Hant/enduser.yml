@@ -12,6 +12,11 @@ zh-Hant:
     ai_idp_summary_hint_no_document: 如果你同意，我可以幫你制定發展計畫。如果沒有，你可以重新開啟聊天室，分享更多細節。
     all_checks_must_pass: 所有检查都必须通过后，您才能继续。
     approve_idp_plan: 批准計劃
+    audio: 音频
+    audio_check: 麦克风测试
+    audio_check_description: 请确认您的麦克风能否正常录音
+    audio_recording: 音频录制
+    audio_test_step: 音频测试步骤
     back: 返回
     back_to_dashboard: 返回仪表盘
     before_you_begin: 开始之前
@@ -28,6 +33,8 @@ zh-Hant:
     browser_compatible_detail: 您正在使用 %{browser_name} 版本 %{browser_version}，该版本符合本次活动的最低要求。
     browser_incompatible_detail: 您当前使用的%{browser_name}版本为%{browser_version}。请将您的%{browser_name}更新至%{min_browser_version}版本，以确保兼容性。
     browser_not_compatible: 您当前使用的浏览器（%{browser_name}）不支持此活动。请使用最新版本的 Chrome、Firefox、Safari 或 Edge 浏览器，以获得最佳体验。
+    browser_not_compatible_description: 请使用最新版本的 Chrome、Firefox、Safari 或 Edge 浏览器，以获得最佳体验。
+    browser_not_compatible_detail: 您当前使用的浏览器（%{browser_name}）不支持此活动。请使用最新版本的 Chrome、Firefox、Safari 或 Edge 浏览器，以获得最佳体验。
     browser_version_fix_description_first: 请使用支持的浏览器：Chrome、Firefox、Edge 或 Safari
     browser_version_fix_title: 您的浏览器版本不受支持。
     camera: 视频和音频
@@ -38,6 +45,7 @@ zh-Hant:
     camera_check_passed: 视频和音频测试已成功通过
     camera_test_step: 视频和音频测试步骤
     campaign: 活動
+    campaign_check_status: 状态：%{status}
     chat_instructions: 聊天指南
     check: 检查
     check_video_recording: 请播放视频以检查录制效果。
@@ -53,6 +61,8 @@ zh-Hant:
     download_pdf: 下載 PDF
     download_speed_below_minimum: 下载速度 %{download_speed} 低于 %{minimum_download_speed} Mbps 的最低要求下载速度
     environment_setup: 环境设置
+    error_uploading_audio: 上传音频时出错
+    error_uploading_audio_detail: 上传音频时发生错误
     error_uploading_video: 上传视频时出错
     error_uploading_video_detail: 上传视频时出现了一些错误
     fail: 失败
@@ -73,6 +83,7 @@ zh-Hant:
     idp_report_being_generated: 我们正在处理您的报告
     idp_reset_chat: 重置聊天
     idp_retake_steps_continue_with_this_information: 請繼續閱讀這些資訊
+    initializing: 正在初始化...
     insights: 洞察力
     instruction: 请确保您和周围环境都已做好充分准备
     internet_speed: 网速
@@ -90,6 +101,8 @@ zh-Hant:
     media_recorder_api_fix_title: 您的浏览器不支持 Media Recorder API。
     media_recorder_api_not_supported_detail: 您当前使用的浏览器是%{browser_name}版本%{browser_version}，该版本不支持MediaRecorder API。请将浏览器更新至最新版本以确保兼容性。
     media_recorder_api_support: MediaRecorder API 支持
+    microphone_access_blocked: 您的浏览器拒绝或阻止了麦克风的访问权限。请检查您的浏览器权限设置。
+    microphone_check_passed: 麦克风测试通过
     min_word_limit: 至少需要 %{min} 個字
     minimum_speed_requirements: 此活动要求最低下载速度为 %{minimum_download_speed} Mbps，最低上传速度为 %{minimum_upload_speed} Mbps。
     minute: 分钟
@@ -105,6 +118,7 @@ zh-Hant:
     network_check_fix_third: 请重启路由器/调制解调器，然后重试
     network_speed_meets_required_detail: 您的网速符合本次活动的最低要求
     network_test_step: 网络测试步骤
+    no_audio_detected: 未检测到声音。请检查麦克风是否已连接且工作正常。
     pass: 跳过
     pending: 待定
     personal_readiness: 个人准备情况
@@ -114,6 +128,7 @@ zh-Hant:
     profile_details: 詳細資訊
     question_counter: 問題 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒絕原因
+    redirect_to_external_assessment: 您将被重定向至测评页面。如需开始测评，请点击“继续”。
     reject_idp_plan: 拒絕計畫
     request_retry_message: 你離線了。你的答案無法被儲存，但一旦你重新上線，答案會自動儲存。請勿重新整理或關閉頁面。
     required_download_in_mbps: 所需下载速度（Mbps）
@@ -122,6 +137,8 @@ zh-Hant:
     rerun_checks: 重新运行检查
     result: 结果
     results: 结果
+    safari_proctoring_description: 您似乎正在使用 Safari 浏览器，该浏览器在支持本次活动的跟踪功能方面可能存在一些限制。为了获得最佳体验，我们建议您使用 Chrome 或 Firefox 浏览器。
+    safari_proctoring_title: 检测到 Safari 浏览器
     selected_count: 已選擇
     skill_type: 技能類型
     start_campaign_message_proctored: 這是一個監考活動，請點擊「%{buttonText}」按鈕開始活動。
@@ -129,6 +146,7 @@ zh-Hant:
     start_campaign_message_timed_proctored: 這是一個限時且監考的活動，請點擊「%{buttonText}」按鈕開始活動。
     start_readiness_check: 开始就绪检查
     start_system_check: 开始系统检查
+    subinstruction_audio: 麦克风正常工作
     subinstruction_eight: 请预留一段不受打扰的时间，以便进行全面评估
     subinstruction_five: 准备好在整个会议期间共享屏幕了吗
     subinstruction_four: 可正常使用的网络摄像头和麦克风
@@ -175,6 +193,12 @@ zh-Hant:
     testing_upload_speed: 正在测试上传速度...
     time_commitment: 时间投入
     troubleshooting_guide: 故障排除指南
+    troubleshooting_guide_audio_fifth: 在 Windows 上：检查“隐私设置” > “麦克风访问权限”
+    troubleshooting_guide_audio_first: 点击浏览器地址栏中的锁形/信息图标
+    troubleshooting_guide_audio_fourth: 如果被拦截，您可能需要在浏览器设置中重置权限
+    troubleshooting_guide_audio_second: 找到“麦克风”设置，并将它们设为“允许”
+    troubleshooting_guide_audio_sixth: 在 Mac 上：请前往“系统偏好设置”>“安全”
+    troubleshooting_guide_audio_third: 更改权限后请刷新页面
     troubleshooting_guide_browser_fifth: 请确保在浏览器设置中启用了 LocalStorage
     troubleshooting_guide_browser_first: 请使用支持的浏览器：Chrome、Firefox、Edge 或 Safari（最新版本）
     troubleshooting_guide_browser_fourth: 请在浏览器设置中启用 JavaScript 和 Cookie
@@ -195,6 +219,7 @@ zh-Hant:
     untimed: 不限时
     upload: 上传
     upload_speed_below_minimum: 上传速度 %{upload_speed} 低于 %{minimum_upload_speed} Mbps 的最低要求上传速度
+    video: 视频
     video_and_audio: 视频与音频
     video_and_audio_recording: 视频和音频录制
     video_check_fix_fifth: 如果相机是外接的，请尝试将其拔下再重新连接

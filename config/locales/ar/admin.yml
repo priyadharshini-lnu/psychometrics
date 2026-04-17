@@ -46,13 +46,17 @@ ar:
     ai_assistants: مساعدو الذكاء الاصطناعي
     ai_assistants_advanced_mode_tooltip: استخدم الوضع المتقدم لقالب الأوامر باستخدام قالب سائل مع المتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
     ai_assistants_campaign_id_placeholder: ادخل معرف الحملة
+    ai_assistants_cannot_change_type_when_in_use: لا يمكن تغيير نوع المساعد الذكي "%{name}" لأنه قيد الاستخدام حاليًا.
     ai_assistants_no_rendered_output: لا يوجد مخرج مرسوم متوفر
+    ai_assistants_provider_change_confirm_title: هل تريد تغيير المزود؟
+    ai_assistants_provider_previously_used_warning: كان هذا المساعد قد أنشأ نتائج سابقًا باستخدام "%{from}". وقد يؤدي التغيير إلى "%{to}" إلى تغيير سلوك المساعد في طلبات الإنشاء المستقبلية.
     ai_assistants_render_button: قالب العرض
     ai_assistants_rendered_prompt: الرسالة المعرضة
     ai_assistants_template_and_campaign_required: يرجى تقديم كل من القالب ومعرف الحملة
     ai_assistants_template_render_failed: فشل في عرض القالب
     ai_assistants_test_render: اختبار العرض
     ai_assistants_test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
+    ai_assistants_type_locked_tooltip: هذا المساعد قيد الاستخدام حاليًا ولا يمكن تغيير نوعه.
     ai_assisted_idp_disabled_by_client: تم تعطيل AI Assisted IDP من قبل العميل
     ai_assisted_idp_feature_disabled: تم تعطيل ميزة الذكاء الاصطناعي المساعد للنزول (IDP) لهذا المشروع.
     ai_idp_assistant_configure_dependencies: تكوين تبعيات الذكاء الاصطناعي

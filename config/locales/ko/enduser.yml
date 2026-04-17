@@ -12,6 +12,11 @@ ko:
     ai_idp_summary_hint_no_document: 허락해 주신다면, 제가 개발 계획을 세울 수 있습니다. 만약 그렇지 않다면, 채팅을 다시 시작해서 더 자세한 내용을 공유할 수 있습니다.
     all_checks_must_pass: 모든 검사가 통과되어야 다음 단계로 진행할 수 있습니다.
     approve_idp_plan: 계획 승인
+    audio: 오디오
+    audio_check: 마이크 테스트
+    audio_check_description: 녹음 시 마이크가 제대로 작동하는지 확인하세요
+    audio_recording: 음성 녹음
+    audio_test_step: 오디오 테스트 단계
     back: 뒤로
     back_to_dashboard: 대시보드로 돌아가기
     before_you_begin: 시작하기 전에
@@ -28,6 +33,8 @@ ko:
     browser_compatible_detail: 현재 사용 중인 %{browser_name} 버전은 %{browser_version}이며, 이는 본 캠페인의 최소 요구 사항을 충족합니다.
     browser_incompatible_detail: 현재 %{browser_name} 버전 %{browser_version}을(를) 사용 중입니다. 호환성을 보장하려면 %{browser_name}을(를) %{min_browser_version} 버전으로 업데이트해 주십시오.
     browser_not_compatible: 사용 중인 브라우저%{browser_name}는 이 캠페인과 호환되지 않습니다. 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
+    browser_not_compatible_description: 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
+    browser_not_compatible_detail: 사용 중인 브라우저%{browser_name}는 이 캠페인과 호환되지 않습니다. 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
     browser_version_fix_description_first: '지원되는 브라우저를 사용하세요: Chrome, Firefox, Edge 또는 Safari'
     browser_version_fix_title: 사용 중인 브라우저 버전은 지원되지 않습니다.
     camera: 동영상 및 오디오
@@ -38,6 +45,7 @@ ko:
     camera_check_passed: 영상 및 음향 점검을 성공적으로 마쳤습니다
     camera_test_step: 영상 및 오디오 테스트 단계
     campaign: 캠페인
+    campaign_check_status: '상태: %{status}'
     chat_instructions: 채팅 안내
     check: 확인
     check_video_recording: 동영상을 재생하여 확인해 주세요.
@@ -53,6 +61,8 @@ ko:
     download_pdf: PDF 다운로드
     download_speed_below_minimum: 다운로드 속도 %{download_speed}는 최소 요구 다운로드 속도인 %{minimum_download_speed} Mbps보다 낮습니다.
     environment_setup: 환경 설정
+    error_uploading_audio: 오디오 업로드 오류
+    error_uploading_audio_detail: 오디오 업로드 중에 오류가 발생했습니다
     error_uploading_video: 동영상 업로드 오류
     error_uploading_video_detail: 동영상을 업로드하는 과정에서 오류가 발생했습니다
     fail: 실패
@@ -73,6 +83,7 @@ ko:
     idp_report_being_generated: 현재 귀하의 보고서를 처리 중입니다
     idp_reset_chat: 채팅 초기화
     idp_retake_steps_continue_with_this_information: 이 정보를 계속 확인하세요
+    initializing: 초기화 중...
     insights: 인사이트
     instruction: 본인과 주변 환경이 완벽하게 준비되었는지 확인하십시오
     internet_speed: 인터넷 속도
@@ -90,6 +101,8 @@ ko:
     media_recorder_api_fix_title: 사용 중인 브라우저에서는 미디어 레코더 API를 지원하지 않습니다.
     media_recorder_api_not_supported_detail: 현재 사용 중인 %{browser_name}의 버전(%{browser_version})은 MediaRecorder API를 지원하지 않습니다. 호환성을 보장하려면 브라우저를 최신 버전으로 업데이트해 주세요.
     media_recorder_api_support: MediaRecorder API 지원
+    microphone_access_blocked: 브라우저에서 마이크 사용 권한이 거부되거나 차단되었습니다. 브라우저의 권한 설정을 확인해 주세요.
+    microphone_check_passed: 마이크 테스트가 성공적으로 완료되었습니다
     min_word_limit: 최소 %{min}단어여야 합니다
     minimum_speed_requirements: 이 프로모션을 이용하려면 최소 다운로드 속도 %{minimum_download_speed} Mbps 및 최소 업로드 속도 %{minimum_upload_speed} Mbps가 필요합니다.
     minute: 분
@@ -105,6 +118,7 @@ ko:
     network_check_fix_third: 라우터/모뎀을 재시작한 후 다시 시도해 보세요
     network_speed_meets_required_detail: 귀하의 인터넷 속도는 본 캠페인의 최소 요구 사항을 충족합니다
     network_test_step: 네트워크 테스트 단계
+    no_audio_detected: 소리가 감지되지 않습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
     pass: 건너뛰기
     pending: 처리 중
     personal_readiness: 개인적 준비 상태
@@ -114,6 +128,7 @@ ko:
     profile_details: 세부 정보
     question_counter: 질문 %{current} / %{total}
     reason_for_idp_plan_rejection: 거절 이유
+    redirect_to_external_assessment: 평가 사이트로 이동합니다. 평가를 시작하려면 ‘계속’을 클릭해 주세요.
     reject_idp_plan: 계획 거부
     request_retry_message: 당신은 오프라인입니다. 답변은 저장할 수 없었지만, 다시 온라인에 접속하면 자동으로 저장됩니다. 페이지를 새로고침하거나 닫지 말아 주세요.
     required_download_in_mbps: 필수 다운로드 속도 (Mbps)
@@ -122,6 +137,8 @@ ko:
     rerun_checks: 검증 재실행
     result: 결과
     results: 결과
+    safari_proctoring_description: 사파리 브라우저를 사용 중인 것으로 보입니다. 이 브라우저는 본 캠페인의 모니터링 기능과 관련하여 일부 제한 사항이 있을 수 있습니다. 최상의 환경을 위해 크롬 또는 파이어폭스 브라우저를 사용하시기를 권장합니다.
+    safari_proctoring_title: Safari 브라우저가 감지되었습니다
     selected_count: 선택됨
     skill_type: 스킬 유형
     start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
@@ -129,6 +146,7 @@ ko:
     start_campaign_message_timed_proctored: 이 캠페인은 시간 제한과 감독 방식으로 진행되며, 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_readiness_check: 준비 상태 확인 시작
     start_system_check: 시스템 검사 시작
+    subinstruction_audio: 작동하는 마이크
     subinstruction_eight: 전체 평가를 위해 방해받지 않는 시간을 따로 확보하세요
     subinstruction_five: 세션 내내 화면을 공유할 준비가 되셨나요?
     subinstruction_four: 웹캠과 마이크가 정상적으로 작동함
@@ -175,6 +193,12 @@ ko:
     testing_upload_speed: 업로드 속도 측정 중...
     time_commitment: 소요 시간
     troubleshooting_guide: 문제 해결 가이드
+    troubleshooting_guide_audio_fifth: 'Windows에서: 개인정보 설정 > 마이크 사용 권한을 확인하세요'
+    troubleshooting_guide_audio_first: 브라우저 주소 표시줄에 있는 자물쇠/정보 아이콘을 클릭하세요
+    troubleshooting_guide_audio_fourth: 차단된 경우, 브라우저 설정에서 권한을 재설정해야 할 수 있습니다
+    troubleshooting_guide_audio_second: "“마이크” 설정을 찾아 “허용”으로 설정하세요"
+    troubleshooting_guide_audio_sixth: 'Mac에서: 시스템 환경설정 > 보안을 확인하세요'
+    troubleshooting_guide_audio_third: 권한을 변경한 후 페이지를 새로 고침하세요
     troubleshooting_guide_browser_fifth: 브라우저 설정에서 LocalStorage가 활성화되어 있는지 확인하세요
     troubleshooting_guide_browser_first: '지원되는 브라우저를 사용하세요: Chrome, Firefox, Edge 또는 Safari(최신 버전)'
     troubleshooting_guide_browser_fourth: 브라우저 설정에서 자바스크립트와 쿠키를 활성화하세요
@@ -195,6 +219,7 @@ ko:
     untimed: 시간 제한 없음
     upload: 업로드
     upload_speed_below_minimum: 업로드 속도 %{upload_speed}는 최소 요구 업로드 속도인 %{minimum_upload_speed} Mbps보다 낮습니다.
+    video: 동영상
     video_and_audio: 동영상 및 오디오
     video_and_audio_recording: 영상 및 음성 녹화
     video_check_fix_fifth: 외장 카메라라면 전원을 뽑았다가 다시 연결해 보세요

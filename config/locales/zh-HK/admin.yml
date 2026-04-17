@@ -46,13 +46,17 @@ zh-HK:
     ai_assistants: 人工智能助手
     ai_assistants_advanced_mode_tooltip: 使用高级模式进行提示模板设计，可利用Liquid模板及其可用变量。更多详情请参阅文档。
     ai_assistants_campaign_id_placeholder: 输入活动ID
+    ai_assistants_cannot_change_type_when_in_use: 无法更改 AI 助手“%{name}”的类型，因为它当前正在使用中。
     ai_assistants_no_rendered_output: 无渲染输出可用
+    ai_assistants_provider_change_confirm_title: 更换服务商？
+    ai_assistants_provider_previously_used_warning: 该助手此前曾使用“%{from}”生成过结果。若将该值更改为“%{to}”，可能会影响该助手在后续生成请求中的行为。
     ai_assistants_render_button: 渲染模板
     ai_assistants_rendered_prompt: 渲染提示
     ai_assistants_template_and_campaign_required: 请同时提供模板ID和活动ID
     ai_assistants_template_render_failed: 模板渲染失败
     ai_assistants_test_render: 测试渲染
     ai_assistants_test_render_tooltip: 使用活动数据测试您的提示模板，以确认将发送给AI助手的内容。
+    ai_assistants_type_locked_tooltip: 该助手目前正在使用中，无法更改其类型。
     ai_assisted_idp_disabled_by_client: AI辅助IDP功能已被客户端禁用
     ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
     ai_idp_assistant_configure_dependencies: 配置 AI 依赖项

@@ -46,13 +46,17 @@ fr:
     ai_assistants: Assistants IA
     ai_assistants_advanced_mode_tooltip: Utilisez le mode avancé pour le templation de prompts en utilisant un modèle liquide avec les variables disponibles. Consultez la documentation pour plus de détails.
     ai_assistants_campaign_id_placeholder: Entrez l’ID de campagne
+    ai_assistants_cannot_change_type_when_in_use: Impossible de modifier le type de l'assistant IA « %{name} », car il est actuellement utilisé.
     ai_assistants_no_rendered_output: Aucune sortie rendue disponible
+    ai_assistants_provider_change_confirm_title: Changer de fournisseur ?
+    ai_assistants_provider_previously_used_warning: Cet assistant a déjà généré des résultats avec « %{from} ». Le fait de passer à « %{to} » pourrait modifier le comportement de l'assistant pour les futures demandes de génération.
     ai_assistants_render_button: Modèle de rendu
     ai_assistants_rendered_prompt: Prompt rendu
     ai_assistants_template_and_campaign_required: Merci de fournir à la fois le modèle et l’identifiant de campagne
     ai_assistants_template_render_failed: Échec du rendu du modèle
     ai_assistants_test_render: Rendu de test
     ai_assistants_test_render_tooltip: Testez votre modèle de prompt avec les données de la campagne pour vérifier ce qui sera envoyé à l’assistant IA.
+    ai_assistants_type_locked_tooltip: Cet assistant est actuellement utilisé et son type ne peut pas être modifié.
     ai_assisted_idp_disabled_by_client: L'IDP assisté par IA est désactivé par le client.
     ai_assisted_idp_feature_disabled: La fonctionnalité d’IDP assistée par IA a été désactivée pour ce projet.
     ai_idp_assistant_configure_dependencies: Configurer les dépendances IA

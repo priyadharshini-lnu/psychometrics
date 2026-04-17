@@ -12,6 +12,11 @@ es-ES:
     ai_idp_summary_hint_no_document: Con tu permiso, si dices que sí, puedo crear un plan de desarrollo para ti. Si no, puedes reiniciar el chat para compartir más detalles.
     all_checks_must_pass: Todas las comprobaciones deben superarse antes de poder continuar.
     approve_idp_plan: Aprobar Plan
+    audio: Audio
+    audio_check: Prueba del micrófono
+    audio_check_description: Comprueba que tu micrófono funcione correctamente para la grabación
+    audio_recording: Grabación de audio
+    audio_test_step: Paso de prueba de audio
     back: Atrás
     back_to_dashboard: Volver al panel de control
     before_you_begin: Antes de empezar
@@ -28,6 +33,8 @@ es-ES:
     browser_compatible_detail: Estás utilizando la versión %{browser_version} de %{browser_name}, que cumple los requisitos mínimos para esta campaña.
     browser_incompatible_detail: Estás utilizando la versión %{browser_version} de %{browser_name}. Actualiza tu %{browser_name} a la versión %{min_browser_version} para garantizar la compatibilidad.
     browser_not_compatible: Tu navegador %{browser_name} no es compatible con esta campaña. Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
+    browser_not_compatible_description: Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
+    browser_not_compatible_detail: Tu navegador %{browser_name} no es compatible con esta campaña. Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
     browser_version_fix_description_first: 'Utiliza un navegador compatible: Chrome, Firefox, Edge o Safari'
     browser_version_fix_title: Tu versión del navegador no es compatible.
     camera: Vídeo y audio
@@ -38,6 +45,7 @@ es-ES:
     camera_check_passed: La comprobación de vídeo y audio se ha realizado correctamente
     camera_test_step: Paso de prueba de vídeo y audio
     campaign: Campaña
+    campaign_check_status: 'Estado: %{status}'
     chat_instructions: Instrucciones para el chat
     check: Comprobar
     check_video_recording: Comprueba la grabación de vídeo reproduciéndola.
@@ -53,6 +61,8 @@ es-ES:
     download_pdf: Descargar PDF
     download_speed_below_minimum: La velocidad de descarga %{download_speed} es inferior a la velocidad mínima requerida de %{minimum_download_speed} Mbps
     environment_setup: Configuración del entorno
+    error_uploading_audio: Error al subir el audio
+    error_uploading_audio_detail: Se ha producido un error al subir tu archivo de audio
     error_uploading_video: Error al subir el vídeo
     error_uploading_video_detail: Se ha producido un error al subir el vídeo
     fail: Fallo
@@ -73,6 +83,7 @@ es-ES:
     idp_report_being_generated: Estamos trabajando en tu informe
     idp_reset_chat: Restablecer el chat
     idp_retake_steps_continue_with_this_information: Continúa con esta información
+    initializing: Inicializando...
     insights: Información
     instruction: Asegúrate de que tanto tú como tu entorno estén completamente preparados
     internet_speed: Velocidad de Internet
@@ -90,6 +101,8 @@ es-ES:
     media_recorder_api_fix_title: Tu navegador no es compatible con la API de grabación multimedia.
     media_recorder_api_not_supported_detail: Estás utilizando una versión de %{browser_name} (%{browser_version}) que no es compatible con la API de MediaRecorder. Actualiza tu navegador a la última versión para garantizar la compatibilidad.
     media_recorder_api_support: Compatibilidad con la API de MediaRecorder
+    microphone_access_blocked: Tu navegador ha denegado o bloqueado el acceso al micrófono. Comprueba los permisos de tu navegador.
+    microphone_check_passed: La prueba de micrófono se ha realizado correctamente
     min_word_limit: Debe tener al menos %{min} palabras
     minimum_speed_requirements: Para esta promoción se requiere una velocidad mínima de descarga de %{minimum_download_speed} Mbps y una velocidad mínima de subida de %{minimum_upload_speed} Mbps.
     minute: minuto
@@ -105,6 +118,7 @@ es-ES:
     network_check_fix_third: Reinicia tu router o módem y vuelve a intentarlo
     network_speed_meets_required_detail: Tu velocidad de Internet cumple los requisitos mínimos de la campaña
     network_test_step: Paso de prueba de red
+    no_audio_detected: No se detecta audio. Comprueba si el micrófono está conectado y funciona correctamente.
     pass: Pasar
     pending: Pendiente
     personal_readiness: Preparación personal
@@ -114,6 +128,7 @@ es-ES:
     profile_details: Datos
     question_counter: Pregunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo del rechazo
+    redirect_to_external_assessment: Se le redirigirá a la página de la evaluación. Haga clic en «Continuar» si desea comenzar la evaluación.
     reject_idp_plan: Plan de rechazo
     request_retry_message: Estás desconectado. Tus respuestas no pudieron guardarse, pero se guardarán automáticamente cuando vuelvas a estar en línea. Por favor, no actualices ni cierres la página.
     required_download_in_mbps: Velocidad de descarga necesaria en Mbps
@@ -122,6 +137,8 @@ es-ES:
     rerun_checks: Volver a ejecutar comprobaciones
     result: Resultado
     results: Resultado
+    safari_proctoring_description: Parece que estás utilizando el navegador Safari, que puede presentar algunas limitaciones en cuanto a las funciones de seguimiento activadas para esta campaña. Para disfrutar de una experiencia óptima, te recomendamos que utilices los navegadores Chrome o Firefox.
+    safari_proctoring_title: Se ha detectado el navegador Safari
     selected_count: Selección
     skill_type: Tipo de habilidad
     start_campaign_message_proctored: Esta es una campaña supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
@@ -129,6 +146,7 @@ es-ES:
     start_campaign_message_timed_proctored: Esta es una campaña cronometrada y supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_readiness_check: Iniciar comprobación de preparación
     start_system_check: Iniciar comprobación del sistema
+    subinstruction_audio: Micrófono que funciona
     subinstruction_eight: Reserva un tiempo sin interrupciones para realizar la evaluación completa
     subinstruction_five: "¿Estás listo para compartir tu pantalla durante toda la sesión?"
     subinstruction_four: Cámara web y micrófono que funcionan
@@ -175,6 +193,12 @@ es-ES:
     testing_upload_speed: Comprobando la velocidad de subida...
     time_commitment: Tiempo que hay que dedicarle
     troubleshooting_guide: Guía de resolución de problemas
+    troubleshooting_guide_audio_fifth: 'En Windows: Ve a «Configuración de privacidad» > «Acceso al micrófono»'
+    troubleshooting_guide_audio_first: Haz clic en el icono del candado o de información que aparece en la barra de direcciones de tu navegador
+    troubleshooting_guide_audio_fourth: Si se bloquea, es posible que tengas que restablecer los permisos en la configuración del navegador
+    troubleshooting_guide_audio_second: Busca la opción «Micrófono» y configúrala en «Permitir»
+    troubleshooting_guide_audio_sixth: 'En Mac: Ve a Preferencias del Sistema > Seguridad'
+    troubleshooting_guide_audio_third: Actualiza la página después de cambiar los permisos
     troubleshooting_guide_browser_fifth: Asegúrate de que LocalStorage esté habilitado en la configuración de tu navegador
     troubleshooting_guide_browser_first: 'Utiliza un navegador compatible: Chrome, Firefox, Edge o Safari (últimas versiones)'
     troubleshooting_guide_browser_fourth: Activa JavaScript y las cookies en la configuración del navegador
@@ -195,6 +219,7 @@ es-ES:
     untimed: Sin límite de tiempo
     upload: Subir
     upload_speed_below_minimum: La velocidad de subida %{upload_speed} es inferior a la velocidad mínima requerida de %{minimum_upload_speed} Mbps
+    video: Vídeo
     video_and_audio: Vídeo y audio
     video_and_audio_recording: Grabación de vídeo y audio
     video_check_fix_fifth: Prueba a desconectar y volver a conectar la cámara si es externa

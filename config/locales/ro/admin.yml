@@ -46,13 +46,17 @@ ro:
     ai_assistants: Asistenți AI
     ai_assistants_advanced_mode_tooltip: Folosește modul avansat pentru modelarea prompturilor folosind șablonul lichid cu variabile disponibile. Consultați documentația pentru mai multe detalii.
     ai_assistants_campaign_id_placeholder: Introduceți ID-ul campaniei
+    ai_assistants_cannot_change_type_when_in_use: Nu se poate modifica tipul asistentului AI „%{name}”, deoarece acesta este utilizat în prezent.
     ai_assistants_no_rendered_output: Nu există ieșire randată disponibilă
+    ai_assistants_provider_change_confirm_title: Vrei să schimbi furnizorul?
+    ai_assistants_provider_previously_used_warning: Acest asistent a generat anterior rezultate folosind „%{from}”. Schimbarea în „%{to}” poate modifica comportamentul asistentului pentru viitoarele solicitări de generare.
     ai_assistants_render_button: Șablon de randare
     ai_assistants_rendered_prompt: Prompt randat
     ai_assistants_template_and_campaign_required: Vă rugăm să furnizați atât șablonul, cât și ID-ul campaniei
     ai_assistants_template_render_failed: Nu s-a redat șablonul
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
+    ai_assistants_type_locked_tooltip: Acest asistent este utilizat în prezent și tipul său nu poate fi modificat.
     ai_assisted_idp_disabled_by_client: IDP asistat de AI este dezactivat de client
     ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
     ai_idp_assistant_configure_dependencies: Configurați dependențele AI

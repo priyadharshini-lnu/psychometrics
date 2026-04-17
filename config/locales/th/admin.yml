@@ -46,13 +46,17 @@ th:
     ai_assistants: ผู้ช่วย AI
     ai_assistants_advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
     ai_assistants_campaign_id_placeholder: ป้อนรหัสแคมเปญ
+    ai_assistants_cannot_change_type_when_in_use: ไม่สามารถเปลี่ยนประเภทของ AI Assistant '%{name}' ได้ เนื่องจากกำลังใช้งานอยู่
     ai_assistants_no_rendered_output: ไม่มีเอาต์พุตที่แสดงผล
+    ai_assistants_provider_change_confirm_title: เปลี่ยนผู้ให้บริการ?
+    ai_assistants_provider_previously_used_warning: ผู้ช่วยคนนี้เคยสร้างผลลัพธ์ด้วย "%{from}" มาก่อน การเปลี่ยนเป็น "%{to}" อาจทำให้พฤติกรรมของผู้ช่วยเปลี่ยนแปลงไปสำหรับคำขอสร้างผลลัพธ์ในอนาคต
     ai_assistants_render_button: เทมเพลตการแสดงผล
     ai_assistants_rendered_prompt: พรอมต์ที่แสดงผล
     ai_assistants_template_and_campaign_required: โปรดระบุทั้งเทมเพลตและรหัสแคมเปญ
     ai_assistants_template_render_failed: แสดงเทมเพลตไม่สําเร็จ
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
+    ai_assistants_type_locked_tooltip: ผู้ช่วยคนนี้กำลังใช้งานอยู่และไม่สามารถเปลี่ยนประเภทได้
     ai_assisted_idp_disabled_by_client: ระบบช่วยเหลือ IDP โดย AI ถูกปิดใช้งานโดยลูกค้า
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
     ai_idp_assistant_configure_dependencies: กำหนดค่าการพึ่งพา AI

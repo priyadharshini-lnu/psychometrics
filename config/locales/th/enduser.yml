@@ -12,6 +12,11 @@ th:
     ai_idp_summary_hint_no_document: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติมได้
     all_checks_must_pass: ต้องผ่านการตรวจสอบทั้งหมดก่อนจึงจะสามารถดำเนินการต่อได้
     approve_idp_plan: อนุมัติแผน
+    audio: เสียง
+    audio_check: ทดสอบไมโครโฟน
+    audio_check_description: ตรวจสอบให้แน่ใจว่าไมโครโฟนของคุณทำงานได้อย่างถูกต้องสำหรับการบันทึก
+    audio_recording: การบันทึกเสียง
+    audio_test_step: ขั้นตอนการทดสอบเสียง
     back: กลับ
     back_to_dashboard: กลับสู่แดชบอร์ด
     before_you_begin: ก่อนที่คุณจะเริ่มต้น
@@ -28,6 +33,8 @@ th:
     browser_compatible_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} ซึ่งตรงตามข้อกำหนดขั้นต่ำสำหรับแคมเปญนี้
     browser_incompatible_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} กรุณาอัปเดต %{browser_name} ของคุณเป็นรุ่น %{min_browser_version} เพื่อให้แน่ใจว่ามีความเข้ากันได้
     browser_not_compatible: เบราว์เซอร์ของคุณ %{browser_name} ไม่รองรับแคมเปญนี้ กรุณาใช้เวอร์ชันล่าสุดของ Chrome, Firefox, Safari หรือ Edge เพื่อประสบการณ์ที่ดีที่สุด
+    browser_not_compatible_description: ใช้เวอร์ชันล่าสุดของ Chrome, Firefox, Safari หรือ Edge เพื่อประสบการณ์ที่ดีที่สุด
+    browser_not_compatible_detail: เบราว์เซอร์ของคุณ %{browser_name} ไม่รองรับแคมเปญนี้ กรุณาใช้เวอร์ชันล่าสุดของ Chrome, Firefox, Safari หรือ Edge เพื่อประสบการณ์ที่ดีที่สุด
     browser_version_fix_description_first: 'ใช้เบราว์เซอร์ที่รองรับ: Chrome, Firefox, Edge หรือ Safari'
     browser_version_fix_title: เวอร์ชันเบราว์เซอร์ของคุณไม่รองรับ
     camera: วิดีโอและเสียง
@@ -38,6 +45,7 @@ th:
     camera_check_passed: การตรวจสอบวิดีโอและเสียงผ่านเรียบร้อยแล้ว
     camera_test_step: ขั้นตอนการทดสอบวิดีโอและเสียง
     campaign: รณรงค์
+    campaign_check_status: 'สถานะ: %{status}'
     chat_instructions: คำแนะนำในการแชท
     check: ตรวจสอบ
     check_video_recording: กรุณาตรวจสอบการบันทึกวิดีโอของคุณโดยการเล่นกลับ
@@ -53,6 +61,8 @@ th:
     download_pdf: ดาวน์โหลดไฟล์ PDF
     download_speed_below_minimum: ความเร็วในการดาวน์โหลด %{download_speed} ต่ำกว่าความเร็วในการดาวน์โหลดขั้นต่ำที่ต้องการ %{minimum_download_speed} Mbps
     environment_setup: การตั้งค่าสภาพแวดล้อม
+    error_uploading_audio: เกิดข้อผิดพลาดในการอัปโหลดเสียง
+    error_uploading_audio_detail: เกิดข้อผิดพลาดในการอัปโหลดไฟล์เสียงของคุณ
     error_uploading_video: เกิดข้อผิดพลาดในการอัปโหลดวิดีโอ
     error_uploading_video_detail: เกิดข้อผิดพลาดขณะอัปโหลดวิดีโอ
     fail: ล้มเหลว
@@ -73,6 +83,7 @@ th:
     idp_report_being_generated: เรากำลังทำงานเกี่ยวกับรายงานของคุณ
     idp_reset_chat: รีเซ็ตแชท
     idp_retake_steps_continue_with_this_information: ดําเนินการต่อด้วยข้อมูลนี้
+    initializing: กำลังเริ่มต้น...
     insights: ข้อมูลเชิงลึก
     instruction: ตรวจสอบให้แน่ใจว่าคุณและสภาพแวดล้อมของคุณพร้อมอย่างเต็มที่
     internet_speed: ความเร็วอินเทอร์เน็ต
@@ -90,6 +101,8 @@ th:
     media_recorder_api_fix_title: API บันทึกสื่อไม่รองรับในเบราว์เซอร์ของคุณ
     media_recorder_api_not_supported_detail: คุณกำลังใช้ %{browser_name} รุ่น %{browser_version} ซึ่งไม่รองรับ MediaRecorder API กรุณาอัปเดตเบราว์เซอร์ของคุณเป็นเวอร์ชันล่าสุดเพื่อให้แน่ใจว่าใช้งานได้
     media_recorder_api_support: การสนับสนุน API ของ MediaRecorder
+    microphone_access_blocked: ไมโครโฟนถูกปฏิเสธหรือบล็อกโดยเบราว์เซอร์ของคุณ กรุณาตรวจสอบสิทธิ์การเข้าถึงของเบราว์เซอร์ของคุณ
+    microphone_check_passed: การตรวจสอบไมโครโฟนผ่านเรียบร้อยแล้ว
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
     minimum_speed_requirements: ความเร็วในการดาวน์โหลดขั้นต่ำ %{minimum_download_speed} Mbps และความเร็วในการอัปโหลดขั้นต่ำ %{minimum_upload_speed} Mbps ที่จำเป็นสำหรับแคมเปญนี้
     minute: นาที
@@ -105,6 +118,7 @@ th:
     network_check_fix_third: รีสตาร์ทเราเตอร์/โมเด็มของคุณแล้วลองอีกครั้ง
     network_speed_meets_required_detail: ความเร็วอินเทอร์เน็ตของคุณตรงตามข้อกำหนดขั้นต่ำสำหรับแคมเปญ
     network_test_step: ขั้นตอนการทดสอบเครือข่าย
+    no_audio_detected: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
     pass: ผ่าน
     pending: รอดำเนินการ
     personal_readiness: ความพร้อมส่วนบุคคล
@@ -114,6 +128,7 @@ th:
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
+    redirect_to_external_assessment: คุณจะถูกนำไปยังเว็บไซต์การประเมิน กรุณาคลิกต่อไปหากคุณต้องการเริ่มการประเมิน
     reject_idp_plan: ปฏิเสธแผน
     request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
     required_download_in_mbps: จำเป็นต้องดาวน์โหลดใน Mbps
@@ -122,6 +137,8 @@ th:
     rerun_checks: ทำการตรวจสอบซ้ำ
     result: ผลลัพธ์
     results: ผลลัพธ์
+    safari_proctoring_description: ดูเหมือนว่าคุณกำลังใช้ Safari ซึ่งอาจมีข้อจำกัดบางประการเกี่ยวกับคุณสมบัติการตรวจสอบที่เปิดใช้งานสำหรับแคมเปญนี้ เพื่อให้ได้รับประสบการณ์ที่ดีที่สุด เราขอแนะนำให้ใช้ Chrome หรือ Firefox
+    safari_proctoring_title: ตรวจพบเบราว์เซอร์ Safari
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
@@ -129,6 +146,7 @@ th:
     start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_readiness_check: เริ่มการตรวจสอบความพร้อม
     start_system_check: เริ่มการตรวจสอบระบบ
+    subinstruction_audio: ไมโครโฟนที่ใช้งานได้
     subinstruction_eight: จัดสรรเวลาที่ไม่มีการรบกวนสำหรับการประเมินอย่างเต็มรูปแบบ
     subinstruction_five: พร้อมที่จะแชร์หน้าจอของคุณตลอดการประชุม
     subinstruction_four: เว็บแคมและไมโครโฟนที่ใช้งานได้
@@ -175,6 +193,12 @@ th:
     testing_upload_speed: กำลังทดสอบความเร็วในการอัปโหลด...
     time_commitment: เวลาที่ต้องใช้
     troubleshooting_guide: คู่มือการแก้ไขปัญหา
+    troubleshooting_guide_audio_fifth: 'บน Windows: ตรวจสอบการตั้งค่าความเป็นส่วนตัว > การเข้าถึงไมโครโฟน'
+    troubleshooting_guide_audio_first: คลิกที่ไอคอนรูปกุญแจ/ข้อมูลในแถบที่อยู่ของเบราว์เซอร์ของคุณ
+    troubleshooting_guide_audio_fourth: หากถูกบล็อก คุณอาจต้องรีเซ็ตสิทธิ์ในตั้งค่าเบราว์เซอร์
+    troubleshooting_guide_audio_second: ค้นหาการตั้งค่า "ไมโครโฟน" และตั้งค่าเป็น "อนุญาต"
+    troubleshooting_guide_audio_sixth: 'บน Mac: ตรวจสอบการตั้งค่าระบบ > ความปลอดภัย'
+    troubleshooting_guide_audio_third: รีเฟรชหน้าหลังจากเปลี่ยนสิทธิ์
     troubleshooting_guide_browser_fifth: ตรวจสอบให้แน่ใจว่า LocalStorage เปิดใช้งานแล้วในการตั้งค่าเบราว์เซอร์ของคุณ
     troubleshooting_guide_browser_first: 'ใช้เบราว์เซอร์ที่รองรับ: Chrome, Firefox, Edge หรือ Safari (เวอร์ชันล่าสุด)'
     troubleshooting_guide_browser_fourth: เปิดใช้งาน JavaScript และคุกกี้ในการตั้งค่าเบราว์เซอร์
@@ -195,6 +219,7 @@ th:
     untimed: ไม่จำกัดเวลา
     upload: อัปโหลด
     upload_speed_below_minimum: ความเร็วในการอัปโหลด %{upload_speed} ต่ำกว่าความเร็วในการอัปโหลดขั้นต่ำที่กำหนดไว้ที่ %{minimum_upload_speed} Mbps
+    video: วิดีโอ
     video_and_audio: วิดีโอและเสียง
     video_and_audio_recording: การบันทึกวิดีโอและเสียง
     video_check_fix_fifth: ลองถอดปลั๊กและเสียบกล้องใหม่หากเป็นกล้องภายนอก

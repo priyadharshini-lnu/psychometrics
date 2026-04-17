@@ -46,13 +46,17 @@ ja:
     ai_assistants: AIアシスタント
     ai_assistants_advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
     ai_assistants_campaign_id_placeholder: キャンペーンIDの登場です
+    ai_assistants_cannot_change_type_when_in_use: AIアシスタント「%{name}」は現在使用中のため、タイプを変更できません。
     ai_assistants_no_rendered_output: レンダリング出力は利用できません
+    ai_assistants_provider_change_confirm_title: プロバイダーを変更しますか？
+    ai_assistants_provider_previously_used_warning: このアシスタントは以前、「%{from}」を使用して結果を生成していました。「%{to}」に変更すると、今後の生成リクエストにおけるアシスタントの動作が変わる可能性があります。
     ai_assistants_render_button: レンダーテンプレート
     ai_assistants_rendered_prompt: レンダリングプロンプト
     ai_assistants_template_and_campaign_required: テンプレートとキャンペーンIDの両方をご提供ください
     ai_assistants_template_render_failed: テンプレートのレンダリングに失敗しました
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
+    ai_assistants_type_locked_tooltip: このアシスタントは現在使用中であり、そのタイプを変更することはできません。
     ai_assisted_idp_disabled_by_client: クライアントによりAI支援型IDPが無効化されています
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
     ai_idp_assistant_configure_dependencies: AI依存関係の設定

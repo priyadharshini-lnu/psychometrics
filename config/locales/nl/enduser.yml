@@ -12,6 +12,11 @@ nl:
     ai_idp_summary_hint_no_document: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten om meer details te delen.
     all_checks_must_pass: Alle controles moeten zijn doorlopen voordat u verder kunt gaan.
     approve_idp_plan: Plan goedkeuren
+    audio: Audio
+    audio_check: Microfooncontrole
+    audio_check_description: Controleer of je microfoon goed werkt voor opnames
+    audio_recording: Geluidsopname
+    audio_test_step: Stap voor het testen van het geluid
     back: Terug
     back_to_dashboard: Terug naar het dashboard
     before_you_begin: Voordat u begint
@@ -28,6 +33,8 @@ nl:
     browser_compatible_detail: Je gebruikt de versie %{browser_version} van %{browser_name}, die voldoet aan de minimumvereisten voor deze campagne.
     browser_incompatible_detail: U gebruikt %{browser_name} versie %{browser_version}. Werk uw %{browser_name} bij naar versie %{min_browser_version} om compatibiliteit te garanderen.
     browser_not_compatible: Uw browser %{browser_name} is niet compatibel met deze campagne. Gebruik de nieuwste versies van Chrome, Firefox, Safari of Edge voor de beste ervaring.
+    browser_not_compatible_description: Gebruik de nieuwste versies van Chrome, Firefox, Safari of Edge voor de beste ervaring.
+    browser_not_compatible_detail: Uw browser %{browser_name} is niet compatibel met deze campagne. Gebruik de nieuwste versies van Chrome, Firefox, Safari of Edge voor de beste ervaring.
     browser_version_fix_description_first: 'Gebruik een ondersteunde browser: Chrome, Firefox, Edge of Safari'
     browser_version_fix_title: De versie van uw browser wordt niet ondersteund.
     camera: Video en audio
@@ -38,6 +45,7 @@ nl:
     camera_check_passed: De video- en audiotest is succesvol doorlopen
     camera_test_step: Stap voor het testen van video en audio
     campaign: Campagne
+    campaign_check_status: 'Status: %{status}'
     chat_instructions: Instructies voor de chat
     check: Controleer
     check_video_recording: Controleer uw video-opname door deze af te spelen.
@@ -53,6 +61,8 @@ nl:
     download_pdf: Download PDF
     download_speed_below_minimum: De downloadsnelheid %{download_speed} ligt onder de vereiste minimale downloadsnelheid van %{minimum_download_speed} Mbps
     environment_setup: Omgeving instellen
+    error_uploading_audio: Fout bij het uploaden van audio
+    error_uploading_audio_detail: Er is een fout opgetreden bij het uploaden van je audio
     error_uploading_video: Fout bij het uploaden van de video
     error_uploading_video_detail: Er is een fout opgetreden tijdens het uploaden van de video
     fail: Mislukt
@@ -73,6 +83,7 @@ nl:
     idp_report_being_generated: We zijn bezig met uw rapport
     idp_reset_chat: Chat vernieuwen
     idp_retake_steps_continue_with_this_information: Ga verder met deze informatie
+    initializing: Wordt opgestart...
     insights: Inzichten
     instruction: Zorg ervoor dat u en uw omgeving volledig voorbereid zijn
     internet_speed: Internetsnelheid
@@ -90,6 +101,8 @@ nl:
     media_recorder_api_fix_title: De Media Recorder API wordt niet ondersteund in uw browser.
     media_recorder_api_not_supported_detail: Je gebruikt %{browser_name} versie %{browser_version}, die de MediaRecorder-API niet ondersteunt. Werk je browser bij naar de nieuwste versie om compatibiliteit te garanderen.
     media_recorder_api_support: Ondersteuning voor de MediaRecorder-API
+    microphone_access_blocked: De toegang tot de microfoon is door uw browser geweigerd of geblokkeerd. Controleer de machtigingen in uw browser.
+    microphone_check_passed: De microfooncheck is geslaagd
     min_word_limit: Moet minstens %{min} woorden bevatten
     minimum_speed_requirements: Voor deze actie is een minimale downloadsnelheid van %{minimum_download_speed} Mbps en een minimale uploadsnelheid van %{minimum_upload_speed} Mbps vereist.
     minute: minuut
@@ -105,6 +118,7 @@ nl:
     network_check_fix_third: Start je router/modem opnieuw op en probeer het nog eens
     network_speed_meets_required_detail: Je internetsnelheid voldoet aan de minimumvereisten voor de campagne
     network_test_step: Stap voor het testen van het netwerk
+    no_audio_detected: Er wordt geen geluid gedetecteerd. Controleer of je microfoon is aangesloten en goed werkt.
     pass: Sla over
     pending: In behandeling
     personal_readiness: Persoonlijke voorbereiding
@@ -114,6 +128,7 @@ nl:
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
     reason_for_idp_plan_rejection: Reden voor afwijzing
+    redirect_to_external_assessment: U wordt doorgestuurd naar de testpagina. Klik op ‘Doorgaan’ als u de test wilt starten.
     reject_idp_plan: Plan afwijzen
     request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
     required_download_in_mbps: Vereiste downloadsnelheid in Mbps
@@ -122,6 +137,8 @@ nl:
     rerun_checks: Controles opnieuw uitvoeren
     result: Resultaat
     results: Resultaat
+    safari_proctoring_description: Het lijkt erop dat u de Safari-browser gebruikt, die mogelijk enkele beperkingen kent wat betreft de geactiveerde trackingfuncties voor deze campagne. Voor de beste ervaring raden wij u aan om Chrome of Firefox te gebruiken.
+    safari_proctoring_title: Safari-browser gedetecteerd
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
@@ -129,6 +146,7 @@ nl:
     start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_readiness_check: Start de gereedheidscontrole
     start_system_check: Systeemcontrole starten
+    subinstruction_audio: Werkende microfoon
     subinstruction_eight: Reserveer voldoende aaneengesloten tijd voor de volledige beoordeling
     subinstruction_five: Klaar om je scherm gedurende de hele sessie te delen
     subinstruction_four: Werkende webcam en microfoon
@@ -175,6 +193,12 @@ nl:
     testing_upload_speed: De uploadsnelheid wordt getest...
     time_commitment: Tijdsbesteding
     troubleshooting_guide: Handleiding voor het oplossen van problemen
+    troubleshooting_guide_audio_fifth: 'In Windows: Ga naar Privacy-instellingen > Toegang tot microfoon'
+    troubleshooting_guide_audio_first: Klik op het slot-/informatiepictogram in de adresbalk van je browser
+    troubleshooting_guide_audio_fourth: Als de pagina wordt geblokkeerd, moet u mogelijk de machtigingen in de browserinstellingen opnieuw instellen
+    troubleshooting_guide_audio_second: Zoek de instellingen voor "Microfoon" en stel deze in op "Toestaan"
+    troubleshooting_guide_audio_sixth: 'Op de Mac: ga naar Systeemvoorkeuren > Beveiliging'
+    troubleshooting_guide_audio_third: Verfris de pagina nadat je de machtigingen hebt gewijzigd
     troubleshooting_guide_browser_fifth: Zorg ervoor dat LocalStorage is ingeschakeld in je browserinstellingen
     troubleshooting_guide_browser_first: 'Gebruik een ondersteunde browser: Chrome, Firefox, Edge of Safari (nieuwste versies)'
     troubleshooting_guide_browser_fourth: Schakel JavaScript en cookies in via de browserinstellingen
@@ -195,6 +219,7 @@ nl:
     untimed: Zonder tijdslimiet
     upload: Uploaden
     upload_speed_below_minimum: De uploadsnelheid %{upload_speed} ligt onder de vereiste minimale uploadsnelheid van %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video en audio
     video_and_audio_recording: Video- en audio-opname
     video_check_fix_fifth: Probeer de stekker van je camera uit het stopcontact te halen en weer aan te sluiten als het een externe camera betreft

@@ -46,13 +46,17 @@ hu:
     ai_assistants: AI asszisztensek
     ai_assistants_advanced_mode_tooltip: Használj fejlett módot prompt templáláshoz liquid sablon használatával, elérhető változókkal. További részletekért lásd a dokumentációt.
     ai_assistants_campaign_id_placeholder: Jelentkezik a kampányazonosító
+    ai_assistants_cannot_change_type_when_in_use: Az „%{name}” nevű AI-asszisztens típusát nem lehet megváltoztatni, mert jelenleg használatban van.
     ai_assistants_no_rendered_output: Renderelt kimenet nem érhető el
+    ai_assistants_provider_change_confirm_title: Szolgáltatót váltani?
+    ai_assistants_provider_previously_used_warning: Ez az asszisztens korábban a „%{from}” beállítással generált eredményeket. A „%{to}” beállításra való váltás megváltoztathatja az asszisztens viselkedését a jövőbeli generálási kérések esetén.
     ai_assistants_render_button: Render sablon
     ai_assistants_rendered_prompt: Renderelt prompt
     ai_assistants_template_and_campaign_required: Kérjük, adja meg mind a sablont, mind a kampányazonosítót
     ai_assistants_template_render_failed: Nem sikerült megjeleníteni sablont
     ai_assistants_test_render: Tesztrender
     ai_assistants_test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
+    ai_assistants_type_locked_tooltip: Ez az asszisztens jelenleg használatban van, ezért típusát nem lehet megváltoztatni.
     ai_assisted_idp_disabled_by_client: Az AI-támogatott IDP az ügyfél által letiltva van
     ai_assisted_idp_feature_disabled: Az AI Assisted IDP funkciót letiltották ehhez a projekthez.
     ai_idp_assistant_configure_dependencies: AI-függőségek konfigurálása

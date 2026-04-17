@@ -46,13 +46,17 @@ sr-Cyrl:
     ai_assistants: АИ асистенти
     ai_assistants_advanced_mode_tooltip: Користите напредни режим за израду шаблона упитника користећи Liquid шаблон са расположивим променљивим. Погледајте документацију за више детаља.
     ai_assistants_campaign_id_placeholder: Унесите ИД кампање
+    ai_assistants_cannot_change_type_when_in_use: Не можете променити тип АИ асистента "%{name}" јер је тренутно у употреби.
     ai_assistants_no_rendered_output: Није доступан приказани излаз
+    ai_assistants_provider_change_confirm_title: Променити провајдера?
+    ai_assistants_provider_previously_used_warning: Овај асистент је раније генерисао резултате са "%{from}". Преласком на "%{to}" може се променити понашање асистента приликом будућих захтева за генерисање.
     ai_assistants_render_button: Шаблон рендера
     ai_assistants_rendered_prompt: Генерисан одговор
     ai_assistants_template_and_campaign_required: Молимо вас да наведете и ИД шаблона и ИД кампање.
     ai_assistants_template_render_failed: Неуспело приказивање шаблона
     ai_assistants_test_render: Тест рендеровања
     ai_assistants_test_render_tooltip: Тестирајте шаблон упитa са подацима о кампањи да бисте проверили шта ће бити послато АИ асистенту.
+    ai_assistants_type_locked_tooltip: Овај асистент се тренутно користи и његов тип се не може променити.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP је онемогућен од стране клијента
     ai_assisted_idp_feature_disabled: Функција AI Assisted IDP је онемогућена за овај пројекат.
     ai_idp_assistant_configure_dependencies: Конфигуришите зависности вештачке интелигенције

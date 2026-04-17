@@ -12,6 +12,11 @@ pl:
     ai_idp_summary_hint_no_document: Za twoją zgodą, jeśli się zgodzisz, mogę stworzyć dla ciebie plan rozwoju. Jeśli nie, możesz ponownie rozpocząć czat, aby podzielić się szczegółami.
     all_checks_must_pass: Aby kontynuować, wszystkie testy muszą zakończyć się powodzeniem.
     approve_idp_plan: Zatwierdź plan
+    audio: Dźwięk
+    audio_check: Test mikrofonu
+    audio_check_description: Sprawdź, czy mikrofon działa prawidłowo podczas nagrywania
+    audio_recording: Nagranie audio
+    audio_test_step: Krok testu audio
     back: Powrót
     back_to_dashboard: Powrót do pulpitu nawigacyjnego
     before_you_begin: Zanim zaczniesz
@@ -28,6 +33,8 @@ pl:
     browser_compatible_detail: Korzystasz z przeglądarki %{browser_name} w wersji %{browser_version}, która spełnia minimalne wymagania tej kampanii.
     browser_incompatible_detail: Korzystasz z programu „%{browser_name}” w wersji %{browser_version}. Aby zapewnić zgodność, zaktualizuj program „%{browser_name}” do wersji %{min_browser_version}.
     browser_not_compatible: Twoja przeglądarka %{browser_name} nie jest zgodna z tą kampanią. Aby zapewnić sobie najlepsze wrażenia podczas korzystania ze strony, użyj najnowszej wersji przeglądarki Chrome, Firefox, Safari lub Edge.
+    browser_not_compatible_description: Aby zapewnić sobie najlepsze wrażenia podczas korzystania z witryny, używaj najnowszych wersji przeglądarek Chrome, Firefox, Safari lub Edge.
+    browser_not_compatible_detail: Twoja przeglądarka %{browser_name} nie jest zgodna z tą kampanią. Aby uzyskać najlepsze wrażenia podczas korzystania ze strony, użyj najnowszej wersji przeglądarki Chrome, Firefox, Safari lub Edge.
     browser_version_fix_description_first: 'Użyj obsługiwanej przeglądarki: Chrome, Firefox, Edge lub Safari'
     browser_version_fix_title: Twoja wersja przeglądarki nie jest obsługiwana.
     camera: Wideo i audio
@@ -38,6 +45,7 @@ pl:
     camera_check_passed: Sprawdzenie obrazu i dźwięku zakończyło się powodzeniem
     camera_test_step: 'Krok: Test obrazu i dźwięku'
     campaign: Kampania
+    campaign_check_status: 'Status: %{status}'
     chat_instructions: Instrukcje dotyczące czatu
     check: Sprawdź
     check_video_recording: Proszę sprawdzić nagranie, odtwarzając je.
@@ -53,6 +61,8 @@ pl:
     download_pdf: Pobierz PDF
     download_speed_below_minimum: Prędkość pobierania %{download_speed} jest niższa od minimalnej wymaganej prędkości pobierania wynoszącej %{minimum_download_speed} Mb/s
     environment_setup: Konfiguracja środowiska
+    error_uploading_audio: Błąd podczas przesyłania pliku audio
+    error_uploading_audio_detail: Wystąpił błąd podczas przesyłania pliku audio
     error_uploading_video: Wystąpił błąd podczas przesyłania filmu
     error_uploading_video_detail: Wystąpił błąd podczas przesyłania filmu
     fail: Niepowodzenie
@@ -73,6 +83,7 @@ pl:
     idp_report_being_generated: Pracujemy nad Twoim zgłoszeniem
     idp_reset_chat: Wyczyść czat
     idp_retake_steps_continue_with_this_information: Kontynuuj tę informację
+    initializing: Inicjalizacja...
     insights: Obserwacje
     instruction: Upewnij się, że zarówno Ty, jak i Twoje otoczenie jesteście w pełni przygotowani
     internet_speed: Prędkość Internetu
@@ -90,6 +101,8 @@ pl:
     media_recorder_api_fix_title: Twoja przeglądarka nie obsługuje interfejsu API Media Recorder.
     media_recorder_api_not_supported_detail: Korzystasz z przeglądarki %{browser_name} w wersji %{browser_version}, która nie obsługuje interfejsu API MediaRecorder. Aby zapewnić zgodność, zaktualizuj przeglądarkę do najnowszej wersji.
     media_recorder_api_support: Obsługa interfejsu API MediaRecorder
+    microphone_access_blocked: Dostęp do mikrofonu został zablokowany przez przeglądarkę. Sprawdź uprawnienia przeglądarki.
+    microphone_check_passed: Test mikrofonu zakończył się powodzeniem
     min_word_limit: Musi mieć co najmniej %{min} słów
     minimum_speed_requirements: W ramach tej promocji wymagana jest minimalna prędkość pobierania wynosząca %{minimum_download_speed} Mb/s oraz minimalna prędkość wysyłania wynosząca %{minimum_upload_speed} Mb/s.
     minute: minuta
@@ -105,6 +118,7 @@ pl:
     network_check_fix_third: Zrestartuj router/modem i spróbuj ponownie
     network_speed_meets_required_detail: Twoja prędkość Internetu spełnia minimalne wymagania kampanii
     network_test_step: Etap testowania sieci
+    no_audio_detected: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
     pass: Przejdź dalej
     pending: W toku
     personal_readiness: Gotowość osobista
@@ -114,6 +128,7 @@ pl:
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}
     reason_for_idp_plan_rejection: Powód odrzucenia
+    redirect_to_external_assessment: Zostaniesz przekierowany na stronę testu. Jeśli chcesz rozpocząć test, kliknij „Kontynuuj”.
     reject_idp_plan: Plan Odrzucenia
     request_retry_message: Jesteś offline. Twoje odpowiedzi nie mogły zostać zapisane, ale zostaną zapisane automatycznie po powrocie do sieci. Prosimy nie odświeżać ani nie zamykać strony.
     required_download_in_mbps: Wymagana prędkość pobierania w Mb/s
@@ -122,6 +137,8 @@ pl:
     rerun_checks: Ponowne przeprowadzenie kontroli
     result: Wynik
     results: Wynik
+    safari_proctoring_description: Wygląda na to, że korzystasz z przeglądarki Safari, która może mieć pewne ograniczenia dotyczące funkcji monitorowania dostępnych w tej kampanii. Aby zapewnić sobie najlepsze wrażenia, zalecamy korzystanie z przeglądarek Chrome lub Firefox.
+    safari_proctoring_title: Wykryto przeglądarkę Safari
     selected_count: Wybrane
     skill_type: Typ umiejętności
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.
@@ -129,6 +146,7 @@ pl:
     start_campaign_message_timed_proctored: To jest kampania z nadzorem czasowym i nadzorowana, prosimy kliknąć przycisk '%{buttonText}', aby rozpocząć aktywności.
     start_readiness_check: Rozpocznij kontrolę gotowości
     start_system_check: Rozpocznij sprawdzanie systemu
+    subinstruction_audio: Działający mikrofon
     subinstruction_eight: Zarezerwuj sobie czas, w którym nic nie będzie Ci przeszkadzać, aby przeprowadzić pełną ocenę
     subinstruction_five: Czy chcesz udostępniać swój ekran przez cały czas trwania sesji?
     subinstruction_four: Działająca kamera internetowa i mikrofon
@@ -175,6 +193,12 @@ pl:
     testing_upload_speed: Sprawdzam prędkość wysyłania...
     time_commitment: Wymagany nakład czasu
     troubleshooting_guide: Przewodnik po rozwiązywaniu problemów
+    troubleshooting_guide_audio_fifth: 'W systemie Windows: Sprawdź ustawienia prywatności > Dostęp do mikrofonu'
+    troubleshooting_guide_audio_first: Kliknij ikonę kłódki/informacji w pasku adresu przeglądarki
+    troubleshooting_guide_audio_fourth: Jeśli dostęp jest zablokowany, może być konieczne zresetowanie uprawnień w ustawieniach przeglądarki
+    troubleshooting_guide_audio_second: Znajdź ustawienia „Mikrofon” i ustaw je na „Zezwól”
+    troubleshooting_guide_audio_sixth: 'Na komputerze Mac: Przejdź do „Preferencje systemowe” > „Zabezpieczenia”'
+    troubleshooting_guide_audio_third: Po zmianie uprawnień odśwież stronę
     troubleshooting_guide_browser_fifth: Upewnij się, że w ustawieniach przeglądarki włączono funkcję LocalStorage
     troubleshooting_guide_browser_first: 'Użyj obsługiwanej przeglądarki: Chrome, Firefox, Edge lub Safari (najnowsze wersje)'
     troubleshooting_guide_browser_fourth: Włącz obsługę JavaScript i plików cookie w ustawieniach przeglądarki
@@ -195,6 +219,7 @@ pl:
     untimed: Bez limitu czasowego
     upload: Prześlij
     upload_speed_below_minimum: Prędkość wysyłania danych wynosząca %{upload_speed} jest niższa od minimalnej wymaganej prędkości wysyłania wynoszącej %{minimum_upload_speed} Mb/s
+    video: Film
     video_and_audio: Wideo i audio
     video_and_audio_recording: Nagrywanie obrazu i dźwięku
     video_check_fix_fifth: Jeśli aparat jest podłączony zewnętrznie, spróbuj go odłączyć i podłączyć ponownie

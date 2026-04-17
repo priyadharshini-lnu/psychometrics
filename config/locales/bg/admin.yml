@@ -46,13 +46,17 @@ bg:
     ai_assistants: AI асистенти
     ai_assistants_advanced_mode_tooltip: Използвайте разширен режим за шаблониране на prompt с течен шаблон с налични променливи. Вижте документацията за повече подробности.
     ai_assistants_campaign_id_placeholder: Въведете ID на кампанията
+    ai_assistants_cannot_change_type_when_in_use: Не е възможно да се промени типът на AI асистента „%{name}“, тъй като той се използва в момента.
     ai_assistants_no_rendered_output: Няма наличен рендериран изход
+    ai_assistants_provider_change_confirm_title: Да сменяте доставчика?
+    ai_assistants_provider_previously_used_warning: Досега този асистент е генерирал резултати с „%{from}“. Промяната на адреса на „%{to}“ може да промени поведението на асистента при бъдещи заявки за генериране.
     ai_assistants_render_button: Шаблон за рендериране
     ai_assistants_rendered_prompt: Рендерирано подсказка
     ai_assistants_template_and_campaign_required: Моля, предоставите както шаблон, така и идентификационен номер на кампанията
     ai_assistants_template_render_failed: Не успях да рендерирам шаблона
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
+    ai_assistants_type_locked_tooltip: Този асистент се използва в момента и неговият тип не може да бъде променен.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP е деактивиран от клиента
     ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
     ai_idp_assistant_configure_dependencies: Конфигуриране на AI зависимости

@@ -12,6 +12,11 @@ sr-Latn:
     ai_idp_summary_hint_no_document: Uz vašu dozvolu, ako kažete da, mogu da napravim plan razvoja za vas. Ako ne, možete ponovo pokrenuti ćaskanje da biste podelili više detalja.
     all_checks_must_pass: Сви чекови морају бити успешно прошли пре него што можете да наставите.
     approve_idp_plan: Odobri plan
+    audio: Аудио
+    audio_check: Тест микрофона
+    audio_check_description: Проверите да ли ваш микрофон исправно ради за снимање.
+    audio_recording: Аудио снимање
+    audio_test_step: Корак аудио теста
     back: Назад
     back_to_dashboard: Вратите се на контролну таблу
     before_you_begin: Пре него што почнете
@@ -28,6 +33,8 @@ sr-Latn:
     browser_compatible_detail: Користите верзију "%{browser_name}" бр. %{browser_version}, која испуњава минималне захтеве за ову кампању.
     browser_incompatible_detail: Користите верзију %{browser_name} %{browser_version}. Молимо ажурирајте свој %{browser_name} на верзију %{min_browser_version} како бисте осигурали компатибилност.
     browser_not_compatible: Ваш прегледач %{browser_name} није компатибилан са овом кампањом. Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
+    browser_not_compatible_description: Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
+    browser_not_compatible_detail: Ваш прегледач %{browser_name} није компатибилан са овом кампањом. Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
     browser_version_fix_description_first: 'Користите подржани прегледач: Chrome, Firefox, Edge или Safari'
     browser_version_fix_title: Ваша верзија прегледача није подржана.
     camera: Видео и аудио
@@ -38,6 +45,7 @@ sr-Latn:
     camera_check_passed: Провера видео и аудио записа успешно прошла
     camera_test_step: Корак за тест видео и аудио
     campaign: Kampanja
+    campaign_check_status: 'Статус: %{status}'
     chat_instructions: Упутства за ћаскање
     check: Провери
     check_video_recording: Молимо вас да проверите снимак видео-снимком тако што ћете га пустити.
@@ -53,6 +61,8 @@ sr-Latn:
     download_pdf: Preuzmite PDF
     download_speed_below_minimum: Брзина преузимања %{download_speed} је испод минималне потребне брзине преузимања од %{minimum_download_speed} Mbps.
     environment_setup: Подешавање окружења
+    error_uploading_audio: Грешка при отпремању аудио записа
+    error_uploading_audio_detail: Дошло је до грешке при отпремању вашег аудио записа.
     error_uploading_video: Грешка при отпремању видео записа
     error_uploading_video_detail: Дошло је до грешке приликом отпремања видео записа.
     fail: Неуспех
@@ -73,6 +83,7 @@ sr-Latn:
     idp_report_being_generated: Радимо на вашем извештају
     idp_reset_chat: Ресетовање ћаскања
     idp_retake_steps_continue_with_this_information: Nastavite sa ovim informacijama
+    initializing: Иницијализација...
     insights: Uvidi
     instruction: Уверите се да сте ви и ваша околина у потпуности припремљени.
     internet_speed: Интернет брзина
@@ -90,6 +101,8 @@ sr-Latn:
     media_recorder_api_fix_title: API за снимање медија није подржан у вашем прегледачу.
     media_recorder_api_not_supported_detail: Користите верзију прегледача "%{browser_name}" која не подржава API MediaRecorder. Молимо ажурирајте прегледач на најновију верзију како бисте осигурали компатибилност.
     media_recorder_api_support: Подршка за MediaRecorder API
+    microphone_access_blocked: Приступ микрофону је одбијен или блокиран од стране вашег прегледача. Молимо проверите дозволе у вашем прегледачу.
+    microphone_check_passed: Провера микрофона успешно прошла
     min_word_limit: Mora biti najmanje %{min} reči
     minimum_speed_requirements: Минимална брзина преузимања од %{minimum_download_speed} Mbps и минимална брзина отпремања од %{minimum_upload_speed} Mbps су потребне за ову кампању.
     minute: минут
@@ -105,6 +118,7 @@ sr-Latn:
     network_check_fix_third: Поново покрените рутер/модем и покушајте поново.
     network_speed_meets_required_detail: Ваша интернет брзина испуњава минималне захтеве за кампању.
     network_test_step: Корак мрежног теста
+    no_audio_detected: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     pass: Проћи
     pending: Учешће
     personal_readiness: Лична спремност
@@ -114,6 +128,7 @@ sr-Latn:
     profile_details: Detalji
     question_counter: Питање %{current} од %{total}
     reason_for_idp_plan_rejection: Razlog za odbijanje
+    redirect_to_external_assessment: Бићете преусмерени на сајт за процену. Молимо кликните на "Настави" ако желите да започнете процену.
     reject_idp_plan: Odbaci plan
     request_retry_message: Vi ste offline. Vaši odgovori se ne mogu sačuvati, ali će biti automatski sačuvani kada se vratite na mrežu. Molimo vas da ne osvežavate ili zatvarate stranicu.
     required_download_in_mbps: Потребно преузимање у Mbps
@@ -122,6 +137,8 @@ sr-Latn:
     rerun_checks: Поновне провере
     result: Резултат
     results: Резултат
+    safari_proctoring_description: Изгледа да користите прегледач Safari, који може да има нека ограничења у погледу активних функција праћења ове кампање. За најбоље искуство, препоручујемо коришћење прегледача Chrome или Firefox.
+    safari_proctoring_title: Сафари прегледач откривен
     selected_count: Izabrano
     skill_type: Tip veštine
     start_campaign_message_proctored: Ovo je kampanja pod nadzorom, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
@@ -129,6 +146,7 @@ sr-Latn:
     start_campaign_message_timed_proctored: Ovo je vremenska i nadzorovana kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_readiness_check: Покрените проверу спремности
     start_system_check: Покрени проверу система
+    subinstruction_audio: Радни микрофон
     subinstruction_eight: Одвојте непрекидан временски период за потпуну процену.
     subinstruction_five: Спремни да делите свој екран током целе сесије
     subinstruction_four: Радна веб-камера и микрофон
@@ -175,6 +193,12 @@ sr-Latn:
     testing_upload_speed: Тестирање брзине отпремања...
     time_commitment: Временска посвећеност
     troubleshooting_guide: Водич за решавање проблема
+    troubleshooting_guide_audio_fifth: 'На Windows-у: Погледајте Подешавања приватности > Приступ микрофону'
+    troubleshooting_guide_audio_first: Кликните на икону закључања/информација у адресној траци вашег прегледача.
+    troubleshooting_guide_audio_fourth: Ако је блокирано, можда ћете морати да ресетујете дозволе у подешавањима прегледача.
+    troubleshooting_guide_audio_second: Пронађите подешавања "Микрофон" и подесите их на "Дозволи".
+    troubleshooting_guide_audio_sixth: 'На Мацу: проверите Подешавања система > Безбедност'
+    troubleshooting_guide_audio_third: Освежите страницу након промене дозвола
     troubleshooting_guide_browser_fifth: Уверите се да је LocalStorage омогућен у подешавањима вашег прегледача.
     troubleshooting_guide_browser_first: 'Користите подржани прегледач: Chrome, Firefox, Edge или Safari (најновије верзије)'
     troubleshooting_guide_browser_fourth: Омогућите JavaScript и колачиће у подешавањима прегледача
@@ -195,6 +219,7 @@ sr-Latn:
     untimed: Без временског ограничења
     upload: Отпреми
     upload_speed_below_minimum: Брзина отпремања %{upload_speed} је испод минималне потребне брзине отпремања од %{minimum_upload_speed} Mbps.
+    video: Видео
     video_and_audio: Видео и аудио
     video_and_audio_recording: Видео и аудио снимање
     video_check_fix_fifth: Пробајте да искључите и поново прикључите камеру ако је спољна.

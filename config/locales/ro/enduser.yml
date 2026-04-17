@@ -12,6 +12,11 @@ ro:
     ai_idp_summary_hint_no_document: Cu permisiunea dumneavoastră, dacă spuneți da, pot crea un plan de dezvoltare pentru dumneavoastră. Dacă nu, poți reporni chatul pentru a împărtăși mai multe detalii.
     all_checks_must_pass: Toate verificările trebuie să fie efectuate cu succes înainte de a putea continua.
     approve_idp_plan: Aprobă planul
+    audio: Audio
+    audio_check: Testarea microfonului
+    audio_check_description: Verifică dacă microfonul funcționează corect pentru înregistrare
+    audio_recording: Înregistrare audio
+    audio_test_step: Etapa de testare audio
     back: Înapoi
     back_to_dashboard: Înapoi la Tabloul de bord
     before_you_begin: Înainte de a începe
@@ -28,6 +33,8 @@ ro:
     browser_compatible_detail: Utilizați versiunea %{browser_name} %{browser_version}, care îndeplinește cerințele minime pentru această campanie.
     browser_incompatible_detail: Utilizați versiunea %{browser_name} %{browser_version}. Vă rugăm să actualizați %{browser_name} la versiunea %{min_browser_version} pentru a asigura compatibilitatea.
     browser_not_compatible: Browserul dvs. %{browser_name} nu este compatibil cu această campanie. Pentru o experiență optimă, utilizați cele mai recente versiuni ale browserelor Chrome, Firefox, Safari sau Edge.
+    browser_not_compatible_description: Folosește cele mai recente versiuni ale browserelor Chrome, Firefox, Safari sau Edge pentru o experiență optimă.
+    browser_not_compatible_detail: Browserul dvs. %{browser_name} nu este compatibil cu această campanie. Pentru o experiență optimă, utilizați cele mai recente versiuni ale browserelor Chrome, Firefox, Safari sau Edge.
     browser_version_fix_description_first: 'Folosește un browser compatibil: Chrome, Firefox, Edge sau Safari'
     browser_version_fix_title: Versiunea browserului dumneavoastră nu este acceptată.
     camera: Video și audio
@@ -38,6 +45,7 @@ ro:
     camera_check_passed: Verificarea sunetului și a imaginii s-a încheiat cu succes
     camera_test_step: Etapa de testare video și audio
     campaign: Campanie
+    campaign_check_status: 'Stare: %{status}'
     chat_instructions: Instrucțiuni pentru chat
     check: Verificați
     check_video_recording: Vă rugăm să verificați înregistrarea video redând-o.
@@ -53,6 +61,8 @@ ro:
     download_pdf: Descarcă PDF
     download_speed_below_minimum: Viteza de descărcare %{download_speed} este sub viteza minimă necesară de descărcare de %{minimum_download_speed} Mbps
     environment_setup: Configurarea mediului
+    error_uploading_audio: Eroare la încărcarea fișierului audio
+    error_uploading_audio_detail: A apărut o eroare la încărcarea fișierului audio
     error_uploading_video: Eroare la încărcarea videoclipului
     error_uploading_video_detail: A apărut o eroare în timpul încărcării videoclipului
     fail: Eșec
@@ -73,6 +83,7 @@ ro:
     idp_report_being_generated: Lucrăm la raportul dumneavoastră
     idp_reset_chat: Resetează chatul
     idp_retake_steps_continue_with_this_information: Continuați cu aceste informații
+    initializing: Se inițializează...
     insights: Perspective
     instruction: Asigură-te că tu și cei din jurul tău sunteți pe deplin pregătiți
     internet_speed: Viteza internetului
@@ -90,6 +101,8 @@ ro:
     media_recorder_api_fix_title: API-ul Media Recorder nu este acceptat de browserul dumneavoastră.
     media_recorder_api_not_supported_detail: Utilizați versiunea %{browser_name} %{browser_version}, care nu acceptă API-ul MediaRecorder. Vă rugăm să actualizați browserul la cea mai recentă versiune pentru a asigura compatibilitatea.
     media_recorder_api_support: Suport pentru API-ul MediaRecorder
+    microphone_access_blocked: Accesul la microfon a fost refuzat sau blocat de browserul dumneavoastră. Vă rugăm să verificați permisiunile browserului.
+    microphone_check_passed: Verificarea microfonului s-a efectuat cu succes
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     minimum_speed_requirements: Pentru această campanie sunt necesare o viteză minimă de descărcare de %{minimum_download_speed} Mbps și o viteză minimă de încărcare de %{minimum_upload_speed} Mbps.
     minute: minut
@@ -105,6 +118,7 @@ ro:
     network_check_fix_third: Reporniți routerul/modemul și încercați din nou
     network_speed_meets_required_detail: Viteza ta de internet îndeplinește cerințele minime pentru campanie
     network_test_step: Etapa de testare a rețelei
+    no_audio_detected: Nu s-a detectat niciun semnal audio. Vă rugăm să verificați dacă microfonul este conectat și funcționează corect.
     pass: Treci
     pending: În așteptare
     personal_readiness: Pregătirea personală
@@ -114,6 +128,7 @@ ro:
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
     reason_for_idp_plan_rejection: Motivul respingerii
+    redirect_to_external_assessment: Veți fi redirecționat către pagina de evaluare. Vă rugăm să faceți clic pe „Continuați” dacă doriți să începeți evaluarea.
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
     required_download_in_mbps: Viteză de descărcare necesară (Mbps)
@@ -122,6 +137,8 @@ ro:
     rerun_checks: Verificări repetate
     result: Rezultat
     results: Rezultat
+    safari_proctoring_description: Se pare că utilizați browserul Safari, care poate prezenta anumite limitări în ceea ce privește funcțiile de monitorizare activate pentru această campanie. Pentru o experiență optimă, vă recomandăm să utilizați browserele Chrome sau Firefox.
+    safari_proctoring_title: S-a detectat browserul Safari
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
@@ -129,6 +146,7 @@ ro:
     start_campaign_message_timed_proctored: Aceasta este o campanie cronometrată și supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_readiness_check: Începe verificarea pregătirii
     start_system_check: Pornește verificarea sistemului
+    subinstruction_audio: Microfon funcțional
     subinstruction_eight: Rezervați-vă un interval de timp neîntrerupt pentru evaluarea completă
     subinstruction_five: Ești gata să îți partajezi ecranul pe durata sesiunii
     subinstruction_four: Cameră web și microfon funcționale
@@ -175,6 +193,12 @@ ro:
     testing_upload_speed: Se testează viteza de încărcare...
     time_commitment: Timpul necesar
     troubleshooting_guide: Ghid de depanare
+    troubleshooting_guide_audio_fifth: 'În Windows: Verificați Setările de confidențialitate > Acces la microfon'
+    troubleshooting_guide_audio_first: Faceți clic pe pictograma cu lacătul/informații din bara de adrese a browserului
+    troubleshooting_guide_audio_fourth: Dacă accesul este blocat, poate fi necesar să resetați permisiunile din setările browserului
+    troubleshooting_guide_audio_second: Găsește setările pentru „Microfon” și selectează opțiunea „Permite”
+    troubleshooting_guide_audio_sixth: 'Pe Mac: accesează Preferințe sistem > Securitate'
+    troubleshooting_guide_audio_third: Reîmprospătează pagina după ce modifici permisiunile
     troubleshooting_guide_browser_fifth: Asigură-te că opțiunea LocalStorage este activată în setările browserului tău
     troubleshooting_guide_browser_first: 'Folosiți un browser compatibil: Chrome, Firefox, Edge sau Safari (cele mai recente versiuni)'
     troubleshooting_guide_browser_fourth: Activează JavaScript și cookie-urile din setările browserului
@@ -195,6 +219,7 @@ ro:
     untimed: Fără limită de timp
     upload: Încărcare
     upload_speed_below_minimum: Viteza de încărcare %{upload_speed} este sub viteza minimă necesară de încărcare de %{minimum_upload_speed} Mbps
+    video: Video
     video_and_audio: Video și audio
     video_and_audio_recording: Înregistrare video și audio
     video_check_fix_fifth: Încearcă să deconectezi și să reconectezi camera, dacă aceasta este externă

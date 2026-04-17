@@ -12,6 +12,11 @@ fr:
     ai_idp_summary_hint_no_document: Avec votre permission, si vous dites oui, je peux créer un plan de développement pour vous. Sinon, vous pouvez relancer le chat pour partager plus de détails.
     all_checks_must_pass: Toutes les vérifications doivent être validées avant que vous puissiez continuer.
     approve_idp_plan: Approuver le plan
+    audio: Audio
+    audio_check: Test du microphone
+    audio_check_description: Vérifiez que votre microphone fonctionne correctement pour l'enregistrement
+    audio_recording: Enregistrement audio
+    audio_test_step: Étape de test audio
     back: Retour
     back_to_dashboard: Retour au tableau de bord
     before_you_begin: Avant de commencer
@@ -28,6 +33,8 @@ fr:
     browser_compatible_detail: Vous utilisez la version %{browser_version} d'%{browser_name}, qui répond aux exigences minimales requises pour cette campagne.
     browser_incompatible_detail: Vous utilisez la version %{browser_version} d'%{browser_name}. Veuillez mettre à jour votre %{browser_name} vers la version %{min_browser_version} afin de garantir la compatibilité.
     browser_not_compatible: La version de votre navigateur %{browser_name} n'est pas compatible avec cette campagne. Pour une expérience optimale, veuillez utiliser les dernières versions de Chrome, Firefox, Safari ou Edge.
+    browser_not_compatible_description: Pour une expérience optimale, utilisez les dernières versions de Chrome, Firefox, Safari ou Edge.
+    browser_not_compatible_detail: La version de votre navigateur %{browser_name} n'est pas compatible avec cette campagne. Pour une expérience optimale, veuillez utiliser les dernières versions de Chrome, Firefox, Safari ou Edge.
     browser_version_fix_description_first: 'Utilisez un navigateur pris en charge : Chrome, Firefox, Edge ou Safari'
     browser_version_fix_title: La version de votre navigateur n'est pas prise en charge.
     camera: Vidéo et audio
@@ -38,6 +45,7 @@ fr:
     camera_check_passed: Le test vidéo et audio s'est déroulé avec succès
     camera_test_step: Étape de test vidéo et audio
     campaign: Campagne
+    campaign_check_status: 'Statut : %{status}'
     chat_instructions: Instructions pour le chat
     check: Vérifier
     check_video_recording: Veuillez vérifier votre enregistrement vidéo en le visionnant.
@@ -53,6 +61,8 @@ fr:
     download_pdf: Télécharger PDF
     download_speed_below_minimum: La vitesse de téléchargement %{download_speed} est inférieure à la vitesse minimale requise de %{minimum_download_speed} Mbps
     environment_setup: Configuration de l'environnement
+    error_uploading_audio: Erreur lors du téléchargement du fichier audio
+    error_uploading_audio_detail: Une erreur s'est produite lors du téléchargement de votre fichier audio
     error_uploading_video: Erreur lors du téléchargement de la vidéo
     error_uploading_video_detail: Une erreur s'est produite lors du téléchargement de la vidéo
     fail: Échec
@@ -73,6 +83,7 @@ fr:
     idp_report_being_generated: Nous travaillons actuellement sur votre rapport
     idp_reset_chat: Réinitialiser la discussion
     idp_retake_steps_continue_with_this_information: Poursuivez avec ces informations
+    initializing: Initialisation en cours...
     insights: Perspectives
     instruction: Assurez-vous que vous et votre entourage soyez parfaitement préparés
     internet_speed: Débit Internet
@@ -90,6 +101,8 @@ fr:
     media_recorder_api_fix_title: L'API Media Recorder n'est pas prise en charge par votre navigateur.
     media_recorder_api_not_supported_detail: Vous utilisez la version %{browser_version} d'%{browser_name}, qui ne prend pas en charge l'API MediaRecorder. Veuillez mettre à jour votre navigateur vers la dernière version pour garantir la compatibilité.
     media_recorder_api_support: Prise en charge de l'API MediaRecorder
+    microphone_access_blocked: L'accès au microphone a été refusé ou bloqué par votre navigateur. Veuillez vérifier les autorisations de votre navigateur.
+    microphone_check_passed: Le test du micro a été effectué avec succès
     min_word_limit: Doit contenir au minimum %{min} mots
     minimum_speed_requirements: Une vitesse de téléchargement minimale de %{minimum_download_speed} Mbps et une vitesse de chargement minimale de %{minimum_upload_speed} Mbps sont requises pour cette offre.
     minute: minute
@@ -105,6 +118,7 @@ fr:
     network_check_fix_third: Redémarrez votre routeur/modem et réessayez
     network_speed_meets_required_detail: Votre débit Internet répond aux exigences minimales de la campagne
     network_test_step: Étape de test du réseau
+    no_audio_detected: Aucun son n'est détecté. Vérifiez si votre microphone est branché et fonctionne correctement.
     pass: Passer
     pending: En attente
     personal_readiness: Préparation personnelle
@@ -114,6 +128,7 @@ fr:
     profile_details: Détails
     question_counter: Question %{current} sur %{total}
     reason_for_idp_plan_rejection: Raison du rejet
+    redirect_to_external_assessment: Vous allez être redirigé vers le site de l'évaluation. Veuillez cliquer sur « Continuer » si vous souhaitez commencer l'évaluation.
     reject_idp_plan: Plan de rejet
     request_retry_message: Tu es hors ligne. Vos réponses n’ont pas pu être sauvegardées mais le seront automatiquement une fois que vous serez de nouveau en ligne. Merci de ne pas actualiser ni fermer la page.
     required_download_in_mbps: Débit de téléchargement requis en Mbps
@@ -122,6 +137,8 @@ fr:
     rerun_checks: Réexécuter les vérifications
     result: Résultat
     results: Résultat
+    safari_proctoring_description: Il semble que vous utilisiez le navigateur Safari, qui peut présenter certaines limitations concernant les fonctionnalités de suivi activées pour cette campagne. Pour profiter d'une expérience optimale, nous vous recommandons d'utiliser Chrome ou Firefox.
+    safari_proctoring_title: Navigateur Safari détecté
     selected_count: Sélectionné
     skill_type: Type de compétence
     start_campaign_message_proctored: Il s’agit d’une campagne surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
@@ -129,6 +146,7 @@ fr:
     start_campaign_message_timed_proctored: Il s’agit d’une campagne chronométrée et surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_readiness_check: Lancer la vérification de l'état de préparation
     start_system_check: Lancer la vérification du système
+    subinstruction_audio: Microphone en état de marche
     subinstruction_eight: Prévoyez du temps sans interruption pour réaliser l'évaluation dans son intégralité
     subinstruction_five: Prêt à partager votre écran pendant toute la session
     subinstruction_four: Webcam et microphone en état de marche
@@ -175,6 +193,12 @@ fr:
     testing_upload_speed: Test de la vitesse de téléchargement...
     time_commitment: Temps à consacrer
     troubleshooting_guide: Guide de dépannage
+    troubleshooting_guide_audio_fifth: 'Sous Windows : accédez à Paramètres de confidentialité > Accès au microphone'
+    troubleshooting_guide_audio_first: Cliquez sur l'icône représentant un cadenas ou une info dans la barre d'adresse de votre navigateur
+    troubleshooting_guide_audio_fourth: Si l'accès est bloqué, vous devrez peut-être réinitialiser les autorisations dans les paramètres du navigateur
+    troubleshooting_guide_audio_second: Recherchez les paramètres « Microphone » et sélectionnez « Autoriser »
+    troubleshooting_guide_audio_sixth: 'Sur Mac : allez dans Préférences Système > Sécurité'
+    troubleshooting_guide_audio_third: Actualisez la page après avoir modifié les autorisations
     troubleshooting_guide_browser_fifth: Assurez-vous que LocalStorage est activé dans les paramètres de votre navigateur
     troubleshooting_guide_browser_first: 'Utilisez un navigateur pris en charge : Chrome, Firefox, Edge ou Safari (dernières versions)'
     troubleshooting_guide_browser_fourth: Activez JavaScript et les cookies dans les paramètres de votre navigateur
@@ -195,6 +219,7 @@ fr:
     untimed: Sans limite de temps
     upload: Télécharger
     upload_speed_below_minimum: La vitesse de téléchargement %{upload_speed} est inférieure à la vitesse minimale requise de %{minimum_upload_speed} Mbps
+    video: Vidéo
     video_and_audio: Vidéo et audio
     video_and_audio_recording: Enregistrement vidéo et audio
     video_check_fix_fifth: Si votre appareil photo est externe, essayez de le débrancher puis de le rebrancher

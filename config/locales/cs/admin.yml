@@ -46,13 +46,17 @@ cs:
     ai_assistants: Asistenti AI
     ai_assistants_advanced_mode_tooltip: Použijte pokročilý režim pro šablonování promptů pomocí tekuté šablony s dostupnými proměnnými. Pro více informací se podívejte na dokumentaci.
     ai_assistants_campaign_id_placeholder: Vstup do kampaně ID
+    ai_assistants_cannot_change_type_when_in_use: Typ AI asistenta „%{name}“ nelze změnit, protože je právě používán.
     ai_assistants_no_rendered_output: Žádný vykreslený výstup není k dispozici
+    ai_assistants_provider_change_confirm_title: Změnit poskytovatele?
+    ai_assistants_provider_previously_used_warning: Tento asistent dosud generoval výsledky s adresou „%{from}“. Změna na adresu „%{to}“ může ovlivnit chování asistenta při budoucích požadavcích na generování.
     ai_assistants_render_button: Šablona renderu
     ai_assistants_rendered_prompt: Vykreslený prompt
     ai_assistants_template_and_campaign_required: Prosím, uveďte jak šablonu, tak ID kampaně
     ai_assistants_template_render_failed: Nepodařilo se vykreslit šablonu
     ai_assistants_test_render: Testovací vykreslování
     ai_assistants_test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
+    ai_assistants_type_locked_tooltip: Tento asistent je momentálně v provozu a jeho typ nelze změnit.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP je deaktivováno klientem
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
     ai_idp_assistant_configure_dependencies: Konfigurace závislostí AI

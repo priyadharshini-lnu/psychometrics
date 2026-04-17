@@ -46,13 +46,17 @@ ru:
     ai_assistants: ИИ-помощники
     ai_assistants_advanced_mode_tooltip: Используйте расширенный режим для быстрого создания шаблонов с помощью шаблона Liquid с доступными переменными. Более подробную информацию см. в документации.
     ai_assistants_campaign_id_placeholder: Введите идентификатор кампании
+    ai_assistants_cannot_change_type_when_in_use: Невозможно изменить тип ИИ-помощника «%{name}», так как он в данный момент используется.
     ai_assistants_no_rendered_output: Нет доступного рендеринга
+    ai_assistants_provider_change_confirm_title: Сменить поставщика?
+    ai_assistants_provider_previously_used_warning: Ранее этот помощник генерировал результаты с использованием «%{from}». Переход на «%{to}» может повлиять на поведение помощника при последующих запросах на генерацию.
     ai_assistants_render_button: Шаблон рендеринга
     ai_assistants_rendered_prompt: Отображаемый подсказка
     ai_assistants_template_and_campaign_required: Пожалуйста, укажите идентификатор шаблона и кампании.
     ai_assistants_template_render_failed: Не удалось отобразить шаблон
     ai_assistants_test_render: Тестовый рендер
     ai_assistants_test_render_tooltip: Протестируйте свой шаблон подсказки с помощью данных кампании, чтобы проверить, что будет отправлено помощнику ИИ.
+    ai_assistants_type_locked_tooltip: Этот помощник в настоящее время используется, и его тип нельзя изменить.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP отключен клиентом
     ai_assisted_idp_feature_disabled: Функция AI Assisted IDP была отключена для этого проекта.
     ai_idp_assistant_configure_dependencies: Настройка зависимостей ИИ

@@ -46,13 +46,17 @@ de:
     ai_assistants: AI-Assistenten
     ai_assistants_advanced_mode_tooltip: Nutze den erweiterten Modus für Prompt-Template-Erstellung mit flüssiger Vorlage und verfügbaren Variablen. Weitere Details finden Sie in der Dokumentation.
     ai_assistants_campaign_id_placeholder: Hier kommt die Kampagnen-ID ein
+    ai_assistants_cannot_change_type_when_in_use: Der Typ des KI-Assistenten „%{name}“ kann nicht geändert werden, da er derzeit verwendet wird.
     ai_assistants_no_rendered_output: Keine gerenderte Ausgabe verfügbar
+    ai_assistants_provider_change_confirm_title: Anbieter wechseln?
+    ai_assistants_provider_previously_used_warning: Dieser Assistent hat bisher Ergebnisse mit „%{from}“ generiert. Eine Änderung auf „%{to}“ kann das Verhalten des Assistenten bei zukünftigen Generierungsanfragen beeinflussen.
     ai_assistants_render_button: Render-Vorlage
     ai_assistants_rendered_prompt: Gerenderter Prompt
     ai_assistants_template_and_campaign_required: Bitte gib sowohl Vorlage als auch Kampagnen-ID an
     ai_assistants_template_render_failed: Vorlage wurde nicht gerendert
     ai_assistants_test_render: Testrendering
     ai_assistants_test_render_tooltip: Testen Sie Ihre Prompt-Vorlage mit Kampagnendaten, um zu sehen, was an den KI-Assistenten gesendet wird.
+    ai_assistants_type_locked_tooltip: Dieser Assistent ist derzeit im Einsatz und sein Typ kann nicht geändert werden.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP wird vom Client deaktiviert
     ai_assisted_idp_feature_disabled: Die KI-unterstützte IDP-Funktion wurde für dieses Projekt deaktiviert.
     ai_idp_assistant_configure_dependencies: KI-Abhängigkeiten konfigurieren
