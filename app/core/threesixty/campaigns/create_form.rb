@@ -13,6 +13,7 @@ module Threesixty
       attribute :threesixty_category, String, default: 'normal'
       attribute :default_assessment_locale, String
       attribute :default_report_language, String
+      attribute :tag_list, Array
 
       validates :name, :threesixty_type, presence: true
       validates :threesixty_category, inclusion: { in: %w[normal skill_rater] }
