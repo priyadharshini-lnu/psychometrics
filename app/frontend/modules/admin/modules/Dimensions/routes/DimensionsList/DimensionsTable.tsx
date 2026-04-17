@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import {
-  Button, MenuProps,
+  MenuProps,
   message,
   Switch,
 } from 'antd'
@@ -167,50 +167,27 @@ const getActionsMenuProps = ({
 }): MenuProps => {
   const canCopy = dimension?.meta?.permissions?.copy
   const canExportJson = dimension?.meta?.permissions?.exportJson
+
   const menuItems = [
     dimension && {
       key: 'edit',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal('DimensionsFormModal', { dimension })}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>),
+      label: I18n.t('common.actions.edit'),
+      onClick: () => openModal('DimensionsFormModal', { dimension }),
     },
     dimension && {
       key: 'remove',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal('RemoveDimensionModal', { dimension })}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.remove')}
-        </Button>),
+      label: I18n.t('common.actions.remove'),
+      onClick: () => openModal('RemoveDimensionModal', { dimension }),
     },
     canCopy && {
       key: 'copy',
-      label: (
-        <Button
-          type="link"
-          onClick={copyDimension}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.copy')}
-        </Button>),
+      label: I18n.t('common.actions.copy'),
+      onClick: copyDimension,
     },
     canExportJson && {
       key: 'export_json',
-      label: (
-        <Button
-          type="link"
-          onClick={exportDimension}
-          className="ps-0"
-        >
-          {I18n.t('administration.dimensions.resource.tooltips.export_json')}
-        </Button>),
+      label: I18n.t('administration.dimensions.resource.tooltips.export_json'),
+      onClick: exportDimension,
     },
   ].filter(m => m) as ItemType[]
 
