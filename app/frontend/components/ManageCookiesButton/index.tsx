@@ -6,7 +6,7 @@ const { I18n } = window
 export const ManageCookiesButton = () => {
   const osanoDialogOpen = useOsanoDialogOpen()
 
-  if (osanoDialogOpen) return null
+  if (!window.Osano?.cm || osanoDialogOpen) return null
 
   return (
     <Button

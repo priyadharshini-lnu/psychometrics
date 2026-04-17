@@ -21,6 +21,7 @@ react_dev:
   assessments: false
 privacy_url: <%= ENV.fetch('PRIVACY_URL', 'https://thetalententerprise.com/privacy-statement/') %>
 terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-service/') %>
+osano_enabled: <%= ENV.fetch('OSANO_ENABLED', 'true') == 'true' %>
 osano_key: <%= ENV.fetch('OSANO_KEY', '16CFuWSuPfE35eNP/8292079f-6816-474d-acf8-0a6feed3b869') %>
 short_url_host: <%= ENV.fetch('SHORT_URL_HOST', nil) %>
 oac:
