@@ -109,7 +109,7 @@ const LEVEL_FIELD_MAP: [string, keyof NormScoreFields, keyof NormScoreFields][] 
 ]
 
 const buildNormScores = (factorsNormsProps: NormEditor[number]['factorsNormsProps']): NormScoreFields => {
-  const propsByLevel = keyBy(factorsNormsProps ?? [], prop => prop.level.toLowerCase().replace(/\s/g, ''))
+  const propsByLevel = keyBy(factorsNormsProps ?? [], prop => (prop.level ?? '').toLowerCase().replace(/\s/g, ''))
 
   return LEVEL_FIELD_MAP.reduce<NormScoreFields>((scores, [levelKey, fromField, toField]) => {
     const prop = propsByLevel[levelKey]
@@ -295,7 +295,12 @@ const NormsEditor = () => {
         return item
       })
       setData(newData)
-      setEditingCell(null)
+      setEditingCell((prev) => {
+        if (prev?.key === record.key && prev?.dataIndex === dataIndex) {
+          return null
+        }
+        return prev
+      })
     }).catch((e) => {
       form.setFieldValue(`${record.key}-${dataIndex}`, record[dataIndex])
       message.error(`${e['/fieldValue'].title}`)
