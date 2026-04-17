@@ -266,4 +266,49 @@ describe CampaignUser, type: :model do
       end
     end
   end
+
+  describe '#all_campaign_artifact_results_present?' do
+    let(:campaign) { create(:campaign) }
+    let(:user) { create(:user) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+    let(:assistant) do
+      create(:assistant).tap do |asst|
+        asst.assistant_output_schema_keys.create!(key: 'summary', description: 'Summary', key_type: 'string')
+      end
+    end
+    let!(:artifact) { create(:campaign_ai_artifact, campaign: campaign, ai_assistant: assistant) }
+
+    context 'when all artifacts have successful results (checkpoint present, error nil)' do
+      before do
+        create(:campaign_ai_artifact_result,
+               campaign_ai_artifact: artifact, user: user, checkpoint: { 'summary' => 'value' }, error: nil)
+      end
+
+      it { expect(campaign_user.all_campaign_artifact_results_present?).to be true }
+    end
+
+    context 'when a result has an error and no checkpoint (failed generation)' do
+      before do
+        create(:campaign_ai_artifact_result,
+               campaign_ai_artifact: artifact, user: user, checkpoint: nil, error: 'Generation failed')
+      end
+
+      it { expect(campaign_user.all_campaign_artifact_results_present?).to be false }
+    end
+
+    context 'when no results exist yet for an artifact' do
+      it { expect(campaign_user.all_campaign_artifact_results_present?).to be false }
+    end
+
+    context 'when there are multiple artifacts and only some have successful results' do
+      let!(:second_artifact) { create(:campaign_ai_artifact, campaign: campaign, ai_assistant: assistant) }
+
+      before do
+        create(:campaign_ai_artifact_result,
+               campaign_ai_artifact: artifact, user: user, checkpoint: { 'summary' => 'value' }, error: nil)
+      end
+
+      it { expect(campaign_user.all_campaign_artifact_results_present?).to be false }
+    end
+  end
 end

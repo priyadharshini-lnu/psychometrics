@@ -41,6 +41,7 @@ module AI
 
         @artifact.results.find_or_initialize_by(user: @user).tap do |artifact_result|
           artifact_result.results = final_results
+          artifact_result.error = nil
           artifact_result.parsed_dependencies = @parsed_dependencies
           artifact_result.content_checksum = @artifact_checksum
           artifact_result.save!
