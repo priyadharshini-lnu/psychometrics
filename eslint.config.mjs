@@ -21,6 +21,7 @@ const compat = new FlatCompat({
 export default defineConfig([globalIgnores([
   'app/frontend/__tests__',
   'app/frontend/glint/**/__tests__',
+  'config/**/*.ts',
   '**/jest-setup.js',
   '**/vite.config.ts',
   '**/vitest.config.ts',
