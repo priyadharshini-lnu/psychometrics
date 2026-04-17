@@ -30,7 +30,8 @@ type baseSettings = {
   status: string,
   threesixty_category: string,
   default_assessment_locale?: string,
-  default_report_language?: string
+  default_report_language?: string,
+  tagList?: string[],
 }
 
 const ThreesixtyCampaignFormModal: React.FC<Props> = ({

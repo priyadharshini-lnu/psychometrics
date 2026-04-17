@@ -118,6 +118,7 @@ class AdminJob < ApplicationJob
   }.freeze
 
   def perform(record, stage = nil)
+    Current.user ||= record.owner
     record.update!(status: :in_progress)
 
     JOBS[record.operation.to_sym].call(record, stage) do

@@ -119,5 +119,13 @@ module AdminJobs
     def build_campaign_url
       "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}"
     end
+
+    def dimension_factors_url(dimension_id)
+      if Settings.features.dimensions_react_ui
+        "/admin/dimensions/#{dimension_id}/factors"
+      else
+        "/administration/dimensions/#{dimension_id}/factors"
+      end
+    end
   end
 end
