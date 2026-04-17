@@ -1,23 +1,22 @@
 # frozen_string_literal: true
 
 module Api
-  class V2::Administration::QuestionsController < Api::V2::Administration::BaseController
+  class V2::Administration::BlocksController < Api::V2::Administration::BaseController
     skip_before_action :enforce_geo_restriction
-    validate_crud_requests Api::V2::Question::Schema
+    validate_crud_requests Api::V2::Block::Schema
 
     def copy
       audit! :copy, model, payload: { source_id: model.id }
-      Questions::CopyQuestion.new(
+      Blocks::CopyBlock.new(
         model.id,
         new_name: params.dig(:data, :attributes, :name),
         owner_id: params.dig(:data, :relationships, :owner, :data, :id)
-      ).on(:ok) do |new_question|
-        jsonapi_render json: new_question
+      ).on(:ok) do |new_block|
+        jsonapi_render json: new_block
       end.on(:error) do |error|
         if error.is_a?(ActiveRecord::Base)
           jsonapi_render_errors error.errors
         else
-          # error is question_id when RecordNotFound
           jsonapi_render_errors JSONAPI::Exceptions::RecordNotFound.new(error)
         end
       end.call
