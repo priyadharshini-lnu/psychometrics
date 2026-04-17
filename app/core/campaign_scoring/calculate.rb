@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module CampaignScoring
+  # rubocop:disable Metrics/ClassLength
   class Calculate < BaseCommand
     PERMITTED_USER_FIELDS_IN_FORMULA = %w[first_name last_name email age gender timezone photo locale].freeze
 
@@ -100,7 +101,8 @@ module CampaignScoring
         },
         'answer' => proc { |assessment_id, json_path, relationship_name = Relationship::SELF|
                       answer_from_json_path(assessment_id, json_path, relationship_name)
-                    }
+                    },
+        'status' => proc { |assessment_id| assessment_status(assessment_id) }
       }
       lua.user = {
         'fixed_field_value' => proc { |field| user_fixed_field_value(field) },
@@ -181,6 +183,26 @@ module CampaignScoring
       user_assessments.dig(assessment_id.to_i, relationship&.id)&.first
     end
 
+    def assessment_status(assessment_id)
+      assessment = Assessment.find_by(id: assessment_id.to_i)
+
+      unless assessment
+        raise CampaignScoring::Exceptions::IncorrectFunctionUsages,
+              "assessment.status: Assessment with ID '#{assessment_id}' not found."
+      end
+
+      if assessment.category.in?(Assessment::NON_USER_ASSESSMENT_CATEGORY)
+        raise CampaignScoring::Exceptions::IncorrectFunctionUsages,
+              'assessment.status: Only self-assessment IDs are allowed. Assessor form IDs are not permitted.'
+      end
+
+      user_assessment = campaign.user_assessments.self_assessment.find_by(
+        assessment_id: assessment_id.to_i,
+        subject_id: user.id
+      )
+      user_assessment&.real_status
+    end
+
     def campaign_scoring_variables_as_lua_table
       return nil if campaign.campaign_scoring_variables.blank?
 
@@ -245,4 +267,5 @@ module CampaignScoring
       end
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end
