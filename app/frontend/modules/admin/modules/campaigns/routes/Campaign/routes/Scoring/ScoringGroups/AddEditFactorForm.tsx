@@ -346,7 +346,7 @@ export const AddEditFactorForm: FC<Props> = ({
     formFieldBasedOnFactorType = (
       <>
         <Form.Item name="formula" label={I18n.t('administration.scoring.formula')}>
-          <LuaEditor controlled />
+          <LuaEditor />
         </Form.Item>
       </>
     )

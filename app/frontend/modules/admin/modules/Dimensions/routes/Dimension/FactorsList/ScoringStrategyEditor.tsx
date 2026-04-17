@@ -22,7 +22,7 @@ const CustomFormula = () => (
     name="custom_formula"
     className="mtm"
   >
-    <LuaEditor controlled />
+    <LuaEditor />
   </Form.Item>
 )
 

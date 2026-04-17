@@ -2,19 +2,13 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Descriptions, Collapse } from 'antd'
-import { UnControlled as CodeMirror } from 'react-codemirror2'
 import { useParams } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getCurrent, fetchCurrent } from '~/modules/admin/modules/AuditLog/core'
+import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 import styles from './styles.less'
 import JsonDiff from './JsonDiff'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/addon/fold/foldcode'
-import 'codemirror/addon/fold/foldgutter'
-import 'codemirror/addon/fold/brace-fold'
-import 'codemirror/addon/fold/foldgutter.css'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const connecter = connect(
@@ -128,17 +122,12 @@ const AuditLogList: React.FC<Props> = ({
             </Descriptions.Item>
           )}
           <Descriptions.Item label={I18n.t('administration.audit_log.payload')}>
-            <CodeMirror
+            <ReactCodemirror
               value={JSON.stringify(record.payload, null, 2)}
               className={styles.payload}
-              options={{
-                mode: {
-                  name: 'javascript',
-                  json: true,
-                },
-                readOnly: true,
-                lineWrapping: true,
-              }}
+              mode="json"
+              readOnly
+              lineWrapping
             />
           </Descriptions.Item>
         </Descriptions>
