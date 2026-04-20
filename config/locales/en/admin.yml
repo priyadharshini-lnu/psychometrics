@@ -1067,6 +1067,7 @@ en:
     skill_aliases: Skill Aliases
     skills: Skills
     skills_taxonomy: Skills Taxonomy
+    skip_assessment_level_checks: Skip Assessment-Level System Checks
     slot_name: Slot Name
     sms_histories: SMS Histories
     sms_invites: SMS Invites

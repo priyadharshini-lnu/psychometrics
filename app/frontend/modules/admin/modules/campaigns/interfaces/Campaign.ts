@@ -80,6 +80,7 @@ export interface CampaignOptions {
   enableMobileProctoring: boolean
   rules: object
   systemCheckEnabled: boolean
+  skipAssessmentLevelChecks: boolean
   systemCheckValidity: number | null
   identification: string
   proctoringType: string

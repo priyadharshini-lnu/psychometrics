@@ -436,6 +436,15 @@ const CampaignOptions: React.FC<Props> = ({
                 </Col>
               </Row>
 
+              <Row className="mbl" gutter={16} align="middle">
+                <Col offset={2} span={22}>
+                  <Option
+                    label={I18n.t('admin.skip_assessment_level_checks')}
+                    {...parametersForField('skipAssessmentLevelChecks')}
+                  />
+                </Col>
+              </Row>
+
               <Row justify="start" className="mbl" align="middle">
                 <Col flex="200px" offset={2}>
                   <label>{I18n.t('admin.minimum_download_speed')}</label>

@@ -37,6 +37,7 @@ module EndUser
         required(:system_check_enabled).filled(:bool?)
         required(:system_check_validity).maybe(:int?)
         required(:allow_continue_with_warning).filled(:bool?)
+        required(:skip_assessment_level_checks).filled(:bool?)
         required(:minimum_upload_speed).maybe(:int?)
         required(:minimum_download_speed).maybe(:int?)
       end

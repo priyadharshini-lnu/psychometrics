@@ -9,7 +9,8 @@ module EndUser
                :selected_locale, :privacy_consent_required, :campaign_id,
                :custom_consent_text, :custom_consent_policy_version, :data_role,
                :is_data_controller, :instructions, :started_at, :current_campaign_expiry_date,
-               :piped_text_mapping, :locale_data, :custom_acknowledgment_text
+               :piped_text_mapping, :locale_data, :custom_acknowledgment_text,
+               :should_run_assessment_level_checks
 
     def privacy_consent_required
       return true if is_data_controller
@@ -105,6 +106,10 @@ module EndUser
         name: I18n.t("languages.#{locale}"),
         direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
       }
+    end
+
+    def should_run_assessment_level_checks
+      campaign.should_run_assessment_level_checks?
     end
 
     private

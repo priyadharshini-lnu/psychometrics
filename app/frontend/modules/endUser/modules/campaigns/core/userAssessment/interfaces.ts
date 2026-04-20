@@ -21,6 +21,7 @@ export interface UserAssessment {
   workshopActivityDuration: number | null
   requireScheduling: boolean
   cachingEnabled: boolean
+  shouldRunAssessmentLevelChecks: boolean
 }
 
 export interface AssessmentExtra {

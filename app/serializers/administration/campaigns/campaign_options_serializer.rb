@@ -9,7 +9,8 @@ module Administration
                  :proctoring_type, :workshop_invite_requires_prework_completion,
                  :proctoring_enabled_on_workshop_activity, :enable_video_call_recording,
                  :enable_mobile_proctoring, :allow_video_call_recording, :system_check_enabled,
-                 :system_check_validity, :allow_continue_with_warning, :minimum_upload_speed, :minimum_download_speed,
+                 :system_check_validity, :allow_continue_with_warning, :skip_assessment_level_checks,
+                 :minimum_upload_speed, :minimum_download_speed,
                  :calculated_minimum_upload_speed, :calculated_minimum_download_speed
 
       delegate :campaign, to: :object
