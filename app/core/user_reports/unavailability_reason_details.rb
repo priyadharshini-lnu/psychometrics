@@ -9,7 +9,10 @@ module UserReports
     CAMPAIGN_SCORING_PENDING_REASON_MESSAGE = 'Campaign scores are not finalized for this user'
     CAMPAIGN_ARTIFACT_RESULTS_PENDING_REASON_MESSAGE =
       'Campaign artifact results are not finalized for this user'
-    ASSESSMENT_NOT_COMPLETED_REASON_MESSAGE = 'Assessment is not completed'
+    ASSESSMENT_NAME_NOT_COMPLETED_REASON_TEMPLATE = 'Assessment %<names>s is not completed'
+    ASSESSMENTS_NAME_NOT_COMPLETED_REASON_TEMPLATE = 'Assessments %<names>s are not completed'
+    ASSESSOR_NOT_COMPLETED_REASON_TEMPLATE = 'Assessor %<names>s is not completed'
+    ASSESSORS_NOT_COMPLETED_REASON_TEMPLATE = 'Assessors %<names>s are not completed'
     CUSTOM_UPLOAD_REPORT_REASON_MESSAGE = 'Report provider is custom upload'
     NOT_PREPARED_REASON_MESSAGE = 'Report is not yet prepared'
     EXTERNAL_REPORT_PENDING_REASON_MESSAGE = 'Waiting for report from provider'
@@ -134,11 +137,66 @@ module UserReports
     end
 
     def assessment_not_completed_reason
+      assessment_names = incomplete_assessment_names
+      return build_assessment_reason(assessment_names, singular: true) if assessment_names.one?
+      return build_assessment_reason(assessment_names, singular: false) if assessment_names.many?
+
+      assessor_names = incomplete_assessor_names
+      return build_assessor_reason(assessor_names, singular: true) if assessor_names.one?
+      return build_assessor_reason(assessor_names, singular: false) if assessor_names.many?
+
+      nil
+    end
+
+    def build_assessment_reason(names, singular:)
+      template = if singular
+                   ASSESSMENT_NAME_NOT_COMPLETED_REASON_TEMPLATE
+                 else
+                   ASSESSMENTS_NAME_NOT_COMPLETED_REASON_TEMPLATE
+                 end
       {
         available: false,
         reason_code: 'assessment_not_completed',
-        reason_message: ASSESSMENT_NOT_COMPLETED_REASON_MESSAGE
+        reason_message: format(template, names: singular ? names.first : names.join(', '))
       }
+    end
+
+    def build_assessor_reason(names, singular:)
+      template = singular ? ASSESSOR_NOT_COMPLETED_REASON_TEMPLATE : ASSESSORS_NOT_COMPLETED_REASON_TEMPLATE
+      {
+        available: false,
+        reason_code: 'assessment_not_completed',
+        reason_message: format(template, names: singular ? names.first : names.join(', '))
+      }
+    end
+
+    def incomplete_assessor_names
+      assessor_relationship_id = Relationship.assessor_relationship&.id
+      return [] if assessor_relationship_id.blank?
+
+      User.joins(:evaluator_user_assessments).
+        where(
+          user_assessments: {
+            campaign_id: user_report.campaign_id,
+            subject_id: user_report.user_id,
+            assessment_id: user_report.report.assessment_ids,
+            relationship_id: assessor_relationship_id
+          }
+        ).
+        merge(UserAssessment.deemed_incomplete).
+        distinct.
+        pluck(Arel.sql("COALESCE(NULLIF(TRIM(CONCAT(users.first_name, ' ', users.last_name)), ''), users.email)"))
+    end
+
+    def incomplete_assessment_names
+      completed_assessment_ids = user_report.user_results.
+                                 joins(:user_assessment).
+                                 pluck('user_assessments.assessment_id')
+      incomplete_assessment_ids = user_report.report.assessment_ids - completed_assessment_ids
+
+      return [] if incomplete_assessment_ids.empty?
+
+      Assessment.where(id: incomplete_assessment_ids).pluck(:name)
     end
 
     def formatted_approval_status
