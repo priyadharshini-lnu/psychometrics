@@ -311,10 +311,10 @@ describe Campaign, type: :model do
       expect(campaign.reload.all_tags_list).not_to include('removable')
     end
 
-    it 'scopes tags by project_id' do
+    it 'scopes tags by client_id' do
       campaign.add_tag('scoped-tag')
       campaign.save
-      expect(campaign.taggings.last.tenant).to eq(campaign.project_id.to_s)
+      expect(campaign.taggings.last.tenant).to eq(campaign.client_id.to_s)
     end
   end
 end

@@ -95,6 +95,8 @@ class Campaign < ApplicationRecord
   accepts_nested_attributes_for :campaign_options
 
   delegate :client, to: :project
+  delegate :id, to: :client, prefix: true
+
   THREESIXTY = 'threesixty'
 
   enum :type, { common: 0, threesixty: 1 }
@@ -133,6 +135,10 @@ class Campaign < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[project]
+  end
+
+  def self.tenant_column
+    'client_id'
   end
 
   def real_status
