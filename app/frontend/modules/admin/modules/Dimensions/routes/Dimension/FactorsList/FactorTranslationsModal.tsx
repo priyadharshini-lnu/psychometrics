@@ -36,7 +36,7 @@ export const FactorTranslationsModal: React.FC<Props> = ({ close }) => {
     const formData = new FormData()
     formData.append('file', file)
 
-    return uploadFileAction(`${dimensionId}/import_translations`, formData)
+    return uploadFileAction(`dimensions/${dimensionId}/import_translations`, formData)
   }
 
   const handleExportAll = async () => {
