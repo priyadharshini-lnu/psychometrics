@@ -10,6 +10,10 @@ html.body-full-height lang="#{I18n.locale}"
     = vite_client_tag
     = vite_react_refresh_tag
     = render 'layouts/pys_global_state'
+    javascript [nonce=content_security_policy_nonce]:
+      window.I18n = {
+        locale: '#{I18n.locale}'
+      }
     = javascript_include_tag 'threesixty'
     = javascript_include_tag "i18n/#{load_translation_file}.js"
     = render 'layouts/favicons'

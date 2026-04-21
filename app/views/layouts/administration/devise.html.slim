@@ -8,6 +8,10 @@ html.body-full-height lang="#{I18n.locale}"
     title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
     = render 'layouts/pys_global_state'
+    javascript [nonce=content_security_policy_nonce]:
+      window.I18n = {
+        locale: '#{I18n.locale}'
+      }
     = javascript_include_tag 'threesixty'
     = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
     = vite_client_tag
