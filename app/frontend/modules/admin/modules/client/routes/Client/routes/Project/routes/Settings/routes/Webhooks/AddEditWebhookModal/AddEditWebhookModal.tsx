@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Form, Input, InputNumber, Space, Checkbox, Radio, Switch, Row, Col,
+  Form, Input, InputNumber, Space, Checkbox, Radio, Switch,
   Typography, Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
@@ -84,6 +84,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
     'scheduling_scheduled',
     'scheduling_cancelled',
     'scheduling_rescheduled',
+    'workshop_attendance_status',
     'campaign_user_status',
     'campaign_results_available',
     'assessment_raw_response',
@@ -107,7 +108,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
         storeManager={{ form }}
         close={close}
         scrollToFirstError
-        modalProps={{ width: 620 }}
+        modalProps={{ width: 720 }}
         request={{
           createResource: values => addWebhook({ ...values, projectId }),
           updateResource: updateWebhook,
@@ -164,16 +165,12 @@ export const AddEditWebhookModal: React.FC<Props> = ({
               name="topics"
               label={I18n.t('administration.project_tabs.webhooks.form.topics.label')}
             >
-              <Checkbox.Group>
-                <Row>
-                  {_.map(topics, topic => (
-                    <Col className={styles.topics_columns}>
-                      <Checkbox value={topic} className={styles.topics_checkbox}>
-                        {I18n.t(`administration.project_tabs.webhooks.form.topics.list.${topic}`)}
-                      </Checkbox>
-                    </Col>
-                  ))}
-                </Row>
+              <Checkbox.Group className={styles.topics_grid}>
+                {_.map(topics, topic => (
+                  <Checkbox value={topic} className={styles.topics_checkbox}>
+                    {I18n.t(`administration.project_tabs.webhooks.form.topics.list.${topic}`)}
+                  </Checkbox>
+                ))}
               </Checkbox.Group>
             </Form.Item>
 

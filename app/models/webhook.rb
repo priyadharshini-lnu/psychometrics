@@ -15,6 +15,7 @@ class Webhook < WebhookSystem::Subscription
     scheduling_rescheduled: WebhookEvents::SchedulingRescheduled,
     scheduling_cancelled: WebhookEvents::SchedulingCancelled,
     scheduling_invited: WebhookEvents::SchedulingInvited,
+    workshop_attendance_status: WebhookEvents::WorkshopAttendanceStatus,
     campaign_results_available: WebhookEvents::CampaignResultsAvailable,
     campaign_user_status: WebhookEvents::CampaignUserStatus,
     assessment_raw_response: WebhookEvents::AssessmentRawResponse

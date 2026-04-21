@@ -3000,6 +3000,7 @@ en:
               scheduling_invited: Scheduling Invited
               scheduling_rescheduled: Scheduling Rescheduled
               scheduling_scheduled: Scheduling Scheduled
+              workshop_attendance_status: Workshop Attendance Status
           url:
             label: Url
             name: url

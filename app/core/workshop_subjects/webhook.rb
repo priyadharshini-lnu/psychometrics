@@ -41,6 +41,16 @@ module WorkshopSubjects
       )
     end
 
+    def publish_workshop_attendance_status
+      WebhookSubscriptions::Publish.call(
+        project,
+        :workshop_attendance_status,
+        workshop_attendance_status_data,
+        webhook_id: webhook_id,
+        record: workshop_subject
+      )
+    end
+
     def prepare_localized_webhook_data
       return unless workshop_invite
 
@@ -71,7 +81,8 @@ module WorkshopSubjects
         campaign: workshop_subject.campaign,
         workshop: workshop_subject.workshop,
         subject: workshop_subject.user,
-        invite: workshop_invite
+        invite: workshop_invite,
+        cancellation_type: workshop_subject.late_cancelled? ? 'late_cancellation' : 'normal_cancellation'
       }
     end
 
@@ -81,7 +92,17 @@ module WorkshopSubjects
         rescheduled_to_workshop: workshop_subject.workshop_invited_subject&.reschedule_workshop,
         rescheduled_from_workshop: workshop_subject.workshop,
         subject: workshop_subject.user,
-        invite: workshop_invite
+        invite: workshop_invite,
+        rescheduling_type: workshop_subject.late_rescheduled? ? 'late_rescheduling' : 'normal_rescheduling'
+      }
+    end
+
+    def workshop_attendance_status_data
+      {
+        campaign: workshop_subject.campaign,
+        workshop: workshop_subject.workshop,
+        subject: workshop_subject.user,
+        status: workshop_subject.attendance_status
       }
     end
   end

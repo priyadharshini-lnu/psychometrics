@@ -5,7 +5,7 @@ require 'rails_helper'
 describe WorkshopSubject, type: :model do
   describe 'Callbacks' do
     context '#publish_scheduling_cancelled' do
-      it 'publishes scheduling cancelled webhook event' do
+      it 'publishes scheduling cancelled webhook event when cancelled' do
         workshop_subject = create(:workshop_subject)
         webhook = WorkshopSubjects::Webhook.new(workshop_subject)
         expect(WebhookSubscriptions::Publish).to receive(:call).with(
@@ -18,10 +18,73 @@ describe WorkshopSubject, type: :model do
         workshop_subject.update(scheduling_status: :cancelled)
       end
 
+      it 'publishes scheduling cancelled webhook event when late_cancelled' do
+        workshop_subject = create(:workshop_subject)
+        expect(WebhookSubscriptions::Publish).to receive(:call).with(
+          workshop_subject.campaign.project,
+          :scheduling_cancelled,
+          hash_including(cancellation_type: 'late_cancellation'),
+          record: workshop_subject,
+          webhook_id: nil
+        )
+        workshop_subject.update(scheduling_status: :late_cancelled)
+      end
+
       it 'does not publish scheduling cancelled webhook event if status is not cancelled' do
         workshop_subject = create(:workshop_subject)
         expect(WebhookSubscriptions::Publish).not_to receive(:call)
         workshop_subject.update(scheduling_status: :scheduled)
+      end
+    end
+
+    context '#publish_scheduling_rescheduled' do
+      it 'publishes scheduling rescheduled webhook event when rescheduled' do
+        workshop_subject = create(:workshop_subject)
+        expect(WebhookSubscriptions::Publish).to receive(:call).with(
+          workshop_subject.campaign.project,
+          :scheduling_rescheduled,
+          hash_including(rescheduling_type: 'normal_rescheduling'),
+          record: workshop_subject,
+          webhook_id: nil
+        )
+        workshop_subject.update(scheduling_status: :rescheduled)
+      end
+
+      it 'publishes scheduling rescheduled webhook event when late_rescheduled' do
+        workshop_subject = create(:workshop_subject)
+        expect(WebhookSubscriptions::Publish).to receive(:call).with(
+          workshop_subject.campaign.project,
+          :scheduling_rescheduled,
+          hash_including(rescheduling_type: 'late_rescheduling'),
+          record: workshop_subject,
+          webhook_id: nil
+        )
+        workshop_subject.update(scheduling_status: :late_rescheduled)
+      end
+    end
+
+    context '#publish_workshop_attendance_status' do
+      it 'publishes workshop attendance status webhook event when attendance_status changes' do
+        workshop_subject = create(:workshop_subject)
+        expect(WebhookSubscriptions::Publish).to receive(:call).with(
+          workshop_subject.campaign.project,
+          :workshop_attendance_status,
+          hash_including(status: 'no_show'),
+          record: workshop_subject,
+          webhook_id: nil
+        )
+        workshop_subject.update(attendance_status: :no_show)
+      end
+
+      it 'does not publish workshop attendance status webhook event when attendance_status does not change' do
+        workshop_subject = create(:workshop_subject)
+        expect(WebhookSubscriptions::Publish).not_to receive(:call).with(
+          anything,
+          :workshop_attendance_status,
+          anything,
+          anything
+        )
+        workshop_subject.update(scheduling_status: :rescheduled)
       end
     end
   end

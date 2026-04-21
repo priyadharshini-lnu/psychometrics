@@ -1,24 +1,18 @@
 # frozen_string_literal: true
 
 module WebhookEvents
-  class SchedulingCancelled < WebhookEvents::Base
-    attribute :invite, type: Hash
+  class WorkshopAttendanceStatus < WebhookEvents::Base
+    attribute :status, type: String
     attribute :workshop, type: Hash
 
     def event_name
-      'scheduling_cancelled'
+      'workshop_attendance_status'
     end
 
     def prepare_payload
       ctx = self.ctx || {}
       {
-        invite: {
-          id: ctx[:invite]&.id,
-          title: ctx[:invite]&.title,
-          description: ctx[:invite]&.description,
-          url: ctx[:invite]&.end_user_url,
-          cancellation_type: ctx[:cancellation_type]
-        },
+        status: ctx[:status],
         workshop: workshop_payload(ctx[:workshop])
       }
     end
