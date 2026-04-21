@@ -1,12 +1,13 @@
 import React from 'react'
 import {
-  Button, Flex, message, Modal, Switch,
+  Button, Flex, message, Switch,
 } from 'antd'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {
   PlusOutlined, CopyOutlined, DeleteOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ConfirmationModal } from '~/glint'
 import { Block, BlockTR } from '~/modules/admin/modules/QuestionCenter/core/blocks'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -43,13 +44,12 @@ const ActiveSwitch = ({ block }: { block: Block }) => {
 const ActionsCell = ({ record }: { record: Block }) => {
   const { resource } = useResourceContext()
   const dispatch = useDispatch()
+  const [confirmation, setConfirmation] = React.useState(false)
 
   const handleDelete = () => {
-    Modal.confirm({
-      title: I18n.t('shared.confirm'),
-      onOk: () => resource.removeResource(record.id).then(() => {
-        message.success(I18n.t('shared.removed'))
-      }),
+    resource.removeResource(record.id).then(() => {
+      message.success(I18n.t('shared.removed'))
+      setConfirmation(false)
     })
   }
 
@@ -58,18 +58,34 @@ const ActionsCell = ({ record }: { record: Block }) => {
   }
 
   return (
-    <Flex gap="small">
-      <Button
-        shape="circle"
-        icon={<CopyOutlined />}
-        onClick={handleCopy}
+    <>
+      <Flex gap="small">
+        <Button
+          shape="circle"
+          icon={<CopyOutlined />}
+          onClick={handleCopy}
+        />
+        <Button
+          shape="circle"
+          icon={<DeleteOutlined />}
+          onClick={() => setConfirmation(true)}
+        />
+      </Flex>
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('admin.confirmation_required')}
+        message={I18n.t('admin.confirmation_required_details', {
+          resource: 'Block',
+          resource_name: record.name,
+        })}
+        onConfirm={handleDelete}
+        onCancel={(e) => {
+          e.stopPropagation()
+          setConfirmation(false)
+        }}
+        close={() => null}
       />
-      <Button
-        shape="circle"
-        icon={<DeleteOutlined />}
-        onClick={handleDelete}
-      />
-    </Flex>
+    </>
   )
 }
 
