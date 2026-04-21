@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Dropdown, MenuProps,
+  Table, Row, Col, Dropdown, MenuProps, Tooltip,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -44,7 +44,20 @@ const UserReports: React.FC<Props> = ({ userReports }) => {
           <Column
             title={I18n.t('common.column.status')}
             key="status"
-            render={({ status }) => I18n.t(`user_reports.statuses.${status}`)}
+            render={({ status, unavailabilityReasonDetails }) => {
+              const statusLabel = I18n.t(`user_reports.statuses.${status}`)
+              const reasonMessage = unavailabilityReasonDetails?.reasonMessage
+
+              if (status !== 'not_prepared' || !reasonMessage) {
+                return statusLabel
+              }
+
+              return (
+                <Tooltip title={reasonMessage}>
+                  <span>{statusLabel}</span>
+                </Tooltip>
+              )
+            }}
           />
           <Column
             title={I18n.t('common.column.action')}

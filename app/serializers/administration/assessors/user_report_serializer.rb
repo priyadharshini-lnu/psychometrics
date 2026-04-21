@@ -3,7 +3,7 @@
 module Administration
   module Assessors
     class UserReportSerializer < Panko::Serializer
-      attributes :id, :name, :internal, :status, :report_url
+      attributes :id, :name, :internal, :status, :report_url, :unavailability_reason_details
 
       delegate :name, to: :report
 
@@ -13,6 +13,12 @@ module Administration
 
       def report_url
         object.pdf_download_url
+      end
+
+      def unavailability_reason_details
+        return if object.prepared?
+
+        UserReports::UnavailabilityReasonDetails.new(object).query
       end
 
       private
