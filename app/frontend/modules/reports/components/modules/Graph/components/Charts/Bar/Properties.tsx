@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Checkbox, InputNumber, Space, Typography,
 } from 'antd'
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'

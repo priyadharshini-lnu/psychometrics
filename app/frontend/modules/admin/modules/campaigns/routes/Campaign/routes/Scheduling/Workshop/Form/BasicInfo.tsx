@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input, Switch, Select,
 } from 'antd'
-import { Store } from 'antd/lib/form/interface'
+import { Store } from 'antd/es/form/interface'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'

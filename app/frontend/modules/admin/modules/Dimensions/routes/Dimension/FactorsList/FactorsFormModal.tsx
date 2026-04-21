@@ -4,7 +4,7 @@ import {
   Space, Flex, Radio, Typography,
 } from 'antd'
 import { useDispatch } from 'react-redux'
-import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
+import { UploadChangeParam, UploadFile } from 'antd/es/upload/interface'
 import omit from 'lodash/omit'
 import get from 'lodash/get'
 import { useParams } from 'react-router-dom'

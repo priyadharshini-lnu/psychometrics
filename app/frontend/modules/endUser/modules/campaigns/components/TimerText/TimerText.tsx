@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Typography, Space } from 'antd'
-import { BaseType } from 'antd/lib/typography/Base'
+import { BaseType } from 'antd/es/typography/Base'
 import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 type Props = {

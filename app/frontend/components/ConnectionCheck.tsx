@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { message } from 'antd'
-import { MessageType } from 'antd/lib/message/interface'
+import { MessageType } from 'antd/es/message/interface'
 import consumer from '~/core/consumer'
 
 const { I18n } = window

@@ -3,7 +3,7 @@ import {
   Form, Input, Select, Spin,
 } from 'antd'
 import cs from 'classnames'
-import { FormInstance } from 'antd/lib/form'
+import { FormInstance } from 'antd/es/form'
 import { Tag } from 'modules/admin/core/tags'
 import _ from 'lodash'
 import { connect } from 'react-redux'

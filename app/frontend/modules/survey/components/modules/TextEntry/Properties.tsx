@@ -2,7 +2,7 @@ import { FC } from 'react'
 import {
   Select, Space, Typography, Checkbox, Divider,
 } from 'antd'
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
 import {
   PropertiesModel,

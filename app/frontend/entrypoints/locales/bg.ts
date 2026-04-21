@@ -1,4 +1,4 @@
-import bg from 'antd/lib/locale/bg_BG'
+import bg from 'antd/es/locale/bg_BG'
 
 window.antdLocale = bg
 export default bg

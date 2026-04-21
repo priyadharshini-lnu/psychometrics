@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Table, Switch, Space, Button, Divider, Empty, Tooltip,
 } from 'antd'
-import { ColumnsType } from 'antd/lib/table'
+import { ColumnsType } from 'antd/es/table'
 import {
   SortableContainerProps, SortEnd, SortableContainer, SortableElement, SortableHandle,
 } from 'react-sortable-hoc'

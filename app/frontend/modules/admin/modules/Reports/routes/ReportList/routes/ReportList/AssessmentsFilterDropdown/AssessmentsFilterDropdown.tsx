@@ -3,7 +3,7 @@ import {
   Button, Checkbox, Col, Input, Menu, Row, Spin,
 } from 'antd'
 import SearchOutlined from '@ant-design/icons/SearchOutlined'
-import { FilterDropdownProps } from 'antd/lib/table/interface'
+import { FilterDropdownProps } from 'antd/es/table/interface'
 import { MenuItem } from '~/interfaces/Antd'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { useResources } from '~/hooks/useResources'

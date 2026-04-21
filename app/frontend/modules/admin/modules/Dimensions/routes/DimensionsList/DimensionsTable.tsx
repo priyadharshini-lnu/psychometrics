@@ -4,7 +4,7 @@ import {
   message,
   Switch,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/interface'
+import { ItemType } from 'antd/es/menu/interface'
 import * as t from 'io-ts'
 import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import dayjs from '~/utils/dayjs'

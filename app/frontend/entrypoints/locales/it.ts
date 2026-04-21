@@ -1,4 +1,4 @@
-import it from 'antd/lib/locale/it_IT'
+import it from 'antd/es/locale/it_IT'
 
 window.antdLocale = it
 export default it

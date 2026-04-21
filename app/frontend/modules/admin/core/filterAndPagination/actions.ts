@@ -1,4 +1,4 @@
-import { FilterValue } from 'antd/lib/table/interface'
+import { FilterValue } from 'antd/es/table/interface'
 import { TableConfig } from './interfaces'
 
 export const INIT_TABLE = 'INIT_TABLE'

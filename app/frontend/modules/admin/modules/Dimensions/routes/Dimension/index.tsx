@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { Menu } from 'antd'
-import { ItemType } from 'antd/lib/menu/interface'
+import { ItemType } from 'antd/es/menu/interface'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import RouteList from '~/components/RouteList'
 import routeUtils from '~/utils/route'

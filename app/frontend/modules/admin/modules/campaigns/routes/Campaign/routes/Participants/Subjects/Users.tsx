@@ -5,7 +5,7 @@ import {
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { Link, useParams } from 'react-router-dom'
-import { FilterValue } from 'antd/lib/table/interface'
+import { FilterValue } from 'antd/es/table/interface'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
