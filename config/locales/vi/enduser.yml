@@ -48,7 +48,7 @@ vi:
     campaign_check_status: 'Trạng thái: %{status}'
     chat_instructions: Hướng dẫn trò chuyện
     check: Kiểm tra
-    check_video_recording: Vui lòng kiểm tra đoạn video đã quay bằng cách phát lại.
+    check_video_recording: Vui lòng kiểm tra video và âm thanh của bạn bằng cách phát lại.
     checking_browser_compatibility: Đang kiểm tra tính tương thích của trình duyệt...
     checking_latency: Đang kiểm tra độ trễ...
     could_not_reach_servers: Không thể kết nối với máy chủ của chúng tôi để kiểm tra tốc độ mạng. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.
@@ -197,6 +197,7 @@ vi:
     troubleshooting_guide_audio_first: Nhấp vào biểu tượng ổ khóa/thông tin trên thanh địa chỉ của trình duyệt
     troubleshooting_guide_audio_fourth: Nếu bị chặn, bạn có thể cần phải thiết lập lại quyền truy cập trong cài đặt trình duyệt
     troubleshooting_guide_audio_second: Tìm mục "Microphone" và chọn "Cho phép"
+    troubleshooting_guide_audio_seventh: Nếu bạn đã cấp quyền nhưng gặp sự cố khi tải lên, hãy chạy lại bước kiểm tra và thử tải âm thanh lên lại.
     troubleshooting_guide_audio_sixth: 'Trên máy Mac: Vào Tùy chọn Hệ thống > Bảo mật'
     troubleshooting_guide_audio_third: Hãy làm mới trang sau khi thay đổi quyền truy cập
     troubleshooting_guide_browser_fifth: Hãy đảm bảo rằng LocalStorage đã được bật trong cài đặt trình duyệt của bạn
@@ -212,8 +213,8 @@ vi:
     troubleshooting_guide_network_third: Hãy khởi động lại bộ định tuyến/bộ điều chế và thử lại
     troubleshooting_guide_video_fifth: 'Trên Windows: Kiểm tra Cài đặt quyền riêng tư > Quyền truy cập camera/micro'
     troubleshooting_guide_video_first: Nhấp vào biểu tượng ổ khóa/thông tin trên thanh địa chỉ của trình duyệt
-    troubleshooting_guide_video_fourth: Nếu bị chặn, bạn có thể cần phải thiết lập lại quyền truy cập trong cài đặt trình duyệt
     troubleshooting_guide_video_second: Tìm các tùy chọn "Camera" và "Microphone" rồi chọn "Cho phép"
+    troubleshooting_guide_video_seventh: Nếu bạn đã cấp quyền nhưng gặp sự cố khi tải lên, hãy chạy lại bước kiểm tra và thử tải video lên lại.
     troubleshooting_guide_video_sixth: 'Trên máy Mac: Vào Tùy chọn Hệ thống > Bảo mật & Quyền riêng tư > Camera/Microphone'
     troubleshooting_guide_video_third: Hãy làm mới trang sau khi thay đổi quyền truy cập
     untimed: Không giới hạn thời gian
@@ -222,6 +223,7 @@ vi:
     video: Video
     video_and_audio: Video & Âm thanh
     video_and_audio_recording: Ghi hình và ghi âm
+    video_check_description: Đây là bước kiểm tra hệ thống trước khi làm bài kiểm tra. Bạn sẽ ghi một video dài 30 giây để kiểm tra âm thanh và hình ảnh. Vui lòng nói liên tục và không dừng lại cho đến khi quá trình ghi tự động kết thúc.
     video_check_fix_fifth: Nếu máy ảnh của bạn là loại gắn ngoài, hãy thử rút phích cắm ra rồi cắm lại
     video_check_fix_first: Nhấp vào 'Cho phép' khi trình duyệt yêu cầu quyền truy cập camera
     video_check_fix_fourth: Kiểm tra xem máy ảnh của bạn đã được kết nối và bật nguồn chưa

@@ -48,7 +48,7 @@ ko:
     campaign_check_status: '상태: %{status}'
     chat_instructions: 채팅 안내
     check: 확인
-    check_video_recording: 동영상을 재생하여 확인해 주세요.
+    check_video_recording: 동영상을 재생해 영상과 음성을 확인해 주세요.
     checking_browser_compatibility: 브라우저 호환성 확인 중...
     checking_latency: 지연 시간 확인 중...
     could_not_reach_servers: 네트워크 속도를 확인하기 위해 서버에 연결할 수 없습니다. 인터넷 연결 상태를 확인한 후 다시 시도해 주세요.
@@ -197,6 +197,7 @@ ko:
     troubleshooting_guide_audio_first: 브라우저 주소 표시줄에 있는 자물쇠/정보 아이콘을 클릭하세요
     troubleshooting_guide_audio_fourth: 차단된 경우, 브라우저 설정에서 권한을 재설정해야 할 수 있습니다
     troubleshooting_guide_audio_second: "“마이크” 설정을 찾아 “허용”으로 설정하세요"
+    troubleshooting_guide_audio_seventh: 권한이 활성화되어 있는데 업로드 중 문제가 발생했다면, 검사를 다시 실행하고 오디오를 다시 업로드해 주세요.
     troubleshooting_guide_audio_sixth: 'Mac에서: 시스템 환경설정 > 보안을 확인하세요'
     troubleshooting_guide_audio_third: 권한을 변경한 후 페이지를 새로 고침하세요
     troubleshooting_guide_browser_fifth: 브라우저 설정에서 LocalStorage가 활성화되어 있는지 확인하세요
@@ -212,8 +213,8 @@ ko:
     troubleshooting_guide_network_third: 라우터/모뎀을 재시작한 후 다시 시도해 보세요
     troubleshooting_guide_video_fifth: 'Windows에서: 개인정보 설정 > 카메라/마이크 사용 권한 확인'
     troubleshooting_guide_video_first: 브라우저 주소 표시줄에 있는 자물쇠/정보 아이콘을 클릭하세요
-    troubleshooting_guide_video_fourth: 차단된 경우, 브라우저 설정에서 권한을 재설정해야 할 수 있습니다
     troubleshooting_guide_video_second: "“카메라” 및 “마이크” 설정을 찾아 “허용”으로 설정하세요"
+    troubleshooting_guide_video_seventh: 권한이 활성화되어 있는데 업로드 중 문제가 발생했다면, 검사를 다시 실행하고 동영상을 다시 업로드해 주세요.
     troubleshooting_guide_video_sixth: 'Mac에서: 시스템 환경설정 > 보안 및 개인 정보 보호 > 카메라/마이크를 확인하세요'
     troubleshooting_guide_video_third: 권한을 변경한 후 페이지를 새로 고침하세요
     untimed: 시간 제한 없음
@@ -222,6 +223,7 @@ ko:
     video: 동영상
     video_and_audio: 동영상 및 오디오
     video_and_audio_recording: 영상 및 음성 녹화
+    video_check_description: 테스트 전에 진행하는 시스템 점검입니다. 오디오와 비디오를 테스트하기 위해 30초 분량의 영상을 녹화하게 됩니다. 녹화가 자동으로 종료될 때까지 계속 말하고 중간에 멈추지 마세요.
     video_check_fix_fifth: 외장 카메라라면 전원을 뽑았다가 다시 연결해 보세요
     video_check_fix_first: 브라우저에서 카메라 사용 권한을 요청하면 ‘허용’을 클릭하세요
     video_check_fix_fourth: 카메라가 연결되어 있고 전원이 켜져 있는지 확인하세요

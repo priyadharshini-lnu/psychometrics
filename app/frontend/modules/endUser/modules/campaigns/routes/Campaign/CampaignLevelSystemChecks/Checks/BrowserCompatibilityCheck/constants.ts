@@ -10,6 +10,9 @@ export const safariProctoring = {
 
 export const MIN_BROWSER_VERSIONS = {
   Chrome: 144,
+  'Mobile Chrome': 144,
+  'Mobile Safari': 26,
+  'Mobile Firefox': 148,
   Firefox: 148,
   Safari: 26,
   Edge: 145,

@@ -48,7 +48,7 @@ hi:
     campaign_check_status: 'स्थिति: %{status}'
     chat_instructions: चैट निर्देश
     check: जाँचें
-    check_video_recording: कृपया अपनी वीडियो रिकॉर्डिंग को वापस चलाकर जांचें।
+    check_video_recording: कृपया रिकॉर्डिंग को चलाकर अपना वीडियो और ऑडियो जांचें।
     checking_browser_compatibility: ब्राउज़र संगतता की जाँच...
     checking_latency: विलंबता की जाँच...
     could_not_reach_servers: नेटवर्क गति की जाँच करने के लिए हमारे सर्वर से जुड़ने में असमर्थ। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से प्रयास करें।
@@ -197,6 +197,7 @@ hi:
     troubleshooting_guide_audio_first: अपने ब्राउज़र के एड्रेस बार में लॉक/जानकारी आइकन पर क्लिक करें।
     troubleshooting_guide_audio_fourth: यदि अवरुद्ध हो, तो आपको ब्राउज़र सेटिंग्स में अनुमतियाँ रीसेट करनी पड़ सकती हैं।
     troubleshooting_guide_audio_second: '"माइक्रोफ़ोन" सेटिंग्स खोजें और उन्हें "अनुमति दें" पर सेट करें।'
+    troubleshooting_guide_audio_seventh: यदि अनुमतियां सक्षम हैं और अपलोड में कोई समस्या हुई, तो जांच को दोबारा चलाएं और ऑडियो फिर से अपलोड करने का प्रयास करें।
     troubleshooting_guide_audio_sixth: 'Mac पर: सिस्टम प्राथमिकताएँ > सुरक्षा देखें'
     troubleshooting_guide_audio_third: अनुमति बदलने के बाद पेज रिफ्रेश करें
     troubleshooting_guide_browser_fifth: सुनिश्चित करें कि आपके ब्राउज़र सेटिंग्स में LocalStorage सक्षम है।
@@ -212,8 +213,8 @@ hi:
     troubleshooting_guide_network_third: अपने राउटर/मॉडेम को पुनः आरंभ करें और फिर से प्रयास करें।
     troubleshooting_guide_video_fifth: 'Windows पर: गोपनीयता सेटिंग्स > कैमरा/माइक्रोफ़ोन पहुँच की जाँच करें'
     troubleshooting_guide_video_first: अपने ब्राउज़र के एड्रेस बार में लॉक/जानकारी आइकन पर क्लिक करें।
-    troubleshooting_guide_video_fourth: यदि अवरुद्ध हो, तो आपको ब्राउज़र सेटिंग्स में अनुमतियाँ रीसेट करनी पड़ सकती हैं।
     troubleshooting_guide_video_second: '"कैमरा" और "माइक्रोफ़ोन" सेटिंग्स ढूंढें और उन्हें "अनुमति दें" पर सेट करें।'
+    troubleshooting_guide_video_seventh: यदि अनुमतियां सक्षम हैं और अपलोड में कोई समस्या हुई, तो जांच को दोबारा चलाएं और वीडियो फिर से अपलोड करने का प्रयास करें।
     troubleshooting_guide_video_sixth: 'Mac पर: सिस्टम प्राथमिकताएँ > सुरक्षा और गोपनीयता > कैमरा/माइक्रोफ़ोन देखें'
     troubleshooting_guide_video_third: अनुमति बदलने के बाद पेज रिफ्रेश करें
     untimed: अनियंत्रित
@@ -222,6 +223,7 @@ hi:
     video: वीडियो
     video_and_audio: वीडियो और ऑडियो
     video_and_audio_recording: वीडियो और ऑडियो रिकॉर्डिंग
+    video_check_description: यह परीक्षण से पहले की सिस्टम जांच है। ऑडियो और वीडियो की जांच के लिए आप 30 सेकंड का वीडियो रिकॉर्ड करेंगे। कृपया लगातार बोलते रहें और रिकॉर्डिंग अपने आप समाप्त होने तक न रुकें।
     video_check_fix_fifth: यदि आपका कैमरा बाहरी है, तो उसे अनप्लग करके फिर से कनेक्ट करने का प्रयास करें।
     video_check_fix_first: जब ब्राउज़र कैमरा अनुमति मांगे तो 'Allow' पर क्लिक करें।
     video_check_fix_fourth: जाँचें कि आपका कैमरा कनेक्ट है और चालू है।

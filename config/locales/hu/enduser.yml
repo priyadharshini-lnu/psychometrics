@@ -48,7 +48,7 @@ hu:
     campaign_check_status: 'Állapot: %{status}'
     chat_instructions: Csevegési útmutató
     check: Ellenőrizze
-    check_video_recording: Kérjük, ellenőrizze a videofelvételt lejátszással.
+    check_video_recording: Kérjük, lejátszással ellenőrizze a videó- és hangfelvételt.
     checking_browser_compatibility: A böngésző kompatibilitásának ellenőrzése...
     checking_latency: A késleltetés ellenőrzése...
     could_not_reach_servers: Nem sikerült kapcsolatba lépni a szerverünkkel a hálózati sebesség ellenőrzése érdekében. Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
@@ -197,6 +197,7 @@ hu:
     troubleshooting_guide_audio_first: Kattintson a böngésző címsorában található lakat/információ ikonra
     troubleshooting_guide_audio_fourth: Ha blokkolva van, előfordulhat, hogy vissza kell állítania a jogosultságokat a böngésző beállításaiban
     troubleshooting_guide_audio_second: Keresse meg a „Mikrofon” beállításokat, és állítsa azokat „Engedélyezve” értékre
+    troubleshooting_guide_audio_seventh: Ha az engedélyek be vannak kapcsolva, de feltöltési hiba történt, futtassa újra az ellenőrzést, és próbálja meg ismét feltölteni a hangfelvételt
     troubleshooting_guide_audio_sixth: 'Mac esetén: Nyissa meg a Rendszerbeállítások > Biztonság menüpontot'
     troubleshooting_guide_audio_third: A jogosultságok módosítása után frissítse az oldalt
     troubleshooting_guide_browser_fifth: Győződjön meg arról, hogy a böngésző beállításaiban engedélyezve van a LocalStorage
@@ -212,8 +213,8 @@ hu:
     troubleshooting_guide_network_third: Indítsa újra az útválasztót/modemet, majd próbálja meg újra
     troubleshooting_guide_video_fifth: 'Windows rendszerben: Ellenőrizze az Adatvédelmi beállításokat > Kamera/mikrofon hozzáférés'
     troubleshooting_guide_video_first: Kattintson a böngésző címsorában található lakat/információ ikonra
-    troubleshooting_guide_video_fourth: Ha blokkolva van, előfordulhat, hogy vissza kell állítania a jogosultságokat a böngésző beállításaiban
     troubleshooting_guide_video_second: Keresse meg a „Kamera” és a „Mikrofon” beállításokat, és állítsa őket „Engedélyezve” értékre
+    troubleshooting_guide_video_seventh: Ha az engedélyek be vannak kapcsolva, de feltöltési hiba történt, futtassa újra az ellenőrzést, és próbálja meg ismét feltölteni a videót
     troubleshooting_guide_video_sixth: 'Mac esetén: Nyissa meg a Rendszerbeállítások > Biztonság és adatvédelem > Kamera/Mikrofon menüpontot'
     troubleshooting_guide_video_third: A jogosultságok módosítása után frissítse az oldalt
     untimed: Időkorlát nélkül
@@ -222,6 +223,7 @@ hu:
     video: Videó
     video_and_audio: Videó és hang
     video_and_audio_recording: Videó- és hangfelvétel
+    video_check_description: Ez egy rendszerellenőrzés a teszt előtt. Egy 30 másodperces videót fog rögzíteni a hang és a kép teszteléséhez. Kérjük, folyamatosan beszéljen, és ne álljon meg, amíg a felvétel automatikusan véget nem ér.
     video_check_fix_fifth: Ha a fényképezőgép külső eszköz, próbálja meg kihúzni a csatlakozóját, majd újra csatlakoztatni
     video_check_fix_first: Kattints az „Engedélyezés” gombra, amikor a böngésző a kamera használatához kéri az engedélyt
     video_check_fix_fourth: Ellenőrizze, hogy a fényképezőgép csatlakoztatva van-e és be van-e kapcsolva

@@ -48,7 +48,7 @@ pt:
     campaign_check_status: 'Estado: %{status}'
     chat_instructions: Instruções para o chat
     check: Verificar
-    check_video_recording: Por favor, verifique a sua gravação de vídeo reproduzindo-a.
+    check_video_recording: Verifique o vídeo e o áudio reproduzindo a gravação.
     checking_browser_compatibility: A verificar a compatibilidade do navegador...
     checking_latency: A verificar a latência...
     could_not_reach_servers: Não foi possível estabelecer ligação com os nossos servidores para verificar a velocidade da rede. Verifique a sua ligação à Internet e tente novamente.
@@ -197,6 +197,7 @@ pt:
     troubleshooting_guide_audio_first: Clique no ícone do cadeado/informações na barra de endereços do seu navegador
     troubleshooting_guide_audio_fourth: Se estiver bloqueado, poderá ser necessário redefinir as permissões nas definições do navegador
     troubleshooting_guide_audio_second: Procure as definições de «Microfone» e defina-as como «Permitir»
+    troubleshooting_guide_audio_seventh: Se as permissões estiverem ativadas e ocorrer um problema no envio, execute a verificação novamente e tente enviar o áudio outra vez
     troubleshooting_guide_audio_sixth: 'No Mac: Aceda a Preferências do Sistema > Segurança'
     troubleshooting_guide_audio_third: Atualize a página após alterar as permissões
     troubleshooting_guide_browser_fifth: Certifique-se de que o LocalStorage está ativado nas definições do seu navegador
@@ -212,8 +213,8 @@ pt:
     troubleshooting_guide_network_third: Reinicie o seu router/modem e tente novamente
     troubleshooting_guide_video_fifth: 'No Windows: Verifique as definições de privacidade > Acesso à câmara/microfone'
     troubleshooting_guide_video_first: Clique no ícone do cadeado/informações na barra de endereços do seu navegador
-    troubleshooting_guide_video_fourth: Se estiver bloqueado, poderá ser necessário redefinir as permissões nas definições do navegador
     troubleshooting_guide_video_second: Procure as definições «Câmara» e «Microfone» e defina-as como «Permitir»
+    troubleshooting_guide_video_seventh: Se as permissões estiverem ativadas e ocorrer um problema no envio, execute a verificação novamente e tente enviar o vídeo outra vez
     troubleshooting_guide_video_sixth: 'No Mac: Aceda a Preferências do Sistema > Segurança e Privacidade > Câmara/Microfone'
     troubleshooting_guide_video_third: Atualize a página após alterar as permissões
     untimed: Sem limite de tempo
@@ -222,6 +223,7 @@ pt:
     video: Vídeo
     video_and_audio: Vídeo e Áudio
     video_and_audio_recording: Gravação de vídeo e áudio
+    video_check_description: Esta é uma verificação do sistema antes do teste. Vai gravar um vídeo de 30 segundos para testar áudio e vídeo. Fale continuamente e não pare até que a gravação termine automaticamente.
     video_check_fix_fifth: Se a câmara for externa, tente desligá-la e voltar a ligá-la
     video_check_fix_first: Clique em «Permitir» quando o navegador solicitar permissão para aceder à câmara
     video_check_fix_fourth: Verifique se a sua câmara está ligada e ligada à corrente

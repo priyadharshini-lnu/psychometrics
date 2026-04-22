@@ -48,7 +48,7 @@ cs:
     campaign_check_status: 'Stav: %{status}'
     chat_instructions: Pokyny k chatu
     check: Zkontrolovat
-    check_video_recording: Zkontrolujte prosím svůj videozáznam jeho přehráním.
+    check_video_recording: Zkontrolujte prosím své video i zvuk jeho přehráním.
     checking_browser_compatibility: Zjišťuji kompatibilitu prohlížeče...
     checking_latency: Zjišťuji latenci...
     could_not_reach_servers: Při ověřování rychlosti připojení se nepodařilo navázat spojení s našimi servery. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
@@ -197,6 +197,7 @@ cs:
     troubleshooting_guide_audio_first: Klikněte na ikonu zámku/informací v adresním řádku prohlížeče
     troubleshooting_guide_audio_fourth: Pokud se stránka nezobrazí, možná bude nutné obnovit oprávnění v nastavení prohlížeče
     troubleshooting_guide_audio_second: Najděte nastavení „Mikrofon“ a nastavte je na „Povolit“
+    troubleshooting_guide_audio_seventh: Pokud máte povolená oprávnění a při nahrávání došlo k problému, spusťte kontrolu znovu a zkuste audio nahrát znovu
     troubleshooting_guide_audio_sixth: 'Na počítači Mac: Přejděte do nabídky Předvolby systému > Zabezpečení'
     troubleshooting_guide_audio_third: Po změně oprávnění stránku aktualizujte
     troubleshooting_guide_browser_fifth: Zkontrolujte, zda je ve vašem prohlížeči povoleno LocalStorage
@@ -212,8 +213,8 @@ cs:
     troubleshooting_guide_network_third: Restartujte router/modem a zkuste to znovu
     troubleshooting_guide_video_fifth: 'Ve Windows: Zkontrolujte nastavení ochrany osobních údajů > přístup k fotoaparátu/mikrofonu'
     troubleshooting_guide_video_first: Klikněte na ikonu zámku/informací v adresním řádku prohlížeče
-    troubleshooting_guide_video_fourth: Pokud se stránka nezobrazí, možná bude nutné obnovit oprávnění v nastavení prohlížeče
     troubleshooting_guide_video_second: Najděte nastavení „Fotoaparát“ a „Mikrofon“ a nastavte je na „Povolit“
+    troubleshooting_guide_video_seventh: Pokud máte povolená oprávnění a při nahrávání došlo k problému, spusťte kontrolu znovu a zkuste video nahrát znovu
     troubleshooting_guide_video_sixth: 'Na počítači Mac: Přejděte do nabídky Systémové předvolby > Zabezpečení a soukromí > Kamera/Mikrofon'
     troubleshooting_guide_video_third: Po změně oprávnění stránku aktualizujte
     untimed: Bez časového limitu
@@ -222,6 +223,7 @@ cs:
     video: Video
     video_and_audio: Video a audio
     video_and_audio_recording: Záznam videa a zvuku
+    video_check_description: Toto je kontrola systému před testem. Nahrajete 30sekundové video pro otestování zvuku a obrazu. Mluvte prosím nepřetržitě a nezastavujte se, dokud se nahrávání automaticky neukončí.
     video_check_fix_fifth: Pokud máte externí kameru, zkuste ji odpojit a znovu připojit
     video_check_fix_first: Až vás prohlížeč požádá o oprávnění k použití kamery, klikněte na „Povolit“
     video_check_fix_fourth: Zkontrolujte, zda je kamera připojená a zapnutá

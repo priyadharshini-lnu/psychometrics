@@ -7,6 +7,7 @@ import {
 import axios from 'axios'
 import { connect, ConnectedProps } from 'react-redux'
 import SparkMD5 from 'spark-md5'
+import cs from 'classnames'
 import {
   StopOutlined, VideoCameraOutlined, RightOutlined, RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -460,13 +461,13 @@ const VideoCheckComponent: React.FC<Props> = ({
   return (
     <Flex align="center" vertical gap={4}>
       <h3>{I18n.t('checking_wizard.video_check.title')}</h3>
-      <p>{I18n.t('checking_wizard.video_check.description')}</p>
-      <section style={{ minHeight: '100px' }}>
+      <p className="ta-c">{I18n.t('enduser.video_check_description')}</p>
+      <section style={{ minHeight: '60px' }}>
         {
          ['idle', 'recording'].includes(status)
         && (
 
-          <h3 className={styles.testMessage}>
+          <h3 className={cs(styles.testMessage, 'ta-c', 'mt-0')}>
             &#8220;
             {state.speechTestText}
             &#8221;

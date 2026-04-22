@@ -48,7 +48,7 @@ sl:
     campaign_check_status: 'Stanje: %{status}'
     chat_instructions: Navodila za klepet
     check: Preveri
-    check_video_recording: Preverite posnetek tako, da ga predvajate.
+    check_video_recording: Preverite video in zvok tako, da predvajate posnetek.
     checking_browser_compatibility: Preverjanje združljivosti brskalnika...
     checking_latency: Preverjanje zakasnitve...
     could_not_reach_servers: Naši strežniki niso bili dosegljivi, zato ni bilo mogoče preveriti hitrosti omrežja. Preverite svojo internetno povezavo in poskusite znova.
@@ -197,6 +197,7 @@ sl:
     troubleshooting_guide_audio_first: Kliknite ikono ključavnice/informacij v naslovni vrstici brskalnika
     troubleshooting_guide_audio_fourth: Če je dostop blokiran, boste morda morali ponastaviti dovoljenja v nastavitvah brskalnika
     troubleshooting_guide_audio_second: Poiščite nastavitve »Mikrofon« in jih nastavite na »Dovoli«
+    troubleshooting_guide_audio_seventh: Če so dovoljenja omogočena in je pri nalaganju prišlo do težave, ponovno zaženite preverjanje in poskusite zvok naložiti znova
     troubleshooting_guide_audio_sixth: 'Na računalniku Mac: Odpri »Sistemski nastavitve« > »Varnost«'
     troubleshooting_guide_audio_third: Po spremembi dovoljenj osvežite stran
     troubleshooting_guide_browser_fifth: Preverite, ali je v nastavitvah brskalnika omogočena funkcija LocalStorage
@@ -212,8 +213,8 @@ sl:
     troubleshooting_guide_network_third: Ponovno zaženite usmerjevalnik/modem in poskusite še enkrat
     troubleshooting_guide_video_fifth: 'V sistemu Windows: Preverite nastavitve zasebnosti > Dostop do kamere/mikrofona'
     troubleshooting_guide_video_first: Kliknite ikono ključavnice/informacij v naslovni vrstici brskalnika
-    troubleshooting_guide_video_fourth: Če je dostop blokiran, boste morda morali ponastaviti dovoljenja v nastavitvah brskalnika
     troubleshooting_guide_video_second: Poiščite nastavitve »Kamera« in »Mikrofon« ter jih nastavite na »Dovoli«
+    troubleshooting_guide_video_seventh: Če so dovoljenja omogočena in je pri nalaganju prišlo do težave, ponovno zaženite preverjanje in poskusite video naložiti znova
     troubleshooting_guide_video_sixth: 'Na računalniku Mac: Odpri »Sistemski nastavitve« > »Varnost in zasebnost« > »Kamera/mikrofon«'
     troubleshooting_guide_video_third: Po spremembi dovoljenj osvežite stran
     untimed: Brez časovne omejitve
@@ -222,6 +223,7 @@ sl:
     video: Video
     video_and_audio: Video in avdio
     video_and_audio_recording: Snemanje videa in zvoka
+    video_check_description: To je sistemski pregled pred testom. Posneli boste 30-sekundni video za preverjanje zvoka in slike. Prosimo, govorite neprekinjeno in ne prenehajte, dokler se snemanje samodejno ne zaključi.
     video_check_fix_fifth: Če gre za zunanjo kamero, jo poskusite odklopiti in ponovno priključiti
     video_check_fix_first: Ko vas brskalnik zaprosi za dovoljenje za uporabo kamere, kliknite »Dovoli«
     video_check_fix_fourth: Preverite, ali je vaša kamera priključena in vklopljena

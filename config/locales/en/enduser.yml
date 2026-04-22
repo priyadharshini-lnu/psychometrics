@@ -48,7 +48,7 @@ en:
     campaign_check_status: 'Status: %{status}'
     chat_instructions: Chat Instructions
     check: Check
-    check_video_recording: Please check your video recording by playing it back.
+    check_video_recording: Please check your video and audio by playing it back.
     checking_browser_compatibility: Checking browser compatibility...
     checking_latency: Checking latency...
     could_not_reach_servers: Could not reach our servers to check network speed. Please check your internet connection and try again.
@@ -197,6 +197,7 @@ en:
     troubleshooting_guide_audio_first: Click the lock/info icon in your browser's address bar
     troubleshooting_guide_audio_fourth: If blocked, you may need to reset permissions in browser settings
     troubleshooting_guide_audio_second: Find "Microphone" settings and set them to "Allow"
+    troubleshooting_guide_audio_seventh: If you have permission enabled and there was issue in uploading, re-run the check and try uploading the audio again
     troubleshooting_guide_audio_sixth: 'On Mac: Check System Preferences > Security'
     troubleshooting_guide_audio_third: Refresh the page after changing permissions
     troubleshooting_guide_browser_fifth: Ensure LocalStorage is enabled in your browser settings
@@ -211,9 +212,9 @@ en:
     troubleshooting_guide_network_second: Move closer to your Wi-Fi router or connect via ethernet cable
     troubleshooting_guide_network_third: Restart your router/modem and try again
     troubleshooting_guide_video_fifth: 'On Windows: Check Privacy Settings > Camera/Microphone access'
-    troubleshooting_guide_video_first: Click the lock/info icon in your browser's address bar
-    troubleshooting_guide_video_fourth: If blocked, you may need to reset permissions in browser settings
+    troubleshooting_guide_video_first: Click the lock/info icon in your browser's address bar to check for camera and microphone permissions. If blocked, you may need to reset permissions in browser settings
     troubleshooting_guide_video_second: Find "Camera" and "Microphone" settings and set them to "Allow"
+    troubleshooting_guide_video_seventh: If you have permission enabled and there was issue in uploading, re-run the check and try uploading the video again
     troubleshooting_guide_video_sixth: 'On Mac: Check System Preferences > Security & Privacy > Camera/Microphone'
     troubleshooting_guide_video_third: Refresh the page after changing permissions
     untimed: Untimed
@@ -222,6 +223,7 @@ en:
     video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Video and Audio Recording
+    video_check_description: This is a system check before the test. You will record a 30-second video to test audio and video. Please speak continuously and do not stop until the recording ends automatically.
     video_check_fix_fifth: Try unplugging and reconnecting your camera if it's external
     video_check_fix_first: Click 'Allow' when the browser asks for camera permission
     video_check_fix_fourth: Check if your camera is connected and powered on

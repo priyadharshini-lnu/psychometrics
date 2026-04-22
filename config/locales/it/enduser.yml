@@ -48,7 +48,7 @@ it:
     campaign_check_status: 'Stato: %{status}'
     chat_instructions: Istruzioni per la chat
     check: Controlla
-    check_video_recording: Ti preghiamo di controllare la registrazione video riproducendola.
+    check_video_recording: Ti preghiamo di controllare video e audio riproducendo la registrazione.
     checking_browser_compatibility: Verifica della compatibilità del browser...
     checking_latency: Verifica della latenza...
     could_not_reach_servers: Impossibile connettersi ai nostri server per verificare la velocità di rete. Controlla la tua connessione Internet e riprova.
@@ -197,6 +197,7 @@ it:
     troubleshooting_guide_audio_first: Clicca sull'icona del lucchetto/informazioni nella barra degli indirizzi del browser
     troubleshooting_guide_audio_fourth: Se l'accesso è bloccato, potrebbe essere necessario ripristinare le autorizzazioni nelle impostazioni del browser
     troubleshooting_guide_audio_second: Cerca le impostazioni "Microfono" e imposta l'opzione su "Consenti"
+    troubleshooting_guide_audio_seventh: Se le autorizzazioni sono abilitate e si è verificato un problema durante il caricamento, riesegui il controllo e prova a caricare di nuovo l'audio
     troubleshooting_guide_audio_sixth: 'Su Mac: vai su Preferenze di Sistema > Sicurezza'
     troubleshooting_guide_audio_third: Aggiorna la pagina dopo aver modificato le autorizzazioni
     troubleshooting_guide_browser_fifth: Assicurati che LocalStorage sia abilitato nelle impostazioni del browser
@@ -212,8 +213,8 @@ it:
     troubleshooting_guide_network_third: Riavvia il router/modem e riprova
     troubleshooting_guide_video_fifth: 'Su Windows: controlla le impostazioni sulla privacy > Accesso a fotocamera/microfono'
     troubleshooting_guide_video_first: Clicca sull'icona del lucchetto/informazioni nella barra degli indirizzi del browser
-    troubleshooting_guide_video_fourth: Se l'accesso è bloccato, potrebbe essere necessario ripristinare le autorizzazioni nelle impostazioni del browser
     troubleshooting_guide_video_second: Cerca le impostazioni "Fotocamera" e "Microfono" e imposta "Consenti"
+    troubleshooting_guide_video_seventh: Se le autorizzazioni sono abilitate e si è verificato un problema durante il caricamento, riesegui il controllo e prova a caricare di nuovo il video
     troubleshooting_guide_video_sixth: 'Su Mac: vai su Preferenze di Sistema > Sicurezza e privacy > Fotocamera/Microfono'
     troubleshooting_guide_video_third: Aggiorna la pagina dopo aver modificato le autorizzazioni
     untimed: Senza limite di tempo
@@ -222,6 +223,7 @@ it:
     video: Video
     video_and_audio: Video e audio
     video_and_audio_recording: Registrazione video e audio
+    video_check_description: Questo è un controllo di sistema prima del test. Registrerai un video di 30 secondi per testare audio e video. Parla in modo continuo e non fermarti finché la registrazione non termina automaticamente.
     video_check_fix_fifth: Se la fotocamera è esterna, prova a scollegarla e ricollegarla
     video_check_fix_first: Clicca su "Consenti" quando il browser richiede l'autorizzazione per l'uso della fotocamera
     video_check_fix_fourth: Verifica che la fotocamera sia collegata e accesa

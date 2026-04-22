@@ -48,7 +48,7 @@ hr:
     campaign_check_status: 'Status: %{status}'
     chat_instructions: Upute za chat
     check: Provjeri
-    check_video_recording: Molimo provjerite svoj videozapis reprodukcijom.
+    check_video_recording: Molimo provjerite svoj video i audio reprodukcijom snimke.
     checking_browser_compatibility: Provjera kompatibilnosti preglednika...
     checking_latency: Provjerava latenciju...
     could_not_reach_servers: Nismo uspjeli doći do naših poslužitelja kako bismo provjerili brzinu mreže. Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
@@ -197,6 +197,7 @@ hr:
     troubleshooting_guide_audio_first: Kliknite na ikonu lokota/informacija u adresnoj traci vašeg preglednika.
     troubleshooting_guide_audio_fourth: Ako je blokirano, možda ćete morati resetirati dozvole u postavkama preglednika.
     troubleshooting_guide_audio_second: Pronađite postavke "Mikrofon" i postavite ih na "Dopusti".
+    troubleshooting_guide_audio_seventh: Ako su dozvole omogućene i došlo je do problema pri prijenosu, ponovno pokrenite provjeru i pokušajte ponovno prenijeti audio.
     troubleshooting_guide_audio_sixth: 'Na Macu: provjerite Postavke sustava > Sigurnost'
     troubleshooting_guide_audio_third: Osvježite stranicu nakon promjene dozvola.
     troubleshooting_guide_browser_fifth: Provjerite je li LocalStorage omogućen u postavkama vašeg preglednika.
@@ -212,8 +213,8 @@ hr:
     troubleshooting_guide_network_third: Ponovno pokrenite ruter/modem i pokušajte ponovno.
     troubleshooting_guide_video_fifth: 'Na Windowsima: Provjerite postavke privatnosti > pristup kameri/mikrofona'
     troubleshooting_guide_video_first: Kliknite na ikonu lokota/informacija u adresnoj traci vašeg preglednika.
-    troubleshooting_guide_video_fourth: Ako je blokirano, možda ćete morati resetirati dozvole u postavkama preglednika.
     troubleshooting_guide_video_second: Pronađite postavke "Kamera" i "Mikrofon" i postavite ih na "Dopusti".
+    troubleshooting_guide_video_seventh: Ako su dozvole omogućene i došlo je do problema pri prijenosu, ponovno pokrenite provjeru i pokušajte ponovno prenijeti video.
     troubleshooting_guide_video_sixth: 'Na Macu: Provjerite Postavke sustava > Sigurnost i privatnost > Kamera/Mikrofon'
     troubleshooting_guide_video_third: Osvježite stranicu nakon promjene dozvola.
     untimed: Bez vremenskog ograničenja
@@ -222,6 +223,7 @@ hr:
     video: Video
     video_and_audio: Video i audio
     video_and_audio_recording: Video i audio snimanje
+    video_check_description: Ovo je provjera sustava prije testa. Snimit ćete videozapis od 30 sekundi kako biste testirali zvuk i sliku. Molimo govorite neprekidno i nemojte stati dok se snimanje automatski ne završi.
     video_check_fix_fifth: Pokušajte isključiti i ponovno priključiti kameru ako je vanjska.
     video_check_fix_first: Kliknite 'Dopusti' kada preglednik zatraži dozvolu za kameru.
     video_check_fix_fourth: Provjerite je li vaša kamera priključena i uključena.

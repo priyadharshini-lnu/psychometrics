@@ -48,7 +48,7 @@ th:
     campaign_check_status: 'สถานะ: %{status}'
     chat_instructions: คำแนะนำในการแชท
     check: ตรวจสอบ
-    check_video_recording: กรุณาตรวจสอบการบันทึกวิดีโอของคุณโดยการเล่นกลับ
+    check_video_recording: กรุณาตรวจสอบวิดีโอและเสียงของคุณโดยการเล่นย้อนกลับ
     checking_browser_compatibility: กำลังตรวจสอบความเข้ากันได้ของเบราว์เซอร์...
     checking_latency: กำลังตรวจสอบความหน่วง...
     could_not_reach_servers: ไม่สามารถติดต่อเซิร์ฟเวอร์ของเราเพื่อตรวจสอบความเร็วเครือข่ายได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองใหม่อีกครั้ง
@@ -197,6 +197,7 @@ th:
     troubleshooting_guide_audio_first: คลิกที่ไอคอนรูปกุญแจ/ข้อมูลในแถบที่อยู่ของเบราว์เซอร์ของคุณ
     troubleshooting_guide_audio_fourth: หากถูกบล็อก คุณอาจต้องรีเซ็ตสิทธิ์ในตั้งค่าเบราว์เซอร์
     troubleshooting_guide_audio_second: ค้นหาการตั้งค่า "ไมโครโฟน" และตั้งค่าเป็น "อนุญาต"
+    troubleshooting_guide_audio_seventh: หากคุณได้เปิดสิทธิ์การเข้าถึงแล้วแต่เกิดปัญหาระหว่างการอัปโหลด ให้รันการตรวจสอบอีกครั้งและลองอัปโหลดเสียงอีกครั้ง
     troubleshooting_guide_audio_sixth: 'บน Mac: ตรวจสอบการตั้งค่าระบบ > ความปลอดภัย'
     troubleshooting_guide_audio_third: รีเฟรชหน้าหลังจากเปลี่ยนสิทธิ์
     troubleshooting_guide_browser_fifth: ตรวจสอบให้แน่ใจว่า LocalStorage เปิดใช้งานแล้วในการตั้งค่าเบราว์เซอร์ของคุณ
@@ -212,8 +213,8 @@ th:
     troubleshooting_guide_network_third: รีสตาร์ทเราเตอร์/โมเด็มของคุณแล้วลองอีกครั้ง
     troubleshooting_guide_video_fifth: 'บน Windows: ตรวจสอบการตั้งค่าความเป็นส่วนตัว > การเข้าถึงกล้อง/ไมโครโฟน'
     troubleshooting_guide_video_first: คลิกที่ไอคอนรูปกุญแจ/ข้อมูลในแถบที่อยู่ของเบราว์เซอร์ของคุณ
-    troubleshooting_guide_video_fourth: หากถูกบล็อก คุณอาจต้องรีเซ็ตสิทธิ์ในตั้งค่าเบราว์เซอร์
     troubleshooting_guide_video_second: ค้นหาการตั้งค่า "กล้อง" และ "ไมโครโฟน" แล้วตั้งค่าเป็น "อนุญาต"
+    troubleshooting_guide_video_seventh: หากคุณได้เปิดสิทธิ์การเข้าถึงแล้วแต่เกิดปัญหาระหว่างการอัปโหลด ให้รันการตรวจสอบอีกครั้งและลองอัปโหลดวิดีโออีกครั้ง
     troubleshooting_guide_video_sixth: 'บน Mac: ตรวจสอบที่ การตั้งค่าระบบ > ความปลอดภัยและความเป็นส่วนตัว > กล้อง/ไมโครโฟน'
     troubleshooting_guide_video_third: รีเฟรชหน้าหลังจากเปลี่ยนสิทธิ์
     untimed: ไม่จำกัดเวลา
@@ -222,6 +223,7 @@ th:
     video: วิดีโอ
     video_and_audio: วิดีโอและเสียง
     video_and_audio_recording: การบันทึกวิดีโอและเสียง
+    video_check_description: นี่คือการตรวจสอบระบบก่อนเริ่มการทดสอบ คุณจะบันทึกวิดีโอ 30 วินาทีเพื่อตรวจสอบเสียงและภาพ กรุณาพูดอย่างต่อเนื่องและอย่าหยุดจนกว่าการบันทึกจะสิ้นสุดโดยอัตโนมัติ
     video_check_fix_fifth: ลองถอดปลั๊กและเสียบกล้องใหม่หากเป็นกล้องภายนอก
     video_check_fix_first: คลิก 'อนุญาต' เมื่อเบราว์เซอร์ขอสิทธิ์ใช้กล้อง
     video_check_fix_fourth: ตรวจสอบว่ากล้องของคุณเชื่อมต่อและเปิดใช้งานแล้ว
