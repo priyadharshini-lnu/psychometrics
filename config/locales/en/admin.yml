@@ -118,6 +118,7 @@ en:
     allow_continue_with_warning_system_check: Allow users to continue with warnings when system check fails
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
+    assessment: Assessment
     assessment_center_activity: Activity
     assessment_center_assessor: Assessor
     assessment_center_attendance: Attendance
@@ -281,10 +282,12 @@ en:
       wednesday: Wednesday
     dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
+    disable_proctoring: Disable Proctoring
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
     duration: Duration
+    duration_must_be_positive: Duration must be positive
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
     edit_folder: Edit Folder
@@ -303,6 +306,7 @@ en:
     enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
+    end: end
     end_time: End Time
     end_time_must_be_after_start_time: End time must be after start time
     enhance_with_ai: Enhance with AI
@@ -888,6 +892,11 @@ en:
     precision: Precision
     privacy: Privacy
     proctoring: Proctoring
+    proctoring_errors_timed_only: Selective proctoring can only be enabled for timed assessments.
+    proctoring_fixed_time_required: Enable Fixed Time to select this option
+    proctoring_mode_all: Enable Proctoring on all assessments
+    proctoring_mode_all_except_ac: Enable Proctoring on all assessments except assessment center
+    proctoring_settings: Proctoring Settings
     professional: Professional
     proficiency: Proficiency
     proficiency_level: Proficiency Level
@@ -1055,9 +1064,11 @@ en:
     select_language_to_translate: Please select language to translate
     select_level: Select level
     select_start_time: Select Start Time
+    selective_proctoring: Selective Proctoring
     send_email: Send email
     set_min_max_scores_warning: Please set minimum and maximum scores for this factor to configure AI scoring.
     settings: Settings
+    settings_saved_successfully: Settings saved successfully
     show_all_assessment_responses: Show All Assessment Responses
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
@@ -1073,6 +1084,7 @@ en:
     sms_invites: SMS Invites
     specialty_questions: Specialty Questions
     standard_questions: Standard Questions
+    start: start
     start_time: Start Time
     static_content: Static Content
     stats: Stats
@@ -1083,6 +1095,8 @@ en:
     target_job_role: Target Job Role
     this_field_is_required: This field is required
     threesixty: 360 Campaign
+    timed_label: 'Timed: %{time_text}'
+    timelines: Timelines
     timezone: TimeZone
     timing: Timing
     to: To

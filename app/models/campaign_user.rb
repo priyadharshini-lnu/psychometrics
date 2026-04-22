@@ -18,7 +18,8 @@ class CampaignUser < ApplicationRecord
   has_many :assessments, through: :user_assessments
   has_many :user_reports, through: :user
   has_many :reports, through: :user_reports
-  has_many :proctoring_sessions, dependent: :destroy
+  include CampaignUsers::Proctoring
+
   has_many :workshop_subjects,
            ->(campaign_user) { where(campaign_id: campaign_user.campaign_id) },
            foreign_key: :user_id, primary_key: :user_id
@@ -129,13 +130,6 @@ class CampaignUser < ApplicationRecord
     dates.compact.min
   end
 
-  def finish_proctoring_session
-    proctoring_session = proctoring_sessions.last
-    return unless proctoring_session
-
-    Examus::FinishSession.call!(proctoring_session.session_id)
-  end
-
   def disabled
     !active
   end
@@ -183,19 +177,6 @@ class CampaignUser < ApplicationRecord
 
   def workshop_assessment_ids
     campaign_assessments.workshop_activities.pluck(:assessment_id)
-  end
-
-  def all_proctored_assessments
-    return UserAssessment.none unless proctoring_enabled?
-
-    query = campaign_user_assessments.self_assessment.where(prework: false)
-    query = query.where.not(assessment_id: workshop_assessment_ids) unless proctoring_enabled_on_workshop_activity?
-
-    query
-  end
-
-  def all_proctored_assessments_completed?
-    !all_proctored_assessments.pending_assessments.exists?
   end
 
   def scheduled_at

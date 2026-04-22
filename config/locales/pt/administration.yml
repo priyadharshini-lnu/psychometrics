@@ -959,7 +959,6 @@ pt:
         prework_required: Não permitir a reserva do centro se os trabalhos preparatórios não estiverem concluídos
         prework_required_for_invite: Enviar e-mail de convite apenas quando o Pré-trabalho estiver concluído
         proctoring:
-          allow_on_assessment_center: Permitir o proctoring no centro de avaliação
           enable: Ativar o controlo de qualidade
           identification: Identificação
           identifications:
@@ -2772,12 +2771,10 @@ pt:
     proctoring_sessions:
       columns:
         comment: Comentário
-        completed_at: Concluído em
         conclusion: Conclusão
         links: Ligações
         score: Pontuação
         session_id: ID da sessão
-        started_at: Iniciado em
       links:
         report: Relatório
         review: Revisão

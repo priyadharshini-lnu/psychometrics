@@ -83,16 +83,17 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignsCount,
     campaignOptions: {
       instructionsEnabled, instructions, proctoringEnabled, integrationType, proctoringEnabledOnWorkshopActivity,
-      enableMobileProctoring,
+      enableMobileProctoring, selectiveProctoringEnabled,
     },
     campaignTime,
   } = campaign
+  const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
 
   const dispatch = useDispatch()
   const hasFlashMessages = useSelector((state: RootState) => state.flash?.length > 0)
   const { token } = theme.useToken()
   const { isProctored, proctoringCheckInProgress } = useIsProctored()
-  const needsProctoring = proctoringEnabled && !isProctored
+  const campaignNeedsProctoring = campaignLevelProctoringEnabled && !isProctored
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   // TODO: We can check completion_status here. Also need to take care for assessment timed_out status when we add it
@@ -118,10 +119,10 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const campaignClosedForUser = campaignClosed
     || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
   const disableWorkshopActivityBasedOnProctoringSetting = proctoringEnabledOnWorkshopActivity
-    ? needsProctoring : isProctored
+    ? campaignNeedsProctoring : isProctored
 
   const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
-  const canNotStartAssessment = needsProctoring
+  const canNotStartAssessment = campaignNeedsProctoring
     || (fixedTimed && !hasStartedCampaign)
     || campaignClosedForUser
     || campaignUser.status === 'completed'
@@ -137,7 +138,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     && !allAssessmentCompleteBasedOnWorkshopProctoringSetting
     && fixedTimed && !isCampaignInterrupted
   // eslint-disable-next-line max-len
-  const canContinueCampaign = ((needsProctoring && !canBeginCampaign) || isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
+  const canContinueCampaign = ((campaignNeedsProctoring && !canBeginCampaign) || isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
     && !campaignClosedForUser && !allAssessmentCompleteBasedOnWorkshopProctoringSetting
     && !campaignUserTimedOut && fixedTimed
 
@@ -161,7 +162,9 @@ const CommonComponent: FC<CommonComponentProps> = ({
 
   const campaignStartInstruction = () => {
     const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
-    if (proctoringEnabled) { messages.push(I18n.t('campaign.instruction_modal.common_proctoring_instructions')) }
+    if (campaignLevelProctoringEnabled) {
+      messages.push(I18n.t('campaign.instruction_modal.common_proctoring_instructions'))
+    }
 
     if (integrationType === 'ldb') { messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction')) }
 
@@ -193,7 +196,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
       const { responseData } = await makeAsyncRequest()
       const { examusSessionUrl } = responseData
 
-      if (proctoringEnabled && examusSessionUrl) {
+      if (campaignLevelProctoringEnabled && examusSessionUrl) {
         window.location.href = examusSessionUrl
       } else {
         dispatch(setCampaignUser(responseData))
@@ -306,14 +309,14 @@ const CommonComponent: FC<CommonComponentProps> = ({
       type="warning"
       title={
         getBeginOrContinueMessage(
-          fixedTimed, proctoringEnabled,
+          fixedTimed, campaignLevelProctoringEnabled,
           canBeginCampaign ? I18n.t('campaign.begin') : I18n.t('campaign.continue'),
         )
       }
     />
   ) : null
 
-  if (proctoringEnabled && proctoringCheckInProgress) { return <Skeleton /> }
+  if (campaignLevelProctoringEnabled && proctoringCheckInProgress) { return <Skeleton /> }
 
   return (
     <>
@@ -473,14 +476,12 @@ const CommonComponent: FC<CommonComponentProps> = ({
 }
 
 const getBeginOrContinueMessage = (
-  fixedTimed: boolean,
-  proctoringEnabled: boolean,
-  buttonText: string,
+  fixedTimed: boolean, campaignLevelProctoringEnabled: boolean, buttonText: string,
 ) => {
-  if (fixedTimed && proctoringEnabled) {
+  if (fixedTimed && campaignLevelProctoringEnabled) {
     return I18n.t('enduser.start_campaign_message_timed_proctored', { buttonText })
   }
-  if (proctoringEnabled) {
+  if (campaignLevelProctoringEnabled) {
     return I18n.t('enduser.start_campaign_message_proctored', { buttonText })
   }
   if (fixedTimed) {

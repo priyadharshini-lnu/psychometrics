@@ -9,8 +9,8 @@ module EndUser
                :selected_locale, :privacy_consent_required, :campaign_id,
                :custom_consent_text, :custom_consent_policy_version, :data_role,
                :is_data_controller, :instructions, :started_at, :current_campaign_expiry_date,
-               :piped_text_mapping, :locale_data, :custom_acknowledgment_text,
-               :should_run_assessment_level_checks
+               :piped_text_mapping, :locale_data, :custom_acknowledgment_text, :selective_proctoring_enabled,
+               :proctoring_integration_type, :should_run_assessment_level_checks
 
     def privacy_consent_required
       return true if is_data_controller
@@ -106,6 +106,14 @@ module EndUser
         name: I18n.t("languages.#{locale}"),
         direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
       }
+    end
+
+    def selective_proctoring_enabled
+      campaign.campaign_options.selective_proctoring_enabled && object.proctoring_enabled?
+    end
+
+    def proctoring_integration_type
+      campaign.campaign_options.integration_type
     end
 
     def should_run_assessment_level_checks

@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-module CampaignUsers
-  class ContinueProctoringCampaign < AsyncResponseRequest::AsyncRequestHandler
+module UserAssessments
+  class ProctoringSession < AsyncResponseRequest::AsyncRequestHandler
     def call
-      return broadcast :invalid, async_response unless campaign_user.proctoring_enabled?
+      return broadcast :invalid, async_response unless user_assessment.proctoring_enabled?
 
-      result = Examus::GetSessionUrl.call(campaign_user: campaign_user, locale: I18n.locale)
+      result = Examus::GetSessionUrl.call(campaign_user: user_assessment.campaign_user, locale: I18n.locale,
+                                          subject: user_assessment)
+
       if result[:error]
         async_response.response_data = { error: result[:error] }
         async_response.processing_status = :failed
@@ -20,8 +22,8 @@ module CampaignUsers
 
     private
 
-    def campaign_user
-      @campaign_user ||= current_user.campaign_users.find(params[:id])
+    def user_assessment
+      @user_assessment ||= UserAssessment.find_by!(id: params[:id], evaluator_id: current_user.id)
     end
 
     def async_response
@@ -33,7 +35,7 @@ module CampaignUsers
     def serialized_data(data)
       ::EndUser::CampaignUserSerializer.new(context: {
         **data
-      }).serialize(campaign_user)
+      }).serialize(user_assessment.campaign_user)
     end
   end
 end

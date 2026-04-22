@@ -60,6 +60,7 @@ class Campaign < ApplicationRecord
            :rules,
            :campaign_scoring_variables,
            :proctoring_type,
+           :selective_proctoring_enabled?,
            to: :campaign_options
   delegate :skill_rater?, to: :threesixty_campaign, allow_nil: true
 

@@ -1414,17 +1414,17 @@ en:
           Please be aware that there is no way to Stop or Pause the timer. The campaign timer will keep running even when you close the browser so at no point you should think about leaving the tasks in between to do something else. Do make sure to minimize distractions during the tasks. Find a quiet environment, turn off notifications on your devices, and avoid multitasking. Maintain your concentration and stay focused. Once the campaign timer runs out, you will not be able to continue. If you have read through the above instructions, please click on start to continue the assigned tasks.
         </p>
       campaign_start_instruction: |-
-        <h4>Please read the following instructions properly.</h4>
+        <h4 class="mt-0">Please read the following instructions properly.</h4>
         <p>
           The task(s) you are about to begin are timed. Once you click on “Start”, the campaign timer will automatically commence. You have %{minutes} minutes to complete all the activities. Please aim to complete the tasks within the designated timeframe and manage time effectively to avoid rushing through the evaluation process. Make sure to complete the tasks in one go so if you need to take a break, Now is the time.
         </p>
       common_proctoring_instructions: |-
-        <h4>Proctoring</h4>
+        <h4 class="mt-0">Proctoring</h4>
         <p>
           Upon clicking the Start button, you will be redirected to our proctoring system. It will monitor your camera, microphone, and screen during your session. These sessions are automatically proctored by our sophisticated AI system, providing an uninterrupted and smooth user experience. However, sessions may also be reviewed by human proctors. Any signs of misconduct or irregularities will be flagged. This is being done to ensure that no cheating attempts are made. If found suspicions, your task(s) will stand canceled.
         </p>
       lockdown_browser_instruction: |-
-        <h4>Proctoring browser</h4>
+        <h4 class="mt-0">Proctoring browser</h4>
         <p>
           You will be required to download and install a special browser to complete the proctored tasks. Please follow the instructions in the next screen. You can uninstall this after completing all required activities.
         </p>

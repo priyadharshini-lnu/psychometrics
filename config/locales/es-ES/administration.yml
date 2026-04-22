@@ -959,7 +959,6 @@ es-ES:
         prework_required: No permitir la reserva del centro si no se han completado los trabajos previos
         prework_required_for_invite: Enviar invitación por correo electrónico sólo cuando se haya completado el trabajo previo
         proctoring:
-          allow_on_assessment_center: Permitir la supervisión en el centro de evaluación
           enable: Habilitar la verificación
           identification: Identificación
           identifications:
@@ -2772,12 +2771,10 @@ es-ES:
     proctoring_sessions:
       columns:
         comment: Comentario
-        completed_at: Completado en
         conclusion: Conclusión
         links: Enlaces
         score: Puntuación
         session_id: ID de sesión
-        started_at: Comenzó en
       links:
         report: Informe
         review: Consulte

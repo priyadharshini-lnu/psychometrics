@@ -378,6 +378,7 @@ Rails.application.routes.draw do
             put :schedule_assessment
             post :normalize_factor_scores
             put :toggle_caching
+            put :update_proctoring_settings
           end
           collection do
             get :other
@@ -1083,6 +1084,8 @@ as: :simulation_progress_notification
           post :upload_user_verification_media_url
           put :user_verification_media_upload_callback
           post :mark_completed
+          post :proctoring_session
+          post :finish_proctoring_session
         end
       end
 

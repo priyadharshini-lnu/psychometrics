@@ -33,7 +33,10 @@ module UserAssessments
 
     def time
       return user_assessment.additional_time if user_assessment.interrupted?
-      return user_assessment.assessment.extra['timer'] if user_assessment.not_started?
+
+      if user_assessment.not_started?
+        return user_assessment.assessment.extra['timer']
+      end
 
       nil
     end

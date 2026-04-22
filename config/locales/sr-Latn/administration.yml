@@ -959,7 +959,6 @@ sr-Latn:
         prework_required: Ne dozvoli rezervaciju centra ako predradovi nisu završeni
         prework_required_for_invite: Pošalji imejl sa pozivnicom samo kada je pred-rad završen
         proctoring:
-          allow_on_assessment_center: Dozvolite nadgledanje od strane trećeg lica u centru za procenu (proctoring)
           enable: Omogućite nadgledanje od strane trećeg lica (proctoring)
           identification: Identifikacija
           identifications:
@@ -2772,12 +2771,10 @@ sr-Latn:
     proctoring_sessions:
       columns:
         comment: Komentar
-        completed_at: Završeno u
         conclusion: Zaključak
         links: Linkovi
         score: Skor
         session_id: ID sesije
-        started_at: Početo u
       links:
         report: Izveštaj
         review: Pregledaj

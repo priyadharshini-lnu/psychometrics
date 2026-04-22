@@ -11,6 +11,8 @@ class CampaignAssessment < ApplicationRecord
   belongs_to :mettl_schedule_record, optional: true
 
   scope :ungrouped, -> { where(campaign_assessment_group_id: nil) }
+  scope :preworks, -> { where(prework: true) }
+  scope :workshop_activities, -> { where(workshop_activity: true) }
 
   validate :validate_external_config
   before_save :parse_external_config
@@ -38,9 +40,6 @@ class CampaignAssessment < ApplicationRecord
            to: :assessment
 
   delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
-
-  scope :preworks, -> { where(prework: true) }
-  scope :workshop_activities, -> { where(workshop_activity: true) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name category archived campaign_id workshop_activity campaign_assessment_group_id]

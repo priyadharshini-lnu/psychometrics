@@ -959,7 +959,6 @@ ko:
         prework_required: 사전 작업이 완료되지 않은 경우 센터 예약을 허용하지 않습니다
         prework_required_for_invite: 사전 작업이 완료된 경우에만 초대 이메일 보내기
         proctoring:
-          allow_on_assessment_center: 평가 센터에서 감독 허용
           enable: 감독 활성화
           identification: 신원 확인
           identifications:
@@ -2772,12 +2771,10 @@ ko:
     proctoring_sessions:
       columns:
         comment: 댓글
-        completed_at: 다음에서 완료
         conclusion: 결론
         links: 링크
         score: 점수
         session_id: 세션 ID
-        started_at: 에서 시작
       links:
         report: 신고
         review: 검토

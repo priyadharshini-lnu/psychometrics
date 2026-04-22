@@ -2,15 +2,16 @@
 
 module LicenseManager
   class Base
-    private_attr_reader :license, :campaign, :user, :project, :project_license, :client
+    private_attr_reader :license, :campaign, :user, :project, :project_license, :client, :options
 
-    def initialize(license:, campaign:, user:)
+    def initialize(license:, campaign:, user:, **options)
       @license = license
       @project = campaign.project
       @campaign = campaign
       @user = user
       @client = campaign.client
       @project_license = find_project_specific_license
+      @options = options
     end
 
     def available?

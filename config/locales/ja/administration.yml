@@ -959,7 +959,6 @@ ja:
         prework_required: 事前工事が完了していない場合は、センター予約を許可しないこと。
         prework_required_for_invite: プレワーク完了時のみ招待メールを送信
         proctoring:
-          allow_on_assessment_center: アセスメント・センターでの試験監督を許可する
           enable: 試験監督を可能にする
           identification: 識別
           identifications:
@@ -2772,12 +2771,10 @@ ja:
     proctoring_sessions:
       columns:
         comment: コメント
-        completed_at: で完成
         conclusion: 結論
         links: リンク
         score: スコア
         session_id: セッションID
-        started_at: でスタートした。
       links:
         report: レポート
         review: レビュー
