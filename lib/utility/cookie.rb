@@ -11,6 +11,7 @@ module Utility
       expiry = 'Thu, 01 Jan 1970 00:00:00 GMT'
       secure = Rails.application.config.session_options[:secure] ? '; Secure' : ''
       append_set_cookie(response, "#{cookie_name}=; path=/; expires=#{expiry}; SameSite=None; Secure")
+      append_set_cookie(response, "#{cookie_name}=; path=/; expires=#{expiry}; SameSite=None; Partitioned; Secure")
       append_set_cookie(response, "#{cookie_name}=; path=/; expires=#{expiry}; SameSite=Lax#{secure}")
     end
 

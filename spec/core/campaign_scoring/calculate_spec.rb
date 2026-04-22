@@ -639,6 +639,101 @@ describe CampaignScoring::Calculate do
     expect(values).to be_empty
   end
 
+  describe 'assessment.status' do
+    let(:assessor_form) { create(:assessment, category: 'assessor_form') }
+
+    it 'returns nil when no user_assessment record exists' do
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: "return assessment.status(#{assessment.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq(nil)
+    end
+
+    it 'returns in_progress when user_assessment status is in_progress' do
+      create(:user_assessment, campaign: campaign, assessment: assessment, subject: user, evaluator: user,
+        status: :in_progress)
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: "return assessment.status(#{assessment.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq('in_progress')
+    end
+
+    it 'returns completed when user_assessment status is completed' do
+      create(
+        :users_result, campaign: campaign, assessment: assessment,
+        subject: user, evaluator: user, status: :completed, score_calculated: true
+      )
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: "return assessment.status(#{assessment.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq('completed')
+    end
+
+    it 'returns interrupted when user_assessment status is interrupted' do
+      create(:user_assessment, campaign: campaign, assessment: assessment, subject: user, evaluator: user,
+        status: :interrupted)
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: "return assessment.status(#{assessment.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq('interrupted')
+    end
+
+    it 'returns ineligible when user_assessment status is ineligible' do
+      create(:user_assessment, campaign: campaign, assessment: assessment, subject: user, evaluator: user,
+        status: :ineligible)
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: "return assessment.status(#{assessment.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq('ineligible')
+    end
+
+    it 'raises an error when assessor form id is passed' do
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: "return assessment.status(#{assessor_form.id})"
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq(nil)
+      expect(values[cf].error_message).to eq(
+        'assessment.status: Only self-assessment IDs are allowed. Assessor form IDs are not permitted.'
+      )
+    end
+
+    it 'raises an error when assessment is not found' do
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: 'return assessment.status(0)'
+      )
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq(nil)
+      expect(values[cf].error_message).to eq("assessment.status: Assessment with ID '0' not found.")
+    end
+  end
+
   describe 'lua helpers' do
     it 'it can return values rounded to specified digits' do
       round = create(

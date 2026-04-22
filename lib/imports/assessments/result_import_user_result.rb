@@ -256,24 +256,25 @@ module Imports
       end
 
       def validate_question_and_answers(data, questions, index)
-        data.each do |key, value|
+        data.each_key do |key|
           next unless /qid/.match?(key) # rubocop:disable Performance/StringInclude
           next if key.include?(DURATION)
 
           qid = key.split(/\D+/).compact_blank.map(&:to_i).first
           question = questions[qid].try(:first)
+          next if question
 
-          unless question
-            errors.add(:base, I18n.t('administration.imports.errors.result.question_invalid',
-                                     row: index + SKIP_ROWS, question_id: qid))
-            next
-          end
+          errors.add(:base, I18n.t('administration.imports.errors.result.question_invalid',
+                                   row: index + SKIP_ROWS, question_id: qid))
 
-          validation_errors = ::Questions::Validation.call!(question, value)
-          next if validation_errors.blank?
+          # Custom validations are designed for profile fields (rich answer objects).
+          # Import CSV values have different formats (1-based indices, flat strings) that
+          # don't align with backend validation handlers across question types.
+          # validation_errors = ::Questions::Validation.call!(question, value)
+          # next if validation_errors.blank?
 
-          errors.add(:base, I18n.t('administration.imports.errors.result.answer_invalid',
-                                   row: index + SKIP_ROWS, question_id: qid, error: validation_errors.join(',')))
+          # errors.add(:base, I18n.t('administration.imports.errors.result.answer_invalid',
+          #                          row: index + SKIP_ROWS, question_id: qid, error: validation_errors.join(',')))
         end
       end
 
