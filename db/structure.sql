@@ -2439,7 +2439,8 @@ CREATE TABLE public.campaign_options (
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
     minimum_upload_speed integer,
     minimum_download_speed integer,
-    enable_mobile_proctoring boolean DEFAULT false
+    enable_mobile_proctoring boolean DEFAULT false,
+    skip_assessment_level_checks boolean DEFAULT true NOT NULL
 );
 
 
@@ -20360,6 +20361,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260417093000'),
 ('20260331100000'),
 ('20260401053041'),
 ('20260401045303'),

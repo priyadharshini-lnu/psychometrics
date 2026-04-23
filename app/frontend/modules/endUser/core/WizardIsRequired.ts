@@ -5,7 +5,12 @@ export default {
   run: (
     { enableNetworkCheck, enableAudioCheck, enableVideoCheck }: AssessmentExtra,
     userAssessmentId: number,
+    shouldRunAssessmentLevelChecks = true,
   ): boolean => {
+    if (!shouldRunAssessmentLevelChecks) {
+      return false
+    }
+
     if (enableNetworkCheck && !Cookies.get('checking_wizard.network')) return true
     if (enableAudioCheck && !Cookies.get('checking_wizard.audio')) return true
     const checkWizardCookie = JSON.parse(Cookies.get('checking_wizard.video') || '{}')

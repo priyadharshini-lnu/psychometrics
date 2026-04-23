@@ -24,6 +24,7 @@ module Threesixty
             optional(:enable_network_check).maybe(:bool?)
           end
           required(:assessment_id).filled(:int?)
+          required(:should_run_assessment_level_checks).filled(:bool?)
           required(:user).hash(UserSchema.schema(_, _))
           required(:subject).hash(UserSchema.schema(_, _))
         end

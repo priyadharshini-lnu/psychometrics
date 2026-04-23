@@ -39,4 +39,32 @@ describe UserAssessments::CanStart do
 
     expect(described_class.call!(user_assessment, user, { 'checking_wizard.audio' => true })).to eq(false)
   end
+
+  it 'returns false when campaign-level system check is enabled and assessment-level checks are skipped' do
+    assessment.extra = { enable_audio_check: true }
+    campaign.campaign_options.update!(system_check_enabled: true, skip_assessment_level_checks: true)
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+    user.project.privacy_setting.privacy_consent = false
+
+    expect(described_class.call!(user_assessment, user, {})).to eq(false)
+  end
+
+  it 'returns true when campaign-level system check is enabled and assessment-level checks are not skipped' do
+    assessment.extra = { enable_audio_check: true }
+    campaign.campaign_options.update!(system_check_enabled: true, skip_assessment_level_checks: false)
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+
+    expect(described_class.call!(user_assessment, user, {})).to eq(true)
+  end
+
+  it 'returns true when campaign-level system checks are disabled even if assessment-level checks are marked to skip' do
+    assessment.extra = { enable_audio_check: true }
+    campaign.campaign_options.update!(system_check_enabled: false, skip_assessment_level_checks: true)
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+
+    expect(described_class.call!(user_assessment, user, {})).to eq(true)
+  end
 end

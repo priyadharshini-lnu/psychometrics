@@ -50,7 +50,7 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
   end
 
   describe 'update_campaign_options' do
-    it 'updates minimum upload and download speeds and returns serialized options' do
+    it 'updates system check options and returns serialized options' do
       campaign_option = campaign.campaign_options
 
       patch :update_campaign_options,
@@ -58,6 +58,8 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
               id: campaign.id,
               project_id: campaign.project_id,
               resource: {
+                system_check_enabled: true,
+                skip_assessment_level_checks: false,
                 minimum_upload_speed: 123,
                 minimum_download_speed: 456
               }
@@ -67,10 +69,14 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
 
       campaign_option.reload
 
+      expect(campaign_option.system_check_enabled).to be true
+      expect(campaign_option.skip_assessment_level_checks).to be false
       expect(campaign_option.minimum_upload_speed).to eq(123)
       expect(campaign_option.minimum_download_speed).to eq(456)
 
       parsed = response.parsed_body
+      expect(parsed['system_check_enabled']).to be true
+      expect(parsed['skip_assessment_level_checks']).to be false
       expect(parsed['minimum_upload_speed']).to eq(123)
       expect(parsed['minimum_download_speed']).to eq(456)
     end

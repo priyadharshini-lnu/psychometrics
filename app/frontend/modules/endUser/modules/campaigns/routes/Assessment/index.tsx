@@ -104,7 +104,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }
 
   const handleBeginAssessment = () => {
-    if (!assessmentStartedAt && !WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
+    if (!assessmentStartedAt && !WizardIsRequired.run(
+      userAssessmentData.assessmentExtra,
+      userAssessmentId,
+      userAssessmentData.shouldRunAssessmentLevelChecks,
+    )) {
       const beginLink = `/user_assessments/${userAssessmentId}/begin${location.search}`
       window.location.href = beginLink
     } else {
@@ -238,7 +242,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  if (WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
+  if (WizardIsRequired.run(
+    userAssessmentData.assessmentExtra,
+    userAssessmentId,
+    userAssessmentData.shouldRunAssessmentLevelChecks,
+  )) {
     return <CheckingWizard assessmentId={assessmentId} userAssessmentId={userAssessmentId} />
   }
 

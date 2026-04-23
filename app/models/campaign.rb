@@ -212,6 +212,14 @@ class Campaign < ApplicationRecord
     system_check_option('allow_continue_with_warning', default: false)
   end
 
+  def skip_assessment_level_checks?
+    system_check_option('skip_assessment_level_checks', default: true)
+  end
+
+  def should_run_assessment_level_checks?
+    !system_check_enabled? || !skip_assessment_level_checks?
+  end
+
   def minimum_upload_speed
     system_check_option('minimum_upload_speed')
   end

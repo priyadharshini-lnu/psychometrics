@@ -6,7 +6,7 @@ module EndUser
                :proctoring_enabled, :identification, :rules, :integration_type,
                :workshop_booking_requires_prework_completion, :show_watermark, :watermark_content,
                :proctoring_enabled_on_workshop_activity, :system_check_enabled, :system_check_validity,
-               :allow_continue_with_warning, :enable_mobile_proctoring
+               :allow_continue_with_warning, :skip_assessment_level_checks, :enable_mobile_proctoring
 
     def proctoring_enabled
       Settings.features.proctoring && object.proctoring_enabled
