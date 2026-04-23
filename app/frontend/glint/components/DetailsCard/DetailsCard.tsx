@@ -100,7 +100,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           </Col>
         </Row>
       )}
-      <Space orientation="vertical">
+      <Space orientation="vertical" className="w-100">
         {!showStatusAtTop && (
           <Row>
             <Col span={24}>{titleElement}</Col>

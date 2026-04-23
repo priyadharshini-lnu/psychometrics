@@ -3,7 +3,7 @@ import {
   Button, Select,
   Form, Row, Col, Space, Input,
 } from 'antd'
-import { FormInstance } from 'antd/lib/form'
+import { FormInstance } from 'antd/es/form'
 import _ from 'lodash'
 import { Panel } from '~/glint/components/Panel/Panel'
 import { type Errors } from './BaseInfo'

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import qs from 'qs'
+import { Spin } from 'antd'
 import { useParams, useLocation } from 'react-router-dom'
+import qs from 'qs'
 import Page from '~/modules/survey/views/Preview/Page'
 import EndPage from '~/modules/survey/views/Preview/EndPage'
 import SubmitPage from '~/modules/survey/views/Preview/SubmitPage'
@@ -8,6 +9,9 @@ import SinglePage from '~/modules/survey/views/Preview/SinglePage'
 import { Instructions } from '~/modules/survey/views/Preview/Instructions'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import { useUnloadCallback } from '~/hooks/useUnloadCallback'
+import { useIsProctored } from '~/hooks/useProctoringState'
+
+const { I18n } = window
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -15,17 +19,24 @@ const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
   submissionFailed, submitRequired, defaultLanguage, invalidSession, answersSaved, showEnhanceWithAI,
-  preventOverflow, skipInstructions,
+  preventOverflow, skipInstructions, onSubmit, selectiveProctoringEnabled,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
   const { userAssessmentId } = useParams()
   const location = useLocation()
+  const { isProctored } = useIsProctored()
+  const insideSelectiveProctoringSession = selectiveProctoringEnabled && isProctored
 
   useEffect(() => {
     isAgile() && initializeAgile()
+    if (fixedTimed && insideSelectiveProctoringSession && !started) {
+      window.location.href = `/user_assessments/${userAssessmentId}/begin${location.search}`
+    }
   }, [])
 
   const showUnloadCallback = !end && started && !invalidSession && !answersSaved
+  const submitButtonText = insideSelectiveProctoringSession
+    ? I18n.t('shared.submit_and_finish_proctoring', { locale: I18n.uiLocale }) : ''
 
   useUnloadCallback(I18n.t('common.messages.leave_message'), showUnloadCallback)
 
@@ -61,6 +72,8 @@ const AssessmentPreview = ({
 
   if (!initialized) { return null }
 
+  if (insideSelectiveProctoringSession && !started) { return <Spin fullscreen /> }
+
   if (isAgile()) {
     return (
       <div>
@@ -78,7 +91,7 @@ const AssessmentPreview = ({
   }
 
   if (showSubmitPage || (submitRequired && (submissionInProgress || submissionFailed))) {
-    return <SubmitPage />
+    return <SubmitPage onSubmit={onSubmit} submitButtonText={submitButtonText} />
   }
 
   if (!skipInstructions && type !== 'preview_assessment' && !isAnonymousAssessment && !started

@@ -1,10 +1,15 @@
-import React from 'react'
 import _ from 'lodash'
-import { Space, Table, Tooltip } from 'antd'
+import React from 'react'
+import {
+  Typography, Space, Table, Tooltip, Timeline,
+} from 'antd'
+import dayjs from '~/utils/dayjs'
 import { ProctoringSession } from '~/modules/admin/modules/campaigns/core/proctoringSessions'
+import { standardizeDateTime } from '~/utils/time'
 
 const { I18n } = window
 const { Column } = Table
+const { Text } = Typography
 
 interface OwnProps {
   proctoringSessions: ProctoringSession[]
@@ -23,14 +28,38 @@ export const ProctoringSessionList: React.FC<Props> = ({ proctoringSessions }) =
       )}
     />
     <Column
-      title={I18n.t('administration.proctoring_sessions.columns.started_at')}
-      dataIndex="startedAt"
-      key="startedAt"
+      title={I18n.t('admin.assessment')}
+      dataIndex="assessmentName"
+      key="assessmentName"
+      width={200}
     />
     <Column
-      title={I18n.t('administration.proctoring_sessions.columns.completed_at')}
-      dataIndex="completedAt"
-      key="completedAt"
+      title={(
+        <p className="mb-0 ta-c">
+          {I18n.t('admin.timelines')}
+          <span className="grey-text">{dayjs().format(' (z)')}</span>
+        </p>
+      )}
+      key="timelines"
+      width={300}
+      render={({ startedAt, completedAt }) => (
+        <Timeline
+          titleSpan={5}
+          items={
+          [{
+            title: I18n.t('admin.start'),
+            content: <Text code>{standardizeDateTime(startedAt)}</Text>,
+            styles: { root: { paddingBottom: '0.75rem' } },
+          },
+          {
+            title: I18n.t('admin.end'),
+            content: completedAt ? <Text code>{standardizeDateTime(completedAt)}</Text> : '',
+            styles: { root: { paddingBottom: 0 } },
+          },
+          ]
+        }
+        />
+      )}
     />
     <Column
       title={I18n.t('administration.proctoring_sessions.columns.conclusion')}

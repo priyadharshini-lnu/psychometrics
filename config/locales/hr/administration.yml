@@ -959,7 +959,6 @@ hr:
         prework_required: Ne dopustite rezervaciju centra ako pripremni radovi nisu dovršeni
         prework_required_for_invite: Pošaljite e-poštu s pozivnicom samo nakon dovršetka pripremnih radova
         proctoring:
-          allow_on_assessment_center: Dopustite nadzor u centru za procjenu
           enable: Omogućite nadzor
           identification: Identifikacija
           identifications:
@@ -2772,12 +2771,10 @@ hr:
     proctoring_sessions:
       columns:
         comment: Komentar
-        completed_at: Dovršeno u
         conclusion: Zaključak
         links: Linkove
         score: Rezultat
         session_id: ID sesije
-        started_at: Počelo u
       links:
         report: Izvješće
         review: Pregled

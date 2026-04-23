@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, DatePicker, Dropdown, Space,
 } from 'antd'
-import { MenuProps } from 'antd/lib/menu'
+import { MenuProps } from 'antd/es/menu'
 import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { DateFormat } from '~/modules/survey/interfaces/questions/TextEntry'

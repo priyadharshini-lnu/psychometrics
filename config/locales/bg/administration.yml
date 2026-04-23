@@ -959,7 +959,6 @@ bg:
         prework_required: Не разрешавайте резервация в Центъра за оценяване, ако предварителната работа не е завършена
         prework_required_for_invite: Изпращайте имейл с покана само когато предварителната работа е завършена
         proctoring:
-          allow_on_assessment_center: Разрешаване на наблдаване в центъра за оценяване
           enable: Активиране на наблюдение
           identification: Идентификация
           identifications:
@@ -2772,12 +2771,10 @@ bg:
     proctoring_sessions:
       columns:
         comment: Коментирам
-        completed_at: Завършен в
         conclusion: Извод
         links: Връзки
         score: Резултат
         session_id: Идентификатор на сесията
-        started_at: Започна в
       links:
         report: Доклад
         review: Преглед

@@ -16,7 +16,8 @@ module WebhookEvents
           id: ctx[:invite]&.id,
           title: ctx[:invite]&.title,
           description: ctx[:invite]&.description,
-          url: ctx[:invite]&.end_user_url
+          url: ctx[:invite]&.end_user_url,
+          cancellation_type: ctx[:cancellation_type]
         },
         workshop: workshop_payload(ctx[:workshop])
       }

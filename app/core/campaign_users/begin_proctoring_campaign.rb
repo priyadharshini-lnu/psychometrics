@@ -5,7 +5,7 @@ module CampaignUsers
     def call
       return broadcast :invalid, async_response unless campaign_user.proctoring_enabled?
 
-      result = Examus::GetSessionUrl.call(campaign_user, I18n.locale)
+      result = Examus::GetSessionUrl.call(campaign_user: campaign_user, locale: I18n.locale)
 
       if result[:error]
         async_response.response_data = { error: result[:error] }

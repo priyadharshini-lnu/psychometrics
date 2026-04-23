@@ -1,7 +1,7 @@
 import { brotliCompress } from 'zlib'
 import { promisify } from 'util'
 import { defineConfig } from 'vite'
-import loadCssModulePlugin from 'vite-plugin-load-css-module'
+import loadCssModulePlugin from '../config/vite-plugins/load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
 import checker from 'vite-plugin-checker'
@@ -9,7 +9,6 @@ import checker from 'vite-plugin-checker'
 import dts from "vite-plugin-dts"
 import svgr from 'vite-plugin-svgr'
 import { env } from 'process'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import fs from 'fs'
 
 const __DEV__ = env.NODE_ENV === 'development'
@@ -53,15 +52,17 @@ const brotliPromise = promisify(brotliCompress)
 export default defineConfig({
   server,
   clearScreen: false,
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
     react(),
-    tsconfigPaths(),
     // visualizer({open: true}),
     svgr({
       exportAsDefault: false,
     }),
     ...devPlugins,
-    loadCssModulePlugin.default({
+    loadCssModulePlugin({
       include: (id) => {
         const path = id.split('?').slice(0, 1).join('')
         if (path.endsWith('/ant.less')) { return false }
@@ -84,15 +85,13 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
-  esbuild: {
-    sourcemap: 'external',
-  },
   build: {
     sourcemap: __DEV__,
+    cssMinify: 'esbuild',
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     cssCodeSplit: true,
-    rollupOptions: {
+    rolldownOptions: {
       onwarn(warning, warn) {
         if (warning.code === 'MODULE_LEVEL_DIRECTIVE' || warning.code === 'EVAL') {
           return
@@ -136,8 +135,8 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react-csv'],
-    esbuildOptions: {
-      loader: {
+    rolldownOptions: {
+      moduleTypes: {
         '.js': 'jsx',
       },
     },

@@ -99,7 +99,7 @@ class PageFooter extends Component {
         enableBack, submissionInProgress, submissionFailed,
         isAssessor, type,
       },
-      hasPrevPage, isDisconnected, showSubmit, invalidSession,
+      hasPrevPage, isDisconnected, showSubmit, invalidSession, onSubmit, submitButtonText,
     } = this.props
 
     const showSave = type === 'pass_assessment' && (isAssessor || preview.options?.enable_save)
@@ -175,9 +175,12 @@ class PageFooter extends Component {
                 disabled={disableActionableButtons}
                 loading={submitButtonPressed && submissionInProgress}
                 className={styles.next}
-                onClick={e => this.handleNextClick(SUBMIT, e)}
+                onClick={(e) => {
+                  this.handleNextClick(SUBMIT, e)
+                  onSubmit && onSubmit()
+                }}
               >
-                {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
+                {submitButtonText || I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
               </FixedWidthButton>
             ) : (
               <FixedWidthButton

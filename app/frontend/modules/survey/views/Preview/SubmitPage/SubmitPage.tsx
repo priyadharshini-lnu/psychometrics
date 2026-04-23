@@ -8,9 +8,14 @@ import ScoringTable from '../EndPage/components/ScoringTable'
 
 const { I18n } = window
 
-const SubmitPage: React.FC<PropsFromRedux> = ({
+type SubmitPageProps = PropsFromRedux & {
+  onSubmit: () => void
+  submitButtonText?: string
+}
+
+const SubmitPage: React.FC<SubmitPageProps> = ({
   page, nextPage, preview, prevPage, hasPrevPage, isDisconnected, scoring, factors, dbResult,
-  showScoringOnEndPage,
+  showScoringOnEndPage, onSubmit, submitButtonText,
 }) => {
   const { user_assessment_id } = dbResult
 
@@ -36,6 +41,8 @@ const SubmitPage: React.FC<PropsFromRedux> = ({
         nextPage={nextPage}
         isDisconnected={isDisconnected}
         showSubmit
+        onSubmit={onSubmit}
+        submitButtonText={submitButtonText}
       />
     </div>
   )

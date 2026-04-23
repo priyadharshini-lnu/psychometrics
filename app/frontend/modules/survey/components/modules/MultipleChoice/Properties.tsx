@@ -9,7 +9,7 @@ import {
   RadioChangeEvent,
 } from 'antd'
 
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import {
   ImageChoiceProperties,
 } from '~/modules/survey/components/modules/MultipleChoice/components/ImageChoiceProperties'

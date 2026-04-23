@@ -88,6 +88,9 @@ module Administration
         required(:mhs_norm_options).maybe do
           array(MhsNormOptionSchema.schema(_, _))
         end
+        required(:proctoring_enabled).filled(:bool?)
+        required(:is_timed).filled(:bool?)
+        required(:fixed_time_duration).maybe(:int?)
       end
     end
   end

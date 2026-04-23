@@ -8,7 +8,7 @@ import {
   Space,
 } from 'antd'
 import { useDispatch } from 'react-redux'
-import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
+import { UploadChangeParam, UploadFile } from 'antd/es/upload/interface'
 import { useParams } from 'react-router-dom'
 import { UploadOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { InnovationStyles, uploadFiles } from '~/modules/admin/modules/campaigns/core/innovationStyles'

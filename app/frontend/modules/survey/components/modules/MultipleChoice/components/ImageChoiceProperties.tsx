@@ -8,7 +8,7 @@ import {
   RadioChangeEvent,
 } from 'antd'
 
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import { PropertiesModel } from '~/modules/survey/interfaces/questions/MultipleChoice'
 
 const { I18n } = window

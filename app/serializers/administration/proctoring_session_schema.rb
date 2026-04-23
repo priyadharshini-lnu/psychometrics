@@ -15,6 +15,7 @@ module Administration
         required(:archive_url).maybe(:str?)
         required(:report_url).maybe(:str?)
         required(:conclusion).maybe(:str?)
+        required(:assessment_name).maybe(:str?)
       end
     end
   end

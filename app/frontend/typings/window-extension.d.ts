@@ -1,4 +1,4 @@
-import { Locale } from 'antd/lib/locale-provider'
+import { Locale } from 'antd/es/locale'
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export { }
 

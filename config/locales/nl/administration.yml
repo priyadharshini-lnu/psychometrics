@@ -959,7 +959,6 @@ nl:
         prework_required: Laat geen centrumboeking toe als de voorbereidende werkzaamheden niet zijn voltooid
         prework_required_for_invite: Stuur alleen een uitnodigingse-mail als het voorwerk is voltooid
         proctoring:
-          allow_on_assessment_center: Toestaan proctoring op assessment center
           enable: Proctoraat inschakelen
           identification: Identificatie
           identifications:
@@ -2772,12 +2771,10 @@ nl:
     proctoring_sessions:
       columns:
         comment: Opmerking
-        completed_at: Voltooid op
         conclusion: Conclusie
         links: Links
         score: Score
         session_id: Sessie-id
-        started_at: Begonnen bij
       links:
         report: Rapporteer
         review: Beoordeling

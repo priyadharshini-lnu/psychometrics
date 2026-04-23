@@ -147,13 +147,14 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     {
       'id' => proctoring_session.id,
       'session_id' => proctoring_session.session_id,
-      'started_at' => I18n.l(proctoring_session.started_at, format: :short),
-      'completed_at' => I18n.l(proctoring_session.completed_at, format: :short),
+      'started_at' => proctoring_session.started_at.as_json,
+      'completed_at' => proctoring_session.completed_at.as_json,
       'score' => results['score'],
       'comment' => results['comment'],
       'conclusion' => results['conclusion'],
       'report_url' => results['reportUrl'],
-      'archive_url' => results['archive']
+      'archive_url' => results['archive'],
+      'assessment_name' => proctoring_session.user_assessment&.assessment&.name
     }
   end
 

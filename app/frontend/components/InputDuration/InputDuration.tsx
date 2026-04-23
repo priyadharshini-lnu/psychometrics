@@ -1,7 +1,7 @@
 import {
   ChangeEvent, KeyboardEvent, useState, useEffect, forwardRef,
 } from 'react'
-import { InputProps } from 'antd/lib/input/Input'
+import { InputProps } from 'antd/es/input/Input'
 import { Flex, Typography, InputRef } from 'antd'
 import { MaskedInput } from '~/glint'
 

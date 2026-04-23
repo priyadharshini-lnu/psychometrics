@@ -959,7 +959,6 @@ zh:
         prework_required: 如果前期工作未完成，则不允许中心预订
         prework_required_for_invite: 仅在预工作完成后发送邀请电子邮件
         proctoring:
-          allow_on_assessment_center: 允许在评估中心监考
           enable: 启用监考
           identification: 身份验证
           identifications:
@@ -2772,12 +2771,10 @@ zh:
     proctoring_sessions:
       columns:
         comment: 评论
-        completed_at: 完成于
         conclusion: 结论
         links: 链接
         score: 得分
         session_id: 会议编号
-        started_at: 开始于
       links:
         report: 报告
         review: 评论

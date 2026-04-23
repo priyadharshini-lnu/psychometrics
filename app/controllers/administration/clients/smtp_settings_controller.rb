@@ -15,6 +15,9 @@ module Administration
         form = SmtpSettings::Form.from_params(smtp_setting_params)
         if form.valid?
           client.smtp_setting.update(form.attributes)
+          audit! :update, client.smtp_setting,
+                 payload: smtp_setting_params.except(:password, 'password'),
+                 client: client
           render json: serializer.new.serialize(client.smtp_setting)
         else
           render json: { errors: form.errors.messages }, status: 422

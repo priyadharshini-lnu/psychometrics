@@ -959,7 +959,6 @@ de:
         prework_required: Keine Center-Buchung zulassen, wenn die Vorarbeiten nicht abgeschlossen sind
         prework_required_for_invite: Senden Sie die Einladungs-E-Mail nur, wenn die Vorarbeiten abgeschlossen sind
         proctoring:
-          allow_on_assessment_center: Proctoring im Assessment Center zulassen
           enable: Proctoring aktivieren
           identification: Identifizierung
           identifications:
@@ -2772,12 +2771,10 @@ de:
     proctoring_sessions:
       columns:
         comment: Kommentar
-        completed_at: Abgeschlossen am
         conclusion: Schlussfolgerung
         links: Links
         score: Ergebnis
         session_id: Sitzungsnummer
-        started_at: Angefangen bei
       links:
         report: Bericht
         review: Überprüfung

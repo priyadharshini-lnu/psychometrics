@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Radio, Typography, Space } from 'antd'
 
-import { RadioChangeEvent } from 'antd/lib/radio'
+import { RadioChangeEvent } from 'antd/es/radio'
 import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
 
 import { openModal } from '~/modules/admin/core/ui/modals'

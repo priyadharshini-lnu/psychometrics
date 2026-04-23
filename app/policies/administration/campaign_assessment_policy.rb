@@ -110,5 +110,9 @@ module Administration
     def toggle_caching?
       has_permission?(:campaigns, :manage)
     end
+
+    def update_proctoring_settings?
+      can_manage_campaign_and_users?
+    end
   end
 end

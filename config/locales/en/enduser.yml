@@ -12,6 +12,7 @@ en:
     ai_idp_summary_hint_no_document: I can now create a tailored plan with practical actions to support your growth. You can also restart the chat to refine your inputs, if needed.
     all_checks_must_pass: All checks must pass before you can proceed.
     approve_idp_plan: Approve Plan
+    assessment_misconfigured: Assessment misconfigured
     audio: Audio
     audio_check: Microphone Test
     audio_check_description: Verify your microphone is working properly for recording
@@ -124,6 +125,8 @@ en:
     personal_readiness: Personal Readiness
     plan_text: Plan for the full duration. Once started, breaks may not be allowed depending on the assessment type.
     please_check_your_internet_connection: Please check your internet connection and try again.
+    proctored: Proctored
+    proctored_assessment_misconfigured_msg: This assessment is proctored but is missing the necessary time configuration, please contact your administrator.
     profile: Profile
     profile_details: Details
     question_counter: Question %{current} of %{total}
@@ -193,6 +196,7 @@ en:
     testing_download_speed: Testing download speed...
     testing_upload_speed: Testing upload speed...
     time_commitment: Time Commitment
+    timed_activity_instruction: This is a timed activity, after you start the proctoring session, you will have <strong>%{time} minutes</strong> to complete.
     troubleshooting_guide: Troubleshooting Guide
     troubleshooting_guide_audio_fifth: 'On Windows: Check Privacy Settings > Microphone access'
     troubleshooting_guide_audio_first: Click the lock/info icon in your browser's address bar

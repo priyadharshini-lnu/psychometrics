@@ -318,6 +318,9 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         caching_enabled
         mhs_norm_regions
         mhs_norm_options
+        proctoring_enabled
+        is_timed
+        fixed_time_duration
       ]
     )
     expect(assessment_response).to include({

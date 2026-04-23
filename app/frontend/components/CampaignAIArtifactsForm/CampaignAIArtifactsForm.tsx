@@ -78,7 +78,7 @@ export const CampaignAIArtifactsForm: FC<Props> = ({
     if (formData.length) return
     const initializedData = artifacts?.map(artifact => ({
       ...artifact,
-      key: artifact.id || uuidv4(),
+      key: artifact.id?.toString() || uuidv4(),
     }))
     setFormData(initializedData ?? [])
     form.setFieldsValue({ items: initializedData ?? [] })

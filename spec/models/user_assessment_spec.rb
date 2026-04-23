@@ -667,4 +667,52 @@ created_at: 1.day.ago)
       end
     end
   end
+
+  describe '#mark_proctoring_session_completed' do
+    let(:campaign) { create(:campaign) }
+    let(:user) { create(:user) }
+    let(:assessment) { create(:assessment) }
+    let(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+    let(:user_assessment) do
+      create(:user_assessment, campaign: campaign, subject: user, evaluator: user, assessment: assessment)
+    end
+    let(:session_id) { SecureRandom.uuid }
+
+    before do
+      campaign_user # ensure creation
+    end
+
+    context 'when an active valid proctoring session exists' do
+      let!(:proctoring_session) do
+        create(:proctoring_session, user_assessment: user_assessment, campaign_user: campaign_user,
+session_id: session_id, completed_at: nil, invalid_session: false)
+      end
+
+      it 'finishes the session and updates completed_at' do
+        expect(Examus::FinishSession).to receive(:call!).with(session_id)
+
+        user_assessment.mark_proctoring_session_completed
+        expect(proctoring_session.reload.completed_at).to be_within(1.second).of(Time.current)
+      end
+    end
+
+    context 'when no active proctoring session exists' do
+      it 'does not call Examus API' do
+        expect(Examus::FinishSession).not_to receive(:call!)
+        user_assessment.mark_proctoring_session_completed
+      end
+    end
+
+    context 'when the last session is invalid' do
+      let!(:proctoring_session) do
+        create(:proctoring_session, user_assessment: user_assessment, campaign_user: campaign_user,
+session_id: session_id, completed_at: nil, invalid_session: true)
+      end
+
+      it 'does not call Examus API for the invalid session' do
+        expect(Examus::FinishSession).not_to receive(:call!)
+        user_assessment.mark_proctoring_session_completed
+      end
+    end
+  end
 end

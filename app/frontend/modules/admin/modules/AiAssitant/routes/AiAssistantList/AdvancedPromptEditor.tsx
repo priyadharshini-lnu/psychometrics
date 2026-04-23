@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
   Button, Input, Card, Typography, Row, Col, Spin, message, Tooltip, Space,
 } from 'antd'
-import { Controlled as CodeMirror } from 'react-codemirror2'
 import { PlayCircleOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources/useResources'
-import 'codemirror/lib/codemirror.css'
+import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 import styles from './styles.less'
 
 type AdvancedPromptEditorProps = {
@@ -24,19 +23,10 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
   const [campaignId, setCampaignId] = useState<string>(campaignIdProp || '')
   const [renderedOutput, setRenderedOutput] = useState<string>('')
   const [isRendering, setIsRendering] = useState<boolean>(false)
-  const codemirrorRef = useRef(null)
 
   const { collectionAction } = useResources('assistants', {
     basePath: 'ai',
   })
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (!codemirrorRef.current) return
-      const codemirror = codemirrorRef.current as { editor?: { refresh: () => void } }
-      codemirror.editor?.refresh()
-    }, 100)
-  }, [])
 
   const handleTestRender = async () => {
     if (!value || !campaignId) {
@@ -66,24 +56,15 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
     }
   }
 
-  const codemirrorOptions = {
-    lineNumbers: true,
-    theme: 'default',
-    lineWrapping: true,
-    foldGutter: true,
-    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-  }
-
   return (
     <div className={styles['advanced-prompt-editor']}>
       <div className={styles['advanced-prompt-editor-code-wrapper']}>
-        <CodeMirror
-          ref={codemirrorRef}
+        <ReactCodemirror
           value={value || ''}
-          options={codemirrorOptions}
-          onBeforeChange={(_editor, _data, val) => {
-            if (onChange) onChange(val)
-          }}
+          onChange={onChange}
+          lineNumbers
+          lineWrapping
+          foldGutter
         />
       </div>
 

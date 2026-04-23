@@ -40,10 +40,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def proctoring_enabled
-    return false unless current_campaign_user&.proctoring_enabled?
-    return current_campaign_user.proctoring_enabled_on_workshop_activity? if workshop_activity?
-
-    current_campaign_user.proctoring_enabled?
+    user_assessment.proctoring_enabled?
   end
 
   def remaining_assessment_time
