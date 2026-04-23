@@ -46,9 +46,9 @@ const troubleShootingGuide = {
       I18n.t('enduser.troubleshooting_guide_video_first'),
       I18n.t('enduser.troubleshooting_guide_video_second'),
       I18n.t('enduser.troubleshooting_guide_video_third'),
-      I18n.t('enduser.troubleshooting_guide_video_fourth'),
       I18n.t('enduser.troubleshooting_guide_video_fifth'),
       I18n.t('enduser.troubleshooting_guide_video_sixth'),
+      I18n.t('enduser.troubleshooting_guide_video_seventh'),
 
     ],
   },
@@ -63,6 +63,7 @@ const troubleShootingGuide = {
       I18n.t('enduser.troubleshooting_guide_audio_fourth'),
       I18n.t('enduser.troubleshooting_guide_audio_fifth'),
       I18n.t('enduser.troubleshooting_guide_audio_sixth'),
+      I18n.t('enduser.troubleshooting_guide_audio_seventh'),
     ],
   },
 }

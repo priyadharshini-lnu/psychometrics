@@ -57,7 +57,11 @@ class Page extends Component {
 
     if (!blockProps?.staticContent) return
     const { layout } = blockProps.staticContent
-    return cs({ [styles.blockWithSideStaticContent]: (layout === LEFT || layout === RIGHT) })
+    const hasSideLayout = layout === LEFT || layout === RIGHT
+    return cs({
+      [styles.blockWithSideStaticContent]: hasSideLayout,
+      'has-side-static-content': hasSideLayout,
+    })
   }
 
   getQuestionContainerClasses () {

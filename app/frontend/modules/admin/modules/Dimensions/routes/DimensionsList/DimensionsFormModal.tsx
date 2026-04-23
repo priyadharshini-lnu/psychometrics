@@ -4,6 +4,8 @@ import {
   Flex,
   Form, Input, Select, Spin,
 } from 'antd'
+import { isSuperAdmin } from '~/core/currentUser'
+import { useCurrentUser } from '~/hooks/useCurrentUser'
 import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -23,6 +25,7 @@ type OptionsType = {
 const { I18n } = window
 
 export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
+  const { currentUser } = useCurrentUser()
   const { resource } = useResourceContext<Dimension>()
   const [form] = Form.useForm()
 
@@ -35,6 +38,19 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
       return clients
     }
     return [...clients, dimension.owner]
+  }
+
+  const getOptionsForClients = () => {
+    const clientsOptions: { label: string, value: string | null }[] = getClients().map(({ id, name }) => ({
+      label: name,
+      value: id,
+    }))
+
+    if (isSuperAdmin(currentUser)) {
+      clientsOptions.unshift({ label: I18n.t('administration.tte'), value: null })
+    }
+
+    return clientsOptions
   }
 
   return (
@@ -63,7 +79,15 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
             name="ownerId"
             label={I18n.t('common.column.owner')}
             initialValue={dimension?.owner?.id || null}
-            rules={[{ required: true }]}
+            rules={[
+              {
+                validator: (_, value) => {
+                  if (value !== undefined) return Promise.resolve()
+
+                  return Promise.reject(new Error(I18n.t('admin.this_field_is_required')))
+                },
+              },
+            ]}
           >
             <Select
               showSearch
@@ -74,12 +98,8 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
               }}
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
-            >
-              <Select.Option>{I18n.t('administration.tte')}</Select.Option>
-              {getClients().map(({ id, name }) => (
-                <Select.Option key={id} value={id}>{name}</Select.Option>
-              ))}
-            </Select>
+              options={getOptionsForClients()}
+            />
           </Form.Item>
           <Flex gap="small" align="center">
             <Form.Item name="occupationsEnabled" valuePropName="checked" style={{ flex: 1 }}>

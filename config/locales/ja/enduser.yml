@@ -48,7 +48,7 @@ ja:
     campaign_check_status: ステータス：%{status}
     chat_instructions: チャットの使い方
     check: 確認
-    check_video_recording: 録画した映像を再生して確認してください。
+    check_video_recording: 録画を再生して、映像と音声を確認してください。
     checking_browser_compatibility: ブラウザの互換性を確認中...
     checking_latency: 遅延を確認中...
     could_not_reach_servers: ネットワーク速度を確認するためにサーバーに接続できませんでした。インターネット接続を確認してから、もう一度お試しください。
@@ -197,6 +197,7 @@ ja:
     troubleshooting_guide_audio_first: ブラウザのアドレスバーにある鍵／情報アイコンをクリックしてください
     troubleshooting_guide_audio_fourth: ブロックされている場合は、ブラウザの設定で権限をリセットする必要があるかもしれません
     troubleshooting_guide_audio_second: "「マイク」の設定を探し、「許可」に設定してください"
+    troubleshooting_guide_audio_seventh: 権限が有効でアップロード中に問題が発生した場合は、チェックを再実行して、音声を再度アップロードしてください。
     troubleshooting_guide_audio_sixth: Macの場合：「システム環境設定」＞「セキュリティ」を確認してください
     troubleshooting_guide_audio_third: 権限を変更したら、ページを更新してください
     troubleshooting_guide_browser_fifth: ブラウザの設定でLocalStorageが有効になっていることを確認してください
@@ -212,8 +213,8 @@ ja:
     troubleshooting_guide_network_third: ルーターまたはモデムを再起動して、もう一度お試しください
     troubleshooting_guide_video_fifth: Windowsの場合：[プライバシー設定] > [カメラ/マイクのアクセス] を確認してください
     troubleshooting_guide_video_first: ブラウザのアドレスバーにある鍵／情報アイコンをクリックしてください
-    troubleshooting_guide_video_fourth: ブロックされている場合は、ブラウザの設定で権限をリセットする必要があるかもしれません
     troubleshooting_guide_video_second: "「カメラ」と「マイク」の設定を探し、「許可」に設定してください"
+    troubleshooting_guide_video_seventh: 権限が有効でアップロード中に問題が発生した場合は、チェックを再実行して、映像を再度アップロードしてください。
     troubleshooting_guide_video_sixth: Macの場合：「システム環境設定」＞「セキュリティとプライバシー」＞「カメラ／マイク」を確認してください
     troubleshooting_guide_video_third: 権限を変更したら、ページを更新してください
     untimed: 制限時間なし
@@ -222,6 +223,7 @@ ja:
     video: 動画
     video_and_audio: 映像・音声
     video_and_audio_recording: 動画および音声の録音
+    video_check_description: これはテスト前のシステムチェックです。音声と映像を確認するために、30秒の動画を録画します。録画が自動的に終了するまで、話し続けて途中で止めないでください。
     video_check_fix_fifth: カメラが外部接続型の場合は、一度電源ケーブルを抜いてから再度接続してみてください
     video_check_fix_first: ブラウザからカメラへのアクセス許可を求められたら、「許可」をクリックしてください
     video_check_fix_fourth: カメラが接続され、電源が入っているか確認してください

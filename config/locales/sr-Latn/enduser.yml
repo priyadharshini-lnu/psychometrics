@@ -48,7 +48,7 @@ sr-Latn:
     campaign_check_status: 'Статус: %{status}'
     chat_instructions: Упутства за ћаскање
     check: Провери
-    check_video_recording: Молимо вас да проверите снимак видео-снимком тако што ћете га пустити.
+    check_video_recording: Molimo vas da reprodukcijom proverite svoj video i audio snimak.
     checking_browser_compatibility: Провера компатибилности прегледача...
     checking_latency: Провера латенције...
     could_not_reach_servers: Није могуће да се повежемо са нашим серверима како бисмо проверили брзину мреже. Молимо вас да проверите вашу интернет везу и покушате поново.
@@ -197,6 +197,7 @@ sr-Latn:
     troubleshooting_guide_audio_first: Кликните на икону закључања/информација у адресној траци вашег прегледача.
     troubleshooting_guide_audio_fourth: Ако је блокирано, можда ћете морати да ресетујете дозволе у подешавањима прегледача.
     troubleshooting_guide_audio_second: Пронађите подешавања "Микрофон" и подесите их на "Дозволи".
+    troubleshooting_guide_audio_seventh: Ako su dozvole omogućene i došlo je do problema pri otpremanju, ponovo pokrenite proveru i pokušajte ponovo da otpremite audio.
     troubleshooting_guide_audio_sixth: 'На Мацу: проверите Подешавања система > Безбедност'
     troubleshooting_guide_audio_third: Освежите страницу након промене дозвола
     troubleshooting_guide_browser_fifth: Уверите се да је LocalStorage омогућен у подешавањима вашег прегледача.
@@ -212,8 +213,8 @@ sr-Latn:
     troubleshooting_guide_network_third: Поново покрените рутер/модем и покушајте поново.
     troubleshooting_guide_video_fifth: 'На Windows-у: проверите подешавања приватности > приступ камери/микрофону'
     troubleshooting_guide_video_first: Кликните на икону закључања/информација у адресној траци вашег прегледача.
-    troubleshooting_guide_video_fourth: Ако је блокирано, можда ћете морати да ресетујете дозволе у подешавањима прегледача.
     troubleshooting_guide_video_second: Пронађите подешавања за "Камеру" и "Микрофон" и подесите их на "Дозволи".
+    troubleshooting_guide_video_seventh: Ako su dozvole omogućene i došlo je do problema pri otpremanju, ponovo pokrenite proveru i pokušajte ponovo da otpremite video.
     troubleshooting_guide_video_sixth: 'На Мацу: Погледајте Подешавања система > Безбедност и приватност > Камера/Микрофон'
     troubleshooting_guide_video_third: Освежите страницу након промене дозвола
     untimed: Без временског ограничења
@@ -222,6 +223,7 @@ sr-Latn:
     video: Видео
     video_and_audio: Видео и аудио
     video_and_audio_recording: Видео и аудио снимање
+    video_check_description: Ovo je provera sistema pre testa. Snimićete video u trajanju od 30 sekundi da biste proverili zvuk i sliku. Govorite neprekidno i nemojte stajati dok se snimanje automatski ne završi.
     video_check_fix_fifth: Пробајте да искључите и поново прикључите камеру ако је спољна.
     video_check_fix_first: Кликните на "Дозволи" када прегледач затражи дозволу за камеру.
     video_check_fix_fourth: Проверите да ли је ваша камера прикључена и укључена.

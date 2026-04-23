@@ -48,7 +48,7 @@ id:
     campaign_check_status: 'Status: %{status}'
     chat_instructions: Petunjuk Obrolan
     check: Periksa
-    check_video_recording: Silakan periksa rekaman video Anda dengan memutarnya kembali.
+    check_video_recording: Silakan periksa video dan audio Anda dengan memutarnya kembali.
     checking_browser_compatibility: Memeriksa kompatibilitas browser...
     checking_latency: Memeriksa latensi...
     could_not_reach_servers: Tidak dapat terhubung ke server kami untuk memeriksa kecepatan jaringan. Silakan periksa koneksi internet Anda dan coba lagi.
@@ -197,6 +197,7 @@ id:
     troubleshooting_guide_audio_first: Klik ikon gembok/info di bilah alamat browser Anda
     troubleshooting_guide_audio_fourth: Jika diblokir, Anda mungkin perlu mengatur ulang izin di pengaturan browser
     troubleshooting_guide_audio_second: Cari pengaturan "Mikrofon" dan atur menjadi "Izinkan"
+    troubleshooting_guide_audio_seventh: Jika izin sudah diaktifkan tetapi terjadi masalah saat mengunggah, jalankan ulang pemeriksaan dan coba unggah audio lagi
     troubleshooting_guide_audio_sixth: 'Di Mac: Buka Preferensi Sistem > Keamanan'
     troubleshooting_guide_audio_third: Segarkan halaman setelah mengubah izin
     troubleshooting_guide_browser_fifth: Pastikan LocalStorage telah diaktifkan di pengaturan browser Anda
@@ -212,8 +213,8 @@ id:
     troubleshooting_guide_network_third: Mulai ulang router/modem Anda, lalu coba lagi
     troubleshooting_guide_video_fifth: 'Di Windows: Periksa Pengaturan Privasi > Akses Kamera/Mikrofon'
     troubleshooting_guide_video_first: Klik ikon gembok/info di bilah alamat browser Anda
-    troubleshooting_guide_video_fourth: Jika diblokir, Anda mungkin perlu mengatur ulang izin di pengaturan browser
     troubleshooting_guide_video_second: Cari pengaturan "Kamera" dan "Mikrofon", lalu atur menjadi "Izinkan"
+    troubleshooting_guide_video_seventh: Jika izin sudah diaktifkan tetapi terjadi masalah saat mengunggah, jalankan ulang pemeriksaan dan coba unggah video lagi
     troubleshooting_guide_video_sixth: 'Di Mac: Buka Preferensi Sistem > Keamanan & Privasi > Kamera/Mikrofon'
     troubleshooting_guide_video_third: Segarkan halaman setelah mengubah izin
     untimed: Tanpa batas waktu
@@ -222,6 +223,7 @@ id:
     video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Perekaman Video dan Audio
+    video_check_description: Ini adalah pemeriksaan sistem sebelum tes. Anda akan merekam video selama 30 detik untuk menguji audio dan video. Harap berbicara terus-menerus dan jangan berhenti sampai perekaman berakhir secara otomatis.
     video_check_fix_fifth: Coba cabut dan pasang kembali kabel kamera Anda jika kamera tersebut terhubung secara eksternal
     video_check_fix_first: Klik 'Izinkan' saat browser meminta izin untuk menggunakan kamera
     video_check_fix_fourth: Pastikan kamera Anda sudah terhubung dan dalam keadaan menyala

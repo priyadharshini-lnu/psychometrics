@@ -48,7 +48,7 @@ ar:
     campaign_check_status: 'حالة: %{status}'
     chat_instructions: تعليمات الدردشة
     check: التحقق
-    check_video_recording: يُرجى التحقق من تسجيل الفيديو الخاص بك عن طريق إعادة تشغيله.
+    check_video_recording: يرجى التأكد من جودة الصوت والصورة من خلال تشغيل المقطع المسجل
     checking_browser_compatibility: جاري التحقق من توافق المتصفح...
     checking_latency: التحقق من زمن الاستجابة...
     could_not_reach_servers: لم نتمكن من الوصول إلى خوادمنا للتحقق من سرعة الشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
@@ -197,6 +197,7 @@ ar:
     troubleshooting_guide_audio_first: انقر على أيقونة القفل/المعلومات في شريط العنوان بمتصفحك.
     troubleshooting_guide_audio_fourth: في حال تم الحظر، قد تحتاج إلى إعادة تعيين الأذونات في إعدادات المتصفح.
     troubleshooting_guide_audio_second: ابحث عن إعدادات "الميكروفون" واضبطها على "سماح".
+    troubleshooting_guide_audio_seventh: إذا كانت الأذونات مُفعَّلة وواجهت مشكلة في الرفع، فأعِد تشغيل الفحص وحاول رفع الملف الصوتي مرة أخرى.
     troubleshooting_guide_audio_sixth: 'على نظام Mac: تحقق من "تفضيلات النظام" > "الأمن".'
     troubleshooting_guide_audio_third: حدّث الصفحة بعد تغيير الأذونات.
     troubleshooting_guide_browser_fifth: تأكد من تفعيل التخزين المحلي (LocalStorag) في إعداد المتصفح
@@ -212,8 +213,8 @@ ar:
     troubleshooting_guide_network_third: أعد تشغيل الراوتر/المودم ثم حاول مرة أخرى
     troubleshooting_guide_video_fifth: 'في نظام Windows: تحقق من إعداد الخصوصية> الوصول إلى الكاميرا/ الميكروفون'
     troubleshooting_guide_video_first: انقر على أيقونة القفل/المعلومات في شريط عنوان المتصفح
-    troubleshooting_guide_video_fourth: إذا كان المتصفح محظور، قد تحتاج إلى إعادة ضبط الأذونات في إعدادات المتصفح
     troubleshooting_guide_video_second: ابحث عن إعدادات الكاميرا والميكروفون وقم بضبطها على سماح (Allow)
+    troubleshooting_guide_video_seventh: إذا كانت الأذونات مُفعّلة وحدثت مشكلة أثناء الرفع، فأعِد تشغيل الفحص وحاول رفع الفيديو مرة أخرى.
     troubleshooting_guide_video_sixth: 'في نظام: تحقق من تفضيلات النظام> الأمان والخصوصية> الكاميرا/ الميكروفون'
     troubleshooting_guide_video_third: قم بتحديث الصفحة بعد تغيير الأذونات
     untimed: غير محدد بوقت
@@ -222,6 +223,7 @@ ar:
     video: فيديو
     video_and_audio: الفيديو والصوت
     video_and_audio_recording: تسجيل الفيديو والصوت
+    video_check_description: هذا فحص للنظام قبل بدء الاختبار. يرجى التحدث بشكل مستمر وعدم التوقف حتى ينتهي التسجيل تلقائيًسيتم تسجيل فيديو لمدة 30 ثانية لاختبار الصوت والصورة.
     video_check_fix_fifth: جرب فصل الكاميرا وإعادة توصيلها إذا كانت الكاميرا خارجية
     video_check_fix_first: اضغط على سماح (Allow) عندما يطلب المتصفح الإذن باستخدام الكاميرا
     video_check_fix_fourth: تأكد من أن الكاميرا متصلة ومشغّلة

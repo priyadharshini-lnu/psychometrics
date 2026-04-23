@@ -8,9 +8,9 @@ module SystemCheckSessions
 
     private_attr_reader :session, :campaign_user, :requirements
 
-    def initialize(session_id:, campaign_user:)
+    def initialize(session_id:, campaign_user:, skip_validity_check: false)
       @campaign_user = campaign_user
-      @session = find_valid_session(session_id)
+      @session = find_session(session_id, skip_validity_check)
       @requirements = RequirementsCalculator.call!(campaign_user)
     end
 
@@ -20,12 +20,17 @@ module SystemCheckSessions
       broadcast :ok, { session_id: session&.id, requirements: requirements, is_valid: is_valid }
     end
 
+    def satisfied?
+      all_satisfied?(compute_status)
+    end
+
     private
 
-    def find_valid_session(session_id)
+    def find_session(session_id, skip_validity_check)
       return nil if session_id.blank?
 
       system_check_session = SystemCheckSession.find_by(id: session_id, user: campaign_user.user)
+      return system_check_session if skip_validity_check && system_check_session&.completed?
       return nil unless system_check_session&.valid_for_campaign?(campaign)
 
       system_check_session

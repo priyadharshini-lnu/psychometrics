@@ -75,4 +75,18 @@ RSpec.describe OciFunctionInvokerJob, type: :job do
       end
     end
   end
+
+  context 'when a ServiceUnavailable error (503) occurs' do
+    before do
+      allow(oci_service_instance).to receive(:invoke!).and_raise(
+        Faas::Services::Oci::Exceptions::ServiceUnavailable
+      )
+    end
+
+    it 'schedules the job for a retry' do
+      expect do
+        described_class.perform_now(function_name, invoke_endpoint, payload, options)
+      end.to have_enqueued_job(OciFunctionInvokerJob).exactly(:once)
+    end
+  end
 end

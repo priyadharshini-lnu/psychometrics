@@ -48,7 +48,7 @@ nl:
     campaign_check_status: 'Status: %{status}'
     chat_instructions: Instructies voor de chat
     check: Controleer
-    check_video_recording: Controleer uw video-opname door deze af te spelen.
+    check_video_recording: Controleer uw video en audio door de opname af te spelen.
     checking_browser_compatibility: Browsercompatibiliteit wordt gecontroleerd...
     checking_latency: Latentie wordt gecontroleerd...
     could_not_reach_servers: Onze servers konden niet worden bereikt om de netwerksnelheid te controleren. Controleer je internetverbinding en probeer het opnieuw.
@@ -197,6 +197,7 @@ nl:
     troubleshooting_guide_audio_first: Klik op het slot-/informatiepictogram in de adresbalk van je browser
     troubleshooting_guide_audio_fourth: Als de pagina wordt geblokkeerd, moet u mogelijk de machtigingen in de browserinstellingen opnieuw instellen
     troubleshooting_guide_audio_second: Zoek de instellingen voor "Microfoon" en stel deze in op "Toestaan"
+    troubleshooting_guide_audio_seventh: Als machtigingen zijn ingeschakeld en er een probleem optrad bij het uploaden, voer de controle opnieuw uit en probeer de audio opnieuw te uploaden
     troubleshooting_guide_audio_sixth: 'Op de Mac: ga naar Systeemvoorkeuren > Beveiliging'
     troubleshooting_guide_audio_third: Verfris de pagina nadat je de machtigingen hebt gewijzigd
     troubleshooting_guide_browser_fifth: Zorg ervoor dat LocalStorage is ingeschakeld in je browserinstellingen
@@ -212,8 +213,8 @@ nl:
     troubleshooting_guide_network_third: Start je router/modem opnieuw op en probeer het nog eens
     troubleshooting_guide_video_fifth: 'In Windows: Ga naar Privacy-instellingen > Toegang tot camera/microfoon'
     troubleshooting_guide_video_first: Klik op het slot-/informatiepictogram in de adresbalk van je browser
-    troubleshooting_guide_video_fourth: Als de pagina wordt geblokkeerd, moet u mogelijk de machtigingen in de browserinstellingen opnieuw instellen
     troubleshooting_guide_video_second: Zoek de instellingen voor "Camera" en "Microfoon" en stel ze in op "Toestaan"
+    troubleshooting_guide_video_seventh: Als machtigingen zijn ingeschakeld en er een probleem optrad bij het uploaden, voer de controle opnieuw uit en probeer de video opnieuw te uploaden
     troubleshooting_guide_video_sixth: 'Op de Mac: ga naar Systeemvoorkeuren > Beveiliging en privacy > Camera/microfoon'
     troubleshooting_guide_video_third: Verfris de pagina nadat je de machtigingen hebt gewijzigd
     untimed: Zonder tijdslimiet
@@ -222,6 +223,7 @@ nl:
     video: Video
     video_and_audio: Video en audio
     video_and_audio_recording: Video- en audio-opname
+    video_check_description: Dit is een systeemcontrole vóór de test. Je neemt een video van 30 seconden op om audio en video te testen. Blijf continu spreken en stop niet totdat de opname automatisch eindigt.
     video_check_fix_fifth: Probeer de stekker van je camera uit het stopcontact te halen en weer aan te sluiten als het een externe camera betreft
     video_check_fix_first: Klik op 'Toestaan' wanneer de browser om toestemming voor de camera vraagt
     video_check_fix_fourth: Controleer of je camera is aangesloten en ingeschakeld

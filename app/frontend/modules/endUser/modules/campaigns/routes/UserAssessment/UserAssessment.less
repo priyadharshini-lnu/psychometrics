@@ -50,6 +50,9 @@
     top: 0;
     left: 0;
   }
+  &:has(:global(.has-side-static-content)) {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: @screen-sm) {

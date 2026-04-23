@@ -48,7 +48,7 @@ zh-HK:
     campaign_check_status: 状态：%{status}
     chat_instructions: 聊天指南
     check: 检查
-    check_video_recording: 请播放视频以检查录制效果。
+    check_video_recording: 請回放錄製內容以檢查視訊與音訊。
     checking_browser_compatibility: 正在检查浏览器兼容性...
     checking_latency: 正在检测延迟...
     could_not_reach_servers: 无法连接到我们的服务器以检测网速。请检查您的网络连接，然后重试。
@@ -197,6 +197,7 @@ zh-HK:
     troubleshooting_guide_audio_first: 点击浏览器地址栏中的锁形/信息图标
     troubleshooting_guide_audio_fourth: 如果被拦截，您可能需要在浏览器设置中重置权限
     troubleshooting_guide_audio_second: 找到“麦克风”设置，并将它们设为“允许”
+    troubleshooting_guide_audio_seventh: 如果你已啟用權限但上傳時出現問題，請重新執行檢查，並再次嘗試上傳音訊。
     troubleshooting_guide_audio_sixth: 在 Mac 上：请前往“系统偏好设置”>“安全”
     troubleshooting_guide_audio_third: 更改权限后请刷新页面
     troubleshooting_guide_browser_fifth: 请确保在浏览器设置中启用了 LocalStorage
@@ -212,8 +213,8 @@ zh-HK:
     troubleshooting_guide_network_third: 请重启路由器/调制解调器，然后重试
     troubleshooting_guide_video_fifth: 在 Windows 上：检查“隐私设置” > “相机/麦克风访问权限”
     troubleshooting_guide_video_first: 点击浏览器地址栏中的锁形/信息图标
-    troubleshooting_guide_video_fourth: 如果被拦截，您可能需要在浏览器设置中重置权限
     troubleshooting_guide_video_second: 找到“相机”和“麦克风”设置，并将它们设为“允许”
+    troubleshooting_guide_video_seventh: 如果你已啟用權限但上傳時出現問題，請重新執行檢查，並再次嘗試上傳視訊。
     troubleshooting_guide_video_sixth: 在 Mac 上：请前往“系统偏好设置” > “安全与隐私” > “摄像头/麦克风”
     troubleshooting_guide_video_third: 更改权限后请刷新页面
     untimed: 不限时
@@ -222,6 +223,7 @@ zh-HK:
     video: 视频
     video_and_audio: 视频与音频
     video_and_audio_recording: 视频和音频录制
+    video_check_description: 這是在測試前進行的系統檢查。你將錄製一段 30 秒的影片來測試音訊與視訊。請持續說話，並且不要停止，直到錄製自動結束。
     video_check_fix_fifth: 如果相机是外接的，请尝试将其拔下再重新连接
     video_check_fix_first: 当浏览器请求相机权限时，请点击“允许”
     video_check_fix_fourth: 请检查相机是否已连接并已开启电源

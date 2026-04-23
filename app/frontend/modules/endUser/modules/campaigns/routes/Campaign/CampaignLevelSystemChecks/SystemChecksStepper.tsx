@@ -116,7 +116,8 @@ const SystemChecksStepperCompnent = () => {
   }
 
   const handleNextForResultsStep = () => {
-    window.location.href = `/campaigns/${campaignId}`
+    window.location.href = campaignDetailsForSystemCheck!.type === 'common' ? `/campaigns/${campaignId}`
+      : `/threesixty_campaigns/${campaignDetailsForSystemCheck?.threeSixtyCampaignId}`
   }
 
   useEffect(() => {

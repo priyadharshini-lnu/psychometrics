@@ -48,7 +48,7 @@ pl:
     campaign_check_status: 'Status: %{status}'
     chat_instructions: Instrukcje dotyczące czatu
     check: Sprawdź
-    check_video_recording: Proszę sprawdzić nagranie, odtwarzając je.
+    check_video_recording: Proszę sprawdzić nagranie wideo i dźwięku, odtwarzając je.
     checking_browser_compatibility: Sprawdzam zgodność przeglądarek...
     checking_latency: Sprawdzanie opóźnienia...
     could_not_reach_servers: Nie udało się połączyć z naszymi serwerami w celu sprawdzenia prędkości sieci. Sprawdź połączenie internetowe i spróbuj ponownie.
@@ -197,6 +197,7 @@ pl:
     troubleshooting_guide_audio_first: Kliknij ikonę kłódki/informacji w pasku adresu przeglądarki
     troubleshooting_guide_audio_fourth: Jeśli dostęp jest zablokowany, może być konieczne zresetowanie uprawnień w ustawieniach przeglądarki
     troubleshooting_guide_audio_second: Znajdź ustawienia „Mikrofon” i ustaw je na „Zezwól”
+    troubleshooting_guide_audio_seventh: Jeśli uprawnienia są włączone, a podczas przesyłania wystąpił problem, uruchom ponownie sprawdzanie i spróbuj ponownie przesłać dźwięk
     troubleshooting_guide_audio_sixth: 'Na komputerze Mac: Przejdź do „Preferencje systemowe” > „Zabezpieczenia”'
     troubleshooting_guide_audio_third: Po zmianie uprawnień odśwież stronę
     troubleshooting_guide_browser_fifth: Upewnij się, że w ustawieniach przeglądarki włączono funkcję LocalStorage
@@ -212,8 +213,8 @@ pl:
     troubleshooting_guide_network_third: Zrestartuj router/modem i spróbuj ponownie
     troubleshooting_guide_video_fifth: 'W systemie Windows: Sprawdź ustawienia prywatności > Dostęp do kamery/mikrofonu'
     troubleshooting_guide_video_first: Kliknij ikonę kłódki/informacji w pasku adresu przeglądarki
-    troubleshooting_guide_video_fourth: Jeśli dostęp jest zablokowany, może być konieczne zresetowanie uprawnień w ustawieniach przeglądarki
     troubleshooting_guide_video_second: Znajdź ustawienia „Aparat” i „Mikrofon” i ustaw je na „Zezwól”
+    troubleshooting_guide_video_seventh: Jeśli uprawnienia są włączone, a podczas przesyłania wystąpił problem, uruchom ponownie sprawdzanie i spróbuj ponownie przesłać wideo
     troubleshooting_guide_video_sixth: 'Na komputerze Mac: przejdź do „Preferencje systemowe” > „Bezpieczeństwo i prywatność” > „Kamera/mikrofon”'
     troubleshooting_guide_video_third: Po zmianie uprawnień odśwież stronę
     untimed: Bez limitu czasowego
@@ -222,6 +223,7 @@ pl:
     video: Film
     video_and_audio: Wideo i audio
     video_and_audio_recording: Nagrywanie obrazu i dźwięku
+    video_check_description: To jest kontrola systemu przed testem. Nagraj 30-sekundowy film, aby sprawdzić dźwięk i obraz. Mów nieprzerwanie i nie zatrzymuj się, dopóki nagrywanie nie zakończy się automatycznie.
     video_check_fix_fifth: Jeśli aparat jest podłączony zewnętrznie, spróbuj go odłączyć i podłączyć ponownie
     video_check_fix_first: Kliknij „Zezwól”, gdy przeglądarka poprosi o zgodę na dostęp do kamery
     video_check_fix_fourth: Sprawdź, czy aparat jest podłączony i włączony

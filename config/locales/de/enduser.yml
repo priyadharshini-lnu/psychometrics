@@ -48,7 +48,7 @@ de:
     campaign_check_status: 'Status: %{status}'
     chat_instructions: Anleitung für den Chat
     check: Überprüfen
-    check_video_recording: Bitte überprüfen Sie Ihre Videoaufnahme, indem Sie sie abspielen.
+    check_video_recording: Bitte überprüfen Sie Ihr Video und Audio, indem Sie die Aufnahme abspielen.
     checking_browser_compatibility: Browserkompatibilität wird überprüft...
     checking_latency: Latenz wird überprüft...
     could_not_reach_servers: Unsere Server konnten nicht erreicht werden, um die Netzwerkgeschwindigkeit zu überprüfen. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
@@ -197,6 +197,7 @@ de:
     troubleshooting_guide_audio_first: Klicken Sie auf das Schloss-/Info-Symbol in der Adressleiste Ihres Browsers
     troubleshooting_guide_audio_fourth: Falls dies blockiert wird, müssen Sie möglicherweise die Berechtigungen in den Browsereinstellungen zurücksetzen
     troubleshooting_guide_audio_second: Suchen Sie die Einstellungen für „Mikrofon“ und stellen Sie sie auf „Zulassen“ ein
+    troubleshooting_guide_audio_seventh: Wenn die Berechtigungen aktiviert sind und beim Hochladen ein Problem aufgetreten ist, führen Sie die Prüfung erneut aus und versuchen Sie, das Audio erneut hochzuladen
     troubleshooting_guide_audio_sixth: 'Auf dem Mac: Öffne „Systemeinstellungen“ > „Sicherheit“'
     troubleshooting_guide_audio_third: Aktualisieren Sie die Seite, nachdem Sie die Berechtigungen geändert haben
     troubleshooting_guide_browser_fifth: Stellen Sie sicher, dass LocalStorage in Ihren Browsereinstellungen aktiviert ist
@@ -212,8 +213,8 @@ de:
     troubleshooting_guide_network_third: Starten Sie Ihren Router/Ihr Modem neu und versuchen Sie es erneut
     troubleshooting_guide_video_fifth: 'Unter Windows: Überprüfen Sie die Datenschutzeinstellungen > Zugriff auf Kamera/Mikrofon'
     troubleshooting_guide_video_first: Klicken Sie auf das Schloss-/Info-Symbol in der Adressleiste Ihres Browsers
-    troubleshooting_guide_video_fourth: Falls dies blockiert wird, müssen Sie möglicherweise die Berechtigungen in den Browsereinstellungen zurücksetzen
     troubleshooting_guide_video_second: Suchen Sie die Einstellungen für „Kamera“ und „Mikrofon“ und setzen Sie sie auf „Zulassen“
+    troubleshooting_guide_video_seventh: Wenn die Berechtigungen aktiviert sind und beim Hochladen ein Problem aufgetreten ist, führen Sie die Prüfung erneut aus und versuchen Sie, das Video erneut hochzuladen
     troubleshooting_guide_video_sixth: 'Auf dem Mac: Gehe zu „Systemeinstellungen“ > „Sicherheit & Datenschutz“ > „Kamera/Mikrofon“'
     troubleshooting_guide_video_third: Aktualisieren Sie die Seite, nachdem Sie die Berechtigungen geändert haben
     untimed: Ohne Zeitangabe
@@ -222,6 +223,7 @@ de:
     video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Video- und Audioaufzeichnung
+    video_check_description: Dies ist ein Systemcheck vor dem Test. Sie nehmen ein 30-sekündiges Video auf, um Audio und Video zu testen. Bitte sprechen Sie durchgehend und hören Sie nicht auf, bis die Aufnahme automatisch endet.
     video_check_fix_fifth: Versuchen Sie, Ihre Kamera vom Stromnetz zu trennen und wieder anzuschließen, falls es sich um ein externes Gerät handelt
     video_check_fix_first: Klicken Sie auf „Zulassen“, wenn der Browser Sie um die Erlaubnis für die Kameranutzung bittet
     video_check_fix_fourth: Überprüfen Sie, ob Ihre Kamera angeschlossen und eingeschaltet ist

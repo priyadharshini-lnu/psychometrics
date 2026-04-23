@@ -10,6 +10,7 @@ import {
   Skeleton, theme,
 } from 'antd'
 import cs from 'classnames'
+import { useNavigate } from 'react-router-dom'
 import {
   InfoCircleOutlined, InfoCircleFilled,
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined, ReloadOutlined,
@@ -42,6 +43,14 @@ import {
 } from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import styles from './styles.less'
 import { MaintenanceStatus, MaintenanceAlert } from '~/glint/components/MaintenanceAlert'
+
+const isCampaignSystemCheckValid = (
+  lastSuccessfulCheckAt: number,
+  systemCheckValidity: number,
+) => {
+  const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
+  return campaignSystemCheckExpiryTime > (Date.now() / 1000)
+}
 
 const connector = connect(
   (state: RootState) => ({
@@ -76,6 +85,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   maintenanceSettings,
 }) => {
   const { modal, message } = App.useApp()
+  const navigate = useNavigate()
   const { isMobile } = useContext(MediaQueryContext)
   const {
     isTimedCampaign,
@@ -83,9 +93,10 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignsCount,
     campaignOptions: {
       instructionsEnabled, instructions, proctoringEnabled, integrationType, proctoringEnabledOnWorkshopActivity,
-      enableMobileProctoring, selectiveProctoringEnabled,
+      systemCheckEnabled, enableMobileProctoring, selectiveProctoringEnabled,
     },
     campaignTime,
+    lastSuccessfulCheckAt,
   } = campaign
   const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
 
@@ -221,6 +232,12 @@ const CommonComponent: FC<CommonComponentProps> = ({
   }
 
   const handleStartCampaignActivities = () => {
+    if (systemCheckEnabled
+      && !isCampaignSystemCheckValid(lastSuccessfulCheckAt, campaign.campaignOptions.systemCheckValidity)) {
+      navigate(`/campaign_system_check/${campaign.id}/welcome`)
+      return
+    }
+
     if (!fixedTimed) { return startCampaignActivities() }
 
     if (isMobileDevice && proctoringEnabled) {

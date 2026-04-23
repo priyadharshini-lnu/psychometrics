@@ -212,7 +212,6 @@ en-US:
     troubleshooting_guide_network_third: Restart your router/modem and try again
     troubleshooting_guide_video_fifth: 'On Windows: Check Privacy Settings > Camera/Microphone access'
     troubleshooting_guide_video_first: Click the lock/info icon in your browser's address bar
-    troubleshooting_guide_video_fourth: If blocked, you may need to reset permissions in browser settings
     troubleshooting_guide_video_second: Find "Camera" and "Microphone" settings and set them to "Allow"
     troubleshooting_guide_video_sixth: 'On Mac: Check System Preferences > Security & Privacy > Camera/Microphone'
     troubleshooting_guide_video_third: Refresh the page after changing permissions

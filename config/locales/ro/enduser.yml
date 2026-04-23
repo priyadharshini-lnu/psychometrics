@@ -48,7 +48,7 @@ ro:
     campaign_check_status: 'Stare: %{status}'
     chat_instructions: Instrucțiuni pentru chat
     check: Verificați
-    check_video_recording: Vă rugăm să verificați înregistrarea video redând-o.
+    check_video_recording: Vă rugăm să verificați înregistrarea video și audio redând-o.
     checking_browser_compatibility: Se verifică compatibilitatea browserului...
     checking_latency: Verificarea latenței...
     could_not_reach_servers: Nu s-a putut stabili conexiunea cu serverele noastre pentru a verifica viteza rețelei. Vă rugăm să verificați conexiunea la internet și să încercați din nou.
@@ -197,6 +197,7 @@ ro:
     troubleshooting_guide_audio_first: Faceți clic pe pictograma cu lacătul/informații din bara de adrese a browserului
     troubleshooting_guide_audio_fourth: Dacă accesul este blocat, poate fi necesar să resetați permisiunile din setările browserului
     troubleshooting_guide_audio_second: Găsește setările pentru „Microfon” și selectează opțiunea „Permite”
+    troubleshooting_guide_audio_seventh: Dacă permisiunile sunt activate și a apărut o problemă la încărcare, rulați din nou verificarea și încercați să încărcați din nou audio
     troubleshooting_guide_audio_sixth: 'Pe Mac: accesează Preferințe sistem > Securitate'
     troubleshooting_guide_audio_third: Reîmprospătează pagina după ce modifici permisiunile
     troubleshooting_guide_browser_fifth: Asigură-te că opțiunea LocalStorage este activată în setările browserului tău
@@ -212,8 +213,8 @@ ro:
     troubleshooting_guide_network_third: Reporniți routerul/modemul și încercați din nou
     troubleshooting_guide_video_fifth: 'În Windows: Verificați setările de confidențialitate > Acces la cameră/microfon'
     troubleshooting_guide_video_first: Faceți clic pe pictograma cu lacătul/informații din bara de adrese a browserului
-    troubleshooting_guide_video_fourth: Dacă accesul este blocat, poate fi necesar să resetați permisiunile din setările browserului
     troubleshooting_guide_video_second: Găsește setările pentru „Cameră” și „Microfon” și setează-le pe „Permite”
+    troubleshooting_guide_video_seventh: Dacă permisiunile sunt activate și a apărut o problemă la încărcare, rulați din nou verificarea și încercați să încărcați din nou videoclipul
     troubleshooting_guide_video_sixth: 'Pe Mac: accesează Preferințe sistem > Securitate și confidențialitate > Cameră foto/microfon'
     troubleshooting_guide_video_third: Reîmprospătează pagina după ce modifici permisiunile
     untimed: Fără limită de timp
@@ -222,6 +223,7 @@ ro:
     video: Video
     video_and_audio: Video și audio
     video_and_audio_recording: Înregistrare video și audio
+    video_check_description: Aceasta este o verificare a sistemului înainte de test. Veți înregistra un videoclip de 30 de secunde pentru a testa audio și video. Vă rugăm să vorbiți continuu și să nu vă opriți până când înregistrarea nu se încheie automat.
     video_check_fix_fifth: Încearcă să deconectezi și să reconectezi camera, dacă aceasta este externă
     video_check_fix_first: Dă clic pe „Permite” când browserul îți cere permisiunea de a accesa camera
     video_check_fix_fourth: Verificați dacă camera este conectată și pornită

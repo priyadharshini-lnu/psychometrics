@@ -48,7 +48,7 @@ es-ES:
     campaign_check_status: 'Estado: %{status}'
     chat_instructions: Instrucciones para el chat
     check: Comprobar
-    check_video_recording: Comprueba la grabación de vídeo reproduciéndola.
+    check_video_recording: Comprueba el vídeo y el audio reproduciendo la grabación.
     checking_browser_compatibility: Comprobando la compatibilidad del navegador...
     checking_latency: Comprobando la latencia...
     could_not_reach_servers: No se ha podido conectar con nuestros servidores para comprobar la velocidad de la red. Comprueba tu conexión a Internet e inténtalo de nuevo.
@@ -197,6 +197,7 @@ es-ES:
     troubleshooting_guide_audio_first: Haz clic en el icono del candado o de información que aparece en la barra de direcciones de tu navegador
     troubleshooting_guide_audio_fourth: Si se bloquea, es posible que tengas que restablecer los permisos en la configuración del navegador
     troubleshooting_guide_audio_second: Busca la opción «Micrófono» y configúrala en «Permitir»
+    troubleshooting_guide_audio_seventh: Si tienes los permisos habilitados y hubo un problema al subir el archivo, vuelve a ejecutar la comprobación e intenta subir el audio de nuevo
     troubleshooting_guide_audio_sixth: 'En Mac: Ve a Preferencias del Sistema > Seguridad'
     troubleshooting_guide_audio_third: Actualiza la página después de cambiar los permisos
     troubleshooting_guide_browser_fifth: Asegúrate de que LocalStorage esté habilitado en la configuración de tu navegador
@@ -212,8 +213,8 @@ es-ES:
     troubleshooting_guide_network_third: Reinicia tu router o módem y vuelve a intentarlo
     troubleshooting_guide_video_fifth: 'En Windows: comprueba la configuración de privacidad > Acceso a la cámara y al micrófono'
     troubleshooting_guide_video_first: Haz clic en el icono del candado o de información que aparece en la barra de direcciones de tu navegador
-    troubleshooting_guide_video_fourth: Si se bloquea, es posible que tengas que restablecer los permisos en la configuración del navegador
     troubleshooting_guide_video_second: Busca los ajustes de «Cámara» y «Micrófono» y configúralos en «Permitir»
+    troubleshooting_guide_video_seventh: Si tienes los permisos habilitados y hubo un problema al subir el archivo, vuelve a ejecutar la comprobación e intenta subir el vídeo de nuevo
     troubleshooting_guide_video_sixth: 'En Mac: Ve a Preferencias del Sistema > Seguridad y privacidad > Cámara/Micrófono'
     troubleshooting_guide_video_third: Actualiza la página después de cambiar los permisos
     untimed: Sin límite de tiempo
@@ -222,6 +223,7 @@ es-ES:
     video: Vídeo
     video_and_audio: Vídeo y audio
     video_and_audio_recording: Grabación de vídeo y audio
+    video_check_description: Esta es una comprobación del sistema antes de la prueba. Grabarás un vídeo de 30 segundos para probar el audio y el vídeo. Habla de forma continua y no te detengas hasta que la grabación finalice automáticamente.
     video_check_fix_fifth: Prueba a desconectar y volver a conectar la cámara si es externa
     video_check_fix_first: Haz clic en «Permitir» cuando el navegador te pida permiso para acceder a la cámara
     video_check_fix_fourth: Comprueba si tu cámara está conectada y encendida

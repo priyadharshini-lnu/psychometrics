@@ -6,6 +6,7 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
 import * as t from 'io-ts'
+import { Link } from 'react-router-dom'
 import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -69,9 +70,20 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Dimension>
           title={I18n.t('common.column.owner')}
           id="owner"
-          render={dimension => (
-            dimension.owner?.name
-          )}
+          render={(dimension) => {
+            const ownerName = dimension.owner?.name
+            const ownerId = dimension.owner?.id
+
+            if (ownerName && ownerId) {
+              return (
+                <Link to={`/admin/clients/${ownerId}`}>
+                  {ownerName}
+                </Link>
+              )
+            }
+
+            return I18n.t('administration.tte')
+          }}
           width={300}
         />
         <Resource.Column<Dimension>

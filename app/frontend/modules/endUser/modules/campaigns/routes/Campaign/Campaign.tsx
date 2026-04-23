@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -40,6 +40,32 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 type CampaignComponentProps = PropsFromRedux
 
+type CommonCampaignDetails= {
+  campaignOptions: {
+    systemCheckEnabled: boolean,
+    systemCheckValidity: number,
+  },
+  lastSuccessfulCheckAt: number,
+  type:string,
+  id: number
+}
+
+type ThreeSixtyCampaignDetails= {
+  options: {
+    participants: {
+      global: {
+        systemCheckEnabled: boolean,
+        systemCheckValidity: number,
+      },
+    }
+  }
+  lastSuccessfulCheckAt: number,
+  type:string,
+  campaignId: number
+}
+
+type CampaignDetails = CommonCampaignDetails | ThreeSixtyCampaignDetails | {type:string}
+
 const CampaignComponent: FC<CampaignComponentProps> = ({
   fetchCampaign,
   campaign,
@@ -47,8 +73,33 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
   resetCampaign,
 }) => {
   const location = useLocation()
+
+  const navigate = useNavigate()
   useEffect(() => {
-    fetchCampaign(location.pathname)
+    fetchCampaign(location.pathname).then(({ response }) => {
+      if ((response as CampaignDetails).type === 'common') {
+        const { campaignOptions, lastSuccessfulCheckAt, id } = response as CommonCampaignDetails
+        const { systemCheckValidity, systemCheckEnabled } = campaignOptions
+        if (systemCheckEnabled) {
+          const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
+          if (campaignSystemCheckExpiryTime < (Date.now() / 1000)) {
+            navigate(`/campaign_system_check/${id}/welcome`)
+          }
+        }
+      }
+
+      if ((response as CampaignDetails).type === 'threesixty') {
+        const { options, lastSuccessfulCheckAt, campaignId } = response as ThreeSixtyCampaignDetails
+        const { systemCheckEnabled, systemCheckValidity } = options.participants.global
+        if (systemCheckEnabled) {
+          const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
+          if (campaignSystemCheckExpiryTime < (Date.now() / 1000)) {
+            navigate(`/campaign_system_check/${campaignId}/welcome`)
+          }
+        }
+      }
+    })
+
     return () => {
       resetCampaign()
     }

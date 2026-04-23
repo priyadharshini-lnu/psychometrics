@@ -48,7 +48,7 @@ fr:
     campaign_check_status: 'Statut : %{status}'
     chat_instructions: Instructions pour le chat
     check: Vérifier
-    check_video_recording: Veuillez vérifier votre enregistrement vidéo en le visionnant.
+    check_video_recording: Veuillez vérifier votre vidéo et votre audio en lisant l'enregistrement.
     checking_browser_compatibility: Vérification de la compatibilité du navigateur...
     checking_latency: Vérification de la latence...
     could_not_reach_servers: Nous n'avons pas pu nous connecter à nos serveurs pour vérifier la vitesse du réseau. Veuillez vérifier votre connexion Internet et réessayer.
@@ -197,6 +197,7 @@ fr:
     troubleshooting_guide_audio_first: Cliquez sur l'icône représentant un cadenas ou une info dans la barre d'adresse de votre navigateur
     troubleshooting_guide_audio_fourth: Si l'accès est bloqué, vous devrez peut-être réinitialiser les autorisations dans les paramètres du navigateur
     troubleshooting_guide_audio_second: Recherchez les paramètres « Microphone » et sélectionnez « Autoriser »
+    troubleshooting_guide_audio_seventh: Si les autorisations sont activées et qu'un problème est survenu lors du téléversement, relancez la vérification et essayez de téléverser à nouveau l'audio
     troubleshooting_guide_audio_sixth: 'Sur Mac : allez dans Préférences Système > Sécurité'
     troubleshooting_guide_audio_third: Actualisez la page après avoir modifié les autorisations
     troubleshooting_guide_browser_fifth: Assurez-vous que LocalStorage est activé dans les paramètres de votre navigateur
@@ -212,8 +213,8 @@ fr:
     troubleshooting_guide_network_third: Redémarrez votre routeur/modem et réessayez
     troubleshooting_guide_video_fifth: 'Sous Windows : vérifiez les paramètres de confidentialité > Accès à la caméra/au microphone'
     troubleshooting_guide_video_first: Cliquez sur l'icône représentant un cadenas ou une info dans la barre d'adresse de votre navigateur
-    troubleshooting_guide_video_fourth: Si l'accès est bloqué, vous devrez peut-être réinitialiser les autorisations dans les paramètres du navigateur
     troubleshooting_guide_video_second: Recherchez les paramètres « Caméra » et « Microphone » et réglez-les sur « Autoriser »
+    troubleshooting_guide_video_seventh: Si les autorisations sont activées et qu'un problème est survenu lors du téléversement, relancez la vérification et essayez de téléverser à nouveau la vidéo
     troubleshooting_guide_video_sixth: 'Sur Mac : allez dans Préférences Système > Sécurité et confidentialité > Caméra/Microphone'
     troubleshooting_guide_video_third: Actualisez la page après avoir modifié les autorisations
     untimed: Sans limite de temps
@@ -222,6 +223,7 @@ fr:
     video: Vidéo
     video_and_audio: Vidéo et audio
     video_and_audio_recording: Enregistrement vidéo et audio
+    video_check_description: Il s'agit d'une vérification du système avant le test. Vous enregistrerez une vidéo de 30 secondes pour tester l'audio et la vidéo. Veuillez parler en continu et ne pas vous arrêter jusqu'à ce que l'enregistrement se termine automatiquement.
     video_check_fix_fifth: Si votre appareil photo est externe, essayez de le débrancher puis de le rebrancher
     video_check_fix_first: Cliquez sur « Autoriser » lorsque le navigateur vous demande l'autorisation d'utiliser la caméra
     video_check_fix_fourth: Vérifiez que votre caméra est connectée et allumée
