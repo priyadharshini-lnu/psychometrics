@@ -164,11 +164,13 @@ export default defineConfig([globalIgnores([
     }],
 
     'no-restricted-imports': ['error', {
-      paths: [{
-        name: '@ant-design/icons',
-        // eslint-disable-next-line max-len
-        message: 'Import of icons from @ant-design/icons is restricted. Instead import from ~/glint/icons/AccessibleIconsAntDesign.',
-      }],
+      patterns: [
+        {
+          group: ['@ant-design/icons*'],
+          // eslint-disable-next-line max-len
+          message: 'Import of icons from @ant-design/icons is restricted. Instead import from ~/glint/icons/AccessibleIconsAntDesign.',
+        },
+      ],
     }],
   },
 }, {

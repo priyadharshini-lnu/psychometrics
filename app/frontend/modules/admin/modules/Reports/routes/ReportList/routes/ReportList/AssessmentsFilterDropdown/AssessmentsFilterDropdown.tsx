@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {
   Button, Checkbox, Col, Input, Menu, Row, Spin,
 } from 'antd'
-import SearchOutlined from '@ant-design/icons/SearchOutlined'
 import { FilterDropdownProps } from 'antd/es/table/interface'
+import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { useResources } from '~/hooks/useResources'
