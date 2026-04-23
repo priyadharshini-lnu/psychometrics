@@ -98,7 +98,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     if (currentCampaign.isSystemCheckEnabled
         && !currentCampaign.systemCheckStatus?.isValid
         && currentCampaign?.progressStatus !== 'completed') {
-      window.location.href = '/dashboard'
+      window.location.href = `/campaign_system_check/${campaignId}/welcome`
     } else { setIsCampaignLoading(false) }
   }
 

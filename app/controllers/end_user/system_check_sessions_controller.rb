@@ -112,7 +112,7 @@ module EndUser
     def store_session_id(session_id)
       cookies.signed[:system_check_session_id] = {
         value: session_id,
-        expires: campaign.system_check_validity.seconds.from_now,
+        expires: 30.days.from_now,
         httponly: true,
         secure: Settings.protocol == 'https',
         same_site: :lax
