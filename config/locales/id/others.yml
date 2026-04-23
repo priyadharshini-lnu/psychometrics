@@ -1453,6 +1453,7 @@ id:
     timer:
       notification_hours: Anda memiliki sisa waktu %{hours} jam
       notification_minutes: anda memiliki sisa waktu %{minutes} menit
+      notification_minutes_seconds: Anda memiliki sisa wakt%{minutes} menit %{seconds} detik
   campaign_assessment:
     actions:
       bulk_download: Unduh Massal

@@ -1452,6 +1452,7 @@ sr-Latn:
     timer:
       notification_hours: Ostalo vam je %{hours} sata
       notification_minutes: Ostalo vam je %{minutes} minuta
+      notification_minutes_seconds: Преостало вам је %{minutes} минута и %{seconds} секунди
   campaign_assessment:
     actions:
       bulk_download: Zbirno preuzimanje

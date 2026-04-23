@@ -1449,6 +1449,7 @@ sk:
     timer:
       notification_hours: Zostáva vám %{hours} hodín
       notification_minutes: zostáva vám %{minutes} minút
+      notification_minutes_seconds: zostáva vám %{minutes} minút %{seconds} sekúnd
   campaign_assessment:
     actions:
       bulk_download: Hromadné sťahovanie

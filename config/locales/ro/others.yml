@@ -1449,6 +1449,7 @@ ro:
     timer:
       notification_hours: Mai aveți %{hours} oră
       notification_minutes: mai aveți %{minutes} minute
+      notification_minutes_seconds: mai ai %{minutes} minute %{seconds} secunde
   campaign_assessment:
     actions:
       bulk_download: Descărcare în bloc

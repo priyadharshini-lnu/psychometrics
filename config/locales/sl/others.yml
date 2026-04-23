@@ -1458,6 +1458,7 @@ sl:
     timer:
       notification_hours: Ostalo vam je še %{hours} ur
       notification_minutes: ostalo vam je še %{minutes} minut
+      notification_minutes_seconds: ostalo vam je še %{minutes} minut %{seconds} sekund
   campaign_assessment:
     actions:
       bulk_download: Hkratni prenos večih datotek

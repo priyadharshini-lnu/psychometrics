@@ -1443,6 +1443,7 @@ sr-Cyrl:
     timer:
       notification_hours: Остало вам је %{hours} сат
       notification_minutes: Остало вам је %{minutes} минута
+      notification_minutes_seconds: Преостало вам је %{minutes} минута и %{seconds} секунди
   campaign_assessment:
     actions:
       bulk_download: Масовно преузимање

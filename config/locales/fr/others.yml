@@ -1449,6 +1449,7 @@ fr:
     timer:
       notification_hours: Il vous reste %{hours} heures
       notification_minutes: il vous reste %{minutes} minutes
+      notification_minutes_seconds: Il vous reste %{minutes} minutes et %{seconds} secondes
   campaign_assessment:
     actions:
       bulk_download: Téléchargement en masse

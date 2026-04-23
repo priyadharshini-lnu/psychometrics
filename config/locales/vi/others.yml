@@ -1443,6 +1443,7 @@ vi:
     timer:
       notification_hours: Bạn còn %{hours} giờ nữa
       notification_minutes: bạn còn %{minutes} phút nữa
+      notification_minutes_seconds: Bạn còn lại %{minutes} phút %{seconds} giây
   campaign_assessment:
     actions:
       bulk_download: Tải xuống hàng loạt

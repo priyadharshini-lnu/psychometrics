@@ -1449,6 +1449,7 @@ it:
     timer:
       notification_hours: Ti rimane %{hours} un'ora
       notification_minutes: hai ancora %{minutes} minuti
+      notification_minutes_seconds: Ti restano%{minutes} minuti e%{seconds} secondi
   campaign_assessment:
     actions:
       bulk_download: Scaricamento in blocco
