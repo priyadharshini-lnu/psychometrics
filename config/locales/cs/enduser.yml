@@ -178,6 +178,7 @@ cs:
     system_check_proceed: Ano, můžeme pokračovat
     system_check_retake: Ne, chci to zkusit znovu
     system_check_run_again: Zkusit znovu
+    system_check_session_not_found: Nenašla se žádná relace kontroly systému. Spusťte prosím novou kontrolu systému.
     system_check_start_recording: Spuštění nahrávání
     system_check_stop_recording: Zastavit nahrávání
     system_check_test_message: je skvělé si s vámi popovídat

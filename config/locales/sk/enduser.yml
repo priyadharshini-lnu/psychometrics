@@ -178,6 +178,7 @@ sk:
     system_check_proceed: Áno, môžete pokračovať
     system_check_retake: Nie, chcem si zopakovať
     system_check_run_again: Znovu bežať
+    system_check_session_not_found: Nenašla sa žiadna relácia kontroly systému. Spustite prosím novú kontrolu systému.
     system_check_start_recording: Spustiť nahrávanie
     system_check_stop_recording: Zastavenie nahrávania
     system_check_test_message: skvelé hovoriť s vami

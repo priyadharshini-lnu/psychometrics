@@ -1453,6 +1453,7 @@ pl:
     timer:
       notification_hours: Pozostało Ci %{hours} godziny
       notification_minutes: Masz %{minutes} minut i  na ukończenie
+      notification_minutes_seconds: zostało Ci %{minutes} minut %{seconds} sekund
   campaign_assessment:
     actions:
       bulk_download: Pobieranie zbiorcze

@@ -1018,6 +1018,7 @@ pt:
     skill_aliases: Apelidos de habilidade
     skills: Competências
     skills_taxonomy: Taxonomia de competências
+    skip_assessment_level_checks: Ignorar verificações do sistema de níveis de avaliação
     slot_name: Nome do Slot
     sms_histories: Histórias SMS
     sms_invites: Convites SMS

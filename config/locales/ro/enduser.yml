@@ -178,6 +178,7 @@ ro:
     system_check_proceed: Da, Ok pentru a continua
     system_check_retake: Nu, vreau să reiau
     system_check_run_again: Aleargă din nou
+    system_check_session_not_found: Nu s-a găsit nicio sesiune de verificare a sistemului. Vă rugăm să începeți o nouă verificare a sistemului.
     system_check_start_recording: Începeți înregistrarea
     system_check_stop_recording: Opriți înregistrarea
     system_check_test_message: mă bucur să vorbesc cu tine

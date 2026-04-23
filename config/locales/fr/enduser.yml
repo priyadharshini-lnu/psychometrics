@@ -178,6 +178,7 @@ fr:
     system_check_proceed: Oui, Ok pour continuer
     system_check_retake: Non, je veux repasser
     system_check_run_again: Recommencer
+    system_check_session_not_found: La session de vérification du système est introuvable. Veuillez lancer une nouvelle vérification du système.
     system_check_start_recording: Démarrer l'enregistrement
     system_check_stop_recording: Arrêter l'enregistrement
     system_check_test_message: c'est un plaisir de parler avec vous

@@ -178,6 +178,7 @@ nl:
     system_check_proceed: Ja, oké om door te gaan
     system_check_retake: Nee, ik wil een herkansing
     system_check_run_again: Opnieuw rennen
+    system_check_session_not_found: Er is geen sessie voor de systeemcontrole gevonden. Start een nieuwe systeemcontrole.
     system_check_start_recording: Opname starten
     system_check_stop_recording: Opname stoppen
     system_check_test_message: leuk om met je te praten

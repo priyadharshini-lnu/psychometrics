@@ -1018,6 +1018,7 @@ sr-Latn:
     skill_aliases: Pseudonimi veština
     skills: Veљtine
     skills_taxonomy: Taksonomija veština
+    skip_assessment_level_checks: Прескочи системске провере на нивоу процене
     slot_name: Ime slota
     sms_histories: SMS istorije
     sms_invites: SMS pozivnice

@@ -1018,6 +1018,7 @@ cs:
     skill_aliases: Pseudonymy dovedností
     skills: Dovednosti
     skills_taxonomy: Taxonomie dovedností
+    skip_assessment_level_checks: Přeskočit kontroly systému na úrovni hodnocení
     slot_name: Název slotu
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS

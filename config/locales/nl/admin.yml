@@ -1018,6 +1018,7 @@ nl:
     skill_aliases: Vaardigheden aliassen
     skills: Vaardigheden
     skills_taxonomy: Taxonomie van vaardigheden
+    skip_assessment_level_checks: Controles op beoordelingsniveau overslaan
     slot_name: Slot Name
     sms_histories: SMS-geschiedenis
     sms_invites: SMS Uitnodigingen

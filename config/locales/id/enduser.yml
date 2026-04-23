@@ -178,6 +178,7 @@ id:
     system_check_proceed: Ya, Oke untuk melanjutkan
     system_check_retake: Tidak, saya ingin mengulang
     system_check_run_again: Jalankan lagi
+    system_check_session_not_found: Sesi pemeriksaan sistem tidak ditemukan. Silakan mulai pemeriksaan sistem yang baru.
     system_check_start_recording: Mulai merekam
     system_check_stop_recording: Berhenti merekam
     system_check_test_message: senang berbicara dengan Anda

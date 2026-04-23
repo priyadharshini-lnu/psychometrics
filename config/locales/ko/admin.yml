@@ -1018,6 +1018,7 @@ ko:
     skill_aliases: 스킬 별칭
     skills: 기술
     skills_taxonomy: 기술 분류
+    skip_assessment_level_checks: 평가 수준별 시스템 검사 건너뛰기
     slot_name: 슬롯 이름
     sms_histories: SMS 기록
     sms_invites: SMS 초대

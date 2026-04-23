@@ -1018,6 +1018,7 @@ ja:
     skill_aliases: スキルの別名
     skills: スキル
     skills_taxonomy: スキル分類法
+    skip_assessment_level_checks: 評価レベルに基づくシステムチェックをスキップする
     slot_name: スロット名
     sms_histories: SMSヒストリー
     sms_invites: SMS招待

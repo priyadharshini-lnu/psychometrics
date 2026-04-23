@@ -1447,6 +1447,7 @@ en-US:
     timer:
       notification_hours: You have %{hours} hour left
       notification_minutes: you have %{minutes} minutes left
+      notification_minutes_seconds: you have %{minutes} minutes %{seconds} seconds left
   campaign_assessment:
     actions:
       bulk_download: Bulk Download

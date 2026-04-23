@@ -1449,6 +1449,7 @@ zh-Hant:
     timer:
       notification_hours: 您剩餘 %{hours} 小時
       notification_minutes: 您還剩 %{minutes}分鐘
+      notification_minutes_seconds: 您还剩 %{minutes} 分 %{seconds} 秒
   campaign_assessment:
     actions:
       bulk_download: 大量下載

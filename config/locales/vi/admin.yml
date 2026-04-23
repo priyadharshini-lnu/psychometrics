@@ -1018,6 +1018,7 @@ vi:
     skill_aliases: Bí danh kỹ năng
     skills: Kỹ năng
     skills_taxonomy: Phân loại kỹ năng
+    skip_assessment_level_checks: Bỏ qua các bước kiểm tra hệ thống theo cấp độ đánh giá
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS

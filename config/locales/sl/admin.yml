@@ -1018,6 +1018,7 @@ sl:
     skill_aliases: Vzdevki spretnosti
     skills: Spretnosti
     skills_taxonomy: Taksonomija spretnosti
+    skip_assessment_level_checks: Preskoči preverjanje sistema na ravni ocenjevanja
     slot_name: Ime reže
     sms_histories: Zgodovina sporočil SMS
     sms_invites: SMS vabila

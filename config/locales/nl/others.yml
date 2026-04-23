@@ -1449,6 +1449,7 @@ nl:
     timer:
       notification_hours: Je hebt %{hours} uur over
       notification_minutes: je hebt %{minutes} minuten over
+      notification_minutes_seconds: je hebt nog %{minutes} minuten %{seconds} seconden te gaan
   campaign_assessment:
     actions:
       bulk_download: Bulk downloaden

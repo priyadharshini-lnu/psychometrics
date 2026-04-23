@@ -178,6 +178,7 @@ hi:
     system_check_proceed: हाँ, आगे बढ़ने के लिए ठीक है।
     system_check_retake: नहीं, मैं दोबारा लेना चाहता हूँ।
     system_check_run_again: फिर से दौड़ो
+    system_check_session_not_found: सिस्टम चेक सत्र नहीं मिला। कृपया एक नया सिस्टम चेक शुरू करें।
     system_check_start_recording: रिकॉर्डिंग शुरू करें
     system_check_stop_recording: रिकॉर्डिंग बंद करें
     system_check_test_message: आपसे बात करके बहुत अच्छा लगा।

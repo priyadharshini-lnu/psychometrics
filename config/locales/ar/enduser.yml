@@ -178,6 +178,7 @@ ar:
     system_check_proceed: نعم موافق للمضي قدما
     system_check_retake: لا، أريد أن أستعيد
     system_check_run_again: تشغيل مرة أخرى
+    system_check_session_not_found: لم يتم العثور على جلسة فحص النظام. يرجى بدء فحص نظام جديد.
     system_check_start_recording: بدء التسجيل
     system_check_stop_recording: توقف عن التسجيل
     system_check_test_message: سُررت بالتحدث معك

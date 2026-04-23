@@ -1018,6 +1018,7 @@ zh-Hant:
     skill_aliases: 技能別名
     skills: 技術
     skills_taxonomy: 技能分類法
+    skip_assessment_level_checks: 跳过评估级别的系统检查
     slot_name: 車位名稱
     sms_histories: 簡訊歷史
     sms_invites: 簡訊邀請

@@ -1018,6 +1018,7 @@ sk:
     skill_aliases: Aliasy zručností
     skills: Zručnosti
     skills_taxonomy: Taxonómia zručností
+    skip_assessment_level_checks: Preskočiť kontroly systému na úrovni hodnotenia
     slot_name: Názov slotu
     sms_histories: História SMS
     sms_invites: SMS pozvánky

@@ -1449,6 +1449,7 @@ bg:
     timer:
       notification_hours: Остава Ви %{hours} час
       notification_minutes: Остават Ви %{minutes} минути
+      notification_minutes_seconds: остават ви %{minutes} минути %{seconds} секунди
   campaign_assessment:
     actions:
       bulk_download: Групово изтегляне

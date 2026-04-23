@@ -178,6 +178,7 @@ es-ES:
     system_check_proceed: Continuar
     system_check_retake: No, quiero retomar
     system_check_run_again: Corre otra vez
+    system_check_session_not_found: No se ha encontrado ninguna sesión de comprobación del sistema. Inicie una nueva comprobación del sistema.
     system_check_start_recording: Iniciar grabación
     system_check_stop_recording: Detener la grabación
     system_check_test_message: es un placer hablar con usted

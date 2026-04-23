@@ -178,6 +178,7 @@ ja:
     system_check_proceed: 続行
     system_check_retake: いや、再受験したい
     system_check_run_again: もう一度走る
+    system_check_session_not_found: システムチェックのセッションが見つかりません。新しいシステムチェックを開始してください。
     system_check_start_recording: 録音開始
     system_check_stop_recording: 録音停止
     system_check_test_message: お話しできて嬉しいです

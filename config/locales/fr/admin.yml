@@ -1018,6 +1018,7 @@ fr:
     skill_aliases: Alias de compétences
     skills: Compétences
     skills_taxonomy: Taxonomie des compétences
+    skip_assessment_level_checks: Ignorer les vérifications du système au niveau de l'évaluation
     slot_name: Nom de la machine à sous
     sms_histories: Histoires de SMS
     sms_invites: Invitations par SMS

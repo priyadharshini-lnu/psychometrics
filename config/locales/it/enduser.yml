@@ -178,6 +178,7 @@ it:
     system_check_proceed: Sì, è possibile procedere
     system_check_retake: No, voglio rifare il test
     system_check_run_again: Correre di nuovo
+    system_check_session_not_found: Sessione di controllo del sistema non trovata. Avvia un nuovo controllo del sistema.
     system_check_start_recording: Avvio della registrazione
     system_check_stop_recording: Interrompere la registrazione
     system_check_test_message: è stato un piacere parlare con voi

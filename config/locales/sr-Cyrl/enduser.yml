@@ -178,6 +178,7 @@ sr-Cyrl:
     system_check_proceed: Да, желим да наставим
     system_check_retake: Не, желим поново да узмем
     system_check_run_again: Трчи поново
+    system_check_session_not_found: Сесија провере система није пронађена. Молимо покрените нову проверу система.
     system_check_start_recording: Почните са снимањем
     system_check_stop_recording: Заустави снимање
     system_check_test_message: Драго ми је да разговарам са тобом

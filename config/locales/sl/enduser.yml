@@ -178,6 +178,7 @@ sl:
     system_check_proceed: Da, nadaljuj
     system_check_retake: Ne, želim poskusiti znova
     system_check_run_again: Začnite znova
+    system_check_session_not_found: Seja za preverjanje sistema ni bila najdena. Začnite novo preverjanje sistema.
     system_check_start_recording: Začni snemati
     system_check_stop_recording: Konec snemanja
     system_check_test_message: V veselje mi je klepetati z vami

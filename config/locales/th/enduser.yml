@@ -178,6 +178,7 @@ th:
     system_check_proceed: ใช่ ตกลงเพื่อดำเนินการต่อ
     system_check_retake: ไม่ ฉันต้องการสอบใหม่
     system_check_run_again: ทดสอบอีกครั้ง
+    system_check_session_not_found: ไม่พบเซสชันการตรวจสอบระบบ กรุณาเริ่มการตรวจสอบระบบใหม่
     system_check_start_recording: เริ่มบันทึก
     system_check_stop_recording: หยุดการบันทึก
     system_check_test_message: ดีใจที่ได้คุยกับคุณ

@@ -1018,6 +1018,7 @@ sr-Cyrl:
     skill_aliases: Алијасе вештина
     skills: Вештине
     skills_taxonomy: Таксономија вештина
+    skip_assessment_level_checks: Прескочи системске провере на нивоу процене
     slot_name: Назив слота
     sms_histories: СМС историје
     sms_invites: SMS позиви

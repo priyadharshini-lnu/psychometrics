@@ -17,7 +17,7 @@ type CountdownTimerProps = StatisticProps & {
   onFinish?: () => void
   notificationPoints?: Notification[]
   notificationDuration?: number
-  notificationTemplate?: (minutes: number) => string
+  notificationTemplate?: (minutes: number, seconds: number) => string
 }
 
 const SECONDS_PER_DAY = 60 * 60 * 24
@@ -88,21 +88,41 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
     if (!seconds || !countDownValue || !stableNotificationPoints.length) return
 
     const firedSet = firedNotificationsRef.current
+    let isInitialCheck = true
 
     const checkNotifications = () => {
-      const remainingSeconds = Math.floor((countDownValue - Date.now()) / 1000)
+      const remainingSeconds = Math.max(0, Math.floor((countDownValue - Date.now()) / 1000))
+
+      const pendingNotifications = stableNotificationPoints.filter(
+        ({ timeRemaining }) => !firedSet.has(timeRemaining) && remainingSeconds <= timeRemaining,
+      )
+
+      const activeNotificationPoint = pendingNotifications.length
+        ? Math.min(...pendingNotifications.map(({ timeRemaining }) => timeRemaining))
+        : null
 
       stableNotificationPoints.forEach(({ timeRemaining, type }) => {
         if (firedSet.has(timeRemaining)) return
         if (remainingSeconds > timeRemaining) return
 
         firedSet.add(timeRemaining)
-        const minutes = Math.floor(timeRemaining / 60)
+
+        if (timeRemaining !== activeNotificationPoint) return
+
+        const displayMinutes = isInitialCheck
+          ? Math.floor(remainingSeconds / 60)
+          : Math.floor(timeRemaining / 60)
+        const displaySeconds = isInitialCheck
+          ? remainingSeconds % 60
+          : 0
+
         antdNotification[type]({
-          message: notificationTemplate && notificationTemplate(minutes),
+          message: notificationTemplate && notificationTemplate(displayMinutes, displaySeconds),
           duration: notificationDuration,
         })
       })
+
+      isInitialCheck = false
     }
 
     checkNotifications()

@@ -181,6 +181,7 @@ en:
     system_check_proceed: Yes, Ok to proceed
     system_check_retake: No, I want to retake
     system_check_run_again: Run again
+    system_check_session_not_found: System check session not found. Please start a new system check.
     system_check_start_recording: Start Recording
     system_check_stop_recording: Stop Recording
     system_check_test_message: great to speak with you
