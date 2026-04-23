@@ -22,6 +22,9 @@ describe UserReports::UnavailabilityReasonDetails do
       report: report,
       campaign_user: campaign_user
     )
+
+    allow_any_instance_of(described_class).to receive(:incomplete_assessment_names).and_return([])
+    allow_any_instance_of(described_class).to receive(:incomplete_assessor_names).and_return([])
   end
 
   describe '#query' do
@@ -59,13 +62,80 @@ describe UserReports::UnavailabilityReasonDetails do
     end
 
     context 'when assessment is not completed' do
-      before { allow(user_report).to receive(:all_assessments_are_scored?).and_return(false) }
+      before do
+        allow(user_report).to receive(:all_assessments_are_scored?).and_return(false)
+        allow_any_instance_of(described_class).
+          to receive(:incomplete_assessment_names).
+          and_return(['AS1'])
+      end
 
-      it 'returns assessment_not_completed reason' do
+      it 'returns assessment_not_completed reason with singular assessment message' do
         expect(result).to include(
           reason_code: 'assessment_not_completed',
-          reason_message: 'Assessment is not completed'
+          reason_message: 'Assessment AS1 is not completed'
         )
+      end
+
+      it 'prioritizes assessment message over assessor message' do
+        allow_any_instance_of(described_class).
+          to receive(:incomplete_assessor_names).
+          and_return(['Assessor 1'])
+
+        expect(result).to include(
+          reason_code: 'assessment_not_completed',
+          reason_message: 'Assessment AS1 is not completed'
+        )
+      end
+
+      context 'when multiple assessments are incomplete' do
+        before do
+          allow_any_instance_of(described_class).
+            to receive(:incomplete_assessment_names).
+            and_return(%w[AS1 AS2])
+        end
+
+        it 'returns assessment_not_completed reason with plural assessment message' do
+          expect(result).to include(
+            reason_code: 'assessment_not_completed',
+            reason_message: 'Assessments AS1, AS2 are not completed'
+          )
+        end
+      end
+
+      context 'when no assessments are incomplete but assessor is incomplete' do
+        before do
+          allow_any_instance_of(described_class).
+            to receive(:incomplete_assessment_names).
+            and_return([])
+          allow_any_instance_of(described_class).
+            to receive(:incomplete_assessor_names).
+            and_return(['Assessor 1'])
+        end
+
+        it 'returns assessment_not_completed reason with singular assessor message' do
+          expect(result).to include(
+            reason_code: 'assessment_not_completed',
+            reason_message: 'Assessor Assessor 1 is not completed'
+          )
+        end
+      end
+
+      context 'when no assessments are incomplete but multiple assessors are incomplete' do
+        before do
+          allow_any_instance_of(described_class).
+            to receive(:incomplete_assessment_names).
+            and_return([])
+          allow_any_instance_of(described_class).
+            to receive(:incomplete_assessor_names).
+            and_return(['Assessor 1', 'Assessor 2'])
+        end
+
+        it 'returns assessment_not_completed reason with plural assessor message' do
+          expect(result).to include(
+            reason_code: 'assessment_not_completed',
+            reason_message: 'Assessors Assessor 1, Assessor 2 are not completed'
+          )
+        end
       end
     end
 

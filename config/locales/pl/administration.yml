@@ -959,7 +959,6 @@ pl:
         prework_required: Nie zezwalaj na rezerwację centrum, jeśli prace wstępne nie zostały zakończone
         prework_required_for_invite: Wysyłaj wiadomość e-mail z zaproszeniem tylko po zakończeniu prac wstępnych
         proctoring:
-          allow_on_assessment_center: Zezwalaj na nadzorowanie w centrum oceny
           enable: Włącz nadzorowanie
           identification: Identyfikacja
           identifications:
@@ -2772,12 +2771,10 @@ pl:
     proctoring_sessions:
       columns:
         comment: Komentarz
-        completed_at: Zakończone w
         conclusion: Konkluzja
         links: Linki
         score: Wynik
         session_id: Identyfikator sesji
-        started_at: Rozpoczęto o
       links:
         report: Sprawozdanie
         review: Recenzja

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Radio, Checkbox } from 'antd'
 
-import { RadioChangeEvent } from 'antd/lib/radio'
+import { RadioChangeEvent } from 'antd/es/radio'
 import { BasePropertiesModel } from '~/modules/survey/interfaces/questions/Base'
 
 const { I18n } = window

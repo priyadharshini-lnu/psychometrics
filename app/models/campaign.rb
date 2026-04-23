@@ -60,6 +60,7 @@ class Campaign < ApplicationRecord
            :rules,
            :campaign_scoring_variables,
            :proctoring_type,
+           :selective_proctoring_enabled?,
            to: :campaign_options
   delegate :skill_rater?, to: :threesixty_campaign, allow_nil: true
 
@@ -210,6 +211,14 @@ class Campaign < ApplicationRecord
 
   def allow_continue_with_warning?
     system_check_option('allow_continue_with_warning', default: false)
+  end
+
+  def skip_assessment_level_checks?
+    system_check_option('skip_assessment_level_checks', default: true)
+  end
+
+  def should_run_assessment_level_checks?
+    !system_check_enabled? || !skip_assessment_level_checks?
   end
 
   def minimum_upload_speed

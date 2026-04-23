@@ -13,6 +13,7 @@ module WebhookSubscriptions
       scheduling_cancelled: WorkshopSubjects::Webhook,
       scheduling_rescheduled: WorkshopSubjects::Webhook,
       scheduling_invited: WorkshopInvites::Webhook,
+      workshop_attendance_status: WorkshopSubjects::Webhook,
       assessment_raw_response: UserAssessments::Webhook
     }.freeze
 

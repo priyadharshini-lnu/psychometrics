@@ -43,7 +43,7 @@ export const ManageVariablesForm: React.FC<Props> = ({
       {() => (
         <>
           <Form.Item name="variables">
-            <LuaEditor controlled />
+            <LuaEditor />
           </Form.Item>
         </>
       )}

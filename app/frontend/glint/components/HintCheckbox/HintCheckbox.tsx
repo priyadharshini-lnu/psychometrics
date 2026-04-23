@@ -1,7 +1,7 @@
 import { ReactNode, FC } from 'react'
 import { Tooltip, Checkbox } from 'antd'
 import cs from 'classnames'
-import { TooltipPlacement } from 'antd/lib/tooltip'
+import { TooltipPlacement } from 'antd/es/tooltip'
 import styles from './HintCheckbox.less'
 
 type Props = {

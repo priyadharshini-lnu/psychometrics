@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Form, Upload, Button } from 'antd'
-import { UploadFile } from 'antd/lib/upload/interface'
+import { UploadFile } from 'antd/es/upload/interface'
 import { UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceForm from '~/components/ResourceForm'
 import { Assessment, Files, uploadFiles } from '~/modules/admin/modules/client/core/assessments'

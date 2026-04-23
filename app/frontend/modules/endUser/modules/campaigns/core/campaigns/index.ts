@@ -15,6 +15,7 @@ const CommonCampaignTR = t.type({
   userReportsAvailable: t.boolean,
   description: t.union([t.null, t.string]),
   isSystemCheckEnabled: t.boolean,
+  skipAssessmentLevelChecks: t.boolean,
   allowContinueWithWarning: t.boolean,
   systemCheckValidity: t.union([t.null, t.number]),
   systemCheckStatus: t.union([t.null, t.type({
@@ -26,6 +27,7 @@ const ThreesixtyCampaignTR = t.type({
   timing: t.union([t.string, t.null]),
   assessmentName: t.string,
   isSystemCheckEnabled: t.boolean,
+  skipAssessmentLevelChecks: t.boolean,
   allowContinueWithWarning: t.boolean,
   systemCheckValidity: t.union([t.null, t.number]),
   systemCheckStatus: t.union([t.null, t.type({

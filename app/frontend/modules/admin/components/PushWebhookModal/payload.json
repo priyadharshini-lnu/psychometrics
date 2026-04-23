@@ -244,7 +244,8 @@
         "id": 1,
         "name": "Invite Name",
         "description": "Invite Description",
-        "url": "https://aug.ttedev.me:3030/invites"
+        "url": "https://aug.ttedev.me:3030/invites",
+        "rescheduling_type": "normal_rescheduling"
       },
       "reschedule_to_workshop": {
         "id": 2,
@@ -285,7 +286,8 @@
         "id": 1,
         "name": "Invite Name",
         "description": "Invite Description",
-        "url": "https://aug.ttedev.me:3030/invites"
+        "url": "https://aug.ttedev.me:3030/invites",
+        "cancellation_type": "normal_cancellation"
       },
       "workshop": {
         "id": 1,
@@ -294,6 +296,36 @@
         "end_time": "2023-02-01T21:43:48.531+05:30"
       },
       "event_time": "2023-02-01T20:43:48.531+05:30"
+    }
+  },
+  "workshop_attendance_status": {
+    "event_name": "workshop_attendance_status",
+    "event_id": "e7ec5b2a-febc-4965-a678-6ba910d97f10",
+    "data": {
+      "status": "no_show",
+      "workshop": {
+        "id": 369,
+        "name": "21st Jun 2024, 9:00 pm",
+        "start_time": "2024-06-21T21:00:00.000+04:00",
+        "end_time": "2024-06-21T23:00:00.000+04:00"
+      },
+      "subject": {
+        "id": 281348,
+        "name": "Test 5"
+      },
+      "project": {
+        "id": 376,
+        "name": "Test Project"
+      },
+      "client": {
+        "id": 375,
+        "name": "TTE Client Test"
+      },
+      "campaign": {
+        "id": 12777,
+        "name": "Assessment Center Test"
+      },
+      "event_time": "2024-06-21T20:49:57.009+04:00"
     }
   },
   "campaign_results_available": {

@@ -959,7 +959,6 @@ ar:
         prework_required: لا تسمح بحجز المركز إذا لم يتم إكمال الأعمال التحضيرية
         prework_required_for_invite: إرسال بريد الدعوة فقط عند اكتمال الأعمال التحضيرية
         proctoring:
-          allow_on_assessment_center: السماح بالمراقبة في مركز التقييم
           enable: تمكين المراقبة
           identification: التحقق
           identifications:
@@ -2772,12 +2771,10 @@ ar:
     proctoring_sessions:
       columns:
         comment: تعليق
-        completed_at: اكتمل في
         conclusion: الخاتمة
         links: الروابط
         score: النتيجة
         session_id: معرّف الجلسة
-        started_at: بدأت في
       links:
         report: Report
         review: Review

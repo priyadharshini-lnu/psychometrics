@@ -1,6 +1,4 @@
-import CodeMirror from 'codemirror'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/xml/xml'
+import CodeMirror from '~/glint/components/ReactCodemirror/CodeMirrorCompat'
 import events from '~/components/Editor/events'
 import { FROALA } from '~/constants/froala.ts'
 

@@ -326,6 +326,29 @@ module Administration
         ).serialize(campaign_assessment)
       end
 
+      def update_proctoring_settings
+        if params[:proctoring_enabled] && !assessment.fixed_timed?
+          error_msg = I18n.t('admin.proctoring_errors_timed_only')
+          return render json: { errors: error_msg }, status: :unprocessable_entity
+        end
+
+        campaign_assessment.update!(
+          proctoring_enabled: params[:proctoring_enabled]
+        )
+
+        audit! :update_proctoring_settings, campaign_assessment,
+               payload: { proctoring_enabled: campaign_assessment.proctoring_enabled? },
+               campaign: campaign
+
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
+      end
+
       private
 
       def assessment

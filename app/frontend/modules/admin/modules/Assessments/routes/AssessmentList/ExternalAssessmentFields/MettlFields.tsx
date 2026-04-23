@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Form, Select, Spin,
 } from 'antd'
-import { FormInstance } from 'antd/lib/form'
+import { FormInstance } from 'antd/es/form'
 import { useResources } from '~/hooks/useResources'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { Project } from '~/modules/admin/modules/client/core/projects'

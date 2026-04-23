@@ -8,10 +8,18 @@ module Administration
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
                :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id,
                :simulation_content_variations, :pearson_variations, :caching_enabled, :allow_caching, :mhs_norm_regions,
-               :mhs_norm_options
+               :mhs_norm_options, :proctoring_enabled, :is_timed, :fixed_time_duration
 
     delegate :id, :name, :dimension_id, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
+
+    def is_timed
+      !!assessment.fixed_timed?
+    end
+
+    def fixed_time_duration
+      assessment.extra&.[]('timer').to_i if assessment.fixed_timed?
+    end
 
     def campaign_assessment_id
       object.id

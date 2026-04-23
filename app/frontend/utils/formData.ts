@@ -1,4 +1,4 @@
-import { UploadFile } from 'antd/lib/upload/interface'
+import { UploadFile } from 'antd/es/upload/interface'
 import _ from 'lodash'
 
 export type FileData = Record<string, { file?: File | UploadFile }>

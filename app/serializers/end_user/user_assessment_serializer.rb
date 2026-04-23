@@ -8,7 +8,7 @@ module EndUser
                :assessment_extra, :assessment_id, :status, :completion_percent, :completion_reason, :available_locales,
                :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration,
                :workshop_activity, :meeting_time, :meeting_link, :require_scheduling, :evaluation_session_id,
-               :caching_enabled
+               :caching_enabled, :proctoring_enabled, :is_timed, :fixed_time_duration
 
     def evaluation_session_id
       'session_id'
@@ -80,6 +80,18 @@ module EndUser
 
     def assessment_extra
       object.assessment.extra
+    end
+
+    def proctoring_enabled
+      object.proctoring_enabled?
+    end
+
+    def is_timed
+      !!object.assessment.fixed_timed?
+    end
+
+    def fixed_time_duration
+      object.assessment.extra&.[]('timer').to_i if object.assessment.fixed_timed?
     end
 
     def timing

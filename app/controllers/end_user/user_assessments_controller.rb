@@ -3,15 +3,20 @@
 class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
   include AssessmentUtilities
+  include AsyncRequestHandler
 
   layout 'layouts/end_user'
 
   prepend_before_action :authenticate_anonymous_user!
   initial_state_for %i[show pass begin]
   before_action :set_user_assessment,
-                only: %i[assessment show pass begin validate_session
-                         upload_user_verification_media_url user_verification_media_upload_callback
-                         mark_completed]
+                only: %i[assessment details show pass begin validate_session user_verification_media_upload_callback
+                         upload_user_verification_media_url mark_completed proctoring_session finish_proctoring_session]
+
+  async_request :proctoring_session, handler: UserAssessments::ProctoringSession,
+    permit_params: ->(params) { params.require(:user_assessment).permit(:id) }
+  async_request :finish_proctoring_session, handler: UserAssessments::FinishProctoringSession,
+    permit_params: ->(params) { params.require(:user_assessment).permit(:id) }
   before_action :redirect_and_ensure_valid_assessment_locale, only: %i[pass begin]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]

@@ -10,6 +10,18 @@ import { FetchSingle } from './users'
 export const UserReportTR = t.type({
   id: t.number,
   name: t.string,
+  internal: t.boolean,
+  status: t.string,
+  reportUrl: t.union([t.string, t.null]),
+  unavailabilityReasonDetails: t.union([
+    t.type({
+      available: t.boolean,
+      reasonCode: t.string,
+      reasonMessage: t.string,
+    }),
+    t.null,
+    t.undefined,
+  ]),
 })
 export type UserReport = t.TypeOf<typeof UserReportTR>
 

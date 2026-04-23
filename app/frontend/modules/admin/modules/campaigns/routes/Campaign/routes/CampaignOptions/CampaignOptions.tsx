@@ -8,6 +8,7 @@ import snakeCase from 'lodash/snakeCase'
 import {
   QuestionCircleOutlined,
   EditOutlined,
+  InfoCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SafeHTML } from '~/components/SafeHTML'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -46,6 +47,12 @@ interface OwnProps {
 }
 
 type Props = OwnProps & PropsFromRedux
+
+const PROCTORING_LEVEL_TYPES = {
+  selective: 'selective',
+  all: 'all',
+  allExceptWorkshopActivities: 'allExceptWorkshopActivities',
+}
 
 const CampaignOptions: React.FC<Props> = ({
   options,
@@ -100,8 +107,7 @@ const CampaignOptions: React.FC<Props> = ({
           ...options,
           fixedTime: fixedTimeValue,
           fixedTimeDuration: durationValue,
-          proctoringEnabled: fixedTimeValue ? options.proctoringEnabled : false,
-          proctoringEnabledOnWorkshopActivity: fixedTimeValue ? options.proctoringEnabledOnWorkshopActivity : false,
+          ...(fixedTimeValue ? {} : { selectiveProctoringEnabled: options.proctoringEnabled === true }),
           enableMobileProctoring: fixedTimeValue ? options.enableMobileProctoring : false,
         },
       )
@@ -237,7 +243,12 @@ const CampaignOptions: React.FC<Props> = ({
       {
         ...options,
         [name]: value,
-        proctoringEnabledOnWorkshopActivity: value ? options.proctoringEnabledOnWorkshopActivity : false,
+        proctoringEnabledOnWorkshopActivity: (value && localFixedTime)
+          ? true
+          : (options.proctoringEnabledOnWorkshopActivity || false),
+        selectiveProctoringEnabled: (value && !localFixedTime)
+          ? true
+          : (options.selectiveProctoringEnabled || false),
       },
     ),
   })
@@ -288,121 +299,175 @@ const CampaignOptions: React.FC<Props> = ({
               </Col>
             </Row>
           </div>
-          <div style={{ display: features.proctoring ? 'block' : 'none' }}>
-            <Option
-              label={I18n.t('administration.campaigns.options.proctoring.enable')}
-              {...parametersForEnableProctoring('proctoringEnabled')}
-            />
-            <div style={{ display: options.proctoringEnabled ? 'block' : 'none' }}>
+        </div>
+        <div style={{ display: features.proctoring ? 'block' : 'none' }}>
+          <Option
+            label={I18n.t('administration.campaigns.options.proctoring.enable')}
+            {...parametersForEnableProctoring('proctoringEnabled')}
+          />
+          {options.proctoringEnabled && (
+            <>
+              <div className="mbl">
+                <Row>
+                  <Col span={22} offset={2}>
+                    <Radio.Group
+                      onChange={(e) => {
+                        const val = e.target.value
+                        if (val === PROCTORING_LEVEL_TYPES.selective) {
+                          return update(parsedProjectId, parsedCampaignId, {
+                            ...options,
+                            selectiveProctoringEnabled: true,
+                            proctoringEnabledOnWorkshopActivity: false,
+                          })
+                        }
+                        if (val === PROCTORING_LEVEL_TYPES.all) {
+                          return update(parsedProjectId, parsedCampaignId, {
+                            ...options,
+                            selectiveProctoringEnabled: false,
+                            proctoringEnabledOnWorkshopActivity: true,
+                          })
+                        }
+                        return update(parsedProjectId, parsedCampaignId, {
+                          ...options,
+                          selectiveProctoringEnabled: false,
+                          proctoringEnabledOnWorkshopActivity: false,
+                        })
+                      }}
+                      value={(() => {
+                        if (!localFixedTime) return PROCTORING_LEVEL_TYPES.selective
+                        if (options.selectiveProctoringEnabled) return PROCTORING_LEVEL_TYPES.selective
+                        if (options.proctoringEnabledOnWorkshopActivity) return PROCTORING_LEVEL_TYPES.all
+                        return PROCTORING_LEVEL_TYPES.allExceptWorkshopActivities
+                      })()}
+                    >
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <Radio value={PROCTORING_LEVEL_TYPES.all} disabled={!localFixedTime}>
+                          {I18n.t('admin.proctoring_mode_all')}
+                          {!localFixedTime && (
+                            <Tooltip title={I18n.t('admin.proctoring_fixed_time_required')}>
+                              <span><InfoCircleOutlined className="ms-2" /></span>
+                            </Tooltip>
+                          )}
+                        </Radio>
+                        <Radio value={PROCTORING_LEVEL_TYPES.allExceptWorkshopActivities} disabled={!localFixedTime}>
+                          {I18n.t('admin.proctoring_mode_all_except_ac')}
+                          {!localFixedTime && (
+                            <Tooltip title={I18n.t('admin.proctoring_fixed_time_required')}>
+                              <span><InfoCircleOutlined className="ms-2" /></span>
+                            </Tooltip>
+                          )}
+                        </Radio>
+                        <Radio value={PROCTORING_LEVEL_TYPES.selective}>
+                          {I18n.t('admin.selective_proctoring')}
+                        </Radio>
+                      </div>
+                    </Radio.Group>
+                  </Col>
+                </Row>
+              </div>
               <Option
                 label={I18n.t('admin.enable_mobile_proctoring')}
                 {...parametersForField('enableMobileProctoring')}
               />
-              <Option
-                label={I18n.t('administration.campaigns.options.proctoring.allow_on_assessment_center')}
-                {...parametersForField('proctoringEnabledOnWorkshopActivity')}
-              />
-            </div>
 
-            <div style={{ display: options.proctoringEnabled ? 'block' : 'none' }}>
-              <Option
-                label={I18n.t('administration.campaigns.options.proctoring.trial')}
-                {...parametersForField('proctoringTrial')}
-              />
-              <div className="mbl">
-                <Row>
-                  <Col span={2}>
-                    <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
-                  </Col>
-                  <Col span={22}>
-                    {Object.keys(options.rules || {}).map(
-                      key => (
-                        <Option
-                          key={key}
-                          label={
-                            I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)
-                          }
-                          {...parametersForRules(key)}
-                        />
-                      ),
-                    )}
-                  </Col>
-                </Row>
+              <div>
+                <Option
+                  label={I18n.t('administration.campaigns.options.proctoring.trial')}
+                  {...parametersForField('proctoringTrial')}
+                />
+                <div className="mbl">
+                  <Row>
+                    <Col span={2}>
+                      <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
+                    </Col>
+                    <Col span={22}>
+                      {Object.keys(options.rules || {}).map(
+                        key => (
+                          <Option
+                            key={key}
+                            label={
+                              I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)
+                            }
+                            {...parametersForRules(key)}
+                          />
+                        ),
+                      )}
+                    </Col>
+                  </Row>
+                </div>
+
+
+                <div className="mbl">
+                  <Row>
+                    <Col span={24}>
+                      <Row>
+                        <Col span={2}>
+                          <label>
+                            {I18n.t('administration.campaigns.options.proctoring.identification')}
+                          </label>
+                        </Col>
+                        <Col span={22}>
+                          <Radio.Group
+                            defaultValue="passport"
+                            onChange={saveIdentificationType}
+                            value={options.identification}
+                          >
+                            {Object.entries(identifications).map(
+                              ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                            )}
+                          </Radio.Group>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col span={24}>
+                      <Row>
+                        <Col span={2}>
+                          <label>
+                            {I18n.t('administration.campaigns.options.proctoring.integration_type')}
+                          </label>
+                        </Col>
+                        <Col span={22}>
+                          <Radio.Group
+                            defaultValue="iframe"
+                            onChange={saveIntegrationType}
+                            value={options.integrationType}
+                          >
+                            {Object.entries(integrationTypes).map(
+                              ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                            )}
+                          </Radio.Group>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col span={24}>
+                          <Row>
+                            <Col span={2}>
+                              <label>
+                                {I18n.t('administration.campaigns.options.proctoring.type')}
+                              </label>
+                            </Col>
+                            <Col span={22}>
+                              <Radio.Group
+                                defaultValue="offline"
+                                onChange={saveProctoringType}
+                                value={options.proctoringType}
+                              >
+                                {Object.entries(proctoringTypes).map(
+                                  ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                                )}
+                              </Radio.Group>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </div>
               </div>
-
-
-              <div className="mbl">
-                <Row>
-                  <Col span={24}>
-                    <Row>
-                      <Col span={2}>
-                        <label>
-                          {I18n.t('administration.campaigns.options.proctoring.identification')}
-                        </label>
-                      </Col>
-                      <Col span={22}>
-                        <Radio.Group
-                          defaultValue="passport"
-                          onChange={saveIdentificationType}
-                          value={options.identification}
-                        >
-                          {Object.entries(identifications).map(
-                            ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                          )}
-                        </Radio.Group>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col span={24}>
-                    <Row>
-                      <Col span={2}>
-                        <label>
-                          {I18n.t('administration.campaigns.options.proctoring.integration_type')}
-                        </label>
-                      </Col>
-                      <Col span={22}>
-                        <Radio.Group
-                          defaultValue="iframe"
-                          onChange={saveIntegrationType}
-                          value={options.integrationType}
-                        >
-                          {Object.entries(integrationTypes).map(
-                            ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                          )}
-                        </Radio.Group>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col span={24}>
-                        <Row>
-                          <Col span={2}>
-                            <label>
-                              {I18n.t('administration.campaigns.options.proctoring.type')}
-                            </label>
-                          </Col>
-                          <Col span={22}>
-                            <Radio.Group
-                              defaultValue="offline"
-                              onChange={saveProctoringType}
-                              value={options.proctoringType}
-                            >
-                              {Object.entries(proctoringTypes).map(
-                                ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                              )}
-                            </Radio.Group>
-                          </Col>
-                        </Row>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </div>
-            </div>
-
-
-          </div>
+            </>
+          )}
         </div>
 
         <div className="mbl">
@@ -432,6 +497,15 @@ const CampaignOptions: React.FC<Props> = ({
                   <Option
                     label={I18n.t('admin.allow_continue_with_warning_system_check')}
                     {...parametersForField('allowContinueWithWarning')}
+                  />
+                </Col>
+              </Row>
+
+              <Row className="mbl" gutter={16} align="middle">
+                <Col offset={2} span={22}>
+                  <Option
+                    label={I18n.t('admin.skip_assessment_level_checks')}
+                    {...parametersForField('skipAssessmentLevelChecks')}
                   />
                 </Col>
               </Row>

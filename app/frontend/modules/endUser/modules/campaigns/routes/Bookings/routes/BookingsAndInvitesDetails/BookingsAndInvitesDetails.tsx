@@ -12,7 +12,7 @@ import {
 import cs from 'classnames'
 import qs from 'qs'
 
-import { Store } from 'antd/lib/form/interface'
+import { Store } from 'antd/es/form/interface'
 import dayjs from '~/utils/dayjs'
 import { get as getCurrentUser } from '~/core/currentUser'
 import {

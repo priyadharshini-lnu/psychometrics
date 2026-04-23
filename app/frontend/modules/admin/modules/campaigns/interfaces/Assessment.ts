@@ -70,4 +70,7 @@ export default interface Assessment {
   dimensionId: string
   allowCaching: boolean
   cachingEnabled: boolean
+  proctoringEnabled?: boolean
+  isTimed: boolean
+  fixedTimeDuration?: number
 }

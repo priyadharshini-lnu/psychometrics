@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Checkbox, Divider } from 'antd'
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import _ from 'lodash'
 
 import { PropertiesModel } from '~/modules/survey/interfaces/questions/SideBySide'

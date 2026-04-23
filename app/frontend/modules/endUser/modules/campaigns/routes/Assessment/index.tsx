@@ -1,15 +1,16 @@
 import { useEffect, FC, useState } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import {
   useNavigate, useParams, useSearchParams, useLocation,
 } from 'react-router-dom'
 import {
-  Col, Space, Layout, Button,
+  Col, Space, Layout, Button, App, Typography,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-components'
 import {
   PageHeader as GlintPageHeader, CountdownTimer, FontsizeModifier, DirectionalNavigateBackIcon,
 } from '~/glint'
+import { SafeHTML } from '~/components/SafeHTML'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
@@ -29,6 +30,9 @@ import { CheckingWizard } from '../CheckingWizard'
 import { InstructionsComponent } from '~/modules/survey/views/Preview/Instructions'
 import { secondsLeftFromNow } from '~/utils/time'
 import { useIsProctored } from '~/hooks/useProctoringState'
+import { AsyncRequestResponse, AsyncRequestResponseTR } from '~/modules/admin/modules/client/core/asyncRequestResponse'
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
+import { setCampaignUser } from '~/modules/endUser/modules/campaigns/core/campaign'
 
 import styles from './UserAssessment.less'
 
@@ -69,6 +73,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       currentCampaignExpiryDate,
       piped_text_mapping: pipedTextMapping,
       localeData,
+      selectiveProctoringEnabled,
+      proctoringIntegrationType: integrationType,
     },
   },
   isDisconnected,
@@ -82,9 +88,13 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const [locale, setLocale] = useState(localeData?.code)
   const [dataAvailable, setDataAvailable] = useState(false)
   const [showInstructions, setShowInstructions] = useState(true)
+  const dispatch = useDispatch()
+  const { message, modal } = App.useApp()
   const assessmentTimer = assessmentExtra?.timer
   const remainingCampaignTime = currentCampaignExpiryDate ? secondsLeftFromNow(currentCampaignExpiryDate) : null
   const { isProctored } = useIsProctored()
+  const assessmentNeedsProctoring = selectiveProctoringEnabled && !isProctored
+  const insideSelectiveProctoringSession = selectiveProctoringEnabled && isProctored
 
   useEffect(() => {
     const lang = searchParams.get('lang') || localeData?.code || I18n.currentLocale()
@@ -92,6 +102,12 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       setDataAvailable(true)
     })
   }, [])
+
+  const campaignStartInstruction = () => {
+    const messages = [I18n.t('campaign.instruction_modal.common_proctoring_instructions')]
+    integrationType === 'ldb' && messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction'))
+    return messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+  }
 
 
   const backToCampaign = () => {
@@ -103,15 +119,55 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     return `${url}?${params.toString()}`
   }
 
-  const handleBeginAssessment = () => {
-    if (!assessmentStartedAt && !WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
+  const assessmentAsyncUrl = `/user_assessments/${userAssessmentId}/proctoring_session`
+
+  const {
+    makeAsyncRequest,
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
+    url: assessmentAsyncUrl,
+    data: { id: userAssessmentId },
+    responseType: AsyncRequestResponseTR,
+  })
+
+  const startAssessment = async () => {
+    try {
+      const { responseData } = await makeAsyncRequest()
+      const { examusSessionUrl } = responseData || {}
+
+      if (examusSessionUrl) {
+        window.location.href = examusSessionUrl
+      } else {
+        dispatch(setCampaignUser(responseData))
+      }
+    } catch (error) {
+      message.error(error)
+    }
+  }
+
+  const handleBeginAssessment = (): void | Promise<void> => {
+    if (assessmentNeedsProctoring) {
+      modal.info({
+        icon: false,
+        title: null,
+        content: campaignStartInstruction(),
+        okText: I18n.t('common.actions.start'),
+        closable: true,
+        width: 600,
+        async onOk () {
+          await startAssessment()
+        },
+      })
+    } else if (!assessmentStartedAt && !WizardIsRequired.run(
+      userAssessmentData.assessmentExtra,
+      userAssessmentId,
+      userAssessmentData.shouldRunAssessmentLevelChecks,
+    )) {
       const beginLink = `/user_assessments/${userAssessmentId}/begin${location.search}`
       window.location.href = beginLink
     } else {
       setShowInstructions(false)
     }
   }
-
 
   if (!dataAvailable) { return <PageContentSkeleton /> }
 
@@ -130,7 +186,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  if (showInstructions && ((instructions && instructions.enabled) || (assessmentTimer && !assessmentStartedAt))) {
+
+  if (showInstructions && !insideSelectiveProctoringSession
+    && ((instructions && instructions.enabled) || (assessmentTimer && !assessmentStartedAt))) {
     return (
       <>
         <title>{`${assessmentName || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
@@ -238,7 +296,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  if (WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
+  if (WizardIsRequired.run(
+    userAssessmentData.assessmentExtra,
+    userAssessmentId,
+    userAssessmentData.shouldRunAssessmentLevelChecks,
+  )) {
     return <CheckingWizard assessmentId={assessmentId} userAssessmentId={userAssessmentId} />
   }
 

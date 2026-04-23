@@ -76,10 +76,12 @@ export interface CampaignOptions {
   instructionsEnabled: boolean
   instructionsWithLocales: InstructionsWithLocale[]
   proctoringEnabled: boolean
+  selectiveProctoringEnabled?: boolean
   proctoringEnabledOnWorkshopActivity: boolean
   enableMobileProctoring: boolean
   rules: object
   systemCheckEnabled: boolean
+  skipAssessmentLevelChecks: boolean
   systemCheckValidity: number | null
   identification: string
   proctoringType: string

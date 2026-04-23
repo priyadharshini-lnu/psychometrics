@@ -31,6 +31,7 @@ module EndUser
         required(:campaign_id).maybe(:int?)
         required(:started_at).maybe(:str?)
         required(:current_campaign_expiry_date).maybe(:str?)
+        required(:should_run_assessment_level_checks).filled(:bool?)
         required(:locale_data).hash do
           required(:code).filled(:str?)
           required(:name).filled(:str?)

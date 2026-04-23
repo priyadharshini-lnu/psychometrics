@@ -17,6 +17,21 @@ describe EndUser::CampaignUsersController, type: :controller do
       allow(AsyncRequestHandlerJob).to receive(:perform_later)
     end
 
+    context 'proctoring_enabled is true, but selective_proctoring_enabled is true' do
+      before do
+        allow_any_instance_of(CampaignUser).to receive(:proctoring_enabled?).and_return(true)
+        allow_any_instance_of(Campaign).to receive(:selective_proctoring_enabled?).and_return(true)
+      end
+
+      context 'campaign is not started yet' do
+        it 'queues the request and sets status to in progress (standard flow)' do
+          post :begin_campaign, params: request_params
+
+          expect(campaign_user.reload.status).to eq('in_progress')
+        end
+      end
+    end
+
     context 'proctoring is enabled' do
       before do
         allow_any_instance_of(CampaignUser).to receive(:proctoring_enabled?).and_return(true)

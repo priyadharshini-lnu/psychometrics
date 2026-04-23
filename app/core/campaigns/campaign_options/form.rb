@@ -17,9 +17,11 @@ module Campaigns
       attribute :rules, Hash
       attribute :description, String
       attribute :enable_video_call_recording, { String => Boolean }
+      attribute :selective_proctoring_enabled, { String => Boolean }
       attribute :system_check_enabled, Boolean
       attribute :system_check_validity, Integer
       attribute :allow_continue_with_warning, Boolean
+      attribute :skip_assessment_level_checks, Boolean
       attribute :minimum_upload_speed, Integer
       attribute :minimum_download_speed, Integer
 

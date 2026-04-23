@@ -959,7 +959,6 @@ id:
         prework_required: Jangan izinkan pemesanan pusat jika prakerja tidak selesai
         prework_required_for_invite: Kirim email undangan hanya setelah Pra-Kerja selesai
         proctoring:
-          allow_on_assessment_center: Izinkan pengawasan di pusat penilaian
           enable: Aktifkan Pengawasan
           identification: Identifikasi
           identifications:
@@ -2772,12 +2771,10 @@ id:
     proctoring_sessions:
       columns:
         comment: Komentar
-        completed_at: Selesai pada
         conclusion: Kesimpulan
         links: Link
         score: Skor
         session_id: ID Sesi
-        started_at: Dimulai pada
       links:
         report: Lapor
         review: Resensi

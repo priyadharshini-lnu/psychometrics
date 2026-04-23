@@ -261,6 +261,7 @@ module Administration
           :identification, :description, :integration_type, :proctoring_type, :proctoring_enabled_on_workshop_activity,
           :workshop_invite_requires_prework_completion, :enable_video_call_recording, :enable_mobile_proctoring,
           :system_check_enabled, :system_check_validity, :allow_continue_with_warning,
+          :skip_assessment_level_checks, :selective_proctoring_enabled,
           :minimum_upload_speed, :minimum_download_speed,
           rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                      allow_to_use_websites allow_absence_in_frame allow_to_use_calculator

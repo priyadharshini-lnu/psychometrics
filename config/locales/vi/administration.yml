@@ -959,7 +959,6 @@ vi:
         prework_required: Không cho phép đặt phòng trung tâm nếu các công việc trước chưa hoàn thành
         prework_required_for_invite: Chỉ gửi email mời khi hoàn tất Pre-Work
         proctoring:
-          allow_on_assessment_center: Cho phép giám sát tại trung tâm đánh giá
           enable: Bật giám sát
           identification: Xác định
           identifications:
@@ -2772,12 +2771,10 @@ vi:
     proctoring_sessions:
       columns:
         comment: Bình luận
-        completed_at: Hoàn thành lúc
         conclusion: Kết thúc
         links: Liên kết
         score: Điểm
         session_id: ID phiên
-        started_at: Bắt đầu lúc
       links:
         report: Báo cáo
         review: Xem xét

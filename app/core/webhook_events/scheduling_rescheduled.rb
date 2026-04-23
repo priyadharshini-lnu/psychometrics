@@ -17,7 +17,8 @@ module WebhookEvents
           id: ctx[:invite]&.id,
           title: ctx[:invite]&.title,
           description: ctx[:invite]&.description,
-          url: ctx[:invite]&.end_user_url
+          url: ctx[:invite]&.end_user_url,
+          rescheduling_type: ctx[:rescheduling_type]
         },
         rescheduled_to_workshop: workshop_payload(ctx[:rescheduled_to_workshop]),
         rescheduled_from_workshop: workshop_payload(ctx[:rescheduled_from_workshop])

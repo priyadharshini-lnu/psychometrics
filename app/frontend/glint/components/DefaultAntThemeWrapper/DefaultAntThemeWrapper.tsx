@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { ConfigProvider, ThemeConfig, App } from 'antd'
-import { ConfigProviderProps } from 'antd/lib/config-provider'
+import { ConfigProviderProps } from 'antd/es/config-provider'
 import { useSetCssVars } from '~/hooks/useSetCssVars'
 import { constants } from './constants'
 

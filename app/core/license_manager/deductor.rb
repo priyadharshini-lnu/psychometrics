@@ -69,7 +69,8 @@ module LicenseManager
         result = LicenseManager.get_valid_license_manager(license).new(
           license: license,
           campaign: campaign,
-          user: user
+          user: user,
+          **context
         ).deduct_license!(**context)
         return result if result
       end

@@ -30,6 +30,7 @@ import {
   UPDATE_MHS_LEADERSHIP_BAR,
   UPDATE_MHS_NORM_REGION,
   UPDATE_MHS_NORM_OPTION,
+  UPDATE_PROCTORING_SETTINGS,
 } from './actions'
 
 const defaultState: State = {
@@ -87,9 +88,9 @@ type FetchType = ApiActionResponse<{
 }>
 
 type FetchNormsType = ApiActionResponse<Norm[]>
-type UpdateNormType = ApiActionResponse<{normName: string}>
-type UpdateMettlScheduleType = ApiActionResponse<{mettlScheduleName: string}>
-type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
+type UpdateNormType = ApiActionResponse<{ normName: string }>
+type UpdateMettlScheduleType = ApiActionResponse<{ mettlScheduleName: string }>
+type UpdateAssessorForm = ApiActionResponse<{ assessorFormName: string, assessorFormId: number | undefined }>
 type UpdateAvailableLocales = ApiActionResponse<{ availableLocales: string[] }>
 type RemoveType = ApiActionResponse<number>
 
@@ -282,6 +283,11 @@ const HANDLERS = {
       }
     }))
   },
+  [UPDATE_PROCTORING_SETTINGS]: (state, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)

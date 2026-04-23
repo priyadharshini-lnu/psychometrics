@@ -21,6 +21,10 @@ export interface UserAssessment {
   workshopActivityDuration: number | null
   requireScheduling: boolean
   cachingEnabled: boolean
+  proctoringEnabled: boolean
+  isTimed: boolean
+  fixedTimeDuration: number | null
+  shouldRunAssessmentLevelChecks: boolean
 }
 
 export interface AssessmentExtra {

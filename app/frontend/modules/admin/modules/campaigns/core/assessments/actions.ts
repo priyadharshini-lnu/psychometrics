@@ -386,3 +386,16 @@ export const toggleAssessmentCaching = (campaignId: number, id: number, cachingE
     body: { cachingEnabled },
   },
 })
+
+export const UPDATE_PROCTORING_SETTINGS = 'campaigns/assessments/UPDATE_PROCTORING_SETTINGS'
+export const updateProctoringSettings = (
+  campaignId: number, id: number, body: { proctoringEnabled: boolean },
+) => ({
+  type: UPDATE_PROCTORING_SETTINGS,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_proctoring_settings`,
+    body,
+    loader: true,
+  },
+})
