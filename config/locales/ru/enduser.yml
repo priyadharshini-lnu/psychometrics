@@ -178,6 +178,7 @@ ru:
     system_check_proceed: Да, можно продолжать
     system_check_retake: Нет, я хочу пересдать
     system_check_run_again: Запустить снова
+    system_check_session_not_found: Сеанс проверки системы не найден. Запустите новую проверку системы.
     system_check_start_recording: Начать запись
     system_check_stop_recording: Остановить запись
     system_check_test_message: рад с вами поговорить

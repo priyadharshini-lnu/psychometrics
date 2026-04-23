@@ -1018,6 +1018,7 @@ hu:
     skill_aliases: Készség aliasok
     skills: Készségek
     skills_taxonomy: Készségek taxonómiája
+    skip_assessment_level_checks: Az értékelési szintű rendszerellenőrzések kihagyása
     slot_name: Nyerő neve
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók

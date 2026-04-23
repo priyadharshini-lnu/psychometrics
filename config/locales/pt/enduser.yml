@@ -178,6 +178,7 @@ pt:
     system_check_proceed: Continuar
     system_check_retake: Não, quero repetir
     system_check_run_again: Voltar a correr
+    system_check_session_not_found: Não foi encontrada nenhuma sessão de verificação do sistema. Inicie uma nova verificação do sistema.
     system_check_start_recording: Iniciar a gravação
     system_check_stop_recording: Parar a gravação
     system_check_test_message: é ótimo falar consigo

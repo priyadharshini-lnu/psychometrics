@@ -178,6 +178,7 @@ hr:
     system_check_proceed: Da, nastaviti
     system_check_retake: Ne, želim ponovno snimati
     system_check_run_again: Pokušati ponovno
+    system_check_session_not_found: Sesija provjere sustava nije pronađena. Molimo pokrenite novu provjeru sustava.
     system_check_start_recording: Započnite snimanje
     system_check_stop_recording: Zaustaviti snimanje
     system_check_test_message: bilo mi je drago razgovarati s tobom

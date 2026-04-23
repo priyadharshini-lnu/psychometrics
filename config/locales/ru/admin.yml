@@ -1018,6 +1018,7 @@ ru:
     skill_aliases: Псевдонимы навыков
     skills: Навыки
     skills_taxonomy: Таксономия навыков
+    skip_assessment_level_checks: Пропустить проверки системы на уровне оценки
     slot_name: Название слота
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения

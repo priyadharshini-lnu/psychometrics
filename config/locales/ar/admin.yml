@@ -1018,6 +1018,7 @@ ar:
     skill_aliases: Skill Aliases
     skills: المهارات
     skills_taxonomy: تصنيف المهارات
+    skip_assessment_level_checks: تخطي فحوصات نظام مستويات التقييم
     slot_name: اسم الماكينة
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة

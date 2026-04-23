@@ -1018,6 +1018,7 @@ zh:
     skill_aliases: 技能别名
     skills: 技能
     skills_taxonomy: 技能分类法
+    skip_assessment_level_checks: 跳过评估级别的系统检查
     slot_name: 车位名称
     sms_histories: 短信历史
     sms_invites: 短信邀请

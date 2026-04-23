@@ -1018,6 +1018,7 @@ it:
     skill_aliases: Alias di abilità
     skills: Competenze
     skills_taxonomy: Tassonomia delle competenze
+    skip_assessment_level_checks: Salta i controlli del sistema a livello di valutazione
     slot_name: Nome della Slot
     sms_histories: Storie di SMS
     sms_invites: Inviti via SMS

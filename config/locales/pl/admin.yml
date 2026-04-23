@@ -1018,6 +1018,7 @@ pl:
     skill_aliases: Aliasy umiejętności
     skills: Umiejętności
     skills_taxonomy: Taksonomia umiejętności
+    skip_assessment_level_checks: Pomiń sprawdzanie zgodności z systemem poziomów oceny
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS

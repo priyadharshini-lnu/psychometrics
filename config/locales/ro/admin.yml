@@ -1018,6 +1018,7 @@ ro:
     skill_aliases: Aliasuri de abilități
     skills: Aptitudini
     skills_taxonomy: Taxonomia abilităților
+    skip_assessment_level_checks: Omite verificările sistemului la nivel de evaluare
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS

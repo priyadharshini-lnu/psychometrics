@@ -1018,6 +1018,7 @@ hi:
     skill_aliases: कौशल उपनाम
     skills: कौशल
     skills_taxonomy: कौशल वर्गीकरण
+    skip_assessment_level_checks: मूल्यांकन-स्तर प्रणाली जाँचों को छोड़ें
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण

@@ -1018,6 +1018,7 @@ bg:
     skill_aliases: Псевдоними на уменията
     skills: Умения
     skills_taxonomy: Таксономия на уменията
+    skip_assessment_level_checks: Пропусни проверките на системата на ниво оценка
     slot_name: Име на слот
     sms_histories: История на SMS
     sms_invites: SMS покани

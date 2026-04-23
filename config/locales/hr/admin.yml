@@ -1018,6 +1018,7 @@ hr:
     skill_aliases: Pseudonimi vještina
     skills: Vještine
     skills_taxonomy: Taksonomija vještina
+    skip_assessment_level_checks: Preskoči provjere sustava na razini ocjenjivanja
     slot_name: Naziv utora
     sms_histories: Povijest SMS-a
     sms_invites: SMS pozivnice

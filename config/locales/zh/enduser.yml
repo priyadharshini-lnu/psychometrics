@@ -178,6 +178,7 @@ zh:
     system_check_proceed: 继续
     system_check_retake: 不，我想重做
     system_check_run_again: 再来一次
+    system_check_session_not_found: 未找到系统检查会话。请启动新的系统检查。
     system_check_start_recording: 开始录制
     system_check_stop_recording: 停止录制
     system_check_test_message: 很高兴与你交谈

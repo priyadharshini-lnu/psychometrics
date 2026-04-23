@@ -1018,6 +1018,7 @@ id:
     skill_aliases: Alias Keterampilan
     skills: Keterampilan
     skills_taxonomy: Taksonomi Keterampilan
+    skip_assessment_level_checks: Lewati Pemeriksaan Sistem Tingkat Penilaian
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS

@@ -1018,6 +1018,7 @@ es-ES:
     skill_aliases: Alias de habilidades
     skills: Habilidades
     skills_taxonomy: Taxonomía de competencias
+    skip_assessment_level_checks: Omitir las comprobaciones del sistema de niveles de evaluación
     slot_name: Nombre de la tragamonedas
     sms_histories: Historias de SMS
     sms_invites: Invitaciones por SMS

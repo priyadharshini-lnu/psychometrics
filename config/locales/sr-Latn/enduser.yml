@@ -178,6 +178,7 @@ sr-Latn:
     system_check_proceed: Da, može da se nastavi
     system_check_retake: Ne, želim da ponovim
     system_check_run_again: Pokreni ponovo
+    system_check_session_not_found: Сесија провере система није пронађена. Молимо покрените нову проверу система.
     system_check_start_recording: Započnite snimanje
     system_check_stop_recording: Zaustavi snimanje
     system_check_test_message: Sjajno je razgovarati sa vama

@@ -178,6 +178,7 @@ hu:
     system_check_proceed: Igen, oké a folytatáshoz
     system_check_retake: Nem, újra akarom venni
     system_check_run_again: Fuss újra
+    system_check_session_not_found: A rendszerellenőrzési munkamenet nem található. Kérjük, indítson el egy új rendszerellenőrzést.
     system_check_start_recording: Indítsa el a felvételt
     system_check_stop_recording: Felvétel leállítása
     system_check_test_message: nagyszerű, hogy beszélhetek veled

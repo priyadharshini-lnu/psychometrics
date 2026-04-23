@@ -115,7 +115,7 @@ module EndUser
         expires: 30.days.from_now,
         httponly: true,
         secure: Settings.protocol == 'https',
-        same_site: :lax
+        same_site: Settings.protocol == 'https' ? :none : :lax
       }
     end
 

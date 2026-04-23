@@ -178,6 +178,7 @@ de:
     system_check_proceed: fortfahren
     system_check_retake: Nein, ich möchte die Wiederholung
     system_check_run_again: Wieder laufen
+    system_check_session_not_found: Die Systemprüfungssitzung wurde nicht gefunden. Bitte starten Sie eine neue Systemprüfung.
     system_check_start_recording: Aufnahme starten
     system_check_stop_recording: Aufnahme stoppen
     system_check_test_message: schön, mit Ihnen zu sprechen

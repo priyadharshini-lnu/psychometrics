@@ -178,6 +178,7 @@ bg:
     system_check_proceed: Да, може да продължите
     system_check_retake: Не, искам да презапиша
     system_check_run_again: Пуснете отново
+    system_check_session_not_found: Не беше открита сесия за проверка на системата. Моля, започнете нова проверка на системата.
     system_check_start_recording: Започнете да записвате
     system_check_stop_recording: Спрете записа
     system_check_test_message: Страхотно е да говоря с Вас

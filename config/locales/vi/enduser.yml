@@ -178,6 +178,7 @@ vi:
     system_check_proceed: Vâng, Ok để tiếp tục
     system_check_retake: Không, tôi muốn thi lại
     system_check_run_again: Chạy lại
+    system_check_session_not_found: Không tìm thấy phiên kiểm tra hệ thống. Vui lòng bắt đầu một phiên kiểm tra hệ thống mới.
     system_check_start_recording: Bắt đầu ghi âm
     system_check_stop_recording: Dừng ghi âm
     system_check_test_message: rất vui khi được nói chuyện với bạn

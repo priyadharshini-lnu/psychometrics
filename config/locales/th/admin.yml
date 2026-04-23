@@ -1018,6 +1018,7 @@ th:
     skill_aliases: นามแฝงทักษะ
     skills: ทักษะ
     skills_taxonomy: อนุกรมวิธานทักษะ
+    skip_assessment_level_checks: ข้ามการตรวจสอบระดับการประเมิน
     slot_name: ชื่อสล็อต
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
