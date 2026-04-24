@@ -1458,6 +1458,7 @@ zh:
     timer:
       notification_hours: 你还剩 %{hours} 小时
       notification_minutes: 你还剩 %{minutes} 分钟
+      notification_minutes_seconds: 您还剩 %{minutes} 分 %{seconds} 秒
   campaign_assessment:
     actions:
       bulk_download: 批量下载

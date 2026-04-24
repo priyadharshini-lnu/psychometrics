@@ -1462,6 +1462,7 @@ de:
     timer:
       notification_hours: Sie haben noch %{hours} Stunde(n).
       notification_minutes: Sie haben noch %{minutes} Minute(n).
+      notification_minutes_seconds: Sie haben noch %{minutes} Minuten %{seconds} Sekunden Zeit
   campaign_assessment:
     actions:
       bulk_download: Massendownload

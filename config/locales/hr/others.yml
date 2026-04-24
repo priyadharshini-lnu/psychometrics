@@ -1455,6 +1455,7 @@ hr:
     timer:
       notification_hours: Preostao vam je %{hours} sat/a/i
       notification_minutes: Preostalo vam je %{minutes} minuta
+      notification_minutes_seconds: Ostalo vam je %{minutes} minuta i %{seconds} sekundi
   campaign_assessment:
     actions:
       bulk_download: Skupno preuzimanje

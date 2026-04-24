@@ -1463,6 +1463,7 @@ es-ES:
     timer:
       notification_hours: Te quedan %{hours} hora
       notification_minutes: Tiene %{minutes} minuto(s)  para completar la tarea
+      notification_minutes_seconds: Te quedan %{minutes} minutos y %{seconds} segundos
   campaign_assessment:
     actions:
       bulk_download: Descarga masiva

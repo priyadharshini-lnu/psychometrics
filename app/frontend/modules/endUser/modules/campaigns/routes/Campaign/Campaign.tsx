@@ -59,11 +59,15 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
     { timeRemaining: 1800, type: 'warning' },
     { timeRemaining: 900, type: 'error' },
   ]
-  const notificationMessage = (minutes: number) => {
+  const notificationMessage = (minutes: number, seconds: number) => {
     if (minutes >= 60) {
       const hours = Math.floor(minutes / 60)
       return I18n.t('campaign.timer.notification_hours', { hours })
-    } return I18n.t('campaign.timer.notification_minutes', { minutes })
+    }
+    if (seconds > 0) {
+      return I18n.t('campaign.timer.notification_minutes_seconds', { minutes, seconds })
+    }
+    return I18n.t('campaign.timer.notification_minutes', { minutes })
   }
   const expiryDate = campaign?.campaignUser?.expiryDate
   const isTimedCampaign = campaign?.isTimedCampaign

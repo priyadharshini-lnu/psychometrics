@@ -1460,6 +1460,7 @@ ru:
     timer:
       notification_hours: У вас осталось %{hours} час
       notification_minutes: у вас осталось %{minutes} минут
+      notification_minutes_seconds: У вас осталось %{minutes} минут %{seconds} секунд
   campaign_assessment:
     actions:
       bulk_download: Массовая загрузка

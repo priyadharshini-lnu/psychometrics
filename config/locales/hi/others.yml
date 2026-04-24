@@ -1453,6 +1453,7 @@ hi:
     timer:
       notification_hours: आपके पास %{hours} घंटे बचे हैं।
       notification_minutes: आपके पास %{minutes} मिनट बचे हैं
+      notification_minutes_seconds: आपके पास %{minutes} मिनट %{seconds} सेकंड बचे हैं
   campaign_assessment:
     actions:
       bulk_download: थोक डाउनलोड

@@ -1472,6 +1472,7 @@ zh-HK:
     timer:
       notification_hours: 您有 %{hours} 小時 完成
       notification_minutes: 您有 %{minutes} 分 完成
+      notification_minutes_seconds: 您还剩 %{minutes} 分 %{seconds} 秒
   campaign_assessment:
     actions:
       bulk_download: 批量下載

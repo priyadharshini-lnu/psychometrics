@@ -1448,6 +1448,7 @@ hu:
     timer:
       notification_hours: Még %{hours} órája van hátra
       notification_minutes: még %{minutes} perc van hátra
+      notification_minutes_seconds: Még %{minutes} perc %{seconds} másodperc van hátra
   campaign_assessment:
     actions:
       bulk_download: Tömeges letöltés

@@ -1448,6 +1448,7 @@ ko:
     timer:
       notification_hours: 남은 시간은 %{hours}시간입니다
       notification_minutes: "%{minutes} 분이 남았습니다"
+      notification_minutes_seconds: '남은 시간: %{minutes}분 %{seconds}초'
   campaign_assessment:
     actions:
       bulk_download: 대량 다운로드

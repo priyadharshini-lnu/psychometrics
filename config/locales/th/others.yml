@@ -1445,6 +1445,7 @@ th:
     timer:
       notification_hours: คุณเหลือเวลาอีก %{hours} ชั่วโมง
       notification_minutes: คุณเหลือเวลาอีก %{minutes} นาที
+      notification_minutes_seconds: คุณมีเวลา %{minutes} นาที %{seconds} วินาที
   campaign_assessment:
     actions:
       bulk_download: ดาวน์โหลดจำนวนมาก
