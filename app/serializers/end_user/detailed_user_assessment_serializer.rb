@@ -74,10 +74,6 @@ module EndUser
       extra.merge(audio_and_video_check_data)
     end
 
-    def current_campaign_user
-      campaign.campaign_users.find_by(user_id: current_user.id) if current_user
-    end
-
     def current_campaign_expiry_date
       current_campaign_user&.real_expiry_date
     end
@@ -128,6 +124,10 @@ module EndUser
 
     def current_user
       context[:current_user]
+    end
+
+    def current_campaign_user
+      context[:campaign_user]
     end
 
     def piped_text_context

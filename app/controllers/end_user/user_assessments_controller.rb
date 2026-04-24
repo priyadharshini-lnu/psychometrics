@@ -55,6 +55,7 @@ class EndUser::UserAssessmentsController < ApplicationController
           context: {
             current_user: current_user,
             campaign: @user_assessment.campaign,
+            campaign_user: @user_assessment.campaign_user,
             piped_text_context: build_piped_context,
             generate_piped_text_mapping: true
           }
