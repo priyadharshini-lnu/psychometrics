@@ -51,6 +51,10 @@ module Threesixty
       def system_check_campaign
         object.campaign
       end
+
+      def system_check_campaign_user
+        campaign_user
+      end
     end
   end
 end
