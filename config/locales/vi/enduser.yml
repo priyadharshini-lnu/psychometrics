@@ -137,7 +137,7 @@ vi:
     rerun_checks: Kiểm tra lại
     result: Kết quả
     results: Kết quả
-    safari_proctoring_description: Có vẻ như bạn đang sử dụng trình duyệt Safari, trình duyệt này có thể có một số hạn chế liên quan đến các tính năng theo dõi được kích hoạt trong chiến dịch này. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Chrome hoặc Firefox.
+    safari_proctoring_description: Có vẻ như bạn đang sử dụng trình duyệt Safari, trình duyệt này có thể có một số hạn chế liên quan đến các tính năng theo dõi được kích hoạt trong chiến dịch này. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Chrome, Edge hoặc Firefox.
     safari_proctoring_title: Đã phát hiện trình duyệt Safari
     selected_count: Đã chọn
     skill_type: Loại kỹ năng

@@ -137,7 +137,7 @@ es-ES:
     rerun_checks: Volver a ejecutar comprobaciones
     result: Resultado
     results: Resultado
-    safari_proctoring_description: Parece que estás utilizando el navegador Safari, que puede presentar algunas limitaciones en cuanto a las funciones de seguimiento activadas para esta campaña. Para disfrutar de una experiencia óptima, te recomendamos que utilices los navegadores Chrome o Firefox.
+    safari_proctoring_description: Parece que estás utilizando el navegador Safari, que puede presentar algunas limitaciones en cuanto a las funciones de seguimiento activadas para esta campaña. Para disfrutar de una experiencia óptima, te recomendamos que utilices los navegadores Chrome,Edge o Firefox.
     safari_proctoring_title: Se ha detectado el navegador Safari
     selected_count: Selección
     skill_type: Tipo de habilidad

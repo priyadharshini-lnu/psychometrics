@@ -137,7 +137,7 @@ pl:
     rerun_checks: Ponowne przeprowadzenie kontroli
     result: Wynik
     results: Wynik
-    safari_proctoring_description: Wygląda na to, że korzystasz z przeglądarki Safari, która może mieć pewne ograniczenia dotyczące funkcji monitorowania dostępnych w tej kampanii. Aby zapewnić sobie najlepsze wrażenia, zalecamy korzystanie z przeglądarek Chrome lub Firefox.
+    safari_proctoring_description: Wygląda na to, że korzystasz z przeglądarki Safari, która może mieć pewne ograniczenia dotyczące funkcji monitorowania dostępnych w tej kampanii. Aby zapewnić sobie najlepsze wrażenia, zalecamy korzystanie z przeglądarek Chrome, Edge lub Firefox.
     safari_proctoring_title: Wykryto przeglądarkę Safari
     selected_count: Wybrane
     skill_type: Typ umiejętności

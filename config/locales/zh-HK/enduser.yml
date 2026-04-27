@@ -137,7 +137,7 @@ zh-HK:
     rerun_checks: 重新运行检查
     result: 结果
     results: 结果
-    safari_proctoring_description: 您似乎正在使用 Safari 浏览器，该浏览器在支持本次活动的跟踪功能方面可能存在一些限制。为了获得最佳体验，我们建议您使用 Chrome 或 Firefox 浏览器。
+    safari_proctoring_description: 您似乎正在使用 Safari 浏览器，该浏览器在支持本次活动的跟踪功能方面可能存在一些限制。为了获得最佳体验，我们建议您使用 Chrome, Edge 或 Firefox 浏览器。
     safari_proctoring_title: 检测到 Safari 浏览器
     selected_count: "%{count} 选定"
     skill_type: 技能类型

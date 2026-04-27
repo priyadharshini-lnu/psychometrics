@@ -137,7 +137,7 @@ de:
     rerun_checks: Prüfungen wiederholen
     result: Ergebnis
     results: Ergebnis
-    safari_proctoring_description: Sie scheinen den Browser Safari zu verwenden, der hinsichtlich der für diese Kampagne aktivierten Tracking-Funktionen möglicherweise einige Einschränkungen aufweist. Für ein optimales Erlebnis empfehlen wir die Verwendung der Browser Chrome oder Firefox.
+    safari_proctoring_description: Sie scheinen den Browser Safari zu verwenden, der hinsichtlich der für diese Kampagne aktivierten Tracking-Funktionen möglicherweise einige Einschränkungen aufweist. Für ein optimales Erlebnis empfehlen wir die Verwendung der Browser Chrome,Edge oder Firefox.
     safari_proctoring_title: Safari-Browser erkannt
     selected_count: Ausgewählte
     skill_type: Fertigkeitstyp

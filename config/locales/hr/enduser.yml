@@ -137,7 +137,7 @@ hr:
     rerun_checks: Ponovne provjere
     result: Rezultat
     results: Rezultat
-    safari_proctoring_description: Čini se da koristite preglednik Safari, koji može imati određena ograničenja u pogledu aktiviranih nadzornih značajki ove kampanje. Za najbolje iskustvo preporučujemo korištenje preglednika Chrome ili Firefox.
+    safari_proctoring_description: Čini se da koristite preglednik Safari, koji može imati određena ograničenja u pogledu aktiviranih nadzornih značajki ove kampanje. Za najbolje iskustvo preporučujemo korištenje preglednika Chrome,Edge ili Firefox.
     safari_proctoring_title: Detektiran je Safari preglednik
     selected_count: Odabrano
     skill_type: Vrsta vještine

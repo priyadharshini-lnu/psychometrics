@@ -137,7 +137,7 @@ pt:
     rerun_checks: Repetir verificações
     result: Resultado
     results: Resultado
-    safari_proctoring_description: Parece que está a utilizar o navegador Safari, o que pode implicar algumas limitações no que diz respeito às funcionalidades de monitorização ativadas para esta campanha. Para uma melhor experiência, recomendamos a utilização dos navegadores Chrome ou Firefox.
+    safari_proctoring_description: Parece que está a utilizar o navegador Safari, o que pode implicar algumas limitações no que diz respeito às funcionalidades de monitorização ativadas para esta campanha. Para uma melhor experiência, recomendamos a utilização dos navegadores Chrome, Edge ou Firefox.
     safari_proctoring_title: Detetado o navegador Safari
     selected_count: Selecionado
     skill_type: Tipo de habilidade

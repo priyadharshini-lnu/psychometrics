@@ -137,7 +137,7 @@ sr-Cyrl:
     rerun_checks: Поновне провере
     result: Резултат
     results: Резултат
-    safari_proctoring_description: Изгледа да користите прегледач Safari, који може да има нека ограничења у погледу функција праћења ове кампање. За најбоље искуство препоручујемо коришћење прегледача Chrome или Firefox.
+    safari_proctoring_description: Изгледа да користите прегледач Safari, који може да има нека ограничења у погледу функција праћења ове кампање. За најбоље искуство препоручујемо коришћење прегледача Chrome, Edge или Firefox.
     safari_proctoring_title: Сафари прегледач откривен
     selected_count: "%{count} изабрано"
     skill_type: Тип вештине

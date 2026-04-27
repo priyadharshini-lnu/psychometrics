@@ -137,7 +137,7 @@ en-US:
     rerun_checks: Re-run Checks
     result: Result
     results: Result
-    safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome أو Firefox.
+    safari_proctoring_description: You are using the Safari browser, which may have certain limitations regarding the proctoring features enabled for this campaign. For the best experience, we recommend using Chrome, Edge or Firefox
     safari_proctoring_title: Safari Browser Detected
     selected_count: Selected
     skill_type: Skill Type
