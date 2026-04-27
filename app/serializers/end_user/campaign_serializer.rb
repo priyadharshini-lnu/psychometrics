@@ -3,12 +3,14 @@
 module EndUser
   class CampaignSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+    include SystemCheckSessions::SystemCheckStatusSerializable
 
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
                :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invites, :workshops,
-               :user_assessments, :practice_campaign, :last_successful_check_at, :threesixty_campaign_id
+               :user_assessments, :practice_campaign, :last_successful_check_at, :threesixty_campaign_id,
+               :system_check_status
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
 
@@ -124,10 +126,22 @@ module EndUser
       SystemCheckSessions::GetLastSuccessfulCheckAt.new(campaign_user: current_campaign_user).query
     end
 
+    def system_check_status # rubocop:disable Lint/UselessMethodDefinition
+      super
+    end
+
     private
 
     def current_user
       context[:current_user]
+    end
+
+    def system_check_campaign
+      object
+    end
+
+    def system_check_campaign_user
+      current_campaign_user
     end
   end
 end

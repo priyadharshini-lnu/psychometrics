@@ -61,5 +61,9 @@ module EndUser
     def system_check_campaign
       object
     end
+
+    def system_check_campaign_user
+      campaign_user
+    end
   end
 end

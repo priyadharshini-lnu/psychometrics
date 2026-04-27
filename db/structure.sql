@@ -2437,7 +2437,7 @@ CREATE TABLE public.campaign_options (
     enable_video_call_recording boolean DEFAULT false NOT NULL,
     selective_proctoring_enabled boolean DEFAULT false,
     system_check_enabled boolean DEFAULT false NOT NULL,
-    system_check_validity integer,
+    system_check_validity integer DEFAULT 86400,
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
     minimum_upload_speed integer,
     minimum_download_speed integer,
@@ -20381,6 +20381,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260212131448'),
 ('20260417093000'),
+('20260424120000'),
 ('20260331100000'),
 ('20260401053041'),
 ('20260401045303'),

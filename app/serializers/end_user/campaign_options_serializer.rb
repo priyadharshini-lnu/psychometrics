@@ -9,6 +9,10 @@ module EndUser
                :allow_continue_with_warning, :skip_assessment_level_checks, :enable_mobile_proctoring,
                :selective_proctoring_enabled
 
+    def system_check_validity
+      object.campaign&.system_check_validity
+    end
+
     def proctoring_enabled
       Settings.features.proctoring && object.proctoring_enabled
     end

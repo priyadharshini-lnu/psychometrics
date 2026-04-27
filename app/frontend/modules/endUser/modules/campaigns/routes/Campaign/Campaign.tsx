@@ -48,6 +48,12 @@ type CommonCampaignDetails= {
   lastSuccessfulCheckAt: number,
   type:string,
   id: number
+  systemCheckStatus: {
+    isValid: boolean,
+  }
+  userAssessments: Array<{
+    status: string,
+  }>
 }
 
 type ThreeSixtyCampaignDetails= {
@@ -62,6 +68,12 @@ type ThreeSixtyCampaignDetails= {
   lastSuccessfulCheckAt: number,
   type:string,
   campaignId: number
+  systemCheckStatus: {
+    isValid: boolean,
+  }
+  userAssessments: Array<{
+  status: string,
+}>
 }
 
 type CampaignDetails = CommonCampaignDetails | ThreeSixtyCampaignDetails | {type:string}
@@ -78,24 +90,31 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
   useEffect(() => {
     fetchCampaign(location.pathname).then(({ response }) => {
       if ((response as CampaignDetails).type === 'common') {
-        const { campaignOptions, lastSuccessfulCheckAt, id } = response as CommonCampaignDetails
-        const { systemCheckValidity, systemCheckEnabled } = campaignOptions
-        if (systemCheckEnabled) {
-          const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
-          if (campaignSystemCheckExpiryTime < (Date.now() / 1000)) {
-            navigate(`/campaign_system_check/${id}/welcome`)
-          }
+        const {
+          campaignOptions, id, systemCheckStatus, userAssessments,
+        } = response as CommonCampaignDetails
+        const { systemCheckEnabled } = campaignOptions
+
+        const { isValid } = systemCheckStatus
+
+        const hasCompletedAllAssessment = userAssessments.every(assessment => assessment.status === 'completed')
+
+        if (systemCheckEnabled && !isValid && !hasCompletedAllAssessment) {
+          navigate(`/campaign_system_check/${id}/welcome`)
         }
       }
 
       if ((response as CampaignDetails).type === 'threesixty') {
-        const { options, lastSuccessfulCheckAt, campaignId } = response as ThreeSixtyCampaignDetails
-        const { systemCheckEnabled, systemCheckValidity } = options.participants.global
-        if (systemCheckEnabled) {
-          const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
-          if (campaignSystemCheckExpiryTime < (Date.now() / 1000)) {
-            navigate(`/campaign_system_check/${campaignId}/welcome`)
-          }
+        const {
+          options, campaignId, systemCheckStatus, userAssessments,
+        } = response as ThreeSixtyCampaignDetails
+        const { systemCheckEnabled } = options.participants.global
+        const { isValid } = systemCheckStatus
+
+        const hasCompletedAllAssessment = userAssessments.every(assessment => assessment.status === 'completed')
+
+        if (systemCheckEnabled && !isValid && !hasCompletedAllAssessment) {
+          navigate(`/campaign_system_check/${campaignId}/welcome`)
         }
       }
     })

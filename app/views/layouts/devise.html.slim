@@ -47,3 +47,4 @@ html.body-full-height lang="#{I18n.locale}"
     .main#devise
 
     = vite_javascript_tag 'entrypoints/user/login.jsx'
+    = render partial: 'layouts/consent_banner' unless Settings.osano_enabled

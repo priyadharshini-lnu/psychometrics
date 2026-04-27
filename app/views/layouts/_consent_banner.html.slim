@@ -1,0 +1,8 @@
+- locale = I18n.locale.to_s
+- root = root_url(Utility::Url.generate(:root_url, subdomain: Current.project&.subdomain))
+- privacy_policy_link = "#{root}privacy-statement?lang=#{locale}"
+- cookie_link = cookie_notice_url_for(locale)
+- trustarc_src = "https://consent.trustarc.com/v2/notice/emjidq?#{Rack::Utils.build_query({ locale: locale, privacypolicylink: privacy_policy_link, cookieLink: cookie_link })}"
+
+#consent-banner
+script[type="text/javascript" async="async" src=trustarc_src]
