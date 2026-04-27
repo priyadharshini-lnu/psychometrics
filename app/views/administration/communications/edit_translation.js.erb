@@ -36,7 +36,17 @@ $modal.on('change', '#locale', function() {
       $referenceSubject.text(response.reference_subject || 'No reference subject available');
       $('[data-copy-text]').first().attr('data-copy-text', response.reference_subject);
       var $referenceBody = $('.form-control-static').last();
-      $referenceBody.html(response.reference_body ? response.reference_body.replace(/\n/g, '<br>') : 'No reference body available');
+      $referenceBody.empty();
+      if (response.reference_body) {
+        response.reference_body.split('\n').forEach(function(line, index, arr) {
+          $referenceBody.append(document.createTextNode(line));
+          if (index < arr.length - 1) {
+            $referenceBody.append(document.createElement('br'));
+          }
+        });
+      } else {
+        $referenceBody.text('No reference body available');
+      }
       $('[data-copy-text]').last().attr('data-copy-text', response.reference_body);
       $('#translation_body_value').val(response.translated_body);
 
