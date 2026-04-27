@@ -1,6 +1,7 @@
 doctype html
 html dir=dir lang="#{I18n.locale}"
   head
+    = render 'layouts/osano_script'
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     meta content="IE=edge" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1" name="viewport"
@@ -88,4 +89,5 @@ html dir=dir lang="#{I18n.locale}"
           })
         }
       })(document,"script");
-  = render partial: 'layouts/consent_banner'
+  = render partial: 'layouts/consent_banner' unless Settings.osano_enabled
+

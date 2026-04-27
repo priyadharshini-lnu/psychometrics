@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import {
   Button,
   Flex,
@@ -7,6 +7,7 @@ import {
   Radio,
   Select,
   Space,
+  Spin,
   Typography,
 } from 'antd'
 import _ from 'lodash'
@@ -16,8 +17,13 @@ import { Assessment } from '~/modules/admin/modules/campaigns/core/list'
 import { THREESIXTY_CATEGORY, TYPES as THREESIXTY_TYPES } from '~/modules/admin/constants/threesixtyCampaign'
 import styles from './ThreesixtyCampaignFormModal.less'
 import { camelizeKeys } from '~/utils/object'
+import { useResources } from '~/hooks/useResources'
+import { Tag } from '~/modules/admin/core/tags'
+import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 
 const { I18n } = window
+
+const MAX_TAG_BATCH_SIZE = 100
 
 type Props = {
   onFinish:(values) => void;
@@ -27,6 +33,7 @@ type Props = {
     status: string;
     threesixty_type: string;
     threesixty_category: string;
+    tagList?: string[];
   } | null
   assessments: Assessment[]
   features: Record<string, boolean>
@@ -44,6 +51,22 @@ const BaseSettingsForm = ({
   const [isPrevious360, setIsPrevious360] = useState((initialSettings
     && initialSettings.threesixty_type === THREESIXTY_TYPES.PREVIOUS_360) ?? false)
   const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
+
+  const {
+    data: tags, fetch: fetchTags, isLoading: isTagsLoading,
+  } = useResources<Tag>('tags', {
+    apiConfig: { query: { taggable_resource_type: TaggableResourceType.Campaign } },
+  })
+
+  const debouncedFetchTags = useCallback(_.debounce((value) => {
+    fetchTags({
+      apiConfig: {
+        filter: { name_cont: value },
+        fields: { tags: ['name'] },
+        page: { size: MAX_TAG_BATCH_SIZE },
+      },
+    })
+  }, 300), [])
 
   const assessmentOptions = assessments.filter(assessment => (category === THREESIXTY_CATEGORY.SKILLS_RATER
     ? assessment.skillRater
@@ -86,6 +109,7 @@ const BaseSettingsForm = ({
         threesixty_category: initialSettings?.threesixty_category || THREESIXTY_CATEGORY.NORMAL,
         default_assessment_locale: 'en',
         default_report_language: 'en',
+        tagList: initialSettings?.tagList || [],
       }}
       form={form}
       className="h-100"
@@ -234,6 +258,24 @@ const BaseSettingsForm = ({
                 </Form.Item>
               </Flex>
             )}
+            <Flex vertical className="w-100">
+              <Form.Item
+                name="tagList"
+                label={I18n.t('common.column.tags')}
+              >
+                <Select
+                  mode="tags"
+                  style={{ width: '100%' }}
+                  placeholder={I18n.t('common.column.tags')}
+                  showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
+                  notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+                >
+                  {tags.map(({ name }) => (
+                    <Select.Option key={name} value={name}>{name}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Flex>
           </Flex>
           <Flex
             flex="auto"

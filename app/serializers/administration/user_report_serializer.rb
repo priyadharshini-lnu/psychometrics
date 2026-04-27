@@ -6,11 +6,14 @@ module Administration
                :report_family_name, :status, :internal,
                :report_provider, :custom_upload, :comments_count, :edits_count,
                :hogan_participant_id, :effective_default_language, :available_languages,
-               :report_download_urls
+               :report_download_urls, :campaign_id, :approval_status, :assessment_ids, :external_settings
 
     delegate :name, to: :report
     delegate :provider, to: :report, prefix: true
     delegate :name, to: :report_family, prefix: true, allow_nil: true
+    delegate :external_settings, to: :report
+
+    delegate :assessment_ids, to: :report
 
     def internal
       report.provider_internal?

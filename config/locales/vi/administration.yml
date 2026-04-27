@@ -4510,7 +4510,6 @@ vi:
         new:
           header: Nhập bản dịch
       import:
-        successfully: Bản dịch đã được nhập thành công
         successfully_scheduled: Nhập bản dịch đã được lên lịch thành công.
       reports:
         export: Xuất bản dịch

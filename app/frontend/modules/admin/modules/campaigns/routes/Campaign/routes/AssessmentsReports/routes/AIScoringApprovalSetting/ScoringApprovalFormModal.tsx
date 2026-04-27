@@ -19,6 +19,7 @@ import dayjs from '~/utils/dayjs'
 import { getFeatures } from '~/core/config'
 import { camelizeKeys } from '~/utils/object'
 
+const { Option } = Select
 const { I18n } = window
 
 interface Props {
@@ -32,10 +33,12 @@ interface Props {
 type FormValueObj = {
   assessorIds: string[],
   approverIds: string[],
+  approvalNotificationUserIds: string[],
   assessmentId: string,
   allowOneLevelApprove: boolean,
   allowBulkApprove: boolean,
   allowBulkApproveScores: boolean,
+  doNotSendNotifications: boolean,
   sendDigestEmails: boolean,
   digestDeliveryMode: string,
   digestFrequency: string,
@@ -70,11 +73,15 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
   const {
     data: approverUsers, fetch: fetchApproverUsers, isLoading: isApproverUsersLoading,
   } = useResources<User>('users', { responseType: UserTR })
+  const {
+    data: notificationUsers, fetch: fetchNotificationUsers, isLoading: isNotificationUsersLoading,
+  } = useResources<User>('users', { responseType: UserTR })
 
   const scoringApprovalSettingsFormData = scoringApprovalSettings ? {
     ...scoringApprovalSettings,
     assessorIds: getUserIds(scoringApprovalSettings.assessors),
     approverIds: getUserIds(scoringApprovalSettings.approvers),
+    approvalNotificationUserIds: getUserIds(scoringApprovalSettings.approvalNotificationUsers),
     digestTime: scoringApprovalSettings.digestTime ? dayjs(scoringApprovalSettings.digestTime, 'hh:mm A') : null,
     digestTimezone: scoringApprovalSettings.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
   } : scoringApprovalSettings
@@ -82,10 +89,13 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
   const assessmentOpts = getOptionsFromApprovalSettings(scoringApprovalSettings, 'assessment', assessments)
   const assessorOpts = getOptionsFromApprovalSettings(scoringApprovalSettings, 'assessors', assessorUsers)
   const approversOpts = getOptionsFromApprovalSettings(scoringApprovalSettings, 'approvers', approverUsers)
+  const notificationUserOpts = getOptionsFromApprovalSettings(
+    scoringApprovalSettings, 'approvalNotificationUsers', notificationUsers,
+  )
 
   const fetchAssessmentDebounce = useCallback(_.debounce((value) => {
     fetchAssessments({
-      apiConfig: { filter: { name_cont: value } },
+      apiConfig: { filter: { name_cont: value, with_ai_questions: 'true' } },
     })
   }, 300), [])
 
@@ -101,6 +111,12 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
     })
   }, 300), [])
 
+  const fetchNotificationDebounce = useCallback(_.debounce((value) => {
+    fetchNotificationUsers({
+      apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
+    })
+  }, 300), [])
+
   const features = useSelector((state: RootState) => getFeatures(state))
   const isDigestEmailsEnabled = camelizeKeys(features)?.digestEmailsEnabled ?? false
 
@@ -108,6 +124,8 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
                             ?? scoringApprovalSettingsFormData?.allowBulkApprove ?? false
   const allowOneLevelApprove = Form.useWatch('allowOneLevelApprove', form)
                             ?? scoringApprovalSettingsFormData?.allowOneLevelApprove ?? false
+  const doNotSendNotifications = Form.useWatch('doNotSendNotifications', form)
+                            ?? scoringApprovalSettingsFormData?.doNotSendNotifications ?? false
   const sendDigestEmails = Form.useWatch('sendDigestEmails', form)
                             ?? scoringApprovalSettingsFormData?.sendDigestEmails ?? false
   const digestDeliveryMode = Form.useWatch('digestDeliveryMode', form)
@@ -116,7 +134,7 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
                             ?? scoringApprovalSettingsFormData?.digestFrequency
 
 
-  const showDigestToggle = allowBulkApprove
+  const showDigestToggle = allowBulkApprove && !doNotSendNotifications
   const showDigestOptions = showDigestToggle && sendDigestEmails
   const showDigestSchedulingOptions = showDigestOptions && digestDeliveryMode === 'scheduled'
 
@@ -136,13 +154,17 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
       }}
       transformValues={(formValuesObj: FormValueObj) => {
         const stringToNumber = (value: string) => parseInt(value, 10)
-        const { approverIds, assessorIds } = formValuesObj
+        const { approverIds, assessorIds, approvalNotificationUserIds } = formValuesObj
 
         return {
           ...formValuesObj,
           assessorIds: (assessorIds || []).map(stringToNumber),
           approverIds: (approverIds || []).map(stringToNumber),
-          sendDigestEmails: formValuesObj.sendDigestEmails || false,
+          approvalNotificationUserIds: formValuesObj.doNotSendNotifications
+            ? [] : (approvalNotificationUserIds || []).map(stringToNumber),
+          doNotSendNotifications: formValuesObj.doNotSendNotifications || false,
+          sendDigestEmails: formValuesObj.doNotSendNotifications
+            ? false : formValuesObj.sendDigestEmails || false,
           allowOneLevelApprove: formValuesObj.allowOneLevelApprove || false,
           allowBulkApprove: formValuesObj.allowBulkApprove || false,
           allowBulkApproveScores: formValuesObj.allowBulkApproveScores || false,
@@ -164,16 +186,18 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select
-              showSearch
+              showSearch={{ filterOption: false, onSearch: fetchAssessmentDebounce }}
               disabled={!!scoringApprovalSettings}
-              onSearch={fetchAssessmentDebounce}
-              notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-              options={assessmentOpts.map(({ id, name }) => ({
-                label: name,
-                value: id,
-              }))}
-            />
+              notFoundContent={
+                isAssessmentsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+              }
+            >
+              {assessmentOpts.map(({ id, name }) => (
+                <Option key={id} value={id}>
+                  {name}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
           <Collapse
             className="mb24"
@@ -216,6 +240,18 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
                     </Form.Item>
                     <div className="weight-600">
                       {I18n.t('admin.scoring_approval_allow_bulk_approve_scores')}
+                    </div>
+                  </Space>
+                  <Space align="center">
+                    <Form.Item
+                      name="doNotSendNotifications"
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Switch />
+                    </Form.Item>
+                    <div className="weight-600">
+                      {I18n.t('admin.scoring_approval_do_not_send_notifications')}
                     </div>
                   </Space>
 
@@ -329,15 +365,21 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
             >
               <Select
                 mode="multiple"
-                showSearch
-                onSearch={fetchAssessorDebounce}
-                notFoundContent={isAssessorUsersLoading('fetch') ? <Spin size="small" /> : null}
-                filterOption={false}
-                options={assessorOpts.map(({ id, name, email }) => ({
-                  label: `${name} (${email})`,
-                  value: id,
-                }))}
-              />
+                showSearch={{ filterOption: false, onSearch: fetchAssessorDebounce }}
+                notFoundContent={
+                  isAssessorUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+                }
+              >
+                {assessorOpts.map(({ id, name, email }) => (
+                  <Option key={id} value={id}>
+                    {name}
+                    {' '}
+                    (
+                    {email}
+                    )
+                  </Option>
+                ))}
+              </Select>
             </Form.Item>
           )}
 
@@ -348,16 +390,41 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
           >
             <Select
               mode="multiple"
-              showSearch
-              onSearch={fetchApproverDebounce}
-              notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-              options={approversOpts.map(({ id, name, email }) => ({
-                label: `${name} (${email})`,
-                value: id,
-              }))}
-            />
+              showSearch={{ filterOption: false, onSearch: fetchApproverDebounce }}
+              notFoundContent={
+                isApproverUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+              }
+            >
+              {approversOpts.map(({ id, name, email }) => (
+                <Option key={id} value={id}>
+                  {name}
+                  {' '}
+                  (
+                  {email}
+                  )
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
+          {!doNotSendNotifications && (
+            <Form.Item
+              name="approvalNotificationUserIds"
+              label={I18n.t('admin.scoring_approval_notification_users')}
+              rules={[{ required: true }]}
+            >
+              <Select
+                mode="multiple"
+                showSearch
+                onSearch={fetchNotificationDebounce}
+                notFoundContent={isNotificationUsersLoading('fetch') ? <Spin size="small" /> : null}
+                filterOption={false}
+                options={notificationUserOpts.map(({ id, name, email }) => ({
+                  label: `${name} (${email})`,
+                  value: id,
+                }))}
+              />
+            </Form.Item>
+          )}
         </>
       )}
     </ResourceFormModal>

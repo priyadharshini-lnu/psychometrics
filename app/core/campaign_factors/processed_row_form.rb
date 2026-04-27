@@ -44,7 +44,7 @@ module CampaignFactors
     def validate_code_uniqueness_and_format
       return if code.nil?
 
-      if ::CampaignFactor.exists?(campaign_id: campaign.id, code: code)
+      if existing_codes.include?(code)
         errors.add(:base, I18n.t('administration.campaign_factor_import.errors.code_already_exists', code: code))
       end
 
@@ -60,7 +60,7 @@ module CampaignFactors
         errors.add(:base, I18n.t('administration.campaign_factor_import.errors.name_size_exceded', size: 64))
       end
 
-      if ::CampaignFactor.exists?(campaign_id: campaign.id, name: name)
+      if existing_names.include?(name)
         errors.add(:base, I18n.t('administration.campaign_factor_import.errors.name_already_exists', name: name))
       end
 
@@ -117,6 +117,14 @@ module CampaignFactors
 
     def campaign
       context.campaign
+    end
+
+    def existing_codes
+      context.existing_codes || context.campaign.campaign_factors.pluck(:code)
+    end
+
+    def existing_names
+      context.existing_names || context.campaign.campaign_factors.pluck(:name)
     end
   end
 end

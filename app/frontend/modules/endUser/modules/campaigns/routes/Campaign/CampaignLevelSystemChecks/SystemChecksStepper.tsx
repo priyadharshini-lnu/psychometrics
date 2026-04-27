@@ -8,7 +8,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { LayoutWrapper } from './LayoutWrapper'
 import { MediaQueryContext } from '~/glint'
 import {
-  BrowserCompatibility, NetworkCheck, CameraCheck, Results,
+  BrowserCompatibility, NetworkCheck, CameraCheck, Results, MicrophoneCheck,
 } from './Checks'
 import { CampaignNameComponent } from './components/CampaignNameComponent'
 
@@ -17,6 +17,7 @@ const { I18n } = window
 enum STEPS {
   browser = 'browser',
   network = 'network',
+  audio = 'audio',
   camera = 'video',
   results = 'results',
 }
@@ -53,6 +54,13 @@ const SystemChecksStepperCompnent = () => {
       ariaHidden: true,
       ariaLabel: I18n.t('enduser.network_test_step'),
       hide: !campaignDetailsForSystemCheck?.requiredSystemChecks?.includes(STEPS.network),
+    },
+    {
+      title: I18n.t('enduser.audio'),
+      step: STEPS.audio,
+      ariaHidden: true,
+      ariaLabel: I18n.t('enduser.audio_test_step'),
+      hide: !campaignDetailsForSystemCheck?.requiredSystemChecks?.includes(STEPS.audio),
     },
     {
       title: I18n.t('enduser.camera'),
@@ -102,8 +110,14 @@ const SystemChecksStepperCompnent = () => {
     navigate(`/campaign_system_check/${campaignId}/${STEPS.results}`)
   }
 
+  const handleNextForAudioCheckStep = () => {
+    setCurrentStep(STEPS.results)
+    navigate(`/campaign_system_check/${campaignId}/${STEPS.results}`)
+  }
+
   const handleNextForResultsStep = () => {
-    window.location.href = `/campaigns/${campaignId}`
+    window.location.href = campaignDetailsForSystemCheck!.type === 'common' ? `/campaigns/${campaignId}`
+      : `/threesixty_campaigns/${campaignDetailsForSystemCheck?.threeSixtyCampaignId}`
   }
 
   useEffect(() => {
@@ -114,7 +128,13 @@ const SystemChecksStepperCompnent = () => {
 
   return (
     <LayoutWrapper>
-      <Layout.Content style={{ ...(isMobile || isTablet || isDesktop ? { width: '100%' } : { width: '50%' }) }}>
+      <Layout.Content style={{
+        ...(isMobile || isTablet || isDesktop ? { width: '100%' } : {
+          maxWidth: '1200px',
+          width: '800px',
+        }),
+      }}
+      >
         <CampaignNameComponent campaignName={campaignDetailsForSystemCheck?.campaignName ?? ''} />
         <Flex
           justify="center"
@@ -132,7 +152,7 @@ const SystemChecksStepperCompnent = () => {
             className="pt-4 mb-4"
           >
             <Steps
-              direction="horizontal"
+              orientation="horizontal"
               responsive={false}
               current={currentStepIndex === -1 ? 0 : currentStepIndex}
               items={isMobile || isTablet || isDesktop ? visibleSteps.map(() => ({ title: '' }))
@@ -147,6 +167,9 @@ const SystemChecksStepperCompnent = () => {
             )}
             {paramStep === STEPS.network && (
               <NetworkCheck onPrev={handlePrev} onNext={handleNextForNetworkCheckStep} />
+            )}
+            {paramStep === STEPS.audio && (
+              <MicrophoneCheck onPrev={handlePrev} onNext={handleNextForAudioCheckStep} />
             )}
             {paramStep === STEPS.camera && (
               <CameraCheck onPrev={handlePrev} onNext={handleNextForCameraCheckStep} />

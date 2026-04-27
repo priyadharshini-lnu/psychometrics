@@ -225,6 +225,98 @@ RSpec.describe AI::Assistant, type: :model do
     end
   end
 
+  describe '#in_use?' do
+    let(:assistant) { create(:assistant) }
+
+    it 'returns false when not referenced anywhere' do
+      expect(assistant.in_use?).to be false
+    end
+
+    it 'returns true when referenced by a campaign ai artifact' do
+      create(:campaign_ai_artifact, ai_assistant: assistant)
+      expect(assistant.in_use?).to be true
+    end
+
+    it 'returns true when referenced by an assessment assistant' do
+      create(:assessment_assistant, ai_assistant: assistant)
+      expect(assistant.in_use?).to be true
+    end
+
+    it 'returns true when assigned as one_click_ai_assistant on an idp template' do
+      create(:idp_template, one_click_ai_assistant: assistant)
+      expect(assistant.in_use?).to be true
+    end
+
+    it 'returns true when assigned as document_analysis_ai_assistant on an idp template' do
+      create(:idp_template, document_analysis_ai_assistant: assistant)
+      expect(assistant.in_use?).to be true
+    end
+
+    it 'returns true when assigned as skill_gap_report_analysis_ai_assistant on an idp template' do
+      create(:idp_template, skill_gap_report_analysis_ai_assistant: assistant)
+      expect(assistant.in_use?).to be true
+    end
+  end
+
+  describe '#provider_previously_used?' do
+    let(:user) { create(:user) }
+    let(:assistant) { create(:assistant, model_id: 'gpt-4o-mini') }
+    let(:current_registry) do
+      AI::ModelRegistry.find_or_create_by!(model_id: 'gpt-4o-mini', provider: 'openai') do |r|
+        r.name = 'GPT-4o Mini'
+      end
+    end
+    let(:other_registry) do
+      create(:ai_model_registry, model_id: 'claude-3-opus', provider: 'anthropic', name: 'Claude 3 Opus')
+    end
+
+    # Uses update_columns to bypass acts_as_chat callbacks that set ai_model_registry_id
+    # from model_id_string, and to avoid triggering updated_at auto-update so travel_to works.
+    def create_chat_with_output(registry:, output_tokens: 100)
+      chat = create(:assistant_chat, ai_assistant: assistant, user: user)
+      chat.update_columns(ai_model_registry_id: registry.id, output_tokens: output_tokens)
+      chat
+    end
+
+    it 'returns false when there are no chats' do
+      expect(assistant.provider_previously_used?).to be false
+    end
+
+    it 'returns false when all chats have zero output tokens' do
+      create_chat_with_output(registry: current_registry, output_tokens: 0)
+      expect(assistant.provider_previously_used?).to be false
+    end
+
+    it 'returns true when the most recent used chat was on the current provider' do
+      create_chat_with_output(registry: current_registry)
+      expect(assistant.provider_previously_used?).to be true
+    end
+
+    it 'returns false when the most recent used chat was on a different provider' do
+      Timecop.freeze(1.hour.ago) do
+        create_chat_with_output(registry: current_registry)
+      end
+      create_chat_with_output(registry: other_registry)
+      expect(assistant.provider_previously_used?).to be false
+    end
+
+    it 'returns true when provider was switched away and switched back, with last usage on current provider' do
+      Timecop.freeze(1.hour.ago) do
+        create_chat_with_output(registry: other_registry)
+      end
+      create_chat_with_output(registry: current_registry)
+      expect(assistant.provider_previously_used?).to be true
+    end
+
+    it 'ignores chats with nil output_tokens when finding last used' do
+      Timecop.freeze(1.hour.ago) do
+        create_chat_with_output(registry: current_registry, output_tokens: nil)
+      end
+      create_chat_with_output(registry: other_registry)
+      expect(assistant.provider_previously_used?).to be false
+    end
+  end
+
   describe 'deletion and cascading' do
     let(:user) { create(:user) }
     let(:assistant) { create(:assistant) }

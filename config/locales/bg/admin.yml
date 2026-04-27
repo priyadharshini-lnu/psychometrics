@@ -8,6 +8,7 @@ bg:
     add_campaign_admin: Добавяне на администратор на кампанията
     add_client_admin: Добавяне на клиентски администратор
     add_indicator: Добави индикатор
+    add_new_folder: Добави нова папка
     add_project: Добавяне на проект
     add_project_admin: Добавяне на администратор на проекта
     add_threesixty_campaign_admin: Добавяне на администратор на кампанията
@@ -45,13 +46,17 @@ bg:
     ai_assistants: AI асистенти
     ai_assistants_advanced_mode_tooltip: Използвайте разширен режим за шаблониране на prompt с течен шаблон с налични променливи. Вижте документацията за повече подробности.
     ai_assistants_campaign_id_placeholder: Въведете ID на кампанията
+    ai_assistants_cannot_change_type_when_in_use: Не е възможно да се промени типът на AI асистента „%{name}“, тъй като той се използва в момента.
     ai_assistants_no_rendered_output: Няма наличен рендериран изход
+    ai_assistants_provider_change_confirm_title: Да сменяте доставчика?
+    ai_assistants_provider_previously_used_warning: Досега този асистент е генерирал резултати с „%{from}“. Промяната на адреса на „%{to}“ може да промени поведението на асистента при бъдещи заявки за генериране.
     ai_assistants_render_button: Шаблон за рендериране
     ai_assistants_rendered_prompt: Рендерирано подсказка
     ai_assistants_template_and_campaign_required: Моля, предоставите както шаблон, така и идентификационен номер на кампанията
     ai_assistants_template_render_failed: Не успях да рендерирам шаблона
     ai_assistants_test_render: Тестов рендер
     ai_assistants_test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
+    ai_assistants_type_locked_tooltip: Този асистент се използва в момента и неговият тип не може да бъде променен.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP е деактивиран от клиента
     ai_assisted_idp_feature_disabled: Функцията AI Assisted IDP е деактивирана за този проект.
     ai_idp_assistant_configure_dependencies: Конфигуриране на AI зависимости
@@ -85,6 +90,19 @@ bg:
     ai_scoring_appoval_responses: Отговори на AI
     ai_scoring_appoval_score_not_applicable: Резултатът не се прилага
     ai_scoring_approval: Одобрение на AI оценка
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Можете да видите одобрените оценки чрез следния линк:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Одобрени са следните резултати.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Получавате този имейл, тъй като сте били добавени като контакт, който да получава уведомления за одобрение на оценките.
+    ai_scoring_approval_digest_mailer_approved_subject: Резултатите са одобрени
+    ai_scoring_approval_digest_mailer_assessment_label: 'Оценка: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Следните оценки са готови за одобрение и изискват Вашето действие.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Получавате този имейл, тъй като сте били добавени като одобряващ за оценките, които изискват одобрение.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Резултати, които очакват одобрение
+    ai_scoring_approval_digest_mailer_campaign_label: 'Кампания: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Брой голове: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Уважаеми „%{name}“,
+    ai_scoring_approval_digest_mailer_link_text: Одобрения на оценки
+    ai_scoring_approval_digest_mailer_project_label: 'Проект: %{value}'
     ai_scoring_approval_settings: Настройки за одобрение на AI оценката
     ai_scoring_approval_stale_description: Възможно е резултатът да се е променил вследствие на актуализации в конфигурацията, извършени след последното изпълнение. Извършете преизчисление, за да го актуализирате, като използвате най-новите настройки.
     ai_scoring_approval_stale_title: Резултатът може да е остарял
@@ -136,6 +154,7 @@ bg:
     bulk_assets_modal_title: Качване на CSV и ZIP файлове
     bulk_upload_ai_artifacts: Масово качване на AI артефакти
     campaign_ai_artifact_updated_successfully: AI артефакти в кампанията са успешно обновени
+    campaign_ai_artifacts_instruction_templating_tooltip: Можете да използвате разширени команди чрез шаблони за командния ред, като използвате синтаксиса на Liquid и наличните променливи. За повече подробности вижте документацията.
     campaign_ai_artifacts_results_export_details: Резултати, генерирани от артефакти на кампанията AI
     campaign_assessment_actions_disable_caching: Кеширане за изключване на оценката
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
@@ -161,6 +180,24 @@ bg:
     campaign_assessment_modals_enable_caching_title: Да активирам кеширането на оценката?
     campaign_factors: Фактори на кампанията
     campaign_name: Име на кампанията
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Идентификационен номер на външния доклад
+          language_id: Идентификатор на езика
+          norm: Норм
+          norm_id: Идентификационен номер на нормата
+          suitability_id: Идентификационен номер за пригодност
+        labels:
+          assessment_ids: Идентификационни номера на оценките
+          available_languages: Налични езици
+          campaign_report_id: Идентификационен номер на доклада за кампанията
+          check_details: Виж подробностите
+          default_language: Език по подразбиране
+          external_settings: Външни настройки
+          provider: Доставчик
+          report_pdf_status: Отчет за състоянието на PDF файла
+          user_report_id: Идентификационен номер на потребителския доклад
     campaign_templates: Шаблони за кампании
     campaign_user_job_roles_cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
     campaigns: Кампании
@@ -183,7 +220,9 @@ bg:
     configure_model_answer_title: Конфигуриране на моделни отговори и ключови думи
     confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
     copied: Копирано
+    copied_url_success: URL адресът беше успешно копиран в клипборда
     copy_ai_artifacts: Копиране на AI-артефакти
+    copy_image_url: Копирай URL адреса на изображението
     country: Държава
     create_client: Създайте клиент
     create_indicator: Създаване на индикатор
@@ -221,6 +260,7 @@ bg:
       thursday: четвъртък
       tuesday: вторник
       wednesday: сряда
+    dimension_translations_export_scheduled: Запланирани преводи за износ за измерение „%{name}“.
     dimensions: Размери
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
@@ -228,9 +268,11 @@ bg:
     duration: Продължителност
     edit_campaign_admin: Редактиране на администратора на кампанията
     edit_client_admin: Редактиране на администратор на клиента
+    edit_folder: Редактиране на папка
     edit_indicator: Редактиране на индикатор
     edit_job_roles: Редактиране на работни роли
     edit_level: Редактиране на ниво
+    edit_media: Редактиране на медийни файлове
     edit_permission_denied: Нямате разрешение да редактирате администраторски '%{name}'
     edit_project_admin: Редактиране на администратора на проекта
     edit_threesixty_campaign_admin: Редактиране на администратора на кампанията
@@ -272,6 +314,8 @@ bg:
     feature_global_skills_description: Достъп до глобалната библиотека с умения за оценки
     feature_idp_description: Активиране на индивидуално планиране на развитието за участниците
     feature_sms_notification_description: Активиране на SMS известия за покани и напомняния за кампании
+    file_size_must_be_less_than_mb: Файлът {{name}} надвишава максималния размер от {{max_size_mb}} MB
+    file_upload_failed: Не успях да кача {{name}}
     fill_empty_score_msg: Запълнете всички крайни резултати преди да запазите.
     final_score_empty_err_msg: Крайният резултат на „%{factor_name}“ не може да бъде празен.
     final_score_empty_msg: Крайната сметка не може да бъде празна.
@@ -351,6 +395,8 @@ bg:
     maintenance_settings_description: Управление на прозорците и настройките за поддръжка на системата
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
     max_value: Максимална стойност
+    media_files_label: Файлове
+    media_library: Медийна библиотека
     messages: Съобщения
     mhs: MHS
     mhs_assessment: Оценка на MHS
@@ -370,6 +416,7 @@ bg:
     name: Име
     name_max_length: Името не може да надвишава %{length} символа
     name_required: Задължително е име
+    new_folder: Нова папка
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
     no_status: Без статус
@@ -832,9 +879,15 @@ bg:
     questions: Въпроси
     range_min_max: ДИАПАЗОН%{min} - %{max}
     reflection_questions: Въпроси за размисъл
+    regenerate_transcriptions_action: Възстановяване на транскрипции
+    regenerate_transcriptions_confirm_content: Сигурен ли сте, че искате да генерирате отново транскрипциите за тази оценка? Това ще доведе до повторно обработване на всички незавършени транскрипции.
+    regenerate_transcriptions_confirm_title: Възстановяване на транскрипции
+    regenerate_transcriptions_scheduled: Задачата за регенериране на транскрипциите беше успешно планирана
     registration_codes: Регистрационни кодове
     registration_settings: Настройки за регистрация
     remove_children_to_change_type: Премахнете всички деца, за да промените типа
+    remove_confirmation: Сигурен ли сте, че искате да премахнете този елемент?
+    remove_successfully: Медийният елемент беше успешно премахнат.
     report_approvals: Докладване на одобрения
     report_condition_not_met: Нуждае се %{required} %{relationship} оценка(и), но има само %{actual}
     report_conditions_not_met_detailed: Докладът за %{user} не отговаря на условията за наличност. %{conditions}
@@ -938,7 +991,9 @@ bg:
     scoring_approval_approvers: Одобряващи
     scoring_approval_assessment: Оценка
     scoring_approval_assessor_users: Потребители на оценители
+    scoring_approval_do_not_send_notifications: Не изпращайте известия
     scoring_approval_modal_title: Настройки за одобрение на оценки
+    scoring_approval_notification_users: Потребители, получили уведомление за одобрение
     scoring_approval_remove_modal_success: 'Настройката за одобрение за идентификационен номер на оценката: %{assessmentId} беше успешно изтрита.'
     scoring_approval_remove_modal_text: 'Сигурен ли сте, че искате да изтриете тази настройка за идентификационен номер на оценката: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Оценяването е разрешено само за въпроси с активирана AI за текущо избрания фактор.
@@ -963,6 +1018,7 @@ bg:
     skill_aliases: Псевдоними на уменията
     skills: Умения
     skills_taxonomy: Таксономия на уменията
+    skip_assessment_level_checks: Пропусни проверките на системата на ниво оценка
     slot_name: Име на слот
     sms_histories: История на SMS
     sms_invites: SMS покани
@@ -995,7 +1051,12 @@ bg:
     translated_to: 'Преведено на:'
     translated_with_ai_notice: Преведено от AI
     translation_assistant_not_configured: Помощникът за превод не е конфигуриран
+    translations:
+      title: Преводи
     update_success: "%{readableResourceName} е актуализиран успешно"
+    upload: Качи
+    upload_media: Качи медийни файлове
+    upload_required: Моля, добавете поне един файл за качване
     upload_success: Качено успешно
     user_report_events: Събития с потребителски отчет
     users: Потребители
@@ -1004,6 +1065,7 @@ bg:
     very_high: Много висока
     very_low: Много ниско
     view_licenses: Преглед на лицензи
+    wait_for_upload_completion: Моля, изчакайте, докато приключи качването на всички файлове
     waiting: Чакат
     weight: Тегло
     what_to_look_for: Какво да търсите

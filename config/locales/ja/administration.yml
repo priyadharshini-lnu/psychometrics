@@ -4518,7 +4518,6 @@ ja:
         new:
           header: 輸入翻訳
       import:
-        successfully: 翻訳は正常にインポートされました
         successfully_scheduled: 翻訳インポートは正常にスケジュールされました。
       reports:
         export: 輸出翻訳

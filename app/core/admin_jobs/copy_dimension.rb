@@ -2,8 +2,6 @@
 
 module AdminJobs
   class CopyDimension < AdminJobs::Base
-    include Rails.application.routes.url_helpers
-
     def call
       dimension.clone_and_save(user_id: record.owner_id)
 
@@ -12,7 +10,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: administration_dimension_factors_path(dimension_id: dimension.id),
+        href: dimension_factors_url(dimension.id),
         label: dimension.name
       }
     end

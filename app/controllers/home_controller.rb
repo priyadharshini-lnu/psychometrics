@@ -68,12 +68,8 @@ class HomeController < ApplicationController
 
   def cookies_statement
     cookie_notice_url = cookie_notice_url_for(params[:lang])
-    cookie_notice_uri = URI.parse(cookie_notice_url)
-
-    raise ActionController::RoutingError, 'Not Found' unless cookie_notice_uri.is_a?(URI::HTTPS)
-    raise ActionController::RoutingError, 'Not Found' unless cookie_notice_uri.host == 'www.mercer.com'
-
-    redirect_to(cookie_notice_uri.to_s, allow_other_host: true)
+    response.set_header('Location', cookie_notice_url)
+    head :found
   end
 
   def request_inspect

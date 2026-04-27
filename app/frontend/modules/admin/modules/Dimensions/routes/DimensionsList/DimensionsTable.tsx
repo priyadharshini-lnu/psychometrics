@@ -1,10 +1,13 @@
 import React, { FC } from 'react'
 import {
-  Button, MenuProps,
+  MenuProps,
+  message,
   Switch,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/interface'
-import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
+import * as t from 'io-ts'
+import { Link } from 'react-router-dom'
+import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dimensions'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -14,6 +17,7 @@ type Props = {
 }
 
 const { I18n } = window
+const ExportDimensionResponseTR = t.type({ status: t.string })
 
 export const DimensionsTable: FC<Props> = ({ openModal }) => {
   const renderColumnName = ({
@@ -51,7 +55,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         />
         <Resource.Column<Dimension>
           title={I18n.t('common.column.active')}
-          id="id"
+          id="disabled"
           sorter
           render={dimension => <ActiveSwitch dimension={dimension} />}
           width={100}
@@ -66,16 +70,27 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Dimension>
           title={I18n.t('common.column.owner')}
           id="owner"
-          sorter
-          render={dimension => (
-            dimension.owner?.name
-          )}
+          render={(dimension) => {
+            const ownerName = dimension.owner?.name
+            const ownerId = dimension.owner?.id
+
+            if (ownerName && ownerId) {
+              return (
+                <Link to={`/admin/clients/${ownerId}`}>
+                  {ownerName}
+                </Link>
+              )
+            }
+
+            return I18n.t('administration.tte')
+          }}
           width={300}
         />
         <Resource.Column<Dimension>
           title={I18n.t('common.column.created_at')}
           id="created_at"
           dataIndex="createdAt"
+          sorter
           render={createdAt => (
             dayjs(createdAt).format('lll')
           )}
@@ -85,6 +100,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.updated_at')}
           id="updated_at"
           dataIndex="updatedAt"
+          sorter
           render={updatedAt => (
             dayjs(updatedAt).format('lll')
           )}
@@ -110,47 +126,80 @@ type DropDownProps = {
   dimension: Dimension,
   openModal: (modalName: string, modalProps?: unknown) => void
 }
-const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => (
-  <ConditionalDropdown
-    menu={getActionsMenuProps({ dimension, openModal })}
-  />
-)
 
-const getActionsMenuProps = ({ dimension, openModal }: DropDownProps): MenuProps => {
+const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => {
+  const { resource } = useResourceContext<Dimension>()
+
+  const copyDimension = async () => {
+    await resource.memberAction({
+      id: dimension.id,
+      action: 'copy',
+      method: 'post',
+      updateStore: true,
+      responseType: DimensionTR,
+    })
+  }
+
+  const exportDimension = async () => {
+    try {
+      await resource.memberAction({
+        id: dimension.id,
+        action: 'export_json',
+        method: 'post',
+        responseType: ExportDimensionResponseTR,
+      })
+      message.success(
+        I18n.t('administration.dimensions.export_json.successfully', { name: dimension.name }),
+      )
+    } catch (error) {
+      message.error(I18n.t('common.error'))
+    }
+  }
+
+  return (
+    <ConditionalDropdown
+      menu={getActionsMenuProps({
+        dimension,
+        openModal,
+        copyDimension,
+        exportDimension,
+      })}
+    />
+  )
+}
+
+const getActionsMenuProps = ({
+  dimension,
+  openModal,
+  copyDimension,
+  exportDimension,
+}: DropDownProps & {
+  copyDimension: () => Promise<void>
+  exportDimension: () => Promise<void>
+}): MenuProps => {
   const canCopy = dimension?.meta?.permissions?.copy
+  const canExportJson = dimension?.meta?.permissions?.exportJson
 
   const menuItems = [
     dimension && {
       key: 'edit',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal('DimensionsFormModal', { dimension })}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.edit')}
-        </Button>),
+      label: I18n.t('common.actions.edit'),
+      onClick: () => openModal('DimensionsFormModal', { dimension }),
     },
     dimension && {
       key: 'remove',
-      label: (
-        <Button
-          type="link"
-          onClick={() => openModal('RemoveDimensionModal', { dimension })}
-          className="ps-0"
-        >
-          {I18n.t('common.actions.remove')}
-        </Button>),
+      label: I18n.t('common.actions.remove'),
+      onClick: () => openModal('RemoveDimensionModal', { dimension }),
     },
     canCopy && {
       key: 'copy',
-      label: (
-        <Button
-          type="link"
-          className="ps-0"
-        >
-          {I18n.t('common.actions.copy')}
-        </Button>),
+      label: I18n.t('common.actions.copy'),
+      onClick: copyDimension,
+    },
+    canExportJson && {
+      key: 'export_json',
+      label: I18n.t('administration.dimensions.resource.tooltips.export_json'),
+      onClick: exportDimension,
     },
   ].filter(m => m) as ItemType[]
 
@@ -161,7 +210,7 @@ const ActiveSwitch: React.FC<{ dimension: Dimension }> = ({ dimension }) => {
   const { resource } = useResourceContext<Dimension>()
   return (
     <Switch
-      checked={dimension.disabled}
+      checked={!dimension.disabled}
       onChange={() => {
         resource.updateResource({ id: dimension.id, disabled: !dimension.disabled })
       }}

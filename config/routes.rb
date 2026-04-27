@@ -367,6 +367,7 @@ Rails.application.routes.draw do
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
+            post :regenerate_transcriptions
             put :update_prework
             put :update_workshop_activity
             put :toggle_require_scheduling
@@ -799,6 +800,10 @@ Rails.application.routes.draw do
     get 'report_approvals/*all', to: 'report_approvals#app',
       constraints: { all: /.*/, format: :html }, as: :report_approvals_all
 
+    get 'ai_scoring_approvals', to: 'ai_scoring_approvals#app', as: :ai_scoring_approvals
+    get 'ai_scoring_approvals/*all', to: 'ai_scoring_approvals#app',
+      constraints: { all: /.*/, format: :html }, as: :ai_scoring_approvals_all
+
     resources :report_families, only: [:index] do
       scope module: :report_families do
         resources :reports, only: %i[index]
@@ -954,7 +959,7 @@ as: :simulation_progress_notification
 
         resources :system_check_records, only: [], controller: 'system_check_sessions' do
           member do
-            post :upload_video_url
+            post :upload_media_url
             put :complete_multipart_upload
           end
         end
@@ -1400,8 +1405,16 @@ as: :simulation_progress_notification
             post :external_scores
           end
           jsonapi_resources :dimensions do
+            post :copy
+            post :export_json
+            post :export_translations
+            post :import_translations
             scope module: :dimensions do
               jsonapi_resources :factors do
+                post :copy
+                collection do
+                  post :import
+                end
                 resource :uploads, only: %i[update], controller: 'factors/uploads'
               end
               jsonapi_resources :occupations do
@@ -1416,6 +1429,12 @@ as: :simulation_progress_notification
                   resource :uploads, only: %i[update], controller: 'uploads'
                 end
               end
+            end
+          end
+          jsonapi_resources :dimensions
+          jsonapi_resources :libraries do
+            collection do
+              post :create_from_upload
             end
           end
           jsonapi_resources :norms do
@@ -1433,6 +1452,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :maintenance_settings
           jsonapi_resources :tags
+          resources :direct_uploads, only: %i[create]
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports
           jsonapi_resources :external_norms
@@ -1492,7 +1512,7 @@ only: %i[index create update]
             end
           end
 
-          resources :campaigns, only: %i[update show] do
+          resources :campaigns, only: %i[update show], concerns: :taggable do
             member do
               get :all_assessments
             end
@@ -1669,6 +1689,9 @@ only: %i[index create update]
             end
           end
           resources :user_reports, only: [] do
+            member do
+              get :availability_details
+            end
             jsonapi_resources :user_report_comments, only: %i[index create update destroy]
           end
           jsonapi_resources :report_approvals, only: %i[index] do

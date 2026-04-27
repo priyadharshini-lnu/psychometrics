@@ -6,12 +6,16 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ButtonWithArrow } from '~/glint'
 import { BROWSER_NAME } from '~/utils/uaParser'
-import commonStyles from '../../common-styles.less'
+import commonStyles from '../common-styles.less'
+import { CHECK_TYPE } from '../common'
 
 const { I18n } = window
 
-export const PermissionDenied = ({ handleNext }) => (
-  <Flex style={{ width: '100%' }} vertical>
+export const PermissionDenied = ({ handleNext, checkType }: {
+  handleNext: () => void,
+  checkType: CHECK_TYPE.audio | CHECK_TYPE.video,
+}) => (
+  <Flex style={{ width: '100%' }} vertical gap={8}>
     <Flex
       vertical
       justify="center"
@@ -24,9 +28,10 @@ export const PermissionDenied = ({ handleNext }) => (
       }}
     >
       <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
-      <p style={{ width: '400px' }}>
-        {I18n.t('enduser.camera_access_blocked')}
-      </p>
+      <h4 style={{ maxWidth: '500px' }} className="mt-0">
+        {checkType === CHECK_TYPE.audio
+          ? I18n.t('enduser.microphone_access_blocked') : I18n.t('enduser.camera_access_blocked')}
+      </h4>
     </Flex>
 
     <Alert

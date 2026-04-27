@@ -37,7 +37,13 @@ module Administration
         if policy(%i[administration question]).index?
           links['question_center'] = administration_templates_questions_path
         end
-        links['libraries'] = administration_libraries_path if policy(%i[administration library]).index?
+        if policy(%i[administration library]).index?
+          links['libraries'] = if Settings.features.libraries_react_ui
+                                 "#{admin_path}/libraries"
+                               else
+                                 administration_libraries_path
+                               end
+        end
         if policy(%i[administration communication]).index?
           links['communication_center'] = administration_communications_path
         end

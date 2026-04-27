@@ -4,7 +4,7 @@ module Threesixty::EndUser
   class EvaluationSerializer < Panko::Serializer
     attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :status,
                :subject_evaluation_closed, :assessment_extra, :assessment_id, :available_languages,
-               :default_language
+               :default_language, :should_run_assessment_level_checks
 
     has_one :user, serializer: UserSerializer
     has_one :subject, serializer: UserSerializer
@@ -33,6 +33,10 @@ module Threesixty::EndUser
 
     def is_self
       object.subject_id == current_user.id
+    end
+
+    def should_run_assessment_level_checks
+      object.campaign.should_run_assessment_level_checks?
     end
 
     private

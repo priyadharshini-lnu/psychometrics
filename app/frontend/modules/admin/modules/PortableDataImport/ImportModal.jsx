@@ -7,14 +7,28 @@ import { validateImport, submitImport, fetchClientsApi } from './api'
 
 const { I18n } = window
 
-const ImportModal = ({
-  title,
-  validateEndpoint,
-  importEndpoint,
-  onClose,
-  translations,
-  isOpen = true,
-}) => {
+/** @param {any} props */
+const ImportModal = (props) => {
+  const {
+    title,
+    validateEndpoint,
+    importEndpoint,
+    onClose,
+    translations,
+    isOpen = true,
+    fileAccept = '.json',
+    fileLabel = I18n.t('administration.dimensions.import_modal.select_json'),
+    fileErrorMessage = I18n.t('administration.dimensions.import_modal.errors.file_error'),
+    showMappableFields = true,
+    skipValidation = false,
+    sampleFilePath,
+    sampleFileLabel,
+    submitFileImport,
+    successMessage,
+    topActionLabel,
+    onTopAction,
+    showFileErrorAlert = true,
+  } = props
   const [show, setShow] = useState(isOpen)
   const [file, setFile] = useState(null)
   const [fileError, setFileError] = useState(null)
@@ -22,7 +36,7 @@ const ImportModal = ({
   const [mappableValues, setMappableValues] = useState({})
   const [changeLog, setChangeLog] = useState([])
   const [errors, setErrors] = useState([])
-  const [importFilevalidatonPending, setImportFilevalidatonPending] = useState(true)
+  const [importFilevalidatonPending, setImportFilevalidatonPending] = useState(!skipValidation)
   const [form] = Form.useForm()
   const [clients, setClients] = useState([])
   const [isClientsLoading, setIsClientsLoading] = useState(false)
@@ -104,14 +118,24 @@ const ImportModal = ({
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
     setFileError(null)
+    setErrors([])
+
+    if (skipValidation) {
+      setImportFilevalidatonPending(false)
+    }
   }
 
   const handleContinue = () => {
     if (!file) {
-      setFileError(I18n.t('administration.dimensions.import_modal.errors.file_error'))
+      setFileError(fileErrorMessage)
       return
     }
     setFileError(null)
+
+    if (!validateEndpoint) {
+      setImportFilevalidatonPending(false)
+      return
+    }
 
     const reader = new FileReader()
     reader.onload = (event) => {
@@ -160,16 +184,28 @@ const ImportModal = ({
   }
 
   const submitImportFile = () => {
+    if (!file) {
+      setFileError(fileErrorMessage)
+      return
+    }
+
     setIsImporting(true)
-    submitImport(importEndpoint, jsonFileContent, mappableValues)
+
+    const submitPromise = submitFileImport
+      ? submitFileImport(file, mappableValues)
+      : submitImport(importEndpoint, jsonFileContent, mappableValues)
+
+    submitPromise
       .then(() => {
         setShow(false)
-        message.success(I18n.t('administration.dimensions.import_modal.import_scheduled'))
+        message.success(successMessage || I18n.t('administration.dimensions.import_modal.import_scheduled'))
         if (onClose) onClose()
         setIsImporting(false)
       })
-      .catch(() => {
-        setErrors([I18n.t('administration.dimensions.import_modal.error_occurred')])
+      .catch((error) => {
+        const defaultError = I18n.t('administration.dimensions.import_modal.error_occurred')
+        const errorMessages = Array.isArray(error) ? error : [defaultError]
+        setErrors(errorMessages)
         setIsImporting(false)
       })
   }
@@ -194,19 +230,26 @@ const ImportModal = ({
 
   const renderFileUpload = () => (
     <>
+      {sampleFilePath && (
+        <div className="mbl" style={{ fontSize: '16px' }}>
+          <a href={sampleFilePath} target="_blank" rel="noreferrer">
+            {sampleFileLabel || I18n.t('administration.dimensions.import_factors.sample_file')}
+          </a>
+        </div>
+      )}
       <Form.Item
-        label={I18n.t('administration.dimensions.import_modal.select_json')}
+        label={fileLabel}
         required
         validateStatus={fileError ? 'error' : ''}
         help={fileError}
       >
         <Input
           type="file"
-          accept=".json"
+          accept={fileAccept}
           onChange={handleFileChange}
         />
       </Form.Item>
-      {fileError && (
+      {showFileErrorAlert && fileError && (
         <Alert
           message={I18n.t('administration.dimensions.import_modal.error')}
           description={fileError}
@@ -305,9 +348,16 @@ const ImportModal = ({
       }}
     >
       <Form form={form} layout="vertical">
+        {onTopAction && (
+          <div className="mbl">
+            <Button type="primary" onClick={onTopAction}>
+              {topActionLabel}
+            </Button>
+          </div>
+        )}
         {errors.length > 0 && renderErrors()}
-        {importFilevalidatonPending && renderFileUpload()}
-        {renderMappableFields()}
+        {(importFilevalidatonPending || skipValidation) && renderFileUpload()}
+        {showMappableFields && renderMappableFields()}
         {changeLog.length > 0 && renderChangeLog()}
       </Form>
     </Modal>

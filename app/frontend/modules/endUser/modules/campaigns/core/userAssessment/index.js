@@ -70,11 +70,12 @@ export const fetchAssessment = (userAssessmentId, isEdit) => ({
   isEdit,
 })
 
-export const fetchUserAssessment = (userAssessmentId, isEdit) => ({
+export const fetchUserAssessment = (userAssessmentId, isEdit, lang) => ({
   type: FETCH,
   request: {
     url: `/user_assessments/${userAssessmentId}`,
-    body: { edit: isEdit, cache: new Date().valueOf() },
+    body: { edit: isEdit, cache: new Date().valueOf(), lang },
+    camelizeExcept: ['piped_text_mapping'],
   },
 })
 

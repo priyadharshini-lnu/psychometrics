@@ -929,6 +929,7 @@ de:
         normalize_factor_scores: Faktorwerte normalisieren
         project_compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         project_completion_status_export: Export des Fertigstellungsstatus
+        regenerate_assessment_transcriptions: Transkripte der Beurteilung neu generieren
         regenerate_campaign_reports: Kampagnenberichte neu generieren
         regenerate_report: Bericht "Regenerieren
         regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty
@@ -1993,8 +1994,6 @@ de:
     invalid_captcha: Die Captcha-Eingabe ist nicht gültig.
     invalid_security_question: Die Antwort auf die Sicherheitsfrage war ungültig.
     invitations:
-      confirmation_instructions:
-        subject: Anweisungen zur Bestätigung
       edit:
         confirm_password_label: Bestätigen Sie Ihr Passwort
         header: Ihr Passwort festlegen
@@ -2027,23 +2026,6 @@ de:
           client: 'Kundenmietverhältnis: %{section_name}'
           project: 'Projekt: %{section_name}'
         subject: Einladung zum Lighthouse
-      invitation_removed: Ihre Einladung wurde entfernt.
-      invitation_token_invalid: Das angegebene Einladungs-Token ist nicht gültig!
-      mailer:
-        accept: Klicken Sie hier, um die Einladung anzunehmen.
-        admin_invitation_instructions:
-        body: 'Hallo %{Name}, Sie wurden eingeladen, auf das Admin-Panel von Lighthouse - The Talent Enterprise Assessment Platform zuzugreifen. %{accept} Oder Sie können diese E-Mail getrost ignorieren. Bitte geben Sie Ihre Zugangsdaten an niemanden weiter.
-
-          '
-        copyright:
-          text: Lighthouse. Alle Rechte vorbehalten
-        powered_by:
-          text: Powered by Lighthouse.
-        subject: Einladung zum Lighthouse
-      new:
-        header: Einladung versenden
-        submit_button: Eine Einladung verschicken
-      no_invitations_remaining: Keine Einladungen mehr übrig
       password_change:
         body: 'Hallo %{name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com '
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
@@ -2054,15 +2036,12 @@ de:
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Anweisungen zum Zurücksetzen Ihres Passworts
-      send_instructions: Es wurde eine Einladungs-E-Mail an %{email} gesendet.
       unlock_instructions:
         body: 'Hallo %{name}! Ihr Konto wurde aufgrund einer zu hohen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt. Klicken Sie auf den untenstehenden Link, um Ihr Konto zu entsperren: '
         footer: Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail getrost ignorieren. Ihr Passwort wird sich erst ändern, wenn Sie den obigen Link aufrufen und ein neues Passwort erstellen.
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Anweisungen zum Freischalten Ihres Kontos
         unlock_account: Mein Konto freischalten
-      updated: Ihr Passwort wurde erfolgreich gesetzt, Sie sind nun angemeldet.
-      updated_not_active: Ihr Passwort wurde erfolgreich gesetzt.
     omniauth_callbacks:
       failure: Konnte Sie nicht von %{kind} authentifizieren, weil "%{reason}".
       success: Erfolgreich authentifiziert von %{kind} Konto.
@@ -2726,7 +2705,6 @@ de:
     my_plan:
       development_plan: Entwicklungsplan
       graphs:
-        behavioural: Verhaltensweisen
         categories: Kategorien
       save_skills: Kompetenzen speichern
     new_comments: Neuer Kommentar
@@ -4075,9 +4053,11 @@ de:
       import_reports: Berichte und Beurteilungen importieren
   user_assessment:
     column:
+      completed_at: Abgeschlossen am
       dimension_id: Dimension ID
       id: Benutzer-Assessment-ID
       norm_id: Norm-ID
+      started_at: Begonnen am
     drawer:
       copied: "%{name} in die Zwischenablage kopiert."
       copy: In die Zwischenablage kopieren
@@ -4117,7 +4097,6 @@ de:
     normalize_factor_scores:
       no_scoring_data: Die Normalisierung der Faktorwerte kann nicht abgeschlossen werden, da keine Daten zur Bewertung vorliegen.
     progress_label: Bewertung der Fortschritte
-    redirect: Du wirst für diese Bewertung auf die Website eines Drittanbieters weitergeleitet. Bitte klicke auf „Fortfahren“, wenn du die Aufgabe starten möchtest.
     status:
       completed: Abgeschlossen
       in_progress: In Arbeit

@@ -8,6 +8,7 @@ id:
     add_campaign_admin: Tambahkan Admin Kampanye
     add_client_admin: Tambahkan Admin Klien
     add_indicator: Tambahkan Indikator
+    add_new_folder: Tambahkan Folder Baru
     add_project: Tambahkan Proyek
     add_project_admin: Tambahkan Admin Proyek
     add_threesixty_campaign_admin: Tambahkan Admin Kampanye
@@ -45,13 +46,17 @@ id:
     ai_assistants: Asisten AI
     ai_assistants_advanced_mode_tooltip: Gunakan mode lanjutan untuk templat prompt menggunakan templat cair dengan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
     ai_assistants_campaign_id_placeholder: Masukkan ID kampanye
+    ai_assistants_cannot_change_type_when_in_use: Jenis Asisten AI '%{name}' tidak dapat diubah karena sedang digunakan.
     ai_assistants_no_rendered_output: Tidak ada output yang dirender yang tersedia
+    ai_assistants_provider_change_confirm_title: Ingin mengganti penyedia layanan?
+    ai_assistants_provider_previously_used_warning: Asisten ini sebelumnya telah menghasilkan hasil dengan "%{from}". Mengubahnya menjadi "%{to}" dapat memengaruhi perilaku asisten pada permintaan pembangkitan di masa mendatang.
     ai_assistants_render_button: Templat Render
     ai_assistants_rendered_prompt: Prompt yang Dirender
     ai_assistants_template_and_campaign_required: Harap berikan template dan ID kampanye
     ai_assistants_template_render_failed: Gagal merender templat
     ai_assistants_test_render: Uji Render
     ai_assistants_test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
+    ai_assistants_type_locked_tooltip: Asisten ini sedang digunakan dan jenisnya tidak dapat diubah.
     ai_assisted_idp_disabled_by_client: Fitur IDP yang didukung AI dinonaktifkan oleh klien.
     ai_assisted_idp_feature_disabled: Fitur IDP Berbantuan AI telah dinonaktifkan untuk proyek ini.
     ai_idp_assistant_configure_dependencies: Konfigurasikan Ketergantungan AI
@@ -85,6 +90,19 @@ id:
     ai_scoring_appoval_responses: Respons AI
     ai_scoring_appoval_score_not_applicable: Skor tidak berlaku
     ai_scoring_approval: Persetujuan Penilaian AI
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Anda dapat mengakses persetujuan penilaian melalui tautan berikut:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Penilaian berikut ini telah disetujui.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Anda menerima email ini karena Anda telah ditambahkan sebagai kontak yang akan menerima pemberitahuan persetujuan penilaian.
+    ai_scoring_approval_digest_mailer_approved_subject: Pencapaian skor telah disetujui
+    ai_scoring_approval_digest_mailer_assessment_label: 'Penilaian: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Penilaian berikut ini sudah siap untuk disetujui dan memerlukan tindakan Anda.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Anda menerima email ini karena Anda telah ditunjuk sebagai pemberi persetujuan untuk penilaian-penilaian yang memerlukan persetujuan.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Skor yang masih menunggu persetujuan
+    ai_scoring_approval_digest_mailer_campaign_label: 'Kampanye: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Jumlah gol: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Yth. %{name},
+    ai_scoring_approval_digest_mailer_link_text: Persetujuan Penilaian
+    ai_scoring_approval_digest_mailer_project_label: 'Proyek: %{value}'
     ai_scoring_approval_settings: Pengaturan Persetujuan Penilaian AI
     ai_scoring_approval_stale_description: Pembaruan konfigurasi sejak eksekusi terakhir mungkin telah mengubah skor. Lakukan perhitungan ulang untuk memperbarui skor menggunakan pengaturan terbaru.
     ai_scoring_approval_stale_title: Skor Mungkin Sudah Tidak Aktual
@@ -136,6 +154,7 @@ id:
     bulk_assets_modal_title: Unggah berkas CSV dan ZIP
     bulk_upload_ai_artifacts: Unggah Artefak AI Massal
     campaign_ai_artifact_updated_successfully: Artefak AI kampanye berhasil diperbarui
+    campaign_ai_artifacts_instruction_templating_tooltip: Anda dapat menggunakan perintah lanjutan dengan memanfaatkan templat prompt yang menggunakan sintaks templat Liquid dan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
     campaign_ai_artifacts_results_export_details: Hasil yang dihasilkan oleh artefak AI dalam kampanye
     campaign_assessment_actions_disable_caching: Nonaktifkan Penilaian Caching
     campaign_assessment_actions_enable_caching: Mengaktifkan Penilaian Caching
@@ -161,6 +180,24 @@ id:
     campaign_assessment_modals_enable_caching_title: Aktifkan Assessment Caching?
     campaign_factors: Faktor Kampanye
     campaign_name: Nama Kampanye
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: ID Laporan Eksternal
+          language_id: Kode Bahasa
+          norm: Norma
+          norm_id: ID Norma
+          suitability_id: ID Kesesuaian
+        labels:
+          assessment_ids: ID Penilaian
+          available_languages: Bahasa yang Tersedia
+          campaign_report_id: ID Laporan Kampanye
+          check_details: Lihat detailnya
+          default_language: Bahasa Default
+          external_settings: Pengaturan Eksternal
+          provider: Penyedia
+          report_pdf_status: Laporan Status PDF
+          user_report_id: ID Laporan Pengguna
     campaign_templates: Templat Kampanye
     campaign_user_job_roles_cannot_be_same: Posisi pekerjaan yang ditargetkan harus berbeda dari posisi pekerjaan saat ini.
     campaigns: Kampanye
@@ -183,7 +220,9 @@ id:
     configure_model_answer_title: Konfigurasikan Jawaban Model dan Kata Kunci
     confirm_remove_admin: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
     copied: Dicopy
+    copied_url_success: URL telah berhasil disalin ke papan klip
     copy_ai_artifacts: Salin Artefak AI
+    copy_image_url: Salin URL Gambar
     country: Negara
     create_client: Buat Klien
     create_indicator: Buat Indikator
@@ -221,6 +260,7 @@ id:
       thursday: Kamis
       tuesday: Selasa
       wednesday: Rabu
+    dimension_translations_export_scheduled: Terjadwalkan untuk mengekspor terjemahan untuk dimensi "%{name}".
     dimensions: Dimensi
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
@@ -228,9 +268,11 @@ id:
     duration: Durasi
     edit_campaign_admin: Edit Admin Kampanye
     edit_client_admin: Edit Admin Klien
+    edit_folder: Edit Folder
     edit_indicator: Edit Indikator
     edit_job_roles: Edit Peran Pekerjaan
     edit_level: Tingkat Edit
+    edit_media: Edit Media
     edit_permission_denied: Anda tidak memiliki izin untuk mengedit '%{name}' admin
     edit_project_admin: Mengedit Admin Proyek
     edit_threesixty_campaign_admin: Edit Admin Kampanye
@@ -272,6 +314,8 @@ id:
     feature_global_skills_description: Akses perpustakaan keterampilan global untuk penilaian.
     feature_idp_description: Aktifkan Perencanaan Pengembangan Pribadi untuk peserta
     feature_sms_notification_description: Aktifkan pemberitahuan SMS untuk undangan kampanye dan pengingat.
+    file_size_must_be_less_than_mb: Ukuran berkas {{name}} melebihi batas maksimum {{max_size_mb}} MB
+    file_upload_failed: Gagal mengunggah {{name}}
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
     final_score_empty_err_msg: Skor akhir dari %{factor_name} tidak boleh kosong.
     final_score_empty_msg: Saldo akhir tidak boleh kosong.
@@ -351,6 +395,8 @@ id:
     maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     max_value: Nilai maksimum
+    media_files_label: Berkas
+    media_library: Perpustakaan Media
     messages: Pesan
     mhs: MHS
     mhs_assessment: Penilaian MHS
@@ -370,6 +416,7 @@ id:
     name: Nama
     name_max_length: Nama tidak boleh melebihi %{length} karakter
     name_required: Nama diperlukan
+    new_folder: Folder baru
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
     no_status: Tanpa Status
@@ -832,9 +879,15 @@ id:
     questions: Pertanyaan
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Pertanyaan Refleksi
+    regenerate_transcriptions_action: Perbarui Transkripsi
+    regenerate_transcriptions_confirm_content: Apakah Anda yakin ingin membuat ulang transkripsi untuk penilaian ini? Tindakan ini akan memproses ulang semua transkripsi yang belum selesai.
+    regenerate_transcriptions_confirm_title: Perbarui Transkripsi
+    regenerate_transcriptions_scheduled: Tugas regenerasi transkripsi telah dijadwalkan dengan sukses
     registration_codes: Kode pendaftaran
     registration_settings: Pengaturan Pendaftaran
     remove_children_to_change_type: Hapus semua anak untuk mengubah tipe
+    remove_confirmation: Apakah Anda yakin ingin menghapus item ini?
+    remove_successfully: Item media telah dihapus dengan sukses.
     report_approvals: Laporan Persetujuan
     report_condition_not_met: Membutuhkan evaluasi %{required} %{relationship}, tetapi hanya memiliki %{actual}
     report_conditions_not_met_detailed: Laporkan untuk %{user} tidak memenuhi persyaratan ketersediaan. %{conditions}
@@ -938,7 +991,9 @@ id:
     scoring_approval_approvers: Pihak yang menyetujui
     scoring_approval_assessment: Penilaian
     scoring_approval_assessor_users: Pengguna Penilai
+    scoring_approval_do_not_send_notifications: Jangan Kirim Pemberitahuan
     scoring_approval_modal_title: Pengaturan Persetujuan Penilaian
+    scoring_approval_notification_users: Pengguna Pemberitahuan Persetujuan
     scoring_approval_remove_modal_success: 'Pengaturan persetujuan untuk ID penilaian: %{assessmentId} telah dihapus dengan sukses.'
     scoring_approval_remove_modal_text: 'Apakah Anda yakin ingin menghapus pengaturan ini untuk ID penilaian: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Pemberian skor hanya diperbolehkan pada pertanyaan yang didukung AI untuk faktor yang saat ini dipilih.
@@ -963,6 +1018,7 @@ id:
     skill_aliases: Alias Keterampilan
     skills: Keterampilan
     skills_taxonomy: Taksonomi Keterampilan
+    skip_assessment_level_checks: Lewati Pemeriksaan Sistem Tingkat Penilaian
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
@@ -995,7 +1051,12 @@ id:
     translated_to: 'Diterjemahkan ke:'
     translated_with_ai_notice: Diterjemahkan oleh AI
     translation_assistant_not_configured: Asisten Terjemahan belum dikonfigurasi
+    translations:
+      title: Terjemahan
     update_success: "%{readableResourceName} berhasil diperbarui"
+    upload: Unggah
+    upload_media: Unggah Media
+    upload_required: Silakan tambahkan setidaknya satu file untuk diunggah
     upload_success: Berhasil diunggah
     user_report_events: Peristiwa Laporan Pengguna
     users: Pengguna
@@ -1004,6 +1065,7 @@ id:
     very_high: Sangat Tinggi
     very_low: Sangat Rendah
     view_licenses: Lihat Lisensi
+    wait_for_upload_completion: Mohon tunggu hingga semua file selesai diunggah
     waiting: Menunggu
     weight: Berat
     what_to_look_for: Hal-hal yang Perlu Diperhatikan

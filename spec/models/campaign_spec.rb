@@ -176,6 +176,36 @@ describe Campaign, type: :model do
         end
       end
 
+      describe '#skip_assessment_level_checks?' do
+        it 'returns true by default' do
+          expect(campaign.skip_assessment_level_checks?).to be true
+        end
+
+        it 'returns false when disabled in campaign_options' do
+          campaign.campaign_options.update!(skip_assessment_level_checks: false)
+
+          expect(campaign.skip_assessment_level_checks?).to be false
+        end
+      end
+
+      describe '#should_run_assessment_level_checks?' do
+        it 'returns true when campaign-level system checks are disabled' do
+          expect(campaign.should_run_assessment_level_checks?).to be true
+        end
+
+        it 'returns false when campaign-level system checks are enabled and assessment-level checks are skipped' do
+          campaign.campaign_options.update!(system_check_enabled: true, skip_assessment_level_checks: true)
+
+          expect(campaign.should_run_assessment_level_checks?).to be false
+        end
+
+        it 'returns true when campaign-level system checks are enabled and assessment-level checks are not skipped' do
+          campaign.campaign_options.update!(system_check_enabled: true, skip_assessment_level_checks: false)
+
+          expect(campaign.should_run_assessment_level_checks?).to be true
+        end
+      end
+
       describe '#minimum_upload_speed' do
         it 'returns nil when not configured' do
           expect(campaign.minimum_upload_speed).to be_nil
@@ -263,6 +293,38 @@ describe Campaign, type: :model do
         end
       end
 
+      describe '#skip_assessment_level_checks?' do
+        it 'returns value from threesixty_option participants global when set' do
+          threesixty_option.update!(participants: { 'global' => { 'skip_assessment_level_checks' => false } })
+
+          expect(campaign.skip_assessment_level_checks?).to be false
+        end
+
+        it 'returns default value when not set in threesixty_option' do
+          expect(campaign.skip_assessment_level_checks?).to be true
+        end
+      end
+
+      describe '#should_run_assessment_level_checks?' do
+        it 'returns false when campaign-level system checks are enabled and assessment-level checks are skipped' do
+          threesixty_option.update!(participants: { 'global' => { 'system_check_enabled' => true,
+                                                                  'skip_assessment_level_checks' => true } })
+
+          expect(campaign.should_run_assessment_level_checks?).to be false
+        end
+
+        it 'returns true when campaign-level system checks are enabled and assessment-level checks are not skipped' do
+          threesixty_option.update!(participants: { 'global' => { 'system_check_enabled' => true,
+                                                                  'skip_assessment_level_checks' => false } })
+
+          expect(campaign.should_run_assessment_level_checks?).to be true
+        end
+
+        it 'returns true when campaign-level system checks are disabled' do
+          expect(campaign.should_run_assessment_level_checks?).to be true
+        end
+      end
+
       describe '#minimum_upload_speed' do
         it 'returns value from threesixty_option participants global when set' do
           threesixty_option.update!(participants: { 'global' => { 'minimum_upload_speed' => 30 } })
@@ -286,6 +348,35 @@ describe Campaign, type: :model do
           expect(campaign.minimum_download_speed).to be_nil
         end
       end
+    end
+  end
+
+  describe 'tagging' do
+    let!(:superadmin) { create(:superadmin) }
+
+    before do
+      set_current_user(superadmin)
+    end
+
+    it 'can be tagged' do
+      campaign.add_tag('important')
+      campaign.save
+      expect(campaign.reload.all_tags_list).to include('important')
+    end
+
+    it 'can remove a tag' do
+      campaign.add_tag('removable')
+      campaign.save
+      campaign.reload
+
+      campaign.remove_tag('removable')
+      expect(campaign.reload.all_tags_list).not_to include('removable')
+    end
+
+    it 'scopes tags by client_id' do
+      campaign.add_tag('scoped-tag')
+      campaign.save
+      expect(campaign.taggings.last.tenant).to eq(campaign.client_id.to_s)
     end
   end
 end

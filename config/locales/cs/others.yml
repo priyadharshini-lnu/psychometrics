@@ -929,6 +929,7 @@ cs:
         normalize_factor_scores: Normalizace skóre faktorů
         project_compact_completion_status_export: Export stavu dokončení kompaktního souboru
         project_completion_status_export: Stav dokončení Export
+        regenerate_assessment_transcriptions: Obnovit přepisy hodnocení
         regenerate_campaign_reports: Regenerovat zprávy o kampani
         regenerate_report: Zpráva o regeneraci
         regenerate_threesixty_report: Zpráva o regeneraci Threesixty
@@ -2015,8 +2016,6 @@ cs:
         subject: Pozvánka do Lighthouse
       confirmation_instructions:
         subject: Pokyny pro potvrzení
-      copyright:
-        text: Lighthouse. Všechna práva vyhrazena
       invitation_instructions:
         body: 'Dobrý den, %{name}, Byl jste přidán do Lighthouse jako správce následující sekce '
         login: Přihlášení k Lighthouse
@@ -2029,8 +2028,6 @@ cs:
         body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com '
         regards: 'S pozdravem, tým Lighthouse '
         subject: Vaše heslo k Majáku se změnilo
-      powered_by:
-        text: Poháněno Lighthouse.
       reset_password_instructions:
         body: 'Dobrý den, %{name}! Někdo si vyžádal odkaz na změnu hesla. Můžete tak učinit prostřednictvím níže uvedeného odkazu. '
         change_password: Změna hesla
@@ -4054,9 +4051,11 @@ cs:
       import_reports: Import zpráv a hodnocení
   user_assessment:
     column:
+      completed_at: Dokončeno v
       dimension_id: ID rozměru
       id: ID hodnocení uživatele
       norm_id: ID normy
+      started_at: Začalo dne
     drawer:
       copied: "%{name} zkopírováno do schránky."
       copy: Kopírování do schránky
@@ -4096,7 +4095,6 @@ cs:
     normalize_factor_scores:
       no_scoring_data: Normalizaci skóre faktorů nelze dokončit, protože nejsou k dispozici žádné údaje o skóre.
     progress_label: Pokrok v hodnocení
-    redirect: Pro účely tohoto hodnocení budete přesměrováni na stránky třetích stran. Chcete-li zahájit hodnocení, klikněte na tlačítko Pokračovat.
     status:
       completed: Dokončeno
       in_progress: Probíhá

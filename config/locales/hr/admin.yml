@@ -8,6 +8,7 @@ hr:
     add_campaign_admin: Dodaj administratora kampanje
     add_client_admin: Dodaj klijenta administratora
     add_indicator: Dodaj pokazatelj
+    add_new_folder: Dodaj novu mapu
     add_project: Dodavanje projekta
     add_project_admin: Dodaj administratora projekta
     add_threesixty_campaign_admin: Dodaj administratora kampanje
@@ -45,13 +46,17 @@ hr:
     ai_assistants: AI pomoćnici
     ai_assistants_advanced_mode_tooltip: Koristite napredni način za predloške promptova koristeći tekući predložak s dostupnim varijablama. Za više detalja pogledajte dokumentaciju.
     ai_assistants_campaign_id_placeholder: Unesite ID kampanje
+    ai_assistants_cannot_change_type_when_in_use: Ne možete promijeniti vrstu AI asistenta '%{name}' jer je trenutno u upotrebi.
     ai_assistants_no_rendered_output: Nema dostupnog renderiranog izlaza
+    ai_assistants_provider_change_confirm_title: Promijeniti pružatelja?
+    ai_assistants_provider_previously_used_warning: Ovaj asistent je prethodno generirao rezultate s "%{from}". Promjena na "%{to}" može promijeniti ponašanje asistenta pri budućim zahtjevima za generiranje.
     ai_assistants_render_button: Predložak rendera
     ai_assistants_rendered_prompt: Renderirani upit
     ai_assistants_template_and_campaign_required: Molimo vas da dostavite i predložak i ID kampanje
     ai_assistants_template_render_failed: Nije uspio prikazati predložak
     ai_assistants_test_render: Testni render
     ai_assistants_test_render_tooltip: Testirajte svoj predložak prompta s podacima kampanje kako biste vidjeli što će biti poslano AI asistentu.
+    ai_assistants_type_locked_tooltip: Ovaj pomoćnik je trenutno u upotrebi i njegova vrsta se ne može promijeniti.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP je onemogućen od strane klijenta
     ai_assisted_idp_feature_disabled: Značajka AI Assisted IDP je onemogućena za ovaj projekt.
     ai_idp_assistant_configure_dependencies: Konfigurirajte ovisnosti o AI-u
@@ -85,6 +90,19 @@ hr:
     ai_scoring_appoval_responses: Odgovori umjetne inteligencije
     ai_scoring_appoval_score_not_applicable: Rezultat nije primjenjiv
     ai_scoring_approval: Odobrenje AI ocjenjivanja
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Pristup odobrenjima bodovanja možete dobiti putem sljedeće poveznice:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Sljedeća bodovanja su odobrena.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Primate ovu e-poruku jer ste dodani kao kontakt za primanje obavijesti o odobrenju bodovanja.
+    ai_scoring_approval_digest_mailer_approved_subject: Rezultati odobreni
+    ai_scoring_approval_digest_mailer_assessment_label: 'Ocjena: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Sljedeća bodovanja su spremna za odobrenje i zahtijevaju vašu akciju.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Primate ovu e-poruku jer ste dodani kao odobravatelj bodovanja koja zahtijevaju odobrenje.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Rezultati čekaju odobrenje
+    ai_scoring_approval_digest_mailer_campaign_label: 'Kampanja: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Broj bodova: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Poštovana gđo%{name},
+    ai_scoring_approval_digest_mailer_link_text: Odobrenja bodovanja
+    ai_scoring_approval_digest_mailer_project_label: 'Projekt: %{value}'
     ai_scoring_approval_settings: Postavke odobravanja ocjenjivanja umjetne inteligencije
     ai_scoring_approval_stale_description: Ažuriranja konfiguracije od posljednjeg pokretanja mogla su promijeniti rezultat. Ponovno ocijenite kako biste ga ažurirali koristeći najnovija postavljanja.
     ai_scoring_approval_stale_title: Rezultat možda nije ažuran
@@ -136,6 +154,7 @@ hr:
     bulk_assets_modal_title: Otpremite CSV i ZIP datoteke
     bulk_upload_ai_artifacts: Artefakti umjetne inteligencije za masovni prijenos
     campaign_ai_artifact_updated_successfully: Artefakti kampanjske umjetne inteligencije uspješno ažurirani
+    campaign_ai_artifacts_instruction_templating_tooltip: Možete koristiti napredne upute koristeći predložak naredbi s Liquid sintaksom predložaka i dostupnim varijablama. Pogledajte dokumentaciju za više detalja.
     campaign_ai_artifacts_results_export_details: Kampanja AI artefakti generirali rezultate
     campaign_assessment_actions_disable_caching: Onemogući predmeširanje procjene
     campaign_assessment_actions_enable_caching: Omogući keširanje procjene
@@ -161,6 +180,24 @@ hr:
     campaign_assessment_modals_enable_caching_title: Omogućiti keširanje procjene?
     campaign_factors: Čimbenici kampanje
     campaign_name: Naziv kampanje
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: ID vanjskog izvještaja
+          language_id: ID jezika
+          norm: Norma
+          norm_id: Norm ID
+          suitability_id: ID prikladnosti
+        labels:
+          assessment_ids: ID-ovi procjene
+          available_languages: Dostupni jezici
+          campaign_report_id: ID izvještaja kampanje
+          check_details: Provjeri detalje
+          default_language: Zadani jezik
+          external_settings: Vanjske postavke
+          provider: Pružatelj
+          report_pdf_status: Prijavi PDF status
+          user_report_id: ID izvještaja korisnika
     campaign_templates: Predlošci kampanja
     campaign_user_job_roles_cannot_be_same: Ciljana radna pozicija mora biti različita od trenutne radne pozicije.
     campaigns: Kampanje
@@ -183,7 +220,9 @@ hr:
     configure_model_answer_title: Konfigurirajte model odgovora i ključne riječi
     confirm_remove_admin: Jeste li sigurni da želite ukloniti administratora s e-poštom '%{email}'?
     copied: Kopirano
+    copied_url_success: URL je uspješno kopiran u međuspremnik.
     copy_ai_artifacts: Kopiraj AI artefakte
+    copy_image_url: Kopiraj URL slike
     country: Država
     create_client: Kreiraj klijenta
     create_indicator: Stvori pokazatelj
@@ -221,6 +260,7 @@ hr:
       thursday: Četvrtak
       tuesday: Utorak
       wednesday: Srijeda
+    dimension_translations_export_scheduled: Izvoz prijevoda zakazan za dimenziju%{name}.
     dimensions: Dimenzije
     done: Učinjeno
     done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
@@ -228,9 +268,11 @@ hr:
     duration: Trajanje
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi klijenta administratora
+    edit_folder: Uredi mapu
     edit_indicator: Uredi pokazivač
     edit_job_roles: Uređivanje uloga na poslu
     edit_level: Uredi razinu
+    edit_media: Uredi medij
     edit_permission_denied: Nemate dopuštenje za uređivanje administratorskog '%{name}'
     edit_project_admin: Uredi administratora projekta
     edit_threesixty_campaign_admin: Uredi administratora kampanje
@@ -272,6 +314,8 @@ hr:
     feature_global_skills_description: Pristupite globalnoj biblioteci vještina za procjene
     feature_idp_description: Omogućite planiranje individualnog razvoja za sudionike
     feature_sms_notification_description: Omogućite SMS obavijesti za pozivnice i podsjetnike kampanje
+    file_size_must_be_less_than_mb: Datoteka {{name}} prelazi maksimalnu veličinu od {{max_size_mb}} MB
+    file_upload_failed: Neuspjelo učitavanje {{name}}
     fill_empty_score_msg: Popunite sve konačne rezultate prije spremanja.
     final_score_empty_err_msg: Konačni rezultat utakmice %{factor_name} ne može biti prazan.
     final_score_empty_msg: Konačni rezultat ne može biti prazan.
@@ -351,6 +395,8 @@ hr:
     maintenance_settings_description: Upravljajte prozorima i postavkama za održavanje sustava
     manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
     max_value: Najveća vrijednost
+    media_files_label: Datoteke
+    media_library: Medijska knjižnica
     messages: Poruke
     mhs: MHS
     mhs_assessment: MHS procjena
@@ -370,6 +416,7 @@ hr:
     name: Ime
     name_max_length: Naziv ne smije biti duži od %{length} znakova
     name_required: Ime je potrebno
+    new_folder: Nova mapa
     no_file_selected: Nijedna datoteka nije odabrana
     no_notifications: Nema obavijesti
     no_status: Nema statusa
@@ -832,9 +879,15 @@ hr:
     questions: Pitanja
     range_min_max: Raspon%{min} - %{max}
     reflection_questions: Pitanja za razmišljanje
+    regenerate_transcriptions_action: Obnovi transkripte
+    regenerate_transcriptions_confirm_content: Jeste li sigurni da želite regenerirati transkripte za ovu procjenu? Ovo će ponovno obraditi sve nepotpune transkripte.
+    regenerate_transcriptions_confirm_title: Obnovi transkripte
+    regenerate_transcriptions_scheduled: Zadatak regeneriranja transkripcija uspješno je zakazan
     registration_codes: Registracijski kodovi
     registration_settings: Postavke registracije
     remove_children_to_change_type: Uklonite sve podređene stavke da biste promijenili tip.
+    remove_confirmation: Jeste li sigurni da želite ukloniti ovaj predmet?
+    remove_successfully: Medijski stavak je uspješno uklonjen.
     report_approvals: Odobrenja izvješća
     report_condition_not_met: Treba %{required} %{relationship} evaluaciju, ali ima samo %{actual}
     report_conditions_not_met_detailed: Izvještaj za %{user} ne ispunjava uvjete dostupnosti. %{conditions}
@@ -938,7 +991,9 @@ hr:
     scoring_approval_approvers: Odobravatelji
     scoring_approval_assessment: Procjena
     scoring_approval_assessor_users: Korisnici procjenitelja
+    scoring_approval_do_not_send_notifications: Ne šaljite obavijesti
     scoring_approval_modal_title: Postavke odobravanja bodovanja
+    scoring_approval_notification_users: Obavijest o odobrenju korisnicima
     scoring_approval_remove_modal_success: 'Postavka odobrenja za ID procjene: %{assessmentId} uspješno je izbrisana'
     scoring_approval_remove_modal_text: 'Jeste li sigurni da želite izbrisati ovo podešavanje za ID procjene: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Dobivanje bodova dopušteno je samo na pitanjima s umjetnom inteligencijom za trenutno odabrani faktor.
@@ -963,6 +1018,7 @@ hr:
     skill_aliases: Pseudonimi vještina
     skills: Vještine
     skills_taxonomy: Taksonomija vještina
+    skip_assessment_level_checks: Preskoči provjere sustava na razini ocjenjivanja
     slot_name: Naziv utora
     sms_histories: Povijest SMS-a
     sms_invites: SMS pozivnice
@@ -995,7 +1051,12 @@ hr:
     translated_to: 'Prevedeno na:'
     translated_with_ai_notice: AI prevedeno
     translation_assistant_not_configured: Pomoćnik za prijevod nije konfiguriran
+    translations:
+      title: Prijevodi
     update_success: "%{readableResourceName} je uspješno ažuriran"
+    upload: Podiži
+    upload_media: Otpremi medije
+    upload_required: Molimo dodajte barem jednu datoteku za prijenos.
     upload_success: Uspješno učitano
     user_report_events: Događaji u izvješću korisnika
     users: Korisnici
@@ -1004,6 +1065,7 @@ hr:
     very_high: Vrlo visoka
     very_low: Vrlo nisko
     view_licenses: Prikaz licenci
+    wait_for_upload_completion: Molimo pričekajte da se svi datoteci u potpunosti prenesu.
     waiting: Čekajući
     weight: Težina
     what_to_look_for: Na što obratiti pozornost

@@ -126,6 +126,14 @@ module Administration::Threesixty
       has_permission?(:datasheets, :view)
     end
 
+    def view_ai_artifacts?
+      return false unless @record.campaign.project.project_feature_enabled?(:ai_assistants)
+
+      @user.is?(:superadmin) ||
+        has_permission?('ai_artifacts', 'view') ||
+        has_permission?('ai_artifacts', 'manage')
+    end
+
     def toggle_caching?
       has_permission?(:campaigns, :manage)
     end

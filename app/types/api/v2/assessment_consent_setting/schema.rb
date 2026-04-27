@@ -16,6 +16,10 @@ module Api
               required(:locale).filled(:string)
               required(:text).maybe(:string)
             end
+            optional(:custom_acknowledgment_texts).array(:hash) do
+              required(:locale).filled(:string)
+              required(:text).maybe(:string)
+            end
           end
         end
 

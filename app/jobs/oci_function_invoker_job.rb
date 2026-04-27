@@ -37,6 +37,7 @@ class OciFunctionInvokerJob < ApplicationJob
 
   retry_on Faas::Services::Oci::Exceptions::TooManyRequest, wait: :polynomially_longer, attempts: 10
   retry_on Faas::Services::Oci::Exceptions::IncorrectState, wait: :polynomially_longer, attempts: 5
+  retry_on Faas::Services::Oci::Exceptions::ServiceUnavailable, wait: :polynomially_longer, attempts: 10
 
   def perform(_function_identifier, invoke_endpoint, payload, options)
     Faas::Services::Oci.new(invoke_endpoint, options).invoke!(payload)

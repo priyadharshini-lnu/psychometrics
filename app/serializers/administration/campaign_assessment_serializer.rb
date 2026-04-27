@@ -93,6 +93,7 @@ module Administration
           'export_occupations',
           'rescore_responses',
           'rescore_ai_responses',
+          'regenerate_transcriptions',
           'update_external_config',
           %w[remove destroy],
           'schedule_assessment',

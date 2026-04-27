@@ -1,5 +1,5 @@
 import {
-  useState, useEffect, useContext, useRef,
+  useState, useEffect, useRef,
 } from 'react'
 import { useDispatch, useSelector, connect } from 'react-redux'
 import {
@@ -7,24 +7,29 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { MediaQueryContext, DirectionalBackArrowIcon } from '~/glint'
+import { ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
-import { BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature } from '~/utils/uaParser'
+import {
+  BROWSER_NAME, BROWSER_VERSION, checkBrowserSupportForFeature, getExactBrowserVersionSync,
+} from '~/utils/uaParser'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
 import {
   CheckCircleOutlined,
-  GlobalOutlined, ExclamationCircleOutlined, RedoOutlined,
+  GlobalOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import { CHECK_STATUS, CHECK_TYPE } from '../../common'
-import { MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage } from './constants'
+import {
+  MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage, safariProctoring,
+} from './constants'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
 import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { AlertNotification } from '../../components/AlertNotification'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
+
 
 type BrowserCheckStatus = {
   type: BrowserCheckType;
@@ -58,11 +63,9 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const {
     data:
         systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
 
   const dispatch = useDispatch()
-
-  const { isMobile } = useContext(MediaQueryContext)
 
   const countDownButtonRef = useRef<CountdownButtonRef>(null)
 
@@ -86,12 +89,25 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
   }
 
-  const checkIfBrowserIsAboveMinimumVersion = () => Number(BROWSER_VERSION.split('.')[0])
-   >= MIN_BROWSER_VERSIONS[BROWSER_NAME]
+  const checkBrowserForProctoringSupport = () => {
+    if (BROWSER_NAME === 'Safari' && campaignOptions?.proctoringEnabled) {
+      browserCheckErrorMessage.browserVersion = { ...safariProctoring }
+      return false
+    }
+    return true
+  }
 
-  const checkBrowserForFeatureCompatibility = () => {
+  const checkIfBrowserIsAboveMinimumVersion = () => {
+    const compatibleVersion = MIN_BROWSER_VERSIONS[BROWSER_NAME]
+    if (!compatibleVersion) {
+      return false
+    }
+    return checkBrowserForProctoringSupport() && Number(BROWSER_VERSION.split('.')[0]) >= compatibleVersion
+  }
+
+
+  const checkBrowserForFeatureCompatibility = async () => {
     setIsLoading(true)
-
     const hasMinimumBrowserVersion = checkIfBrowserIsAboveMinimumVersion()
     const hasWebGLSupport = checkBrowserSupportForWebGLAPI()
     const hasMediaRecorderAPISupport = checkBrowserSupportForFeature(
@@ -100,11 +116,71 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
     const hasLocalStorageSupport = checkBrowserForLocalStorageSupport()
 
-    setBrowserChecks([{
-      type: BrowserCheckType.browserVersion,
-      title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${BROWSER_VERSION}`,
-      supported: hasMinimumBrowserVersion,
-    }, {
+    const generateDetails = () => {
+      const details:string[] = []
+
+
+      if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
+        details.push(I18n.t('enduser.browser_not_compatible_detail', { browser_name: BROWSER_NAME }))
+      }
+
+      if (hasMinimumBrowserVersion && hasWebGLSupport && hasMediaRecorderAPISupport && hasLocalStorageSupport) {
+        details.push(I18n.t('enduser.browser_compatible', {
+          browser_name: BROWSER_NAME,
+          browser_version: getExactBrowserVersionSync(),
+        }))
+        return details
+      }
+
+      if (!hasMinimumBrowserVersion) {
+        details.push(I18n.t('enduser.browser_incompatible_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: getExactBrowserVersionSync(),
+          min_browser_version: MIN_BROWSER_VERSIONS[BROWSER_NAME],
+        }))
+      } else {
+        details.push(I18n.t('enduser.browser_compatible_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: getExactBrowserVersionSync(),
+        }))
+      }
+
+      if (!hasWebGLSupport) {
+        details.push(I18n.t('enduser.webgl_not_supported_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: getExactBrowserVersionSync(),
+        }))
+      }
+
+      if (!hasMediaRecorderAPISupport) {
+        details.push(I18n.t('enduser.media_recorder_api_not_supported_detail', {
+          browser_name: BROWSER_NAME,
+          browser_version: getExactBrowserVersionSync(),
+        }))
+      }
+
+      if (!hasLocalStorageSupport) {
+        details.push(I18n.t('enduser.localstorage_not_enabled_detail'))
+      }
+      return details
+    }
+
+    const getBrowserCheckDetails = () => {
+      if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
+        return {
+          type: BrowserCheckType.browserVersion,
+          title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${getExactBrowserVersionSync()}`,
+          supported: false,
+        }
+      }
+      return {
+        type: BrowserCheckType.browserVersion,
+        title: `${I18n.t('enduser.browser_compatibility')} ${BROWSER_NAME} ${getExactBrowserVersionSync()}`,
+        supported: hasMinimumBrowserVersion,
+      }
+    }
+
+    setBrowserChecks([getBrowserCheckDetails(), {
       type: BrowserCheckType.webGL,
       title: I18n.t('enduser.webgl_api_support'),
       supported: hasWebGLSupport,
@@ -131,8 +207,9 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           webGL: hasWebGLSupport,
           localStorage: hasLocalStorageSupport,
           browserName: BROWSER_NAME,
-          browserVersion: BROWSER_VERSION,
+          browserVersion: getExactBrowserVersionSync(),
           browserCompatibility: hasMinimumBrowserVersion,
+          details: generateDetails(),
         },
       },
     ]))
@@ -181,7 +258,7 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
   }
 
   return (
-    <Flex justify="center" flex={1} style={{ ...(!isMobile && { padding: '1rem' }) }} vertical>
+    <Flex justify="center" flex={1} vertical>
       <Flex justify="space-between">
         <Flex gap={8}>
           <GlobalOutlined style={{
@@ -278,26 +355,22 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           {I18n.t('enduser.back')}
         </Button>
         <Flex justify="end" gap={12}>
-          <Button
-            icon={<RedoOutlined />}
-            onClick={() => {
-              checkBrowserForFeatureCompatibility()
-              if (countDownButtonRef.current) {
-                countDownButtonRef.current.reset()
-              }
-            }}
-          >
-            {I18n.t('enduser.rerun_check')}
-          </Button>
-          <CountdownButton
-            disabled={
-              isLoading || checkStatus === CHECK_STATUS.pending || (checkStatus === CHECK_STATUS.failed
-                && !campaignOptions?.allowContinueWithWarning)
-            }
-            label={I18n.t('shared.continue')}
-            handleContinue={handleNext}
-            ref={countDownButtonRef}
-          />
+          {checkStatus === CHECK_STATUS.passed ? (
+            <CountdownButton
+              label={I18n.t('shared.continue')}
+              handleContinue={handleNext}
+              ref={countDownButtonRef}
+            />
+          ) : (
+            <ButtonWithArrow
+              type="primary"
+              disabled={isLoading || checkStatus === CHECK_STATUS.pending}
+              style={{ alignSelf: 'flex-end' }}
+              label={I18n.t('shared.continue')}
+              onClick={handleNext}
+            />
+          )}
+
         </Flex>
       </Flex>
     </Flex>

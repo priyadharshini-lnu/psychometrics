@@ -322,7 +322,7 @@ module Administration
         permitted_campaign_ids += @user.assessors_campaings.pluck(:id)
 
         scope.where(
-          'id IN (?) OR project_id IN (?)',
+          'campaigns.id IN (?) OR campaigns.project_id IN (?)',
           permitted_campaign_ids, permitted_client_admin_project_ids + permitted_project_admin_project_ids
         )
       end

@@ -929,6 +929,7 @@ hi:
         normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
         project_compact_completion_status_export: संक्षिप्त समापन स्थिति निर्यात
         project_completion_status_export: पूर्णता स्थिति निर्यात
+        regenerate_assessment_transcriptions: मूल्यांकन प्रतिलेखों को पुनः उत्पन्न करें
         regenerate_campaign_reports: अभियान रिपोर्टें पुनः उत्पन्न करें
         regenerate_report: रिपोर्ट पुनः उत्पन्न करें
         regenerate_threesixty_report: थ्रीसिक्सी रिपोर्ट पुनः उत्पन्न करें
@@ -4069,9 +4070,11 @@ hi:
       import_reports: रिपोर्ट और आकलन आयात करें
   user_assessment:
     column:
+      completed_at: पर पूरा किया गया
       dimension_id: आयाम आईडी
       id: उपयोगकर्ता मूल्यांकन आईडी
       norm_id: नॉर्म आईडी
+      started_at: शुरू किया
     drawer:
       copied: "%{name} क्लिपबोर्ड पर कॉपी हो गया।"
       copy: क्लिपबोर्ड में कॉपी करें
@@ -4111,7 +4114,6 @@ hi:
     normalize_factor_scores:
       no_scoring_data: कारक स्कोर का सामान्यीकरण पूरा नहीं किया जा सकता क्योंकि कोई स्कोरिंग डेटा उपलब्ध नहीं है।
     progress_label: मूल्यांकन प्रगति
-    redirect: इस मूल्यांकन के लिए आपको तृतीय-पक्ष साइट पर पुनर्निर्देशित किया जाएगा। यदि आप मूल्यांकन शुरू करना चाहते हैं तो कृपया जारी रखें पर क्लिक करें।
     status:
       completed: पूर्ण
       in_progress: प्रगति में

@@ -1,16 +1,36 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Dimensions::FactorResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :description, :code, :scoring_strategy, :parent, :precision, :scale_min, :scale_max,
+  attributes :id, :name, :description, :code, :scoring_strategy, :parent, :disabled, :precision, :scale_min, :scale_max,
              :icon_url, :score_min, :score_max,
              :score_definitions, :what_to_look_for, :use_percentage, :custom_formula,
-             :factors_sub_factors, :child_factor_type
+             :factors_sub_factors, :child_factor_type, :created_at, :updated_at
 
   has_many :sub_factors, relation_name: :factors_sub_factors, class_name: 'FactorsSubFactor'
   has_many :parent_factors
   has_one :dimension
 
   ransack_filters %i[filterable_fields search_query]
+
+  def self.sortable_fields(context)
+    super + %i[created_at updated_at]
+  end
+
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::FactorPolicy,
+          context[:user],
+          @model,
+          ['copy'],
+          {
+            project_id: @model.dimension.owner_id
+          }
+        )
+      }
+    }
+  end
 
   def parent
     %w[sub_factor_questions

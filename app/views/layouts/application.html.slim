@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    = render 'layouts/osano_script'
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     meta content="IE=edge" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1" name="viewport"
@@ -26,7 +27,7 @@ html
             h1.pageTitle
           .col-sm-2.hidden-xs
     = yield
-    = render partial: 'layouts/consent_banner'
+    = render partial: 'layouts/consent_banner' unless Settings.osano_enabled
     footer class="#{'loginFooter' if devise_controller?}"
       .container-fluid
         = render partial: '/layouts/footer'

@@ -929,6 +929,7 @@ th:
         normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
         project_compact_completion_status_export: การส่งออกสถานะการทำงานที่เสร็จสมบูรณ์แบบกะทัดรัด
         project_completion_status_export: สถานะการเสร็จสิ้น ส่งออก
+        regenerate_assessment_transcriptions: สร้างบันทึกการประเมินผลใหม่
         regenerate_campaign_reports: สร้างรายงานแคมเปญใหม่
         regenerate_report: สร้างรายงานใหม่
         regenerate_threesixty_report: สร้างรายงาน Threesixty ใหม่
@@ -4062,9 +4063,11 @@ th:
       import_reports: นําเข้ารายงานและการประเมิน
   user_assessment:
     column:
+      completed_at: เสร็จสิ้นที่
       dimension_id: รหัสมิติ
       id: รหัสการประเมินของผู้ใช้
       norm_id: รหัสบรรทัดฐาน
+      started_at: เริ่มต้นที่
     drawer:
       copied: "%{name} ถูกคัดลอกไปยังคลิปบอร์ด"
       copy: คัดลอกลงคลิปบอร์ด
@@ -4104,7 +4107,6 @@ th:
     normalize_factor_scores:
       no_scoring_data: การทําให้เป็นมาตรฐานของคะแนนปัจจัยไม่สามารถทําได้เนื่องจากไม่มีข้อมูลการให้คะแนน
     progress_label: ความคืบหน้าในการประเมิน
-    redirect: คุณจะถูกเปลี่ยนเส้นทางไปยังเว็บไซต์ของบุคคลที่สามสำหรับการประเมินนี้ กรุณาคลิก ดำเนินการต่อหากคุณต้องการเริ่มการประเมิน
     status:
       completed: เสร็จสมบูรณ์
       in_progress: อยู่ระหว่างดําเนินการ
@@ -4259,9 +4261,7 @@ th:
     min_character: คำตอบของคุณต้องมีความยาวอย่างน้อย %{min} ตัวอักษร
     min_factor: คําตอบของคุณต้องมีคําติชมของปัจจัยอย่างน้อย %{min}
     min_word: คำตอบของคุณต้องมีอย่างน้อย %{min} คำ
-    most:
-      one: กรุณาเลือกมากที่สุด 1 ตัวเลือก
-      other: กรุณาเลือกมากที่สุด %{max} ตัวเลือก
+    most: กรุณาเลือกไม่เกิน %{max} ตัวเลือก
     must_rank_between: โปรดกำหนดค่าตั้งแต่ %{min} ถึง %{max} สำหรับแต่ละรายการ โดยค่าไม่สามารถซ้ำกันได้
     must_select: กรุณาเลือกจากตัวเลือก %{min} ถึง %{max} ตัวเลือก
     not_in_future: วันที่เลือกไม่ควรเป็นวันในอนาคต

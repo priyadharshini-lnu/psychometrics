@@ -5,6 +5,12 @@ module Administration
     attributes :id, :name, :description, :score, :override_score, :factor_id, :question_id, :confidence, :citations,
                :rationale, :status, :parent_factor_id, :change_log, :not_applicable, :scoring_type
 
+    def citations
+      (object.citations || []).map do |citation|
+        citation.is_a?(String) ? { 'text' => citation, 'sentiment' => 'neutral' } : citation
+      end
+    end
+
     def name
       object.factor.name
     end

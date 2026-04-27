@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, useCallback,
+  useEffect, useState, useCallback, useRef,
 } from 'react'
 import { useSelector, useDispatch, connect } from 'react-redux'
 import {
@@ -40,9 +40,30 @@ const WelcomeComponent = ({ fetchCampaign }) => {
   const { campaignId } = useParams() as { campaignId: string}
 
   const {
-    data:
-    systemCheckRequirementsStatus,
-  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+    data: systemCheckRequirementsStatus,
+  } = useFetchSystemCheckRequirementsStatusQuery({ campaignId }, { refetchOnMountOrArgChange: true })
+
+  const requirementsStatusRef = useRef(systemCheckRequirementsStatus)
+  const campaignFetchedRef = useRef(false)
+
+  useEffect(() => {
+    requirementsStatusRef.current = systemCheckRequirementsStatus
+  }, [systemCheckRequirementsStatus])
+
+  const dispatchRequiredChecks = useCallback((status: RequirementStatus) => {
+    const validChecks = Object.keys(status.requirements).filter(
+      key => status.requirements[key]?.required === true,
+    )
+
+    dispatch(actions.setRequiredSystemChecks(validChecks))
+
+    if (validChecks.includes('network')) {
+      dispatch(actions.setNetworkSpeeds({
+        minimumDownloadSpeed: status.requirements.network.minimumDownloadSpeed,
+        minimumUploadSpeed: status.requirements.network.minimumUploadSpeed,
+      }))
+    }
+  }, [dispatch])
 
   const onChange = (e) => {
     setAcknowledged(e.target.checked)
@@ -55,25 +76,24 @@ const WelcomeComponent = ({ fetchCampaign }) => {
     navigate(`/campaign_system_check/${campaignId}/${requiredSystemChecks[0]}`)
   }, [requiredSystemChecks])
 
+  // Case: status arrives after campaign fetch — dispatch required checks immediately
   useEffect(() => {
     fetchCampaign(`/campaigns/${campaignId}`).then(({ response }) => {
       dispatch(actions.setCampaignDetailsForSystemCheck(response))
+      campaignFetchedRef.current = true
 
-      if (!systemCheckRequirementsStatus) return
-      const validChecks = Object.keys((systemCheckRequirementsStatus as RequirementStatus)?.requirements).filter(
-        key => systemCheckRequirementsStatus?.requirements[key]?.required === true,
-      )
-
-      dispatch(actions.setRequiredSystemChecks(validChecks))
-
-      if (validChecks.includes('network')) {
-        dispatch(actions.setNetworkSpeeds({
-          minimumDownloadSpeed: systemCheckRequirementsStatus?.requirements?.network?.minimumDownloadSpeed,
-          minimumUploadSpeed: systemCheckRequirementsStatus?.requirements?.network?.minimumUploadSpeed,
-        }))
+      if (requirementsStatusRef.current) {
+        dispatchRequiredChecks(requirementsStatusRef.current)
       }
     })
-  }, [campaignId, systemCheckRequirementsStatus])
+  }, [campaignId])
+
+  // Case: status arrives before or after campaign fetch — dispatch once campaign is ready
+  useEffect(() => {
+    if (!systemCheckRequirementsStatus || !campaignFetchedRef.current) return
+
+    dispatchRequiredChecks(systemCheckRequirementsStatus)
+  }, [systemCheckRequirementsStatus])
 
   return (
     <LayoutWrapper>
@@ -95,7 +115,7 @@ const WelcomeComponent = ({ fetchCampaign }) => {
                 vertical
                 className={`p-4 ${commonStyles['border-dark']} ${commonStyles['bg-off-white']}`}
               >
-                <Checkbox onChange={onChange}>
+                <Checkbox onChange={onChange} disabled={!requiredSystemChecks.length}>
                   {I18n.t('enduser.ack_title')}
                 </Checkbox>
                 <Typography.Text style={{ paddingInlineStart: '24px' }}>

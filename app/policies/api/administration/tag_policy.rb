@@ -16,8 +16,8 @@ module Api
 
           return tags.distinct if @user.is?(:superadmin)
 
-          owner_ids = @user.owner_ids
-          tags.accessible_to_clients(owner_ids)
+          tenant_ids = (@user.owner_ids + @user.accessible_client_ids).uniq
+          tags.accessible_to_clients(tenant_ids)
         end
       end
     end

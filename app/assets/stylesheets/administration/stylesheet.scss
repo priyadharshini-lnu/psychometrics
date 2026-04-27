@@ -216,6 +216,14 @@ body {
   z-index: 10000;
 }
 
+.osano-cm-widget {
+  display: none;
+}
+
+.osano-cm-link {
+  display: none;
+}
+
 #consent-banner {
   position: fixed;
   left: 0;

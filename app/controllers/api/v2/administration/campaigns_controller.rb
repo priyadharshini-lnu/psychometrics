@@ -2,6 +2,8 @@
 
 module Api
   class V2::Administration::CampaignsController < Api::V2::Administration::BaseController
+    include Api::V2::Administration::Concerns::Taggable
+
     validate_crud_requests Api::V2::Campaign::Schema
 
     before_action :load_campaign, only: [:all_assessments]

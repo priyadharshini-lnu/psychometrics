@@ -8,6 +8,7 @@ hi:
     add_campaign_admin: अभियान प्रशासक जोड़ें
     add_client_admin: क्लाइंट एडमिन जोड़ें
     add_indicator: सूचक जोड़ें
+    add_new_folder: नया फ़ोल्डर जोड़ें
     add_project: परियोजना जोड़ें
     add_project_admin: परियोजना प्रशासक जोड़ें
     add_threesixty_campaign_admin: अभियान प्रशासक जोड़ें
@@ -45,13 +46,17 @@ hi:
     ai_assistants: एआई सहायक
     ai_assistants_advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
     ai_assistants_campaign_id_placeholder: अभियान आईडी दर्ज करें
+    ai_assistants_cannot_change_type_when_in_use: AI सहायक '%{name}' का प्रकार नहीं बदला जा सकता क्योंकि यह वर्तमान में उपयोग में है।
     ai_assistants_no_rendered_output: कोई रेंडर आउटपुट उपलब्ध नहीं है
+    ai_assistants_provider_change_confirm_title: प्रदाता बदलें?
+    ai_assistants_provider_previously_used_warning: इस सहायक ने पहले "%{from}" के साथ परिणाम उत्पन्न किए हैं। "%{to}" में बदलने से भविष्य की जेनरेशन अनुरोधों के लिए सहायक का व्यवहार बदल सकता है।
     ai_assistants_render_button: रेंडर टेम्पलेट
     ai_assistants_rendered_prompt: प्रस्तुत अनुरोध
     ai_assistants_template_and_campaign_required: कृपया टेम्पलेट और अभियान दोनों आईडी प्रदान करें।
     ai_assistants_template_render_failed: टेम्पलेट रेंडर करने में असफल
     ai_assistants_test_render: परीक्षण रेंडर
     ai_assistants_test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
+    ai_assistants_type_locked_tooltip: यह सहायक वर्तमान में उपयोग में है और इसके प्रकार को बदला नहीं जा सकता।
     ai_assisted_idp_disabled_by_client: क्लाइंट द्वारा एआई-सहायित आईडीपी अक्षम कर दिया गया है।
     ai_assisted_idp_feature_disabled: इस परियोजना के लिए AI-सहायक IDP सुविधा अक्षम कर दी गई है।
     ai_idp_assistant_configure_dependencies: एआई निर्भरताओं को कॉन्फ़िगर करें
@@ -85,6 +90,19 @@ hi:
     ai_scoring_appoval_responses: एआई प्रतिक्रियाएँ
     ai_scoring_appoval_score_not_applicable: स्कोर लागू नहीं
     ai_scoring_approval: एआई स्कोरिंग अनुमोदन
+    ai_scoring_approval_digest_mailer_access_link_intro: 'आप निम्नलिखित लिंक के माध्यम से स्कोरिंग अनुमोदनों तक पहुँच सकते हैं:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: निम्नलिखित स्कोरिंग्स को अनुमोदित किया गया है।
+    ai_scoring_approval_digest_mailer_approved_contact_reason: आपको यह ईमेल इसलिए प्राप्त हो रहा है क्योंकि आपको स्कोरिंग अनुमोदन सूचना प्राप्त करने के लिए संपर्क के रूप में जोड़ा गया है।
+    ai_scoring_approval_digest_mailer_approved_subject: स्कोरिंग्स अनुमोदित
+    ai_scoring_approval_digest_mailer_assessment_label: 'मूल्यांकन: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: निम्नलिखित स्कोरिंग्स अनुमोदन के लिए तैयार हैं और आपके कार्य की प्रतीक्षा कर रही हैं।
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: आपको यह ईमेल इसलिए प्राप्त हो रहा है क्योंकि आपको स्कोरिंग्स के लिए अनुमोदक के रूप में जोड़ा गया है, जिन्हें अनुमोदन की आवश्यकता है।
+    ai_scoring_approval_digest_mailer_awaiting_subject: अनुमोदन की प्रतीक्षा में अंक
+    ai_scoring_approval_digest_mailer_campaign_label: 'अभियान: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'स्कोरिंग की गिनती: %{value}'
+    ai_scoring_approval_digest_mailer_dear: प्रिय %{name},
+    ai_scoring_approval_digest_mailer_link_text: स्कोरिंग अनुमोदन
+    ai_scoring_approval_digest_mailer_project_label: 'परियोजना: %{value}'
     ai_scoring_approval_settings: एआई स्कोरिंग अनुमोदन सेटिंग्स
     ai_scoring_approval_stale_description: पिछली रन के बाद कॉन्फ़िगरेशन अपडेट्स ने स्कोर बदल दिया हो सकता है। नवीनतम सेटिंग्स का उपयोग करके इसे अपडेट करने के लिए पुनः स्कोर करें।
     ai_scoring_approval_stale_title: स्कोर पुराना हो सकता है
@@ -136,6 +154,7 @@ hi:
     bulk_assets_modal_title: CSV और ZIP फ़ाइलें अपलोड करें
     bulk_upload_ai_artifacts: बल्क अपलोड एआई आर्टिफैक्ट्स
     campaign_ai_artifact_updated_successfully: अभियान एआई कलाकृतियाँ सफलतापूर्वक अद्यतन की गईं
+    campaign_ai_artifacts_instruction_templating_tooltip: आप लिक्विड टेम्पलेट सिंटैक्स और उपलब्ध वेरिएबल्स के साथ प्रॉम्प्ट टेम्पलेटिंग का उपयोग करके उन्नत निर्देश दे सकते हैं। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
     campaign_ai_artifacts_results_export_details: अभियान एआई कलाकृतियों ने परिणाम उत्पन्न किए
     campaign_assessment_actions_disable_caching: मूल्यांकन कैशिंग अक्षम करें
     campaign_assessment_actions_enable_caching: मूल्यांकन कैशिंग सक्षम करें
@@ -161,6 +180,24 @@ hi:
     campaign_assessment_modals_enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
     campaign_factors: अभियान कारक
     campaign_name: अभियान का नाम
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: बाहरी रिपोर्ट आईडी
+          language_id: भाषा आईडी
+          norm: नॉर्म
+          norm_id: नॉर्म आईडी
+          suitability_id: उपयुक्तता आईडी
+        labels:
+          assessment_ids: मूल्यांकन आईडी
+          available_languages: उपलब्ध भाषाएँ
+          campaign_report_id: अभियान रिपोर्ट आईडी
+          check_details: विवरण देखें
+          default_language: डिफ़ॉल्ट भाषा
+          external_settings: बाहरी सेटिंग्स
+          provider: प्रदाता
+          report_pdf_status: रिपोर्ट पीडीएफ स्थिति
+          user_report_id: उपयोगकर्ता रिपोर्ट आईडी
     campaign_templates: अभियान टेम्पलेट्स
     campaign_user_job_roles_cannot_be_same: लक्षित नौकरी की भूमिका वर्तमान नौकरी की भूमिका से भिन्न होनी चाहिए।
     campaigns: अभियान
@@ -183,7 +220,9 @@ hi:
     configure_model_answer_title: मॉडल उत्तर और कीवर्ड्स कॉन्फ़िगर करें
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
     copied: नकल किया गया
+    copied_url_success: यूआरएल क्लिपबोर्ड पर सफलतापूर्वक कॉपी हो गया।
     copy_ai_artifacts: एआई कलाकृतियों की प्रतिलिपि बनाएँ
+    copy_image_url: छवि का URL कॉपी करें
     country: देश
     create_client: ग्राहक बनाएँ
     create_indicator: सूचक बनाएँ
@@ -221,6 +260,7 @@ hi:
       thursday: गुरुवार
       tuesday: मंगलवार
       wednesday: बुधवार
+    dimension_translations_export_scheduled: "%{name} आयाम के लिए निर्धारित अनुवाद निर्यात करें।"
     dimensions: आयाम
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
@@ -228,9 +268,11 @@ hi:
     duration: अवधि
     edit_campaign_admin: अभियान प्रशासक संपादित करें
     edit_client_admin: क्लाइंट एडमिन संपादित करें
+    edit_folder: फ़ोल्डर संपादित करें
     edit_indicator: संकेतक संपादित करें
     edit_job_roles: नौकरी भूमिकाएँ संपादित करें
     edit_level: स्तर संपादित करें
+    edit_media: मीडिया संपादित करें
     edit_permission_denied: आपके पास एडमिन '%{name}' को संपादित करने की अनुमति नहीं है।
     edit_project_admin: परियोजना प्रशासक संपादित करें
     edit_threesixty_campaign_admin: अभियान प्रशासक संपादित करें
@@ -272,6 +314,8 @@ hi:
     feature_global_skills_description: मूल्यांकन के लिए वैश्विक कौशल लाइब्रेरी तक पहुँचें
     feature_idp_description: प्रतिभागियों के लिए व्यक्तिगत विकास योजना सक्षम करें
     feature_sms_notification_description: अभियान के निमंत्रणों और अनुस्मारकों के लिए एसएमएस सूचनाएं सक्षम करें
+    file_size_must_be_less_than_mb: फ़ाइल {{name}} का आकार {{max_size_mb}} एमबी की अधिकतम सीमा से अधिक है।
+    file_upload_failed: "{{name}} अपलोड करने में असफल रहा"
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
     final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
     final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
@@ -351,6 +395,8 @@ hi:
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     max_value: अधिकतम मान
+    media_files_label: फ़ाइलें
+    media_library: मीडिया पुस्तकालय
     messages: संदेश
     mhs: एमएचएस
     mhs_assessment: एमएचएस मूल्यांकन
@@ -370,6 +416,7 @@ hi:
     name: नाम
     name_max_length: नाम %{length} वर्णों से अधिक नहीं हो सकता।
     name_required: नाम आवश्यक है
+    new_folder: नया फ़ोल्डर
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
     no_status: कोई स्थिति नहीं
@@ -832,9 +879,15 @@ hi:
     questions: प्रश्न
     range_min_max: दायरा %{min} - %{max}
     reflection_questions: चिंतन प्रश्न
+    regenerate_transcriptions_action: प्रतिलिपियाँ पुनः उत्पन्न करें
+    regenerate_transcriptions_confirm_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए ट्रांसक्रिप्शन पुनः उत्पन्न करना चाहते हैं? यह सभी अधूरे ट्रांसक्रिप्शन को पुनः संसाधित करेगा।
+    regenerate_transcriptions_confirm_title: प्रतिलिपियाँ पुनः उत्पन्न करें
+    regenerate_transcriptions_scheduled: ट्रांसक्रिप्शन पुनः उत्पन्न करने का कार्य सफलतापूर्वक निर्धारित हो गया।
     registration_codes: पंजीकरण कोड
     registration_settings: पंजीकरण सेटिंग्स
     remove_children_to_change_type: प्रकार बदलने के लिए सभी बच्चों को हटाएँ।
+    remove_confirmation: क्या आप इस आइटम को हटाना चाहते हैं?
+    remove_successfully: मीडिया आइटम सफलतापूर्वक हटा दिया गया।
     report_approvals: रिपोर्ट अनुमोदन
     report_condition_not_met: "%{required}%{relationship} मूल्यांकन(ओं) की आवश्यकता है, लेकिन केवल %{actual} है।"
     report_conditions_not_met_detailed: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा नहीं करता। %{conditions}"
@@ -938,7 +991,9 @@ hi:
     scoring_approval_approvers: अनुमोदक
     scoring_approval_assessment: मूल्यांकन
     scoring_approval_assessor_users: मूल्यांकनकर्ता उपयोगकर्ता
+    scoring_approval_do_not_send_notifications: सूचनाएँ न भेजें
     scoring_approval_modal_title: स्कोरिंग अनुमोदन सेटिंग्स
+    scoring_approval_notification_users: अनुमोदन अधिसूचना उपयोगकर्ता
     scoring_approval_remove_modal_success: 'मूल्यांकन आईडी के लिए अनुमोदन सेटिंग: %{assessmentId} सफलतापूर्वक हटा दी गई'
     scoring_approval_remove_modal_text: 'क्या आप सुनिश्चित हैं कि आप मूल्यांकन आईडी: %{assessmentId} के लिए इस सेटिंग को हटाना चाहते हैं?'
     scoring_supported_only_for_ai_questions: स्कोरिंग केवल वर्तमान में चयनित कारक के लिए एआई-सक्षम प्रश्नों पर ही अनुमत है।
@@ -963,6 +1018,7 @@ hi:
     skill_aliases: कौशल उपनाम
     skills: कौशल
     skills_taxonomy: कौशल वर्गीकरण
+    skip_assessment_level_checks: मूल्यांकन-स्तर प्रणाली जाँचों को छोड़ें
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण
@@ -995,7 +1051,12 @@ hi:
     translated_to: 'अनुवादित:'
     translated_with_ai_notice: एआई द्वारा अनुवादित
     translation_assistant_not_configured: अनुवाद सहायक कॉन्फ़िगर नहीं किया गया है
+    translations:
+      title: अनुवाद
     update_success: "%{readableResourceName} सफलतापूर्वक अपडेट किया गया"
+    upload: अपलोड
+    upload_media: मीडिया अपलोड करें
+    upload_required: कृपया अपलोड करने के लिए कम से कम एक फ़ाइल जोड़ें।
     upload_success: सफलतापूर्वक अपलोड किया गया
     user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ
     users: उपयोगकर्ता
@@ -1004,6 +1065,7 @@ hi:
     very_high: बहुत अधिक
     very_low: बहुत कम
     view_licenses: लाइसेंस देखें
+    wait_for_upload_completion: कृपया सभी फ़ाइलों के अपलोड होने तक प्रतीक्षा करें।
     waiting: इंतज़ार
     weight: वजन
     what_to_look_for: क्या देखें

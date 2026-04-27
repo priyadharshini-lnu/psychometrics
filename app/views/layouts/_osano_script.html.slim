@@ -1,0 +1,32 @@
+- if Settings.osano_enabled
+  javascript [nonce=content_security_policy_nonce]:
+    (function(w, o, d) {
+      w[o] = w[o] || function() { w[o][d].push(arguments); };
+      w[o][d] = w[o][d] || [];
+    })(window, 'Osano', 'data');
+    window.Osano('locale', '#{I18n.locale}');
+
+    var osanoResizeObserver = null;
+    window.Osano('onUiChanged', function(component, stateChange) {
+      if (component !== 'dialog') return;
+
+      if (stateChange === 'show') {
+        var dialog = document.querySelector('.osano-cm-dialog');
+        if (!dialog) return;
+
+        osanoResizeObserver = new ResizeObserver(function() {
+          var height = dialog.getBoundingClientRect().height;
+          document.body.style.paddingBottom = height + 'px';
+          document.documentElement.style.setProperty('--osano-banner-height', height + 'px');
+        });
+        osanoResizeObserver.observe(dialog);
+      } else {
+        if (osanoResizeObserver) {
+          osanoResizeObserver.disconnect();
+          osanoResizeObserver = null;
+        }
+        document.body.style.paddingBottom = '';
+        document.documentElement.style.setProperty('--osano-banner-height', '0px');
+      }
+    });
+  script src="https://cmp.osano.com/#{Settings.osano_key}/osano.js" nonce=content_security_policy_nonce

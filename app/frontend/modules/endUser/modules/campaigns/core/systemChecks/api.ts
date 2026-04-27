@@ -55,6 +55,8 @@ export const systemChecksAPI = createApi({
         url: `campaigns/${campaignId}/system_check_sessions/requirements_status`,
         method: 'GET',
       }),
+      keepUnusedDataFor: 0,
+      forceRefetch: () => true,
     }),
   }),
 })

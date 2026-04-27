@@ -8,6 +8,7 @@ ro:
     add_campaign_admin: Adăugați administratorul campaniei
     add_client_admin: Adăugați administrator client
     add_indicator: Adăugați indicator
+    add_new_folder: Adăugare folder nou
     add_project: Adaugă proiect
     add_project_admin: Adăugați administrator de proiect
     add_threesixty_campaign_admin: Adăugați administratorul campaniei
@@ -45,13 +46,17 @@ ro:
     ai_assistants: Asistenți AI
     ai_assistants_advanced_mode_tooltip: Folosește modul avansat pentru modelarea prompturilor folosind șablonul lichid cu variabile disponibile. Consultați documentația pentru mai multe detalii.
     ai_assistants_campaign_id_placeholder: Introduceți ID-ul campaniei
+    ai_assistants_cannot_change_type_when_in_use: Nu se poate modifica tipul asistentului AI „%{name}”, deoarece acesta este utilizat în prezent.
     ai_assistants_no_rendered_output: Nu există ieșire randată disponibilă
+    ai_assistants_provider_change_confirm_title: Vrei să schimbi furnizorul?
+    ai_assistants_provider_previously_used_warning: Acest asistent a generat anterior rezultate folosind „%{from}”. Schimbarea în „%{to}” poate modifica comportamentul asistentului pentru viitoarele solicitări de generare.
     ai_assistants_render_button: Șablon de randare
     ai_assistants_rendered_prompt: Prompt randat
     ai_assistants_template_and_campaign_required: Vă rugăm să furnizați atât șablonul, cât și ID-ul campaniei
     ai_assistants_template_render_failed: Nu s-a redat șablonul
     ai_assistants_test_render: Randare de testare
     ai_assistants_test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
+    ai_assistants_type_locked_tooltip: Acest asistent este utilizat în prezent și tipul său nu poate fi modificat.
     ai_assisted_idp_disabled_by_client: IDP asistat de AI este dezactivat de client
     ai_assisted_idp_feature_disabled: Funcția IDP asistată de AI a fost dezactivată pentru acest proiect.
     ai_idp_assistant_configure_dependencies: Configurați dependențele AI
@@ -85,6 +90,19 @@ ro:
     ai_scoring_appoval_responses: Răspunsuri AI
     ai_scoring_appoval_score_not_applicable: Scorul nu se aplică
     ai_scoring_approval: Aprobarea scorului AI
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Puteți accesa aprobările privind punctajul prin intermediul următorului link:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Au fost aprobate următoarele punctaje.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Primiți acest e-mail deoarece ați fost adăugat ca persoană de contact pentru a primi notificări privind aprobarea punctajului.
+    ai_scoring_approval_digest_mailer_approved_subject: Rezultatele au fost aprobate
+    ai_scoring_approval_digest_mailer_assessment_label: 'Evaluare: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Următoarele note sunt gata pentru aprobare și necesită intervenția dumneavoastră.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Primiți acest e-mail deoarece ați fost adăugat ca persoană cu drept de aprobare pentru evaluări, care necesită aprobare.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Rezultate în așteptarea aprobării
+    ai_scoring_approval_digest_mailer_campaign_label: 'Campanie: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Număr de goluri: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Stimate %{name},
+    ai_scoring_approval_digest_mailer_link_text: Aprobarea punctajelor
+    ai_scoring_approval_digest_mailer_project_label: 'Proiect: %{value}'
     ai_scoring_approval_settings: Setări de aprobare a punctajului AI
     ai_scoring_approval_stale_description: Este posibil ca actualizările de configurare efectuate de la ultima rulare să fi modificat scorul. Efectuați o nouă evaluare pentru a-l actualiza folosind cele mai recente setări.
     ai_scoring_approval_stale_title: Scorul ar putea fi depășit
@@ -136,6 +154,7 @@ ro:
     bulk_assets_modal_title: Încărcați fișiere CSV și ZIP
     bulk_upload_ai_artifacts: Artefacte AI cu încărcare în masă
     campaign_ai_artifact_updated_successfully: Artefactele AI ale campaniei au fost actualizate cu succes
+    campaign_ai_artifacts_instruction_templating_tooltip: Puteți utiliza instrucțiuni avansate prin intermediul șabloanelor de prompt, folosind sintaxa șabloanelor Liquid și variabilele disponibile. Consultați documentația pentru mai multe detalii.
     campaign_ai_artifacts_results_export_details: Rezultate generate de artefactele AI ale campaniei
     campaign_assessment_actions_disable_caching: Dezactivează caching-ul evaluărilor
     campaign_assessment_actions_enable_caching: Activează cache-ul evaluării
@@ -161,6 +180,24 @@ ro:
     campaign_assessment_modals_enable_caching_title: Activarea cache-ului evaluării?
     campaign_factors: Factorii campaniei
     campaign_name: Numele campaniei
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: ID-ul raportului extern
+          language_id: Codul limbii
+          norm: Normă
+          norm_id: Codul normei
+          suitability_id: Cod de compatibilitate
+        labels:
+          assessment_ids: Coduri de evaluare
+          available_languages: Limbi disponibile
+          campaign_report_id: ID raport de campanie
+          check_details: Verificați detaliile
+          default_language: Limba implicită
+          external_settings: Setări externe
+          provider: Furnizor
+          report_pdf_status: Raport privind starea fișierului PDF
+          user_report_id: ID-ul raportului utilizatorului
     campaign_templates: Șabloane de campanie
     campaign_user_job_roles_cannot_be_same: Funcția vizată trebuie să fie diferită de funcția actuală.
     campaigns: Campanii
@@ -183,7 +220,9 @@ ro:
     configure_model_answer_title: Configurați răspunsul model și cuvintele cheie
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
     copied: Copiată
+    copied_url_success: Adresa URL a fost copiată cu succes în clipboard
     copy_ai_artifacts: Copiere artefacte AI
+    copy_image_url: Copiază adresa URL a imaginii
     country: Țara
     create_client: Creare client
     create_indicator: Creați indicator
@@ -221,6 +260,7 @@ ro:
       thursday: joi
       tuesday: marți
       wednesday: miercuri
+    dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
@@ -228,9 +268,11 @@ ro:
     duration: Durată
     edit_campaign_admin: Editați administratorul campaniei
     edit_client_admin: Editați administratorul clientului
+    edit_folder: Editează folderul
     edit_indicator: Editare indicator
     edit_job_roles: Editați rolurile posturilor
     edit_level: Nivel de editare
+    edit_media: Editare fișiere media
     edit_permission_denied: Nu ai permisiunea să editezi "%{name}" de administrator
     edit_project_admin: Editați administratorul proiectului
     edit_threesixty_campaign_admin: Editați administratorul campaniei
@@ -272,6 +314,8 @@ ro:
     feature_global_skills_description: Accesați biblioteca globală de competențe pentru evaluări
     feature_idp_description: Activați planificarea dezvoltării individuale pentru participanți
     feature_sms_notification_description: Activați notificările SMS pentru invitații și mementouri legate de campanii
+    file_size_must_be_less_than_mb: Fișierul {{name}} depășește dimensiunea maximă de {{max_size_mb}} MB
+    file_upload_failed: Nu s-a putut încărca {{name}}
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
     final_score_empty_err_msg: Scorul final al jocului „%{factor_name}” nu poate fi gol.
     final_score_empty_msg: Suma finală nu poate fi goală.
@@ -351,6 +395,8 @@ ro:
     maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     max_value: Valoarea maximă
+    media_files_label: Fișiere
+    media_library: Biblioteca media
     messages: Mesaje
     mhs: MHS
     mhs_assessment: Evaluarea MHS
@@ -370,6 +416,7 @@ ro:
     name: Nume
     name_max_length: Numele nu poate depăși %{length} caractere
     name_required: Este necesar numele
+    new_folder: Dosar nou
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
     no_status: Fără statut
@@ -832,9 +879,15 @@ ro:
     questions: Întrebări
     range_min_max: GAMA%{min} - %{max}
     reflection_questions: Întrebări de reflecție
+    regenerate_transcriptions_action: Regenerare transcrieri
+    regenerate_transcriptions_confirm_content: Ești sigur că vrei să regenerezi transcrierile pentru această evaluare? Această acțiune va reprocesa toate transcrierile incomplete.
+    regenerate_transcriptions_confirm_title: Regenerare transcrieri
+    regenerate_transcriptions_scheduled: Sarcina de regenerare a transcrierilor a fost programată cu succes
     registration_codes: Coduri de înregistrare
     registration_settings: Setări de înregistrare
     remove_children_to_change_type: Eliminați toți copiii pentru a schimba tipul
+    remove_confirmation: Ești sigur că vrei să ștergi acest element?
+    remove_successfully: Elementul media a fost șters cu succes.
     report_approvals: Aprobări de rapoarte
     report_condition_not_met: Are nevoie %{required} %{relationship} evaluare, dar are nevoie doar de %{actual}
     report_conditions_not_met_detailed: Raportul pentru %{user} nu îndeplinește condițiile de disponibilitate. %{conditions}
@@ -938,7 +991,9 @@ ro:
     scoring_approval_approvers: Persoane care aprobă
     scoring_approval_assessment: Evaluare
     scoring_approval_assessor_users: Utilizatori evaluatori
+    scoring_approval_do_not_send_notifications: Nu trimiteți notificări
     scoring_approval_modal_title: Setări de aprobare a punctajului
+    scoring_approval_notification_users: Utilizatori care primesc notificări de aprobare
     scoring_approval_remove_modal_success: 'Setarea de aprobare pentru ID-ul evaluării: %{assessmentId} a fost șters cu succes.'
     scoring_approval_remove_modal_text: 'Sunteți sigur că doriți să ștergeți această setare pentru ID-ul de evaluare: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Punctajul este permis numai pentru întrebările activate de AI pentru factorul selectat în prezent.
@@ -963,6 +1018,7 @@ ro:
     skill_aliases: Aliasuri de abilități
     skills: Aptitudini
     skills_taxonomy: Taxonomia abilităților
+    skip_assessment_level_checks: Omite verificările sistemului la nivel de evaluare
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
@@ -995,7 +1051,12 @@ ro:
     translated_to: 'Tradus în:'
     translated_with_ai_notice: Traducere AI
     translation_assistant_not_configured: Asistentul de traducere nu este configurat
+    translations:
+      title: Traduceri
     update_success: "%{readableResourceName} a fost actualizat cu succes"
+    upload: Încărcare
+    upload_media: Încărcare fișiere media
+    upload_required: Te rugăm să adaugi cel puțin un fișier pentru încărcare
     upload_success: Încărcat cu succes
     user_report_events: Evenimente de raportare a utilizatorilor
     users: Utilizatorii
@@ -1004,6 +1065,7 @@ ro:
     very_high: Foarte ridicat
     very_low: Foarte scăzut
     view_licenses: Vizualizați licențele
+    wait_for_upload_completion: Vă rugăm să așteptați până când toate fișierele vor fi încărcate
     waiting: Așteptare
     weight: Greutate
     what_to_look_for: Ce să cauți

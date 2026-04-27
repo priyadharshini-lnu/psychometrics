@@ -5,6 +5,7 @@ ruby '3.4.6'
 
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
+gem 'erb',                        '< 5.0' # Pin to avoid frozen string issues in ERB 6.0+ with Ruby 3.4
 gem 'rack',                       '~> 2.2.22'
 
 gem 'barnes',                     '~> 0.0.7'
@@ -27,7 +28,7 @@ gem 'vite_rails'
 gem 'vite_ruby'
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.9.4'
+gem 'devise',                     '~> 5.0.3'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'
@@ -168,7 +169,7 @@ gem 'tty-progressbar', '~> 0.10.1', require: false
 gem 'activerecord-import', '~> 1.7.0'
 gem 'possessive', '~> 1.0.1'
 
-gem 'addressable', '~> 2.7'
+gem 'addressable', '~> 2.9.0'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 1.0.1'
 gem 'twilio-ruby', '~> 7.8.3'

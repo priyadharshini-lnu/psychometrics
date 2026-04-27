@@ -31,7 +31,7 @@ class EndUser::UsersController < ApplicationController
 
         serializer_context = {
           current_user: current_user,
-          system_check_session_id: session[:system_check_session_id]
+          system_check_session_id: cookies.signed[:system_check_session_id]
         }
 
         json = []

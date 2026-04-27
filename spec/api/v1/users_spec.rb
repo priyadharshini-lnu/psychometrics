@@ -126,156 +126,149 @@ the campaign\'s default assessments and reports.'
         let(:project_id) { project.id }
         let(:campaign_user_external_id) { Faker::Internet.uuid }
         let(:user_external_id) { Faker::Internet.uuid }
-        let(:body) do
-          {
-            email: email,
-            first_name: first_name,
-            last_name: last_name,
-            user_external_id: user_external_id,
-            campaigns: [{
-              id: campaign.id,
-              active: true,
-              campaign_user_external_id: campaign_user_external_id,
-              existing_record: 'new_evaluation',
-              datasheet: {
+
+        context 'default user creation' do
+          let(:body) do
+            {
+              email: email,
+              first_name: first_name,
+              last_name: last_name,
+              user_external_id: user_external_id,
+              campaigns: [{
+                id: campaign.id,
+                active: true,
+                campaign_user_external_id: campaign_user_external_id,
+                existing_record: 'new_evaluation',
+                datasheet: {
+                  'Current Position' => 'Manager',
+                  'Department' => 'HR',
+                  'Location' => 'London'
+                }
+              }],
+              project_datasheet: {
+                'Current Position' => 'Developer'
+              },
+              existing_record: 'accept'
+            }
+          end
+
+          run_test! do |response|
+            user = JSON.parse(response.body)
+            campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
+
+            expect(user['id']).to be
+            expect(user['first_name']).to eq first_name
+            expect(user['last_name']).to eq last_name
+            expect(user['user_external_id']).to eq user_external_id
+            expect(user['email']).to eq email
+            expect(user['campaigns'][0]['id']).to eq campaign.id
+            expect(user['campaigns'][0]['campaign_user_external_id']).to eq campaign_user_external_id
+            expect(user['campaigns'][0]['datasheet']).to eq(
+              {
                 'Current Position' => 'Manager',
                 'Department' => 'HR',
                 'Location' => 'London'
               }
-            }],
-            project_datasheet: {
-              'Current Position' => 'Developer'
-            },
-            existing_record: 'accept'
-          }
+            )
+            expect(user['project_datasheet']).to eq(
+              {
+                'Current Position' => 'Developer'
+              }
+            )
+
+            expect(campaign_user.active).to eq true
+            expect(campaign_user.external_id).to eq campaign_user_external_id
+            expect(campaign_user.schedule_start_date).to eq nil
+            expect(campaign_user.schedule_end_date).to eq nil
+            expect(campaign_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
+              %w[Manager HR London]
+            )
+            expect(project_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
+              %w[Developer]
+            )
+          end
         end
 
-        run_test! do |response|
-          user = JSON.parse(response.body)
-          campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
+        context 'with campaign schedule dates' do
+          let(:schedule_start_date) { 2.days.from_now.beginning_of_day }
+          let(:schedule_end_date) { 3.days.from_now.beginning_of_day }
+          let(:body) do
+            { email: email, first_name: first_name, last_name: last_name,
+              campaigns: [{
+                id: campaign.id,
+                active: true,
+                existing_record: 'new_evaluation',
+                schedule_start_date:,
+                schedule_end_date:
+              }] }
+          end
 
-          expect(user['id']).to be
-          expect(user['first_name']).to eq first_name
-          expect(user['last_name']).to eq last_name
-          expect(user['user_external_id']).to eq user_external_id
-          expect(user['email']).to eq email
-          expect(user['campaigns'][0]['id']).to eq campaign.id
-          expect(user['campaigns'][0]['campaign_user_external_id']).to eq campaign_user_external_id
-          expect(user['campaigns'][0]['datasheet']).to eq(
+          run_test! do |response|
+            user = JSON.parse(response.body)
+            campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
+
+            expect(user['id']).to be
+            expect(campaign_user.schedule_start_date).to eq schedule_start_date
+            expect(campaign_user.schedule_end_date).to eq schedule_end_date
+          end
+        end
+
+        context 'with existing_record accept (upsert)' do
+          let(:email) { 'upsert@example.com' }
+          let(:body) do
             {
-              'Current Position' => 'Manager',
-              'Department' => 'HR',
-              'Location' => 'London'
+              email: email,
+              first_name: first_name,
+              last_name: last_name,
+              campaigns: [
+                { id: campaign.id, active: true, existing_record: 'new_evaluation' }
+              ],
+              existing_record: 'accept'
             }
-          )
-          expect(user['project_datasheet']).to eq(
+          end
+
+          before do
+            existing_user = create(:user, project: project, email: 'max@example.com')
+            create(:campaign_user, campaign: campaign, user: existing_user)
+          end
+
+          run_test! do |response|
+            user = JSON.parse(response.body)
+            expect(user['id']).to be
+            expect(user['first_name']).to eq first_name
+            expect(user['email']).to eq email
+            expect(user['campaigns'][0]['id']).to eq campaign.id
+          end
+        end
+
+        context 'with locale and custom_profile_fields' do
+          let(:email) { 'locale@example.com' }
+          let!(:profile_question) do
+            create(:question, props: { questionText: 'Department', type: 'SingleAnswer',
+                                       choices: 3, choicesTexts: %w[Engineering HR Finance] })
+          end
+          let!(:profile_field) do
+            create(:profile_field, profile_setting: project.profile_setting, question: profile_question)
+          end
+          let(:body) do
             {
-              'Current Position' => 'Developer'
+              email: email,
+              first_name: first_name,
+              last_name: last_name,
+              locale: 'ar',
+              custom_profile_fields: { 'Department' => 'Engineering' },
+              campaigns: [{ id: campaign.id, active: true, existing_record: 'new_evaluation' }]
             }
-          )
+          end
 
-          expect(campaign_user.active).to eq true
-          expect(campaign_user.external_id).to eq campaign_user_external_id
-          expect(campaign_user.schedule_start_date).to eq nil
-          expect(campaign_user.schedule_end_date).to eq nil
-          expect(campaign_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
-            %w[Manager HR London]
-          )
-          expect(project_datasheet.rows.find_by(email: email).sheet_row_data.pluck(:string_value)).to eq(
-            %w[Developer]
-          )
-        end
-      end
+          before { project.update!(locales: %w[en ar]) }
 
-      response '200', 'User created with campaign schedule' do
-        schema '$ref' => '#/definitions/User'
-        examples 'application/json' => {
-          id: 14_602,
-          first_name: 'John',
-          last_name: 'Doe',
-          email: 'john.doe@example.com',
-          created_at: '2019-03-04T15:47:33.570+04:00',
-          updated_at: '2019-03-04T15:47:33.950+04:00',
-          campaign_ids: [
-            510
-          ]
-        }
+          run_test! do |response|
+            user_data = JSON.parse(response.body)
 
-        let(:first_name) { 'Max' }
-        let(:last_name) { 'Holloway' }
-        let(:email) { 'max@example.com' }
-        let(:project_id) { project.id }
-        let(:schedule_start_date) { 2.days.from_now.beginning_of_day }
-        let(:schedule_end_date) { 3.days.from_now.beginning_of_day }
-        let(:body) do
-          { email: email, first_name: first_name, last_name: last_name,
-            campaigns: [{
-              id: campaign.id,
-              active: true,
-              existing_record: 'new_evaluation',
-              schedule_start_date:,
-              schedule_end_date:
-            }] }
-        end
-
-        run_test! do |response|
-          user = JSON.parse(response.body)
-          campaign_user = campaign.campaign_users.find_by(user_id: user['id'])
-
-          expect(user['id']).to be
-          expect(user['first_name']).to eq first_name
-          expect(user['last_name']).to eq last_name
-          expect(user['email']).to eq email
-          expect(user['campaigns'][0]['id']).to eq campaign.id
-
-          expect(campaign_user.active).to eq true
-          expect(campaign_user.schedule_start_date).to eq schedule_start_date
-          expect(campaign_user.schedule_end_date).to eq schedule_end_date
-        end
-      end
-
-      response '200', 'User updated' do
-        schema '$ref' => '#/definitions/User'
-        examples 'application/json' => {
-          id: 14_602,
-          first_name: 'John',
-          last_name: 'Doe',
-          email: 'john.doe@example.com',
-          created_at: '2019-03-04T15:47:33.570+04:00',
-          updated_at: '2019-03-04T15:47:33.950+04:00',
-          campaign_ids: [
-            510
-          ],
-          existing_record: 'accept'
-        }
-
-        let(:first_name) { 'Max' }
-        let(:last_name) { 'Holloway' }
-        let(:email) { 'max@example.com' }
-        let(:project_id) { project.id }
-        let(:body) do
-          {
-            email: email,
-            first_name: first_name,
-            last_name: last_name,
-            campaigns: [
-              { id: campaign.id, active: true, existing_record: 'new_evaluation' }
-            ],
-            existing_record: 'accept'
-          }
-        end
-
-        before do
-          user = create(:user, project: project, email: 'max@example.com')
-          create(:campaign_user, campaign: campaign, user: user)
-        end
-        run_test! do |response|
-          user = JSON.parse(response.body)
-          expect(user['id']).to be
-          expect(user['first_name']).to eq first_name
-          expect(user['last_name']).to eq last_name
-          expect(user['email']).to eq email
-          expect(user['campaigns'][0]['id']).to eq campaign.id
+            expect(user_data['locale']).to eq('ar')
+            expect(user_data['custom_profile_fields']).to eq('Department' => 'Engineering')
+          end
         end
       end
 
@@ -298,27 +291,51 @@ the campaign\'s default assessments and reports.'
 
         let(:first_name) { 'Max' }
         let(:last_name) { 'Holloway' }
-        let(:email) { 'max@example.com' }
-        let(:campaign_ids) { [campaign.id] }
         let(:project_id) { project.id }
-        let(:body) { { email: email, first_name: first_name, last_name: last_name, campaign_ids: campaign_ids } }
 
-        before { create(:user, project: project, email: 'max@example.com') }
-        run_test! do |response|
-          error = JSON.parse(response.body)
+        context 'email already taken' do
+          let(:email) { 'max@example.com' }
+          let(:campaign_ids) { [campaign.id] }
+          let(:body) { { email: email, first_name: first_name, last_name: last_name, campaign_ids: campaign_ids } }
 
-          expect(error).to have_key('code')
-          expect(error).to have_key('message')
-          expect(error).to have_key('more_info')
-          expect(error).to have_key('meta')
+          before { create(:user, project: project, email: 'max@example.com') }
 
-          meta = error['meta']
-          expect(meta).to have_key('existing_user')
-          expect(meta['existing_user']).to have_key('id')
-          expect(meta['existing_user']).to have_key('first_name')
-          expect(meta['existing_user']).to have_key('last_name')
-          expect(meta['existing_user']).to have_key('email')
-          expect(meta['existing_user']).to have_key('created_at')
+          run_test! do |response|
+            error = JSON.parse(response.body)
+
+            expect(error).to have_key('code')
+            expect(error).to have_key('message')
+            expect(error).to have_key('more_info')
+            expect(error).to have_key('meta')
+
+            meta = error['meta']
+            expect(meta).to have_key('existing_user')
+            expect(meta['existing_user']).to have_key('id')
+            expect(meta['existing_user']).to have_key('first_name')
+            expect(meta['existing_user']).to have_key('last_name')
+            expect(meta['existing_user']).to have_key('email')
+            expect(meta['existing_user']).to have_key('created_at')
+          end
+        end
+
+        context 'when custom_profile_fields contains an unknown field' do
+          let(:email) { 'unknown-field@example.com' }
+          let(:body) do
+            {
+              email: email,
+              first_name: first_name,
+              last_name: last_name,
+              custom_profile_fields: { 'NonExistentField' => 'some value' },
+              campaigns: [{ id: campaign.id, active: true, existing_record: 'new_evaluation' }]
+            }
+          end
+
+          run_test! do |response|
+            error = JSON.parse(response.body)
+            expect(error['code']).to eq(1002)
+            expect(error['message']).to eq('Validation error')
+            expect(error['more_info']).to include('Unknown field: NonExistentField')
+          end
         end
       end
 
@@ -419,6 +436,34 @@ the campaign\'s default assessments and reports.'
           expect(user['last_name']).to eq last_name
           expect(user['email']).to eq email
           expect(user['user_external_id']).to eq user_external_id
+        end
+
+        context 'with locale and custom_profile_fields' do
+          let!(:profile_question) do
+            create(:question, props: { questionText: 'Home Office Location', type: 'SingleAnswer',
+                                       choices: 3, choicesTexts: %w[Delhi Mumbai Bangalore] })
+          end
+          let!(:profile_field) do
+            create(:profile_field, profile_setting: project.profile_setting, question: profile_question)
+          end
+          let(:body) do
+            {
+              email: user.email,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              locale: 'ar',
+              custom_profile_fields: { 'Home Office Location' => 'Delhi' }
+            }
+          end
+
+          before { project.update!(locales: %w[en ar]) }
+
+          run_test! do |response|
+            user_data = JSON.parse(response.body)
+
+            expect(user_data['locale']).to eq('ar')
+            expect(user_data['custom_profile_fields']).to eq('Home Office Location' => 'Delhi')
+          end
         end
       end
     end

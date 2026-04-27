@@ -30,6 +30,7 @@ module Threesixty
           AuditLogModule.audit! :create_threesixty_campaign, threesixty_campaign.campaign, payload: form.attributes,
                                 project: project, user: user
 
+          save_campaign_tags(threesixty_campaign.campaign)
           load_templates(threesixty_campaign, assessment&.threesixty_campaign)
 
           campaign = threesixty_campaign.campaign
@@ -69,6 +70,13 @@ module Threesixty
         Threesixty::InstructionTemplates::Load.call(threesixty_campaign, prev_campaign)
       end
 
+      def save_campaign_tags(campaign)
+        return if form.tag_list.blank?
+
+        campaign.save_tag_with_ownership(form.tag_list)
+        campaign.save!
+      end
+
       def clone_from_campaign_template?
         form.threesixty_type == Campaign::STANDARD_360 && campaign_template.campaign_id.present?
       end
@@ -81,6 +89,7 @@ module Threesixty
           project: project
         )
         if result[:ok]
+          save_campaign_tags(result[:ok][:campaign])
           broadcast :ok, result[:ok][:campaign].threesixty_campaign
         else
           broadcast :error, result[:error]

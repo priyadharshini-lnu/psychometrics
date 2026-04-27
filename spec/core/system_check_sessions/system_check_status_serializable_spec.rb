@@ -84,6 +84,7 @@ RSpec.describe SystemCheckSessions::SystemCheckStatusSerializable do
         expect(status['requirements']['browser']).to be_present
         expect(status['requirements']['network']).to be_present
         expect(status['requirements']['video']).to be_present
+        expect(status['requirements']['audio']).to be_present
       end
     end
 

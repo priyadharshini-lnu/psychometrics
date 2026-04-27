@@ -551,7 +551,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   ) => {
     const { columnKey, order } = sorter
 
-    if (columnKey && order === undefined) removeSort()
+    if (order === undefined) removeSort()
 
     if (columnKey && order) {
       const decamelizeColumnKey = humps.decamelize(columnKey)

@@ -7,6 +7,7 @@ class Campaign < ApplicationRecord
   audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
 
   include RansackSearchableFields
+  include Taggable
 
   self.inheritance_column = :_type_disabled
 
@@ -18,6 +19,9 @@ class Campaign < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
   belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :project_id
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
@@ -91,6 +95,8 @@ class Campaign < ApplicationRecord
   accepts_nested_attributes_for :campaign_options
 
   delegate :client, to: :project
+  delegate :id, to: :client, prefix: true
+
   THREESIXTY = 'threesixty'
 
   enum :type, { common: 0, threesixty: 1 }
@@ -129,6 +135,10 @@ class Campaign < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[project]
+  end
+
+  def self.tenant_column
+    'client_id'
   end
 
   def real_status
@@ -200,6 +210,14 @@ class Campaign < ApplicationRecord
 
   def allow_continue_with_warning?
     system_check_option('allow_continue_with_warning', default: false)
+  end
+
+  def skip_assessment_level_checks?
+    system_check_option('skip_assessment_level_checks', default: true)
+  end
+
+  def should_run_assessment_level_checks?
+    !system_check_enabled? || !skip_assessment_level_checks?
   end
 
   def minimum_upload_speed

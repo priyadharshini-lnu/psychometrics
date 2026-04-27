@@ -8,7 +8,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: "/administration/dimensions/#{dimension.id}/factors",
+        href: dimension_factors_url(dimension.id),
         label: dimension.name
       }
     end

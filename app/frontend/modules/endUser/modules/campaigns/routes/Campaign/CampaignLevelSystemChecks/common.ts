@@ -10,5 +10,5 @@ export enum CHECK_TYPE {
   network = 'network',
   video = 'video',
   results = 'results',
-  proctoring = 'proctoring',
+  audio = 'audio',
 }

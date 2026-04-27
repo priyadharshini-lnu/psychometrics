@@ -360,12 +360,6 @@ sr-Latn:
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Najmanje jedan tip veštine mora biti omogućen sa izabranom radnom ulogom za %{block_name}
               invalid_job_role_type: 'Nevažeća radna uloga %{job_role} za %{skill_type} za %{block_name}. Važeće opcije: %{valid_options}'
               props_missing: Nedostaje konfiguracija veština za %{block_name}
-        skills_rater_block_form:
-          attributes:
-            base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Najmanje jedna uloga posla mora biti omogućena sa tipom veštine izabranim za %{block_name}
-              invalid_skill_type: 'Neispravan tip veštine %{skill_type} za %{role_name} za %{block_name}. Važeće opcije: %{valid_options}'
-              props_missing: Posao
         skillvue:
           attributes:
             name:
@@ -805,7 +799,6 @@ sr-Latn:
           attributes:
             formula:
               cyclic_dependency_found: 'Postoji ciklična zavisnost u formuli. Zavisnost: %{cyclic_path}'
-        cannot_be_self: Korisnik ne može biti dodeljen kao sopstveni menadžer
         factors_norm:
           score_from_must_be_number: Rezultat od mora biti broj
           score_to_less_than_score_from: Rezultat je manji od rezultata iz
@@ -936,6 +929,7 @@ sr-Latn:
         normalize_factor_scores: Normalizujte rezultate faktora
         project_compact_completion_status_export: Компактни извоз статуса завршетка
         project_completion_status_export: Извоз статуса завршетка
+        regenerate_assessment_transcriptions: Поново генеришите транскрипте процене
         regenerate_campaign_reports: Regenerišite izveštaje o kampanji
         regenerate_report: Regeneriši izveštaj
         regenerate_threesixty_report: Regenerišite Threesixty izveštaj
@@ -1026,7 +1020,6 @@ sr-Latn:
       new_response: Novi odgovor
       next_assessment: Pređite na sledeću procenu
       pending_tasks:
-        few: Imate %{count} zadataka na čekanju
         one: Imate 1 zadatak na čekanju
         other: Imate %{count} zadataka na čekanju
       re_evaluate: Kliknite ovde da biste ponovo procenili
@@ -2073,21 +2066,13 @@ sr-Latn:
         submit: Pošalji
         submit_verification_code: Pošalji verifikacioni kod
         verification_code: Verifikacioni kod
-      submit: Pošalji
-      submit_verification_code: Pošalji verifikacioni kod
       updated: Verifikacioni kod je prihvaćen
-      verification_code: Verifikacioni kod
     paranoid_verify:
       code_required: Unesite kod koji vam je dala naša podrška
     password_expired:
-      change_my_password: Promeni moju lozinku
       change_required: Vaša lozinka je istekla. Molimo obnovite svoju lozinku.
-      current_password: Trenutna lozinka
       forced_changed: Morate postaviti novu lozinku za svoj nalog.
-      new_password: Nova lozinka
-      new_password_confirmation: Potvrdite novu lozinku
       password_policy_changed: Politika lozinke je promenjena. Molimo promenite svoju lozinku.
-      renew_your_password: Obnovite svoju lozinku
       show:
         change_my_password: Promeni moju lozinku
         current_password: Trenutna lozinka
@@ -4084,9 +4069,11 @@ sr-Latn:
       import_reports: Uvezi izveštaje i procene
   user_assessment:
     column:
+      completed_at: Завршено у
       dimension_id: Dimenzija ID
       id: ID za procenu korisnika
       norm_id: Norma ID
+      started_at: Почео у
     drawer:
       copied: "%{name} kopiran u ostavu."
       copy: Kopiraj u ostavu
@@ -4126,7 +4113,6 @@ sr-Latn:
     normalize_factor_scores:
       no_scoring_data: Normalizacija rezultata faktora ne može se završiti jer nisu dostupni podaci o bodovanju.
     progress_label: Napredak u proceni
-    redirect: Bićete preusmereni na sajt treće strane za ovu procenu. Kliknite na dugme Nastavi ako želite da započnete procenu.
     status:
       completed: Završeno
       in_progress: U toku
@@ -4281,10 +4267,7 @@ sr-Latn:
     min_character: Vaš odgovor mora da sadrži najmanje %{min} znakova.
     min_factor: Vaš odgovor mora da sadrži najmanje %{min} faktor povratne informacije.
     min_word: Vaš odgovor mora biti najmanje %{min} reči
-    most:
-      few: Molimo Vas da izaberete najviše %{max} izbora
-      one: Molimo Vas da izaberete najviše 1 izbor
-      other: Molimo vas da izaberete najviše %{max} izbora
+    most: Молимо изаберите највише %{max} избора
     must_rank_between: Molimo dodelite vrednost od %{min} do %{max} za svaku stavku. Vrednosti se ne smeju ponavljati.
     must_select: Molimo vas da izaberete od %{min} do %{max} izbora
     not_in_future: Izabrani datum ne bi trebalo da bude u budućnosti
@@ -4295,7 +4278,6 @@ sr-Latn:
     required: Molimo Vas da odgovorite na ovo pitanje
     text: Vaš odgovor ne sme da sadrži brojeve
     title:
-      few: Postoji %{count} grešaka. Proverite svoje odgovore
       one: Postoji jedna greška, proverite svoje odgovore
       other: Postoji %{count} grešaka. Proverite svoje odgovore
     user_self_skill_rating_disabled: Samorejting je onemogućen za ovaj šablon

@@ -35,6 +35,12 @@ const getNormEditorUrl = (normId: string, features: Record<string, boolean>) => 
     : `/administration/norms/${normId}/editor`
 )
 
+const getDimensionFactorsUrl = (dimensionId: string, features: Record<string, boolean>) => (
+  camelizeKeys(features ?? {})?.normEditorNewUi
+    ? `/admin/dimensions/${dimensionId}/factors`
+    : `/administration/dimensions/${dimensionId}/factors`
+)
+
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
@@ -85,7 +91,7 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
           width={300}
           id="dimension.name"
           render={(_, { dimension }) => dimension?.id && (
-            <a href={`/administration/dimensions/${dimension.id}/factors`}>{dimension.name}</a>
+            <a href={getDimensionFactorsUrl(dimension.id, features)}>{dimension.name}</a>
           )}
           sorter
         />

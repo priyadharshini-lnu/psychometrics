@@ -13,7 +13,7 @@ module SystemCheckRecords
     def call
       urls = []
       signer = Aws::S3::Presigner.new
-      key = system_check_record.attachment_storage_path('video', file_name)
+      key = system_check_record.attachment_storage_path(:media, file_name)
 
       multipart_request = Aws::S3::Client.new.create_multipart_upload(
         bucket: Settings.secrets.s3_compatible_storage[:private_bucket],

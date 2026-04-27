@@ -8,6 +8,7 @@ pl:
     add_campaign_admin: Dodaj administratora kampanii
     add_client_admin: Dodawanie administratora klienta
     add_indicator: Dodaj wskaźnik
+    add_new_folder: Dodaj nowy folder
     add_project: Dodaj projekt
     add_project_admin: Dodawanie administratora projektu
     add_threesixty_campaign_admin: Dodaj administratora kampanii
@@ -45,13 +46,17 @@ pl:
     ai_assistants: Asystenci AI
     ai_assistants_advanced_mode_tooltip: Użyj zaawansowanego trybu szablonowego promptu za pomocą szablonu płynnego z dostępnymi zmiennymi. Więcej szczegółów można znaleźć w dokumentacji.
     ai_assistants_campaign_id_placeholder: Na scenę wchodzi identyfikacja kampanii
+    ai_assistants_cannot_change_type_when_in_use: Nie można zmienić typu asystenta AI „%{name}”, ponieważ jest on obecnie używany.
     ai_assistants_no_rendered_output: Brak dostępnego renderowanego wyjścia
+    ai_assistants_provider_change_confirm_title: Zmienić dostawcę?
+    ai_assistants_provider_previously_used_warning: Ten asystent wygenerował wcześniej wyniki przy użyciu adresu „%{from}”. Zmiana adresu na „%{to}” może wpłynąć na działanie asystenta w przypadku przyszłych żądań generowania wyników.
     ai_assistants_render_button: Szablon renderowania
     ai_assistants_rendered_prompt: Renderowany prompt
     ai_assistants_template_and_campaign_required: Prosimy o podanie zarówno szablonu, jak i identyfikatora kampanii
     ai_assistants_template_render_failed: Nie udało się wyrenderować szablonu
     ai_assistants_test_render: Renderowanie testowe
     ai_assistants_test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
+    ai_assistants_type_locked_tooltip: Ten asystent jest obecnie używany i nie można zmienić jego typu.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP jest wyłączone przez klienta
     ai_assisted_idp_feature_disabled: Funkcja wspomaganego IDP przez AI została wyłączona w tym projekcie.
     ai_idp_assistant_configure_dependencies: Skonfiguruj zależności AI
@@ -85,6 +90,19 @@ pl:
     ai_scoring_appoval_responses: Odpowiedzi AI
     ai_scoring_appoval_score_not_applicable: Wynik nie ma zastosowania
     ai_scoring_approval: Zatwierdzanie wyników AI
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Dostęp do zatwierdzeń punktacji można uzyskać, klikając poniższy link:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Zatwierdzono następujące wyniki.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Otrzymujesz tę wiadomość e-mail, ponieważ zostałeś dodany jako osoba kontaktowa odpowiedzialna za zatwierdzanie wyników.
+    ai_scoring_approval_digest_mailer_approved_subject: Wyniki zatwierdzone
+    ai_scoring_approval_digest_mailer_assessment_label: 'Ocena: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Poniższe oceny są gotowe do zatwierdzenia i wymagają Twojej decyzji.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Otrzymujesz tę wiadomość e-mail, ponieważ zostałeś dodany jako osoba zatwierdzająca wyniki, które wymagają zatwierdzenia.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Wyniki oczekujące na zatwierdzenie
+    ai_scoring_approval_digest_mailer_campaign_label: 'Kampania: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Liczba trafień: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Szanowna redakcjo „%{name}”,
+    ai_scoring_approval_digest_mailer_link_text: Zatwierdzanie wyników
+    ai_scoring_approval_digest_mailer_project_label: 'Projekt: %{value}'
     ai_scoring_approval_settings: Ustawienia zatwierdzania wyników AI
     ai_scoring_approval_stale_description: Zmiany w konfiguracji wprowadzone od ostatniego uruchomienia mogły wpłynąć na wynik. Przelicz wynik, aby zaktualizować go zgodnie z najnowszymi ustawieniami.
     ai_scoring_approval_stale_title: Wynik może być nieaktualny
@@ -136,6 +154,7 @@ pl:
     bulk_assets_modal_title: Prześlij pliki CSV i ZIP
     bulk_upload_ai_artifacts: Artefakty AI do masowego przesyłania
     campaign_ai_artifact_updated_successfully: Artefakty AI kampanii zaktualizowane pomyślnie
+    campaign_ai_artifacts_instruction_templating_tooltip: Można korzystać z zaawansowanych poleceń, wykorzystując szablony poleceń z wykorzystaniem składni Liquid oraz dostępnych zmiennych. Więcej informacji można znaleźć w dokumentacji.
     campaign_ai_artifacts_results_export_details: Wyniki generowane przez artefakty sztucznej inteligencji kampanii
     campaign_assessment_actions_disable_caching: Wyłącz buforowanie oceny
     campaign_assessment_actions_enable_caching: Włącz buforowanie oceny
@@ -161,6 +180,24 @@ pl:
     campaign_assessment_modals_enable_caching_title: Włączyć cache oceny (Assessment)?
     campaign_factors: Czynniki kampanii
     campaign_name: Nazwa kampanii
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: Zewnętrzny identyfikator raportu
+          language_id: Identyfikator języka
+          norm: Norm
+          norm_id: Numer normy
+          suitability_id: Identyfikator zgodności
+        labels:
+          assessment_ids: Identyfikatory oceny
+          available_languages: Dostępne języki
+          campaign_report_id: Numer raportu z kampanii
+          check_details: Sprawdź szczegóły
+          default_language: Język domyślny
+          external_settings: Ustawienia zewnętrzne
+          provider: Dostawca
+          report_pdf_status: Raport o stanie pliku PDF
+          user_report_id: Numer zgłoszenia użytkownika
     campaign_templates: Szablony kampanii
     campaign_user_job_roles_cannot_be_same: Docelowe stanowisko musi różnić się od obecnego stanowiska.
     campaigns: Kampanie
@@ -183,7 +220,9 @@ pl:
     configure_model_answer_title: Skonfiguruj modelową odpowiedź i słowa kluczowe
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
     copied: Skopiowano
+    copied_url_success: Adres URL został pomyślnie skopiowany do schowka
     copy_ai_artifacts: Skopiuj artefakty AI
+    copy_image_url: Skopiuj adres URL obrazu
     country: Kraj
     create_client: Utwórz klienta
     create_indicator: Utwórz wskaźnik
@@ -221,6 +260,7 @@ pl:
       thursday: czwartek
       tuesday: wtorek
       wednesday: Środa
+    dimension_translations_export_scheduled: Zaplanowano eksport tłumaczeń dla wymiaru „%{name}”.
     dimensions: Wymiary
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
@@ -228,9 +268,11 @@ pl:
     duration: Czas trwania
     edit_campaign_admin: Edytuj administratora kampanii
     edit_client_admin: Edytowanie administratora klienta
+    edit_folder: Edytuj folder
     edit_indicator: Edytuj wskaźnik
     edit_job_roles: Edytuj role stanowisk
     edit_level: Poziom edycji
+    edit_media: Edytuj multimedia
     edit_permission_denied: Nie masz uprawnień do edycji administratora '%{name}'
     edit_project_admin: Edytowanie administratora projektu
     edit_threesixty_campaign_admin: Edytuj administratora kampanii
@@ -272,6 +314,8 @@ pl:
     feature_global_skills_description: Uzyskaj dostęp do globalnej biblioteki umiejętności do celów oceny
     feature_idp_description: Włącz indywidualne planowanie rozwoju dla uczestników
     feature_sms_notification_description: Włącz powiadomienia SMS dotyczące zaproszeń i przypomnień dotyczących kampanii
+    file_size_must_be_less_than_mb: Plik {{name}} przekracza maksymalny rozmiar {{max_size_mb}} MB
+    file_upload_failed: Nie udało się przesłać pliku {{name}}
     fill_empty_score_msg: Wypełnij wszystkie końcowe wyniki przed zapisem.
     final_score_empty_err_msg: Ostateczny wynik gry „%{factor_name}” nie może być pusty.
     final_score_empty_msg: Rachunek końcowy nie może być pusty.
@@ -351,6 +395,8 @@ pl:
     maintenance_settings_description: Zarządzanie oknami konserwacji systemu i ustawieniami
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
     max_value: Wartość maksymalna
+    media_files_label: Pliki
+    media_library: Biblioteka multimediów
     messages: Wiadomości
     mhs: MHS
     mhs_assessment: Ocena MHS
@@ -370,6 +416,7 @@ pl:
     name: Nazwa
     name_max_length: Nazwa nie może przekraczać %{length} znaków
     name_required: Wymagane jest imię
+    new_folder: Nowy folder
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
     no_status: Brak statusu
@@ -832,9 +879,15 @@ pl:
     questions: Pytania
     range_min_max: ZAKRES %{min} - %{max}
     reflection_questions: Pytania do refleksji
+    regenerate_transcriptions_action: Odśwież transkrypcje
+    regenerate_transcriptions_confirm_content: Czy na pewno chcesz ponownie wygenerować transkrypcje dla tej oceny? Spowoduje to ponowne przetworzenie wszystkich niekompletnych transkrypcji.
+    regenerate_transcriptions_confirm_title: Odśwież transkrypcje
+    regenerate_transcriptions_scheduled: Zadanie odtworzenia transkrypcji zostało pomyślnie zaplanowane
     registration_codes: Kody rejestracyjne
     registration_settings: Ustawienia rejestracji
     remove_children_to_change_type: Usuń wszystkie dzieci, aby zmienić typ
+    remove_confirmation: Czy na pewno chcesz usunąć ten element?
+    remove_successfully: Element multimedialny został pomyślnie usunięty.
     report_approvals: Zatwierdzanie raportów
     report_condition_not_met: Potrzebuje %{required} %{relationship} oceny, ale ma tylko %{actual}
     report_conditions_not_met_detailed: Raport dla %{user} nie spełnia warunków dostępności. %{conditions}
@@ -938,7 +991,9 @@ pl:
     scoring_approval_approvers: Osoby zatwierdzające
     scoring_approval_assessment: Ocena
     scoring_approval_assessor_users: Użytkownicy oceniający
+    scoring_approval_do_not_send_notifications: Nie wysyłaj powiadomień
     scoring_approval_modal_title: Ustawienia zatwierdzania punktacji
+    scoring_approval_notification_users: Powiadomienie o zatwierdzeniu – użytkownicy
     scoring_approval_remove_modal_success: 'Ustawienie zatwierdzenia dla identyfikatora oceny: %{assessmentId} zostało pomyślnie usunięte.'
     scoring_approval_remove_modal_text: 'Czy na pewno chcesz usunąć to ustawienie dla identyfikatora oceny: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Punktowanie jest dozwolone tylko w przypadku pytań z włączoną sztuczną inteligencją dla aktualnie wybranego czynnika.
@@ -963,6 +1018,7 @@ pl:
     skill_aliases: Aliasy umiejętności
     skills: Umiejętności
     skills_taxonomy: Taksonomia umiejętności
+    skip_assessment_level_checks: Pomiń sprawdzanie zgodności z systemem poziomów oceny
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS
@@ -995,7 +1051,12 @@ pl:
     translated_to: 'Przetłumaczone na:'
     translated_with_ai_notice: Tłumaczenie AI
     translation_assistant_not_configured: Asystent tłumaczenia nie został skonfigurowany.
+    translations:
+      title: Tłumaczenia
     update_success: "%{readableResourceName} został pomyślnie zaktualizowany"
+    upload: Prześlij
+    upload_media: Prześlij pliki multimedialne
+    upload_required: Proszę dodać co najmniej jeden plik do przesłania
     upload_success: Przesłanie pomyślnie
     user_report_events: Zdarzenia zgłaszane przez użytkownika
     users: Użytkowników
@@ -1004,6 +1065,7 @@ pl:
     very_high: Bardzo wysoki
     very_low: Bardzo niski
     view_licenses: Zobacz licencje
+    wait_for_upload_completion: Proszę poczekać, aż wszystkie pliki zostaną w całości przesłane
     waiting: Czekanie
     weight: Waga
     what_to_look_for: Na co zwrócić uwagę

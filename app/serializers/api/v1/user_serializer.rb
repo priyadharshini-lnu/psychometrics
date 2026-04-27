@@ -3,7 +3,8 @@
 module Api
   module V1
     class UserSerializer < Panko::Serializer
-      attributes :id, :first_name, :last_name, :email, :gender, :created_at, :updated_at, :campaigns, :campaign_ids,
+      attributes :id, :first_name, :last_name, :email, :gender, :locale,
+                 :custom_profile_fields, :created_at, :updated_at, :campaigns, :campaign_ids,
                  :project_datasheet, :user_external_id
 
       def user_external_id
@@ -36,6 +37,10 @@ module Api
         return unless sheet_row
 
         Api::SheetRows::GetData.call!(sheet_row)
+      end
+
+      def custom_profile_fields
+        ::Users::GetCustomProfileFields.call!(object).to_h { |field| [field[:name], field[:value]] }
       end
     end
   end

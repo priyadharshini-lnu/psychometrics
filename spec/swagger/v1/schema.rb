@@ -164,6 +164,19 @@ module Swagger
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string' },
             gender: { type: 'string', enum: %w[male female not_disclosed], 'x-nullable': true },
+            locale: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Locale for the user profile. Must be one of the locales ' \
+                           'configured for the project (e.g. "en", "ar").'
+            },
+            custom_profile_fields: {
+              type: 'object',
+              'x-nullable': true,
+              description: 'Custom profile field values keyed by the field\'s question text ' \
+                           '(e.g. { "Department": "Engineering" }). ' \
+                           'Allowed fields and their validations are configured per project.'
+            },
             user_external_id: {
               type: 'string',
               'x-nullable': true,
@@ -214,6 +227,19 @@ module Swagger
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string', 'x-nullable': true },
             gender: { type: 'string', enum: %w[male female not_disclosed], 'x-nullable': true },
+            locale: {
+              type: 'string',
+              'x-nullable': true,
+              description: 'Locale for the user profile. Must be one of the locales ' \
+                           'configured for the project (e.g. "en", "ar").'
+            },
+            custom_profile_fields: {
+              type: 'object',
+              'x-nullable': true,
+              description: 'Custom profile field values keyed by the field\'s question text ' \
+                           '(e.g. { "Department": "Engineering" }). ' \
+                           'Allowed fields and their validations are configured per project.'
+            },
             campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true },
             project_datasheet: { '$ref' => '#/definitions/Datasheet', 'x-nullable': true }
           }

@@ -4,17 +4,24 @@ import {
 import {
   Flex, Typography, Row, Col,
 } from 'antd'
+import { useSelector } from 'react-redux'
 import { MediaQueryContext } from '~/glint'
 import {
   BulbOutlined, UserOutlined, CloudOutlined, CheckOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from './styles.less'
 import commonStyles from '../common-styles.less'
+import { RootState } from '~/modules/endUser/core/rootReducers'
 
 const { I18n } = window
 
 export const MiddleSection = () => {
   const { isTablet, isDesktop } = useContext(MediaQueryContext)
+
+  const campaignDetailsForSystemCheck = useSelector(
+    (state: RootState) => state.campaigns.systemCheck.currentCampaignForSystemCheck,
+  )
+  const { requiredSystemChecks = [], campaignOptions = null } = campaignDetailsForSystemCheck || {}
 
   return (
     <Flex
@@ -55,68 +62,90 @@ export const MiddleSection = () => {
             className={`${styles['top-border-colored-card']} ${commonStyles['bg-off-white']}`}
             gutter={[16, 16]}
           >
-            <Col span={24}>
-              <CloudOutlined style={{
-                fontSize: '1rem',
-                marginInlineEnd: '0.5rem',
-                color: 'var(--ant-primary-color)',
-              }}
-              />
-              <Typography.Text style={{ fontWeight: '700' }}>
-                {I18n.t('enduser.environment_setup')}
+            <Flex vertical gap={16}>
+              <Flex>
+                <CloudOutlined style={{
+                  fontSize: '1rem',
+                  marginInlineEnd: '0.5rem',
+                  color: 'var(--ant-primary-color)',
+                }}
+                />
+                <Typography.Text style={{ fontWeight: '700' }}>
+                  {I18n.t('enduser.environment_setup')}
 
-              </Typography.Text>
-            </Col>
+                </Typography.Text>
+              </Flex>
 
-            <Col span={24}>
-              <CheckOutlined style={{
-                fontSize: '1rem',
-                marginInlineEnd: '0.5rem',
-                color: 'var(--ant-primary-color)',
-              }}
-              />
-              <Typography.Text>{I18n.t('enduser.subinstruction_one')}</Typography.Text>
-            </Col>
+              <Flex>
+                <CheckOutlined style={{
+                  fontSize: '1rem',
+                  marginInlineEnd: '0.5rem',
+                  color: 'var(--ant-primary-color)',
+                }}
+                />
+                <Typography.Text>{I18n.t('enduser.subinstruction_one')}</Typography.Text>
+              </Flex>
 
-            <Col span={24}>
-              <CheckOutlined style={{
-                fontSize: '1rem',
-                marginInlineEnd: '0.5rem',
-                color: 'var(--ant-primary-color)',
-              }}
-              />
-              <Typography.Text>{I18n.t('enduser.subinstruction_two')}</Typography.Text>
-            </Col>
+              <Flex>
+                <CheckOutlined style={{
+                  fontSize: '1rem',
+                  marginInlineEnd: '0.5rem',
+                  color: 'var(--ant-primary-color)',
+                }}
+                />
+                <Typography.Text>{I18n.t('enduser.subinstruction_two')}</Typography.Text>
+              </Flex>
+              {requiredSystemChecks.includes('network') && (
+                <Flex>
+                  <CheckOutlined style={{
+                    fontSize: '1rem',
+                    marginInlineEnd: '0.5rem',
+                    color: 'var(--ant-primary-color)',
+                  }}
+                  />
+                  <Typography.Text>{I18n.t('enduser.subinstruction_three')}</Typography.Text>
+                </Flex>
+              )}
 
-            <Col span={24}>
-              <CheckOutlined style={{
-                fontSize: '1rem',
-                marginInlineEnd: '0.5rem',
-                color: 'var(--ant-primary-color)',
-              }}
-              />
-              <Typography.Text>{I18n.t('enduser.subinstruction_three')}</Typography.Text>
-            </Col>
+              {requiredSystemChecks.includes('video') && (
+                <Flex>
+                  <CheckOutlined style={{
+                    fontSize: '1rem',
+                    marginInlineEnd: '0.5rem',
+                    color: 'var(--ant-primary-color)',
+                  }}
+                  />
+                  <Typography.Text>{I18n.t('enduser.subinstruction_four')}</Typography.Text>
+                </Flex>
+              )
+              }
 
-            <Col span={24}>
-              <CheckOutlined style={{
-                fontSize: '1rem',
-                marginInlineEnd: '0.5rem',
-                color: 'var(--ant-primary-color)',
-              }}
-              />
-              <Typography.Text>{I18n.t('enduser.subinstruction_four')}</Typography.Text>
-            </Col>
+              {requiredSystemChecks.includes('audio') && (
+                <Flex>
+                  <CheckOutlined style={{
+                    fontSize: '1rem',
+                    marginInlineEnd: '0.5rem',
+                    color: 'var(--ant-primary-color)',
+                  }}
+                  />
+                  <Typography.Text>{I18n.t('enduser.subinstruction_audio')}</Typography.Text>
+                </Flex>
+              )
+              }
 
-            <Col span={24}>
-              <CheckOutlined style={{
-                fontSize: '1rem',
-                marginInlineEnd: '0.5rem',
-                color: 'var(--ant-primary-color)',
-              }}
-              />
-              <Typography.Text>{I18n.t('enduser.subinstruction_five')}</Typography.Text>
-            </Col>
+              {campaignOptions?.proctoringEnabled && (
+                <Flex>
+                  <CheckOutlined style={{
+                    fontSize: '1rem',
+                    marginInlineEnd: '0.5rem',
+                    color: 'var(--ant-primary-color)',
+                  }}
+                  />
+                  <Typography.Text>{I18n.t('enduser.subinstruction_five')}</Typography.Text>
+                </Flex>
+              )}
+
+            </Flex>
           </Row>
         </Col>
 

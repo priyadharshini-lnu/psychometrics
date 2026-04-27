@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import qs from 'qs'
+import { useParams, useLocation } from 'react-router-dom'
 import Page from '~/modules/survey/views/Preview/Page'
 import EndPage from '~/modules/survey/views/Preview/EndPage'
 import SubmitPage from '~/modules/survey/views/Preview/SubmitPage'
 import SinglePage from '~/modules/survey/views/Preview/SinglePage'
-import Instructions from '~/modules/survey/views/Preview/Instructions'
+import { Instructions } from '~/modules/survey/views/Preview/Instructions'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import { useUnloadCallback } from '~/hooks/useUnloadCallback'
 
@@ -14,9 +15,11 @@ const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
   submissionFailed, submitRequired, defaultLanguage, invalidSession, answersSaved, showEnhanceWithAI,
-  preventOverflow,
+  preventOverflow, skipInstructions,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
+  const { userAssessmentId } = useParams()
+  const location = useLocation()
 
   useEffect(() => {
     isAgile() && initializeAgile()
@@ -25,6 +28,11 @@ const AssessmentPreview = ({
   const showUnloadCallback = !end && started && !invalidSession && !answersSaved
 
   useUnloadCallback(I18n.t('common.messages.leave_message'), showUnloadCallback)
+
+  const goToAssessment = () => {
+    const beginLink = `/user_assessments/${userAssessmentId}/begin${location.search}`
+    window.location.href = beginLink
+  }
 
   const { lang } = qs.parse(location.search.substr(1))
   const initializeAgile = () => {
@@ -73,8 +81,9 @@ const AssessmentPreview = ({
     return <SubmitPage />
   }
 
-  if (type !== 'preview_assessment' && !isAnonymousAssessment && !started && (fixedTimed || instructions?.enabled)) {
-    return <Instructions />
+  if (!skipInstructions && type !== 'preview_assessment' && !isAnonymousAssessment && !started
+    && (fixedTimed || instructions?.enabled)) {
+    return <Instructions onBegin={goToAssessment} />
   }
 
   return (

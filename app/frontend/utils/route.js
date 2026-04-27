@@ -1,10 +1,10 @@
-import pathToRegexp from 'path-to-regexp'
 import qs from 'qs'
 import _ from 'lodash'
 
 const routeUtils = {
   getBasePath (prefix) {
-    const re = pathToRegexp(`(${prefix})(/*){0,1}`)
+    const pattern = prefix.replace(/:[\w]+/g, '[^/]+')
+    const re = new RegExp(`(${pattern})`)
     return re.exec(location.pathname)[1]
   },
   moveTo (navigate, prefix, path, replace = false, state = {}) {

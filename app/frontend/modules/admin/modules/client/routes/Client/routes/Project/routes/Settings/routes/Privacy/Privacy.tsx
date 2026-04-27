@@ -18,6 +18,7 @@ import {
 import { durationValidator } from '~/components/DurationValidator'
 
 const { I18n } = window
+const { TextArea } = Input
 
 const mapState = (state: RootState) => ({
   features: getFeatures(state),
@@ -31,6 +32,9 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   const [customPrivacyConsentTexts, setCustomPrivacyConsentTexts] = useState<{
+    locale: string, text: string | null
+  }[]>([])
+  const [customPrivacyAcknowledgmentTexts, setCustomPrivacyAcknowledgmentTexts] = useState<{
     locale: string, text: string | null
   }[]>([])
   const [selectedLocale, setSelectedLocale] = useState('en')
@@ -58,6 +62,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   const transformValues = values => ({
     ...values,
     customPrivacyConsentTexts,
+    customPrivacyAcknowledgmentTexts,
   })
 
   const privacySetting = data[0]
@@ -69,6 +74,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   useEffect(() => {
     form.setFieldsValue(privacySetting)
     setCustomPrivacyConsentTexts(privacySetting?.customPrivacyConsentTexts)
+    setCustomPrivacyAcknowledgmentTexts(privacySetting?.customPrivacyAcknowledgmentTexts)
   }, [privacySetting])
 
   useEffect(() => {
@@ -83,6 +89,10 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     const consentLocaleText = _.find(customPrivacyConsentTexts, { locale })
     if (!consentLocaleText) {
       setCustomPrivacyConsentTexts([...customPrivacyConsentTexts, { locale, text: '' }])
+    }
+    const acknowledgmentLocaleText = _.find(customPrivacyAcknowledgmentTexts, { locale })
+    if (!acknowledgmentLocaleText) {
+      setCustomPrivacyAcknowledgmentTexts([...customPrivacyAcknowledgmentTexts, { locale, text: '' }])
     }
     setSelectedLocale(locale)
   }
@@ -100,7 +110,18 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     setCustomPrivacyConsentTexts(updatedCustomPrivacyConsentTexts)
   }
 
+  const updateCustomAcknowledgmentText = (value, locale) => {
+    const updatedTexts = customPrivacyAcknowledgmentTexts.map((acknowledgmentText) => {
+      if (acknowledgmentText.locale === locale) {
+        return { ...acknowledgmentText, text: value }
+      }
+      return acknowledgmentText
+    })
+    setCustomPrivacyAcknowledgmentTexts(updatedTexts)
+  }
+
   const selectedLocaleConsentText = _.find(customPrivacyConsentTexts, { locale: selectedLocale })
+  const selectedLocaleAcknowledgmentText = _.find(customPrivacyAcknowledgmentTexts, { locale: selectedLocale })
 
   const localesForConsent = customPrivacyConsentTexts?.length ? customPrivacyConsentTexts : [{ locale: 'en' }]
 
@@ -162,6 +183,19 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                       content={selectedLocaleConsentText?.text}
                       handleContentChange={(value) => { updateCustomConsentText(value, selectedLocale) }}
                     />
+                  </Col>
+                  <Col span={24} className="mbl">
+                    <Form.Item
+                      label={I18n.t('shared.custom_acknowledgment_text')}
+                      layout="vertical"
+                    >
+                      <TextArea
+                        key={`ack-${selectedLocaleAcknowledgmentText?.locale}`}
+                        value={selectedLocaleAcknowledgmentText?.text || ''}
+                        onChange={e => updateCustomAcknowledgmentText(e.target.value, selectedLocale)}
+                        rows={3}
+                      />
+                    </Form.Item>
                   </Col>
                   <Col span={24}>
                     <Form.Item

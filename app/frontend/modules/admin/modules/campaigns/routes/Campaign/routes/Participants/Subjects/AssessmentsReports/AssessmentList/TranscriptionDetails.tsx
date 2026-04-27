@@ -29,6 +29,7 @@ interface MediaResponse {
   mediaId: number
   questionId: number
   questionText: string | null
+  questionName: string | null
   transcriptionText: string | null
   questionType: string
   transcriptionStatus: string
@@ -182,12 +183,13 @@ const TranscriptionDetails: FC<Props> = ({
       key: 'questionText',
       ellipsis: true,
       render: (_: unknown, record: MediaResponse) => {
-        const { questionText } = record
+        const { questionText, questionName } = record
         if (!questionText) return I18n.t('common.text.na')
 
+        const displayText = questionName ? `${questionName} - ${questionText}` : questionText
         return (
-          <Tooltip title={questionText} placement="topLeft">
-            <span style={{ cursor: 'pointer' }}>{questionText}</span>
+          <Tooltip title={displayText} placement="topLeft">
+            <span style={{ cursor: 'pointer' }}>{displayText}</span>
           </Tooltip>
         )
       },

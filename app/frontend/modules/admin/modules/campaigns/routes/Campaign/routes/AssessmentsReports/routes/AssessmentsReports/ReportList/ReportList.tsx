@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
@@ -9,6 +9,7 @@ import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 import Locales from './locales'
+import { DetailsDrawer, DrawerReport } from './DetailsDrawer'
 
 const { Column } = Table
 const { I18n } = window
@@ -34,6 +35,7 @@ const ReportList: React.FC<Props> = ({
   toggleMainReport,
   features,
 }) => {
+  const [drawerReport, setDrawerReport] = useState<DrawerReport>()
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
@@ -68,6 +70,11 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
+            render={(text, record) => (
+              <a onClick={() => setDrawerReport(record as DrawerReport)}>
+                {text}
+              </a>
+            )}
             fixed="left"
           />
           <Column
@@ -93,8 +100,11 @@ const ReportList: React.FC<Props> = ({
               <Switch
                 checked={userAccess}
                 disabled={!reportPermissions.toggleUserAccess}
-                onChange={() => openModal('ToggleUserAccessModal',
-                  { campaignId, campaignReportId: id, userAccess })}
+                onChange={() => openModal('ToggleUserAccessModal', {
+                  campaignId,
+                  campaignReportId: id,
+                  userAccess,
+                })}
               />
             )}
           />
@@ -176,6 +186,12 @@ const ReportList: React.FC<Props> = ({
             fixed="right"
           />
         </Table>
+        {drawerReport ? (
+          <DetailsDrawer
+            close={() => setDrawerReport(undefined)}
+            report={drawerReport}
+          />
+        ) : null}
       </Col>
     </Row>
   )

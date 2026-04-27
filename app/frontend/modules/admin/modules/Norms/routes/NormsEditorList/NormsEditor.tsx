@@ -7,6 +7,7 @@ import {
   Form, InputNumber, message, Alert,
 } from 'antd'
 import cs from 'classnames'
+import keyBy from 'lodash/keyBy'
 import styles from './NormsEditor.less'
 import { useResources } from '~/hooks/useResources/useResources'
 import { useResourceContext } from '~/modules/admin/components/Resource/ResourceContext'
@@ -92,6 +93,42 @@ const getFieldNameAndLevel = (dataIndex:string) => {
 const formatNumberWithPrecision = (value: number) => value.toLocaleString('en-US', {
   minimumFractionDigits: 1, maximumFractionDigits: 10,
 })
+
+const formatScoreValue = (value?: string | number): string => (
+  value ? formatNumberWithPrecision(parseFloat(String(value))) : ''
+)
+
+type NormScoreFields = Omit<IRowData, 'factor' | 'key' | 'factorsNormId'>
+
+const LEVEL_FIELD_MAP: [string, keyof NormScoreFields, keyof NormScoreFields][] = [
+  ['verylow', 'veryLowFrom', 'veryLowTo'],
+  ['low', 'lowFrom', 'lowTo'],
+  ['average', 'averageFrom', 'averageTo'],
+  ['high', 'highFrom', 'highTo'],
+  ['veryhigh', 'veryHighFrom', 'veryHighTo'],
+]
+
+const buildNormScores = (factorsNormsProps: NormEditor[number]['factorsNormsProps']): NormScoreFields => {
+  const propsByLevel = keyBy(factorsNormsProps ?? [], prop => (prop.level ?? '').toLowerCase().replace(/\s/g, ''))
+
+  return LEVEL_FIELD_MAP.reduce<NormScoreFields>((scores, [levelKey, fromField, toField]) => {
+    const prop = propsByLevel[levelKey]
+    scores[fromField] = formatScoreValue(prop?.scoreFrom)
+    scores[toField] = formatScoreValue(prop?.scoreTo)
+    return scores
+  }, {
+    veryLowFrom: '',
+    veryLowTo: '',
+    lowFrom: '',
+    lowTo: '',
+    averageFrom: '',
+    averageTo: '',
+    highFrom: '',
+    highTo: '',
+    veryHighFrom: '',
+    veryHighTo: '',
+  })
+}
 
 
 const NormsEditor = () => {
@@ -258,7 +295,12 @@ const NormsEditor = () => {
         return item
       })
       setData(newData)
-      setEditingCell(null)
+      setEditingCell((prev) => {
+        if (prev?.key === record.key && prev?.dataIndex === dataIndex) {
+          return null
+        }
+        return prev
+      })
     }).catch((e) => {
       form.setFieldValue(`${record.key}-${dataIndex}`, record[dataIndex])
       message.error(`${e['/fieldValue'].title}`)
@@ -271,34 +313,14 @@ const NormsEditor = () => {
       method: 'post',
       id: normId,
       responseType: NormEditorTR,
-    }).then((response: NormEditor) => {
-      setData(camelizeKeys(response).map(item => (
-        {
-          factor: item.name,
-          veryLowFrom: item.factorsNormsProps[0]?.scoreFrom
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[0]?.scoreFrom)) : '',
-          veryLowTo: item.factorsNormsProps[0]?.scoreTo
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[0]?.scoreTo)) : '',
-          lowFrom: item.factorsNormsProps[1]?.scoreFrom
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[1]?.scoreFrom)) : '',
-          lowTo: item.factorsNormsProps[1]?.scoreTo
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[1]?.scoreTo)) : '',
-          averageFrom: item.factorsNormsProps[2]?.scoreFrom
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[2]?.scoreFrom)) : '',
-          averageTo: item.factorsNormsProps[2]?.scoreTo
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[2]?.scoreTo)) : '',
-          highFrom: item.factorsNormsProps[3]?.scoreFrom
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[3]?.scoreFrom)) : '',
-          highTo: item.factorsNormsProps[3]?.scoreTo
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[3]?.scoreTo)) : '',
-          veryHighFrom: item.factorsNormsProps[4]?.scoreFrom
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[4]?.scoreFrom)) : '',
-          veryHighTo: item.factorsNormsProps[4]?.scoreTo
-            ? formatNumberWithPrecision(parseFloat(item.factorsNormsProps[4]?.scoreTo)) : '',
-          key: item.id.toString(),
-          factorsNormId: item.factorsNormId,
-        }
-      )))
+    }).then((response: unknown) => {
+      const editorData = response as NormEditor
+      setData(camelizeKeys(editorData).map(item => ({
+        factor: item.name,
+        ...buildNormScores(item.factorsNormsProps),
+        key: item.id.toString(),
+        factorsNormId: item.factorsNormId ?? '',
+      })))
       setIsLoading(false)
     })
   }

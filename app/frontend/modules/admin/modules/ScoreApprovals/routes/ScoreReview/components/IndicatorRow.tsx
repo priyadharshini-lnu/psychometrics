@@ -91,7 +91,7 @@ const IndicatorHeader = ({
   )
 }
 
-const IndicatorContent = ({ factor }) => (
+const IndicatorContent = ({ factor, onSeek, playingCitationKey }) => (
   <Flex vertical gap={8}>
     <Typography.Text strong>{I18n.t('admin.ai_scoring_appoval_rationale')}</Typography.Text>
     <Typography.Text>
@@ -99,10 +99,13 @@ const IndicatorContent = ({ factor }) => (
     </Typography.Text>
 
     <Typography.Text strong>{I18n.t('admin.ai_scoring_appoval_evidence_from_transcript')}</Typography.Text>
-    {factor.citations.map((evidence, i) => (
-      <Evidence key={i}>
-        {evidence}
-      </Evidence>
+    {factor.citations.map((citation, i) => (
+      <Evidence
+        key={i}
+        citation={citation}
+        onSeek={onSeek}
+        isPlaying={playingCitationKey === `${citation.startTime}`}
+      />
     ))}
     <ChangeLog logs={factor.changeLog} factor={factor} />
   </Flex>
@@ -110,6 +113,7 @@ const IndicatorContent = ({ factor }) => (
 
 export const IndicatorRow = ({
   factor, overrideScore, discardScore, approved, allowApprove,
+  onSeek, playingCitationKey,
 }) => {
   const [activeKey, setActiveKey] = useState<string[]>([])
   const isOpen = activeKey.length > 0
@@ -149,7 +153,7 @@ export const IndicatorRow = ({
           />
         ),
         children: (
-          <IndicatorContent factor={factor} />
+          <IndicatorContent factor={factor} onSeek={onSeek} playingCitationKey={playingCitationKey} />
         ),
       }]}
     />

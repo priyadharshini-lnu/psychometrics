@@ -8,6 +8,7 @@ th:
     add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
     add_client_admin: เพิ่มผู้ดูแลระบบลูกค้า
     add_indicator: เพิ่มตัวชี้วัด
+    add_new_folder: เพิ่มโฟลเดอร์ใหม่
     add_project: เพิ่มโครงการ
     add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
     add_threesixty_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
@@ -45,13 +46,17 @@ th:
     ai_assistants: ผู้ช่วย AI
     ai_assistants_advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
     ai_assistants_campaign_id_placeholder: ป้อนรหัสแคมเปญ
+    ai_assistants_cannot_change_type_when_in_use: ไม่สามารถเปลี่ยนประเภทของ AI Assistant '%{name}' ได้ เนื่องจากกำลังใช้งานอยู่
     ai_assistants_no_rendered_output: ไม่มีเอาต์พุตที่แสดงผล
+    ai_assistants_provider_change_confirm_title: เปลี่ยนผู้ให้บริการ?
+    ai_assistants_provider_previously_used_warning: ผู้ช่วยคนนี้เคยสร้างผลลัพธ์ด้วย "%{from}" มาก่อน การเปลี่ยนเป็น "%{to}" อาจทำให้พฤติกรรมของผู้ช่วยเปลี่ยนแปลงไปสำหรับคำขอสร้างผลลัพธ์ในอนาคต
     ai_assistants_render_button: เทมเพลตการแสดงผล
     ai_assistants_rendered_prompt: พรอมต์ที่แสดงผล
     ai_assistants_template_and_campaign_required: โปรดระบุทั้งเทมเพลตและรหัสแคมเปญ
     ai_assistants_template_render_failed: แสดงเทมเพลตไม่สําเร็จ
     ai_assistants_test_render: ทดสอบการแสดงผล
     ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
+    ai_assistants_type_locked_tooltip: ผู้ช่วยคนนี้กำลังใช้งานอยู่และไม่สามารถเปลี่ยนประเภทได้
     ai_assisted_idp_disabled_by_client: ระบบช่วยเหลือ IDP โดย AI ถูกปิดใช้งานโดยลูกค้า
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
     ai_idp_assistant_configure_dependencies: กำหนดค่าการพึ่งพา AI
@@ -85,6 +90,19 @@ th:
     ai_scoring_appoval_responses: คำตอบจาก AI
     ai_scoring_appoval_score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
     ai_scoring_approval: การอนุมัติคะแนนโดย AI
+    ai_scoring_approval_digest_mailer_access_link_intro: 'คุณสามารถเข้าถึงการอนุมัติคะแนนได้ผ่านลิงก์ต่อไปนี้:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: คะแนนต่อไปนี้ได้รับการอนุมัติแล้ว
+    ai_scoring_approval_digest_mailer_approved_contact_reason: คุณได้รับอีเมลฉบับนี้เนื่องจากคุณได้ถูกเพิ่มเป็นผู้ติดต่อเพื่อรับการแจ้งเตือนการอนุมัติคะแนน
+    ai_scoring_approval_digest_mailer_approved_subject: คะแนนได้รับการอนุมัติ
+    ai_scoring_approval_digest_mailer_assessment_label: 'การประเมิน: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: คะแนนต่อไปนี้พร้อมสำหรับการอนุมัติแล้วและต้องการการดำเนินการจากคุณ
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: คุณได้รับอีเมลฉบับนี้เนื่องจากคุณได้ถูกเพิ่มเป็นผู้อนุมัติสำหรับการให้คะแนน ซึ่งต้องการการอนุมัติ
+    ai_scoring_approval_digest_mailer_awaiting_subject: คะแนนที่รอการอนุมัติ
+    ai_scoring_approval_digest_mailer_campaign_label: 'แคมเปญ: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'จำนวนการทำคะแนน: %{value}'
+    ai_scoring_approval_digest_mailer_dear: เรียน คุณ%{name},
+    ai_scoring_approval_digest_mailer_link_text: การให้คะแนนการอนุมัติ
+    ai_scoring_approval_digest_mailer_project_label: 'โครงการ: %{value}'
     ai_scoring_approval_settings: การตั้งค่าการอนุมัติคะแนน AI
     ai_scoring_approval_stale_description: การอัปเดตการกำหนดค่าตั้งแต่การรันครั้งล่าสุดอาจทำให้คะแนนเปลี่ยนแปลงได้ ให้ทำการคำนวณคะแนนใหม่โดยใช้การตั้งค่าล่าสุดเพื่ออัปเดตคะแนน
     ai_scoring_approval_stale_title: คะแนนอาจล้าสมัย
@@ -136,6 +154,7 @@ th:
     bulk_assets_modal_title: อัปโหลดไฟล์ CSV และ ZIP
     bulk_upload_ai_artifacts: อัปโหลดสิ่งประดิษฐ์ AI จํานวนมาก
     campaign_ai_artifact_updated_successfully: อัปเดตสิ่งประดิษฐ์ AI ของแคมเปญเรียบร้อยแล้ว
+    campaign_ai_artifacts_instruction_templating_tooltip: คุณสามารถใช้คำสั่งขั้นสูงโดยใช้เทมเพลตคำสั่งพร้อมด้วยไวยากรณ์เทมเพลต liquid และตัวแปรที่มีอยู่ได้ โปรดดูเอกสารประกอบสำหรับรายละเอียดเพิ่มเติม
     campaign_ai_artifacts_results_export_details: แคมเปญ AI สร้างผลลัพธ์
     campaign_assessment_actions_disable_caching: ปิดใช้งานการแคชการประเมิน
     campaign_assessment_actions_enable_caching: เปิดใช้งานการแคชการประเมิน
@@ -161,6 +180,24 @@ th:
     campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
     campaign_factors: ปัจจัยของแคมเปญ
     campaign_name: ชื่อแคมเปญ
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: รหัสรายงานภายนอก
+          language_id: รหัสภาษา
+          norm: มาตรฐาน
+          norm_id: รหัสปกติ
+          suitability_id: ความเหมาะสม ID
+        labels:
+          assessment_ids: รหัสการประเมิน
+          available_languages: ภาษาที่มีให้บริการ
+          campaign_report_id: รายงานแคมเปญ ID
+          check_details: ตรวจสอบรายละเอียด
+          default_language: ภาษาเริ่มต้น
+          external_settings: การตั้งค่าภายนอก
+          provider: ผู้ให้บริการ
+          report_pdf_status: รายงานสถานะ PDF
+          user_report_id: รหัสรายงานผู้ใช้
     campaign_templates: เทมเพลตแคมเปญ
     campaign_user_job_roles_cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
     campaigns: แคมเปญ
@@ -183,7 +220,9 @@ th:
     configure_model_answer_title: กำหนดค่าคำตอบแบบจำลองและคำสำคัญ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
     copied: คัดลอกแล้ว
+    copied_url_success: URL ถูกคัดลอกไปยังคลิปบอร์ดสำเร็จแล้ว
     copy_ai_artifacts: คัดลอกสิ่งประดิษฐ์ของ AI
+    copy_image_url: คัดลอก URL ของรูปภาพ
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
     create_indicator: สร้างตัวชี้วัด
@@ -221,6 +260,7 @@ th:
       thursday: วันพฤหัสบดี
       tuesday: วันอังคาร
       wednesday: วันพุธ
+    dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
@@ -228,9 +268,11 @@ th:
     duration: ระยะเวลา
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
+    edit_folder: แก้ไขโฟลเดอร์
     edit_indicator: แก้ไขตัวบ่งชี้
     edit_job_roles: แก้ไขบทบาทงาน
     edit_level: แก้ไขระดับ
+    edit_media: แก้ไขสื่อ
     edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
     edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
@@ -272,6 +314,8 @@ th:
     feature_global_skills_description: เข้าถึงคลังทักษะระดับโลกสำหรับการประเมิน
     feature_idp_description: เปิดใช้งานการวางแผนพัฒนาบุคคลสำหรับผู้เข้าร่วม
     feature_sms_notification_description: เปิดใช้งานการแจ้งเตือนทาง SMS สำหรับคำเชิญและคำเตือนของแคมเปญ
+    file_size_must_be_less_than_mb: ไฟล์ {{name}} มีขนาดใหญ่เกินขนาดสูงสุดที่กำหนดไว้ที่ {{max_size_mb}} MB
+    file_upload_failed: ไม่สามารถอัปโหลด {{name}} ได้
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
     final_score_empty_err_msg: คะแนนสุดท้ายของ %{factor_name} ไม่สามารถเป็นค่าว่างได้
     final_score_empty_msg: ยอดรวมสุดท้ายต้องไม่ว่างเปล่า
@@ -351,6 +395,8 @@ th:
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
     max_value: ค่าสูงสุด
+    media_files_label: ไฟล์
+    media_library: คลังสื่อ
     messages: ข้อความ
     mhs: MHS
     mhs_assessment: การประเมินผล MHS
@@ -370,6 +416,7 @@ th:
     name: ชื่อ
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
     name_required: ต้องระบุชื่อ
+    new_folder: โฟลเดอร์ใหม่
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
     no_status: ไม่มีสถานะ
@@ -832,9 +879,15 @@ th:
     questions: คำถาม
     range_min_max: ระยะทาง%{min} - %{max}
     reflection_questions: คําถามไตร่ตรอง
+    regenerate_transcriptions_action: สร้างถอดความใหม่
+    regenerate_transcriptions_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการสร้างการถอดเสียงใหม่สำหรับการประเมินนี้? การดำเนินการนี้จะประมวลผลการถอดเสียงที่ยังไม่สมบูรณ์ทั้งหมดใหม่
+    regenerate_transcriptions_confirm_title: สร้างถอดความใหม่
+    regenerate_transcriptions_scheduled: งานสร้างถอดความใหม่ได้รับการกำหนดเวลาสำเร็จแล้ว
     registration_codes: รหัสการลงทะเบียน
     registration_settings: การตั้งค่าการลงทะเบียน
     remove_children_to_change_type: นำเด็กทั้งหมดออกเพื่อเปลี่ยนประเภท
+    remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้?
+    remove_successfully: รายการสื่อถูกลบออกสำเร็จ
     report_approvals: การอนุมัติรายงาน
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
@@ -938,7 +991,9 @@ th:
     scoring_approval_approvers: ผู้อนุมัติ
     scoring_approval_assessment: การประเมิน
     scoring_approval_assessor_users: ผู้ใช้ผู้ประเมิน
+    scoring_approval_do_not_send_notifications: อย่าส่งการแจ้งเตือน
     scoring_approval_modal_title: การตั้งค่าการให้คะแนนการอนุมัติ
+    scoring_approval_notification_users: ผู้ใช้การแจ้งเตือนการอนุมัติ
     scoring_approval_remove_modal_success: 'การตั้งค่าการอนุมัติสำหรับรหัสการประเมินผล: %{assessmentId} ถูก삭제สำเร็จ'
     scoring_approval_remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สำหรับรหัสการประเมิน: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: การให้คะแนนอนุญาตเฉพาะคำถามที่เปิดใช้งาน AI สำหรับปัจจัยที่เลือกในปัจจุบันเท่านั้น
@@ -963,6 +1018,7 @@ th:
     skill_aliases: นามแฝงทักษะ
     skills: ทักษะ
     skills_taxonomy: อนุกรมวิธานทักษะ
+    skip_assessment_level_checks: ข้ามการตรวจสอบระดับการประเมิน
     slot_name: ชื่อสล็อต
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
@@ -995,7 +1051,12 @@ th:
     translated_to: 'แปลเป็น:'
     translated_with_ai_notice: AI แปล
     translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
+    translations:
+      title: การแปล
     update_success: "%{readableResourceName} ได้รับการอัปเดตเรียบร้อยแล้ว"
+    upload: อัปโหลด
+    upload_media: อัปโหลดสื่อ
+    upload_required: กรุณาเพิ่มไฟล์อย่างน้อยหนึ่งไฟล์เพื่ออัปโหลด
     upload_success: อัปโหลดสําเร็จ
     user_report_events: เหตุการณ์รายงานผู้ใช้
     users: ผู้เข้าร่วม
@@ -1004,6 +1065,7 @@ th:
     very_high: สูงมาก
     very_low: ต่ำมาก
     view_licenses: ดูใบอนุญาต
+    wait_for_upload_completion: กรุณารอให้ไฟล์ทั้งหมดอัปโหลดเสร็จสมบูรณ์
     waiting: การรอคอย
     weight: น้ำหนัก
     what_to_look_for: สิ่งที่ควรสังเกต

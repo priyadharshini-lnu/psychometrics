@@ -1,12 +1,17 @@
 doctype html
 html.body-full-height lang="#{I18n.locale}"
   head
+    = render 'layouts/osano_script'
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
     = render 'layouts/pys_global_state'
+    javascript [nonce=content_security_policy_nonce]:
+      window.I18n = {
+        locale: '#{I18n.locale}'
+      }
     = javascript_include_tag 'threesixty'
     = javascript_include_tag "administration/i18n/#{load_translation_file}.js"
     = vite_client_tag
@@ -31,4 +36,4 @@ html.body-full-height lang="#{I18n.locale}"
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
     .main#devise
     = vite_javascript_tag 'entrypoints/user/login.jsx'
-    = render partial: 'layouts/consent_banner'
+    = render partial: 'layouts/consent_banner' unless Settings.osano_enabled

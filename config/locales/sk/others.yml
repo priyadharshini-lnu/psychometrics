@@ -929,6 +929,7 @@ sk:
         normalize_factor_scores: Normalizujte skóre faktorov
         project_compact_completion_status_export: Export stavu dokončenia kompaktného súboru
         project_completion_status_export: Export stavu dokončenia
+        regenerate_assessment_transcriptions: Obnoviť prepisy hodnotení
         regenerate_campaign_reports: Opätovné generovanie prehľadov kampaní
         regenerate_report: Znovu vygenerovať správu
         regenerate_threesixty_report: Obnoviť správu Threesixty
@@ -4065,9 +4066,11 @@ sk:
       import_reports: Import správ a hodnotení
   user_assessment:
     column:
+      completed_at: Dokončené v
       dimension_id: Identifikátor dimenzie
       id: ID hodnotenia používateľa
       norm_id: ID normy
+      started_at: Začalo sa
     drawer:
       copied: "%{name} skopírované do schránky."
       copy: Kopírovať do schránky
@@ -4107,7 +4110,6 @@ sk:
     normalize_factor_scores:
       no_scoring_data: Normalizáciu skóre faktorov nie je možné dokončiť, pretože nie sú k dispozícii žiadne údaje o skóre.
     progress_label: Pokrok v hodnotení
-    redirect: Boli by ste presmerovaní na stránku tretej strany pre toto hodnotenie. Ak chcete začať hodnotenie, kliknite na tlačidlo pokračovať.
     status:
       completed: Dokončený
       in_progress: Prebieha
@@ -4262,8 +4264,7 @@ sk:
     min_character: Vaša odpoveď musí obsahovať aspoň %{min} znakov.
     min_factor: Vaša odpoveď musí obsahovať aspoň %{min} faktorovú spätnú väzbu.
     min_word: Vaša odpoveď musí mať aspoň %{min} slov
-    most:
-      one: Vyberte najviac %{max} možností
+    most: Vyberte prosím najviac%{max}ovú voľbu (voľby)
     must_rank_between: Pre každú položku priraďte hodnotu od %{min} do %{max}. Hodnoty sa nesmú opakovať.
     must_select: Prosím, vyberte z možností %{min} až %{max}
     not_in_future: Vybraný dátum by nemal byť v budúcnosti

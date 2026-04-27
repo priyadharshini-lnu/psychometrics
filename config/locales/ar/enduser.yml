@@ -12,6 +12,11 @@ ar:
     ai_idp_summary_hint_no_document: يمكنني الآن إعداد خطة تطويرية مخصّصة تتضمن خطوات عمليّة لدعم نمو مسيرتك المهنية. كما يمكنك إعادة بدء المحادثة لتعديل مدخلاتك عند الحاجة.
     all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
     approve_idp_plan: الموافقة على الخطة
+    audio: صوتي
+    audio_check: اختبار الميكروفون
+    audio_check_description: تحقق من أن الميكروفون يعمل بشكل صحيح للتسجيل.
+    audio_recording: تسجيل صوتي
+    audio_test_step: خطوة اختبار الصوت
     back: خلف
     back_to_dashboard: العودة إلى لوحة التحكم
     before_you_begin: قبل أن تبدأ
@@ -24,29 +29,48 @@ ar:
     browser_compatibility_check: توافق المتصفح
     browser_compatibility_check_description: التحقق مما إذا كان متصفحك يدعم جميع الميزات المطلوبة
     browser_compatibility_result: نتيجة توافق المتصفحات
-    browser_version_fix_description_first: 'استخدم متصفحًا مدعومًا: جوجل كروم ( Chrome ) أو فايرفوكس (Firefox) أو مايكروسوفت ايدج (Edge) أو سفاري (Safari)'
-    browser_version_fix_description_second: حدّث متصفحك إلى أحدث إصدار لضمان التوافق مع جهازك
-    browser_version_fix_description_third: جرّب استخدام نافذة التصفح الخفي/ الخاص
-    browser_version_fix_title: إصدار المتصفح الذي تستخدمه غير مدعوم
+    browser_compatible: متصفحك %{browser_name} الإصدار %{browser_version} متوافق مع هذه الحملة.
+    browser_compatible_detail: أنت تستخدم متصفح «%{browser_name}» الإصدار %{browser_version}، وهو يفي بالحد الأدنى من المتطلبات لهذه الحملة.
+    browser_incompatible_detail: أنت تستخدم %{browser_name} الإصدار %{browser_version}. يرجى تحديث %{browser_name} إلى الإصدار %{min_browser_version} أو أعلى لضمان التوافق.
+    browser_not_compatible: متصفحك %{browser_name} غير متوافق مع هذه الحملة.
+    browser_not_compatible_description: استخدم أحدث إصدارات من Chrome أو Firefox أو Safari أو Edge للحصول على أفضل تجربة.
+    browser_not_compatible_detail: متصفحك %{browser_name} غير متوافق مع هذه الحملة. استخدم أحدث إصدارات من Chrome أو Firefox أو Safari أو Edge للحصول على أفضل تجربة.
+    browser_version_fix_description_first: حدّث متصفح %{browser_name} إلى الإصدار %{updated_version} أو أعلى لضمان التوافق
+    browser_version_fix_title: الإصدار الحالي من %{browser_name} لا يلبي الحد الأدنى المطلوب (%{updated_version}) لهذه الحملة
     camera: الكاميرا
-    camera_access_blocked: تم رفض الوصول إلى الكاميرا أو حظره من قِبَل متصفحك. يُرجى التحقق من أذونات المتصفح.
+    camera_access_blocked: تم رفض الوصول إلى الكاميرا/الميكروفون أو حظره من قِبَل متصفحك. يُرجى التحقق من أذونات المتصفح.
     camera_check: اختبار الكاميرا والميكروفون
+    camera_check_abruptly_ended: تم إيقاف الكاميرا فجأة. يرجى تمكين الكاميرا وإعادة تشغيل الفحص.
     camera_check_description: تحقق من أن الكاميرا والميكروفون يعملان بشكل صحيح للتسجيل.
+    camera_check_passed: اجتاز فحص الفيديو والصوت بنجاح
     camera_test_step: خطوة اختبار الفيديو والصوت
     campaign: الحملة
+    campaign_check_status: 'حالة: %{status}'
     chat_instructions: تعليمات الدردشة
     check: التحقق
-    check_video_recording: يُرجى التحقق من تسجيل الفيديو الخاص بك عن طريق إعادة تشغيله.
+    check_video_recording: يرجى التأكد من جودة الصوت والصورة من خلال تشغيل المقطع المسجل
     checking_browser_compatibility: جاري التحقق من توافق المتصفح...
+    checking_latency: التحقق من زمن الاستجابة...
+    could_not_reach_servers: لم نتمكن من الوصول إلى خوادمنا للتحقق من سرعة الشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
+    day: يوم
+    day_plural: أيام
+    details: التفاصيل
     development: تطوير
     direct_reportees: الموظفين المباشرين
     download: تنزيل
     download_pdf: تحميل ملف PDF
+    download_speed_below_minimum: سرعة التنزيل %{download_speed} أقل من الحد الأدنى المطلوب لسرعة التنزيل وهو %{minimum_download_speed} ميغابت في الثانية
     environment_setup: إعداد البيئة
+    error_uploading_audio: خطأ في رفع الملف الصوتي
+    error_uploading_audio_detail: حدث خطأ أثناء تحميل الملف الصوتي
     error_uploading_video: حدث خطأ أثناء رفع الفيديو
+    error_uploading_video_detail: حدث خطأ أثناء تحميل الفيديو
     fail: يفشل
     follow_these_steps: اتبع الخطوات التالية لحل المشكلات التي تم اكتشافها أثناء فحص النظام
+    hide_details: إخفاء التفاصيل
     home: لوحة التحكم
+    hour: ساعة
+    hour_plural: ساعات
     how_to_fix: 'كيفية الإصلاح:'
     idp_loading_fifth_step: جلب إجراءات التطوير من القالب
     idp_loading_first_step: جاري تحليل مدخلاتك. يُرجى الانتظار، ستكون خطتك جاهزة قريبًا
@@ -59,6 +83,7 @@ ar:
     idp_report_being_generated: جاري إعداد تقريرك
     idp_reset_chat: إعادة ضبط الدردشة
     idp_retake_steps_continue_with_this_information: تابع هذه المعلومات
+    initializing: جاري التهيئة...
     insights: البصائر
     instruction: تأكد من أنك وبيئة العمل من حولك جاهزون تماماً
     internet_speed: سرعة الإنترنت
@@ -68,14 +93,20 @@ ar:
     lighthouse_assistant: دليل التطوير الخاص بك
     localstorage_fix_description_first: تأكد من أنك لا تستخدم وضع التصفح الخفي/ الخاص، لأن خاصية التخزين المحلي (LocalStorage) غالباً تكون معطلة في هذه الحالة
     localstorage_fix_title: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك
+    localstorage_not_enabled_detail: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك. يرجى التأكد من أنك لا تستخدم وضع التصفح الخاص/الخفي، لأن التخزين المحلي غالباً ما يكون معطلاً في هذه الأوضاع.
     localstorage_support: خاصية التخزين المحلي (Local Storage) مفعّلة
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
     media_recorder_api_fix_description_first: فعّل JavaScript في إعدادات المتصفح
     media_recorder_api_fix_description_second: تحقّق من أن متصفحك يدعم MediaRecorder API وقم بالتحديث إلى أحدث إصدار إذا لزم الأمر
-    media_recorder_api_fix_description_third: جرّب متصفح حديث آخر مثل Chrome أو Firefox
     media_recorder_api_fix_title: متصفحك لا يدعم MediaRecorder API
+    media_recorder_api_not_supported_detail: أنت تستخدم %{browser_name} الإصدار %{browser_version} وهو لا يدعم واجهة MediaRecorder API. يرجى تحديث متصفحك إلى أحدث إصدار لضمان التوافق.
     media_recorder_api_support: دعم MediaRecorder API
+    microphone_access_blocked: تم رفض الوصول إلى الميكروفون أو حظره من قِبَل متصفحك. يُرجى التحقق من أذونات المتصفح.
+    microphone_check_passed: تم اجتياز اختبار الميكروفون بنجاح
     min_word_limit: يجب أن تكون على الأقل %{min} كلمة
+    minimum_speed_requirements: يتطلب الحد الأدنى لسرعة التنزيل %{minimum_download_speed} ميغابت في الثانية والحد الأدنى لسرعة الرفع %{minimum_upload_speed} ميغابت في الثانية لهذه الحملة.
+    minute: دقيقة
+    minute_plural: دقائق
     my_plan: خطتي
     network: الشبكة
     network_check: اختبار سرعة الإنترنت
@@ -85,8 +116,9 @@ ar:
     network_check_fix_fourth: حاول استخدام شبكة اتصال مختلفة (إن وجدت)
     network_check_fix_second: اقترب من جهاز الواي فاي WiFi أو قم بالاتصال عبر كابل Ethernet
     network_check_fix_third: أعد تشغيل الراوتر/المودم ثم حاول مرة أخرى
+    network_speed_meets_required_detail: سرعة الإنترنت لديك تلبي الحد الأدنى من المتطلبات للحملة
     network_test_step: خطوة اختبار الشبكة
-    no_audio_warning: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون وتشغيله بشكل صحيح.
+    no_audio_detected: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون ومن أنه يعمل بشكل صحيح.
     pass: يمر
     pending: قيد الانتظار
     personal_readiness: الجاهزية الشخصية
@@ -96,6 +128,7 @@ ar:
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
+    redirect_to_external_assessment: سيتم توجيهك إلى موقع الاختبار. يرجى النقر على "متابعة" إذا كنت ترغب في بدء الاختبار.
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
     required_download_in_mbps: سرعة التنزيل المطلوبة (Mbps)
@@ -104,6 +137,8 @@ ar:
     rerun_checks: إعادة تشغيل عمليات الفحص
     result: النتيجة
     results: النتيجة
+    safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome أو Firefox.
+    safari_proctoring_title: تم اكتشاف متصفح Safari
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
@@ -111,9 +146,10 @@ ar:
     start_campaign_message_timed_proctored: هذه حملة محددة بالوقت وتحت المراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_readiness_check: بدء التحقق من الجاهزية
     start_system_check: بدء فحص النظام
+    subinstruction_audio: ميكروفون يعمل
     subinstruction_eight: خصّص وقت كافي لإجراء التقييم بالكامل دون انقطاع
     subinstruction_five: كن مستعداً لمشاركة شاشتك طوال مدة الجلسة
-    subinstruction_four: تأكد من أن الكاميرا والميكروفون يعملات بشكل صحيح
+    subinstruction_four: كاميرا وميكروفون يعملان
     subinstruction_one: تأكد من التواجد بمكان هادئ ومضاء بشكل جيد، مع عدم وجود أشخاص آخرين في المكان
     subinstruction_seven: تأكد من أن جهازك مشحون بالكامل أو موصول بالكهرباء
     subinstruction_six: أغلق جميع التطبيقات وعلامات التبويب غير الضرورية في المتصفح
@@ -142,6 +178,7 @@ ar:
     system_check_proceed: نعم موافق للمضي قدما
     system_check_retake: لا، أريد أن أستعيد
     system_check_run_again: تشغيل مرة أخرى
+    system_check_session_not_found: لم يتم العثور على جلسة فحص النظام. يرجى بدء فحص نظام جديد.
     system_check_start_recording: بدء التسجيل
     system_check_stop_recording: توقف عن التسجيل
     system_check_test_message: سُررت بالتحدث معك
@@ -153,8 +190,17 @@ ar:
     system_checks: فحوصات النظام
     task_duration: مدة المهمة
     tasks: مهامي
+    testing_download_speed: اختبار سرعة التنزيل...
+    testing_upload_speed: اختبار سرعة التحميل...
     time_commitment: الوقت المطلوب لإكمال المهمة
     troubleshooting_guide: دليل استكشاف الأخطاء وإصلاحها
+    troubleshooting_guide_audio_fifth: 'على نظام Windows: تحقق من إعدادات الخصوصية > الوصول إلى الميكروفون.'
+    troubleshooting_guide_audio_first: انقر على أيقونة القفل/المعلومات في شريط العنوان بمتصفحك.
+    troubleshooting_guide_audio_fourth: في حال تم الحظر، قد تحتاج إلى إعادة تعيين الأذونات في إعدادات المتصفح.
+    troubleshooting_guide_audio_second: ابحث عن إعدادات "الميكروفون" واضبطها على "سماح".
+    troubleshooting_guide_audio_seventh: إذا كانت الأذونات مُفعَّلة وواجهت مشكلة في الرفع، فأعِد تشغيل الفحص وحاول رفع الملف الصوتي مرة أخرى.
+    troubleshooting_guide_audio_sixth: 'على نظام Mac: تحقق من "تفضيلات النظام" > "الأمن".'
+    troubleshooting_guide_audio_third: حدّث الصفحة بعد تغيير الأذونات.
     troubleshooting_guide_browser_fifth: تأكد من تفعيل التخزين المحلي (LocalStorag) في إعداد المتصفح
     troubleshooting_guide_browser_first: 'استخدم متصفحًا مدعومًا: جوجل كروم ( Chrome ) أو فايرفوكس (Firefox) أو مايكروسوفت ايدج (Edge) أو سفاري (Safari) - يجب أن يتوفر المتصفح بأحدث إصدار'
     troubleshooting_guide_browser_fourth: تأكد من تفعيل JavaScript وملفات تعريف الارتباط (Cookies) في إعدادت المتصفح
@@ -168,21 +214,26 @@ ar:
     troubleshooting_guide_network_third: أعد تشغيل الراوتر/المودم ثم حاول مرة أخرى
     troubleshooting_guide_video_fifth: 'في نظام Windows: تحقق من إعداد الخصوصية> الوصول إلى الكاميرا/ الميكروفون'
     troubleshooting_guide_video_first: انقر على أيقونة القفل/المعلومات في شريط عنوان المتصفح
-    troubleshooting_guide_video_fourth: إذا كان المتصفح محظور، قد تحتاج إلى إعادة ضبط الأذونات في إعدادات المتصفح
     troubleshooting_guide_video_second: ابحث عن إعدادات الكاميرا والميكروفون وقم بضبطها على سماح (Allow)
+    troubleshooting_guide_video_seventh: إذا كانت الأذونات مُفعّلة وحدثت مشكلة أثناء الرفع، فأعِد تشغيل الفحص وحاول رفع الفيديو مرة أخرى.
     troubleshooting_guide_video_sixth: 'في نظام: تحقق من تفضيلات النظام> الأمان والخصوصية> الكاميرا/ الميكروفون'
     troubleshooting_guide_video_third: قم بتحديث الصفحة بعد تغيير الأذونات
     untimed: غير محدد بوقت
     upload: تحميل/ رفع
+    upload_speed_below_minimum: سرعة الرفع %{upload_speed} أقل من الحد الأدنى المطلوب لسرعة الرفع وهو %{minimum_upload_speed} ميغابت في الثانية
+    video: فيديو
     video_and_audio: الفيديو والصوت
     video_and_audio_recording: تسجيل الفيديو والصوت
+    video_check_description: هذا فحص للنظام قبل بدء الاختبار. يرجى التحدث بشكل مستمر وعدم التوقف حتى ينتهي التسجيل تلقائيًسيتم تسجيل فيديو لمدة 30 ثانية لاختبار الصوت والصورة.
     video_check_fix_fifth: جرب فصل الكاميرا وإعادة توصيلها إذا كانت الكاميرا خارجية
     video_check_fix_first: اضغط على سماح (Allow) عندما يطلب المتصفح الإذن باستخدام الكاميرا
     video_check_fix_fourth: تأكد من أن الكاميرا متصلة ومشغّلة
     video_check_fix_second: انتقل إلى إعدادات المتصفح وفعّل الوصول إلى الكاميرا لهذا الموقع
     video_check_fix_sixth: أعد تشغيل المتصفح ثم حاول مرة أخرى
     video_check_fix_third: أغلق التطبيقات الأخرى التي قد تستخدم الكاميرا (مثل Zoom أو Teams وغيرها)
+    view_details: عرض التفاصيل
     webgl_api_fix_description_first: تأكد من أن متصفحك يدعم WebGL وأنه مفعّل في الإعدادات
     webgl_api_fix_description_second: حدّث تعريفات برامج تشغيل الرسومات إلى أحدث إصدار
     webgl_api_fix_title: متصفح لا يدعم WebGL أو أن هذه الميزة غير مفعّلة
     webgl_api_support: دعم واجهة WebGL API
+    webgl_not_supported_detail: أنت تستخدم %{browser_name} الإصدار %{browser_version} وهو لا يدعم WebGL. يرجى تحديث متصفحك إلى أحدث إصدار لضمان التوافق.

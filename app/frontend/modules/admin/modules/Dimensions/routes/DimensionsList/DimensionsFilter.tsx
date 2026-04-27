@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Button } from 'antd'
-import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ImportOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 
@@ -21,6 +21,10 @@ export const DimensionsFilter: FC<Props> = ({
     openModal('DimensionsFormModal')
   }
 
+  const handleImportDimensionModal = () => {
+    openModal('DimensionImportModal')
+  }
+
   return (
     <Resource.Filter
       name="filterable_fields"
@@ -29,6 +33,11 @@ export const DimensionsFilter: FC<Props> = ({
       <Button type="primary" disabled={tableLoading} onClick={handleCreateDimensionModal}>
         <PlusOutlined />
         {I18n.t('common.actions.create')}
+      </Button>
+
+      <Button disabled={tableLoading} onClick={handleImportDimensionModal}>
+        <ImportOutlined />
+        {I18n.t('administration.dimensions.import_modal.import_dimension')}
       </Button>
     </Resource.Filter>
   )

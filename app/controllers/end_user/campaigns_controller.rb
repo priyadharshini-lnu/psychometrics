@@ -23,7 +23,8 @@ module EndUser
           render json: ::EndUser::CampaignSerializer.new(
             context: {
               current_user: current_user,
-              include: '**'
+              include: '**',
+              system_check_session_id: cookies.signed[:system_check_session_id]
             }
           ).serialize(@campaign)
         end
@@ -40,7 +41,9 @@ module EndUser
       render json: ::EndUser::CampaignSerializer.new(
         context: {
           current_user: current_user,
-          include: '**'
+          include: '**',
+          system_check_session_id: cookies.signed[:system_check_session_id]
+
         }
       ).serialize(@campaign)
     end

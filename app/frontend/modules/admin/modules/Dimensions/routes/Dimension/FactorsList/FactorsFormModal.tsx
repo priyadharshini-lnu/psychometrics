@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import {
   Avatar, Button, Form, Input, Upload, Select, InputNumber,
-  Space, Flex, Radio, Typography,
+  Space, Flex, Radio, Typography, Tooltip,
 } from 'antd'
 import { useDispatch } from 'react-redux'
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface'
 import omit from 'lodash/omit'
 import get from 'lodash/get'
 import { useParams } from 'react-router-dom'
-import { UploadOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { UploadOutlined, DeleteOutlined, QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Factor, uploadFiles } from '~/modules/admin/modules/campaigns/core/factors'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { addModificationTypes } from './utils/modificationTypes'
+import { SafeHTML } from '~/components/SafeHTML'
 import { ScoringStrategyEditor, PercentageCheckbox, SubfactorNormScoreCheckbox } from './ScoringStrategyEditor'
 import { ScoreDefinitions } from './ScoreDefinitions'
 import { generateScoreDefinitionsFromRange } from './utils/scoreDefinitions'
@@ -186,7 +187,19 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
 
           <Form.Item
             name="scoringStrategy"
-            label={I18n.t('administration.factors.index.scoring_strategy')}
+            label={(
+              <span>
+                <span className="mr4">{I18n.t('administration.factors.index.scoring_strategy')}</span>
+                <Tooltip
+                  title={
+                    <SafeHTML html={I18n.t('administration.factors.form.scoring_strategies_tip')} />
+                  }
+                >
+                  <span><QuestionCircleOutlined /></span>
+                </Tooltip>
+              </span>
+            )}
+            rules={[{ required: true }]}
           >
             <Select>
               {SCORING_STRATEGIES.map(strategy => (

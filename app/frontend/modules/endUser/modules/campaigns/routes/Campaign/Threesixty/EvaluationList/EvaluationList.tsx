@@ -77,7 +77,11 @@ const EvaluationListComponent = ({
   const getPath = (item) => {
     const assessmentLanguage = item.availableLanguages?.includes(I18n.locale) ? I18n.locale : item.defaultLanguage
 
-    if (!isEvaluationCompleted(item) && WizardIsRequired.run(item.assessmentExtra, item.id)) {
+    if (!isEvaluationCompleted(item) && WizardIsRequired.run(
+      item.assessmentExtra,
+      item.id,
+      item.shouldRunAssessmentLevelChecks,
+    )) {
       return `/system_checks/${item.assessmentId}/${item.id}`
     }
     // eslint-disable-next-line max-len

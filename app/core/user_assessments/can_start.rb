@@ -18,19 +18,47 @@ module UserAssessments
     end
 
     def system_checks_required?
-      extra = user_assessment.assessment.extra
-      video_check = JSON.parse(cookies['checking_wizard.video'] || '{}')
-      enable_audio_check = extra['enable_audio_check'] || has_question_type?('AudioResponse')
-      enable_video_check = extra['enable_video_check'] || has_question_type?('VideoResponse')
+      return false unless should_run_assessment_level_checks?
 
-      return true if enable_audio_check && !cookies['checking_wizard.audio']
-      return true if enable_video_check && !video_check[user_assessment.id.to_s]
-      return true if extra['enable_network_check'] == true && !cookies['checking_wizard.network']
+      return true if audio_check_required?
+      return true if video_check_required?
 
-      false
+      network_check_required?
     end
 
     private
+
+    def should_run_assessment_level_checks?
+      user_assessment.campaign.should_run_assessment_level_checks?
+    end
+
+    def audio_check_required?
+      enable_audio_check? && !cookies['checking_wizard.audio']
+    end
+
+    def video_check_required?
+      enable_video_check? && !video_check_cookie[user_assessment.id.to_s]
+    end
+
+    def network_check_required?
+      assessment_extra['enable_network_check'] == true && !cookies['checking_wizard.network']
+    end
+
+    def enable_audio_check?
+      assessment_extra['enable_audio_check'] || has_question_type?('AudioResponse')
+    end
+
+    def enable_video_check?
+      assessment_extra['enable_video_check'] || has_question_type?('VideoResponse')
+    end
+
+    def assessment_extra
+      user_assessment.assessment.extra
+    end
+
+    def video_check_cookie
+      JSON.parse(cookies['checking_wizard.video'] || '{}')
+    end
 
     def has_question_type?(type)
       available_questions = user_assessment.assessment.questions.not_deleted.uniq { |q| q[:type] }

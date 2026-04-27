@@ -17,6 +17,7 @@ import {
   ArtifactResults,
 } from '~/modules/admin/modules/campaigns/routes/Campaign/routes/AIArtifacts/Results/ArtifactResults'
 import { AiAssistant, AiAssistantTR } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
+import { AdvancedPromptEditor } from '~/modules/admin/modules/AiAssitant/routes/AiAssistantList/AdvancedPromptEditor'
 import { DEPENDENCY_LABELS } from './constants'
 import {
   transformAssessmentsToQuestions,
@@ -269,10 +270,23 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
           </Form.Item>
           <Form.Item
             name="instructions"
-            label={I18n.t('administration.common.instructions')}
+            label={(
+              <Flex align="center" gap={4}>
+                {I18n.t('administration.common.instructions')}
+                {aiAssistant?.advancedPromptingEnabled && (
+                  <Tooltip title={I18n.t('admin.campaign_ai_artifacts_instruction_templating_tooltip')}>
+                    <span><InfoCircleOutlined style={{ color: '#1890ff' }} /></span>
+                  </Tooltip>
+                )}
+              </Flex>
+            )}
             rules={[{ required: true }]}
           >
-            <Input.TextArea />
+            {aiAssistant?.advancedPromptingEnabled ? (
+              <AdvancedPromptEditor campaignId={campaignId} />
+            ) : (
+              <Input.TextArea />
+            )}
           </Form.Item>
           <Form.Item
             name="aiAssistantId"

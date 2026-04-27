@@ -92,6 +92,24 @@ describe AI::Tools::CampaignArtifactResultManager do
         expect(artifact_result.results['summary']).to eq('Test summary to save')
         expect(artifact_result.parsed_dependencies).to eq(audit_data)
       end
+
+      it 'clears error from a previously failed result on successful save' do
+        artifact.results.create!(
+          user: user,
+          assistable: artifact,
+          error: 'Previous error message',
+          checkpoint: nil
+        )
+        expect(artifact).to receive(:validate_results_schema).and_return([]).at_least(:once)
+
+        expect do
+          subject.execute(results: results_json)
+        end.to raise_error(AI::Utils::SuccessfulCompletionSignal)
+
+        artifact_result = artifact.results.find_by(user: user)
+        expect(artifact_result.error).to be_nil
+        expect(artifact_result.results['summary']).to eq('Test summary to save')
+      end
     end
 
     context 'when validation errors occur' do
@@ -235,6 +253,7 @@ describe AI::Tools::CampaignArtifactResultManager do
         expect(artifact).to receive_message_chain(:results,
                                                   :find_or_initialize_by).with(user: user).and_return(artifact_result)
         expect(artifact_result).to receive(:results=)
+        expect(artifact_result).to receive(:error=).with(nil)
         expect(artifact_result).to receive(:parsed_dependencies=)
         expect(artifact_result).to receive(:content_checksum=)
         expect(artifact_result).to receive(:save!).and_raise(ActiveRecord::RecordInvalid.new(user))

@@ -929,6 +929,7 @@ zh-Hant:
         normalize_factor_scores: 標準化因子分數
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
+        regenerate_assessment_transcriptions: 重新生成评估记录
         regenerate_campaign_reports: 再生活動報告
         regenerate_report: 再生報告
         regenerate_threesixty_report: 再生三六零報告
@@ -2003,8 +2004,6 @@ zh-Hant:
         subject: Lighthouse邀請函
       confirmation_instructions:
         subject: 確認指示
-      copyright:
-        text: Lighthouse. 版權所有
       invitation_instructions:
         body: '您好 %{name}，您已被加入 Lighthouse（兆光科技），成為以下部分的管理員 '
         login: 登入 Lighthouse
@@ -2017,8 +2016,6 @@ zh-Hant:
         body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
         regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
-      powered_by:
-        text: Powered by Lighthouse.
       reset_password_instructions:
         body: '您好，%{name}！有人要求提供變更密碼的連結。 您可以透過以下連結變更密碼。 '
         change_password: 變更密碼
@@ -2694,13 +2691,7 @@ zh-Hant:
     my_plan:
       development_plan: 發展計劃
       graphs:
-        behavioural: 行為
         categories: 類別
-        learning_on_job: 在職 (%{count})
-        learning_others: 向他人學習 (%{count})
-        learning_structured: 有系統的學習 (%{count})
-        other: 其他
-        technical: 技術
       save_skills: 儲存技能
     new_comments: 新評論
     no_plan_changes_found: 自你上次審查以來，計畫沒有做任何修改。
@@ -4048,9 +4039,11 @@ zh-Hant:
       import_reports: 匯入報告和評估
   user_assessment:
     column:
+      completed_at: 完成于
       dimension_id: 尺寸 ID
       id: 使用者評估 ID
       norm_id: 標準 ID
+      started_at: 始于
     drawer:
       copied: "%{name} 已複製到剪貼簿。"
       copy: 複製到剪貼簿
@@ -4090,7 +4083,6 @@ zh-Hant:
     normalize_factor_scores:
       no_scoring_data: 由於沒有計分資料，因此無法完成因子分數的標準化。
     progress_label: 評估進度
-    redirect: 您會被重定向到第三方網站進行此評估。 如果您要開始評估，請按一下繼續。
     status:
       completed: 已完成
       in_progress: 進行中

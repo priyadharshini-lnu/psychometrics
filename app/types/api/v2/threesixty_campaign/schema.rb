@@ -48,6 +48,7 @@ module Api
             end
             optional(:default_assessment_locale).filled(:string)
             optional(:default_report_language).filled(:string)
+            optional(:tag_list).array(:string)
           end
         end
 

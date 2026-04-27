@@ -53,6 +53,7 @@ import { useWindowSize } from '~/hooks/useWindowSize'
 import { UserFilterModal } from '../Campaign/routes/Participants/Subjects/UserFilterModal'
 import ConvertOrCopyAsTemplateModal from
   '~/modules/admin/modules/threeSixtyCampaign/routes/Participants/ConvertOrCopyAsTemplateModal'
+import { CampaignTagFilter } from './CampaignTagFilter'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -99,6 +100,7 @@ const CampaignListComponent: React.FC<Props> = ({
   getFilteredValue,
   tableConfig,
   changeFilter,
+  removeFilter,
   onTableChange,
   getSortOrder,
   changePage,
@@ -133,6 +135,10 @@ const CampaignListComponent: React.FC<Props> = ({
         </Col>
         <Col>
           <Space>
+            <CampaignTagFilter
+              changeFilter={changeFilter}
+              removeFilter={removeFilter}
+            />
             <Search
               placeholder={I18n.t('common.actions.search')}
               value={filters.filterableFields}
@@ -173,14 +179,21 @@ const CampaignListComponent: React.FC<Props> = ({
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, campaignUrl, isTemplate }) => (
+              render={({
+                name, campaignUrl, isTemplate, tagList,
+              }) => (
                 <div>
                   <Link to={campaignUrl}>{name}</Link>
-                  {isTemplate && (
+                  {(isTemplate || tagList?.length > 0) && (
                     <div>
-                      <Tag color="gold">
-                        {I18n.t('administration.campaigns.listing.template')}
-                      </Tag>
+                      {isTemplate && (
+                        <Tag color="gold">
+                          {I18n.t('administration.campaigns.listing.template')}
+                        </Tag>
+                      )}
+                      {tagList?.map((tag: string) => (
+                        <Tag key={tag}>{tag}</Tag>
+                      ))}
                     </div>
                   )}
                 </div>

@@ -28,6 +28,7 @@ type CampaignDetails = {
 
 type CampaignOptions = {
   allowContinueWithWarning: boolean
+  proctoringEnabled: boolean
 }
 
 type CampaignDetailsForSystemCheck = {
@@ -49,6 +50,8 @@ type CurrentCampaignForSystemCheck = CampaignDetailsForSystemCheck & {
     minimumDownloadSpeed: number
     minimumUploadSpeed: number
     requiredSystemChecks: string[]
+    type: string
+    threeSixtyCampaignId?: number
   }
 
 type SystemCheckState = {
@@ -81,8 +84,11 @@ const systemCheck = createSlice({
         minimumDownloadSpeed: 0,
         minimumUploadSpeed: 0,
         requiredSystemChecks: [],
+        type: payload.type,
+        threeSixtyCampaignId: payload.threesixtyCampaignId,
       }
     },
+
     setChecksArray (state, { payload }) {
       state.currentCampaignForSystemCheck!.checksArray = state.currentCampaignForSystemCheck!.checksArray.concat(payload)
     },

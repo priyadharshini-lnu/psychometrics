@@ -8,6 +8,7 @@ sr-Cyrl:
     add_campaign_admin: Додај администратора кампање
     add_client_admin: Додај администратора клијента
     add_indicator: Додај индикатор
+    add_new_folder: Додај нову фасциклу
     add_project: Додај пројекат
     add_project_admin: Додај администратора пројекта
     add_threesixty_campaign_admin: Додај администратора кампање
@@ -45,13 +46,17 @@ sr-Cyrl:
     ai_assistants: АИ асистенти
     ai_assistants_advanced_mode_tooltip: Користите напредни режим за израду шаблона упитника користећи Liquid шаблон са расположивим променљивим. Погледајте документацију за више детаља.
     ai_assistants_campaign_id_placeholder: Унесите ИД кампање
+    ai_assistants_cannot_change_type_when_in_use: Не можете променити тип АИ асистента "%{name}" јер је тренутно у употреби.
     ai_assistants_no_rendered_output: Није доступан приказани излаз
+    ai_assistants_provider_change_confirm_title: Променити провајдера?
+    ai_assistants_provider_previously_used_warning: Овај асистент је раније генерисао резултате са "%{from}". Преласком на "%{to}" може се променити понашање асистента приликом будућих захтева за генерисање.
     ai_assistants_render_button: Шаблон рендера
     ai_assistants_rendered_prompt: Генерисан одговор
     ai_assistants_template_and_campaign_required: Молимо вас да наведете и ИД шаблона и ИД кампање.
     ai_assistants_template_render_failed: Неуспело приказивање шаблона
     ai_assistants_test_render: Тест рендеровања
     ai_assistants_test_render_tooltip: Тестирајте шаблон упитa са подацима о кампањи да бисте проверили шта ће бити послато АИ асистенту.
+    ai_assistants_type_locked_tooltip: Овај асистент се тренутно користи и његов тип се не може променити.
     ai_assisted_idp_disabled_by_client: AI Assisted IDP је онемогућен од стране клијента
     ai_assisted_idp_feature_disabled: Функција AI Assisted IDP је онемогућена за овај пројекат.
     ai_idp_assistant_configure_dependencies: Конфигуришите зависности вештачке интелигенције
@@ -85,6 +90,19 @@ sr-Cyrl:
     ai_scoring_appoval_responses: Одговори вештачке интелигенције
     ai_scoring_appoval_score_not_applicable: Резултат није примењив
     ai_scoring_approval: Одобрење вештачке интелигенције
+    ai_scoring_approval_digest_mailer_access_link_intro: 'Можете приступити одобрењима за бодовање преко следећег линка:'
+    ai_scoring_approval_digest_mailer_approved_body_intro: Следеће оцењивања су одобрена.
+    ai_scoring_approval_digest_mailer_approved_contact_reason: Добијате овај имејл јер сте додати као контакт за пријем обавештења о одобрењу бодовања.
+    ai_scoring_approval_digest_mailer_approved_subject: Одобрени резултати
+    ai_scoring_approval_digest_mailer_assessment_label: 'Оцена: %{value}'
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: Следеће оцене су спремне за одобрење и захтевају вашу акцију.
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: Добијате овај имејл јер сте додати као овлашћени за одобравање бодовања која захтевају одобрење.
+    ai_scoring_approval_digest_mailer_awaiting_subject: Резултати чекају одобрење
+    ai_scoring_approval_digest_mailer_campaign_label: 'Кампања: %{value}'
+    ai_scoring_approval_digest_mailer_count_label: 'Пребројавање поена: %{value}'
+    ai_scoring_approval_digest_mailer_dear: Поштовани %{name},
+    ai_scoring_approval_digest_mailer_link_text: Одобрења за бодовање
+    ai_scoring_approval_digest_mailer_project_label: 'Пројекат: %{value}'
     ai_scoring_approval_settings: Подешавања за одобравање бодовања вештачке интелигенције
     ai_scoring_approval_stale_description: Ажурирања конфигурације од последњег покретања могла су променити резултат. Поново оцените да бисте га ажурирали користећи најновија подешавања.
     ai_scoring_approval_stale_title: Резултат може бити застарео
@@ -136,6 +154,7 @@ sr-Cyrl:
     bulk_assets_modal_title: Отпремите CSV и ZIP датотеке
     bulk_upload_ai_artifacts: Масовни унос АИ артефаката
     campaign_ai_artifact_updated_successfully: Артифакти вештачке интелигенције кампање успешно ажурирани
+    campaign_ai_artifacts_instruction_templating_tooltip: Можете користити напредне инструкције користећи шаблонизацију упита са Liquid синтаксом шаблона и доступним променљивим. Погледајте документацију за више детаља.
     campaign_ai_artifacts_results_export_details: 'Кампања: АИ артефакти генерисали резултате'
     campaign_assessment_actions_disable_caching: Онемогући кеширање процене
     campaign_assessment_actions_enable_caching: Омогући кеширање процене
@@ -161,6 +180,24 @@ sr-Cyrl:
     campaign_assessment_modals_enable_caching_title: Омогући кеширање процене?
     campaign_factors: Фактори кампање
     campaign_name: Назив кампање
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: ИД спољног извештаја
+          language_id: Идентификатор језика
+          norm: Норм
+          norm_id: Норм ИД
+          suitability_id: Идентификатор подобности
+        labels:
+          assessment_ids: Идентификатори процене
+          available_languages: Доступни језици
+          campaign_report_id: ИД извештаја о кампањи
+          check_details: Проверите детаље
+          default_language: Стандардни језик
+          external_settings: Спољна подешавања
+          provider: Пружалац
+          report_pdf_status: Пријави статус PDF-а
+          user_report_id: ИД извештаја корисника
     campaign_templates: Шаблони кампања
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
     campaigns: Кампање
@@ -183,7 +220,9 @@ sr-Cyrl:
     configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
     copied: Копирано
+    copied_url_success: URL је успешно копиран у међуспремник
     copy_ai_artifacts: Копирајте АИ артефакте
+    copy_image_url: Копирајте УРЛ слике
     country: Земља
     create_client: Креирај клијента
     create_indicator: Креирај индикатор
@@ -221,6 +260,7 @@ sr-Cyrl:
       thursday: Четвртак
       tuesday: Уторак
       wednesday: Среда
+    dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Димензије
     done: Готово
     done_tooltip: За овог корисника више не могу бити поднете оцене јер је његова оцена означена као завршена од стране %{marked_by}
@@ -228,9 +268,11 @@ sr-Cyrl:
     duration: Трајање
     edit_campaign_admin: Уреди администратора кампање
     edit_client_admin: Уреди администратора клијента
+    edit_folder: Уреди фасциклу
     edit_indicator: Уреди индикатор
     edit_job_roles: Уређивање улога посла
     edit_level: Уреди ниво
+    edit_media: Уреди медије
     edit_permission_denied: Немате дозволу да уређујете администратора "%{name}"
     edit_project_admin: Уреди администратора пројекта
     edit_threesixty_campaign_admin: Уреди администратора кампање
@@ -272,6 +314,8 @@ sr-Cyrl:
     feature_global_skills_description: Приступите глобалној библиотеци вештина за процене
     feature_idp_description: Омогућите појединачно планирање развоја за учеснике
     feature_sms_notification_description: Омогућите СМС обавештења за позиве и подсетнике кампање
+    file_size_must_be_less_than_mb: Датотека {{name}} прелази максималну величину од {{max_size_mb}} MB
+    file_upload_failed: Покушај отпремања {{name}} није успео.
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
     final_score_empty_msg: Коначан резултат не може бити празан.
@@ -351,6 +395,8 @@ sr-Cyrl:
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     max_value: Максимална вредност
+    media_files_label: Датотеке
+    media_library: Медијска библиотека
     messages: Поруке
     mhs: МХС
     mhs_assessment: МХС процена
@@ -370,6 +416,7 @@ sr-Cyrl:
     name: Име
     name_max_length: Име не смеје бити дуže од %{length} карактера
     name_required: Име је обавезно
+    new_folder: Нова фасцикла
     no_file_selected: Није изабрана датотека
     no_notifications: Нема обавештења
     no_status: Без статуса
@@ -832,9 +879,15 @@ sr-Cyrl:
     questions: Питања
     range_min_max: Домeн %{min} - %{max}
     reflection_questions: Питања за размишљање
+    regenerate_transcriptions_action: Поново генериши транскрипте
+    regenerate_transcriptions_confirm_content: Да ли сте сигурни да желите да поново генеришете транскрипције за ову процену? Ово ће поново обрадити све непотпуне транскрипције.
+    regenerate_transcriptions_confirm_title: Поново генериши транскрипте
+    regenerate_transcriptions_scheduled: Задатак за генерисање транскрипција је успешно заказан.
     registration_codes: Кодови за регистрацију
     registration_settings: Подешавања регистрације
     remove_children_to_change_type: Уклоните све децу да бисте променили тип
+    remove_confirmation: Да ли сте сигурни да желите да уклоните овај предмет?
+    remove_successfully: Медијски ставка је успешно уклоњена.
     report_approvals: Извештаји о одобрењима
     report_condition_not_met: Потребне су евалуације за %{required} и %{relationship}, али има само %{actual}
     report_conditions_not_met_detailed: Извештај за %{user} не испуњава услове доступности. %{conditions}
@@ -938,7 +991,9 @@ sr-Cyrl:
     scoring_approval_approvers: Одобриоци
     scoring_approval_assessment: Оцењивање
     scoring_approval_assessor_users: Корисници процењивача
+    scoring_approval_do_not_send_notifications: Не шаљите обавештења
     scoring_approval_modal_title: Подешавања за одобравање бодовања
+    scoring_approval_notification_users: Корисници обавештења о одобрењу
     scoring_approval_remove_modal_success: 'Подешавање одобрења за ИД процене: %{assessmentId} је успешно избрисан'
     scoring_approval_remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за ИД процене: %{assessmentId}?'
     scoring_supported_only_for_ai_questions: Додељивање бодова је дозвољено само на питањима са укљученом вештачком интелигенцијом за тренутно изабрани фактор.
@@ -963,6 +1018,7 @@ sr-Cyrl:
     skill_aliases: Алијасе вештина
     skills: Вештине
     skills_taxonomy: Таксономија вештина
+    skip_assessment_level_checks: Прескочи системске провере на нивоу процене
     slot_name: Назив слота
     sms_histories: СМС историје
     sms_invites: SMS позиви
@@ -995,7 +1051,12 @@ sr-Cyrl:
     translated_to: 'Преведено на:'
     translated_with_ai_notice: Преведено помоћу вештачке интелигенције
     translation_assistant_not_configured: Помоћник за превод није конфигурисан
+    translations:
+      title: Преводи
     update_success: "%{readableResourceName} је успешно ажуриран"
+    upload: Отпреми
+    upload_media: Поставите медије
+    upload_required: Молимо додајте барем једну датотеку за отпремање.
     upload_success: Успешно отпремљено
     user_report_events: Извештај корисника о догађајима
     users: Корисници
@@ -1004,6 +1065,7 @@ sr-Cyrl:
     very_high: Веома високо
     very_low: Врло ниско
     view_licenses: Прикажи лиценце
+    wait_for_upload_completion: Молимо сачекајте да се сви фајлови у потпуности отпреме.
     waiting: Чекање
     weight: Тежина
     what_to_look_for: На шта обратити пажњу

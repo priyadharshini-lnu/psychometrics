@@ -33,6 +33,7 @@ module MediaResponses
 
         media_response.save_transcription_completed!(
           transcription_data[:text],
+          segments: transcription_data[:segments],
           metadata: transcription_data[:metadata]
         )
 
@@ -60,11 +61,13 @@ module MediaResponses
         original_text = transcription_entry['transcription']
         hallucination_reason = detect_hallucination(transcription_entry)
         tokens = hallucination_reason ? [] : (transcription_entry['tokens'] || [])
+        segments = SegmentParser.from_oci_tokens(tokens)
 
         {
           text: hallucination_reason ? '' : original_text,
           metadata: build_metadata(json_data, transcription_entry, hallucination_reason, original_text),
-          tokens: tokens
+          tokens: tokens,
+          segments: segments
         }
       end
 

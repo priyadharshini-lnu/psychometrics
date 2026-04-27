@@ -13,6 +13,8 @@ module ScoreApprovals
       @meta = initialize_meta
       @approved_approvals = []
       score_approvals.each { |score_approval| process_approval(score_approval) }
+      send_digest_emails
+
       broadcast :ok, @approved_approvals, @meta
     end
 
@@ -23,6 +25,8 @@ module ScoreApprovals
         @meta[:ignored] += 1
         return
       end
+
+      score_approval.skip_event_emails = true if digest_enabled?(score_approval)
 
       result = ScoreApprovals::ApproveAllQuestions.call(score_approval, current_user, bulk_scoring_approval: true)
       if result[:ok].present?
@@ -37,7 +41,8 @@ module ScoreApprovals
       ::AI::ScoringApprovalSetting.user_tasks(current_user).
         where(id: user_assessment_ids).
         select('user_assessments.*', 'assessor_ids', 'approver_ids',
-               'allow_bulk_approve', 'allow_bulk_approve_scores')
+               'allow_bulk_approve', 'allow_bulk_approve_scores',
+               'send_digest_emails', 'do_not_send_notifications', 'digest_delivery_mode')
     end
 
     def initialize_meta
@@ -47,8 +52,27 @@ module ScoreApprovals
       }
     end
 
+    def digest_enabled?(score_approval)
+      score_approval.try(:send_digest_emails) && !score_approval.try(:do_not_send_notifications)
+    end
+
     def send_digest_emails
-      # TODO: implement email sending logic
+      grouped = @approved_approvals.group_by { |sa| [sa.campaign_id, sa.assessment_id] }
+      grouped.each do |(campaign_id, assessment_id), approvals|
+        setting = AI::ScoringApprovalSetting.find_by(
+          campaign_id: campaign_id, assessment_id: assessment_id
+        )
+
+        next if setting&.do_not_send_notifications?
+        next unless setting&.send_digest_emails
+        next unless setting&.digest_delivery_mode == 'immediate'
+
+        new_status = approvals.first.approval_status
+        score_approval_ids = approvals.map(&:id)
+        SendScoringDigestEmailsJob.perform_later(
+          score_approval_ids, campaign_id, assessment_id, new_status
+        )
+      end
     end
   end
 end

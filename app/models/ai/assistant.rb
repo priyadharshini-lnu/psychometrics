@@ -19,6 +19,7 @@ class AI::Assistant < ApplicationRecord
 
   validates :model_id, presence: true
   validate :validate_type_specific_rules
+  validate :prevent_assistant_type_change_when_in_use, if: :assistant_type_changed?
 
   before_destroy :check_ai_assistant_in_use
 
@@ -59,8 +60,26 @@ class AI::Assistant < ApplicationRecord
 
   delegate :has_ruby_llm_schema?, to: :type_configuration
 
+  def in_use?
+    campaign_ai_artifacts.exists? || assessment_assistants.exists? || assigned_to_idp_template?
+  end
+
+  def provider_previously_used?
+    actual_model = ai_provider_for_model&.dig('model')
+    return false if actual_model.blank?
+
+    last_used_model_id = chats.where.not(output_tokens: [nil, 0]).
+                         joins(:ai_model_registry).
+                         order(updated_at: :desc).
+                         pick('ai_model_registries.model_id')
+
+    last_used_model_id == actual_model
+  end
+
   def assigned_to_idp_template?
-    IdpTemplate.exists?(['one_click_ai_assistant_id = ? OR document_analysis_ai_assistant_id = ?', id, id])
+    query = 'one_click_ai_assistant_id = ? OR document_analysis_ai_assistant_id = ? ' \
+            'OR skill_gap_report_analysis_ai_assistant_id = ?'
+    IdpTemplate.exists?([query, id, id, id])
   end
 
   def ai_provider_for_model
@@ -149,10 +168,16 @@ class AI::Assistant < ApplicationRecord
 
   # TODO: This should be replaced with published/draft status in future instead of not allowing deletion
   def check_ai_assistant_in_use
-    return unless campaign_ai_artifacts.exists?
+    return unless in_use?
 
     errors.add(:base, I18n.t('administration.ai_assistants.errors.cannot_delete_in_use', name: name))
     throw(:abort)
+  end
+
+  def prevent_assistant_type_change_when_in_use
+    return unless in_use?
+
+    errors.add(:assistant_type, I18n.t('admin.ai_assistants_cannot_change_type_when_in_use', name: name))
   end
 
   # Get the type-specific configuration instance

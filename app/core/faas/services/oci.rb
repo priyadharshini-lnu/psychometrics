@@ -5,6 +5,7 @@ module Faas
     module Exceptions
       class TooManyRequest < StandardError; end
       class IncorrectState < StandardError; end
+      class ServiceUnavailable < StandardError; end
     end
 
     private_attr_reader :invoke_endpoint, :options, :function_identifier
@@ -79,6 +80,8 @@ module Faas
           raise Exceptions::TooManyRequest, "Too many requests: #{error.message}"
         when 409
           raise Exceptions::IncorrectState, "Incorrect state: #{error.message}"
+        when 503
+          raise Exceptions::ServiceUnavailable, "Service unavailable: #{error.message}"
         else
           raise
       end

@@ -11,7 +11,7 @@ module AI
       def initialize(campaign_ai_artifact, user, options = {})
         @campaign_ai_artifact = campaign_ai_artifact
         @campaign = campaign_ai_artifact.campaign
-        @user = user
+        @user = user # User for which artifact will be generated
         @error = nil
         @options = options
         @current_user = options[:current_user]
@@ -70,7 +70,8 @@ module AI
           campaign_artifact_assistant.id,
           current_user,
           parsed_dependencies,
-          chat: chat_with_context
+          chat: chat_with_context,
+          prompt_template_context: prompt_template_context
         )
 
         assistant_service.
@@ -91,6 +92,12 @@ module AI
       end
 
       def parsed_dependencies
+        return dependencies_data unless campaign_artifact_assistant.advanced_prompting_enabled?
+
+        @parsed_dependencies ||= AI::PromptTemplate::Renderer.call!(dependencies_data, **prompt_template_context)
+      end
+
+      def dependencies_data
         test_data = options[:test_data] || ''
 
         if test_mode?
@@ -162,7 +169,9 @@ module AI
       end
 
       def campaign_artifact_assistant_chat
-        @campaign_artifact_assistant_chat ||= campaign_artifact_assistant.for_user(current_user)
+        @campaign_artifact_assistant_chat ||= campaign_artifact_assistant.for_user(
+          current_user, prompt_template_context: prompt_template_context
+        )
       end
 
       def chat_with_context
@@ -176,6 +185,13 @@ module AI
 
       def checksum_changed?
         artifact_result.content_checksum != campaign_ai_artifact.dependencies_checksum
+      end
+
+      def prompt_template_context
+        {
+          campaign: campaign,
+          user: test_mode? ? current_user : user
+        }
       end
     end
   end

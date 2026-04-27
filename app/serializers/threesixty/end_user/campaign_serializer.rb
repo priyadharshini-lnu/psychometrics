@@ -5,7 +5,8 @@ module Threesixty
     class CampaignSerializer < Threesixty::EndUser::BaseCampaignSerializer
       attributes :id, :type, :assessment_name, :instructions,
                  :evaluations_counters, :nominations_counters, :reports_counters, :nominations,
-                 :managed_subjects, :is_subject, :status, :evaluations, :reports, :options, :nomination_subjects
+                 :managed_subjects, :is_subject, :status, :evaluations, :reports, :options, :nomination_subjects,
+                 :last_successful_check_at, :campaign_id
 
       def evaluations
         Panko::ArraySerializer.new(
@@ -82,6 +83,20 @@ module Threesixty
 
       def is_subject
         object.subjects.exists?(user_id: context[:current_user].id)
+      end
+
+      def last_successful_check_at
+        campaign = object.campaign
+        return nil unless campaign.system_check_enabled?
+
+        campaign_user = campaign.campaign_users.find_by(user_id: current_user)
+        return nil if campaign_user.nil?
+
+        SystemCheckSessions::GetLastSuccessfulCheckAt.new(campaign_user: campaign_user).query
+      end
+
+      def campaign_id
+        object.campaign.id
       end
 
       def nomination_users

@@ -8,6 +8,7 @@ ja:
     add_campaign_admin: キャンペーン管理者の追加
     add_client_admin: クライアント管理者の追加
     add_indicator: インジケーターを追加
+    add_new_folder: 新しいフォルダを追加
     add_project: プロジェクトの追加
     add_project_admin: プロジェクト管理者の追加
     add_threesixty_campaign_admin: キャンペーン管理者の追加
@@ -45,13 +46,17 @@ ja:
     ai_assistants: AIアシスタント
     ai_assistants_advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
     ai_assistants_campaign_id_placeholder: キャンペーンIDの登場です
+    ai_assistants_cannot_change_type_when_in_use: AIアシスタント「%{name}」は現在使用中のため、タイプを変更できません。
     ai_assistants_no_rendered_output: レンダリング出力は利用できません
+    ai_assistants_provider_change_confirm_title: プロバイダーを変更しますか？
+    ai_assistants_provider_previously_used_warning: このアシスタントは以前、「%{from}」を使用して結果を生成していました。「%{to}」に変更すると、今後の生成リクエストにおけるアシスタントの動作が変わる可能性があります。
     ai_assistants_render_button: レンダーテンプレート
     ai_assistants_rendered_prompt: レンダリングプロンプト
     ai_assistants_template_and_campaign_required: テンプレートとキャンペーンIDの両方をご提供ください
     ai_assistants_template_render_failed: テンプレートのレンダリングに失敗しました
     ai_assistants_test_render: テストレンダリング
     ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
+    ai_assistants_type_locked_tooltip: このアシスタントは現在使用中であり、そのタイプを変更することはできません。
     ai_assisted_idp_disabled_by_client: クライアントによりAI支援型IDPが無効化されています
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
     ai_idp_assistant_configure_dependencies: AI依存関係の設定
@@ -85,6 +90,19 @@ ja:
     ai_scoring_appoval_responses: AI応答
     ai_scoring_appoval_score_not_applicable: スコアは適用されません
     ai_scoring_approval: AIスコアリング承認
+    ai_scoring_approval_digest_mailer_access_link_intro: 以下のリンクから採点承認画面にアクセスできます：
+    ai_scoring_approval_digest_mailer_approved_body_intro: 以下の採点が承認されました。
+    ai_scoring_approval_digest_mailer_approved_contact_reason: このメールが届いたのは、採点承認の通知を受け取る連絡先として登録されたためです。
+    ai_scoring_approval_digest_mailer_approved_subject: 得点の承認
+    ai_scoring_approval_digest_mailer_assessment_label: 評価：%{value}
+    ai_scoring_approval_digest_mailer_awaiting_body_intro: 以下の採点結果は承認待ちとなっており、ご対応をお願いいたします。
+    ai_scoring_approval_digest_mailer_awaiting_contact_reason: このメールは、承認が必要な採点業務の承認者として登録されたため、お送りしています。
+    ai_scoring_approval_digest_mailer_awaiting_subject: 承認待ちのスコア
+    ai_scoring_approval_digest_mailer_campaign_label: キャンペーン：%{value}
+    ai_scoring_approval_digest_mailer_count_label: 得点数：%{value}
+    ai_scoring_approval_digest_mailer_dear: "%{name} 様、"
+    ai_scoring_approval_digest_mailer_link_text: 与信承認
+    ai_scoring_approval_digest_mailer_project_label: プロジェクト：%{value}
     ai_scoring_approval_settings: AIスコアリング承認設定
     ai_scoring_approval_stale_description: 前回の実行以降の設定変更により、スコアが変動している可能性があります。最新の設定で再計算して、スコアを更新してください。
     ai_scoring_approval_stale_title: スコアは古い可能性があります
@@ -136,6 +154,7 @@ ja:
     bulk_assets_modal_title: CSVファイルとZIPファイルをアップロード
     bulk_upload_ai_artifacts: 大量アップロードAIアーティファクト
     campaign_ai_artifact_updated_successfully: キャンペーンAIアーティファクトが正常に更新されました
+    campaign_ai_artifacts_instruction_templating_tooltip: Liquidテンプレート構文と利用可能な変数を用いたプロンプトテンプレート機能により、高度な指示を使用できます。詳細については、ドキュメントを参照してください。
     campaign_ai_artifacts_results_export_details: キャンペーンAIアーティファクトが生成した結果
     campaign_assessment_actions_disable_caching: 評価キャッシュを無効にする
     campaign_assessment_actions_enable_caching: 評価キャッシュの有効化
@@ -161,6 +180,24 @@ ja:
     campaign_assessment_modals_enable_caching_title: 評価キャッシュを有効にする?
     campaign_factors: キャンペーン要因
     campaign_name: キャンペーン名
+    campaign_report:
+      drawers:
+        external_settings:
+          external_report_id: 外部レポートID
+          language_id: 言語ID
+          norm: 基準
+          norm_id: 基準ID
+          suitability_id: 適合性ID
+        labels:
+          assessment_ids: 評価ID
+          available_languages: 利用可能な言語
+          campaign_report_id: キャンペーンレポートID
+          check_details: 詳細を確認する
+          default_language: 既定の言語
+          external_settings: 外部設定
+          provider: プロバイダー
+          report_pdf_status: レポートのPDFステータス
+          user_report_id: ユーザーレポートID
     campaign_templates: キャンペーンテンプレート
     campaign_user_job_roles_cannot_be_same: 対象となる職務は現在の職務とは異なるものでなければならない
     campaigns: キャンペーン
@@ -183,7 +220,9 @@ ja:
     configure_model_answer_title: 模範解答とキーワードを設定する
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     copied: コピーされました
+    copied_url_success: URLがクリップボードに正常にコピーされました
     copy_ai_artifacts: AI生成のアートワークをコピー
+    copy_image_url: 画像のURLをコピー
     country: 国名
     create_client: クライアント作成
     create_indicator: インジケーターを作成する
@@ -221,6 +260,7 @@ ja:
       thursday: 木曜日
       tuesday: 火曜日
       wednesday: 水曜日
+    dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
@@ -228,9 +268,11 @@ ja:
     duration: 期間
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
+    edit_folder: フォルダを編集
     edit_indicator: 編集インジケーター
     edit_job_roles: 職務内容の編集
     edit_level: 編集レベル
+    edit_media: メディアを編集
     edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
     edit_project_admin: プロジェクト管理者の編集
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
@@ -272,6 +314,8 @@ ja:
     feature_global_skills_description: グローバルスキルライブラリにアクセスして評価を実施する
     feature_idp_description: 参加者のための個人開発計画を有効にする
     feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
+    file_size_must_be_less_than_mb: ファイル {{name}} は、最大サイズ {{max_size_mb}} MB を超えています
+    file_upload_failed: "{{name}} のアップロードに失敗しました"
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
     final_score_empty_msg: 合計金額は空欄にできません。
@@ -351,6 +395,8 @@ ja:
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     max_value: 最大値
+    media_files_label: ファイル
+    media_library: メディアライブラリ
     messages: メッセージ
     mhs: MHS
     mhs_assessment: MHS評価
@@ -370,6 +416,7 @@ ja:
     name: 名前
     name_max_length: 名前は%{length}文字を超えてはいけません
     name_required: 名前が必要です
+    new_folder: 新しいフォルダ
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
     no_status: ステータスなし
@@ -832,9 +879,15 @@ ja:
     questions: 質問
     range_min_max: 範囲 %{min} - %{max}
     reflection_questions: 振り返りの質問
+    regenerate_transcriptions_action: 文字起こしを再生成する
+    regenerate_transcriptions_confirm_content: この評価の文字起こしを再生成してもよろしいですか？これにより、未完了の文字起こしがすべて再処理されます。
+    regenerate_transcriptions_confirm_title: 文字起こしを再生成する
+    regenerate_transcriptions_scheduled: 文字起こしジョブの再生成が正常にスケジュールされました
     registration_codes: 登録コード
     registration_settings: 登録設定
     remove_children_to_change_type: すべての子要素を削除して型を変更する
+    remove_confirmation: このアイテムを削除してもよろしいですか？
+    remove_successfully: メディアアイテムが正常に削除されました。
     report_approvals: レポートの承認
     report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
     report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
@@ -938,7 +991,9 @@ ja:
     scoring_approval_approvers: 承認者
     scoring_approval_assessment: 評価
     scoring_approval_assessor_users: 査定者ユーザー
+    scoring_approval_do_not_send_notifications: 通知を送信しない
     scoring_approval_modal_title: スコア承認設定
+    scoring_approval_notification_users: 承認通知の受信者
     scoring_approval_remove_modal_success: '評価ID: %{assessmentId} の承認設定が正常に削除されました'
     scoring_approval_remove_modal_text: '評価ID: %{assessmentId} の設定を削除してもよろしいですか？'
     scoring_supported_only_for_ai_questions: 現在選択されている要素について、AI対応問題でのみ採点が許可されます。
@@ -963,6 +1018,7 @@ ja:
     skill_aliases: スキルの別名
     skills: スキル
     skills_taxonomy: スキル分類法
+    skip_assessment_level_checks: 評価レベルに基づくシステムチェックをスキップする
     slot_name: スロット名
     sms_histories: SMSヒストリー
     sms_invites: SMS招待
@@ -995,7 +1051,12 @@ ja:
     translated_to: 翻訳：
     translated_with_ai_notice: AI翻訳
     translation_assistant_not_configured: 翻訳アシスタントが設定されていません
+    translations:
+      title: 翻訳
     update_success: "%{readableResourceName}が正常に更新されました"
+    upload: アップロード
+    upload_media: メディアをアップロード
+    upload_required: アップロードするファイルを少なくとも1つ追加してください
     upload_success: アップロード成功
     user_report_events: ユーザーレポートイベント
     users: ユーザー
@@ -1004,6 +1065,7 @@ ja:
     very_high: 非常に高い
     very_low: 極めて低い
     view_licenses: ライセンスを見る
+    wait_for_upload_completion: すべてのファイルのアップロードが完了するまでお待ちください
     waiting: 待つこと
     weight: 重量
     what_to_look_for: 何に注目すべきか

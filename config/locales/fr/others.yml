@@ -929,6 +929,7 @@ fr:
         normalize_factor_scores: Normaliser les scores des facteurs
         project_compact_completion_status_export: Exportation compacte de l'état d'avancement
         project_completion_status_export: Exportation de l'état d'avancement
+        regenerate_assessment_transcriptions: Recréer les transcriptions des évaluations
         regenerate_campaign_reports: Régénérer les rapports de campagne
         regenerate_report: Rapport sur la régénération
         regenerate_threesixty_report: Rapport Regenerate Threesixty
@@ -1979,8 +1980,6 @@ fr:
     invalid_captcha: L'entrée captcha n'était pas valide.
     invalid_security_question: La réponse à la question de sécurité n'est pas valide.
     invitations:
-      confirmation_instructions:
-        subject: Instructions de confirmation
       edit:
         confirm_password_label: Confirmer le mot de passe
         header: Définissez votre mot de passe
@@ -2013,23 +2012,6 @@ fr:
           client: 'Location du client : %{section_name}'
           project: 'Projet : %{section_name}'
         subject: Invitation Lighthouse
-      invitation_removed: Votre invitation a été retirée.
-      invitation_token_invalid: Le jeton d'invitation fourni n'est pas valide !
-      mailer:
-        accept: Cliquez ici pour accepter l'invitation.
-        admin_invitation_instructions:
-        body: 'Bonjour %{name}, Vous avez été invité à accéder au panneau d''administration de Lighthouse - The Talent Enterprise assessment platform. %{accept} Ou vous pouvez ignorer cet e-mail. Veuillez ne pas partager vos identifiants d''accès avec qui que ce soit.
-
-          '
-        copyright:
-          text: Lighthouse. Tous droits réservés
-        powered_by:
-          text: Powered by Lighthouse.
-        subject: Invitation Lighthouse
-      new:
-        header: Envoyer une invitation
-        submit_button: Envoyer une invitation
-      no_invitations_remaining: Il ne reste plus d'invitations
       password_change:
         body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com '
         regards: 'Cordialement, l''équipe de Lighthouse '
@@ -2040,15 +2022,12 @@ fr:
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour réinitialiser votre mot de passe
-      send_instructions: Un courriel d'invitation a été envoyé à %{email}.
       unlock_instructions:
         body: 'Bonjour %{name} ! Votre compte a été verrouillé en raison d''un nombre excessif de tentatives de connexion infructueuses. Cliquez sur le lien ci-dessous pour déverrouiller votre compte : '
         footer: Votre mot de passe ne changera pas tant que vous n'aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe.
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Instructions pour débloquer votre compte
         unlock_account: Débloquer mon compte
-      updated: Votre mot de passe a été défini avec succès. Vous êtes maintenant connecté.
-      updated_not_active: Votre mot de passe a été défini avec succès.
     omniauth_callbacks:
       failure: Impossible de vous authentifier auprès de %{kind} car "%{reason}".
       success: Authentification réussie à partir du compte %{kind}.
@@ -2712,13 +2691,7 @@ fr:
     my_plan:
       development_plan: Plan de développement
       graphs:
-        behavioural: Comportementale
         categories: Catégories
-        learning_on_job: Au travail (%{count})
-        learning_others: Apprendre des autres (%{count})
-        learning_structured: Apprentissage structuré (%{count})
-        other: Autres
-        technical: Technique
       save_skills: Sauvegarder les compétences
     new_comments: Nouveau(x) commentaire(s)
     no_plan_changes_found: Aucune modification du plan n’a été apportée depuis votre dernier avis.
@@ -4066,9 +4039,11 @@ fr:
       import_reports: Importer des rapports et des évaluations
   user_assessment:
     column:
+      completed_at: Terminé le
       dimension_id: Dimension ID
       id: ID d'évaluation de l'utilisateur
       norm_id: ID de la norme
+      started_at: Date de début
     drawer:
       copied: "%{name} copié dans le presse-papiers."
       copy: Copier dans le presse-papiers
@@ -4108,7 +4083,6 @@ fr:
     normalize_factor_scores:
       no_scoring_data: La normalisation des scores des facteurs ne peut pas être réalisée car aucune donnée de score n'est disponible.
     progress_label: Progrès de l'évaluation
-    redirect: Vous serez redirigé vers le site d'un tiers pour cette évaluation. Veuillez cliquer sur continuer si vous voulez commencer l'évaluation.
     status:
       completed: Terminé
       in_progress: En cours

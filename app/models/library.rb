@@ -5,6 +5,7 @@ class Library < ApplicationRecord
 
   include OwnerValidations
   include ActiveStorageAttachable
+  include RansackSearchableFields
 
   belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
@@ -62,6 +63,10 @@ class Library < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[parent]
+  end
+
+  def self.ransackable_scopes(_)
+    %i[with_parent filterable_fields]
   end
 
   def log_attribute_for_delete

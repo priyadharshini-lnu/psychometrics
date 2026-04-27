@@ -3,12 +3,14 @@
 module EndUser
   class CampaignSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
+    include SystemCheckSessions::SystemCheckStatusSerializable
 
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
                :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invites, :workshops,
-               :user_assessments, :practice_campaign
+               :user_assessments, :practice_campaign, :last_successful_check_at, :threesixty_campaign_id,
+               :system_check_status
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
 
@@ -104,6 +106,12 @@ module EndUser
       object.user_reports.exists?(user_id: current_user.id, user_access: true)
     end
 
+    def threesixty_campaign_id
+      return nil unless object.type == 'threesixty'
+
+      ::Threesixty::Campaign.find_by(campaign_id: object.id)&.id
+    end
+
     def campaign_time
       return unless object.fixed_time?
       return current_campaign_user.additional_time / 60 if current_campaign_user.interrupted_campaign?
@@ -111,10 +119,29 @@ module EndUser
       object.fixed_time_duration / 60 if current_campaign_user.not_started_campaign?
     end
 
+    def last_successful_check_at
+      return nil unless object.system_check_enabled?
+      return nil if current_campaign_user.nil?
+
+      SystemCheckSessions::GetLastSuccessfulCheckAt.new(campaign_user: current_campaign_user).query
+    end
+
+    def system_check_status # rubocop:disable Lint/UselessMethodDefinition
+      super
+    end
+
     private
 
     def current_user
       context[:current_user]
+    end
+
+    def system_check_campaign
+      object
+    end
+
+    def system_check_campaign_user
+      current_campaign_user
     end
   end
 end

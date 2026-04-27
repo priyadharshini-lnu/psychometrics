@@ -929,6 +929,7 @@ bg:
         normalize_factor_scores: Нормализиране на факторните резултати
         project_compact_completion_status_export: Експорт на състоянието на завършеност на компактния файл
         project_completion_status_export: Статус на завършване Износ
+        regenerate_assessment_transcriptions: Възстановяване на транскрипциите от оценката
         regenerate_campaign_reports: Генериране на отчети за кампании
         regenerate_report: Регенериране на отчет
         regenerate_threesixty_report: Регенерирайте доклад на Threesixty
@@ -4065,9 +4066,11 @@ bg:
       import_reports: Импортиране на отчети и оценявания
   user_assessment:
     column:
+      completed_at: Завършено на
       dimension_id: ИД на величината
       id: ИД на потребителска оценка
       norm_id: Идентификационен номер на нормата
+      started_at: Започна на
     drawer:
       copied: "%{name} се копира в клипборда."
       copy: Копиране в клипборда
@@ -4107,7 +4110,6 @@ bg:
     normalize_factor_scores:
       no_scoring_data: Нормализирането на факторните резултати не може да бъде завършено, тъй като няма налични данни за оценяване.
     progress_label: Напредък в оценката
-    redirect: Ще бъдете пренасочени към сайт на трета страна за тази оценка. Моля, натиснете Продължи, ако искате да започнете оценката.
     status:
       completed: Завършен
       in_progress: В процес на изпълнение
@@ -4262,8 +4264,7 @@ bg:
     min_character: Вашият отговор трябва да съдържа най-малко %{min} знаци.
     min_factor: Вашият отговор трябва да съдържа поне %{min} факторна обратна връзка.
     min_word: Отговорът Ви трябва да бъде най-малко %{min} думи
-    most:
-      one: Моля, изберете най-много %{max} избор(и)
+    most: Моля, изберете не повече от %{max} опции
     must_rank_between: Моля, задайте стойност от %{min} до %{max} за всеки елемент. Стойностите не могат да се повтарят.
     must_select: Моля, изберете от %{min} до %{max}
     not_in_future: Избраната дата не трябва да бъде в бъдеще

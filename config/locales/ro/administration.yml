@@ -4510,7 +4510,6 @@ ro:
         new:
           header: Importați traduceri
       import:
-        successfully: Traducerile au fost importate cu succes
         successfully_scheduled: Importul traducerii a fost programat cu succes.
       reports:
         export: Exportați traduceri

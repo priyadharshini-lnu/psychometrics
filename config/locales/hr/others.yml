@@ -360,12 +360,6 @@ hr:
               at_least_one_skill_type_must_be_enabled_with_a_job_role_selected: Najmanje jedna vrsta vještine mora biti omogućena s odabranom radnom ulogom za %{block_name}
               invalid_job_role_type: 'Nevažeća radna uloga %{job_role} za %{skill_type} za %{block_name}. Valjane opcije: %{valid_options}'
               props_missing: Nedostaje konfiguracija vještina za %{block_name}
-        skills_rater_block_form:
-          attributes:
-            base:
-              at_least_one_job_role_must_be_enabled_with_a_skill_type_selected: Mora postojati barem jedna pozicija sa sljedećim setom vještina %{block_name}
-              invalid_skill_type: 'Nepravilno unesen tip vještine %{skill_type} za %{role_name} u %{block_name}. Moguće alternative: %{valid_options}'
-              props_missing: Posao
         skillvue:
           attributes:
             name:
@@ -935,6 +929,7 @@ hr:
         normalize_factor_scores: Normalizirajte rezultate faktora
         project_compact_completion_status_export: Izvoz statusa dovršetka kompaktno
         project_completion_status_export: Izvoz statusa dovršenosti
+        regenerate_assessment_transcriptions: Obnovi transkripte procjene
         regenerate_campaign_reports: Ponovno generiranje izvješća kampanje
         regenerate_report: Ponovno generiraj izvješće
         regenerate_threesixty_report: Ponovno generiraj izvješće Threesixty
@@ -1025,7 +1020,6 @@ hr:
       new_response: Novi odgovor
       next_assessment: Prijeđi na sljedeću procjenu
       pending_tasks:
-        few: Imate nekoliko zadataka na čekanju
         one: Imate 1 zadatak na čekanju
         other: Imate %{count} zadataka na čekanju
       re_evaluate: Kliknite ovdje za ponovnu procjenu
@@ -2069,21 +2063,13 @@ hr:
         submit: Pošalji
         submit_verification_code: Pošalji kod za verifikaciju
         verification_code: Kod za verifikaciju
-      submit: Pošalji
-      submit_verification_code: Pošalji kod za verifikaciju
       updated: Kod za verifikaciju je prihvaćen
-      verification_code: Kod za verifikaciju
     paranoid_verify:
       code_required: Unesite kod koji vam je dala naša podrška
     password_expired:
-      change_my_password: Promijeni moju lozinku
       change_required: Vaša lozinka je istekla. Molimo obnovite svoju lozinku.
-      current_password: Trenutna lozinka
       forced_changed: Morate postaviti novu lozinku za svoj račun.
-      new_password: Nova lozinka
-      new_password_confirmation: Potvrdite novu lozinku
       password_policy_changed: Pravila lozinke su promijenjena. Molimo promijenite svoju lozinku.
-      renew_your_password: Obnovite svoju lozinku
       show:
         change_my_password: Promijeni moju lozinku
         current_password: Trenutna lozinka
@@ -4080,9 +4066,11 @@ hr:
       import_reports: Uvozna izvješća i procjene
   user_assessment:
     column:
+      completed_at: Završeno na
       dimension_id: ID dimenzije
       id: ID procjene korisnika
       norm_id: ID standarda
+      started_at: Počeo u
     drawer:
       copied: "%{name} kopirano u međuspremnik."
       copy: Kopirati u međuspremnik
@@ -4122,7 +4110,6 @@ hr:
     normalize_factor_scores:
       no_scoring_data: Normalizacija faktorskih rezultata ne može se dovršiti jer nisu dostupni podaci o bodovanju.
     progress_label: Napredak procjene
-    redirect: Za ovu procjenu bit ćete preusmjereni na web stranicu treće strane. Molimo, kliknite Nastavi ako želite započeti procjenu.
     status:
       completed: Završeno
       in_progress: U tijeku
@@ -4277,10 +4264,7 @@ hr:
     min_character: Vaš odgovor mora sadržavati najmanje %{min} znakova.
     min_factor: Vaš odgovor mora sadržavati najmanje %{min} faktora povratnih informacija.
     min_word: Vaš odgovor mora imati najmanje %{min} riječi
-    most:
-      few: Molimo, odaberite nekoliko izbora
-      one: Molimo, odaberite jedan od ponuđenih odgovora
-      other: Molimo, odaberite najviše %{max} odgovora
+    most: Molimo odaberite najviše %{max}ih opcija.
     must_rank_between: Molimo, dodijelite vrijednost od %{min} do %{max} za svaku stavku. Vrijednosti se ne smiju ponavljati.
     must_select: Molimo, odaberite od %{min} do %{max} opcija
     not_in_future: Odabrani datum ne može biti u budućnosti
@@ -4291,7 +4275,6 @@ hr:
     required: Molimo, odgovorite na ovo pitanje
     text: Vaš odgovor ne smije sadržavati brojeve
     title:
-      few: Postoji nekoliko pogrešaka. Molimo, provjerite svoje odgovore
       one: Postoji jedna pogreška. Molimo, provjerite svoje odgovore
       other: Postoji %{count} pogrešaka. Molimo, provjerite svoje odgovore
     user_self_skill_rating_disabled: Samoocjenjivanje je onemogućeno za ovaj predložak

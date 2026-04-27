@@ -3,7 +3,10 @@
 module Threesixty
   module EndUser
     class BaseCampaignSerializer < Panko::Serializer
-      attributes :assessment_name, :type, :nominations_counters, :evaluations_counters, :reports_counters
+      include SystemCheckSessions::SystemCheckStatusSerializable
+
+      attributes :assessment_name, :type, :nominations_counters, :evaluations_counters, :reports_counters,
+                 :system_check_status
 
       def assessment_name
         object.assessment.name
@@ -58,6 +61,20 @@ module Threesixty
 
       def current_user
         context[:current_user]
+      end
+
+      def system_check_status # rubocop:disable Lint/UselessMethodDefinition
+        super
+      end
+
+      private
+
+      def system_check_campaign_user
+        current_user.campaign_users.find_by(campaign: object.campaign)
+      end
+
+      def system_check_campaign
+        object.campaign
       end
     end
   end

@@ -43,6 +43,16 @@ declare global {
       ) => number
       execute: (widgetId?: number) => void
     }
+    Osano?: {
+      cm: {
+        dialogOpen: boolean
+        addEventListener: (event: string, callback: (...args: any[]) => void) => void
+        removeEventListener: (event: string, callback: (...args: any[]) => void) => void
+        showDrawer: (trigger?: string) => void
+        showDialog: () => void
+        hideDialog: () => void
+      }
+    }
   }
   interface WindowEventMap {
     'local-storage': CustomEvent

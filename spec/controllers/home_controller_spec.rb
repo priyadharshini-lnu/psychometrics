@@ -32,5 +32,11 @@ RSpec.describe HomeController, type: :controller do
 
       expect(response).to redirect_to('https://www.mercer.com/regulatory/mercer-cookie-notice/')
     end
+
+    it 'does not allow host override through locale param' do
+      get :cookies_statement, params: { lang: '//evil.com' }
+
+      expect(response).to redirect_to('https://www.mercer.com/regulatory/mercer-cookie-notice/')
+    end
   end
 end

@@ -929,6 +929,7 @@ ja:
         normalize_factor_scores: 因子スコアを正規化する
         project_compact_completion_status_export: コンパクト完了状況エクスポート
         project_completion_status_export: 完了状況のエクスポート
+        regenerate_assessment_transcriptions: 評価の文字起こしを再生成する
         regenerate_campaign_reports: キャンペーンレポートの再生成
         regenerate_report: リジェネレイト・レポート
         regenerate_threesixty_report: リジェネレイト・スリーシックスティ レポート
@@ -2016,8 +2017,6 @@ ja:
         subject: ライトハウスへの招待
       confirmation_instructions:
         subject: 確認事項
-      copyright:
-        text: Lighthouse. すべての権利を保有します
       invitation_instructions:
         body: 'こんにちは、%{name}, あなたは次のセクションの管理者としてLighthouseに追加されました。 '
         login: ライトハウスにサインイン
@@ -2030,8 +2029,6 @@ ja:
         body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。 '
         regards: 'ライトハウス・チーム '
         subject: ライトハウスのパスワードが変更されました
-      powered_by:
-        text: Powered by Lighthouse.
       reset_password_instructions:
         body: 'こんにちは、%{name}さん！パスワード変更用のリンクをリクエストされました。 以下のリンクから変更できます。 '
         change_password: パスワードの変更
@@ -4055,9 +4052,11 @@ ja:
       import_reports: レポートと評価のインポート
   user_assessment:
     column:
+      completed_at: 完了日時
       dimension_id: 寸法ID
       id: ユーザーアセスメントID
       norm_id: ノームID
+      started_at: 開始日
     drawer:
       copied: "%{name}クリップボードにコピーされました。"
       copy: クリップボードにコピー
@@ -4097,7 +4096,6 @@ ja:
     normalize_factor_scores:
       no_scoring_data: 得点データがないため、因子得点の正規化は完了していない。
     progress_label: 評価の進捗状況
-    redirect: アセスメントを開始する場合は、続けるをクリックしてください。
     status:
       completed: 完成
       in_progress: 進行中

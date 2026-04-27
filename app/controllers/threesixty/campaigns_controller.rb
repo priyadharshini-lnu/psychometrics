@@ -35,7 +35,9 @@ module Threesixty
         format.json do
           render json: Threesixty::EndUser::CampaignSerializer.new(
             context: {
-              current_user: current_user, include: '**'
+              current_user: current_user,
+              include: '**',
+              system_check_session_id: cookies.signed[:system_check_session_id]
             }
           ).serialize(@campaign)
         end

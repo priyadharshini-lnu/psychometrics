@@ -33,7 +33,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
   describe '#show' do
     let(:system_check_session) { create(:system_check_session, user: user) }
 
-    before { session[:system_check_session_id] = system_check_session.id }
+    before { cookies.signed[:system_check_session_id] = system_check_session.id }
 
     it 'returns the serialized session' do
       get :show, params: { campaign_id: campaign.id, id: system_check_session.id }
@@ -44,7 +44,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     end
 
     context 'when session does not exist' do
-      before { session[:system_check_session_id] = -1 }
+      before { cookies.signed[:system_check_session_id] = -1 }
 
       it 'raises RecordNotFound' do
         expect do
@@ -113,7 +113,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
 
       before do
         allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
-        session[:system_check_session_id] = system_check_session.id
+        cookies.signed[:system_check_session_id] = system_check_session.id
         create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
         create(:system_check_record, :network, system_check_session: system_check_session,
                                                passed: true,
@@ -139,7 +139,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       before do
         allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
         allow_any_instance_of(Campaign).to receive(:allow_continue_with_warning?).and_return(true)
-        session[:system_check_session_id] = system_check_session.id
+        cookies.signed[:system_check_session_id] = system_check_session.id
         create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
         create(:system_check_record, :network, system_check_session: system_check_session,
                                                passed: false,
@@ -178,7 +178,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
 
       before do
         allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
-        session[:system_check_session_id] = system_check_session.id
+        cookies.signed[:system_check_session_id] = system_check_session.id
       end
 
       it 'returns is_valid false with nil session_id' do
@@ -208,7 +208,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
   describe '#add_record' do
     let(:system_check_session) { create(:system_check_session, user: user) }
 
-    before { session[:system_check_session_id] = system_check_session.id }
+    before { cookies.signed[:system_check_session_id] = system_check_session.id }
 
     it 'adds a record to the session with correct attributes' do
       expect do
@@ -246,7 +246,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
   describe '#complete' do
     let(:system_check_session) { create(:system_check_session, user: user, finished_at: nil) }
 
-    before { session[:system_check_session_id] = system_check_session.id }
+    before { cookies.signed[:system_check_session_id] = system_check_session.id }
 
     it 'marks the session as finished' do
       post :complete, params: { campaign_id: campaign.id, id: system_check_session.id }
@@ -263,7 +263,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     let(:system_check_session) { create(:system_check_session, user: user) }
 
     before do
-      session[:system_check_session_id] = system_check_session.id
+      cookies.signed[:system_check_session_id] = system_check_session.id
       create(:system_check_record,
              system_check_session: system_check_session,
              check_type: :browser,
@@ -275,11 +275,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       stub_wisper_publisher(
         'SystemCheckSessions::RequirementsCalculator', :call, :ok,
         { browser: { required: true }, network: { required: true, minimum_download_speed: 1, minimum_upload_speed: 1 },
-          video: { required: false } }
-      )
-      stub_wisper_publisher(
-        'SystemCheckSessions::GetSystemCheckStatus', :call, :ok,
-        { browser: :satisfied, network: :unsatisfied, video: :not_required }
+          video: { required: false }, audio: { required: false } }
       )
     end
 
@@ -294,13 +290,13 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     end
   end
 
-  describe '#upload_video_url' do
+  describe '#upload_media_url' do
     let(:system_check_session) { create(:system_check_session, user: user) }
     let(:system_check_record) do
       create(:system_check_record, :video, system_check_session: system_check_session)
     end
 
-    before { session[:system_check_session_id] = system_check_session.id }
+    before { cookies.signed[:system_check_session_id] = system_check_session.id }
 
     context 'when successful' do
       let(:upload_data) { { 'upload_id' => 'upload_1', 'asset_key' => 'asset_1', 'urls' => ['https://example.com/part1'] } }
@@ -312,7 +308,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       end
 
       it 'returns multipart upload data' do
-        post :upload_video_url, params: {
+        post :upload_media_url, params: {
           campaign_id: campaign.id,
           id: system_check_record.id
         }
@@ -331,12 +327,33 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       end
 
       it 'returns error' do
-        post :upload_video_url, params: {
+        post :upload_media_url, params: {
           campaign_id: campaign.id,
           id: system_check_record.id
         }
 
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'with audio check type' do
+      let(:system_check_record) do
+        create(:system_check_record, :audio, system_check_session: system_check_session)
+      end
+
+      before do
+        stub_rectify_command(SystemCheckRecords::GetMultipartUploadUrls, ok_payload: lambda {
+          { 'upload_id' => 'upload_2', 'asset_key' => 'asset_2', 'urls' => ['https://example.com/part1'] }
+        })
+      end
+
+      it 'returns multipart upload data for audio' do
+        post :upload_media_url, params: {
+          campaign_id: campaign.id,
+          id: system_check_record.id
+        }
+
+        expect(response).to have_http_status(:ok)
       end
     end
   end
@@ -347,7 +364,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       create(:system_check_record, :video, system_check_session: system_check_session, passed: false)
     end
 
-    before { session[:system_check_session_id] = system_check_session.id }
+    before { cookies.signed[:system_check_session_id] = system_check_session.id }
 
     context 'when successful' do
       before do

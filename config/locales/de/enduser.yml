@@ -12,6 +12,11 @@ de:
     ai_idp_summary_hint_no_document: Mit Ihrer Erlaubnis, wenn Sie ja sagen, kann ich einen Entwicklungsplan für Sie erstellen. Falls nicht, kannst du den Chat neu starten, um weitere Details zu teilen.
     all_checks_must_pass: Alle Prüfungen müssen erfolgreich abgeschlossen sein, bevor Sie fortfahren können.
     approve_idp_plan: Plan genehmigen
+    audio: Audio
+    audio_check: Mikrofontest
+    audio_check_description: Stellen Sie sicher, dass Ihr Mikrofon für die Aufnahme ordnungsgemäß funktioniert
+    audio_recording: Tonaufnahme
+    audio_test_step: Schritt zur Audioüberprüfung
     back: Zurück
     back_to_dashboard: Zurück zum Dashboard
     before_you_begin: Bevor Sie beginnen
@@ -24,29 +29,48 @@ de:
     browser_compatibility_check: Browser-Kompatibilitätstest
     browser_compatibility_check_description: Überprüfen, ob Ihr Browser alle erforderlichen Funktionen unterstützt
     browser_compatibility_result: Browser-Kompatibilität
+    browser_compatible: Ihr Browser %{browser_name} Version %{browser_version} ist mit dieser Kampagne kompatibel.
+    browser_compatible_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die die Mindestanforderungen für diese Kampagne erfüllt.
+    browser_incompatible_detail: Sie verwenden die Version %{browser_version} von „%{browser_name}“. Bitte aktualisieren Sie „%{browser_name}“ auf die Version %{min_browser_version}, um die Kompatibilität sicherzustellen.
+    browser_not_compatible: Ihr Browser %{browser_name} ist mit dieser Kampagne nicht kompatibel. Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
+    browser_not_compatible_description: Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
+    browser_not_compatible_detail: Ihr Browser %{browser_name} ist mit dieser Kampagne nicht kompatibel. Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
     browser_version_fix_description_first: 'Verwenden Sie einen unterstützten Browser: Chrome, Firefox, Edge oder Safari'
-    browser_version_fix_description_second: Aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.
-    browser_version_fix_description_third: Versuchen Sie es mit einem Inkognito- oder privaten Browserfenster
     browser_version_fix_title: Die Version Ihres Browsers wird nicht unterstützt.
     camera: Video und Audio
     camera_access_blocked: Der Zugriff auf die Kamera wurde von Ihrem Browser verweigert oder blockiert. Bitte überprüfen Sie die Berechtigungen Ihres Browsers.
     camera_check: Kamera- und Mikrofontest
+    camera_check_abruptly_ended: Die Kamera wurde plötzlich ausgeschaltet. Bitte schalten Sie Ihre Kamera ein und führen Sie die Überprüfung erneut durch.
     camera_check_description: Bitte überprüfen Sie, ob Ihre Kamera und Ihr Mikrofon für die Aufnahme ordnungsgemäß funktionieren
+    camera_check_passed: Video- und Audio-Test erfolgreich bestanden
     camera_test_step: Schritt zur Überprüfung von Bild und Ton
     campaign: Kampagne
+    campaign_check_status: 'Status: %{status}'
     chat_instructions: Anleitung für den Chat
     check: Überprüfen
-    check_video_recording: Bitte überprüfen Sie Ihre Videoaufnahme, indem Sie sie abspielen.
+    check_video_recording: Bitte überprüfen Sie Ihr Video und Audio, indem Sie die Aufnahme abspielen.
     checking_browser_compatibility: Browserkompatibilität wird überprüft...
+    checking_latency: Latenz wird überprüft...
+    could_not_reach_servers: Unsere Server konnten nicht erreicht werden, um die Netzwerkgeschwindigkeit zu überprüfen. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
+    day: Tag
+    day_plural: Tage
+    details: Details
     development: Entwicklung
     direct_reportees: Direkte Berichte
     download: Herunterladen
     download_pdf: PDF herunterladen
+    download_speed_below_minimum: Die Download-Geschwindigkeit von %{download_speed} liegt unter der erforderlichen Mindest-Download-Geschwindigkeit von %{minimum_download_speed} Mbit/s
     environment_setup: Einrichtung der Umgebung
+    error_uploading_audio: Fehler beim Hochladen der Audiodatei
+    error_uploading_audio_detail: Beim Hochladen Ihrer Audiodatei ist ein Fehler aufgetreten
     error_uploading_video: Fehler beim Hochladen des Videos
+    error_uploading_video_detail: Beim Hochladen des Videos ist ein Fehler aufgetreten
     fail: Fehlschlag
     follow_these_steps: Befolgen Sie diese Schritte, um die bei der Systemprüfung festgestellten Probleme zu beheben
+    hide_details: Details ausblenden
     home: Dashboard
+    hour: Stunde
+    hour_plural: Stunden
     how_to_fix: 'So beheben Sie das Problem:'
     idp_loading_fifth_step: Entwicklungsaktionen aus der Vorlage abrufen
     idp_loading_first_step: Analyse Ihres Bewertungsberichts
@@ -59,6 +83,7 @@ de:
     idp_report_being_generated: Wir bearbeiten gerade Ihren Bericht
     idp_reset_chat: Chat zurücksetzen
     idp_retake_steps_continue_with_this_information: Fahren Sie mit diesen Informationen fort
+    initializing: Initialisierung...
     insights: Einblicke
     instruction: Stellen Sie sicher, dass Sie und Ihr Umfeld bestens vorbereitet sind
     internet_speed: Internetgeschwindigkeit
@@ -68,14 +93,20 @@ de:
     lighthouse_assistant: Leuchtturmassistent
     localstorage_fix_description_first: Stellen Sie sicher, dass Sie sich nicht im privaten Modus oder Inkognito-Modus befinden, da „localStorage“ in diesen Modi häufig deaktiviert ist.
     localstorage_fix_title: Der lokale Speicher ist in Ihrem Browser nicht aktiviert
+    localstorage_not_enabled_detail: Lokaler Speicher ist in Ihrem Browser nicht aktiviert. Bitte stellen Sie sicher, dass Sie sich nicht im privaten/Inkognito-Modus befinden, da der lokale Speicher in diesen Modi häufig deaktiviert ist.
     localstorage_support: LocalStorage aktiviert
     max_word_limit: Darf höchstens %{max} Wörter haben
     media_recorder_api_fix_description_first: Aktivieren Sie JavaScript in Ihren Browsereinstellungen
     media_recorder_api_fix_description_second: Überprüfen Sie, ob Ihr Browser die MediaRecorder-API unterstützt, und aktualisieren Sie ihn gegebenenfalls auf die neueste Version.
-    media_recorder_api_fix_description_third: Probieren Sie einen anderen modernen Browser wie Chrome oder Firefox aus
     media_recorder_api_fix_title: Die Media Recorder API wird in Ihrem Browser nicht unterstützt.
+    media_recorder_api_not_supported_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die die MediaRecorder-API nicht unterstützt. Bitte aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.
     media_recorder_api_support: Unterstützung der MediaRecorder-API
+    microphone_access_blocked: Der Zugriff auf das Mikrofon wurde von Ihrem Browser verweigert oder blockiert. Bitte überprüfen Sie die Berechtigungen Ihres Browsers.
+    microphone_check_passed: Der Mikrofoncheck war erfolgreich
     min_word_limit: Muss mindestens %{min} Wörter haben
+    minimum_speed_requirements: Für diese Aktion sind eine Mindest-Download-Geschwindigkeit von %{minimum_download_speed} Mbit/s und eine Mindest-Upload-Geschwindigkeit von %{minimum_upload_speed} Mbit/s erforderlich.
+    minute: Minute
+    minute_plural: Protokoll
     my_plan: Mein Plan
     network: Netzwerk
     network_check: Internet-Geschwindigkeitstest
@@ -85,8 +116,9 @@ de:
     network_check_fix_fourth: Versuchen Sie es mit einer anderen Netzwerkverbindung, falls verfügbar
     network_check_fix_second: Gehen Sie näher an Ihren WLAN-Router heran oder stellen Sie eine Verbindung über ein Ethernet-Kabel her
     network_check_fix_third: Starten Sie Ihren Router/Ihr Modem neu und versuchen Sie es erneut
+    network_speed_meets_required_detail: Ihre Internetgeschwindigkeit erfüllt die Mindestanforderungen für die Aktion
     network_test_step: Netzwerktestschritt
-    no_audio_warning: Es wurde kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
+    no_audio_detected: Es wird kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
     pass: Überspringen
     pending: In Bearbeitung
     personal_readiness: Persönliche Bereitschaft
@@ -96,6 +128,7 @@ de:
     profile_details: Details
     question_counter: Frage %{current} von %{total}
     reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
+    redirect_to_external_assessment: Sie werden zur Testseite weitergeleitet. Bitte klicken Sie auf „Weiter“, wenn Sie mit dem Test beginnen möchten.
     reject_idp_plan: Plan ablehnen
     request_retry_message: Du bist offline. Deine Antworten konnten nicht gespeichert werden, werden aber automatisch gespeichert, sobald du wieder online bist. Bitte aktualisieren oder schließen Sie die Seite nicht.
     required_download_in_mbps: Erforderliche Download-Geschwindigkeit in Mbit/s
@@ -104,6 +137,8 @@ de:
     rerun_checks: Prüfungen wiederholen
     result: Ergebnis
     results: Ergebnis
+    safari_proctoring_description: Sie scheinen den Browser Safari zu verwenden, der hinsichtlich der für diese Kampagne aktivierten Tracking-Funktionen möglicherweise einige Einschränkungen aufweist. Für ein optimales Erlebnis empfehlen wir die Verwendung der Browser Chrome oder Firefox.
+    safari_proctoring_title: Safari-Browser erkannt
     selected_count: Ausgewählte
     skill_type: Fertigkeitstyp
     start_campaign_message_proctored: Dies ist eine überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
@@ -111,6 +146,7 @@ de:
     start_campaign_message_timed_proctored: Dies ist eine zeitlich begrenzte und überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     start_readiness_check: Startbereitschaftsprüfung starten
     start_system_check: Systemprüfung starten
+    subinstruction_audio: Funktionsfähiges Mikrofon
     subinstruction_eight: Nehmen Sie sich ausreichend Zeit für die vollständige Beurteilung
     subinstruction_five: Sind Sie bereit, Ihren Bildschirm während der gesamten Sitzung freizugeben?
     subinstruction_four: Funktionsfähige Webcam und Mikrofon
@@ -142,6 +178,7 @@ de:
     system_check_proceed: fortfahren
     system_check_retake: Nein, ich möchte die Wiederholung
     system_check_run_again: Wieder laufen
+    system_check_session_not_found: Die Systemprüfungssitzung wurde nicht gefunden. Bitte starten Sie eine neue Systemprüfung.
     system_check_start_recording: Aufnahme starten
     system_check_stop_recording: Aufnahme stoppen
     system_check_test_message: schön, mit Ihnen zu sprechen
@@ -153,8 +190,17 @@ de:
     system_checks: Systemprüfungen
     task_duration: Auftragsdauer
     tasks: Aufgaben
+    testing_download_speed: Download-Geschwindigkeit wird getestet...
+    testing_upload_speed: Upload-Geschwindigkeit wird getestet...
     time_commitment: Zeitaufwand
     troubleshooting_guide: Leitfaden zur Fehlerbehebung
+    troubleshooting_guide_audio_fifth: 'Unter Windows: Überprüfen Sie die Datenschutzeinstellungen > Mikrofonzugriff'
+    troubleshooting_guide_audio_first: Klicken Sie auf das Schloss-/Info-Symbol in der Adressleiste Ihres Browsers
+    troubleshooting_guide_audio_fourth: Falls dies blockiert wird, müssen Sie möglicherweise die Berechtigungen in den Browsereinstellungen zurücksetzen
+    troubleshooting_guide_audio_second: Suchen Sie die Einstellungen für „Mikrofon“ und stellen Sie sie auf „Zulassen“ ein
+    troubleshooting_guide_audio_seventh: Wenn die Berechtigungen aktiviert sind und beim Hochladen ein Problem aufgetreten ist, führen Sie die Prüfung erneut aus und versuchen Sie, das Audio erneut hochzuladen
+    troubleshooting_guide_audio_sixth: 'Auf dem Mac: Öffne „Systemeinstellungen“ > „Sicherheit“'
+    troubleshooting_guide_audio_third: Aktualisieren Sie die Seite, nachdem Sie die Berechtigungen geändert haben
     troubleshooting_guide_browser_fifth: Stellen Sie sicher, dass LocalStorage in Ihren Browsereinstellungen aktiviert ist
     troubleshooting_guide_browser_first: 'Verwenden Sie einen unterstützten Browser: Chrome, Firefox, Edge oder Safari (aktuelle Versionen)'
     troubleshooting_guide_browser_fourth: Aktivieren Sie JavaScript und Cookies in den Browsereinstellungen
@@ -168,21 +214,26 @@ de:
     troubleshooting_guide_network_third: Starten Sie Ihren Router/Ihr Modem neu und versuchen Sie es erneut
     troubleshooting_guide_video_fifth: 'Unter Windows: Überprüfen Sie die Datenschutzeinstellungen > Zugriff auf Kamera/Mikrofon'
     troubleshooting_guide_video_first: Klicken Sie auf das Schloss-/Info-Symbol in der Adressleiste Ihres Browsers
-    troubleshooting_guide_video_fourth: Falls dies blockiert wird, müssen Sie möglicherweise die Berechtigungen in den Browsereinstellungen zurücksetzen
     troubleshooting_guide_video_second: Suchen Sie die Einstellungen für „Kamera“ und „Mikrofon“ und setzen Sie sie auf „Zulassen“
+    troubleshooting_guide_video_seventh: Wenn die Berechtigungen aktiviert sind und beim Hochladen ein Problem aufgetreten ist, führen Sie die Prüfung erneut aus und versuchen Sie, das Video erneut hochzuladen
     troubleshooting_guide_video_sixth: 'Auf dem Mac: Gehe zu „Systemeinstellungen“ > „Sicherheit & Datenschutz“ > „Kamera/Mikrofon“'
     troubleshooting_guide_video_third: Aktualisieren Sie die Seite, nachdem Sie die Berechtigungen geändert haben
     untimed: Ohne Zeitangabe
     upload: Hochladen
+    upload_speed_below_minimum: Die Upload-Geschwindigkeit von %{upload_speed} liegt unter der erforderlichen Mindest-Upload-Geschwindigkeit von %{minimum_upload_speed} Mbit/s
+    video: Video
     video_and_audio: Video & Audio
     video_and_audio_recording: Video- und Audioaufzeichnung
+    video_check_description: Dies ist ein Systemcheck vor dem Test. Sie nehmen ein 30-sekündiges Video auf, um Audio und Video zu testen. Bitte sprechen Sie durchgehend und hören Sie nicht auf, bis die Aufnahme automatisch endet.
     video_check_fix_fifth: Versuchen Sie, Ihre Kamera vom Stromnetz zu trennen und wieder anzuschließen, falls es sich um ein externes Gerät handelt
     video_check_fix_first: Klicken Sie auf „Zulassen“, wenn der Browser Sie um die Erlaubnis für die Kameranutzung bittet
     video_check_fix_fourth: Überprüfen Sie, ob Ihre Kamera angeschlossen und eingeschaltet ist
     video_check_fix_second: Gehe zu den Browsereinstellungen und erlaube dieser Website den Zugriff auf die Kamera
     video_check_fix_sixth: Starten Sie Ihren Browser neu und versuchen Sie es erneut
     video_check_fix_third: Schließen Sie andere Anwendungen, die die Kamera nutzen (Zoom, Teams usw.)
+    view_details: Details anzeigen
     webgl_api_fix_description_first: Stellen Sie sicher, dass Ihr Browser WebGL unterstützt und dass diese Funktion in den Einstellungen aktiviert ist
     webgl_api_fix_description_second: Aktualisieren Sie Ihre Grafiktreiber auf die neueste Version
     webgl_api_fix_title: WebGL wird in Ihrem Browser nicht unterstützt oder ist nicht aktiviert
     webgl_api_support: Unterstützung der WebGL-API
+    webgl_not_supported_detail: Sie verwenden die Version %{browser_version} von %{browser_name}, die WebGL nicht unterstützt. Bitte aktualisieren Sie Ihren Browser auf die neueste Version, um die Kompatibilität sicherzustellen.
