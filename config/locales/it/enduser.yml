@@ -137,7 +137,7 @@ it:
     rerun_checks: Ripetere i controlli
     result: Risultato
     results: Risultato
-    safari_proctoring_description: Sembra che tu stia utilizzando il browser Safari, che potrebbe presentare alcune limitazioni per quanto riguarda le funzionalità di monitoraggio attivate per questa campagna. Per un'esperienza ottimale, ti consigliamo di utilizzare i browser Chrome o Firefox.
+    safari_proctoring_description: Sembra che tu stia utilizzando il browser Safari, che potrebbe presentare alcune limitazioni per quanto riguarda le funzionalità di monitoraggio attivate per questa campagna. Per un'esperienza ottimale, ti consigliamo di utilizzare i browser Chrome, Edge o Firefox.
     safari_proctoring_title: Rilevato il browser Safari
     selected_count: Selezionato
     skill_type: Tipo di abilità

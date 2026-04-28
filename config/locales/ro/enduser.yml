@@ -137,7 +137,7 @@ ro:
     rerun_checks: Verificări repetate
     result: Rezultat
     results: Rezultat
-    safari_proctoring_description: Se pare că utilizați browserul Safari, care poate prezenta anumite limitări în ceea ce privește funcțiile de monitorizare activate pentru această campanie. Pentru o experiență optimă, vă recomandăm să utilizați browserele Chrome sau Firefox.
+    safari_proctoring_description: Se pare că utilizați browserul Safari, care poate prezenta anumite limitări în ceea ce privește funcțiile de monitorizare activate pentru această campanie. Pentru o experiență optimă, vă recomandăm să utilizați browserele Chrome, Edge sau Firefox.
     safari_proctoring_title: S-a detectat browserul Safari
     selected_count: Selectat
     skill_type: Tip de abilitate

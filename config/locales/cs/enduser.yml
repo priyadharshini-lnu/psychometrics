@@ -137,7 +137,7 @@ cs:
     rerun_checks: Opakované kontroly
     result: Výsledek
     results: Výsledek
-    safari_proctoring_description: Zdá se, že používáte prohlížeč Safari, který může mít určitá omezení, pokud jde o funkce sledování aktivované v rámci této kampaně. Pro co nejlepší zážitek doporučujeme používat prohlížeče Chrome nebo Firefox.
+    safari_proctoring_description: Zdá se, že používáte prohlížeč Safari, který může mít určitá omezení, pokud jde o funkce sledování aktivované v rámci této kampaně. Pro co nejlepší zážitek doporučujeme používat prohlížeče Chrome,Edge nebo Firefox.
     safari_proctoring_title: Zjištěn prohlížeč Safari
     selected_count: Vybrané stránky
     skill_type: Typ dovednosti

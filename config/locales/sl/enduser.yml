@@ -137,7 +137,7 @@ sl:
     rerun_checks: Ponovni pregledi
     result: Rezultat
     results: Rezultat
-    safari_proctoring_description: Zdi se, da uporabljate brskalnik Safari, ki ima morda nekatere omejitve glede funkcij sledenja, ki so v tej kampanji omogočene. Za najboljšo izkušnjo priporočamo uporabo brskalnikov Chrome ali Firefox.
+    safari_proctoring_description: Zdi se, da uporabljate brskalnik Safari, ki ima morda nekatere omejitve glede funkcij sledenja, ki so v tej kampanji omogočene. Za najboljšo izkušnjo priporočamo uporabo brskalnikov Chrome, Edge ali Firefox.
     safari_proctoring_title: Zaznan brskalnik Safari
     selected_count: Izbrano
     skill_type: Vrsta spretnosti

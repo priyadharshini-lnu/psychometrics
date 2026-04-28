@@ -137,7 +137,7 @@ hu:
     rerun_checks: Ellenőrzések megismétlése
     result: Eredmény
     results: Eredmény
-    safari_proctoring_description: Úgy tűnik, hogy a Safari böngészőt használja, amely bizonyos korlátozásokat jelenthet a kampányhoz kapcsolódó nyomonkövetési funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome vagy a Firefox böngésző használatát javasoljuk.
+    safari_proctoring_description: Úgy tűnik, hogy a Safari böngészőt használja, amely bizonyos korlátozásokat jelenthet a kampányhoz kapcsolódó nyomonkövetési funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome, Edge vagy a Firefox böngésző használatát javasoljuk.
     safari_proctoring_title: Safari böngésző észlelve
     selected_count: Kiválasztott
     skill_type: Képesség típusa

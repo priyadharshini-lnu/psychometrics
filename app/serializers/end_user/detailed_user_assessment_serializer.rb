@@ -87,7 +87,16 @@ module EndUser
     end
 
     def instructions
-      object.assessment&.instructions
+      assessment = object.assessment
+      return unless assessment
+
+      return assessment.instructions if locale.to_s == assessment.default_language.to_s
+
+      instructions = assessment.instructions
+      translated_content = translated_instructions_content
+      instructions['content'] = translated_content if translated_content
+
+      instructions
     end
 
     def piped_text_mapping
@@ -144,6 +153,12 @@ module EndUser
 
     def locale
       context[:locale] || object.selected_locale || I18n.default_locale
+    end
+
+    def translated_instructions_content
+      Translation.instructions_content_for_assessment(
+        object.assessment_id, locale, translations_migrated: object.assessment.translations_migrated?
+      )
     end
 
     def has_question_type(type)

@@ -24,6 +24,7 @@ import { ResultDetails } from './ResultDetails'
 import { SuccessTag, FailureTag } from '../../components/StatusTags'
 import { CheckStepImage } from './CheckStepImage'
 import styles from './styles.less'
+import { InternationalizedDetails } from '../../common'
 
 const { I18n } = window
 
@@ -31,6 +32,10 @@ const connector = connect(null,
   {
     fetchCampaign,
   })
+
+
+const getTranslatedDetail = (detail: InternationalizedDetails) => I18n.t(detail.i18nKey,
+  Object.fromEntries(detail.i18nVars || []))
 
 const CheckDetails = ({ details, check, result }) => (
 
@@ -42,7 +47,7 @@ const CheckDetails = ({ details, check, result }) => (
         <ul style={{ paddingInlineStart: '1.2rem' }}>
           {details.map((detail, index) => (
             <li key={index}>
-              <Typography.Text>{detail}</Typography.Text>
+              <Typography.Text>{getTranslatedDetail(detail)}</Typography.Text>
             </li>
           ))}
         </ul>
@@ -55,7 +60,10 @@ const CheckDetails = ({ details, check, result }) => (
 )
 
 const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
-  const [resultsData, setResultsData] = useState<{key:string, check: string, result: boolean, details: string[]}[]>([])
+  const [resultsData, setResultsData] = useState<{key:string,
+    check: string,
+    result: boolean,
+    details: Array<InternationalizedDetails>}[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const { campaignId } = useParams() as { campaignId: string}
 
@@ -184,7 +192,7 @@ const ResultsComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
 
   const formatData = data => Object.keys(data).sort().reduce((acc:{key:string,
-    check:string, result:boolean, details:string[]}[],
+    check:string, result:boolean, details:Array<InternationalizedDetails>}[],
   item) => {
     acc = acc.concat({
       key: CHECKS[data[item].checkType],

@@ -137,7 +137,7 @@ ko:
     rerun_checks: 검증 재실행
     result: 결과
     results: 결과
-    safari_proctoring_description: 사파리 브라우저를 사용 중인 것으로 보입니다. 이 브라우저는 본 캠페인의 모니터링 기능과 관련하여 일부 제한 사항이 있을 수 있습니다. 최상의 환경을 위해 크롬 또는 파이어폭스 브라우저를 사용하시기를 권장합니다.
+    safari_proctoring_description: 현재 Safari 브라우저를 사용 중이시며, 이로 인해 본 캠페인에 적용된 감독 기능에 일부 제약이 발생할 수 있습니다. 최적의 이용 환경을 위해 Chrome, Edge 또는 Firefox 브라우저를 사용하실 것을 권장합니다.
     safari_proctoring_title: Safari 브라우저가 감지되었습니다
     selected_count: 선택됨
     skill_type: 스킬 유형

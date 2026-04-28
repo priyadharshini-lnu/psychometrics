@@ -17,7 +17,7 @@ import {
   AudioOutlined, ExclamationCircleOutlined, ArrowLeftOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
-import { CHECK_STATUS, CHECK_TYPE } from '../../common'
+import { CHECK_STATUS, CHECK_TYPE, InternationalizedDetails } from '../../common'
 import { PermissionDenied } from '../../components/PermissionDenied'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { SystemCheckAddedRecord } from '~/modules/endUser/modules/campaigns/core/systemChecks/interfaces'
@@ -120,18 +120,30 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
 
   const generateDetails = () => {
-    const details: string[] = []
+    const details:InternationalizedDetails[] = []
 
     if (!isDeviceRequestGranted) {
-      details.push(I18n.t('enduser.microphone_access_blocked'))
+      details.push({
+        i18nKey: 'enduser.microphone_access_blocked',
+        i18nVars: [],
+      })
     } else if (checkStatus === CHECK_STATUS.failed) {
       if (noAudioDetected) {
-        details.push(I18n.t('enduser.no_audio_detected'))
+        details.push({
+          i18nKey: 'enduser.no_audio_detected',
+          i18nVars: [],
+        })
       } else {
-        details.push(I18n.t('enduser.error_uploading_audio_detail'))
+        details.push({
+          i18nKey: 'enduser.error_uploading_audio_detail',
+          i18nVars: [],
+        })
       }
     } else {
-      details.push(I18n.t('enduser.microphone_check_passed'))
+      details.push({
+        i18nKey: 'enduser.microphone_check_passed',
+        i18nVars: [],
+      })
     }
 
     return details

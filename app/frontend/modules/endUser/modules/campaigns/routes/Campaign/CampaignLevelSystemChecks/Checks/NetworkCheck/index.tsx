@@ -23,7 +23,7 @@ import {
   WifiOutlined, ExclamationCircleOutlined, RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { WifiLoader } from './WifiLoader/WifiLoader'
-import { CHECK_STATUS, CHECK_TYPE } from '../../common'
+import { CHECK_STATUS, CHECK_TYPE, InternationalizedDetails } from '../../common'
 import { errorMessageList } from './constants'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
@@ -77,10 +77,14 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const uploadDisplay = useTransform(uploadSpeed, val => val.toFixed(2))
 
   const generateDetails = (uploadSpeedStr: string, downloadSpeedStr: string) => {
-    const details: string[] = []
+    const details:InternationalizedDetails[] = []
 
     if (parseFloat(downloadSpeedStr) === 0 && parseFloat(uploadSpeedStr) === 0) {
-      details.push(I18n.t('enduser.could_not_reach_servers'))
+      details.push({
+        i18nKey: 'enduser.could_not_reach_servers',
+        i18nVars: [],
+      })
+
       return details
     }
 
@@ -88,20 +92,29 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
      >= minimumUploadSpeed) && (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeedStr) >= minimumDownloadSpeed)
 
     if (hasRequiredSpeeds) {
-      details.push(I18n.t('enduser.network_speed_meets_required_detail'))
+      details.push({
+        i18nKey: 'enduser.network_speed_meets_required_detail',
+        i18nVars: [],
+      })
     } else {
       if (minimumUploadSpeed && convertSpeedToMbps(uploadSpeedStr) < minimumUploadSpeed) {
-        details.push(I18n.t('enduser.upload_speed_below_minimum', {
-          upload_speed: uploadSpeedStr,
-          minimum_upload_speed: minimumUploadSpeed,
-        }))
+        details.push({
+          i18nKey: 'enduser.upload_speed_below_minimum',
+          i18nVars: [
+            ['upload_speed', uploadSpeedStr],
+            ['minimum_upload_speed', minimumUploadSpeed.toString()],
+          ],
+        })
       }
 
       if (minimumDownloadSpeed && convertSpeedToMbps(downloadSpeedStr) < minimumDownloadSpeed) {
-        details.push(I18n.t('enduser.download_speed_below_minimum', {
-          download_speed: downloadSpeedStr,
-          minimum_download_speed: minimumDownloadSpeed,
-        }))
+        details.push({
+          i18nKey: 'enduser.download_speed_below_minimum',
+          i18nVars: [
+            ['download_speed', downloadSpeedStr],
+            ['minimum_download_speed', minimumDownloadSpeed.toString()],
+          ],
+        })
       }
     }
 

@@ -137,7 +137,7 @@ ja:
     rerun_checks: 再チェック
     result: 結果
     results: 結果
-    safari_proctoring_description: Safariをご利用のようですが、このキャンペーンで有効になっている追跡防止機能に関して、一部制限が生じる可能性があります。最適な環境でお楽しみいただくため、ChromeまたはFirefoxのご利用をお勧めします。
+    safari_proctoring_description: Safariをご利用のようですが、このキャンペーンで有効になっている追跡防止機能に関して、一部制限が生じる可能性があります。最適な環境でお楽しみいただくため、Chrome, EdgeまたはFirefoxのご利用をお勧めします。
     safari_proctoring_title: Safariブラウザが検出されました
     selected_count: 選択済み
     skill_type: スキルの種類

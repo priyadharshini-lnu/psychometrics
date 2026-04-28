@@ -137,7 +137,7 @@ ar:
     rerun_checks: إعادة تشغيل عمليات الفحص
     result: النتيجة
     results: النتيجة
-    safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome أو Firefox.
+    safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome,Edge أو Firefox.
     safari_proctoring_title: تم اكتشاف متصفح Safari
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
