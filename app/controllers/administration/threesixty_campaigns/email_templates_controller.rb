@@ -25,6 +25,7 @@ module Administration
         form = ::Threesixty::EmailTemplateForm.from_params(params[:email_template]).
                with_context(email_template: resource)
         if form.valid?
+          audit! :update_email_template, resource, payload: form.attributes, campaign: threesixty_campaign.campaign
           Mobility.with_locale(params[:locale]) do
             resource.update!(form.attributes)
           end

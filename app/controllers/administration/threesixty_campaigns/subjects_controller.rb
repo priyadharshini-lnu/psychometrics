@@ -214,8 +214,9 @@ module Administration
                  campaign: threesixty_campaign.campaign,
                  single_subject_form: ::Threesixty::Subjects::ImportOneForm
                )
-
         if form.valid?
+          audit! :import_subjects, threesixty_campaign, payload: { row_count: form.subjects.size },
+                campaign: threesixty_campaign.campaign
           result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
           render json: result.slice(:existing_subjects_whose_password_not_changed)
         else

@@ -101,6 +101,8 @@ module Administration
         form = ::Threesixty::Evaluators::CreateAllForm.from_params(evaluators).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
+          audit! :import_evaluators, threesixty_campaign, payload: { row_count: form.evaluators.size },
+              campaign: threesixty_campaign.campaign
           result = ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations,
                                                              threesixty_campaign, current_user)
           render json: result.slice(:existing_evaluators_whose_password_not_changed)
