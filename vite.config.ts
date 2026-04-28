@@ -61,7 +61,7 @@ export default defineConfig({
   clearScreen: false,
   plugins: [
     videojsRecordCompat(),
-    cjsInteropPlugin(['react-froala-wysiwyg']),
+    cjsInteropPlugin(['react-froala-wysiwyg', 'react-contenteditable']),
     sentryVitePlugin({
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
