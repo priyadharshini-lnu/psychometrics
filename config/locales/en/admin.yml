@@ -945,6 +945,7 @@ en:
     remove_children_to_change_type: Remove all children to change type
     remove_confirmation: Are you sure you want to remove this item?
     remove_successfully: Media Item was removed successfully.
+    report_alias_save_confirmation: If you wish to save ALL changes in Report Builder and also in Aliases, please click 'SAVE' button. The page will be reloaded and your changes will be successfully applied.
     report_approvals: Report Approvals
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
