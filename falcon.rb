@@ -4,7 +4,6 @@
 require 'falcon/environment/rack'
 require 'falcon/environment/supervisor'
 require 'openssl'
-require 'dotenv/load'
 require_relative 'config/environment'
 
 module SSLContextHelper
