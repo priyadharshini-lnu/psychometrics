@@ -19,6 +19,7 @@ module Administration
       def update
         builder = ::Builders::ReportBuilder.new(@report, params.require(:builder), current_user)
         if builder.save
+          audit! :update, @report, payload: params.require(:builder)
           @report = Report.includes(pages: [:modules]).find(@report.id)
           render json: { data: ReportSerializer.new(
             context: {

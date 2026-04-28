@@ -7,6 +7,10 @@ module Api
     def bulk_approve
       report_approvals, meta = ReportApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
 
+      audit! :bulk_approve, nil,
+             record_type: ReportApproval,
+             payload: { ids: params[:data][:attributes][:ids] }
+
       json = serialize_resources(report_approvals, ::Api::V2::Administration::ReportApprovalResource)
       json[:meta] = meta
 

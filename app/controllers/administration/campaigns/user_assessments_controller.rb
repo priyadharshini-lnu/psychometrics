@@ -11,6 +11,8 @@ module Administration
         resource.update_norm!(params[:norm_id])
         ::UsersResults::Recompute.call!(user_result, current_user)
 
+        audit! :update_norm, resource, payload: { norm_id: params[:norm_id] }, campaign: resource.campaign
+
         render json: { norm_name: resource.norm_name }
       end
 
