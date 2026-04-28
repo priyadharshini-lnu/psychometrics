@@ -8,16 +8,18 @@ module Utility
     end
 
     def self.expire_cookie(response, cookie_name)
-      expiry = 'Thu, 01 Jan 1970 00:00:00 GMT'
-      secure = Rails.application.config.session_options[:secure] ? '; Secure' : ''
-      append_set_cookie(response, "#{cookie_name}=; path=/; expires=#{expiry}; SameSite=None; Secure")
-      append_set_cookie(response, "#{cookie_name}=; path=/; expires=#{expiry}; SameSite=None; Partitioned; Secure")
-      append_set_cookie(response, "#{cookie_name}=; path=/; expires=#{expiry}; SameSite=Lax#{secure}")
+      secure = Rails.application.config.session_options[:secure]
+
+      expire_with_options(response, cookie_name, same_site: :none, secure: true)
+      expire_with_options(response, cookie_name, same_site: :none, secure: true, partitioned: true)
+      expire_with_options(response, cookie_name, same_site: :lax, secure: secure)
     end
 
-    def self.append_set_cookie(response, cookie_string)
-      existing = response.headers['Set-Cookie']
-      response.headers['Set-Cookie'] = existing ? "#{existing}\n#{cookie_string}" : cookie_string
+    def self.expire_with_options(response, cookie_name, **options)
+      Rack::Utils.set_cookie_header!(
+        response.headers, cookie_name,
+        { path: '/', expires: Time.at(0).utc, value: '' }.merge(options)
+      )
     end
   end
 end

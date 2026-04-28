@@ -1,6 +1,6 @@
 # Production docker environment for devs
 
-This folder contains resources for running the puma worker in production mode, sidekiq and minio inside containers.
+This folder contains resources for running the puma/falcon worker in production mode, sidekiq and minio inside containers.
 
 ## Usage
 
