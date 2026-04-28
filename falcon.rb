@@ -4,6 +4,13 @@
 require 'falcon/environment/rack'
 require 'falcon/environment/supervisor'
 require 'openssl'
+
+begin
+  require 'dotenv/load'
+rescue LoadError
+  puts('[WARNING] Could not load dotenv. Using already set env vars')
+end
+
 require_relative 'config/environment'
 
 module SSLContextHelper
@@ -27,7 +34,7 @@ service hostname do
 
   if Rails.env.development?
     endpoint do
-      allow_ssl = ENV.fetch('SSL') == 'true'
+      allow_ssl = ENV.fetch('SSL', false) == 'true'
       ssl_cert_path = ENV.fetch('SSL_CERT', nil)
       ssl_key_path = ENV.fetch('SSL_KEY', nil)
       ssl_context = SSLContextHelper.get_ssl_context(ssl_key_path, ssl_cert_path, allow_ssl)
