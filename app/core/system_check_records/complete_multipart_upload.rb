@@ -35,7 +35,12 @@ module SystemCheckRecords
         service_name: Settings.storage.private_storage_service
       )
 
-      system_check_record.media = blob.signed_id
+      ActiveStorage::Attachment.create!(
+        name: 'media',
+        record: system_check_record,
+        blob: blob
+      )
+
       system_check_record.passed = true
       system_check_record.save!
 
