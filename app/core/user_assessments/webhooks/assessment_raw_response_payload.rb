@@ -41,7 +41,8 @@ module UserAssessments
 
       def build_question_answer(question)
         question_id_str = question.id.to_s
-        answer_data = user_result.answers[question_id_str]
+        answers_hash = user_result.answers.is_a?(Hash) ? user_result.answers : {}
+        answer_data = answers_hash[question_id_str]
 
         return nil if answer_data.blank?
 
@@ -60,7 +61,8 @@ module UserAssessments
       end
 
       def build_answers_with_labels(parser, question)
-        return [] if user_result.answers[question.id.to_s].blank?
+        answers_hash = user_result.answers.is_a?(Hash) ? user_result.answers : {}
+        return [] if answers_hash[question.id.to_s].blank?
 
         answers = parser.result(user_result, question, scoring: false, export_with_labels: true, concat_answers: false)
         answers.pop # remove duration
