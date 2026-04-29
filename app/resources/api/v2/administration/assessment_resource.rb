@@ -25,6 +25,10 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
     @model.extra = { enable_video_check: false, enable_audio_check: false, enable_network_check: false }
   end
 
+  after_create do
+    ensure_default_locale_translations
+  end
+
   before_update do
     @model.updated_by_id = context[:user].id
     category = context[:params].dig(:data, :attributes, :category)
@@ -140,5 +144,27 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   def tag_list=(tags)
     @model.save_tag_with_ownership(tags)
+  end
+
+  def name
+    @model.name || @model.read_attribute(:name)
+  end
+
+  private
+
+  def ensure_default_locale_translations
+    target_locale = @model.default_language || 'en'
+    return if Mobility.locale.to_s == target_locale
+
+    current_name = @model.name
+    current_description = @model.description
+    current_timing = @model.timing
+
+    Mobility.with_locale(target_locale) do
+      @model.name = current_name if @model.name.blank? && current_name.present?
+      @model.description = current_description if @model.description.blank? && current_description.present?
+      @model.timing = current_timing if @model.timing.blank? && current_timing.present?
+      @model.save! if @model.changed?
+    end
   end
 end
