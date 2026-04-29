@@ -16,6 +16,8 @@ module Api
 
     def update
       campaign.campaign_options.update!(campaign_scoring_variables: params[:data][:attributes][:variables])
+      audit! :campaign_scoring_variable_update, campaign.campaign_options,
+             campaign: campaign, payload: { variables: campaign.campaign_options.campaign_scoring_variables }
 
       render json: json_api_attributes(campaign.campaign_options,
                                        variables: campaign.campaign_options.campaign_scoring_variables)
