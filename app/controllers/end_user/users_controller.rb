@@ -101,6 +101,8 @@ class EndUser::UsersController < ApplicationController
 
   def upload_photo
     if current_user.user_profile.update(photo: params[:photo])
+      audit! :upload_photo, current_user, project: @current_project,
+          payload: { photo_filename: params[:photo].original_filename }
       render json: { photo: current_user.user_profile.photo&.url }
     else
       render json: { errors: current_user.user_profile.errors.messages }, status: 400
@@ -112,6 +114,8 @@ class EndUser::UsersController < ApplicationController
     return render json: { errors: form.errors.messages }, status: 422 unless form.valid?
 
     if current_user.update_with_password(form.attributes)
+      audit! :change_password, current_user, user: current_user, project: @current_project,
+        payload: { campaign_id: params[:campaign_id], assessment_id: params[:assessment_id] }
       sign_out(current_user)
       flash[:notice] = t('users.password_change_success')
       head :ok
