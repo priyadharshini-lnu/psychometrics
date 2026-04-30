@@ -33,7 +33,7 @@ module Api
     private
 
     def export_params
-      params.permit(:client_id, :project_id, :campaign_id, :start_date, :end_date)
+      params.require(:data).require(:attributes).permit(:client_id, :project_id, :campaign_id, :start_date, :end_date)
     end
 
     def base_response_meta
