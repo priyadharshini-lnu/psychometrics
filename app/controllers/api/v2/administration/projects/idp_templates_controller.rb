@@ -45,6 +45,7 @@ module Api
 
     def update_appearance
       if @model.update(appearance_params)
+        audit! :update_appearance, @model, payload: appearance_params, project: project
         jsonapi_render json: @model
       else
         render json: { errors: @model.errors }, status: :unprocessable_entity
@@ -52,7 +53,11 @@ module Api
     end
 
     def update_reflection_questions
-      IdpTemplates::UpdateReflectionQuestions.call(@model, params[:data][:attributes][:reflection_questions])
+      reflection_questions = params[:data][:attributes][:reflection_questions]
+      IdpTemplates::UpdateReflectionQuestions.call(@model, reflection_questions)
+      audit! :update_reflection_questions, @model,
+             payload: { reflection_questions: reflection_questions },
+             project: project
 
       jsonapi_render json: @model
     end
@@ -73,6 +78,7 @@ module Api
 
     def uploads
       if @model.update(uploads_params)
+        audit! :uploads, @model, payload: uploads_params, project: project
         jsonapi_render json: @model
       else
         render json: { errors: @model.errors }, status: :unprocessable_entity
@@ -81,6 +87,7 @@ module Api
 
     def destroy
       if @user_idp_plan.blank?
+        audit! :destroy, @model, payload: params, project: project
         super
         head :no_content
       else
@@ -111,6 +118,7 @@ module Api
 
       Mobility.with_locale(locale) do
         @model.update!(instructions)
+        audit! :update_instructions, @model, payload: instructions, project: project
         jsonapi_render json: @model
       end
     rescue StandardError

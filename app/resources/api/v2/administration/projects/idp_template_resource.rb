@@ -22,6 +22,8 @@ class Api::V2::Administration::Projects::IdpTemplateResource < Api::V2::Administ
   has_one :skill_gap_report_analysis_ai_assistant, class_name: 'AI::Assistant'
 
   ransack_filters %i[filterable_fields status_eq]
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
 
   def meta_details
     {
