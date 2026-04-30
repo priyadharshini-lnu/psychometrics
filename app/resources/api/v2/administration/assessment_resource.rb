@@ -153,18 +153,32 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   private
 
   def ensure_default_locale_translations
-    target_locale = @model.default_language || 'en'
-    return if Mobility.locale.to_s == target_locale
+    target_locale = (@model.default_language.presence || I18n.default_locale).to_s
+    source_locale = Mobility.locale.to_s
+    source_values = localized_assessment_values(source_locale)
+    target_values = localized_assessment_values(target_locale)
 
-    current_name = @model.name
-    current_description = @model.description
-    current_timing = @model.timing
+    if target_values.values.all?(&:blank?) && source_locale != target_locale
+      Mobility.with_locale(target_locale) do
+        @model.name = source_values[:name] if source_values[:name].present?
+        @model.description = source_values[:description] if source_values[:description].present?
+        @model.timing = source_values[:timing] if source_values[:timing].present?
+      end
 
-    Mobility.with_locale(target_locale) do
-      @model.name = current_name if @model.name.blank? && current_name.present?
-      @model.description = current_description if @model.description.blank? && current_description.present?
-      @model.timing = current_timing if @model.timing.blank? && current_timing.present?
       @model.save! if @model.changed?
+      target_values = localized_assessment_values(target_locale)
+    end
+
+    @model.update_columns(target_values)
+  end
+
+  def localized_assessment_values(locale)
+    Mobility.with_locale(locale) do
+      {
+        name: @model.name,
+        description: @model.description,
+        timing: @model.timing
+      }
     end
   end
 end
