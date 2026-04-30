@@ -11,6 +11,8 @@ module Api
         before_action :find_skill, only: [:skill_proficiency]
 
         def export
+          audit! :export_proficiency_levels, nil, user: current_user,
+            payload: { project_id: project&.id }, project: project
           AdminJob.call(
             :export_proficiency_levels,
             { project_id: project&.id },
@@ -21,6 +23,8 @@ module Api
         end
 
         def export_translations
+          audit! :export_proficiency_level_translations, nil, user: current_user,
+            payload: { project_id: project&.id }, project: project
           AdminJob.call(
             :export_proficiency_level_translations,
             { project_id: project&.id },
@@ -36,6 +40,8 @@ module Api
             project_id: project&.id
           )
           if form.valid?
+            audit! :import_proficiency_level_translations, nil, user: current_user, project: project,
+              payload: { project_id: project.id, row_count: form.row_count }
             AdminJob.call(
               :import_proficiency_level_translations,
               { project_id: project&.id },
@@ -55,6 +61,8 @@ module Api
             ignore_duplicates: params[:ignore_duplicates].present?
           )
           if form.valid?
+            audit! :import_proficiency_levels, nil, user: current_user, project: project,
+              payload: { project_id: project.id, row_count: form.row_count }
             AdminJob.call(:import_proficiency_levels,
                           { ignore_duplicates: form.ignore_duplicates, project_id: form.project_id },
                           current_user, form.processed_file)

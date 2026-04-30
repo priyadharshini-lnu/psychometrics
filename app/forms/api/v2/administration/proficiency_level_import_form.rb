@@ -24,6 +24,10 @@ module Api
           file
         end
 
+        def row_count
+          @csv_data&.drop(1)&.size || 0
+        end
+
         private
 
         def validate_file_format

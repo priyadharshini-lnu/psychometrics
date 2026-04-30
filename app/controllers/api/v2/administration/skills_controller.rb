@@ -49,6 +49,9 @@ module Api
           )
 
           if form.valid?
+            audit! :import_skills, nil, user: current_user,
+              payload: { project_id: project&.id, row_count: form.row_count },
+              project: project
             AdminJob.call(
               :import_skills,
               { project_id: project&.id },
@@ -63,6 +66,10 @@ module Api
         end
 
         def export
+          audit! :export_skills, nil, user: current_user,
+              payload: { project_id: project&.id },
+              project: project
+
           AdminJob.call(
             :export_skills,
             { project_id: project.id },
@@ -79,6 +86,8 @@ module Api
           )
 
           if form.valid?
+            audit! :import_skill_translations, nil, user: current_user,
+              payload: { project_id: project.id, row_count: form.row_count }, project: project
             AdminJob.call(
               :import_skill_translations,
               { project_id: project.id },
@@ -93,6 +102,8 @@ module Api
         end
 
         def export_translations
+          audit! :export_skill_translations, nil, user: current_user,
+              payload: { project_id: project.id }, project: project
           AdminJob.call(
             :export_skill_translations,
             { project_id: project.id },
@@ -220,6 +231,12 @@ module Api
           s_params[:skill_type_in] = s_params[:skill_type_in]&.split(',')&.map(&:strip)
 
           s_params
+        end
+
+        def import_count
+          csv_result = ::CsvFileParser.call!(params[:file], headers: :first_row)
+          import_count = csv_result.map(&:to_h)
+          import_count.size
         end
       end
     end
