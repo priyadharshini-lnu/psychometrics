@@ -1382,10 +1382,8 @@ as: :simulation_progress_notification
             post :reset_password
             post :unlock_user_access
             get :roles
-            scope module: :users do
-              resource :uploads, only: %i[update]
-            end
             collection do
+              put :uploads, to: 'users/uploads#update'
               post :create_superadmin
               post :create_global_assessor
               post :change_password
