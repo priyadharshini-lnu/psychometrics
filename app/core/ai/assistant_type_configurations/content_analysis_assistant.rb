@@ -7,7 +7,7 @@ module AI
         {
           temperature: 0.1,
           response_format: { type: 'json_schema' },
-          max_tokens: 8000
+          max_tokens: 4000
         }
       end
 
