@@ -4,7 +4,8 @@ class Api::V2::Administration::Dimensions::FactorResource < Api::V2::Administrat
   attributes :id, :name, :description, :code, :scoring_strategy, :parent, :disabled, :precision, :scale_min, :scale_max,
              :icon_url, :score_min, :score_max,
              :score_definitions, :what_to_look_for, :use_percentage, :custom_formula,
-             :factors_sub_factors, :child_factor_type, :created_at, :updated_at
+             :factors_sub_factors, :child_factor_type, :created_at, :updated_at,
+             :questions_count_by_assessment_details
 
   has_many :sub_factors, relation_name: :factors_sub_factors, class_name: 'FactorsSubFactor'
   has_many :parent_factors
