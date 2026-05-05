@@ -337,7 +337,7 @@ module Administration
       end
 
       def include_inactive_users
-        params[:include_inactive_users] == 'true'
+        params[:include_inactive_users] == true
       end
 
       def resource_class
