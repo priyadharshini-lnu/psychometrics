@@ -450,6 +450,7 @@ en:
     no_file_selected: No file selected
     no_notifications: No Notifications
     no_status: No Status
+    norm_editor_numeric_value_error: Only numeric values are allowed (integers or decimals).
     norms: Norms
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"

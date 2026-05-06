@@ -19,6 +19,59 @@ import { camelizeKeys } from '~/utils/object'
 import { NormFactorLevel } from '../../constants'
 
 const { I18n } = window
+const NUMERIC_INPUT_PATTERN = /^\d*\.?\d*$/
+
+const isValidNumericValue = (value: unknown): boolean => {
+  if (value === null || value === undefined || value === '') return true
+  if (typeof value === 'number') return Number.isFinite(value)
+  if (typeof value === 'string') return NUMERIC_INPUT_PATTERN.test(value)
+  return false
+}
+
+const isNavigationKey = (key: string): boolean => [
+  'Backspace',
+  'Delete',
+  'Tab',
+  'Enter',
+  'Escape',
+  'ArrowLeft',
+  'ArrowRight',
+  'Home',
+  'End',
+].includes(key)
+
+const showNumericOnlyError = () => {
+  message.open({
+    key: 'norm-editor-numeric-error',
+    type: 'error',
+    content: I18n.t('admin.norm_editor_numeric_value_error'),
+    duration: 2,
+  })
+}
+
+const preventInvalidTyping = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  if (event.ctrlKey || event.metaKey || event.altKey || isNavigationKey(event.key)) {
+    return
+  }
+
+  const target = event.currentTarget
+  const nextValue = target.value.slice(0, target.selectionStart ?? 0)
+    + event.key
+    + target.value.slice(target.selectionEnd ?? target.value.length)
+
+  if (!NUMERIC_INPUT_PATTERN.test(nextValue)) {
+    event.preventDefault()
+    showNumericOnlyError()
+  }
+}
+
+const preventInvalidPaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+  const pastedText = event.clipboardData.getData('text').trim()
+  if (!NUMERIC_INPUT_PATTERN.test(pastedText)) {
+    event.preventDefault()
+    showNumericOnlyError()
+  }
+}
 
 const EditableCell = ({
   editing,
@@ -28,9 +81,6 @@ const EditableCell = ({
   save,
   ...restProps
 }:EditableCellProps) => {
-  const [form] = Form.useForm()
-
-
   if (!editable) {
     return <td {...restProps}>{record[dataIndex]}</td>
   }
@@ -45,6 +95,13 @@ const EditableCell = ({
     >
       {editing ? (
         <Form.Item
+          rules={[{
+            validator: (_, value) => (
+              isValidNumericValue(value)
+                ? Promise.resolve()
+                : Promise.reject(new Error(I18n.t('admin.norm_editor_numeric_value_error')))
+            ),
+          }]}
           name={`${record.key}-${dataIndex}`}
           style={{ margin: 0 }}
         >
@@ -52,8 +109,9 @@ const EditableCell = ({
             autoFocus
             style={{ width: '100%' }}
             controls={false}
+            onKeyDown={preventInvalidTyping}
+            onPaste={preventInvalidPaste}
             decimalSeparator="."
-            value={form.getFieldValue(`${record.key}-${dataIndex}`)}
             onPressEnter={() => save.commit(record, dataIndex)}
             onBlur={() => save.commit(record, dataIndex)}
           />
@@ -272,8 +330,17 @@ const NormsEditor = () => {
     setEditingCell({ key: record.key, dataIndex })
   }
 
-  const commit = (record, dataIndex) => {
-    const newValue = form.getFieldValue(`${record.key}-${dataIndex}`)
+  const commit = async (record, dataIndex) => {
+    const fieldName = `${record.key}-${dataIndex}`
+
+    try {
+      await form.validateFields([fieldName])
+    } catch (_error) {
+      message.error(I18n.t('admin.norm_editor_numeric_value_error'))
+      return
+    }
+
+    const newValue = form.getFieldValue(fieldName)
 
     collectionAction({
       method: 'patch',
@@ -302,8 +369,8 @@ const NormsEditor = () => {
         return prev
       })
     }).catch((e) => {
-      form.setFieldValue(`${record.key}-${dataIndex}`, record[dataIndex])
-      message.error(`${e['/fieldValue'].title}`)
+      form.setFieldValue(fieldName, record[dataIndex])
+      message.error(`${e['/fieldValue']?.title || I18n.t('admin.validation_error')}`)
     })
   }
 
