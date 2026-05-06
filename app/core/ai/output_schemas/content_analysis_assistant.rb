@@ -40,7 +40,7 @@ module AI
                   description: 'The id attribute from the <indicator id="..."> tag in the prompt'
 
           number :score,
-                 description: 'Score value assigned to the indicator. May be a decimal (e.g., 2.7, 3.5) to capture nuance between levels.' # rubocop:disable Layout/LineLength
+                 description: 'Score value assigned to the indicator (use the range specified for this indicator)'
 
           number :confidence,
                  description: 'Confidence level (0-1, where 1 is highest confidence)'
