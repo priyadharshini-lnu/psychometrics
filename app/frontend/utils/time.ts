@@ -114,7 +114,7 @@ export function secondsToDayHoursAndMinutes (
 ) {
   const duration = dayjs.duration(seconds, 'seconds')
 
-  const days = duration.days()
+  const days = Math.floor(duration.asDays())
   const hours = duration.hours()
   const minutes = duration.minutes()
   const secondsLeft = duration.seconds()
