@@ -7,7 +7,7 @@ module Administration
       before_action :pundit_authorize
 
       def export_raw_results
-        with_labels = params[:with_labels] == 'true'
+        with_labels = params[:with_labels]&.to_s == 'true'
         audit! :export_raw_results, campaign_assessment, campaign: campaign,
                payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
@@ -406,7 +406,7 @@ module Administration
       end
 
       def include_inactive_users
-        params[:include_inactive_users] == 'true'
+        params[:include_inactive_users]&.to_s == 'true'
       end
     end
   end
