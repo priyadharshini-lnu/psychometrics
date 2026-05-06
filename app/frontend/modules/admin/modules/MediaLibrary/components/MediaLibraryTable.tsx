@@ -80,6 +80,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
         <Resource.Column
           title={`${I18n.t('common.column.name')}`}
           id="name"
+          sorter
           width={300}
           render={item => (
             item?.type === 'folder' ? (
@@ -110,9 +111,11 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
         />
         <Resource.Column
           title={`${I18n.t('common.column.created_at')}`}
-          id="createdAt"
+          id="created_at"
+          dataIndex="createdAt"
+          sorter
           width={150}
-          render={(_, { createdAt }) => createdAt}
+          render={item => item?.createdAt}
         />
         <Resource.Column
           title={I18n.t('common.column.action')}
@@ -185,8 +188,8 @@ const getActionMenuProps = ({
     { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
 
-  if (library.type === 'image') {
-    menuItems.push({ key: 'copy', label: I18n.t('admin.copy_image_url') })
+  if (library.type !== 'folder') {
+    menuItems.push({ key: 'copy', label: I18n.t('admin.copy_url') })
   }
 
   const handleMenuClick = ({ key }) => {
