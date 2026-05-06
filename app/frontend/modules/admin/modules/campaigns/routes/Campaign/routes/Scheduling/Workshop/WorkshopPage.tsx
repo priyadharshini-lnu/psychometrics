@@ -179,16 +179,13 @@ export const WorkshopPage: FC = () => {
       children: (
         <Flex gap={4}>
           <span>
-            { workshop.disableCancellationAndRescheduling
-              ? I18n.t('administration.scheduling.info.not_allowed')
-              : secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)
+            {
+             secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)
             }
           </span>
           <Tooltip
             title={
-              workshop.disableCancellationAndRescheduling
-                ? I18n.t('admin.cancellation_and_rescheduling_disabled')
-                : schedulingTooltip(workshop)
+              schedulingTooltip(workshop)
             }
           >
             <span>
