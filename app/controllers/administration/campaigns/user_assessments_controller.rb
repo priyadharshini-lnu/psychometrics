@@ -199,7 +199,8 @@ module Administration
 
       def toggle_prework
         resource.update!(prework: params[:prework])
-
+        audit! :toggle_prework, resource, user: current_user, campaign: resource.campaign,
+          payload: { prework: params[:prework] }
         render json: Administration::UserAssessmentSerializer.new(
           context: {
             current_user: current_user,

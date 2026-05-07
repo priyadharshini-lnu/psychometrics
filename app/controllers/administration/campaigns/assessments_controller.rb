@@ -33,6 +33,11 @@ module Administration
       end
 
       def export_scoring_results
+        audit! :export_scoring_results, campaign_assessment, campaign: campaign,
+          user: current_user,
+          payload:
+          { assessment_id: assessment.id,
+            campaign_id: campaign.id }
         AdminJob.call(
           :assessment_scoring_export,
           { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -185,6 +190,9 @@ module Administration
       end
 
       def update_assessor_form
+        audit! :update_assessor_form, campaign_assessment, user: current_user,
+          payload: { assessor_form_id: params[:assessor_form_id] },
+          campaign: campaign
         campaign_assessment.update!(assessor_form_id: params[:assessor_form_id])
         render json: {
           assessor_form_name: campaign_assessment.assessor_form&.name,
@@ -219,6 +227,9 @@ module Administration
         if form.valid?
           attributes = form.attributes
           campaign_assessment.update!(attributes)
+          audit! :update_workshop_activity, campaign_assessment, user: current_user,
+            payload: { project_id: campaign.project_id, campaign_id: campaign.id },
+            campaign: campaign
           render json: Administration::CampaignAssessmentSerializer.new(
             context: {
               current_user: current_user,
