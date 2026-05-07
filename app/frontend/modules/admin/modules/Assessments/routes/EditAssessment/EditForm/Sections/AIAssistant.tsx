@@ -85,6 +85,12 @@ export const AIAssistant: React.FC<Props> = ({ assessment }) => {
           <Form.Item
             name="aiAssistantId"
             label={I18n.t('admin.ai_assistant')}
+            rules={[
+              {
+                required: true,
+                message: I18n.t('admin.ai_assistant_required'),
+              },
+            ]}
           >
             <Select
               loading={isAssistantsLoading('fetch')}
