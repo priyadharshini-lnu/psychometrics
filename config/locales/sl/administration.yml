@@ -2997,6 +2997,7 @@ sl:
               scheduling_invited: Razporejanje vabljenih
               scheduling_rescheduled: Razporejanje prestavljenega časa
               scheduling_scheduled: Načrtovanje načrtovanja
+              workshop_attendance_status: Stanje prisotnosti na delavnici
           url:
             label: Spletni naslov
             name: Spletni naslov

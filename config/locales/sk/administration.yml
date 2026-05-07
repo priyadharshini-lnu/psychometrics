@@ -2997,6 +2997,7 @@ sk:
               scheduling_invited: Plánovanie pozvaných
               scheduling_rescheduled: Plánovanie preložené
               scheduling_scheduled: Plánovanie plánovania
+              workshop_attendance_status: Stav účasti na workshope
           url:
             label: URL adresa
             name: Adresa URL

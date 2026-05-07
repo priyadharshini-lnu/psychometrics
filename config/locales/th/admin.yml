@@ -21,6 +21,7 @@ th:
     admin_roles: บทบาทผู้ดูแลระบบ
     admin_updated_successfully: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
     admins: ผู้ดูแลระบบ
+    advanced: ขั้นสูง
     ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
     ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
@@ -117,6 +118,7 @@ th:
     allow_continue_with_warning_system_check: อนุญาตให้ผู้ใช้ดำเนินการต่อได้เมื่อการตรวจสอบระบบล้มเหลว
     api_keys: กุญแจ API
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
+    assessment: การประเมิน
     assessment_center_activity: กิจกรรม
     assessment_center_assessor: ผู้ประเมิน
     assessment_center_attendance: การเข้าร่วม
@@ -147,6 +149,12 @@ th:
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
     average: ค่าเฉลี่ย
     back_to_main: เมนูหลัก
+    block_editor_add_question: เพิ่มคำถาม
+    block_editor_question_randomization: การสุ่มคำถาม
+    block_options: ตัวเลือกการบล็อก
+    block_settings: การตั้งค่าบล็อก
+    blocks_new_button: บล็อกใหม่
+    blocks_title: บล็อก
     bulk_assets_modal_choose_csv: เลือกไฟล์ CSV
     bulk_assets_modal_choose_zip: เลือกไฟล์ ZIP
     bulk_assets_modal_not_csv_file_error: อนุญาตให้อัปโหลดไฟล์ CSV เท่านั้น กรุณาอัปโหลดไฟล์ CSV ที่ถูกต้อง
@@ -159,6 +167,15 @@ th:
     campaign_assessment_actions_disable_caching: ปิดใช้งานการแคชการประเมิน
     campaign_assessment_actions_enable_caching: เปิดใช้งานการแคชการประเมิน
     campaign_assessment_column_caching_enabled: เปิดใช้งานการแคชการประเมิน
+    campaign_assessment_column_hogan_assessment_id: รหัสการประเมินโฮแกน
+    campaign_assessment_column_hogan_form_id: แบบฟอร์มโฮแกน
+    campaign_assessment_column_pearson_assessment_id: รหัสการประเมิน Pearson
+    campaign_assessment_column_pearson_assessment_language: การประเมินภาษาเพียร์สัน
+    campaign_assessment_column_pearson_error_details: รายละเอียดข้อผิดพลาดของ Pearson
+    campaign_assessment_column_pearson_product_id: หมายเลขประจำผลิตภัณฑ์เพียร์สัน
+    campaign_assessment_column_saville_error_code: รหัสข้อผิดพลาด Saville
+    campaign_assessment_column_saville_norm_id: การระบุตัวตนตามมาตรฐาน Saville
+    campaign_assessment_column_saville_request_id: รหัสคำขอ Saville
     campaign_assessment_mhs_confidence_interval: ช่วงความเชื่อมั่น
     campaign_assessment_mhs_confidence_interval_update_success: ช่วงความเชื่อมั่นได้รับการอัปเดตสำเร็จ
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval ต้องเป็น 0 หรือ 1
@@ -203,6 +220,7 @@ th:
     campaigns: แคมเปญ
     cancel: ยกเลิก
     cancellation_and_rescheduling_disabled: การยกเลิกและการเลื่อนกำหนดการถูกปิดใช้งาน
+    captcha: การยืนยันตัวตนด้วย Captcha
     casual: ลำลอง
     cell_save_msg: การเปลี่ยนแปลงที่ถูกต้องจะถูกบันทึกโดยอัตโนมัติเมื่อคุณออกจากเซลล์หลังจากแก้ไข
     characters: ตัวอักษร
@@ -219,10 +237,13 @@ th:
     concise: กระชับ
     configure_model_answer_title: กำหนดค่าคำตอบแบบจำลองและคำสำคัญ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
+    confirmation_required: ต้องการการยืนยัน
+    confirmation_required_details: คุณแน่ใจหรือไม่ว่าต้องการลบ "%{resource_name}" จากหมวดหมู่ "%{resource}"?
     copied: คัดลอกแล้ว
     copied_url_success: URL ถูกคัดลอกไปยังคลิปบอร์ดสำเร็จแล้ว
     copy_ai_artifacts: คัดลอกสิ่งประดิษฐ์ของ AI
     copy_image_url: คัดลอก URL ของรูปภาพ
+    copy_url: คัดลอก URL
     country: ประเทศ
     create_client: สร้างไคลเอ็นต์
     create_indicator: สร้างตัวชี้วัด
@@ -240,6 +261,7 @@ th:
     delete_ok_text: ใช่ ลบ
     denied: ถูก ปฏิเสธ
     description: คำอธิบาย
+    descriptive_text: ข้อความเชิงพรรณนา
     development_actions: การดําเนินการพัฒนา
     development_actions_form_tags: แท็ก
     digest_delivery_mode:
@@ -262,10 +284,12 @@ th:
       wednesday: วันพุธ
     dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
+    disable_proctoring: ปิดการใช้งานการตรวจสอบ
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
     duration: ระยะเวลา
+    duration_must_be_positive: ระยะเวลาต้องเป็นค่าบวก
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
     edit_folder: แก้ไขโฟลเดอร์
@@ -284,6 +308,7 @@ th:
     enable_system_check: เปิดใช้งานการตรวจสอบระบบ
     enable_transcription: เปิดใช้งานการถอดเสียง
     enable_transcription_msg: เปิดใช้งานการถอดเสียงเพื่อใช้การให้คะแนนด้วย AI สำหรับคำถามที่ตอบด้วยวิดีโอ/เสียง
+    end: สิ้นสุด
     end_time: เวลาสิ้นสุด
     end_time_must_be_after_start_time: เวลาสิ้นสุดต้องเป็นหลังจากเวลาเริ่มต้น
     enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
@@ -300,6 +325,8 @@ th:
     export_completion_status: สถานะการส่งออกเสร็จสมบูรณ์
     export_completion_statuses_scheduled: งานส่งออกสถานะการเสร็จสิ้นถูกกำหนดเวลาสำเร็จ
     export_detailed_completion_status: ละเอียด
+    factor_feedback: ปัจจัยการให้ข้อเสนอแนะ
+    factor_selection: การเลือกปัจจัย
     factors: ปัจจัย
     feature_ai_assistants_description: เปิดใช้งานผู้ช่วยอัจฉริยะด้วย AI เพื่อประสบการณ์ผู้ใช้ที่ดียิ่งขึ้น
     feature_ai_assisted_idp_description: ใช้ AI เพื่อช่วยในการให้คำแนะนำสำหรับการวางแผนพัฒนาบุคคล
@@ -323,6 +350,8 @@ th:
     formal: ทางการ
     from: จาก
     generate_transcription: สร้างการถอดความ
+    graphic: กราฟิก
+    graphic_slider: สไลเดอร์กราฟิก
     hide_middle_scores: ซ่อนคะแนนกลาง
     high: สูง
     hogan: โฮแกน
@@ -389,6 +418,7 @@ th:
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
+    linked_assessments: การประเมินที่เชื่อมโยง
     low: ต่ำ
     maintenance: การบำรุงรักษา
     maintenance_settings: การตั้งค่าการบำรุงรักษา
@@ -397,6 +427,7 @@ th:
     max_value: ค่าสูงสุด
     media_files_label: ไฟล์
     media_library: คลังสื่อ
+    media_library_page_title: ห้องสมุดสื่อ - แดชบอร์ด - Mercer Lighthouse
     messages: ข้อความ
     mhs: MHS
     mhs_assessment: การประเมินผล MHS
@@ -420,6 +451,7 @@ th:
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
     no_status: ไม่มีสถานะ
+    norm_editor_numeric_value_error: อนุญาตเฉพาะค่าตัวเลขเท่านั้น (จำนวนเต็มหรือทศนิยม)
     norms: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
@@ -864,6 +896,11 @@ th:
     precision: ความแม่นยำ
     privacy: ความเป็นส่วนตัว
     proctoring: การคุมสอบ
+    proctoring_errors_timed_only: การตรวจสอบการสอบแบบเลือกสรรสามารถเปิดใช้งานได้เฉพาะการประเมินที่มีกำหนดเวลาเท่านั้น
+    proctoring_fixed_time_required: เปิดใช้งานเวลาคงที่เพื่อเลือกตัวเลือกนี้
+    proctoring_mode_all: เปิดใช้งานการตรวจสอบการสอบทุกการประเมิน
+    proctoring_mode_all_except_ac: เปิดใช้งานการตรวจสอบการสอบทุกการประเมิน ยกเว้นศูนย์การประเมิน
+    proctoring_settings: การตั้งค่าการคุมสอบ
     professional: มืออาชีพ
     proficiency: ความชำนาญ
     proficiency_level: กุญแจ API
@@ -876,7 +913,31 @@ th:
     projects: โครงการ
     prompt: คำสั่ง
     question_center: ศูนย์คําถาม
+    question_editor_change_type: เปลี่ยนประเภท
+    question_editor_click_to_write: คลิกเพื่อเขียนเนื้อหาคำถาม...
+    question_editor_copy_question: คัดลอกคำถาม
+    question_editor_enable_transcription: เปิดใช้งานการถอดเสียง
+    question_editor_preview_question: คำถามตัวอย่าง
+    question_editor_validation_type: ประเภทการตรวจสอบความถูกต้อง
+    question_randomization: การสุ่มคำถาม
+    question_type_audio_response: การตอบสนองด้วยเสียง
+    question_type_constant_sum: ผลรวมคงที่
+    question_type_file_upload: การอัปโหลดไฟล์
+    question_type_gap_analysis: การวิเคราะห์ช่องว่าง
+    question_type_hot_spot: จุดร้อน
+    question_type_matrix_table: ตารางเมทริกซ์
+    question_type_meta_info: ข้อมูลเมตา
+    question_type_multiple_choice: แบบปรนัย
+    question_type_pick_group_rank: เลือกอันดับกลุ่ม
+    question_type_rank_order: ลำดับ
+    question_type_side_by_side: เคียงข้างกัน
+    question_type_slider: สไลเดอร์
+    question_type_text_entry: การป้อนข้อความ
+    question_type_video_response: วิดีโอคำตอบ
     questions: คำถาม
+    questions_new_button: คำถามใหม่
+    questions_title: คำถาม
+    questions_type: ประเภท
     range_min_max: ระยะทาง%{min} - %{max}
     reflection_questions: คําถามไตร่ตรอง
     regenerate_transcriptions_action: สร้างถอดความใหม่
@@ -888,6 +949,7 @@ th:
     remove_children_to_change_type: นำเด็กทั้งหมดออกเพื่อเปลี่ยนประเภท
     remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้?
     remove_successfully: รายการสื่อถูกลบออกสำเร็จ
+    report_alias_save_confirmation: หากคุณต้องการบันทึกการเปลี่ยนแปลงทั้งหมดใน Report Builder และใน Aliases ด้วย โปรดคลิกปุ่ม 'บันทึก' หน้าเว็บจะโหลดใหม่และการเปลี่ยนแปลงของคุณจะถูกนำไปใช้สำเร็จ
     report_approvals: การอนุมัติรายงาน
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
@@ -917,6 +979,7 @@ th:
     saml_service_provider_acs_urls_placeholder: ป้อน URL ที่คั่นด้วยเครื่องหมายจุลภาค เช่น https://app1.com/saml/acs https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ต้องมี URL ของ ACS
     saml_service_provider_action_delete_label: ลบ
+    saml_service_provider_action_download_xml_label: ดาวน์โหลด XML
     saml_service_provider_action_edit_label: แก้ไข
     saml_service_provider_action_rotate_certificate_label: หมุนใบรับรอง
     saml_service_provider_add: เพิ่มผู้ให้บริการ SAML
@@ -958,6 +1021,7 @@ th:
     saml_settings: การตั้งค่า SAML
     save: บันทึก
     save_assessment_for_scoring_management: บันทึกการประเมินก่อนเริ่มต้นการให้คะแนน
+    save_block: บันทึกบล็อก
     saved_filter_label:
       approval_status_in: สถานะการอนุมัติ
       approver_user_id_in: ผู้อนุมัติ
@@ -1006,9 +1070,11 @@ th:
     select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
     select_level: เลือกระดับ
     select_start_time: เลือกเวลาเริ่มต้น
+    selective_proctoring: การคุมสอบแบบเลือกสรร
     send_email: ส่งอีเมล
     set_min_max_scores_warning: กรุณาตั้งค่าคะแนนต่ำสุดและสูงสุดสำหรับปัจจัยนี้เพื่อกำหนดค่าการให้คะแนน AI
     settings: การตั้งค่า
+    settings_saved_successfully: การตั้งค่าถูกบันทึกไว้เรียบร้อยแล้ว
     show_all_assessment_responses: แสดงคำตอบการประเมินทั้งหมด
     show_middle_scores: แสดงคะแนนเพิ่มเติมของ%{count} (ไม่บังคับ)...
     show_original: แสดงต้นฉบับ
@@ -1022,7 +1088,11 @@ th:
     slot_name: ชื่อสล็อต
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
+    specialty_questions: คำถามเฉพาะทาง
+    standard_questions: คำถามมาตรฐาน
+    start: เริ่มต้น
     start_time: เวลาเริ่มต้น
+    static_content: เนื้อหาคงที่
     stats: สถิติ
     status_details: รายละเอียดสถานะ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
@@ -1031,7 +1101,10 @@ th:
     target_job_role: ตำแหน่งงานเป้าหมาย
     this_field_is_required: ฟิลด์นี้จำเป็นต้องกรอก
     threesixty: แคมเปญ 360
+    timed_label: 'จับเวลา: %{time_text}'
+    timelines: ไทม์ไลน์
     timezone: เขตเวลา
+    timing: เวลาที่เหมาะสม
     to: ถึง
     tone: โทน
     toolbar_ai_insight: AI อินไซต์

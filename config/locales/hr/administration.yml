@@ -2997,6 +2997,7 @@ hr:
               scheduling_invited: Zakazivanje pozvanih
               scheduling_rescheduled: Zakazivanje je odgođeno
               scheduling_scheduled: Zakazivanje rasporeda
+              workshop_attendance_status: Status prisustva na radionici
           url:
             label: URL
             name: URL

@@ -21,6 +21,7 @@ hi:
     admin_roles: प्रशासन भूमिकाएँ
     admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
     admins: प्रशासक
+    advanced: उन्नत
     ai_artifact_result_generation_admin_job_failed: उपयोगकर्ता '%{user_email}' के लिए कलाकृति '%{artifact_name}' उत्पन्न नहीं की जा सकती।
     ai_artifact_result_stale: परिणाम पुराना हो सकता है क्योंकि एआई आर्टिफैक्ट की निर्भरताएँ अंतिम परिणाम उत्पन्न होने के बाद बदल गई हैं। नवीनतम निर्भरताओं के साथ आर्टिफैक्ट को पुनः उत्पन्न करने पर विचार करें।
     ai_artifacts: एआई कलाकृतियाँ
@@ -117,6 +118,7 @@ hi:
     allow_continue_with_warning_system_check: सिस्टम जाँच विफल होने पर चेतावनियों के साथ जारी रखने की अनुमति दें
     api_keys: एपीआई कुंजी
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
+    assessment: मूल्यांकन
     assessment_center_activity: गतिविधि
     assessment_center_assessor: मूल्यांकनकर्ता
     assessment_center_attendance: उपस्थिति
@@ -147,6 +149,12 @@ hi:
     available_languages: रिपोर्ट भाषाओं में उपलब्ध है
     average: औसत
     back_to_main: मुख्य मेनू
+    block_editor_add_question: प्रश्न जोड़ें
+    block_editor_question_randomization: प्रश्न यादृच्छिकीकरण
+    block_options: ब्लॉक विकल्प
+    block_settings: ब्लॉक सेटिंग्स
+    blocks_new_button: नया ब्लॉक
+    blocks_title: ब्लॉक
     bulk_assets_modal_choose_csv: CSV फ़ाइल चुनें
     bulk_assets_modal_choose_zip: ज़िप फ़ाइल चुनें
     bulk_assets_modal_not_csv_file_error: CSV अपलोड के लिए केवल CSV फ़ाइलें ही अनुमत हैं। कृपया एक मान्य CSV फ़ाइल अपलोड करें।
@@ -159,6 +167,15 @@ hi:
     campaign_assessment_actions_disable_caching: मूल्यांकन कैशिंग अक्षम करें
     campaign_assessment_actions_enable_caching: मूल्यांकन कैशिंग सक्षम करें
     campaign_assessment_column_caching_enabled: मूल्यांकन कैशिंग सक्षम
+    campaign_assessment_column_hogan_assessment_id: होगन मूल्यांकन आईडी
+    campaign_assessment_column_hogan_form_id: होगन फॉर्म आईडी
+    campaign_assessment_column_pearson_assessment_id: पियर्सन असेसमेंट आईडी
+    campaign_assessment_column_pearson_assessment_language: पियर्सन आकलन भाषा
+    campaign_assessment_column_pearson_error_details: पियर्सन त्रुटि विवरण
+    campaign_assessment_column_pearson_product_id: पियर्सन उत्पाद आईडी
+    campaign_assessment_column_saville_error_code: सैविल त्रुटि कोड
+    campaign_assessment_column_saville_norm_id: सैविल नॉर्म आईडी
+    campaign_assessment_column_saville_request_id: सैविल अनुरोध आईडी
     campaign_assessment_mhs_confidence_interval: विश्वास अंतराल
     campaign_assessment_mhs_confidence_interval_update_success: विश्वास अंतराल सफलतापूर्वक अद्यतन किया गया
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval 0 या 1 होना चाहिए।
@@ -203,6 +220,7 @@ hi:
     campaigns: अभियान
     cancel: रद्द करें
     cancellation_and_rescheduling_disabled: रद्दीकरण और पुनःनिर्धारण अक्षम है।
+    captcha: कैप्चा सत्यापन
     casual: आकस्मिक
     cell_save_msg: संपादन के बाद सेल से बाहर निकलते ही मान्य परिवर्तन स्वचालित रूप से सहेजे जाते हैं।
     characters: चरित्र
@@ -219,10 +237,13 @@ hi:
     concise: संक्षिप्त
     configure_model_answer_title: मॉडल उत्तर और कीवर्ड्स कॉन्फ़िगर करें
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
+    confirmation_required: पुष्टि आवश्यक है
+    confirmation_required_details: क्या आप सुनिश्चित हैं कि आप "%{resource}" "%{resource_name}" को हटाना चाहते हैं?
     copied: नकल किया गया
     copied_url_success: यूआरएल क्लिपबोर्ड पर सफलतापूर्वक कॉपी हो गया।
     copy_ai_artifacts: एआई कलाकृतियों की प्रतिलिपि बनाएँ
     copy_image_url: छवि का URL कॉपी करें
+    copy_url: यूआरएल कॉपी करें
     country: देश
     create_client: ग्राहक बनाएँ
     create_indicator: सूचक बनाएँ
@@ -240,6 +261,7 @@ hi:
     delete_ok_text: हाँ, हटाएँ
     denied: अस्वीकृत
     description: विवरण
+    descriptive_text: वर्णनात्मक पाठ
     development_actions: विकास कार्यवाही
     development_actions_form_tags: टैग
     digest_delivery_mode:
@@ -262,10 +284,12 @@ hi:
       wednesday: बुधवार
     dimension_translations_export_scheduled: "%{name} आयाम के लिए निर्धारित अनुवाद निर्यात करें।"
     dimensions: आयाम
+    disable_proctoring: प्रॉक्टरिंग अक्षम करें
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
     download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
     duration: अवधि
+    duration_must_be_positive: अवधि सकारात्मक होनी चाहिए।
     edit_campaign_admin: अभियान प्रशासक संपादित करें
     edit_client_admin: क्लाइंट एडमिन संपादित करें
     edit_folder: फ़ोल्डर संपादित करें
@@ -284,6 +308,7 @@ hi:
     enable_system_check: सिस्टम जाँच सक्षम करें
     enable_transcription: प्रतिलेखन सक्षम करें
     enable_transcription_msg: वीडियो/ऑडियो प्रतिक्रिया प्रश्नों पर एआई स्कोरिंग का उपयोग करने के लिए ट्रांसक्रिप्शन सक्षम करें।
+    end: अंत
     end_time: अंत समय
     end_time_must_be_after_start_time: अंतिम समय प्रारंभ समय के बाद होना चाहिए।
     enhance_with_ai: एआई से बेहतर बनाएँ
@@ -300,6 +325,8 @@ hi:
     export_completion_status: निर्यात पूर्णता स्थिति
     export_completion_statuses_scheduled: पूर्णता स्थितिओं का एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया
     export_detailed_completion_status: विस्तृत
+    factor_feedback: कारक प्रतिक्रिया
+    factor_selection: कारक चयन
     factors: तत्व
     feature_ai_assistants_description: बेहतर उपयोगकर्ता अनुभव के लिए एआई-संचालित सहायकों को सक्षम करें।
     feature_ai_assisted_idp_description: व्यक्तिगत विकास योजना सिफारिशों में सहायता के लिए एआई का उपयोग करें
@@ -323,6 +350,8 @@ hi:
     formal: औपचारिक
     from: से
     generate_transcription: प्रतिलेखन उत्पन्न करें
+    graphic: चित्रात्मक
+    graphic_slider: ग्राफिक स्लाइडर
     hide_middle_scores: मध्य स्कोर छिपाएँ
     high: उच्च
     hogan: होगन
@@ -389,6 +418,7 @@ hi:
     libraries: मीडिया पुस्तकालय
     library_invalid_type: अमान्य पुस्तकालय आइटम
     licenses: लाइसेंस
+    linked_assessments: लिंक्ड आकलन
     low: कम
     maintenance: रखरखाव
     maintenance_settings: रखरखाव सेटिंग्स
@@ -397,6 +427,7 @@ hi:
     max_value: अधिकतम मान
     media_files_label: फ़ाइलें
     media_library: मीडिया पुस्तकालय
+    media_library_page_title: मीडिया लाइब्रेरी - डैशबोर्ड - मर्सर लाइटहाउस
     messages: संदेश
     mhs: एमएचएस
     mhs_assessment: एमएचएस मूल्यांकन
@@ -420,6 +451,7 @@ hi:
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
     no_status: कोई स्थिति नहीं
+    norm_editor_numeric_value_error: केवल संख्यात्मक मान ही अनुमत हैं (पूर्णांक या दशमलव)।
     norms: मानदंड
     not_completed: पूर्ण नहीं
     not_completed_tooltip: "%{completed} मूल्यांकनकर्ता नियुक्त कर दिए गए हैं, लेकिन केवल %{submitted} ने ही मूल्यांकन पूरे किए हैं।"
@@ -864,6 +896,11 @@ hi:
     precision: सूक्ष्मता
     privacy: गोपनीयता
     proctoring: निगरानी
+    proctoring_errors_timed_only: चयनात्मक निगरानी केवल समयबद्ध मूल्यांकनों के लिए ही सक्षम की जा सकती है।
+    proctoring_fixed_time_required: इस विकल्प को चुनने के लिए फिक्स्ड टाइम सक्षम करें।
+    proctoring_mode_all: सभी मूल्यांकनों पर निगरानी सक्षम करें
+    proctoring_mode_all_except_ac: मूल्यांकन केंद्र को छोड़कर सभी मूल्यांकनों पर निगरानी सक्षम करें।
+    proctoring_settings: प्रॉक्टरिंग सेटिंग्स
     professional: पेशेवर
     proficiency: निपुणता
     proficiency_level: प्रवीणता स्तर
@@ -876,7 +913,31 @@ hi:
     projects: परियोजनाएँ
     prompt: तुरंत
     question_center: प्रश्न केंद्र
+    question_editor_change_type: प्रकार बदलें
+    question_editor_click_to_write: प्रश्न की सामग्री लिखने के लिए क्लिक करें...
+    question_editor_copy_question: प्रश्न की प्रतिलिपि बनाएँ
+    question_editor_enable_transcription: प्रतिलेखन सक्षम करें
+    question_editor_preview_question: प्रश्न पूर्वावलोकन
+    question_editor_validation_type: प्रमाणीकरण का प्रकार
+    question_randomization: प्रश्न यादृच्छिकीकरण
+    question_type_audio_response: ऑडियो प्रतिक्रिया
+    question_type_constant_sum: स्थिर योग
+    question_type_file_upload: फ़ाइल अपलोड
+    question_type_gap_analysis: अंतर विश्लेषण
+    question_type_hot_spot: गर्म स्थान
+    question_type_matrix_table: मैट्रिक्स तालिका
+    question_type_meta_info: मेटा जानकारी
+    question_type_multiple_choice: बहुविकल्पीय
+    question_type_pick_group_rank: समूह रैंक चुनें
+    question_type_rank_order: क्रमानुक्रम
+    question_type_side_by_side: एक साथ
+    question_type_slider: स्लाइडर
+    question_type_text_entry: पाठ प्रविष्टि
+    question_type_video_response: वीडियो प्रतिक्रिया
     questions: प्रश्न
+    questions_new_button: नया प्रश्न
+    questions_title: प्रश्न
+    questions_type: प्रकार
     range_min_max: दायरा %{min} - %{max}
     reflection_questions: चिंतन प्रश्न
     regenerate_transcriptions_action: प्रतिलिपियाँ पुनः उत्पन्न करें
@@ -888,6 +949,7 @@ hi:
     remove_children_to_change_type: प्रकार बदलने के लिए सभी बच्चों को हटाएँ।
     remove_confirmation: क्या आप इस आइटम को हटाना चाहते हैं?
     remove_successfully: मीडिया आइटम सफलतापूर्वक हटा दिया गया।
+    report_alias_save_confirmation: यदि आप Report Builder और Aliases में सभी परिवर्तन सहेजना चाहते हैं, तो कृपया 'SAVE' बटन पर क्लिक करें। पृष्ठ पुनः लोड हो जाएगा और आपके परिवर्तन सफलतापूर्वक लागू हो जाएंगे।
     report_approvals: रिपोर्ट अनुमोदन
     report_condition_not_met: "%{required}%{relationship} मूल्यांकन(ओं) की आवश्यकता है, लेकिन केवल %{actual} है।"
     report_conditions_not_met_detailed: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा नहीं करता। %{conditions}"
@@ -917,6 +979,7 @@ hi:
     saml_service_provider_acs_urls_placeholder: अल्पविराम से अलग किए गए यूआरएल दर्ज करें, उदाहरण के लिए https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: एसीएस यूआरएल आवश्यक हैं।
     saml_service_provider_action_delete_label: मिटायें
+    saml_service_provider_action_download_xml_label: XML डाउनलोड करें
     saml_service_provider_action_edit_label: संपादित करें
     saml_service_provider_action_rotate_certificate_label: प्रमाणपत्र घुमाएँ
     saml_service_provider_add: SAML सेवा प्रदाता जोड़ें
@@ -958,6 +1021,7 @@ hi:
     saml_settings: SAML सेटिंग्स
     save: बचाएँ
     save_assessment_for_scoring_management: स्कोरिंग शुरू करने से पहले मूल्यांकन सहेजें।
+    save_block: ब्लॉक सहेजें
     saved_filter_label:
       approval_status_in: अनुमोदन की स्थिति
       approver_user_id_in: अनुमोदक
@@ -1006,9 +1070,11 @@ hi:
     select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
     select_level: स्तर चुनें
     select_start_time: आरंभ समय चुनें
+    selective_proctoring: चयनात्मक निगरानी
     send_email: ईमेल भेजें
     set_min_max_scores_warning: कृपया एआई स्कोरिंग को कॉन्फ़िगर करने के लिए इस कारक के लिए न्यूनतम और अधिकतम स्कोर सेट करें।
     settings: सेटिंग्स
+    settings_saved_successfully: सेटिंग्स सफलतापूर्वक सहेजी गईं
     show_all_assessment_responses: सभी मूल्यांकन प्रतिक्रियाएँ दिखाएँ
     show_middle_scores: "%{count} को और स्कोर दिखाएँ (वैकल्पिक)..."
     show_original: मूल दिखाएँ
@@ -1022,7 +1088,11 @@ hi:
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण
+    specialty_questions: विशेष प्रश्न
+    standard_questions: मानक प्रश्न
+    start: शुरू करें
     start_time: शुरुआत का समय
+    static_content: स्थिर सामग्री
     stats: आँकड़े
     status_details: स्थिति विवरण
     structured_learning: औपचारिक अधिगम [10]
@@ -1031,7 +1101,10 @@ hi:
     target_job_role: लक्षित नौकरी की भूमिका
     this_field_is_required: यह फ़ील्ड अनिवार्य है
     threesixty: 360 अभियान
+    timed_label: 'समयबद्ध: %{time_text}'
+    timelines: समयरेखाएँ
     timezone: समय क्षेत्र
+    timing: समय
     to: के लिए
     tone: स्वर
     toolbar_ai_insight: एआई अंतर्दृष्टि

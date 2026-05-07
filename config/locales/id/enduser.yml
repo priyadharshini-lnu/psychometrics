@@ -12,6 +12,7 @@ id:
     ai_idp_summary_hint_no_document: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut.
     all_checks_must_pass: Semua pemeriksaan harus lolos terlebih dahulu sebelum Anda dapat melanjutkan.
     approve_idp_plan: Setujui Rencana
+    assessment_misconfigured: Konfigurasi penilaian salah
     audio: Audio
     audio_check: Uji Mikrofon
     audio_check_description: Pastikan mikrofon Anda berfungsi dengan baik untuk merekam
@@ -66,6 +67,7 @@ id:
     error_uploading_video: Terjadi kesalahan saat mengunggah video
     error_uploading_video_detail: Terjadi kesalahan saat mengunggah video
     fail: Gagal
+    file_submission_already_exists: Kami sudah menerima kiriman Anda untuk pertanyaan ini. Silakan segarkan halaman ini, dan jika Anda masih tidak dapat melihat kiriman Anda sebelumnya, silakan hubungi administrator Anda.
     follow_these_steps: Ikuti langkah-langkah berikut untuk mengatasi masalah yang terdeteksi selama pemeriksaan sistem
     hide_details: Sembunyikan Detail
     home: Beranda
@@ -95,6 +97,8 @@ id:
     localstorage_fix_title: Penyimpanan Lokal tidak diaktifkan di browser Anda
     localstorage_not_enabled_detail: Penyimpanan Lokal tidak diaktifkan di browser Anda. Pastikan Anda tidak sedang berada dalam mode privat/inkognito, karena localStorage sering kali dinonaktifkan dalam mode-mode tersebut.
     localstorage_support: LocalStorage Diaktifkan
+    magic_link_interstitial_description: Demi keamanan Anda, kami meminta Anda untuk mengonfirmasi proses masuk ini. Sistem otomatis tidak dapat menyelesaikan langkah ini.
+    magic_link_interstitial_title: Untuk menyelesaikan proses masuk, silakan klik tombol di bawah ini.
     max_word_limit: Maksimal %{max} kata
     media_recorder_api_fix_description_first: Aktifkan JavaScript di pengaturan browser Anda
     media_recorder_api_fix_description_second: Pastikan browser Anda mendukung API MediaRecorder dan perbarui ke versi terbaru jika perlu.
@@ -124,6 +128,8 @@ id:
     personal_readiness: Kesiapan Pribadi
     plan_text: Rencanakan untuk seluruh durasi. Setelah dimulai, istirahat mungkin tidak diperbolehkan, tergantung pada jenis penilaian.
     please_check_your_internet_connection: Silakan periksa koneksi internet Anda dan coba lagi.
+    proctored: Diawasi
+    proctored_assessment_misconfigured_msg: Penilaian ini diawasi, namun pengaturan waktunya belum lengkap; silakan hubungi administrator Anda.
     profile: Profil
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
@@ -193,6 +199,7 @@ id:
     testing_download_speed: Sedang menguji kecepatan unduh...
     testing_upload_speed: Memeriksa kecepatan unggah...
     time_commitment: Waktu yang Diperlukan
+    timed_activity_instruction: Ini adalah kegiatan yang dibatasi waktu; setelah Anda memulai sesi pengawasan, Anda akan memiliki waktu <strong>%{time} menit</strong> untuk menyelesaikannya.
     troubleshooting_guide: Panduan Pemecahan Masalah
     troubleshooting_guide_audio_fifth: 'Di Windows: Periksa Pengaturan Privasi > Akses Mikrofon'
     troubleshooting_guide_audio_first: Klik ikon gembok/info di bilah alamat browser Anda

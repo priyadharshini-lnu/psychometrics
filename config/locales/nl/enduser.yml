@@ -12,6 +12,7 @@ nl:
     ai_idp_summary_hint_no_document: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten om meer details te delen.
     all_checks_must_pass: Alle controles moeten zijn doorlopen voordat u verder kunt gaan.
     approve_idp_plan: Plan goedkeuren
+    assessment_misconfigured: De configuratie is onjuist
     audio: Audio
     audio_check: Microfooncontrole
     audio_check_description: Controleer of je microfoon goed werkt voor opnames
@@ -66,6 +67,7 @@ nl:
     error_uploading_video: Fout bij het uploaden van de video
     error_uploading_video_detail: Er is een fout opgetreden tijdens het uploaden van de video
     fail: Mislukt
+    file_submission_already_exists: We hebben uw antwoord op deze vraag al ontvangen. Vernieuw de pagina en neem contact op met uw beheerder als u uw eerdere antwoord nog steeds niet kunt zien.
     follow_these_steps: Volg deze stappen om de problemen op te lossen die tijdens de systeemcontrole zijn vastgesteld
     hide_details: Details verbergen
     home: Dashboard
@@ -95,6 +97,8 @@ nl:
     localstorage_fix_title: Lokale opslag is niet ingeschakeld in uw browser
     localstorage_not_enabled_detail: Lokale opslag is niet ingeschakeld in uw browser. Controleer of u zich niet in de privémodus of incognitomodus bevindt, aangezien lokale opslag in deze modi vaak is uitgeschakeld.
     localstorage_support: LocalStorage ingeschakeld
+    magic_link_interstitial_description: Om veiligheidsredenen vragen wij u deze aanmelding te bevestigen. Geautomatiseerde systemen kunnen deze stap niet uitvoeren.
+    magic_link_interstitial_title: Klik op de onderstaande knop om het inloggen te voltooien.
     max_word_limit: Mag maximaal %{max} woorden bevatten
     media_recorder_api_fix_description_first: Schakel JavaScript in via de instellingen van je browser
     media_recorder_api_fix_description_second: Controleer of je browser de MediaRecorder API ondersteunt en update indien nodig naar de nieuwste versie.
@@ -124,6 +128,8 @@ nl:
     personal_readiness: Persoonlijke voorbereiding
     plan_text: Plan voor de volledige duur. Als je eenmaal bent begonnen, zijn pauzes mogelijk niet toegestaan, afhankelijk van het type toets.
     please_check_your_internet_connection: Controleer uw internetverbinding en probeer het nog eens.
+    proctored: Onder toezicht
+    proctored_assessment_misconfigured_msg: Deze toets wordt onder toezicht afgenomen, maar de vereiste tijdsinstelling ontbreekt. Neem contact op met uw beheerder.
     profile: Profiel
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
@@ -193,6 +199,7 @@ nl:
     testing_download_speed: De downloadsnelheid wordt getest...
     testing_upload_speed: De uploadsnelheid wordt getest...
     time_commitment: Tijdsbesteding
+    timed_activity_instruction: Dit is een tijdgebonden opdracht. Nadat je de toezichtsessie hebt gestart, heb je <strong>%{time} minuten</strong> de tijd om deze af te ronden.
     troubleshooting_guide: Handleiding voor het oplossen van problemen
     troubleshooting_guide_audio_fifth: 'In Windows: Ga naar Privacy-instellingen > Toegang tot microfoon'
     troubleshooting_guide_audio_first: Klik op het slot-/informatiepictogram in de adresbalk van je browser

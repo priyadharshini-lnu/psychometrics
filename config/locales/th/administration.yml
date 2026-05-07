@@ -2997,6 +2997,7 @@ th:
               scheduling_invited: จัดตารางเวลาได้รับเชิญ
               scheduling_rescheduled: ตั้งเวลาการเลื่อนกำหนดเวลา
               scheduling_scheduled: ตั้งเวลากำหนดเวลา
+              workshop_attendance_status: สถานะการเข้าร่วมการประชุมเชิงปฏิบัติการ
           url:
             label: URL
             name: URL

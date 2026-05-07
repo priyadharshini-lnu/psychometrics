@@ -3037,6 +3037,7 @@ sr-Cyrl:
               scheduling_invited: Закazivanje по позиву
               scheduling_rescheduled: Распоређивање поново заказано
               scheduling_scheduled: Распоређивање заказано
+              workshop_attendance_status: Статус присуства на радионици
           url:
             label: УРЛ
             name: url

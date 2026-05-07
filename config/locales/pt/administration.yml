@@ -2997,6 +2997,7 @@ pt:
               scheduling_invited: Programação Convidados
               scheduling_rescheduled: Programação Reagendada
               scheduling_scheduled: Programação Programada
+              workshop_attendance_status: Estado da participação no workshop
           url:
             label: Url
             name: url

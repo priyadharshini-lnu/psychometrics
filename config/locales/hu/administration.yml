@@ -2999,6 +2999,7 @@ hu:
               scheduling_invited: Ütemezés meghívva
               scheduling_rescheduled: Ütemezés átütemezve
               scheduling_scheduled: Ütemezés ütemezve
+              workshop_attendance_status: A műhelymunkán való részvétel
           url:
             label: URL-cím
             name: URL-cím

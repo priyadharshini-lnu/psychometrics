@@ -12,6 +12,7 @@ ro:
     ai_idp_summary_hint_no_document: Cu permisiunea dumneavoastră, dacă spuneți da, pot crea un plan de dezvoltare pentru dumneavoastră. Dacă nu, poți reporni chatul pentru a împărtăși mai multe detalii.
     all_checks_must_pass: Toate verificările trebuie să fie efectuate cu succes înainte de a putea continua.
     approve_idp_plan: Aprobă planul
+    assessment_misconfigured: Configurare incorectă a evaluării
     audio: Audio
     audio_check: Testarea microfonului
     audio_check_description: Verifică dacă microfonul funcționează corect pentru înregistrare
@@ -66,6 +67,7 @@ ro:
     error_uploading_video: Eroare la încărcarea videoclipului
     error_uploading_video_detail: A apărut o eroare în timpul încărcării videoclipului
     fail: Eșec
+    file_submission_already_exists: Am primit deja răspunsul dumneavoastră la această întrebare. Vă rugăm să reîmprospătați pagina și, dacă tot nu vedeți răspunsul anterior, vă rugăm să contactați administratorul.
     follow_these_steps: Urmați acești pași pentru a remedia problemele detectate în timpul verificării sistemului
     hide_details: Ascunde detaliile
     home: Tablou
@@ -95,6 +97,8 @@ ro:
     localstorage_fix_title: Funcția de stocare locală nu este activată în browserul dumneavoastră
     localstorage_not_enabled_detail: Funcția de stocare locală nu este activată în browserul dumneavoastră. Vă rugăm să vă asigurați că nu vă aflați în modul privat/incognito, deoarece funcția localStorage este adesea dezactivată în aceste moduri.
     localstorage_support: LocalStorage activat
+    magic_link_interstitial_description: Pentru siguranța dumneavoastră, vă rugăm să confirmați această autentificare. Sistemele automate nu pot efectua acest pas.
+    magic_link_interstitial_title: Pentru a finaliza autentificarea, te rugăm să dai clic pe butonul de mai jos.
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
     media_recorder_api_fix_description_first: Activează JavaScript în setările browserului tău
     media_recorder_api_fix_description_second: Verificați dacă browserul dvs. acceptă API-ul MediaRecorder și, dacă este necesar, actualizați-l la cea mai recentă versiune.
@@ -124,6 +128,8 @@ ro:
     personal_readiness: Pregătirea personală
     plan_text: Planificați-vă pentru întreaga durată. Odată ce ați început, este posibil să nu vi se permită pauze, în funcție de tipul de evaluare.
     please_check_your_internet_connection: Vă rugăm să verificați conexiunea la internet și să încercați din nou.
+    proctored: Sub supraveghere
+    proctored_assessment_misconfigured_msg: Această evaluare se desfășoară sub supraveghere, dar nu are setările de timp necesare; vă rugăm să contactați administratorul.
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
@@ -193,6 +199,7 @@ ro:
     testing_download_speed: Se testează viteza de descărcare...
     testing_upload_speed: Se testează viteza de încărcare...
     time_commitment: Timpul necesar
+    timed_activity_instruction: Aceasta este o activitate cronometrată; după ce începeți sesiunea de supraveghere, veți avea la dispoziție <strong>%{time} minute</strong> pentru a o finaliza.
     troubleshooting_guide: Ghid de depanare
     troubleshooting_guide_audio_fifth: 'În Windows: Verificați Setările de confidențialitate > Acces la microfon'
     troubleshooting_guide_audio_first: Faceți clic pe pictograma cu lacătul/informații din bara de adrese a browserului

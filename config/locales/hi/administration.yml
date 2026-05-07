@@ -3037,6 +3037,7 @@ hi:
               scheduling_invited: आमंत्रित शेड्यूलिंग
               scheduling_rescheduled: अनुसूचीकरण पुनर्निर्धारित
               scheduling_scheduled: निर्धारित अनुसूचीकरण
+              workshop_attendance_status: कार्यशाला उपस्थिति स्थिति
           url:
             label: यूआरएल
             name: यूआरएल

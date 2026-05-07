@@ -32,6 +32,7 @@ ja:
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
     client: クライアント
+    close: 閉じる
     collaborative_learning: 協働学習
     completed: 完了
     configurations: 構成
@@ -40,19 +41,24 @@ ja:
     controller: コントローラー
     cookie_notice: クッキーに関するお知らせ
     cookies_statement: クッキーに関する声明
+    copied_successfully: コピーされました
     copied_to_clipboard: クリップボードにコピーされました
     copy: コピー
+    create: 作成
     created_at: 作成日時：
     created_date: 作成日
+    created_successfully: 作成に成功しました
     custom_acknowledgment_text: カスタム謝辞テキスト
     custom_acknowledgment_text_required: コントローラーのデータロールには、カスタム確認メッセージが必要です
     custom_consent_text: カスタム同意文
     custom_consent_text_required: コントローラーのデータロールにはカスタム同意テキストが必要です
     data_role: データ役割
     decline: 衰退
+    delete: 削除
     description: 形容
     desktop_or_laptop_recommended: デスクトップまたはノートパソコンが推奨されます
     desktop_or_laptop_required: デスクトップまたはノートパソコンが必要です
+    disabled: 無効
     download: ダウンロード
     download_audio: オーディオをダウンロード
     download_transcription: 文字起こしをダウンロード
@@ -60,6 +66,7 @@ ja:
     edit: 編集
     edited: 新規
     email: Eメール
+    error: エラー
     export: 輸出
     failed: 失敗した
     'false': false
@@ -105,6 +112,8 @@ ja:
     no_results_found: 検索結果が見つかりませんでした
     not_requested: まだリクエストされていません
     ok: OK
+    options: オプション
+    owner: オーナー
     pending: 保留中
     policy_version: ポリシーバージョン
     policy_version_format: 整数のみが許可されます
@@ -142,6 +151,8 @@ ja:
     status_unknown: 状況不明
     subject: 件名
     submit: 送信
+    submit_and_finish_proctoring: 送信して試験監督を終了する
+    suspended: 停止中
     switch_to_laptop_or_desktop: ノートパソコンまたはデスクトップに切り替える
     table:
       entries:
@@ -165,6 +176,7 @@ ja:
     type: タイプ
     update: 更新
     update_failed: 更新に失敗しました
+    updated_at: 更新日時
     updated_successfully: 更新に成功しました
     video: 動画
     view: 表示

@@ -2997,6 +2997,7 @@ ru:
               scheduling_invited: Планирование приглашенных
               scheduling_rescheduled: Перенос графика
               scheduling_scheduled: Планирование Запланировано
+              workshop_attendance_status: Статус посещения семинара
           url:
             label: Url
             name: URL

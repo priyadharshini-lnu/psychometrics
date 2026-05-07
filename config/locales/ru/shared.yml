@@ -32,6 +32,7 @@ ru:
     change_password: Изменить пароль
     clear_filters: Очистить фильтры
     client: Клиент
+    close: Закрыть
     collaborative_learning: Совместное обучение
     completed: Завершено
     configurations: Конфигурации
@@ -40,19 +41,24 @@ ru:
     controller: Контроллер
     cookie_notice: Уведомление об использовании файлов cookie
     cookies_statement: Заявление о файлах cookie
+    copied_successfully: Копирование завершено успешно
     copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
+    create: Создать
     created_at: Создано в
     created_date: Дата создания
+    created_successfully: Создано успешно
     custom_acknowledgment_text: Пользовательский текст благодарности
     custom_acknowledgment_text_required: Для роли «Данные контроллера» требуется настроить собственный текст подтверждения
     custom_consent_text: Текст согласия пользователя
     custom_consent_text_required: Для роли контроллера данных требуется индивидуальный текст согласия
     data_role: Роль данных
     decline: Спад
+    delete: Удалить
     description: Описание
     desktop_or_laptop_recommended: Рекомендуется использовать настольный компьютер или ноутбук
     desktop_or_laptop_required: Требуется настольный компьютер или ноутбук
+    disabled: С ограниченными возможностями
     download: Скачать
     download_audio: Скачать аудио
     download_transcription: Скачать транскрипцию
@@ -60,6 +66,7 @@ ru:
     edit: Редактировать
     edited: Отредактировано
     email: Электронная почта
+    error: Ошибка
     export: Экспорт
     failed: Неудача
     'false': false
@@ -105,6 +112,8 @@ ru:
     no_results_found: Результаты не найдены
     not_requested: Еще не запрошено
     ok: Хорошо
+    options: Параметры
+    owner: Владелец
     pending: В ожидании
     policy_version: Версия политики
     policy_version_format: Допускаются только целые числа
@@ -142,6 +151,8 @@ ru:
     status_unknown: Статус неизвестен
     subject: Тема
     submit: Отправить
+    submit_and_finish_proctoring: Отправить и завершить наблюдение
+    suspended: Приостановлено
     switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер
     table:
       entries:
@@ -165,6 +176,7 @@ ru:
     type: Тип
     update: Обновление
     update_failed: Ошибка обновления
+    updated_at: Обновлено
     updated_successfully: Обновление успешно завершено
     video: Видео
     view: Просмотр

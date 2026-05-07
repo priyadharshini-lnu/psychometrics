@@ -12,6 +12,7 @@ sk:
     ai_idp_summary_hint_no_document: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať a zdieľať viac detailov.
     all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
     approve_idp_plan: Schváliť plán
+    assessment_misconfigured: Hodnotenie je nesprávne nakonfigurované
     audio: Audio
     audio_check: Test mikrofónu
     audio_check_description: Skontrolujte, či mikrofón správne funguje pri nahrávaní
@@ -66,6 +67,7 @@ sk:
     error_uploading_video: Chyba pri nahrávaní videa
     error_uploading_video_detail: Pri nahrávaní videa došlo k chybe
     fail: Neúspech
+    file_submission_already_exists: Vašu odpoveď na túto otázku už máme. Obnovte prosím stránku a ak sa vám predchádzajúca odpoveď stále nezobrazuje, kontaktujte svojho správcu.
     follow_these_steps: Postupujte podľa týchto krokov, aby ste vyriešili problémy zistené pri kontrole systému
     hide_details: Skryť podrobnosti
     home: Domov
@@ -95,6 +97,8 @@ sk:
     localstorage_fix_title: V tvojom prehliadači nie je povolené lokálne ukladanie
     localstorage_not_enabled_detail: V tvojom prehliadači nie je povolené lokálne ukladanie. Uisti sa, že nie si v režime súkromného prehliadania, pretože v týchto režimoch je lokálne ukladanie často vypnuté.
     localstorage_support: Funkcia LocalStorage je povolená
+    magic_link_interstitial_description: V záujme vašej bezpečnosti vás žiadame o potvrdenie tohto prihlásenia. Automatizované systémy nemôžu tento krok vykonať.
+    magic_link_interstitial_title: Na dokončenie prihlásenia kliknite na tlačidlo nižšie.
     max_word_limit: Musí mať najviac %{max} slov
     media_recorder_api_fix_description_first: V nastaveniach prehliadača povolte JavaScript
     media_recorder_api_fix_description_second: Skontrolujte, či váš prehliadač podporuje rozhranie MediaRecorder API, a v prípade potreby ho aktualizujte na najnovšiu verziu.
@@ -124,6 +128,8 @@ sk:
     personal_readiness: Osobná pripravenosť
     plan_text: Naplánujte si celú dobu trvania. Po začatí sa prestávky nemusia povoliť, v závislosti od typu hodnotenia.
     please_check_your_internet_connection: Skontrolujte si pripojenie k internetu a skúste to znovu.
+    proctored: Pod dohľadom
+    proctored_assessment_misconfigured_msg: Toto hodnotenie prebieha pod dohľadom, chýba však potrebné nastavenie času. Prosím, kontaktujte svojho správcu.
     profile: Profil
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}
@@ -193,6 +199,7 @@ sk:
     testing_download_speed: Testovanie rýchlosti sťahovania...
     testing_upload_speed: Testovanie rýchlosti odosielania...
     time_commitment: Časová náročnosť
+    timed_activity_instruction: Táto úloha je časovo obmedzená. Po spustení dohliadanej relácie budete mať na jej dokončenie <strong>%{time} minút</strong>.
     troubleshooting_guide: Príručka na riešenie problémov
     troubleshooting_guide_audio_fifth: 'V systéme Windows: Skontrolujte nastavenia ochrany osobných údajov > Prístup k mikrofónu'
     troubleshooting_guide_audio_first: Kliknite na ikonu zámku/informácií v adresnom riadku prehliadača

@@ -2997,6 +2997,7 @@ id:
               scheduling_invited: Penjadwalan Diundang
               scheduling_rescheduled: Penjadwalan Dijadwalkan Ulang
               scheduling_scheduled: Penjadwalan Terjadwal
+              workshop_attendance_status: Status Kehadiran di Lokakarya
           url:
             label: URL
             name: URL

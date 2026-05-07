@@ -2997,6 +2997,7 @@ nl:
               scheduling_invited: Planning Uitgenodigd
               scheduling_rescheduled: Planning Opnieuw gepland
               scheduling_scheduled: Planning Gepland
+              workshop_attendance_status: Deelname aan de workshop
           url:
             label: Url
             name: url

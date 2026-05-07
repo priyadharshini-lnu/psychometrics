@@ -12,6 +12,7 @@ de:
     ai_idp_summary_hint_no_document: Mit Ihrer Erlaubnis, wenn Sie ja sagen, kann ich einen Entwicklungsplan für Sie erstellen. Falls nicht, kannst du den Chat neu starten, um weitere Details zu teilen.
     all_checks_must_pass: Alle Prüfungen müssen erfolgreich abgeschlossen sein, bevor Sie fortfahren können.
     approve_idp_plan: Plan genehmigen
+    assessment_misconfigured: Bewertung falsch konfiguriert
     audio: Audio
     audio_check: Mikrofontest
     audio_check_description: Stellen Sie sicher, dass Ihr Mikrofon für die Aufnahme ordnungsgemäß funktioniert
@@ -66,6 +67,7 @@ de:
     error_uploading_video: Fehler beim Hochladen des Videos
     error_uploading_video_detail: Beim Hochladen des Videos ist ein Fehler aufgetreten
     fail: Fehlschlag
+    file_submission_already_exists: Wir haben Ihre Antwort auf diese Frage bereits erhalten. Bitte aktualisieren Sie die Seite. Sollten Sie Ihre vorherige Antwort dennoch nicht sehen können, wenden Sie sich bitte an Ihren Administrator.
     follow_these_steps: Befolgen Sie diese Schritte, um die bei der Systemprüfung festgestellten Probleme zu beheben
     hide_details: Details ausblenden
     home: Dashboard
@@ -95,6 +97,8 @@ de:
     localstorage_fix_title: Der lokale Speicher ist in Ihrem Browser nicht aktiviert
     localstorage_not_enabled_detail: Lokaler Speicher ist in Ihrem Browser nicht aktiviert. Bitte stellen Sie sicher, dass Sie sich nicht im privaten/Inkognito-Modus befinden, da der lokale Speicher in diesen Modi häufig deaktiviert ist.
     localstorage_support: LocalStorage aktiviert
+    magic_link_interstitial_description: Zu Ihrer Sicherheit bitten wir Sie, diese Anmeldung zu bestätigen. Automatisierte Systeme können diesen Schritt nicht ausführen.
+    magic_link_interstitial_title: Um die Anmeldung abzuschließen, klicken Sie bitte auf die Schaltfläche unten.
     max_word_limit: Darf höchstens %{max} Wörter haben
     media_recorder_api_fix_description_first: Aktivieren Sie JavaScript in Ihren Browsereinstellungen
     media_recorder_api_fix_description_second: Überprüfen Sie, ob Ihr Browser die MediaRecorder-API unterstützt, und aktualisieren Sie ihn gegebenenfalls auf die neueste Version.
@@ -124,6 +128,8 @@ de:
     personal_readiness: Persönliche Bereitschaft
     plan_text: Planen Sie für die gesamte Dauer. Sobald der Test begonnen hat, sind je nach Testart möglicherweise keine Pausen mehr erlaubt.
     please_check_your_internet_connection: Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
+    proctored: Unter Aufsicht
+    proctored_assessment_misconfigured_msg: Diese Prüfung wird beaufsichtigt, es fehlt jedoch die erforderliche Zeiteinstellung. Bitte wenden Sie sich an Ihren Administrator.
     profile: Profil
     profile_details: Details
     question_counter: Frage %{current} von %{total}
@@ -193,6 +199,7 @@ de:
     testing_download_speed: Download-Geschwindigkeit wird getestet...
     testing_upload_speed: Upload-Geschwindigkeit wird getestet...
     time_commitment: Zeitaufwand
+    timed_activity_instruction: Dies ist eine zeitlich begrenzte Aufgabe. Sobald Sie die Überwachungssitzung gestartet haben, bleiben Ihnen <strong>%{time} Minuten</strong> Zeit, um sie abzuschließen.
     troubleshooting_guide: Leitfaden zur Fehlerbehebung
     troubleshooting_guide_audio_fifth: 'Unter Windows: Überprüfen Sie die Datenschutzeinstellungen > Mikrofonzugriff'
     troubleshooting_guide_audio_first: Klicken Sie auf das Schloss-/Info-Symbol in der Adressleiste Ihres Browsers

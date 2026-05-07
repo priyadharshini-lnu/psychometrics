@@ -21,6 +21,7 @@ ar:
     admin_roles: Admin Roles
     admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
     admins: المسؤولون
+    advanced: متقدم
     ai_artifact_result_generation_admin_job_failed: لا يمكن إنشاء الأداة "%{artifact_name}" للمستخدم "%{user_email}"
     ai_artifact_result_stale: قد تكون النتيجة قديمة لأن تبعيات أداة الذكاء الاصطناعي قد تغيرت منذ إنشاء النتيجة الأخيرة. ضع في اعتبارك إعادة إنشاء الأداة لإنشاء أحدث التبعيات.
     ai_artifacts: قطع الذكاء الاصطناعي
@@ -117,6 +118,7 @@ ar:
     allow_continue_with_warning_system_check: السماح للمستخدمين بالمتابعة مع ظهور تحذيرات عند فشل فحص النظام
     api_keys: مفاتيح API
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
+    assessment: التقييم
     assessment_center_activity: النشاط
     assessment_center_assessor: مُقيِّم
     assessment_center_attendance: الحضور
@@ -147,6 +149,12 @@ ar:
     available_languages: التقرير متوفر باللغات
     average: المتوسط
     back_to_main: القائمة الرئيسية
+    block_editor_add_question: إضافة سؤال
+    block_editor_question_randomization: ترتيب الأسئلة عشوائياً
+    block_options: خيارات الكتلة
+    block_settings: إعدادات الكتلة
+    blocks_new_button: كتلة جديدة
+    blocks_title: الكتل
     bulk_assets_modal_choose_csv: اختر ملف CSV
     bulk_assets_modal_choose_zip: اختر ملف ZIP
     bulk_assets_modal_not_csv_file_error: لا يُسمح بتحميل سوى ملفات CSV. يرجى تحميل ملف CSV صالح.
@@ -159,6 +167,15 @@ ar:
     campaign_assessment_actions_disable_caching: تعطيل التخزين المؤقت للتقييم
     campaign_assessment_actions_enable_caching: تمكين التخزين المؤقت للتقييم
     campaign_assessment_column_caching_enabled: تمكين التخزين المؤقت للتقييم
+    campaign_assessment_column_hogan_assessment_id: رقم تقييم هوجان
+    campaign_assessment_column_hogan_form_id: رقم نموذج هوجان
+    campaign_assessment_column_pearson_assessment_id: رقم تعريف تقييم بيرسون
+    campaign_assessment_column_pearson_assessment_language: لغة تقييم بيرسون
+    campaign_assessment_column_pearson_error_details: تفاصيل خطأ بيرسون
+    campaign_assessment_column_pearson_product_id: رقم تعريف المنتج من بيرسون
+    campaign_assessment_column_saville_error_code: رمز خطأ سافيل
+    campaign_assessment_column_saville_norm_id: رقم تعريف سافيل نورم
+    campaign_assessment_column_saville_request_id: رقم طلب سافيل
     campaign_assessment_mhs_confidence_interval: فاصل الثقة
     campaign_assessment_mhs_confidence_interval_update_success: تم تحديث فاصل الثقة بنجاح
     campaign_assessment_mhs_invalid_confidence_interval: يجب أن يكون confidence_interval 0 أو 1
@@ -203,6 +220,7 @@ ar:
     campaigns: الحملات
     cancel: إلغاء
     cancellation_and_rescheduling_disabled: تم تعطيل الإلغاء وإعادة الجدولة
+    captcha: التحقق من كابتشا
     casual: غير رسمي
     cell_save_msg: يتم حفظ التغييرات الصحيحة تلقائيًا بمجرد مغادرة الخلية بعد التعديل.
     characters: شخصيات
@@ -219,10 +237,13 @@ ar:
     concise: موجز
     configure_model_answer_title: تكوين نموذج الإجابة والكلمات المفتاحية
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
+    confirmation_required: يلزم التأكيد
+    confirmation_required_details: هل أنت متأكد من رغبتك في حذف ملف "%{resource_name}" الموجود في المجلد "%{resource}"؟
     copied: نسخ
     copied_url_success: تم نسخ عنوان URL إلى الحافظة بنجاح
     copy_ai_artifacts: نسخ أعمال الفن الاصطناعي
     copy_image_url: نسخ عنوان URL للصورة
+    copy_url: نسخ الرابط
     country: البلد
     create_client: إنشاء عميل
     create_indicator: إنشاء مؤشر
@@ -240,6 +261,7 @@ ar:
     delete_ok_text: نعم، حذف
     denied: نفي
     description: الوصف
+    descriptive_text: نص وصفي
     development_actions: إجراءات التطوير
     development_actions_form_tags: الوسوم
     digest_delivery_mode:
@@ -262,10 +284,12 @@ ar:
       wednesday: الأربعاء
     dimension_translations_export_scheduled: تصدير الترجمات المجدولة للبعد %{name}.
     dimensions: الأبعاد
+    disable_proctoring: تعطيل المراقبة
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     download_bulk_asset_download_example_csv: تنزيل مثال CSV.
     duration: المدة
+    duration_must_be_positive: يجب أن تكون المدة عددًا موجبًا
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
     edit_folder: تحرير المجلد
@@ -284,6 +308,7 @@ ar:
     enable_system_check: تمكين فحص النظام
     enable_transcription: تمكين النسخ
     enable_transcription_msg: تمكين النسخ لاستخدام التقييم بالذكاء الاصطناعي في أسئلة الردود بالفيديو/الصوت.
+    end: النهاية
     end_time: نهاية الوقت
     end_time_must_be_after_start_time: يجب أن يكون وقت الانتهاء بعد وقت البدء
     enhance_with_ai: تعزيز بالذكاء الاصطناعي
@@ -300,6 +325,8 @@ ar:
     export_completion_status: حالة إتمام التصدير
     export_completion_statuses_scheduled: تمت جدولة مهمة تصدير حالات الإنجاز بنجاح
     export_detailed_completion_status: مفصل
+    factor_feedback: ملاحظات حول العوامل
+    factor_selection: اختيار العوامل
     factors: العوامل
     feature_ai_assistants_description: تمكين المساعدين المدعومين بالذكاء الاصطناعي لتحسين تجربة المستخدم
     feature_ai_assisted_idp_description: استخدام الذكاء الاصطناعي للمساعدة في توصيات تخطيط التنمية الفردية
@@ -323,6 +350,8 @@ ar:
     formal: رسمي
     from: من
     generate_transcription: إنشاء نسخة مكتوبة
+    graphic: رسم بياني
+    graphic_slider: شريط التمرير المصور
     hide_middle_scores: إخفاء النتائج المتوسطة
     high: مرتفع
     hogan: هوجان
@@ -389,6 +418,7 @@ ar:
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
+    linked_assessments: التقييمات المرتبطة
     low: منخفض
     maintenance: الصيانة
     maintenance_settings: إعدادات الصيانة
@@ -397,6 +427,7 @@ ar:
     max_value: القيمة القصوى
     media_files_label: الملفات
     media_library: مكتبة الوسائط
+    media_library_page_title: مكتبة الوسائط - لوحة التحكم - Mercer Lighthouse
     messages: Messages
     mhs: MHS
     mhs_assessment: تقييم MHS
@@ -420,6 +451,7 @@ ar:
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
     no_status: لا يوجد حالة
+    norm_editor_numeric_value_error: يُسمح فقط بالقيم الرقمية (أعداد صحيحة أو أعداد عشرية).
     norms: المعايير
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
@@ -864,6 +896,11 @@ ar:
     precision: الدقة
     privacy: Privacy
     proctoring: الإشراف
+    proctoring_errors_timed_only: لا يمكن تفعيل المراقبة الانتقائية إلا في الاختبارات المحددة بوقت.
+    proctoring_fixed_time_required: قم بتفعيل "وقت محدد" لاختيار هذا الخيار
+    proctoring_mode_all: تمكين المراقبة في جميع الاختبارات
+    proctoring_mode_all_except_ac: تمكين المراقبة في جميع الاختبارات باستثناء مركز التقييم
+    proctoring_settings: إعدادات المراقبة
     professional: محترف
     proficiency: الكفاءة
     proficiency_level: مفاتيح API
@@ -876,7 +913,31 @@ ar:
     projects: المشاريع
     prompt: موجه
     question_center: مركز الأسئلة
+    question_editor_change_type: تغيير النوع
+    question_editor_click_to_write: انقر لكتابة نص السؤال...
+    question_editor_copy_question: نسخ السؤال
+    question_editor_enable_transcription: تمكين النص المكتوب
+    question_editor_preview_question: معاينة السؤال
+    question_editor_validation_type: نوع التحقق من الصحة
+    question_randomization: ترتيب الأسئلة عشوائياً
+    question_type_audio_response: الرد الصوتي
+    question_type_constant_sum: المجموع الثابت
+    question_type_file_upload: تحميل الملف
+    question_type_gap_analysis: تحليل الفجوات
+    question_type_hot_spot: نقطة ساخنة
+    question_type_matrix_table: جدول المصفوفة
+    question_type_meta_info: معلومات تعريفية
+    question_type_multiple_choice: الاختيار من متعدد
+    question_type_pick_group_rank: اختيار ترتيب المجموعة
+    question_type_rank_order: الترتيب
+    question_type_side_by_side: جنبًا إلى جنب
+    question_type_slider: شريط التمرير
+    question_type_text_entry: إدخال النص
+    question_type_video_response: رد بالفيديو
     questions: أسئلة
+    questions_new_button: سؤال جديد
+    questions_title: سؤال
+    questions_type: النوع
     range_min_max: النطاق%{min} - %{max}
     reflection_questions: أسئلة للتفكير
     regenerate_transcriptions_action: إعادة إنشاء النصوص
@@ -888,6 +949,7 @@ ar:
     remove_children_to_change_type: إزالة جميع الأطفال لتغيير النوع
     remove_confirmation: هل أنت متأكد من أنك تريد حذف هذا العنصر؟
     remove_successfully: تمت إزالة العنصر الإعلامي بنجاح.
+    report_alias_save_confirmation: إذا كنت ترغب في حفظ جميع التغييرات في "منشئ التقارير" وفي "الأسماء المستعارة" أيضًا، يرجى النقر على زر "حفظ". سيتم إعادة تحميل الصفحة وسيتم تطبيق التغييرات بنجاح.
     report_approvals: موافقات التقارير
     report_condition_not_met: يحتاج %{required} %{relationship} تقييم(أو تقييمات)، لكنه لديه فقط %{actual}
     report_conditions_not_met_detailed: الإبلاغ عن %{user} لا يستوفي شروط التوفر. %{conditions}
@@ -917,6 +979,7 @@ ar:
     saml_service_provider_acs_urls_placeholder: أدخل عناوين URL مفصولة بفواصل، مثل https://app1.com/saml/acs https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: عناوين URL في ACS مطلوبة
     saml_service_provider_action_delete_label: حذف
+    saml_service_provider_action_download_xml_label: تنزيل ملف XML
     saml_service_provider_action_edit_label: حرر
     saml_service_provider_action_rotate_certificate_label: شهادة التناوب
     saml_service_provider_add: إضافة مزود خدمة SAML
@@ -958,6 +1021,7 @@ ar:
     saml_settings: إعدادات SAML
     save: حفظ
     save_assessment_for_scoring_management: احفظ التقييم قبل البدء في التسجيل.
+    save_block: حفظ المربع
     saved_filter_label:
       approval_status_in: حالة الموافقة
       approver_user_id_in: الموافق
@@ -1006,9 +1070,11 @@ ar:
     select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
     select_level: اختر المستوى
     select_start_time: حدد وقت البدء
+    selective_proctoring: المراقبة الانتقائية
     send_email: إرسال بريد إلكتروني
     set_min_max_scores_warning: يرجى تعيين الحد الأدنى والحد الأقصى للدرجات لهذا العامل لتكوين نظام التقييم بالذكاء الاصطناعي.
     settings: الإعدادات
+    settings_saved_successfully: تم حفظ الإعدادات بنجاح
     show_all_assessment_responses: عرض جميع ردود التقييم
     show_middle_scores: عرض المزيد من النتائج لـ%{count}(اختياري)...
     show_original: عرض الأصل
@@ -1022,7 +1088,11 @@ ar:
     slot_name: اسم الماكينة
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
+    specialty_questions: أسئلة متخصصة
+    standard_questions: الأسئلة المعتادة
+    start: ابدأ
     start_time: وقت البدء
+    static_content: المحتوى الثابت
     stats: الإحصائيات
     status_details: تفاصيل الحالة
     structured_learning: التعلم الرسمي [10]
@@ -1031,7 +1101,10 @@ ar:
     target_job_role: الوظيفة المستهدفة
     this_field_is_required: هذا الحقل مطلوب
     threesixty: حملة 360
+    timed_label: 'الرابط: %{time_text}'
+    timelines: الجداول الزمنية
     timezone: المنطقة الزمنية
+    timing: التوقيت
     to: إلى
     tone: نغمة
     toolbar_ai_insight: رؤية الذكاء الاصطناعي

@@ -2997,6 +2997,7 @@ pl:
               scheduling_invited: Zaproszenie do planowania
               scheduling_rescheduled: Planowanie zmienionego terminu
               scheduling_scheduled: Planowanie zaplanowane
+              workshop_attendance_status: Status obecności na warsztatach
           url:
             label: Adres URL
             name: Adres URL

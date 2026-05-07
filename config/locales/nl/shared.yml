@@ -32,6 +32,7 @@ nl:
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
     client: Klant
+    close: Sluiten
     collaborative_learning: Samenwerkend leren
     completed: Voltooid
     configurations: Configuraties
@@ -40,19 +41,24 @@ nl:
     controller: Controller
     cookie_notice: Kennisgeving inzake cookies
     cookies_statement: Cookiesverklaring
+    copied_successfully: Geslaagd gekopieerd
     copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
+    create: Maken
     created_at: Gemaakt op
     created_date: Datum aangemaakt
+    created_successfully: Succesvol aangemaakt
     custom_acknowledgment_text: Aangepaste bedanktekst
     custom_acknowledgment_text_required: Voor de rol 'Controllergegevens' is een aangepaste bevestigingstekst vereist
     custom_consent_text: Aangepaste toestemmingstekst
     custom_consent_text_required: Aangepaste toestemmingstekst is vereist voor de gegevensrol van de verwerkingsverantwoordelijke
     data_role: Gegevensrol
     decline: Neergang
+    delete: Verwijderen
     description: Beschrijving
     desktop_or_laptop_recommended: Desktop of laptop aanbevolen
     desktop_or_laptop_required: Desktop of laptop vereist
+    disabled: Gehandicapt
     download: Downloaden
     download_audio: Audio downloaden
     download_transcription: Transcriptie downloaden
@@ -60,6 +66,7 @@ nl:
     edit: Bewerk
     edited: Nieuw
     email: E-mail
+    error: Fout
     export: Exporteer
     failed: Mislukt
     'false': false
@@ -105,6 +112,8 @@ nl:
     no_results_found: Geen resultaten gevonden
     not_requested: Nog niet aangevraagd
     ok: Ok
+    options: Opties
+    owner: Eigenaar
     pending: In behandeling
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
@@ -142,6 +151,8 @@ nl:
     status_unknown: Status onbekend
     subject: Onderwerp
     submit: Verzenden
+    submit_and_finish_proctoring: Verzenden en toezicht afronden
+    suspended: Opgeschort
     switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop
     table:
       entries:
@@ -165,6 +176,7 @@ nl:
     type: Type
     update: Update
     update_failed: Update mislukt
+    updated_at: Bijgewerkt op
     updated_successfully: Succesvol bijgewerkt
     video: Video
     view: Bekijken

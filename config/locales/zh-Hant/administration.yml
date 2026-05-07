@@ -2997,6 +2997,7 @@ zh-Hant:
               scheduling_invited: 受邀排程
               scheduling_rescheduled: 重新排程
               scheduling_scheduled: 排程 排程
+              workshop_attendance_status: 研讨会出席情况
           url:
             label: 網址
             name: url

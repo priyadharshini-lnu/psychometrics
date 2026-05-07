@@ -2997,6 +2997,7 @@ vi:
               scheduling_invited: Lên lịch được mời
               scheduling_rescheduled: Lên lịch lại
               scheduling_scheduled: Lên lịch lên lịch
+              workshop_attendance_status: Tình trạng tham dự hội thảo
           url:
             label: Url
             name: Url

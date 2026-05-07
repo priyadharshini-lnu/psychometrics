@@ -2997,6 +2997,7 @@ ja:
               scheduling_invited: 招待されたスケジューリング
               scheduling_rescheduled: スケジュール変更
               scheduling_scheduled: スケジューリング予定
+              workshop_attendance_status: ワークショップの出席状況
           url:
             label: URL
             name: url

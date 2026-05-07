@@ -12,6 +12,7 @@ pt:
     ai_idp_summary_hint_no_document: Com sua permissão, se você disser sim, posso criar um plano de desenvolvimento para você. Se não, você pode reiniciar o chat para compartilhar mais detalhes.
     all_checks_must_pass: Todas as verificações têm de ser concluídas com sucesso antes de poder prosseguir.
     approve_idp_plan: Aprovar Plano
+    assessment_misconfigured: Avaliação mal configurada
     audio: Áudio
     audio_check: Teste do microfone
     audio_check_description: Verifique se o seu microfone está a funcionar corretamente para a gravação
@@ -66,6 +67,7 @@ pt:
     error_uploading_video: Erro ao carregar o vídeo
     error_uploading_video_detail: Ocorreu um erro ao carregar o vídeo
     fail: Falha
+    file_submission_already_exists: Já recebemos a sua resposta a esta pergunta. Por favor, atualize a página e, se continuar sem conseguir ver a sua resposta anterior, contacte o seu administrador.
     follow_these_steps: Siga estes passos para resolver os problemas detetados durante a verificação do sistema
     hide_details: Ocultar detalhes
     home: Painel de controle
@@ -95,6 +97,8 @@ pt:
     localstorage_fix_title: O armazenamento local não está ativado no seu navegador
     localstorage_not_enabled_detail: O armazenamento local não está ativado no seu navegador. Certifique-se de que não está no modo privado/incógnito, uma vez que o armazenamento local costuma estar desativado nesses modos.
     localstorage_support: LocalStorage ativado
+    magic_link_interstitial_description: Por motivos de segurança, solicitamos que confirme este início de sessão. Os sistemas automatizados não podem concluir esta etapa.
+    magic_link_interstitial_title: Para concluir o seu início de sessão, clique no botão abaixo.
     max_word_limit: Deve ter no máximo %{max} palavras
     media_recorder_api_fix_description_first: Ative o JavaScript nas definições do seu navegador
     media_recorder_api_fix_description_second: Verifique se o seu navegador suporta a API MediaRecorder e atualize-o para a versão mais recente, se necessário.
@@ -124,6 +128,8 @@ pt:
     personal_readiness: Preparação pessoal
     plan_text: Planeie para toda a duração. Uma vez iniciada, poderá não ser permitido fazer pausas, dependendo do tipo de avaliação.
     please_check_your_internet_connection: Verifique a sua ligação à Internet e tente novamente.
+    proctored: Sob supervisão
+    proctored_assessment_misconfigured_msg: Esta avaliação é supervisionada, mas não possui a configuração de tempo necessária; por favor, contacte o seu administrador.
     profile: Perfil
     profile_details: Detalhes
     question_counter: Pergunta %{current} de %{total}
@@ -193,6 +199,7 @@ pt:
     testing_download_speed: A testar a velocidade de download...
     testing_upload_speed: A testar a velocidade de upload...
     time_commitment: Disponibilidade de tempo
+    timed_activity_instruction: Esta é uma atividade cronometrada; depois de iniciar a sessão de supervisão, terá <strong>%{time} minutos</strong> para a concluir.
     troubleshooting_guide: Guia de resolução de problemas
     troubleshooting_guide_audio_fifth: 'No Windows: Verifique as definições de privacidade > Acesso ao microfone'
     troubleshooting_guide_audio_first: Clique no ícone do cadeado/informações na barra de endereços do seu navegador

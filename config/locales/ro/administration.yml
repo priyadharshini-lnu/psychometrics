@@ -2997,6 +2997,7 @@ ro:
               scheduling_invited: Programare invitată
               scheduling_rescheduled: Programare reprogramată
               scheduling_scheduled: Programare programată
+              workshop_attendance_status: Starea participării la atelier
           url:
             label: Adresă URL
             name: Adresa URL

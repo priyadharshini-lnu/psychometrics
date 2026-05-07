@@ -32,6 +32,7 @@ hu:
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
     client: Ügyfél
+    close: Bezárás
     collaborative_learning: Együttműködő tanulás
     completed: Befejezett
     configurations: Konfigurációk
@@ -40,19 +41,24 @@ hu:
     controller: Vezérlő
     cookie_notice: Sütikre vonatkozó tájékoztató
     cookies_statement: Sütikre vonatkozó nyilatkozat
+    copied_successfully: A másolás sikeresen megtörtént
     copied_to_clipboard: Másolva a vágólapra
     copy: Másolás
+    create: Létrehozás
     created_at: Létrehozva
     created_date: Létrehozás dátuma
+    created_successfully: Létrehozás sikeresen megtörtént
     custom_acknowledgment_text: Egyéni köszönőüzenet
     custom_acknowledgment_text_required: A vezérlő adat szerepköréhez egyéni köszönőüzenet megadása szükséges
     custom_consent_text: Egyéni hozzájárulási szöveg
     custom_consent_text_required: Az adatkezelő adatkezelői szerepköréhez egyéni hozzájárulási szöveg szükséges.
     data_role: Adat szerep
     decline: Hanyatlás
+    delete: Törlés
     description: Leírás
     desktop_or_laptop_recommended: Asztali vagy laptop számítógép ajánlott
     desktop_or_laptop_required: Asztali vagy laptop számítógép szükséges
+    disabled: Fogyatékkal élők
     download: Letöltés
     download_audio: Audio letöltése
     download_transcription: Letöltés Átírás
@@ -60,6 +66,7 @@ hu:
     edit: Szerkesztés
     edited: Új
     email: E-mail
+    error: Hiba
     export: Kivitel
     failed: Sikertelen
     'false': false
@@ -105,6 +112,8 @@ hu:
     no_results_found: Nincs találat
     not_requested: Még nem kért
     ok: Oké
+    options: Beállítások
+    owner: Tulajdonos
     pending: Függőben
     policy_version: Politika verzió
     policy_version_format: Csak egész számok megengedettek
@@ -142,6 +151,8 @@ hu:
     status_unknown: Állapot ismeretlen
     subject: Tárgy
     submit: Beküldés
+    submit_and_finish_proctoring: A vizsga benyújtása és befejezése
+    suspended: Felfüggesztve
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
     table:
       entries:
@@ -165,6 +176,7 @@ hu:
     type: Típus
     update: Frissítés
     update_failed: A frissítés sikertelen volt
+    updated_at: 'Frissítve:'
     updated_successfully: Sikeresen frissítve
     video: Videó
     view: Megtekintés

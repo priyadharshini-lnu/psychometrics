@@ -2997,6 +2997,7 @@ zh:
               scheduling_invited: 特邀日程安排
               scheduling_rescheduled: 重新安排日程
               scheduling_scheduled: 计划安排 计划安排
+              workshop_attendance_status: 研讨会出席情况
           url:
             label: 网址
             name: 网址

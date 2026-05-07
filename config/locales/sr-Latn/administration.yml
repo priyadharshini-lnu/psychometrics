@@ -2997,6 +2997,7 @@ sr-Latn:
               scheduling_invited: Zakazivanje pozvanih
               scheduling_rescheduled: Zakazivanje ponovno zakazano
               scheduling_scheduled: Zakazivanje zakazano
+              workshop_attendance_status: Статус присуства на радионици
           url:
             label: URL
             name: URL
