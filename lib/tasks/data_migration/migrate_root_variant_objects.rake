@@ -29,7 +29,6 @@ namespace :data_migration do
        %i[batch_size dry_run bucket_name] => %i[environment] do |_, args|
     batch_size = args[:batch_size].to_i
     batch_size = 1000 if batch_size <= 0
-
     dry_run = ActiveModel::Type::Boolean.new.cast(args[:dry_run])
     bucket_name = args[:bucket_name].presence
 
@@ -51,9 +50,10 @@ namespace :data_migration do
       where(record_type: 'ActiveStorage::VariantRecord').
       includes(:blob, record: :blob).
       find_in_batches(batch_size: batch_size) do |attachment_batch|
-      attachment_batch.each do |variant_image_attachment|
-        variant_blob = variant_image_attachment.blob
-        variant_record = variant_image_attachment.record
+      attachment_batch.each do |attachment|
+        variant_blob = attachment.blob
+        variant_record = attachment.record
+        original_blob = variant_record.blob
         next unless variant_record.is_a?(ActiveStorage::VariantRecord)
 
         counters[:variant_images_checked] += 1
@@ -63,23 +63,14 @@ namespace :data_migration do
           next
         end
 
-        original_blob = variant_record.blob
-        next if original_blob.nil?
-
-        variation_key = resolve_variation_key(original_blob, variant_record.variation_digest)
-        if variation_key.blank?
-          counters[:skipped_unknown_variation] += 1
-          puts "Skipping variant_blob_id=#{variant_blob.id}: unknown variation for " \
-               "digest=#{variant_record.variation_digest}"
-          next
-        end
+        next unless original_blob
 
         parent_dir = File.dirname(original_blob.key)
-        target_variant_key = "#{parent_dir}/variants/#{OpenSSL::Digest::SHA256.hexdigest(variation_key)}"
+        target_variant_key = "#{parent_dir}/variants/#{variant_record.variation_digest}"
         bucket = bucket_name_for_blob(variant_blob, bucket_name)
         source_variant_key = variant_blob.key
 
-        if object_exists?(s3_client, bucket, target_variant_key)
+        if s3_object_exists?(s3_client, bucket, target_variant_key)
           if dry_run
             counters[:variants_already_migrated] += 1
             puts "[DRY RUN] Re-link variant_blob_id=#{variant_blob.id}: #{source_variant_key} -> #{target_variant_key}"
@@ -97,8 +88,8 @@ namespace :data_migration do
           end
 
           begin
-            s3_client.delete_object(bucket: bucket, key: source_variant_key) if object_exists?(s3_client, bucket,
-                                                                                               source_variant_key)
+            s3_client.delete_object(bucket: bucket, key: source_variant_key) if s3_object_exists?(s3_client, bucket,
+                                                                                                  source_variant_key)
           rescue Aws::S3::Errors::ServiceError => e
             counters[:source_delete_errors] += 1
             puts "Source cleanup failed for variant_blob_id=#{variant_blob.id}, " \
@@ -156,7 +147,7 @@ namespace :data_migration do
   end
 end
 
-def object_exists?(s3_client, bucket_name, key)
+def s3_object_exists?(s3_client, bucket_name, key)
   return false if key.blank?
 
   s3_client.head_object(bucket: bucket_name, key: key)
@@ -182,28 +173,6 @@ end
 
 def root_object_key?(key)
   key.present? && key.exclude?('/')
-end
-
-def resolve_variation_key(original_blob, variation_digest)
-  original_blob.attachments.each do |attachment|
-    record = attachment.record
-    next if record.nil?
-
-    klass = record.class
-    next unless klass.respond_to?(:attachment_reflections)
-
-    reflection = klass.attachment_reflections[attachment.name]
-    next if reflection.nil? || reflection.named_variants.blank?
-
-    reflection.named_variants.each_key do |variant_name|
-      next unless record.respond_to?(attachment.name)
-
-      variation = record.send(attachment.name).variant(variant_name).variation
-      return variation.key if variation.digest == variation_digest
-    end
-  end
-
-  nil
 end
 
 def bucket_name_for_blob(blob, bucket_name_override)
