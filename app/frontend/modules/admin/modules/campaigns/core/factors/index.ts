@@ -24,6 +24,14 @@ export const FactorTR = t.type({
   })), t.undefined]),
   iconUrl: t.union([t.string, t.null, t.undefined]),
   questionsCount: t.union([t.number, t.undefined]),
+  questionsCountByAssessmentDetails: t.union([
+    t.array(t.type({
+      assessmentId: t.number,
+      assessmentName: t.union([t.string, t.null, t.undefined]),
+      count: t.number,
+    })),
+    t.undefined,
+  ]),
   scoringStrategy: t.union([t.string, t.undefined]),
   createdAt: t.union([t.string, t.undefined]),
   updatedAt: t.union([t.string, t.undefined]),

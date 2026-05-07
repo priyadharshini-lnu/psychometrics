@@ -18,9 +18,10 @@ module Idp
         context: {
           campaign: campaign,
           user_idp_plan: user_idp_plan,
-          skill_gap_report: skill_gap_report,
+          report: skill_gap_report,
           current_user: options[:current_user],
           piped_text_context: piped_text_context,
+          user_results: user_skill_gap_report.user_results,
           lang: options[:lang]
         }
       }).serialize(user_skill_gap_report)
