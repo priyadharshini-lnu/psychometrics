@@ -77,7 +77,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     libraryFormData.append('data[attributes][name]', data.name)
     libraryFormData.append('data[attributes][description]', data.description)
     if (data.ownerId) {
-      libraryFormData.append('data[attributes][owner_id]', data.ownerId)
+      libraryFormData.append('data[attributes][owner_id]', String(data.ownerId))
     }
 
     if (resource.getFilteredValue('with_parent')) {

@@ -111,11 +111,11 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
         />
         <Resource.Column
           title={`${I18n.t('common.column.created_at')}`}
-          id="created_at"
+          id="createdAt"
           dataIndex="createdAt"
           sorter
           width={150}
-          render={item => item?.createdAt}
+          render={createdAt => createdAt}
         />
         <Resource.Column
           title={I18n.t('common.column.action')}
