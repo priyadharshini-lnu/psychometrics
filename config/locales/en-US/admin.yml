@@ -159,6 +159,13 @@ en-US:
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
+    campaign_assessment_column_hogan_assessment_id: Hogan Assessment ID
+    campaign_assessment_column_hogan_form_id: Hogan Form ID
+    campaign_assessment_column_pearson_assessment_id: Pearson Assessment ID
+    campaign_assessment_column_pearson_product_id: Pearson Product ID
+    campaign_assessment_column_saville_error_code: Saville Error Code
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Saville Request ID
     campaign_assessment_mhs_confidence_interval: Confidence Interval
     campaign_assessment_mhs_confidence_interval_update_success: Confidence interval updated successfully
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval must be 0 or 1

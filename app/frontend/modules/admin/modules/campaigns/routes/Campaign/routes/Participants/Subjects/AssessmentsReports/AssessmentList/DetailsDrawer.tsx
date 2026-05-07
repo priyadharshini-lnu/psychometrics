@@ -7,6 +7,7 @@ import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
 import { SimulationDetails } from './SimulationDetails'
 import { SavilleDetails } from './SavilleDetails'
 import { PearsonDetails } from './PearsonDetails'
+import { HoganDetails } from './HoganDetails'
 import { SkillvueDetails } from './SkillvueDetails'
 import { YoodliDetails } from './YoodliDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
@@ -146,6 +147,11 @@ export const DetailsDrawer: FC<Props> = ({
             />
 
             <PearsonDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
+
+            <HoganDetails
               I18n={I18n}
               assessment={assessment}
             />

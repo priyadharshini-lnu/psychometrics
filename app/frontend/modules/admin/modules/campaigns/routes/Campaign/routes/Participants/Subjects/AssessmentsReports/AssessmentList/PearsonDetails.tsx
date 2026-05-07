@@ -42,6 +42,24 @@ export const PearsonDetails: FC<Props> = ({
         >
           {assessment.pearsonUserAssessmentDetails?.normId ?? ''}
         </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('admin.campaign_assessment_column_pearson_product_id')}
+          key="pearson_product_id"
+        >
+          {assessment.pearsonUserAssessmentDetails?.productId ?? ''}
+        </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('admin.campaign_assessment_column_pearson_assessment_id')}
+          key="pearson_assessment_id"
+        >
+          {assessment.pearsonUserAssessmentDetails?.assessmentId ?? ''}
+        </Descriptions.Item>
       </Descriptions>
     </>
   )

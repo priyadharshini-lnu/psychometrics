@@ -7,6 +7,9 @@ import MhsNormOption from '~/modules/admin/modules/campaigns/interfaces/MhsNormO
 interface SavilleUserAssessmentDetails {
   dataSeprator: string | null
   candidateId: string | null
+  requestId: string | null
+  normId: string | null
+  errorCode: string | null
 }
 
 interface SimulationUserAssessmentDetails {
@@ -18,6 +21,13 @@ interface SimulationUserAssessmentDetails {
 interface PearsonUserAssessmentDetails {
   normId: string | null
   scheduleId: string | null
+  productId: string | null
+  assessmentId: string | null
+}
+
+interface HoganUserAssessmentDetails {
+  formId: string | null
+  assessmentId: string | null
 }
 
 interface SkillvueUserAssessmentDetails {
@@ -66,6 +76,7 @@ export default interface UserAssessment {
   hoganParticipantId: string | null
   savilleUserAssessmentDetails: SavilleUserAssessmentDetails | null
   simulationUserAssessmentDetails: SimulationUserAssessmentDetails | null
+  hoganUserAssessmentDetails: HoganUserAssessmentDetails | null
   pearsonUserAssessmentDetails: PearsonUserAssessmentDetails | null
   skillvueUserAssessmentDetails: SkillvueUserAssessmentDetails | null
   yoodliUserAssessmentDetails: YoodliUserAssessmentDetails | null

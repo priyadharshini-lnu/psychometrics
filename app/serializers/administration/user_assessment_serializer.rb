@@ -6,7 +6,8 @@ module Administration
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
                :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
                :users_result_id, :hogan_participant_id, :prework, :started_at, :completed_at,
-               :saville_user_assessment_details, :simulation_user_assessment_details, :pearson_user_assessment_details,
+               :hogan_user_assessment_details, :saville_user_assessment_details,
+               :simulation_user_assessment_details, :pearson_user_assessment_details,
                :skillvue_user_assessment_details, :yoodli_user_assessment_details, :mhs_user_assessment_details
 
     delegate :name, :category, :dimension_id, to: :assessment
@@ -57,6 +58,12 @@ module Administration
       return nil unless object.saville?
 
       Administration::SavilleUserAssessmentSerializer.new.serialize(object.saville_user_assessment)
+    end
+
+    def hogan_user_assessment_details
+      return nil unless object.hogan?
+
+      Administration::HoganUserAssessmentSerializer.new.serialize(object)
     end
 
     def simulation_user_assessment_details
