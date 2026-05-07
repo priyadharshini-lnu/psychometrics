@@ -9,6 +9,6 @@ class MhsUserAssessment < ApplicationRecord
 
   validates :confidence_interval, inclusion: { in: [0, 1] }
   validates :leadership_bar, inclusion: { in: [0, 1] }
-  validates :norm_region, inclusion: { in: 0..8 }
+  validates :norm_region, inclusion: { in: [1, 3, 6, 7] }
   validates :norm_option, inclusion: { in: 0..3 }
 end

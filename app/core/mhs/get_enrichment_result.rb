@@ -49,7 +49,7 @@ module Mhs
 
     def extract_enrichment_id_from_url
       # Extract enrichment ID from URL pattern
-      # Example: /enrichments/bc791135-086f-4d67-a8c1-cea00c003ded/instances/...
+      # Example: /enrichments/bf2375c6-6720-4653-a544-3e7fa8cd8674/instances/...
       match = pdf_url&.match(%r{enrichments/([^/]+)})
       match&.[](1)
     end

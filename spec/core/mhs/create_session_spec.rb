@@ -70,7 +70,7 @@ describe Mhs::CreateSession do
           'servicePrinciple' => 'CreateSession'
         }
       ],
-      'measureID' => '9039cce2-6567-4bc5-8655-8792ba9ab936',
+      'measureID' => 'ad8f2591-4d23-4892-808e-5ea4e68feba7',
       'name' => '',
       'resources' => [],
       'retentionPolicy' => { 'type' => 'Default' },

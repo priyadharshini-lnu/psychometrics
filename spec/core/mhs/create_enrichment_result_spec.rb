@@ -12,7 +12,7 @@ describe Mhs::CreateEnrichmentResult do
   let!(:user_report) { create(:user_report, user: user_assessment.subject, campaign: campaign, report: report) }
 
   let(:session_id) { 'test-session-id-1234-5678-9abc-def012345678' }
-  let(:enrichment_id) { 'bc791135-086f-4d67-a8c1-cea00c003ded' } # Workplace Client Report ID
+  let(:enrichment_id) { 'bf2375c6-6720-4653-a544-3e7fa8cd8674' } # Workplace Client Report ID
   let(:measure_id) { 'test-measure-id-wxyz-0123-4567-890abcdef123' }
 
   let!(:mhs_response) do
@@ -152,7 +152,7 @@ describe Mhs::CreateEnrichmentResult do
   context 'with different report types' do
     it 'uses different directives for different report types' do
       # Test with Leadership Coach Report which has different directives
-      leadership_coach_id = '3f584d17-f016-4ca7-a0fd-a63534f6c45b'
+      leadership_coach_id = 'de8854ae-d69b-49ad-876d-b9c4331d5f6b'
 
       # Mock the assessment settings to include different report types
       assessment_settings = double('assessment_settings')

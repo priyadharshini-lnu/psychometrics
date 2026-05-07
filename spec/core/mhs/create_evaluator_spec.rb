@@ -89,7 +89,7 @@ describe Mhs::CreateEvaluator do
       { key: 'ConfidenceInterval', value: '0' },
       { key: 'LeadershipBar', value: '1' }
     ])
-    evaluators = [double('evaluator', id: evaluator_id)]
+    evaluators = [double('evaluator', id: evaluator_id, observation_set_ids: [])]
     observation_sets = [
       double('observation_set', name: 'Demographics (Scored)', source_id: demographics_source_id)
     ]
@@ -123,7 +123,8 @@ describe Mhs::CreateEvaluator do
       end
 
       it 'includes directives in the request body' do
-        mhs_user_assessment.update!(norm_region: 0, norm_option: 0, confidence_interval: 0, leadership_bar: 1)
+        mhs_user_assessment.update!(norm_region: 6, norm_option: 0, confidence_interval: 0, leadership_bar: 1)
+        user_assessment.subject.user_profile.update!(gender: nil)
 
         expect(client).to receive(:put) do |&block|
           req = instance_double('Faraday::Request')
@@ -131,9 +132,10 @@ describe Mhs::CreateEvaluator do
           expect(req).to receive(:body=) do |body|
             parsed_body = JSON.parse(body)
             evaluations = parsed_body['evaluations']
+            # norm_option: 0 (General Population - Age and Gender) adjusted to '1' (Overall) because gender is nil
             expect(evaluations.first['directives']['keyValuePairsArray']).to include(
-              { 'key' => 'NormRegion', 'value' => '0' },
-              { 'key' => 'NormOption', 'value' => '0' }
+              { 'key' => 'NormRegion', 'value' => '6' },
+              { 'key' => 'NormOption', 'value' => '1' }
             )
           end
           block.call(req)
@@ -180,109 +182,6 @@ describe Mhs::CreateEvaluator do
   end
 
   describe 'private methods' do
-    describe '#demographics_incomplete?' do
-      context 'when demographics observation set is missing' do
-        before do
-          allow(mhs_user_assessment).to receive(:observation_item_sets).and_return([])
-        end
-
-        it 'returns true' do
-          expect(subject.send(:demographics_incomplete?)).to be true
-        end
-      end
-
-      context 'when demographic data has missing values' do
-        before do
-          incomplete_observation_sets = [
-            {
-              'interpretAs' => demographics_source_id,
-              'observationValues' => { 'items' => '-99|F' }
-            }
-          ]
-          allow(mhs_user_assessment).to receive(:observation_item_sets).and_return(incomplete_observation_sets)
-        end
-
-        it 'returns true' do
-          expect(subject.send(:demographics_incomplete?)).to be true
-        end
-      end
-
-      context 'when demographic data is complete' do
-        it 'returns false' do
-          expect(subject.send(:demographics_incomplete?)).to be false
-        end
-      end
-    end
-
-    describe '#demographics_observation_set' do
-      it 'finds the correct observation set by interpretAs' do
-        result = subject.send(:demographics_observation_set)
-        expect(result).to_not be_nil
-        expect(result['interpretAs']).to eq(demographics_source_id)
-      end
-    end
-
-    describe '#extract_demographic_data' do
-      it 'extracts age and gender from positions 0 and 1' do
-        result = subject.send(:extract_demographic_data)
-        expect(result[:age]).to eq('31')
-        expect(result[:gender]).to eq('0')
-      end
-
-      context 'when observation set is missing' do
-        before do
-          allow(subject).to receive(:demographics_observation_set).and_return(nil)
-        end
-
-        it 'returns empty hash' do
-          expect(subject.send(:extract_demographic_data)).to eq({})
-        end
-      end
-    end
-
-    describe '#missing_demographic_values?' do
-      it 'returns true for missing value indicator' do
-        demographic_data = { age: '-99', gender: 'M' }
-        expect(subject.send(:missing_demographic_values?, demographic_data)).to be true
-      end
-
-      it 'returns true for blank values' do
-        demographic_data = { age: '25', gender: '' }
-        expect(subject.send(:missing_demographic_values?, demographic_data)).to be true
-      end
-
-      it 'returns false for complete values' do
-        demographic_data = { age: '25', gender: 'M' }
-        expect(subject.send(:missing_demographic_values?, demographic_data)).to be false
-      end
-    end
-
-    describe '#adjust_norm_directive' do
-      let(:general_directive) { { key: 'NormOption', value: 'General' } }
-      let(:professional_directive) { { key: 'NormOption', value: 'Professional' } }
-
-      it 'adjusts General norm to value 1' do
-        result = subject.send(:adjust_norm_directive, general_directive)
-        expect(result[:value]).to eq('1')
-      end
-
-      it 'adjusts Professional norm to value 3' do
-        result = subject.send(:adjust_norm_directive, professional_directive)
-        expect(result[:value]).to eq('3')
-      end
-
-      it 'converts Config::Options to hash' do
-        config_directive = double('Config::Options',
-                                  '[]': 'NormOption',
-                                  value: 'General',
-                                  to_h: { key: 'NormOption', value: 'General' })
-
-        result = subject.send(:adjust_norm_directive, config_directive)
-        expect(result).to be_a(Hash)
-        expect(result[:value]).to eq('1')
-      end
-    end
-
     describe '#evaluator_directives' do
       before do
         mhs_user_assessment.update!(
@@ -293,37 +192,35 @@ describe Mhs::CreateEvaluator do
         )
       end
 
-      it 'uses values from mhs_user_assessment' do
+      it 'uses norm_region, confidence_interval and leadership_bar values from mhs_user_assessment' do
         directives = subject.send(:evaluator_directives)
 
         expect(directives).to include(
           { key: 'NormRegion', value: '1' },
-          { key: 'NormOption', value: '2' },
           { key: 'ConfidenceInterval', value: '0' },
           { key: 'LeadershipBar', value: '1' }
         )
       end
 
-      context 'when demographics are incomplete' do
+      context 'when candidate has not provided gender' do
         before do
-          incomplete_observation_sets = [
-            {
-              'interpretAs' => demographics_source_id,
-              'observationValues' => { 'items' => '-99|F' }
-            }
-          ]
-          allow(mhs_user_assessment).to receive(:observation_item_sets).and_return(incomplete_observation_sets)
+          user_assessment.subject.user_profile.update!(gender: nil)
         end
 
-        it 'adjusts NormOption directive' do
+        it 'adjusts NormOption to its overall equivalent' do
           directives = subject.send(:evaluator_directives)
           norm_directive = directives.find { |d| d[:key] == 'NormOption' }
-          expect(norm_directive[:value]).to eq('1')
+          # norm_option: 2 (Professional - Age and Gender) → '3' (Professional - Overall)
+          expect(norm_directive[:value]).to eq('3')
         end
       end
 
-      context 'when demographics are complete' do
-        it 'keeps original NormOption directive unchanged' do
+      context 'when candidate has provided gender' do
+        before do
+          user_assessment.subject.user_profile.update!(gender: :male)
+        end
+
+        it 'keeps the original age/gender-specific NormOption' do
           directives = subject.send(:evaluator_directives)
           norm_directive = directives.find { |d| d[:key] == 'NormOption' }
           expect(norm_directive[:value]).to eq('2')
