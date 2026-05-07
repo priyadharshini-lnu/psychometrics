@@ -978,6 +978,7 @@ en:
     saml_service_provider_acs_urls_placeholder: Enter URLs separated by commas, e.g. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ACS URLs are required
     saml_service_provider_action_delete_label: Delete
+    saml_service_provider_action_download_xml_label: Download XML
     saml_service_provider_action_edit_label: Edit
     saml_service_provider_action_rotate_certificate_label: Rotate Certificate
     saml_service_provider_add: Add SAML Service Provider

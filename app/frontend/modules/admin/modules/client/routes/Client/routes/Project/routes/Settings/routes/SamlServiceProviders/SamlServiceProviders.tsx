@@ -349,6 +349,10 @@ const getActionsMenuProps = ({
       key: 'edit',
       label: I18n.t('admin.saml_service_provider_action_edit_label'),
     },
+    saml_service_provider.enabled && {
+      key: 'download_xml',
+      label: I18n.t('admin.saml_service_provider_action_download_xml_label'),
+    },
     {
       key: 'rotate_certificate',
       label: I18n.t('admin.saml_service_provider_action_rotate_certificate_label'),
@@ -357,7 +361,7 @@ const getActionsMenuProps = ({
       key: 'delete',
       label: I18n.t('admin.saml_service_provider_action_delete_label'),
     },
-  ]
+  ] as MenuItem[]
 
   const handleMenuClick = ({ key }) => {
     if (key === 'delete') {
@@ -370,6 +374,9 @@ const getActionsMenuProps = ({
           saml_service_provider,
         },
       )
+    }
+    if (key === 'download_xml') {
+      window.location.href = saml_service_provider.issuerUri
     }
     if (key === 'rotate_certificate') {
       rotateCertificate(saml_service_provider)
