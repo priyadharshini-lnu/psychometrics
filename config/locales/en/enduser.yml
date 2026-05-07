@@ -97,6 +97,8 @@ en:
     localstorage_fix_title: Local Storage is not enabled in your browser
     localstorage_not_enabled_detail: Local Storage is not enabled in your browser. Please ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
     localstorage_support: LocalStorage Enabled
+    magic_link_interstitial_description: For your security, we require you to confirm this sign-in. Automated systems cannot complete this step.
+    magic_link_interstitial_title: To complete your sign-in, please click the button below.
     max_word_limit: Must be at most %{max} words
     media_recorder_api_fix_description_first: Enable JavaScript in your browser settings
     media_recorder_api_fix_description_second: Check that your browser supports MediaRecorder API and update to the latest version if necessary.

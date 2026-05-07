@@ -1,4 +1,4 @@
-javascript [nonce=content_security_policy_nonce]:
-  setTimeout(function() {
-    window.location.href = "#{@magic_link_url}"
-  }, 3000)
+.interstitial-card
+  h2 = t('enduser.magic_link_interstitial_title')
+  p = t('enduser.magic_link_interstitial_description')
+  a.sign-in-btn href=@magic_link_url = t('shared.continue')
