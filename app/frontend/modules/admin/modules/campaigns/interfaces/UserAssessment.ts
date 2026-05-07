@@ -23,6 +23,8 @@ interface PearsonUserAssessmentDetails {
   scheduleId: string | null
   productId: string | null
   assessmentId: string | null
+  assessmentLanguage: string | null
+  errorDetails: Record<string, unknown> | null
 }
 
 interface HoganUserAssessmentDetails {

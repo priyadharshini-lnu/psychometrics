@@ -3,6 +3,14 @@ import { Descriptions } from 'antd'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
+const formatErrorDetails = (errorDetails: Record<string, unknown> | null | undefined): string => {
+  if (!errorDetails || Object.keys(errorDetails ?? {}).length === 0) {
+    return ''
+  }
+
+  return JSON.stringify(errorDetails)
+}
+
 interface Props {
   I18n: I18nInterface
   assessment: UserAssessment | undefined
@@ -15,6 +23,8 @@ export const PearsonDetails: FC<Props> = ({
   if (!assessment || assessment.category !== 'pearson') {
     return null
   }
+
+  const errorDetails = formatErrorDetails(assessment.pearsonUserAssessmentDetails?.errorDetails)
 
   return (
     <>
@@ -60,6 +70,26 @@ export const PearsonDetails: FC<Props> = ({
         >
           {assessment.pearsonUserAssessmentDetails?.assessmentId ?? ''}
         </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('admin.campaign_assessment_column_pearson_assessment_language')}
+          key="pearson_assessment_language"
+        >
+          {assessment.pearsonUserAssessmentDetails?.assessmentLanguage ?? ''}
+        </Descriptions.Item>
+        {errorDetails ? (
+          <Descriptions.Item
+            className="va-t w-30"
+            labelStyle={{ width: '40%' }}
+            contentStyle={{ width: '60%' }}
+            label={I18n.t('admin.campaign_assessment_column_pearson_error_details')}
+            key="pearson_error_details"
+          >
+            {errorDetails}
+          </Descriptions.Item>
+        ) : null}
       </Descriptions>
     </>
   )
