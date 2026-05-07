@@ -67,6 +67,7 @@ en:
     error_uploading_video: Error uploading video
     error_uploading_video_detail: There was some error while uploading the video
     fail: Fail
+    file_submission_already_exists: We already have your submission for this question. Kindly refresh the page and if you still can't see you previous submission, please contact your administrator.
     follow_these_steps: Follow these steps to resolve the issues detected during the system check
     hide_details: Hide Details
     home: Home

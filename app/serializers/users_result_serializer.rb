@@ -152,8 +152,11 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def media_responses
+    valid_media_responses = object.media_responses.order(:created_at).select do |media_response|
+      media_response.asset.attached?
+    end
     Panko::ArraySerializer.new(
-      object.media_responses.order(:created_at),
+      valid_media_responses,
       each_serializer: MediaResponseSerializer
     ).to_a
   end
