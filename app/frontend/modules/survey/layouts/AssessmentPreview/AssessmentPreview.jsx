@@ -9,7 +9,6 @@ import SinglePage from '~/modules/survey/views/Preview/SinglePage'
 import { Instructions } from '~/modules/survey/views/Preview/Instructions'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import { useUnloadCallback } from '~/hooks/useUnloadCallback'
-import { useIsProctored } from '~/hooks/useProctoringState'
 
 const { I18n } = window
 
@@ -19,12 +18,11 @@ const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
   submissionFailed, submitRequired, defaultLanguage, invalidSession, answersSaved, showEnhanceWithAI,
-  preventOverflow, skipInstructions, onSubmit, selectiveProctoringEnabled,
+  preventOverflow, skipInstructions, onSubmit, selectiveProctoringEnabled, isProctored,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
   const { userAssessmentId } = useParams()
   const location = useLocation()
-  const { isProctored } = useIsProctored()
   const insideSelectiveProctoringSession = selectiveProctoringEnabled && isProctored
 
   useEffect(() => {

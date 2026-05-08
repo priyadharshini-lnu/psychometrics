@@ -287,6 +287,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                       renderedByEnduser
                       onSubmit={handleSubmitAssessment}
                       selectiveProctoringEnabled={campaignOptions?.selective_proctoring_enabled}
+                      isProctored={isProctored}
                       skipInstructions
                     />
                   </ResourcesTabs>
