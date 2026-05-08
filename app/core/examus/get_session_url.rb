@@ -4,9 +4,10 @@ module Examus
   class GetSessionUrl < BaseCommand
     AVAILABLE_LOCALES = %i[en ar].freeze
 
-    private_attr_reader :campaign_user, :campaign, :project, :locale
+    private_attr_reader :subject, :campaign_user, :campaign, :project, :locale
 
-    def initialize(campaign_user, locale)
+    def initialize(campaign_user:, locale:, subject: nil)
+      @subject = subject
       @campaign_user = campaign_user
       @campaign = campaign_user.campaign
       @project = campaign.project
@@ -14,7 +15,7 @@ module Examus
     end
 
     def call
-      result = Examus::FindOrCreateSession.call(@campaign_user)
+      result = Examus::FindOrCreateSession.call(campaign_user: campaign_user, subject: subject)
       proctoring_session = result[:ok]
 
       if proctoring_session
@@ -30,7 +31,8 @@ module Examus
     private
 
     def payload(proctoring_session) # rubocop:disable Metrics/AbcSize
-      duration = ((campaign_user.compute_expiry_date.to_i - Time.now.to_i) / 60.0).ceil
+      expiry_date = (subject || campaign_user).compute_expiry_date
+      duration = expiry_date ? ((expiry_date.to_i - Time.now.to_i) / 60.0).ceil : 0
       maskable_identity = campaign_user.user.maskable_identity(
         mask: project.mask_identity_for_examus?
       )
@@ -63,8 +65,10 @@ module Examus
     end
 
     def session_url
+      resource_id = subject.present? ? subject.id : campaign_user.id
+      resource_url = subject.present? ? :pass_user_assessment_url : :proctoring_redirect_campaign_user_url
       Utility::Url.generate(
-        :proctoring_redirect_campaign_user_url, subdomain: project.subdomain, id: campaign_user.id,
+        resource_url, subdomain: project.subdomain, id: resource_id,
         jwt: jwt_token, user_id: campaign_user.user.id
       )
     end

@@ -13,8 +13,7 @@ class CrossSiteCookies
     set_cookie = headers['Set-Cookie']
     return [status, headers, body] unless set_cookie
 
-    is_proctoring = proctoring_context?(env)
-    return [status, headers, body] unless is_proctoring
+    return [status, headers, body] unless proctoring_context?(env)
 
     headers['Set-Cookie'] = convert_to_cross_site(set_cookie)
 
@@ -47,7 +46,11 @@ class CrossSiteCookies
   end
 
   def convert_to_cross_site(cookie)
-    cookie.gsub('SameSite=Lax', 'SameSite=None; Partitioned;')
+    if cookie.is_a?(Array)
+      cookie.map { |c| c.gsub(/samesite=lax/i, 'SameSite=None; Partitioned;') }
+    else
+      cookie.gsub(/samesite=lax/i, 'SameSite=None; Partitioned;')
+    end
   end
 end
 

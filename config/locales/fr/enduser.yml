@@ -12,6 +12,7 @@ fr:
     ai_idp_summary_hint_no_document: Avec votre permission, si vous dites oui, je peux créer un plan de développement pour vous. Sinon, vous pouvez relancer le chat pour partager plus de détails.
     all_checks_must_pass: Toutes les vérifications doivent être validées avant que vous puissiez continuer.
     approve_idp_plan: Approuver le plan
+    assessment_misconfigured: Évaluation mal configurée
     audio: Audio
     audio_check: Test du microphone
     audio_check_description: Vérifiez que votre microphone fonctionne correctement pour l'enregistrement
@@ -66,6 +67,7 @@ fr:
     error_uploading_video: Erreur lors du téléchargement de la vidéo
     error_uploading_video_detail: Une erreur s'est produite lors du téléchargement de la vidéo
     fail: Échec
+    file_submission_already_exists: Nous avons déjà reçu votre réponse à cette question. Veuillez actualiser la page et, si vous ne voyez toujours pas votre réponse précédente, veuillez contacter votre administrateur.
     follow_these_steps: Suivez ces étapes pour résoudre les problèmes détectés lors de la vérification du système
     hide_details: Masquer les détails
     home: Tableau de bord
@@ -95,6 +97,8 @@ fr:
     localstorage_fix_title: Le stockage local n'est pas activé dans votre navigateur
     localstorage_not_enabled_detail: Le stockage local n'est pas activé dans votre navigateur. Veuillez vous assurer que vous n'êtes pas en mode privé ou incognito, car le stockage local est souvent désactivé dans ces modes.
     localstorage_support: LocalStorage activé
+    magic_link_interstitial_description: Pour votre sécurité, nous vous demandons de confirmer cette connexion. Les systèmes automatisés ne peuvent pas effectuer cette étape.
+    magic_link_interstitial_title: Pour terminer votre connexion, veuillez cliquer sur le bouton ci-dessous.
     max_word_limit: Doit contenir au maximum %{max} mots
     media_recorder_api_fix_description_first: Activez JavaScript dans les paramètres de votre navigateur
     media_recorder_api_fix_description_second: Vérifiez que votre navigateur prend en charge l'API MediaRecorder et, si nécessaire, mettez-le à jour avec la dernière version.
@@ -124,6 +128,8 @@ fr:
     personal_readiness: Préparation personnelle
     plan_text: Prévoyez du temps pour toute la durée de l'épreuve. Une fois l'épreuve commencée, les pauses ne seront peut-être pas autorisées, selon le type d'évaluation.
     please_check_your_internet_connection: Veuillez vérifier votre connexion Internet et réessayer.
+    proctored: Sous surveillance
+    proctored_assessment_misconfigured_msg: Cette évaluation se déroule sous surveillance, mais les paramètres de durée ne sont pas configurés. Veuillez contacter votre administrateur.
     profile: Profil
     profile_details: Détails
     question_counter: Question %{current} sur %{total}
@@ -137,7 +143,7 @@ fr:
     rerun_checks: Réexécuter les vérifications
     result: Résultat
     results: Résultat
-    safari_proctoring_description: Il semble que vous utilisiez le navigateur Safari, qui peut présenter certaines limitations concernant les fonctionnalités de suivi activées pour cette campagne. Pour profiter d'une expérience optimale, nous vous recommandons d'utiliser Chrome ou Firefox.
+    safari_proctoring_description: Il semble que vous utilisiez le navigateur Safari, qui peut présenter certaines limitations concernant les fonctionnalités de suivi activées pour cette campagne. Pour profiter d'une expérience optimale, nous vous recommandons d'utiliser Chrome, Edge ou Firefox.
     safari_proctoring_title: Navigateur Safari détecté
     selected_count: Sélectionné
     skill_type: Type de compétence
@@ -193,6 +199,7 @@ fr:
     testing_download_speed: Test de la vitesse de téléchargement...
     testing_upload_speed: Test de la vitesse de téléchargement...
     time_commitment: Temps à consacrer
+    timed_activity_instruction: Il s'agit d'une activité chronométrée. Une fois la session de surveillance lancée, vous disposerez de <strong>%{time} minutes</strong> pour la terminer.
     troubleshooting_guide: Guide de dépannage
     troubleshooting_guide_audio_fifth: 'Sous Windows : accédez à Paramètres de confidentialité > Accès au microphone'
     troubleshooting_guide_audio_first: Cliquez sur l'icône représentant un cadenas ou une info dans la barre d'adresse de votre navigateur

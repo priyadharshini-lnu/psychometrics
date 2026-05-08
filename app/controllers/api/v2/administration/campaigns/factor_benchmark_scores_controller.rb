@@ -38,6 +38,8 @@ module Api
         score = FactorBenchmarkScore.find_or_create_by(
           campaign_id: campaign.id, assessment_id: assessment_id, factor_id: factor_id
         )
+        audit! :factor_benchmark_score_bulk_update, score, campaign_id: campaign.id,
+           assessment_id: assessment_id, payload: { factor_id: factor_id, value: data['value'] }
         score.update(benchmark_score: data['value'])
       end
 

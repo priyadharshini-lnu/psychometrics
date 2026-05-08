@@ -2,8 +2,10 @@
 
 module Mhs
   class CreateEvaluator < Base
-    MISSING_VALUE_INDICATOR = '-99'
-    OBSERVATION_SET_NAME = 'Demographics (Scored)'
+    # Maps age/gender-specific norm options to their "overall" equivalents:
+    # 0 = General Population - Age and Gender  →  1 = General Population - Overall
+    # 2 = Professional - Age and Gender         →  3 = Professional - Overall
+    OVERALL_NORM_FOR = { '0' => '1', '2' => '3' }.freeze
 
     private_attr_reader :user_assessment
 
@@ -104,20 +106,22 @@ module Mhs
     end
 
     def evaluator_directives
-      directives = [
+      [
         { key: 'NormRegion', value: mhs_user_assessment.norm_region.to_s },
-        { key: 'NormOption', value: mhs_user_assessment.norm_option.to_s },
+        { key: 'NormOption', value: overall_norm_option },
         { key: 'ConfidenceInterval', value: mhs_user_assessment.confidence_interval.to_s },
         { key: 'LeadershipBar', value: mhs_user_assessment.leadership_bar.to_s }
       ]
+    end
 
-      directives.map do |directive|
-        if directive[:key] == 'NormOption' && demographics_incomplete?
-          adjust_norm_directive(directive)
-        else
-          directive
-        end
-      end
+    def overall_norm_option
+      return mhs_user_assessment.norm_option.to_s if gender_provided?
+
+      OVERALL_NORM_FOR.fetch(mhs_user_assessment.norm_option.to_s, mhs_user_assessment.norm_option.to_s)
+    end
+
+    def gender_provided?
+      %w[male female].include?(user_assessment.subject&.user_profile&.gender)
     end
 
     def save_evaluation_results(result)
@@ -150,53 +154,6 @@ module Mhs
 
     def users_result
       @users_result ||= user_assessment.users_result
-    end
-
-    def adjust_norm_directive(directive)
-      overall_norm_value = directive[:value].to_s.include?('Professional') ? '3' : '1'
-      directive.to_h.merge(value: overall_norm_value)
-    end
-
-    def demographics_incomplete?
-      demographics_observation_set.nil? ||
-        missing_demographic_values?(extract_demographic_data)
-    end
-
-    def demographics_observation_set
-      @demographics_observation_set ||= find_observation_set(scored_demographics_source_id)
-    end
-
-    def extract_demographic_data
-      items = get_demographic_items
-      return {} if items.blank?
-
-      { age: items[0], gender: items[1] }
-    end
-
-    def missing_demographic_values?(demographic_data)
-      return true if demographic_data.empty?
-
-      demographic_data.values.any? do |value|
-        value == MISSING_VALUE_INDICATOR || value.blank?
-      end
-    end
-
-    def scored_demographics_source_id
-      assessment_settings&.observation_sets&.find { |os| os.name == OBSERVATION_SET_NAME }&.source_id
-    end
-
-    def find_observation_set(source_id)
-      return nil unless source_id
-
-      observation_item_sets.find do |item_set|
-        item_set['interpretAs'] == source_id || item_set['sourceID'] == source_id
-      end
-    end
-
-    def get_demographic_items
-      return [] unless demographics_observation_set&.dig('observationValues', 'items')
-
-      demographics_observation_set['observationValues']['items'].split('|')
     end
   end
 end

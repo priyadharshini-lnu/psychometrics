@@ -10,6 +10,7 @@ module Administration
       def update
         if form.valid?
           resource.update!(form.attributes.except(:current_job_role, :target_job_role))
+          audit! :update, resource, payload: form.attributes, campaign: threesixty_campaign.campaign
           update_campaign_user_job_roles if job_roles_present?
 
           render json: :ok

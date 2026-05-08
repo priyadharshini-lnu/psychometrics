@@ -7,7 +7,9 @@ module Administration
       before_action :pundit_authorize
 
       def export_raw_results
-        with_labels = params[:with_labels] == 'true'
+        with_labels = params[:with_labels]&.to_s == 'true'
+        audit! :export_raw_results, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
           :assessment_raw_result_export,
           { assessment_id: assessment.id, campaign_id: campaign.id,
@@ -19,6 +21,8 @@ module Administration
       end
 
       def export_occupations
+        audit! :export_occupations, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
           :export_occupations,
           { assessment_id: assessment.id, campaign_id: campaign.id },
@@ -29,6 +33,11 @@ module Administration
       end
 
       def export_scoring_results
+        audit! :export_scoring_results, campaign_assessment, campaign: campaign,
+          user: current_user,
+          payload:
+          { assessment_id: assessment.id,
+            campaign_id: campaign.id }
         AdminJob.call(
           :assessment_scoring_export,
           { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -39,6 +48,8 @@ module Administration
       end
 
       def export_normed_results
+        audit! :export_normed_results, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
           :assessment_norm_export,
           { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -49,6 +60,8 @@ module Administration
       end
 
       def export_raw_factor_scores
+        audit! :export_raw_factor_scores, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
           :assessment_raw_factor_export,
           { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -59,6 +72,8 @@ module Administration
       end
 
       def export_external_results
+        audit! :export_external_results, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
           :external_assessment_export,
           { assessment_id: assessment.id, campaign_id: campaign.id },
@@ -69,6 +84,8 @@ module Administration
       end
 
       def normalize_factor_scores
+        audit! :normalize_factor_scores, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         AdminJob.call(
           :normalize_factor_scores,
           { campaign_assessment_id: campaign_assessment.id },
@@ -107,6 +124,8 @@ module Administration
             allow_ai_rescore: params[:allow_ai_rescore].to_s == 'true' },
           current_user
         )
+        audit! :rescore_responses, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         render json: :ok
       end
 
@@ -133,6 +152,7 @@ module Administration
 
       def import_results
         operation = params[:scoring] == 'true' ? :import_scoring_data : :import_raw_data
+        audit! :import_results, assessment, campaign: campaign, payload: params
         AdminJob.call(operation, {
           assessment_id: params[:id],
           campaign_id: params[:new_campaign_id],
@@ -154,6 +174,8 @@ module Administration
 
       def update_norm
         campaign_assessment.update_norm!(params[:norm_id])
+        audit! :update_norm, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
 
         if params[:apply] && params[:norm_id].present?
           AdminJob.call(:rescore_assessment,
@@ -168,6 +190,9 @@ module Administration
       end
 
       def update_assessor_form
+        audit! :update_assessor_form, campaign_assessment, user: current_user,
+          payload: { assessor_form_id: params[:assessor_form_id] },
+          campaign: campaign
         campaign_assessment.update!(assessor_form_id: params[:assessor_form_id])
         render json: {
           assessor_form_name: campaign_assessment.assessor_form&.name,
@@ -176,6 +201,8 @@ module Administration
       end
 
       def update_available_locales
+        audit! :update_available_locales, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         campaign_assessment.update!(available_locales: params[:available_locales] || [])
         render json: {
           available_locales: campaign_assessment.available_locales
@@ -184,6 +211,8 @@ module Administration
 
       def update_prework
         campaign_assessment.update_prework(params[:prework], params[:apply_to_existing_users])
+        audit! :update_prework, campaign_assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
         render json: Administration::CampaignAssessmentSerializer.new(
           context: {
             current_user: current_user,
@@ -198,6 +227,9 @@ module Administration
         if form.valid?
           attributes = form.attributes
           campaign_assessment.update!(attributes)
+          audit! :update_workshop_activity, campaign_assessment, user: current_user,
+            payload: { project_id: campaign.project_id, campaign_id: campaign.id },
+            campaign: campaign
           render json: Administration::CampaignAssessmentSerializer.new(
             context: {
               current_user: current_user,
@@ -326,6 +358,29 @@ module Administration
         ).serialize(campaign_assessment)
       end
 
+      def update_proctoring_settings
+        if params[:proctoring_enabled] && !assessment.fixed_timed?
+          error_msg = I18n.t('admin.proctoring_errors_timed_only')
+          return render json: { errors: error_msg }, status: :unprocessable_entity
+        end
+
+        campaign_assessment.update!(
+          proctoring_enabled: params[:proctoring_enabled]
+        )
+
+        audit! :update_proctoring_settings, campaign_assessment,
+               payload: { proctoring_enabled: campaign_assessment.proctoring_enabled? },
+               campaign: campaign
+
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
+      end
+
       private
 
       def assessment
@@ -362,7 +417,7 @@ module Administration
       end
 
       def include_inactive_users
-        params[:include_inactive_users] == 'true'
+        params[:include_inactive_users]&.to_s == 'true'
       end
     end
   end

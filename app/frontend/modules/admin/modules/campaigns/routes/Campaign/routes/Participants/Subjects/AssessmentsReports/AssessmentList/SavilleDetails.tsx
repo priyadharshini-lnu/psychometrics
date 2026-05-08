@@ -16,6 +16,8 @@ export const SavilleDetails: FC<Props> = ({
     return null
   }
 
+  const errorCode = assessment.savilleUserAssessmentDetails?.errorCode?.trim() ?? ''
+
   return (
     <>
       <Descriptions
@@ -42,6 +44,35 @@ export const SavilleDetails: FC<Props> = ({
         >
           {assessment.savilleUserAssessmentDetails?.candidateId ?? ''}
         </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('admin.campaign_assessment_column_saville_request_id')}
+          key="saville_request_id"
+        >
+          {assessment.savilleUserAssessmentDetails?.requestId ?? ''}
+        </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('admin.campaign_assessment_column_saville_norm_id')}
+          key="saville_norm_id"
+        >
+          {assessment.savilleUserAssessmentDetails?.normId ?? ''}
+        </Descriptions.Item>
+        {errorCode ? (
+          <Descriptions.Item
+            className="va-t w-30"
+            labelStyle={{ width: '40%' }}
+            contentStyle={{ width: '60%' }}
+            label={I18n.t('admin.campaign_assessment_column_saville_error_code')}
+            key="saville_error_code"
+          >
+            {errorCode}
+          </Descriptions.Item>
+        ) : null}
       </Descriptions>
     </>
   )

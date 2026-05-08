@@ -14,6 +14,8 @@ module CampaignScoring
       lock_manager.lock!(lock_key, 1.minute.in_milliseconds) do
         calculate_and_save_scores
       end
+    rescue Redlock::LockError => e
+      broadcast :error, e.message
     end
 
     private
@@ -53,7 +55,9 @@ module CampaignScoring
     end
 
     def lock_manager
-      @lock_manager ||= Redlock::Client.new([$redis]) # rubocop:disable Style/GlobalVars
+      @lock_manager ||= Redlock::Client.new([$redis], # rubocop:disable Style/GlobalVars
+                                            retry_count: 6,
+                                            retry_delay: proc { |attempt_number| 200 * (attempt_number**2) })
     end
   end
 end

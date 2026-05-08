@@ -20,9 +20,11 @@ class WorkshopSubject < ApplicationRecord
   after_commit :publish_scheduling_scheduled, on: %i[update],
     if: proc { saved_change_to_scheduling_status? && scheduled? }
   after_commit :publish_scheduling_cancelled, on: %i[update],
-    if: proc { saved_change_to_scheduling_status? && cancelled? }
+    if: proc { saved_change_to_scheduling_status? && (cancelled? || late_cancelled?) }
   after_commit :publish_scheduling_rescheduled, on: %i[update],
-    if: proc { saved_change_to_scheduling_status? && rescheduled? }
+    if: proc { saved_change_to_scheduling_status? && (rescheduled? || late_rescheduled?) }
+  after_commit :publish_workshop_attendance_status, on: %i[update],
+    if: proc { saved_change_to_attendance_status? }
 
   scope :participatable, lambda {
     where.not(attendance_status: %i[no_show dropped_out]).
@@ -55,6 +57,10 @@ class WorkshopSubject < ApplicationRecord
 
   def publish_scheduling_rescheduled
     WorkshopSubjects::Webhook.new(self).publish_scheduling_rescheduled
+  end
+
+  def publish_workshop_attendance_status
+    WorkshopSubjects::Webhook.new(self).publish_workshop_attendance_status
   end
 
   def campaign_user

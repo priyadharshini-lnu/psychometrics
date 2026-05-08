@@ -32,6 +32,7 @@ sl:
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
     client: Stranka
+    close: Zapri
     collaborative_learning: Sodelovalno učenje
     completed: Zaključeno
     configurations: Konfiguracije
@@ -40,19 +41,24 @@ sl:
     controller: Krmilnik
     cookie_notice: Obvestilo o piškotkih
     cookies_statement: Izjava o piškotkih
+    copied_successfully: Kopiranje je uspelo
     copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
+    create: Ustvari
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne
+    created_successfully: Uspešno ustvarjeno
     custom_acknowledgment_text: Besedilo zahvale po meri
     custom_acknowledgment_text_required: Za vlogo »Podatki krmilnika« je potrebno vnesti lastno besedilo potrditve
     custom_consent_text: Besedilo soglasja po meri
     custom_consent_text_required: Za vlogo upravljavca podatkov je potrebno prilagojeno besedilo soglasja.
     data_role: Vloga podatkov
     decline: Upad
+    delete: Izbriši
     description: Opis
     desktop_or_laptop_recommended: Priporočljiv namizni ali prenosni računalnik
     desktop_or_laptop_required: Potreben namizni ali prenosni računalnik
+    disabled: Invalidi
     download: Prenesi
     download_audio: Prenesi avdio
     download_transcription: Prenesi transkripcijo
@@ -60,6 +66,7 @@ sl:
     edit: Uredi
     edited: Novo
     email: E-pošta
+    error: Napaka
     export: Izvoz
     failed: Neuspelo
     'false': false
@@ -105,6 +112,8 @@ sl:
     no_results_found: Ni bilo najdenih rezultatov
     not_requested: Še ni zahtevano
     ok: Ok
+    options: Možnosti
+    owner: Lastnik
     pending: V obravnavi
     policy_version: Različica politike
     policy_version_format: Dovoljena so samo cela števila.
@@ -142,6 +151,8 @@ sl:
     status_unknown: Status neznan
     subject: Predmet
     submit: Pošlji
+    submit_and_finish_proctoring: Pošlji in zaključi nadzor
+    suspended: Začasno prekinjeno
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
     table:
       entries:
@@ -165,6 +176,7 @@ sl:
     type: Vrsta
     update: Posodobitev
     update_failed: Posodobitev ni uspela
+    updated_at: Posodobljeno dne
     updated_successfully: Posodobljeno uspešno
     video: Video
     view: Pogled

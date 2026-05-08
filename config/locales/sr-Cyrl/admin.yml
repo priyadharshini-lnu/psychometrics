@@ -21,6 +21,7 @@ sr-Cyrl:
     admin_roles: Администраторске улоге
     admin_updated_successfully: Админ '%{name}' је успешно ажуриран
     admins: Администратори
+    advanced: Напредно
     ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
     ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта како бисте користили најновије зависности.
     ai_artifacts: АИ артефакти
@@ -117,6 +118,7 @@ sr-Cyrl:
     allow_continue_with_warning_system_check: Дозволите корисницима да наставе са упозорењима када системска провера не успе.
     api_keys: АПИ кључеви
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи.
+    assessment: Оцењивање
     assessment_center_activity: Активност
     assessment_center_assessor: Процењивач
     assessment_center_attendance: Посећеност
@@ -147,6 +149,12 @@ sr-Cyrl:
     available_languages: Извештај доступан на језицима
     average: Просечно
     back_to_main: Главно мени
+    block_editor_add_question: Додај питање
+    block_editor_question_randomization: Насумичност питања
+    block_options: Опције блока
+    block_settings: Подешавања блока
+    blocks_new_button: Нови блок
+    blocks_title: Блокови
     bulk_assets_modal_choose_csv: Изаберите CSV фајл
     bulk_assets_modal_choose_zip: Изаберите ZIP фајл
     bulk_assets_modal_not_csv_file_error: За учитавање CSV фајлова дозвољени су само CSV фајлови. Молимо вас да отпремите важећи CSV фајл.
@@ -159,6 +167,15 @@ sr-Cyrl:
     campaign_assessment_actions_disable_caching: Онемогући кеширање процене
     campaign_assessment_actions_enable_caching: Омогући кеширање процене
     campaign_assessment_column_caching_enabled: Омогућено кеширање процена
+    campaign_assessment_column_hogan_assessment_id: Хоган идентификација процене
+    campaign_assessment_column_hogan_form_id: Хоган ИД обрасца
+    campaign_assessment_column_pearson_assessment_id: Пирсон ИД за процену
+    campaign_assessment_column_pearson_assessment_language: Пирсон асесмент језик
+    campaign_assessment_column_pearson_error_details: Детаљи о грешкама Пирсона
+    campaign_assessment_column_pearson_product_id: Идентификациони број производа Пирсона
+    campaign_assessment_column_saville_error_code: Савил код грешке
+    campaign_assessment_column_saville_norm_id: Савил Норм ИД
+    campaign_assessment_column_saville_request_id: Идентификатор захтева Савила
     campaign_assessment_mhs_confidence_interval: Поверјени интервал
     campaign_assessment_mhs_confidence_interval_update_success: Поверљиви интервал успешно ажуриран
     campaign_assessment_mhs_invalid_confidence_interval: interвал_поуздања мора бити 0 или 1
@@ -203,6 +220,7 @@ sr-Cyrl:
     campaigns: Кампање
     cancel: Откажи
     cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
+    captcha: Капча верификација
     casual: Неформално
     cell_save_msg: Важеће измене се аутоматски сачувају чим напустите ћелију након уређивања.
     characters: ликови
@@ -219,10 +237,13 @@ sr-Cyrl:
     concise: Сажето
     configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
+    confirmation_required: Потврда је неопходна
+    confirmation_required_details: Да ли сте сигурни да желите да избришете "%{resource_name}"?
     copied: Копирано
     copied_url_success: URL је успешно копиран у међуспремник
     copy_ai_artifacts: Копирајте АИ артефакте
     copy_image_url: Копирајте УРЛ слике
+    copy_url: Копирај УРЛ
     country: Земља
     create_client: Креирај клијента
     create_indicator: Креирај индикатор
@@ -240,6 +261,7 @@ sr-Cyrl:
     delete_ok_text: Да, обриши
     denied: Одбијено
     description: Опис
+    descriptive_text: Описни текст
     development_actions: Развојне акције
     development_actions_form_tags: Ознаке
     digest_delivery_mode:
@@ -262,10 +284,12 @@ sr-Cyrl:
       wednesday: Среда
     dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Димензије
+    disable_proctoring: Онемогућите надзор
     done: Готово
     done_tooltip: За овог корисника више не могу бити поднете оцене јер је његова оцена означена као завршена од стране %{marked_by}
     download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
     duration: Трајање
+    duration_must_be_positive: Трајање мора бити позитивно
     edit_campaign_admin: Уреди администратора кампање
     edit_client_admin: Уреди администратора клијента
     edit_folder: Уреди фасциклу
@@ -284,6 +308,7 @@ sr-Cyrl:
     enable_system_check: Омогући преглед система
     enable_transcription: Омогући транскрипцију
     enable_transcription_msg: Омогућите транскрипцију за коришћење АИ бодовања на видео/аудио питањима са одговорима.
+    end: крај
     end_time: Кrajње време
     end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai: Унапредите помоћу вештачке интелигенције
@@ -300,6 +325,8 @@ sr-Cyrl:
     export_completion_status: Статус завршетка извоза
     export_completion_statuses_scheduled: Извоз задатака за статусе завршетка је успешно заказан
     export_detailed_completion_status: Детаљно
+    factor_feedback: Фактор повратне информације
+    factor_selection: Избор фактора
     factors: Фактори
     feature_ai_assistants_description: Омогућите асистенте покретане вештачком интелигенцијом за унапређено корисничко искуство
     feature_ai_assisted_idp_description: Користите вештачку интелигенцију за помоћ при препорукама за индивидуално планирање развоја.
@@ -323,6 +350,8 @@ sr-Cyrl:
     formal: Формално
     from: Од
     generate_transcription: Генеришите транскрипцију
+    graphic: Графички
+    graphic_slider: Графички слајдер
     hide_middle_scores: Сакриј средње оцене
     high: Високо
     hogan: Хоган
@@ -389,6 +418,7 @@ sr-Cyrl:
     libraries: Медијска библиотека
     library_invalid_type: Неважећи библиотечки предмет
     licenses: Лиценце
+    linked_assessments: Повезане процене
     low: Ниско
     maintenance: Одрживање
     maintenance_settings: Подешавања одржавања
@@ -397,6 +427,7 @@ sr-Cyrl:
     max_value: Максимална вредност
     media_files_label: Датотеке
     media_library: Медијска библиотека
+    media_library_page_title: Медијска библиотека - контролна табла - Мерсер Лајтхаус
     messages: Поруке
     mhs: МХС
     mhs_assessment: МХС процена
@@ -420,6 +451,7 @@ sr-Cyrl:
     no_file_selected: Није изабрана датотека
     no_notifications: Нема обавештења
     no_status: Без статуса
+    norm_editor_numeric_value_error: Дозвољене су само нумеричке вредности (цели бројеви или децимални бројеви).
     norms: Норме
     not_completed: Није завршено
     not_completed_tooltip: "%{completed} Процењивачи су додељени, али само %{submitted} су завршили процене."
@@ -864,6 +896,11 @@ sr-Cyrl:
     precision: Прецизност
     privacy: Приватност
     proctoring: Надгледање
+    proctoring_errors_timed_only: Селективно надгледање може бити омогућено само за тестирања са ограничењем времена.
+    proctoring_fixed_time_required: Омогућите фиксирано време да бисте одабрали ову опцију.
+    proctoring_mode_all: Омогућите надзор на свим проценама
+    proctoring_mode_all_except_ac: Омогућите надзор на свим проценама осим у центру за процене
+    proctoring_settings: Подешавања надзора
     professional: Професионални
     proficiency: Владање
     proficiency_level: Ниво владења
@@ -876,7 +913,31 @@ sr-Cyrl:
     projects: Пројекти
     prompt: Напомена
     question_center: Центар за питања
+    question_editor_change_type: Променити тип
+    question_editor_click_to_write: Кликните да напишете садржај питања...
+    question_editor_copy_question: Копирај питање
+    question_editor_enable_transcription: Омогући транскрипцију
+    question_editor_preview_question: Преглед питања
+    question_editor_validation_type: Тип валидације
+    question_randomization: Насумичност питања
+    question_type_audio_response: Аудио одговор
+    question_type_constant_sum: Константна сума
+    question_type_file_upload: Постављање датотеке
+    question_type_gap_analysis: Анализа јаза
+    question_type_hot_spot: Жестока тачка
+    question_type_matrix_table: Матрична табела
+    question_type_meta_info: Мета информације
+    question_type_multiple_choice: Вишеструки избор
+    question_type_pick_group_rank: Изаберите рангирање групе
+    question_type_rank_order: Рангирање
+    question_type_side_by_side: Рамe уз рамe
+    question_type_slider: Слајдер
+    question_type_text_entry: Унос текста
+    question_type_video_response: Видео одговор
     questions: Питања
+    questions_new_button: Ново питање
+    questions_title: Питање
+    questions_type: Тип
     range_min_max: Домeн %{min} - %{max}
     reflection_questions: Питања за размишљање
     regenerate_transcriptions_action: Поново генериши транскрипте
@@ -888,6 +949,7 @@ sr-Cyrl:
     remove_children_to_change_type: Уклоните све децу да бисте променили тип
     remove_confirmation: Да ли сте сигурни да желите да уклоните овај предмет?
     remove_successfully: Медијски ставка је успешно уклоњена.
+    report_alias_save_confirmation: Ако желите да сачувате СВЕ измене у Report Builder-у и у Aliases-у, кликните на дугме "SAVE". Страница ће се поново учитати и ваше измене ће бити успешно примењене.
     report_approvals: Извештаји о одобрењима
     report_condition_not_met: Потребне су евалуације за %{required} и %{relationship}, али има само %{actual}
     report_conditions_not_met_detailed: Извештај за %{user} не испуњава услове доступности. %{conditions}
@@ -917,6 +979,7 @@ sr-Cyrl:
     saml_service_provider_acs_urls_placeholder: Унесите УРЛ адресе раздвојене зарезом, нпр. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: АЦС УРЛ-ови су обавезни
     saml_service_provider_action_delete_label: Избриши
+    saml_service_provider_action_download_xml_label: Преузми XML
     saml_service_provider_action_edit_label: Уреди
     saml_service_provider_action_rotate_certificate_label: Ротирај сертификат
     saml_service_provider_add: Додајте SAML провајдера услуга
@@ -958,6 +1021,7 @@ sr-Cyrl:
     saml_settings: SAML подешавања
     save: Сачувај
     save_assessment_for_scoring_management: Сачувајте процену пре него што започнете са бодовањем.
+    save_block: Сачувај блок
     saved_filter_label:
       approval_status_in: Статус одобрења
       approver_user_id_in: Одобривач
@@ -1006,9 +1070,11 @@ sr-Cyrl:
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
     select_start_time: Изаберите време почетка
+    selective_proctoring: Селективно надгледање
     send_email: Пошаљи имејл
     set_min_max_scores_warning: Молимо подесите минималне и максималне бодове за овај фактор како бисте конфигурисали бодовање вештачке интелигенције.
     settings: Подешавања
+    settings_saved_successfully: Подешавања су успешно сачувана
     show_all_assessment_responses: Прикажи све одговоре на процену
     show_middle_scores: Прикажи још резултата за %{count} (опционо)...
     show_original: Прикажи оригинал
@@ -1022,7 +1088,11 @@ sr-Cyrl:
     slot_name: Назив слота
     sms_histories: СМС историје
     sms_invites: SMS позиви
+    specialty_questions: Специјална питања
+    standard_questions: Стандардна питања
+    start: почети
     start_time: Време почетка
+    static_content: Статички садржај
     stats: Статистика
     status_details: Детаљи статуса
     structured_learning: Формално учење [10]
@@ -1031,7 +1101,10 @@ sr-Cyrl:
     target_job_role: Циљна радна улога
     this_field_is_required: Ово поље је обавезно
     threesixty: 360 кампања
+    timed_label: 'Временом: %{time_text}'
+    timelines: Временске линије
     timezone: Временска зона
+    timing: Временски распоред
     to: Да
     tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције

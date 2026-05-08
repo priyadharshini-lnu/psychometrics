@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { FC, Children, ReactElement } from 'react'
 import { Table as AntTable, Pagination } from 'antd'
-import { ExpandableConfig } from 'antd/lib/table/interface'
+import { ExpandableConfig } from 'antd/es/table/interface'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResourceContext } from '../ResourceContext'
 import { Column } from '../Column'

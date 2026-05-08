@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) do
-    create(:assessment, :mhs, external_settings: { assessment_id: '9039cce2-6567-4bc5-8655-8792ba9ab936' })
+    create(:assessment, :mhs, external_settings: { assessment_id: 'ad8f2591-4d23-4892-808e-5ea4e68feba7' })
   end
   let!(:superadmin) { create(:superadmin) }
   let(:dimension) { create(:dimension) }
@@ -25,7 +25,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
             provider: 'mhs',
             description: 'asd',
             external_settings: {
-              report_id: 'bc791135-086f-4d67-a8c1-cea00c003ded'
+              report_id: 'bf2375c6-6720-4653-a544-3e7fa8cd8674'
             },
             icon_color: 'color'
           },
@@ -42,7 +42,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(response.status).to eq(201)
       expect(parsed_response['data']).to have_key('attributes')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'report_id')).
-        to eq('bc791135-086f-4d67-a8c1-cea00c003ded')
+        to eq('bf2375c6-6720-4653-a544-3e7fa8cd8674')
     end
 
     context 'if report_id is invalid' do

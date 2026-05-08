@@ -6,7 +6,8 @@ services:
     ports:
       - "3000:3000"
       - "5173:5173"
-    command: bundle exec puma -t 3:3 -p "${PORT:-3000}" -e "${RACK_ENV:-production}"
+#    command: bundle exec puma -t 3:3 -p "${PORT:-3000}" -e "${RACK_ENV:-production}"
+    command: bundle exec falcon host
     env_file:
       - ./.env.local
 #    mem_limit: 8g

@@ -32,6 +32,7 @@ pl:
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
     client: Klient
+    close: Zamknij
     collaborative_learning: Uczenie się zespołowe
     completed: Ukończone
     configurations: Konfiguracje
@@ -40,19 +41,24 @@ pl:
     controller: Kontroler
     cookie_notice: Informacja o plikach cookie
     cookies_statement: Oświadczenie dotyczące plików cookie
+    copied_successfully: Skopiowano pomyślnie
     copied_to_clipboard: Skopiowano do schowka
     copy: Kopiuj
+    create: Utwórz
     created_at: Utworzono w
     created_date: Data utworzenia
+    created_successfully: Utworzono pomyślnie
     custom_acknowledgment_text: Niestandardowy tekst podziękowania
     custom_acknowledgment_text_required: W przypadku roli danych kontrolera wymagany jest niestandardowy tekst potwierdzenia
     custom_consent_text: Tekst zgody niestandardowej
     custom_consent_text_required: Wymagany jest niestandardowy tekst zgody dla roli administratora danych.
     data_role: Rola danych
     decline: Upadek
+    delete: Usuń
     description: Opis
     desktop_or_laptop_recommended: Zalecany komputer stacjonarny lub laptop
     desktop_or_laptop_required: Wymagany komputer stacjonarny lub laptop
+    disabled: Niepełnosprawni
     download: Pobierz
     download_audio: Pobierz plik audio
     download_transcription: Pobierz transkrypcję
@@ -60,6 +66,7 @@ pl:
     edit: Edytuj
     edited: Nowy
     email: E-mail
+    error: Błąd
     export: Eksport
     failed: Niepowodzenie
     'false': false
@@ -105,6 +112,8 @@ pl:
     no_results_found: Nie znaleziono żadnych wyników
     not_requested: Jeszcze nie zgłoszone
     ok: Ok
+    options: Opcje
+    owner: Właściciel
     pending: W toku
     policy_version: Wersja polityki
     policy_version_format: Dopuszczalne są tylko liczby całkowite.
@@ -142,6 +151,8 @@ pl:
     status_unknown: Status nieznany
     subject: Temat
     submit: Prześlij
+    submit_and_finish_proctoring: Prześlij i zakończ nadzór
+    suspended: Zawieszone
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
     table:
       entries:
@@ -165,6 +176,7 @@ pl:
     type: Typ
     update: Odarchiwizuj
     update_failed: Aktualizacja nie powiodła się
+    updated_at: Zaktualizowano
     updated_successfully: Aktualizacja zakończona sukcesem
     video: Wideo
     view: Widok

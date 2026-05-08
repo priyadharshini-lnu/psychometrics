@@ -7,6 +7,7 @@ module Administration
         form = SmsRecords::Form.from_params(resource_params).with_context(project:)
         if form.valid?
           sms_record = campaign.sms_records.create(form.attributes.merge(creator: current_user))
+          audit! :create, sms_record, payload: form.attributes, campaign: campaign
           AdminJob.call(:send_sms_invites, {
             campaign_id: params[:new_campaign_id],
             sms_record_id: sms_record.id

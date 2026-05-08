@@ -144,7 +144,28 @@ class Factor < ApplicationRecord
   # Returns hash: ass_name
   #
   def questions_count_by_assessment
-    FactorsScoring.where(factor_id: id).where('json_array_length(props) > 0').group(:assessment_id).count
+    FactorsScoring.where(factor_id: id).
+      where('json_array_length(props) > 0').
+      group(:assessment_id).
+      order(:assessment_id).
+      count
+  end
+
+  def questions_count_by_assessment_details
+    counts_by_assessment = questions_count_by_assessment
+    return [] if counts_by_assessment.blank?
+
+    assessment_names_by_id = Assessment.where(dimension_id: dimension_id, id: counts_by_assessment.keys).
+                             pluck(:id, :name).
+                             to_h
+
+    counts_by_assessment.map do |assessment_id, count|
+      {
+        assessment_id: assessment_id,
+        assessment_name: assessment_names_by_id[assessment_id],
+        count: count
+      }
+    end
   end
 
   def clone_and_save

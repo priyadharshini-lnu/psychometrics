@@ -2,7 +2,9 @@ import { brotliCompress } from 'zlib'
 import { promisify } from 'util'
 import {defineConfig, ServerOptions} from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
-import loadCssModulePlugin from 'vite-plugin-load-css-module'
+import loadCssModulePlugin from './config/vite-plugins/load-css-module'
+import videojsRecordCompat from './config/vite-plugins/videojs-record-compat'
+import cjsInteropPlugin from './config/vite-plugins/cjs-interop'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
 import checker from 'vite-plugin-checker'
@@ -58,6 +60,8 @@ export default defineConfig({
   },
   clearScreen: false,
   plugins: [
+    videojsRecordCompat(),
+    cjsInteropPlugin(['react-froala-wysiwyg', 'react-contenteditable']),
     sentryVitePlugin({
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
@@ -77,7 +81,7 @@ export default defineConfig({
       exportAsDefault: false,
     }),
     ...devPlugins,
-    loadCssModulePlugin.default({
+    loadCssModulePlugin({
       include: (id) => {
         const path = id.split('?').slice(0, 1).join('')
         if (path.endsWith('/ant.less')) { return false }
@@ -105,15 +109,13 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
-  esbuild: {
-    sourcemap: 'external',
-  },
   build: {
     sourcemap: __TEST__ ? false : true,
+    cssMinify: 'esbuild',
     chunkSizeWarningLimit: 5000,
     reportCompressedSize: false,
     cssCodeSplit: true,
-    rollupOptions: {
+    rolldownOptions: {
       onwarn(warning, warn) {
         if (warning.code === 'MODULE_LEVEL_DIRECTIVE' || warning.code === 'EVAL') {
           return
@@ -160,10 +162,10 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['react-csv'],
-    exclude: __DEV__ ? ['video.js', 'recordrtc'] : ['videojs-record', 'video.js', 'recordrtc'],
-    esbuildOptions: {
-      loader: {
+    include: ['react-csv', 'video.js', 'recordrtc', 'react-froala-wysiwyg', 'froala-editor'],
+    exclude: ['videojs-record'],
+    rolldownOptions: {
+      moduleTypes: {
         '.js': 'jsx',
       },
     },

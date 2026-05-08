@@ -49,6 +49,7 @@ module Administration
           threesixty_campaign.email_schedules.create!(
             form.attributes.merge(auto_triggered: false, template: template)
           )
+          audit! :create, threesixty_campaign.email_schedules.last, campaign: threesixty_campaign.campaign
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: 400
@@ -59,6 +60,8 @@ module Administration
         form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
         if form.valid?
           resource.update!(form.attributes)
+          audit! :update, resource, campaign: threesixty_campaign.campaign,
+            payload: form.attributes
           ::Threesixty::Emails::SendSingleScheduledEmail.call!(resource)
           render json: :ok
         else
@@ -67,6 +70,7 @@ module Administration
       end
 
       def destroy
+        audit! :destroy, resource, campaign: threesixty_campaign.campaign
         resource.destroy!
 
         render json: :ok

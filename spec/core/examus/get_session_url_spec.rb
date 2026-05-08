@@ -22,7 +22,7 @@ status: :in_progress)
       with(hash_including(duration: 10)).and_return(token)
     expect(Campaigns::Proctoring::GetProctoringCredits).to receive(:call!).at_least(:once).and_return(30)
     expected_url = "https://examus.net/integration/simple/test/start/?token=#{token}"
-    actual_url = described_class.call!(campaign_user, 'en')
+    actual_url = described_class.call!(campaign_user: campaign_user, locale: 'en')
     expect(actual_url).to eq(expected_url)
   end
 end

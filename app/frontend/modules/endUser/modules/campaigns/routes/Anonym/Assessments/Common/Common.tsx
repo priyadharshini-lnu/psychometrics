@@ -3,7 +3,7 @@ import {
   Layout, Col, ConfigProvider, Progress, Watermark, Space,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ProgressProps } from 'antd/lib/progress'
+import { ProgressProps } from 'antd/es/progress'
 import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Table, Row, Col, Switch, App,
+  Table, Row, Col, Switch, App, Tag,
 } from 'antd'
-
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -11,6 +10,7 @@ import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { DetailsDrawer } from './DetailsDrawer'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { Column } = Table
 const { I18n } = window
@@ -46,9 +46,14 @@ const AssessmentList: React.FC<Props> = ({
   updateMhsNormRegion,
   updateMhsNormOption,
   toggleAssessmentCaching,
+  updateProctoringSettings,
+  loadingUpdateProctoringSettings,
+  campaignOptions,
+  fetchCampaignOptions,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
+  const assessmentIdRef = React.useRef<number | null>(null)
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message, modal } = App.useApp()
@@ -59,6 +64,20 @@ const AssessmentList: React.FC<Props> = ({
       parsedCampaignId,
       updatePrework,
       checked,
+    })
+  }
+
+  const handleToggleSelectiveProctoring = (assessment: Assessment, checked: boolean) => {
+    if (checked && !assessment.isTimed) {
+      message.error(I18n.t('admin.proctoring_errors_timed_only'), 5)
+      return
+    }
+    assessmentIdRef.current = assessment.id
+
+    updateProctoringSettings(parsedCampaignId, assessment.id, {
+      proctoringEnabled: checked,
+    }).then(() => {
+      message.success(I18n.t('admin.settings_saved_successfully'))
     })
   }
 
@@ -73,6 +92,12 @@ const AssessmentList: React.FC<Props> = ({
       setDrawerAssessment(undefined)
     }
   }, [list, drawerAssessment?.id])
+
+  useEffect(() => {
+    if (campaignOptions?.selectiveProctoringEnabled === undefined) {
+      fetchCampaignOptions(parsedProjectId, parsedCampaignId)
+    }
+  }, [campaignOptions?.selectiveProctoringEnabled, parsedProjectId, parsedCampaignId])
 
   return (
     <Row>
@@ -93,8 +118,18 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
+            width={220}
             render={(text, record: Assessment) => (
-              <a onClick={() => setDrawerAssessment(record)}>{text}</a>
+              <>
+                <div>
+                  <a onClick={() => setDrawerAssessment(record)}>{text}</a>
+                </div>
+                {record.isTimed && record.fixedTimeDuration && (
+                  <Tag color="blue">
+                    {I18n.t('admin.timed_label', { time_text: secondsToDayHoursAndMinutes(record.fixedTimeDuration) })}
+                  </Tag>
+                )}
+              </>
             )}
           />
           <Column
@@ -111,6 +146,7 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.require_scheduling')}
             key="requireScheduling"
+            width={100}
             render={({ requireScheduling, id }) => (
               <Switch
                 checked={requireScheduling}
@@ -118,6 +154,18 @@ const AssessmentList: React.FC<Props> = ({
                 onChange={() => {
                   toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
                 }}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('admin.proctoring')}
+            key="selectiveProctoring"
+            render={(assessment: Assessment) => (
+              <Switch
+                checked={assessment.proctoringEnabled}
+                disabled={!campaignOptions.selectiveProctoringEnabled}
+                onChange={checked => handleToggleSelectiveProctoring(assessment, checked)}
+                loading={assessment.id === assessmentIdRef.current && loadingUpdateProctoringSettings}
               />
             )}
           />
@@ -193,7 +241,7 @@ const AssessmentList: React.FC<Props> = ({
                 )
               }
 
-              const open = (response?:{ universalLink: string, enableUniversalLinks: boolean }) => {
+              const open = (response?: { universalLink: string, enableUniversalLinks: boolean }) => {
                 openModal('UniversalLinkModal',
                   {
                     projectId: parsedProjectId,

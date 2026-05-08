@@ -959,7 +959,6 @@ th:
         prework_required: ไม่อนุญาตให้จองศูนย์หากงานล่วงหน้าไม่เสร็จสมบูรณ์
         prework_required_for_invite: ส่งอีเมลคําเชิญเมื่อ Pre-Work เสร็จสิ้นเท่านั้น
         proctoring:
-          allow_on_assessment_center: อนุญาตให้คุมสอบในศูนย์ประเมินผล
           enable: เปิดใช้งานการคุมสอบ
           identification: รหัส
           identifications:
@@ -2772,12 +2771,10 @@ th:
     proctoring_sessions:
       columns:
         comment: ติชม
-        completed_at: เสร็จสมบูรณ์เมื่อ
         conclusion: บทสรุป
         links: เชื่อม โยง
         score: คะแนน
         session_id: รหัสเซสชัน
-        started_at: เริ่มต้น
       links:
         report: รายงาน
         review: ตรวจสอบ
@@ -3000,6 +2997,7 @@ th:
               scheduling_invited: จัดตารางเวลาได้รับเชิญ
               scheduling_rescheduled: ตั้งเวลาการเลื่อนกำหนดเวลา
               scheduling_scheduled: ตั้งเวลากำหนดเวลา
+              workshop_attendance_status: สถานะการเข้าร่วมการประชุมเชิงปฏิบัติการ
           url:
             label: URL
             name: URL

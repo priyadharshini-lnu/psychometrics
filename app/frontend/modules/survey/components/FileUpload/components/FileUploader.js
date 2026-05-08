@@ -8,10 +8,13 @@ const { $ } = window
 const FileUploader = {
   run: (context) => {
     const { file, dispatch } = context
+    const xhrRef = {} // created to track xhr object since activestorage returns error as a string
+
     const upload = new DirectUpload(
       file,
       context.urls.mediaUploadUrl,
       {
+        directUploadWillCreateBlobWithXHR: (xhr) => { xhrRef.createBlobRequest = xhr },
         directUploadWillStoreFileWithXHR: (xhr) => {
           xhr.upload.addEventListener('progress', e => onUploadProgress(e, context.dispatch), false)
         },
@@ -20,7 +23,10 @@ const FileUploader = {
 
     upload.create((error, blob) => {
       if (error) {
-        dispatch({ type: SET_ERRORS, payload: { errorMessages: [error.errorMessages] } })
+        const backendMessage = getBackendErrorMessage(xhrRef)
+        const errorMessage = backendMessage || error.errorMessages
+
+        dispatch({ type: SET_ERRORS, payload: { errorMessages: [errorMessage] } })
         context.onFail && context.onFail()
       } else {
         onUploadDone(blob, context)
@@ -57,3 +63,5 @@ const onUploadProgress = (e, dispatch) => {
     dispatch({ type: SET_PERCENTAGE, payload: { percent } })
   }
 }
+
+const getBackendErrorMessage = xhrRef => xhrRef?.createBlobRequest?.response?.error ?? null

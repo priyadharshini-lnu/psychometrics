@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { scrollIntoView } from 'scroll-js'
-import { FormInstance } from 'antd/lib/form'
+import { FormInstance } from 'antd/es/form'
 import { formDataToResource, resourceToFormData } from '~/libs/jsonApi/helpers'
 import { Status } from './constants'
 import { PropsFromRedux } from './connect'

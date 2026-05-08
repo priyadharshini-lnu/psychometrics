@@ -1,4 +1,4 @@
-import sl from 'antd/lib/locale/sl_SI'
+import sl from 'antd/es/locale/sl_SI'
 
 window.antdLocale = sl
 export default sl

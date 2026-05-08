@@ -12,6 +12,7 @@ hu:
     ai_idp_summary_hint_no_document: Ha engedélyed van, ha igent mondasz, készíthetek neked fejlesztési tervet. Ha nem, újraindíthatod a csevegést, hogy részletesebben osszd meg.
     all_checks_must_pass: Minden ellenőrzésnek sikeresnek kell lennie, mielőtt továbbhaladhatna.
     approve_idp_plan: Terv jóváhagyása
+    assessment_misconfigured: A beállítás hibás
     audio: Hang
     audio_check: Mikrofon teszt
     audio_check_description: Ellenőrizze, hogy a mikrofon megfelelően működik-e a felvételhez
@@ -66,6 +67,7 @@ hu:
     error_uploading_video: Hiba a videó feltöltése közben
     error_uploading_video_detail: Hiba történt a videó feltöltése közben
     fail: Hiba
+    file_submission_already_exists: Már megkaptuk a kérdésre adott válaszát. Kérjük, frissítse az oldalt, és ha továbbra sem látja a korábbi válaszát, vegye fel a kapcsolatot a rendszergazdával.
     follow_these_steps: Kövesse az alábbi lépéseket a rendszerellenőrzés során észlelt problémák megoldásához
     hide_details: Részletek elrejtése
     home: Irányítópult
@@ -95,6 +97,8 @@ hu:
     localstorage_fix_title: A böngészőben a helyi tárolás nincs engedélyezve
     localstorage_not_enabled_detail: A böngészőjében nincs engedélyezve a helyi tárolás. Kérjük, ellenőrizze, hogy nem privát/inkognitó módban van-e, mivel ezekben a módokban a localStorage gyakran le van tiltva.
     localstorage_support: A LocalStorage engedélyezve
+    magic_link_interstitial_description: Biztonsági okokból kérjük, erősítse meg a bejelentkezést. Az automatizált rendszerek nem tudják elvégezni ezt a lépést.
+    magic_link_interstitial_title: A bejelentkezés befejezéséhez kérjük, kattintson az alábbi gombra.
     max_word_limit: Legfeljebb %{max} szó lehet
     media_recorder_api_fix_description_first: Engedélyezze a JavaScriptet a böngésző beállításaiban
     media_recorder_api_fix_description_second: Ellenőrizze, hogy böngészője támogatja-e a MediaRecorder API-t, és szükség esetén frissítse a legújabb verzióra.
@@ -124,6 +128,8 @@ hu:
     personal_readiness: Személyes felkészültség
     plan_text: Tervezzen a teljes időtartamra. A vizsga megkezdése után – a vizsga típusától függően – szünetek nem engedélyezettek.
     please_check_your_internet_connection: Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
+    proctored: Felügyelt
+    proctored_assessment_misconfigured_msg: Ez a felmérés felügyelet alatt zajlik, de hiányzik a szükséges időbeállítás; kérjük, vegye fel a kapcsolatot a rendszergazdával.
     profile: Profil
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}
@@ -137,7 +143,7 @@ hu:
     rerun_checks: Ellenőrzések megismétlése
     result: Eredmény
     results: Eredmény
-    safari_proctoring_description: Úgy tűnik, hogy a Safari böngészőt használja, amely bizonyos korlátozásokat jelenthet a kampányhoz kapcsolódó nyomonkövetési funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome vagy a Firefox böngésző használatát javasoljuk.
+    safari_proctoring_description: Úgy tűnik, hogy a Safari böngészőt használja, amely bizonyos korlátozásokat jelenthet a kampányhoz kapcsolódó nyomonkövetési funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome, Edge vagy a Firefox böngésző használatát javasoljuk.
     safari_proctoring_title: Safari böngésző észlelve
     selected_count: Kiválasztott
     skill_type: Képesség típusa
@@ -193,6 +199,7 @@ hu:
     testing_download_speed: A letöltési sebesség tesztelése...
     testing_upload_speed: A feltöltési sebesség tesztelése...
     time_commitment: Időigény
+    timed_activity_instruction: Ez egy időre korlátozott feladat; a felügyeleti munkamenet elindítása után <strong>%{time} perc</strong> áll rendelkezésedre a feladat elvégzésére.
     troubleshooting_guide: Hibaelhárítási útmutató
     troubleshooting_guide_audio_fifth: 'Windows rendszerben: Ellenőrizze az Adatvédelmi beállítások > Mikrofonhoz való hozzáférés menüpontot'
     troubleshooting_guide_audio_first: Kattintson a böngésző címsorában található lakat/információ ikonra

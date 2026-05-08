@@ -6,9 +6,9 @@ import {
   Drawer, Form, Input, InputNumber, Button, Select, Spin, Switch, Tree,
   Checkbox,
 } from 'antd'
-import { Store } from 'antd/lib/form/interface'
+import { Store } from 'antd/es/form/interface'
 import { useParams } from 'react-router-dom'
-import { Key } from 'antd/lib/table/interface'
+import { Key } from 'antd/es/table/interface'
 import { DownOutlined, SaveOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceForm from '~/components/ResourceForm'
 import { slugify } from '~/utils/string'
@@ -346,7 +346,7 @@ export const AddEditFactorForm: FC<Props> = ({
     formFieldBasedOnFactorType = (
       <>
         <Form.Item name="formula" label={I18n.t('administration.scoring.formula')}>
-          <LuaEditor controlled />
+          <LuaEditor />
         </Form.Item>
       </>
     )

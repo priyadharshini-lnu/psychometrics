@@ -47,6 +47,7 @@ module Administration
           subject_id: resource.user_id, evaluator_id: params[:id]
         )
         @users_result = @participant.users_result
+        audit! :update, resource, user: current_user, campaign: threesixty_campaign.campaign
 
         form = ::UsersResults::UpdatingForm.from_params(params.require(:resource))
         ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
@@ -63,6 +64,7 @@ module Administration
         participant.update!(
           evaluator_nomination_status: :waiting, status: :not_started, completed_at: nil
         )
+        audit! :destroy, resource, user: current_user, campaign: threesixty_campaign.campaign
         participant.users_result.destroy!
 
         render json: { id: participant.users_result_id }

@@ -4,7 +4,7 @@ import {
   Switch,
   Tag,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/interface'
+import { ItemType } from 'antd/es/menu/interface'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -53,8 +53,23 @@ export const FactorsTable: FC<Props> = ({ openModal }) => (
       <Resource.Column<Factor>
         title={I18n.t('simple_form.placeholders.factor.questions_count')}
         id="questions_count"
-        render={factor => factor?.questionsCount}
-        width={100}
+        render={(factor) => {
+          if (factor?.questionsCountByAssessmentDetails?.length) {
+            return factor.questionsCountByAssessmentDetails.map(({ assessmentId, assessmentName, count }) => (
+              <div key={`${factor.id}-${assessmentId}`}>
+                <Button
+                  type="link"
+                  href={`/administration/assessments/${assessmentId}/scoring?factor_id=${factor.id}`}
+                >
+                  {assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}
+                </Button>
+              </div>
+            ))
+          }
+
+          return factor?.questionsCount
+        }}
+        width={140}
       />
       <Resource.Column<Factor>
         title={I18n.t('administration.factors.index.scoring_strategy')}

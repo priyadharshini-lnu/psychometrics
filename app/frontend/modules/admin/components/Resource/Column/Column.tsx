@@ -1,4 +1,4 @@
-import { ColumnProps } from 'antd/lib/table'
+import { ColumnProps } from 'antd/es/table'
 
 interface Props<T> extends ColumnProps<T> {
   id: string

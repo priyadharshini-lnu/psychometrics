@@ -34,10 +34,12 @@ class ReportContainer extends Component {
     const normalizedData = normalize(data, schema)
     const {
       campaignAiArtifactResults = [],
+      reportData,
+      campaignFactorResults,
     } = camelizeKeys(userReport)
     store.init(
       data, results, user, campaign,
-      userReport.reportData || [], userReport.campaignFactorResults || [],
+      reportData || [], campaignFactorResults || [],
       campaignAiArtifactResults,
     )
     rstore.dispatch(init(normalizedData, userReport))
@@ -60,8 +62,10 @@ class ReportContainer extends Component {
 
   render () {
     const {
-      userReport, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove, aiTranslations,
+      userReport, dashboard, allowEdit, allowApprove, aiTranslations,
     } = this.props
+
+    const { moduleOverrides } = camelizeKeys(userReport)
 
     return (
       <Provider store={rstore} key={userReport.id}>

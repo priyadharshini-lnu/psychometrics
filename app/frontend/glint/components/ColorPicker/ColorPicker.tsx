@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import {
   Popover, Space, Button, App,
 } from 'antd'
-import { TooltipPlacement } from 'antd/lib/tooltip'
+import { TooltipPlacement } from 'antd/es/tooltip'
 import { HexAlphaColorPicker, HexColorInput, RgbaColor } from 'react-colorful'
 import useEyeDropper from 'use-eye-dropper'
 import cs from 'classnames'

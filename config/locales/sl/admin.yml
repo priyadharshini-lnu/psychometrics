@@ -21,6 +21,7 @@ sl:
     admin_roles: Skrbniške vloge
     admin_updated_successfully: Skrbnik '%{name}' je bil uspešno posodobljen
     admins: Skrbniki
+    advanced: Napredno
     ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
     ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
@@ -117,6 +118,7 @@ sl:
     allow_continue_with_warning_system_check: Uporabnikom omogoči, da nadaljujejo kljub opozorilom, če sistemski pregled ni uspešen
     api_keys: Ključi API-ja
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
+    assessment: Ocena
     assessment_center_activity: Dejavnost
     assessment_center_assessor: ocenjevalec
     assessment_center_attendance: Prisotnost
@@ -147,6 +149,12 @@ sl:
     available_languages: Poročilo je na voljo v jezikih
     average: Povprečje
     back_to_main: Glavni meni
+    block_editor_add_question: Dodaj vprašanje
+    block_editor_question_randomization: Naključno razvrščanje vprašanj
+    block_options: Možnosti blokiranja
+    block_settings: Nastavitve blokov
+    blocks_new_button: Nov blok
+    blocks_title: Bloki
     bulk_assets_modal_choose_csv: Izberite CSV datoteko
     bulk_assets_modal_choose_zip: Izberite ZIP datoteko
     bulk_assets_modal_not_csv_file_error: Za nalaganje CSV datotek so dovoljene samo CSV datoteke. Naložite veljavno CSV datoteko.
@@ -159,6 +167,15 @@ sl:
     campaign_assessment_actions_disable_caching: Onemogoči predpomnjenje ocenjevanja
     campaign_assessment_actions_enable_caching: Omogočite predpomnjenje ocenjevanja
     campaign_assessment_column_caching_enabled: Omogočeno predpomnjenje ocenjevanja
+    campaign_assessment_column_hogan_assessment_id: ID ocene Hogan
+    campaign_assessment_column_hogan_form_id: Hoganov obrazec ID
+    campaign_assessment_column_pearson_assessment_id: ID ocenjevanja Pearson
+    campaign_assessment_column_pearson_assessment_language: Pearsonovo ocenjevanje jezikov
+    campaign_assessment_column_pearson_error_details: Podrobnosti o napaki Pearson
+    campaign_assessment_column_pearson_product_id: Številka izdelka Pearson
+    campaign_assessment_column_saville_error_code: Napaka Saville
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Številka zahtevka Saville
     campaign_assessment_mhs_confidence_interval: Interval zaupanja
     campaign_assessment_mhs_confidence_interval_update_success: Zaupanjski interval je bil uspešno posodobljen.
     campaign_assessment_mhs_invalid_confidence_interval: interval zaupanja mora biti 0 ali 1
@@ -203,6 +220,7 @@ sl:
     campaigns: Kampanje
     cancel: Prekliči
     cancellation_and_rescheduling_disabled: Preklic in sprememba termina sta onemogočena.
+    captcha: Preverjanje s Captcha
     casual: Površno
     cell_save_msg: Veljavne spremembe se samodejno shranijo, ko po urejanju zapustite celico.
     characters: znaki
@@ -219,10 +237,13 @@ sl:
     concise: Kratek
     configure_model_answer_title: Konfigurirajte vzorčni odgovor in ključne besede
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
+    confirmation_required: Potrebna je potrditev
+    confirmation_required_details: Ali ste prepričani, da želite izbrisati datoteko »%{resource_name}« iz mape »%{resource}«?
     copied: Kopirano
     copied_url_success: URL je bil uspešno kopiran v odložišče
     copy_ai_artifacts: Kopiraj AI-ustvarjene artefakte
     copy_image_url: Kopiraj URL slike
+    copy_url: Kopiraj URL
     country: Država
     create_client: Ustvari odjemalca
     create_indicator: Ustvari indikator
@@ -240,6 +261,7 @@ sl:
     delete_ok_text: Da, Izbriši
     denied: Zavrnjen
     description: Opis
+    descriptive_text: Opisno besedilo
     development_actions: Razvojni ukrepi
     development_actions_form_tags: Oznake
     digest_delivery_mode:
@@ -262,10 +284,12 @@ sl:
       wednesday: sreda
     dimension_translations_export_scheduled: Izvoz prevodov, načrtovan za dimenzijo »%{name}«.
     dimensions: Dimenzije
+    disable_proctoring: Onemogoči nadzor
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     download_bulk_asset_download_example_csv: Prenesi primer CSV.
     duration: Trajanje
+    duration_must_be_positive: Trajanje mora biti pozitivno
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
     edit_folder: Uredi mapo
@@ -284,6 +308,7 @@ sl:
     enable_system_check: Omogoči preverjanje sistema
     enable_transcription: Omogoči prepis
     enable_transcription_msg: Omogoči Transcription, da uporabi AI ocenjevanje pri vprašanjih z odgovori v obliki videa/avdio.
+    end: konec
     end_time: Konec časa
     end_time_must_be_after_start_time: Končni čas mora biti po začetnem času.
     enhance_with_ai: Izboljšajte z umetno inteligenco
@@ -300,6 +325,8 @@ sl:
     export_completion_status: Stanje zaključka izvoza
     export_completion_statuses_scheduled: Izvoz stanja dokončanja je bil uspešno načrtovan.
     export_detailed_completion_status: Podrobno
+    factor_feedback: Povratne informacije o faktorjih
+    factor_selection: Izbira dejavnikov
     factors: Dejavniki
     feature_ai_assistants_description: Omogočite pomočnike na podlagi umetne inteligence za izboljšano uporabniško izkušnjo
     feature_ai_assisted_idp_description: Uporabite umetno inteligenco za pomoč pri priporočilih za individualno razvojno načrtovanje.
@@ -323,6 +350,8 @@ sl:
     formal: Formalno
     from: Od
     generate_transcription: Ustvari transkripcijo
+    graphic: Grafika
+    graphic_slider: Grafični drsnik
     hide_middle_scores: Skrij srednje ocene
     high: Visoko
     hogan: Hogan
@@ -389,6 +418,7 @@ sl:
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
+    linked_assessments: Povezane ocene
     low: Nizka
     maintenance: Vzdrževanje
     maintenance_settings: Nastavitve vzdrževanja
@@ -397,6 +427,7 @@ sl:
     max_value: Največja vrednost
     media_files_label: Datoteke
     media_library: Medijska knjižnica
+    media_library_page_title: Medijska knjižnica – Nadzorna plošča – Mercer Lighthouse
     messages: Sporočila
     mhs: MHS
     mhs_assessment: Ocena MHS
@@ -420,6 +451,7 @@ sl:
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
     no_status: Brez statusa
+    norm_editor_numeric_value_error: Dovoljene so le številčne vrednosti (cela števila ali decimalna števila).
     norms: Norme
     not_completed: Ni dokončano
     not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
@@ -864,6 +896,11 @@ sl:
     precision: Natančnost
     privacy: Zasebnost
     proctoring: Nadzorovanje
+    proctoring_errors_timed_only: Selektivno nadzorovanje je mogoče omogočiti le pri časovno omejenih ocenjevanjih.
+    proctoring_fixed_time_required: Omogoči fiksni čas, da izberete to možnost
+    proctoring_mode_all: Omogoči nadzor pri vseh ocenjevanjih
+    proctoring_mode_all_except_ac: Omogoči nadzor pri vseh ocenjevanjih, razen v ocenjevalnem centru
+    proctoring_settings: Nastavitve nadzora
     professional: Profesionalni
     proficiency: Usposobljenost
     proficiency_level: Ključi API-ja
@@ -876,7 +913,31 @@ sl:
     projects: Projekti
     prompt: Spodbuda
     question_center: Središče za vprašanja
+    question_editor_change_type: Spremeni vrsto
+    question_editor_click_to_write: Kliknite, da vnesete vsebino vprašanja...
+    question_editor_copy_question: Kopiraj vprašanje
+    question_editor_enable_transcription: Omogoči prepis
+    question_editor_preview_question: Predogled vprašanja
+    question_editor_validation_type: Vrsta validacije
+    question_randomization: Naključno razvrščanje vprašanj
+    question_type_audio_response: Zvočni odziv
+    question_type_constant_sum: Nespremenljiva vsota
+    question_type_file_upload: Prenos datoteke
+    question_type_gap_analysis: Analiza vrzeli
+    question_type_hot_spot: Vroča točka
+    question_type_matrix_table: Matrika
+    question_type_meta_info: Podatki o strani
+    question_type_multiple_choice: Izbirni vprašanja
+    question_type_pick_group_rank: Izberi uvrstitev skupine
+    question_type_rank_order: Razvrstitev
+    question_type_side_by_side: Drug ob drugem
+    question_type_slider: Drsnik
+    question_type_text_entry: Vnos besedila
+    question_type_video_response: Odgovor v obliki videa
     questions: Vprašanja
+    questions_new_button: Novo vprašanje
+    questions_title: Vprašanje
+    questions_type: Vrsta
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Vprašanja za razmislek
     regenerate_transcriptions_action: Obnovi prepise
@@ -888,6 +949,7 @@ sl:
     remove_children_to_change_type: Odstrani vse otroke, da spremeniš tip
     remove_confirmation: Ali ste prepričani, da želite ta element odstraniti?
     remove_successfully: Medijska datoteka je bila uspešno odstranjena.
+    report_alias_save_confirmation: Če želite shraniti VSE spremembe v Report Builderju in tudi v Aliasih, kliknite gumb »SHRANI«. Stran se bo ponovno naložila in vaše spremembe bodo uspešno shranjene.
     report_approvals: Odobritve poročil
     report_condition_not_met: Potrebna je %{required} %{relationship} ocena, a ima le %{actual}
     report_conditions_not_met_detailed: Poročilo za %{user} ne izpolnjuje pogojev razpoložljivosti. %{conditions}
@@ -917,6 +979,7 @@ sl:
     saml_service_provider_acs_urls_placeholder: Vnesite URL-je, ločene z vejicami, npr. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Potrebni so ACS URL-ji
     saml_service_provider_action_delete_label: Izbrisati
+    saml_service_provider_action_download_xml_label: Prenesi XML
     saml_service_provider_action_edit_label: Urediti
     saml_service_provider_action_rotate_certificate_label: Certifikat rotacije
     saml_service_provider_add: Dodaj ponudnika SAML storitev
@@ -958,6 +1021,7 @@ sl:
     saml_settings: SAML nastavitve
     save: Shrani
     save_assessment_for_scoring_management: Shranite oceno, preden začnete z ocenjevanjem.
+    save_block: Shrani blok
     saved_filter_label:
       approval_status_in: Stanje odobritve
       approver_user_id_in: Odobritelj
@@ -1006,9 +1070,11 @@ sl:
     select_language_to_translate: Izberite jezik za prevajanje
     select_level: Izberite raven
     select_start_time: Izberite čas začetka
+    selective_proctoring: Selektivno nadzorovanje
     send_email: Pošlji e-pošto
     set_min_max_scores_warning: Za konfiguracijo AI-ocenjevanja nastavite minimalno in maksimalno število točk za ta dejavnik.
     settings: Nastavitve
+    settings_saved_successfully: Nastavitve so bile uspešno shranjene
     show_all_assessment_responses: Pokaži vse odgovore na oceno
     show_middle_scores: Pokaži več rezultatov za %{count} (neobvezno)...
     show_original: Pokaži izvirnik
@@ -1022,7 +1088,11 @@ sl:
     slot_name: Ime reže
     sms_histories: Zgodovina sporočil SMS
     sms_invites: SMS vabila
+    specialty_questions: Posebna vprašanja
+    standard_questions: Standardna vprašanja
+    start: začetek
     start_time: Začetek
+    static_content: Statična vsebina
     stats: Statistika
     status_details: Podrobnosti o statusu
     structured_learning: Formalno učenje [10]
@@ -1031,7 +1101,10 @@ sl:
     target_job_role: Ciljna delovna vloga
     this_field_is_required: To polje je obvezno
     threesixty: Kampanja 360
+    timed_label: 'Časovno omejeno: %{time_text}'
+    timelines: Časovni razporedi
     timezone: Časovni pas
+    timing: Časovni razpored
     to: Za
     tone: Ton
     toolbar_ai_insight: Vpogled v umetno inteligenco

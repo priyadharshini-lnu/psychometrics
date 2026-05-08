@@ -3,7 +3,7 @@ import {
   Form, Switch, Select, GetProp,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { FormProps } from 'antd/lib/form'
+import { FormProps } from 'antd/es/form'
 import { Integration, integrationNames } from '~/modules/admin/modules/client/core/integrations'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { IihtForm } from './IihtForm'

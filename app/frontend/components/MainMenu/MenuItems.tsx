@@ -132,6 +132,10 @@ export const getSelected = (): string => {
     return 'questionCenter'
   }
 
+  if (location.href.match(/\/admin(\/)templates\/(questions|blocks)/)) {
+    return 'questionCenter'
+  }
+
   if (location.href.match(/\/(assessors)(\/)(assessment_centers)/)) {
     return 'assessorWorkshops'
   }
@@ -196,6 +200,7 @@ const Link = ({
       'developmentActions',
       'aiAssistants',
       'settings',
+      'questionCenter',
     ]
     return !allowedPages.includes(selected)
   }
@@ -344,9 +349,9 @@ export const menuItems = (
           ? {
             key: 'questionCenter',
             label: (
-              <a tabIndex={-1} href={permissions.questionCenter}>
+              <Link href={permissions.questionCenter}>
                 {I18n.t('admin.question_center')}
-              </a>
+              </Link>
             ),
             icon: (
               <QuestionCircleOutlined aria-hidden="true" />

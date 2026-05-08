@@ -15,6 +15,7 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
     form = Assessments::AgileForm.new(agile_params)
     if form.valid?
       resource.agile.update(form.attributes)
+      audit! :update, resource, payload: agile_params
       head :ok
     else
       render json: { errors: form.errors.messages }, status: 400

@@ -4,25 +4,10 @@ import {
   Tabs, Button, message,
 } from 'antd'
 import _ from 'lodash'
-import { UnControlled as CodeMirror } from 'react-codemirror2'
 import cs from 'classnames'
 import Ajv from 'ajv'
 import schema from '@thetalententerprise/interactive-assessments/dist/schema.json'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/addon/fold/foldcode'
-import 'codemirror/addon/fold/foldgutter'
-import 'codemirror/addon/fold/foldgutter.css'
-import 'codemirror/addon/fold/brace-fold'
-import 'codemirror/addon/dialog/dialog'
-import 'codemirror/addon/dialog/dialog.css'
-import 'codemirror/addon/search/searchcursor'
-import 'codemirror/addon/search/search'
-import 'codemirror/addon/scroll/annotatescrollbar'
-import 'codemirror/addon/search/matchesonscrollbar'
-import 'codemirror/addon/search/matchesonscrollbar.css'
-import 'codemirror/addon/search/jump-to-line'
-
+import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 
 import '~/styles/utils.less'
 
@@ -94,26 +79,16 @@ function JSONEditor ({ value, onSave, buttonLabel }) {
   if (!shouldRender) return null
   return (
     <div className={cs(styles.tabContent, 'pb-2')}>
-      <CodeMirror
+      <ReactCodemirror
         value={stringifiedValue.current}
-        options={{
-          mode: {
-            name: 'javascript',
-            json: true,
-          },
-          foldGutter: true,
-          lineNumbers: true,
-          lineWrapping: true,
-          extraKeys: {
-            'Ctrl-Q': cm => cm.foldCode(cm.getCursor()),
-            'Alt-F': 'findPersistent',
-          },
-          gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-        }}
-        editorDidMount={(editor) => {
-          editor.setSize('100%', 'calc(100vh - 240px)')
-        }}
-        onChange={(editor, data, value) => { stringifiedValue.current = value }}
+        mode="json"
+        foldGutter
+        lineNumbers
+        lineWrapping
+        search
+        lint
+        height="calc(100vh - 240px)"
+        onChange={(val) => { stringifiedValue.current = val }}
       />
       <Button className="mtm" onClick={() => onSave(stringifiedValue.current)}>{buttonLabel}</Button>
     </div>

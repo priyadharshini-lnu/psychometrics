@@ -1,7 +1,5 @@
 import FroalaEditor from 'froala-editor'
-import CodeMirror from 'codemirror'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/xml/xml'
+import CodeMirror from '~/glint/components/ReactCodemirror/CodeMirrorCompat'
 import embedMedia from '~/modules/survey/commands/froalaCommands/embedMedia'
 import events from '~/components/Editor/events'
 import { FROALA } from '~/constants/froala.ts'

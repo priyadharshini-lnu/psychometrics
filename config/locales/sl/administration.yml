@@ -959,7 +959,6 @@ sl:
         prework_required: Ne dovolite rezervacije centra, če preddela niso zaključena
         prework_required_for_invite: Pošljite e-poštno sporočilo s povabilom le, ko je preddelo končano
         proctoring:
-          allow_on_assessment_center: Dovolite nadzorovanje v ocenjevalnem centru
           enable: Omogoči nadzorovanje
           identification: Identifikacijo
           identifications:
@@ -2772,12 +2771,10 @@ sl:
     proctoring_sessions:
       columns:
         comment: Komentar
-        completed_at: Zaključek ob
         conclusion: Sklep
         links: Povezave
         score: Partitura
         session_id: ID seje
-        started_at: Začetek ob
       links:
         report: Poročilo
         review: Pregled
@@ -3000,6 +2997,7 @@ sl:
               scheduling_invited: Razporejanje vabljenih
               scheduling_rescheduled: Razporejanje prestavljenega časa
               scheduling_scheduled: Načrtovanje načrtovanja
+              workshop_attendance_status: Stanje prisotnosti na delavnici
           url:
             label: Spletni naslov
             name: Spletni naslov

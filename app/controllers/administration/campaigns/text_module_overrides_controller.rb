@@ -49,6 +49,7 @@ module Administration
 
       def destroy
         text_overrider = TextModuleOverride.find(params[:id])
+        audit! :destroy, text_overrider, payload: params, campaign: campaign
         text_overrider.destroy!
         create_event(text_overrider.user_report, 'removed_text',
                      { module: text_overrider.module_id, content: text_overrider.content })

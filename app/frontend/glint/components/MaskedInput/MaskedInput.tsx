@@ -2,7 +2,7 @@ import {
   ChangeEvent, useState, forwardRef,
 } from 'react'
 import { Input, InputRef } from 'antd'
-import { InputProps } from 'antd/lib/input/Input'
+import { InputProps } from 'antd/es/input/Input'
 import styles from './MaskedInput.less'
 
 type Props = InputProps & {

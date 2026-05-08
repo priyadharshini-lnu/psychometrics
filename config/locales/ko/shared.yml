@@ -32,6 +32,7 @@ ko:
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
     client: 클라이언트
+    close: 닫기
     collaborative_learning: 협력 학습
     completed: 완료됨
     configurations: 구성
@@ -40,19 +41,24 @@ ko:
     controller: 컨트롤러
     cookie_notice: 쿠키 안내
     cookies_statement: 쿠키 정책
+    copied_successfully: 복사되었습니다
     copied_to_clipboard: 클립보드에 복사됨
     copy: 복사
+    create: 만들기
     created_at: 만든 곳
     created_date: 생성 날짜
+    created_successfully: 성공적으로 생성되었습니다
     custom_acknowledgment_text: 사용자 지정 감사 메시지
     custom_acknowledgment_text_required: 컨트롤러 데이터 역할에는 사용자 지정 확인 메시지가 필요합니다
     custom_consent_text: 사용자 지정 동의 텍스트
     custom_consent_text_required: 컨트롤러 데이터 역할에 대한 사용자 지정 동의 텍스트가 필요합니다.
     data_role: 데이터 역할
     decline: 쇠퇴
+    delete: 삭제
     description: 묘사
     desktop_or_laptop_recommended: 데스크톱 또는 노트북 권장
     desktop_or_laptop_required: 데스크톱 또는 노트북 필요
+    disabled: 비활성화됨
     download: 다운로드
     download_audio: 오디오 다운로드
     download_transcription: 다운로드 트랜스크립션
@@ -60,6 +66,7 @@ ko:
     edit: 편집
     edited: 새로 만들기
     email: 이메일
+    error: 오류
     export: 내보내기
     failed: 실패함
     'false': false
@@ -105,6 +112,8 @@ ko:
     no_results_found: 검색 결과 없음
     not_requested: 아직 요청되지 않음
     ok: 확인
+    options: 옵션
+    owner: 소유자
     pending: 보류 중
     policy_version: 정책 버전
     policy_version_format: 정수만 허용됩니다
@@ -142,6 +151,8 @@ ko:
     status_unknown: 상태 미상
     subject: 제목
     submit: 제출
+    submit_and_finish_proctoring: 제출 및 감독 종료
+    suspended: 정지됨
     switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환
     table:
       entries:
@@ -165,6 +176,7 @@ ko:
     type: 유형
     update: 업데이트
     update_failed: 업데이트에 실패했습니다
+    updated_at: '업데이트됨:'
     updated_successfully: 성공적으로 업데이트되었습니다
     video: 영상
     view: 보기

@@ -12,6 +12,7 @@ import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
+import { normalizeTimeZone } from '~/hooks/useTimezones'
 import { AdditionRelationshipAttribute } from '~/libs/jsonApi/interfaces'
 import { ReportApprovalSettings } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
@@ -63,6 +64,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
   close,
 }) => {
   const [form] = Form.useForm()
+  const browserTimeZone = normalizeTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone)
   const {
     data: reports, fetch: fetchReports, isLoading: isReportsLoading,
   } = useResources<Report>('reports', { responseType: ReportTR })
@@ -82,7 +84,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     approverUserIds: getUserIds(reportApprovalSettings.approvers),
     approvalNotificationUserIds: getUserIds(reportApprovalSettings.approvalNotificationUsers),
     digestTime: reportApprovalSettings.digestTime ? dayjs(reportApprovalSettings.digestTime, 'hh:mm A') : null,
-    digestTimezone: reportApprovalSettings.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+    digestTimezone: reportApprovalSettings.digestTimezone || browserTimeZone,
   } : reportApprovalSettings
 
   const reportOpts = getOptionsFromApprovalSettings(reportApprovalSettings, 'report', reports)
@@ -170,7 +172,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             ? formValuesObj.digestWeekdays : [],
           digestTime: formValuesObj.sendDigestEmails ? dayjs(formValuesObj.digestTime).format('HH:mm:ss') : null,
           digestTimezone: formValuesObj.sendDigestEmails
-            ? formValuesObj.digestTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone : null,
+            ? formValuesObj.digestTimezone || browserTimeZone : null,
         }
       }}
     >
@@ -394,6 +396,9 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Form.Item
                         name="digestTimezone"
                         label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_timezone')}
+                        rules={[{
+                          required: sendDigestEmails && digestDeliveryMode === 'scheduled',
+                        }]}
                       >
                         <TimeZoneSelect value="" onChange={() => {}} />
 

@@ -6,6 +6,8 @@ module Api
       usage = LicenseUsage.find(params[:id])
       license_counter_update = usage.active? ? 'decrement!' : 'increment!'
       new_status = usage.active? ? 'inactive' : 'active'
+      audit! :toggle_status, usage, user: current_user,
+        payload: { license_usage_id: usage.id, license_id: usage.license_id, status: new_status }
       usage.update!(
         status: new_status,
         status_updated_at: Time.zone.now,

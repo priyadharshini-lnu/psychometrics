@@ -27,6 +27,8 @@ module Administration
           Mobility.with_locale(params[:locale]) do
             resource.update!(form.attributes)
           end
+          audit! :update_instruction_template, resource, payload: form.attributes,
+            campaign: threesixty_campaign.campaign
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: 400

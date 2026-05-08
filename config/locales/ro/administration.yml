@@ -959,7 +959,6 @@ ro:
         prework_required: Nu permiteți rezer varea dacă prework-ul nu este finalizat
         prework_required_for_invite: Trimiteți e-mailuri de invitație numai după finalizarea prework-ului
         proctoring:
-          allow_on_assessment_center: Permiteți supravegherea în centrul de evaluare
           enable: Activați supravegherea
           identification: Identificare
           identifications:
@@ -2772,12 +2771,10 @@ ro:
     proctoring_sessions:
       columns:
         comment: Comentariu
-        completed_at: Finalizat la
         conclusion: Concluzie
         links: Legături
         score: Scor
         session_id: ID-ul sesiunii
-        started_at: Început la
       links:
         report: Raport
         review: Recenzie
@@ -3000,6 +2997,7 @@ ro:
               scheduling_invited: Programare invitată
               scheduling_rescheduled: Programare reprogramată
               scheduling_scheduled: Programare programată
+              workshop_attendance_status: Starea participării la atelier
           url:
             label: Adresă URL
             name: Adresa URL

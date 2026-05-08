@@ -12,6 +12,7 @@ pl:
     ai_idp_summary_hint_no_document: Za twoją zgodą, jeśli się zgodzisz, mogę stworzyć dla ciebie plan rozwoju. Jeśli nie, możesz ponownie rozpocząć czat, aby podzielić się szczegółami.
     all_checks_must_pass: Aby kontynuować, wszystkie testy muszą zakończyć się powodzeniem.
     approve_idp_plan: Zatwierdź plan
+    assessment_misconfigured: Błędna konfiguracja oceny
     audio: Dźwięk
     audio_check: Test mikrofonu
     audio_check_description: Sprawdź, czy mikrofon działa prawidłowo podczas nagrywania
@@ -66,6 +67,7 @@ pl:
     error_uploading_video: Wystąpił błąd podczas przesyłania filmu
     error_uploading_video_detail: Wystąpił błąd podczas przesyłania filmu
     fail: Niepowodzenie
+    file_submission_already_exists: Otrzymaliśmy już Twoją odpowiedź na to pytanie. Odśwież stronę, a jeśli nadal nie widzisz swojej poprzedniej odpowiedzi, skontaktuj się z administratorem.
     follow_these_steps: Aby rozwiązać problemy wykryte podczas sprawdzania systemu, wykonaj poniższe czynności
     hide_details: Ukryj szczegóły
     home: Deska rozdzielcza
@@ -95,6 +97,8 @@ pl:
     localstorage_fix_title: W Twojej przeglądarce nie włączono funkcji lokalnego przechowywania danych
     localstorage_not_enabled_detail: W Twojej przeglądarce nie jest włączona pamięć lokalna. Upewnij się, że nie korzystasz z trybu prywatnego/incognito, ponieważ w tych trybach pamięć lokalna jest często wyłączona.
     localstorage_support: Włączono LocalStorage
+    magic_link_interstitial_description: Ze względów bezpieczeństwa prosimy o potwierdzenie tego logowania. Systemy automatyczne nie mogą wykonać tej czynności.
+    magic_link_interstitial_title: Aby zakończyć logowanie, kliknij przycisk poniżej.
     max_word_limit: Musi mieć maksymalnie %{max} słów
     media_recorder_api_fix_description_first: Włącz obsługę JavaScript w ustawieniach przeglądarki
     media_recorder_api_fix_description_second: Sprawdź, czy Twoja przeglądarka obsługuje interfejs API MediaRecorder, a w razie potrzeby zaktualizuj ją do najnowszej wersji.
@@ -124,6 +128,8 @@ pl:
     personal_readiness: Gotowość osobista
     plan_text: Zaplanuj cały czas trwania. Po rozpoczęciu egzaminu przerwy mogą nie być dozwolone, w zależności od rodzaju egzaminu.
     please_check_your_internet_connection: Sprawdź połączenie internetowe i spróbuj ponownie.
+    proctored: Pod nadzorem
+    proctored_assessment_misconfigured_msg: Ten test odbywa się pod nadzorem, ale brakuje w nim odpowiednich ustawień dotyczących czasu. Proszę skontaktować się z administratorem.
     profile: Profil
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}
@@ -137,7 +143,7 @@ pl:
     rerun_checks: Ponowne przeprowadzenie kontroli
     result: Wynik
     results: Wynik
-    safari_proctoring_description: Wygląda na to, że korzystasz z przeglądarki Safari, która może mieć pewne ograniczenia dotyczące funkcji monitorowania dostępnych w tej kampanii. Aby zapewnić sobie najlepsze wrażenia, zalecamy korzystanie z przeglądarek Chrome lub Firefox.
+    safari_proctoring_description: Wygląda na to, że korzystasz z przeglądarki Safari, która może mieć pewne ograniczenia dotyczące funkcji monitorowania dostępnych w tej kampanii. Aby zapewnić sobie najlepsze wrażenia, zalecamy korzystanie z przeglądarek Chrome, Edge lub Firefox.
     safari_proctoring_title: Wykryto przeglądarkę Safari
     selected_count: Wybrane
     skill_type: Typ umiejętności
@@ -193,6 +199,7 @@ pl:
     testing_download_speed: Sprawdzam prędkość pobierania...
     testing_upload_speed: Sprawdzam prędkość wysyłania...
     time_commitment: Wymagany nakład czasu
+    timed_activity_instruction: Jest to zadanie z limitem czasowym. Po rozpoczęciu sesji nadzorowanej będziesz mieć <strong>%{time} minut</strong> na jego wykonanie.
     troubleshooting_guide: Przewodnik po rozwiązywaniu problemów
     troubleshooting_guide_audio_fifth: 'W systemie Windows: Sprawdź ustawienia prywatności > Dostęp do mikrofonu'
     troubleshooting_guide_audio_first: Kliknij ikonę kłódki/informacji w pasku adresu przeglądarki

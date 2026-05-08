@@ -959,7 +959,6 @@ hu:
         prework_required: Ne engedélyezze a központfoglalást, ha az előkészítési feladatok nem fejeződnek be
         prework_required_for_invite: Csak az előkészítési munka befejezése után küldjön meghívó e-mailt
         proctoring:
-          allow_on_assessment_center: Felülvizsgálat engedélyezése az értékelési központban
           enable: Felülvizsgálat engedélyezése
           identification: Azonosítás
           identifications:
@@ -2774,12 +2773,10 @@ hu:
     proctoring_sessions:
       columns:
         comment: Megjegyzés
-        completed_at: 'Befejezve:'
         conclusion: Következtetés
         links: Linkek
         score: Pontszám
         session_id: Munkamenet azonosítója
-        started_at: Kezdetben
       links:
         report: Jelentés
         review: Áttekintés
@@ -3002,6 +2999,7 @@ hu:
               scheduling_invited: Ütemezés meghívva
               scheduling_rescheduled: Ütemezés átütemezve
               scheduling_scheduled: Ütemezés ütemezve
+              workshop_attendance_status: A műhelymunkán való részvétel
           url:
             label: URL-cím
             name: URL-cím

@@ -31,7 +31,7 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   def begin_campaign
-    if @campaign_user.proctoring_enabled? && !params[:continue_without_proctoring]
+    if proctoring_flow_enabled?
       session[:proctoring_mode] = true
       begin_campaign_with_proctoring
     else
@@ -43,7 +43,7 @@ class EndUser::CampaignUsersController < ApplicationController
   end
 
   def continue_campaign
-    if @campaign_user.proctoring_enabled? && !params[:continue_without_proctoring]
+    if proctoring_flow_enabled?
       session[:proctoring_mode] = true
       continue_campaign_with_proctoring
     else
@@ -92,5 +92,11 @@ class EndUser::CampaignUsersController < ApplicationController
 
   def campaign
     @campaign_user.campaign
+  end
+
+  def proctoring_flow_enabled?
+    @campaign_user.proctoring_enabled? &&
+      !@campaign_user.campaign.selective_proctoring_enabled? &&
+      !params[:continue_without_proctoring]
   end
 end

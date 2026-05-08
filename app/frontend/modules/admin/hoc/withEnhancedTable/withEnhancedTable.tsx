@@ -3,7 +3,7 @@ import pick from 'lodash/pick'
 import reduce from 'lodash/reduce'
 import curry from 'lodash/curry'
 import forEach from 'lodash/forEach'
-import { FilterValue } from 'antd/lib/table/interface'
+import { FilterValue } from 'antd/es/table/interface'
 import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 
 import { State as TableConfigs } from '~/modules/admin/core/filterAndPagination/interfaces'

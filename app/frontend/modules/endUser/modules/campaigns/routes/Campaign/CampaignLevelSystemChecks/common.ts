@@ -12,3 +12,8 @@ export enum CHECK_TYPE {
   results = 'results',
   audio = 'audio',
 }
+
+export type InternationalizedDetails ={
+  i18nKey: string;
+  i18nVars?: Array<[string, string | number]>;
+}

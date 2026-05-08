@@ -12,8 +12,20 @@ RSpec.describe Api::V2::Administration::UserReportEventsController, type: :reque
 
   describe 'GET /api/v2/administration/user_report_events/export' do
     it 'exports user report events' do
-      post '/api/v2/administration/user_report_events/export', params: { campaign_id: campaign.id.to_s },
-headers: { 'Authorization' => authorization }
+      post '/api/v2/administration/user_report_events/export',
+           params: {
+             data: {
+               attributes: {
+                 campaign_id: campaign.id.to_s,
+                 start_date: 1.week.ago.to_date.to_s,
+                 end_date: Time.zone.today.to_s
+               }
+             },
+             query: {
+               campaign_id: campaign.id.to_s
+             }
+           },
+           headers: { 'Authorization' => authorization }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq('ok')
@@ -24,7 +36,20 @@ headers: { 'Authorization' => authorization }
       normal_authorization = "Basic #{Base64.strict_encode64("#{normal_api_key.key}:#{normal_api_key.token}")}"
       sign_in(normal_user)
 
-      post '/api/v2/administration/user_report_events/export', headers: { 'Authorization' => normal_authorization }
+      post '/api/v2/administration/user_report_events/export',
+           params: {
+             data: {
+               attributes: {
+                 campaign_id: campaign.id.to_s,
+                 start_date: 1.week.ago.to_date.to_s,
+                 end_date: Time.zone.today.to_s
+               }
+             },
+             query: {
+               campaign_id: campaign.id.to_s
+             }
+           },
+           headers: { 'Authorization' => normal_authorization }
 
       expect(response).to have_http_status(:forbidden)
     end

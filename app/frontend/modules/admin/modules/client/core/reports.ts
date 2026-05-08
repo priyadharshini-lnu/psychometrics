@@ -1,6 +1,6 @@
 import * as t from 'io-ts'
 import ApiAction from 'interfaces/ApiAction'
-import { UploadFile } from 'antd/lib/upload/interface'
+import { UploadFile } from 'antd/es/upload/interface'
 import { createReducer } from '~/utils/redux'
 
 export const ReportBundleTR = t.type({

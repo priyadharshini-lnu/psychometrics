@@ -4,16 +4,10 @@ import _ from 'lodash'
 import {
   Form, Select, Space, Button, message,
 } from 'antd'
-import { UnControlled as CodeMirror } from 'react-codemirror2'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/addon/fold/foldcode'
-import 'codemirror/addon/fold/foldgutter'
-import 'codemirror/addon/fold/brace-fold'
-import 'codemirror/addon/fold/foldgutter.css'
 import cs from 'classnames'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 import {
   Webhook, WebhookTR, getWebhookPayload, PushWebhookReponseTR,
 } from '~/modules/admin/modules/client/core/webhooks'
@@ -264,16 +258,11 @@ const PushWebhookModal: React.FC<Props> = ({
                   name="payloadData"
                 >
                   <div className={cs(styles.tabContent, 'pb-2')}>
-                    <CodeMirror
+                    <ReactCodemirror
                       value={JSON.stringify(requestData, null, 2)}
-                      options={{
-                        mode: {
-                          name: 'javascript',
-                          json: true,
-                        },
-                        readOnly: true,
-                        lineWrapping: true,
-                      }}
+                      mode="json"
+                      readOnly
+                      lineWrapping
                     />
                   </div>
                 </Form.Item>
@@ -296,16 +285,11 @@ const PushWebhookModal: React.FC<Props> = ({
                 <>
                   <div className={cs(styles.tabContent, 'pb-2')}>
                     <p>{I18n.t('user_assessments.modals.push_test_webhook.response_header_title')}</p>
-                    <CodeMirror
+                    <ReactCodemirror
                       value={JSON.stringify(responseHeaders, null, 2)}
-                      options={{
-                        mode: {
-                          name: 'javascript',
-                          json: true,
-                        },
-                        readOnly: true,
-                        lineWrapping: true,
-                      }}
+                      mode="json"
+                      readOnly
+                      lineWrapping
                     />
                   </div>
                   <CopyToClipboard
@@ -326,16 +310,11 @@ const PushWebhookModal: React.FC<Props> = ({
                 <>
                   <div className={cs(styles.tabContent, 'pb-2')}>
                     <p>{I18n.t('user_assessments.modals.push_test_webhook.response_body_title')}</p>
-                    <CodeMirror
+                    <ReactCodemirror
                       value={responseBody}
-                      options={{
-                        mode: {
-                          name: 'javascript',
-                          json: true,
-                        },
-                        readOnly: true,
-                        lineWrapping: true,
-                      }}
+                      mode="json"
+                      readOnly
+                      lineWrapping
                     />
                   </div>
                   <CopyToClipboard

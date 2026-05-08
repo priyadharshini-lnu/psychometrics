@@ -12,6 +12,7 @@ th:
     ai_idp_summary_hint_no_document: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติมได้
     all_checks_must_pass: ต้องผ่านการตรวจสอบทั้งหมดก่อนจึงจะสามารถดำเนินการต่อได้
     approve_idp_plan: อนุมัติแผน
+    assessment_misconfigured: การประเมินค่าถูกตั้งค่าไม่ถูกต้อง
     audio: เสียง
     audio_check: ทดสอบไมโครโฟน
     audio_check_description: ตรวจสอบให้แน่ใจว่าไมโครโฟนของคุณทำงานได้อย่างถูกต้องสำหรับการบันทึก
@@ -66,6 +67,7 @@ th:
     error_uploading_video: เกิดข้อผิดพลาดในการอัปโหลดวิดีโอ
     error_uploading_video_detail: เกิดข้อผิดพลาดขณะอัปโหลดวิดีโอ
     fail: ล้มเหลว
+    file_submission_already_exists: เราได้บันทึกการส่งของคุณสำหรับคำถามนี้แล้ว กรุณาโหลดหน้าใหม่ และหากคุณยังไม่เห็นการส่งของคุณ กรุณาติดต่อผู้ดูแลระบบของคุณ
     follow_these_steps: ทำตามขั้นตอนเหล่านี้เพื่อแก้ไขปัญหาที่ตรวจพบระหว่างการตรวจสอบระบบ
     hide_details: ซ่อนรายละเอียด
     home: แดชบอร์ด
@@ -95,6 +97,8 @@ th:
     localstorage_fix_title: การเก็บข้อมูลในเครื่องไม่ได้รับการเปิดใช้งานในเบราว์เซอร์ของคุณ
     localstorage_not_enabled_detail: การเก็บข้อมูลในเครื่องไม่ได้เปิดใช้งานในเบราว์เซอร์ของคุณ โปรดตรวจสอบว่าคุณไม่ได้อยู่ในโหมดส่วนตัว/ไม่ระบุตัวตน เนื่องจาก localStorage มักถูกปิดใช้งานในโหมดเหล่านี้
     localstorage_support: เปิดใช้งาน LocalStorage
+    magic_link_interstitial_description: เพื่อความปลอดภัยของคุณ เราขอให้คุณยืนยันการเข้าสู่ระบบนี้ ระบบอัตโนมัติไม่สามารถดำเนินการขั้นตอนนี้ได้
+    magic_link_interstitial_title: เพื่อดำเนินการลงชื่อเข้าใช้ให้เสร็จสมบูรณ์ กรุณาคลิกปุ่มด้านล่าง
     max_word_limit: ต้องมีไม่เกิน %{max} คำ
     media_recorder_api_fix_description_first: เปิดใช้งาน JavaScript ในการตั้งค่าเบราว์เซอร์ของคุณ
     media_recorder_api_fix_description_second: ตรวจสอบว่าเบราว์เซอร์ของคุณรองรับ MediaRecorder API และอัปเดตเป็นเวอร์ชันล่าสุดหากจำเป็น
@@ -124,6 +128,8 @@ th:
     personal_readiness: ความพร้อมส่วนบุคคล
     plan_text: วางแผนสำหรับระยะเวลาทั้งหมด เมื่อเริ่มต้นแล้ว อาจไม่อนุญาตให้หยุดพัก ขึ้นอยู่กับประเภทของการประเมิน
     please_check_your_internet_connection: กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง
+    proctored: การสอบที่มีผู้คุมสอบ
+    proctored_assessment_misconfigured_msg: การประเมินนี้มีการควบคุมดูแล แต่ไม่มีการกำหนดเวลาที่จำเป็น กรุณาติดต่อผู้ดูแลระบบของคุณ
     profile: โปรไฟล์
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
@@ -137,7 +143,7 @@ th:
     rerun_checks: ทำการตรวจสอบซ้ำ
     result: ผลลัพธ์
     results: ผลลัพธ์
-    safari_proctoring_description: ดูเหมือนว่าคุณกำลังใช้ Safari ซึ่งอาจมีข้อจำกัดบางประการเกี่ยวกับคุณสมบัติการตรวจสอบที่เปิดใช้งานสำหรับแคมเปญนี้ เพื่อให้ได้รับประสบการณ์ที่ดีที่สุด เราขอแนะนำให้ใช้ Chrome หรือ Firefox
+    safari_proctoring_description: ดูเหมือนว่าคุณกำลังใช้ Safari ซึ่งอาจมีข้อจำกัดบางประการเกี่ยวกับคุณสมบัติการตรวจสอบที่เปิดใช้งานสำหรับแคมเปญนี้ เพื่อให้ได้รับประสบการณ์ที่ดีที่สุด เราขอแนะนำให้ใช้ Chrome, Edge หรือ Firefox
     safari_proctoring_title: ตรวจพบเบราว์เซอร์ Safari
     selected_count: เลือก
     skill_type: ประเภททักษะ
@@ -193,6 +199,7 @@ th:
     testing_download_speed: กำลังทดสอบความเร็วในการดาวน์โหลด...
     testing_upload_speed: กำลังทดสอบความเร็วในการอัปโหลด...
     time_commitment: เวลาที่ต้องใช้
+    timed_activity_instruction: นี่คือกิจกรรมที่มีเวลาจำกัด หลังจากที่คุณเริ่มเซสชันการตรวจสอบแล้ว คุณจะมีเวลา <strong>%{time} นาที</strong> ในการทำกิจกรรมให้เสร็จ
     troubleshooting_guide: คู่มือการแก้ไขปัญหา
     troubleshooting_guide_audio_fifth: 'บน Windows: ตรวจสอบการตั้งค่าความเป็นส่วนตัว > การเข้าถึงไมโครโฟน'
     troubleshooting_guide_audio_first: คลิกที่ไอคอนรูปกุญแจ/ข้อมูลในแถบที่อยู่ของเบราว์เซอร์ของคุณ

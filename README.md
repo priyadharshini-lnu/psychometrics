@@ -121,7 +121,7 @@ $> Users::SuperAdmin.create(
 
 1. Setup a loopback address to `localhost` or another preferred local domain
 2. start redis server `brew services start redis` or `redis-server`
-3. Run the server `bundle exec rails s -p 3030`
+3. Run the server `bundle exec falcon host`
 4. start vite server with command `./bin/vite dev`.
 5. Visit http://www.localhost:3030
 
@@ -151,7 +151,11 @@ or `./bin/dev` insted of points 3 and 4
 
 4. Run the server:
    ```bash
-   bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/localhost.key&cert=support/dev-ssl/localhost.pem"
+   bundle exec falcon host 
+   ```
+   or use
+   ```bash
+   SSL="true" SSL_KEY="./support/dev-ssl/localhost.key" SSL_CERT="./support/dev-ssl/localhost.pem" bundle exec falcon host
    ```
 
 5. Start Vite server:
@@ -184,7 +188,11 @@ or `./bin/dev` insted of points 3 and 4
 
 4. Run the server:
    ```bash
-   bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/ttedev.me.key&cert=support/dev-ssl/ttedev.me.pem"
+   bundle exec falcon host
+   ```
+   or use
+   ```bash
+   SSL="true" SSL_KEY="./support/dev-ssl/ttedev.me.key" SSL_CERT="./support/dev-ssl/ttedev.me.pem" bundle exec falcon host
    ```
 
 5. Start Vite server with command:

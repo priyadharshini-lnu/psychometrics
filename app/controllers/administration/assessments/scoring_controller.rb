@@ -15,6 +15,12 @@ module Administration
           current_user
         )
         scoring.save!
+
+        audit! :update, @assessment, payload: {
+          scoring: params[:scoring],
+          question_recoding: params[:question_recoding]
+        }
+
         render json: { data: ::Assessments::AssessmentSerializer.new(
           context: {
             include: '**'

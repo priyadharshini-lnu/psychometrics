@@ -73,6 +73,16 @@ class Translation < ApplicationRecord
     def available_translation_for_report(report_id, _assessment_id)
       for_report(report_id).group(:locale).pluck(:locale)
     end
+
+    def instructions_content_for_assessment(assessment_id, locale, translations_migrated: false)
+      translation = for_assessment(assessment_id).
+                    where(translateable_type: 'Instructions', locale: locale).
+                    first
+
+      return unless translation
+
+      translations_migrated ? translation.data.dig('props', 'content') : translation.props['content']
+    end
   end
 
   private

@@ -9,8 +9,8 @@ module EndUser
                :selected_locale, :privacy_consent_required, :campaign_id,
                :custom_consent_text, :custom_consent_policy_version, :data_role,
                :is_data_controller, :instructions, :started_at, :current_campaign_expiry_date,
-               :piped_text_mapping, :locale_data, :custom_acknowledgment_text,
-               :should_run_assessment_level_checks
+               :piped_text_mapping, :locale_data, :custom_acknowledgment_text, :selective_proctoring_enabled,
+               :proctoring_integration_type, :should_run_assessment_level_checks
 
     def privacy_consent_required
       return true if is_data_controller
@@ -74,10 +74,6 @@ module EndUser
       extra.merge(audio_and_video_check_data)
     end
 
-    def current_campaign_user
-      campaign.campaign_users.find_by(user_id: current_user.id) if current_user
-    end
-
     def current_campaign_expiry_date
       current_campaign_user&.real_expiry_date
     end
@@ -91,7 +87,16 @@ module EndUser
     end
 
     def instructions
-      object.assessment&.instructions
+      assessment = object.assessment
+      return unless assessment
+
+      return assessment.instructions if locale.to_s == assessment.default_language.to_s
+
+      instructions = assessment.instructions
+      translated_content = translated_instructions_content
+      instructions['content'] = translated_content if translated_content
+
+      instructions
     end
 
     def piped_text_mapping
@@ -108,6 +113,14 @@ module EndUser
       }
     end
 
+    def selective_proctoring_enabled
+      campaign.campaign_options.selective_proctoring_enabled && object.proctoring_enabled?
+    end
+
+    def proctoring_integration_type
+      campaign.campaign_options.integration_type
+    end
+
     def should_run_assessment_level_checks
       campaign.should_run_assessment_level_checks?
     end
@@ -120,6 +133,10 @@ module EndUser
 
     def current_user
       context[:current_user]
+    end
+
+    def current_campaign_user
+      context[:campaign_user]
     end
 
     def piped_text_context
@@ -136,6 +153,12 @@ module EndUser
 
     def locale
       context[:locale] || object.selected_locale || I18n.default_locale
+    end
+
+    def translated_instructions_content
+      Translation.instructions_content_for_assessment(
+        object.assessment_id, locale, translations_migrated: object.assessment.translations_migrated?
+      )
     end
 
     def has_question_type(type)

@@ -10,9 +10,13 @@ export const WorkshopList: React.FC = () => {
   const { tab } = useParams<{ tab: string }>()
   const navigate = useNavigate()
   const location = useLocation()
+  const searchParams = new URLSearchParams(location.search)
 
   const handleTabChange = (activeKey: string) => {
-    navigate(`../${activeKey}${location.search}`, { relative: 'path' })
+    navigate({
+      pathname: `../${activeKey}`,
+      search: searchParams.toString(),
+    }, { relative: 'path' })
   }
 
   const tabItems = [

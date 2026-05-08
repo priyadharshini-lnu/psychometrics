@@ -959,7 +959,6 @@ fr:
         prework_required: Ne pas autoriser la réservation d'un centre si les travaux préliminaires ne sont pas terminés
         prework_required_for_invite: Envoyer un courriel d'invitation uniquement lorsque le travail préliminaire est terminé
         proctoring:
-          allow_on_assessment_center: Autoriser les surveillants dans les centres d'évaluation
           enable: Permettre l'examen
           identification: Identification
           identifications:
@@ -2772,12 +2771,10 @@ fr:
     proctoring_sessions:
       columns:
         comment: Commentaire
-        completed_at: Terminé à
         conclusion: Conclusion
         links: Liens
         score: Score
         session_id: Identité de la session
-        started_at: Commencé à
       links:
         report: Rapport
         review: Révision
@@ -3000,6 +2997,7 @@ fr:
               scheduling_invited: Programmation Invités
               scheduling_rescheduled: Programmation Reprogrammée
               scheduling_scheduled: Programmation Programmation
+              workshop_attendance_status: Statut de participation à l'atelier
           url:
             label: Url
             name: url

@@ -62,7 +62,9 @@ module Administration
       end
 
       def resource_params
-        (params[:resource] || params[:campaign_assessment]).permit(:position, :campaign_assessment_group_id)
+        (params[:resource] || params[:campaign_assessment]).permit(
+          :position, :campaign_assessment_group_id, :proctoring_enabled
+        )
       end
 
       def resource_class

@@ -32,6 +32,7 @@ sr-Latn:
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
     client: Клијент
+    close: Затвори
     collaborative_learning: Kolaborativno učenje
     completed: Завршено
     configurations: Конфигурације
@@ -40,19 +41,24 @@ sr-Latn:
     controller: Контролер
     cookie_notice: Обавештење о колачићима
     cookies_statement: Изјава о колачићима
+    copied_successfully: Успешно копирано
     copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
+    create: Креирај
     created_at: Kreiran u
     created_date: Datum kreiranja
+    created_successfully: Успешно креирано
     custom_acknowledgment_text: Прилагођени текст захвалнице
     custom_acknowledgment_text_required: За улогу података контролера потребан је прилагођени текст захвалнице.
     custom_consent_text: Прилагођени текст сагласности
     custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
     data_role: Улога података
     decline: Pretraživanje
+    delete: Избриши
     description: Opis
     desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
     desktop_or_laptop_required: Потребан десктоп или лаптоп
+    disabled: Онеспособљен
     download: Преузми
     download_audio: Преузми аудио
     download_transcription: Преузми транскрипт
@@ -60,6 +66,7 @@ sr-Latn:
     edit: Uredi
     edited: Novi
     email: Imejl
+    error: Грешка
     export: Izvoz
     failed: Неуспело
     'false': false
@@ -105,6 +112,8 @@ sr-Latn:
     no_results_found: Није пронађено ниједно резултат
     not_requested: Још није затражено
     ok: Ok
+    options: Опције
+    owner: Власник
     pending: Учешће
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
@@ -142,6 +151,8 @@ sr-Latn:
     status_unknown: Status Nepoznat
     subject: Предмет
     submit: Пошаљи
+    submit_and_finish_proctoring: Поднесите и завршите надгледање
+    suspended: Сuspended
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
     table:
       entries:
@@ -165,6 +176,7 @@ sr-Latn:
     type: Tip
     update: Ažuriraj
     update_failed: Ажурирање није успело
+    updated_at: Ажурирано у
     updated_successfully: Успешно ажурирано
     video: Видео
     view: Приказ

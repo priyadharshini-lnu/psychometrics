@@ -13,6 +13,8 @@ class Block < ApplicationRecord
   has_many :questions, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions_ams, -> { ams }, class_name: 'Question'
   has_many :blocks, class_name: 'Block', foreign_key: :template_id, dependent: :destroy
+  has_many :linked_assessments, through: :blocks, source: :assessment
+  has_many :translations, as: :translateable, dependent: :destroy
   belongs_to :owner, class_name: 'Client'
 
   validates :name, presence: true
@@ -38,7 +40,12 @@ class Block < ApplicationRecord
   }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name created_at]
+    %w[id name created_at view]
+  end
+
+  # Ransacker for view enum - converts string values to integers for filtering
+  ransacker :view, formatter: proc { |v| views[v] } do |parent|
+    parent.table[:view]
   end
 
   def clone_with_params(params = {})

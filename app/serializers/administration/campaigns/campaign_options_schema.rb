@@ -36,6 +36,7 @@ module Administration
           required(:workshop_invite_requires_prework_completion).filled(:bool?)
           required(:show_watermark).filled(:bool?)
           required(:watermark_content).maybe(:str?)
+          required(:selective_proctoring_enabled).filled(:bool?)
           required(:system_check_enabled).filled(:bool?)
           required(:system_check_validity).maybe(:int?)
           required(:allow_continue_with_warning).filled(:bool?)

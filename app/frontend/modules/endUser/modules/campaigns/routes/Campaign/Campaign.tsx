@@ -50,7 +50,7 @@ type CommonCampaignDetails= {
   id: number
   systemCheckStatus: {
     isValid: boolean,
-  }
+  } | null
   userAssessments: Array<{
     status: string,
   }>
@@ -70,10 +70,7 @@ type ThreeSixtyCampaignDetails= {
   campaignId: number
   systemCheckStatus: {
     isValid: boolean,
-  }
-  userAssessments: Array<{
-  status: string,
-}>
+  } | null
 }
 
 type CampaignDetails = CommonCampaignDetails | ThreeSixtyCampaignDetails | {type:string}
@@ -95,26 +92,29 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
         } = response as CommonCampaignDetails
         const { systemCheckEnabled } = campaignOptions
 
-        const { isValid } = systemCheckStatus
+        if (systemCheckEnabled && systemCheckStatus !== null) {
+          const { isValid } = systemCheckStatus
 
-        const hasCompletedAllAssessment = userAssessments.every(assessment => assessment.status === 'completed')
+          const hasCompletedAllAssessment = userAssessments.every(assessment => assessment.status === 'completed')
 
-        if (systemCheckEnabled && !isValid && !hasCompletedAllAssessment) {
-          navigate(`/campaign_system_check/${id}/welcome`)
+          if (systemCheckEnabled && !isValid && !hasCompletedAllAssessment) {
+            navigate(`/campaign_system_check/${id}/welcome`)
+          }
         }
       }
 
       if ((response as CampaignDetails).type === 'threesixty') {
         const {
-          options, campaignId, systemCheckStatus, userAssessments,
+          options, campaignId, systemCheckStatus,
         } = response as ThreeSixtyCampaignDetails
         const { systemCheckEnabled } = options.participants.global
-        const { isValid } = systemCheckStatus
 
-        const hasCompletedAllAssessment = userAssessments.every(assessment => assessment.status === 'completed')
+        if (systemCheckEnabled && systemCheckStatus !== null) {
+          const { isValid } = systemCheckStatus
 
-        if (systemCheckEnabled && !isValid && !hasCompletedAllAssessment) {
-          navigate(`/campaign_system_check/${campaignId}/welcome`)
+          if (systemCheckEnabled && !isValid) {
+            navigate(`/campaign_system_check/${campaignId}/welcome`)
+          }
         }
       }
     })

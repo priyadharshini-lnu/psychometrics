@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { DatePicker } from 'antd'
-import { RangePickerProps } from 'antd/lib/date-picker'
+import { RangePickerProps } from 'antd/es/date-picker'
 import dayjs from '~/utils/dayjs'
 
 const { I18n } = window

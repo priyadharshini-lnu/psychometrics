@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {
   Modal, Button, Spin, Form, GetProp,
 } from 'antd'
-import { FormProps, FormInstance } from 'antd/lib/form'
-import { ModalProps } from 'antd/lib/modal'
+import { FormProps, FormInstance } from 'antd/es/form'
+import { ModalProps } from 'antd/es/modal'
 import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ResourceForm from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'

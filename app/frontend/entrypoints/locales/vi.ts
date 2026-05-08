@@ -1,4 +1,4 @@
-import vi from 'antd/lib/locale/vi_VN'
+import vi from 'antd/es/locale/vi_VN'
 
 window.antdLocale = vi
 export default vi

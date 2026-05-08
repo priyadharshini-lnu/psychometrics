@@ -20,7 +20,7 @@ import {
 import {
   useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
-import { CHECK_STATUS, CHECK_TYPE } from '../../common'
+import { CHECK_STATUS, CHECK_TYPE, InternationalizedDetails } from '../../common'
 import {
   MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage, safariProctoring,
 } from './constants'
@@ -29,7 +29,6 @@ import commonStyles from '../../common-styles.less'
 import { CountdownButton, CountdownButtonRef } from '../../components/CountdownButton'
 import { AlertNotification } from '../../components/AlertNotification'
 import { SuccessTag, FailureTag, PendingTag } from '../../components/StatusTags'
-
 
 type BrowserCheckStatus = {
   type: BrowserCheckType;
@@ -105,7 +104,6 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     return checkBrowserForProctoringSupport() && Number(BROWSER_VERSION.split('.')[0]) >= compatibleVersion
   }
 
-
   const checkBrowserForFeatureCompatibility = async () => {
     setIsLoading(true)
     const hasMinimumBrowserVersion = checkIfBrowserIsAboveMinimumVersion()
@@ -117,50 +115,83 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
     const hasLocalStorageSupport = checkBrowserForLocalStorageSupport()
 
     const generateDetails = () => {
-      const details:string[] = []
+      const details:InternationalizedDetails[] = []
 
 
       if (!MIN_BROWSER_VERSIONS[BROWSER_NAME]) {
-        details.push(I18n.t('enduser.browser_not_compatible_detail', { browser_name: BROWSER_NAME }))
+        details.push({
+          i18nKey: 'enduser.browser_not_compatible_detail',
+          i18nVars: [
+            ['browser_name', BROWSER_NAME],
+          ],
+        })
       }
 
+
       if (hasMinimumBrowserVersion && hasWebGLSupport && hasMediaRecorderAPISupport && hasLocalStorageSupport) {
-        details.push(I18n.t('enduser.browser_compatible', {
-          browser_name: BROWSER_NAME,
-          browser_version: getExactBrowserVersionSync(),
-        }))
+        details.push({
+          i18nKey: 'enduser.browser_compatible',
+          i18nVars: [
+            ['browser_name', BROWSER_NAME],
+            ['browser_version', getExactBrowserVersionSync() || ''],
+          ],
+        })
         return details
       }
 
+
       if (!hasMinimumBrowserVersion) {
-        details.push(I18n.t('enduser.browser_incompatible_detail', {
-          browser_name: BROWSER_NAME,
-          browser_version: getExactBrowserVersionSync(),
-          min_browser_version: MIN_BROWSER_VERSIONS[BROWSER_NAME],
-        }))
+        if (BROWSER_NAME === 'Safari' && campaignOptions?.proctoringEnabled) {
+          details.push({
+            i18nKey: 'enduser.safari_proctoring_description',
+          })
+        } else {
+          details.push({
+            i18nKey: 'enduser.browser_incompatible_detail',
+            i18nVars: [
+              ['browser_name', BROWSER_NAME],
+              ['browser_version', getExactBrowserVersionSync() || ''],
+              ['min_browser_version', MIN_BROWSER_VERSIONS[BROWSER_NAME]?.toString() || ''],
+            ],
+          })
+        }
       } else {
-        details.push(I18n.t('enduser.browser_compatible_detail', {
-          browser_name: BROWSER_NAME,
-          browser_version: getExactBrowserVersionSync(),
-        }))
+        details.push({
+          i18nKey: 'enduser.browser_compatible_detail',
+          i18nVars: [
+            ['browser_name', BROWSER_NAME],
+            ['browser_version', getExactBrowserVersionSync() || ''],
+          ],
+        })
       }
 
       if (!hasWebGLSupport) {
-        details.push(I18n.t('enduser.webgl_not_supported_detail', {
-          browser_name: BROWSER_NAME,
-          browser_version: getExactBrowserVersionSync(),
-        }))
+        details.push({
+          i18nKey: 'enduser.webgl_not_supported_detail',
+          i18nVars: [
+            ['browser_name', BROWSER_NAME],
+            ['browser_version', getExactBrowserVersionSync() || ''],
+          ],
+        })
       }
 
       if (!hasMediaRecorderAPISupport) {
-        details.push(I18n.t('enduser.media_recorder_api_not_supported_detail', {
-          browser_name: BROWSER_NAME,
-          browser_version: getExactBrowserVersionSync(),
-        }))
+        details.push({
+          i18nKey: 'enduser.media_recorder_api_not_supported_detail',
+          i18nVars: [
+            ['browser_name', BROWSER_NAME],
+            ['browser_version', getExactBrowserVersionSync() || ''],
+          ],
+        })
       }
 
       if (!hasLocalStorageSupport) {
         details.push(I18n.t('enduser.localstorage_not_enabled_detail'))
+
+        details.push({
+          i18nKey: 'enduser.localstorage_not_enabled_detail',
+          i18nVars: [],
+        })
       }
       return details
     }

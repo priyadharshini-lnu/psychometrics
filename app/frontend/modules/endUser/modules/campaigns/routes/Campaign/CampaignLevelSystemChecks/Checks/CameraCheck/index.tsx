@@ -17,7 +17,7 @@ import {
   VideoCameraOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { actions } from '~/modules/endUser/modules/campaigns/core/systemChecks/systemCheckRTK'
-import { CHECK_STATUS, CHECK_TYPE } from '../../common'
+import { CHECK_STATUS, CHECK_TYPE, InternationalizedDetails } from '../../common'
 import { PermissionDenied } from '../../components/PermissionDenied'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
@@ -117,14 +117,23 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   }, [recordId])
 
   const generateDetails = () => {
-    const details: string[] = []
+    const details:InternationalizedDetails[] = []
 
     if (!isDeviceRequestGranted) {
-      details.push(I18n.t('enduser.camera_access_blocked'))
+      details.push({
+        i18nKey: 'enduser.camera_access_blocked',
+        i18nVars: [],
+      })
     } else if (isDeviceRequestGranted && checkStatus === CHECK_STATUS.failed) {
-      details.push(I18n.t('enduser.error_uploading_video_detail'))
+      details.push({
+        i18nKey: 'enduser.error_uploading_video_detail',
+        i18nVars: [],
+      })
     } else {
-      details.push(I18n.t('enduser.camera_check_passed'))
+      details.push({
+        i18nKey: 'enduser.camera_check_passed',
+        i18nVars: [],
+      })
     }
 
     return details

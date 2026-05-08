@@ -971,7 +971,6 @@ sr-Cyrl:
         prework_required: Не дозволите резервацију центра ако претходни радови нису завршени.
         prework_required_for_invite: Пошаљите позив за е-пошту само када је припремни рад завршен.
         proctoring:
-          allow_on_assessment_center: Дозволите надгледање у центру за процену
           enable: Омогућите надзор
           identification: Идентификација
           identifications:
@@ -2812,12 +2811,10 @@ sr-Cyrl:
     proctoring_sessions:
       columns:
         comment: Коментар
-        completed_at: Завршено у
         conclusion: Закључак
         links: Линктови
         score: Резултат
         session_id: ИД сесије
-        started_at: Почео је у
       links:
         report: Извештај
         review: Рецензија
@@ -3040,6 +3037,7 @@ sr-Cyrl:
               scheduling_invited: Закazivanje по позиву
               scheduling_rescheduled: Распоређивање поново заказано
               scheduling_scheduled: Распоређивање заказано
+              workshop_attendance_status: Статус присуства на радионици
           url:
             label: УРЛ
             name: url

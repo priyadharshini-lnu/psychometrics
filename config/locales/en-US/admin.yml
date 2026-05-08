@@ -21,6 +21,7 @@ en-US:
     admin_roles: Admin Roles
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
+    advanced: Advanced
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
@@ -117,6 +118,7 @@ en-US:
     allow_continue_with_warning_system_check: Allow users to continue with warnings when system check fails
     api_keys: API keys
     apply_to_existing_users: Apply this change to existing users in this campaign
+    assessment: Assessment
     assessment_center_activity: Activity
     assessment_center_assessor: Assessor
     assessment_center_attendance: Attendance
@@ -147,6 +149,12 @@ en-US:
     available_languages: Report Available in Languages
     average: Average
     back_to_main: Main Menu
+    block_editor_add_question: Add Question
+    block_editor_question_randomization: Question Randomization
+    block_options: Block Options
+    block_settings: Block Settings
+    blocks_new_button: New Block
+    blocks_title: Blocks
     bulk_assets_modal_choose_csv: Choose CSV File
     bulk_assets_modal_choose_zip: Choose ZIP File
     bulk_assets_modal_not_csv_file_error: Only CSV files are allowed for CSV upload. Please upload a valid CSV file.
@@ -159,6 +167,15 @@ en-US:
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
+    campaign_assessment_column_hogan_assessment_id: Hogan Assessment ID
+    campaign_assessment_column_hogan_form_id: Hogan Form ID
+    campaign_assessment_column_pearson_assessment_id: Pearson Assessment ID
+    campaign_assessment_column_pearson_assessment_language: Pearson Assessment Language
+    campaign_assessment_column_pearson_error_details: Pearson Error Details
+    campaign_assessment_column_pearson_product_id: Pearson Product ID
+    campaign_assessment_column_saville_error_code: Saville Error Code
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Saville Request ID
     campaign_assessment_mhs_confidence_interval: Confidence Interval
     campaign_assessment_mhs_confidence_interval_update_success: Confidence interval updated successfully
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval must be 0 or 1
@@ -203,6 +220,7 @@ en-US:
     campaigns: Campaigns
     cancel: Cancel
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
+    captcha: Captcha Verification
     casual: Casual
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     characters: characters
@@ -219,10 +237,13 @@ en-US:
     concise: Concise
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
+    confirmation_required: Confirmation Required
+    confirmation_required_details: Are you sure you want to delete the %{resource} "%{resource_name}"?
     copied: Copied
     copied_url_success: URL is copied to clipboard successfully
     copy_ai_artifacts: Copy AI Artifacts
     copy_image_url: Copy Image URL
+    copy_url: Copy URL
     country: Country
     create_client: Create Client
     create_indicator: Create Indicator
@@ -240,6 +261,7 @@ en-US:
     delete_ok_text: Yes, Delete
     denied: Denied
     description: Description
+    descriptive_text: Descriptive Text
     development_actions: Development Actions
     development_actions_form_tags: Tags
     digest_delivery_mode:
@@ -262,10 +284,12 @@ en-US:
       wednesday: Wednesday
     dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
+    disable_proctoring: Disable Proctoring
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
     duration: Duration
+    duration_must_be_positive: Duration must be positive
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
     edit_folder: Edit Folder
@@ -284,6 +308,7 @@ en-US:
     enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
+    end: end
     end_time: End Time
     end_time_must_be_after_start_time: End time must be after start time
     enhance_with_ai: Enhance with AI
@@ -300,6 +325,8 @@ en-US:
     export_completion_status: Export Completion Status
     export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
     export_detailed_completion_status: Detailed
+    factor_feedback: Factor Feedback
+    factor_selection: Factor Selection
     factors: Factors
     feature_ai_assistants_description: Enable AI-powered assistants for enhanced user experience
     feature_ai_assisted_idp_description: Use AI to assist with Individual Development Planning recommendations
@@ -323,6 +350,8 @@ en-US:
     formal: Formal
     from: From
     generate_transcription: Generate Transcription
+    graphic: Graphic
+    graphic_slider: Graphic Slider
     hide_middle_scores: Hide middle scores
     high: High
     hogan: Hogan
@@ -389,6 +418,7 @@ en-US:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    linked_assessments: Linked Assessments
     low: Low
     maintenance: Maintenance
     maintenance_settings: Maintenance Settings
@@ -397,6 +427,7 @@ en-US:
     max_value: Max value
     media_files_label: Files
     media_library: Media Library
+    media_library_page_title: Media Library - Dashboard - Mercer Lighthouse
     messages: Messages
     mhs: MHS
     mhs_assessment: MHS Assessment
@@ -420,6 +451,7 @@ en-US:
     no_file_selected: No file selected
     no_notifications: No Notifications
     no_status: No Status
+    norm_editor_numeric_value_error: Only numeric values are allowed (integers or decimals).
     norms: Norms
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
@@ -864,6 +896,11 @@ en-US:
     precision: Precision
     privacy: Privacy
     proctoring: Proctoring
+    proctoring_errors_timed_only: Selective proctoring can only be enabled for timed assessments.
+    proctoring_fixed_time_required: Enable Fixed Time to select this option
+    proctoring_mode_all: Enable Proctoring on all assessments
+    proctoring_mode_all_except_ac: Enable Proctoring on all assessments except assessment center
+    proctoring_settings: Proctoring Settings
     professional: Professional
     proficiency: Proficiency
     proficiency_level: API keys
@@ -876,7 +913,31 @@ en-US:
     projects: Projects
     prompt: Prompt
     question_center: Question Center
+    question_editor_change_type: Change type
+    question_editor_click_to_write: Click to write question content...
+    question_editor_copy_question: Copy Question
+    question_editor_enable_transcription: Enable transcription
+    question_editor_preview_question: Preview Question
+    question_editor_validation_type: Validation type
+    question_randomization: Question Randomization
+    question_type_audio_response: Audio Response
+    question_type_constant_sum: Constant Sum
+    question_type_file_upload: File Upload
+    question_type_gap_analysis: Gap Analysis
+    question_type_hot_spot: Hot Spot
+    question_type_matrix_table: Matrix Table
+    question_type_meta_info: Meta Info
+    question_type_multiple_choice: Multiple Choice
+    question_type_pick_group_rank: Pick Group Rank
+    question_type_rank_order: Rank Order
+    question_type_side_by_side: Side by Side
+    question_type_slider: Slider
+    question_type_text_entry: Text Entry
+    question_type_video_response: Video Response
     questions: Questions
+    questions_new_button: New Question
+    questions_title: Question
+    questions_type: Type
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Reflection Questions
     regenerate_transcriptions_action: Regenerate Transcriptions
@@ -888,6 +949,7 @@ en-US:
     remove_children_to_change_type: Remove all children to change type
     remove_confirmation: Are you sure you want to remove this item?
     remove_successfully: Media Item was removed successfully.
+    report_alias_save_confirmation: If you wish to save ALL changes in Report Builder and also in Aliases, please click 'SAVE' button. The page will be reloaded and your changes will be successfully applied.
     report_approvals: Report Approvals
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
@@ -917,6 +979,7 @@ en-US:
     saml_service_provider_acs_urls_placeholder: Enter URLs separated by commas, e.g. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ACS URLs are required
     saml_service_provider_action_delete_label: Delete
+    saml_service_provider_action_download_xml_label: Download XML
     saml_service_provider_action_edit_label: Edit
     saml_service_provider_action_rotate_certificate_label: Rotate Certificate
     saml_service_provider_add: Add SAML Service Provider
@@ -958,6 +1021,7 @@ en-US:
     saml_settings: SAML Settings
     save: Save
     save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
+    save_block: Save Block
     saved_filter_label:
       approval_status_in: Approval Status
       approver_user_id_in: Approver
@@ -1006,9 +1070,11 @@ en-US:
     select_language_to_translate: Please select language to translate
     select_level: Select level
     select_start_time: Select Start Time
+    selective_proctoring: Selective Proctoring
     send_email: Send email
     set_min_max_scores_warning: Please set minimum and maximum scores for this factor to configure AI scoring.
     settings: Settings
+    settings_saved_successfully: Settings saved successfully
     show_all_assessment_responses: Show All Assessment Responses
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
@@ -1022,7 +1088,11 @@ en-US:
     slot_name: Slot Name
     sms_histories: SMS Histories
     sms_invites: SMS Invites
+    specialty_questions: Specialty Questions
+    standard_questions: Standard Questions
+    start: start
     start_time: Start Time
+    static_content: Static Content
     stats: Stats
     status_details: Status Details
     structured_learning: Formal Learning [10]
@@ -1031,7 +1101,10 @@ en-US:
     target_job_role: Target Job Role
     this_field_is_required: This field is required
     threesixty: 360 Campaign
+    timed_label: 'Timed: %{time_text}'
+    timelines: Timelines
     timezone: TimeZone
+    timing: Timing
     to: To
     tone: Tone
     toolbar_ai_insight: AI Insight

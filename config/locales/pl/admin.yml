@@ -21,6 +21,7 @@ pl:
     admin_roles: Role administratora
     admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
     admins: Administratorzy
+    advanced: Zaawansowane
     ai_artifact_result_generation_admin_job_failed: Nie można wygenerować artefaktu „%{artifact_name}” dla użytkownika „%{user_email}”.
     ai_artifact_result_stale: Wynik może być nieaktualny, ponieważ zależności artefaktu AI uległy zmianie od czasu wygenerowania ostatniego wyniku. Rozważ ponowne wygenerowanie artefaktu, aby uwzględnić najnowsze zależności.
     ai_artifacts: Artefakty SI
@@ -117,6 +118,7 @@ pl:
     allow_continue_with_warning_system_check: Zezwól użytkownikom na kontynuowanie działania pomimo wyświetlenia ostrzeżeń w przypadku niepowodzenia kontroli systemu
     api_keys: Klucze API
     apply_to_existing_users: Zastosuj tę zmianę do obecnych użytkowników w tej kampanii
+    assessment: Ocena
     assessment_center_activity: Zajęcia
     assessment_center_assessor: rzeczoznawca
     assessment_center_attendance: Obecność
@@ -147,6 +149,12 @@ pl:
     available_languages: Raport dostępny w językach
     average: Średnia
     back_to_main: Menu główne
+    block_editor_add_question: Dodaj pytanie
+    block_editor_question_randomization: Losowe przydzielanie pytań
+    block_options: Opcje bloku
+    block_settings: Ustawienia bloku
+    blocks_new_button: Nowy blok
+    blocks_title: Bloki
     bulk_assets_modal_choose_csv: Wybierz plik CSV
     bulk_assets_modal_choose_zip: Wybierz plik ZIP
     bulk_assets_modal_not_csv_file_error: Do przesyłania plików CSV dopuszczalne są wyłącznie pliki CSV. Proszę przesłać prawidłowy plik CSV.
@@ -159,6 +167,15 @@ pl:
     campaign_assessment_actions_disable_caching: Wyłącz buforowanie oceny
     campaign_assessment_actions_enable_caching: Włącz buforowanie oceny
     campaign_assessment_column_caching_enabled: Włączone buforowanie oceny
+    campaign_assessment_column_hogan_assessment_id: Numer identyfikacyjny oceny Hogana
+    campaign_assessment_column_hogan_form_id: Numer identyfikacyjny formularza Hogana
+    campaign_assessment_column_pearson_assessment_id: Numer identyfikacyjny testu firmy Pearson
+    campaign_assessment_column_pearson_assessment_language: Język testów firmy Pearson
+    campaign_assessment_column_pearson_error_details: Szczegóły błędu Pearsona
+    campaign_assessment_column_pearson_product_id: Numer produktu firmy Pearson
+    campaign_assessment_column_saville_error_code: Kod błędu Saville'a
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Numer wniosku Saville
     campaign_assessment_mhs_confidence_interval: Przedział ufności
     campaign_assessment_mhs_confidence_interval_update_success: Przedział ufności zaktualizowany pomyślnie
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval musi wynosić 0 lub 1
@@ -203,6 +220,7 @@ pl:
     campaigns: Kampanie
     cancel: Anuluj
     cancellation_and_rescheduling_disabled: Anulowanie i zmiana terminu są wyłączone.
+    captcha: Weryfikacja CAPTCHA
     casual: Nieformalny
     cell_save_msg: Prawidłowe zmiany są automatycznie zapisywane po opuszczeniu komórki po edycji.
     characters: postacie
@@ -219,10 +237,13 @@ pl:
     concise: Zwięzły
     configure_model_answer_title: Skonfiguruj modelową odpowiedź i słowa kluczowe
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
+    confirmation_required: Wymagane potwierdzenie
+    confirmation_required_details: Czy na pewno chcesz usunąć plik „%{resource_name}” z katalogu „%{resource}”?
     copied: Skopiowano
     copied_url_success: Adres URL został pomyślnie skopiowany do schowka
     copy_ai_artifacts: Skopiuj artefakty AI
     copy_image_url: Skopiuj adres URL obrazu
+    copy_url: Skopiuj adres URL
     country: Kraj
     create_client: Utwórz klienta
     create_indicator: Utwórz wskaźnik
@@ -240,6 +261,7 @@ pl:
     delete_ok_text: Tak, usuń
     denied: Odmówiony
     description: Opis
+    descriptive_text: Tekst opisowy
     development_actions: Działania rozwojowe
     development_actions_form_tags: Tagi
     digest_delivery_mode:
@@ -262,10 +284,12 @@ pl:
       wednesday: Środa
     dimension_translations_export_scheduled: Zaplanowano eksport tłumaczeń dla wymiaru „%{name}”.
     dimensions: Wymiary
+    disable_proctoring: Wyłącz nadzór
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
     download_bulk_asset_download_example_csv: Pobierz przykładowy plik CSV.
     duration: Czas trwania
+    duration_must_be_positive: Wartość czasu musi być dodatnia
     edit_campaign_admin: Edytuj administratora kampanii
     edit_client_admin: Edytowanie administratora klienta
     edit_folder: Edytuj folder
@@ -284,6 +308,7 @@ pl:
     enable_system_check: Włącz sprawdzanie systemu
     enable_transcription: Włącz transkrypcję
     enable_transcription_msg: Włącz transkrypcję, aby korzystać z oceny AI w pytaniach z odpowiedziami wideo/audio.
+    end: koniec
     end_time: Czas zakończenia
     end_time_must_be_after_start_time: Czas zakończenia musi być późniejszy niż czas rozpoczęcia.
     enhance_with_ai: Wzbogać dzięki sztucznej inteligencji
@@ -300,6 +325,8 @@ pl:
     export_completion_status: Status zakończenia eksportu
     export_completion_statuses_scheduled: Zadanie eksportu statusów ukończenia zostało pomyślnie zaplanowane.
     export_detailed_completion_status: Szczegółowy
+    factor_feedback: Informacja zwrotna dotycząca czynników
+    factor_selection: Wybór czynników
     factors: Czynniki
     feature_ai_assistants_description: Włącz asystentów opartych na sztucznej inteligencji, aby poprawić komfort użytkowania.
     feature_ai_assisted_idp_description: Wykorzystaj sztuczną inteligencję do pomocy w tworzeniu zaleceń dotyczących indywidualnych planów rozwoju.
@@ -323,6 +350,8 @@ pl:
     formal: Formalny
     from: Od
     generate_transcription: Wygeneruj transkrypcję
+    graphic: Grafika
+    graphic_slider: Suwak graficzny
     hide_middle_scores: Ukryj wyniki średnie
     high: Wysoki
     hogan: Hogan
@@ -389,6 +418,7 @@ pl:
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     licenses: Licencje
+    linked_assessments: Powiązane oceny
     low: Niski
     maintenance: Konserwacja
     maintenance_settings: Ustawienia konserwacji
@@ -397,6 +427,7 @@ pl:
     max_value: Wartość maksymalna
     media_files_label: Pliki
     media_library: Biblioteka multimediów
+    media_library_page_title: Biblioteka multimediów – Pulpit nawigacyjny – Mercer Lighthouse
     messages: Wiadomości
     mhs: MHS
     mhs_assessment: Ocena MHS
@@ -420,6 +451,7 @@ pl:
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
     no_status: Brak statusu
+    norm_editor_numeric_value_error: Dopuszczalne są wyłącznie wartości liczbowe (liczby całkowite lub ułamkowe).
     norms: Normy
     not_completed: Nieukończone
     not_completed_tooltip: Przydzielani są %{completed} oceniający, ale tylko %{submitted} zakończyli oceny
@@ -864,6 +896,11 @@ pl:
     precision: Precyzja
     privacy: Prywatność
     proctoring: Nadzorowanie
+    proctoring_errors_timed_only: Funkcję selektywnego nadzoru można włączyć wyłącznie w przypadku testów z limitem czasowym.
+    proctoring_fixed_time_required: Włącz opcję „Stały czas”, aby wybrać tę opcję
+    proctoring_mode_all: Włącz nadzór podczas wszystkich testów
+    proctoring_mode_all_except_ac: Włącz funkcję nadzoru podczas wszystkich testów z wyjątkiem testów w centrum egzaminacyjnym
+    proctoring_settings: Ustawienia nadzoru
     professional: Profesjonalny
     proficiency: Biegłość
     proficiency_level: Klucze API
@@ -876,7 +913,31 @@ pl:
     projects: Projekty
     prompt: Monit
     question_center: Centrum pytań
+    question_editor_change_type: Zmień typ
+    question_editor_click_to_write: Kliknij, aby wpisać treść pytania...
+    question_editor_copy_question: Skopiuj pytanie
+    question_editor_enable_transcription: Włącz transkrypcję
+    question_editor_preview_question: Pytanie podglądowe
+    question_editor_validation_type: Typ walidacji
+    question_randomization: Losowe przydzielanie pytań
+    question_type_audio_response: Odpowiedź głosowa
+    question_type_constant_sum: Stała suma
+    question_type_file_upload: Przesyłanie plików
+    question_type_gap_analysis: Analiza luk
+    question_type_hot_spot: Gorący punkt
+    question_type_matrix_table: Tabela macierzowa
+    question_type_meta_info: Informacje dodatkowe
+    question_type_multiple_choice: Pytania wielokrotnego wyboru
+    question_type_pick_group_rank: Wybierz grupę i pozycję w rankingu
+    question_type_rank_order: Ranking
+    question_type_side_by_side: Obok siebie
+    question_type_slider: Suwak
+    question_type_text_entry: Wprowadzanie tekstu
+    question_type_video_response: Odpowiedź wideo
     questions: Pytania
+    questions_new_button: Nowe pytanie
+    questions_title: Pytanie
+    questions_type: Typ
     range_min_max: ZAKRES %{min} - %{max}
     reflection_questions: Pytania do refleksji
     regenerate_transcriptions_action: Odśwież transkrypcje
@@ -888,6 +949,7 @@ pl:
     remove_children_to_change_type: Usuń wszystkie dzieci, aby zmienić typ
     remove_confirmation: Czy na pewno chcesz usunąć ten element?
     remove_successfully: Element multimedialny został pomyślnie usunięty.
+    report_alias_save_confirmation: Jeśli chcesz zapisać WSZYSTKIE zmiany w Report Builderze oraz w sekcji Aliasy, kliknij przycisk „ZAPISZ”. Strona zostanie odświeżona, a zmiany zostaną pomyślnie zastosowane.
     report_approvals: Zatwierdzanie raportów
     report_condition_not_met: Potrzebuje %{required} %{relationship} oceny, ale ma tylko %{actual}
     report_conditions_not_met_detailed: Raport dla %{user} nie spełnia warunków dostępności. %{conditions}
@@ -917,6 +979,7 @@ pl:
     saml_service_provider_acs_urls_placeholder: Wprowadź adresy URL oddzielone przecinkami, np. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Wymagane są adresy URL ACS
     saml_service_provider_action_delete_label: Usunąć
+    saml_service_provider_action_download_xml_label: Pobierz plik XML
     saml_service_provider_action_edit_label: Redagować
     saml_service_provider_action_rotate_certificate_label: Certyfikat rotacji
     saml_service_provider_add: Dodaj dostawcę usług SAML
@@ -958,6 +1021,7 @@ pl:
     saml_settings: Ustawienia SAML
     save: Zapisz
     save_assessment_for_scoring_management: Zapisz ocenę przed rozpoczęciem punktacji.
+    save_block: Zapisz blok
     saved_filter_label:
       approval_status_in: Status zatwierdzenia
       approver_user_id_in: Osoba zatwierdzająca
@@ -1006,9 +1070,11 @@ pl:
     select_language_to_translate: Wybierz język do tłumaczenia
     select_level: Wybierz poziom
     select_start_time: Wybierz czas rozpoczęcia
+    selective_proctoring: Selektywny nadzór
     send_email: Wyślij wiadomość e-mail
     set_min_max_scores_warning: Proszę ustawić minimalną i maksymalną liczbę punktów dla tego czynnika, aby skonfigurować punktację AI.
     settings: Ustawienia
+    settings_saved_successfully: Ustawienia zostały pomyślnie zapisane
     show_all_assessment_responses: Pokaż wszystkie odpowiedzi z oceny
     show_middle_scores: Pokaż więcej wyników dla „%{count}” (opcjonalnie)...
     show_original: Pokaż oryginał
@@ -1022,7 +1088,11 @@ pl:
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS
+    specialty_questions: Pytania specjalistyczne
+    standard_questions: Typowe pytania
+    start: rozpocząć
     start_time: Czas rozpoczęcia
+    static_content: Treści statyczne
     stats: Statystyki
     status_details: Szczegóły statusu
     structured_learning: Formalne uczenie się [10]
@@ -1031,7 +1101,10 @@ pl:
     target_job_role: Docelowa rola zawodowa
     this_field_is_required: To pole jest wymagane.
     threesixty: Kampania 360
+    timed_label: 'Link: %{time_text}'
+    timelines: Harmonogramy
     timezone: Strefa czasowa
+    timing: Czas
     to: Do
     tone: Ton
     toolbar_ai_insight: Wgląd w sztuczną inteligencję

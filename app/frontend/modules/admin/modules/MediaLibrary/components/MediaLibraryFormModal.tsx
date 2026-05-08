@@ -77,7 +77,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     libraryFormData.append('data[attributes][name]', data.name)
     libraryFormData.append('data[attributes][description]', data.description)
     if (data.ownerId) {
-      libraryFormData.append('data[attributes][owner_id]', data.ownerId)
+      libraryFormData.append('data[attributes][owner_id]', String(data.ownerId))
     }
 
     if (resource.getFilteredValue('with_parent')) {
@@ -88,6 +88,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
 
     try {
       await resource.uploadFileAction(`libraries/${(library as MediaLibrary).id}`, libraryFormData, 'put')
+      resource.fetch()
     } catch (error) {
       console.error('Upload failed', error)
     }
@@ -118,7 +119,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
         updateResource: updateLibrary,
       }}
       formProps={{
-        onFinish: library ? undefined : createLibrary,
+        ...(library ? {} : { onFinish: createLibrary }),
         initialValues: {
           ...library,
           description: library?.description || '',
@@ -136,10 +137,10 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
             <Input name="name" />
           </Form.Item>
 
-
           <Form.Item
             name="ownerId"
             label={I18n.t('common.column.owner')}
+            rules={[{ required: true }]}
             initialValue={library?.owner?.id || ' '}
           >
             <Select

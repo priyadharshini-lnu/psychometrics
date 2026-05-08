@@ -181,7 +181,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
           temporary_upload_ids: uploadIds,
           name: data.name,
           description: data.description,
-          owner_id: data.ownerId,
+          owner_id: String(data.ownerId),
           type: 'other',
           ...(parentId ? { parent_id: parentId } : {}),
         })
@@ -192,7 +192,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
             attributes: {
               name: data.name,
               description: data.description,
-              owner_id: data.ownerId,
+              owner_id: String(data.ownerId),
               type: 'folder',
               ...(parentId ? { parent_id: parentId } : {}),
             },

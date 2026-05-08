@@ -18,6 +18,7 @@ import DevelopmentActionRoutes from '~/modules/admin/modules/DevelopmentActions/
 import DimensionsRoutes from '~/modules/admin/modules/Dimensions/routes'
 import AiAssitantRoutes from '~/modules/admin/modules/AiAssitant/routes'
 import MediaLibraryRoutes from '~/modules/admin/modules/MediaLibrary/routes'
+import QuestionRoutes from '~/modules/admin/modules/QuestionCenter'
 
 const routes = [
   ...ProfileRoutes,
@@ -40,6 +41,7 @@ const routes = [
   ...DimensionsRoutes,
   ...SettingsRoutes,
   ...MediaLibraryRoutes,
+  ...QuestionRoutes,
 ]
 
 export default routes

@@ -254,19 +254,19 @@ export const WorkshopEditFormModal: FC<Props> = ({
           >
             <Switch />
           </Form.Item>
+          <Form.Item
+            name="schedulingLeadTime"
+            label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+            {...fieldLayout}
+          >
+            <InputDuration
+              value={60}
+              onChange={() => {}}
+              placeholder={I18n.t('administration.components.input_duration.placeholder')}
+            />
+          </Form.Item>
           {!disableCancellationAndRescheduling && (
             <>
-              <Form.Item
-                name="schedulingLeadTime"
-                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
-                {...fieldLayout}
-              >
-                <InputDuration
-                  value={60}
-                  onChange={() => {}}
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                />
-              </Form.Item>
               <Form.Item
                 name="cancellationLeadTime"
                 label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}

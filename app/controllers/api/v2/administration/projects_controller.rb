@@ -76,7 +76,7 @@ module Api
     private
 
     def include_inactive_users
-      params[:include_inactive_users] == 'true'
+      params[:include_inactive_users] || params.dig(:data, :attributes, :include_inactive_users)
     end
 
     def client

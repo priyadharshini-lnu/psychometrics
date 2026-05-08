@@ -12,6 +12,7 @@ ja:
     ai_idp_summary_hint_no_document: もし許可があれば、開発計画を作成できます。もしそうでなければ、チャットを再開して詳細を共有してください。
     all_checks_must_pass: すべてのチェックに合格してからでないと、先に進むことはできません。
     approve_idp_plan: プランを承認
+    assessment_misconfigured: 設定に誤りがあります
     audio: 音声
     audio_check: マイクテスト
     audio_check_description: 録音のために、マイクが正常に動作しているか確認してください
@@ -66,6 +67,7 @@ ja:
     error_uploading_video: 動画のアップロードに失敗しました
     error_uploading_video_detail: 動画のアップロード中にエラーが発生しました
     fail: 失敗
+    file_submission_already_exists: この質問に対する投稿はすでに受け付けております。ページを更新してください。それでも以前の投稿が表示されない場合は、管理者までご連絡ください。
     follow_these_steps: システムチェックで検出された問題を解決するには、以下の手順に従ってください
     hide_details: 詳細を非表示にする
     home: ダッシュボード
@@ -95,6 +97,8 @@ ja:
     localstorage_fix_title: お使いのブラウザではローカルストレージが有効になっていません
     localstorage_not_enabled_detail: お使いのブラウザではローカルストレージが有効になっていません。プライベートモードやシークレットモードではローカルストレージが無効になっていることが多いため、これらのモードになっていないかご確認ください。
     localstorage_support: LocalStorage が有効になっています
+    magic_link_interstitial_description: セキュリティ上の理由から、このログインの確認をお願いいたします。自動システムではこの手順を完了できません。
+    magic_link_interstitial_title: サインインを完了するには、下のボタンをクリックしてください。
     max_word_limit: 最大%{max}語以内にしてください
     media_recorder_api_fix_description_first: ブラウザの設定でJavaScriptを有効にしてください
     media_recorder_api_fix_description_second: お使いのブラウザがMediaRecorder APIに対応しているか確認し、必要に応じて最新バージョンに更新してください。
@@ -124,6 +128,8 @@ ja:
     personal_readiness: 個人の準備状況
     plan_text: 試験の全期間を見据えて計画を立ててください。試験開始後は、試験の種類によっては休憩が認められない場合があります。
     please_check_your_internet_connection: インターネット接続を確認してから、もう一度お試しください。
+    proctored: 監督付き
+    proctored_assessment_misconfigured_msg: この評価は監督下で行われますが、必要な時間設定がされていません。管理者にお問い合わせください。
     profile: プロフィール
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
@@ -137,7 +143,7 @@ ja:
     rerun_checks: 再チェック
     result: 結果
     results: 結果
-    safari_proctoring_description: Safariをご利用のようですが、このキャンペーンで有効になっている追跡防止機能に関して、一部制限が生じる可能性があります。最適な環境でお楽しみいただくため、ChromeまたはFirefoxのご利用をお勧めします。
+    safari_proctoring_description: Safariをご利用のようですが、このキャンペーンで有効になっている追跡防止機能に関して、一部制限が生じる可能性があります。最適な環境でお楽しみいただくため、Chrome, EdgeまたはFirefoxのご利用をお勧めします。
     safari_proctoring_title: Safariブラウザが検出されました
     selected_count: 選択済み
     skill_type: スキルの種類
@@ -193,6 +199,7 @@ ja:
     testing_download_speed: ダウンロード速度を測定中...
     testing_upload_speed: アップロード速度を測定中...
     time_commitment: 所要時間
+    timed_activity_instruction: このアクティビティには制限時間が設けられています。監督セッションを開始した後、完了するまでに<strong>%{time}分</strong>の時間が与えられます。
     troubleshooting_guide: トラブルシューティングガイド
     troubleshooting_guide_audio_fifth: Windowsの場合：[プライバシー設定] > [マイクへのアクセス] を確認してください
     troubleshooting_guide_audio_first: ブラウザのアドレスバーにある鍵／情報アイコンをクリックしてください

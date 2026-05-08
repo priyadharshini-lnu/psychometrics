@@ -14,6 +14,10 @@ module Api
         validate :validate_file_format
         validate :validate_file_content
 
+        def row_count
+          @csv_data.drop(1)&.size || 0
+        end
+
         private
 
         def validate_file_format

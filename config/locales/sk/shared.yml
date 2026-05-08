@@ -32,6 +32,7 @@ sk:
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
     client: Klient
+    close: Zatvoriť
     collaborative_learning: Kolaboratívne učenie
     completed: Dokončené
     configurations: Konfigurácie
@@ -40,19 +41,24 @@ sk:
     controller: Ovládač
     cookie_notice: Oznámenie o súboroch cookie
     cookies_statement: Vyhlásenie o súboroch cookie
+    copied_successfully: Kopírovanie prebehlo úspešne
     copied_to_clipboard: Kopírované do schránky
     copy: Kopírovať
+    create: Vytvoriť
     created_at: Vytvorené v
     created_date: Dátum vytvorenia
+    created_successfully: Úspešne vytvorené
     custom_acknowledgment_text: Vlastný text poďakovania
     custom_acknowledgment_text_required: Pre úlohu „Dáta ovládača“ je potrebný vlastný text potvrdenia
     custom_consent_text: Vlastný text súhlasu
     custom_consent_text_required: Pre rolu správcu údajov je potrebný vlastný text súhlasu.
     data_role: Úloha údajov
     decline: Úpadok
+    delete: Odstrániť
     description: Popis
     desktop_or_laptop_recommended: Odporúča sa stolný počítač alebo notebook
     desktop_or_laptop_required: Požadovaný stolný počítač alebo notebook
+    disabled: Znevýhodnení
     download: Stiahnuť
     download_audio: Stiahnuť zvuk
     download_transcription: Stiahnuť prepis
@@ -60,6 +66,7 @@ sk:
     edit: Upraviť
     edited: Nové
     email: E-mail
+    error: Chyba
     export: Vývoz
     failed: Neúspešný
     'false': false
@@ -105,6 +112,8 @@ sk:
     no_results_found: Nenašli sa žiadne výsledky
     not_requested: Ešte nebolo požiadané
     ok: Ok
+    options: Možnosti
+    owner: Majiteľ
     pending: Čaká na vybavenie
     policy_version: Verzia politiky
     policy_version_format: Povolené sú iba celé čísla
@@ -142,6 +151,8 @@ sk:
     status_unknown: Stav neznámy
     subject: Predmet
     submit: Odoslať
+    submit_and_finish_proctoring: Odoslať a ukončiť dohľad
+    suspended: Pozastavené
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
     table:
       entries:
@@ -165,6 +176,7 @@ sk:
     type: Typ
     update: Aktualizácia
     update_failed: Aktualizácia sa nepodarila
+    updated_at: Aktualizované dňa
     updated_successfully: Úspešne aktualizované
     video: Video
     view: Zobraziť

@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState } from 'react'
 import {
   Form, Input, Select, Spin, Switch, Modal, Button, Tooltip, Flex, Alert, Checkbox,
 } from 'antd'
-import { FormInstance } from 'antd/lib/form'
+import { FormInstance } from 'antd/es/form'
 import _ from 'lodash'
 import { Tag } from 'modules/admin/core/tags'
 import { connect } from 'react-redux'

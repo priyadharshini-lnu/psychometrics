@@ -266,7 +266,7 @@ module Campaigns
             mhs_settings[:default_leadership_bar],
           norm_region: existing_mhs_user_assessment&.norm_region ||
             external_config&.dig('norm_region') ||
-            mhs_settings&.norm_regions&.first&.value,
+            mhs_settings[:default_norm_region],
           norm_option: existing_mhs_user_assessment&.norm_option ||
             external_config&.dig('norm_option') ||
             mhs_settings&.norm_options&.first&.value

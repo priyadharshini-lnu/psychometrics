@@ -959,7 +959,6 @@ ru:
         prework_required: Не разрешать бронирование центра, если предварительные работы не завершены
         prework_required_for_invite: Отправлять приглашение по электронной почте только после завершения предварительной работы
         proctoring:
-          allow_on_assessment_center: Разрешить наблюдение в центре оценки
           enable: Включить контроль
           identification: Идентификация
           identifications:
@@ -2772,12 +2771,10 @@ ru:
     proctoring_sessions:
       columns:
         comment: Комментарий
-        completed_at: Завершено в
         conclusion: Заключение
         links: Ссылки
         score: Счет
         session_id: Идентификатор сеанса
-        started_at: Начало
       links:
         report: Отчет
         review: Обзор
@@ -3000,6 +2997,7 @@ ru:
               scheduling_invited: Планирование приглашенных
               scheduling_rescheduled: Перенос графика
               scheduling_scheduled: Планирование Запланировано
+              workshop_attendance_status: Статус посещения семинара
           url:
             label: Url
             name: URL

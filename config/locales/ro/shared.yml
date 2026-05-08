@@ -32,6 +32,7 @@ ro:
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
     client: Client
+    close: Închide
     collaborative_learning: Învățare colaborativă
     completed: Finalizat
     configurations: Configurații
@@ -40,19 +41,24 @@ ro:
     controller: Controler
     cookie_notice: Notificare privind cookie-urile
     cookies_statement: Declarație privind cookie-urile
+    copied_successfully: Copierea s-a efectuat cu succes
     copied_to_clipboard: Copiată în clipboard
     copy: Copiere
+    create: Creează
     created_at: Creat la
     created_date: Data creării
+    created_successfully: S-a creat cu succes
     custom_acknowledgment_text: Text personalizat de mulțumire
     custom_acknowledgment_text_required: Pentru rolul de date al controlerului este necesar un text personalizat de confirmare
     custom_consent_text: Text personalizat pentru consimțământ
     custom_consent_text_required: Este necesar un text personalizat de consimțământ pentru rolul de controlor de date
     data_role: Rolul datelor
     decline: Declin
+    delete: Șterge
     description: Descriere
     desktop_or_laptop_recommended: Recomandat pentru desktop sau laptop
     desktop_or_laptop_required: Este necesar un computer desktop sau laptop
+    disabled: Persoane cu dizabilități
     download: Descărcare
     download_audio: Descărcați fișierul audio
     download_transcription: Descărcați transcrierea
@@ -60,6 +66,7 @@ ro:
     edit: Editați
     edited: Nou
     email: E-mail
+    error: Eroare
     export: Exportați
     failed: Eșuat
     'false': false
@@ -105,6 +112,8 @@ ro:
     no_results_found: Nu s-au găsit rezultate
     not_requested: Nu a fost încă solicitat
     ok: Bine
+    options: Opțiuni
+    owner: Proprietar
     pending: În așteptare
     policy_version: Versiunea politicii
     policy_version_format: Sunt permise numai numere întregi
@@ -142,6 +151,8 @@ ro:
     status_unknown: Stare necunoscută
     subject: Subiect
     submit: Trimite
+    submit_and_finish_proctoring: Trimite și finalizează supravegherea
+    suspended: Suspendat
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop
     table:
       entries:
@@ -165,6 +176,7 @@ ro:
     type: Tip
     update: Actualizați
     update_failed: Actualizarea a eșuat
+    updated_at: Actualizat la
     updated_successfully: Actualizat cu succes
     video: Video
     view: Vizualizare

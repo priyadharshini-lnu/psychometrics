@@ -4,6 +4,7 @@ class ProctoringSession < ApplicationRecord
   audited
 
   belongs_to :campaign_user
+  belongs_to :user_assessment, optional: true
   belongs_to :campaign
   has_one :license_usage
 
