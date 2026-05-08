@@ -114,6 +114,7 @@ export const finishProctoringSession = userAssessmentId => ({
   request: {
     url: `/user_assessments/${userAssessmentId}/finish_proctoring_session`,
     method: 'POST',
+    body: { userAssessment: { id: userAssessmentId } },
     loader: true,
   },
 })

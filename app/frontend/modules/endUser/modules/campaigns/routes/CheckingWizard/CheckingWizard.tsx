@@ -7,17 +7,20 @@ import {
 import qs from 'qs'
 import { connect, ConnectedProps } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import {
+  CountdownTimer, MediaQueryContext, PageHeader as GlintPageHeader, FontsizeModifier,
+} from '~/glint'
 import { LaptopOutlined, AudioOutlined, VideoCameraOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { fetch, setCookies } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { Checks, Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
-import { MediaQueryContext, PageHeader as GlintPageHeader, FontsizeModifier } from '~/glint'
 import styles from './styles.less'
 import { SystemCheck } from './SystemCheck'
 import { NetworkCheck } from './NetworkCheck'
 import { VideoCheck } from './VideoCheck'
 import { AudioCheck } from './AudioCheck'
+import { finishProctoringSession } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 
 const connector = connect(({ checkingWizard }: RootState) => ({
   checks: checkingWizard.checks,
@@ -28,12 +31,14 @@ const connector = connect(({ checkingWizard }: RootState) => ({
 }), {
   fetch,
   setCookies,
+  finishProctoringSession,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
 const { I18n } = window
 const { Content } = Layout
+const MAX_TIME_TO_COMPLETE_IN_SECONDS = 10 * 60
 
 const STEPS = [
   {
@@ -70,13 +75,14 @@ interface OwnProps {
   userAssessmentId: number
   checks: Checks
   config: Config
+  showTimer?: boolean
   url?: string
 }
 
 type Props = OwnProps & PropsFromRedux
 
 const CheckingWizardComponent: React.FC<Props> = ({
-  url, checks, config, fetch, setCookies, assessmentId, userAssessmentId,
+  url, checks, config, fetch, setCookies, assessmentId, userAssessmentId, showTimer, finishProctoringSession,
 }) => {
   const { isMobile } = useContext(MediaQueryContext)
   const { search } = useLocation()
@@ -115,6 +121,10 @@ const CheckingWizardComponent: React.FC<Props> = ({
     }
   }
 
+  const endProctoring = () => {
+    finishProctoringSession(userAssessmentId)
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CurrentCheck: any = getSteps()[currentStep]?.component
 
@@ -132,6 +142,16 @@ const CheckingWizardComponent: React.FC<Props> = ({
           </Space>
         </Col>
       </GlintPageHeader>
+      {showTimer && (
+        <div className={styles.timerContainer}>
+          {I18n.t('enduser.system_check_timer_msg')}
+          <CountdownTimer
+            className={styles.countdownTimer}
+            seconds={MAX_TIME_TO_COMPLETE_IN_SECONDS}
+            onFinish={endProctoring}
+          />
+        </div>
+      )}
       {finish ? (
         <Content className={styles.pageLayout}>
           <Row justify="center">

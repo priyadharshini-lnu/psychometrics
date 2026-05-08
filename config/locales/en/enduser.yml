@@ -188,6 +188,7 @@ en:
     system_check_start_recording: Start Recording
     system_check_stop_recording: Stop Recording
     system_check_test_message: great to speak with you
+    system_check_timer_msg: Complete all checks and start your assessment within the time shown below. If assessment not started within this time, your proctoring session will end and you'll need to start over.
     system_check_upload_again: Upload Again
     system_check_uploading: Uploading
     system_check_video_random_phrase: I am ready. This is a test recording to confirm that my video and microphone are working properly.
