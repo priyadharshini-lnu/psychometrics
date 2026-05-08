@@ -140,8 +140,16 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
           <Form.Item
             name="ownerId"
             label={I18n.t('common.column.owner')}
-            rules={[{ required: true }]}
             initialValue={library?.owner?.id || ' '}
+            rules={[
+              {
+                validator: (_, value) => {
+                  if (value !== undefined) return Promise.resolve()
+
+                  return Promise.reject(new Error(I18n.t('admin.this_field_is_required')))
+                },
+              },
+            ]}
           >
             <Select
               showSearch
@@ -161,7 +169,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
 
           {(isUpload || (!!library && library?.type === 'image'))
             && (
-              <Form.Item label={I18n.t('admin.media_files_label')}>
+              <Form.Item name="file" label={I18n.t('admin.media_files_label')} rules={[{ required: true }]}>
                 <Upload
                   listType="picture"
                   maxCount={library ? 1 : undefined}
