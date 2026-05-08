@@ -9,12 +9,15 @@ require 'uri'
 # placing the object at the root of the S3 bucket.
 #
 # The canonical variant key format is:
-#   <parent_blob_directory>/variants/<sha256(variation_key)>
+#   <parent_dir>/variants/<blob_id>/<hex(sha256(variation_key))>
+#
+# Uses blob.id for uniqueness to avoid collisions when multiple records share similar paths.
+#
 #
 # For example, if the original blob key is:
 #   public/library/42/file/abc123_photo.png
 # The canonical variant key becomes:
-#   public/library/42/file/variants/<sha256>
+#   public/library/42/file/variants/<blob_id>/<sha256>
 #
 # Run examples:
 #   rake data_migration:migrate_root_variant_objects
@@ -24,7 +27,8 @@ require 'uri'
 #   - bucket_name:  (optional) S3 bucket override (default: inferred from variant blob service)
 
 namespace :data_migration do
-  desc 'Migrate root-level ActiveStorage tracked variant objects to <parent_dir>/variants/<sha256(variation_key)>'
+  desc 'Migrate root-level ActiveStorage tracked variant objects to
+    <parent_dir>/variants/<blob_id>/<sha256(variation_key)>'
   task :migrate_root_variant_objects,
        %i[batch_size dry_run bucket_name] => %i[environment] do |_, args|
     batch_size = args[:batch_size].to_i
@@ -66,7 +70,8 @@ namespace :data_migration do
         next unless original_blob
 
         parent_dir = File.dirname(original_blob.key)
-        target_variant_key = "#{parent_dir}/variants/#{variant_record.variation_digest}"
+        target_variant_key = "#{parent_dir}/variants/#{original_blob.id}/#{variant_record.variation_digest}"
+
         bucket = bucket_name_for_blob(variant_blob, bucket_name)
         source_variant_key = variant_blob.key
 
