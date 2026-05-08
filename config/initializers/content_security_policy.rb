@@ -40,7 +40,7 @@ unless Rails.env.test?
         :self, :unsafe_eval, 'https://chatwoot.tte-work.com',
         'https://svc.webspellchecker.net', Settings.oac.base_embed_url,
         'https://cmp.osano.com', 'https://consent.trustarc.com', 'https://www.google.com',
-        'https://www.gstatic.com', 'https://svc.webspellchecker.net'
+        'https://www.gstatic.com'
       ].compact
       script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
