@@ -157,18 +157,20 @@ const AssessmentList: React.FC<Props> = ({
               />
             )}
           />
-          <Column
-            title={I18n.t('admin.proctoring')}
-            key="selectiveProctoring"
-            render={(assessment: Assessment) => (
-              <Switch
-                checked={assessment.proctoringEnabled}
-                disabled={!campaignOptions.selectiveProctoringEnabled}
-                onChange={checked => handleToggleSelectiveProctoring(assessment, checked)}
-                loading={assessment.id === assessmentIdRef.current && loadingUpdateProctoringSettings}
-              />
-            )}
-          />
+          {campaignOptions.selectiveProctoringEnabled && (
+            <Column
+              title={I18n.t('admin.proctoring')}
+              key="selectiveProctoring"
+              render={(assessment: Assessment) => (
+                <Switch
+                  checked={assessment.proctoringEnabled}
+                  disabled={!campaignOptions.selectiveProctoringEnabled}
+                  onChange={checked => handleToggleSelectiveProctoring(assessment, checked)}
+                  loading={assessment.id === assessmentIdRef.current && loadingUpdateProctoringSettings}
+                />
+              )}
+            />
+          )}
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"

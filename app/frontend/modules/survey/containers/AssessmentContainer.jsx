@@ -74,7 +74,7 @@ class AssessmentContainer extends Component {
   render () {
     const {
       disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser, showEnhanceWithAI = false,
-      preventOverflow, skipInstructions, onSubmit, selectiveProctoringEnabled,
+      preventOverflow, skipInstructions, onSubmit, selectiveProctoringEnabled, isProctored,
     } = this.props
 
     const { loading } = this.state
@@ -109,6 +109,7 @@ class AssessmentContainer extends Component {
                         preventOverflow={preventOverflow}
                         onSubmit={onSubmit}
                         selectiveProctoringEnabled={selectiveProctoringEnabled}
+                        isProctored={isProctored}
                         skipInstructions={skipInstructions}
                       />
                     </RecordingProvider>

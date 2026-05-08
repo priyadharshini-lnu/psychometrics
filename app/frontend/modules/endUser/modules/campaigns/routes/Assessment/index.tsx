@@ -172,7 +172,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   if (!dataAvailable) { return <PageContentSkeleton /> }
 
 
-  if (showPolicyAccept && privacyConsentRequired) {
+  if (showPolicyAccept && privacyConsentRequired && !insideSelectiveProctoringSession) {
     return (
       <PrivacyConsent
         onAccept={() => setShowPolicy(false)}
@@ -301,7 +301,13 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     userAssessmentId,
     userAssessmentData.shouldRunAssessmentLevelChecks,
   )) {
-    return <CheckingWizard assessmentId={assessmentId} userAssessmentId={userAssessmentId} />
+    return (
+      <CheckingWizard
+        showTimer={insideSelectiveProctoringSession}
+        assessmentId={assessmentId}
+        userAssessmentId={userAssessmentId}
+      />
+    )
   }
 
   if (availableLocales && !locale && !availableLocales.includes(I18n.currentLocale())) {
