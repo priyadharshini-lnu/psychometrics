@@ -692,7 +692,8 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lumberjack (1.4.0)
-    mail (2.8.1)
+    mail (2.9.0)
+      logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -736,7 +737,7 @@ GEM
     neighbor (0.6.0)
       activerecord (>= 7.1)
     nenv (0.3.0)
-    net-imap (0.5.9)
+    net-imap (0.5.14)
       date
       net-protocol
     net-pop (0.1.2)
@@ -1178,7 +1179,7 @@ GEM
     tilt (2.0.11)
     timecop (0.9.10)
     timeliness (0.5.3)
-    timeout (0.4.3)
+    timeout (0.6.1)
     tins (1.39.1)
       bigdecimal
       sync
@@ -1374,6 +1375,7 @@ DEPENDENCIES
   mobility (~> 1.2.9)
   mustache (~> 1.1.1)
   neighbor
+  net-imap (~> 0.5.14)
   nkf
   oauth2 (~> 2.0)
   oci (~> 2.22.0)
