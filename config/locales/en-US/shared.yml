@@ -22,9 +22,11 @@ en-US:
     assessors_list: Assessors List
     asset_not_present: Asset not present
     audio: Audio
+    audio_devices: Audio Devices
     authentication_failed: Authentication failed. Please try again.
     back: Back
     basic: Basic
+    camera: Camera
     camera_preview: Camera preview will appear here
     campaign: Campaign
     campaign_id: Campaign ID
@@ -59,6 +61,7 @@ en-US:
     desktop_or_laptop_recommended: Desktop or Laptop Recommended
     desktop_or_laptop_required: Desktop or Laptop Required
     disabled: Disabled
+    discard: Discard
     download: Download
     download_audio: Download Audio
     download_transcription: Download Transcription
@@ -97,6 +100,7 @@ en-US:
     media_preview: Media Preview
     media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
+    microphones: Microphones
     mobile_proctoring_disabled_instructions: This assessment requires a desktop or laptop to continue. Please switch to a computer to complete the activity.
     mobile_proctoring_enabled_instructions: For the best experience, please switch to a desktop or laptop if you have one available. You can continue on your mobile device if needed.
     modified_by: Modified By
@@ -147,6 +151,7 @@ en-US:
     send_email: Send email
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator.
+    speakers: Speakers
     status: Status
     status_unknown: Status Unknown
     subject: Subject
