@@ -667,4 +667,84 @@ created_at: 1.day.ago)
       end
     end
   end
+
+  describe '.excluding_inactive_campaign_users' do
+    let(:campaign) { create(:campaign) }
+    let(:subject_user) { create(:user) }
+
+    context 'when subject is active in the campaign' do
+      it 'includes the user assessment' do
+        create(:campaign_user, campaign: campaign, user: subject_user, active: true)
+        user_assessment = create(:user_assessment, campaign: campaign, subject: subject_user)
+
+        expect(UserAssessment.excluding_inactive_campaign_users).to include(user_assessment)
+      end
+    end
+
+    context 'when subject is inactive in the campaign' do
+      it 'excludes the user assessment' do
+        create(:campaign_user, campaign: campaign, user: subject_user, active: false)
+        user_assessment = create(:user_assessment, campaign: campaign, subject: subject_user)
+
+        expect(UserAssessment.excluding_inactive_campaign_users).not_to include(user_assessment)
+      end
+    end
+
+    context 'when subject is inactive in this campaign but active in another campaign' do
+      let(:other_campaign) { create(:campaign) }
+      let!(:inactive_campaign_user) { create(:campaign_user, campaign: campaign, user: subject_user, active: false) }
+      let!(:active_campaign_user) { create(:campaign_user, campaign: other_campaign, user: subject_user, active: true) }
+
+      it 'excludes the user assessment for the inactive campaign' do
+        user_assessment = create(:user_assessment, campaign: campaign, subject: subject_user)
+
+        expect(UserAssessment.excluding_inactive_campaign_users).not_to include(user_assessment)
+      end
+
+      it 'includes the user assessment for the active campaign' do
+        user_assessment = create(:user_assessment, campaign: other_campaign, subject: subject_user)
+
+        expect(UserAssessment.excluding_inactive_campaign_users).to include(user_assessment)
+      end
+    end
+
+    context 'when subject is active in two campaigns with the same assessment' do
+      let(:other_campaign) { create(:campaign) }
+      let(:assessment) { create(:assessment) }
+
+      it 'includes user assessments from both campaigns regardless of completion status' do
+        create(:campaign_user, campaign: campaign, user: subject_user, active: true)
+        create(:campaign_user, campaign: other_campaign, user: subject_user, active: true)
+
+        completed_ua = create(:user_assessment, campaign: campaign, subject: subject_user,
+                                                assessment: assessment, status: :completed)
+        not_completed_ua = create(:user_assessment, campaign: other_campaign, subject: subject_user,
+                                                    assessment: assessment, status: :not_started)
+
+        result = UserAssessment.excluding_inactive_campaign_users
+        expect(result).to include(completed_ua)
+        expect(result).to include(not_completed_ua)
+      end
+    end
+
+    context 'for assessor form assessments' do
+      let(:assessor) { create(:user) }
+
+      it 'includes assessor form assessment when subject is active' do
+        create(:campaign_user, campaign: campaign, user: subject_user, active: true)
+        assessor_form_assessment = create(:user_assessment, campaign: campaign, subject: subject_user,
+                                                            evaluator: assessor)
+
+        expect(UserAssessment.excluding_inactive_campaign_users).to include(assessor_form_assessment)
+      end
+
+      it 'excludes assessor form assessment when subject is inactive' do
+        create(:campaign_user, campaign: campaign, user: subject_user, active: false)
+        assessor_form_assessment = create(:user_assessment, campaign: campaign, subject: subject_user,
+                                                            evaluator: assessor)
+
+        expect(UserAssessment.excluding_inactive_campaign_users).not_to include(assessor_form_assessment)
+      end
+    end
+  end
 end
