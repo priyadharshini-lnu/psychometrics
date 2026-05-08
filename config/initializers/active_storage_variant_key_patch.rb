@@ -11,7 +11,7 @@
 # For example, if the original blob key is:
 #   public/library/42/file/abc123_photo.png
 # The variant key will be:
-#   public/library/42/file/variants/<sha256>
+#   public/library/42/file/variants/blob_id/<sha256>
 #
 # This keeps variants co-located with their parent blob inside the same
 # folder, preserving the public/private path prefix and making it easy to
@@ -21,7 +21,8 @@ module ActiveStorageVariantKeyPatch
 
   def create_or_find_record(image:)
     parent_dir = File.dirname(blob.key)
-    variant_key = "#{parent_dir}/variants/#{OpenSSL::Digest::SHA256.hexdigest(variation.key)}"
+    # Use blob.id for uniqueness
+    variant_key = "#{parent_dir}/variants/#{blob.id}/#{OpenSSL::Digest::SHA256.hexdigest(variation.key)}"
     super(image: image.merge(key: variant_key))
   end
 end
