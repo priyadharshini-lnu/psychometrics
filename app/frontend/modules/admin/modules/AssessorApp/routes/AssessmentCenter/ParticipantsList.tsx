@@ -13,6 +13,7 @@ import {
   ParticipantSubjectTR,
   ParticipantSubject, WorkshopActivity, MetadataForFiltersTR,
 } from '~/modules/admin/modules/campaigns/core/assessors/workshopSubjects'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { I18n } = window
 
@@ -246,7 +247,7 @@ const ParticipantsTable: React.FC = () => {
       apiConfig: {
         filter: metadataFilters,
       },
-    }).then((data: FilterOptions) => setFilterOptions(data))
+    }).then(data => setFilterOptions(data as FilterOptions))
   }, [campaignFilter, workshopFilter])
 
   const getFilteredValue = (name: string): string[] | null => {
@@ -356,7 +357,7 @@ const ParticipantsTable: React.FC = () => {
         title={I18n.t('admin.duration')}
         id="duration"
         width={100}
-        render={(_, { duration }) => dayjs.duration(duration, 'seconds').humanize()}
+        render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
       />
     </Resource.Table>
   )
