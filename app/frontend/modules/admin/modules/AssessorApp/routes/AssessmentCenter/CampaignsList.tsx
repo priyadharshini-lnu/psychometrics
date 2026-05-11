@@ -1,10 +1,10 @@
 import React from 'react'
 import { Radio, Typography } from 'antd'
 import { DateTimeWithZone } from '~/glint'
-import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/assessors/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import styles from './styles.less'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { I18n } = window
 
@@ -86,7 +86,7 @@ export const CampaignsList: React.FC = () => {
           title={I18n.t('administration.scheduling.columns.duration')}
           id="duration"
           width="10%"
-          render={(_, { duration }) => dayjs.duration(duration, 'seconds').humanize()}
+          render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
         />
         <Resource.Column<Workshop>
           title={I18n.t('administration.scheduling.columns.campaign_name')}

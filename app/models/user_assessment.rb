@@ -116,6 +116,12 @@ class UserAssessment < ApplicationRecord
   scope :scored, -> { where(status: :completed, score_calculated: true) }
   scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
   scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
+  scope :excluding_inactive_campaign_users, lambda {
+    joins(
+      'INNER JOIN campaign_users ON campaign_users.user_id = user_assessments.subject_id ' \
+      'AND campaign_users.campaign_id = user_assessments.campaign_id'
+    ).where(campaign_users: { active: true }).distinct
+  }
 
   before_save :set_default_relationship
   after_destroy :reset_user_report_approval_status
