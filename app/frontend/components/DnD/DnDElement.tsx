@@ -154,8 +154,8 @@ const DnDElement: React.FC<Props> = ({
 
   const renderChildren = () => (
     <>
-      <IconWrapper className={iconClass}>
-        <MenuOutlined ref={source} className={styles.draggingIcon} />
+      <IconWrapper ref={source} className={iconClass}>
+        <MenuOutlined className={styles.draggingIcon} />
       </IconWrapper>
       {children}
     </>
