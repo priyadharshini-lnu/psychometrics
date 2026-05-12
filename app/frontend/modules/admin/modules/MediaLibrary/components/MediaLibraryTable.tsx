@@ -54,7 +54,13 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
     }
     if (item?.type === 'video') {
       if (item?.fileUrl) {
-        return <img src={item.fileUrl} alt={item.name} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+        return (
+          <video
+            src={item.fileUrl}
+            style={{ maxWidth: '100%', maxHeight: '100%', background: '#000' }}
+            preload="metadata"
+          />
+        )
       }
       return <VideoCameraOutlined style={{ fontSize: '3rem' }} />
     }
