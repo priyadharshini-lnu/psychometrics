@@ -27,7 +27,7 @@ gem 'vite_rails'
 gem 'vite_ruby'
 
 ### Authentication and authorization
-gem 'devise',                     '~> 5.0.3'
+gem 'devise',                     '~> 5.0.4'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'

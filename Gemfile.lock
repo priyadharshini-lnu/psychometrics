@@ -391,7 +391,7 @@ GEM
       unicode_plot (>= 0.0.4, < 1.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (5.0.3)
+    devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 7.0)
@@ -1323,7 +1323,7 @@ DEPENDENCIES
   deep_cloneable (~> 3.2)
   deepl-rb
   derailed_benchmarks (~> 1.7.0)
-  devise (~> 5.0.3)
+  devise (~> 5.0.4)
   devise-i18n (~> 1.9.2)
   devise-passwordless (~> 1.0.1)
   devise-security (~> 0.18.0)
