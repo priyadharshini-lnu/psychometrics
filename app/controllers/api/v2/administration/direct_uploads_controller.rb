@@ -23,7 +23,7 @@ module Api
       filename = file_params.require(:filename)
       content_type = file_params.require(:content_type)
       byte_size = file_params.require(:byte_size).to_i
-      file_key = "tmp/uploads/#{SecureRandom.uuid}/#{filename}"
+      file_key = "#{Settings.aws.s3.temporary_upload_folder}/#{SecureRandom.uuid}/#{filename}"
 
       post = Aws::S3::Bucket.new(bucket).presigned_post(
         key: file_key,

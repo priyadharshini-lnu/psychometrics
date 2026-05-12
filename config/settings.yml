@@ -44,7 +44,8 @@ skillvue:
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
-    one_day_expiry_folder: tmp/1-day
+    one_day_expiry_folder: private/tmp/1-day
+    temporary_upload_folder: private/tmp/uploads
 hashids_length:
   anonym: 8
   default: 6

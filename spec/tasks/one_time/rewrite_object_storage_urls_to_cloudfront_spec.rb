@@ -12,7 +12,7 @@ describe 'one_time:rewrite_object_storage_urls_to_cloudfront' do
     'https://psychometrics-prod.s3.eu-west-1.amazonaws.com/private/admin_job/4567/file/test-export.csv?X-Amz-Signature=abc123'
   end
   let(:one_day_expiry_url) do
-    'https://psychometrics-prod.s3.eu-west-1.amazonaws.com/one_day_expiry_folder/reports/file.pdf?X-Amz-Signature=zzz'
+    'https://psychometrics-prod.s3.eu-west-1.amazonaws.com/private/one_day_expiry_folder/reports/file.pdf?X-Amz-Signature=zzz'
   end
   let(:cdn_public_url) { 'https://s3.tte-lighthouse.com/public/library/file/test-image.png' }
   let(:report) { create(:report) }
