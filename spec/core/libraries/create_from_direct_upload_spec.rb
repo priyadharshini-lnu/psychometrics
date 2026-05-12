@@ -52,7 +52,7 @@ RSpec.describe Libraries::CreateFromDirectUpload do
         :temporary_upload,
         user: user,
         filename: 'Screenshot 2026-04-06 at 3.24.12 PM.png',
-        file_key: 'tmp/uploads/abc123/Screenshot 2026-04-06 at 3.24.12 PM.png'
+        file_key: "#{Settings.aws.s3.temporary_upload_folder}/abc123/Screenshot 2026-04-06 at 3.24.12 PM.png"
       )
     end
 
@@ -61,7 +61,8 @@ RSpec.describe Libraries::CreateFromDirectUpload do
 
       expect(@s3_client_mock).to have_received(:copy_object).with(
         hash_including(
-          copy_source: 'public-bucket/tmp%2Fuploads%2Fabc123%2FScreenshot%202026-04-06%20at%203.24.12%20PM.png'
+          copy_source:
+            'public-bucket/private%2Ftmp%2Fuploads%2Fabc123%2FScreenshot%202026-04-06%20at%203.24.12%20PM.png'
         )
       )
     end
