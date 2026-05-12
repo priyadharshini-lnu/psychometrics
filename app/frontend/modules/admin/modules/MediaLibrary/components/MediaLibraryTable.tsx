@@ -40,7 +40,7 @@ type Props = PropsFromRedux
 const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext()
   const {
-    removeResource, changeFilter,
+    removeResource,
   } = resource
 
   const [, copyValue] = useCopyToClipboard()
@@ -85,7 +85,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           render={item => (
             item?.type === 'folder' ? (
               <a onClick={() => {
-                changeFilter('with_parent', item.id)
+                resource.changeUrlQuery({ filter: { with_parent: item.id } })
               }}
               >
                 {item?.name}
