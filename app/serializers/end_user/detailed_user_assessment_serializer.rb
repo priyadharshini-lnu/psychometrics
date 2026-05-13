@@ -13,7 +13,7 @@ module EndUser
                :proctoring_integration_type, :should_run_assessment_level_checks
 
     def privacy_consent_required
-      return true if is_data_controller
+      return data_controller_consent_required if is_data_controller
 
       context[:current_user].privacy_consent_required?
     end
@@ -165,6 +165,18 @@ module EndUser
       available_questions = object.assessment.questions.not_deleted.uniq { |q| q[:type] }
 
       available_questions.any? { |q| q[:type] == type }
+    end
+
+    def data_controller_consent_required
+      assessment_in_progress = object.in_progress?
+      consent_given = context[:current_user].privacy_consents.exists?(
+        campaign_id: object.campaign_id,
+        assessment_id: object.assessment.id,
+        version: object.assessment.policy_version,
+        data_role: :controller
+      )
+
+      !(assessment_in_progress && consent_given)
     end
   end
 end
