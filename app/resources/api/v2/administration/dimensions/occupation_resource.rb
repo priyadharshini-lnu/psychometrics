@@ -3,7 +3,8 @@
 class Api::V2::Administration::Dimensions::OccupationResource < Api::V2::Administration::BaseResource
   attributes :id, :name, :description, :full_description, :potential_areas_of_study, :key_career_tracks,
              :high_school_entry_roles, :diploma_qualification, :bachelors_or_masters_qualification, :work_environment,
-             :color, :icon_url, :alternative_icon_url, :indicative_roles_image_url, :key_career_tracks_image_url
+             :color, :icon_url, :alternative_icon_url, :indicative_roles_image_url, :key_career_tracks_image_url,
+             :created_at, :updated_at
 
   ransack_filters %i[filterable_fields search_query]
 
