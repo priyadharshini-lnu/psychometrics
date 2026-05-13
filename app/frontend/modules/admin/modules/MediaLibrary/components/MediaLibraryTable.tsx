@@ -40,7 +40,7 @@ type Props = PropsFromRedux
 const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext()
   const {
-    removeResource, changeFilter,
+    removeResource,
   } = resource
 
   const [, copyValue] = useCopyToClipboard()
@@ -54,7 +54,13 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
     }
     if (item?.type === 'video') {
       if (item?.fileUrl) {
-        return <img src={item.fileUrl} alt={item.name} style={{ maxWidth: '100%', maxHeight: '100%' }} />
+        return (
+          <video
+            src={item.fileUrl}
+            style={{ maxWidth: '100%', maxHeight: '100%', background: '#000' }}
+            preload="metadata"
+          />
+        )
       }
       return <VideoCameraOutlined style={{ fontSize: '3rem' }} />
     }
@@ -85,7 +91,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           render={item => (
             item?.type === 'folder' ? (
               <a onClick={() => {
-                changeFilter('with_parent', item.id)
+                resource.changeUrlQuery({ filter: { with_parent: item.id } })
               }}
               >
                 {item?.name}

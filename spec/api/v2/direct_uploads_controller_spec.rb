@@ -43,7 +43,7 @@ RSpec.describe Api::V2::Administration::DirectUploadsController, type: :request 
 
       upload_response = json_response.first
       expect(upload_response).to have_key('presigned_url')
-      expect(upload_response['file_key']).to match(%r{tmp/uploads/.+/test\.png})
+      expect(upload_response['file_key']).to match(%r{#{Settings.aws.s3.temporary_upload_folder}/.+/test\.png})
 
       upload = TemporaryUpload.last
       expect(upload.filename).to eq('test.png')

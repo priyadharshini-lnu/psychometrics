@@ -11,6 +11,7 @@ port: 3030
 protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
+cloudfront_domain: <%= ENV["CLOUDFRONT_DOMAIN"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 real_env: <%= ENV["REAL_ENV"] %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
@@ -43,7 +44,8 @@ skillvue:
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
-    one_day_expiry_folder: tmp/1-day
+    one_day_expiry_folder: private/tmp/1-day
+    temporary_upload_folder: private/tmp/uploads
 hashids_length:
   anonym: 8
   default: 6

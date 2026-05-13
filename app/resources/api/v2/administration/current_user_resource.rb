@@ -3,7 +3,8 @@
 class Api::V2::Administration::CurrentUserResource < Api::V2::Administration::BaseResource
   model_name 'User'
 
-  attributes :name, :email, :first_name, :last_name, :navigation_links, :role, :photo, :role_title
+  attributes :name, :email, :first_name, :last_name, :navigation_links, :role, :photo, :role_title,
+             :library_owner_field_visible, :client_admin_client_ids
 
   def navigation_links
     ::Administration::NavigationLinksSerializer.new(
@@ -17,5 +18,16 @@ class Api::V2::Administration::CurrentUserResource < Api::V2::Administration::Ba
 
   def role_title
     @model.decorate.role
+  end
+
+  def library_owner_field_visible
+    return true if @model.is?(:superadmin)
+    return false unless @model.is?(:client_admin)
+
+    client_admin_client_ids.length > 1
+  end
+
+  def client_admin_client_ids
+    @model.client_admin_client_ids.map(&:to_s)
   end
 end

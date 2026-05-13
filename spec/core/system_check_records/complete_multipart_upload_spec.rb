@@ -33,6 +33,6 @@ RSpec.describe SystemCheckRecords::CompleteMultipartUpload, type: :command do
     updated = result[:ok]
     expect(updated).to be_persisted
     expect(updated.passed).to be true
-    expect(updated.media).to be_attached
+    expect(updated.reload.media).to be_attached
   end
 end

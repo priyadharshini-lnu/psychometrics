@@ -88,7 +88,8 @@ module Libraries
         filename: temporary_upload.filename,
         content_type: temporary_upload.content_type,
         byte_size: temporary_upload.byte_size,
-        checksum: checksum
+        checksum: checksum,
+        service_name: Settings.storage.public_storage_service
       )
 
       # We manually generate the key following the Library attachment_storage_path standard format
