@@ -11,3 +11,18 @@ s3_private_bucket:
   service: Disk
   private: true
   root: <%= Rails.root.join('tmp/storage') %>
+
+cloudfront_public_bucket:
+  service: Disk
+  public: true
+  root: <%= Rails.root.join('tmp/storage') %>
+
+cloudfront_private_bucket:
+  service: Disk
+  private: true
+  root: <%= Rails.root.join('tmp/storage') %>
+
+cloudfront_dailyco_bucket:
+  service: Disk
+  private: true
+  root: <%= Rails.root.join('tmp/storage') %>

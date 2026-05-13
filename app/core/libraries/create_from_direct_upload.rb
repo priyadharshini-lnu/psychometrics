@@ -35,8 +35,7 @@ module Libraries
       client.copy_object(
         copy_source: source_copy_path,
         bucket: Settings.secrets.s3_compatible_storage[:public_bucket],
-        key: permanent_key,
-        acl: 'public-read'
+        key: permanent_key
       )
 
       temporary_upload.processed!

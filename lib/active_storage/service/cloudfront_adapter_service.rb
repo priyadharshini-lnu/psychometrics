@@ -5,11 +5,14 @@ require 'aws-sdk-cloudfront'
 
 module ActiveStorage
   class Service::CloudfrontAdapterService < Service::S3Service
+    # rubocop:disable Metrics/ParameterLists, Lint/UnusedMethodArgument
     def initialize(
       cloudfront_domain:,
       cloudfront_key_pair_id: nil,
       cloudfront_private_key: nil,
       cloudfront_expires_in: nil,
+      public: false,
+      cloudfront_access: 'private',
       **
     )
       super(**)
@@ -18,12 +21,14 @@ module ActiveStorage
       @cloudfront_key_pair_id = cloudfront_key_pair_id
       @cloudfront_private_key = cloudfront_private_key
       @cloudfront_expires_in = cloudfront_expires_in
+      @cloudfront_access = cloudfront_access
     end
+    # rubocop:enable Metrics/ParameterLists, Lint/UnusedMethodArgument
 
     # Override S3Service URL behavior to avoid global monkey patches and always use CDN URLs.
     def url(key, **)
       instrument :url, key: key do |payload|
-        generated_url = public? ? public_url(key, **) : private_url(key, **)
+        generated_url = cloudfront_access == 'public' ? public_url(key, **) : private_url(key, **)
         payload[:url] = generated_url
         generated_url
       end
@@ -53,7 +58,8 @@ module ActiveStorage
       build_cloudfront_url(key)
     end
 
-    attr_reader :cloudfront_domain, :cloudfront_key_pair_id, :cloudfront_private_key, :cloudfront_expires_in
+    attr_reader :cloudfront_domain, :cloudfront_key_pair_id, :cloudfront_private_key, :cloudfront_expires_in,
+                :cloudfront_access
 
     def build_cloudfront_url(key, query: nil)
       target_uri = parse_cloudfront_domain
