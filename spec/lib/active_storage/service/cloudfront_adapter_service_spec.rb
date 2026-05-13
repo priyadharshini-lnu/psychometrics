@@ -83,6 +83,7 @@ RSpec.describe ActiveStorage::Service::CloudfrontAdapterService do
           secret_access_key: 'secret',
           region: 'eu-west-1',
           public: true,
+          cloudfront_access: 'public',
           cloudfront_domain: 'https://cdn.example.com',
           cloudfront_key_pair_id: 'key_pair',
           cloudfront_private_key: private_key
