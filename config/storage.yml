@@ -75,6 +75,7 @@ cloudfront_public_bucket:
     <%= ENV.fetch('CLOUDFRONT_PRIVATE_KEY', '').gsub("\n", "\n    ") %>
   cloudfront_expires_in: <%= ENV.fetch('CLOUDFRONT_SIGNED_URL_EXPIRES_IN', 600).to_i %>
   public: <%= true %>
+  cloudfront_access: 'public'
   upload:
     cache_control: <%= "public, max-age=#{365.days.to_i}" %>
 
@@ -90,6 +91,7 @@ cloudfront_private_bucket:
     <%= ENV.fetch('CLOUDFRONT_PRIVATE_KEY', '').gsub("\n", "\n    ") %>
   cloudfront_expires_in: <%= ENV.fetch('CLOUDFRONT_SIGNED_URL_EXPIRES_IN', 600).to_i %>
   public: <%= false %>
+  cloudfront_access: 'private'
   upload:
     cache_control: <%= "public, max-age=#{365.days.to_i}" %>
 
