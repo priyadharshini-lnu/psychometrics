@@ -3,7 +3,8 @@
 module Administration
   module Campaigns
     class CurrentUserSerializer < Panko::Serializer
-      attributes :id, :grants, :role, :role_title, :permissions, :name
+      attributes :id, :grants, :role, :role_title, :permissions, :name, :client_admin_client_ids,
+                 :library_owner_field_visible
 
       def grants
         context[:current_membership]&.grants&.data || {}
@@ -94,6 +95,17 @@ module Administration
 
       def current_user
         object
+      end
+
+      def client_admin_client_ids
+        object.client_admin_client_ids.map(&:to_s)
+      end
+
+      def library_owner_field_visible
+        return true if object.is?(:superadmin)
+        return false unless object.is?(:client_admin)
+
+        client_admin_client_ids.length > 1
       end
     end
   end
