@@ -393,6 +393,19 @@ class UserAssessment < ApplicationRecord
     DEEMED_COMPLETED_STATUS.include?(status)
   end
 
+  def data_controller_consent_required?(user)
+    return false unless assessment.data_role_controller?
+
+    consent_given = user.privacy_consents.exists?(
+      campaign_id: campaign_id,
+      assessment_id: assessment.id,
+      version: assessment.policy_version,
+      data_role: :controller
+    )
+
+    !(in_progress? && consent_given)
+  end
+
   def has_ai_scoring_approval_flow?
     AI::ScoringApprovalSetting.exists?(campaign_id: campaign_id, assessment_id: assessment_id)
   end

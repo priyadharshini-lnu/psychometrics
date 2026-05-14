@@ -32,7 +32,11 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def privacy_consent_required
-    current_user.privacy_consent_required?
+    if user_assessment.assessment.data_role_controller?
+      user_assessment.data_controller_consent_required?(current_user)
+    else
+      current_user.privacy_consent_required?
+    end
   end
 
   def hash_id

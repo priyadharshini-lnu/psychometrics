@@ -11,10 +11,18 @@ module UserAssessments
     end
 
     def call
-      return broadcast(:ok, true) if current_user.privacy_consent_required?
+      return broadcast(:ok, true) if consent_required?
       return broadcast(:ok, true) if system_checks_required?
 
       broadcast :ok, false
+    end
+
+    def consent_required?
+      if user_assessment.assessment.data_role_controller?
+        user_assessment.data_controller_consent_required?(current_user)
+      else
+        current_user.privacy_consent_required?
+      end
     end
 
     def system_checks_required?
