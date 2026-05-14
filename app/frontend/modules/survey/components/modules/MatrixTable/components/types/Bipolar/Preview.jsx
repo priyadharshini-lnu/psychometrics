@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Checkbox, Radio } from 'antd'
 import styles from './Bipolar.less'
 
 export default class extends Component {
@@ -13,7 +14,7 @@ export default class extends Component {
     if (result.notApplicable && result.notApplicable[choice]) {
       result.notApplicable[choice] = false
     }
-    result.answer(scale, choice, e.currentTarget.checked)
+    result.answer(scale, choice, e.target.checked)
     this.forceUpdate()
   }
 
@@ -40,13 +41,13 @@ export default class extends Component {
     const { props: { notApplicable, answersType }, result } = model
     if (!notApplicable) { return null }
     const checked = result.notApplicable && result.notApplicable[choice]
+    const InputComponent = answersType === 'SingleAnswer' ? Radio : Checkbox
     return (
       <div>
-        <input
+        <InputComponent
+          name={choice}
           disabled={readOnly}
-          className={styles.input}
-          type={answersType === 'SingleAnswer' ? 'radio' : 'checkbox'}
-          onChange={this.changeNotApplicable.bind(this, choice)}
+          onChange={() => this.changeNotApplicable(choice)}
           checked={checked || false}
         />
       </div>
@@ -98,13 +99,12 @@ export default class extends Component {
               {_.times(props.scalePoints, (scale) => {
                 const object = _.find(result.answers, { scale, choice }) || {}
                 return (
-                  <input
+                  <Radio
                     key={scale}
+                    name={choice}
                     disabled={readOnly}
-                    type="radio"
                     checked={object.value || false}
-                    onChange={this.changeValue.bind(this, scale, choice)}
-                    className={styles.input}
+                    onChange={e => this.changeValue(scale, choice, e)}
                   />
                 )
               })}
