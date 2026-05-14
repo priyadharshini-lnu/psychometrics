@@ -4,12 +4,14 @@ import {
 } from 'antd'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import dayjs from 'dayjs'
 import {
   PlusOutlined, CopyOutlined, DeleteOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ConfirmationModal } from '~/glint'
 import { Question, QuestionTR } from '~/modules/admin/modules/QuestionCenter/core/questions'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { useDocumentTitle } from '~/hooks/useDocumentTitle'
 import { useResources } from '~/hooks/useResources'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals/'
@@ -93,6 +95,7 @@ const ActionsCell = ({ record }: { record: Question }) => {
 
 const QuestionList: React.FC = () => {
   const dispatch = useDispatch()
+  useDocumentTitle(I18n.t('admin.question_center_page_title'))
 
   const config = {
     trackUrl: true,
@@ -156,7 +159,7 @@ const QuestionList: React.FC = () => {
         width={350}
         title={I18n.t('admin.linked_assessments') || 'Linked Assessments'}
         render={(_, record) => {
-          if (!record.linkedAssessments || record.linkedAssessments.length === 0) return '-'
+          if (!record.linkedAssessments || record.linkedAssessments.length === 0) return ''
           return (
             <div>
               {record.linkedAssessments.map((assessment, index) => (
@@ -185,12 +188,18 @@ const QuestionList: React.FC = () => {
         id="created_at"
         dataIndex="createdAt"
         title={I18n.t('shared.created_at')}
+        render={createdAt => (
+          dayjs(createdAt).format('lll')
+        )}
         sorter
       />
       <Resource.Column<Question>
         id="updated_at"
         dataIndex="updatedAt"
         title={I18n.t('shared.updated_at')}
+        render={updatedAt => (
+          dayjs(updatedAt).format('lll')
+        )}
         sorter
       />
       <Resource.Column<Question>

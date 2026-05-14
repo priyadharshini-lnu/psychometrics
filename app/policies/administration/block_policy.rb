@@ -7,11 +7,27 @@ module Administration
     end
 
     def edit?
-      @user.is?(:superadmin)
+      can_manage_block?
     end
 
     def create?
       super || @user.has_grant?(:questions, :manage)
+    end
+
+    def update?
+      can_manage_block?
+    end
+
+    def destroy?
+      can_manage_block?
+    end
+
+    def copy?
+      can_manage_block?
+    end
+
+    def actions?
+      edit? | copy? | destroy?
     end
 
     def open_channel?
@@ -24,6 +40,12 @@ module Administration
 
     def preview?
       @user.is?(:superadmin)
+    end
+
+    private
+
+    def can_manage_block?
+      @user.has_permission?(:questions, :manage, project_id: @record.owner_id)
     end
   end
 end
