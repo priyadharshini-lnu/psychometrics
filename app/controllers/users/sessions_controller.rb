@@ -49,7 +49,7 @@ module Users
     end
 
     def check_if_saml_is_enforced
-      redirect_to(new_saml_user_session_path) if @current_project.saml_enforced?
+      redirect_to(new_saml_user_session_path(return_url: stored_location_for(:user))) if @current_project.saml_enforced?
     end
 
     def after_sign_in_path_for(resource)
