@@ -31,6 +31,9 @@ module EndUser
         required(:campaign_id).maybe(:int?)
         required(:started_at).maybe(:str?)
         required(:current_campaign_expiry_date).maybe(:str?)
+        required(:selective_proctoring_enabled).filled(:bool?)
+        required(:enable_mobile_proctoring).filled(:bool?)
+        required(:proctoring_integration_type).filled(:str?)
         required(:should_run_assessment_level_checks).filled(:bool?)
         required(:locale_data).hash do
           required(:code).filled(:str?)

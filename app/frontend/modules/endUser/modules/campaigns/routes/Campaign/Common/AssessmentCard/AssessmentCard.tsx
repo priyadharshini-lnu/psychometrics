@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react'
 import {
   Avatar, Row, Col, Space, theme, App,
   Tag, Alert, Tooltip,
+  Typography,
 } from 'antd'
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -32,6 +33,7 @@ import {
 
 import styles from './styles.less'
 import { useIsProctored } from '~/hooks/useProctoringState'
+import SafeHTML from '~/components/SafeHTML/SafeHTML'
 
 const { I18n } = window
 const { useToken } = theme
@@ -73,7 +75,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   workshopAttended,
   campaign,
   campaign: {
-    campaignUser, isTimedCampaign, fixedTimed,
+    campaignUser, isTimedCampaign, fixedTimed, campaignTime,
     campaignOptions: {
       proctoringEnabledOnWorkshopActivity,
       selectiveProctoringEnabled,
@@ -95,7 +97,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     scheduleTime ? currentTime.isSameOrAfter(scheduleTimeMomentObj) : false,
   )
   const navigate = useNavigate()
-  const { message } = App.useApp()
+  const { message, modal } = App.useApp()
   const dispatch = useDispatch()
   const isWorkshopActivity = userAssessment.workshopActivity
   const titleId = `assessment-card-title-${userAssessment.id}`
@@ -144,6 +146,15 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     ? `/campaign_users/${campaignUser.id}/begin_campaign`
     : `/campaign_users/${campaignUser.id}/continue_campaign`
 
+  const campaignStartInstruction = () => {
+    const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
+
+    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
+
+    return (
+      messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+    )
+  }
 
   const {
     makeAsyncRequest,
@@ -184,6 +195,17 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     }
     if (!fixedTimed) { return startCampaignActivities() }
 
+    modal.info({
+      icon: false,
+      title: null,
+      content: campaignStartInstruction(),
+      okText: I18n.t('common.actions.start'),
+      closable: true,
+      width: 600,
+      onOk () {
+        startCampaignActivities()
+      },
+    })
 
     return null
   }

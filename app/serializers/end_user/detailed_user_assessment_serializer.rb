@@ -10,7 +10,7 @@ module EndUser
                :custom_consent_text, :custom_consent_policy_version, :data_role,
                :is_data_controller, :instructions, :started_at, :current_campaign_expiry_date,
                :piped_text_mapping, :locale_data, :custom_acknowledgment_text, :selective_proctoring_enabled,
-               :proctoring_integration_type, :should_run_assessment_level_checks
+               :proctoring_integration_type, :should_run_assessment_level_checks, :enable_mobile_proctoring
 
     def privacy_consent_required
       return data_controller_consent_required if is_data_controller
@@ -119,6 +119,10 @@ module EndUser
 
     def proctoring_integration_type
       campaign.campaign_options.integration_type
+    end
+
+    def enable_mobile_proctoring
+      campaign.campaign_options.enable_mobile_proctoring
     end
 
     def should_run_assessment_level_checks
