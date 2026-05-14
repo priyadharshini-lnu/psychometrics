@@ -53,7 +53,7 @@ const CameraDeviceControl: React.FC<CameraDeviceControlProps> = ({
           trigger="click"
           open={open}
           onOpenChange={setOpen}
-          placement="topLeft"
+          placement="topRight"
           overlayClassName={styles.devicePopoverOverlay}
           styles={{
             container: {

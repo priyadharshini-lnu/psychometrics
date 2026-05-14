@@ -53,8 +53,13 @@ const AudioDeviceControl: React.FC<AudioDeviceControlProps> = ({
           trigger="click"
           open={open}
           onOpenChange={setOpen}
-          placement="topLeft"
+          placement="topRight"
           overlayClassName={styles.devicePopoverOverlay}
+          styles={{
+            container: {
+              maxWidth: '260px',
+            },
+          }}
         >
           <Button
             className={styles.deviceControlChevron}

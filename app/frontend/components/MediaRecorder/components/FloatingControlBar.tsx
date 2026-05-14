@@ -1,4 +1,5 @@
-import { Button, Typography } from 'antd'
+import { Button, Typography, Flex } from 'antd'
+import { useContext } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   StopOutlined, VideoCameraOutlined,
@@ -6,6 +7,7 @@ import {
 import styles from '../styles.less'
 import AudioDeviceControl from './AudioDeviceControl'
 import CameraDeviceControl from './CameraDeviceControl'
+import { MediaQueryContext } from '~/glint/components/GlintProvider/GlintProvider'
 
 const { I18n } = window
 
@@ -60,24 +62,11 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
 
   const isRecordingActive = status === 'recording'
 
+  const { isMobile } = useContext(MediaQueryContext)
+
   return (
     <div className={styles.floatingControlBar}>
-      {!isActiveRecording && (
-        <>
-          <AudioDeviceControl
-            audioDevices={audioDevices}
-            selectedMicId={selectedAudioDeviceId}
-            onChangeMic={onChangeAudioDevice}
-            disabled={isRecordingActive}
-          />
-          <CameraDeviceControl
-            videoDevices={videoDevices}
-            selectedCameraId={selectedVideoDeviceId}
-            onChangeCamera={onChangeVideoDevice}
-            disabled={isRecordingActive}
-          />
-        </>
-      )}
+
       <AnimatePresence mode="wait" initial={false}>
         {showStartButton && (
           <motion.div
@@ -87,6 +76,7 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
             style={{ display: 'flex', alignItems: 'center' }}
+            className={styles.recordButtonContainer}
           >
             <Button
               className={styles.recordButton}
@@ -96,7 +86,7 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
               type="primary"
               icon={<VideoCameraOutlined />}
             >
-              {I18n.t('shared.record', { defaultValue: 'Record' })}
+              {!isMobile && I18n.t('shared.record', { defaultValue: 'Record' })}
             </Button>
           </motion.div>
         )}
@@ -108,7 +98,14 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            style={{ display: 'flex', alignItems: 'center', gap: 12 }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              alignSelf: 'flex-start',
+              justifyContent: 'flex-start',
+              flex: 1,
+            }}
           >
             <div
               className={styles.recIndicator}
@@ -129,18 +126,36 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
                 {formatTime(maxDuration!)}
               </Typography.Text>
             )}
+            <div className={styles.recordButtonContainer}>
+              <Button
+                className={styles.stopButton}
+                size="middle"
+                onClick={onStopRecording}
+                icon={<StopOutlined />}
+              >
+                {!isMobile && I18n.t('shared.stop', { defaultValue: 'Stop' })}
+              </Button>
+            </div>
 
-            <Button
-              className={styles.stopButton}
-              size="middle"
-              onClick={onStopRecording}
-              icon={<StopOutlined />}
-            >
-              {I18n.t('shared.stop', { defaultValue: 'Stop' })}
-            </Button>
           </motion.div>
         )}
       </AnimatePresence>
+      {!isActiveRecording && (
+        <Flex justify="end" flex={1} gap={12} wrap>
+          <AudioDeviceControl
+            audioDevices={audioDevices}
+            selectedMicId={selectedAudioDeviceId}
+            onChangeMic={onChangeAudioDevice}
+            disabled={isRecordingActive}
+          />
+          <CameraDeviceControl
+            videoDevices={videoDevices}
+            selectedCameraId={selectedVideoDeviceId}
+            onChangeCamera={onChangeVideoDevice}
+            disabled={isRecordingActive}
+          />
+        </Flex>
+      )}
     </div>
   )
 }

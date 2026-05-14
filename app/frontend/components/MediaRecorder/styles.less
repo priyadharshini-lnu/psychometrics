@@ -470,6 +470,12 @@
   flex-wrap: wrap;
 }
 
+.recordButtonContainer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 .controlButton {
   color: white !important;
   border: none !important;
@@ -497,6 +503,13 @@
 
   &:hover {
     background-color: rgba(255, 120, 117, 0.9) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .recordButton, .stopButton {
+    border-radius: 50%;
+    height: 32px !important;
   }
 }
 
