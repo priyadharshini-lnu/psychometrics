@@ -28,6 +28,8 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
   isUpload = false,
   modalTitle,
 }) => {
+  const isCreatingFolder = !library && !isUpload
+
   const { currentUser } = useCurrentUser()
   const currentUserRoleTitle = currentUser?.roleTitle || currentUser?.role_title
   const {
@@ -140,7 +142,21 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
           <Form.Item
             name="name"
             label={I18n.t('common.column.name')}
-            rules={[{ required: true }]}
+            required={isCreatingFolder}
+            rules={[
+              {
+                validator: (_, value) => {
+                  if (!isCreatingFolder) {
+                    return Promise.resolve()
+                  }
+
+                  const trimmedValue = String(value ?? '').trim()
+                  return trimmedValue
+                    ? Promise.resolve()
+                    : Promise.reject(new Error(I18n.t('admin.this_field_is_required')))
+                },
+              },
+            ]}
           >
             <Input name="name" />
           </Form.Item>

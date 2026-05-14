@@ -22,7 +22,7 @@ module Libraries
       source_copy_path = nil
 
       ActiveRecord::Base.transaction do
-        library = build_library_resource
+        library = build_library_resource(temporary_upload)
         library.save!(validate: false)
         permanent_key = attach_file_to_library!(library, temporary_upload, checksum)
         source_copy_path = copy_source_path(temporary_upload)
@@ -63,9 +63,9 @@ module Libraries
       Digest::MD5.base64digest(object.body.read)
     end
 
-    def build_library_resource
+    def build_library_resource(temporary_upload)
       resource = Library.new(
-        name: params[:name],
+        name: params[:name].presence || temporary_upload.filename,
         description: params[:description],
         parent_id: params[:parent_id],
         type: params[:type] || 'other'

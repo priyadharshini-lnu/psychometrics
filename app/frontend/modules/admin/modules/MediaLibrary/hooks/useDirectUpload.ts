@@ -172,6 +172,8 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
     setIsSubmitting(true)
 
     try {
+      const ownerId = data.ownerId == null ? null : String(data.ownerId)
+
       if (uploadedFiles.length > 0) {
         const uploadIds = uploadedFiles
           .map(fileObj => temporaryUploadIds.current.get(fileObj.uid))
@@ -181,7 +183,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
           temporary_upload_ids: uploadIds,
           name: data.name,
           description: data.description,
-          owner_id: String(data.ownerId),
+          owner_id: ownerId,
           type: 'other',
           ...(parentId ? { parent_id: parentId } : {}),
         })
@@ -192,7 +194,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
             attributes: {
               name: data.name,
               description: data.description,
-              owner_id: String(data.ownerId),
+              owner_id: ownerId,
               type: 'folder',
               ...(parentId ? { parent_id: parentId } : {}),
             },
