@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Row, Col, Radio, Tooltip, InputRef, Input, Button, Flex,
+  Row, Col, Radio, Tooltip, InputRef, Input, Button, Flex, message,
 } from 'antd'
 import snakeCase from 'lodash/snakeCase'
 import {
@@ -202,14 +202,16 @@ const CampaignOptions: React.FC<Props> = ({
   })
 
   const parametersForSystemCheckValidity = ({
-    value: options.systemCheckValidity ? options.systemCheckValidity : '1d',
+    value: options.systemCheckValidity ? options.systemCheckValidity : '15m',
     onChange: (value: number) => {
       update(
         parsedProjectId, parsedCampaignId, {
           ...options,
           systemCheckValidity: value,
         },
-      )
+      ).catch((e) => {
+        message.error(e.systemCheckValidity[0])
+      })
     },
     ref: inputValidityRef,
   })
