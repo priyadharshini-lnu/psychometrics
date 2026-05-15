@@ -2,6 +2,9 @@
 
 require './app/core/json_api/audit_log_processor'
 
+# This line is needed for json-resouce gem to send proper status code back.
+Rack::Utils::SYMBOL_TO_STATUS_CODE[:unprocessable_entity] = 422
+
 JSONAPI.configure do |config|
   config.default_processor_klass = JsonApi::AuditLogProcessor
   config.exception_class_whitelist = [Pundit::NotAuthorizedError]
