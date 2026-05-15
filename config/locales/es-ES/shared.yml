@@ -66,6 +66,7 @@ es-ES:
     edit: Editar
     edited: Nuevo/a
     email: Correo electrónico
+    ending_proctoring_session_msg: Vamos a dar por finalizada la sesión de supervisión. <p>Por favor, espere mientras guardamos sus respuestas y le redirigimos a la página de inicio.</p>
     error: Error
     export: Exportar
     failed: Fallido

@@ -913,6 +913,7 @@ it:
     projects: Progetti
     prompt: Sollecito
     question_center: Centro domande
+    question_center_page_title: Centro domande - Pannello di controllo - Mercer Lighthouse
     question_editor_change_type: Cambia tipo
     question_editor_click_to_write: Clicca qui per inserire il testo della domanda...
     question_editor_copy_question: Copia domanda

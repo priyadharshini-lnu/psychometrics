@@ -188,6 +188,7 @@ bg:
     system_check_start_recording: Започнете да записвате
     system_check_stop_recording: Спрете записа
     system_check_test_message: Страхотно е да говоря с Вас
+    system_check_timer_msg: Извършете всички проверки и започнете изпита в рамките на посоченото по-долу време. Ако не започнете изпита в рамките на това време, сесията ви под наблюдение ще приключи и ще трябва да започнете отначало.
     system_check_upload_again: Качване отново
     system_check_uploading: Качване
     system_check_video_random_phrase: Готов съм. Това е тестов запис, за да се потвърди, че видеото и микрофонът ми работят правилно.

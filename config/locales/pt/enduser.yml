@@ -188,6 +188,7 @@ pt:
     system_check_start_recording: Iniciar a gravação
     system_check_stop_recording: Parar a gravação
     system_check_test_message: é ótimo falar consigo
+    system_check_timer_msg: Conclua todas as verificações e inicie a sua avaliação dentro do prazo indicado abaixo. Se a avaliação não for iniciada dentro desse prazo, a sua sessão de supervisão terminará e terá de recomeçar.
     system_check_upload_again: Carregar novamente
     system_check_uploading: Carregamento
     system_check_video_random_phrase: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.

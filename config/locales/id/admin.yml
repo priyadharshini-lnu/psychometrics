@@ -913,6 +913,7 @@ id:
     projects: Proyek
     prompt: Perintah
     question_center: Pusat Pertanyaan
+    question_center_page_title: Pusat Pertanyaan - Dasbor - Mercer Lighthouse
     question_editor_change_type: Ubah jenis
     question_editor_click_to_write: Klik untuk menulis pertanyaan...
     question_editor_copy_question: Salin Pertanyaan

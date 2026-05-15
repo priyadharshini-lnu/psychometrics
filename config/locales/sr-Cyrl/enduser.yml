@@ -188,6 +188,7 @@ sr-Cyrl:
     system_check_start_recording: Почните са снимањем
     system_check_stop_recording: Заустави снимање
     system_check_test_message: Драго ми је да разговарам са тобом
+    system_check_timer_msg: Завршите све провере и започните процену у року који је наведен у наставку. Ако процену не започнете у том року, ваша сесија надзора ће се завршити и мораћете да почнете испочетка.
     system_check_upload_again: Отпреми поново
     system_check_uploading: Отпремање
     system_check_video_random_phrase: Сем спреман. Ово је тестни снимак да потврдим да ли мој микрофон и камера исправно раде.

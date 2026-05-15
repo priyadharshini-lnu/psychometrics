@@ -913,6 +913,7 @@ ar:
     projects: المشاريع
     prompt: موجه
     question_center: مركز الأسئلة
+    question_center_page_title: مركز الأسئلة - لوحة التحكم - Mercer Lighthouse
     question_editor_change_type: تغيير النوع
     question_editor_click_to_write: انقر لكتابة نص السؤال...
     question_editor_copy_question: نسخ السؤال

@@ -188,6 +188,7 @@ ro:
     system_check_start_recording: Începeți înregistrarea
     system_check_stop_recording: Opriți înregistrarea
     system_check_test_message: mă bucur să vorbesc cu tine
+    system_check_timer_msg: Efectuați toate verificările și începeți evaluarea în intervalul de timp indicat mai jos. Dacă nu începeți evaluarea în acest interval, sesiunea de supraveghere se va încheia și va trebui să o luați de la capăt.
     system_check_upload_again: Încarcă din nou
     system_check_uploading: Încărcare
     system_check_video_random_phrase: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.

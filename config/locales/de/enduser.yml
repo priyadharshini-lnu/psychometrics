@@ -188,6 +188,7 @@ de:
     system_check_start_recording: Aufnahme starten
     system_check_stop_recording: Aufnahme stoppen
     system_check_test_message: schön, mit Ihnen zu sprechen
+    system_check_timer_msg: Führen Sie alle Überprüfungen durch und beginnen Sie Ihre Prüfung innerhalb der unten angegebenen Zeit. Wenn Sie die Prüfung nicht innerhalb dieser Zeit beginnen, wird Ihre Überwachungssitzung beendet und Sie müssen von vorne beginnen.
     system_check_upload_again: Erneut hochladen
     system_check_uploading: Hochladen
     system_check_video_random_phrase: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.

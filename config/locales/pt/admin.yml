@@ -913,6 +913,7 @@ pt:
     projects: Projectos
     prompt: Prompt
     question_center: Centro de perguntas
+    question_center_page_title: Centro de Perguntas - Painel de Controlo - Mercer Lighthouse
     question_editor_change_type: Alterar tipo
     question_editor_click_to_write: Clique para escrever o conteúdo da pergunta...
     question_editor_copy_question: Copiar pergunta

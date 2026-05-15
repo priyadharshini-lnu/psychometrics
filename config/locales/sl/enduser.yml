@@ -188,6 +188,7 @@ sl:
     system_check_start_recording: Začni snemati
     system_check_stop_recording: Konec snemanja
     system_check_test_message: V veselje mi je klepetati z vami
+    system_check_timer_msg: Opravite vse preglede in začnite z ocenjevanjem v roku, navedenem spodaj. Če ocenjevanja ne boste začeli v tem roku, se bo vaša nadzorovana seja končala in boste morali začeti znova.
     system_check_upload_again: Znova naloži
     system_check_uploading: Nalaganje
     system_check_video_random_phrase: Sem pripravljen. To je testni posnetek za potrditev, ali moj mikrofon in kamera delujeta pravilno.

@@ -913,6 +913,7 @@ cs:
     projects: Projekty
     prompt: Výzva
     question_center: Centrum otázek
+    question_center_page_title: Centrum dotazů – Přehled – Mercer Lighthouse
     question_editor_change_type: Změnit typ
     question_editor_click_to_write: Klikněte a zadejte text dotazu...
     question_editor_copy_question: Zkopírovat otázku

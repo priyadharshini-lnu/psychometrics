@@ -66,6 +66,7 @@ sk:
     edit: Upraviť
     edited: Nové
     email: E-mail
+    ending_proctoring_session_msg: Toto je koniec testu. <p>Počkajte, prosím, kým uložíme vaše odpovede a presmerujeme vás späť na úvodnú stránku.</p>
     error: Chyba
     export: Vývoz
     failed: Neúspešný

@@ -188,6 +188,7 @@ sk:
     system_check_start_recording: Spustiť nahrávanie
     system_check_stop_recording: Zastavenie nahrávania
     system_check_test_message: skvelé hovoriť s vami
+    system_check_timer_msg: Vykonajte všetky kontroly a začnite s testom v časovom limite uvedenom nižšie. Ak test nezačnete v tomto časovom limite, vaša testovacia relácia sa ukončí a budete musieť začať od začiatku.
     system_check_upload_again: Znova nahrať
     system_check_uploading: Nahrávanie
     system_check_video_random_phrase: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.

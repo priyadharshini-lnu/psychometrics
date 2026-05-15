@@ -913,6 +913,7 @@ pl:
     projects: Projekty
     prompt: Monit
     question_center: Centrum pytań
+    question_center_page_title: Centrum pytań – Pulpit nawigacyjny – Mercer Lighthouse
     question_editor_change_type: Zmień typ
     question_editor_click_to_write: Kliknij, aby wpisać treść pytania...
     question_editor_copy_question: Skopiuj pytanie

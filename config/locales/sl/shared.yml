@@ -66,6 +66,7 @@ sl:
     edit: Uredi
     edited: Novo
     email: E-pošta
+    ending_proctoring_session_msg: Zaključujemo nadzorovano izpolnjevanje vprašalnika. <p>Prosimo, počakajte, medtem ko shranjujemo vaše odgovore in vas preusmerjamo nazaj na začetno stran.</p>
     error: Napaka
     export: Izvoz
     failed: Neuspelo

@@ -188,6 +188,7 @@ hi:
     system_check_start_recording: रिकॉर्डिंग शुरू करें
     system_check_stop_recording: रिकॉर्डिंग बंद करें
     system_check_test_message: आपसे बात करके बहुत अच्छा लगा।
+    system_check_timer_msg: नीचे दिखाए गए समय के भीतर सभी जांचें पूरी करें और अपना मूल्यांकन शुरू करें। यदि इस समय के भीतर मूल्यांकन शुरू नहीं किया गया, तो आपका निगरानी सत्र समाप्त हो जाएगा और आपको फिर से शुरू करना होगा।
     system_check_upload_again: फिर से अपलोड करें
     system_check_uploading: अपलोडिंग
     system_check_video_random_phrase: अगर आप मुझे सुन सकते हैं तो अपना हाथ उठाएँ, या बस कैमरे के लिए हाथ हिलाएँ!

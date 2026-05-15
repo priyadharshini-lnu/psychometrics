@@ -188,6 +188,7 @@ fr:
     system_check_start_recording: Démarrer l'enregistrement
     system_check_stop_recording: Arrêter l'enregistrement
     system_check_test_message: c'est un plaisir de parler avec vous
+    system_check_timer_msg: Effectuez toutes les vérifications et commencez votre évaluation dans le délai indiqué ci-dessous. Si vous ne commencez pas l'évaluation dans ce délai, votre session de surveillance prendra fin et vous devrez recommencer depuis le début.
     system_check_upload_again: Télécharger à nouveau
     system_check_uploading: Téléchargement
     system_check_video_random_phrase: Je suis prêt. Ceci est un enregistrement test pour confirmer que ma vidéo et mon microphone fonctionnent correctement.

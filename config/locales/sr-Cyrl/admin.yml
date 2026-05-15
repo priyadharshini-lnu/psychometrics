@@ -913,6 +913,7 @@ sr-Cyrl:
     projects: Пројекти
     prompt: Напомена
     question_center: Центар за питања
+    question_center_page_title: Центар за питања - контролна табла - Мерсер Лајтхаус
     question_editor_change_type: Променити тип
     question_editor_click_to_write: Кликните да напишете садржај питања...
     question_editor_copy_question: Копирај питање

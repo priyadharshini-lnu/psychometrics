@@ -913,6 +913,7 @@ nl:
     projects: Projecten
     prompt: Prompt
     question_center: Vragencentrum
+    question_center_page_title: Vraagcentrum - Dashboard - Mercer Lighthouse
     question_editor_change_type: Type wijzigen
     question_editor_click_to_write: Klik hier om je vraag in te voeren...
     question_editor_copy_question: Vraag kopiëren

@@ -188,6 +188,7 @@ hr:
     system_check_start_recording: Započnite snimanje
     system_check_stop_recording: Zaustaviti snimanje
     system_check_test_message: bilo mi je drago razgovarati s tobom
+    system_check_timer_msg: Završite sve provjere i započnite svoju procjenu unutar vremena navedenog u nastavku. Ako procjena ne bude započeta unutar tog vremena, vaša nadzorna sesija će se završiti i morat ćete početi ispočetka.
     system_check_upload_again: Ponovno učitavanje
     system_check_uploading: Prenijeti
     system_check_video_random_phrase: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.

@@ -913,6 +913,7 @@ fr:
     projects: Projets
     prompt: Invite
     question_center: Centre de questions
+    question_center_page_title: Centre de questions - Tableau de bord - Mercer Lighthouse
     question_editor_change_type: Modifier le type
     question_editor_click_to_write: Cliquez ici pour rédiger le contenu de votre question...
     question_editor_copy_question: Copier la question

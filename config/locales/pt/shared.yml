@@ -66,6 +66,7 @@ pt:
     edit: Editar
     edited: Novo
     email: E-mail
+    ending_proctoring_session_msg: Estamos a encerrar a sessão de supervisão. <p>Por favor, aguarde enquanto guardamos as suas respostas e o redirecionamos para a página inicial.</p>
     error: Erro
     export: Exportação
     failed: Falhou

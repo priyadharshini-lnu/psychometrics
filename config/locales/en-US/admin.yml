@@ -913,6 +913,7 @@ en-US:
     projects: Projects
     prompt: Prompt
     question_center: Question Center
+    question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
     question_editor_click_to_write: Click to write question content...
     question_editor_copy_question: Copy Question

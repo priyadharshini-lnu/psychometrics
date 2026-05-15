@@ -188,6 +188,7 @@ ru:
     system_check_start_recording: Начать запись
     system_check_stop_recording: Остановить запись
     system_check_test_message: рад с вами поговорить
+    system_check_timer_msg: Выполните все проверки и начните тестирование в течение времени, указанного ниже. Если тестирование не будет начато в течение этого времени, сеанс под наблюдением завершится, и вам придется начать сначала.
     system_check_upload_again: Загрузить снова
     system_check_uploading: Загрузка
     system_check_video_random_phrase: Поднимите руку, если вы меня слышите, или просто помашите рукой в камеру!

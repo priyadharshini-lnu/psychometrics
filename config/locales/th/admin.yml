@@ -913,6 +913,7 @@ th:
     projects: โครงการ
     prompt: คำสั่ง
     question_center: ศูนย์คําถาม
+    question_center_page_title: ศูนย์คำถาม - แผงควบคุม - Mercer Lighthouse
     question_editor_change_type: เปลี่ยนประเภท
     question_editor_click_to_write: คลิกเพื่อเขียนเนื้อหาคำถาม...
     question_editor_copy_question: คัดลอกคำถาม

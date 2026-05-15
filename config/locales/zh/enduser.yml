@@ -188,6 +188,7 @@ zh:
     system_check_start_recording: 开始录制
     system_check_stop_recording: 停止录制
     system_check_test_message: 很高兴与你交谈
+    system_check_timer_msg: 请在下方显示的时间内完成所有检查并开始考试。若未在此时间内开始考试，监考会话将结束，您需要重新开始。
     system_check_upload_again: 再次上传
     system_check_uploading: 上传
     system_check_video_random_phrase: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。

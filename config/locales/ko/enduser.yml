@@ -188,6 +188,7 @@ ko:
     system_check_start_recording: 녹화 시작
     system_check_stop_recording: 녹화 중지
     system_check_test_message: 만나서 반가웠습니다
+    system_check_timer_msg: 아래에 표시된 시간 내에 모든 확인 절차를 마치고 평가를 시작해 주십시오. 이 시간 내에 평가를 시작하지 않으면 감독 세션이 종료되며, 처음부터 다시 시작해야 합니다.
     system_check_upload_again: 다시 업로드
     system_check_uploading: 업로드
     system_check_video_random_phrase: 준비됐습니다. 이 녹화는 제 비디오와 마이크가 제대로 작동하는지 확인하기 위한 테스트 녹화입니다.

@@ -188,6 +188,7 @@ th:
     system_check_start_recording: เริ่มบันทึก
     system_check_stop_recording: หยุดการบันทึก
     system_check_test_message: ดีใจที่ได้คุยกับคุณ
+    system_check_timer_msg: กรุณาทำการตรวจสอบทั้งหมดให้เสร็จสิ้นและเริ่มการประเมินของคุณภายในเวลาที่แสดงด้านล่างนี้ หากการประเมินไม่เริ่มภายในเวลานี้ การตรวจสอบของคุณจะสิ้นสุดลงและคุณจะต้องเริ่มใหม่
     system_check_upload_again: อัปโหลดอีกครั้ง
     system_check_uploading: กำลังอัพโหลด
     system_check_video_random_phrase: เซ็มพร้อม นี่คือการทดสอบเพื่อยืนยันว่าไมโครโฟนและกล้องของฉันทำงานอย่างถูกต้อง

@@ -188,6 +188,7 @@ id:
     system_check_start_recording: Mulai merekam
     system_check_stop_recording: Berhenti merekam
     system_check_test_message: senang berbicara dengan Anda
+    system_check_timer_msg: Selesaikan semua pemeriksaan dan mulailah penilaian Anda dalam waktu yang tertera di bawah ini. Jika penilaian tidak dimulai dalam waktu tersebut, sesi pengawasan Anda akan berakhir dan Anda harus memulai dari awal.
     system_check_upload_again: Unggah lagi
     system_check_uploading: Mengunggah
     system_check_video_random_phrase: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.

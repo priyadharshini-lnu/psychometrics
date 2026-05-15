@@ -913,6 +913,7 @@ ko:
     projects: 프로젝트
     prompt: 프롬프트
     question_center: 질문 센터
+    question_center_page_title: 질문 센터 - 대시보드 - 머서 라이트하우스
     question_editor_change_type: 유형 변경
     question_editor_click_to_write: 질문 내용을 작성하려면 클릭하세요...
     question_editor_copy_question: 질문 복사

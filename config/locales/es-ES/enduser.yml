@@ -188,6 +188,7 @@ es-ES:
     system_check_start_recording: Iniciar grabación
     system_check_stop_recording: Detener la grabación
     system_check_test_message: es un placer hablar con usted
+    system_check_timer_msg: Realiza todas las comprobaciones e inicia la evaluación dentro del plazo que se indica a continuación. Si no inicias la evaluación dentro de ese plazo, tu sesión de supervisión finalizará y tendrás que volver a empezar.
     system_check_upload_again: Cargar de nuevo
     system_check_uploading: Cargar
     system_check_video_random_phrase: Levanta la mano si me oyes o saluda a la cámara
