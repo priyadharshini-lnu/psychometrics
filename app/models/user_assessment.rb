@@ -396,14 +396,7 @@ class UserAssessment < ApplicationRecord
   def data_controller_consent_required?(user)
     return false unless assessment.data_role_controller?
 
-    consent_given = user.privacy_consents.exists?(
-      campaign_id: campaign_id,
-      assessment_id: assessment.id,
-      version: assessment.policy_version,
-      data_role: :controller
-    )
-
-    !(in_progress? && consent_given)
+    !data_controller_consent_given?(user)
   end
 
   def has_ai_scoring_approval_flow?
@@ -560,6 +553,15 @@ class UserAssessment < ApplicationRecord
 
   def calculated_expiry_date
     assessment.extra['timer']&.seconds&.from_now
+  end
+
+  def data_controller_consent_given?(user)
+    user.privacy_consents.exists?(
+      campaign_id: campaign_id,
+      assessment_id: assessment.id,
+      version: assessment.policy_version,
+      data_role: :controller
+    )
   end
 
   def enqueue_media_response_transcriptions

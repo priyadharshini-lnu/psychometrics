@@ -14,7 +14,7 @@ module EndUser
 
     def privacy_consent_required
       if is_data_controller
-        object.data_controller_consent_required?(context[:current_user])
+        object.not_started? || object.data_controller_consent_required?(context[:current_user])
       else
         context[:current_user].privacy_consent_required?
       end
