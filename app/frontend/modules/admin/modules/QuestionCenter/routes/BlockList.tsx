@@ -199,7 +199,7 @@ const BlockList: React.FC = () => {
         width={350}
         title={I18n.t('admin.linked_assessments') || 'Linked Assessments'}
         render={(_, record) => {
-          if (!record.linkedAssessments || record.linkedAssessments.length === 0) return '-'
+          if (!record.linkedAssessments || record.linkedAssessments.length === 0) return ''
           return (
             <div>
               {record.linkedAssessments.map((assessment, index) => (
