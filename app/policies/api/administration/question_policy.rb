@@ -53,7 +53,6 @@ module Api
       class Scope < BasePolicy::Scope
         def resolve
           scope = super
-          scope = scope.order(:name)
           return scope if user.is?(:superadmin)
 
           owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
