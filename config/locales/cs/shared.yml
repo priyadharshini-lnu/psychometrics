@@ -71,6 +71,7 @@ cs:
     export: Export
     failed: Neúspěšný
     'false': false
+    file: Soubor
     first_name: Jméno
     formal_learning: Formální učení
     generate: Generovat

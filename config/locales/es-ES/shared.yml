@@ -71,6 +71,7 @@ es-ES:
     export: Exportar
     failed: Fallido
     'false': false
+    file: Archivo
     first_name: Nombre
     formal_learning: Aprendizaje formal
     generate: Generar

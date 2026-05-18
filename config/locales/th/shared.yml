@@ -71,6 +71,7 @@ th:
     export: ส่งออก
     failed: ล้มเหลว
     'false': false
+    file: ไฟล์
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
     generate: สร้าง

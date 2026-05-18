@@ -71,6 +71,7 @@ fr:
     export: Exportation
     failed: Échec
     'false': false
+    file: Fichier
     first_name: Prénom
     formal_learning: Apprentissage formel
     generate: Générer

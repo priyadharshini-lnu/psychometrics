@@ -71,6 +71,7 @@ ru:
     export: Экспорт
     failed: Неудача
     'false': false
+    file: Файл
     first_name: Имя
     formal_learning: Формальное обучение
     generate: Генерировать

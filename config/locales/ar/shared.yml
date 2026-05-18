@@ -71,6 +71,7 @@ ar:
     export: تصدير
     failed: فشل
     'false': false
+    file: ملف
     first_name: الاسم الاول
     formal_learning: التعلم الرسمي
     generate: توليد

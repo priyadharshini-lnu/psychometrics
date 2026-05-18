@@ -71,6 +71,7 @@ bg:
     export: Износ
     failed: Неуспешен
     'false': false
+    file: Файл
     first_name: Първо име
     formal_learning: Формално обучение
     generate: Генериране

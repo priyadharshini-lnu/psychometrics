@@ -71,6 +71,7 @@ zh-HK:
     export: 出口
     failed: 失败
     'false': false
+    file: 文件
     first_name: 名字
     formal_learning: 正式學習
     generate: 生成

@@ -71,6 +71,7 @@ id:
     export: Ekspor
     failed: Gagal
     'false': false
+    file: Berkas
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
     generate: Generate

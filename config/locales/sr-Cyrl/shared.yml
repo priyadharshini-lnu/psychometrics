@@ -71,6 +71,7 @@ sr-Cyrl:
     export: Извоз
     failed: Неуспело
     'false': false
+    file: Датотека
     first_name: Презиме
     formal_learning: Формално учење
     generate: Генериши

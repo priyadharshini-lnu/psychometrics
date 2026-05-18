@@ -71,6 +71,7 @@ ko:
     export: 내보내기
     failed: 실패함
     'false': false
+    file: 파일
     first_name: 이름
     formal_learning: 정식 학습
     generate: 생성

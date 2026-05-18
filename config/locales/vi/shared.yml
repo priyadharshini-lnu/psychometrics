@@ -71,6 +71,7 @@ vi:
     export: Xuất khẩu
     failed: Thất bại
     'false': false
+    file: Tệp
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
     generate: Tạo ra

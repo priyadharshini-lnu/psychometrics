@@ -71,6 +71,7 @@ sk:
     export: Vývoz
     failed: Neúspešný
     'false': false
+    file: Súbor
     first_name: Kresťanské meno
     formal_learning: Formálne učenie
     generate: Generovať

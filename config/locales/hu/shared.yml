@@ -71,6 +71,7 @@ hu:
     export: Kivitel
     failed: Sikertelen
     'false': false
+    file: Fájl
     first_name: Keresztnév
     formal_learning: Formális tanulás
     generate: Generálás

@@ -71,6 +71,7 @@ pt:
     export: Exportação
     failed: Falhou
     'false': false
+    file: Ficheiro
     first_name: Nome próprio
     formal_learning: Aprendizagem Formal
     generate: Gerar

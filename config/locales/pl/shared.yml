@@ -71,6 +71,7 @@ pl:
     export: Eksport
     failed: Niepowodzenie
     'false': false
+    file: Plik
     first_name: Imię
     formal_learning: Uczenie się formalne
     generate: Generuj

@@ -71,6 +71,7 @@ nl:
     export: Exporteer
     failed: Mislukt
     'false': false
+    file: Bestand
     first_name: Voornaam
     formal_learning: Formeel Leren
     generate: Genereren

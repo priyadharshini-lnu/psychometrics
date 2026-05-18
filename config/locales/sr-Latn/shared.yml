@@ -71,6 +71,7 @@ sr-Latn:
     export: Izvoz
     failed: Неуспело
     'false': false
+    file: Датотека
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Генериши

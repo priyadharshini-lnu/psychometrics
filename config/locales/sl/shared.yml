@@ -71,6 +71,7 @@ sl:
     export: Izvoz
     failed: Neuspelo
     'false': false
+    file: Datoteka
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Ustvari
