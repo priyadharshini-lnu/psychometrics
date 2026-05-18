@@ -34,14 +34,13 @@ spec:
       containers:
         - args:
             - exec
-            - rails
-            - s
-            - -p
-            - {{ .Values.services.internlPort | quote}}
-            - -b
-            - 0.0.0.0
+            - falcon
+            - host
           command:
             - bundle
+          env:
+            - name: PORT
+              value: {{ .Values.services.internlPort | quote }}
           envFrom:
             - configMapRef:
                 name: {{ template "lighthouse.fullname" . }}-env
