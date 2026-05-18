@@ -440,6 +440,7 @@ cs:
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     minimum_download_speed: Minimální rychlost stahování (v Mbps)
+    minimum_system_check_validity: Minimální platnost kontroly systému v rámci kampaně by měla být 15 minut
     minimum_upload_speed: Minimální rychlost nahrávání (v Mbps)
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     model_answer: Vzorová odpověď

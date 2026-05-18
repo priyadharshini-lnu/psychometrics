@@ -440,6 +440,7 @@ id:
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
     minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
+    minimum_system_check_validity: Validitas Pemeriksaan Sistem pada tingkat Kampanye minimum harus 15 menit
     minimum_upload_speed: Kecepatan Unggah Minimum (dalam Mbps)
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     model_answer: Jawaban Contoh

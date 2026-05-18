@@ -440,6 +440,7 @@ sl:
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
     minimum_download_speed: Najmanjša hitrost prenosa (v Mbps)
+    minimum_system_check_validity: Najkrajši čas veljavnosti preverjanja sistema v okviru kampanje mora biti 15 minut
     minimum_upload_speed: Najmanjša hitrost prenosa (v Mbps)
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     model_answer: Vzorec odgovora

@@ -440,6 +440,7 @@ en-US:
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_system_check_validity: Minimum Campaign level System Check validity should be 15 minutes
     minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
     model_answer: Model Answer

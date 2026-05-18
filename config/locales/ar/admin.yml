@@ -440,6 +440,7 @@ ar:
     min_value: القيمة الدنيا
     minimum_10_words: 10 كلمات على الأقل
     minimum_download_speed: الحد الأدنى لسرعة التنزيل (بالميجابت في الثانية)
+    minimum_system_check_validity: يجب ألا تقل مدة صلاحية فحص النظام عن 15 دقيقة
     minimum_upload_speed: الحد الأدنى لسرعة التحميل (بالميجابت في الثانية)
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     model_answer: نموذج الإجابة

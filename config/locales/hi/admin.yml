@@ -440,6 +440,7 @@ hi:
     min_value: न्यूनतम मान
     minimum_10_words: न्यूनतम 10 शब्द
     minimum_download_speed: न्यूनतम डाउनलोड गति (एमबीपीएस में)
+    minimum_system_check_validity: न्यूनतम अभियान स्तर पर सिस्टम जाँच की वैधता 15 मिनट होनी चाहिए।
     minimum_upload_speed: न्यूनतम अपलोड गति (एमबीपीएस में)
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     model_answer: आदर्श उत्तर

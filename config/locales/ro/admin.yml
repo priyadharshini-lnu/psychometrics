@@ -440,6 +440,7 @@ ro:
     min_value: Valoarea minimă
     minimum_10_words: Minimum 10 cuvinte
     minimum_download_speed: Viteza minimă de descărcare (în Mbps)
+    minimum_system_check_validity: Durata minimă a valabilității verificării sistemului pentru campanie trebuie să fie de 15 minute
     minimum_upload_speed: Viteza minimă de încărcare (în Mbps)
     missing_min_max_values: Sunt necesare valorile minime și maxime.
     model_answer: Răspuns model

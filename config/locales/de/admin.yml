@@ -440,6 +440,7 @@ de:
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     minimum_download_speed: Mindest-Download-Geschwindigkeit (in Mbit/s)
+    minimum_system_check_validity: Die Gültigkeitsdauer der Systemprüfung sollte mindestens 15 Minuten betragen
     minimum_upload_speed: Mindest-Upload-Geschwindigkeit (in Mbit/s)
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     model_answer: Musterlösung

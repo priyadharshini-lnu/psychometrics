@@ -440,6 +440,7 @@ vi:
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
+    minimum_system_check_validity: Thời gian kiểm tra hệ thống tối thiểu cho chiến dịch phải là 15 phút
     minimum_upload_speed: Tốc độ tải lên tối thiểu (tính bằng Mbps)
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     model_answer: Câu trả lời mẫu

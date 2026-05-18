@@ -440,6 +440,7 @@ fr:
     min_value: Valeur minimale
     minimum_10_words: 10 mots minimum
     minimum_download_speed: Vitesse de téléchargement minimale (en Mbps)
+    minimum_system_check_validity: La durée minimale de validité de la vérification du système pour la campagne doit être de 15 minutes
     minimum_upload_speed: Débit montant minimum (en Mbps)
     missing_min_max_values: Les valeurs minimales et maximales sont obligatoires.
     model_answer: Réponse type

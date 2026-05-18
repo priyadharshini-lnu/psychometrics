@@ -440,6 +440,7 @@ hu:
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
+    minimum_system_check_validity: A kampány minimális rendszerellenőrzési érvényességi ideje 15 perc legyen
     minimum_upload_speed: Minimális feltöltési sebesség (Mbps-ben)
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     model_answer: Minta válasz

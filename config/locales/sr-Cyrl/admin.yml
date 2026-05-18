@@ -440,6 +440,7 @@ sr-Cyrl:
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
     minimum_download_speed: Минимална брзина преузимања (у Mbps)
+    minimum_system_check_validity: Минимално трајање провере ваљаности система на нивоу кампање треба да буде 15 минута.
     minimum_upload_speed: Минимална брзина отпремања (у Mbps)
     missing_min_max_values: Потребне су минималне и максималне вредности.
     model_answer: Узорни одговор

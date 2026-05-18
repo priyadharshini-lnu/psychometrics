@@ -440,6 +440,7 @@ th:
     min_value: ค่าต่ำสุด
     minimum_10_words: อย่างน้อย 10 คำ
     minimum_download_speed: ความเร็วในการดาวน์โหลดขั้นต่ำ (ใน Mbps)
+    minimum_system_check_validity: ระดับแคมเปญขั้นต่ำ การตรวจสอบระบบควรมีผลเป็นเวลา 15 นาที
     minimum_upload_speed: ความเร็วในการอัปโหลดขั้นต่ำ (ใน Mbps)
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     model_answer: คำตอบตัวอย่าง

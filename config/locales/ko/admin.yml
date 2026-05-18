@@ -440,6 +440,7 @@ ko:
     min_value: 최소값
     minimum_10_words: 최소 10단어
     minimum_download_speed: 최소 다운로드 속도 (Mbps)
+    minimum_system_check_validity: 캠페인 최소 레벨 시스템 확인 유효 기간은 15분이어야 합니다.
     minimum_upload_speed: 최소 업로드 속도 (Mbps)
     missing_min_max_values: 최소값과 최대값이 필요합니다.
     model_answer: 모범 답안

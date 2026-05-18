@@ -440,6 +440,7 @@ zh:
     min_value: 最小值
     minimum_10_words: 至少10个单词
     minimum_download_speed: 最低下载速度（单位：Mbps）
+    minimum_system_check_validity: 活动“系统检查有效期”的最低时长应为15分钟
     minimum_upload_speed: 最低上传速度（单位：Mbps）
     missing_min_max_values: 必须提供最小值和最大值。
     model_answer: 示范答案

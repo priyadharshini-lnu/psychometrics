@@ -440,6 +440,7 @@ bg:
     min_value: Минимална стойност
     minimum_10_words: Минимум 10 думи
     minimum_download_speed: Минимална скорост на изтегляне (в Mbps)
+    minimum_system_check_validity: Минималната валидност на проверката на системата за нивото на кампанията трябва да бъде 15 минути
     minimum_upload_speed: Минимална скорост на качване (в Mbps)
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     model_answer: Модел на отговор

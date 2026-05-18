@@ -440,6 +440,7 @@ hr:
     min_value: Minimalna vrijednost
     minimum_10_words: Minimalno 10 riječi
     minimum_download_speed: Minimalna brzina preuzimanja (u Mbps)
+    minimum_system_check_validity: Minimalna valjanost provjere sustava na razini kampanje treba biti 15 minuta.
     minimum_upload_speed: Minimalna brzina prijenosa (u Mbps)
     missing_min_max_values: Potrebne su minimalne i maksimalne vrijednosti.
     model_answer: Primjer odgovora

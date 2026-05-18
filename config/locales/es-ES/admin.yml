@@ -440,6 +440,7 @@ es-ES:
     min_value: Valor mínimo
     minimum_10_words: Mínimo 10 palabras
     minimum_download_speed: Velocidad mínima de descarga (en Mbps)
+    minimum_system_check_validity: El tiempo mínimo de validez de la comprobación del sistema de la campaña debe ser de 15 minutos
     minimum_upload_speed: Velocidad mínima de subida (en Mbps)
     missing_min_max_values: Se requieren valores mínimos y máximos.
     model_answer: Respuesta modelo

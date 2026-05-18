@@ -440,6 +440,7 @@ nl:
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
     minimum_download_speed: Minimale downloadsnelheid (in Mbps)
+    minimum_system_check_validity: De geldigheidsduur van de systeemcontrole voor het minimale campagneniveau moet 15 minuten bedragen
     minimum_upload_speed: Minimale uploadsnelheid (in Mbps)
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
     model_answer: Modelantwoord

@@ -440,6 +440,7 @@ ja:
     min_value: 最小値
     minimum_10_words: 最低10語
     minimum_download_speed: 最低ダウンロード速度（Mbps）
+    minimum_system_check_validity: キャンペーンの「システムチェックの有効期間」は、最低でも15分である必要があります
     minimum_upload_speed: 最低アップロード速度（Mbps）
     missing_min_max_values: 最小値と最大値が必要です。
     model_answer: 模範解答
