@@ -32,6 +32,7 @@ hr:
     change_password: Promijeni lozinku
     clear_filters: Obriši filtere
     client: Klijent
+    close: Zatvori
     collaborative_learning: Suradničko učenje
     completed: Završeno
     configurations: Konfiguracije
@@ -40,19 +41,24 @@ hr:
     controller: Kontrolor
     cookie_notice: Obavijest o kolačićima
     cookies_statement: Izjava o kolačićima
+    copied_successfully: Uspješno kopirano
     copied_to_clipboard: Kopirano u međuspremnik
     copy: Kopiraj
+    create: Stvori
     created_at: Kreirano u
     created_date: Datum izrade
+    created_successfully: Uspješno stvoreno
     custom_acknowledgment_text: Prilagođeni tekst zahvale
     custom_acknowledgment_text_required: Prilagođeni tekst zahvale potreban je za ulogu podataka kontrolera.
     custom_consent_text: Prilagođeni tekst pristanka
     custom_consent_text_required: Prilagođeni tekst pristanka je obavezan za ulogu podataka kontrolera.
     data_role: Uloga podataka
     decline: Pad
+    delete: Izbriši
     description: Opis
     desktop_or_laptop_recommended: Preporučuje se stolno ili prijenosno računalo
     desktop_or_laptop_required: Potreban stolno ili prijenosno računalo
+    disabled: Onesposobljen
     download: Preuzmi
     download_audio: Preuzmi audio
     download_transcription: Preuzmi transkripciju
@@ -60,9 +66,12 @@ hr:
     edit: Urediti
     edited: Novi
     email: Email
+    ending_proctoring_session_msg: Završavamo nadzor sesije. Molimo pričekajte dok spremamo vaše odgovore i preusmjeravamo vas na početnu stranicu.
+    error: Greška
     export: Izvoz
     failed: Neuspjelo
     'false': false
+    file: Datoteka
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Generiraj
@@ -105,6 +114,8 @@ hr:
     no_results_found: Nisu pronađeni rezultati
     not_requested: Još nije zatraženo
     ok: U redu
+    options: Opcije
+    owner: Vlasnik
     pending: U čekanju
     policy_version: Verzija politike
     policy_version_format: Dopušteni su samo cijeli brojevi.
@@ -142,6 +153,8 @@ hr:
     status_unknown: Status nepoznat
     subject: Predmet
     submit: Pošalji
+    submit_and_finish_proctoring: Podnesite i završite nadzor
+    suspended: Suspenzija
     switch_to_laptop_or_desktop: Prebacite na prijenosno ili stolno računalo
     table:
       entries:
@@ -165,6 +178,7 @@ hr:
     type: Tip
     update: Ažurirati
     update_failed: Ažuriranje nije uspjelo
+    updated_at: Ažurirano u
     updated_successfully: Uspješno ažurirano
     video: Video
     view: Pregled

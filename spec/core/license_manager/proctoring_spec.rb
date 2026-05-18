@@ -34,7 +34,7 @@ describe LicenseManager::Proctoring do
 
     context 'with valid campaign' do
       it 'calls Campaigns::Proctoring::GetProctoringCredits service' do
-        expect(Campaigns::Proctoring::GetProctoringCredits).to receive(:call!).with(campaign)
+        expect(Campaigns::Proctoring::GetProctoringCredits).to receive(:call!).with(campaign, nil)
 
         proctoring_manager.credits_required
       end

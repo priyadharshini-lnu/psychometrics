@@ -37,6 +37,10 @@ const { confirm } = Modal
 const { TextArea } = Input
 const { I18n } = window
 
+const markAsRead = (commentId: string, isNew?: boolean, onRead?: (id: string) => void) => {
+  if (isNew && onRead) onRead(commentId)
+}
+
 export const CommentItem: FC<Props> = ({
   canEdit, canRemove, canResolve, comment, comment: { creator },
   onCommentRemove, onCommentEditSave, onCommentResolve, onRead,
@@ -85,10 +89,11 @@ export const CommentItem: FC<Props> = ({
     setCommentText(target.value)
   }
   return (
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+
     <div
       data-testid="comment-item"
-      onMouseOver={() => comment.isNew && onRead && onRead(comment.id)}
+      onMouseOver={() => markAsRead(comment.id, comment.isNew, onRead)}
+      onFocus={() => markAsRead(comment.id, comment.isNew, onRead)}
       className={cs(styles.topRow, { [styles.new]: comment.isNew })}
     >
       <Row wrap={false} gutter={[6, 0]} justify="center" align="middle">

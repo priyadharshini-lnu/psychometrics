@@ -22,7 +22,7 @@ export const MhsNormRegionForm: FC<Props> = ({
   const permissions = assessment?.permissions
   const mhsNormRegions = assessment?.mhsNormRegions
 
-  const currentNormRegion = assessment?.externalConfig?.normRegion || 0
+  const currentNormRegion = assessment?.externalConfig?.normRegion || 6
   const filterSelectedNormRegion = mhsNormRegions?.find(region => region.value === currentNormRegion)
     || { label: '', value: 0 }
   const [selectedNormRegion, setSelectedNormRegion] = useState<{ label: string; value: number }>(

@@ -42,6 +42,8 @@ class UserAssessment < ApplicationRecord
     where(active: false)
   }, class_name: 'YoodliUserAssessment', dependent: :destroy
 
+  has_many :proctoring_sessions, dependent: :destroy
+
   has_one :mhs_user_assessment, -> { where(active: true) }, dependent: :destroy
   has_many :previous_mhs_user_assessments, lambda {
     where(active: false)
@@ -167,9 +169,24 @@ class UserAssessment < ApplicationRecord
 
   def finish_proctoring_session
     return unless campaign_user
-    return unless campaign_user.proctoring_enabled?
 
-    campaign_user.finish_proctoring_session if campaign_user.all_proctored_assessments_completed?
+    if campaign.selective_proctoring_enabled?
+      return unless proctoring_enabled?
+
+      mark_proctoring_session_completed
+    else
+      return unless campaign_user.proctoring_enabled?
+
+      campaign_user.finish_proctoring_session if campaign_user.all_proctored_assessments_completed?
+    end
+  end
+
+  def mark_proctoring_session_completed
+    proctoring_session = proctoring_sessions.valid_sessions.where(completed_at: nil).last
+    if proctoring_session
+      Examus::FinishSession.call!(proctoring_session.session_id)
+      proctoring_session.update(completed_at: Time.current)
+    end
   end
 
   def generate_campaign_scoring_and_artifacts_results
@@ -376,6 +393,12 @@ class UserAssessment < ApplicationRecord
     DEEMED_COMPLETED_STATUS.include?(status)
   end
 
+  def data_controller_consent_required?(user)
+    return false unless assessment.data_role_controller?
+
+    !data_controller_consent_given?(user)
+  end
+
   def has_ai_scoring_approval_flow?
     AI::ScoringApprovalSetting.exists?(campaign_id: campaign_id, assessment_id: assessment_id)
   end
@@ -502,6 +525,43 @@ class UserAssessment < ApplicationRecord
 
   def caching_enabled?
     campaign_assessment&.caching_enabled?
+  end
+
+  def proctoring_enabled?
+    return false unless campaign&.proctoring_enabled?
+
+    if campaign.selective_proctoring_enabled?
+      campaign_assessment&.proctoring_enabled?
+    elsif workshop_activity?
+      campaign.proctoring_enabled_on_workshop_activity?
+    else
+      true
+    end
+  end
+
+  def compute_expiry_date
+    return additional_time&.seconds&.from_now if interrupted?
+
+    if not_started? || expiry_date.nil?
+      return calculated_expiry_date
+    end
+
+    expiry_date
+  end
+
+  private
+
+  def calculated_expiry_date
+    assessment.extra['timer']&.seconds&.from_now
+  end
+
+  def data_controller_consent_given?(user)
+    user.privacy_consents.exists?(
+      campaign_id: campaign_id,
+      assessment_id: assessment.id,
+      version: assessment.policy_version,
+      data_role: :controller
+    )
   end
 
   def enqueue_media_response_transcriptions

@@ -97,7 +97,7 @@ export const DataReportForm: React.FC<Props> = ({
               label={I18n.t('administration.data_reports.configuration')}
               rules={[{ required: true }]}
             >
-              <LuaEditor controlled mode="javascript" />
+              <LuaEditor mode="javascript" />
             </Form.Item>
             <Button type="primary" htmlType="submit">
               {dataReport?.id ? I18n.t('assessments.update') : I18n.t('assessments.create')}

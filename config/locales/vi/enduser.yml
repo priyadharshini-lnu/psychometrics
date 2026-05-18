@@ -12,6 +12,7 @@ vi:
     ai_idp_summary_hint_no_document: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện để chia sẻ thêm chi tiết.
     all_checks_must_pass: Tất cả các bước kiểm tra phải được hoàn tất trước khi bạn có thể tiếp tục.
     approve_idp_plan: Phê duyệt kế hoạch
+    assessment_misconfigured: Cài đặt đánh giá không chính xác
     audio: Âm thanh
     audio_check: Kiểm tra micro
     audio_check_description: Hãy kiểm tra xem micrô của bạn có hoạt động bình thường để ghi âm không
@@ -66,6 +67,7 @@ vi:
     error_uploading_video: Lỗi khi tải video lên
     error_uploading_video_detail: Đã xảy ra lỗi trong quá trình tải video lên
     fail: Thất bại
+    file_submission_already_exists: Chúng tôi đã nhận được câu trả lời của bạn cho câu hỏi này. Vui lòng làm mới trang; nếu vẫn không thấy câu trả lời trước đó, xin vui lòng liên hệ với quản trị viên.
     follow_these_steps: Hãy làm theo các bước sau để khắc phục các sự cố được phát hiện trong quá trình kiểm tra hệ thống
     hide_details: Ẩn chi tiết
     home: Bảng điều khiển
@@ -95,6 +97,8 @@ vi:
     localstorage_fix_title: Tính năng Lưu trữ cục bộ chưa được bật trong trình duyệt của bạn
     localstorage_not_enabled_detail: Tính năng Local Storage hiện chưa được bật trong trình duyệt của bạn. Vui lòng đảm bảo rằng bạn không đang ở chế độ riêng tư/ẩn danh, vì tính năng localStorage thường bị tắt trong các chế độ này.
     localstorage_support: Đã bật LocalStorage
+    magic_link_interstitial_description: Vì lý do bảo mật, chúng tôi yêu cầu bạn xác nhận thao tác đăng nhập này. Hệ thống tự động không thể thực hiện bước này.
+    magic_link_interstitial_title: Để hoàn tất việc đăng nhập, vui lòng nhấp vào nút bên dưới.
     max_word_limit: Phải có tối đa %{max} từ
     media_recorder_api_fix_description_first: Bật JavaScript trong cài đặt trình duyệt của bạn
     media_recorder_api_fix_description_second: Hãy kiểm tra xem trình duyệt của bạn có hỗ trợ API MediaRecorder hay không và cập nhật lên phiên bản mới nhất nếu cần thiết.
@@ -124,6 +128,8 @@ vi:
     personal_readiness: Sự chuẩn bị cá nhân
     plan_text: Hãy lên kế hoạch cho toàn bộ thời gian thi. Một khi đã bắt đầu, tùy thuộc vào loại hình đánh giá, có thể sẽ không được phép nghỉ giải lao.
     please_check_your_internet_connection: Vui lòng kiểm tra kết nối internet của bạn và thử lại.
+    proctored: Có giám thị
+    proctored_assessment_misconfigured_msg: Bài kiểm tra này có giám thị nhưng chưa được thiết lập thời gian phù hợp; vui lòng liên hệ với quản trị viên của bạn.
     profile: Hồ sơ
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
@@ -182,6 +188,7 @@ vi:
     system_check_start_recording: Bắt đầu ghi âm
     system_check_stop_recording: Dừng ghi âm
     system_check_test_message: rất vui khi được nói chuyện với bạn
+    system_check_timer_msg: Hãy hoàn tất tất cả các bước kiểm tra và bắt đầu bài thi trong khoảng thời gian được hiển thị bên dưới. Nếu không bắt đầu bài thi trong khoảng thời gian này, phiên giám sát của bạn sẽ kết thúc và bạn sẽ phải bắt đầu lại từ đầu.
     system_check_upload_again: Tải lên lại
     system_check_uploading: Đang tải lên
     system_check_video_random_phrase: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
@@ -193,6 +200,7 @@ vi:
     testing_download_speed: Đang kiểm tra tốc độ tải xuống...
     testing_upload_speed: Đang kiểm tra tốc độ tải lên...
     time_commitment: Thời gian cam kết
+    timed_activity_instruction: Đây là bài tập có giới hạn thời gian. Sau khi bắt đầu phiên giám sát, bạn sẽ có <strong>%{time} phút</strong> để hoàn thành bài tập.
     troubleshooting_guide: Hướng dẫn khắc phục sự cố
     troubleshooting_guide_audio_fifth: 'Trên Windows: Kiểm tra Cài đặt quyền riêng tư > Quyền truy cập micrô'
     troubleshooting_guide_audio_first: Nhấp vào biểu tượng ổ khóa/thông tin trên thanh địa chỉ của trình duyệt

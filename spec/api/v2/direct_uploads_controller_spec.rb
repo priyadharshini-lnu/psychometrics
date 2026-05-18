@@ -43,13 +43,61 @@ RSpec.describe Api::V2::Administration::DirectUploadsController, type: :request 
 
       upload_response = json_response.first
       expect(upload_response).to have_key('presigned_url')
-      expect(upload_response['file_key']).to match(%r{tmp/uploads/.+/test\.png})
+      expect(upload_response['file_key']).to match(%r{#{Settings.aws.s3.temporary_upload_folder}/.+/test\.png})
 
       upload = TemporaryUpload.last
       expect(upload.filename).to eq('test.png')
       expect(upload.status).to eq('pending')
       expect(upload.checksum).to eq('MDEyMzQ1Njc4OWFiY2RlZg==')
       expect(upload_response['temporary_upload_id']).to eq(upload.id)
+    end
+  end
+
+  context 'when authenticated as client_admin with media library manage permission' do
+    let(:client) { create(:tenancy, with_license: false) }
+    let(:client_admin_user) { create(:user) }
+    let(:client_admin_membership) do
+      create(:membership, user: client_admin_user, client: client, role: Membership::CLIENT_ADMIN_ROLE)
+    end
+    let!(:membership_grant) do
+      create(:membership_grants, membership: client_admin_membership, data: { 'libraries' => %w[manage view] })
+    end
+    let!(:client_admin_api_key) { create(:api_key, user: client_admin_user) }
+    let(:client_admin_authorization) do
+      "Basic #{Base64.strict_encode64("#{client_admin_api_key.key}:#{client_admin_api_key.token}")}"
+    end
+
+    let(:params) do
+      {
+        owner_id: client.id,
+        files: [
+          {
+            filename: 'client_media.jpg',
+            content_type: 'image/jpeg',
+            byte_size: 2048,
+            checksum: 'MDEyMzQ1Njc4OWFiY2RlZg=='
+          }
+        ]
+      }
+    end
+
+    it 'allows client_admin to upload media to their client' do
+      expect do
+        post '/api/v2/administration/direct_uploads',
+             params: params,
+             headers: { 'Authorization' => client_admin_authorization },
+             as: :json
+      end.to change(TemporaryUpload, :count).by(1)
+
+      expect(response).to have_http_status(:created)
+
+      json_response = JSON.parse(response.body)
+      expect(json_response).to be_an(Array)
+      expect(json_response.first).to have_key('presigned_url')
+
+      upload = TemporaryUpload.last
+      expect(upload.filename).to eq('client_media.jpg')
+      expect(upload.status).to eq('pending')
     end
   end
 end

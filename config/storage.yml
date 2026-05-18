@@ -62,3 +62,50 @@ s3_dailyco_bucket:
   public: <%= false %>
   upload:
     cache_control: <%= "public, max-age=#{365.days.to_i}" %>
+
+cloudfront_public_bucket:
+  service: CloudfrontAdapter
+  access_key_id: <%= Settings.secrets.s3_compatible_storage[:access_key_id] %>
+  secret_access_key: <%= Settings.secrets.s3_compatible_storage[:secret_access_key] %>
+  region: <%= Settings.secrets.s3_compatible_storage[:region] %>
+  bucket: <%= Settings.secrets.s3_compatible_storage[:public_bucket] %>
+  cloudfront_domain: <%= Settings.cloudfront_domain %>
+  cloudfront_key_pair_id: <%= ENV['CLOUDFRONT_KEY_PAIR_ID'] %>
+  cloudfront_private_key: |
+    <%= ENV.fetch('CLOUDFRONT_PRIVATE_KEY', '').gsub("\n", "\n    ") %>
+  cloudfront_expires_in: <%= ENV.fetch('CLOUDFRONT_SIGNED_URL_EXPIRES_IN', 600).to_i %>
+  public: <%= true %>
+  cloudfront_access: 'public'
+  upload:
+    cache_control: <%= "public, max-age=#{365.days.to_i}" %>
+
+cloudfront_private_bucket:
+  service: CloudfrontAdapter
+  access_key_id: <%= Settings.secrets.s3_compatible_storage[:access_key_id] %>
+  secret_access_key: <%= Settings.secrets.s3_compatible_storage[:secret_access_key] %>
+  region: <%= Settings.secrets.s3_compatible_storage[:region] %>
+  bucket: <%= Settings.secrets.s3_compatible_storage[:private_bucket] %>
+  cloudfront_domain: <%= Settings.cloudfront_domain %>
+  cloudfront_key_pair_id: <%= ENV['CLOUDFRONT_KEY_PAIR_ID'] %>
+  cloudfront_private_key: |
+    <%= ENV.fetch('CLOUDFRONT_PRIVATE_KEY', '').gsub("\n", "\n    ") %>
+  cloudfront_expires_in: <%= ENV.fetch('CLOUDFRONT_SIGNED_URL_EXPIRES_IN', 600).to_i %>
+  public: <%= false %>
+  cloudfront_access: 'private'
+  upload:
+    cache_control: <%= "public, max-age=#{365.days.to_i}" %>
+
+cloudfront_dailyco_bucket:
+  service: CloudfrontAdapter
+  access_key_id: <%= Settings.secrets.s3_compatible_storage[:access_key_id] %>
+  secret_access_key: <%= Settings.secrets.s3_compatible_storage[:secret_access_key] %>
+  region: <%= Settings.secrets.s3_compatible_storage[:region] %>
+  bucket: <%= Settings.secrets.s3_compatible_storage[:dailyco_bucket] %>
+  cloudfront_domain: <%= Settings.cloudfront_domain %>
+  cloudfront_key_pair_id: <%= ENV['CLOUDFRONT_KEY_PAIR_ID'] %>
+  cloudfront_private_key: |
+    <%= ENV.fetch('CLOUDFRONT_PRIVATE_KEY', '').gsub("\n", "\n    ") %>
+  cloudfront_expires_in: <%= ENV.fetch('CLOUDFRONT_SIGNED_URL_EXPIRES_IN', 600).to_i %>
+  public: <%= false %>
+  upload:
+    cache_control: <%= "public, max-age=#{365.days.to_i}" %>

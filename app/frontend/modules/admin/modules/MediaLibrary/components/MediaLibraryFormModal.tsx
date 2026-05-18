@@ -28,10 +28,19 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
   isUpload = false,
   modalTitle,
 }) => {
+  const isCreatingFolder = !library && !isUpload
+
   const { currentUser } = useCurrentUser()
+  const currentUserRoleTitle = currentUser?.roleTitle || currentUser?.role_title
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
+
+  const currentUserClientIds = currentUser?.clientAdminClientIds || currentUser?.client_admin_client_ids || []
+  const isClientAdmin = currentUserRoleTitle === 'Client Admin'
+  const showOwnerField = isSuperAdmin(currentUser)
+    || (isClientAdmin && ((currentUser?.libraryOwnerFieldVisible ?? currentUserClientIds.length > 1)
+      || clients.length > 1))
 
   const { resource } = useResourceContext<MediaLibrary>()
 
@@ -77,7 +86,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     libraryFormData.append('data[attributes][name]', data.name)
     libraryFormData.append('data[attributes][description]', data.description)
     if (data.ownerId) {
-      libraryFormData.append('data[attributes][owner_id]', data.ownerId)
+      libraryFormData.append('data[attributes][owner_id]', String(data.ownerId))
     }
 
     if (resource.getFilteredValue('with_parent')) {
@@ -88,6 +97,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
 
     try {
       await resource.uploadFileAction(`libraries/${(library as MediaLibrary).id}`, libraryFormData, 'put')
+      resource.fetch()
     } catch (error) {
       console.error('Upload failed', error)
     }
@@ -104,6 +114,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     }
     return clientsOptions
   }
+
   return (
     <ResourceFormModal
       resourceName="libraries"
@@ -118,11 +129,11 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
         updateResource: updateLibrary,
       }}
       formProps={{
-        onFinish: library ? undefined : createLibrary,
+        ...(library ? {} : { onFinish: createLibrary }),
         initialValues: {
           ...library,
           description: library?.description || '',
-          ownerId: library?.owner?.id || ' ',
+          ...(showOwnerField ? { ownerId: library?.owner?.id || ' ' } : {}),
         },
       }}
     >
@@ -131,25 +142,49 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
           <Form.Item
             name="name"
             label={I18n.t('common.column.name')}
-            rules={[{ required: true }]}
+            required={isCreatingFolder}
+            rules={[
+              {
+                validator: (_, value) => {
+                  if (!isCreatingFolder) {
+                    return Promise.resolve()
+                  }
+
+                  const trimmedValue = String(value ?? '').trim()
+                  return trimmedValue
+                    ? Promise.resolve()
+                    : Promise.reject(new Error(I18n.t('admin.this_field_is_required')))
+                },
+              },
+            ]}
           >
             <Input name="name" />
           </Form.Item>
 
+          {showOwnerField && (
+            <Form.Item
+              name="ownerId"
+              label={I18n.t('common.column.owner')}
+              initialValue={library?.owner?.id || ' '}
+              rules={[
+                {
+                  validator: (_, value) => {
+                    if (value !== undefined) return Promise.resolve()
 
-          <Form.Item
-            name="ownerId"
-            label={I18n.t('common.column.owner')}
-            initialValue={library?.owner?.id || ' '}
-          >
-            <Select
-              showSearch
-              onSearch={searchAvailableOwners}
-              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
-              filterOption={false}
-              options={getOptionsForClients()}
-            />
-          </Form.Item>
+                    return Promise.reject(new Error(I18n.t('admin.this_field_is_required')))
+                  },
+                },
+              ]}
+            >
+              <Select
+                showSearch
+                onSearch={searchAvailableOwners}
+                notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
+                filterOption={false}
+                options={getOptionsForClients()}
+              />
+            </Form.Item>
+          )}
 
           <Form.Item
             name="description"
@@ -160,7 +195,21 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
 
           {(isUpload || (!!library && library?.type === 'image'))
             && (
-              <Form.Item label={I18n.t('admin.media_files_label')}>
+              <Form.Item
+                name="file"
+                label={I18n.t('admin.media_files_label')}
+                rules={[
+                  {
+                    validator: () => {
+                      // Only require file when creating new item
+                      if (isUpload && fileList.length === 0) {
+                        return Promise.reject(new Error(I18n.t('admin.upload_required')))
+                      }
+                      return Promise.resolve()
+                    },
+                  },
+                ]}
+              >
                 <Upload
                   listType="picture"
                   maxCount={library ? 1 : undefined}

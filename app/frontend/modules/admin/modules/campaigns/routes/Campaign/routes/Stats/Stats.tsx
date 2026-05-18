@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Progress, Card, Statistic, Radio, RadioChangeEvent, Typography, TreeSelect, Space,
+  Select,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
-import { Select } from 'antd/lib'
 import dayjs from 'dayjs'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {

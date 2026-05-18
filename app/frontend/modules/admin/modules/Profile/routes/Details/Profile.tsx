@@ -82,7 +82,7 @@ function Profile ({
       canvas.toBlob((blob) => {
         if (blob) {
           form.append('photo', blob, 'file.jpg')
-          uploadPhoto(currentUser.id, form).then(() => {
+          uploadPhoto(form).then(() => {
             setShowCropper(false)
           }).then(() => {
             fetchSingle({ id: currentUser.id })

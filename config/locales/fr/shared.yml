@@ -32,6 +32,7 @@ fr:
     change_password: Modifier le mot de passe
     clear_filters: Effacer les filtres
     client: Client
+    close: Fermer
     collaborative_learning: Apprentissage collaboratif
     completed: Terminé
     configurations: Configurations
@@ -40,19 +41,24 @@ fr:
     controller: Contrôleur
     cookie_notice: Avis relatif aux cookies
     cookies_statement: Déclaration relative aux cookies
+    copied_successfully: Copie effectuée
     copied_to_clipboard: Copié dans le presse-papiers
     copy: Copier
+    create: Créer
     created_at: Créé à
     created_date: Date de création
+    created_successfully: Créé avec succès
     custom_acknowledgment_text: Texte de remerciement personnalisé
     custom_acknowledgment_text_required: Un texte de confirmation personnalisé est requis pour le rôle « Données du contrôleur »
     custom_consent_text: Texte de consentement personnalisé
     custom_consent_text_required: Un texte de consentement personnalisé est requis pour le rôle de contrôleur des données.
     data_role: Rôle des données
     decline: Déclin
+    delete: Supprimer
     description: Description
     desktop_or_laptop_recommended: Ordinateur de bureau ou portable recommandé
     desktop_or_laptop_required: Ordinateur de bureau ou portable requis
+    disabled: Personnes handicapées
     download: Télécharger
     download_audio: Télécharger l'audio
     download_transcription: Télécharger la transcription
@@ -60,9 +66,12 @@ fr:
     edit: Editer
     edited: Nouveau
     email: Courriel
+    ending_proctoring_session_msg: Nous mettons fin à la session de surveillance. <p>Veuillez patienter pendant que nous enregistrons vos réponses et que nous vous redirigeons vers la page d'accueil.</p>
+    error: Erreur
     export: Exportation
     failed: Échec
     'false': false
+    file: Fichier
     first_name: Prénom
     formal_learning: Apprentissage formel
     generate: Générer
@@ -105,6 +114,8 @@ fr:
     no_results_found: Aucun résultat trouvé
     not_requested: Pas encore demandé
     ok: Ok
+    options: Options
+    owner: Propriétaire
     pending: En attente
     policy_version: Version de la politique
     policy_version_format: Seuls les nombres entiers sont autorisés.
@@ -142,6 +153,8 @@ fr:
     status_unknown: Statut inconnu
     subject: Objet
     submit: Soumettre
+    submit_and_finish_proctoring: Soumettre et terminer la surveillance
+    suspended: Suspendu
     switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau
     table:
       entries:
@@ -165,6 +178,7 @@ fr:
     type: Type
     update: Mettre à jour
     update_failed: Échec de la mise à jour
+    updated_at: Mis à jour le
     updated_successfully: Mise à jour réussie
     video: Vidéo
     view: Afficher

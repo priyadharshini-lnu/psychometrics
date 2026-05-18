@@ -21,6 +21,7 @@ bg:
     admin_roles: Администраторски роли
     admin_updated_successfully: Администраторът '%{name}' е актуализиран успешно
     admins: Администратори
+    advanced: Разширени
     ai_artifact_result_generation_admin_job_failed: Артефактът „%{artifact_name}” не може да бъде генериран за потребителя „%{user_email}”.
     ai_artifact_result_stale: Резултатът може да е неактуален, тъй като зависимостите на AI артефакта са се променили от момента на генериране на последния резултат. Обмислете да генерирате артефакта отново, за да използвате най-новите зависимости.
     ai_artifacts: Артефакти с изкуствен интелект
@@ -117,6 +118,7 @@ bg:
     allow_continue_with_warning_system_check: Да се позволи на потребителите да продължат, като се показват предупреждения, когато проверката на системата се провали
     api_keys: API ключове
     apply_to_existing_users: Приложи тази промяна към съществуващите потребители в тази кампания
+    assessment: Оценка
     assessment_center_activity: Дейност
     assessment_center_assessor: Оценител
     assessment_center_attendance: Присъствие
@@ -147,6 +149,12 @@ bg:
     available_languages: Докладът е наличен на езици
     average: Средна стойност
     back_to_main: Главно меню
+    block_editor_add_question: Добави въпрос
+    block_editor_question_randomization: Разпределение на въпросите по случаен принцип
+    block_options: Опции за блокиране
+    block_settings: Настройки на блока
+    blocks_new_button: Нов блок
+    blocks_title: Блокове
     bulk_assets_modal_choose_csv: Изберете CSV файл
     bulk_assets_modal_choose_zip: Изберете ZIP файл
     bulk_assets_modal_not_csv_file_error: За качване на CSV файлове се допускат само CSV файлове. Моля, качете валиден CSV файл.
@@ -159,6 +167,15 @@ bg:
     campaign_assessment_actions_disable_caching: Кеширане за изключване на оценката
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Възможно е кеширане на оценка
+    campaign_assessment_column_hogan_assessment_id: Идентификационен номер на оценката на Хоган
+    campaign_assessment_column_hogan_form_id: Идентификационен номер на формуляр „Хоган“
+    campaign_assessment_column_pearson_assessment_id: Идентификационен номер на оценката на Pearson
+    campaign_assessment_column_pearson_assessment_language: Език на оценяването на Pearson
+    campaign_assessment_column_pearson_error_details: Подробности за грешката на Пиърсън
+    campaign_assessment_column_pearson_product_id: Идентификационен номер на продукта на Pearson
+    campaign_assessment_column_saville_error_code: Код за грешка на Saville
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Идентификационен номер на заявката на Saville
     campaign_assessment_mhs_confidence_interval: Доверителен интервал
     campaign_assessment_mhs_confidence_interval_update_success: Доверителният интервал е актуализиран успешно
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval трябва да бъде 0 или 1
@@ -203,6 +220,7 @@ bg:
     campaigns: Кампании
     cancel: Отмени
     cancellation_and_rescheduling_disabled: Отмяната и пренасрочването са деактивирани
+    captcha: Проверка чрез Captcha
     casual: Неформален
     cell_save_msg: Валидните промени се запазват автоматично, веднага щом излезете от клетката след редактиране.
     characters: герои
@@ -219,10 +237,13 @@ bg:
     concise: Кратък
     configure_model_answer_title: Конфигуриране на моделни отговори и ключови думи
     confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
+    confirmation_required: Необходимо е потвърждение
+    confirmation_required_details: Сигурен ли сте, че искате да изтриете файла „%{resource_name}“ от папката „%{resource}“?
     copied: Копирано
     copied_url_success: URL адресът беше успешно копиран в клипборда
     copy_ai_artifacts: Копиране на AI-артефакти
     copy_image_url: Копирай URL адреса на изображението
+    copy_url: Копирай URL адреса
     country: Държава
     create_client: Създайте клиент
     create_indicator: Създаване на индикатор
@@ -240,6 +261,7 @@ bg:
     delete_ok_text: Да, изтрий
     denied: Отказан
     description: Описание
+    descriptive_text: Описателен текст
     development_actions: Действия за развитие
     development_actions_form_tags: Тагове
     digest_delivery_mode:
@@ -262,10 +284,12 @@ bg:
       wednesday: сряда
     dimension_translations_export_scheduled: Запланирани преводи за износ за измерение „%{name}“.
     dimensions: Размери
+    disable_proctoring: Деактивиране на наблюдението
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     download_bulk_asset_download_example_csv: Изтеглете пример за CSV.
     duration: Продължителност
+    duration_must_be_positive: Продължителността трябва да е положителна
     edit_campaign_admin: Редактиране на администратора на кампанията
     edit_client_admin: Редактиране на администратор на клиента
     edit_folder: Редактиране на папка
@@ -284,6 +308,7 @@ bg:
     enable_system_check: Активиране на проверка на системата
     enable_transcription: Активиране на транскрипция
     enable_transcription_msg: Активирайте транскрипцията, за да използвате AI оценяване на въпросите с видео/аудио отговор.
+    end: край
     end_time: Край на времето
     end_time_must_be_after_start_time: Крайното време трябва да е след началната дата
     enhance_with_ai: Подобрете с AI
@@ -300,6 +325,8 @@ bg:
     export_completion_status: Статус на завършване на експорта
     export_completion_statuses_scheduled: Задачата за експортиране на статусите на завършеност беше успешно планирана.
     export_detailed_completion_status: Подробно
+    factor_feedback: Обратна връзка по фактори
+    factor_selection: Избор на фактори
     factors: Фактори
     feature_ai_assistants_description: Активирайте AI-базирани асистенти за подобрено потребителско преживяване
     feature_ai_assisted_idp_description: Използвайте изкуствен интелект, за да подпомогнете препоръките за индивидуално планиране на развитието
@@ -323,6 +350,8 @@ bg:
     formal: Официален
     from: От
     generate_transcription: Генериране на транскрипция
+    graphic: Графика
+    graphic_slider: Графичен слайдер
     hide_middle_scores: Скриване на средните резултати
     high: Висока
     hogan: Хоган
@@ -389,6 +418,7 @@ bg:
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
     licenses: Лицензи
+    linked_assessments: Свързани оценки
     low: Ниска
     maintenance: Поддръжка
     maintenance_settings: Настройки за поддръжка
@@ -397,6 +427,7 @@ bg:
     max_value: Максимална стойност
     media_files_label: Файлове
     media_library: Медийна библиотека
+    media_library_page_title: Медийна библиотека – Табло за управление – Mercer Lighthouse
     messages: Съобщения
     mhs: MHS
     mhs_assessment: Оценка на MHS
@@ -409,6 +440,7 @@ bg:
     min_value: Минимална стойност
     minimum_10_words: Минимум 10 думи
     minimum_download_speed: Минимална скорост на изтегляне (в Mbps)
+    minimum_system_check_validity: Минималната валидност на проверката на системата за нивото на кампанията трябва да бъде 15 минути
     minimum_upload_speed: Минимална скорост на качване (в Mbps)
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     model_answer: Модел на отговор
@@ -420,6 +452,7 @@ bg:
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
     no_status: Без статус
+    norm_editor_numeric_value_error: Допускат се само числови стойности (цели числа или числа с десетични знаци).
     norms: Норми
     not_completed: Не е завършено
     not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
@@ -864,6 +897,11 @@ bg:
     precision: Прецизност
     privacy: Поверителност
     proctoring: Прокторант
+    proctoring_errors_timed_only: Селективният надзор може да се активира само за тестове с ограничено време.
+    proctoring_fixed_time_required: Активирайте „Фиксирано време“, за да изберете тази опция
+    proctoring_mode_all: Активиране на наблюдението при всички оценки
+    proctoring_mode_all_except_ac: Активирайте наблюдението при всички оценки, с изключение на оценките в центъра за оценяване
+    proctoring_settings: Настройки за наблюдение
     professional: Професионален
     proficiency: Умения
     proficiency_level: API ключове
@@ -876,7 +914,32 @@ bg:
     projects: Проекти
     prompt: Подсказка
     question_center: Център за въпроси
+    question_center_page_title: Център за въпроси – Табло – Mercer Lighthouse
+    question_editor_change_type: Промени типа
+    question_editor_click_to_write: Кликнете тук, за да въведете въпроса...
+    question_editor_copy_question: Копирай въпроса
+    question_editor_enable_transcription: Активиране на транскрипцията
+    question_editor_preview_question: Въпрос за преглед
+    question_editor_validation_type: Тип валидиране
+    question_randomization: Разпределение на въпросите по случаен принцип
+    question_type_audio_response: Аудио отговор
+    question_type_constant_sum: Постоянна сума
+    question_type_file_upload: Качване на файл
+    question_type_gap_analysis: Анализ на пропуските
+    question_type_hot_spot: Гореща точка
+    question_type_matrix_table: Матрична таблица
+    question_type_meta_info: Метаданни
+    question_type_multiple_choice: Множествен избор
+    question_type_pick_group_rank: Избор на група и ранг
+    question_type_rank_order: Класиране
+    question_type_side_by_side: Един до друг
+    question_type_slider: Плъзгач
+    question_type_text_entry: Въвеждане на текст
+    question_type_video_response: Видеоотговор
     questions: Въпроси
+    questions_new_button: Нов въпрос
+    questions_title: Въпрос
+    questions_type: Тип
     range_min_max: ДИАПАЗОН%{min} - %{max}
     reflection_questions: Въпроси за размисъл
     regenerate_transcriptions_action: Възстановяване на транскрипции
@@ -888,6 +951,7 @@ bg:
     remove_children_to_change_type: Премахнете всички деца, за да промените типа
     remove_confirmation: Сигурен ли сте, че искате да премахнете този елемент?
     remove_successfully: Медийният елемент беше успешно премахнат.
+    report_alias_save_confirmation: Ако желаете да запазите ВСИЧКИ промени в Report Builder, както и в раздела „Псевдоними“, моля, натиснете бутона „ЗАПАЗИ“. Страницата ще се презареди и промените ви ще бъдат успешно приложени.
     report_approvals: Докладване на одобрения
     report_condition_not_met: Нуждае се %{required} %{relationship} оценка(и), но има само %{actual}
     report_conditions_not_met_detailed: Докладът за %{user} не отговаря на условията за наличност. %{conditions}
@@ -917,6 +981,7 @@ bg:
     saml_service_provider_acs_urls_placeholder: Въведете URL адреси, разделени със запетаи, напр. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Задължителни са ACS URL адреси
     saml_service_provider_action_delete_label: Изтривам
+    saml_service_provider_action_download_xml_label: Изтегли XML
     saml_service_provider_action_edit_label: Редактирам
     saml_service_provider_action_rotate_certificate_label: Ротационен сертификат
     saml_service_provider_add: Добавете SAML доставчик на услуги
@@ -958,6 +1023,7 @@ bg:
     saml_settings: SAML настройки
     save: Запази
     save_assessment_for_scoring_management: Запазете оценката, преди да започнете с точкуването.
+    save_block: Запази блок
     saved_filter_label:
       approval_status_in: Статус на одобрение
       approver_user_id_in: Одобряващ
@@ -1006,9 +1072,11 @@ bg:
     select_language_to_translate: Моля, изберете език за превод
     select_level: Изберете ниво
     select_start_time: Изберете начален час
+    selective_proctoring: Селективно наблюдение
     send_email: Изпрати имейл
     set_min_max_scores_warning: Моля, задайте минимални и максимални резултати за този фактор, за да конфигурирате AI оценяването.
     settings: Настройки
+    settings_saved_successfully: Настройките бяха запазени успешно
     show_all_assessment_responses: Покажи всички отговори на оценката
     show_middle_scores: Покажи още резултати за „%{count}“ (по избор)...
     show_original: Покажи оригинал
@@ -1022,7 +1090,11 @@ bg:
     slot_name: Име на слот
     sms_histories: История на SMS
     sms_invites: SMS покани
+    specialty_questions: Специфични въпроси
+    standard_questions: Стандартни въпроси
+    start: начало
     start_time: Начален час
+    static_content: Статично съдържание
     stats: Статистика
     status_details: Детайли за статуса
     structured_learning: Формално обучение [10]
@@ -1031,7 +1103,10 @@ bg:
     target_job_role: Целева длъжност
     this_field_is_required: Това поле е задължително
     threesixty: Кампания 360
+    timed_label: 'Време: %{time_text}'
+    timelines: График
     timezone: Часова зона
+    timing: Време
     to: Към
     tone: Тон
     toolbar_ai_insight: AI Insight

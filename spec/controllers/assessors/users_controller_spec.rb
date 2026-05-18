@@ -96,13 +96,22 @@ RSpec.describe Assessors::UsersController, type: :controller do
       get :show, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
 
       parsed_response = response.parsed_body
-      expect(parsed_response['user_reports']).to eq([{
+      expect(parsed_response['user_reports'].size).to eq(1)
+
+      report_data = parsed_response['user_reports'].first
+      expect(report_data).to include(
         'id' => user_report1.id,
         'name' => reports[0].name,
         'internal' => true,
         'report_url' => user_report1.pdf_download_url,
         'status' => 'not_prepared'
-      }])
+      )
+
+      expect(report_data['unavailability_reason_details']).to include(
+        'available' => false,
+        'reason_code' => 'assessment_not_completed'
+      )
+      expect(report_data['unavailability_reason_details']['reason_message']).to be_present
     end
   end
 end

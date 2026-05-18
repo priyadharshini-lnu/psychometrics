@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Input as AntInput, Form,
 } from 'antd'
-import { PasswordProps } from 'antd/lib/input'
+import { PasswordProps } from 'antd/es/input'
 import { AccessiblePasswordInput } from '~/glint'
 import styles from './styles.less'
 

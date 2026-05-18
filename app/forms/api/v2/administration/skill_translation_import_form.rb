@@ -16,6 +16,10 @@ module Api
         validate :validate_file_content
         validate :process_file
 
+        def row_count
+          @rows.size || 0
+        end
+
         private
 
         def validate_file_format
@@ -33,6 +37,7 @@ module Api
             file.rewind if file.respond_to?(:rewind)
 
             csv_data = ::CsvFileParser.call!(file, headers: true)
+            @rows = csv_data&.drop(1)
 
             # Check for required fields
             validate_headers(csv_data.headers)

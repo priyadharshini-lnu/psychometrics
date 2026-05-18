@@ -1,6 +1,6 @@
 import { ConfigProvider } from 'antd'
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
-import { Locale } from 'antd/lib/locale'
+import { Locale } from 'antd/es/locale'
 import { BrowserRouter as Router } from 'react-router-dom'
 import '~/styles/utils.less'
 import '~/styles/common.less'

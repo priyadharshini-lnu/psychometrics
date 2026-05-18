@@ -32,6 +32,7 @@ th:
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
     client: ลูกค้า
+    close: ปิด
     collaborative_learning: การเรียนรู้ร่วมกัน
     completed: เสร็จสมบูรณ์
     configurations: การกำหนดค่า
@@ -40,19 +41,24 @@ th:
     controller: คอนโทรลเลอร์
     cookie_notice: ประกาศเกี่ยวกับคุกกี้
     cookies_statement: นโยบายการใช้คุกกี้
+    copied_successfully: คัดลอกสำเร็จ
     copied_to_clipboard: คัดลอกไปยังคลิปบอร์ด
     copy: คัดลอก
+    create: สร้าง
     created_at: สร้างเมื่อ
     created_date: วันที่สร้าง
+    created_successfully: สร้างสำเร็จแล้ว
     custom_acknowledgment_text: ข้อความยืนยันการรับทราบแบบกำหนดเอง
     custom_acknowledgment_text_required: จำเป็นต้องมีข้อความยืนยันที่กำหนดเองสำหรับบทบาทข้อมูลของผู้ควบคุม
     custom_consent_text: ข้อความยินยอมที่กำหนดเอง
     custom_consent_text_required: จำเป็นต้องมีข้อความยินยอมที่กำหนดเองสำหรับบทบาทผู้ควบคุมข้อมูล
     data_role: บทบาทด้านข้อมูล
     decline: ปฏิเสธ
+    delete: ลบ
     description: คำอธิบาย
     desktop_or_laptop_recommended: แนะนำใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
     desktop_or_laptop_required: จำเป็นต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
+    disabled: ผู้พิการ
     download: ดาวน์โหลด
     download_audio: ดาวน์โหลดเสียง
     download_transcription: ดาวน์โหลดการถอดความ
@@ -60,9 +66,12 @@ th:
     edit: แก้ไข
     edited: ใหม่
     email: อีเมล
+    ending_proctoring_session_msg: เรากำลังจะสิ้นสุดการตรวจสอบการสอบ <p>กรุณารอขณะที่เราบันทึกคำตอบของคุณและนำคุณกลับไปยังหน้าแรก</p>
+    error: ข้อผิดพลาด
     export: ส่งออก
     failed: ล้มเหลว
     'false': false
+    file: ไฟล์
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
     generate: สร้าง
@@ -105,6 +114,8 @@ th:
     no_results_found: ไม่พบผลลัพธ์
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
+    options: ตัวเลือก
+    owner: เจ้าของ
     pending: รอดำเนินการ
     policy_version: นโยบายเวอร์ชัน
     policy_version_format: อนุญาตเฉพาะจำนวนเต็มเท่านั้น
@@ -142,6 +153,8 @@ th:
     status_unknown: ไม่ทราบสถานะ
     subject: เรื่อง
     submit: ส่ง
+    submit_and_finish_proctoring: ส่งและเสร็จสิ้นการคุมสอบ
+    suspended: ระงับ
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
     table:
       entries:
@@ -165,6 +178,7 @@ th:
     type: ประเภท
     update: อัปเดต
     update_failed: การอัปเดตล้มเหลว
+    updated_at: อัปเดตเมื่อ
     updated_successfully: อัปเดตสำเร็จ
     video: วิดีโอ
     view: มุมมอง

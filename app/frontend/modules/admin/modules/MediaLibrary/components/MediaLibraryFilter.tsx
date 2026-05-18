@@ -29,7 +29,9 @@ export const MediaLibraryFilter: React.FC<Props> = ({
   const isInsideFolder = ancestors.length > 0
 
   const navigateToFolder = (folderId: string | null) => {
-    resource.changeFilter('with_parent', folderId)
+    resource.changeUrlQuery({
+      filter: folderId ? { with_parent: folderId } : undefined,
+    })
   }
 
   const handleUpload = () => {

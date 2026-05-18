@@ -32,6 +32,7 @@ id:
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
     client: Klien
+    close: Tutup
     collaborative_learning: Pembelajaran Kolaboratif
     completed: Selesai
     configurations: Konfigurasi
@@ -40,19 +41,24 @@ id:
     controller: Pengendali
     cookie_notice: Pemberitahuan tentang Cookie
     cookies_statement: Pernyataan tentang Cookie
+    copied_successfully: Telah disalin dengan sukses
     copied_to_clipboard: Disalin ke clipboard
     copy: Salin
+    create: Buat
     created_at: Dibuat di
     created_date: Tanggal Dibuat
+    created_successfully: Telah berhasil dibuat
     custom_acknowledgment_text: Teks Ucapan Terima Kasih yang Disesuaikan
     custom_acknowledgment_text_required: Teks ucapan terima kasih khusus diperlukan untuk peran data pengontrol
     custom_consent_text: Teks Persetujuan Khusus
     custom_consent_text_required: Teks persetujuan khusus diperlukan untuk peran data pengontrol.
     data_role: Peran Data
     decline: Penurunan
+    delete: Hapus
     description: Deskripsi
     desktop_or_laptop_recommended: Desktop atau Laptop yang Direkomendasikan
     desktop_or_laptop_required: Diperlukan komputer desktop atau laptop.
+    disabled: Cacat
     download: Unduh
     download_audio: Unduh Audio
     download_transcription: Unduh Transkrip
@@ -60,9 +66,12 @@ id:
     edit: Sunting
     edited: Baru
     email: Email
+    ending_proctoring_session_msg: Kami akan mengakhiri sesi pengawasan ini. <p>Mohon tunggu sebentar sementara kami menyimpan jawaban Anda dan mengalihkan Anda kembali ke halaman beranda.</p>
+    error: Kesalahan
     export: Ekspor
     failed: Gagal
     'false': false
+    file: Berkas
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
     generate: Generate
@@ -105,6 +114,8 @@ id:
     no_results_found: Tidak ditemukan hasil
     not_requested: Belum Diminta
     ok: Ok
+    options: Pilihan
+    owner: Pemilik
     pending: Menunggu
     policy_version: Versi Kebijakan
     policy_version_format: Hanya bilangan bulat yang diperbolehkan.
@@ -142,6 +153,8 @@ id:
     status_unknown: Status Tidak Diketahui
     subject: Subjek
     submit: Kirim
+    submit_and_finish_proctoring: Kirim dan Selesaikan Pengawasan
+    suspended: Ditangguhkan
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
     table:
       entries:
@@ -165,6 +178,7 @@ id:
     type: Jenis
     update: Memperbarui
     update_failed: Pembaruan gagal
+    updated_at: Diperbarui pada
     updated_successfully: Pembaruan berhasil
     video: Video
     view: Lihat

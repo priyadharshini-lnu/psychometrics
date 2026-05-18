@@ -52,6 +52,7 @@ module Administration
           sms_invite = campaign.sms_invites.create!(
             form.attributes.merge(creator: current_user)
           )
+          audit! :create, sms_invite, payload: form.attributes, campaign: campaign
           render json: Administration::Campaigns::SmsInvitesSerializer.new.serialize(sms_invite)
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -63,6 +64,7 @@ module Administration
                with_context(campaign: campaign, sms_invite: resource)
         if form.valid?
           resource.update!(form.attributes)
+          audit! :update, resource, payload: form.attributes, campaign: campaign
           render json: Administration::Campaigns::SmsInvitesSerializer.new.serialize(resource)
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -71,6 +73,7 @@ module Administration
 
       def destroy
         resource.destroy!
+        audit! :destroy, resource, campaign: campaign
 
         render json: resource.id
       end
@@ -84,6 +87,7 @@ module Administration
 
         form = ::SmsInvites::ImportForm.new(import_data: import_data).with_context(campaign: campaign)
         if form.valid?
+          audit! :import_sms_contacts, resource, payload: { row_count: import_data.size }, campaign: campaign
           AdminJob.call(:import_sms_invites, {
             campaign_id: params[:new_campaign_id]
           }, current_user, params[:file])

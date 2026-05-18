@@ -21,11 +21,13 @@ class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::
   end
 
   def question_type
-    case @model.question&.type
+    case @model.question&.type # rubocop:disable Style/HashLikeCase
       when 'AudioResponse'
         'audio'
       when 'VideoResponse'
         'video'
+      when 'FileUpload'
+        'file'
     end
   end
 

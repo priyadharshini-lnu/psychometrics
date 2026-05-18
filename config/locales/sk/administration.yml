@@ -959,7 +959,6 @@ sk:
         prework_required: Nepovoliť rezerváciu centra, ak nie sú dokončené prípravné práce
         prework_required_for_invite: E-mail s pozvánkou môžete odoslať len po dokončení prípravy
         proctoring:
-          allow_on_assessment_center: Povoliť proctoring v hodnotiacom centre
           enable: Povoliť proctoring
           identification: Identifikácia
           identifications:
@@ -2772,12 +2771,10 @@ sk:
     proctoring_sessions:
       columns:
         comment: Komentár
-        completed_at: Dokončené v
         conclusion: Záver
         links: Odkazy
         score: Skóre
         session_id: ID relácie
-        started_at: Začiatok v
       links:
         report: Správa
         review: Revízia
@@ -3000,6 +2997,7 @@ sk:
               scheduling_invited: Plánovanie pozvaných
               scheduling_rescheduled: Plánovanie preložené
               scheduling_scheduled: Plánovanie plánovania
+              workshop_attendance_status: Stav účasti na workshope
           url:
             label: URL adresa
             name: Adresa URL

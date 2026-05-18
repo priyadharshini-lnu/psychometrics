@@ -4,7 +4,7 @@ import {
   message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import SearchOutlined from '@ant-design/icons/SearchOutlined'
+import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { ResourceType } from '~/modules/admin/components/UserSavedFilters/core'
 import { useSavedFilter } from '~/modules/admin/components/UserSavedFilters'

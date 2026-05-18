@@ -25,6 +25,10 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
     @model.extra = { enable_video_check: false, enable_audio_check: false, enable_network_check: false }
   end
 
+  after_create do
+    ensure_default_locale_translations
+  end
+
   before_update do
     @model.updated_by_id = context[:user].id
     category = context[:params].dig(:data, :attributes, :category)
@@ -140,5 +144,41 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   def tag_list=(tags)
     @model.save_tag_with_ownership(tags)
+  end
+
+  def name
+    @model.name || @model.read_attribute(:name)
+  end
+
+  private
+
+  def ensure_default_locale_translations
+    target_locale = (@model.default_language.presence || I18n.default_locale).to_s
+    source_locale = Mobility.locale.to_s
+    source_values = localized_assessment_values(source_locale)
+    target_values = localized_assessment_values(target_locale)
+
+    if target_values.values.all?(&:blank?) && source_locale != target_locale
+      Mobility.with_locale(target_locale) do
+        @model.name = source_values[:name] if source_values[:name].present?
+        @model.description = source_values[:description] if source_values[:description].present?
+        @model.timing = source_values[:timing] if source_values[:timing].present?
+      end
+
+      @model.save! if @model.changed?
+      target_values = localized_assessment_values(target_locale)
+    end
+
+    @model.update_columns(target_values)
+  end
+
+  def localized_assessment_values(locale)
+    Mobility.with_locale(locale) do
+      {
+        name: @model.name,
+        description: @model.description,
+        timing: @model.timing
+      }
+    end
   end
 end

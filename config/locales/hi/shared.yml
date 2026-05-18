@@ -32,6 +32,7 @@ hi:
     change_password: पासवर्ड बदलें
     clear_filters: फ़िल्टर साफ़ करें
     client: ग्राहक
+    close: बंद करें
     collaborative_learning: सहयोगात्मक अधिगम
     completed: पूर्ण
     configurations: संरचनाएँ
@@ -40,19 +41,24 @@ hi:
     controller: नियंत्रक
     cookie_notice: कुकी सूचना
     cookies_statement: कुकीज़ कथन
+    copied_successfully: सफलतापूर्वक कॉपी किया गया
     copied_to_clipboard: क्लिपबोर्ड पर कॉपी हो गया
     copy: प्रतिलिपि
+    create: बनाएँ
     created_at: पर बनाया गया
     created_date: निर्मित तिथि
+    created_successfully: सफलतापूर्वक बनाया गया
     custom_acknowledgment_text: अनुकूलित आभार पाठ
     custom_acknowledgment_text_required: कंट्रोलर डेटा भूमिका के लिए कस्टम स्वीकृति पाठ आवश्यक है।
     custom_consent_text: अनुकूलित सहमति पाठ
     custom_consent_text_required: कंट्रोलर डेटा भूमिका के लिए अनुकूलित सहमति पाठ आवश्यक है।
     data_role: डेटा भूमिका
     decline: पतन
+    delete: मिटायें
     description: विवरण
     desktop_or_laptop_recommended: डेस्कटॉप या लैपटॉप अनुशंसित
     desktop_or_laptop_required: डेस्कटॉप या लैपटॉप आवश्यक है
+    disabled: अक्षम
     download: डाउनलोड
     download_audio: ऑडियो डाउनलोड करें
     download_transcription: प्रतिलिपि डाउनलोड करें
@@ -60,9 +66,12 @@ hi:
     edit: संपादित करें
     edited: संपादित
     email: ईमेल
+    ending_proctoring_session_msg: हम निगरानी सत्र समाप्त कर रहे हैं। कृपया प्रतीक्षा करें, जब तक हम आपके उत्तरों को सहेज रहे हैं और आपको होम पेज पर वापस रीडायरेक्ट कर रहे हैं।
+    error: त्रुटि
     export: निर्यात
     failed: असफल
     'false': false
+    file: फ़ाइल
     first_name: पहला नाम
     formal_learning: औपचारिक अधिगम
     generate: उत्पन्न करें
@@ -105,6 +114,8 @@ hi:
     no_results_found: कोई परिणाम नहीं मिला
     not_requested: अभी तक अनुरोध नहीं किया गया
     ok: ठीक है
+    options: विकल्प
+    owner: मालिक
     pending: लंबित
     policy_version: नीति संस्करण
     policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
@@ -142,6 +153,8 @@ hi:
     status_unknown: स्थिति अज्ञात
     subject: विषय
     submit: सबमिट करें
+    submit_and_finish_proctoring: प्रॉक्टरिंग जमा करें और पूरा करें
+    suspended: निलंबित
     switch_to_laptop_or_desktop: लैपटॉप या डेस्कटॉप पर स्विच करें
     table:
       entries:
@@ -165,6 +178,7 @@ hi:
     type: प्रकार
     update: अपडेट
     update_failed: अपडेट विफल हो गया
+    updated_at: पर अद्यतन किया गया
     updated_successfully: सफलतापूर्वक अद्यतन किया गया
     video: वीडियो
     view: देखें

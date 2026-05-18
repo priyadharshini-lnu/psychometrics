@@ -17,7 +17,7 @@ import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/Re
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
 import {
-  fetchAssessment, validateSession, setInvalidated,
+  fetchAssessment, validateSession, setInvalidated, finishProctoringSession,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -42,6 +42,7 @@ const connector = connect((state: RootState) => ({
   validateSession,
   markAssessmentTimedOut,
   setInvalidated,
+  finishProctoringSession,
 })
 
 type Params = {
@@ -69,7 +70,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       evaluation_session_id: evaluationSessionId,
       campaign_options: campaignOptions,
     },
-  }, fetchAssessment, fetchCampaigns,
+  }, fetchAssessment, fetchCampaigns, finishProctoringSession,
   preview: {
     initialized,
     enableProgress,
@@ -126,7 +127,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     navigate(`/campaigns/${campaignId}`)
   }
 
-  const enableBackButton = !extraOptions.disable_navigation_back && (!isProctored || proctoringEnabled)
+  const enableBackButton = !extraOptions.disable_navigation_back
+    && (!isProctored || proctoringEnabled) && !campaignOptions?.selective_proctoring_enabled
   const notificationDurations: Notification[] = [
     { timeRemaining: 3600, type: 'info' },
     { timeRemaining: 1800, type: 'warning' },
@@ -147,8 +149,13 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     window.location.href = `/campaigns/${campaignId}`
   }
 
-  return (
+  const handleSubmitAssessment = () => {
+    if (isProctored && campaignOptions?.selective_proctoring_enabled) {
+      finishProctoringSession(userAssessmentId)
+    }
+  }
 
+  return (
     <>
       <title>{`${assessment.name || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
       <GlintPageHeader>
@@ -278,6 +285,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                       rstore={store}
                       valuationSessionId={evaluationSessionId}
                       renderedByEnduser
+                      onSubmit={handleSubmitAssessment}
+                      selectiveProctoringEnabled={campaignOptions?.selective_proctoring_enabled}
+                      isProctored={isProctored}
                       skipInstructions
                     />
                   </ResourcesTabs>

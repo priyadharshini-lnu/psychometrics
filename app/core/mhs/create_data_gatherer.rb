@@ -2,6 +2,8 @@
 
 module Mhs
   class CreateDataGatherer < Base
+    MHS_GENDER_CODES = { 'male' => 0, 'female' => 1, 'not_disclosed' => 3 }.freeze
+
     private_attr_reader :session_id, :user_assessment
 
     def initialize(session_id, user_assessment)
@@ -124,19 +126,16 @@ module Mhs
       }]
     end
 
-    # TODO: Implement mocking logic here
     def encoded_observation_items
-      items = []
-      subject = user_assessment.subject
-      user_profile = subject&.user_profile
+      user_profile = user_assessment.subject&.user_profile
 
-      (items << maskable_identity&.first_name) || ''
-      (items << maskable_identity&.last_name) || ''
-      items << external_user_id
-      items << (user_profile&.age || '')
-      items << (user_profile&.gender&.humanize || '')
-
-      items.join('|')
+      [
+        user_profile&.age || '',
+        mhs_gender_code(user_profile) || '',
+        maskable_identity&.first_name || '',
+        maskable_identity&.last_name || '',
+        external_user_id
+      ].join('|')
     end
 
     def generate_thumbprint
@@ -153,8 +152,12 @@ module Mhs
       )
     end
 
+    def mhs_gender_code(user_profile)
+      MHS_GENDER_CODES[user_profile&.gender]
+    end
+
     def demographics_form_id
-      observation_set = assessment_settings&.observation_sets&.find { |os| os.name == 'Demographics (Unscored)' }
+      observation_set = assessment_settings&.observation_sets&.find { |os| os.name == 'Demographics (Scored)' }
       observation_set&.source_id
     end
 

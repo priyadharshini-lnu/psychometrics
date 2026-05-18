@@ -11,6 +11,8 @@ module Administration
         resource.update_norm!(params[:norm_id])
         ::UsersResults::Recompute.call!(user_result, current_user)
 
+        audit! :update_norm, resource, payload: { norm_id: params[:norm_id] }, campaign: resource.campaign
+
         render json: { norm_name: resource.norm_name }
       end
 
@@ -197,7 +199,8 @@ module Administration
 
       def toggle_prework
         resource.update!(prework: params[:prework])
-
+        audit! :toggle_prework, resource, user: current_user, campaign: resource.campaign,
+          payload: { prework: params[:prework] }
         render json: Administration::UserAssessmentSerializer.new(
           context: {
             current_user: current_user,

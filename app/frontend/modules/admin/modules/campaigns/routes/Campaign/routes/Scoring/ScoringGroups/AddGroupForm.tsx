@@ -3,7 +3,7 @@ import {
   Drawer, Form, Input, Button,
 } from 'antd'
 import { Store } from 'antd/es/form/interface'
-import { FormInstance } from 'antd/lib'
+import { FormInstance } from 'antd/es/form'
 import { DirectionalNavigateBackIcon } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { CampaignFactorGroup } from './GroupCard'

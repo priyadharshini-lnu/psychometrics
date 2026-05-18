@@ -110,6 +110,7 @@ module Administration
       end
 
       def destroy
+        audit! :destroy, resource, payload: { id: resource.id }, campaign: campaign
         ::Assessors::Remove.call!(resource)
 
         render json: resource.id

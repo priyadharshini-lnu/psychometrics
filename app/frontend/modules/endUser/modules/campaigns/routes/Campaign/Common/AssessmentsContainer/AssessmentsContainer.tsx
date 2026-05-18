@@ -328,7 +328,7 @@ export const AssessmentsContainer = ({
 }
 
 const getProctoringMsgOnWorkshop = (campaignOptions, canNotStartWorkshopActivity, isProctored) => {
-  if (!campaignOptions.proctoringEnabled) return null
+  if (!campaignOptions.proctoringEnabled || campaignOptions.selectiveProctoringEnabled) return null
 
   if (!campaignOptions.proctoringEnabledOnWorkshopActivity) {
     if (isProctored) {

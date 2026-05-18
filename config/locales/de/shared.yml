@@ -32,6 +32,7 @@ de:
     change_password: Passwort ändern
     clear_filters: Filter löschen
     client: Kunde
+    close: Schließen
     collaborative_learning: Kollaboratives Lernen
     completed: Abgeschlossen
     configurations: Konfigurationen
@@ -40,19 +41,24 @@ de:
     controller: Steuergerät
     cookie_notice: Hinweis zu Cookies
     cookies_statement: Cookie-Erklärung
+    copied_successfully: Erfolgreich kopiert
     copied_to_clipboard: In die Zwischenablage kopiert
     copy: Kopie
+    create: Erstellen
     created_at: Erstellt am
     created_date: Erstellt am
+    created_successfully: Erfolgreich erstellt
     custom_acknowledgment_text: Benutzerdefinierter Danksagungstext
     custom_acknowledgment_text_required: Für die Rolle „Controller-Daten“ ist ein benutzerdefinierter Bestätigungstext erforderlich
     custom_consent_text: Benutzerdefinierter Einwilligungstext
     custom_consent_text_required: Für die Datenrolle des Verantwortlichen ist ein benutzerdefinierter Einwilligungstext erforderlich.
     data_role: Datenrolle
     decline: Ablehnen
+    delete: Löschen
     description: Beschreibung
     desktop_or_laptop_recommended: Desktop oder Laptop empfohlen
     desktop_or_laptop_required: Desktop-PC oder Laptop erforderlich
+    disabled: Deaktiviert
     download: Herunterladen
     download_audio: Audio herunterladen
     download_transcription: Transkription herunterladen
@@ -60,9 +66,12 @@ de:
     edit: Bearbeiten
     edited: Neu
     email: E-Mail
+    ending_proctoring_session_msg: Wir beenden nun die Prüfungssitzung. <p>Bitte haben Sie einen Moment Geduld, während wir Ihre Antworten speichern und Sie zurück zur Startseite leiten.</p>
+    error: Fehler
     export: Exportieren
     failed: Fehlgeschlagen
     'false': false
+    file: Datei
     first_name: Vorname
     formal_learning: Formales Lernen
     generate: Generieren
@@ -105,6 +114,8 @@ de:
     no_results_found: Keine Ergebnisse gefunden
     not_requested: Noch nicht angefordert
     ok: Ok
+    options: Optionen
+    owner: Eigentümer
     pending: Ausstehend
     policy_version: Richtlinienversion
     policy_version_format: Es sind nur ganze Zahlen zulässig.
@@ -142,6 +153,8 @@ de:
     status_unknown: Status unbekannt
     subject: Betreff
     submit: Einreichen
+    submit_and_finish_proctoring: Einreichen und Überwachung beenden
+    suspended: Ausgesetzt
     switch_to_laptop_or_desktop: Wechseln Sie zu Laptop oder Desktop
     table:
       entries:
@@ -165,6 +178,7 @@ de:
     type: Typ
     update: Aktualisieren
     update_failed: Aktualisierung fehlgeschlagen
+    updated_at: Aktualisiert am
     updated_successfully: Erfolgreich aktualisiert
     video: Video
     view: Ansicht

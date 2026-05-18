@@ -67,6 +67,8 @@ module Api
           action_type: 'Import',
           resource: 'DevelopmentAction'
         )
+        audit! :import_development_actions, nil, user: current_user, project: project,
+          payload: { project_id: project.id, row_count: form.row_count }
         AdminJob.call(
           :import_development_actions,
           { project_id: project.id },
@@ -106,6 +108,8 @@ module Api
     end
 
     def export
+      audit! :export_development_actions, nil, user: current_user, project: project,
+         payload: { project_id: project.id }
       AdminJob.call(
         :export_development_actions,
         { project_id: project.id },
@@ -131,6 +135,8 @@ module Api
       )
 
       if form.valid?
+        audit! :import_development_action_translations, nil, user: current_user, project: project,
+          payload: { project_id: project.id, row_count: form.row_count }
         AdminJob.call(
           :import_development_action_translations,
           { project_id: project.id },
@@ -164,6 +170,8 @@ module Api
     end
 
     def export_translations
+      audit! :export_development_action_translations, nil, user: current_user, project: project,
+          payload: { project_id: project.id }
       AdminJob.call(
         :export_development_action_translations,
         { project_id: project.id },

@@ -959,7 +959,6 @@ it:
         prework_required: Non consentire la prenotazione del centro se i lavori preliminari non sono stati completati
         prework_required_for_invite: Inviare l'e-mail di invito solo quando il Pre-Work è stato completato
         proctoring:
-          allow_on_assessment_center: Consentire il proctoring nel centro di valutazione
           enable: Abilitare la correzione dei test
           identification: Identificazione
           identifications:
@@ -2772,12 +2771,10 @@ it:
     proctoring_sessions:
       columns:
         comment: Commento
-        completed_at: Completati
         conclusion: Conclusione
         links: Collegamenti
         score: Punteggio
         session_id: ID della sessione
-        started_at: Iniziato
       links:
         report: Rapporto
         review: Recensione
@@ -3000,6 +2997,7 @@ it:
               scheduling_invited: Programmazione Invitati
               scheduling_rescheduled: Programmazione Riprogrammata
               scheduling_scheduled: Programmazione Programmata
+              workshop_attendance_status: Stato di partecipazione al workshop
           url:
             label: Url
             name: url

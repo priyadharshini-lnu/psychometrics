@@ -12,6 +12,7 @@ ar:
     ai_idp_summary_hint_no_document: يمكنني الآن إعداد خطة تطويرية مخصّصة تتضمن خطوات عمليّة لدعم نمو مسيرتك المهنية. كما يمكنك إعادة بدء المحادثة لتعديل مدخلاتك عند الحاجة.
     all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
     approve_idp_plan: الموافقة على الخطة
+    assessment_misconfigured: خطأ في تكوين التقييم
     audio: صوتي
     audio_check: اختبار الميكروفون
     audio_check_description: تحقق من أن الميكروفون يعمل بشكل صحيح للتسجيل.
@@ -66,6 +67,7 @@ ar:
     error_uploading_video: حدث خطأ أثناء رفع الفيديو
     error_uploading_video_detail: حدث خطأ أثناء تحميل الفيديو
     fail: يفشل
+    file_submission_already_exists: لقد تلقينا إجابتك على هذا السؤال بالفعل. يرجى تحديث الصفحة، وإذا لم تتمكن من رؤية إجابتك السابقة، فيرجى الاتصال بالمسؤول.
     follow_these_steps: اتبع الخطوات التالية لحل المشكلات التي تم اكتشافها أثناء فحص النظام
     hide_details: إخفاء التفاصيل
     home: لوحة التحكم
@@ -95,6 +97,8 @@ ar:
     localstorage_fix_title: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك
     localstorage_not_enabled_detail: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك. يرجى التأكد من أنك لا تستخدم وضع التصفح الخاص/الخفي، لأن التخزين المحلي غالباً ما يكون معطلاً في هذه الأوضاع.
     localstorage_support: خاصية التخزين المحلي (Local Storage) مفعّلة
+    magic_link_interstitial_description: من أجل سلامتك، نطلب منك تأكيد عملية تسجيل الدخول هذه. لا يمكن للأنظمة الآلية إتمام هذه الخطوة.
+    magic_link_interstitial_title: لإتمام عملية تسجيل الدخول، يرجى النقر على الزر أدناه.
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
     media_recorder_api_fix_description_first: فعّل JavaScript في إعدادات المتصفح
     media_recorder_api_fix_description_second: تحقّق من أن متصفحك يدعم MediaRecorder API وقم بالتحديث إلى أحدث إصدار إذا لزم الأمر
@@ -124,6 +128,8 @@ ar:
     personal_readiness: الجاهزية الشخصية
     plan_text: خطّط لإجراء التقييم بشكل كامل. بعد البدء، قد لا يُسمح ببأخذ استراحات، وذلك حسب نوع التقييم
     please_check_your_internet_connection: يُرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
+    proctored: تحت إشراف
+    proctored_assessment_misconfigured_msg: هذا الاختبار يخضع للإشراف، لكنه يفتقر إلى الإعدادات الزمنية اللازمة؛ يرجى الاتصال بالمسؤول.
     profile: تفاصيلي
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}
@@ -182,6 +188,7 @@ ar:
     system_check_start_recording: بدء التسجيل
     system_check_stop_recording: توقف عن التسجيل
     system_check_test_message: سُررت بالتحدث معك
+    system_check_timer_msg: أكمل جميع عمليات التحقق وابدأ الاختبار خلال المدة الموضحة أدناه. إذا لم تبدأ الاختبار خلال هذه المدة، فستنتهي جلسة المراقبة وستضطر إلى البدء من جديد.
     system_check_upload_again: تحميل مرة أخرى
     system_check_uploading: جاري التحميل
     system_check_video_random_phrase: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الفيديو والميكروفون يعملان بشكل صحيح.
@@ -193,6 +200,7 @@ ar:
     testing_download_speed: اختبار سرعة التنزيل...
     testing_upload_speed: اختبار سرعة التحميل...
     time_commitment: الوقت المطلوب لإكمال المهمة
+    timed_activity_instruction: هذه مهمة محددة بوقت، وبعد بدء جلسة المراقبة، سيكون أمامك <strong>%{time} دقيقة</strong> لإكمالها.
     troubleshooting_guide: دليل استكشاف الأخطاء وإصلاحها
     troubleshooting_guide_audio_fifth: 'على نظام Windows: تحقق من إعدادات الخصوصية > الوصول إلى الميكروفون.'
     troubleshooting_guide_audio_first: انقر على أيقونة القفل/المعلومات في شريط العنوان بمتصفحك.

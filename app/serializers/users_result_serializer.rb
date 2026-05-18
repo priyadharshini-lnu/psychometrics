@@ -32,7 +32,11 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def privacy_consent_required
-    current_user.privacy_consent_required?
+    if user_assessment.assessment.data_role_controller?
+      user_assessment.not_started? || user_assessment.data_controller_consent_required?(current_user)
+    else
+      current_user.privacy_consent_required?
+    end
   end
 
   def hash_id
@@ -40,10 +44,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def proctoring_enabled
-    return false unless current_campaign_user&.proctoring_enabled?
-    return current_campaign_user.proctoring_enabled_on_workshop_activity? if workshop_activity?
-
-    current_campaign_user.proctoring_enabled?
+    user_assessment.proctoring_enabled?
   end
 
   def remaining_assessment_time
@@ -155,8 +156,11 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def media_responses
+    valid_media_responses = object.media_responses.order(:created_at).select do |media_response|
+      media_response.asset.attached?
+    end
     Panko::ArraySerializer.new(
-      object.media_responses.order(:created_at),
+      valid_media_responses,
       each_serializer: MediaResponseSerializer
     ).to_a
   end

@@ -12,6 +12,12 @@ module Administration
           required(:internal).filled(:bool?)
           required(:status).filled(:str?)
           required(:report_url).maybe(:str?)
+          optional(:unavailability_reason_details).hash do
+            required(:available).filled(:bool?)
+            required(:reason_code).filled(:str?)
+            required(:reason_message).filled(:str?)
+            optional(:approval_status).maybe(:str?)
+          end
         end
       end
     end

@@ -2160,7 +2160,8 @@ CREATE TABLE public.campaign_assessments (
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint,
-    caching_enabled boolean DEFAULT false
+    caching_enabled boolean DEFAULT false,
+    proctoring_enabled boolean DEFAULT false
 );
 
 
@@ -2434,6 +2435,7 @@ CREATE TABLE public.campaign_options (
     workshop_invite_requires_prework_completion boolean DEFAULT false,
     proctoring_enabled_on_workshop_activity boolean DEFAULT true,
     enable_video_call_recording boolean DEFAULT false NOT NULL,
+    selective_proctoring_enabled boolean DEFAULT false,
     system_check_enabled boolean DEFAULT false NOT NULL,
     system_check_validity integer DEFAULT 86400,
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
@@ -5672,7 +5674,8 @@ CREATE TABLE public.proctoring_sessions (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     invalid_session boolean DEFAULT false,
-    last_status_checked_at timestamp without time zone
+    last_status_checked_at timestamp without time zone,
+    user_assessment_id bigint
 );
 
 
@@ -15436,6 +15439,13 @@ CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_
 
 
 --
+-- Name: index_proctoring_sessions_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proctoring_sessions_on_user_assessment_id ON public.proctoring_sessions USING btree (user_assessment_id);
+
+
+--
 -- Name: index_proficiency_level_translations_on_proficiency_level_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -19595,6 +19605,14 @@ ALTER TABLE ONLY public.media_responses
 
 
 --
+-- Name: proctoring_sessions fk_rails_cbf6ba4401; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT fk_rails_cbf6ba4401 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: assessments_clients fk_rails_cc339dda78; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20361,6 +20379,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260507091734'),
+('20260212131448'),
+('20260504120000'),
 ('20260417093000'),
 ('20260424120000'),
 ('20260331100000'),
@@ -20424,6 +20445,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260106133315'),
 ('20260102064238'),
 ('20260102051528'),
+('20260113121455'),
 ('20251217070713'),
 ('20251216163732'),
 ('20251215073428'),

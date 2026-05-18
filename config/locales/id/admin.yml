@@ -21,6 +21,7 @@ id:
     admin_roles: Peran Admin
     admin_updated_successfully: Admin '%{name}' berhasil diperbarui
     admins: Admin
+    advanced: Lanjutan
     ai_artifact_result_generation_admin_job_failed: Artefak '%{artifact_name}' tidak dapat dihasilkan untuk Pengguna '%{user_email}'
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
@@ -117,6 +118,7 @@ id:
     allow_continue_with_warning_system_check: Izinkan pengguna untuk melanjutkan meskipun muncul peringatan saat pemeriksaan sistem gagal
     api_keys: Kunci API
     apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
+    assessment: Penilaian
     assessment_center_activity: Kegiatan
     assessment_center_assessor: Penilai
     assessment_center_attendance: Kehadiran
@@ -147,6 +149,12 @@ id:
     available_languages: Laporan tersedia dalam bahasa
     average: Rata-rata
     back_to_main: Menu Utama
+    block_editor_add_question: Tambahkan Pertanyaan
+    block_editor_question_randomization: Pengacakan Pertanyaan
+    block_options: Opsi Blok
+    block_settings: Pengaturan Blok
+    blocks_new_button: Blok Baru
+    blocks_title: Blok
     bulk_assets_modal_choose_csv: Pilih Berkas CSV
     bulk_assets_modal_choose_zip: Pilih Berkas ZIP
     bulk_assets_modal_not_csv_file_error: Hanya berkas CSV yang diizinkan untuk unggahan CSV. Silakan unggah berkas CSV yang valid.
@@ -159,6 +167,15 @@ id:
     campaign_assessment_actions_disable_caching: Nonaktifkan Penilaian Caching
     campaign_assessment_actions_enable_caching: Mengaktifkan Penilaian Caching
     campaign_assessment_column_caching_enabled: Caching Penilaian Diaktifkan
+    campaign_assessment_column_hogan_assessment_id: ID Penilaian Hogan
+    campaign_assessment_column_hogan_form_id: Formulir Identitas Hogan
+    campaign_assessment_column_pearson_assessment_id: ID Penilaian Pearson
+    campaign_assessment_column_pearson_assessment_language: Bahasa Penilaian Pearson
+    campaign_assessment_column_pearson_error_details: Rincian Kesalahan Pearson
+    campaign_assessment_column_pearson_product_id: Kode Produk Pearson
+    campaign_assessment_column_saville_error_code: Kode Kesalahan Saville
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: ID Permintaan Saville
     campaign_assessment_mhs_confidence_interval: Interval Kepercayaan
     campaign_assessment_mhs_confidence_interval_update_success: Interval kepercayaan telah diperbarui dengan sukses.
     campaign_assessment_mhs_invalid_confidence_interval: Interval kepercayaan harus 0 atau 1
@@ -203,6 +220,7 @@ id:
     campaigns: Kampanye
     cancel: Batalkan
     cancellation_and_rescheduling_disabled: Pembatalan dan Penjadwalan Ulang dinonaktifkan
+    captcha: Verifikasi Captcha
     casual: Santai
     cell_save_msg: Perubahan yang valid akan disimpan secara otomatis begitu Anda keluar dari sel setelah mengedit.
     characters: karakter
@@ -219,10 +237,13 @@ id:
     concise: Ringkas
     configure_model_answer_title: Konfigurasikan Jawaban Model dan Kata Kunci
     confirm_remove_admin: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
+    confirmation_required: Diperlukan Konfirmasi
+    confirmation_required_details: Apakah Anda yakin ingin menghapus "%{resource_name}" dari %{resource}?
     copied: Dicopy
     copied_url_success: URL telah berhasil disalin ke papan klip
     copy_ai_artifacts: Salin Artefak AI
     copy_image_url: Salin URL Gambar
+    copy_url: Salin URL
     country: Negara
     create_client: Buat Klien
     create_indicator: Buat Indikator
@@ -240,6 +261,7 @@ id:
     delete_ok_text: Ya, Hapus
     denied: Ditolak
     description: Deskripsi
+    descriptive_text: Teks Deskriptif
     development_actions: Tindakan Pengembangan
     development_actions_form_tags: Tag
     digest_delivery_mode:
@@ -262,10 +284,12 @@ id:
       wednesday: Rabu
     dimension_translations_export_scheduled: Terjadwalkan untuk mengekspor terjemahan untuk dimensi "%{name}".
     dimensions: Dimensi
+    disable_proctoring: Nonaktifkan Pengawasan
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     download_bulk_asset_download_example_csv: Unduh Contoh CSV.
     duration: Durasi
+    duration_must_be_positive: Nilai durasi harus positif
     edit_campaign_admin: Edit Admin Kampanye
     edit_client_admin: Edit Admin Klien
     edit_folder: Edit Folder
@@ -284,6 +308,7 @@ id:
     enable_system_check: Aktifkan Pemeriksaan Sistem
     enable_transcription: Aktifkan Transkripsi
     enable_transcription_msg: Aktifkan Transkripsi untuk menggunakan penilaian AI pada pertanyaan respons video/audio.
+    end: akhir
     end_time: Waktu Akhir
     end_time_must_be_after_start_time: Waktu akhir harus setelah waktu mulai.
     enhance_with_ai: Perkuat dengan AI
@@ -300,6 +325,8 @@ id:
     export_completion_status: Status Penyelesaian Ekspor
     export_completion_statuses_scheduled: Tugas ekspor status penyelesaian telah dijadwalkan dengan sukses.
     export_detailed_completion_status: Rinci
+    factor_feedback: Umpan Balik Faktor
+    factor_selection: Pemilihan Faktor
     factors: Faktor-faktor
     feature_ai_assistants_description: Aktifkan asisten yang didukung kecerdasan buatan (AI) untuk pengalaman pengguna yang lebih baik.
     feature_ai_assisted_idp_description: Gunakan kecerdasan buatan (AI) untuk membantu dalam memberikan rekomendasi terkait Perencanaan Pengembangan Pribadi.
@@ -323,6 +350,8 @@ id:
     formal: Formal
     from: Dari
     generate_transcription: Buat Transkrip
+    graphic: Grafik
+    graphic_slider: Slider Gambar
     hide_middle_scores: Sembunyikan skor tengah
     high: Tinggi
     hogan: Hogan
@@ -389,6 +418,7 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    linked_assessments: Penilaian Terkait
     low: Rendah
     maintenance: Perawatan
     maintenance_settings: Pengaturan Pemeliharaan
@@ -397,6 +427,7 @@ id:
     max_value: Nilai maksimum
     media_files_label: Berkas
     media_library: Perpustakaan Media
+    media_library_page_title: Perpustakaan Media - Dasbor - Mercer Lighthouse
     messages: Pesan
     mhs: MHS
     mhs_assessment: Penilaian MHS
@@ -409,6 +440,7 @@ id:
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
     minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
+    minimum_system_check_validity: Validitas Pemeriksaan Sistem pada tingkat Kampanye minimum harus 15 menit
     minimum_upload_speed: Kecepatan Unggah Minimum (dalam Mbps)
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     model_answer: Jawaban Contoh
@@ -420,6 +452,7 @@ id:
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
     no_status: Tanpa Status
+    norm_editor_numeric_value_error: Hanya nilai numerik yang diperbolehkan (bilangan bulat atau desimal).
     norms: Norma
     not_completed: Belum Selesai
     not_completed_tooltip: "%{completed} evaluator ditugaskan tetapi hanya %{submitted} yang telah menyelesaikan evaluasi"
@@ -864,6 +897,11 @@ id:
     precision: Ketepatan
     privacy: Privasi
     proctoring: Pengawasan
+    proctoring_errors_timed_only: Pengawasan selektif hanya dapat diaktifkan untuk penilaian yang dibatasi waktu.
+    proctoring_fixed_time_required: Aktifkan Waktu Tetap untuk memilih opsi ini
+    proctoring_mode_all: Aktifkan pengawasan pada semua penilaian
+    proctoring_mode_all_except_ac: Aktifkan pengawasan pada semua penilaian kecuali di pusat penilaian
+    proctoring_settings: Pengaturan Pengawasan
     professional: Profesional
     proficiency: Kemahiran
     proficiency_level: Kunci API
@@ -876,7 +914,32 @@ id:
     projects: Proyek
     prompt: Perintah
     question_center: Pusat Pertanyaan
+    question_center_page_title: Pusat Pertanyaan - Dasbor - Mercer Lighthouse
+    question_editor_change_type: Ubah jenis
+    question_editor_click_to_write: Klik untuk menulis pertanyaan...
+    question_editor_copy_question: Salin Pertanyaan
+    question_editor_enable_transcription: Aktifkan transkripsi
+    question_editor_preview_question: Pertanyaan Pratinjau
+    question_editor_validation_type: Jenis validasi
+    question_randomization: Pengacakan Pertanyaan
+    question_type_audio_response: Respons Audio
+    question_type_constant_sum: Jumlah Tetap
+    question_type_file_upload: Unggah File
+    question_type_gap_analysis: Analisis Kesenjangan
+    question_type_hot_spot: Titik Panas
+    question_type_matrix_table: Tabel Matriks
+    question_type_meta_info: Informasi Tambahan
+    question_type_multiple_choice: Pilihan Ganda
+    question_type_pick_group_rank: Pilih Peringkat Grup
+    question_type_rank_order: Peringkat
+    question_type_side_by_side: Berdampingan
+    question_type_slider: Penggeser
+    question_type_text_entry: Masukan Teks
+    question_type_video_response: Tanggapan Video
     questions: Pertanyaan
+    questions_new_button: Pertanyaan Baru
+    questions_title: Pertanyaan
+    questions_type: Jenis
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Pertanyaan Refleksi
     regenerate_transcriptions_action: Perbarui Transkripsi
@@ -888,6 +951,7 @@ id:
     remove_children_to_change_type: Hapus semua anak untuk mengubah tipe
     remove_confirmation: Apakah Anda yakin ingin menghapus item ini?
     remove_successfully: Item media telah dihapus dengan sukses.
+    report_alias_save_confirmation: Jika Anda ingin menyimpan SEMUA perubahan di Report Builder dan juga di Aliases, silakan klik tombol 'SIMPAN'. Halaman akan dimuat ulang dan perubahan Anda akan berhasil diterapkan.
     report_approvals: Laporan Persetujuan
     report_condition_not_met: Membutuhkan evaluasi %{required} %{relationship}, tetapi hanya memiliki %{actual}
     report_conditions_not_met_detailed: Laporkan untuk %{user} tidak memenuhi persyaratan ketersediaan. %{conditions}
@@ -917,6 +981,7 @@ id:
     saml_service_provider_acs_urls_placeholder: Masukkan URL yang dipisahkan dengan koma, misalnya https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: URL ACS diperlukan
     saml_service_provider_action_delete_label: Menghapus
+    saml_service_provider_action_download_xml_label: Unduh XML
     saml_service_provider_action_edit_label: Mengedit
     saml_service_provider_action_rotate_certificate_label: Putar Sertifikat
     saml_service_provider_add: Tambahkan Penyedia Layanan SAML
@@ -958,6 +1023,7 @@ id:
     saml_settings: Pengaturan SAML
     save: Simpan
     save_assessment_for_scoring_management: Simpan Penilaian sebelum memulai proses Penilaian.
+    save_block: Simpan Blok
     saved_filter_label:
       approval_status_in: Status Persetujuan
       approver_user_id_in: Pemberi Persetujuan
@@ -1006,9 +1072,11 @@ id:
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
     select_start_time: Pilih Waktu Mulai
+    selective_proctoring: Pengawasan Terpilih
     send_email: Kirim email
     set_min_max_scores_warning: Silakan atur skor minimum dan maksimum untuk faktor ini untuk mengonfigurasi penilaian AI.
     settings: Pengaturan
+    settings_saved_successfully: Pengaturan telah disimpan dengan sukses
     show_all_assessment_responses: Tampilkan Semua Tanggapan Penilaian
     show_middle_scores: Tampilkan lebih banyak skor untuk "%{count}" (opsional)...
     show_original: Tampilkan Asli
@@ -1022,7 +1090,11 @@ id:
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
+    specialty_questions: Pertanyaan Khusus
+    standard_questions: Pertanyaan Standar
+    start: mulai
     start_time: Waktu Mulai
+    static_content: Konten Statis
     stats: Statistik
     status_details: Detail Status
     structured_learning: Pembelajaran Formal [10]
@@ -1031,7 +1103,10 @@ id:
     target_job_role: Posisi Pekerjaan yang Dituju
     this_field_is_required: Kolom ini wajib diisi.
     threesixty: Kampanye 360
+    timed_label: 'Tautan: %{time_text}'
+    timelines: Jadwal
     timezone: Zona Waktu
+    timing: Waktu
     to: Kepada
     tone: Nada
     toolbar_ai_insight: Wawasan Kecerdasan Buatan

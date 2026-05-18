@@ -21,6 +21,7 @@ it:
     admin_roles: Ruoli amministrativi
     admin_updated_successfully: L'amministratore '%{name}' è stato aggiornato con successo
     admins: Amministratori
+    advanced: Avanzato
     ai_artifact_result_generation_admin_job_failed: Impossibile generare l'artefatto "%{artifact_name}" per l'utente "%{user_email}".
     ai_artifact_result_stale: Il risultato potrebbe non essere aggiornato poiché le dipendenze dell'artefatto AI sono cambiate dall'ultima volta che è stato generato il risultato. Valutare la possibilità di rigenerare l'artefatto per generarlo con le dipendenze più recenti.
     ai_artifacts: Artefatti AI
@@ -117,6 +118,7 @@ it:
     allow_continue_with_warning_system_check: Consentire agli utenti di proseguire nonostante gli avvisi in caso di errore durante il controllo di sistema
     api_keys: Chiavi API
     apply_to_existing_users: Applica questa modifica agli utenti esistenti in questa campagna
+    assessment: Valutazione
     assessment_center_activity: Attività
     assessment_center_assessor: Assessore
     assessment_center_attendance: Presenze
@@ -147,6 +149,12 @@ it:
     available_languages: Report disponibile nelle lingue
     average: Media
     back_to_main: Menù principale
+    block_editor_add_question: Aggiungi una domanda
+    block_editor_question_randomization: Randomizzazione delle domande
+    block_options: Opzioni blocco
+    block_settings: Impostazioni blocco
+    blocks_new_button: Nuovo blocco
+    blocks_title: Blocchi
     bulk_assets_modal_choose_csv: Scegli file CSV
     bulk_assets_modal_choose_zip: Scegli file ZIP
     bulk_assets_modal_not_csv_file_error: Per il caricamento CSV sono ammessi solo file CSV. Caricare un file CSV valido.
@@ -159,6 +167,15 @@ it:
     campaign_assessment_actions_disable_caching: Disabilita la cache di valutazione
     campaign_assessment_actions_enable_caching: Abilita la Valutazione Cache
     campaign_assessment_column_caching_enabled: Cache di valutazione abilitata
+    campaign_assessment_column_hogan_assessment_id: ID valutazione Hogan
+    campaign_assessment_column_hogan_form_id: Codice identificativo Hogan
+    campaign_assessment_column_pearson_assessment_id: ID valutazione Pearson
+    campaign_assessment_column_pearson_assessment_language: Lingua dei test Pearson
+    campaign_assessment_column_pearson_error_details: Dettagli sull'errore di Pearson
+    campaign_assessment_column_pearson_product_id: Codice prodotto Pearson
+    campaign_assessment_column_saville_error_code: Codice di errore Saville
+    campaign_assessment_column_saville_norm_id: Codice Saville Norm
+    campaign_assessment_column_saville_request_id: ID richiesta Saville
     campaign_assessment_mhs_confidence_interval: Intervallo di confidenza
     campaign_assessment_mhs_confidence_interval_update_success: Intervallo di confidenza aggiornato con successo
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval deve essere 0 o 1
@@ -203,6 +220,7 @@ it:
     campaigns: Campagne
     cancel: Annulla
     cancellation_and_rescheduling_disabled: La cancellazione e la riprogrammazione sono disabilitate
+    captcha: Verifica Captcha
     casual: Casual
     cell_save_msg: Le modifiche valide vengono salvate automaticamente non appena si esce dalla cella dopo averla modificata.
     characters: personaggi
@@ -219,10 +237,13 @@ it:
     concise: Conciso
     configure_model_answer_title: Configurare la risposta modello e le parole chiave
     confirm_remove_admin: Si è sicuri di voler rimuovere l'utente admin con l'email '%{email}'?
+    confirmation_required: È richiesta la conferma
+    confirmation_required_details: Sei sicuro di voler eliminare il file "%{resource_name}" dalla cartella "%{resource}"?
     copied: Copiato
     copied_url_success: L'URL è stato copiato correttamente negli appunti
     copy_ai_artifacts: Copia degli artefatti AI
     copy_image_url: Copia l'URL dell'immagine
+    copy_url: Copia l'URL
     country: Paese
     create_client: Creare il cliente
     create_indicator: Crea indicatore
@@ -240,6 +261,7 @@ it:
     delete_ok_text: Sì, elimina
     denied: Negato
     description: Descrizione
+    descriptive_text: Testo descrittivo
     development_actions: Azioni di sviluppo
     development_actions_form_tags: Tag
     digest_delivery_mode:
@@ -262,10 +284,12 @@ it:
       wednesday: mercoledì
     dimension_translations_export_scheduled: Esportazione delle traduzioni pianificate per la dimensione "%{name}".
     dimensions: Dimensioni
+    disable_proctoring: Disattiva la sorveglianza
     done: Fatto
     done_tooltip: Non è possibile sottoporre ulteriori valutazioni per questo utente poiché la valutazione di quest'utente viene contrassegnata come effettuata da %{marked_by}
     download_bulk_asset_download_example_csv: Scarica esempio CSV.
     duration: Durata
+    duration_must_be_positive: La durata deve essere un numero positivo
     edit_campaign_admin: Modifica dell'amministrazione della campagna
     edit_client_admin: Modifica dell'amministrazione del cliente
     edit_folder: Modifica cartella
@@ -284,6 +308,7 @@ it:
     enable_system_check: Attiva il controllo del sistema
     enable_transcription: Abilita trascrizione
     enable_transcription_msg: Abilita la trascrizione per utilizzare il punteggio AI sulle domande con risposta video/audio.
+    end: fine
     end_time: Ora di fine
     end_time_must_be_after_start_time: L'ora di fine deve essere successiva all'ora di inizio
     enhance_with_ai: Migliora con l'AI
@@ -300,6 +325,8 @@ it:
     export_completion_status: Stato di completamento dell'esportazione
     export_completion_statuses_scheduled: Il processo di esportazione degli stati di completamento è stato pianificato correttamente.
     export_detailed_completion_status: Dettagliato
+    factor_feedback: Feedback sui fattori
+    factor_selection: Selezione dei fattori
     factors: Fattori
     feature_ai_assistants_description: Abilita gli assistenti basati sull'intelligenza artificiale per migliorare l'esperienza utente
     feature_ai_assisted_idp_description: Utilizza l'intelligenza artificiale per assistere nella formulazione di raccomandazioni relative alla pianificazione dello sviluppo individuale.
@@ -323,6 +350,8 @@ it:
     formal: Formale
     from: Da
     generate_transcription: Genera trascrizione
+    graphic: Grafica
+    graphic_slider: Slider grafico
     hide_middle_scores: Nascondi punteggi medi
     high: Alto
     hogan: Hogan
@@ -389,6 +418,7 @@ it:
     libraries: Biblioteca multimediale
     library_invalid_type: Voce della biblioteca invalida
     licenses: Licenze
+    linked_assessments: Valutazioni correlate
     low: Basso
     maintenance: Manutenzione
     maintenance_settings: Impostazioni di manutenzione
@@ -397,6 +427,7 @@ it:
     max_value: Valore massimo
     media_files_label: File
     media_library: Raccolta multimediale
+    media_library_page_title: Libreria multimediale - Pannello di controllo - Mercer Lighthouse
     messages: Messaggi
     mhs: MHS
     mhs_assessment: Valutazione MHS
@@ -409,6 +440,7 @@ it:
     min_value: Valore minimo
     minimum_10_words: Minimo 10 parole
     minimum_download_speed: Velocità minima di download (in Mbps)
+    minimum_system_check_validity: Il livello minimo della campagna per la validità del controllo di sistema deve essere di 15 minuti
     minimum_upload_speed: Velocità minima di upload (in Mbps)
     missing_min_max_values: Sono richiesti valori minimi e massimi.
     model_answer: Risposta modello
@@ -420,6 +452,7 @@ it:
     no_file_selected: Nessun file selezionato
     no_notifications: Nessun messaggio
     no_status: Nessuno stato
+    norm_editor_numeric_value_error: Sono ammessi solo valori numerici (numeri interi o decimali).
     norms: Norme
     not_completed: Non completato
     not_completed_tooltip: "%{completed} valutatori vengono assegnati, ma solo %{submitted} hanno completato le valutazioni"
@@ -864,6 +897,11 @@ it:
     precision: Precisione
     privacy: La privacy
     proctoring: Sorveglianza
+    proctoring_errors_timed_only: La sorveglianza selettiva può essere attivata solo per le valutazioni a tempo.
+    proctoring_fixed_time_required: Attiva "Tempo fisso" per selezionare questa opzione
+    proctoring_mode_all: Abilita la sorveglianza per tutte le valutazioni
+    proctoring_mode_all_except_ac: Abilita la sorveglianza su tutte le valutazioni, ad eccezione dell'assessment center
+    proctoring_settings: Impostazioni di sorveglianza
     professional: Professionale
     proficiency: Competenza
     proficiency_level: Chiavi API
@@ -876,7 +914,32 @@ it:
     projects: Progetti
     prompt: Sollecito
     question_center: Centro domande
+    question_center_page_title: Centro domande - Pannello di controllo - Mercer Lighthouse
+    question_editor_change_type: Cambia tipo
+    question_editor_click_to_write: Clicca qui per inserire il testo della domanda...
+    question_editor_copy_question: Copia domanda
+    question_editor_enable_transcription: Abilita la trascrizione
+    question_editor_preview_question: Domanda di anteprima
+    question_editor_validation_type: Tipo di convalida
+    question_randomization: Randomizzazione delle domande
+    question_type_audio_response: Risposta audio
+    question_type_constant_sum: Somma costante
+    question_type_file_upload: Caricamento file
+    question_type_gap_analysis: Analisi delle lacune
+    question_type_hot_spot: Punto caldo
+    question_type_matrix_table: Tabella a matrice
+    question_type_meta_info: Informazioni generali
+    question_type_multiple_choice: Domanda a scelta multipla
+    question_type_pick_group_rank: Seleziona il gruppo e la posizione in classifica
+    question_type_rank_order: Classifica
+    question_type_side_by_side: Fianco a fianco
+    question_type_slider: Cursore
+    question_type_text_entry: Inserimento testo
+    question_type_video_response: Risposta video
     questions: Domande
+    questions_new_button: Nuova domanda
+    questions_title: Domanda
+    questions_type: Tipo
     range_min_max: GAMMA%{min} - %{max}
     reflection_questions: Domande di riflessione
     regenerate_transcriptions_action: Rigenera trascrizioni
@@ -888,6 +951,7 @@ it:
     remove_children_to_change_type: Rimuovere tutti i figli per modificare il tipo
     remove_confirmation: Sei sicuro di voler eliminare questo elemento?
     remove_successfully: L'elemento multimediale è stato rimosso correttamente.
+    report_alias_save_confirmation: Se desideri salvare TUTTE le modifiche apportate in Report Builder e anche in Alias, clicca sul pulsante "SALVA". La pagina verrà ricaricata e le modifiche saranno applicate correttamente.
     report_approvals: Approvazione report
     report_condition_not_met: Ha bisogno di %{required} %{relationship} valutazione, ma ha solo %{actual}
     report_conditions_not_met_detailed: Il rapporto per %{user} non soddisfa le condizioni di disponibilità. %{conditions}
@@ -917,6 +981,7 @@ it:
     saml_service_provider_acs_urls_placeholder: Inserisci URL separati da virgole, ad esempio https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Gli URL ACS sono obbligatori
     saml_service_provider_action_delete_label: Cancellare
+    saml_service_provider_action_download_xml_label: Scarica XML
     saml_service_provider_action_edit_label: Redigere
     saml_service_provider_action_rotate_certificate_label: Certificato di rotazione
     saml_service_provider_add: Aggiungi un fornitore di servizi SAML
@@ -958,6 +1023,7 @@ it:
     saml_settings: Impostazioni SAML
     save: Salva
     save_assessment_for_scoring_management: Salva la valutazione prima di iniziare con il punteggio.
+    save_block: Salva blocco
     saved_filter_label:
       approval_status_in: Stato dell'approvazione
       approver_user_id_in: Responsabile dell'approvazione
@@ -1006,9 +1072,11 @@ it:
     select_language_to_translate: Seleziona la lingua da tradurre
     select_level: Seleziona livello
     select_start_time: Seleziona l'ora di inizio
+    selective_proctoring: Sorveglianza selettiva
     send_email: Inviare l'e-mail
     set_min_max_scores_warning: Imposta i punteggi minimo e massimo per questo fattore per configurare il punteggio AI.
     settings: Impostazioni
+    settings_saved_successfully: Impostazioni salvate con successo
     show_all_assessment_responses: Mostra tutte le risposte alla valutazione
     show_middle_scores: Mostra altri punteggi di %{count} (facoltativo)...
     show_original: Mostra originale
@@ -1022,7 +1090,11 @@ it:
     slot_name: Nome della Slot
     sms_histories: Storie di SMS
     sms_invites: Inviti via SMS
+    specialty_questions: Domande specifiche
+    standard_questions: Domande standard
+    start: Inizia
     start_time: Ora di inizio
+    static_content: Contenuti statici
     stats: Statistiche
     status_details: Dettagli di stato
     structured_learning: Apprendimento Formale [10]
@@ -1031,7 +1103,10 @@ it:
     target_job_role: Ruolo lavorativo target
     this_field_is_required: Questo campo è obbligatorio
     threesixty: Campagna a 360 gradi
+    timed_label: 'Link: %{time_text}'
+    timelines: Cronologie
     timezone: Fuso orario
+    timing: Tempistica
     to: A
     tone: Tono
     toolbar_ai_insight: Approfondimento sull'intelligenza artificiale

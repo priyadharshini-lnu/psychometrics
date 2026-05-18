@@ -21,6 +21,7 @@ sr-Latn:
     admin_roles: Uloge administratora
     admin_updated_successfully: Administrator '%{name}' je uspešno ažuriran
     admins: Admini
+    advanced: Напредно
     ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
     ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта са најновијим зависностима.
     ai_artifacts: AI artefakti
@@ -117,6 +118,7 @@ sr-Latn:
     allow_continue_with_warning_system_check: Дозволите корисницима да наставе са упозорењима када системска провера не успе.
     api_keys: API ključevi
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи
+    assessment: Оцењивање
     assessment_center_activity: Активност
     assessment_center_assessor: Процењивач
     assessment_center_attendance: Посећеност
@@ -147,6 +149,12 @@ sr-Latn:
     available_languages: Izveštaj dostupan na jezicima
     average: Просечно
     back_to_main: Glavni meni
+    block_editor_add_question: Додај питање
+    block_editor_question_randomization: Насумичност питања
+    block_options: Опције блока
+    block_settings: Подешавања блока
+    blocks_new_button: Нови блок
+    blocks_title: Блокови
     bulk_assets_modal_choose_csv: Изаберите CSV фајл
     bulk_assets_modal_choose_zip: Изаберите ZIP фајл
     bulk_assets_modal_not_csv_file_error: За учитавање CSV фајлова дозвољени су само CSV фајлови. Молимо вас да отпремите важећи CSV фајл.
@@ -159,6 +167,15 @@ sr-Latn:
     campaign_assessment_actions_disable_caching: Onemogući keširanje procene
     campaign_assessment_actions_enable_caching: Omogućite keširanje procene
     campaign_assessment_column_caching_enabled: Omogućeno keširanje procene
+    campaign_assessment_column_hogan_assessment_id: Хоган идентификација процене
+    campaign_assessment_column_hogan_form_id: Хоган ИД обрасца
+    campaign_assessment_column_pearson_assessment_id: Пирсон ИД за процену
+    campaign_assessment_column_pearson_assessment_language: Пирсон асесмент језик
+    campaign_assessment_column_pearson_error_details: Детаљи о грешкама Пирсона
+    campaign_assessment_column_pearson_product_id: Идентификациони број производа Пирсона
+    campaign_assessment_column_saville_error_code: Савил код грешке
+    campaign_assessment_column_saville_norm_id: Савил Норм ИД
+    campaign_assessment_column_saville_request_id: Идентификатор захтева Савила
     campaign_assessment_mhs_confidence_interval: Поверљиви интервал
     campaign_assessment_mhs_confidence_interval_update_success: Поверљиви интервал успешно ажуриран
     campaign_assessment_mhs_invalid_confidence_interval: interвал_поуздања мора бити 0 или 1
@@ -203,6 +220,7 @@ sr-Latn:
     campaigns: Kampanje
     cancel: Откажи
     cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
+    captcha: Капча верификација
     casual: Неформално
     cell_save_msg: Важеће измене се аутоматски сачувају чим напустите ћелију након уређивања.
     characters: ликови
@@ -219,10 +237,13 @@ sr-Latn:
     concise: Сажето
     configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Da li ste sigurni da želite da uklonite administratora korisnika sa imejlom '%{email}'?
+    confirmation_required: Потврда је неопходна
+    confirmation_required_details: Да ли сте сигурни да желите да избришете "%{resource_name}"?
     copied: Копирано
     copied_url_success: URL је успешно копиран у међуспречник
     copy_ai_artifacts: Копирајте АИ артефакте
     copy_image_url: Копирајте УРЛ слике
+    copy_url: Копирај УРЛ
     country: Država
     create_client: Kreiraj klijenta
     create_indicator: Креирајте индикатор
@@ -240,6 +261,7 @@ sr-Latn:
     delete_ok_text: Da, Izbriši
     denied: Odbijen
     description: Опис
+    descriptive_text: Описни текст
     development_actions: Razvojne akcije
     development_actions_form_tags: Bilten
     digest_delivery_mode:
@@ -262,10 +284,12 @@ sr-Latn:
       wednesday: Среда
     dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Dimenzije
+    disable_proctoring: Онемогућите надзор
     done: Uradio
     done_tooltip: Za ovog korisnika se više ne može dostaviti evaluacija jer je evaluacija ovog korisnika označena kao urađeno od strane %{marked_by}
     download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
     duration: Трајање
+    duration_must_be_positive: Трајање мора бити позитивно
     edit_campaign_admin: Uredi administratora kampanje
     edit_client_admin: Uredi administratora klijenta
     edit_folder: Уреди фасциклу
@@ -284,6 +308,7 @@ sr-Latn:
     enable_system_check: Омогући преглед система
     enable_transcription: Омогући транскрипцију
     enable_transcription_msg: Омогућите транскрипцију за коришћење АИ бодовања на видео/аудио питањима са одговорима.
+    end: крај
     end_time: Кrajње време
     end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai: Унапредите помоћу вештачке интелигенције
@@ -300,6 +325,8 @@ sr-Latn:
     export_completion_status: Статус завршетка извоза
     export_completion_statuses_scheduled: Извоз задатака за статусе завршетка је успешно заказан
     export_detailed_completion_status: Детаљно
+    factor_feedback: Фактор повратне информације
+    factor_selection: Избор фактора
     factors: Фактори
     feature_ai_assistants_description: Омогућите асистенте покретане вештачком интелигенцијом за унапређено корисничко искуство
     feature_ai_assisted_idp_description: Користите вештачку интелигенцију за помоћ у препорукама за индивидуално планирање развоја.
@@ -323,6 +350,8 @@ sr-Latn:
     formal: Формално
     from: Од
     generate_transcription: Генеришите транскрипцију
+    graphic: Графички
+    graphic_slider: Графички слајдер
     hide_middle_scores: Сакриј средње резултате
     high: Високо
     hogan: Хоган
@@ -389,6 +418,7 @@ sr-Latn:
     libraries: Biblioteka medija
     library_invalid_type: Neispravna stavka biblioteke
     licenses: Licence
+    linked_assessments: Повезане процене
     low: Ниско
     maintenance: Одрживање
     maintenance_settings: Подешавања одржавања
@@ -397,6 +427,7 @@ sr-Latn:
     max_value: Максимална вредност
     media_files_label: Датотеке
     media_library: Медијска библиотека
+    media_library_page_title: Медијска библиотека - контролна табла - Мерсер Лајтхаус
     messages: Poruke
     mhs: МХС
     mhs_assessment: МХС процена
@@ -409,6 +440,7 @@ sr-Latn:
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
     minimum_download_speed: Минимална брзина преузимања (у Mbps)
+    minimum_system_check_validity: Минимално трајање провере ваљаности система на нивоу кампање треба да буде 15 минута.
     minimum_upload_speed: Минимална брзина отпремања (у Mbps)
     missing_min_max_values: Потребне су минималне и максималне вредности.
     model_answer: Узорни одговор
@@ -420,6 +452,7 @@ sr-Latn:
     no_file_selected: Nijedan fajl nije izabran
     no_notifications: Nema obaveštenja
     no_status: Без статуса
+    norm_editor_numeric_value_error: Дозвољене су само нумеричке вредности (цели бројеви или децимални бројеви).
     norms: Norme
     not_completed: Nije završeno
     not_completed_tooltip: "%{completed} evaluatori su dodeljeni, ali samo %{submitted} su završili evaluacije"
@@ -864,6 +897,11 @@ sr-Latn:
     precision: Прецизност
     privacy: Privatnosti
     proctoring: Надгледање
+    proctoring_errors_timed_only: Селективно надгледање може бити омогућено само за тестирања са ограничењем времена.
+    proctoring_fixed_time_required: Омогућите фиксирано време да бисте одабрали ову опцију.
+    proctoring_mode_all: Омогућите надзор на свим проценама
+    proctoring_mode_all_except_ac: Омогућите надзор на свим проценама осим у центру за процене
+    proctoring_settings: Подешавања надзора
     professional: Професионални
     proficiency: Владање
     proficiency_level: API ključevi
@@ -876,7 +914,32 @@ sr-Latn:
     projects: Projekti
     prompt: Напомена
     question_center: Centar za pitanja
+    question_center_page_title: Центар за питања - контролна табла - Мерсер Лајтхаус
+    question_editor_change_type: Променити тип
+    question_editor_click_to_write: Кликните да напишете садржај питања...
+    question_editor_copy_question: Копирај питање
+    question_editor_enable_transcription: Омогући транскрипцију
+    question_editor_preview_question: Преглед питања
+    question_editor_validation_type: Тип валидације
+    question_randomization: Насумичност питања
+    question_type_audio_response: Аудио одговор
+    question_type_constant_sum: Константна сума
+    question_type_file_upload: Постављање датотеке
+    question_type_gap_analysis: Анализа јаза
+    question_type_hot_spot: Жестока тачка
+    question_type_matrix_table: Матрична табела
+    question_type_meta_info: Мета информације
+    question_type_multiple_choice: Вишеструки избор
+    question_type_pick_group_rank: Изаберите рангирање групе
+    question_type_rank_order: Рангирање
+    question_type_side_by_side: Рамe уз рамe
+    question_type_slider: Слајдер
+    question_type_text_entry: Унос текста
+    question_type_video_response: Видео одговор
     questions: Pitanja
+    questions_new_button: Ново питање
+    questions_title: Питање
+    questions_type: Тип
     range_min_max: Домeн %{min} - %{max}
     reflection_questions: Pitanja za razmišljanje
     regenerate_transcriptions_action: Поново генериши транскрипте
@@ -888,6 +951,7 @@ sr-Latn:
     remove_children_to_change_type: Уклоните све децу да бисте променили тип
     remove_confirmation: Да ли сте сигурни да желите да уклоните овај предмет?
     remove_successfully: Медијски ставка је успешно уклоњена.
+    report_alias_save_confirmation: Ако желите да сачувате СВЕ измене у Report Builder-у и у Aliases-у, кликните на дугме "SAVE". Страница ће се поново учитати и ваше измене ће бити успешно примењене.
     report_approvals: Odobrenja izveštaja
     report_condition_not_met: Potrebno %{required} %{relationship} evaluaciju, ali ima samo %{actual}
     report_conditions_not_met_detailed: Izveštaj za %{user} ne ispunjava uslove dostupnosti. %{conditions}
@@ -917,6 +981,7 @@ sr-Latn:
     saml_service_provider_acs_urls_placeholder: Unesite URL adrese odvojene zarezima, npr. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ACS URL-ovi su obavezni
     saml_service_provider_action_delete_label: Izbrišete
+    saml_service_provider_action_download_xml_label: Преузми XML
     saml_service_provider_action_edit_label: Uređivanje
     saml_service_provider_action_rotate_certificate_label: Rotirajte sertifikat
     saml_service_provider_add: Dodajte SAML provajdera usluga
@@ -958,6 +1023,7 @@ sr-Latn:
     saml_settings: SAML podešavanja
     save: Сачувај
     save_assessment_for_scoring_management: Сачувајте процену пре него што започнете са бодовањем.
+    save_block: Сачувај блок
     saved_filter_label:
       approval_status_in: Статус одобрења
       approver_user_id_in: Одобривач
@@ -1006,9 +1072,11 @@ sr-Latn:
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
     select_start_time: Изаберите време почетка
+    selective_proctoring: Селективно надгледање
     send_email: Pošalji imejl
     set_min_max_scores_warning: Молимо подесите минималне и максималне бодове за овај фактор како бисте конфигурисали бодовање вештачке интелигенције.
     settings: Podešavanja
+    settings_saved_successfully: Подешавања успешно сачувана
     show_all_assessment_responses: Прикажи све одговоре на процену
     show_middle_scores: Прикажи још резултата за %{count} (опционално)...
     show_original: Прикажи оригинал
@@ -1022,7 +1090,11 @@ sr-Latn:
     slot_name: Ime slota
     sms_histories: SMS istorije
     sms_invites: SMS pozivnice
+    specialty_questions: Специјална питања
+    standard_questions: Стандардна питања
+    start: почети
     start_time: Време почетка
+    static_content: Статички садржај
     stats: Statistike
     status_details: Detalji o statusu
     structured_learning: Formalno učenje [10]
@@ -1031,7 +1103,10 @@ sr-Latn:
     target_job_role: Циљна радна улога
     this_field_is_required: Ово поље је обавезно
     threesixty: 360 кампања
+    timed_label: 'Временом: %{time_text}'
+    timelines: Временске линије
     timezone: Временска зона
+    timing: Временски распоред
     to: Да
     tone: Тон
     toolbar_ai_insight: Увид вештачке интелигенције

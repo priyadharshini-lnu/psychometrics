@@ -210,9 +210,19 @@ export const ScoreReview = () => {
 
   const nextQuestion = (questionId) => {
     const index = filteredQuestions.findIndex(q => q.id === questionId)
-    const nextQuestionItem = filteredQuestions[index + 1]
-    if (nextQuestionItem?.id) {
-      setCurrentTab(nextQuestionItem.id)
+
+    const isQuestionApproved = question => (
+      scoreApproval.indicators[question.id]
+        ?.every(i => i.status === 'approver_approved' || i.status === status)
+    )
+
+    const questionsAfter = filteredQuestions.slice(index + 1)
+    const questionsBefore = filteredQuestions.slice(0, index)
+    const searchOrder = [...questionsAfter, ...questionsBefore]
+
+    const nextUnapproved = searchOrder.find(q => !isQuestionApproved(q))
+    if (nextUnapproved) {
+      setCurrentTab(nextUnapproved.id)
     }
   }
   const status = scoreApproval.reviewAs === 'assessor' ? 'assessor_approved' : 'approver_approved'

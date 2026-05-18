@@ -6,6 +6,7 @@ const { I18n } = window
 
 export const SECONDS_IN_HOUR = 86400
 const FORMAT = 'DD MMM YYYY / HH:mm'
+const STANDARDIZED_FORMAT = 'Do MMM YYYY, h:mm a'
 
 const allDays = _.range(0, 7)
 
@@ -109,12 +110,22 @@ export function secondsToDayHoursAndMinutes (
   dayAbbreviation: string | undefined = 'd',
   hourAbbreviation: string | undefined = 'h',
   minuteAbbreviation: string | undefined = 'm',
+  secondsLeftAbbreviation: string | undefined = 's',
 ) {
-  const duration = dayjs.duration(seconds, 'seconds')
+  const SECONDS_IN_DAY = 86400
+  const SECONDS_IN_HOUR = 3600
+  const SECONDS_IN_MINUTE = 60
 
-  const days = duration.days()
-  const hours = duration.hours()
-  const minutes = duration.minutes()
+  let remainingSeconds = Math.max(0, Math.floor(seconds))
+
+  const days = Math.floor(remainingSeconds / SECONDS_IN_DAY)
+  remainingSeconds %= SECONDS_IN_DAY
+
+  const hours = Math.floor(remainingSeconds / SECONDS_IN_HOUR)
+  remainingSeconds %= SECONDS_IN_HOUR
+
+  const minutes = Math.floor(remainingSeconds / SECONDS_IN_MINUTE)
+  const secondsLeft = remainingSeconds % SECONDS_IN_MINUTE
 
   let formattedDaysHoursAndMinutes = ''
 
@@ -127,10 +138,14 @@ export function secondsToDayHoursAndMinutes (
   }
 
   if (minutes > 0) {
-    formattedDaysHoursAndMinutes += `${minutes}${minuteAbbreviation}`
+    formattedDaysHoursAndMinutes += `${minutes}${minuteAbbreviation} `
   }
 
-  return formattedDaysHoursAndMinutes
+  if (secondsLeft > 0) {
+    formattedDaysHoursAndMinutes += `${secondsLeft}${secondsLeftAbbreviation}`
+  }
+
+  return formattedDaysHoursAndMinutes.trim()
 }
 
 export const getTimeRemaining = (endTime?: string | null): string => {
@@ -144,10 +159,16 @@ export const getTimeRemaining = (endTime?: string | null): string => {
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
 }
 
-export const dateTimeWithZone = (dateString?: string | null, format?: string): string | undefined => {
-  const DEFAULT_FORMAT = 'Do MMM YYYY, h:mm a'
+export const standardizeDateTime = (dateString?: string | null, format?: string): string | undefined => {
   if (!dateString) return undefined
-  const dateFormat = format || DEFAULT_FORMAT
+  const dateFormat = format || STANDARDIZED_FORMAT
+  const dayjsDate = dayjs(dateString)
+  return dayjsDate.format(dateFormat)
+}
+
+export const dateTimeWithZone = (dateString?: string | null, format?: string): string | undefined => {
+  if (!dateString) return undefined
+  const dateFormat = format || STANDARDIZED_FORMAT
   const dayjsDate = dayjs(dateString)
   return `${dayjsDate.format(dateFormat)}${dayjsDate.format(' (z)')}`
 }

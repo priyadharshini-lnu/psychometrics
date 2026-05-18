@@ -15,6 +15,8 @@ class SamlIdpController < ApplicationController
     ::SamlIdp::GenerateProjectMetadata.call(project: @current_project, service_provider: sp,
                                             request: request) do
       on(:ok) do |metadata|
+        filename = "#{sp.name.parameterize.presence || 'idp'}_metadata.xml"
+        response.headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
         respond_to do |format|
           format.xml { render plain: metadata, content_type: 'application/xml' }
           format.html { render plain: metadata, content_type: 'text/xml' }

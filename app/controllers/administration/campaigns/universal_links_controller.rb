@@ -15,6 +15,9 @@ module Administration
 
       def enable
         campaign_assessment = ::Assessments::UniversalLink::Enable.call!(campaign, assessment)
+        audit! :enable_universal_link, campaign_assessment,
+               payload: { campaign_id: campaign.id, assessment_id: assessment.id },
+               campaign: campaign
         render json: ::Administration::CampaignAssessmentSerializer.new(
           context: {
             current_user: current_user,
@@ -26,6 +29,9 @@ module Administration
 
       def update
         campaign_assessment = ::Assessments::UniversalLink::Update.call!(campaign, assessment, params)
+        audit! :update_universal_link, campaign_assessment,
+               payload: { campaign_id: campaign.id, assessment_id: assessment.id },
+               campaign: campaign
         render json: ::Administration::CampaignAssessmentSerializer.new(
           context: {
             current_user: current_user,
@@ -37,6 +43,9 @@ module Administration
 
       def regenerate
         campaign_assessment = ::Assessments::UniversalLink::Generate.call!(campaign, assessment)
+        audit! :regenerate_universal_link, campaign_assessment,
+               payload: { campaign_id: campaign.id, assessment_id: assessment.id },
+               campaign: campaign
         render json: ::Administration::CampaignAssessmentSerializer.new(
           context: {
             current_user: current_user,

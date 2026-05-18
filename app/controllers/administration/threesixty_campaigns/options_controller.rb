@@ -37,7 +37,8 @@ module Administration
 
       def update_language
         @campaign_report.update!(language_params)
-
+        audit! :update_report_language, @campaign_report, payload: language_params,
+          campaign: threesixty_campaign.campaign
         render json: {
           status: :ok,
           data: language_params
@@ -47,6 +48,8 @@ module Administration
       def update
         if form.valid?
           threesixty_campaign.option.update!(option_params)
+          audit! :update_options, threesixty_campaign.option, payload: option_params,
+            campaign: threesixty_campaign.campaign
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: 400

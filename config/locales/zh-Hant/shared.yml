@@ -32,6 +32,7 @@ zh-Hant:
     change_password: 變更密碼
     clear_filters: 清除過濾器
     client: 客户
+    close: 关闭
     collaborative_learning: 協作學習
     completed: 已完成
     configurations: 配置
@@ -40,19 +41,24 @@ zh-Hant:
     controller: 控制器
     cookie_notice: Cookie 声明
     cookies_statement: Cookies声明
+    copied_successfully: 已成功复制
     copied_to_clipboard: 已复制到剪贴板
     copy: 复制
+    create: 创建
     created_at: 建立於
     created_date: 建立日期
+    created_successfully: 已成功创建
     custom_acknowledgment_text: 自定义致谢文本
     custom_acknowledgment_text_required: 控制器数据角色需要自定义确认文本
     custom_consent_text: 自定义同意文本
     custom_consent_text_required: 控制器数据角色需要自定义同意文本
     data_role: 数据角色
     decline: 衰落
+    delete: 删除
     description: 描述
     desktop_or_laptop_recommended: 推荐使用台式机或笔记本电脑
     desktop_or_laptop_required: 需要台式机或笔记本电脑
+    disabled: 已禁用
     download: 下载
     download_audio: 下载音频
     download_transcription: 下载转录文本
@@ -60,9 +66,12 @@ zh-Hant:
     edit: 編輯
     edited: 新
     email: 電子郵件
+    ending_proctoring_session_msg: 本次监考环节即将结束。<p>请稍候，我们正在保存您的答题内容并跳转回首页。</p>
+    error: 错误
     export: 出口
     failed: 失败
     'false': false
+    file: 文件
     first_name: 姓名
     formal_learning: 正式學習
     generate: 生成
@@ -105,6 +114,8 @@ zh-Hant:
     no_results_found: 未找到任何结果
     not_requested: 尚未请求
     ok: 好的
+    options: 选项
+    owner: 所有者
     pending: 待定
     policy_version: 政策版本
     policy_version_format: 仅允许整数
@@ -142,6 +153,8 @@ zh-Hant:
     status_unknown: 狀態不明
     subject: 主题
     submit: 提交
+    submit_and_finish_proctoring: 提交并结束监考
+    suspended: 暂停
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
     table:
       entries:
@@ -165,6 +178,7 @@ zh-Hant:
     type: 類型
     update: 更新
     update_failed: 更新失败
+    updated_at: 更新于
     updated_successfully: 更新成功
     video: 视频
     view: 查看

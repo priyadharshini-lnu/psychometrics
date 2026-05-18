@@ -1,4 +1,6 @@
-import React, { useReducer, useEffect, useRef } from 'react'
+import {
+  useReducer, useEffect, useRef, forwardRef, useImperativeHandle,
+} from 'react'
 import {
   Card, Row, Col, Space, Typography,
 } from 'antd'
@@ -50,7 +52,19 @@ interface Props {
   disableRecording?: boolean
 }
 
-export const AudioRecorder: React.FC<Props> = ({
+interface MediaPlayerAdapter {
+  currentTime(seconds: number): void
+  play(): Promise<void> | undefined
+  pause(): void
+  on(event: string, handler: EventListener): void
+  off(event: string, handler: EventListener): void
+}
+
+export interface RecorderHandle {
+  readonly player: MediaPlayerAdapter | null
+}
+
+export const AudioRecorder = forwardRef<RecorderHandle, Props>(({
   mediaUrl,
   model,
   fakeUpload,
@@ -61,11 +75,31 @@ export const AudioRecorder: React.FC<Props> = ({
   markQuestionInProgress,
   removeQuestionInProgress,
   mediaResponse,
-}) => {
+}, ref) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const recorderRef = useRef<RecorderCore>()
   const maxDuration = model?.props?.duration || DEFAULT_MAX_DURATION
-  const playerRef = useRef<HTMLAudioElement>()
+  const playerRef = useRef<HTMLAudioElement | null>(null)
+
+  useImperativeHandle(ref, () => ({
+    get player () {
+      const audioEl = playerRef.current
+      if (!audioEl) return null
+      return {
+        currentTime: (seconds: number) => { audioEl.currentTime = seconds },
+        play: () => {
+          dispatch(setPlayerState(PLAYER_STATE.PLAYING))
+          return audioEl.play()
+        },
+        pause: () => {
+          dispatch(setPlayerState(PLAYER_STATE.PAUSED))
+          audioEl.pause()
+        },
+        on: (event: string, handler: EventListener) => audioEl.addEventListener(event, handler),
+        off: (event: string, handler: EventListener) => audioEl.removeEventListener(event, handler),
+      }
+    },
+  }))
 
   const [{ level, pulse }, { updatePulse, resetMetrics }] = useAudioMetrics(recorderRef)
 
@@ -101,13 +135,13 @@ export const AudioRecorder: React.FC<Props> = ({
     if (recorderRef.current) {
       recorderRef.current
         .getWavFile()
-        .then((file: Blob) => {
+        .then((file) => {
           recorderRef.current?.releaseMic()
           markQuestionInProgress(model.id, RECORDER_STATES.RECORDED)
           dispatch(setRecordingState(RECORDER_STATES.RECORDED))
           resetMetrics()
           dispatch(setRecordingTime(initialState.recordingTime))
-          dispatch(setFile(file))
+          dispatch(setFile(file as Blob))
         })
     }
   }
@@ -253,4 +287,4 @@ export const AudioRecorder: React.FC<Props> = ({
       </Row>
     </Card>
   )
-}
+})

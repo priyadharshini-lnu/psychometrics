@@ -4,7 +4,9 @@ module Api
   module Administration
     class DirectUploadPolicy < BasePolicy
       def create?
-        has_permission?(:libraries, :manage, project_id: project_id || user&.project_id)
+        return has_permission?(:libraries, :manage, project_id: project_id) if project_id.present?
+
+        user.has_grant?(:libraries, :manage)
       end
     end
   end

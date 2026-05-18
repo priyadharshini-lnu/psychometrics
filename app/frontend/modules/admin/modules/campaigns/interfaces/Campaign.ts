@@ -76,6 +76,7 @@ export interface CampaignOptions {
   instructionsEnabled: boolean
   instructionsWithLocales: InstructionsWithLocale[]
   proctoringEnabled: boolean
+  selectiveProctoringEnabled?: boolean
   proctoringEnabledOnWorkshopActivity: boolean
   enableMobileProctoring: boolean
   rules: object

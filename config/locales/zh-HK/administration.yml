@@ -959,7 +959,6 @@ zh-HK:
         prework_required: 若前期工作未完成，则不允许进行中心预订
         prework_required_for_invite: 仅在预备工作完成后发送邀请邮件
         proctoring:
-          allow_on_assessment_center: 允许在评估中心进行监考
           enable: 启用监考功能
           identification: 识别
           identifications:
@@ -2772,12 +2771,10 @@ zh-HK:
     proctoring_sessions:
       columns:
         comment: 评论
-        completed_at: 完成于
         conclusion: 结论
         links: 链接
         score: 得分
         session_id: 会话标识符
-        started_at: 始于
       links:
         report: 报告
         review: 评论
@@ -3000,6 +2997,7 @@ zh-HK:
               scheduling_invited: 安排邀请
               scheduling_rescheduled: 日程安排已重新安排
               scheduling_scheduled: 排程 已排程
+              workshop_attendance_status: 研讨会出席情况
           url:
             label: 网址
             name: 网址

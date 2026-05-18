@@ -58,11 +58,11 @@ export const uploadPhoto = formData => ({
 
 export const UPLOAD_FILES = 'resource/users/UPLOAD_FILES'
 
-export const uploadAdminUserPhoto = (id, data) => ({
+export const uploadAdminUserPhoto = data => ({
   type: UPLOAD_FILES,
   request: {
     method: 'put',
-    url: `/api/v2/administration/users/${id}/uploads`,
+    url: '/api/v2/administration/users/uploads',
     body: data,
     contentType: 'multipart/form-data;',
   },

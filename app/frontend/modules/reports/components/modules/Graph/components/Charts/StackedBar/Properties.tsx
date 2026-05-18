@@ -1,6 +1,6 @@
 import React from 'react'
 import { Checkbox, Typography, Space } from 'antd'
-import { CheckboxChangeEvent } from 'antd/lib/checkbox'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import useUpdate from '~/hooks/useUpdate'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'

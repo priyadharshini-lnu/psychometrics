@@ -21,6 +21,7 @@ de:
     admin_roles: Admin-Rollen
     admin_updated_successfully: Admin '%{name}' wurde erfolgreich aktualisiert
     admins: Admins
+    advanced: Erweitert
     ai_artifact_result_generation_admin_job_failed: Das Artefakt „%{artifact_name}“ kann für den Benutzer „%{user_email}“ nicht generiert werden.
     ai_artifact_result_stale: Das Ergebnis kann veraltet sein, da sich die Abhängigkeiten des KI-Artefakts seit der letzten Ergebnisgenerierung geändert haben. Erwägen Sie, das Artefakt neu zu generieren, um es mit den neuesten Abhängigkeiten zu erstellen.
     ai_artifacts: KI-Artefakte
@@ -117,6 +118,7 @@ de:
     allow_continue_with_warning_system_check: Benutzern ermöglichen, trotz Warnungen fortzufahren, wenn die Systemprüfung fehlschlägt
     api_keys: API-Schlüssel
     apply_to_existing_users: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
+    assessment: Bewertung
     assessment_center_activity: Aktivität
     assessment_center_assessor: Gutachter
     assessment_center_attendance: Anwesenheit
@@ -147,6 +149,12 @@ de:
     available_languages: Bericht in Sprachen verfügbar
     average: Durchschnitt
     back_to_main: Hauptmenü
+    block_editor_add_question: Frage hinzufügen
+    block_editor_question_randomization: Zufällige Reihenfolge der Fragen
+    block_options: Blockoptionen
+    block_settings: Block-Einstellungen
+    blocks_new_button: Neuer Block
+    blocks_title: Blöcke
     bulk_assets_modal_choose_csv: CSV-Datei auswählen
     bulk_assets_modal_choose_zip: ZIP-Datei auswählen
     bulk_assets_modal_not_csv_file_error: Für den CSV-Upload sind nur CSV-Dateien zulässig. Bitte laden Sie eine gültige CSV-Datei hoch.
@@ -159,6 +167,15 @@ de:
     campaign_assessment_actions_disable_caching: Assessment-Caching deaktivieren
     campaign_assessment_actions_enable_caching: Ermöglichen Sie das Bewertungs-Caching
     campaign_assessment_column_caching_enabled: Assessment Caching aktiviert
+    campaign_assessment_column_hogan_assessment_id: Hogan-Bewertungs-ID
+    campaign_assessment_column_hogan_form_id: Hogan-Formular-ID
+    campaign_assessment_column_pearson_assessment_id: Pearson-Bewertungs-ID
+    campaign_assessment_column_pearson_assessment_language: Pearson Assessment – Sprache
+    campaign_assessment_column_pearson_error_details: Details zum Pearson-Fehler
+    campaign_assessment_column_pearson_product_id: Pearson-Produkt-ID
+    campaign_assessment_column_saville_error_code: Saville-Fehlercode
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Saville-Anfrage-ID
     campaign_assessment_mhs_confidence_interval: Konfidenzintervall
     campaign_assessment_mhs_confidence_interval_update_success: Konfidenzintervall erfolgreich aktualisiert
     campaign_assessment_mhs_invalid_confidence_interval: Das Konfidenzintervall muss 0 oder 1 sein.
@@ -203,6 +220,7 @@ de:
     campaigns: Kampagnen
     cancel: Abbrechen
     cancellation_and_rescheduling_disabled: Stornierung und Umbuchung sind deaktiviert.
+    captcha: Captcha-Überprüfung
     casual: Lässig
     cell_save_msg: Gültige Änderungen werden automatisch gespeichert, sobald Sie die Zelle nach der Bearbeitung verlassen.
     characters: Zeichen
@@ -219,10 +237,13 @@ de:
     concise: Prägnant
     configure_model_answer_title: Modellantwort und Schlüsselwörter konfigurieren
     confirm_remove_admin: Sind Sie sicher, dass Sie den Admin-Benutzer mit der E-Mail '%{email}' entfernen möchten?
+    confirmation_required: Bestätigung erforderlich
+    confirmation_required_details: Möchten Sie den Eintrag „%{resource_name}“ wirklich löschen?
     copied: Kopiert
     copied_url_success: Die URL wurde erfolgreich in die Zwischenablage kopiert
     copy_ai_artifacts: AI-Artefakte kopieren
     copy_image_url: Bild-URL kopieren
+    copy_url: URL kopieren
     country: Land
     create_client: Client erstellen
     create_indicator: Indikator erstellen
@@ -240,6 +261,7 @@ de:
     delete_ok_text: Ja, löschen
     denied: Verweigert
     description: Beschreibung
+    descriptive_text: Beschreibender Text
     development_actions: Entwicklungspolitische Maßnahmen
     development_actions_form_tags: Schilder
     digest_delivery_mode:
@@ -262,10 +284,12 @@ de:
       wednesday: Mittwoch
     dimension_translations_export_scheduled: Export der Übersetzungen für die Dimension „%{name}“ ist geplant.
     dimensions: Abmessungen
+    disable_proctoring: Prüfungsaufsicht deaktivieren
     done: Fertig
     done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
     download_bulk_asset_download_example_csv: Beispiel-CSV herunterladen.
     duration: Dauer
+    duration_must_be_positive: Die Dauer muss positiv sein
     edit_campaign_admin: Kampagnenverwaltung bearbeiten
     edit_client_admin: Kundenverwaltung bearbeiten
     edit_folder: Ordner bearbeiten
@@ -284,6 +308,7 @@ de:
     enable_system_check: Systemprüfung aktivieren
     enable_transcription: Transkription aktivieren
     enable_transcription_msg: Aktivieren Sie die Transkription, um KI-Bewertungen für Video-/Audio-Antwortfragen zu verwenden.
+    end: Ende
     end_time: Endzeit
     end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen.
     enhance_with_ai: Mit KI verbessern
@@ -300,6 +325,8 @@ de:
     export_completion_status: Exportabschlussstatus
     export_completion_statuses_scheduled: Der Exportauftrag für den Fertigstellungsstatus wurde erfolgreich geplant.
     export_detailed_completion_status: Ausführlich
+    factor_feedback: Faktor-Feedback
+    factor_selection: Faktorauswahl
     factors: Faktoren
     feature_ai_assistants_description: Aktivieren Sie KI-gestützte Assistenten für eine verbesserte Benutzererfahrung.
     feature_ai_assisted_idp_description: Nutzen Sie KI, um Empfehlungen für die individuelle Entwicklungsplanung zu unterstützen.
@@ -323,6 +350,8 @@ de:
     formal: Formell
     from: Von
     generate_transcription: Transkription erstellen
+    graphic: Grafik
+    graphic_slider: Grafik-Slider
     hide_middle_scores: Mittlere Punktzahlen ausblenden
     high: Hoch
     hogan: Hogan
@@ -389,6 +418,7 @@ de:
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
     licenses: Lizenzen
+    linked_assessments: Verknüpfte Bewertungen
     low: Niedrig
     maintenance: Wartung
     maintenance_settings: Wartungseinstellungen
@@ -397,6 +427,7 @@ de:
     max_value: Maximalwert
     media_files_label: Dateien
     media_library: Medienbibliothek
+    media_library_page_title: Medienbibliothek – Dashboard – Mercer Lighthouse
     messages: Nachrichten
     mhs: MHS
     mhs_assessment: MHS-Bewertung
@@ -409,6 +440,7 @@ de:
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     minimum_download_speed: Mindest-Download-Geschwindigkeit (in Mbit/s)
+    minimum_system_check_validity: Die Gültigkeitsdauer der Systemprüfung sollte mindestens 15 Minuten betragen
     minimum_upload_speed: Mindest-Upload-Geschwindigkeit (in Mbit/s)
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     model_answer: Musterlösung
@@ -420,6 +452,7 @@ de:
     no_file_selected: Keine Datei ausgewählt
     no_notifications: Keine Benachrichtigungen
     no_status: Kein Status
+    norm_editor_numeric_value_error: Es sind nur numerische Werte zulässig (ganze Zahlen oder Dezimalzahlen).
     norms: Normen
     not_completed: Nicht abgeschlossen
     not_completed_tooltip: "%{completed} Gutachter werden zugewiesen, aber nur %{submitted} die Bewertungen abgeschlossen haben"
@@ -864,6 +897,11 @@ de:
     precision: Präzision
     privacy: Datenschutz
     proctoring: Aufsicht
+    proctoring_errors_timed_only: Die selektive Prüfungsaufsicht kann nur für zeitlich begrenzte Prüfungen aktiviert werden.
+    proctoring_fixed_time_required: Aktivieren Sie „Feste Zeit“, um diese Option auszuwählen
+    proctoring_mode_all: Überwachung bei allen Prüfungen aktivieren
+    proctoring_mode_all_except_ac: Überwachung für alle Prüfungen aktivieren, mit Ausnahme des Assessment Centers
+    proctoring_settings: Einstellungen für die Prüfungsaufsicht
     professional: Fachmann
     proficiency: Kompetenz
     proficiency_level: API-Schlüssel
@@ -876,7 +914,32 @@ de:
     projects: Projekte
     prompt: Aufforderung
     question_center: Fragen-Center
+    question_center_page_title: Fragen-Center – Dashboard – Mercer Lighthouse
+    question_editor_change_type: Typ ändern
+    question_editor_click_to_write: Klicken Sie hier, um den Text Ihrer Frage einzugeben...
+    question_editor_copy_question: Frage kopieren
+    question_editor_enable_transcription: Transkription aktivieren
+    question_editor_preview_question: Vorschau-Frage
+    question_editor_validation_type: Validierungsart
+    question_randomization: Zufällige Reihenfolge der Fragen
+    question_type_audio_response: Audioantwort
+    question_type_constant_sum: Konstante Summe
+    question_type_file_upload: Datei hochladen
+    question_type_gap_analysis: Lückenanalyse
+    question_type_hot_spot: Hotspot
+    question_type_matrix_table: Matrix-Tabelle
+    question_type_meta_info: Meta-Informationen
+    question_type_multiple_choice: Multiple-Choice
+    question_type_pick_group_rank: Auswahlgruppe Rang
+    question_type_rank_order: Rangfolge
+    question_type_side_by_side: Seite an Seite
+    question_type_slider: Schieberegler
+    question_type_text_entry: Texteingabe
+    question_type_video_response: Videoantwort
     questions: FRAGEN
+    questions_new_button: Neue Frage
+    questions_title: Frage
+    questions_type: Typ
     range_min_max: REICHWEITE %{min} - %{max}
     reflection_questions: Fragen zur Reflexion
     regenerate_transcriptions_action: Transkriptionen neu generieren
@@ -888,6 +951,7 @@ de:
     remove_children_to_change_type: Alle Kinder entfernen, um den Typ zu ändern
     remove_confirmation: Möchten Sie diesen Eintrag wirklich löschen?
     remove_successfully: Das Medienelement wurde erfolgreich entfernt.
+    report_alias_save_confirmation: Wenn Sie ALLE Änderungen im Report Builder und auch in den Aliasen speichern möchten, klicken Sie bitte auf die Schaltfläche „SPEICHERN“. Die Seite wird neu geladen und Ihre Änderungen werden erfolgreich übernommen.
     report_approvals: Bericht Genehmigungen
     report_condition_not_met: Benötigt %{required} %{relationship} Bewertung(en), hat aber nur %{actual}
     report_conditions_not_met_detailed: Der Bericht für %{user} entspricht nicht den Verfügbarkeitsbedingungen. %{conditions}
@@ -917,6 +981,7 @@ de:
     saml_service_provider_acs_urls_placeholder: Geben Sie URLs ein, die durch Kommas getrennt sind, z. B. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ACS-URLs sind erforderlich
     saml_service_provider_action_delete_label: Löschen
+    saml_service_provider_action_download_xml_label: XML herunterladen
     saml_service_provider_action_edit_label: Redigieren
     saml_service_provider_action_rotate_certificate_label: Rotate-Zertifikat
     saml_service_provider_add: SAML-Dienstanbieter hinzufügen
@@ -958,6 +1023,7 @@ de:
     saml_settings: SAML-Einstellungen
     save: Speichern
     save_assessment_for_scoring_management: Speichern Sie die Bewertung, bevor Sie mit der Benotung beginnen.
+    save_block: Block speichern
     saved_filter_label:
       approval_status_in: Genehmigungsstatus
       approver_user_id_in: Genehmiger
@@ -1006,9 +1072,11 @@ de:
     select_language_to_translate: Bitte Sprache für die Übersetzung auswählen
     select_level: Stufe auswählen
     select_start_time: Startzeit auswählen
+    selective_proctoring: Selektive Prüfungsaufsicht
     send_email: E-Mail senden
     set_min_max_scores_warning: Bitte legen Sie Mindest- und Höchstwerte für diesen Faktor fest, um die KI-Bewertung zu konfigurieren.
     settings: Einstellungen
+    settings_saved_successfully: Einstellungen erfolgreich gespeichert
     show_all_assessment_responses: Alle Bewertungsantworten anzeigen
     show_middle_scores: "%{count}e weitere Ergebnisse anzeigen (optional)..."
     show_original: Original anzeigen
@@ -1022,7 +1090,11 @@ de:
     slot_name: Slot-Name
     sms_histories: SMS-Geschichten
     sms_invites: SMS-Einladungen
+    specialty_questions: Fachfragen
+    standard_questions: Standardfragen
+    start: Start
     start_time: Startzeit
+    static_content: Statischer Inhalt
     stats: Statistiken
     status_details: Statusdetails
     structured_learning: Formales Lernen [10]
@@ -1031,7 +1103,10 @@ de:
     target_job_role: Zielposition
     this_field_is_required: Dieses Feld ist erforderlich.
     threesixty: 360°-Kampagne
+    timed_label: 'Zeitgesteuert: %{time_text}'
+    timelines: Zeitachsen
     timezone: Zeitzone
+    timing: Zeitpunkt
     to: An
     tone: Ton
     toolbar_ai_insight: KI-Einblick

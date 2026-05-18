@@ -14,6 +14,13 @@ module MediaResponses
     def call
       question = Question.find(question_id)
       begin
+        media_responses = result.media_responses.where(question_id: question_id).order(id: :desc)
+        if valid_existing_media_responses(media_responses).any?
+          return broadcast(:error,
+                           I18n.t('enduser.file_submission_already_exists'))
+        end
+        cleanup_orphaned_media_responses(media_responses)
+
         data = if question.type == 'VideoResponse'
                  MediaResponses::GetMultipartUploadUrls.call!(result, question_id, file_name)
                else
@@ -26,6 +33,17 @@ module MediaResponses
       rescue StandardError => e
         broadcast(:error, e)
       end
+    end
+
+    private
+
+    def cleanup_orphaned_media_responses(media_responses)
+      orphaned = media_responses.reject { |media_response| media_response.asset.attached? }
+      orphaned.each(&:destroy!)
+    end
+
+    def valid_existing_media_responses(media_responses)
+      media_responses.select { |media_response| media_response.asset.attached? }
     end
   end
 end

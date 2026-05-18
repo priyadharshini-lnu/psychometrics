@@ -29,7 +29,8 @@ RSpec.describe CampaignUsers::ContinueProctoringCampaign, type: :model do
     context 'when proctoring is enabled' do
       before do
         allow_any_instance_of(CampaignUser).to receive(:proctoring_enabled?).and_return(true)
-        allow(Examus::GetSessionUrl).to receive(:call).and_return({ ok: examus_session_url })
+        allow(Examus::GetSessionUrl).to receive(:call).with(campaign_user: campaign_user,
+                                                            locale: I18n.locale).and_return({ ok: examus_session_url })
       end
 
       it 'sets the examus_session_url' do
@@ -41,7 +42,8 @@ RSpec.describe CampaignUsers::ContinueProctoringCampaign, type: :model do
 
         before do
           allow_any_instance_of(CampaignUser).to receive(:proctoring_enabled?).and_return(true)
-          allow(Examus::GetSessionUrl).to receive(:call).and_return({ error: error_message })
+          allow(Examus::GetSessionUrl).to receive(:call).with(campaign_user: campaign_user,
+                                                              locale: I18n.locale).and_return({ error: error_message })
         end
 
         it 'broadcasts :invalid with the error message' do

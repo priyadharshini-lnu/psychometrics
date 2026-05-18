@@ -32,6 +32,7 @@ bg:
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
     client: Клиент
+    close: Затвори
     collaborative_learning: Съвместно обучение
     completed: Завършено
     configurations: Конфигурации
@@ -40,19 +41,24 @@ bg:
     controller: Контролер
     cookie_notice: Уведомление за бисквитките
     cookies_statement: Декларация за бисквитките
+    copied_successfully: Копирането приключи успешно
     copied_to_clipboard: Копирано в клипборда
     copy: Копиране
+    create: Създай
     created_at: Създаден в
     created_date: Дата на създаване
+    created_successfully: Създадено успешно
     custom_acknowledgment_text: Персонализиран текст за потвърждение
     custom_acknowledgment_text_required: За ролята „Данни за контролера“ се изисква персонализиран текст за потвърждение
     custom_consent_text: Персонализиран текст за съгласие
     custom_consent_text_required: Необходим е персонализиран текст за съгласие за ролята на контролера на данни
     data_role: Роля на данните
     decline: Упадък
+    delete: Изтрий
     description: Описание
     desktop_or_laptop_recommended: Препоръчва се настолен или преносим компютър
     desktop_or_laptop_required: Необходим настолен или преносим компютър
+    disabled: С увреждания
     download: Изтегляне
     download_audio: Изтегли аудио
     download_transcription: Изтегли транскрипция
@@ -60,9 +66,12 @@ bg:
     edit: Редактирайте
     edited: Нов
     email: Имейл
+    ending_proctoring_session_msg: Завършваме сесията за наблюдение. <p>Моля, изчакайте, докато запишем отговорите ви и ви пренасочим обратно към началната страница.</p>
+    error: Грешка
     export: Износ
     failed: Неуспешен
     'false': false
+    file: Файл
     first_name: Първо име
     formal_learning: Формално обучение
     generate: Генериране
@@ -105,6 +114,8 @@ bg:
     no_results_found: Няма намерени резултати
     not_requested: Все още не е поискано
     ok: Добре
+    options: Опции
+    owner: Собственик
     pending: В очакване
     policy_version: Версия на политиката
     policy_version_format: Допускат се само цели числа
@@ -142,6 +153,8 @@ bg:
     status_unknown: Статус неизвестен
     subject: Тема
     submit: Изпрати
+    submit_and_finish_proctoring: Изпращане и приключване на наблюдението
+    suspended: Отложено
     switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър
     table:
       entries:
@@ -165,6 +178,7 @@ bg:
     type: Вид
     update: Актуализирайте
     update_failed: Актуализацията се провали
+    updated_at: Актуализирано на
     updated_successfully: Актуализирано успешно
     video: Видео
     view: Преглед

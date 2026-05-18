@@ -21,6 +21,7 @@ nl:
     admin_roles: Beheerdersrollen
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     admins: Admins
+    advanced: Geavanceerd
     ai_artifact_result_generation_admin_job_failed: Het artefact '%{artifact_name}' kan niet worden gegenereerd voor gebruiker '%{user_email}'.
     ai_artifact_result_stale: Het resultaat kan verouderd zijn, aangezien de afhankelijkheden van het AI-artefact zijn gewijzigd sinds het laatste resultaat werd gegenereerd. Overweeg het artefact opnieuw te genereren met de nieuwste afhankelijkheden.
     ai_artifacts: AI-artefacten
@@ -117,6 +118,7 @@ nl:
     allow_continue_with_warning_system_check: Gebruikers toestaan door te gaan ondanks waarschuwingen wanneer de systeemcontrole mislukt
     api_keys: API-sleutels
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+    assessment: Beoordeling
     assessment_center_activity: Activiteit
     assessment_center_assessor: Beoordelaar
     assessment_center_attendance: Aanwezigheid
@@ -147,6 +149,12 @@ nl:
     available_languages: Rapport beschikbaar in talen
     average: Gemiddeld
     back_to_main: Hoofdmenu
+    block_editor_add_question: Vraag toevoegen
+    block_editor_question_randomization: Willekeurige toewijzing van vragen
+    block_options: Blokopties
+    block_settings: Blokinstellingen
+    blocks_new_button: Nieuw blok
+    blocks_title: Blokken
     bulk_assets_modal_choose_csv: Kies CSV-bestand
     bulk_assets_modal_choose_zip: Kies ZIP-bestand
     bulk_assets_modal_not_csv_file_error: Alleen CSV-bestanden zijn toegestaan voor CSV-upload. Upload een geldig CSV-bestand.
@@ -159,6 +167,15 @@ nl:
     campaign_assessment_actions_disable_caching: Uitschakel beoordelingscaching
     campaign_assessment_actions_enable_caching: Mogelijk maken van beoordelingscachen mogelijk
     campaign_assessment_column_caching_enabled: Assessment Caching ingeschakeld
+    campaign_assessment_column_hogan_assessment_id: Hogan-beoordelings-ID
+    campaign_assessment_column_hogan_form_id: Hogan-formulier-ID
+    campaign_assessment_column_pearson_assessment_id: Pearson-beoordelings-ID
+    campaign_assessment_column_pearson_assessment_language: Pearson Assessment Taal
+    campaign_assessment_column_pearson_error_details: Details over de Pearson-fout
+    campaign_assessment_column_pearson_product_id: Pearson-productcode
+    campaign_assessment_column_saville_error_code: Saville-foutcode
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Saville-verzoek-ID
     campaign_assessment_mhs_confidence_interval: Betrouwbaarheidsinterval
     campaign_assessment_mhs_confidence_interval_update_success: Betrouwbaarheidsinterval succesvol bijgewerkt
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval moet 0 of 1 zijn
@@ -203,6 +220,7 @@ nl:
     campaigns: Campagnes
     cancel: Annuleren
     cancellation_and_rescheduling_disabled: Annuleren en verzetten is uitgeschakeld
+    captcha: Captcha-verificatie
     casual: Casual
     cell_save_msg: Geldige wijzigingen worden automatisch opgeslagen zodra u de cel na het bewerken verlaat.
     characters: tekens
@@ -219,10 +237,13 @@ nl:
     concise: Beknopt
     configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
+    confirmation_required: Bevestiging vereist
+    confirmation_required_details: Weet u zeker dat u de %{resource} "%{resource_name}" wilt verwijderen?
     copied: Gekopieerd
     copied_url_success: De URL is succesvol naar het klembord gekopieerd
     copy_ai_artifacts: AI-artefacten kopiëren
     copy_image_url: URL van afbeelding kopiëren
+    copy_url: URL kopiëren
     country: Land
     create_client: Klant maken
     create_indicator: Indicator aanmaken
@@ -240,6 +261,7 @@ nl:
     delete_ok_text: Ja, verwijder
     denied: Geweigerd
     description: Beschrijving
+    descriptive_text: Beschrijvende tekst
     development_actions: Ontwikkelingsacties
     development_actions_form_tags: Tags
     digest_delivery_mode:
@@ -262,10 +284,12 @@ nl:
       wednesday: woensdag
     dimension_translations_export_scheduled: De vertalingen voor de dimensie '%{name}' staan gepland om te worden geëxporteerd.
     dimensions: Afmetingen
+    disable_proctoring: Toezicht uitschakelen
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
     duration: Duur
+    duration_must_be_positive: De duur moet een positieve waarde hebben
     edit_campaign_admin: Campagnebeheer bewerken
     edit_client_admin: Klantbeheer bewerken
     edit_folder: Map bewerken
@@ -284,6 +308,7 @@ nl:
     enable_system_check: Systeemcontrole inschakelen
     enable_transcription: Transcriptie inschakelen
     enable_transcription_msg: Schakel transcriptie in om AI-scores te gebruiken voor vragen met video-/audio-antwoorden.
+    end: einde
     end_time: Eindtijd
     end_time_must_be_after_start_time: De eindtijd moet na de starttijd liggen.
     enhance_with_ai: Verbeter met AI
@@ -300,6 +325,8 @@ nl:
     export_completion_status: Status van voltooiing van export
     export_completion_statuses_scheduled: De exporttaak voor voltooiingsstatussen is succesvol gepland.
     export_detailed_completion_status: Gedetailleerd
+    factor_feedback: Feedback over factoren
+    factor_selection: Selectie van factoren
     factors: Factoren
     feature_ai_assistants_description: Schakel AI-aangedreven assistenten in voor een verbeterde gebruikerservaring
     feature_ai_assisted_idp_description: Gebruik AI om te helpen bij aanbevelingen voor individuele ontwikkelingsplannen
@@ -323,6 +350,8 @@ nl:
     formal: Formeel
     from: Van
     generate_transcription: Transcriptie genereren
+    graphic: Afbeelding
+    graphic_slider: Grafische schuifbalk
     hide_middle_scores: Verberg middelste scores
     high: Hoog
     hogan: Hogan
@@ -389,6 +418,7 @@ nl:
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     licenses: Licenties
+    linked_assessments: Gekoppelde beoordelingen
     low: Laag
     maintenance: Onderhoud
     maintenance_settings: Onderhoudsinstellingen
@@ -397,6 +427,7 @@ nl:
     max_value: Maximale waarde
     media_files_label: Bestanden
     media_library: Mediabibliotheek
+    media_library_page_title: Mediabibliotheek - Dashboard - Mercer Lighthouse
     messages: Berichten
     mhs: MHS
     mhs_assessment: MHS-beoordeling
@@ -409,6 +440,7 @@ nl:
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
     minimum_download_speed: Minimale downloadsnelheid (in Mbps)
+    minimum_system_check_validity: De geldigheidsduur van de systeemcontrole voor het minimale campagneniveau moet 15 minuten bedragen
     minimum_upload_speed: Minimale uploadsnelheid (in Mbps)
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
     model_answer: Modelantwoord
@@ -420,6 +452,7 @@ nl:
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
     no_status: Geen status
+    norm_editor_numeric_value_error: Alleen numerieke waarden zijn toegestaan (gehele getallen of getallen met decimalen).
     norms: Normen
     not_completed: Niet voltooid
     not_completed_tooltip: "%{completed} evaluators worden toegewezen, maar alleen %{submitted} de evaluaties hebben afgerond"
@@ -864,6 +897,11 @@ nl:
     precision: Precisie
     privacy: Privacy
     proctoring: Toezicht houden
+    proctoring_errors_timed_only: Selectief toezicht kan alleen worden ingeschakeld voor toetsen met een tijdslimiet.
+    proctoring_fixed_time_required: Schakel 'Vaste tijd' in om deze optie te selecteren
+    proctoring_mode_all: Schakel toezicht in voor alle toetsen
+    proctoring_mode_all_except_ac: Schakel toezicht in voor alle toetsen, met uitzondering van het assessmentcenter
+    proctoring_settings: Instellingen voor toezicht
     professional: Professioneel
     proficiency: Vaardigheid
     proficiency_level: API-sleutels
@@ -876,7 +914,32 @@ nl:
     projects: Projecten
     prompt: Prompt
     question_center: Vragencentrum
+    question_center_page_title: Vraagcentrum - Dashboard - Mercer Lighthouse
+    question_editor_change_type: Type wijzigen
+    question_editor_click_to_write: Klik hier om je vraag in te voeren...
+    question_editor_copy_question: Vraag kopiëren
+    question_editor_enable_transcription: Transcriptie inschakelen
+    question_editor_preview_question: Voorbeeldvraag
+    question_editor_validation_type: Type validatie
+    question_randomization: Willekeurige toewijzing van vragen
+    question_type_audio_response: Audio-reactie
+    question_type_constant_sum: Constante som
+    question_type_file_upload: Bestand uploaden
+    question_type_gap_analysis: Kloofanalyse
+    question_type_hot_spot: Hotspot
+    question_type_matrix_table: Matrix-tabel
+    question_type_meta_info: Meta-informatie
+    question_type_multiple_choice: Meerkeuzevragen
+    question_type_pick_group_rank: Groep rangschikking selecteren
+    question_type_rank_order: Rangorde
+    question_type_side_by_side: Naast elkaar
+    question_type_slider: Schuifbalk
+    question_type_text_entry: Tekst invoeren
+    question_type_video_response: Videoreactie
     questions: Vragen
+    questions_new_button: Nieuwe vraag
+    questions_title: Vraag
+    questions_type: Type
     range_min_max: ASSORTIMENT %{min} - %{max}
     reflection_questions: Reflectie vragen
     regenerate_transcriptions_action: Transcripties opnieuw genereren
@@ -888,6 +951,7 @@ nl:
     remove_children_to_change_type: Verwijder alle kinderen om het type te wijzigen
     remove_confirmation: Weet u zeker dat u dit item wilt verwijderen?
     remove_successfully: Het media-item is succesvol verwijderd.
+    report_alias_save_confirmation: Als u ALLE wijzigingen in Report Builder en ook in Aliassen wilt opslaan, klikt u op de knop 'OPSLAAN'. De pagina wordt opnieuw geladen en uw wijzigingen worden toegepast.
     report_approvals: Goedkeuringen
     report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
     report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
@@ -917,6 +981,7 @@ nl:
     saml_service_provider_acs_urls_placeholder: Voer URL's in die gescheiden zijn door komma's, bijvoorbeeld https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ACS-URL's zijn vereist
     saml_service_provider_action_delete_label: Verwijderen
+    saml_service_provider_action_download_xml_label: XML downloaden
     saml_service_provider_action_edit_label: Bewerken
     saml_service_provider_action_rotate_certificate_label: Rotate Certificate
     saml_service_provider_add: Voeg SAML-dienstverlener toe
@@ -958,6 +1023,7 @@ nl:
     saml_settings: SAML-instellingen
     save: Opslaan
     save_assessment_for_scoring_management: Sla de beoordeling op voordat u begint met scoren.
+    save_block: Blok opslaan
     saved_filter_label:
       approval_status_in: Goedkeuringsstatus
       approver_user_id_in: Goedkeurder
@@ -1006,9 +1072,11 @@ nl:
     select_language_to_translate: Selecteer de taal die u wilt vertalen
     select_level: Selecteer niveau
     select_start_time: Starttijd selecteren
+    selective_proctoring: Selectief toezicht
     send_email: Stuur e-mail
     set_min_max_scores_warning: Stel de minimum- en maximumscores voor deze factor in om de AI-scoring te configureren.
     settings: Instellingen
+    settings_saved_successfully: Instellingen zijn opgeslagen
     show_all_assessment_responses: Alle beoordelingsreacties weergeven
     show_middle_scores: "%{count}e scores weergeven (optioneel)..."
     show_original: Origineel weergeven
@@ -1022,7 +1090,11 @@ nl:
     slot_name: Slot Name
     sms_histories: SMS-geschiedenis
     sms_invites: SMS Uitnodigingen
+    specialty_questions: Specifieke vragen
+    standard_questions: Standaardvragen
+    start: begin
     start_time: Starttijd
+    static_content: Statische inhoud
     stats: Stats
     status_details: Statusgegevens
     structured_learning: Formeel Leren [10]
@@ -1031,7 +1103,10 @@ nl:
     target_job_role: Beoogde functie
     this_field_is_required: Dit veld is verplicht
     threesixty: 360°-campagne
+    timed_label: 'Tijdcode: %{time_text}'
+    timelines: Tijdlijnen
     timezone: Tijdzone
+    timing: Tijdstip
     to: Aan
     tone: Toon
     toolbar_ai_insight: AI-inzicht

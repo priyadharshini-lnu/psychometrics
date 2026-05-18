@@ -32,6 +32,7 @@ en:
     change_password: Change Password
     clear_filters: Clear Filters
     client: Client
+    close: Close
     collaborative_learning: Collaborative Learning
     completed: Completed
     configurations: Configurations
@@ -40,19 +41,24 @@ en:
     controller: Controller
     cookie_notice: Cookie Notice
     cookies_statement: Cookies Statement
+    copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
+    create: Create
     created_at: Created At
     created_date: Created Date
+    created_successfully: Created successfully
     custom_acknowledgment_text: Custom Acknowledgment Text
     custom_acknowledgment_text_required: Custom acknowledgment text is required for controller data role
     custom_consent_text: Custom Consent Text
     custom_consent_text_required: Custom consent text is required for controller data role
     data_role: Data Role
     decline: Decline
+    delete: Delete
     description: Description
     desktop_or_laptop_recommended: Desktop or Laptop Recommended
     desktop_or_laptop_required: Desktop or Laptop Required
+    disabled: Disabled
     download: Download
     download_audio: Download Audio
     download_transcription: Download Transcription
@@ -60,9 +66,12 @@ en:
     edit: Edit
     edited: Edited
     email: Email
+    ending_proctoring_session_msg: We are ending the proctoring session. <p>Please wait while we save your responses and redirect back to the home page.</p>
+    error: Error
     export: Export
     failed: Failed
     'false': false
+    file: File
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate
@@ -105,6 +114,8 @@ en:
     no_results_found: No results found
     not_requested: Not Yet Requested
     ok: Ok
+    options: Options
+    owner: Owner
     pending: Pending
     policy_version: Policy Version
     policy_version_format: Only whole numbers are allowed
@@ -142,6 +153,8 @@ en:
     status_unknown: Status Unknown
     subject: Subject
     submit: Submit
+    submit_and_finish_proctoring: Submit and Finish Proctoring
+    suspended: Suspended
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
     table:
       entries:
@@ -165,6 +178,7 @@ en:
     type: Type
     update: Update
     update_failed: Update failed
+    updated_at: Updated At
     updated_successfully: Updated successfully
     video: Video
     view: View

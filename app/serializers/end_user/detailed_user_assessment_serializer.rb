@@ -9,13 +9,15 @@ module EndUser
                :selected_locale, :privacy_consent_required, :campaign_id,
                :custom_consent_text, :custom_consent_policy_version, :data_role,
                :is_data_controller, :instructions, :started_at, :current_campaign_expiry_date,
-               :piped_text_mapping, :locale_data, :custom_acknowledgment_text,
-               :should_run_assessment_level_checks
+               :piped_text_mapping, :locale_data, :custom_acknowledgment_text, :selective_proctoring_enabled,
+               :proctoring_integration_type, :should_run_assessment_level_checks, :enable_mobile_proctoring
 
     def privacy_consent_required
-      return true if is_data_controller
-
-      context[:current_user].privacy_consent_required?
+      if is_data_controller
+        object.not_started? || object.data_controller_consent_required?(context[:current_user])
+      else
+        context[:current_user].privacy_consent_required?
+      end
     end
 
     def custom_consent_text
@@ -74,10 +76,6 @@ module EndUser
       extra.merge(audio_and_video_check_data)
     end
 
-    def current_campaign_user
-      campaign.campaign_users.find_by(user_id: current_user.id) if current_user
-    end
-
     def current_campaign_expiry_date
       current_campaign_user&.real_expiry_date
     end
@@ -117,6 +115,18 @@ module EndUser
       }
     end
 
+    def selective_proctoring_enabled
+      campaign.campaign_options.selective_proctoring_enabled && object.proctoring_enabled?
+    end
+
+    def proctoring_integration_type
+      campaign.campaign_options.integration_type
+    end
+
+    def enable_mobile_proctoring
+      campaign.campaign_options.enable_mobile_proctoring
+    end
+
     def should_run_assessment_level_checks
       campaign.should_run_assessment_level_checks?
     end
@@ -129,6 +139,10 @@ module EndUser
 
     def current_user
       context[:current_user]
+    end
+
+    def current_campaign_user
+      context[:campaign_user]
     end
 
     def piped_text_context

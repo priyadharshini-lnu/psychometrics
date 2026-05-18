@@ -2,7 +2,10 @@ import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { Space, Typography, Alert } from 'antd'
+import {
+  Space, Typography, Alert, Spin,
+} from 'antd'
+import { Loading3QuartersOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/survey/core/rootReducers'
 
 import { EndOfAssessmentElementProps } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
@@ -11,6 +14,7 @@ import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import ScoringTable from './components/ScoringTable'
 
 import styles from './styles.less'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const connector = connect(({ preview }: RootState) => ({
   isAnonymousAssessment: preview.isAnonymousAssessment,
@@ -29,9 +33,13 @@ const connector = connect(({ preview }: RootState) => ({
   extra: preview.extraOptions,
 }))
 
+type OwnProps = {
+  insideSelectiveProctoringSession?: boolean
+}
+
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux
+type Props = PropsFromRedux & OwnProps
 
 const EndPage: FC<Props> = ({
   isAnonymousAssessment,
@@ -48,6 +56,7 @@ const EndPage: FC<Props> = ({
   assessmentId,
   invalidSession,
   extra,
+  insideSelectiveProctoringSession,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -69,6 +78,19 @@ const EndPage: FC<Props> = ({
     message = endOfAssessmentElementProps?.message
   }
   const getViewPath = () => `?tab=${assessmentId}&read=true`
+
+  if (insideSelectiveProctoringSession) {
+    return (
+      <div className="w-100 h-100vh flex ta-c items-center justify-center">
+        <Space orientation="vertical" align="center">
+          <Spin indicator={<Loading3QuartersOutlined style={{ fontSize: 48 }} />} />
+          <Typography.Text>
+            <SafeHTML className="fs-20" html={I18n.t('shared.ending_proctoring_session_msg')} />
+          </Typography.Text>
+        </Space>
+      </div>
+    )
+  }
 
   return (
     <div className={styles.page}>

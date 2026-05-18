@@ -36,6 +36,9 @@ Rails.application.configure do
     'Cache-Control' => 'public, s-maxage=31536000, max-age=15552000',
     'Expires' => 1.year.from_now.to_fs(:rfc822)
   }
+
+  # Set default cache headers for all responses
+  config.action_dispatch.default_headers['Cache-Control'] = 'no-store'
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :terser if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
   config.logger = Syslog::Logger.new 'psychometrics'

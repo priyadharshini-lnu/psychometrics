@@ -35,7 +35,11 @@ module Administration
         links['assessments'] = "#{admin_path}/assessments" if policy(%i[administration assessment]).index?
         links['user_availability'] = "#{admin_path}/user_availabilities"
         if policy(%i[administration question]).index?
-          links['question_center'] = administration_templates_questions_path
+          links['question_center'] = if Settings.features.question_center_react_ui
+                                       "#{admin_path}/templates/questions"
+                                     else
+                                       administration_templates_questions_path
+                                     end
         end
         if policy(%i[administration library]).index?
           links['libraries'] = if Settings.features.libraries_react_ui

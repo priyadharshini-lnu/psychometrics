@@ -14,6 +14,13 @@ class Devise::TwoFactorAuthenticationController < DeviseController
     return render(:show) if params[:code].blank?
 
     if resource.authenticate_otp(params[:code])
+      audit!(
+        :two_factor_authentication,
+        resource,
+        user: resource,
+        payload: { email: resource.email },
+        outcome: 'successful'
+      )
       after_two_factor_success_for(resource)
     else
       after_two_factor_fail_for(resource)

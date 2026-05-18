@@ -2,6 +2,7 @@
 
 require_relative 'boot'
 require 'rails/all'
+require 'action_cable/engine'
 require_relative '../lib/middlewares/set_locale_middleware'
 require_relative '../lib/middlewares/check_session'
 require_relative '../lib/middlewares/set_timeout_header_middleware'

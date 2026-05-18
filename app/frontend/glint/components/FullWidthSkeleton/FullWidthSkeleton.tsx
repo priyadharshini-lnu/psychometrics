@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import _ from 'lodash'
 import { Skeleton, Space } from 'antd'
-import { SkeletonInputProps } from 'antd/lib/skeleton/Input'
+import { SkeletonInputProps } from 'antd/es/skeleton/Input'
 import styles from './FullWidthSkeleton.less'
 
 const DEFAULT_ROWS = 1

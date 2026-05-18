@@ -21,6 +21,7 @@ ru:
     admin_roles: Роли администратора
     admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
     admins: Администраторы
+    advanced: Для опытных пользователей
     ai_artifact_result_generation_admin_job_failed: Артефакт «%{artifact_name}» не может быть сгенерирован для пользователя «%{user_email}».
     ai_artifact_result_stale: Результат может быть устаревшим, поскольку зависимости артефакта ИИ изменились с момента генерации последнего результата. Рассмотрите возможность повторной генерации артефакта с использованием последних зависимостей.
     ai_artifacts: Артефакты искусственного интеллекта
@@ -117,6 +118,7 @@ ru:
     allow_continue_with_warning_system_check: Разрешить пользователям продолжить работу с отображением предупреждений в случае сбоя проверки системы
     api_keys: API-ключи
     apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
+    assessment: Оценка
     assessment_center_activity: Деятельность
     assessment_center_assessor: Эксперт
     assessment_center_attendance: Посещаемость
@@ -147,6 +149,12 @@ ru:
     available_languages: Отчет доступен на следующих языках
     average: Среднее
     back_to_main: Главное меню
+    block_editor_add_question: Добавить вопрос
+    block_editor_question_randomization: Рандомизация вопросов
+    block_options: Параметры блока
+    block_settings: Настройки блока
+    blocks_new_button: Новый блок
+    blocks_title: Блоки
     bulk_assets_modal_choose_csv: Выбрать файл CSV
     bulk_assets_modal_choose_zip: Выбрать ZIP-файл
     bulk_assets_modal_not_csv_file_error: Для загрузки CSV допускаются только файлы CSV. Загрузите действительный файл CSV.
@@ -159,6 +167,15 @@ ru:
     campaign_assessment_actions_disable_caching: Отключить кэширование оценок
     campaign_assessment_actions_enable_caching: Включить кэширование оценок
     campaign_assessment_column_caching_enabled: Кэширование оценок включено
+    campaign_assessment_column_hogan_assessment_id: Идентификатор оценки Хогана
+    campaign_assessment_column_hogan_form_id: Идентификационный номер Хогана
+    campaign_assessment_column_pearson_assessment_id: Идентификатор теста Pearson
+    campaign_assessment_column_pearson_assessment_language: Язык тестирования Pearson
+    campaign_assessment_column_pearson_error_details: Подробная информация об ошибке Пирсона
+    campaign_assessment_column_pearson_product_id: Идентификатор продукта Pearson
+    campaign_assessment_column_saville_error_code: Код ошибки Saville
+    campaign_assessment_column_saville_norm_id: Идентификатор Saville Norm
+    campaign_assessment_column_saville_request_id: Идентификатор запроса Saville
     campaign_assessment_mhs_confidence_interval: Доверительный интервал
     campaign_assessment_mhs_confidence_interval_update_success: Доверительный интервал обновлен успешно
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval должен быть равен 0 или 1
@@ -203,6 +220,7 @@ ru:
     campaigns: Кампании
     cancel: Отменить
     cancellation_and_rescheduling_disabled: Отмена и перенос заказа отключены
+    captcha: Проверка по капче
     casual: Повседневный
     cell_save_msg: Допустимые изменения сохраняются автоматически, как только вы выходите из ячейки после редактирования.
     characters: символы
@@ -219,10 +237,13 @@ ru:
     concise: Лаконичный
     configure_model_answer_title: Настройте образец ответа и ключевые слова
     confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
+    confirmation_required: Требуется подтверждение
+    confirmation_required_details: Вы действительно хотите удалить файл «%{resource_name}» из папки «%{resource}»?
     copied: Скопировано
     copied_url_success: URL успешно скопирован в буфер обмена
     copy_ai_artifacts: Копировать артефакты искусственного интеллекта
     copy_image_url: Скопировать URL изображения
+    copy_url: Скопировать URL
     country: Страна
     create_client: Создать клиента
     create_indicator: Создать индикатор
@@ -240,6 +261,7 @@ ru:
     delete_ok_text: Да, удалить
     denied: Отклонено
     description: Описание
+    descriptive_text: Описательный текст
     development_actions: Действия по развитию
     development_actions_form_tags: Теги
     digest_delivery_mode:
@@ -262,10 +284,12 @@ ru:
       wednesday: среда
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
+    disable_proctoring: Отключить наблюдение
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
     download_bulk_asset_download_example_csv: Скачать пример CSV.
     duration: Продолжительность
+    duration_must_be_positive: Продолжительность должна быть положительной
     edit_campaign_admin: Редактировать кампанию Администратор
     edit_client_admin: Редактировать клиентский админ
     edit_folder: Изменить папку
@@ -284,6 +308,7 @@ ru:
     enable_system_check: Включить проверку системы
     enable_transcription: Включить транскрипцию
     enable_transcription_msg: Включите транскрипцию, чтобы использовать оценку ИИ для вопросов с видео/аудио ответами.
+    end: конец
     end_time: Конец времени
     end_time_must_be_after_start_time: Время окончания должно быть позже времени начала
     enhance_with_ai: Улучшайте с помощью ИИ
@@ -300,6 +325,8 @@ ru:
     export_completion_status: Статус завершения экспорта
     export_completion_statuses_scheduled: Задание экспорта статусов завершения успешно запланировано
     export_detailed_completion_status: Подробно
+    factor_feedback: Обратная связь по факторам
+    factor_selection: Выбор факторов
     factors: Факторы
     feature_ai_assistants_description: Включите помощников на базе искусственного интеллекта для улучшения пользовательского опыта
     feature_ai_assisted_idp_description: Используйте ИИ для помощи в составлении рекомендаций по индивидуальному плану развития
@@ -323,6 +350,8 @@ ru:
     formal: Формальный
     from: От
     generate_transcription: Создать транскрипцию
+    graphic: Графика
+    graphic_slider: Графический слайдер
     hide_middle_scores: Скрыть средние оценки
     high: Высокий
     hogan: Хоган
@@ -389,6 +418,7 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    linked_assessments: Связанные оценки
     low: Низкий
     maintenance: Техническое обслуживание
     maintenance_settings: Настройки обслуживания
@@ -397,6 +427,7 @@ ru:
     max_value: Максимальное значение
     media_files_label: Файлы
     media_library: Медиатека
+    media_library_page_title: Медиатека — Панель управления — Mercer Lighthouse
     messages: Сообщения
     mhs: MHS
     mhs_assessment: Оценка MHS
@@ -409,6 +440,7 @@ ru:
     min_value: Минимальное значение
     minimum_10_words: Минимум 10 слов
     minimum_download_speed: Минимальная скорость загрузки (в Мбит/с)
+    minimum_system_check_validity: Минимальный уровень кампании. Срок действия проверки системы должен составлять 15 минут
     minimum_upload_speed: Минимальная скорость загрузки (в Мбит/с)
     missing_min_max_values: Требуются минимальные и максимальные значения.
     model_answer: Типовой ответ
@@ -420,6 +452,7 @@ ru:
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
     no_status: Без статуса
+    norm_editor_numeric_value_error: Допускаются только числовые значения (целые числа или числа с десятичной запятой).
     norms: Нормы
     not_completed: Не завершено
     not_completed_tooltip: "%{completed} оценщики назначены, но только %{submitted} завершили оценки"
@@ -864,6 +897,11 @@ ru:
     precision: Точность
     privacy: Конфиденциальность
     proctoring: Прокторинг
+    proctoring_errors_timed_only: Функция выборочного наблюдения за экзаменом может быть включена только для тестов с ограничением по времени.
+    proctoring_fixed_time_required: Включите параметр «Фиксированное время», чтобы выбрать эту опцию
+    proctoring_mode_all: Включить наблюдение за всеми тестами
+    proctoring_mode_all_except_ac: Включить наблюдение за всеми тестами, за исключением тестов в центре оценки
+    proctoring_settings: Настройки контроля
     professional: Профессиональный
     proficiency: Профессионализм
     proficiency_level: Уровень владения языком
@@ -876,7 +914,32 @@ ru:
     projects: Проекты
     prompt: Подсказка
     question_center: Центр вопросов
+    question_center_page_title: Центр вопросов — Панель управления — Mercer Lighthouse
+    question_editor_change_type: Изменить тип
+    question_editor_click_to_write: Нажмите, чтобы ввести текст вопроса...
+    question_editor_copy_question: Скопировать вопрос
+    question_editor_enable_transcription: Включить транскрипцию
+    question_editor_preview_question: Предварительный просмотр вопроса
+    question_editor_validation_type: Тип проверки
+    question_randomization: Рандомизация вопросов
+    question_type_audio_response: Аудиоответ
+    question_type_constant_sum: Постоянная сумма
+    question_type_file_upload: Загрузка файла
+    question_type_gap_analysis: Анализ пробелов
+    question_type_hot_spot: Горячая точка
+    question_type_matrix_table: Матричная таблица
+    question_type_meta_info: Метаданные
+    question_type_multiple_choice: Выбор из нескольких вариантов
+    question_type_pick_group_rank: Выбрать группу Ранг
+    question_type_rank_order: Рейтинг
+    question_type_side_by_side: Рядом
+    question_type_slider: Ползунок
+    question_type_text_entry: Ввод текста
+    question_type_video_response: Видеоответ
     questions: Вопросы
+    questions_new_button: Новый вопрос
+    questions_title: Вопрос
+    questions_type: Тип
     range_min_max: ДИАПАЗОН%{min} - %{max}
     reflection_questions: Вопросы для размышления
     regenerate_transcriptions_action: Восстановить транскрипции
@@ -888,6 +951,7 @@ ru:
     remove_children_to_change_type: Удалить всех детей, чтобы изменить тип
     remove_confirmation: Вы уверены, что хотите удалить этот элемент?
     remove_successfully: Медиафайл удален успешно.
+    report_alias_save_confirmation: Если вы хотите сохранить ВСЕ изменения в Report Builder и в разделе «Псевдонимы», нажмите кнопку «СОХРАНИТЬ». Страница перезагрузится, и ваши изменения будут успешно применены.
     report_approvals: Утверждение отчетов
     report_condition_not_met: Требуется оценка %{required} %{relationship}, но имеется только %{actual}
     report_conditions_not_met_detailed: Отчет для %{user} не соответствует условиям доступности. %{conditions}
@@ -917,6 +981,7 @@ ru:
     saml_service_provider_acs_urls_placeholder: 'Введите URL-адреса, разделенные запятыми, например: https://app1.com/saml/acs, https://app2.com/saml/acs'
     saml_service_provider_acs_urls_required: URL-адреса ACS являются обязательными
     saml_service_provider_action_delete_label: Удалить
+    saml_service_provider_action_download_xml_label: Скачать XML
     saml_service_provider_action_edit_label: Редактировать
     saml_service_provider_action_rotate_certificate_label: Повернуть сертификат
     saml_service_provider_add: Добавить поставщика услуг SAML
@@ -958,6 +1023,7 @@ ru:
     saml_settings: Настройки SAML
     save: Сохранить
     save_assessment_for_scoring_management: Сохраните оценку, прежде чем приступать к подсчету баллов.
+    save_block: Сохранить блок
     saved_filter_label:
       approval_status_in: Статус утверждения
       approver_user_id_in: Утверждающий
@@ -1006,9 +1072,11 @@ ru:
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень
     select_start_time: Выберите время начала
+    selective_proctoring: Выборочный контроль
     send_email: Отправить электронное письмо
     set_min_max_scores_warning: Установите минимальный и максимальный баллы для этого фактора, чтобы настроить оценку ИИ.
     settings: Настройки
+    settings_saved_successfully: Настройки успешно сохранены
     show_all_assessment_responses: Показать все ответы на оценку
     show_middle_scores: Показать больше результатов для «%{count}» (необязательно)...
     show_original: Показать оригинал
@@ -1022,7 +1090,11 @@ ru:
     slot_name: Название слота
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения
+    specialty_questions: Специальные вопросы
+    standard_questions: Стандартные вопросы
+    start: начало
     start_time: Время начала
+    static_content: Статический контент
     stats: Статистика
     status_details: Детали статуса
     structured_learning: Формальное обучение [10]
@@ -1031,7 +1103,10 @@ ru:
     target_job_role: Целевая должность
     this_field_is_required: Это поле является обязательным для заполнения
     threesixty: Кампания «360»
+    timed_label: 'Ссылка: %{time_text}'
+    timelines: Хронология
     timezone: Часовой пояс
+    timing: График
     to: К
     tone: Тон
     toolbar_ai_insight: AI Insight

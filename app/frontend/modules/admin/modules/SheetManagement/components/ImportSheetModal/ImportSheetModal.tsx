@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {
   Button, Modal, message, Alert, Form, Input, Typography,
 } from 'antd'
-import { Store } from 'antd/lib/form/interface'
+import { Store } from 'antd/es/form/interface'
 import Event from 'interfaces/Event'
 import each from 'lodash/each'
 import { connect, ConnectedProps } from 'react-redux'

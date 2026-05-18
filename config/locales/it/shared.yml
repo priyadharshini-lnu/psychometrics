@@ -32,6 +32,7 @@ it:
     change_password: Modifica la password
     clear_filters: Cancella i filtri
     client: Cliente
+    close: Chiudi
     collaborative_learning: Apprendimento collaborativo
     completed: Completato
     configurations: Configurazioni
@@ -40,19 +41,24 @@ it:
     controller: Controller
     cookie_notice: Informativa sui cookie
     cookies_statement: Informativa sui cookie
+    copied_successfully: Copia completata con successo
     copied_to_clipboard: Copiato negli appunti
     copy: Copia
+    create: Crea
     created_at: Creato il
     created_date: Data di creazione
+    created_successfully: Creato con successo
     custom_acknowledgment_text: Testo personalizzato dei ringraziamenti
     custom_acknowledgment_text_required: Per il ruolo "Dati controller" è necessario un testo di conferma personalizzato
     custom_consent_text: Testo di consenso personalizzato
     custom_consent_text_required: È necessario un testo di consenso personalizzato per il ruolo dei dati del controller
     data_role: Ruolo dei dati
     decline: Declino
+    delete: Elimina
     description: Descrizione
     desktop_or_laptop_recommended: Desktop o laptop consigliato
     desktop_or_laptop_required: È necessario un computer desktop o portatile
+    disabled: Disabile
     download: Scarica
     download_audio: Scarica audio
     download_transcription: Scarica la trascrizione
@@ -60,9 +66,12 @@ it:
     edit: Modifica
     edited: Nuove
     email: Email
+    ending_proctoring_session_msg: La sessione di sorveglianza sta per concludersi. <p>Attendi mentre salviamo le tue risposte e ti reindirizziamo alla pagina iniziale.</p>
+    error: Errore
     export: Esporta
     failed: Fallito
     'false': false
+    file: File
     first_name: Nome
     formal_learning: Apprendimento Formale
     generate: Generare
@@ -105,6 +114,8 @@ it:
     no_results_found: Nessun risultato trovato
     not_requested: Non ancora richiesto
     ok: Ok
+    options: Opzioni
+    owner: Proprietario
     pending: In sospeso
     policy_version: Versione della politica
     policy_version_format: Sono ammessi solo numeri interi
@@ -142,6 +153,8 @@ it:
     status_unknown: Stato sconosciuto
     subject: Oggetto
     submit: Invia
+    submit_and_finish_proctoring: Invia e concludi la sessione di sorveglianza
+    suspended: Sospeso
     switch_to_laptop_or_desktop: Passa al laptop o al desktop
     table:
       entries:
@@ -165,6 +178,7 @@ it:
     type: Tipo
     update: Aggiorna
     update_failed: Aggiornamento non riuscito
+    updated_at: Aggiornato alle
     updated_successfully: Aggiornamento completato con successo
     video: Video
     view: Visualizza

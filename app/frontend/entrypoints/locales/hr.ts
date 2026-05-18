@@ -1,4 +1,4 @@
-import hr from 'antd/lib/locale/hr_HR'
+import hr from 'antd/es/locale/hr_HR'
 
 window.antdLocale = hr
 export default hr

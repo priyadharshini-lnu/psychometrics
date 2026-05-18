@@ -11,6 +11,7 @@ port: 3030
 protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
+cloudfront_domain: <%= ENV["CLOUDFRONT_DOMAIN"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 real_env: <%= ENV["REAL_ENV"] %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
@@ -43,7 +44,8 @@ skillvue:
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
-    one_day_expiry_folder: tmp/1-day
+    one_day_expiry_folder: private/tmp/1-day
+    temporary_upload_folder: private/tmp/uploads
 hashids_length:
   anonym: 8
   default: 6
@@ -65,6 +67,7 @@ features:
   new_video_recording_ui: <%= ENV.fetch('NEW_VIDEO_RECORDING_UI', 'false') == 'true' %>
   norm_editor_new_ui: <%= ENV.fetch('NORM_EDITOR_NEW_UI', 'false') == 'true' %>
   dimensions_react_ui: <%= ENV.fetch('DIMENSIONS_REACT_UI', 'false') == 'true' %>
+  question_center_react_ui: <%= ENV.fetch('QUESTION_CENTER_REACT_UI', 'false') == 'true' %>
   libraries_react_ui: <%= ENV.fetch('LIBRARIES_REACT_UI', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
@@ -2313,23 +2316,22 @@ providers:
         name: Career Guidance Report
   mhs:
     assessments:
-      - id: 9039cce2-6567-4bc5-8655-8792ba9ab936
+      - id: ad8f2591-4d23-4892-808e-5ea4e68feba7
         name: EQ-i 2.0
         report_ids:
-          - bc791135-086f-4d67-a8c1-cea00c003ded
-          - 088d8d3e-46c1-4751-b92f-8f6984f6ea49
-          - f2e0ff10-629d-4ede-af46-9911991927c4
-          - 3f584d17-f016-4ca7-a0fd-a63534f6c45b
+          - bf2375c6-6720-4653-a544-3e7fa8cd8674
+          - aae7a2bf-3c64-4dee-91f5-5723a96bfca8
+          - ff7c7544-9f1e-4fb3-833c-b16ca4a00bc4
+          - de8854ae-d69b-49ad-876d-b9c4331d5f6b
           - f45bd4b0-4628-43b4-8eaa-edefa6bfa455
           - 742e911f-bd1c-4791-8866-c3d175c455e5
-          - c419ab41-a607-4fcf-a8a9-a1a27496adcc
         outcome_sets:
           - id: 47e1f8a8-4223-4f54-8b5d-5b02103256db
-            name: Total EI (TOT)
+            name: Total EI Score (TOT)
           - id: 4abc0921-f12b-4c02-953a-e7be018a38f8
-            name: Self-Perception (SP)
+            name: Self Perception (SP)
           - id: 8956241e-aada-4050-975d-b171b8e85eb2
-            name: Self-Regard (SR)
+            name: Self Regard (SR)
           - id: 37b5c088-41e4-4d6d-b117-2f4375ce3a25
             name: Emotional Self Awareness (ES)
           - id: 95cfce5e-e181-4b39-9bee-f10c8427f2b5
@@ -2373,29 +2375,33 @@ providers:
           - id: d14e4b38-31b4-4c6b-b04a-06550f69fbfc
             name: NEGATIVE IMPRESSION (NI)
           - id: 62234d9d-7675-40ca-85b8-2c36ec7d62ef
-            name: INCONSISTENCY INDEX (ICNX)
+            name: INCONSISTENCY INDEX (INCX)
           - id: 0cfb3b84-0d10-4cea-9e65-0ebc23c3eff6
-            name: # of Omitted Items, % rate of Omits, Count of Responses, % of Responses Count
+            name: "Count of Items, % of item responses"
           - id: 56cedbaa-37b6-4ff7-8d72-4a932f1594d1
-            name: Duration
+            name: DURATION
           - id: ad5dcb63-e37c-49c5-9d56-1e1e0f7ea516
             name: Name/ID
           - id: 5e12fd38-f095-43ca-b764-9f8fff7cf34c
-            name: Balancing EI Key
+            name: "Diff of Scores, Balancing EI Key"
           - id: 828b7251-48c1-45a1-943a-b709112c7565
             name: Norm Type
           - id: 4becca6a-b768-46c8-9853-27378491a707
             name: Leadership Client Outcomes
           - id: ac353144-dfbf-43a0-91f0-b7ef2375cbcd
-            name: Model Integrity
+            name: Model Integrity and Stats
         data_gatherer:
           directives:
             - key: Language
               value: en-US
+            - key: ResearchQuestions
+              value: "0"
+            - key: ExperimentalItems
+              value: "0"
         evaluator:
           directives:
             - key: NormRegion
-              value: "0"
+              value: "6"
             - key: NormOption
               value: "0"
             - key: ConfidenceInterval
@@ -2403,15 +2409,22 @@ providers:
             - key: LeadershipBar
               value: "0"
         evaluators:
-          - id: 7aace635-1801-4e9b-896b-faa3446036b5
+          - id: c8b0d50d-73c3-48ab-985f-abd80945ba71
             name: Base evaluator for EQ-i 2.0
+            observation_set_ids:
+              - bb4045b2-005e-4e5b-9c1d-dcc8543e61c6
+              - 449de328-f64a-4ee4-94cf-8a9d661bf1f3
+              - a11bb6ff-7527-43ac-a061-744fa5e2fd19
         data_gatherers:
-          - id: 4884446c-5a3f-481a-ba8e-a97400f9d670
+          - id: 71761120-449d-49bc-b5dd-15df53bf7047
             name: EQ-i 2.0 Data Gatherer
         observation_sets:
-          - name: EQ-i 2.0 Form
+          - name: EQ-i 2.0 Items
             source_id: bb4045b2-005e-4e5b-9c1d-dcc8543e61c6
             interpret_as: bb4045b2-005e-4e5b-9c1d-dcc8543e61c6
+          - name: EQ-i 2.0 Experimental Items
+            source_id: d8c2fd9d-d193-4790-b4ef-9899175412dc
+            interpret_as: d8c2fd9d-d193-4790-b4ef-9899175412dc
           - name: Demographics (Scored)
             source_id: 449de328-f64a-4ee4-94cf-8a9d661bf1f3
             interpret_as: 449de328-f64a-4ee4-94cf-8a9d661bf1f3
@@ -2421,39 +2434,57 @@ providers:
           - name: Data Gathering Observations
             source_id: a11bb6ff-7527-43ac-a061-744fa5e2fd19
             interpret_as: a11bb6ff-7527-43ac-a061-744fa5e2fd19
+          - name: EQi2.0 Item Response Times
+            source_id: 933ef78d-7377-41d5-b8fc-e52f771de8dc
+            interpret_as: 933ef78d-7377-41d5-b8fc-e52f771de8dc
+          - name: EQi2.0 Experimental Items Response Times
+            source_id: e7dac9f9-0d26-4493-85fa-3faf79d94936
+            interpret_as: e7dac9f9-0d26-4493-85fa-3faf79d94936
         reports:
-          - id: bc791135-086f-4d67-a8c1-cea00c003ded
+          - id: bf2375c6-6720-4653-a544-3e7fa8cd8674
             name: Workplace Client Report
             directives:
               - key: Language
                 value: en-US
               - key: NormRegion
-                value: "0"
+                value: "6"
               - key: NormOption
                 value: "0"
-          - id: 088d8d3e-46c1-4751-b92f-8f6984f6ea49
+              - key: BalancingEI
+                value: "0"
+          - id: aae7a2bf-3c64-4dee-91f5-5723a96bfca8
             name: Workplace Coach Report
             directives:
               - key: Language
                 value: en-US
               - key: ConfidenceInterval
                 value: "0"
+              - key: NormRegion
+                value: "6"
               - key: NormOption
                 value: "0"
-              - key: NormRegion
+              - key: BalancingEI
                 value: "0"
-          - id: f2e0ff10-629d-4ede-af46-9911991927c4
+          - id: ff7c7544-9f1e-4fb3-833c-b16ca4a00bc4
             name: Leadership Client Report
             directives:
               - key: Language
                 value: en-US
               - key: LeadershipBar
                 value: "0"
+              - key: NormRegion
+                value: "6"
               - key: NormOption
                 value: "0"
-              - key: NormRegion
+              - key: BalancingEI
                 value: "0"
-          - id: 3f584d17-f016-4ca7-a0fd-a63534f6c45b
+              - key: LeadershipConflict
+                value: "0"
+              - key: LeadershipOptimalBalance
+                value: "0"
+              - key: MultigenerationalWorkforce
+                value: "0"
+          - id: de8854ae-d69b-49ad-876d-b9c4331d5f6b
             name: Leadership Coach Report
             directives:
               - key: Language
@@ -2463,36 +2494,27 @@ providers:
               - key: ConfidenceInterval
                 value: "0"
               - key: NormRegion
-                value: "0"
+                value: "6"
               - key: NormOption
+                value: "0"
+              - key: BalancingEI
                 value: "0"
           - id: f45bd4b0-4628-43b4-8eaa-edefa6bfa455
             name: Group Client Report
           - id: 742e911f-bd1c-4791-8866-c3d175c455e5
             name: Group Coach Report
-          - id: c419ab41-a607-4fcf-a8a9-a1a27496adcc
-            name: Scored Dataset
         default_confidence_interval: 0
         default_leadership_bar: 0
+        default_norm_region: 6
         norm_regions:
-        - value: 0
-          label: Global
         - value: 1
           label: Australia
-        - value: 2
-          label: Denmark
         - value: 3
           label: Netherlands
-        - value: 4
-          label: South Africa
-        - value: 5
-          label: Sweden
         - value: 6
           label: UK/Ireland
         - value: 7
           label: US/Canada
-        - value: 8
-          label: South Africa (2012)
         norm_options:
         - value: 0
           label: General Population - Age and Gender
@@ -2503,20 +2525,18 @@ providers:
         - value: 3
           label: Professional - Overall
     reports:
-      - id: bc791135-086f-4d67-a8c1-cea00c003ded
+      - id: bf2375c6-6720-4653-a544-3e7fa8cd8674
         name: Workplace Client Report
-      - id: 088d8d3e-46c1-4751-b92f-8f6984f6ea49
+      - id: aae7a2bf-3c64-4dee-91f5-5723a96bfca8
         name: Workplace Coach Report
-      - id: f2e0ff10-629d-4ede-af46-9911991927c4
+      - id: ff7c7544-9f1e-4fb3-833c-b16ca4a00bc4
         name: Leadership Client Report
-      - id: 3f584d17-f016-4ca7-a0fd-a63534f6c45b
+      - id: de8854ae-d69b-49ad-876d-b9c4331d5f6b
         name: Leadership Coach Report
       - id: f45bd4b0-4628-43b4-8eaa-edefa6bfa455
         name: Group Client Report
       - id: 742e911f-bd1c-4791-8866-c3d175c455e5
         name: Group Coach Report
-      - id: c419ab41-e607-4fcf-a8a9-a1227496adcc
-        name: Scored Dataset
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>

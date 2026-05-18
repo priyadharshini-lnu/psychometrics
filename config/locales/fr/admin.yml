@@ -21,6 +21,7 @@ fr:
     admin_roles: Rôles des administrateurs
     admin_updated_successfully: L'administrateur '%{name}' a été mis à jour avec succès
     admins: Administrateurs
+    advanced: Avancé
     ai_artifact_result_generation_admin_job_failed: L'artefact « %{artifact_name} » ne peut pas être généré pour l'utilisateur « %{user_email} ».
     ai_artifact_result_stale: Le résultat peut être obsolète, car les dépendances de l'artefact IA ont changé depuis la génération du dernier résultat. Envisagez de régénérer l'artefact afin de générer les dernières dépendances.
     ai_artifacts: Artefacts de l’IA
@@ -117,6 +118,7 @@ fr:
     allow_continue_with_warning_system_check: Permettre aux utilisateurs de poursuivre malgré les avertissements en cas d'échec de la vérification du système
     api_keys: Clés API
     apply_to_existing_users: Appliquer cette modification aux utilisateurs existants dans cette campagne
+    assessment: Évaluation
     assessment_center_activity: Activité
     assessment_center_assessor: évaluateur
     assessment_center_attendance: Présence
@@ -147,6 +149,12 @@ fr:
     available_languages: Rapport disponible en langues
     average: Moyenne
     back_to_main: Menu principal
+    block_editor_add_question: Ajouter une question
+    block_editor_question_randomization: Randomisation des questions
+    block_options: Options de bloc
+    block_settings: Paramètres du bloc
+    blocks_new_button: Nouveau bloc
+    blocks_title: Blocs
     bulk_assets_modal_choose_csv: Choisissez un fichier CSV
     bulk_assets_modal_choose_zip: Choisissez un fichier ZIP
     bulk_assets_modal_not_csv_file_error: Seuls les fichiers CSV sont autorisés pour le téléchargement CSV. Veuillez télécharger un fichier CSV valide.
@@ -159,6 +167,15 @@ fr:
     campaign_assessment_actions_disable_caching: Désactiver la mise en cache d’évaluation
     campaign_assessment_actions_enable_caching: Activer la mise en cache par évaluation
     campaign_assessment_column_caching_enabled: Mise en cache d’évaluation activée
+    campaign_assessment_column_hogan_assessment_id: Référence d'évaluation Hogan
+    campaign_assessment_column_hogan_form_id: Référence du formulaire Hogan
+    campaign_assessment_column_pearson_assessment_id: Référence d'évaluation Pearson
+    campaign_assessment_column_pearson_assessment_language: Langue d'évaluation Pearson
+    campaign_assessment_column_pearson_error_details: Détails de l'erreur de Pearson
+    campaign_assessment_column_pearson_product_id: Référence produit Pearson
+    campaign_assessment_column_saville_error_code: Code d'erreur Saville
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Référence de la demande Saville
     campaign_assessment_mhs_confidence_interval: Intervalle de confiance
     campaign_assessment_mhs_confidence_interval_update_success: Intervalle de confiance mis à jour avec succès
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval doit être égal à 0 ou 1.
@@ -203,6 +220,7 @@ fr:
     campaigns: Campagnes
     cancel: Annuler
     cancellation_and_rescheduling_disabled: L'annulation et le report sont désactivés.
+    captcha: Vérification par Captcha
     casual: Décontracté
     cell_save_msg: Les modifications valides sont automatiquement enregistrées dès que vous quittez la cellule après l'avoir modifiée.
     characters: personnages
@@ -219,10 +237,13 @@ fr:
     concise: Concis
     configure_model_answer_title: Configurer les réponses types et les mots-clés
     confirm_remove_admin: Êtes-vous sûr de vouloir supprimer l'utilisateur administrateur dont l'adresse électronique est "%{email}" ?
+    confirmation_required: Confirmation requise
+    confirmation_required_details: Êtes-vous sûr de vouloir supprimer l'%{resource} « %{resource_name} » ?
     copied: Copié
     copied_url_success: L'URL a été copiée dans le presse-papiers
     copy_ai_artifacts: Copier les artefacts IA
     copy_image_url: Copier l'URL de l'image
+    copy_url: Copier l'URL
     country: Pays
     create_client: Créer un client
     create_indicator: Créer un indicateur
@@ -240,6 +261,7 @@ fr:
     delete_ok_text: Oui, supprimer
     denied: Nié
     description: Description
+    descriptive_text: Texte descriptif
     development_actions: Actions de développement
     development_actions_form_tags: Étiquettes
     digest_delivery_mode:
@@ -262,10 +284,12 @@ fr:
       wednesday: mercredi
     dimension_translations_export_scheduled: Exportation des traductions prévue pour la dimension «%{name}».
     dimensions: Dimensions
+    disable_proctoring: Désactiver la surveillance
     done: Fait
     done_tooltip: Aucune autre évaluation ne peut être soumise pour cet utilisateur, car celle-ci est marquée comme effectuée par %{marked_by}
     download_bulk_asset_download_example_csv: Télécharger l'exemple CSV.
     duration: Durée
+    duration_must_be_positive: La durée doit être positive
     edit_campaign_admin: Modifier l'administration de la campagne
     edit_client_admin: Modifier l'administration du client
     edit_folder: Modifier le dossier
@@ -284,6 +308,7 @@ fr:
     enable_system_check: Activer la vérification du système
     enable_transcription: Activer la transcription
     enable_transcription_msg: Activez la transcription pour utiliser la notation IA sur les questions à réponse vidéo/audio.
+    end: fin
     end_time: Heure de fin
     end_time_must_be_after_start_time: L'heure de fin doit être postérieure à l'heure de début.
     enhance_with_ai: Améliorer grâce à l'IA
@@ -300,6 +325,8 @@ fr:
     export_completion_status: Statut d'achèvement de l'exportation
     export_completion_statuses_scheduled: La tâche d'exportation des statuts d'achèvement a été planifiée avec succès.
     export_detailed_completion_status: Détaillé
+    factor_feedback: Retour d'information sur les facteurs
+    factor_selection: Sélection des facteurs
     factors: Facteurs
     feature_ai_assistants_description: Activez les assistants basés sur l'IA pour améliorer l'expérience utilisateur
     feature_ai_assisted_idp_description: Utiliser l'IA pour aider à formuler des recommandations en matière de planification du développement individuel
@@ -323,6 +350,8 @@ fr:
     formal: Formel
     from: De
     generate_transcription: Générer une transcription
+    graphic: Graphique
+    graphic_slider: Curseur graphique
     hide_middle_scores: Masquer les scores intermédiaires
     high: Élevé
     hogan: Hogan
@@ -389,6 +418,7 @@ fr:
     libraries: Bibliothèque des médias
     library_invalid_type: Élément de bibliothèque invalide
     licenses: Licences
+    linked_assessments: Évaluations associées
     low: Faible
     maintenance: Entretien
     maintenance_settings: Paramètres de maintenance
@@ -397,6 +427,7 @@ fr:
     max_value: Valeur maximale
     media_files_label: Fichiers
     media_library: Bibliothèque multimédia
+    media_library_page_title: Bibliothèque multimédia - Tableau de bord - Mercer Lighthouse
     messages: Messages
     mhs: MHS
     mhs_assessment: Évaluation MHS
@@ -409,6 +440,7 @@ fr:
     min_value: Valeur minimale
     minimum_10_words: 10 mots minimum
     minimum_download_speed: Vitesse de téléchargement minimale (en Mbps)
+    minimum_system_check_validity: La durée minimale de validité de la vérification du système pour la campagne doit être de 15 minutes
     minimum_upload_speed: Débit montant minimum (en Mbps)
     missing_min_max_values: Les valeurs minimales et maximales sont obligatoires.
     model_answer: Réponse type
@@ -420,6 +452,7 @@ fr:
     no_file_selected: Aucun fichier sélectionné
     no_notifications: Aucune notification
     no_status: Sans statut
+    norm_editor_numeric_value_error: Seules les valeurs numériques sont autorisées (entiers ou décimales).
     norms: Normes
     not_completed: Non terminé
     not_completed_tooltip: "%{completed} évaluateurs sont assignés, mais seuls %{submitted} ont terminé les évaluations"
@@ -864,6 +897,11 @@ fr:
     precision: Précision
     privacy: Vie privée
     proctoring: Surveillance
+    proctoring_errors_timed_only: La surveillance sélective ne peut être activée que pour les évaluations chronométrées.
+    proctoring_fixed_time_required: Activer « Durée fixe » pour sélectionner cette option
+    proctoring_mode_all: Activer la surveillance pour toutes les évaluations
+    proctoring_mode_all_except_ac: Activer la surveillance pour toutes les évaluations, à l'exception de celles réalisées dans un centre d'évaluation
+    proctoring_settings: Paramètres de surveillance
     professional: Professionnel
     proficiency: Compétence
     proficiency_level: Clés API
@@ -876,7 +914,32 @@ fr:
     projects: Projets
     prompt: Invite
     question_center: Centre de questions
+    question_center_page_title: Centre de questions - Tableau de bord - Mercer Lighthouse
+    question_editor_change_type: Modifier le type
+    question_editor_click_to_write: Cliquez ici pour rédiger le contenu de votre question...
+    question_editor_copy_question: Copier la question
+    question_editor_enable_transcription: Activer la transcription
+    question_editor_preview_question: Aperçu de la question
+    question_editor_validation_type: Type de validation
+    question_randomization: Randomisation des questions
+    question_type_audio_response: Réponse audio
+    question_type_constant_sum: Somme constante
+    question_type_file_upload: Téléchargement de fichiers
+    question_type_gap_analysis: Analyse des écarts
+    question_type_hot_spot: Point chaud
+    question_type_matrix_table: Tableau matriciel
+    question_type_meta_info: Informations méta
+    question_type_multiple_choice: Choix multiple
+    question_type_pick_group_rank: Choisir le classement du groupe
+    question_type_rank_order: Classement
+    question_type_side_by_side: Côte à côte
+    question_type_slider: Curseur
+    question_type_text_entry: Saisie de texte
+    question_type_video_response: Réponse vidéo
     questions: Questions
+    questions_new_button: Nouvelle question
+    questions_title: Question
+    questions_type: Type
     range_min_max: "%{min}S SUR LA GAMME - %{max}"
     reflection_questions: Questions de réflexion
     regenerate_transcriptions_action: Recréer les transcriptions
@@ -888,6 +951,7 @@ fr:
     remove_children_to_change_type: Supprimer tous les enfants pour changer de type
     remove_confirmation: Êtes-vous sûr de vouloir supprimer cet élément ?
     remove_successfully: Le fichier multimédia a été supprimé avec succès.
+    report_alias_save_confirmation: Si vous souhaitez enregistrer TOUTES les modifications apportées dans Report Builder et dans Aliases, veuillez cliquer sur le bouton « ENREGISTRER ». La page sera actualisée et vos modifications seront prises en compte.
     report_approvals: Approbation des rapports
     report_condition_not_met: Nécessite %{required} %{relationship} évaluation(s), mais n’a que %{actual}
     report_conditions_not_met_detailed: Le rapport pour %{user} ne remplit pas les conditions de disponibilité. %{conditions}
@@ -917,6 +981,7 @@ fr:
     saml_service_provider_acs_urls_placeholder: Saisissez les URL séparées par des virgules, par exemple https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Des URL ACS sont requises
     saml_service_provider_action_delete_label: Supprimer
+    saml_service_provider_action_download_xml_label: Télécharger le fichier XML
     saml_service_provider_action_edit_label: Éditer
     saml_service_provider_action_rotate_certificate_label: Certificat de rotation
     saml_service_provider_add: Ajouter un fournisseur de services SAML
@@ -958,6 +1023,7 @@ fr:
     saml_settings: Paramètres SAML
     save: Enregistrer
     save_assessment_for_scoring_management: Enregistrez l'évaluation avant de commencer la notation.
+    save_block: Enregistrer le bloc
     saved_filter_label:
       approval_status_in: Statut d'approbation
       approver_user_id_in: Responsable de la validation
@@ -1006,9 +1072,11 @@ fr:
     select_language_to_translate: Veuillez sélectionner la langue à traduire
     select_level: Sélectionner le niveau
     select_start_time: Sélectionnez l'heure de début
+    selective_proctoring: Surveillance sélective
     send_email: Envoyer un courriel
     set_min_max_scores_warning: Veuillez définir les notes minimales et maximales pour ce facteur afin de configurer la notation IA.
     settings: Paramètres
+    settings_saved_successfully: Les paramètres ont été enregistrés avec succès
     show_all_assessment_responses: Afficher toutes les réponses à l'évaluation
     show_middle_scores: Afficher plus de scores d'%{count}(facultatif)...
     show_original: Afficher l'original
@@ -1022,7 +1090,11 @@ fr:
     slot_name: Nom de la machine à sous
     sms_histories: Histoires de SMS
     sms_invites: Invitations par SMS
+    specialty_questions: Questions spécifiques
+    standard_questions: Questions courantes
+    start: commencer
     start_time: Heure de début
+    static_content: Contenu statique
     stats: Statistiques
     status_details: Détails de statut
     structured_learning: Apprentissage formel [10]
@@ -1031,7 +1103,10 @@ fr:
     target_job_role: Poste visé
     this_field_is_required: Ce champ est obligatoire.
     threesixty: Campagne 360
+    timed_label: 'Date et heure : %{time_text}'
+    timelines: Calendriers
     timezone: Fuseau horaire
+    timing: Calendrier
     to: À
     tone: Ton
     toolbar_ai_insight: Perspectives sur l'IA

@@ -20,6 +20,18 @@ import {
 
 const { I18n } = window
 
+interface MediaPlayerLike {
+  currentTime: ((seconds: number) => void) | number
+  play: () => Promise<void> | void
+  pause: () => void
+  on: (event: string, handler: EventListener) => void
+  off: (event: string, handler: EventListener) => void
+}
+
+interface PlayerRefHandle {
+  player: MediaPlayerLike | null
+}
+
 const QuestionTypes = {
   VideoResponse: VideoPreview,
   AudioResponse: AudioPreview,
@@ -53,8 +65,7 @@ export const QuestionScore = ({
   question, competencies, indicators, result, mediaResponse, overrideScore, approveQuestion, discardScore,
   nextQuestion, lastQuestion, approved, allowApprove, discardQuestion, highlightAnchors,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const playerRef = useRef<any>(null)
+  const playerRef = useRef<PlayerRefHandle | null>(null)
   const videoContainerRef = useRef<HTMLDivElement>(null)
   const [playingCitationKey, setPlayingCitationKey] = useState<string | null>(null)
   const QuestionPreview = QuestionTypes[question.type]
@@ -84,7 +95,11 @@ export const QuestionScore = ({
       setPlayingCitationKey(null)
     } else {
       videoContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      player.currentTime(seconds)
+      if (typeof player.currentTime === 'function') {
+        player.currentTime(seconds)
+      } else {
+        player.currentTime = seconds
+      }
       player.play()
       setPlayingCitationKey(citationKey)
     }
@@ -122,7 +137,7 @@ export const QuestionScore = ({
               question={question}
               mediaResponse={mediaResponse?.[0]}
               result={result}
-              playerRef={question.type === 'VideoResponse' ? playerRef : undefined}
+              playerRef={playerRef}
             />
           </div>
         )}

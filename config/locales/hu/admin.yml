@@ -21,6 +21,7 @@ hu:
     admin_roles: Adminisztrátori szerepkörök
     admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
     admins: Adminisztrátorok
+    advanced: Haladó
     ai_artifact_result_generation_admin_job_failed: A „%{artifact_name}” műtárgy nem hozható létre a „%{user_email}” felhasználó számára.
     ai_artifact_result_stale: Az eredmény elavult lehet, mivel az AI-artefaktum függőségei az utolsó eredmény generálása óta megváltoztak. Fontolja meg az artefaktum újragenerálását a legfrissebb függőségekkel.
     ai_artifacts: AI-összetevők
@@ -117,6 +118,7 @@ hu:
     allow_continue_with_warning_system_check: Lehetővé teszi a felhasználók számára, hogy a rendszerellenőrzés sikertelensége esetén is folytassák a műveletet
     api_keys: API-kulcsok
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
+    assessment: Értékelés
     assessment_center_activity: Tevékenység
     assessment_center_assessor: értékelő
     assessment_center_attendance: Jelenlét
@@ -147,6 +149,12 @@ hu:
     available_languages: Jelentés elérhető nyelveken
     average: Átlag
     back_to_main: Főmenü
+    block_editor_add_question: Kérdés hozzáadása
+    block_editor_question_randomization: A kérdések véletlenszerű elrendezése
+    block_options: Blokkbeállítások
+    block_settings: Blokkbeállítások
+    blocks_new_button: Új blokk
+    blocks_title: Tömbök
     bulk_assets_modal_choose_csv: CSV fájl kiválasztása
     bulk_assets_modal_choose_zip: ZIP fájl kiválasztása
     bulk_assets_modal_not_csv_file_error: CSV-fájlok feltöltésére csak CSV-fájlok használhatók. Kérjük, töltse fel az érvényes CSV-fájlt.
@@ -159,6 +167,15 @@ hu:
     campaign_assessment_actions_disable_caching: Letiltott értékelési gyorsítótár
     campaign_assessment_actions_enable_caching: Engedélyezze az értékelési gyorsítótár használatát
     campaign_assessment_column_caching_enabled: Értékelési gyorsítótár engedélyezve
+    campaign_assessment_column_hogan_assessment_id: Hogan értékelési azonosító
+    campaign_assessment_column_hogan_form_id: Hogan űrlap azonosító
+    campaign_assessment_column_pearson_assessment_id: Pearson értékelési azonosító
+    campaign_assessment_column_pearson_assessment_language: Pearson Értékelés Nyelv
+    campaign_assessment_column_pearson_error_details: A Pearson-tévedés részletei
+    campaign_assessment_column_pearson_product_id: Pearson termékazonosító
+    campaign_assessment_column_saville_error_code: Saville hiba kód
+    campaign_assessment_column_saville_norm_id: Saville Norm azonosító
+    campaign_assessment_column_saville_request_id: Saville-kérés azonosítója
     campaign_assessment_mhs_confidence_interval: Bizalmi intervallum
     campaign_assessment_mhs_confidence_interval_update_success: A konfidencia intervallum frissítése sikeresen megtörtént.
     campaign_assessment_mhs_invalid_confidence_interval: A confidence_interval értékének 0 vagy 1 kell lennie.
@@ -203,6 +220,7 @@ hu:
     campaigns: Kampányok
     cancel: Mégse
     cancellation_and_rescheduling_disabled: A lemondás és az átütemezés funkció le van tiltva.
+    captcha: Captcha-ellenőrzés
     casual: Alkalmi
     cell_save_msg: A szerkesztés után, amint elhagyja a cellát, a érvényes módosítások automatikusan mentésre kerülnek.
     characters: szereplők
@@ -219,10 +237,13 @@ hu:
     concise: Tömör
     configure_model_answer_title: Modellválasz és kulcsszavak konfigurálása
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
+    confirmation_required: Megerősítés szükséges
+    confirmation_required_details: Biztosan törölni szeretné a „%{resource}” „%{resource_name}” fájlt?
     copied: Másolva
     copied_url_success: Az URL sikeresen a vágólapra lett másolva
     copy_ai_artifacts: AI-műalkotások másolása
     copy_image_url: Kép URL-jének másolása
+    copy_url: URL másolása
     country: Ország
     create_client: Ügyfél létrehozása
     create_indicator: Indikátor létrehozása
@@ -240,6 +261,7 @@ hu:
     delete_ok_text: Igen, töröld
     denied: Tagadás
     description: Leírás
+    descriptive_text: Leíró szöveg
     development_actions: Fejlesztési tevékenységek
     development_actions_form_tags: Címkék
     digest_delivery_mode:
@@ -262,10 +284,12 @@ hu:
       wednesday: Szerda
     dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
+    disable_proctoring: A felügyelet letiltása
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     download_bulk_asset_download_example_csv: Példa CSV letöltése.
     duration: Időtartam
+    duration_must_be_positive: Az időtartamnak pozitívnak kell lennie
     edit_campaign_admin: Kampányadminisztrátor szerkesztése
     edit_client_admin: Ügyfél-adminisztrátor szerkesztése
     edit_folder: Mappa szerkesztése
@@ -284,6 +308,7 @@ hu:
     enable_system_check: Rendszerellenőrzés engedélyezése
     enable_transcription: Feliratozás engedélyezése
     enable_transcription_msg: Engedélyezze a Transcription számára az AI-pontozás használatát a videó/audio válaszok kérdéseinél.
+    end: vég
     end_time: Végidő
     end_time_must_be_after_start_time: A befejezési időnek a kezdési idő után kell lennie.
     enhance_with_ai: Fejlesztés mesterséges intelligenciával
@@ -300,6 +325,8 @@ hu:
     export_completion_status: Exportálás befejezési állapota
     export_completion_statuses_scheduled: A befejezési állapotok exportálási feladata sikeresen ütemezésre került.
     export_detailed_completion_status: Részletes
+    factor_feedback: Tényező-visszacsatolás
+    factor_selection: Tényezők kiválasztása
     factors: Tényezők
     feature_ai_assistants_description: Az AI-alapú asszisztensek engedélyezése a felhasználói élmény javítása érdekében
     feature_ai_assisted_idp_description: Használja az AI-t az egyéni fejlesztési terv ajánlásainak kidolgozásához
@@ -323,6 +350,8 @@ hu:
     formal: Hivatalos
     from: Tól
     generate_transcription: Átírás létrehozása
+    graphic: Grafika
+    graphic_slider: Grafikus csúszka
     hide_middle_scores: Középső pontszámok elrejtése
     high: Magas
     hogan: Hogan
@@ -389,6 +418,7 @@ hu:
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
+    linked_assessments: Kapcsolódó értékelések
     low: Alacsony
     maintenance: Karbantartás
     maintenance_settings: Karbantartási beállítások
@@ -397,6 +427,7 @@ hu:
     max_value: Maximális érték
     media_files_label: Fájlok
     media_library: Médiakönyvtár
+    media_library_page_title: Médiakönyvtár – Műszerfal – Mercer Lighthouse
     messages: Üzenetek
     mhs: MHS
     mhs_assessment: MHS értékelés
@@ -409,6 +440,7 @@ hu:
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
+    minimum_system_check_validity: A kampány minimális rendszerellenőrzési érvényességi ideje 15 perc legyen
     minimum_upload_speed: Minimális feltöltési sebesség (Mbps-ben)
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     model_answer: Minta válasz
@@ -420,6 +452,7 @@ hu:
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
     no_status: Nincs állapot
+    norm_editor_numeric_value_error: Csak numerikus értékek megengedettek (egész számok vagy tizedes számok).
     norms: Normák
     not_completed: Nem befejezve
     not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
@@ -864,6 +897,11 @@ hu:
     precision: Precíziós
     privacy: Adatvédelem
     proctoring: Felügyelet
+    proctoring_errors_timed_only: A szelektív felügyelet csak időkorlátos értékelések esetén engedélyezhető.
+    proctoring_fixed_time_required: A „Rögzített idő” beállítás engedélyezéséhez válassza ki ezt az opciót
+    proctoring_mode_all: A felügyelet engedélyezése minden értékelésnél
+    proctoring_mode_all_except_ac: Engedélyezze a felügyeletet az értékelőközpont kivételével minden értékelésnél
+    proctoring_settings: Felügyeleti beállítások
     professional: Professzionális
     proficiency: Jártasság
     proficiency_level: API-kulcsok
@@ -876,7 +914,32 @@ hu:
     projects: Projektek
     prompt: Prompt
     question_center: Kérdésközpont
+    question_center_page_title: Kérdések központja – Műszerfal – Mercer Lighthouse
+    question_editor_change_type: Típus módosítása
+    question_editor_click_to_write: Kattintson ide a kérdés megfogalmazásához...
+    question_editor_copy_question: Kérdés másolása
+    question_editor_enable_transcription: Leírás engedélyezése
+    question_editor_preview_question: Kérdés előnézete
+    question_editor_validation_type: Ellenőrzés típusa
+    question_randomization: A kérdések véletlenszerű elrendezése
+    question_type_audio_response: Hangválasz
+    question_type_constant_sum: Állandó összeg
+    question_type_file_upload: Fájlfeltöltés
+    question_type_gap_analysis: Hiányosságok elemzése
+    question_type_hot_spot: Forró pont
+    question_type_matrix_table: Mátrix táblázat
+    question_type_meta_info: Metaadatok
+    question_type_multiple_choice: Többválasztós kérdés
+    question_type_pick_group_rank: Csoport rangsor
+    question_type_rank_order: Rangsor
+    question_type_side_by_side: Egymás mellett
+    question_type_slider: Csúszka
+    question_type_text_entry: Szövegbevitel
+    question_type_video_response: Videóválasz
     questions: Kérdések
+    questions_new_button: Új kérdés
+    questions_title: Kérdés
+    questions_type: Típus
     range_min_max: RANGE %{min} - %{max}
     reflection_questions: Reflexiós kérdések
     regenerate_transcriptions_action: A leírások újragenerálása
@@ -888,6 +951,7 @@ hu:
     remove_children_to_change_type: Az összes gyermeket eltávolítani a típus megváltoztatásához
     remove_confirmation: Biztosan el akarja távolítani ezt az elemet?
     remove_successfully: A médiaelem sikeresen eltávolításra került.
+    report_alias_save_confirmation: Ha a Report Builderben és az Aliasesben is el szeretné menteni az ÖSSZES módosítást, kattintson a „MENTÉS” gombra. Az oldal újratöltődik, és a módosítások sikeresen alkalmazásra kerülnek.
     report_approvals: Jelentés jóváhagyása
     report_condition_not_met: Értékelésre %{required} %{relationship} szüksége, de csak %{actual}
     report_conditions_not_met_detailed: A jelentés %{user} nem felel meg a rendelkezésre állási feltételeknek. %{conditions}
@@ -917,6 +981,7 @@ hu:
     saml_service_provider_acs_urls_placeholder: Írj be URL-eket, amelyeket vesszővel választottak, pl. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: ACS URL-ek szükségesek
     saml_service_provider_action_delete_label: Töröl
+    saml_service_provider_action_download_xml_label: XML letöltése
     saml_service_provider_action_edit_label: Szerkeszt
     saml_service_provider_action_rotate_certificate_label: Rotációs tanúsítvány
     saml_service_provider_add: Add SAML Service Provider
@@ -958,6 +1023,7 @@ hu:
     saml_settings: SAML beállítások
     save: Mentés
     save_assessment_for_scoring_management: Mentsd el az értékelést, mielőtt elkezdenéd a pontozást.
+    save_block: Blokk mentése
     saved_filter_label:
       approval_status_in: Jóváhagyási állapot
       approver_user_id_in: Jóváhagyó
@@ -1006,9 +1072,11 @@ hu:
     select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
     select_level: Szint kiválasztása
     select_start_time: Kezdési idő kiválasztása
+    selective_proctoring: Szelektív felügyelet
     send_email: E-mail küldése
     set_min_max_scores_warning: Kérjük, állítsa be a minimális és maximális pontszámokat ehhez a tényezőhöz az AI pontozás konfigurálásához.
     settings: Beállítások
+    settings_saved_successfully: A beállítások mentése sikeresen megtörtént
     show_all_assessment_responses: Az összes értékelési válasz megjelenítése
     show_middle_scores: "%{count}-nak további pontszámok megjelenítése (opcionális)..."
     show_original: Eredeti megjelenítése
@@ -1022,7 +1090,11 @@ hu:
     slot_name: Nyerő neve
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók
+    specialty_questions: Speciális kérdések
+    standard_questions: Gyakori kérdések
+    start: kezdés
     start_time: Kezdési idő
+    static_content: Állandó tartalom
     stats: Statisztika
     status_details: Állapot részletei
     structured_learning: Formális tanulás [10]
@@ -1031,7 +1103,10 @@ hu:
     target_job_role: Célkitűzés
     this_field_is_required: Ez a mező kötelező
     threesixty: 360°-os kampány
+    timed_label: 'Időzített: %{time_text}'
+    timelines: Idővonalak
     timezone: Időzóna
+    timing: Időzítés
     to: 'Címzett:'
     tone: Hangszín
     toolbar_ai_insight: AI betekintés

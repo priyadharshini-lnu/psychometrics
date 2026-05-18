@@ -8,6 +8,17 @@ module Users
     def update
       resource.extend(Devise::Models::DatabaseAuthenticatablePatch)
       if resource.update_with_password(resource_params)
+        audit!(
+          :reset_password,
+          resource,
+          user: resource,
+          payload: {
+            email: resource.email,
+            force_password_change: false
+          },
+          outcome: 'successful'
+        )
+
         warden.session(scope)['password_expired'] = false
         warden.session(scope)['enforce_password_change'] = false
         set_flash_message :notice, :updated

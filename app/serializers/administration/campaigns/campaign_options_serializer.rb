@@ -11,7 +11,8 @@ module Administration
                  :enable_mobile_proctoring, :allow_video_call_recording, :system_check_enabled,
                  :system_check_validity, :allow_continue_with_warning, :skip_assessment_level_checks,
                  :minimum_upload_speed, :minimum_download_speed,
-                 :calculated_minimum_upload_speed, :calculated_minimum_download_speed
+                 :calculated_minimum_upload_speed, :calculated_minimum_download_speed,
+                 :selective_proctoring_enabled
 
       delegate :campaign, to: :object
       delegate :calculated_minimum_upload_speed, :calculated_minimum_download_speed, to: :campaign

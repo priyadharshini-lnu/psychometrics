@@ -1,17 +1,21 @@
 import { env } from 'process'
 import { URL } from 'url'
 import { defineConfig } from 'vitest/config'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import loadCssModulePlugin from 'vite-plugin-load-css-module'
+import loadCssModulePlugin from './config/vite-plugins/load-css-module'
 
 const __DEV__ = env.NODE_ENV === 'development'
 const __PROD__ = env.NODE_ENV === 'production'
 const __TEST__ = env.NODE_ENV === 'test'
 
 export default defineConfig({
+  build: {
+    assetsInlineLimit: 0,
+  },
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
-    tsconfigPaths(),
-    loadCssModulePlugin.default({
+    loadCssModulePlugin({
       include: (id) => {
         const path = id.split('?').slice(0, 1).join('')
         if (path.endsWith('/ant.less')) { return false }
@@ -34,7 +38,6 @@ export default defineConfig({
     // include: ['app/frontend/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     exclude: ['public/**/*', 'config/**/*', 'node_modules/**/*', 'storybook/**/*'],
     coverage: {
-      all: false,
       reporter: ['lcov', 'text'],
       include: ['app/frontend/**/*.{js,jsx,ts,tsx}'],
     },

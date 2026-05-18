@@ -28,10 +28,7 @@ module AdminJobs
       user_assessments = UserAssessment.where(campaign_id: record.data['campaign_id']).
                          includes(:users_result, :evaluator, :assessment)
 
-      unless include_inactive_users
-        user_assessments = user_assessments.left_joins(:campaign_user).where(campaign_users: { active: true }).
-                           or(user_assessments.where(campaign_users: { id: nil })).distinct
-      end
+      user_assessments = user_assessments.excluding_inactive_campaign_users unless include_inactive_users
 
       user_assessments.find_each(batch_size: 1000)
     end

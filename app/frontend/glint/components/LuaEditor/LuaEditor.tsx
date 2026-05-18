@@ -1,63 +1,21 @@
-import React, { useEffect, useRef } from 'react'
-import { UnControlled as CodeMirrorUnControlled, Controlled as CodeMirrorControlled } from 'react-codemirror2'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/mode/lua/lua'
-import 'codemirror/mode/javascript/javascript'
-import '@codemirror/autocomplete'
+import React from 'react'
+import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 
 type LuaEditorProps = {
   onChange?: (value: string) => void
   value?: string
-  controlled?: boolean
-  mode?: string
-}
-
-type Editor = {
-  editor: {
-    refresh: () => void
-  }
+  mode?: 'lua' | 'javascript' | 'json'
 }
 
 export const LuaEditor: React.FC<LuaEditorProps> = ({
-  onChange, value, controlled, mode = 'lua',
-}) => {
-  const codemirrorRef = useRef(null)
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (!codemirrorRef.current) return
-      const codemirror = codemirrorRef.current as Editor
-      codemirror.editor?.refresh()
-    }, 1000)
-  }, [])
-
-  const options = {
-    foldGutter: true,
-    lineNumbers: true,
-    theme: 'default',
-    mode,
-    extraKeys: {
-      'Ctrl-Space': 'autocomplete',
-    },
-  }
-
-  return (
-    controlled ? (
-      <CodeMirrorControlled
-        ref={codemirrorRef}
-        value={value || ''}
-        options={options}
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        onBeforeChange={(editor, data, value) => { onChange ? onChange(value) : null }}
-      />
-    ) : (
-      <CodeMirrorUnControlled
-        ref={codemirrorRef}
-        value={value}
-        options={options}
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        onChange={(editor, data, value) => { onChange ? onChange(value) : null }}
-      />
-    )
-  )
-}
+  onChange, value, mode = 'lua',
+}) => (
+  <ReactCodemirror
+    value={value}
+    onChange={onChange}
+    mode={mode}
+    lineNumbers
+    foldGutter
+    autocomplete
+  />
+)

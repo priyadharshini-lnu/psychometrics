@@ -38,6 +38,9 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'administration/app#dashboard', as: :admin
   get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
+  get '/admin/templates/questions/:id/edit', to: 'administration/templates/questions#edit',
+    as: :admin_template_question_edit
+  get '/admin/templates/blocks/:id/edit', to: 'administration/templates/blocks#edit', as: :admin_template_block_edit
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
@@ -375,6 +378,7 @@ Rails.application.routes.draw do
             put :schedule_assessment
             post :normalize_factor_scores
             put :toggle_caching
+            put :update_proctoring_settings
           end
           collection do
             get :other
@@ -1080,6 +1084,8 @@ as: :simulation_progress_notification
           post :upload_user_verification_media_url
           put :user_verification_media_upload_callback
           post :mark_completed
+          post :proctoring_session
+          post :finish_proctoring_session
         end
       end
 
@@ -1376,10 +1382,8 @@ as: :simulation_progress_notification
             post :reset_password
             post :unlock_user_access
             get :roles
-            scope module: :users do
-              resource :uploads, only: %i[update]
-            end
             collection do
+              put :uploads, to: 'users/uploads#update'
               post :create_superadmin
               post :create_global_assessor
               post :change_password
@@ -1471,6 +1475,15 @@ as: :simulation_progress_notification
           jsonapi_resources :assessment_assistants, only: %i[show update]
           jsonapi_resources :assessment_consent_settings, only: %i[show update]
 
+          jsonapi_resources :questions do
+            post :copy, on: :member
+            post :toggle_status, on: :member
+          end
+
+          jsonapi_resources :blocks do
+            post :copy, on: :member
+            post :toggle_status, on: :member
+          end
           jsonapi_resources :projects do
             jsonapi_resources :webhooks do
               post :send_test
@@ -1808,7 +1821,20 @@ only: %i[index create update]
           jsonapi_resources :skills_job_roles, only: %i[index create update destroy]
           jsonapi_resources :job_groups, only: %i[index]
           jsonapi_resources :skill_groups, only: %i[index]
-          jsonapi_resources :questions, only: %i[index]
+          jsonapi_resources :questions do
+            jsonapi_relationships
+            member do
+              post :copy
+              patch :toggle_status
+            end
+          end
+          jsonapi_resources :blocks do
+            jsonapi_relationships
+            member do
+              post :copy
+              patch :toggle_status
+            end
+          end
 
           jsonapi_resources :writing_assistants, only: [] do
             collection do

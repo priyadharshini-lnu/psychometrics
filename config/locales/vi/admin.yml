@@ -21,6 +21,7 @@ vi:
     admin_roles: Vai trò quản trị viên
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
+    advanced: Nâng cao
     ai_artifact_result_generation_admin_job_failed: Không thể tạo đối tượng '%{artifact_name}' cho người dùng '%{user_email}'
     ai_artifact_result_stale: Kết quả có thể đã lỗi thời vì các phụ thuộc của mô hình AI đã thay đổi kể từ lần tạo kết quả gần nhất. Hãy xem xét việc tạo lại mô hình để sử dụng các phụ thuộc mới nhất.
     ai_artifacts: Đồ tạo tác AI
@@ -117,6 +118,7 @@ vi:
     allow_continue_with_warning_system_check: Cho phép người dùng tiếp tục với các cảnh báo khi quá trình kiểm tra hệ thống không thành công
     api_keys: Khóa API
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
+    assessment: Đánh giá
     assessment_center_activity: Hoạt động
     assessment_center_assessor: Chuyên viên thẩm định
     assessment_center_attendance: Tỷ lệ tham dự
@@ -147,6 +149,12 @@ vi:
     available_languages: Báo cáo có sẵn bằng ngôn ngữ
     average: Trung bình
     back_to_main: Menu chính
+    block_editor_add_question: Thêm câu hỏi
+    block_editor_question_randomization: Xáo trộn câu hỏi
+    block_options: Tùy chọn khối
+    block_settings: Cài đặt khối
+    blocks_new_button: Khối mới
+    blocks_title: Khối
     bulk_assets_modal_choose_csv: Chọn tệp CSV
     bulk_assets_modal_choose_zip: Chọn tệp ZIP
     bulk_assets_modal_not_csv_file_error: Chỉ chấp nhận các tệp CSV cho việc tải lên CSV. Vui lòng tải lên một tệp CSV hợp lệ.
@@ -159,6 +167,15 @@ vi:
     campaign_assessment_actions_disable_caching: Tắt bộ nhớ đệm đánh giá
     campaign_assessment_actions_enable_caching: Bật bộ nhớ đệm đánh giá
     campaign_assessment_column_caching_enabled: Đã bật bộ nhớ đệm đánh giá
+    campaign_assessment_column_hogan_assessment_id: Mã đánh giá Hogan
+    campaign_assessment_column_hogan_form_id: Mã số hồ sơ Hogan
+    campaign_assessment_column_pearson_assessment_id: Mã đánh giá Pearson
+    campaign_assessment_column_pearson_assessment_language: Ngôn ngữ đánh giá của Pearson
+    campaign_assessment_column_pearson_error_details: Chi tiết về sai số Pearson
+    campaign_assessment_column_pearson_product_id: Mã sản phẩm Pearson
+    campaign_assessment_column_saville_error_code: Mã lỗi Saville
+    campaign_assessment_column_saville_norm_id: Mã số Saville Norm
+    campaign_assessment_column_saville_request_id: Mã yêu cầu Saville
     campaign_assessment_mhs_confidence_interval: Khoảng tin cậy
     campaign_assessment_mhs_confidence_interval_update_success: Khoảng tin cậy đã được cập nhật thành công.
     campaign_assessment_mhs_invalid_confidence_interval: Khoảng tin cậy phải là 0 hoặc 1.
@@ -203,6 +220,7 @@ vi:
     campaigns: Chiến dịch
     cancel: Hủy
     cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
+    captcha: Xác minh Captcha
     casual: Thường ngày
     cell_save_msg: Các thay đổi hợp lệ sẽ được lưu tự động ngay khi bạn rời khỏi ô sau khi chỉnh sửa.
     characters: nhân vật
@@ -219,10 +237,13 @@ vi:
     concise: Ngắn gọn
     configure_model_answer_title: Cấu hình câu trả lời mẫu và từ khóa
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
+    confirmation_required: Yêu cầu xác nhận
+    confirmation_required_details: Bạn có chắc chắn muốn xóa tệp "%{resource_name}" trong thư mục "%{resource}" không?
     copied: Đã sao chép
     copied_url_success: URL đã được sao chép vào khay nhớ tạm thành công
     copy_ai_artifacts: Sao chép các tác phẩm nghệ thuật do AI tạo ra
     copy_image_url: Sao chép URL hình ảnh
+    copy_url: Sao chép URL
     country: Quốc gia
     create_client: Tạo khách hàng
     create_indicator: Tạo chỉ báo
@@ -240,6 +261,7 @@ vi:
     delete_ok_text: Có, xóa
     denied: Bị từ chối
     description: Mô tả
+    descriptive_text: Văn bản mô tả
     development_actions: Hành động phát triển
     development_actions_form_tags: thẻ
     digest_delivery_mode:
@@ -262,10 +284,12 @@ vi:
       wednesday: Thứ Tư
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
+    disable_proctoring: Tắt tính năng giám sát
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
     duration: Thời lượng
+    duration_must_be_positive: Thời gian phải là số dương
     edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     edit_client_admin: Chỉnh sửa quản trị viên khách hàng
     edit_folder: Chỉnh sửa thư mục
@@ -284,6 +308,7 @@ vi:
     enable_system_check: Bật tính năng Kiểm tra hệ thống
     enable_transcription: Bật tính năng chuyển văn bản
     enable_transcription_msg: Bật tính năng Chuyển văn bản để sử dụng đánh giá bằng trí tuệ nhân tạo (AI) cho các câu hỏi trả lời bằng video/âm thanh.
+    end: kết thúc
     end_time: Thời gian kết thúc
     end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
     enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
@@ -300,6 +325,8 @@ vi:
     export_completion_status: Tình trạng hoàn thành xuất khẩu
     export_completion_statuses_scheduled: Công việc xuất trạng thái hoàn thành đã được lên lịch thành công.
     export_detailed_completion_status: Chi tiết
+    factor_feedback: Phản hồi yếu tố
+    factor_selection: Lựa chọn yếu tố
     factors: Các yếu tố
     feature_ai_assistants_description: Kích hoạt trợ lý ảo được hỗ trợ bởi trí tuệ nhân tạo (AI) để nâng cao trải nghiệm người dùng.
     feature_ai_assisted_idp_description: Sử dụng trí tuệ nhân tạo (AI) để hỗ trợ đưa ra các đề xuất cho Kế hoạch Phát triển Cá nhân.
@@ -323,6 +350,8 @@ vi:
     formal: Chính thức
     from: Từ
     generate_transcription: Tạo bản chép lời
+    graphic: Đồ họa
+    graphic_slider: Thanh trượt hình ảnh
     hide_middle_scores: Ẩn điểm số trung bình
     high: Cao
     hogan: Hogan
@@ -389,6 +418,7 @@ vi:
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     licenses: Giấy phép
+    linked_assessments: Các bài đánh giá liên quan
     low: Thấp
     maintenance: Bảo trì
     maintenance_settings: Cài đặt bảo trì
@@ -397,6 +427,7 @@ vi:
     max_value: Giá trị tối đa
     media_files_label: Tệp
     media_library: Thư viện phương tiện
+    media_library_page_title: Thư viện phương tiện - Bảng điều khiển - Mercer Lighthouse
     messages: Thư
     mhs: Trường Trung học MHS
     mhs_assessment: Đánh giá MHS
@@ -409,6 +440,7 @@ vi:
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
+    minimum_system_check_validity: Thời gian kiểm tra hệ thống tối thiểu cho chiến dịch phải là 15 phút
     minimum_upload_speed: Tốc độ tải lên tối thiểu (tính bằng Mbps)
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     model_answer: Câu trả lời mẫu
@@ -420,6 +452,7 @@ vi:
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
     no_status: Không có trạng thái
+    norm_editor_numeric_value_error: Chỉ cho phép các giá trị số (số nguyên hoặc số thập phân).
     norms: Tiêu chuẩn
     not_completed: Chưa hoàn thành
     not_completed_tooltip: "%{completed} người đánh giá được chỉ định nhưng chỉ %{submitted} đã hoàn thành đánh giá"
@@ -864,6 +897,11 @@ vi:
     precision: Độ chính xác
     privacy: Sự riêng tư
     proctoring: Giám sát
+    proctoring_errors_timed_only: Chức năng giám sát có chọn lọc chỉ có thể được kích hoạt cho các bài kiểm tra có giới hạn thời gian.
+    proctoring_fixed_time_required: Bật "Thời gian cố định" để chọn tùy chọn này
+    proctoring_mode_all: Bật tính năng giám sát trong tất cả các bài kiểm tra
+    proctoring_mode_all_except_ac: Bật tính năng giám sát cho tất cả các bài kiểm tra, trừ trung tâm đánh giá
+    proctoring_settings: Cài đặt giám sát
     professional: Chuyên nghiệp
     proficiency: Năng lực
     proficiency_level: Khóa API
@@ -876,7 +914,32 @@ vi:
     projects: Dự án
     prompt: Gợi ý
     question_center: Trung tâm câu hỏi
+    question_center_page_title: Trung tâm câu hỏi - Bảng điều khiển - Mercer Lighthouse
+    question_editor_change_type: Thay đổi loại
+    question_editor_click_to_write: Nhấp vào đây để nhập nội dung câu hỏi...
+    question_editor_copy_question: Sao chép câu hỏi
+    question_editor_enable_transcription: Bật tính năng chép lời
+    question_editor_preview_question: Câu hỏi xem trước
+    question_editor_validation_type: Loại xác thực
+    question_randomization: Xáo trộn câu hỏi
+    question_type_audio_response: Phản hồi bằng âm thanh
+    question_type_constant_sum: Tổng không đổi
+    question_type_file_upload: Tải lên tệp
+    question_type_gap_analysis: Phân tích khoảng cách
+    question_type_hot_spot: Điểm nóng
+    question_type_matrix_table: Bảng ma trận
+    question_type_meta_info: Thông tin bổ sung
+    question_type_multiple_choice: Trắc nghiệm
+    question_type_pick_group_rank: Chọn thứ hạng nhóm
+    question_type_rank_order: Thứ tự xếp hạng
+    question_type_side_by_side: Bên cạnh nhau
+    question_type_slider: Thanh trượt
+    question_type_text_entry: Nhập văn bản
+    question_type_video_response: Video phản hồi
     questions: Câu hỏi
+    questions_new_button: Câu hỏi mới
+    questions_title: Câu hỏi
+    questions_type: Loại
     range_min_max: Dải sản phẩm%{min} - %{max}
     reflection_questions: Câu hỏi suy ngẫm
     regenerate_transcriptions_action: Tạo lại bản chép lời
@@ -888,6 +951,7 @@ vi:
     remove_children_to_change_type: Xóa tất cả các phần tử con để thay đổi loại.
     remove_confirmation: Bạn có chắc chắn muốn xóa mục này không?
     remove_successfully: Tệp phương tiện đã được xóa thành công.
+    report_alias_save_confirmation: Nếu bạn muốn lưu TẤT CẢ các thay đổi trong Report Builder và cả trong Aliases, vui lòng nhấp vào nút 'LƯU'. Trang sẽ được tải lại và các thay đổi của bạn sẽ được áp dụng thành công.
     report_approvals: Phê duyệt báo cáo
     report_condition_not_met: Cần %{required} %{relationship} đánh giá, nhưng chỉ có %{actual}
     report_conditions_not_met_detailed: Báo cáo cho %{user} không đáp ứng các điều kiện sẵn có. %{conditions}
@@ -917,6 +981,7 @@ vi:
     saml_service_provider_acs_urls_placeholder: 'Nhập URL được phân tách bằng dấu phẩy, ví dụ: https://app1.com/saml/acs https://app2.com/saml/acs'
     saml_service_provider_acs_urls_required: Bắt buộc phải có URL ACS
     saml_service_provider_action_delete_label: Xóa
+    saml_service_provider_action_download_xml_label: Tải xuống tệp XML
     saml_service_provider_action_edit_label: Biên tập
     saml_service_provider_action_rotate_certificate_label: Luân chuyển chứng chỉ
     saml_service_provider_add: Thêm nhà cung cấp dịch vụ SAML
@@ -958,6 +1023,7 @@ vi:
     saml_settings: Cài đặt SAML
     save: Lưu
     save_assessment_for_scoring_management: Lưu đánh giá trước khi bắt đầu chấm điểm.
+    save_block: Lưu khối
     saved_filter_label:
       approval_status_in: Tình trạng phê duyệt
       approver_user_id_in: Người phê duyệt
@@ -1006,9 +1072,11 @@ vi:
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ
     select_start_time: Chọn Thời gian bắt đầu
+    selective_proctoring: Giám sát có chọn lọc
     send_email: Gửi email
     set_min_max_scores_warning: Vui lòng thiết lập điểm tối thiểu và tối đa cho yếu tố này để cấu hình điểm số AI.
     settings: Cài đặt
+    settings_saved_successfully: Cài đặt đã được lưu thành công
     show_all_assessment_responses: Hiển thị tất cả phản hồi đánh giá
     show_middle_scores: Hiển thị thêm điểm số của "%{count}" (tùy chọn)...
     show_original: Hiển thị bản gốc
@@ -1022,7 +1090,11 @@ vi:
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
+    specialty_questions: Các câu hỏi chuyên sâu
+    standard_questions: Các câu hỏi thường gặp
+    start: bắt đầu
     start_time: Thời gian bắt đầu
+    static_content: Nội dung tĩnh
     stats: Thống kê
     status_details: Chi tiết trạng thái
     structured_learning: Học chính thức [10]
@@ -1031,7 +1103,10 @@ vi:
     target_job_role: Vị trí công việc mục tiêu
     this_field_is_required: Trường này là bắt buộc.
     threesixty: Chiến dịch 360
+    timed_label: 'Đã lên lịch: %{time_text}'
+    timelines: Lịch trình
     timezone: Múi giờ
+    timing: Thời điểm
     to: Đến
     tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo

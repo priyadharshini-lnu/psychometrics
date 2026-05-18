@@ -35,6 +35,7 @@ module Administration
           )
           Utility::Cookie.expire_auth_cookies(response)
           WardenAuthLogger.log_sign_out(logged_in_user, request, scope: :user)
+          session[:proctoring_mode] = false
         end
       end
 

@@ -57,6 +57,9 @@ module Administration
         required(:simulation_user_assessment_details).maybe do
           hash(Administration::SimulationUserAssessmentSchema.schema(_, _))
         end
+        required(:hogan_user_assessment_details).maybe do
+          hash(Administration::HoganUserAssessmentSchema.schema(_, _))
+        end
         required(:saville_user_assessment_details).maybe do
           hash(Administration::SavilleUserAssessmentSchema.schema(_, _))
         end

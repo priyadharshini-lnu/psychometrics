@@ -13,4 +13,4 @@ mc mb --ignore-existing "local/${S3_COMPATIBLE_STORAGE_PRIVATE_BUCKET}"
 mc anonymous set download "local/${S3_COMPATIBLE_STORAGE_PUBLIC_BUCKET}"
 
 
-echo "Comleted init"
+echo "Completed init"

@@ -3,10 +3,10 @@
 module LicenseManager
   class Proctoring < Base
     def credits_required
-      Campaigns::Proctoring::GetProctoringCredits.call!(campaign)
+      Campaigns::Proctoring::GetProctoringCredits.call!(campaign, options[:user_assessment])
     end
 
-    def create_license_usage!
+    def create_license_usage!(**_context)
       campaign_user = user
       license.license_usages.create!(
         campaign_id: campaign_user.campaign_id,

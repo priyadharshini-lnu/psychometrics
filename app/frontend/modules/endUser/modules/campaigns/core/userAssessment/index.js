@@ -47,6 +47,7 @@ export const FETCH_PIPED_TEXT_DATA_FAILURE = 'userAssessment/FETCH_PIPED_TEXT_DA
 const VALIDATE_SESSION = 'userAssessment/VALIDATE_SESSION'
 const MARK_MEETING_ASSESSMENT_COMPLETE = 'userAssessment/MARK_MEETING_ASSESSMENT_COMPLETE'
 export const SET_MODIFIED_ASSESSMENT = 'userAssessment/SET_MODIFIED_ASSESSMENT'
+export const FINISH_PROCTORING_SESSION = 'userAssessment/FINISH_PROCTORING_SESSION'
 
 export const setInvalidated = () => ({
   type: SET_INVALIDATED,
@@ -105,6 +106,16 @@ export const validateSession = (userAssessmentId, evaluationSessionId) => ({
   request: {
     url: '/evaluation_session_exists',
     body: { evaluationSessionId, userAssessmentId },
+  },
+})
+
+export const finishProctoringSession = userAssessmentId => ({
+  type: FINISH_PROCTORING_SESSION,
+  request: {
+    url: `/user_assessments/${userAssessmentId}/finish_proctoring_session`,
+    method: 'POST',
+    body: { userAssessment: { id: userAssessmentId } },
+    loader: true,
   },
 })
 

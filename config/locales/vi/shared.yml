@@ -32,6 +32,7 @@ vi:
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
     client: Khách hàng
+    close: Đóng
     collaborative_learning: Học tập hợp tác
     completed: Hoàn thành
     configurations: Cấu hình
@@ -40,19 +41,24 @@ vi:
     controller: Bộ điều khiển
     cookie_notice: Thông báo về cookie
     cookies_statement: Thông báo về Cookie
+    copied_successfully: Đã sao chép thành công
     copied_to_clipboard: Đã sao chép vào khay nhớ tạm
     copy: Sao chép
+    create: Tạo
     created_at: Được tạo ra tại
     created_date: Ngày tạo
+    created_successfully: Đã tạo thành công
     custom_acknowledgment_text: Nội dung lời cảm ơn tùy chỉnh
     custom_acknowledgment_text_required: Vai trò dữ liệu bộ điều khiển yêu cầu phải có văn bản xác nhận tùy chỉnh
     custom_consent_text: Nội dung đồng ý tùy chỉnh
     custom_consent_text_required: Văn bản đồng ý tùy chỉnh là bắt buộc cho vai trò dữ liệu của bộ điều khiển.
     data_role: Vai trò dữ liệu
     decline: Suy giảm
+    delete: Xóa
     description: Sự miêu tả
     desktop_or_laptop_recommended: Máy tính để bàn hoặc laptop được khuyến nghị
     desktop_or_laptop_required: Máy tính để bàn hoặc laptop là bắt buộc.
+    disabled: Người khuyết tật
     download: Tải xuống
     download_audio: Tải xuống âm thanh
     download_transcription: Tải xuống bản chép lời
@@ -60,9 +66,12 @@ vi:
     edit: Biên tập
     edited: Mới
     email: E-mail
+    ending_proctoring_session_msg: Chúng tôi đang kết thúc phiên giám sát. <p>Vui lòng chờ trong giây lát để chúng tôi lưu lại câu trả lời của bạn và chuyển hướng trở lại trang chủ.</p>
+    error: Lỗi
     export: Xuất khẩu
     failed: Thất bại
     'false': false
+    file: Tệp
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
     generate: Tạo ra
@@ -105,6 +114,8 @@ vi:
     no_results_found: Không tìm thấy kết quả nào.
     not_requested: Chưa được yêu cầu
     ok: Được rồi
+    options: Tùy chọn
+    owner: Chủ sở hữu
     pending: Đang chờ xử lý
     policy_version: Phiên bản chính sách
     policy_version_format: Chỉ cho phép các số nguyên.
@@ -142,6 +153,8 @@ vi:
     status_unknown: Trạng thái không xác định
     subject: Chủ đề
     submit: Gửi
+    submit_and_finish_proctoring: Gửi và kết thúc giám sát
+    suspended: Bị đình chỉ
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
     table:
       entries:
@@ -165,6 +178,7 @@ vi:
     type: Kiểu
     update: Cập nhật
     update_failed: Cập nhật không thành công
+    updated_at: Cập nhật vào
     updated_successfully: Đã cập nhật thành công
     video: Video
     view: Xem

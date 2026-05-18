@@ -26,7 +26,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
             category: 'mhs',
             description: 'asd',
             external_settings: {
-              assessment_id: '9039cce2-6567-4bc5-8655-8792ba9ab936'
+              assessment_id: 'ad8f2591-4d23-4892-808e-5ea4e68feba7'
             },
             extra: { icon_color: 'color' },
             tag_list: ['mhs']
@@ -44,7 +44,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(response.status).to eq(201)
       expect(parsed_response['data']).to have_key('attributes')
       expect(parsed_response.dig('data', 'attributes', 'external_settings',
-                                 'assessment_id')).to eq('9039cce2-6567-4bc5-8655-8792ba9ab936')
+                                 'assessment_id')).to eq('ad8f2591-4d23-4892-808e-5ea4e68feba7')
 
       expect(parsed_response.dig('data', 'attributes', 'tag_list')).to eq(['mhs'])
     end
@@ -92,7 +92,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
               category: 'iiht',
               description: 'asd',
               external_settings: {
-                assessment_id: '9039cce2-6567-4bc5-8655-8792ba9ab936'
+                assessment_id: 'ad8f2591-4d23-4892-808e-5ea4e68feba7'
               }
             },
             relationships: {
@@ -154,7 +154,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
             category: 'mhs',
             description: 'asd',
             external_settings: {
-              assessment_id: '9039cce2-6567-4bc5-8655-8792ba9ab936'
+              assessment_id: 'ad8f2591-4d23-4892-808e-5ea4e68feba7'
             }
           },
           relationships: {
@@ -170,7 +170,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(response.status).to eq(200)
       expect(parsed_response['data']).to have_key('attributes')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).
-        to eq('9039cce2-6567-4bc5-8655-8792ba9ab936')
+        to eq('ad8f2591-4d23-4892-808e-5ea4e68feba7')
     end
   end
 

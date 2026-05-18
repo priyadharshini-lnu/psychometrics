@@ -27,8 +27,8 @@ module AI
       def scoring_context
         [
           question_section,
-          factors_section,
-          candidate_response_section
+          candidate_response_section,
+          factors_section
         ].compact.join("\n\n").strip
       end
 

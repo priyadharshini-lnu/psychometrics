@@ -30,7 +30,7 @@ module Devtools
           data_gatherer_id = mhs_user_assessment.data_gatherer_id || SecureRandom.uuid
           data_gathering_id = mhs_user_assessment.data_gathering_id || SecureRandom.uuid
           tenant_id = '8077fd97-2850-4429-8e3f-b49cf04e7576'
-          measure_id = '9039cce2-6567-4bc5-8655-8792ba9ab936'
+          measure_id = 'ad8f2591-4d23-4892-808e-5ea4e68feba7'
 
           {
             'data' => {

@@ -17,8 +17,8 @@ class Question < ApplicationRecord
     CampaignFactorFeedback
   ].freeze
 
-  belongs_to :block
-  belongs_to :assessment, touch: true
+  belongs_to :block, optional: true
+  belongs_to :assessment, touch: true, optional: true
   belongs_to :template, class_name: 'Question', dependent: :destroy
   belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
@@ -26,6 +26,7 @@ class Question < ApplicationRecord
   belongs_to :skill, optional: true
 
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
+  has_many :linked_assessments, through: :questions, source: :assessment
   has_many :factors_scorings, dependent: :destroy
   has_many :question_recodings, dependent: :destroy
   has_many :factors_scorings_with_props, -> { with_props }, class_name: 'FactorsScoring', foreign_key: :question_id
@@ -103,11 +104,16 @@ class Question < ApplicationRecord
   scope :skill_rater, -> { where.not(skill_id: nil) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name type created_at updated_at]
+    %w[id name type created_at updated_at view]
   end
 
   def self.ransackable_associations(_auth_object = nil)
     %w[assessment]
+  end
+
+  # Ransacker for view enum - converts string values to integers for filtering
+  ransacker :view, formatter: proc { |v| views[v] } do |parent|
+    parent.table[:view]
   end
 
   # Using for deep clone in Assessment model

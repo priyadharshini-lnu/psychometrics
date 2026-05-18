@@ -3,7 +3,7 @@
 import { ReactElement, FC } from 'react'
 import { Tooltip } from 'antd'
 import cs from 'classnames'
-import { TooltipPlacement } from 'antd/lib/tooltip'
+import { TooltipPlacement } from 'antd/es/tooltip'
 import styles from './HintTooltip.less'
 
 type Props = {

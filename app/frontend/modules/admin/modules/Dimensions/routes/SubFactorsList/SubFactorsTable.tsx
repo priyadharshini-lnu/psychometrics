@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import {
   Button, MenuProps,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/interface'
+import { ItemType } from 'antd/es/menu/interface'
 import { SubFactors } from '~/modules/admin/modules/client/core/subFactors'
 import dayjs from '~/utils/dayjs'
 import { Resource } from '~/modules/admin/components/Resource'

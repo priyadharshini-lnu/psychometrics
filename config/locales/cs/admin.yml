@@ -21,6 +21,7 @@ cs:
     admin_roles: Role správce
     admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
     admins: Administrátoři
+    advanced: Pokročilé
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nelze vygenerovat pro uživatele „%{user_email}“.
     ai_artifact_result_stale: Výsledek může být zastaralý, protože závislosti artefaktu AI se od posledního vygenerování výsledku změnily. Zvažte opětovné vygenerování artefaktu s nejnovějšími závislostmi.
     ai_artifacts: Artefakty AI
@@ -117,6 +118,7 @@ cs:
     allow_continue_with_warning_system_check: Umožnit uživatelům pokračovat i přes varování v případě selhání kontroly systému
     api_keys: Klíče API
     apply_to_existing_users: Použít tuto změnu na stávající uživatele v této kampani
+    assessment: Hodnocení
     assessment_center_activity: Aktivita
     assessment_center_assessor: posuzovatel
     assessment_center_attendance: Účast
@@ -147,6 +149,12 @@ cs:
     available_languages: Zpráva dostupná v jazycích
     average: Průměr
     back_to_main: Hlavní nabídka
+    block_editor_add_question: Přidat dotaz
+    block_editor_question_randomization: Náhodné řazení otázek
+    block_options: Možnosti bloku
+    block_settings: Nastavení bloku
+    blocks_new_button: Nový blok
+    blocks_title: Bloky
     bulk_assets_modal_choose_csv: Vyberte soubor CSV
     bulk_assets_modal_choose_zip: Vyberte soubor ZIP
     bulk_assets_modal_not_csv_file_error: Pro nahrávání CSV souborů jsou povoleny pouze soubory CSV. Nahrajte prosím platný soubor CSV.
@@ -159,6 +167,15 @@ cs:
     campaign_assessment_actions_disable_caching: Vypnout cache hodnocení
     campaign_assessment_actions_enable_caching: Povolit cache hodnocení
     campaign_assessment_column_caching_enabled: Zapnuto cache hodnocení
+    campaign_assessment_column_hogan_assessment_id: Identifikační číslo hodnocení Hogan
+    campaign_assessment_column_hogan_form_id: Identifikační číslo formuláře Hogan
+    campaign_assessment_column_pearson_assessment_id: Identifikační číslo testu společnosti Pearson
+    campaign_assessment_column_pearson_assessment_language: Jazykové testy Pearson
+    campaign_assessment_column_pearson_error_details: Podrobnosti o Pearsonově chybě
+    campaign_assessment_column_pearson_product_id: Identifikační číslo produktu Pearson
+    campaign_assessment_column_saville_error_code: Chybový kód Saville
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Identifikační číslo žádosti Saville
     campaign_assessment_mhs_confidence_interval: Interval spolehlivosti
     campaign_assessment_mhs_confidence_interval_update_success: Interval spolehlivosti byl úspěšně aktualizován.
     campaign_assessment_mhs_invalid_confidence_interval: confidence_interval musí být 0 nebo 1
@@ -203,6 +220,7 @@ cs:
     campaigns: Kampaně
     cancel: Zrušit
     cancellation_and_rescheduling_disabled: Zrušení a změna termínu jsou zakázány.
+    captcha: Ověření pomocí CAPTCHA
     casual: Neformální
     cell_save_msg: Platné změny se automaticky uloží, jakmile po úpravách opustíte buňku.
     characters: postavy
@@ -219,10 +237,13 @@ cs:
     concise: Stručný
     configure_model_answer_title: Nakonfigurujte vzorovou odpověď a klíčová slova
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
+    confirmation_required: Je nutné potvrzení
+    confirmation_required_details: Opravdu chcete odstranit položku „%{resource_name}“ z adresáře „“?
     copied: Zkopírováno
     copied_url_success: URL byla úspěšně zkopírována do schránky
     copy_ai_artifacts: Kopírovat artefakty AI
     copy_image_url: Zkopírovat adresu URL obrázku
+    copy_url: Zkopírovat adresu URL
     country: Země
     create_client: Vytvořit klienta
     create_indicator: Vytvořit indikátor
@@ -240,6 +261,7 @@ cs:
     delete_ok_text: Ano, Smazat
     denied: Popíral
     description: Popis
+    descriptive_text: Popisný text
     development_actions: Vývojové akce
     development_actions_form_tags: Štítky
     digest_delivery_mode:
@@ -262,10 +284,12 @@ cs:
       wednesday: středa
     dimension_translations_export_scheduled: Export překladů naplánovaný pro dimenzi „%{name}“.
     dimensions: Rozměry
+    disable_proctoring: Zrušit dohled
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
     download_bulk_asset_download_example_csv: Stáhnout příklad CSV.
     duration: Doba trvání
+    duration_must_be_positive: Doba trvání musí být kladná
     edit_campaign_admin: Upravit správce kampaně
     edit_client_admin: Upravit správce klienta
     edit_folder: Upravit složku
@@ -284,6 +308,7 @@ cs:
     enable_system_check: Zapnout kontrolu systému
     enable_transcription: Povolit přepis
     enable_transcription_msg: Povolit přepis pro použití AI skórování u otázek s video/audio odpověďmi.
+    end: konec
     end_time: Koncový čas
     end_time_must_be_after_start_time: Konec musí být po začátku
     enhance_with_ai: Vylepšete pomocí AI
@@ -300,6 +325,8 @@ cs:
     export_completion_status: Stav dokončení exportu
     export_completion_statuses_scheduled: Úloha exportu stavů dokončení byla úspěšně naplánována.
     export_detailed_completion_status: Podrobný
+    factor_feedback: Zpětná vazba faktoru
+    factor_selection: Výběr faktorů
     factors: Faktory
     feature_ai_assistants_description: Aktivujte asistenty využívající umělou inteligenci pro lepší uživatelský zážitek
     feature_ai_assisted_idp_description: Využijte AI k podpoře doporučení pro individuální rozvojové plány
@@ -323,6 +350,8 @@ cs:
     formal: Formální
     from: Od
     generate_transcription: Vytvořit přepis
+    graphic: Grafika
+    graphic_slider: Grafický posuvník
     hide_middle_scores: Skrýt střední skóre
     high: Vysoká
     hogan: Hogan
@@ -389,6 +418,7 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    linked_assessments: Související hodnocení
     low: Nízká
     maintenance: Údržba
     maintenance_settings: Nastavení údržby
@@ -397,6 +427,7 @@ cs:
     max_value: Maximální hodnota
     media_files_label: Soubory
     media_library: Mediální knihovna
+    media_library_page_title: Mediální knihovna – Řídicí panel – Mercer Lighthouse
     messages: Zprávy
     mhs: MHS
     mhs_assessment: Hodnocení MHS
@@ -409,6 +440,7 @@ cs:
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     minimum_download_speed: Minimální rychlost stahování (v Mbps)
+    minimum_system_check_validity: Minimální platnost kontroly systému v rámci kampaně by měla být 15 minut
     minimum_upload_speed: Minimální rychlost nahrávání (v Mbps)
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     model_answer: Vzorová odpověď
@@ -420,6 +452,7 @@ cs:
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
     no_status: Bez statusu
+    norm_editor_numeric_value_error: Povoleny jsou pouze číselné hodnoty (celá čísla nebo desetinná čísla).
     norms: Normy
     not_completed: Nedokončeno
     not_completed_tooltip: "%{completed} hodnotitelů je přiděleno, ale pouze %{submitted} hodnocení dokončili"
@@ -864,6 +897,11 @@ cs:
     precision: Přesnost
     privacy: Ochrana osobních údajů
     proctoring: Dohled
+    proctoring_errors_timed_only: Selektivní dohled lze aktivovat pouze u časově omezených testů.
+    proctoring_fixed_time_required: Chcete-li tuto možnost vybrat, zaškrtněte políčko „Pevný čas“
+    proctoring_mode_all: Zapnout dohled u všech testů
+    proctoring_mode_all_except_ac: Zapnout dohled u všech hodnocení s výjimkou assessment centra
+    proctoring_settings: Nastavení dohledu
     professional: Profesionální
     proficiency: Znalost
     proficiency_level: Klíče API
@@ -876,7 +914,32 @@ cs:
     projects: Projekty
     prompt: Výzva
     question_center: Centrum otázek
+    question_center_page_title: Centrum dotazů – Přehled – Mercer Lighthouse
+    question_editor_change_type: Změnit typ
+    question_editor_click_to_write: Klikněte a zadejte text dotazu...
+    question_editor_copy_question: Zkopírovat otázku
+    question_editor_enable_transcription: Zapnout přepis
+    question_editor_preview_question: Náhled otázky
+    question_editor_validation_type: Typ ověření
+    question_randomization: Náhodné řazení otázek
+    question_type_audio_response: Zvuková odezva
+    question_type_constant_sum: Konstantní součet
+    question_type_file_upload: Nahrání souboru
+    question_type_gap_analysis: Analýza mezer
+    question_type_hot_spot: Horké místo
+    question_type_matrix_table: Matice
+    question_type_meta_info: Metainformace
+    question_type_multiple_choice: Výběr z možností
+    question_type_pick_group_rank: Vybrat pořadí skupiny
+    question_type_rank_order: Pořadí
+    question_type_side_by_side: Vedle sebe
+    question_type_slider: Posuvník
+    question_type_text_entry: Zadávání textu
+    question_type_video_response: Odpověď ve formě videa
     questions: Otázky
+    questions_new_button: Nová otázka
+    questions_title: Otázka
+    questions_type: Typ
     range_min_max: ROZSAH%{min} - %{max}
     reflection_questions: Otázky k zamyšlení
     regenerate_transcriptions_action: Obnovit přepisy
@@ -888,6 +951,7 @@ cs:
     remove_children_to_change_type: Odebrat všechny děti pro změnu typu
     remove_confirmation: Opravdu chcete tuto položku odstranit?
     remove_successfully: Mediální položka byla úspěšně odstraněna.
+    report_alias_save_confirmation: Pokud chcete uložit VŠECHNY změny v nástroji Report Builder i v sekci Aliasy, klikněte prosím na tlačítko „ULOŽIT“. Stránka se znovu načte a vaše změny budou úspěšně uloženy.
     report_approvals: Schvalování zpráv
     report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
     report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
@@ -917,6 +981,7 @@ cs:
     saml_service_provider_acs_urls_placeholder: Zadejte URL oddělené čárkami, např. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Jsou vyžadovány ACS URL
     saml_service_provider_action_delete_label: Vymazat
+    saml_service_provider_action_download_xml_label: Stáhnout XML
     saml_service_provider_action_edit_label: Upravit
     saml_service_provider_action_rotate_certificate_label: Rotační certifikát
     saml_service_provider_add: Přidat poskytovatele SAML služeb
@@ -958,6 +1023,7 @@ cs:
     saml_settings: SAML nastavení
     save: Uložit
     save_assessment_for_scoring_management: Před zahájením bodování uložte hodnocení.
+    save_block: Uložit blok
     saved_filter_label:
       approval_status_in: Stav schválení
       approver_user_id_in: Schvalovatel
@@ -1006,9 +1072,11 @@ cs:
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň
     select_start_time: Vyberte čas zahájení
+    selective_proctoring: Selektivní dohled
     send_email: Odeslat e-mail
     set_min_max_scores_warning: Nastavte minimální a maximální skóre pro tento faktor, abyste nakonfigurovali bodování AI.
     settings: Nastavení
+    settings_saved_successfully: Nastavení byla úspěšně uložena
     show_all_assessment_responses: Zobrazit všechny odpovědi na hodnocení
     show_middle_scores: Zobrazit další skóre %{count} (volitelné)...
     show_original: Zobrazit originál
@@ -1022,7 +1090,11 @@ cs:
     slot_name: Název slotu
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS
+    specialty_questions: Specifické dotazy
+    standard_questions: Standardní otázky
+    start: začátek
     start_time: Čas zahájení
+    static_content: Statický obsah
     stats: Statistiky
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
@@ -1031,7 +1103,10 @@ cs:
     target_job_role: Cílová pracovní pozice
     this_field_is_required: Toto pole je povinné
     threesixty: Kampaň 360
+    timed_label: 'Časový limit: %{time_text}'
+    timelines: Časové osy
     timezone: Časové pásmo
+    timing: Načasování
     to: K
     tone: Tón
     toolbar_ai_insight: AI Insight

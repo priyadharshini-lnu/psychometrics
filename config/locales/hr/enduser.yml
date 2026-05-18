@@ -12,6 +12,7 @@ hr:
     ai_idp_summary_hint_no_document: Uz vaše dopuštenje, ako kažete da, mogu vam napraviti plan razvoja. Ako ne, možete ponovno pokrenuti chat kako biste podijelili više detalja.
     all_checks_must_pass: Svi testovi moraju biti uspješni prije nego što možete nastaviti.
     approve_idp_plan: Odobri plan
+    assessment_misconfigured: Procjena je nepravilno konfigurirana
     audio: Audio
     audio_check: Test mikrofona
     audio_check_description: Provjerite radi li vaš mikrofon ispravno za snimanje.
@@ -66,6 +67,7 @@ hr:
     error_uploading_video: Greška pri učitavanju videa
     error_uploading_video_detail: Došlo je do pogreške pri učitavanju videa.
     fail: Neuspjeh
+    file_submission_already_exists: Već imamo vašu prijavu za ovo pitanje. Molimo osvježite stranicu, a ako i dalje ne vidite svoju prethodnu prijavu, obratite se administratoru.
     follow_these_steps: Slijedite ove korake kako biste riješili probleme otkrivene tijekom provjere sustava.
     hide_details: Sakrij detalje
     home: Nadzorna ploča
@@ -95,6 +97,8 @@ hr:
     localstorage_fix_title: Lokalno pohranjivanje nije omogućeno u vašem pregledniku.
     localstorage_not_enabled_detail: Lokalno pohranjivanje nije omogućeno u vašem pregledniku. Molimo provjerite niste li u privatnom/inkognito načinu rada, jer je lokalno pohranjivanje često onemogućeno u tim načinima.
     localstorage_support: LocalStorage omogućen
+    magic_link_interstitial_description: Radi vaše sigurnosti tražimo da potvrdite ovu prijavu. Automatski sustavi ne mogu dovršiti ovaj korak.
+    magic_link_interstitial_title: Da biste dovršili prijavu, kliknite gumb ispod.
     max_word_limit: Mora imati najviše %{max} riječi
     media_recorder_api_fix_description_first: Omogućite JavaScript u postavkama svog preglednika.
     media_recorder_api_fix_description_second: Provjerite podržava li vaš preglednik MediaRecorder API i ažurirajte ga na najnoviju verziju ako je potrebno.
@@ -124,6 +128,8 @@ hr:
     personal_readiness: Osobna spremnost
     plan_text: Planirajte za cijelo trajanje. Kad započnete, odmore možda neće biti dopušteni, ovisno o vrsti procjene.
     please_check_your_internet_connection: Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
+    proctored: Pod nadzorom
+    proctored_assessment_misconfigured_msg: Ova procjena je nadzirana, ali nedostaje potrebna konfiguracija vremena. Molimo kontaktirajte svog administratora.
     profile: Profil
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
@@ -182,6 +188,7 @@ hr:
     system_check_start_recording: Započnite snimanje
     system_check_stop_recording: Zaustaviti snimanje
     system_check_test_message: bilo mi je drago razgovarati s tobom
+    system_check_timer_msg: Završite sve provjere i započnite svoju procjenu unutar vremena navedenog u nastavku. Ako procjena ne bude započeta unutar tog vremena, vaša nadzorna sesija će se završiti i morat ćete početi ispočetka.
     system_check_upload_again: Ponovno učitavanje
     system_check_uploading: Prenijeti
     system_check_video_random_phrase: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
@@ -193,6 +200,7 @@ hr:
     testing_download_speed: Testiranje brzine preuzimanja...
     testing_upload_speed: Testiranje brzine prijenosa...
     time_commitment: Vremenska posvećenost
+    timed_activity_instruction: Ovo je vremenski ograničena aktivnost; nakon što započnete nadzor, imat ćete %{time} minuta za dovršetak.
     troubleshooting_guide: Vodič za rješavanje problema
     troubleshooting_guide_audio_fifth: 'Na Windowsu: Provjerite postavke privatnosti > pristup mikrofona'
     troubleshooting_guide_audio_first: Kliknite na ikonu lokota/informacija u adresnoj traci vašeg preglednika.

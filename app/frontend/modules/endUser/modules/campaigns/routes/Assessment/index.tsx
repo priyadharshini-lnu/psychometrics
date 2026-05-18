@@ -1,17 +1,18 @@
 import { useEffect, FC, useState } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import {
   useNavigate, useParams, useSearchParams, useLocation,
 } from 'react-router-dom'
 import {
-  Col, Space, Layout, Button,
+  Col, Space, Layout, Button, App, Typography,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-components'
 import {
   PageHeader as GlintPageHeader, CountdownTimer, FontsizeModifier, DirectionalNavigateBackIcon,
 } from '~/glint'
+import { SafeHTML } from '~/components/SafeHTML'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
-import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ClockCircleOutlined, InfoCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
 import { PrivacyConsent } from './PrivacyConsent'
 import { LanguageSelection } from './LanguageSelection'
@@ -29,6 +30,10 @@ import { CheckingWizard } from '../CheckingWizard'
 import { InstructionsComponent } from '~/modules/survey/views/Preview/Instructions'
 import { secondsLeftFromNow } from '~/utils/time'
 import { useIsProctored } from '~/hooks/useProctoringState'
+import { AsyncRequestResponse, AsyncRequestResponseTR } from '~/modules/admin/modules/client/core/asyncRequestResponse'
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
+import { setCampaignUser } from '~/modules/endUser/modules/campaigns/core/campaign'
+import { useDeviceDetection } from '~/hooks/useDeviceDetection'
 
 import styles from './UserAssessment.less'
 
@@ -69,6 +74,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       currentCampaignExpiryDate,
       piped_text_mapping: pipedTextMapping,
       localeData,
+      selectiveProctoringEnabled,
+      proctoringIntegrationType: integrationType,
+      enableMobileProctoring,
     },
   },
   isDisconnected,
@@ -82,9 +90,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const [locale, setLocale] = useState(localeData?.code)
   const [dataAvailable, setDataAvailable] = useState(false)
   const [showInstructions, setShowInstructions] = useState(true)
+  const dispatch = useDispatch()
+  const { message, modal } = App.useApp()
   const assessmentTimer = assessmentExtra?.timer
   const remainingCampaignTime = currentCampaignExpiryDate ? secondsLeftFromNow(currentCampaignExpiryDate) : null
   const { isProctored } = useIsProctored()
+  const { isMobileDevice } = useDeviceDetection()
+  const assessmentNeedsProctoring = selectiveProctoringEnabled && !isProctored
+  const insideSelectiveProctoringSession = selectiveProctoringEnabled && isProctored
 
   useEffect(() => {
     const lang = searchParams.get('lang') || localeData?.code || I18n.currentLocale()
@@ -92,6 +105,12 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       setDataAvailable(true)
     })
   }, [])
+
+  const proctoredAssessmentStartInstruction = () => {
+    const messages = [I18n.t('campaign.instruction_modal.common_proctoring_instructions')]
+    integrationType === 'ldb' && messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction'))
+    return messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+  }
 
 
   const backToCampaign = () => {
@@ -103,8 +122,80 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     return `${url}?${params.toString()}`
   }
 
-  const handleBeginAssessment = () => {
-    if (!assessmentStartedAt && !WizardIsRequired.run(
+  const assessmentAsyncUrl = `/user_assessments/${userAssessmentId}/proctoring_session`
+
+  const {
+    makeAsyncRequest,
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
+    url: assessmentAsyncUrl,
+    data: { id: userAssessmentId },
+    responseType: AsyncRequestResponseTR,
+  })
+
+  const startAssessment = async () => {
+    try {
+      const { responseData } = await makeAsyncRequest()
+      const { examusSessionUrl } = responseData || {}
+
+      if (examusSessionUrl) {
+        window.location.href = examusSessionUrl
+      } else {
+        dispatch(setCampaignUser(responseData))
+      }
+    } catch (error) {
+      message.error(error)
+    }
+  }
+
+  const showProctoredAssessmentStartModal = () => {
+    modal.info({
+      icon: false,
+      title: null,
+      content: proctoredAssessmentStartInstruction(),
+      okText: I18n.t('common.actions.start'),
+      closable: true,
+      width: 600,
+      async onOk () {
+        await startAssessment()
+      },
+    })
+  }
+
+  const showMobileProctoringInfoModal = () => {
+    if (enableMobileProctoring) {
+      return modal.confirm({
+        icon: <InfoCircleFilled />,
+        title: I18n.t('shared.desktop_or_laptop_recommended'),
+        content: (
+          <Typography.Paragraph>
+            <SafeHTML html={I18n.t('shared.mobile_proctoring_enabled_instructions')} />
+          </Typography.Paragraph>
+        ),
+        closable: true,
+        width: 600,
+        okText: I18n.t('common.actions.continue'),
+        cancelText: I18n.t('shared.switch_to_laptop_or_desktop'),
+        cancelButtonProps: { color: 'primary', variant: 'outlined' },
+        onOk: () => showProctoredAssessmentStartModal(),
+      })
+    }
+    return modal.info({
+      icon: false,
+      title: I18n.t('shared.desktop_or_laptop_required'),
+      content: (
+        <Typography.Paragraph>
+          <SafeHTML html={I18n.t('shared.mobile_proctoring_disabled_instructions')} />
+        </Typography.Paragraph>
+      ),
+      closable: true,
+      width: 600,
+    })
+  }
+
+  const handleBeginAssessment = (): void | Promise<void> => {
+    if (assessmentNeedsProctoring) {
+      isMobileDevice ? showMobileProctoringInfoModal() : showProctoredAssessmentStartModal()
+    } else if (!assessmentStartedAt && !WizardIsRequired.run(
       userAssessmentData.assessmentExtra,
       userAssessmentId,
       userAssessmentData.shouldRunAssessmentLevelChecks,
@@ -116,11 +207,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     }
   }
 
-
   if (!dataAvailable) { return <PageContentSkeleton /> }
 
 
-  if (showPolicyAccept && privacyConsentRequired) {
+  if (showPolicyAccept && privacyConsentRequired && !insideSelectiveProctoringSession) {
     return (
       <PrivacyConsent
         onAccept={() => setShowPolicy(false)}
@@ -134,7 +224,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  if (showInstructions && ((instructions && instructions.enabled) || (assessmentTimer && !assessmentStartedAt))) {
+
+  if (showInstructions && !insideSelectiveProctoringSession
+    && ((instructions && instructions.enabled) || (assessmentTimer && !assessmentStartedAt))) {
     return (
       <>
         <title>{`${assessmentName || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
@@ -247,7 +339,13 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     userAssessmentId,
     userAssessmentData.shouldRunAssessmentLevelChecks,
   )) {
-    return <CheckingWizard assessmentId={assessmentId} userAssessmentId={userAssessmentId} />
+    return (
+      <CheckingWizard
+        showTimer={insideSelectiveProctoringSession}
+        assessmentId={assessmentId}
+        userAssessmentId={userAssessmentId}
+      />
+    )
   }
 
   if (availableLocales && !locale && !availableLocales.includes(I18n.currentLocale())) {

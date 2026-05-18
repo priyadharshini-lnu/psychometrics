@@ -32,6 +32,7 @@ es-ES:
     change_password: Cambiar contraseña
     clear_filters: Quitar filtros
     client: Cliente
+    close: Cerrar
     collaborative_learning: Aprendizaje colaborativo
     completed: Completado
     configurations: Configuraciones
@@ -40,19 +41,24 @@ es-ES:
     controller: Controlador
     cookie_notice: Aviso sobre cookies
     cookies_statement: Declaración sobre cookies
+    copied_successfully: Se ha copiado correctamente
     copied_to_clipboard: Copiado al portapapeles
     copy: Copiar
+    create: Crear
     created_at: Creado/a el
     created_date: Fecha de creación
+    created_successfully: Se ha creado correctamente
     custom_acknowledgment_text: Texto de agradecimiento personalizado
     custom_acknowledgment_text_required: Se requiere un texto de confirmación personalizado para la función de datos del controlador
     custom_consent_text: Texto de consentimiento personalizado
     custom_consent_text_required: Se requiere un texto de consentimiento personalizado para la función de datos del controlador.
     data_role: Función de los datos
     decline: Rechazar
+    delete: Eliminar
     description: Descripción
     desktop_or_laptop_recommended: Se recomienda ordenador de sobremesa o portátil.
     desktop_or_laptop_required: Se requiere ordenador de sobremesa o portátil.
+    disabled: Discapacitado
     download: Descargar
     download_audio: Descargar audio
     download_transcription: Descargar transcripción
@@ -60,9 +66,12 @@ es-ES:
     edit: Editar
     edited: Nuevo/a
     email: Correo electrónico
+    ending_proctoring_session_msg: Vamos a dar por finalizada la sesión de supervisión. <p>Por favor, espere mientras guardamos sus respuestas y le redirigimos a la página de inicio.</p>
+    error: Error
     export: Exportar
     failed: Fallido
     'false': false
+    file: Archivo
     first_name: Nombre
     formal_learning: Aprendizaje formal
     generate: Generar
@@ -105,6 +114,8 @@ es-ES:
     no_results_found: No se han encontrado resultados.
     not_requested: Aún no solicitado
     ok: De acuerdo
+    options: Opciones
+    owner: Propietario
     pending: Pendiente
     policy_version: Versión de la política
     policy_version_format: Solo se permiten números enteros.
@@ -142,6 +153,8 @@ es-ES:
     status_unknown: Estado desconocido
     subject: Asunto
     submit: Enviar
+    submit_and_finish_proctoring: Enviar y finalizar la supervisión
+    suspended: Suspendido
     switch_to_laptop_or_desktop: Cambiar a ordenador portátil o de sobremesa
     table:
       entries:
@@ -165,6 +178,7 @@ es-ES:
     type: Tipo
     update: Actualizar
     update_failed: Actualización fallida
+    updated_at: Actualizado el
     updated_successfully: Actualizado correctamente
     video: Vídeo
     view: Ver

@@ -21,6 +21,7 @@ ro:
     admin_roles: Roluri de administrator
     admin_updated_successfully: Admin '%{name}' a fost actualizat cu succes
     admins: Administratori
+    advanced: Avansat
     ai_artifact_result_generation_admin_job_failed: Artefactul „%{artifact_name}” nu poate fi generat pentru utilizatorul „%{user_email}”.
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
@@ -117,6 +118,7 @@ ro:
     allow_continue_with_warning_system_check: Permite utilizatorilor să continue cu afișarea unor avertismente atunci când verificarea sistemului eșuează
     api_keys: Chei API
     apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
+    assessment: Evaluare
     assessment_center_activity: Activitate
     assessment_center_assessor: Evaluator
     assessment_center_attendance: Prezența
@@ -147,6 +149,12 @@ ro:
     available_languages: Raport disponibil în limbi
     average: Medie
     back_to_main: Meniul principal
+    block_editor_add_question: Adaugă o întrebare
+    block_editor_question_randomization: Randomizarea întrebărilor
+    block_options: Opțiuni bloc
+    block_settings: Setări bloc
+    blocks_new_button: Bloc nou
+    blocks_title: Blocuri
     bulk_assets_modal_choose_csv: Alegeți fișierul CSV
     bulk_assets_modal_choose_zip: Alegeți fișierul ZIP
     bulk_assets_modal_not_csv_file_error: Pentru încărcarea CSV sunt permise numai fișiere CSV. Vă rugăm să încărcați un fișier CSV valid.
@@ -159,6 +167,15 @@ ro:
     campaign_assessment_actions_disable_caching: Dezactivează caching-ul evaluărilor
     campaign_assessment_actions_enable_caching: Activează cache-ul evaluării
     campaign_assessment_column_caching_enabled: Caching de evaluare activat
+    campaign_assessment_column_hogan_assessment_id: Cod de evaluare Hogan
+    campaign_assessment_column_hogan_form_id: Codul de identificare Hogan
+    campaign_assessment_column_pearson_assessment_id: ID evaluare Pearson
+    campaign_assessment_column_pearson_assessment_language: Limba de evaluare Pearson
+    campaign_assessment_column_pearson_error_details: Detalii privind eroarea Pearson
+    campaign_assessment_column_pearson_product_id: Cod produs Pearson
+    campaign_assessment_column_saville_error_code: Cod de eroare Saville
+    campaign_assessment_column_saville_norm_id: Cod Saville Norm
+    campaign_assessment_column_saville_request_id: ID cerere Saville
     campaign_assessment_mhs_confidence_interval: Interval de încredere
     campaign_assessment_mhs_confidence_interval_update_success: Intervalul de încredere actualizat cu succes
     campaign_assessment_mhs_invalid_confidence_interval: intervalul_de_încredere trebuie să fie 0 sau 1
@@ -203,6 +220,7 @@ ro:
     campaigns: Campanii
     cancel: Anulează
     cancellation_and_rescheduling_disabled: Anularea și reprogramarea sunt dezactivate
+    captcha: Verificare Captcha
     casual: Casual
     cell_save_msg: Modificările valide sunt salvate automat imediat ce ieșiți din celulă după editare.
     characters: caractere
@@ -219,10 +237,13 @@ ro:
     concise: Concis
     configure_model_answer_title: Configurați răspunsul model și cuvintele cheie
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
+    confirmation_required: Este necesară confirmarea
+    confirmation_required_details: Ești sigur că vrei să ștergi fișierul „%{resource_name}” din folderul „%{resource}”?
     copied: Copiată
     copied_url_success: Adresa URL a fost copiată cu succes în clipboard
     copy_ai_artifacts: Copiere artefacte AI
     copy_image_url: Copiază adresa URL a imaginii
+    copy_url: Copiază adresa URL
     country: Țara
     create_client: Creare client
     create_indicator: Creați indicator
@@ -240,6 +261,7 @@ ro:
     delete_ok_text: Da, șterge
     denied: Refuzat
     description: Descriere
+    descriptive_text: Text descriptiv
     development_actions: Acțiune de dezvoltare
     development_actions_form_tags: Etichete
     digest_delivery_mode:
@@ -262,10 +284,12 @@ ro:
       wednesday: miercuri
     dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
+    disable_proctoring: Dezactivează supravegherea
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     download_bulk_asset_download_example_csv: Descărcați exemplul CSV.
     duration: Durată
+    duration_must_be_positive: Durata trebuie să fie pozitivă
     edit_campaign_admin: Editați administratorul campaniei
     edit_client_admin: Editați administratorul clientului
     edit_folder: Editează folderul
@@ -284,6 +308,7 @@ ro:
     enable_system_check: Activează verificarea sistemului
     enable_transcription: Activați transcrierea
     enable_transcription_msg: Activați transcrierea pentru a utiliza punctajul AI la întrebările cu răspunsuri video/audio.
+    end: sfârșit
     end_time: Ora de încheiere
     end_time_must_be_after_start_time: Ora de încheiere trebuie să fie după ora de începere
     enhance_with_ai: Îmbunătățiți cu AI
@@ -300,6 +325,8 @@ ro:
     export_completion_status: Starea finalizării exportului
     export_completion_statuses_scheduled: Sarcina de exportare a stărilor de finalizare a fost programată cu succes
     export_detailed_completion_status: Detaliat
+    factor_feedback: Feedback privind factorii
+    factor_selection: Selectarea factorilor
     factors: Factori
     feature_ai_assistants_description: Activați asistenții bazati pe inteligență artificială pentru o experiență îmbunătățită a utilizatorului
     feature_ai_assisted_idp_description: Utilizați IA pentru a vă ajuta cu recomandările privind planificarea dezvoltării individuale
@@ -323,6 +350,8 @@ ro:
     formal: Formal
     from: De la
     generate_transcription: Generați transcrierea
+    graphic: Grafic
+    graphic_slider: Slider grafic
     hide_middle_scores: Ascunde scorurile medii
     high: Ridicat
     hogan: Hogan
@@ -389,6 +418,7 @@ ro:
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     licenses: Licenţe
+    linked_assessments: Evaluări asociate
     low: Scăzut
     maintenance: Întreținere
     maintenance_settings: Setări de întreținere
@@ -397,6 +427,7 @@ ro:
     max_value: Valoarea maximă
     media_files_label: Fișiere
     media_library: Biblioteca media
+    media_library_page_title: Biblioteca media - Tablou de bord - Mercer Lighthouse
     messages: Mesaje
     mhs: MHS
     mhs_assessment: Evaluarea MHS
@@ -409,6 +440,7 @@ ro:
     min_value: Valoarea minimă
     minimum_10_words: Minimum 10 cuvinte
     minimum_download_speed: Viteza minimă de descărcare (în Mbps)
+    minimum_system_check_validity: Durata minimă a valabilității verificării sistemului pentru campanie trebuie să fie de 15 minute
     minimum_upload_speed: Viteza minimă de încărcare (în Mbps)
     missing_min_max_values: Sunt necesare valorile minime și maxime.
     model_answer: Răspuns model
@@ -420,6 +452,7 @@ ro:
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
     no_status: Fără statut
+    norm_editor_numeric_value_error: Sunt permise doar valori numerice (numere întregi sau zecimale).
     norms: Normele
     not_completed: Nefinalizat
     not_completed_tooltip: "%{completed} evaluatori sunt atribuiți, dar doar %{submitted} au finalizat evaluările"
@@ -864,6 +897,11 @@ ro:
     precision: Precizie
     privacy: Intimitate
     proctoring: Supravegherea
+    proctoring_errors_timed_only: Supravegherea selectivă poate fi activată numai pentru evaluările cu durată limitată.
+    proctoring_fixed_time_required: Activați opțiunea „Timp fix” pentru a selecta această opțiune
+    proctoring_mode_all: Activați supravegherea pentru toate evaluările
+    proctoring_mode_all_except_ac: Activați supravegherea pentru toate evaluările, cu excepția centrului de evaluare
+    proctoring_settings: Setări pentru supravegherea examenelor
     professional: Profesional
     proficiency: Competență
     proficiency_level: Chei API
@@ -876,7 +914,32 @@ ro:
     projects: Proiecte
     prompt: Prompt
     question_center: Centrul de întrebări
+    question_center_page_title: Centrul de întrebări - Tablou de bord - Mercer Lighthouse
+    question_editor_change_type: Schimbă tipul
+    question_editor_click_to_write: Faceți clic pentru a introduce textul întrebării...
+    question_editor_copy_question: Copiază întrebarea
+    question_editor_enable_transcription: Activează transcrierea
+    question_editor_preview_question: Întrebare de previzualizare
+    question_editor_validation_type: Tipul de validare
+    question_randomization: Randomizarea întrebărilor
+    question_type_audio_response: Răspuns audio
+    question_type_constant_sum: Suma constantă
+    question_type_file_upload: Încărcare fișiere
+    question_type_gap_analysis: Analiza decalajelor
+    question_type_hot_spot: Zonă fierbinte
+    question_type_matrix_table: Tabelul matricei
+    question_type_meta_info: Informații meta
+    question_type_multiple_choice: Întrebări cu răspunsuri multiple
+    question_type_pick_group_rank: Alege grupul Clasament
+    question_type_rank_order: Clasament
+    question_type_side_by_side: Alături
+    question_type_slider: Bara de derulare
+    question_type_text_entry: Introducerea textului
+    question_type_video_response: Răspuns video
     questions: Întrebări
+    questions_new_button: Întrebare nouă
+    questions_title: Întrebare
+    questions_type: Tip
     range_min_max: GAMA%{min} - %{max}
     reflection_questions: Întrebări de reflecție
     regenerate_transcriptions_action: Regenerare transcrieri
@@ -888,6 +951,7 @@ ro:
     remove_children_to_change_type: Eliminați toți copiii pentru a schimba tipul
     remove_confirmation: Ești sigur că vrei să ștergi acest element?
     remove_successfully: Elementul media a fost șters cu succes.
+    report_alias_save_confirmation: Dacă doriți să salvați TOATE modificările din Report Builder și din Aliasuri, vă rugăm să faceți clic pe butonul „SALVARE”. Pagina se va reîncărca, iar modificările vor fi aplicate cu succes.
     report_approvals: Aprobări de rapoarte
     report_condition_not_met: Are nevoie %{required} %{relationship} evaluare, dar are nevoie doar de %{actual}
     report_conditions_not_met_detailed: Raportul pentru %{user} nu îndeplinește condițiile de disponibilitate. %{conditions}
@@ -917,6 +981,7 @@ ro:
     saml_service_provider_acs_urls_placeholder: Introduceți URL-uri separate prin virgule, de exemplu https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: URL-urile ACS sunt obligatorii
     saml_service_provider_action_delete_label: Șterge
+    saml_service_provider_action_download_xml_label: Descărcați fișierul XML
     saml_service_provider_action_edit_label: Editare
     saml_service_provider_action_rotate_certificate_label: Certificatul de rotație
     saml_service_provider_add: Adaugă furnizor de servicii SAML
@@ -958,6 +1023,7 @@ ro:
     saml_settings: Setări SAML
     save: Salvați
     save_assessment_for_scoring_management: Salvați evaluarea înainte de a începe cu punctajul.
+    save_block: Salvare bloc
     saved_filter_label:
       approval_status_in: Starea aprobării
       approver_user_id_in: Persoană cu drept de aprobare
@@ -1006,9 +1072,11 @@ ro:
     select_language_to_translate: Vă rugăm să selectați limba pentru traducere
     select_level: Selectați nivelul
     select_start_time: Selectați ora de începere
+    selective_proctoring: Supraveghere selectivă
     send_email: Trimite e-mail
     set_min_max_scores_warning: Vă rugăm să setați scorurile minime și maxime pentru acest factor pentru a configura punctajul AI.
     settings: Setări
+    settings_saved_successfully: Setările au fost salvate cu succes
     show_all_assessment_responses: Afișează toate răspunsurile la evaluare
     show_middle_scores: Afișați mai multe scoruri pentru „%{count}” (opțional)...
     show_original: Afișează originalul
@@ -1022,7 +1090,11 @@ ro:
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
+    specialty_questions: Întrebări specifice
+    standard_questions: Întrebări standard
+    start: începe
     start_time: Ora de începere
+    static_content: Conținut static
     stats: Statistici
     status_details: Detalii despre stadiu
     structured_learning: Învățarea formală [10]
@@ -1031,7 +1103,10 @@ ro:
     target_job_role: Postul vizat
     this_field_is_required: Acest câmp este obligatoriu
     threesixty: Campania 360
+    timed_label: 'Link: %{time_text}'
+    timelines: Calendare
     timezone: Fus orar
+    timing: Calendarul
     to: Către
     tone: Ton
     toolbar_ai_insight: Perspectivă AI
