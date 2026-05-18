@@ -185,6 +185,7 @@ en:
     update_failed: Update failed
     updated_at: Updated At
     updated_successfully: Updated successfully
+    user_report_pdf_url_not_generated: PDF download link could not be generated
     video: Video
     view: View
     view_audio: View Audio

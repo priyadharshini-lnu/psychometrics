@@ -924,6 +924,12 @@ as: :simulation_progress_notification
   #
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
+  resources :user_report_downloads, only: [] do
+    member do
+      get :pdf_download_link
+    end
+  end
+
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
     get '/saml/idp/metadata/:id' => 'saml_idp#show', as: :saml_idp_metadata
     get '/saml/idp/auth/:id' => 'saml_idp#new', as: :saml_idp_auth_new

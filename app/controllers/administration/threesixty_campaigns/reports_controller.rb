@@ -32,7 +32,7 @@ module Administration
             selected_locale = params[:lang] || @user_report.report.default_language
             I18n.locale = selected_locale
             @pdf_export = true
-            audit! :download_report_pdf, @user_report, campaign: threesixty_campaign.campaign,
+            audit! :download_report, @user_report, campaign: threesixty_campaign.campaign,
               payload: params.merge(@user_report.details_to_log)
             render :export, formats: :html, layout: 'pdf', content_type: 'text/html'
           end
@@ -50,7 +50,7 @@ module Administration
           update_record: false,
           skip_logic: params[:skip_logic]
         }
-        audit! :download_report_pdf, user_report, campaign: threesixty_campaign.campaign,
+        audit! :download_report, user_report, campaign: threesixty_campaign.campaign,
               payload: params.merge(user_report.log_attributes)
         respond_to do |format|
           format.json do
