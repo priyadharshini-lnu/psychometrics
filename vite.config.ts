@@ -61,7 +61,7 @@ export default defineConfig({
   clearScreen: false,
   plugins: [
     videojsRecordCompat(),
-    cjsInteropPlugin(['react-froala-wysiwyg', 'react-contenteditable']),
+    cjsInteropPlugin(['react-froala-wysiwyg', 'react-contenteditable', 'words-count']),
     sentryVitePlugin({
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
@@ -162,7 +162,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['react-csv', 'video.js', 'recordrtc', 'react-froala-wysiwyg', 'froala-editor'],
+    include: ['react-csv', 'video.js', 'recordrtc', 'react-froala-wysiwyg', 'froala-editor', 'words-count'],
     exclude: ['videojs-record'],
     rolldownOptions: {
       moduleTypes: {
