@@ -4,7 +4,12 @@ import {
   EditorView, keymap, lineNumbers as lineNumbersExtension, highlightActiveLine,
 } from '@codemirror/view'
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
-import { foldGutter as foldGutterExtension, foldKeymap } from '@codemirror/language'
+import {
+  foldGutter as foldGutterExtension,
+  foldKeymap,
+  syntaxHighlighting,
+  defaultHighlightStyle,
+} from '@codemirror/language'
 import { searchKeymap, openSearchPanel } from '@codemirror/search'
 import { autocompletion } from '@codemirror/autocomplete'
 import { getLanguageExtension } from './languages'
@@ -96,6 +101,8 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
 
     const themeExtension = buildThemeExtension(height, maxHeight)
     extensions.push(themeExtension)
+
+    extensions.push(syntaxHighlighting(defaultHighlightStyle, { fallback: true }))
 
     extensions.push(
       EditorView.updateListener.of((update) => {
