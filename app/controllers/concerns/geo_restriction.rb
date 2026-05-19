@@ -49,10 +49,8 @@ module GeoRestriction
         Client.find_by(id: Regexp.last_match(1))
       when %r{/(?:projects|new_projects)/(\d+)}
         Project.find_by(id: Regexp.last_match(1))&.client
-      when %r{/(?:campaigns|new_campaigns)/(\d+)}
+      when %r{/(?:campaigns|new_campaigns|threesixty_campaigns)/(\d+)}
         Campaign.find_by(id: Regexp.last_match(1))&.client
-      when %r{/threesixty_campaigns/(\d+)}
-        Threesixty::Campaign.find_by(id: Regexp.last_match(1))&.campaign&.client
     end
   end
 
