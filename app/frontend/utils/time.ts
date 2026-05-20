@@ -112,12 +112,20 @@ export function secondsToDayHoursAndMinutes (
   minuteAbbreviation: string | undefined = 'm',
   secondsLeftAbbreviation: string | undefined = 's',
 ) {
-  const duration = dayjs.duration(seconds, 'seconds')
+  const SECONDS_IN_DAY = 86400
+  const SECONDS_IN_HOUR = 3600
+  const SECONDS_IN_MINUTE = 60
 
-  const days = Math.floor(duration.asDays())
-  const hours = duration.hours()
-  const minutes = duration.minutes()
-  const secondsLeft = duration.seconds()
+  let remainingSeconds = Math.max(0, Math.floor(seconds))
+
+  const days = Math.floor(remainingSeconds / SECONDS_IN_DAY)
+  remainingSeconds %= SECONDS_IN_DAY
+
+  const hours = Math.floor(remainingSeconds / SECONDS_IN_HOUR)
+  remainingSeconds %= SECONDS_IN_HOUR
+
+  const minutes = Math.floor(remainingSeconds / SECONDS_IN_MINUTE)
+  const secondsLeft = remainingSeconds % SECONDS_IN_MINUTE
 
   let formattedDaysHoursAndMinutes = ''
 

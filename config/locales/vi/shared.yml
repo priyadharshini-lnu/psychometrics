@@ -66,10 +66,12 @@ vi:
     edit: Biên tập
     edited: Mới
     email: E-mail
+    ending_proctoring_session_msg: Chúng tôi đang kết thúc phiên giám sát. <p>Vui lòng chờ trong giây lát để chúng tôi lưu lại câu trả lời của bạn và chuyển hướng trở lại trang chủ.</p>
     error: Lỗi
     export: Xuất khẩu
     failed: Thất bại
     'false': false
+    file: Tệp
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
     generate: Tạo ra

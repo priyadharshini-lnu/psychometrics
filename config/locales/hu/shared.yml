@@ -66,10 +66,12 @@ hu:
     edit: Szerkesztés
     edited: Új
     email: E-mail
+    ending_proctoring_session_msg: A vizsgafelügyeleti munkamenet véget ér. <p>Kérjük, várjon, amíg elmentjük a válaszait, és visszatereljük a kezdőlapra.</p>
     error: Hiba
     export: Kivitel
     failed: Sikertelen
     'false': false
+    file: Fájl
     first_name: Keresztnév
     formal_learning: Formális tanulás
     generate: Generálás

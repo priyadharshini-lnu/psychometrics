@@ -187,6 +187,7 @@ ja:
     system_check_start_recording: 録音開始
     system_check_stop_recording: 録音停止
     system_check_test_message: お話しできて嬉しいです
+    system_check_timer_msg: 以下の時間内にすべての確認を完了し、評価を開始してください。この時間内に評価を開始しなかった場合、監督セッションは終了となり、最初からやり直す必要があります。
     system_check_upload_again: 再度アップロード
     system_check_uploading: アップロード
     system_check_video_random_phrase: 準備はできました。ビデオとマイクが正常に動作していることを確認するためのテスト録画です。

@@ -66,10 +66,12 @@ th:
     edit: แก้ไข
     edited: ใหม่
     email: อีเมล
+    ending_proctoring_session_msg: เรากำลังจะสิ้นสุดการตรวจสอบการสอบ <p>กรุณารอขณะที่เราบันทึกคำตอบของคุณและนำคุณกลับไปยังหน้าแรก</p>
     error: ข้อผิดพลาด
     export: ส่งออก
     failed: ล้มเหลว
     'false': false
+    file: ไฟล์
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
     generate: สร้าง

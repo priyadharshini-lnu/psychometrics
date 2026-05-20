@@ -440,6 +440,7 @@ id:
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
     minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
+    minimum_system_check_validity: Validitas Pemeriksaan Sistem pada tingkat Kampanye minimum harus 15 menit
     minimum_upload_speed: Kecepatan Unggah Minimum (dalam Mbps)
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     model_answer: Jawaban Contoh
@@ -913,6 +914,7 @@ id:
     projects: Proyek
     prompt: Perintah
     question_center: Pusat Pertanyaan
+    question_center_page_title: Pusat Pertanyaan - Dasbor - Mercer Lighthouse
     question_editor_change_type: Ubah jenis
     question_editor_click_to_write: Klik untuk menulis pertanyaan...
     question_editor_copy_question: Salin Pertanyaan
@@ -1046,6 +1048,7 @@ id:
     score_must_be_in_between_min_and_max: Skor harus berada di antara %{min} dan %{max}.
     score_range_info: 'Rentang Skor: %{min} - %{max}'
     score_with_ai: Mencetak gol dengan kecerdasan buatan
+    scores_finalized: Nilai telah ditetapkan dan tidak dapat diubah
     scoring: Penilaian
     scoring_approval_add_settings: Tambahkan pengaturan
     scoring_approval_allow_bulk_approve: Izinkan Persetujuan Massal

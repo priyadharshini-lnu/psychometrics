@@ -14,9 +14,10 @@ module Api
           audit! :campaign_scoring_rescore, user, payload: {}, campaign: campaign
           ::CampaignScoring::Rescore.call!(campaign, user)
         end
+        on(:error) { |error| return render json: { error: error }, status: :bad_request }
       end
 
-      head :ok
+      render json: :ok
     end
   end
 end

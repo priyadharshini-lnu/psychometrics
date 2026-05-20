@@ -157,7 +157,6 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     ? `/campaign_users/${campaignUser.id}/begin_campaign`
     : `/campaign_users/${campaignUser.id}/continue_campaign`
 
-
   const {
     makeAsyncRequest,
   } = useAsyncRequestResponse<AsyncRequestResponse>({
@@ -235,7 +234,6 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     ) {
       return navigateToAssessment()
     }
-
     if (isMobileDevice && proctoringEnabled) {
       if (enableMobileProctoring) {
         modal.confirm({

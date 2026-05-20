@@ -66,10 +66,12 @@ id:
     edit: Sunting
     edited: Baru
     email: Email
+    ending_proctoring_session_msg: Kami akan mengakhiri sesi pengawasan ini. <p>Mohon tunggu sebentar sementara kami menyimpan jawaban Anda dan mengalihkan Anda kembali ke halaman beranda.</p>
     error: Kesalahan
     export: Ekspor
     failed: Gagal
     'false': false
+    file: Berkas
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
     generate: Generate

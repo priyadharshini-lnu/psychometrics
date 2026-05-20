@@ -187,6 +187,7 @@ ar:
     system_check_start_recording: بدء التسجيل
     system_check_stop_recording: توقف عن التسجيل
     system_check_test_message: سُررت بالتحدث معك
+    system_check_timer_msg: أكمل جميع عمليات التحقق وابدأ الاختبار خلال المدة الموضحة أدناه. إذا لم تبدأ الاختبار خلال هذه المدة، فستنتهي جلسة المراقبة وستضطر إلى البدء من جديد.
     system_check_upload_again: تحميل مرة أخرى
     system_check_uploading: جاري التحميل
     system_check_video_random_phrase: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الفيديو والميكروفون يعملان بشكل صحيح.

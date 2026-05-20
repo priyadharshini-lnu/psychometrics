@@ -66,10 +66,12 @@ sr-Latn:
     edit: Uredi
     edited: Novi
     email: Imejl
+    ending_proctoring_session_msg: Завршавамо сесију надгледања. Молимо сачекајте док сачуvamo ваше одговоре и преусмеримо вас на почетну страницу.
     error: Грешка
     export: Izvoz
     failed: Неуспело
     'false': false
+    file: Датотека
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Генериши

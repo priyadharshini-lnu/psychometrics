@@ -440,6 +440,7 @@ ro:
     min_value: Valoarea minimă
     minimum_10_words: Minimum 10 cuvinte
     minimum_download_speed: Viteza minimă de descărcare (în Mbps)
+    minimum_system_check_validity: Durata minimă a valabilității verificării sistemului pentru campanie trebuie să fie de 15 minute
     minimum_upload_speed: Viteza minimă de încărcare (în Mbps)
     missing_min_max_values: Sunt necesare valorile minime și maxime.
     model_answer: Răspuns model
@@ -913,6 +914,7 @@ ro:
     projects: Proiecte
     prompt: Prompt
     question_center: Centrul de întrebări
+    question_center_page_title: Centrul de întrebări - Tablou de bord - Mercer Lighthouse
     question_editor_change_type: Schimbă tipul
     question_editor_click_to_write: Faceți clic pentru a introduce textul întrebării...
     question_editor_copy_question: Copiază întrebarea
@@ -1046,6 +1048,7 @@ ro:
     score_must_be_in_between_min_and_max: Scorul trebuie să se încadreze între %{min} și %{max}.
     score_range_info: 'Interval de scoruri: %{min} - %{max}'
     score_with_ai: Scor cu AI
+    scores_finalized: Rezultatele sunt definitive și nu pot fi modificate
     scoring: Notare
     scoring_approval_add_settings: Adăugați setări
     scoring_approval_allow_bulk_approve: Permiteți aprobarea în bloc

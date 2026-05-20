@@ -66,10 +66,12 @@ hi:
     edit: संपादित करें
     edited: संपादित
     email: ईमेल
+    ending_proctoring_session_msg: हम निगरानी सत्र समाप्त कर रहे हैं। कृपया प्रतीक्षा करें, जब तक हम आपके उत्तरों को सहेज रहे हैं और आपको होम पेज पर वापस रीडायरेक्ट कर रहे हैं।
     error: त्रुटि
     export: निर्यात
     failed: असफल
     'false': false
+    file: फ़ाइल
     first_name: पहला नाम
     formal_learning: औपचारिक अधिगम
     generate: उत्पन्न करें

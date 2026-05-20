@@ -440,6 +440,7 @@ de:
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     minimum_download_speed: Mindest-Download-Geschwindigkeit (in Mbit/s)
+    minimum_system_check_validity: Die Gültigkeitsdauer der Systemprüfung sollte mindestens 15 Minuten betragen
     minimum_upload_speed: Mindest-Upload-Geschwindigkeit (in Mbit/s)
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     model_answer: Musterlösung
@@ -913,6 +914,7 @@ de:
     projects: Projekte
     prompt: Aufforderung
     question_center: Fragen-Center
+    question_center_page_title: Fragen-Center – Dashboard – Mercer Lighthouse
     question_editor_change_type: Typ ändern
     question_editor_click_to_write: Klicken Sie hier, um den Text Ihrer Frage einzugeben...
     question_editor_copy_question: Frage kopieren
@@ -1046,6 +1048,7 @@ de:
     score_must_be_in_between_min_and_max: Die Punktzahl muss zwischen %{min} und %{max} liegen.
     score_range_info: 'Punktespannweite: %{min} - %{max}'
     score_with_ai: Mit KI punkten
+    scores_finalized: Die Ergebnisse stehen fest und können nicht mehr geändert werden
     scoring: Punktevergabe
     scoring_approval_add_settings: Einstellungen hinzufügen
     scoring_approval_allow_bulk_approve: Massenfreigabe zulassen

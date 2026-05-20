@@ -187,6 +187,7 @@ cs:
     system_check_start_recording: Spuštění nahrávání
     system_check_stop_recording: Zastavit nahrávání
     system_check_test_message: je skvělé si s vámi popovídat
+    system_check_timer_msg: Proveďte všechny kontroly a zahajte testování v níže uvedeném časovém limitu. Pokud testování v tomto časovém limitu nezačnete, vaše testovací relace skončí a budete muset začít znovu.
     system_check_upload_again: Znovu nahrát
     system_check_uploading: Nahrává se
     system_check_video_random_phrase: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.

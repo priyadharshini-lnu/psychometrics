@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import dayjs from 'dayjs'
 import {
   PlusOutlined, CopyOutlined, DeleteOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -198,7 +199,7 @@ const BlockList: React.FC = () => {
         width={350}
         title={I18n.t('admin.linked_assessments') || 'Linked Assessments'}
         render={(_, record) => {
-          if (!record.linkedAssessments || record.linkedAssessments.length === 0) return '-'
+          if (!record.linkedAssessments || record.linkedAssessments.length === 0) return ''
           return (
             <div>
               {record.linkedAssessments.map((assessment, index) => (
@@ -227,6 +228,9 @@ const BlockList: React.FC = () => {
         id="created_at"
         dataIndex="created_at"
         title={I18n.t('shared.created_at')}
+        render={createdAt => (
+          dayjs(createdAt).format('lll')
+        )}
         sorter
       />
       <Resource.Column<Block>

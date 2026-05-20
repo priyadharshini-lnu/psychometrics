@@ -187,6 +187,7 @@ vi:
     system_check_start_recording: Bắt đầu ghi âm
     system_check_stop_recording: Dừng ghi âm
     system_check_test_message: rất vui khi được nói chuyện với bạn
+    system_check_timer_msg: Hãy hoàn tất tất cả các bước kiểm tra và bắt đầu bài thi trong khoảng thời gian được hiển thị bên dưới. Nếu không bắt đầu bài thi trong khoảng thời gian này, phiên giám sát của bạn sẽ kết thúc và bạn sẽ phải bắt đầu lại từ đầu.
     system_check_upload_again: Tải lên lại
     system_check_uploading: Đang tải lên
     system_check_video_random_phrase: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.

@@ -98,7 +98,9 @@ const AssessmentPreview = ({
   }
 
   return (
-    end && !submissionInProgress && !submissionFailed ? <EndPage /> : (
+    end && !submissionInProgress && !submissionFailed ? (
+      <EndPage insideSelectiveProctoringSession={insideSelectiveProctoringSession} />
+    ) : (
       <Page
         defaultLanguage={defaultLanguage}
         showEnhanceWithAI={showEnhanceWithAI}

@@ -66,10 +66,12 @@ fr:
     edit: Editer
     edited: Nouveau
     email: Courriel
+    ending_proctoring_session_msg: Nous mettons fin à la session de surveillance. <p>Veuillez patienter pendant que nous enregistrons vos réponses et que nous vous redirigeons vers la page d'accueil.</p>
     error: Erreur
     export: Exportation
     failed: Échec
     'false': false
+    file: Fichier
     first_name: Prénom
     formal_learning: Apprentissage formel
     generate: Générer

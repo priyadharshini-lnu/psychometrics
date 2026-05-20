@@ -66,10 +66,12 @@ bg:
     edit: Редактирайте
     edited: Нов
     email: Имейл
+    ending_proctoring_session_msg: Завършваме сесията за наблюдение. <p>Моля, изчакайте, докато запишем отговорите ви и ви пренасочим обратно към началната страница.</p>
     error: Грешка
     export: Износ
     failed: Неуспешен
     'false': false
+    file: Файл
     first_name: Първо име
     formal_learning: Формално обучение
     generate: Генериране

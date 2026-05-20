@@ -440,6 +440,7 @@ nl:
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
     minimum_download_speed: Minimale downloadsnelheid (in Mbps)
+    minimum_system_check_validity: De geldigheidsduur van de systeemcontrole voor het minimale campagneniveau moet 15 minuten bedragen
     minimum_upload_speed: Minimale uploadsnelheid (in Mbps)
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
     model_answer: Modelantwoord
@@ -913,6 +914,7 @@ nl:
     projects: Projecten
     prompt: Prompt
     question_center: Vragencentrum
+    question_center_page_title: Vraagcentrum - Dashboard - Mercer Lighthouse
     question_editor_change_type: Type wijzigen
     question_editor_click_to_write: Klik hier om je vraag in te voeren...
     question_editor_copy_question: Vraag kopiëren
@@ -1046,6 +1048,7 @@ nl:
     score_must_be_in_between_min_and_max: De score moet tussen %{min} en %{max} liggen.
     score_range_info: 'Scorebereik: %{min} - %{max}'
     score_with_ai: Scoor met AI
+    scores_finalized: De scores zijn definitief en kunnen niet meer worden gewijzigd
     scoring: Scoren
     scoring_approval_add_settings: Instellingen toevoegen
     scoring_approval_allow_bulk_approve: Bulk goedkeuren toestaan

@@ -69,10 +69,12 @@ en:
     edit: Edit
     edited: Edited
     email: Email
+    ending_proctoring_session_msg: We are ending the proctoring session. <p>Please wait while we save your responses and redirect back to the home page.</p>
     error: Error
     export: Export
     failed: Failed
     'false': false
+    file: File
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate

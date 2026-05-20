@@ -440,6 +440,7 @@ ja:
     min_value: 最小値
     minimum_10_words: 最低10語
     minimum_download_speed: 最低ダウンロード速度（Mbps）
+    minimum_system_check_validity: キャンペーンの「システムチェックの有効期間」は、最低でも15分である必要があります
     minimum_upload_speed: 最低アップロード速度（Mbps）
     missing_min_max_values: 最小値と最大値が必要です。
     model_answer: 模範解答
@@ -913,6 +914,7 @@ ja:
     projects: プロジェクト
     prompt: プロンプト
     question_center: 質問センター
+    question_center_page_title: 質問センター - ダッシュボード - マーサー・ライトハウス
     question_editor_change_type: タイプを変更
     question_editor_click_to_write: 質問内容を入力するにはここをクリックしてください...
     question_editor_copy_question: 質問をコピー
@@ -1046,6 +1048,7 @@ ja:
     score_must_be_in_between_min_and_max: スコアは%{min}と%{max}の間でなければなりません。
     score_range_info: スコア範囲：%{min} - %{max}
     score_with_ai: AIで得点する
+    scores_finalized: スコアは確定しており、変更することはできません
     scoring: 採点
     scoring_approval_add_settings: 設定を追加
     scoring_approval_allow_bulk_approve: 一括承認を許可する

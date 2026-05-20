@@ -66,10 +66,12 @@ it:
     edit: Modifica
     edited: Nuove
     email: Email
+    ending_proctoring_session_msg: La sessione di sorveglianza sta per concludersi. <p>Attendi mentre salviamo le tue risposte e ti reindirizziamo alla pagina iniziale.</p>
     error: Errore
     export: Esporta
     failed: Fallito
     'false': false
+    file: File
     first_name: Nome
     formal_learning: Apprendimento Formale
     generate: Generare

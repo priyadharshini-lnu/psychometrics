@@ -12,7 +12,7 @@ import {
 } from '~/glint'
 import { SafeHTML } from '~/components/SafeHTML'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
-import { ClockCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ClockCircleOutlined, InfoCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
 import { PrivacyConsent } from './PrivacyConsent'
 import { LanguageSelection } from './LanguageSelection'
@@ -33,6 +33,7 @@ import { useIsProctored } from '~/hooks/useProctoringState'
 import { AsyncRequestResponse, AsyncRequestResponseTR } from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import { setCampaignUser } from '~/modules/endUser/modules/campaigns/core/campaign'
+import { useDeviceDetection } from '~/hooks/useDeviceDetection'
 
 import styles from './UserAssessment.less'
 
@@ -75,6 +76,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       localeData,
       selectiveProctoringEnabled,
       proctoringIntegrationType: integrationType,
+      enableMobileProctoring,
     },
   },
   isDisconnected,
@@ -93,6 +95,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const assessmentTimer = assessmentExtra?.timer
   const remainingCampaignTime = currentCampaignExpiryDate ? secondsLeftFromNow(currentCampaignExpiryDate) : null
   const { isProctored } = useIsProctored()
+  const { isMobileDevice } = useDeviceDetection()
   const assessmentNeedsProctoring = selectiveProctoringEnabled && !isProctored
   const insideSelectiveProctoringSession = selectiveProctoringEnabled && isProctored
 
@@ -103,7 +106,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     })
   }, [])
 
-  const campaignStartInstruction = () => {
+  const proctoredAssessmentStartInstruction = () => {
     const messages = [I18n.t('campaign.instruction_modal.common_proctoring_instructions')]
     integrationType === 'ldb' && messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction'))
     return messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
@@ -144,19 +147,54 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     }
   }
 
-  const handleBeginAssessment = (): void | Promise<void> => {
-    if (assessmentNeedsProctoring) {
-      modal.info({
-        icon: false,
-        title: null,
-        content: campaignStartInstruction(),
-        okText: I18n.t('common.actions.start'),
+  const showProctoredAssessmentStartModal = () => {
+    modal.info({
+      icon: false,
+      title: null,
+      content: proctoredAssessmentStartInstruction(),
+      okText: I18n.t('common.actions.start'),
+      closable: true,
+      width: 600,
+      async onOk () {
+        await startAssessment()
+      },
+    })
+  }
+
+  const showMobileProctoringInfoModal = () => {
+    if (enableMobileProctoring) {
+      return modal.confirm({
+        icon: <InfoCircleFilled />,
+        title: I18n.t('shared.desktop_or_laptop_recommended'),
+        content: (
+          <Typography.Paragraph>
+            <SafeHTML html={I18n.t('shared.mobile_proctoring_enabled_instructions')} />
+          </Typography.Paragraph>
+        ),
         closable: true,
         width: 600,
-        async onOk () {
-          await startAssessment()
-        },
+        okText: I18n.t('common.actions.continue'),
+        cancelText: I18n.t('shared.switch_to_laptop_or_desktop'),
+        cancelButtonProps: { color: 'primary', variant: 'outlined' },
+        onOk: () => showProctoredAssessmentStartModal(),
       })
+    }
+    return modal.info({
+      icon: false,
+      title: I18n.t('shared.desktop_or_laptop_required'),
+      content: (
+        <Typography.Paragraph>
+          <SafeHTML html={I18n.t('shared.mobile_proctoring_disabled_instructions')} />
+        </Typography.Paragraph>
+      ),
+      closable: true,
+      width: 600,
+    })
+  }
+
+  const handleBeginAssessment = (): void | Promise<void> => {
+    if (assessmentNeedsProctoring) {
+      isMobileDevice ? showMobileProctoringInfoModal() : showProctoredAssessmentStartModal()
     } else if (!assessmentStartedAt && !WizardIsRequired.run(
       userAssessmentData.assessmentExtra,
       userAssessmentId,

@@ -440,6 +440,7 @@ ar:
     min_value: القيمة الدنيا
     minimum_10_words: 10 كلمات على الأقل
     minimum_download_speed: الحد الأدنى لسرعة التنزيل (بالميجابت في الثانية)
+    minimum_system_check_validity: يجب ألا تقل مدة صلاحية فحص النظام عن 15 دقيقة
     minimum_upload_speed: الحد الأدنى لسرعة التحميل (بالميجابت في الثانية)
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     model_answer: نموذج الإجابة
@@ -913,6 +914,7 @@ ar:
     projects: المشاريع
     prompt: موجه
     question_center: مركز الأسئلة
+    question_center_page_title: مركز الأسئلة - لوحة التحكم - Mercer Lighthouse
     question_editor_change_type: تغيير النوع
     question_editor_click_to_write: انقر لكتابة نص السؤال...
     question_editor_copy_question: نسخ السؤال
@@ -1046,6 +1048,7 @@ ar:
     score_must_be_in_between_min_and_max: يجب أن تكون النتيجة بين %{min} و %{max}.
     score_range_info: 'نطاق النقاط: %{min} - %{max}'
     score_with_ai: تسجيل النقاط باستخدام الذكاء الاصطناعي
+    scores_finalized: تم إغلاق النتائج ولا يمكن تغييرها
     scoring: سجل
     scoring_approval_add_settings: إضافة إعدادات
     scoring_approval_allow_bulk_approve: السماح بالموافقة الجماعية

@@ -66,10 +66,12 @@ pl:
     edit: Edytuj
     edited: Nowy
     email: E-mail
+    ending_proctoring_session_msg: Kończymy sesję nadzorowaną. <p>Proszę poczekać, aż zapiszemy Twoje odpowiedzi i przekierujemy Cię z powrotem na stronę główną.</p>
     error: Błąd
     export: Eksport
     failed: Niepowodzenie
     'false': false
+    file: Plik
     first_name: Imię
     formal_learning: Uczenie się formalne
     generate: Generuj

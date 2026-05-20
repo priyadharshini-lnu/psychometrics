@@ -440,6 +440,7 @@ fr:
     min_value: Valeur minimale
     minimum_10_words: 10 mots minimum
     minimum_download_speed: Vitesse de téléchargement minimale (en Mbps)
+    minimum_system_check_validity: La durée minimale de validité de la vérification du système pour la campagne doit être de 15 minutes
     minimum_upload_speed: Débit montant minimum (en Mbps)
     missing_min_max_values: Les valeurs minimales et maximales sont obligatoires.
     model_answer: Réponse type
@@ -913,6 +914,7 @@ fr:
     projects: Projets
     prompt: Invite
     question_center: Centre de questions
+    question_center_page_title: Centre de questions - Tableau de bord - Mercer Lighthouse
     question_editor_change_type: Modifier le type
     question_editor_click_to_write: Cliquez ici pour rédiger le contenu de votre question...
     question_editor_copy_question: Copier la question
@@ -1046,6 +1048,7 @@ fr:
     score_must_be_in_between_min_and_max: Le score doit se situer entre %{min} et %{max}.
     score_range_info: 'Fourchette de scores : %{min} - %{max}'
     score_with_ai: Marquer avec l'IA
+    scores_finalized: Les notes sont définitives et ne peuvent plus être modifiées
     scoring: Notation
     scoring_approval_add_settings: Ajouter des paramètres
     scoring_approval_allow_bulk_approve: Autoriser l'approbation groupée

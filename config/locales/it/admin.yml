@@ -440,6 +440,7 @@ it:
     min_value: Valore minimo
     minimum_10_words: Minimo 10 parole
     minimum_download_speed: Velocità minima di download (in Mbps)
+    minimum_system_check_validity: Il livello minimo della campagna per la validità del controllo di sistema deve essere di 15 minuti
     minimum_upload_speed: Velocità minima di upload (in Mbps)
     missing_min_max_values: Sono richiesti valori minimi e massimi.
     model_answer: Risposta modello
@@ -913,6 +914,7 @@ it:
     projects: Progetti
     prompt: Sollecito
     question_center: Centro domande
+    question_center_page_title: Centro domande - Pannello di controllo - Mercer Lighthouse
     question_editor_change_type: Cambia tipo
     question_editor_click_to_write: Clicca qui per inserire il testo della domanda...
     question_editor_copy_question: Copia domanda
@@ -1046,6 +1048,7 @@ it:
     score_must_be_in_between_min_and_max: Il punteggio deve essere compreso tra %{min} e %{max}.
     score_range_info: 'Intervallo di punteggio: %{min} - %{max}'
     score_with_ai: Punteggio con l'IA
+    scores_finalized: I punteggi sono definitivi e non possono essere modificati
     scoring: Punteggio
     scoring_approval_add_settings: Aggiungi impostazioni
     scoring_approval_allow_bulk_approve: Consenti approvazione in blocco

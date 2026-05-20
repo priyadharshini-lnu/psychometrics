@@ -187,6 +187,7 @@ pl:
     system_check_start_recording: Rozpocznij nagrywanie
     system_check_stop_recording: Zatrzymaj nagrywanie
     system_check_test_message: świetnie się z tobą rozmawia
+    system_check_timer_msg: Przeprowadź wszystkie kontrole i rozpocznij egzamin w terminie podanym poniżej. Jeśli nie rozpoczniesz egzaminu w tym terminie, sesja nadzorowana zostanie zakończona i będziesz musiał zacząć od nowa.
     system_check_upload_again: Prześlij ponownie
     system_check_uploading: Przesyłanie
     system_check_video_random_phrase: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Radio } from 'antd'
 import styles from './MaxDiff.less'
 
 export default class extends Component {
@@ -41,11 +42,9 @@ export default class extends Component {
     const checked = result.notApplicable && result.notApplicable[choice]
     return (
       <div className={styles.option}>
-        <input
+        <Radio
           disabled={readOnly}
-          className={styles.input}
-          type="radio"
-          onChange={this.changeNotApplicable.bind(this, choice)}
+          onChange={() => this.changeNotApplicable(choice)}
           checked={checked || false}
         />
       </div>
@@ -82,12 +81,10 @@ export default class extends Component {
           return (
             <div key={choice} className={styles.row}>
               <div className={`${styles.column} ${styles.firstColumn}`}>
-                <input
+                <Radio
                   disabled={readOnly}
+                  onChange={() => this.changeValue(0, choice)}
                   checked={!!firstAnswer.value}
-                  onChange={this.changeValue.bind(this, 0, choice)}
-                  type="radio"
-                  className={styles.input}
                 />
               </div>
               <div className={`${styles.choice} ${styles.choiceNotApplicable}`}>
@@ -98,12 +95,10 @@ export default class extends Component {
                 {this.renderNotApplicableCheckbox(choice)}
               </div>
               <div className={`${styles.column} ${styles.lastColumn}`}>
-                <input
+                <Radio
                   disabled={readOnly}
+                  onChange={() => this.changeValue(1, choice)}
                   checked={!!lastResult.value}
-                  onChange={this.changeValue.bind(this, 1, choice)}
-                  type="radio"
-                  className={styles.input}
                 />
               </div>
             </div>

@@ -49,9 +49,22 @@ RSpec.describe Api::V2::Administration::Campaigns::UsersController, type: :reque
           headers: { 'Authorization' => authorization }
 
       expect(response).to have_http_status(200)
-      cf = JSON.parse(response.body)['data'].first
+      body = JSON.parse(response.body)
+      cf = body['data'].first
       expect(cf).to have_attribute(:evaluator)
       expect(cf).to have_attribute(:assessment)
+      expect(body['meta']['campaign_scores_finalized']).to eq(false)
+    end
+
+    it 'returns campaign_scores_finalized as true when scores are finalized' do
+      campaign_user.update!(campaign_scores_finalized: true)
+
+      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/assessors_scores",
+          headers: { 'Authorization' => authorization }
+
+      expect(response).to have_http_status(200)
+      body = JSON.parse(response.body)
+      expect(body['meta']['campaign_scores_finalized']).to eq(true)
     end
   end
 

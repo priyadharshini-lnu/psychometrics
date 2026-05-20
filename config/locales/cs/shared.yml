@@ -66,10 +66,12 @@ cs:
     edit: Upravit
     edited: Nové
     email: E-mail
+    ending_proctoring_session_msg: Tuto relaci s dohledem ukončujeme. <p>Počkejte prosím, než uložíme vaše odpovědi a přesměrujeme vás zpět na úvodní stránku.</p>
     error: Chyba
     export: Export
     failed: Neúspěšný
     'false': false
+    file: Soubor
     first_name: Jméno
     formal_learning: Formální učení
     generate: Generovat

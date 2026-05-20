@@ -440,6 +440,7 @@ zh-HK:
     min_value: 最小值
     minimum_10_words: 至少10个单词
     minimum_download_speed: 最低下载速度（单位：Mbps）
+    minimum_system_check_validity: 活动“系统检查有效期”的最低时长应为15分钟
     minimum_upload_speed: 最低上传速度（单位：Mbps）
     missing_min_max_values: 必须提供最小值和最大值。
     model_answer: 示范答案
@@ -913,6 +914,7 @@ zh-HK:
     projects: 项目
     prompt: 提示
     question_center: 问题中心
+    question_center_page_title: 问题中心 - 仪表盘 - Mercer Lighthouse
     question_editor_change_type: 更改类型
     question_editor_click_to_write: 点击输入问题内容...
     question_editor_copy_question: 复制问题
@@ -1046,6 +1048,7 @@ zh-HK:
     score_must_be_in_between_min_and_max: 分数必须介于 %{min} 和 %{max} 之间。
     score_range_info: 分数范围：%{min} - %{max}
     score_with_ai: 用AI得分
+    scores_finalized: 成绩已最终确定，无法更改
     scoring: 评分
     scoring_approval_add_settings: 添加设置
     scoring_approval_allow_bulk_approve: 允许批量批准

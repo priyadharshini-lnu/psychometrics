@@ -28,6 +28,8 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
   isUpload = false,
   modalTitle,
 }) => {
+  const isCreatingFolder = !library && !isUpload
+
   const { currentUser } = useCurrentUser()
   const currentUserRoleTitle = currentUser?.roleTitle || currentUser?.role_title
   const {
@@ -83,6 +85,12 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     libraryFormData.append('data[type]', 'libraries')
     libraryFormData.append('data[attributes][name]', data.name)
     libraryFormData.append('data[attributes][description]', data.description)
+
+    const selectedFile = fileList[0]?.originFileObj
+    if (selectedFile instanceof File) {
+      libraryFormData.append('file', selectedFile)
+    }
+
     if (data.ownerId) {
       libraryFormData.append('data[attributes][owner_id]', String(data.ownerId))
     }
@@ -140,7 +148,21 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
           <Form.Item
             name="name"
             label={I18n.t('common.column.name')}
-            rules={[{ required: true }]}
+            required={isCreatingFolder}
+            rules={[
+              {
+                validator: (_, value) => {
+                  if (!isCreatingFolder) {
+                    return Promise.resolve()
+                  }
+
+                  const trimmedValue = String(value ?? '').trim()
+                  return trimmedValue
+                    ? Promise.resolve()
+                    : Promise.reject(new Error(I18n.t('admin.this_field_is_required')))
+                },
+              },
+            ]}
           >
             <Input name="name" />
           </Form.Item>
@@ -177,7 +199,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
             <Input.TextArea name="description" />
           </Form.Item>
 
-          {(isUpload || (!!library && library?.type === 'image'))
+          {(isUpload || (!!library && library?.type !== 'folder'))
             && (
               <Form.Item
                 name="file"

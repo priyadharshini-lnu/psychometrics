@@ -66,10 +66,12 @@ ar:
     edit: تعديل
     edited: جديد
     email: البريد الإلكتروني
+    ending_proctoring_session_msg: نحن بصدد إنهاء جلسة المراقبة. <p>يرجى الانتظار حتى ننتهي من حفظ إجاباتك ونعيد توجيهك إلى الصفحة الرئيسية.</p>
     error: خطأ
     export: تصدير
     failed: فشل
     'false': false
+    file: ملف
     first_name: الاسم الاول
     formal_learning: التعلم الرسمي
     generate: توليد

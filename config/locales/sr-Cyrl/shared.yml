@@ -66,10 +66,12 @@ sr-Cyrl:
     edit: Уређивање
     edited: Уређивати
     email: Е-пошта
+    ending_proctoring_session_msg: Завршавамо сесију надгледања. Молимо сачекајте док сачувамо ваше одговоре и преусмеримо вас на почетну страницу.
     error: Грешка
     export: Извоз
     failed: Неуспело
     'false': false
+    file: Датотека
     first_name: Презиме
     formal_learning: Формално учење
     generate: Генериши

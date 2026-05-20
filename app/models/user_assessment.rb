@@ -116,6 +116,12 @@ class UserAssessment < ApplicationRecord
   scope :scored, -> { where(status: :completed, score_calculated: true) }
   scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
   scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
+  scope :excluding_inactive_campaign_users, lambda {
+    joins(
+      'INNER JOIN campaign_users ON campaign_users.user_id = user_assessments.subject_id ' \
+      'AND campaign_users.campaign_id = user_assessments.campaign_id'
+    ).where(campaign_users: { active: true }).distinct
+  }
 
   before_save :set_default_relationship
   after_destroy :reset_user_report_approval_status
@@ -387,6 +393,12 @@ class UserAssessment < ApplicationRecord
     DEEMED_COMPLETED_STATUS.include?(status)
   end
 
+  def data_controller_consent_required?(user)
+    return false unless assessment.data_role_controller?
+
+    !data_controller_consent_given?(user)
+  end
+
   def has_ai_scoring_approval_flow?
     AI::ScoringApprovalSetting.exists?(campaign_id: campaign_id, assessment_id: assessment_id)
   end
@@ -541,6 +553,15 @@ class UserAssessment < ApplicationRecord
 
   def calculated_expiry_date
     assessment.extra['timer']&.seconds&.from_now
+  end
+
+  def data_controller_consent_given?(user)
+    user.privacy_consents.exists?(
+      campaign_id: campaign_id,
+      assessment_id: assessment.id,
+      version: assessment.policy_version,
+      data_role: :controller
+    )
   end
 
   def enqueue_media_response_transcriptions

@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::Dimensions::FactorResource < Api::V2::Administration::BaseResource
   attributes :id, :name, :description, :code, :scoring_strategy, :parent, :disabled, :precision, :scale_min, :scale_max,
-             :icon_url, :score_min, :score_max,
+             :icon_url, :score_min, :score_max, :use_sub_factor_norm_score,
              :score_definitions, :what_to_look_for, :use_percentage, :custom_formula,
              :factors_sub_factors, :child_factor_type, :created_at, :updated_at,
              :questions_count_by_assessment_details

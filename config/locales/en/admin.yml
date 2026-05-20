@@ -448,6 +448,7 @@ en:
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_system_check_validity: Minimum Campaign level System Check validity should be 15 minutes
     minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
     model_answer: Model Answer
@@ -924,6 +925,7 @@ en:
     projects: Projects
     prompt: Prompt
     question_center: Question Center
+    question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
     question_editor_click_to_write: Click to write question content...
     question_editor_copy_question: Copy Question
@@ -1057,6 +1059,7 @@ en:
     score_must_be_in_between_min_and_max: Score must be in between %{min} and %{max}.
     score_range_info: 'Score Range: %{min} - %{max}'
     score_with_ai: Score with AI
+    scores_finalized: Scores are finalized and can’t be changed
     scoring: Scoring
     scoring_approval_add_settings: Add settings
     scoring_approval_allow_bulk_approve: Allow Bulk Approve

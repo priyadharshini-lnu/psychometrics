@@ -440,6 +440,7 @@ sl:
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
     minimum_download_speed: Najmanjša hitrost prenosa (v Mbps)
+    minimum_system_check_validity: Najkrajši čas veljavnosti preverjanja sistema v okviru kampanje mora biti 15 minut
     minimum_upload_speed: Najmanjša hitrost prenosa (v Mbps)
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     model_answer: Vzorec odgovora
@@ -913,6 +914,7 @@ sl:
     projects: Projekti
     prompt: Spodbuda
     question_center: Središče za vprašanja
+    question_center_page_title: Center za vprašanja – Nadzorna plošča – Mercer Lighthouse
     question_editor_change_type: Spremeni vrsto
     question_editor_click_to_write: Kliknite, da vnesete vsebino vprašanja...
     question_editor_copy_question: Kopiraj vprašanje
@@ -1046,6 +1048,7 @@ sl:
     score_must_be_in_between_min_and_max: Rezultat mora biti med %{min} in %{max}.
     score_range_info: 'Ocenjevalna lestvica: %{min} - %{max}'
     score_with_ai: Zmagajte z umetno inteligenco
+    scores_finalized: Rezultati so dokončni in jih ni mogoče spremeniti
     scoring: Točkovanja
     scoring_approval_add_settings: Dodaj nastavitve
     scoring_approval_allow_bulk_approve: Dovoli množično odobritev

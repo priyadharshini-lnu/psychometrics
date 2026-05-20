@@ -440,6 +440,7 @@ hu:
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
+    minimum_system_check_validity: A kampány minimális rendszerellenőrzési érvényességi ideje 15 perc legyen
     minimum_upload_speed: Minimális feltöltési sebesség (Mbps-ben)
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     model_answer: Minta válasz
@@ -913,6 +914,7 @@ hu:
     projects: Projektek
     prompt: Prompt
     question_center: Kérdésközpont
+    question_center_page_title: Kérdések központja – Műszerfal – Mercer Lighthouse
     question_editor_change_type: Típus módosítása
     question_editor_click_to_write: Kattintson ide a kérdés megfogalmazásához...
     question_editor_copy_question: Kérdés másolása
@@ -1046,6 +1048,7 @@ hu:
     score_must_be_in_between_min_and_max: A pontszámnak %{min} és %{max} között kell lennie.
     score_range_info: 'Pontszámtartomány: %{min} - %{max}'
     score_with_ai: Pontszám az AI segítségével
+    scores_finalized: Az eredmények véglegesek, és már nem módosíthatók
     scoring: Pontozás
     scoring_approval_add_settings: Beállítások hozzáadása
     scoring_approval_allow_bulk_approve: Tömeges jóváhagyás engedélyezése

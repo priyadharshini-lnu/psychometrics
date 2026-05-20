@@ -128,15 +128,16 @@ const TranscriptionDetails: FC<Props> = ({
     const {
       id, questionType, transcriptionEnabled, assetUrl,
     } = record
-    const isAudioOrVideo = questionType === 'audio' || questionType === 'video'
+    const normalizedQuestionType = questionType?.toLowerCase()
+    const isAudioOrVideo = normalizedQuestionType === 'audio' || normalizedQuestionType === 'video'
     const menuItems: MenuItem[] = []
 
-    if (assetUrl) {
+    if (isAudioOrVideo && assetUrl) {
       menuItems.push({
         key: 'downloadMedia',
         label: (
           <a href={assetUrl} target="_blank" rel="noopener noreferrer">
-            {I18n.t(`shared.download_${questionType}`)}
+            {I18n.t(`shared.download_${normalizedQuestionType}`)}
           </a>
         ),
       })
@@ -199,7 +200,14 @@ const TranscriptionDetails: FC<Props> = ({
       dataIndex: 'questionType',
       key: 'questionType',
       width: 80,
-      render: (type: string) => (type ? I18n.t(`shared.${type}`) : I18n.t('common.text.na')),
+      render: (type: string) => {
+        if (!type) return I18n.t('common.text.na')
+        const knownTypes = ['audio', 'video', 'file']
+        if (knownTypes.includes(type.toLowerCase())) {
+          return I18n.t(`shared.${type.toLowerCase()}`)
+        }
+        return type
+      },
     },
     {
       title: I18n.t('shared.transcription_status'),
@@ -230,7 +238,13 @@ const TranscriptionDetails: FC<Props> = ({
       title: I18n.t('common.column.action'),
       key: 'action',
       width: 80,
-      render: (record: MediaResponse) => {
+      render: (_: unknown, record: MediaResponse) => {
+        const normalizedQuestionType = record.questionType?.toLowerCase()
+        const isAudioOrVideo = normalizedQuestionType === 'audio' || normalizedQuestionType === 'video'
+        if (!isAudioOrVideo) {
+          return I18n.t('common.text.na')
+        }
+
         const menu = getActionsMenuProps(record)
 
         if (!menu.items || menu.items.length === 0) {

@@ -187,6 +187,7 @@ nl:
     system_check_start_recording: Opname starten
     system_check_stop_recording: Opname stoppen
     system_check_test_message: leuk om met je te praten
+    system_check_timer_msg: Voer alle controles uit en begin met je toets binnen de hieronder aangegeven tijd. Als je niet binnen deze tijd met de toets begint, wordt je toezichtsessie beëindigd en moet je opnieuw beginnen.
     system_check_upload_again: Opnieuw uploaden
     system_check_uploading: Uploaden
     system_check_video_random_phrase: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn video en microfoon goed werken.

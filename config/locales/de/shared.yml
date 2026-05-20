@@ -66,10 +66,12 @@ de:
     edit: Bearbeiten
     edited: Neu
     email: E-Mail
+    ending_proctoring_session_msg: Wir beenden nun die Prüfungssitzung. <p>Bitte haben Sie einen Moment Geduld, während wir Ihre Antworten speichern und Sie zurück zur Startseite leiten.</p>
     error: Fehler
     export: Exportieren
     failed: Fehlgeschlagen
     'false': false
+    file: Datei
     first_name: Vorname
     formal_learning: Formales Lernen
     generate: Generieren

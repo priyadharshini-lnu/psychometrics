@@ -440,6 +440,7 @@ ru:
     min_value: Минимальное значение
     minimum_10_words: Минимум 10 слов
     minimum_download_speed: Минимальная скорость загрузки (в Мбит/с)
+    minimum_system_check_validity: Минимальный уровень кампании. Срок действия проверки системы должен составлять 15 минут
     minimum_upload_speed: Минимальная скорость загрузки (в Мбит/с)
     missing_min_max_values: Требуются минимальные и максимальные значения.
     model_answer: Типовой ответ
@@ -913,6 +914,7 @@ ru:
     projects: Проекты
     prompt: Подсказка
     question_center: Центр вопросов
+    question_center_page_title: Центр вопросов — Панель управления — Mercer Lighthouse
     question_editor_change_type: Изменить тип
     question_editor_click_to_write: Нажмите, чтобы ввести текст вопроса...
     question_editor_copy_question: Скопировать вопрос
@@ -1046,6 +1048,7 @@ ru:
     score_must_be_in_between_min_and_max: Оценка должна быть в диапазоне от %{min} до %{max}.
     score_range_info: 'Диапазон баллов: %{min} - %{max}'
     score_with_ai: Очки с помощью ИИ
+    scores_finalized: Оценки окончательные и не подлежат изменению
     scoring: Оценка
     scoring_approval_add_settings: Добавить настройки
     scoring_approval_allow_bulk_approve: Разрешить массовое утверждение

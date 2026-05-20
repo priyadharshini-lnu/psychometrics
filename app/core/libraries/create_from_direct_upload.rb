@@ -22,7 +22,7 @@ module Libraries
       source_copy_path = nil
 
       ActiveRecord::Base.transaction do
-        library = build_library_resource
+        library = build_library_resource(temporary_upload)
         library.save!(validate: false)
         permanent_key = attach_file_to_library!(library, temporary_upload, checksum)
         source_copy_path = copy_source_path(temporary_upload)
@@ -35,7 +35,8 @@ module Libraries
       client.copy_object(
         copy_source: source_copy_path,
         bucket: Settings.secrets.s3_compatible_storage[:public_bucket],
-        key: permanent_key
+        key: permanent_key,
+        acl: upload_acl
       )
 
       temporary_upload.processed!
@@ -56,6 +57,10 @@ module Libraries
 
     private
 
+    def upload_acl
+      Settings.storage.public_storage_service.to_s == 's3_public_bucket' ? 'public-read' : 'private'
+    end
+
     def resolve_checksum(client, temporary_upload)
       return temporary_upload.checksum if temporary_upload.checksum.present?
 
@@ -63,9 +68,9 @@ module Libraries
       Digest::MD5.base64digest(object.body.read)
     end
 
-    def build_library_resource
+    def build_library_resource(temporary_upload)
       resource = Library.new(
-        name: params[:name],
+        name: params[:name].presence || temporary_upload.filename,
         description: params[:description],
         parent_id: params[:parent_id],
         type: params[:type] || 'other'
@@ -74,7 +79,6 @@ module Libraries
       resource.created_by = current_user
       resource.updated_by = current_user
       resource.owner_id = params[:owner_id].presence
-
       resource
     end
 

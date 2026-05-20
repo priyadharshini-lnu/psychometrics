@@ -66,10 +66,12 @@ ko:
     edit: 편집
     edited: 새로 만들기
     email: 이메일
+    ending_proctoring_session_msg: 감독 세션을 종료합니다. <p>응답 내용을 저장하고 홈페이지로 돌아가는 동안 잠시만 기다려 주십시오.</p>
     error: 오류
     export: 내보내기
     failed: 실패함
     'false': false
+    file: 파일
     first_name: 이름
     formal_learning: 정식 학습
     generate: 생성

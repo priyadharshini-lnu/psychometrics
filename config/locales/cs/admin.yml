@@ -440,6 +440,7 @@ cs:
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     minimum_download_speed: Minimální rychlost stahování (v Mbps)
+    minimum_system_check_validity: Minimální platnost kontroly systému v rámci kampaně by měla být 15 minut
     minimum_upload_speed: Minimální rychlost nahrávání (v Mbps)
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     model_answer: Vzorová odpověď
@@ -913,6 +914,7 @@ cs:
     projects: Projekty
     prompt: Výzva
     question_center: Centrum otázek
+    question_center_page_title: Centrum dotazů – Přehled – Mercer Lighthouse
     question_editor_change_type: Změnit typ
     question_editor_click_to_write: Klikněte a zadejte text dotazu...
     question_editor_copy_question: Zkopírovat otázku
@@ -1046,6 +1048,7 @@ cs:
     score_must_be_in_between_min_and_max: Skóre musí být mezi %{min} a %{max}.
     score_range_info: 'Rozsah skóre: %{min} - %{max}'
     score_with_ai: Skórujte s AI
+    scores_finalized: Výsledky jsou konečné a nelze je měnit
     scoring: Bodování
     scoring_approval_add_settings: Přidat nastavení
     scoring_approval_allow_bulk_approve: Povolit hromadné schválení

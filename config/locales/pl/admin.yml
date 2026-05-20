@@ -440,6 +440,7 @@ pl:
     min_value: Wartość minimalna
     minimum_10_words: Minimum 10 słów
     minimum_download_speed: Minimalna prędkość pobierania (w Mb/s)
+    minimum_system_check_validity: Minimalny czas ważności sprawdzania systemu w ramach kampanii powinien wynosić 15 minut
     minimum_upload_speed: Minimalna prędkość wysyłania (w Mb/s)
     missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
     model_answer: Odpowiedź modelowa
@@ -913,6 +914,7 @@ pl:
     projects: Projekty
     prompt: Monit
     question_center: Centrum pytań
+    question_center_page_title: Centrum pytań – Pulpit nawigacyjny – Mercer Lighthouse
     question_editor_change_type: Zmień typ
     question_editor_click_to_write: Kliknij, aby wpisać treść pytania...
     question_editor_copy_question: Skopiuj pytanie
@@ -1046,6 +1048,7 @@ pl:
     score_must_be_in_between_min_and_max: Wynik musi mieścić się w przedziale od %{min} do %{max}.
     score_range_info: 'Zakres wyników: %{min} - %{max}'
     score_with_ai: Zdobądź punkty dzięki sztucznej inteligencji
+    scores_finalized: Wyniki są ostateczne i nie można ich zmienić
     scoring: Punktacji
     scoring_approval_add_settings: Dodaj ustawienia
     scoring_approval_allow_bulk_approve: Zezwól na zbiorcze zatwierdzanie

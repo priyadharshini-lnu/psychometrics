@@ -440,6 +440,7 @@ hi:
     min_value: न्यूनतम मान
     minimum_10_words: न्यूनतम 10 शब्द
     minimum_download_speed: न्यूनतम डाउनलोड गति (एमबीपीएस में)
+    minimum_system_check_validity: न्यूनतम अभियान स्तर पर सिस्टम जाँच की वैधता 15 मिनट होनी चाहिए।
     minimum_upload_speed: न्यूनतम अपलोड गति (एमबीपीएस में)
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     model_answer: आदर्श उत्तर
@@ -913,6 +914,7 @@ hi:
     projects: परियोजनाएँ
     prompt: तुरंत
     question_center: प्रश्न केंद्र
+    question_center_page_title: प्रश्न केंद्र - डैशबोर्ड - मर्सर लाइटहाउस
     question_editor_change_type: प्रकार बदलें
     question_editor_click_to_write: प्रश्न की सामग्री लिखने के लिए क्लिक करें...
     question_editor_copy_question: प्रश्न की प्रतिलिपि बनाएँ
@@ -1046,6 +1048,7 @@ hi:
     score_must_be_in_between_min_and_max: स्कोर %{min} और %{max} के बीच होना चाहिए।
     score_range_info: 'स्कोर सीमा: %{min} - %{max}'
     score_with_ai: एआई के साथ स्कोर करें
+    scores_finalized: स्कोर अंतिम हैं और बदले नहीं जा सकते।
     scoring: स्कोरिंग
     scoring_approval_add_settings: सेटिंग्स जोड़ें
     scoring_approval_allow_bulk_approve: थोक अनुमोदन की अनुमति दें

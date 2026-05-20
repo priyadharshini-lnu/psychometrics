@@ -280,53 +280,52 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           >
             <Switch />
           </Form.Item>
-          {!disableCancellationAndRescheduling && (
-            <>
-              <Row gutter={16}>
-                <Col xs={12} lg={8}>
-                  <Form.Item
-                    name="cancellation_lead_time"
-                    label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
-                    {...fieldLayout}
-                  >
-                    <InputDuration
-                      value=""
-                      onChange={() => {}}
-                      placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={12} lg={8}>
-                  <Form.Item
-                    name="scheduling_lead_time"
-                    label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
-                    {...fieldLayout}
-                  >
-                    <InputDuration
-                      value=""
-                      onChange={() => {}}
-                      placeholder={I18n.t('administration.components.input_duration.placeholder')}
-                    />
-                  </Form.Item>
-                </Col>
-              </Row>
+          <Row gutter={16}>
+            {!disableCancellationAndRescheduling && (
+              <Col xs={12} lg={8}>
+                <Form.Item
+                  name="cancellation_lead_time"
+                  label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
+                  {...fieldLayout}
+                >
+                  <InputDuration
+                    value=""
+                    onChange={() => {}}
+                    placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                  />
+                </Form.Item>
+              </Col>
+            )}
 
+            <Col xs={12} lg={8}>
               <Form.Item
-                label={
+                name="scheduling_lead_time"
+                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+                {...fieldLayout}
+              >
+                <InputDuration
+                  value=""
+                  onChange={() => {}}
+                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Form.Item
+            label={
                   I18n.t(
                     'administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling',
                   )
                 }
-                {...fieldLayout}
-                name="allow_late_cancellation_and_rescheduling"
-                rules={[{ required: true }]}
-                valuePropName="checked"
-                initialValue={false}
-              >
-                <Switch />
-              </Form.Item>
-            </>
-          )}
+            {...fieldLayout}
+            name="allow_late_cancellation_and_rescheduling"
+            rules={[{ required: true }]}
+            valuePropName="checked"
+            initialValue={false}
+          >
+            <Switch />
+          </Form.Item>
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
             {...fieldLayout}

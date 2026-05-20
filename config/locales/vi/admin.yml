@@ -440,6 +440,7 @@ vi:
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
+    minimum_system_check_validity: Thời gian kiểm tra hệ thống tối thiểu cho chiến dịch phải là 15 phút
     minimum_upload_speed: Tốc độ tải lên tối thiểu (tính bằng Mbps)
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     model_answer: Câu trả lời mẫu
@@ -913,6 +914,7 @@ vi:
     projects: Dự án
     prompt: Gợi ý
     question_center: Trung tâm câu hỏi
+    question_center_page_title: Trung tâm câu hỏi - Bảng điều khiển - Mercer Lighthouse
     question_editor_change_type: Thay đổi loại
     question_editor_click_to_write: Nhấp vào đây để nhập nội dung câu hỏi...
     question_editor_copy_question: Sao chép câu hỏi
@@ -1046,6 +1048,7 @@ vi:
     score_must_be_in_between_min_and_max: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
     score_range_info: 'Phạm vi điểm: %{min} - %{max}'
     score_with_ai: Đạt điểm cao với Trí tuệ nhân tạo
+    scores_finalized: Kết quả đã được chốt và không thể thay đổi
     scoring: Ghi
     scoring_approval_add_settings: Thêm cài đặt
     scoring_approval_allow_bulk_approve: Cho phép phê duyệt hàng loạt

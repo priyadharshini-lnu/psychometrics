@@ -187,6 +187,7 @@ hu:
     system_check_start_recording: Indítsa el a felvételt
     system_check_stop_recording: Felvétel leállítása
     system_check_test_message: nagyszerű, hogy beszélhetek veled
+    system_check_timer_msg: Kérjük, végezze el az összes ellenőrzést, és kezdje meg a felmérést az alábbi időkereten belül. Ha a felmérést nem kezdi meg ezen időn belül, a felügyelt vizsga lezárul, és újra kell kezdenie.
     system_check_upload_again: Feltöltés újra
     system_check_uploading: A  feltöltése
     system_check_video_random_phrase: Készen állok. Ez egy tesztfelvétel, hogy megbizonyosodjak arról, hogy a videóm és a mikrofonom megfelelően működik.

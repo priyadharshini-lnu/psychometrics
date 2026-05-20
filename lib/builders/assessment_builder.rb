@@ -60,11 +60,31 @@ module Builders
         questions.each do |question_params|
           id = question_params.delete(:id)
           question = id ? @assessment.questions.find(id) : block.questions.build
-          question.update!(question_params.merge(block_id: block.id))
+          update_question!(question, question_params, block.id)
         end
       end
 
       process_trash
+    end
+
+    def update_question!(question, question_params, block_id)
+      attributes = question_params.merge(block_id: block_id)
+      mark_props_as_changed_if_key_order_updated(question, attributes)
+      question.update!(attributes)
+    end
+
+    def mark_props_as_changed_if_key_order_updated(question, attributes)
+      return unless attributes.key?(:props) || attributes.key?('props')
+
+      new_props = attributes[:props] || attributes['props']
+      return if json_with_order(question.props) == json_with_order(new_props)
+
+      question.props_will_change!
+    end
+
+    def json_with_order(value)
+      normalized_value = value.respond_to?(:to_unsafe_h) ? value.to_unsafe_h : value
+      JSON.generate(normalized_value.as_json)
     end
 
     def process_trash

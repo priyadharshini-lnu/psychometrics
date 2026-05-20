@@ -440,6 +440,7 @@ bg:
     min_value: Минимална стойност
     minimum_10_words: Минимум 10 думи
     minimum_download_speed: Минимална скорост на изтегляне (в Mbps)
+    minimum_system_check_validity: Минималната валидност на проверката на системата за нивото на кампанията трябва да бъде 15 минути
     minimum_upload_speed: Минимална скорост на качване (в Mbps)
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     model_answer: Модел на отговор
@@ -913,6 +914,7 @@ bg:
     projects: Проекти
     prompt: Подсказка
     question_center: Център за въпроси
+    question_center_page_title: Център за въпроси – Табло – Mercer Lighthouse
     question_editor_change_type: Промени типа
     question_editor_click_to_write: Кликнете тук, за да въведете въпроса...
     question_editor_copy_question: Копирай въпроса
@@ -1046,6 +1048,7 @@ bg:
     score_must_be_in_between_min_and_max: Резултатът трябва да е между %{min} и %{max}.
     score_range_info: 'Диапазон на резултатите: %{min} - %{max}'
     score_with_ai: Резултат с AI
+    scores_finalized: Резултатите са окончателни и не могат да бъдат променяни
     scoring: Точкуване
     scoring_approval_add_settings: Добави настройки
     scoring_approval_allow_bulk_approve: Разреши масово одобрение

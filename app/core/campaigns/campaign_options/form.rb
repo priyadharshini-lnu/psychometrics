@@ -28,6 +28,12 @@ module Campaigns
       validates :campaign_id, presence: true
       validates :fixed_time_duration, numericality: { only_integer: true }, allow_nil: true
       validates :description, length: { maximum: 500 }
+      validates :system_check_validity,
+                numericality: {
+                  greater_than_or_equal_to: 900,
+                  message: I18n.t('admin.minimum_system_check_validity')
+                },
+                allow_nil: true
 
       validate :time_zone do
         unless time_zone.nil? || ActiveSupport::TimeZone[time_zone]

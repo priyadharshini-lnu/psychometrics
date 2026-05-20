@@ -66,10 +66,12 @@ zh-Hant:
     edit: 編輯
     edited: 新
     email: 電子郵件
+    ending_proctoring_session_msg: 本次监考环节即将结束。<p>请稍候，我们正在保存您的答题内容并跳转回首页。</p>
     error: 错误
     export: 出口
     failed: 失败
     'false': false
+    file: 文件
     first_name: 姓名
     formal_learning: 正式學習
     generate: 生成
