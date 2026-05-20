@@ -149,7 +149,6 @@ hi:
     skill_type: कौशल का प्रकार
     start_campaign_message_proctored: यह एक पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
     start_campaign_message_timed: यह एक समयबद्ध अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
-    start_campaign_message_timed_proctored: यह एक समयबद्ध और पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
     start_readiness_check: तैयारी जाँच शुरू करें
     start_system_check: सिस्टम जाँच शुरू करें
     subinstruction_audio: कार्यशील माइक्रोफ़ोन

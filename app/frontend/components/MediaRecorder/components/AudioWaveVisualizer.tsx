@@ -5,12 +5,18 @@ interface AudioWaveVisualizerProps {
     stream: MediaStream | null;
     audioBlobUrl?: string;
     style?: React.CSSProperties;
+    width?: number;
+    height?: number;
+    amplitudeScale?: number;
 }
 
 const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
   stream,
   audioBlobUrl,
   style = { height: '22px' },
+  width = 200,
+  height = 120,
+  amplitudeScale = 20,
 }) => {
   const audioWaveRef = useRef<SiriWave | null>(null)
   const analyserRef = useRef<AnalyserNode | null>(null)
@@ -41,8 +47,8 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
 
       audioWaveRef.current = new SiriWave({
         container: audioContainerRef.current,
-        width: 200,
-        height: 120,
+        width,
+        height,
         style: 'ios9',
       })
 
@@ -95,7 +101,7 @@ const AudioWaveVisualizer: React.FC<AudioWaveVisualizerProps> = ({
 
           const amplitude = dataArray.reduce((max, value) => Math.max(max, value), 128) - 128
           if (amplitude > amplitudeThreshold) {
-            audioWaveRef.current?.setAmplitude((amplitude / 128) * 20)
+            audioWaveRef.current?.setAmplitude((amplitude / 128) * amplitudeScale)
           } else {
             audioWaveRef.current?.setAmplitude(0)
           }

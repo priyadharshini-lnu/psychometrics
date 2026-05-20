@@ -152,8 +152,6 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
   describe 'GET pdf_preview' do
     it 'renders appropriate view' do
-      allow_any_instance_of(ActionView::Base).to receive(:vite_javascript_tag).and_return('')
-
       get :pdf_preview, params: { new_campaign_id: campaign.id, id: user_report.id }
 
       expect(response).to have_http_status(:success)
@@ -697,7 +695,6 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       user = campaign_user.user
       create(:user_report, campaign_id: campaign.id, report_id: campaign_report.report_id, user_id: user.id)
 
-      mock_vite_assets
       get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :html
 
       expect(response).to render_template('dashboard')

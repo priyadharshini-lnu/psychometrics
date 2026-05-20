@@ -149,7 +149,6 @@ bg:
     skill_type: Тип умение
     start_campaign_message_proctored: Това е кампания с проктор, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_campaign_message_timed: Това е кампания с ограничено време, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
-    start_campaign_message_timed_proctored: Това е кампания с ограничено време и наблюдение, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_readiness_check: Започнете проверка на готовността
     start_system_check: Започни проверка на системата
     subinstruction_audio: Работещ микрофон

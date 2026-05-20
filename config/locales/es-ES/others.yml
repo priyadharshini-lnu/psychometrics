@@ -1382,7 +1382,6 @@ es-ES:
     all_activities_are_completed: Ha completado todas las actividades.
     all_activities_are_completed_multiple: Ha completado todas las actividades de esta campaña. Acceda al panel de control y compruebe si se le han asignado otras actividades.
     already_joined: Ya te has unido a esta campaña
-    begin: Comenzar sus tareas
     begin_btn_msg_before_prework: Tienes que completar las siguientes tareas antes de empezar la campaña cronometrada
     begin_campaign_msg: Iniciar la campaña antes de realizar las evaluaciones
     campaigns: Campañas
@@ -1390,7 +1389,6 @@ es-ES:
     code_usage_limit_reached: Límite de uso de código alcanzado, póngase en contacto con el administrador
     complete_prev: Complete todas las evaluaciones previas
     complete_tasks: Realice las tareas que se indican a continuación antes de emprender esta acción.
-    continue: Continúe con sus tareas
     dashboard_instructions: Se le han asignado varias actividades que debe completar. No olvide comprobar si ha completado todas las actividades asignadas de todas las campañas.
     dashboard_menu:
       campaign: Campaña

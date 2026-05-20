@@ -149,7 +149,6 @@ fr:
     skill_type: Type de compétence
     start_campaign_message_proctored: Il s’agit d’une campagne surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_campaign_message_timed: Il s’agit d’une campagne chronométrée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
-    start_campaign_message_timed_proctored: Il s’agit d’une campagne chronométrée et surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_readiness_check: Lancer la vérification de l'état de préparation
     start_system_check: Lancer la vérification du système
     subinstruction_audio: Microphone en état de marche

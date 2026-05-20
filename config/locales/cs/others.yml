@@ -1380,7 +1380,6 @@ cs:
     all_activities_are_completed: Všechny aktivity byly dokončeny.
     all_activities_are_completed_multiple: Všechny činnosti v rámci této kampaně jsou nyní dokončeny. Přejděte na řídicí panel a zkontrolujte, zda máte přiřazeny další aktivity.
     already_joined: Do této kampaně jste se již zapojili
-    begin: Začněte plnit úkoly
     begin_btn_msg_before_prework: Před zahájením časové kampaně musíte splnit následující úkoly
     begin_campaign_msg: Spustit kampaň před zahájením hodnocení
     campaigns: Kampaně
@@ -1388,7 +1387,6 @@ cs:
     code_usage_limit_reached: Dosažen limit pro použití kódu, kontaktujte prosím správce
     complete_prev: Dokončete všechna předchozí hodnocení
     complete_tasks: Před provedením této akce dokončete níže uvedené úkoly.
-    continue: Pokračujte v plnění úkolů
     dashboard_instructions: Je možné, že vám bylo přiděleno více aktivit, které musíte dokončit. Ujistěte se, že jste ve všech kampaních splnili všechny zadané aktivity.
     dashboard_menu:
       campaign: Kampaň

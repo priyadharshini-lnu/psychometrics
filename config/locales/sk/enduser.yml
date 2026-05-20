@@ -149,7 +149,6 @@ sk:
     skill_type: Typ zručnosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_campaign_message_timed: Toto je časovo obmedzená kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
-    start_campaign_message_timed_proctored: Ide o časovo obmedzenú a dozorovanú kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_readiness_check: Spustiť kontrolu pripravenosti
     start_system_check: Spustiť kontrolu systému
     subinstruction_audio: Fungujúci mikrofón

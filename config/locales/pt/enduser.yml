@@ -149,7 +149,6 @@ pt:
     skill_type: Tipo de habilidade
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
-    start_campaign_message_timed_proctored: Esta é uma campanha cronometrada e supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     start_readiness_check: Iniciar verificação de prontidão
     start_system_check: Iniciar verificação do sistema
     subinstruction_audio: Microfone em funcionamento

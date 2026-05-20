@@ -149,7 +149,6 @@ nl:
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
-    start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_readiness_check: Start de gereedheidscontrole
     start_system_check: Systeemcontrole starten
     subinstruction_audio: Werkende microfoon

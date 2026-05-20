@@ -1380,7 +1380,6 @@ en:
     all_activities_are_completed: All activities are now complete.
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
     already_joined: You already joined this campaign
-    begin: Begin your tasks
     begin_btn_msg_before_prework: You have to complete the below tasks before starting the timed campaign
     begin_campaign_msg: Start campaign before taking assessments
     campaigns: Campaigns
@@ -1388,7 +1387,6 @@ en:
     code_usage_limit_reached: Code usage limit reached, please contact administrator
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
-    continue: Continue your tasks
     dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       campaign: Campaign

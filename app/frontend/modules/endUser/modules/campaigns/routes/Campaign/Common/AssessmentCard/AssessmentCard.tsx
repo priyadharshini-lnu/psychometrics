@@ -1,15 +1,15 @@
 import React, { FC, useState } from 'react'
 import {
   Avatar, Row, Col, Space, theme, App,
-  Tag, Alert, Tooltip,
-  Typography,
+  Tag, Alert, Tooltip, Typography,
 } from 'antd'
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useDeviceDetection } from '~/hooks/useDeviceDetection'
 import {
   CountdownTimer, DetailsCard,
 } from '~/glint'
-import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { InfoCircleOutlined, InfoCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { secondsToDayHoursAndMinutes, SECONDS_IN_HOUR } from '~/utils/time'
 import dayjs from '~/utils/dayjs'
@@ -17,6 +17,7 @@ import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAss
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { SafeHTML } from '~/components/SafeHTML'
 import { MeetingInfo } from './MeetingInfo'
 import { shortify } from '~/utils/string'
 import {
@@ -33,7 +34,6 @@ import {
 
 import styles from './styles.less'
 import { useIsProctored } from '~/hooks/useProctoringState'
-import SafeHTML from '~/components/SafeHTML/SafeHTML'
 
 const { I18n } = window
 const { useToken } = theme
@@ -65,6 +65,14 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 type CommonComponentProps = PropsFromRedux & Props
 
+const isCampaignSystemCheckValid = (
+  lastSuccessfulCheckAt: number,
+  systemCheckValidity: number,
+) => {
+  const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
+  return campaignSystemCheckExpiryTime > (Date.now() / 1000)
+}
+
 const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   userAssessment,
   view,
@@ -75,10 +83,10 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   workshopAttended,
   campaign,
   campaign: {
-    campaignUser, isTimedCampaign, fixedTimed, campaignTime,
+    campaignUser, isTimedCampaign, fixedTimed, campaignTime, lastSuccessfulCheckAt,
     campaignOptions: {
-      proctoringEnabledOnWorkshopActivity,
-      selectiveProctoringEnabled,
+      proctoringEnabledOnWorkshopActivity, integrationType, enableMobileProctoring,
+      selectiveProctoringEnabled, proctoringEnabled, systemCheckEnabled, systemCheckValidity,
     },
   },
 }) => {
@@ -99,6 +107,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const navigate = useNavigate()
   const { message, modal } = App.useApp()
   const dispatch = useDispatch()
+  const { isMobileDevice } = useDeviceDetection()
   const isWorkshopActivity = userAssessment.workshopActivity
   const titleId = `assessment-card-title-${userAssessment.id}`
   const hasStartedCampaign = !!campaignUser.startedAt && campaignUser.status !== 'not_started'
@@ -112,6 +121,8 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const assessementLevelPrococtoringEnabled = selectiveProctoringEnabled && userAssessment.proctoringEnabled
   const assessmentNeedsProctoring = assessementLevelPrococtoringEnabled && !isProctored
   const isAssessmentProctoringMisconfigured = assessmentNeedsProctoring && !timedAssessment
+  const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
+  const campaignNeedsProctoring = campaignLevelProctoringEnabled && !isProctored
 
   const canBeginCampaign = !campaignClosedForUser && !hasStartedCampaign
     && fixedTimed && !isCampaignInterrupted
@@ -160,9 +171,24 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     makeAsyncRequest,
   } = useAsyncRequestResponse<AsyncRequestResponse>({
     url: asyncUrl,
-    data: { id: campaignUser.id, continue_without_proctoring: true },
+    data: { id: campaignUser.id, continue_without_proctoring: !campaignNeedsProctoring },
     responseType: AsyncRequestResponseTR,
   })
+
+  const campaignStartInstruction = () => {
+    const messages = isTimedCampaign && campaignTime
+      ? [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })] : []
+    if (campaignNeedsProctoring) {
+      messages.push(I18n.t('campaign.instruction_modal.common_proctoring_instructions'))
+      integrationType === 'ldb' && messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction'))
+    }
+
+    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
+
+    return (
+      messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
+    )
+  }
 
 
   const navigateToAssessment = () => {
@@ -173,9 +199,15 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const startCampaignActivities = async (shouldNavigate = true) => {
     try {
       const { responseData } = await makeAsyncRequest()
-      dispatch(setCampaignUser(responseData))
-      if (shouldNavigate) {
-        navigateToAssessment()
+      const { examusSessionUrl } = responseData
+
+      if (campaignLevelProctoringEnabled && examusSessionUrl) {
+        window.location.href = examusSessionUrl
+      } else {
+        dispatch(setCampaignUser(responseData))
+        if (shouldNavigate) {
+          navigateToAssessment()
+        }
       }
     } catch (error) {
       message.error(error)
@@ -183,18 +215,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     }
   }
 
-
-  const handleStartCampaignActivities = () => {
-    const needToBeginOrContinueCampaign = canBeginCampaign || canContinueCampaign
-    if (
-      (proctoringEnabledOnWorkshopActivity && isProctored)
-      || (!isWorkshopActivity)
-      || (!needToBeginOrContinueCampaign)
-    ) {
-      return navigateToAssessment()
-    }
-    if (!fixedTimed) { return startCampaignActivities() }
-
+  const showCampaignStartModal = () => {
     modal.info({
       icon: false,
       title: null,
@@ -202,10 +223,60 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
       okText: I18n.t('common.actions.start'),
       closable: true,
       width: 600,
-      onOk () {
-        startCampaignActivities()
+      async onOk () {
+        if (campaignNeedsProctoring || canBeginCampaign || canContinueCampaign) {
+          await startCampaignActivities(true)
+        }
       },
     })
+  }
+
+  const handleStartCampaignActivities = () => {
+    if (systemCheckEnabled
+      && !isCampaignSystemCheckValid(lastSuccessfulCheckAt, systemCheckValidity)) {
+      navigate(`/campaign_system_check/${campaign.id}/welcome`)
+      return
+    }
+    const needToBeginOrContinueCampaign = canBeginCampaign || canContinueCampaign
+    if (
+      (proctoringEnabledOnWorkshopActivity && isProctored)
+      || (!needToBeginOrContinueCampaign && !campaignNeedsProctoring)
+    ) {
+      return navigateToAssessment()
+    }
+    if (isMobileDevice && proctoringEnabled) {
+      if (enableMobileProctoring) {
+        modal.confirm({
+          icon: <InfoCircleFilled style={{ color: token.colorInfo }} />,
+          title: I18n.t('shared.desktop_or_laptop_recommended'),
+          content: (
+            <Typography.Paragraph>
+              <SafeHTML html={I18n.t('shared.mobile_proctoring_enabled_instructions')} />
+            </Typography.Paragraph>
+          ),
+          closable: true,
+          width: 600,
+          okText: I18n.t('common.actions.continue'),
+          cancelText: I18n.t('shared.switch_to_laptop_or_desktop'),
+          cancelButtonProps: { color: 'primary', variant: 'outlined' },
+          onOk: () => showCampaignStartModal(),
+        })
+      } else {
+        modal.info({
+          icon: false,
+          title: I18n.t('shared.desktop_or_laptop_required'),
+          content: (
+            <Typography.Paragraph>
+              <SafeHTML html={I18n.t('shared.mobile_proctoring_disabled_instructions')} />
+            </Typography.Paragraph>
+          ),
+          closable: true,
+          width: 600,
+        })
+      }
+    } else {
+      showCampaignStartModal()
+    }
 
     return null
   }

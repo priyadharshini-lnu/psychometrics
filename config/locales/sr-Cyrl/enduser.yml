@@ -149,7 +149,6 @@ sr-Cyrl:
     skill_type: Тип вештине
     start_campaign_message_proctored: Ово је надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_campaign_message_timed: Ово је временски ограничена кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
-    start_campaign_message_timed_proctored: Ово је временски ограничена и надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_readiness_check: Покрените проверу спремности
     start_system_check: Покрени проверу система
     subinstruction_audio: Радни микрофон

@@ -1377,7 +1377,6 @@ vi:
     all_activities_are_completed: Mọi hoạt động hiện đã hoàn tất.
     all_activities_are_completed_multiple: Mọi hoạt động cho chiến dịch này hiện đã hoàn tất. Vui lòng tiến hành đến Bảng điều khiển và kiểm tra xem bạn có hoạt động nào khác được chỉ định không.
     already_joined: Bạn đã tham gia chiến dịch này
-    begin: Bắt đầu nhiệm vụ của bạn
     begin_btn_msg_before_prework: Bạn phải hoàn thành các nhiệm vụ dưới đây trước khi bắt đầu chiến dịch có thời gian
     begin_campaign_msg: Bắt đầu chiến dịch trước khi thực hiện đánh giá
     campaigns: Chiến dịch
@@ -1385,7 +1384,6 @@ vi:
     code_usage_limit_reached: Đạt đến giới hạn sử dụng mã, vui lòng liên hệ với quản trị viên
     complete_prev: Hoàn thành tất cả các đánh giá trước đó
     complete_tasks: Vui lòng hoàn thành các nhiệm vụ bên dưới trước khi thực hiện hành động này.
-    continue: Tiếp tục nhiệm vụ của bạn
     dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
     dashboard_menu:
       campaign: Chiến dịch

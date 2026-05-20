@@ -1380,7 +1380,6 @@ zh:
     all_activities_are_completed: 所有活动现已完成。
     all_activities_are_completed_multiple: 此项目的所有活动现已完成。请前往仪表板，检查是否有其他活动分配给你。
     already_joined: 您已经参加了这项活动
-    begin: 开始你的任务
     begin_btn_msg_before_prework: 在开始计时活动之前，您必须完成以下任务
     begin_campaign_msg: 在接受评估前启动活动
     campaigns: 项目
@@ -1388,7 +1387,6 @@ zh:
     code_usage_limit_reached: 代码使用量已达上限，请联系管理员
     complete_prev: 完成所有前面的评估
     complete_tasks: 请在执行此操作前完成以下任务。
-    continue: 继续你的任务
     dashboard_instructions: 你被分配了多个需要完成的活动。请确保本项目中所有分配活动的都已完成。
     dashboard_menu:
       campaign: 项目

@@ -42,8 +42,9 @@ en-US:
     camera_access_blocked: Camera access was denied or blocked by your browser. Please check your browser permissions.
     camera_check: Camera and Microphone Test
     camera_check_abruptly_ended: Camera was turned off abruptly. Please enable your camera and re-run the check.
-    camera_check_description: Verify your camera and microphone are working properly for recording
+    camera_check_description: Verify your camera and microphone work properly, then play back your recording to confirm.
     camera_check_passed: Video and Audio check passed successfully
+    camera_check_record_instruction: Click Record and read the following passage aloud
     camera_test_step: Video and Audio Test Step
     campaign: Campaign
     campaign_check_status: 'Status: %{status}'
@@ -128,6 +129,7 @@ en-US:
     personal_readiness: Personal Readiness
     plan_text: Plan for the full duration. Once started, breaks may not be allowed depending on the assessment type.
     please_check_your_internet_connection: Please check your internet connection and try again.
+    preparing_preview: Preparing preview...
     proctored: Proctored
     proctored_assessment_misconfigured_msg: This assessment is proctored but is missing the necessary time configuration, please contact your administrator.
     profile: Profile
@@ -149,7 +151,6 @@ en-US:
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
-    start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
     start_system_check: Start System Check
     subinstruction_audio: Working microphone

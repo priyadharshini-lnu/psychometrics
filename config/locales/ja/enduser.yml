@@ -149,7 +149,6 @@ ja:
     skill_type: スキルの種類
     start_campaign_message_proctored: これは監督付きキャンペーンです。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_campaign_message_timed: これは時間制限のあるキャンペーンです。アクティビティを開始するには「%{buttonText}」ボタンをクリックしてください。
-    start_campaign_message_timed_proctored: このキャンペーンは時間制限付きで監督制です。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_readiness_check: 準備チェックを開始
     start_system_check: システムチェックを開始
     subinstruction_audio: 正常に動作するマイク

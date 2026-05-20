@@ -149,7 +149,6 @@ sr-Latn:
     skill_type: Tip veštine
     start_campaign_message_proctored: Ovo je kampanja pod nadzorom, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_campaign_message_timed: Ovo je vremenska kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
-    start_campaign_message_timed_proctored: Ovo je vremenska i nadzorovana kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_readiness_check: Покрените проверу спремности
     start_system_check: Покрени проверу система
     subinstruction_audio: Радни микрофон

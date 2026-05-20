@@ -57,7 +57,7 @@ unless Rails.env.test?
       font_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
       connect_src = [
-        :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
+        :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com', 'https://*.cloudfront.net',
         'https://*.osano.com', 'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://*.sentry.io',
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint,

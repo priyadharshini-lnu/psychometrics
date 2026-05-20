@@ -1382,7 +1382,6 @@ de:
     all_activities_are_completed: Alle Aktivitäten sind abgeschlossen.
     all_activities_are_completed_multiple: Alle Aktivitäten für diese Kampagne sind abgeschlossen. Bitte gehen Sie zum Dashboard und überprüfen Sie, ob Ihnen weitere Aktivitäten zugewiesen wurden.
     already_joined: Sie sind bereits Mitglied dieser Kampagne
-    begin: Beginnen Sie mit Ihren Aufgaben.
     begin_btn_msg_before_prework: Bevor Sie die zeitlich begrenzte Kampagne starten, müssen Sie die folgenden Aufgaben erledigen
     begin_campaign_msg: Starten Sie die Kampagne, bevor Sie Bewertungen vornehmen
     campaigns: Events
@@ -1390,7 +1389,6 @@ de:
     code_usage_limit_reached: Code-Nutzungslimit erreicht, bitte kontaktieren Sie den Administrator
     complete_prev: Schließen Sie alle vorherigen Bewertungen ab.
     complete_tasks: Bitte erledigen Sie die folgenden Aufgaben, bevor Sie diese Maßnahme ergreifen.
-    continue: Fahren Sie mit Ihren Aufgaben fort.
     dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
       campaign: Event

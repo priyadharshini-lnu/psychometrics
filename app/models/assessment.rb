@@ -436,7 +436,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     extra['timer']&.positive?
   end
 
-  delegate :skill_rater?, to: :dimension
+  delegate :skill_rater?, to: :dimension, allow_nil: true
 
   class << self
     # Available role for the filter form

@@ -149,7 +149,6 @@ it:
     skill_type: Tipo di abilità
     start_campaign_message_proctored: Questa è una campagna sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
     start_campaign_message_timed: Questa è una campagna a tempo, clicca sul pulsante '%{buttonText}' per iniziare le attività.
-    start_campaign_message_timed_proctored: Questa è una campagna a tempo e sorvegliata, clicca sul pulsante '%{buttonText}' per avviare le attività.
     start_readiness_check: Avvia il controllo di preparazione
     start_system_check: Avvia il controllo del sistema
     subinstruction_audio: Microfono funzionante
