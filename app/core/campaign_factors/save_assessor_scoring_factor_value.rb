@@ -17,6 +17,11 @@ module CampaignFactors
         raise Pundit::NotAuthorizedError, 'You are not authorized to perform this action'
       end
 
+      campaign_user = campaign.campaign_users.find_by(user_id: params[:user_id])
+      if campaign_user&.campaign_scores_finalized?
+        return broadcast :error, I18n.t('admin.scores_finalized')
+      end
+
       transaction do
         valid_factor_ids = fetch_valid_assessor_scoring_factor_ids
         params[:scores].each do |score|

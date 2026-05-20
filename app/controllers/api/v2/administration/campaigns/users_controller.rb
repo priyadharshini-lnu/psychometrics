@@ -14,7 +14,11 @@ module Api
         context: { campaign: campaign }
       )
 
-      render json: json_api_records(data.as_json, :assessor_scores)
+      campaign_user = CampaignUser.find_by(campaign_id: campaign.id, user_id: model.id)
+
+      render json: json_api_records(data.as_json, :assessor_scores).merge(
+        meta: { campaign_scores_finalized: campaign_user&.campaign_scores_finalized || false }
+      )
     end
 
     def active_idp_template

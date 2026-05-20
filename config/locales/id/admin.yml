@@ -1048,6 +1048,7 @@ id:
     score_must_be_in_between_min_and_max: Skor harus berada di antara %{min} dan %{max}.
     score_range_info: 'Rentang Skor: %{min} - %{max}'
     score_with_ai: Mencetak gol dengan kecerdasan buatan
+    scores_finalized: Nilai telah ditetapkan dan tidak dapat diubah
     scoring: Penilaian
     scoring_approval_add_settings: Tambahkan pengaturan
     scoring_approval_allow_bulk_approve: Izinkan Persetujuan Massal

@@ -1048,6 +1048,7 @@ hu:
     score_must_be_in_between_min_and_max: A pontszámnak %{min} és %{max} között kell lennie.
     score_range_info: 'Pontszámtartomány: %{min} - %{max}'
     score_with_ai: Pontszám az AI segítségével
+    scores_finalized: Az eredmények véglegesek, és már nem módosíthatók
     scoring: Pontozás
     scoring_approval_add_settings: Beállítások hozzáadása
     scoring_approval_allow_bulk_approve: Tömeges jóváhagyás engedélyezése

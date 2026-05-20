@@ -1048,6 +1048,7 @@ pt:
     score_must_be_in_between_min_and_max: A pontuação deve estar entre %{min} e %{max}.
     score_range_info: 'Intervalo de pontuação: %{min} - %{max}'
     score_with_ai: Pontuação com IA
+    scores_finalized: As pontuações estão definitivas e não podem ser alteradas
     scoring: Pontuação
     scoring_approval_add_settings: Adicionar configurações
     scoring_approval_allow_bulk_approve: Permitir aprovação em massa

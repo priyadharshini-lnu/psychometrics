@@ -1048,6 +1048,7 @@ it:
     score_must_be_in_between_min_and_max: Il punteggio deve essere compreso tra %{min} e %{max}.
     score_range_info: 'Intervallo di punteggio: %{min} - %{max}'
     score_with_ai: Punteggio con l'IA
+    scores_finalized: I punteggi sono definitivi e non possono essere modificati
     scoring: Punteggio
     scoring_approval_add_settings: Aggiungi impostazioni
     scoring_approval_allow_bulk_approve: Consenti approvazione in blocco

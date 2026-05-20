@@ -1048,6 +1048,7 @@ ro:
     score_must_be_in_between_min_and_max: Scorul trebuie să se încadreze între %{min} și %{max}.
     score_range_info: 'Interval de scoruri: %{min} - %{max}'
     score_with_ai: Scor cu AI
+    scores_finalized: Rezultatele sunt definitive și nu pot fi modificate
     scoring: Notare
     scoring_approval_add_settings: Adăugați setări
     scoring_approval_allow_bulk_approve: Permiteți aprobarea în bloc

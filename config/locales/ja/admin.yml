@@ -1048,6 +1048,7 @@ ja:
     score_must_be_in_between_min_and_max: スコアは%{min}と%{max}の間でなければなりません。
     score_range_info: スコア範囲：%{min} - %{max}
     score_with_ai: AIで得点する
+    scores_finalized: スコアは確定しており、変更することはできません
     scoring: 採点
     scoring_approval_add_settings: 設定を追加
     scoring_approval_allow_bulk_approve: 一括承認を許可する

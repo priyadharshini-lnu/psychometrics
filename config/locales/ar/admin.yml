@@ -1048,6 +1048,7 @@ ar:
     score_must_be_in_between_min_and_max: يجب أن تكون النتيجة بين %{min} و %{max}.
     score_range_info: 'نطاق النقاط: %{min} - %{max}'
     score_with_ai: تسجيل النقاط باستخدام الذكاء الاصطناعي
+    scores_finalized: تم إغلاق النتائج ولا يمكن تغييرها
     scoring: سجل
     scoring_approval_add_settings: إضافة إعدادات
     scoring_approval_allow_bulk_approve: السماح بالموافقة الجماعية

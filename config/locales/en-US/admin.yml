@@ -1048,6 +1048,7 @@ en-US:
     score_must_be_in_between_min_and_max: Score must be in between %{min} and %{max}.
     score_range_info: 'Score Range: %{min} - %{max}'
     score_with_ai: Score with AI
+    scores_finalized: Scores are finalized and can’t be changed
     scoring: Scoring
     scoring_approval_add_settings: Add settings
     scoring_approval_allow_bulk_approve: Allow Bulk Approve

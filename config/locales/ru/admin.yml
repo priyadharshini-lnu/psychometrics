@@ -1048,6 +1048,7 @@ ru:
     score_must_be_in_between_min_and_max: Оценка должна быть в диапазоне от %{min} до %{max}.
     score_range_info: 'Диапазон баллов: %{min} - %{max}'
     score_with_ai: Очки с помощью ИИ
+    scores_finalized: Оценки окончательные и не подлежат изменению
     scoring: Оценка
     scoring_approval_add_settings: Добавить настройки
     scoring_approval_allow_bulk_approve: Разрешить массовое утверждение

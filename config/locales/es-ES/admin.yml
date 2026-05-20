@@ -1048,6 +1048,7 @@ es-ES:
     score_must_be_in_between_min_and_max: La puntuación debe estar entre %{min} y %{max}.
     score_range_info: 'Rango de puntuación: %{min} - %{max}'
     score_with_ai: Anota con IA
+    scores_finalized: Las puntuaciones ya son definitivas y no se pueden modificar
     scoring: Puntuación
     scoring_approval_add_settings: Añadir ajustes
     scoring_approval_allow_bulk_approve: Permitir aprobación masiva

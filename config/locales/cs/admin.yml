@@ -1048,6 +1048,7 @@ cs:
     score_must_be_in_between_min_and_max: Skóre musí být mezi %{min} a %{max}.
     score_range_info: 'Rozsah skóre: %{min} - %{max}'
     score_with_ai: Skórujte s AI
+    scores_finalized: Výsledky jsou konečné a nelze je měnit
     scoring: Bodování
     scoring_approval_add_settings: Přidat nastavení
     scoring_approval_allow_bulk_approve: Povolit hromadné schválení

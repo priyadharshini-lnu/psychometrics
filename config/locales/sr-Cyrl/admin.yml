@@ -1048,6 +1048,7 @@ sr-Cyrl:
     score_must_be_in_between_min_and_max: Резултат мора бити између %{min} и %{max}.
     score_range_info: 'Опсег бодова: %{min} - %{max}'
     score_with_ai: Постигни са ВИ
+    scores_finalized: Резултати су коначни и не могу се мењати.
     scoring: Поентирање
     scoring_approval_add_settings: Додај подешавања
     scoring_approval_allow_bulk_approve: Дозволи масовно одобравање

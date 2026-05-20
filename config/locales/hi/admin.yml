@@ -1048,6 +1048,7 @@ hi:
     score_must_be_in_between_min_and_max: स्कोर %{min} और %{max} के बीच होना चाहिए।
     score_range_info: 'स्कोर सीमा: %{min} - %{max}'
     score_with_ai: एआई के साथ स्कोर करें
+    scores_finalized: स्कोर अंतिम हैं और बदले नहीं जा सकते।
     scoring: स्कोरिंग
     scoring_approval_add_settings: सेटिंग्स जोड़ें
     scoring_approval_allow_bulk_approve: थोक अनुमोदन की अनुमति दें

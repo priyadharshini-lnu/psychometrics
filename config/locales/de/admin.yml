@@ -1048,6 +1048,7 @@ de:
     score_must_be_in_between_min_and_max: Die Punktzahl muss zwischen %{min} und %{max} liegen.
     score_range_info: 'Punktespannweite: %{min} - %{max}'
     score_with_ai: Mit KI punkten
+    scores_finalized: Die Ergebnisse stehen fest und können nicht mehr geändert werden
     scoring: Punktevergabe
     scoring_approval_add_settings: Einstellungen hinzufügen
     scoring_approval_allow_bulk_approve: Massenfreigabe zulassen

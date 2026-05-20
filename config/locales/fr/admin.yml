@@ -1048,6 +1048,7 @@ fr:
     score_must_be_in_between_min_and_max: Le score doit se situer entre %{min} et %{max}.
     score_range_info: 'Fourchette de scores : %{min} - %{max}'
     score_with_ai: Marquer avec l'IA
+    scores_finalized: Les notes sont définitives et ne peuvent plus être modifiées
     scoring: Notation
     scoring_approval_add_settings: Ajouter des paramètres
     scoring_approval_allow_bulk_approve: Autoriser l'approbation groupée

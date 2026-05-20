@@ -1048,6 +1048,7 @@ vi:
     score_must_be_in_between_min_and_max: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
     score_range_info: 'Phạm vi điểm: %{min} - %{max}'
     score_with_ai: Đạt điểm cao với Trí tuệ nhân tạo
+    scores_finalized: Kết quả đã được chốt và không thể thay đổi
     scoring: Ghi
     scoring_approval_add_settings: Thêm cài đặt
     scoring_approval_allow_bulk_approve: Cho phép phê duyệt hàng loạt

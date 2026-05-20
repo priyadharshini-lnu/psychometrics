@@ -1048,6 +1048,7 @@ th:
     score_must_be_in_between_min_and_max: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
     score_range_info: 'ช่วงคะแนน: %{min} - %{max}'
     score_with_ai: ทำคะแนนด้วย AI
+    scores_finalized: คะแนนได้รับการสรุปแล้วและไม่สามารถเปลี่ยนแปลงได้
     scoring: การให้คะแนน
     scoring_approval_add_settings: เพิ่มการตั้งค่า
     scoring_approval_allow_bulk_approve: อนุญาตให้อนุมัติแบบกลุ่ม

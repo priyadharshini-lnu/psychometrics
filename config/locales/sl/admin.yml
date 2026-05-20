@@ -1048,6 +1048,7 @@ sl:
     score_must_be_in_between_min_and_max: Rezultat mora biti med %{min} in %{max}.
     score_range_info: 'Ocenjevalna lestvica: %{min} - %{max}'
     score_with_ai: Zmagajte z umetno inteligenco
+    scores_finalized: Rezultati so dokončni in jih ni mogoče spremeniti
     scoring: Točkovanja
     scoring_approval_add_settings: Dodaj nastavitve
     scoring_approval_allow_bulk_approve: Dovoli množično odobritev

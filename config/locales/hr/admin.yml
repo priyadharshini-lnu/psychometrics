@@ -1048,6 +1048,7 @@ hr:
     score_must_be_in_between_min_and_max: Rezultat mora biti između %{min} i %{max}.
     score_range_info: 'Raspon bodova: %{min} - %{max}'
     score_with_ai: Pojedinci s AI
+    scores_finalized: Rezultati su konačni i ne mogu se mijenjati.
     scoring: Bodovanja
     scoring_approval_add_settings: Dodaj postavke
     scoring_approval_allow_bulk_approve: Omogući masovno odobravanje

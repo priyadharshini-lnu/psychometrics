@@ -1048,6 +1048,7 @@ pl:
     score_must_be_in_between_min_and_max: Wynik musi mieścić się w przedziale od %{min} do %{max}.
     score_range_info: 'Zakres wyników: %{min} - %{max}'
     score_with_ai: Zdobądź punkty dzięki sztucznej inteligencji
+    scores_finalized: Wyniki są ostateczne i nie można ich zmienić
     scoring: Punktacji
     scoring_approval_add_settings: Dodaj ustawienia
     scoring_approval_allow_bulk_approve: Zezwól na zbiorcze zatwierdzanie

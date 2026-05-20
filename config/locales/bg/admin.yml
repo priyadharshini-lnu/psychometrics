@@ -1048,6 +1048,7 @@ bg:
     score_must_be_in_between_min_and_max: Резултатът трябва да е между %{min} и %{max}.
     score_range_info: 'Диапазон на резултатите: %{min} - %{max}'
     score_with_ai: Резултат с AI
+    scores_finalized: Резултатите са окончателни и не могат да бъдат променяни
     scoring: Точкуване
     scoring_approval_add_settings: Добави настройки
     scoring_approval_allow_bulk_approve: Разреши масово одобрение

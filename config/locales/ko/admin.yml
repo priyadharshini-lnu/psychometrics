@@ -1048,6 +1048,7 @@ ko:
     score_must_be_in_between_min_and_max: 점수는 %{min}와 %{max} 사이여야 합니다.
     score_range_info: '점수 범위: %{min} - %{max}'
     score_with_ai: AI로 점수 따기
+    scores_finalized: 점수가 확정되었으며 변경할 수 없습니다
     scoring: 채점
     scoring_approval_add_settings: 설정 추가
     scoring_approval_allow_bulk_approve: 일괄 승인 허용
