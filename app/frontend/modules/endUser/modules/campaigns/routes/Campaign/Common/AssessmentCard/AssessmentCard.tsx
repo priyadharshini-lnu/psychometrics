@@ -157,16 +157,6 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     ? `/campaign_users/${campaignUser.id}/begin_campaign`
     : `/campaign_users/${campaignUser.id}/continue_campaign`
 
-  const campaignStartInstruction = () => {
-    const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
-
-    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
-
-    return (
-      messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
-    )
-  }
-
   const {
     makeAsyncRequest,
   } = useAsyncRequestResponse<AsyncRequestResponse>({
