@@ -149,7 +149,6 @@ ko:
     skill_type: 스킬 유형
     start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_campaign_message_timed: 이 캠페인은 시간 제한이 있는 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
-    start_campaign_message_timed_proctored: 이 캠페인은 시간 제한과 감독 방식으로 진행되며, 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_readiness_check: 준비 상태 확인 시작
     start_system_check: 시스템 검사 시작
     subinstruction_audio: 작동하는 마이크

@@ -1380,7 +1380,6 @@ sr-Latn:
     all_activities_are_completed: Sve aktivnosti su sada završene.
     all_activities_are_completed_multiple: Sve aktivnosti za ovu kampanju su sada završene. Molimo vas da pređete na kontrolnu tablu i proverite da li imate dodeljene neke druge aktivnosti.
     already_joined: Već ste se pridružili ovoj kampanji
-    begin: Započnite svoje zadatke
     begin_btn_msg_before_prework: Morate da završite zadatke ispod pre nego što započnete vremenski ograničenu kampanju
     begin_campaign_msg: Započnite kampanju pre nego što uzmete procene
     campaigns: Kampanje
@@ -1388,7 +1387,6 @@ sr-Latn:
     code_usage_limit_reached: Ograničenje korišćenja koda dostignuto, kontaktirajte administratora
     complete_prev: Popunite sve prethodne procene
     complete_tasks: Molimo vas da završite zadatke ispod pre nego što preduzmete ovu akciju.
-    continue: Nastavite sa svojim zadacima
     dashboard_instructions: Možda vam je dodeljeno više aktivnosti koje morate da završite. Proverite da li su sve dodeljene aktivnosti završene u svim kampanjama.
     dashboard_menu:
       campaign: Kampanja

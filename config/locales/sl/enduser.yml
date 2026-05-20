@@ -149,7 +149,6 @@ sl:
     skill_type: Vrsta spretnosti
     start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
     start_campaign_message_timed: To je časovno omejena kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
-    start_campaign_message_timed_proctored: To je časovno omejena in nadzorovana kampanja, za začetek aktivnosti kliknite gumb '%{buttonText}'.
     start_readiness_check: Začni s preverjanjem pripravljenosti
     start_system_check: Začni preverjanje sistema
     subinstruction_audio: Delujoči mikrofon

@@ -1377,7 +1377,6 @@ nl:
     all_activities_are_completed: Alle activiteiten zijn nu voltooid.
     all_activities_are_completed_multiple: Alle activiteiten voor deze campagne zijn nu voltooid. Ga naar het Dashboard en controleer of je nog andere activiteiten hebt toegewezen.
     already_joined: Je hebt je al aangesloten bij deze campagne
-    begin: Begin je taken
     begin_btn_msg_before_prework: Je moet de onderstaande taken uitvoeren voordat je de getimede campagne start
     begin_campaign_msg: Campagne starten voordat je assessments doet
     campaigns: Campagnes
@@ -1385,7 +1384,6 @@ nl:
     code_usage_limit_reached: Gebruikslimiet code bereikt, neem contact op met beheerder
     complete_prev: Voltooi alle voorgaande beoordelingen
     complete_tasks: Voer onderstaande taken uit voordat u deze actie onderneemt.
-    continue: Doorgaan met je taken
     dashboard_instructions: Er kunnen meerdere activiteiten aan je zijn toegewezen die je moet voltooien. Controleer of alle toegewezen activiteiten zijn voltooid in alle campagnes.
     dashboard_menu:
       campaign: Campagne

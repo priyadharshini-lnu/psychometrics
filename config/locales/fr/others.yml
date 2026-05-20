@@ -1377,7 +1377,6 @@ fr:
     all_activities_are_completed: Toutes les activités sont maintenant terminées.
     all_activities_are_completed_multiple: Toutes les activités de cette campagne sont maintenant terminées. Veuillez vous rendre sur le tableau de bord et vérifier si d'autres activités vous ont été assignées.
     already_joined: Vous avez déjà participé à cette campagne
-    begin: Commencez vos tâches
     begin_btn_msg_before_prework: Vous devez accomplir les tâches suivantes avant de commencer la campagne chronométrée
     begin_campaign_msg: Lancer la campagne avant de procéder aux évaluations
     campaigns: Campagnes
@@ -1385,7 +1384,6 @@ fr:
     code_usage_limit_reached: Limite d'utilisation du code atteinte, veuillez contacter l'administrateur
     complete_prev: Compléter toutes les évaluations précédentes
     complete_tasks: Veuillez effectuer les tâches ci-dessous avant de prendre cette mesure.
-    continue: Poursuivre vos tâches
     dashboard_instructions: Il se peut que plusieurs activités vous aient été attribuées. Veuillez vérifier que toutes les activités attribuées ont bien été complétées dans l’ensemble des campagnes
     dashboard_menu:
       campaign: Campagne

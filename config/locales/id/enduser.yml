@@ -149,7 +149,6 @@ id:
     skill_type: Jenis Keterampilan
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
-    start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_readiness_check: Mulai Pemeriksaan Kesiapan
     start_system_check: Mulai Pemeriksaan Sistem
     subinstruction_audio: Mikrofon berfungsi

@@ -149,7 +149,6 @@ hu:
     skill_type: Képesség típusa
     start_campaign_message_proctored: Ez egy felügyelt kampány, kérjük, kattintson a '%{buttonText}' gombra a tevékenységek elindításához.
     start_campaign_message_timed: Ez egy időzített kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
-    start_campaign_message_timed_proctored: Ez egy időzített és felügyelt kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
     start_readiness_check: Indítsa el az indulás előtti ellenőrzést
     start_system_check: Rendszerellenőrzés indítása
     subinstruction_audio: Működő mikrofon

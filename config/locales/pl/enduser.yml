@@ -149,7 +149,6 @@ pl:
     skill_type: Typ umiejętności
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.
     start_campaign_message_timed: To jest kampania na czas, kliknij przycisk '%{buttonText}', aby rozpocząć aktywności.
-    start_campaign_message_timed_proctored: To jest kampania z nadzorem czasowym i nadzorowana, prosimy kliknąć przycisk '%{buttonText}', aby rozpocząć aktywności.
     start_readiness_check: Rozpocznij kontrolę gotowości
     start_system_check: Rozpocznij sprawdzanie systemu
     subinstruction_audio: Działający mikrofon

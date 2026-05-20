@@ -1382,7 +1382,6 @@ ja:
     all_activities_are_completed: これですべてのアクティビティが完了しました。
     all_activities_are_completed_multiple: これでこのキャンペーンのアクティビティはすべて完了しました。ダッシュボードに進み、その他のアクティビティが割り当てられているかどうかを確認してください。
     already_joined: すでにこのキャンペーンに参加している
-    begin: タスクを開始してください
     begin_btn_msg_before_prework: タイムドキャンペーンを開始する前に、以下のタスクを完了する必要がある。
     begin_campaign_msg: 査定を受ける前にキャンペーンを開始する
     campaigns: キャンペーン
@@ -1390,7 +1389,6 @@ ja:
     code_usage_limit_reached: コード使用制限に達しました。
     complete_prev: 以前のアセスメントをすべて完了する
     complete_tasks: このアクションを起こす前に、以下のタスクを完了させてください。
-    continue: タスクを続行してください
     dashboard_instructions: 完了すべき複数のアクティビティが割り当てられています。すべてのキャンペーンで割り当てられたアクティビティがすべて完了していることを確認してください。
     dashboard_menu:
       campaign: キャンペーン
