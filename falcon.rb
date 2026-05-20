@@ -29,8 +29,12 @@ module SSLContextHelper
 end
 
 hostname = File.basename(__dir__)
-service hostname do
+service hostname do # rubocop:disable Metrics/BlockLength
   include Falcon::Environment::Rack
+
+  def prepare!(_instance)
+    ActiveRecord::Base.establish_connection
+  end
 
   if Rails.env.development?
     endpoint do
