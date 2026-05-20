@@ -452,6 +452,7 @@ en:
     missing_min_max_values: Minimum and Maximum values are required.
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
+    must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
     name_required: Name is required
@@ -807,6 +808,8 @@ en:
       projectSettings:
         assessments: Assessments
         design: Design
+        external_logout_redirect_enabled: Enable External Redirect Logout
+        external_logout_url: External Logout URL
         feature_flags: Feature Flags
         idp: IDP
         integrations: Integrations

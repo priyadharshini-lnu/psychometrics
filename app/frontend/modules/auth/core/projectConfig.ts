@@ -25,6 +25,8 @@ interface State {
   magic_link_enabled: boolean,
   disallow_password_login: boolean,
   enable_recaptcha?: boolean,
+  external_logout_redirect_enabled?: boolean,
+  external_logout_url?: string
 }
 
 export const defaultState: State = {
@@ -42,6 +44,7 @@ export const defaultState: State = {
   magic_link_enabled: false,
   disallow_password_login: false,
   enable_recaptcha: false,
+  external_logout_redirect_enabled: false,
 }
 
 export default createReducer({}, defaultState)

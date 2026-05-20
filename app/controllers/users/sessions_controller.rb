@@ -41,11 +41,30 @@ module Users
     end
 
     def compute_after_signout_path
-      @after_signout_path = if session[:saml_login] && @current_project&.saml_setting&.after_signout_url
-                              @current_project.saml_setting.after_signout_url
-                            else
-                              new_user_session_path
-                            end
+      @after_signout_path = determine_target_path
+    end
+
+    def determine_target_path
+      return saml_signout_url if saml_signout_available?
+      return external_logout_url if external_logout_available?
+
+      new_user_session_path
+    end
+
+    def saml_signout_available?
+      session[:saml_login].present? && @current_project&.saml_setting&.after_signout_url.present?
+    end
+
+    def saml_signout_url
+      @current_project&.saml_setting&.after_signout_url
+    end
+
+    def external_logout_available?
+      session[:sso].present? && @current_project&.security_setting&.external_logout_redirect_enabled == true
+    end
+
+    def external_logout_url
+      @current_project&.security_setting&.external_logout_url
     end
 
     def check_if_saml_is_enforced
