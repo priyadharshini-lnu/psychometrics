@@ -8,6 +8,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import * as t from 'io-ts'
 import type { ColumnsType } from 'antd/es/table'
 import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE } from '~/modules/admin/constants/campaignFactors'
@@ -285,6 +286,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       {
         action: 'save_assessor_scoring_factor_value',
         method: 'post',
+        responseType: t.string,
         body: {
           scores,
           user_id: userId,
@@ -297,7 +299,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
         setDisabled(true)
       }
     }).catch((errors) => {
-      const errorMessage = errors?.base?.[0]?.title || I18n.t('admin.scores_finalized')
+      const errorMessage = errors?.base?.[0]?.title || I18n.t('shared.something_wrong')
       message.error(errorMessage)
     }).finally(() => {
       setDisabledSave(false)

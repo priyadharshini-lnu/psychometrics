@@ -17,7 +17,7 @@ module Api
         on(:error) { |error| return render json: { error: error }, status: :bad_request }
       end
 
-      head :ok
+      render json: :ok
     end
   end
 end
