@@ -83,26 +83,28 @@ class SemanticLoggerInitializer
     def config_defaults
       SemanticLogger.default_level = :debug
       $stdout.sync = true
+      # Disable async logging to avoid losing log entries after Falcon forks worker processes.
+      # In async mode, SemanticLogger uses a background thread that does not survive forking.
+      SemanticLogger.sync! unless Rails.env.test?
     end
 
     def setup_appenders
-      # Clear existing IO appenders to avoid Sidekiq's default stdout logger,
-      # which overrides the configured JSON formatter.
-      SemanticLogger.appenders.each do |appender|
-        SemanticLogger.remove_appender(appender) if appender.is_a?(SemanticLogger::Appender::IO)
+      # Clear ALL existing appenders to avoid duplicate loggers.
+      # rails_semantic_logger gem auto-adds a file appender that we need to remove.
+      SemanticLogger.appenders.dup.each do |appender|
+        SemanticLogger.remove_appender(appender)
       end
 
       formatter = Settings.features.rails_log_to_json ? SiemLogger::Formatter.new : :color
 
-      # Add STDOUT appender
+      # Add STDOUT appender (sync mode is controlled globally by SemanticLogger.sync!)
       unless Rails.env.test?
         SemanticLogger.add_appender(io: $stdout, formatter: formatter)
       end
 
       # Add File appender ONLY in Development or Test
       if Rails.env.development? || Rails.env.test?
-        async = !Rails.env.test?
-        SemanticLogger.add_appender(file_name: "log/#{Rails.env}.log", formatter: formatter, async: async)
+        SemanticLogger.add_appender(file_name: "log/#{Rails.env}.log", formatter: formatter)
       end
     end
 
