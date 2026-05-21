@@ -64,7 +64,9 @@ module Administration
           factor: factor,
           sub_factor: sub_factor,
           weight: attrs['weight'] || 1,
-          position: attrs['position'] || 0
+          position: attrs['position'] || 0,
+          predicate: attrs['predicate'],
+          value: attrs['value']
         )
       end
 
@@ -78,10 +80,15 @@ module Administration
 
         join_record = FactorsSubFactor.find(join_record_id)
 
-        join_record.update!(
+        join_record_attrs = {
           weight: attrs['weight'] || 1,
           position: attrs['position'] || 0
-        )
+        }
+
+        join_record_attrs[:predicate] = attrs['predicate'] if attrs.key?('predicate')
+        join_record_attrs[:value] = attrs['value'] if attrs.key?('value')
+
+        join_record.update!(join_record_attrs)
 
         if factor.child_indicator?
           sub_factor = join_record.sub_factor
