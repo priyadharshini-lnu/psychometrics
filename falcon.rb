@@ -36,6 +36,8 @@ service hostname do # rubocop:disable Metrics/BlockLength
     ActiveRecord::Base.establish_connection
   end
 
+  count ENV.fetch('WEB_CONCURRENCY', 4).to_i
+
   if Rails.env.development?
     endpoint do
       allow_ssl = ENV.fetch('SSL', false) == 'true'
