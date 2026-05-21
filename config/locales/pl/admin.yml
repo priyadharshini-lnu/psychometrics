@@ -22,6 +22,7 @@ pl:
     admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
     admins: Administratorzy
     advanced: Zaawansowane
+    agile: ZWINNY
     ai_artifact_result_generation_admin_job_failed: Nie można wygenerować artefaktu „%{artifact_name}” dla użytkownika „%{user_email}”.
     ai_artifact_result_stale: Wynik może być nieaktualny, ponieważ zależności artefaktu AI uległy zmianie od czasu wygenerowania ostatniego wyniku. Rozważ ponowne wygenerowanie artefaktu, aby uwzględnić najnowsze zależności.
     ai_artifacts: Artefakty SI
@@ -137,6 +138,7 @@ pl:
     assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora
+    assessor_form: Formularz asesora
     assessor_workshops: Centrum oceny zintegrowanej
     assessors: Asesorów
     assistant_toolbar_failed: Nie udało się wygenerować prawidłowego wyniku po wielu próbach.
@@ -221,6 +223,7 @@ pl:
     cancel: Anuluj
     cancellation_and_rescheduling_disabled: Anulowanie i zmiana terminu są wyłączone.
     captcha: Weryfikacja CAPTCHA
+    case_study: Przypadków
     casual: Nieformalny
     cell_save_msg: Prawidłowe zmiany są automatycznie zapisywane po opuszczeniu komórki po edycji.
     characters: postacie
@@ -230,6 +233,8 @@ pl:
     client_admins: Administratorzy klienta
     clients: Umowy najmu dla klientów
     code_required: Wymagany jest kod
+    common: Ocena TTE
+    common_assessment: Ocena TTE
     communication_center: Centrum Komunikacyjne
     communications: Komunikacji
     completed: Zakończone
@@ -381,6 +386,8 @@ pl:
     idp_appearance_title: Tytuł
     idp_plan_reset_success: Plan został pomyślnie zresetowany
     idp_templates: Szablony IDP
+    iiht: Międzynarodowa Biblioteka Medyczna (IIH
+    iiht_assessment: Ocena IIHT
     import_ai_artifacts: Import artefaktów AI
     import_csv_assessment_group_error: "%{index}: użytkownik o adresie e-mail %{email} został już zaproszony do „%{workshopInviteName}”."
     import_csv_error: 'Wiersz %{index}: użytkownik z %{email} e-mail nie występuje w tej kampanii'
@@ -409,6 +416,7 @@ pl:
     job_roles: Role zawodowe
     keywords: Słowa kluczowe
     keywords_placeholder: Wpisz słowa kluczowe oddzielone przecinkami.
+    lead_assessor_form: Formularz Głównego Asesora
     learning_from_others: Uczenie się zespołowe [20]
     level: Poziom
     level_apply: Zastosuj
@@ -428,7 +436,10 @@ pl:
     media_files_label: Pliki
     media_library: Biblioteka multimediów
     media_library_page_title: Biblioteka multimediów – Pulpit nawigacyjny – Mercer Lighthouse
+    meeting: Spotkanie
     messages: Wiadomości
+    mettl: METTL (Biblioteka METTL)
+    mettl_assessment: Ocena Mettl
     mhs: MHS
     mhs_assessment: Ocena MHS
     mhs_assessment_name: Nazwa oceny MHS
@@ -466,10 +477,13 @@ pl:
     on_the_job: W pracy [70]
     only_editable_on_create: Ta opcja jest edytowalna tylko podczas tworzenia.
     options: Opcje
+    organisational: ZWINNY
     original_text: Oryginalny tekst
     overall: Ogólnie
     overall_score: Ogólna ocena
     participants: Uczestników
+    pearson: Pearson
+    pearson_assessment: Ocena Pearsona
     permissions:
       aiArtifacts:
         export: Eksport
@@ -913,6 +927,7 @@ pl:
     project_settings: Ustawienia projektu
     projects: Projekty
     prompt: Monit
+    psychometric: Psychometryczne
     question_center: Centrum pytań
     question_center_page_title: Centrum pytań – Pulpit nawigacyjny – Mercer Lighthouse
     question_editor_change_type: Zmień typ
@@ -1037,6 +1052,8 @@ pl:
       subject_full_name_cont: Nazwa przedmiotu
       user_email_cont: Adres e-mail użytkownika
       user_full_name_cont: Nazwa użytkownika
+    saville: Saville (Wyspa Saville
+    saville_assessment: Ocena Saville'a
     scheduling: Planowania
     score: Wynik
     score_approval_not_allowed_to_approve: Nie wolno zatwierdzać tego wyniku.
@@ -1084,9 +1101,13 @@ pl:
     show_submenu: Pokaż podmenu
     show_translated: Pokaż przetłumaczone
     siem: SIEM (SIEM)
+    simulation: Symulacja
+    simulation_assessment: Ocena symulacyjna
     skill_aliases: Aliasy umiejętności
     skills: Umiejętności
     skills_taxonomy: Taksonomia umiejętności
+    skillvue: Umiejętne
+    skillvue_assessment: Ocena Skillvue
     skip_assessment_level_checks: Pomiń sprawdzanie zgodności z systemem poziomów oceny
     slot_name: Nazwa slotu
     sms_histories: Historie SMS
@@ -1152,6 +1173,8 @@ pl:
     x_axis_interval_label: Interwał osi X
     y_axis_interval_label: Interwał osi Y
     year: Kraj
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Ocena Yoodli
     yoodli_email_id: Identyfikator e-mail kandydata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

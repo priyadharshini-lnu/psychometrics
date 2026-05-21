@@ -176,9 +176,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
           {categories.map(
             c => (
               <Select.Option key={c} value={c}>
-                {c === 'mhs'
-                  ? I18n.t('admin.mhs')
-                  : I18n.t(`assessments.fields.category.${c}`)}
+                {I18n.t(`admin.${c}`)}
               </Select.Option>
             ),
           )}

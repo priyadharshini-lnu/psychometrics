@@ -1100,36 +1100,9 @@ ko:
       title: 평가 세부 정보
     edit: 편집
     fields:
-      category:
-        agile: AGILE
-        assessor_form: 평가자 양식
-        case_study: 사례 연구
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: 리드 평가자 양식
-        meeting: 회의
-        mettl: Mettl
-        organisational: 조직 설문 조사
-        pearson: Pearson
-        psychometric: 사이코메트릭
-        saville: Saville
-        simulation: 시뮬레이션
-        skillvue: 스킬뷰
-        threesixty: 360 캠페인
-        yoodli: 유들리
       status:
         finished: 완료
         in_progress: 진행 중
-      type:
-        common: TTE 평가
-        hogan: Hogan
-        iiht: IIHT 평가
-        mettl: Mettl 평가
-        pearson: 피어슨 평가
-        saville: 새빌 평가
-        simulation: 시뮬레이션 평가
-        skillvue: Skillvue 평가
-        yoodli: 유들리 평가
     flow:
       end_assessment_modal:
         custom_message: 사용자 지정 평가 종료 메시지
@@ -3278,13 +3251,6 @@ ko:
     fields:
       provider:
         custom_upload: 사용자 지정 업로드
-        hogan: Hogan
-        internal: 내부
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: 스킬뷰
-        yoodli: 유들리
     form:
       load_from_mettl: Mettl에서 로드
       load_from_pearson: 피어슨에서 로드

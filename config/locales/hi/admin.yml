@@ -22,6 +22,7 @@ hi:
     admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
     admins: प्रशासक
     advanced: उन्नत
+    agile: चपल
     ai_artifact_result_generation_admin_job_failed: उपयोगकर्ता '%{user_email}' के लिए कलाकृति '%{artifact_name}' उत्पन्न नहीं की जा सकती।
     ai_artifact_result_stale: परिणाम पुराना हो सकता है क्योंकि एआई आर्टिफैक्ट की निर्भरताएँ अंतिम परिणाम उत्पन्न होने के बाद बदल गई हैं। नवीनतम निर्भरताओं के साथ आर्टिफैक्ट को पुनः उत्पन्न करने पर विचार करें।
     ai_artifacts: एआई कलाकृतियाँ
@@ -137,6 +138,7 @@ hi:
     assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
     assessments_reports: मूल्यांकन एवं रिपोर्टें
     assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
+    assessor_form: मूल्यांकनकर्ता प्रपत्र
     assessor_workshops: मूल्यांकन केंद्र
     assessors: मूल्यांकनकर्ता
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
@@ -221,6 +223,7 @@ hi:
     cancel: रद्द करें
     cancellation_and_rescheduling_disabled: रद्दीकरण और पुनःनिर्धारण अक्षम है।
     captcha: कैप्चा सत्यापन
+    case_study: केस स्टडीज़
     casual: आकस्मिक
     cell_save_msg: संपादन के बाद सेल से बाहर निकलते ही मान्य परिवर्तन स्वचालित रूप से सहेजे जाते हैं।
     characters: चरित्र
@@ -230,6 +233,8 @@ hi:
     client_admins: क्लाइंट एडमिन
     clients: ग्राहक
     code_required: कोड आवश्यक है
+    common: टीटीई मूल्यांकन
+    common_assessment: टीटीई मूल्यांकन
     communication_center: संचार केंद्र
     communications: संचार
     completed: पूर्ण
@@ -381,6 +386,8 @@ hi:
     idp_appearance_title: शीर्षक
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
+    iiht: आईआईएचटी
+    iiht_assessment: आईआईएचटी मूल्यांकन
     import_ai_artifacts: AI कलाकृतियों को आयात करें
     import_csv_assessment_group_error: "%{index} पंक्ति: %{email} ईमेल वाले उपयोगकर्ता को पहले ही '%{workshopInviteName}' में आमंत्रित किया जा चुका है।"
     import_csv_error: "%{index} पंक्ति: ईमेल %{email} वाला उपयोगकर्ता इस अभियान में नहीं है।"
@@ -409,6 +416,7 @@ hi:
     job_roles: भूमिकाएँ
     keywords: मुख्य शब्द
     keywords_placeholder: अल्पविरामों से अलग किए गए कीवर्ड दर्ज करें।
+    lead_assessor_form: प्रमुख मूल्यांकनकर्ता प्रपत्र
     learning_from_others: सहयोगात्मक अधिगम [20]
     level: स्तर
     level_apply: लागू करें
@@ -428,7 +436,10 @@ hi:
     media_files_label: फ़ाइलें
     media_library: मीडिया पुस्तकालय
     media_library_page_title: मीडिया लाइब्रेरी - डैशबोर्ड - मर्सर लाइटहाउस
+    meeting: बैठक
     messages: संदेश
+    mettl: मेट्टल
+    mettl_assessment: मेटल असेसमेंट
     mhs: एमएचएस
     mhs_assessment: एमएचएस मूल्यांकन
     mhs_assessment_name: एमएचएस मूल्यांकन नाम
@@ -466,10 +477,13 @@ hi:
     on_the_job: काम पर [70]
     only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
+    organisational: चपल
     original_text: मूल पाठ
     overall: कुल मिलाकर
     overall_score: कुल स्कोर
     participants: प्रतिभागी
+    pearson: पियर्सन
+    pearson_assessment: पियर्सन मूल्यांकन
     permissions:
       aiArtifacts:
         export: निर्यात
@@ -913,6 +927,7 @@ hi:
     project_settings: परियोजना सेटिंग्स
     projects: परियोजनाएँ
     prompt: तुरंत
+    psychometric: मनोमापी
     question_center: प्रश्न केंद्र
     question_center_page_title: प्रश्न केंद्र - डैशबोर्ड - मर्सर लाइटहाउस
     question_editor_change_type: प्रकार बदलें
@@ -1037,6 +1052,8 @@ hi:
       subject_full_name_cont: विषय नाम
       user_email_cont: उपयोगकर्ता ईमेल
       user_full_name_cont: उपयोगकर्ता नाम
+    saville: सैविल
+    saville_assessment: सैविल मूल्यांकन
     scheduling: अनुसूचीकरण
     score: स्कोर
     score_approval_not_allowed_to_approve: आपको इस स्कोर को मंजूरी देने की अनुमति नहीं है।
@@ -1084,9 +1101,13 @@ hi:
     show_submenu: उप मेनू दिखाएँ
     show_translated: अनुवादित दिखाएँ
     siem: एसआईईएम
+    simulation: अनुकरण
+    simulation_assessment: अनुकरण मूल्यांकन
     skill_aliases: कौशल उपनाम
     skills: कौशल
     skills_taxonomy: कौशल वर्गीकरण
+    skillvue: स्किलव्यू
+    skillvue_assessment: स्किलव्यू मूल्यांकन
     skip_assessment_level_checks: मूल्यांकन-स्तर प्रणाली जाँचों को छोड़ें
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
@@ -1152,6 +1173,8 @@ hi:
     x_axis_interval_label: एक्स-अक्ष अंतराल
     y_axis_interval_label: वाई-अक्ष अंतराल
     year: वर्ष
+    yoodli: यूडली
     yoodli_activity_id: यूडल एक्टिविटी आईडी
+    yoodli_assessment: यूडली मूल्यांकन
     yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
     yoodli_external_assessment_id: यूडली मूल्यांकन आईडी

@@ -22,6 +22,7 @@ ja:
     admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
     admins: 管理者
     advanced: 上級
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
     ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
@@ -137,6 +138,7 @@ ja:
     assessments_not_mhs: すべての評価はMHSタイプでなければならない
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
+    assessor_form: アセッサフォーム
     assessor_workshops: アセスメント・センター
     assessors: アセッサ
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
@@ -221,6 +223,7 @@ ja:
     cancel: キャンセル
     cancellation_and_rescheduling_disabled: キャンセルおよび日程変更は無効です
     captcha: キャプチャ認証
+    case_study: ケーススタディ
     casual: カジュアル
     cell_save_msg: 編集後にセルからカーソルを移動させると、有効な変更は自動的に保存されます。
     characters: 文字
@@ -230,6 +233,8 @@ ja:
     client_admins: クライアント管理者
     clients: 顧客契約
     code_required: コードが必要です
+    common: TTEアセスメント
+    common_assessment: TTEアセスメント
     communication_center: コミュニケーション・センター
     communications: コミュニケーション
     completed: 完了
@@ -381,6 +386,8 @@ ja:
     idp_appearance_title: タイトル
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
+    iiht: IIHT
+    iiht_assessment: IIHTアセスメント
     import_ai_artifacts: AIアーティファクトのインポート
     import_csv_assessment_group_error: "%{index} 行: メールアドレス %{email} のユーザーは既に '%{workshopInviteName}' に招待済みです"
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
@@ -409,6 +416,7 @@ ja:
     job_roles: 仕事の役割
     keywords: キーワード
     keywords_placeholder: キーワードをコンマで区切って入力してください。
+    lead_assessor_form: 主任査定者フォーム
     learning_from_others: 協働学習 [20]
     level: レベル
     level_apply: 適用する
@@ -428,7 +436,10 @@ ja:
     media_files_label: ファイル
     media_library: メディアライブラリ
     media_library_page_title: メディアライブラリ - ダッシュボード - マーサー・ライトハウス
+    meeting: ミーティング
     messages: メッセージ
+    mettl: メトTL
+    mettl_assessment: Mettl 評価
     mhs: MHS
     mhs_assessment: MHS評価
     mhs_assessment_name: MHS 評価名
@@ -466,10 +477,13 @@ ja:
     on_the_job: オン・ザ・ジョブ [70]
     only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
+    organisational: AGILE
     original_text: 原文
     overall: 全体的に
     overall_score: 総合スコア
     participants: 参加者
+    pearson: ピアソン
+    pearson_assessment: ピアソン・アセスメント
     permissions:
       aiArtifacts:
         export: 輸出
@@ -913,6 +927,7 @@ ja:
     project_settings: プロジェクト設定
     projects: プロジェクト
     prompt: プロンプト
+    psychometric: サイコメトリック
     question_center: 質問センター
     question_center_page_title: 質問センター - ダッシュボード - マーサー・ライトハウス
     question_editor_change_type: タイプを変更
@@ -1037,6 +1052,8 @@ ja:
       subject_full_name_cont: 科目名
       user_email_cont: ユーザーのメールアドレス
       user_full_name_cont: ユーザー名
+    saville: サヴィル
+    saville_assessment: サヴィル査定
     scheduling: スケジューリング
     score: スコア
     score_approval_not_allowed_to_approve: このスコアを承認することはできません。
@@ -1084,9 +1101,13 @@ ja:
     show_submenu: サブメニューを表示する
     show_translated: 翻訳を表示
     siem: シーイーエム
+    simulation: シミュレーション
+    simulation_assessment: シミュレーション評価
     skill_aliases: スキルの別名
     skills: スキル
     skills_taxonomy: スキル分類法
+    skillvue: スキルビュー
+    skillvue_assessment: Skillvue評価
     skip_assessment_level_checks: 評価レベルに基づくシステムチェックをスキップする
     slot_name: スロット名
     sms_histories: SMSヒストリー
@@ -1152,6 +1173,8 @@ ja:
     x_axis_interval_label: X軸間隔
     y_axis_interval_label: Y軸間隔
     year: 国名
+    yoodli: ユードリ
     yoodli_activity_id: YoodliアクティビティID
+    yoodli_assessment: ユードリ評価
     yoodli_email_id: ユードリ候補者メールアドレス
     yoodli_external_assessment_id: Yoodli評価ID

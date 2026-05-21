@@ -22,6 +22,7 @@ ar:
     admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
     admins: المسؤولون
     advanced: متقدم
+    agile: رشيق
     ai_artifact_result_generation_admin_job_failed: لا يمكن إنشاء الأداة "%{artifact_name}" للمستخدم "%{user_email}"
     ai_artifact_result_stale: قد تكون النتيجة قديمة لأن تبعيات أداة الذكاء الاصطناعي قد تغيرت منذ إنشاء النتيجة الأخيرة. ضع في اعتبارك إعادة إنشاء الأداة لإنشاء أحدث التبعيات.
     ai_artifacts: قطع الذكاء الاصطناعي
@@ -137,6 +138,7 @@ ar:
     assessments_not_mhs: يجب أن تكون جميع التقييمات من نوع MHS
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
+    assessor_form: نموذج المقيم
     assessor_workshops: مركز التقييم
     assessors: المقيمون
     assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
@@ -221,6 +223,7 @@ ar:
     cancel: إلغاء
     cancellation_and_rescheduling_disabled: تم تعطيل الإلغاء وإعادة الجدولة
     captcha: التحقق من كابتشا
+    case_study: دراسات الحالة
     casual: غير رسمي
     cell_save_msg: يتم حفظ التغييرات الصحيحة تلقائيًا بمجرد مغادرة الخلية بعد التعديل.
     characters: شخصيات
@@ -230,6 +233,8 @@ ar:
     client_admins: مسؤولو العملاء
     clients: عقود العملاء
     code_required: الكود مطلوب
+    common: تقييم TTE
+    common_assessment: تقييم TTE
     communication_center: مركز الاتصالات
     communications: الاتصالات
     completed: اكمال
@@ -381,6 +386,8 @@ ar:
     idp_appearance_title: العنوان
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
+    iiht: IIHT
+    iiht_assessment: تقييم IIHT
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
     import_csv_assessment_group_error: 'الصف %{index}: تمت دعوة المستخدم الذي يحمل عنوان البريد الإلكتروني %{email} بالفعل إلى "%{workshopInviteName}"'
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
@@ -409,6 +416,7 @@ ar:
     job_roles: الأدوار الوظيفية
     keywords: الكلمات المفتاحية
     keywords_placeholder: أدخل الكلمات الرئيسية مفصولة بفواصل.
+    lead_assessor_form: نموذج المقيم الرئيسي
     learning_from_others: التعلم التعاوني [20]
     level: المستوى
     level_apply: تقدم بطلب
@@ -428,7 +436,10 @@ ar:
     media_files_label: الملفات
     media_library: مكتبة الوسائط
     media_library_page_title: مكتبة الوسائط - لوحة التحكم - Mercer Lighthouse
+    meeting: اجتماع
     messages: Messages
+    mettl: METTL
+    mettl_assessment: تقييم Mettl
     mhs: MHS
     mhs_assessment: تقييم MHS
     mhs_assessment_name: اسم تقييم MHS
@@ -466,10 +477,13 @@ ar:
     on_the_job: في العمل [70]
     only_editable_on_create: هذا الخيار قابل للتعديل فقط أثناء الإنشاء.
     options: الخيارات
+    organisational: رشيق
     original_text: النص الأصلي
     overall: بشكل عام
     overall_score: النتيجة الإجمالية
     participants: المشاركون
+    pearson: بيرسون
+    pearson_assessment: تقييم بيرسون
     permissions:
       aiArtifacts:
         export: تصدير
@@ -913,6 +927,7 @@ ar:
     project_settings: إعدادات المشروع
     projects: المشاريع
     prompt: موجه
+    psychometric: القياس النفسي
     question_center: مركز الأسئلة
     question_center_page_title: مركز الأسئلة - لوحة التحكم - Mercer Lighthouse
     question_editor_change_type: تغيير النوع
@@ -1037,6 +1052,8 @@ ar:
       subject_full_name_cont: اسم المادة
       user_email_cont: البريد الإلكتروني للمستخدم
       user_full_name_cont: اسم المستخدم
+    saville: سافيل
+    saville_assessment: تقييم سافيل
     scheduling: الجدولة
     score: النتيجة
     score_approval_not_allowed_to_approve: لا يجوز لك الموافقة على هذه النتيجة.
@@ -1084,9 +1101,13 @@ ar:
     show_submenu: عرض القائمة الفرعية
     show_translated: عرض المترجم
     siem: SIEM
+    simulation: محاكاة
+    simulation_assessment: تقييم المحاكاة
     skill_aliases: Skill Aliases
     skills: المهارات
     skills_taxonomy: تصنيف المهارات
+    skillvue: سكيلفيو
+    skillvue_assessment: تقييم Skillvue
     skip_assessment_level_checks: تخطي فحوصات نظام مستويات التقييم
     slot_name: اسم الماكينة
     sms_histories: تواريخ الرسائل النصية القصيرة
@@ -1152,6 +1173,8 @@ ar:
     x_axis_interval_label: فاصل المحور السيني
     y_axis_interval_label: فاصل المحور Y
     year: البلد
+    yoodli: يودلي
     yoodli_activity_id: معرف نشاط يودلي
+    yoodli_assessment: تقييم يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
     yoodli_external_assessment_id: معرف تقييم يودلي

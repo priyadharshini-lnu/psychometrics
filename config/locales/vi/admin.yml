@@ -22,6 +22,7 @@ vi:
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
     advanced: Nâng cao
+    agile: NHANH NHẸN
     ai_artifact_result_generation_admin_job_failed: Không thể tạo đối tượng '%{artifact_name}' cho người dùng '%{user_email}'
     ai_artifact_result_stale: Kết quả có thể đã lỗi thời vì các phụ thuộc của mô hình AI đã thay đổi kể từ lần tạo kết quả gần nhất. Hãy xem xét việc tạo lại mô hình để sử dụng các phụ thuộc mới nhất.
     ai_artifacts: Đồ tạo tác AI
@@ -137,6 +138,7 @@ vi:
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
+    assessor_form: Biểu mẫu đánh giá viên
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
@@ -221,6 +223,7 @@ vi:
     cancel: Hủy
     cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
     captcha: Xác minh Captcha
+    case_study: Nghiên cứu điển hình
     casual: Thường ngày
     cell_save_msg: Các thay đổi hợp lệ sẽ được lưu tự động ngay khi bạn rời khỏi ô sau khi chỉnh sửa.
     characters: nhân vật
@@ -230,6 +233,8 @@ vi:
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
     code_required: Mã là bắt buộc
+    common: Đánh giá TTE
+    common_assessment: Đánh giá TTE
     communication_center: Trung tâm truyền thông
     communications: Truyền thông
     completed: Hoàn thành
@@ -381,6 +386,8 @@ vi:
     idp_appearance_title: Tiêu đề
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
+    iiht: IIHT
+    iiht_assessment: Đánh giá IIHT
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
@@ -409,6 +416,7 @@ vi:
     job_roles: Vai trò công việc
     keywords: Từ khóa
     keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
+    lead_assessor_form: Phiếu đánh giá của Trưởng nhóm đánh giá
     learning_from_others: Học tập hợp tác [20]
     level: Cấp độ
     level_apply: Đăng ký
@@ -428,7 +436,10 @@ vi:
     media_files_label: Tệp
     media_library: Thư viện phương tiện
     media_library_page_title: Thư viện phương tiện - Bảng điều khiển - Mercer Lighthouse
+    meeting: Hội nghị
     messages: Thư
+    mettl: METTL
+    mettl_assessment: Đánh giá Mettl
     mhs: Trường Trung học MHS
     mhs_assessment: Đánh giá MHS
     mhs_assessment_name: Tên đánh giá MHS
@@ -466,10 +477,13 @@ vi:
     on_the_job: Trong công việc [70]
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
+    organisational: NHANH NHẸN
     original_text: Văn bản gốc
     overall: Tổng thể
     overall_score: Điểm tổng cộng
     participants: Tham gia
+    pearson: Pearson
+    pearson_assessment: Đánh giá Pearson
     permissions:
       aiArtifacts:
         export: Xuất khẩu
@@ -913,6 +927,7 @@ vi:
     project_settings: Cài đặt dự án
     projects: Dự án
     prompt: Gợi ý
+    psychometric: Tâm lý học
     question_center: Trung tâm câu hỏi
     question_center_page_title: Trung tâm câu hỏi - Bảng điều khiển - Mercer Lighthouse
     question_editor_change_type: Thay đổi loại
@@ -1037,6 +1052,8 @@ vi:
       subject_full_name_cont: Tên môn học
       user_email_cont: Email người dùng
       user_full_name_cont: Tên người dùng
+    saville: Saville
+    saville_assessment: Đánh giá Saville
     scheduling: Lập kế hoạch
     score: Điểm
     score_approval_not_allowed_to_approve: Bạn không được phép phê duyệt điểm số này.
@@ -1084,9 +1101,13 @@ vi:
     show_submenu: Hiển thị menu phụ
     show_translated: Hiển thị bản dịch
     siem: SIEM
+    simulation: Mô phỏng
+    simulation_assessment: Đánh giá mô phỏng
     skill_aliases: Bí danh kỹ năng
     skills: Kỹ năng
     skills_taxonomy: Phân loại kỹ năng
+    skillvue: Kỹ năng
+    skillvue_assessment: Đánh giá Skillvue
     skip_assessment_level_checks: Bỏ qua các bước kiểm tra hệ thống theo cấp độ đánh giá
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
@@ -1152,6 +1173,8 @@ vi:
     x_axis_interval_label: Khoảng cách trục X
     y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
+    yoodli: Yoodli
     yoodli_activity_id: ID hoạt động Yoodli
+    yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli

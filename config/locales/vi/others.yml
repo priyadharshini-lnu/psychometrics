@@ -1100,36 +1100,9 @@ vi:
       title: Chi tiết đánh giá
     edit: Biên tập
     fields:
-      category:
-        agile: NHANH NHẸN
-        assessor_form: Biểu mẫu đánh giá viên
-        case_study: Nghiên cứu điển hình
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Biểu mẫu đánh giá viên chính
-        meeting: Hội nghị
-        mettl: Mettl
-        organisational: Khảo sát tổ chức
-        pearson: Pearson
-        psychometric: Tâm lý học
-        saville: Saville
-        simulation: Mô phỏng
-        skillvue: Kỹ năng trực quan
-        threesixty: Chiến dịch 360
-        yoodli: Yoodli
       status:
         finished: Xong
         in_progress: Đang tiến hành
-      type:
-        common: Đánh giá TTE
-        hogan: Hogan
-        iiht: Đánh giá IIHT
-        mettl: Đánh giá Mettl
-        pearson: Đánh giá Pearson
-        saville: Đánh giá Saville
-        simulation: Đánh giá mô phỏng
-        skillvue: Đánh giá Skillvue
-        yoodli: Đánh giá Yoodli
     flow:
       end_assessment_modal:
         custom_message: Thông báo kết thúc đánh giá tùy chỉnh
@@ -3293,13 +3266,6 @@ vi:
     fields:
       provider:
         custom_upload: Tải lên tùy chỉnh
-        hogan: Hogan
-        internal: Nội
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Kỹ năng
-        yoodli: Yoodli
     form:
       load_from_mettl: Tải từ Mettl
       load_from_pearson: Tải từ Pearson

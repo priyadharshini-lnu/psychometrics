@@ -1100,36 +1100,9 @@ hr:
       title: Pojedinosti o procjeni
     edit: Urediti
     fields:
-      category:
-        agile: OKRETAN
-        assessor_form: Obrazac procjenitelja
-        case_study: Studije slučaja
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Obrazac glavnog procjenitelja
-        meeting: Sastanak
-        mettl: Mettl
-        organisational: Org ankete
-        pearson: Pearson
-        psychometric: Psihometrijski
-        saville: Saville
-        simulation: Simulacija
-        skillvue: Skillvue
-        threesixty: Kampanja 360
-        yoodli: Yoodli
       status:
         finished: Završen
         in_progress: U tijeku
-      type:
-        common: Procjena TTE
-        hogan: Hogan
-        iiht: Procjena IIHT-a
-        mettl: Mettl procjena
-        pearson: Pearsonova procjena
-        saville: Procjena Savillea
-        simulation: Simulacijska procjena
-        skillvue: Procjena vještina
-        yoodli: Yoodli procjena
     flow:
       end_assessment_modal:
         custom_message: Prilagođena poruka o završetku procjene
@@ -3299,13 +3272,6 @@ hr:
     fields:
       provider:
         custom_upload: Prilagođeni prijenos
-        hogan: Hogan
-        internal: Unutarnje
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Učitaj iz Mettl
       load_from_pearson: Učitaj iz Pearsona

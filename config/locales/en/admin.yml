@@ -22,6 +22,7 @@ en:
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
     advanced: Advanced
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
@@ -137,6 +138,7 @@ en:
     assessments_not_mhs: All Assessment must be a MHS type
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
+    assessor_form: Assessor Form
     assessor_workshops: Assessment Center
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
@@ -229,6 +231,7 @@ en:
     cancel: Cancel
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     captcha: Captcha Verification
+    case_study: Case Studies
     casual: Casual
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     characters: characters
@@ -238,6 +241,8 @@ en:
     client_admins: Client Admins
     clients: Clients
     code_required: Code is required
+    common: TTE Assessment
+    common_assessment: TTE Assessment
     communication_center: Communication Center
     communications: Communications
     completed: Completed
@@ -389,6 +394,8 @@ en:
     idp_appearance_title: Title
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
+    iiht: IIHT
+    iiht_assessment: IIHT Assessment
     import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
@@ -417,6 +424,7 @@ en:
     job_roles: Job Roles
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
+    lead_assessor_form: Lead Assessor Form
     learning_from_others: Collaborative Learning [20]
     level: Level
     level_apply: Apply
@@ -436,7 +444,10 @@ en:
     media_files_label: Files
     media_library: Media Library
     media_library_page_title: Media Library - Dashboard - Mercer Lighthouse
+    meeting: Meeting
     messages: Messages
+    mettl: Mettl
+    mettl_assessment: Mettl Assessment
     mhs: MHS
     mhs_assessment: MHS Assessment
     mhs_assessment_name: MHS Assessment Name
@@ -475,10 +486,13 @@ en:
     on_the_job: On the Job [70]
     only_editable_on_create: This option is editable only while creating.
     options: Options
+    organisational: Org Surveys
     original_text: Original Text
     overall: Overall
     overall_score: Overall Score
     participants: Participants
+    pearson: Pearson
+    pearson_assessment: Pearson Assessment
     permissions:
       aiArtifacts:
         export: Export
@@ -924,6 +938,7 @@ en:
     project_settings: Project Settings
     projects: Projects
     prompt: Prompt
+    psychometric: Psychometric
     question_center: Question Center
     question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
@@ -1048,6 +1063,8 @@ en:
       subject_full_name_cont: Subject Name
       user_email_cont: User Email
       user_full_name_cont: User Name
+    saville: Saville
+    saville_assessment: Saville Assessment
     scheduling: Scheduling
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
@@ -1095,9 +1112,13 @@ en:
     show_submenu: Show Sub Menu
     show_translated: Show Translated
     siem: SIEM
+    simulation: Simulation
+    simulation_assessment: Simulation Assessment
     skill_aliases: Skill Aliases
     skills: Skills
     skills_taxonomy: Skills Taxonomy
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Assessment
     skip_assessment_level_checks: Skip Assessment-Level System Checks
     slot_name: Slot Name
     sms_histories: SMS Histories
@@ -1163,6 +1184,8 @@ en:
     x_axis_interval_label: X-Axis Interval
     y_axis_interval_label: Y-Axis Interval
     year: Year
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID

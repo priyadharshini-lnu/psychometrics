@@ -22,6 +22,7 @@ ru:
     admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
     admins: Администраторы
     advanced: Для опытных пользователей
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Артефакт «%{artifact_name}» не может быть сгенерирован для пользователя «%{user_email}».
     ai_artifact_result_stale: Результат может быть устаревшим, поскольку зависимости артефакта ИИ изменились с момента генерации последнего результата. Рассмотрите возможность повторной генерации артефакта с использованием последних зависимостей.
     ai_artifacts: Артефакты искусственного интеллекта
@@ -137,6 +138,7 @@ ru:
     assessments_not_mhs: Все оценки должны быть типа MHS.
     assessments_reports: Оценки и отчеты
     assessor_dashboard: Панель инструментов оценщика
+    assessor_form: Форма оценщика
     assessor_workshops: Центр оценки
     assessors: Оценщики
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
@@ -221,6 +223,7 @@ ru:
     cancel: Отменить
     cancellation_and_rescheduling_disabled: Отмена и перенос заказа отключены
     captcha: Проверка по капче
+    case_study: Примеры из практики
     casual: Повседневный
     cell_save_msg: Допустимые изменения сохраняются автоматически, как только вы выходите из ячейки после редактирования.
     characters: символы
@@ -230,6 +233,8 @@ ru:
     client_admins: Администраторы клиентов
     clients: Клиенты
     code_required: Требуется код
+    common: Оценка TTE
+    common_assessment: Оценка TTE
     communication_center: Коммуникационный центр
     communications: Коммуникации
     completed: Завершено
@@ -381,6 +386,8 @@ ru:
     idp_appearance_title: Название
     idp_plan_reset_success: План был успешно сброшен
     idp_templates: Шаблоны IDP
+    iiht: IIHT
+    iiht_assessment: Оценка IIHT
     import_ai_artifacts: Импорт артефактов искусственного интеллекта
     import_csv_assessment_group_error: 'Строка %{index}: пользователь с адресом электронной почты %{email} уже приглашен в «%{workshopInviteName}».'
     import_csv_error: "%{index}: пользователь с адресом электронной почты %{email} не участвует в этой кампании"
@@ -409,6 +416,7 @@ ru:
     job_roles: Должностные обязанности
     keywords: Ключевые слова
     keywords_placeholder: Введите ключевые слова, разделенные запятыми.
+    lead_assessor_form: Форма ведущего оценщика
     learning_from_others: Совместное обучение [20]
     level: Уровень
     level_apply: Применить
@@ -428,7 +436,10 @@ ru:
     media_files_label: Файлы
     media_library: Медиатека
     media_library_page_title: Медиатека — Панель управления — Mercer Lighthouse
+    meeting: Встреча
     messages: Сообщения
+    mettl: METTL
+    mettl_assessment: Оценка Mettl
     mhs: MHS
     mhs_assessment: Оценка MHS
     mhs_assessment_name: Название оценки MHS
@@ -466,10 +477,13 @@ ru:
     on_the_job: На работе [70]
     only_editable_on_create: Этот параметр можно изменить только во время создания.
     options: Варианты
+    organisational: AGILE
     original_text: Оригинальный текст
     overall: В целом
     overall_score: Общий балл
     participants: Участники
+    pearson: Пирсон
+    pearson_assessment: Оценка Пирсона
     permissions:
       aiArtifacts:
         export: Экспорт
@@ -913,6 +927,7 @@ ru:
     project_settings: Настройки проекта
     projects: Проекты
     prompt: Подсказка
+    psychometric: Психометрический
     question_center: Центр вопросов
     question_center_page_title: Центр вопросов — Панель управления — Mercer Lighthouse
     question_editor_change_type: Изменить тип
@@ -1037,6 +1052,8 @@ ru:
       subject_full_name_cont: Название предмета
       user_email_cont: Электронная почта пользователя
       user_full_name_cont: Имя пользователя
+    saville: Сэвилл
+    saville_assessment: Оценка Saville
     scheduling: Планирование
     score: Счет
     score_approval_not_allowed_to_approve: Вы не имеете права утверждать эту оценку.
@@ -1084,9 +1101,13 @@ ru:
     show_submenu: Показать подменю
     show_translated: Показать перевод
     siem: SIEM
+    simulation: Моделирование
+    simulation_assessment: Оценка моделирования
     skill_aliases: Псевдонимы навыков
     skills: Навыки
     skills_taxonomy: Таксономия навыков
+    skillvue: Skillvue
+    skillvue_assessment: Оценка Skillvue
     skip_assessment_level_checks: Пропустить проверки системы на уровне оценки
     slot_name: Название слота
     sms_histories: История SMS-сообщений
@@ -1152,6 +1173,8 @@ ru:
     x_axis_interval_label: Интервал по оси X
     y_axis_interval_label: Интервал по оси Y
     year: Год
+    yoodli: Yoodli
     yoodli_activity_id: Идентификатор активности Yoodli
+    yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli

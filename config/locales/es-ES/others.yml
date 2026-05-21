@@ -1100,36 +1100,9 @@ es-ES:
       title: Detalles de la evaluación
     edit: Editar
     fields:
-      category:
-        agile: AGIL
-        assessor_form: Formulario para evaluadores
-        case_study: Casos prácticos
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulario del asesor principal
-        meeting: Reunión
-        mettl: Mettl
-        organisational: Org Encuestas
-        pearson: Pearson
-        psychometric: Psicométrico
-        saville: Saville
-        simulation: Simulación
-        skillvue: Skillvue
-        threesixty: campaña 360
-        yoodli: Yoodli
       status:
         finished: Terminado
         in_progress: En curso
-      type:
-        common: Evaluación TTE
-        hogan: Hogan
-        iiht: Evaluación del IIHT
-        mettl: Evaluación Mettl
-        pearson: Evaluación Pearson
-        saville: Evaluación Saville
-        simulation: Evaluación de la simulación
-        skillvue: Evaluación de habilidades
-        yoodli: Evaluación de Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mensaje personalizado de fin de evaluación
@@ -3313,13 +3286,6 @@ es-ES:
     fields:
       provider:
         custom_upload: Carga personalizada
-        hogan: Hogan
-        internal: Interno
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carga de Pearson

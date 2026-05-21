@@ -22,6 +22,7 @@ zh-Hant:
     admin_updated_successfully: 管理員 '%{name}' 已成功更新
     admins: 管理員
     advanced: 高级
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: 无法为用户 '%{user_email}' 生成工件 '%{artifact_name}'
     ai_artifact_result_stale: 结果可能已过时，因为自上次生成结果以来，AI工件的依赖项已发生变化。建议重新生成工件以使用最新依赖项进行构建。
     ai_artifacts: 人工智慧神器
@@ -137,6 +138,7 @@ zh-Hant:
     assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板
+    assessor_form: 評估員表格
     assessor_workshops: 評估中心
     assessors: 評估員
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
@@ -221,6 +223,7 @@ zh-Hant:
     cancel: 取消
     cancellation_and_rescheduling_disabled: 取消和重新安排功能已禁用
     captcha: 验证码验证
+    case_study: 案例研究
     casual: 休闲
     cell_save_msg: 编辑完成后，只要离开单元格，有效的更改就会自动保存。
     characters: 字符
@@ -230,6 +233,8 @@ zh-Hant:
     client_admins: 客戶端管理員
     clients: 客戶租約
     code_required: 必須使用程式碼
+    common: TTE 評估
+    common_assessment: TTE 評估
     communication_center: 通訊中心
     communications: 通訊
     completed: 成
@@ -381,6 +386,8 @@ zh-Hant:
     idp_appearance_title: 标题
     idp_plan_reset_success: 計畫已成功重置
     idp_templates: IDP 範本
+    iiht: IIHT
+    iiht_assessment: IIHT 評估
     import_ai_artifacts: 匯入 AI 工件
     import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
     import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動
@@ -409,6 +416,7 @@ zh-Hant:
     job_roles: 工作角色
     keywords: 关键词
     keywords_placeholder: 请输入以逗号分隔的关键词。
+    lead_assessor_form: 首席評估員表格
     learning_from_others: 協作學習 [20]
     level: 等级
     level_apply: 申请
@@ -428,7 +436,10 @@ zh-Hant:
     media_files_label: 文件
     media_library: 媒体库
     media_library_page_title: 媒体库 - 仪表盘 - Mercer Lighthouse
+    meeting: 會議
     messages: 訊息
+    mettl: METTL
+    mettl_assessment: Mettl 評估
     mhs: MHS
     mhs_assessment: MHS评估
     mhs_assessment_name: MHS评估名称
@@ -466,10 +477,13 @@ zh-Hant:
     on_the_job: 在職 [70]
     only_editable_on_create: 此选项仅在创建时可编辑。
     options: 選項
+    organisational: AGILE
     original_text: 原文
     overall: 总体而言
     overall_score: 总分
     participants: 參與者
+    pearson: 培生
+    pearson_assessment: 培生評估
     permissions:
       aiArtifacts:
         export: 出口
@@ -913,6 +927,7 @@ zh-Hant:
     project_settings: 專案設定
     projects: 專案
     prompt: 提示
+    psychometric: 心理測量
     question_center: 問題中心
     question_center_page_title: 问题中心 - 仪表盘 - Mercer Lighthouse
     question_editor_change_type: 更改类型
@@ -1037,6 +1052,8 @@ zh-Hant:
       subject_full_name_cont: 科目名称
       user_email_cont: 用户邮箱
       user_full_name_cont: 用户名
+    saville: 薩維爾
+    saville_assessment: 薩維爾評估
     scheduling: 排程
     score: 得分
     score_approval_not_allowed_to_approve: 您无权批准此分数。
@@ -1084,9 +1101,13 @@ zh-Hant:
     show_submenu: 顯示子選單
     show_translated: 显示翻译
     siem: SIEM
+    simulation: 模擬
+    simulation_assessment: 模擬評估
     skill_aliases: 技能別名
     skills: 技術
     skills_taxonomy: 技能分類法
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue 評估
     skip_assessment_level_checks: 跳过评估级别的系统检查
     slot_name: 車位名稱
     sms_histories: 簡訊歷史
@@ -1152,6 +1173,8 @@ zh-Hant:
     x_axis_interval_label: X轴间隔
     y_axis_interval_label: Y轴间隔
     year: 國家
+    yoodli: 尤德利
     yoodli_activity_id: Yoodli 活動識別碼
+    yoodli_assessment: Yoodli 評估
     yoodli_email_id: Yoodli 候選人電子郵件 ID
     yoodli_external_assessment_id: Yoodli 評估識別碼

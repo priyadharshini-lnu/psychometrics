@@ -1100,36 +1100,9 @@ hu:
       title: Az értékelés részletei
     edit: Szerkeszt
     fields:
-      category:
-        agile: FÜRGE
-        assessor_form: Értékelő űrlap
-        case_study: Esettanulmányok
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Vezető értékelői űrlap
-        meeting: Találkozó
-        mettl: Mettl
-        organisational: Szervezeti felmérések
-        pearson: Pearson
-        psychometric: Pszichometriai
-        saville: Saville
-        simulation: Szimuláció
-        skillvue: Skillvue
-        threesixty: 360 fokos kampány
-        yoodli: Yoodli
       status:
         finished: Kész
         in_progress: Folyamatban
-      type:
-        common: TTE értékelés
-        hogan: Hogan
-        iiht: IIHT értékelés
-        mettl: Mettl értékelés
-        pearson: Pearson értékelés
-        saville: Saville-értékelés
-        simulation: Szimulációs értékelés
-        skillvue: Skillvue értékelés
-        yoodli: Yoodli értékelés
     flow:
       end_assessment_modal:
         custom_message: Egyéni értékelés végi üzenet
@@ -3286,13 +3259,6 @@ hu:
     fields:
       provider:
         custom_upload: Egyéni feltöltés
-        hogan: Hogan
-        internal: Belső
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Terhelés a Mettl-től
       load_from_pearson: Rakomány Pearsontól

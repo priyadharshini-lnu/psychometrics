@@ -22,6 +22,7 @@ cs:
     admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
     admins: Administrátoři
     advanced: Pokročilé
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nelze vygenerovat pro uživatele „%{user_email}“.
     ai_artifact_result_stale: Výsledek může být zastaralý, protože závislosti artefaktu AI se od posledního vygenerování výsledku změnily. Zvažte opětovné vygenerování artefaktu s nejnovějšími závislostmi.
     ai_artifacts: Artefakty AI
@@ -137,6 +138,7 @@ cs:
     assessments_not_mhs: Všechna hodnocení musí být typu MHS.
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
+    assessor_form: Formulář hodnotitele
     assessor_workshops: Hodnotící centrum
     assessors: Posuzovatelé
     assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
@@ -221,6 +223,7 @@ cs:
     cancel: Zrušit
     cancellation_and_rescheduling_disabled: Zrušení a změna termínu jsou zakázány.
     captcha: Ověření pomocí CAPTCHA
+    case_study: Případové studie
     casual: Neformální
     cell_save_msg: Platné změny se automaticky uloží, jakmile po úpravách opustíte buňku.
     characters: postavy
@@ -230,6 +233,8 @@ cs:
     client_admins: Správci klientů
     clients: Nájemní smlouvy klientů
     code_required: Je vyžadován kód
+    common: Hodnocení TTE
+    common_assessment: Hodnocení TTE
     communication_center: Komunikační centrum
     communications: Komunikace
     completed: Hotový
@@ -381,6 +386,8 @@ cs:
     idp_appearance_title: Název
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
+    iiht: IIHT
+    iiht_assessment: Hodnocení IIHT
     import_ai_artifacts: Import AI artefaktů
     import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailem %{email} již byl pozván do skupiny „%{workshopInviteName}“.'
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
@@ -409,6 +416,7 @@ cs:
     job_roles: Pracovní role
     keywords: Klíčová slova
     keywords_placeholder: Zadejte klíčová slova oddělená čárkami.
+    lead_assessor_form: Formulář vedoucího hodnotitele
     learning_from_others: Společné učení [20]
     level: Úroveň
     level_apply: Použít
@@ -428,7 +436,10 @@ cs:
     media_files_label: Soubory
     media_library: Mediální knihovna
     media_library_page_title: Mediální knihovna – Řídicí panel – Mercer Lighthouse
+    meeting: Setkání
     messages: Zprávy
+    mettl: METTL
+    mettl_assessment: Hodnocení Mettl
     mhs: MHS
     mhs_assessment: Hodnocení MHS
     mhs_assessment_name: Název hodnocení MHS
@@ -466,10 +477,13 @@ cs:
     on_the_job: V práci [70]
     only_editable_on_create: Tuto možnost lze upravit pouze při vytváření.
     options: Možnosti
+    organisational: AGILE
     original_text: Původní text
     overall: Celkově
     overall_score: Celkové skóre
     participants: Účastníci
+    pearson: Pearson
+    pearson_assessment: Hodnocení Pearson
     permissions:
       aiArtifacts:
         export: Vývoz
@@ -913,6 +927,7 @@ cs:
     project_settings: Nastavení projektu
     projects: Projekty
     prompt: Výzva
+    psychometric: Psychometrické údaje
     question_center: Centrum otázek
     question_center_page_title: Centrum dotazů – Přehled – Mercer Lighthouse
     question_editor_change_type: Změnit typ
@@ -1037,6 +1052,8 @@ cs:
       subject_full_name_cont: Název předmětu
       user_email_cont: E-mail uživatele
       user_full_name_cont: Uživatelské jméno
+    saville: Saville
+    saville_assessment: Hodnocení Saville
     scheduling: Plánování
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nesmíte schválit.
@@ -1084,9 +1101,13 @@ cs:
     show_submenu: Zobrazit dílčí nabídku
     show_translated: Zobrazit překlad
     siem: SIEM
+    simulation: Simulace
+    simulation_assessment: Posouzení simulace
     skill_aliases: Pseudonymy dovedností
     skills: Dovednosti
     skills_taxonomy: Taxonomie dovedností
+    skillvue: Skillvue
+    skillvue_assessment: Hodnocení dovedností
     skip_assessment_level_checks: Přeskočit kontroly systému na úrovni hodnocení
     slot_name: Název slotu
     sms_histories: Historie SMS
@@ -1152,6 +1173,8 @@ cs:
     x_axis_interval_label: Interval osy X
     y_axis_interval_label: Interval osy Y
     year: Země
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodliho hodnocení
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

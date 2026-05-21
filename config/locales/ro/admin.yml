@@ -22,6 +22,7 @@ ro:
     admin_updated_successfully: Admin '%{name}' a fost actualizat cu succes
     admins: Administratori
     advanced: Avansat
+    agile: AGIL
     ai_artifact_result_generation_admin_job_failed: Artefactul „%{artifact_name}” nu poate fi generat pentru utilizatorul „%{user_email}”.
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
@@ -137,6 +138,7 @@ ro:
     assessments_not_mhs: Toate evaluările trebuie să fie de tip MHS.
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
+    assessor_form: Formular evaluator
     assessor_workshops: Centrul de evaluare
     assessors: Evaluatori
     assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
@@ -221,6 +223,7 @@ ro:
     cancel: Anulează
     cancellation_and_rescheduling_disabled: Anularea și reprogramarea sunt dezactivate
     captcha: Verificare Captcha
+    case_study: Studii de caz
     casual: Casual
     cell_save_msg: Modificările valide sunt salvate automat imediat ce ieșiți din celulă după editare.
     characters: caractere
@@ -230,6 +233,8 @@ ro:
     client_admins: Administratori clienți
     clients: Clienți
     code_required: Este necesar codul
+    common: Evaluarea TTE
+    common_assessment: Evaluarea TTE
     communication_center: Centrul de comunicare
     communications: Comunicaţii
     completed: Completat
@@ -381,6 +386,8 @@ ro:
     idp_appearance_title: Titlu
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
+    iiht: IIHT
+    iiht_assessment: Evaluarea IIHT
     import_ai_artifacts: Importul artefactelor AI
     import_csv_assessment_group_error: "%{index} de rând: utilizatorul cu adresa de e-mail %{email} este deja invitat la „%{workshopInviteName}”"
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
@@ -409,6 +416,7 @@ ro:
     job_roles: Roluri de post
     keywords: Cuvinte cheie
     keywords_placeholder: Introduceți cuvintele cheie separate prin virgule.
+    lead_assessor_form: Formular de evaluator principal
     learning_from_others: Învățare colaborativă [20]
     level: Nivel
     level_apply: Aplicați
@@ -428,7 +436,10 @@ ro:
     media_files_label: Fișiere
     media_library: Biblioteca media
     media_library_page_title: Biblioteca media - Tablou de bord - Mercer Lighthouse
+    meeting: Ședință
     messages: Mesaje
+    mettl: METTL
+    mettl_assessment: Evaluarea Mettl
     mhs: MHS
     mhs_assessment: Evaluarea MHS
     mhs_assessment_name: Numele evaluării MHS
@@ -466,10 +477,13 @@ ro:
     on_the_job: La locul de muncă [70]
     only_editable_on_create: Această opțiune poate fi editată numai în timpul creării.
     options: Opțiuni
+    organisational: AGIL
     original_text: Textul original
     overall: În general
     overall_score: Scorul general
     participants: Participanţii
+    pearson: Pearson
+    pearson_assessment: Evaluarea Pearson
     permissions:
       aiArtifacts:
         export: Export
@@ -913,6 +927,7 @@ ro:
     project_settings: Setările proiectului
     projects: Proiecte
     prompt: Prompt
+    psychometric: Psihometrice
     question_center: Centrul de întrebări
     question_center_page_title: Centrul de întrebări - Tablou de bord - Mercer Lighthouse
     question_editor_change_type: Schimbă tipul
@@ -1037,6 +1052,8 @@ ro:
       subject_full_name_cont: Numele subiectului
       user_email_cont: Adresa de e-mail a utilizatorului
       user_full_name_cont: Nume de utilizator
+    saville: Saville
+    saville_assessment: Evaluarea Saville
     scheduling: Programarea
     score: Scor
     score_approval_not_allowed_to_approve: Nu aveți voie să aprobați acest scor.
@@ -1084,9 +1101,13 @@ ro:
     show_submenu: Afișează submeniu
     show_translated: Afișează traducerea
     siem: SIEM
+    simulation: Simulare
+    simulation_assessment: Evaluarea simulării
     skill_aliases: Aliasuri de abilități
     skills: Aptitudini
     skills_taxonomy: Taxonomia abilităților
+    skillvue: Skillvue
+    skillvue_assessment: Evaluarea Skillvue
     skip_assessment_level_checks: Omite verificările sistemului la nivel de evaluare
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
@@ -1152,6 +1173,8 @@ ro:
     x_axis_interval_label: Intervalul axei X
     y_axis_interval_label: Intervalul axei Y
     year: Țara
+    yoodli: Yoodli
     yoodli_activity_id: ID-ul activității Yoodli
+    yoodli_assessment: Evaluarea Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli
     yoodli_external_assessment_id: ID de evaluare Yoodli

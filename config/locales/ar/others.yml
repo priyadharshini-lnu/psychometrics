@@ -1100,36 +1100,9 @@ ar:
       title: تفاصيل التقييم
     edit: حرر
     fields:
-      category:
-        agile: رشيق
-        assessor_form: نموذج المقيم
-        case_study: دراسات الحالة
-        hogan: هوجان
-        iiht: IIHT
-        lead_assessor_form: نموذج المقيم الرئيسي
-        meeting: اجتماع
-        mettl: ميتل
-        organisational: استطلاعات المؤسسة
-        pearson: بيرسون
-        psychometric: القياس النفسي
-        saville: سافيل
-        simulation: محاكاة
-        skillvue: سكيلفيو
-        threesixty: حملة 360
-        yoodli: يودلي
       status:
         finished: منته
         in_progress: قيد التنفيذ
-      type:
-        common: تقييم TTE
-        hogan: هوجان
-        iiht: تقييم IIHT
-        mettl: تقييم Mettl
-        pearson: تقييم بيرسون
-        saville: تقييم سافيل
-        simulation: تقييم المحاكاة
-        skillvue: تقييم Skillvue
-        yoodli: تقييم يودلي
     flow:
       end_assessment_modal:
         custom_message: نهاية مخصصة لرسالة التقييم
@@ -3311,13 +3284,6 @@ ar:
     fields:
       provider:
         custom_upload: تحميل مخصص
-        hogan: هوجان
-        internal: داخلي
-        mettl: ميتل
-        pearson: بيرسون
-        saville: سافيل
-        skillvue: سكيلفيو
-        yoodli: يودلي
     form:
       load_from_mettl: تحميل من Mettl
       load_from_pearson: تحميل من بيرسون

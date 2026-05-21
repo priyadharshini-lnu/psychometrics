@@ -22,6 +22,7 @@ hr:
     admin_updated_successfully: Administrator '%{name}' uspješno je ažuriran
     admins: Administratori
     advanced: Napredno
+    agile: OKRETAN
     ai_artifact_result_generation_admin_job_failed: Artifakt '%{artifact_name}' ne može se generirati za korisnika '%{user_email}'.
     ai_artifact_result_stale: Rezultat možda nije ažuran jer su se ovisnosti AI artefakta promijenile od zadnjeg generiranja rezultata. Razmislite o ponovnom generiranju artefakta kako biste koristili najnovije ovisnosti.
     ai_artifacts: AI artefakti
@@ -137,6 +138,7 @@ hr:
     assessments_not_mhs: Sva procjena mora biti tipa MHS.
     assessments_reports: Procjene i izvješća
     assessor_dashboard: Nadzorna ploča procjenitelja
+    assessor_form: Obrazac procjenitelja
     assessor_workshops: Centar za procjenu
     assessors: Procjenitelji
     assistant_toolbar_failed: Nije uspjelo generirati valjan izlaz nakon više pokušaja
@@ -221,6 +223,7 @@ hr:
     cancel: Otkaži
     cancellation_and_rescheduling_disabled: Otkazivanje i zakazivanje novog termina su onemogućeni
     captcha: Captcha provjera
+    case_study: Studije slučaja
     casual: Neformalno
     cell_save_msg: Valjane promjene automatski se spremaju čim napustite ćeliju nakon uređivanja.
     characters: likovi
@@ -230,6 +233,8 @@ hr:
     client_admins: Klijenti administratori
     clients: Klijenti
     code_required: Potrebna je koda
+    common: Procjena TTE
+    common_assessment: Procjena TTE
     communication_center: Komunikacijski centar
     communications: Komunikacije
     completed: Završen
@@ -381,6 +386,8 @@ hr:
     idp_appearance_title: Naslov
     idp_plan_reset_success: Plan je uspješno resetiran
     idp_templates: Predlošci IDP-a
+    iiht: IIHT
+    iiht_assessment: Procjena IIHT-a
     import_ai_artifacts: Uvoz AI artefakata
     import_csv_assessment_group_error: 'Red%{index}: korisnik s e-poštom %{email} već je pozvan u ''%{workshopInviteName}'''
     import_csv_error: 'Red %{index}: korisnik s email %{email} nije u ovoj kampanji'
@@ -409,6 +416,7 @@ hr:
     job_roles: Uloge na poslu
     keywords: Ključne riječi
     keywords_placeholder: Unesite ključne riječi odvojene zarezima.
+    lead_assessor_form: Obrazac glavnog procjenitelja
     learning_from_others: Suradničko učenje [20]
     level: Razina
     level_apply: Prijaviti se
@@ -428,7 +436,10 @@ hr:
     media_files_label: Datoteke
     media_library: Medijska knjižnica
     media_library_page_title: Medijska biblioteka - Kontrolna ploča - Svjetionik Mercer
+    meeting: Sastanak
     messages: Poruke
+    mettl: METTL
+    mettl_assessment: Mettl procjena
     mhs: MHS
     mhs_assessment: MHS procjena
     mhs_assessment_name: Naziv MHS procjene
@@ -466,10 +477,13 @@ hr:
     on_the_job: Na poslu [70]
     only_editable_on_create: Ovu opciju je moguće uređivati samo tijekom izrade.
     options: Mogućnosti
+    organisational: OKRETAN
     original_text: Originalni tekst
     overall: Sveukupno
     overall_score: Ukupna ocjena
     participants: Sudionici
+    pearson: Pearson
+    pearson_assessment: Pearsonova procjena
     permissions:
       aiArtifacts:
         export: Izvoz
@@ -913,6 +927,7 @@ hr:
     project_settings: Postavke projekta
     projects: Projekti
     prompt: Upit
+    psychometric: Psihometrijski
     question_center: Centar za pitanja
     question_center_page_title: Centar za pitanja - nadzorna ploča - Mercer Lighthouse
     question_editor_change_type: Promijeni tip
@@ -1037,6 +1052,8 @@ hr:
       subject_full_name_cont: Naziv predmeta
       user_email_cont: E-pošta korisnika
       user_full_name_cont: Naziv korisnika
+    saville: Saville
+    saville_assessment: Procjena Savillea
     scheduling: Vremensko planiranje
     score: Rezultat
     score_approval_not_allowed_to_approve: Niste ovlašteni odobriti ovaj rezultat.
@@ -1084,9 +1101,13 @@ hr:
     show_submenu: Prikaži podizbornik
     show_translated: Prikaži prevedeno
     siem: SIEM
+    simulation: Simulacija
+    simulation_assessment: Simulacijska procjena
     skill_aliases: Pseudonimi vještina
     skills: Vještine
     skills_taxonomy: Taksonomija vještina
+    skillvue: Vještina
+    skillvue_assessment: Procjena vještina
     skip_assessment_level_checks: Preskoči provjere sustava na razini ocjenjivanja
     slot_name: Naziv utora
     sms_histories: Povijest SMS-a
@@ -1152,6 +1173,8 @@ hr:
     x_axis_interval_label: Interval X-osovine
     y_axis_interval_label: Y-osni interval
     year: Država
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli ID aktivnosti
+    yoodli_assessment: Yoodli procjena
     yoodli_email_id: Email ID Yoodli kandidata
     yoodli_external_assessment_id: Yoodli Assessment ID

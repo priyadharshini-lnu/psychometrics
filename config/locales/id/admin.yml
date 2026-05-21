@@ -22,6 +22,7 @@ id:
     admin_updated_successfully: Admin '%{name}' berhasil diperbarui
     admins: Admin
     advanced: Lanjutan
+    agile: LINCAH
     ai_artifact_result_generation_admin_job_failed: Artefak '%{artifact_name}' tidak dapat dihasilkan untuk Pengguna '%{user_email}'
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
@@ -137,6 +138,7 @@ id:
     assessments_not_mhs: Semua penilaian harus berupa jenis MHS.
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
+    assessor_form: Formulir Penilai
     assessor_workshops: Pusat Penilaian
     assessors: Asesor
     assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
@@ -221,6 +223,7 @@ id:
     cancel: Batalkan
     cancellation_and_rescheduling_disabled: Pembatalan dan Penjadwalan Ulang dinonaktifkan
     captcha: Verifikasi Captcha
+    case_study: Studi Kasus
     casual: Santai
     cell_save_msg: Perubahan yang valid akan disimpan secara otomatis begitu Anda keluar dari sel setelah mengedit.
     characters: karakter
@@ -230,6 +233,8 @@ id:
     client_admins: Admin Klien
     clients: Klien Pengguna
     code_required: Kode diperlukan
+    common: Penilaian TTE
+    common_assessment: Penilaian TTE
     communication_center: Pusat Komunikasi
     communications: Komunikasi
     completed: Selesai
@@ -381,6 +386,8 @@ id:
     idp_appearance_title: Judul
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
+    iiht: IIHT
+    iiht_assessment: Penilaian IIHT
     import_ai_artifacts: Impor Artefak AI
     import_csv_assessment_group_error: 'Baris %{index}: Pengguna dengan alamat email %{email} sudah diundang ke ''%{workshopInviteName}'''
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
@@ -409,6 +416,7 @@ id:
     job_roles: Peran Pekerjaan
     keywords: Kata kunci
     keywords_placeholder: Masukkan kata kunci yang dipisahkan dengan koma.
+    lead_assessor_form: Formulir Penilai Utama
     learning_from_others: Pembelajaran Kolaboratif [20]
     level: Tingkat
     level_apply: Ajukan
@@ -428,7 +436,10 @@ id:
     media_files_label: Berkas
     media_library: Perpustakaan Media
     media_library_page_title: Perpustakaan Media - Dasbor - Mercer Lighthouse
+    meeting: Rapat
     messages: Pesan
+    mettl: METTL
+    mettl_assessment: Penilaian Mettl
     mhs: MHS
     mhs_assessment: Penilaian MHS
     mhs_assessment_name: Nama Penilaian MHS
@@ -466,10 +477,13 @@ id:
     on_the_job: Di Tempat Kerja [70]
     only_editable_on_create: Opsi ini hanya dapat diedit saat sedang dibuat.
     options: Pilihan
+    organisational: LINCAH
     original_text: Teks Asli
     overall: Secara keseluruhan
     overall_score: Skor Total
     participants: Peserta
+    pearson: Pearson
+    pearson_assessment: Penilaian Pearson
     permissions:
       aiArtifacts:
         export: Ekspor
@@ -913,6 +927,7 @@ id:
     project_settings: Pengaturan Proyek
     projects: Proyek
     prompt: Perintah
+    psychometric: Psikometrik
     question_center: Pusat Pertanyaan
     question_center_page_title: Pusat Pertanyaan - Dasbor - Mercer Lighthouse
     question_editor_change_type: Ubah jenis
@@ -1037,6 +1052,8 @@ id:
       subject_full_name_cont: Nama Mata Kuliah
       user_email_cont: Alamat Email Pengguna
       user_full_name_cont: Nama Pengguna
+    saville: Saville
+    saville_assessment: Penilaian Saville
     scheduling: Penjadwalan
     score: Skor
     score_approval_not_allowed_to_approve: Anda tidak diizinkan untuk menyetujui skor ini.
@@ -1084,9 +1101,13 @@ id:
     show_submenu: Tampilkan Sub Menu
     show_translated: Tampilkan Terjemahan
     siem: SIEM
+    simulation: Simulasi
+    simulation_assessment: Penilaian Simulasi
     skill_aliases: Alias Keterampilan
     skills: Keterampilan
     skills_taxonomy: Taksonomi Keterampilan
+    skillvue: Keterampilan
+    skillvue_assessment: Penilaian Skillvue
     skip_assessment_level_checks: Lewati Pemeriksaan Sistem Tingkat Penilaian
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
@@ -1152,6 +1173,8 @@ id:
     x_axis_interval_label: Interval Sumbu X
     y_axis_interval_label: Interval Sumbu Y
     year: Negara
+    yoodli: Yoodli
     yoodli_activity_id: ID Aktivitas Yoodli
+    yoodli_assessment: Penilaian Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli
     yoodli_external_assessment_id: ID Penilaian Yoodli

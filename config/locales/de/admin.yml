@@ -22,6 +22,7 @@ de:
     admin_updated_successfully: Admin '%{name}' wurde erfolgreich aktualisiert
     admins: Admins
     advanced: Erweitert
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Das Artefakt „%{artifact_name}“ kann für den Benutzer „%{user_email}“ nicht generiert werden.
     ai_artifact_result_stale: Das Ergebnis kann veraltet sein, da sich die Abhängigkeiten des KI-Artefakts seit der letzten Ergebnisgenerierung geändert haben. Erwägen Sie, das Artefakt neu zu generieren, um es mit den neuesten Abhängigkeiten zu erstellen.
     ai_artifacts: KI-Artefakte
@@ -137,6 +138,7 @@ de:
     assessments_not_mhs: Alle Bewertungen müssen vom Typ MHS sein.
     assessments_reports: Beurteilungen und Berichte
     assessor_dashboard: Assessor Dashboard
+    assessor_form: Beisitzer-Formular
     assessor_workshops: Assessment Center
     assessors: Beisitzer
     assistant_toolbar_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
@@ -221,6 +223,7 @@ de:
     cancel: Abbrechen
     cancellation_and_rescheduling_disabled: Stornierung und Umbuchung sind deaktiviert.
     captcha: Captcha-Überprüfung
+    case_study: Fallstudien
     casual: Lässig
     cell_save_msg: Gültige Änderungen werden automatisch gespeichert, sobald Sie die Zelle nach der Bearbeitung verlassen.
     characters: Zeichen
@@ -230,6 +233,8 @@ de:
     client_admins: Client-Admins
     clients: Kunden-Mietverhältnisse
     code_required: Code ist erforderlich
+    common: TTE-Bewertung
+    common_assessment: TTE-Bewertung
     communication_center: Kommunikationszentrum
     communications: Kommunikation
     completed: Abgeschlossen
@@ -381,6 +386,8 @@ de:
     idp_appearance_title: Titel
     idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
     idp_templates: IDP-Vorlagen
+    iiht: IIHT
+    iiht_assessment: IIHT-Bewertung
     import_ai_artifacts: KI-Artefakte importieren
     import_csv_assessment_group_error: 'Zeile %{index}: Benutzer mit der E-Mail-Adresse %{email} wurde bereits zu „%{workshopInviteName}” eingeladen.'
     import_csv_error: 'Reihe %{index}: Nutzer mit E-Mail-%{email} ist nicht in dieser Kampagne'
@@ -409,6 +416,7 @@ de:
     job_roles: Berufsrollen
     keywords: Schlüsselwörter
     keywords_placeholder: Geben Sie die Suchbegriffe durch Kommas getrennt ein.
+    lead_assessor_form: Formular für Hauptgutachter
     learning_from_others: Kollaboratives Lernen [20]
     level: Stufe
     level_apply: Bewerben
@@ -428,7 +436,10 @@ de:
     media_files_label: Dateien
     media_library: Medienbibliothek
     media_library_page_title: Medienbibliothek – Dashboard – Mercer Lighthouse
+    meeting: Treffen
     messages: Nachrichten
+    mettl: METTL
+    mettl_assessment: Mettl Assessment
     mhs: MHS
     mhs_assessment: MHS-Bewertung
     mhs_assessment_name: MHS-Bewertung Name
@@ -466,10 +477,13 @@ de:
     on_the_job: Im Dienst [70]
     only_editable_on_create: Diese Option kann nur während der Erstellung bearbeitet werden.
     options: Optionen
+    organisational: AGILE
     original_text: Originaltext
     overall: Insgesamt
     overall_score: Gesamtpunktzahl
     participants: Teilnehmer
+    pearson: Pearson
+    pearson_assessment: Pearson-Bewertung
     permissions:
       aiArtifacts:
         export: Exportieren
@@ -913,6 +927,7 @@ de:
     project_settings: Projekt-Einstellungen
     projects: Projekte
     prompt: Aufforderung
+    psychometric: Psychometrische Daten
     question_center: Fragen-Center
     question_center_page_title: Fragen-Center – Dashboard – Mercer Lighthouse
     question_editor_change_type: Typ ändern
@@ -1037,6 +1052,8 @@ de:
       subject_full_name_cont: Name des Fachs
       user_email_cont: E-Mail-Adresse des Benutzers
       user_full_name_cont: Benutzername
+    saville: Saville
+    saville_assessment: Saville-Bewertung
     scheduling: Terminplanung
     score: Punktzahl
     score_approval_not_allowed_to_approve: Sie dürfen diese Bewertung nicht genehmigen.
@@ -1084,9 +1101,13 @@ de:
     show_submenu: Untermenü anzeigen
     show_translated: Übersetzt anzeigen
     siem: SIEM
+    simulation: Simulation
+    simulation_assessment: Simulations-Bewertung
     skill_aliases: Alias-Fähigkeiten
     skills: Fertigkeiten
     skills_taxonomy: Fähigkeiten-Taxonomie
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue-Bewertung
     skip_assessment_level_checks: Prüfungen auf Bewertungsebene überspringen
     slot_name: Slot-Name
     sms_histories: SMS-Geschichten
@@ -1152,6 +1173,8 @@ de:
     x_axis_interval_label: X-Achsen-Intervall
     y_axis_interval_label: Y-Achsen-Intervall
     year: Land
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Aktivitäts-ID
+    yoodli_assessment: Yoodli-Bewertung
     yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
     yoodli_external_assessment_id: Yoodli Bewertungs-ID

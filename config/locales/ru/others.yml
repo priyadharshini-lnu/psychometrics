@@ -1100,36 +1100,9 @@ ru:
       title: Детали оценки
     edit: Редактировать
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Форма оценщика
-        case_study: Примеры из практики
-        hogan: Хоган
-        iiht: IIHT
-        lead_assessor_form: Форма ведущего оценщика
-        meeting: Встреча
-        mettl: Меттл
-        organisational: Опросы Org
-        pearson: Пирсон
-        psychometric: Психометрический
-        saville: Сэвилл
-        simulation: Моделирование
-        skillvue: Skillvue
-        threesixty: Кампания 360
-        yoodli: Yoodli
       status:
         finished: Завершено
         in_progress: В процессе
-      type:
-        common: Оценка TTE
-        hogan: Хоган
-        iiht: Оценка IIHT
-        mettl: Оценка Mettl
-        pearson: Оценка Пирсона
-        saville: Оценка Saville
-        simulation: Оценка моделирования
-        skillvue: Оценка Skillvue
-        yoodli: Оценка Yoodli
     flow:
       end_assessment_modal:
         custom_message: Пользовательское сообщение об окончании оценки
@@ -3313,13 +3286,6 @@ ru:
     fields:
       provider:
         custom_upload: Пользовательская загрузка
-        hogan: Хоган
-        internal: Внутренний
-        mettl: Меттл
-        pearson: Пирсон
-        saville: Сэвилл
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Загрузить из Mettl
       load_from_pearson: Нагрузка от Пирсона

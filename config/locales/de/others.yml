@@ -1100,36 +1100,9 @@ de:
       title: Bewertung Details
     edit: Bearbeiten
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Beisitzer-Formular
-        case_study: Fallstudien
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formular für Hauptgutachter
-        meeting: Treffen
-        mettl: Mettl
-        organisational: Org-Erhebungen
-        pearson: Pearson
-        psychometric: Psychometrische Daten
-        saville: Saville
-        simulation: Simulation
-        skillvue: Skillvue
-        threesixty: 360-Kampagne
-        yoodli: Yoodli
       status:
         finished: Fertige
         in_progress: In Arbeit
-      type:
-        common: TTE-Bewertung
-        hogan: Hogan
-        iiht: IIHT-Bewertung
-        mettl: Mettl Bewertung
-        pearson: Pearson-Bewertung
-        saville: Saville-Bewertung
-        simulation: Simulation Bewertung
-        skillvue: Skillvue-Bewertung
-        yoodli: Yoodli-Bewertung
     flow:
       end_assessment_modal:
         custom_message: Benutzerdefinierte Meldung zum Ende der Bewertung
@@ -3286,13 +3259,6 @@ de:
     fields:
       provider:
         custom_upload: Benutzerdefinierter Upload
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Belastung aus Mettl
       load_from_pearson: Laden von Pearson

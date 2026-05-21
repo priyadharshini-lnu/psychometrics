@@ -22,6 +22,7 @@ nl:
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     admins: Admins
     advanced: Geavanceerd
+    agile: AGIEL
     ai_artifact_result_generation_admin_job_failed: Het artefact '%{artifact_name}' kan niet worden gegenereerd voor gebruiker '%{user_email}'.
     ai_artifact_result_stale: Het resultaat kan verouderd zijn, aangezien de afhankelijkheden van het AI-artefact zijn gewijzigd sinds het laatste resultaat werd gegenereerd. Overweeg het artefact opnieuw te genereren met de nieuwste afhankelijkheden.
     ai_artifacts: AI-artefacten
@@ -137,6 +138,7 @@ nl:
     assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
+    assessor_form: Beoordelaarsformulier
     assessor_workshops: Beoordelingscentrum
     assessors: Taxateurs
     assistant_toolbar_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
@@ -221,6 +223,7 @@ nl:
     cancel: Annuleren
     cancellation_and_rescheduling_disabled: Annuleren en verzetten is uitgeschakeld
     captcha: Captcha-verificatie
+    case_study: Casestudies
     casual: Casual
     cell_save_msg: Geldige wijzigingen worden automatisch opgeslagen zodra u de cel na het bewerken verlaat.
     characters: tekens
@@ -230,6 +233,8 @@ nl:
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
     code_required: Code is vereist
+    common: TTE-beoordeling
+    common_assessment: TTE-beoordeling
     communication_center: Communicatiecentrum
     communications: Communicatie
     completed: Volbracht
@@ -381,6 +386,8 @@ nl:
     idp_appearance_title: Titel
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
+    iiht: IIHT
+    iiht_assessment: IIHT-beoordeling
     import_ai_artifacts: AI-artefacten importeren
     import_csv_assessment_group_error: "%{index} van de rij: gebruiker met e-mailadres %{email} is al uitgenodigd voor '%{workshopInviteName}'."
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
@@ -409,6 +416,7 @@ nl:
     job_roles: Functierollen
     keywords: Sleutelwoorden
     keywords_placeholder: Voer trefwoorden in, gescheiden door komma's.
+    lead_assessor_form: Formulier hoofdbeoordelaar
     learning_from_others: Samenwerkend leren [20]
     level: Niveau
     level_apply: Toepassen
@@ -428,7 +436,10 @@ nl:
     media_files_label: Bestanden
     media_library: Mediabibliotheek
     media_library_page_title: Mediabibliotheek - Dashboard - Mercer Lighthouse
+    meeting: Vergadering
     messages: Berichten
+    mettl: METTL
+    mettl_assessment: Mettl Beoordeling
     mhs: MHS
     mhs_assessment: MHS-beoordeling
     mhs_assessment_name: MHS-beoordeling Naam
@@ -466,10 +477,13 @@ nl:
     on_the_job: Op het Werk [70]
     only_editable_on_create: Deze optie kan alleen tijdens het aanmaken worden bewerkt.
     options: Opties
+    organisational: AGIEL
     original_text: Oorspronkelijke tekst
     overall: Totaal
     overall_score: Totale score
     participants: Deelnemers
+    pearson: Pearson
+    pearson_assessment: Pearson Beoordeling
     permissions:
       aiArtifacts:
         export: Exporteren
@@ -913,6 +927,7 @@ nl:
     project_settings: Projectinstellingen
     projects: Projecten
     prompt: Prompt
+    psychometric: Psychometrisch
     question_center: Vragencentrum
     question_center_page_title: Vraagcentrum - Dashboard - Mercer Lighthouse
     question_editor_change_type: Type wijzigen
@@ -1037,6 +1052,8 @@ nl:
       subject_full_name_cont: Onderwerpnaam
       user_email_cont: E-mailadres van de gebruiker
       user_full_name_cont: Gebruikersnaam
+    saville: Saville
+    saville_assessment: Beoordeling Saville
     scheduling: Planning
     score: Score
     score_approval_not_allowed_to_approve: Je mag deze score niet goedkeuren.
@@ -1084,9 +1101,13 @@ nl:
     show_submenu: Submenu weergeven
     show_translated: Vertaling weergeven
     siem: SIEM
+    simulation: Simulatie
+    simulation_assessment: Simulatie Assessment
     skill_aliases: Vaardigheden aliassen
     skills: Vaardigheden
     skills_taxonomy: Taxonomie van vaardigheden
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Assessment
     skip_assessment_level_checks: Controles op beoordelingsniveau overslaan
     slot_name: Slot Name
     sms_histories: SMS-geschiedenis
@@ -1152,6 +1173,8 @@ nl:
     x_axis_interval_label: X-as interval
     y_axis_interval_label: Y-as interval
     year: Land
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activiteits-ID
+    yoodli_assessment: Yoodli-beoordeling
     yoodli_email_id: Yoodli Kandidaat E-mailadres
     yoodli_external_assessment_id: Yoodli Assessment ID

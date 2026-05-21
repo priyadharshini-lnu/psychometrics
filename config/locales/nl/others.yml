@@ -1100,36 +1100,9 @@ nl:
       title: Beoordeling Details
     edit: Bewerk
     fields:
-      category:
-        agile: AGIEL
-        assessor_form: Beoordelaarsformulier
-        case_study: Casestudies
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulier hoofdbeoordelaar
-        meeting: Vergadering
-        mettl: Mettl
-        organisational: Organisatie Enquêtes
-        pearson: Pearson
-        psychometric: Psychometrisch
-        saville: Saville
-        simulation: Simulatie
-        skillvue: Skillvue
-        threesixty: 360 Campagne
-        yoodli: Yoodli
       status:
         finished: Afgewerkt
         in_progress: In uitvoering
-      type:
-        common: TTE-beoordeling
-        hogan: Hogan
-        iiht: IIHT-beoordeling
-        mettl: Mettl Beoordeling
-        pearson: Pearson Beoordeling
-        saville: Beoordeling Saville
-        simulation: Simulatie Beoordeling
-        skillvue: Skillvue Assessment
-        yoodli: Yoodli-beoordeling
     flow:
       end_assessment_modal:
         custom_message: Aangepast bericht einde beoordeling
@@ -3272,13 +3245,6 @@ nl:
     fields:
       provider:
         custom_upload: Aangepast uploaden
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson

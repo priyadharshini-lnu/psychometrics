@@ -22,6 +22,7 @@ sr-Latn:
     admin_updated_successfully: Administrator '%{name}' je uspešno ažuriran
     admins: Admini
     advanced: Напредно
+    agile: GIBGIB
     ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
     ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта са најновијим зависностима.
     ai_artifacts: AI artefakti
@@ -137,6 +138,7 @@ sr-Latn:
     assessments_not_mhs: Свака процена мора бити типа MHS.
     assessments_reports: Procene i izveštaji
     assessor_dashboard: Kontrolna tabla procenjivača
+    assessor_form: Obrazac ocenjivača
     assessor_workshops: Centar za procenu
     assessors: Ocenjivači
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
@@ -221,6 +223,7 @@ sr-Latn:
     cancel: Откажи
     cancellation_and_rescheduling_disabled: Отказивање и поновно заказивање су онемогућени
     captcha: Капча верификација
+    case_study: Studije slučaja
     casual: Неформално
     cell_save_msg: Важеће измене се аутоматски сачувају чим напустите ћелију након уређивања.
     characters: ликови
@@ -230,6 +233,8 @@ sr-Latn:
     client_admins: Administratori klijenata
     clients: Klijentski prostor
     code_required: Kod je obavezan
+    common: TTE Procena
+    common_assessment: TTE Procena
     communication_center: Centar za komunikaciju
     communications: Komunikacije
     completed: Dovršeno
@@ -381,6 +386,8 @@ sr-Latn:
     idp_appearance_title: Наслов
     idp_plan_reset_success: Plan je uspešno resetovan
     idp_templates: IDP Šabloni
+    iiht: IIHT
+    iiht_assessment: IIHT procena
     import_ai_artifacts: Uvoz AI artefakata
     import_csv_assessment_group_error: 'Ред%{index}: корисник са адресом електронске поште %{email} је већ позван у ''%{workshopInviteName}'''
     import_csv_error: 'Red %{index}: korisnik sa e-poštom %{email} nije u ovoj kampanji'
@@ -409,6 +416,7 @@ sr-Latn:
     job_roles: Radne uloge
     keywords: Кључне речи
     keywords_placeholder: Унесите кључне речи раздвојене зарезима.
+    lead_assessor_form: Obrazac glavnog procenjivača
     learning_from_others: Kolaborativno učenje [20]
     level: Ниво
     level_apply: Примени
@@ -428,7 +436,10 @@ sr-Latn:
     media_files_label: Датотеке
     media_library: Медијска библиотека
     media_library_page_title: Медијска библиотека - контролна табла - Мерсер Лајтхаус
+    meeting: Sastanak
     messages: Poruke
+    mettl: METTL
+    mettl_assessment: Mettl Procena
     mhs: МХС
     mhs_assessment: МХС процена
     mhs_assessment_name: Назив процене MHS
@@ -466,10 +477,13 @@ sr-Latn:
     on_the_job: Na Poslu [70]
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Opcije
+    organisational: GIBGIB
     original_text: Оригинални текст
     overall: У целини
     overall_score: Укупна оцена
     participants: Učesnici
+    pearson: Pirson
+    pearson_assessment: Pirsonova procena
     permissions:
       aiArtifacts:
         export: Izvoz
@@ -913,6 +927,7 @@ sr-Latn:
     project_settings: Podešavanja projekta
     projects: Projekti
     prompt: Напомена
+    psychometric: Psihometrijski
     question_center: Centar za pitanja
     question_center_page_title: Центар за питања - контролна табла - Мерсер Лајтхаус
     question_editor_change_type: Променити тип
@@ -1037,6 +1052,8 @@ sr-Latn:
       subject_full_name_cont: Име адресата
       user_email_cont: Имејл корисника
       user_full_name_cont: Име корисника
+    saville: San-Tome i Prinsipi
+    saville_assessment: Savil Procena
     scheduling: Planiranje
     score: Резултат
     score_approval_not_allowed_to_approve: Немате дозволу да одобрите овај резултат.
@@ -1084,9 +1101,13 @@ sr-Latn:
     show_submenu: Prikaži pod-meni
     show_translated: Прикажи превод
     siem: SIEM
+    simulation: Simulacija
+    simulation_assessment: Simulacija Procena
     skill_aliases: Pseudonimi veština
     skills: Veљtine
     skills_taxonomy: Taksonomija veština
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Procena
     skip_assessment_level_checks: Прескочи системске провере на нивоу процене
     slot_name: Ime slota
     sms_histories: SMS istorije
@@ -1152,6 +1173,8 @@ sr-Latn:
     x_axis_interval_label: Интервал X-осе
     y_axis_interval_label: Y-оска интервала
     year: Država
+    yoodli: Joodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Joodli Procena
     yoodli_email_id: ID e-pošte kandidata za joodli
     yoodli_external_assessment_id: Ioodli Procena ID
