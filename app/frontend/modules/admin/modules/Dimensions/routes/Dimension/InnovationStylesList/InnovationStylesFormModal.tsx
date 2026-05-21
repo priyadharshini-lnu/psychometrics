@@ -82,7 +82,7 @@ export const InnovationStylesFormModal: React.FC<Props> = ({ close, innovation }
             name="name"
             label={I18n.t('common.column.name')}
             rules={[
-              { required: true, message: I18n.t('admin.name_required')}
+              { required: true, message: I18n.t('admin.name_required') },
             ]}
           >
             <Input />
