@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Button, Popover, Flex } from 'antd'
+import React, { useState, useEffect, useRef } from 'react'
+import {
+  Button, Popover, Select, RefSelectProps,
+} from 'antd'
 import styles from '../styles.less'
 import { AudioOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
@@ -20,28 +22,32 @@ const AudioDeviceControl: React.FC<AudioDeviceControlProps> = ({
 }) => {
   const [open, setOpen] = useState(false)
 
+  const selectRef = useRef<RefSelectProps>(null)
+
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => {
+        selectRef.current?.focus()
+      }, 100)
+    }
+  }, [open])
+
   const popoverContent = (
     <div className={styles.devicePopover}>
       <div className={styles.devicePopoverTitle}>{I18n.t('shared.select_microphone')}</div>
-      <Flex gap={4} vertical>
+      <Select
+        value={selectedMicId}
+        onChange={(value) => { onChangeMic(value); setOpen(false) }}
+        style={{ width: '100%' }}
+        ref={selectRef}
+        placement="topRight"
+      >
         {audioDevices.map(device => (
-          <Flex
-            key={device.deviceId}
-            className={`${styles.deviceOption} ${
-              selectedMicId === device.deviceId ? styles.deviceOptionSelected : ''
-            }`}
-            onClick={() => { onChangeMic(device.deviceId); setOpen(false) }}
-          >
-            <span className={styles.deviceCheckmark}>
-              {selectedMicId === device.deviceId ? '✓' : ''}
-            </span>
-            <span className={styles.deviceOptionLabel}>
-              {device.label || `Microphone ${device.deviceId.slice(0, 8)}`}
-            </span>
-          </Flex>
-
+          <Select.Option key={device.deviceId} value={device.deviceId}>
+            {device.label || `Microphone ${device.deviceId.slice(0, 8)}`}
+          </Select.Option>
         ))}
-      </Flex>
+      </Select>
     </div>
   )
 
@@ -67,8 +73,8 @@ const AudioDeviceControl: React.FC<AudioDeviceControlProps> = ({
             aria-label={I18n.t('enduser.select_audio_device')}
           >
             <div className={styles.deviceControlMain}>
-              <AudioOutlined style={{ fontSize: '1.2rem' }} />
-              <DownOutlined style={{ fontSize: '0.75rem' }} />
+              <AudioOutlined aria-hidden="true" style={{ fontSize: '1.2rem' }} />
+              <DownOutlined aria-hidden="true" style={{ fontSize: '0.75rem' }} />
             </div>
 
           </Button>

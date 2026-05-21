@@ -1730,10 +1730,8 @@ sk:
       permissions: Oprávnenia na webovú kameru a zvuk
       title: Pred začatím tohto hodnotenia je potrebné vykonať niekoľko kontrol vášho systému.
     video_check:
-      description: Kliknite na Spustiť nahrávanie a nahrajte sa pri čítaní nižšie uvedeného úryvku vlastným hlasom
       random_phrases:
         one: Som pripravený. Toto je testovací záznam na potvrdenie, či môj mikrofón a kamera fungujú správne.
-      title: Musíme sa uistiť, že váš systém dokáže nahrávať video
   common:
     actions:
       add: Pridať

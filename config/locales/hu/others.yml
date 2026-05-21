@@ -1730,10 +1730,8 @@ hu:
       permissions: Webkamera és hang engedélyek
       title: Az értékelés megkezdése előtt a rendszernek át kell esnie néhány ellenőrzésen.
     video_check:
-      description: Kattintson a Start Recording gombra, és vegye fel magát, miközben az alábbi szöveget olvassa a saját hangján
       random_phrases:
         one: Készen állok. Ez egy tesztfelvétel, hogy megbizonyosodjak arról, hogy a videóm és a mikrofonom megfelelően működik.
-      title: Biztosítanunk kell, hogy a rendszer képes legyen a videó rögzítésére
   common:
     actions:
       add: Add

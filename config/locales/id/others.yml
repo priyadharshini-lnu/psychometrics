@@ -1734,10 +1734,8 @@ id:
       permissions: Izin Webcam & Audio
       title: Sebelum memulai penilaian ini, sistem Anda perlu menjalani beberapa pemeriksaan.
     video_check:
-      description: Klik Mulai Merekam dan Rekam diri Anda sambil membaca bagian di bawah ini dengan suara Anda sendiri
       random_phrases:
         one: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.
-      title: Kami perlu memastikan sistem Anda dapat merekam video
   common:
     actions:
       add: Menambahkan

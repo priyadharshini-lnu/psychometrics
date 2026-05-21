@@ -1742,10 +1742,8 @@ pt:
       permissions: Permissões de câmara web e áudio
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
-      description: Clique em Iniciar Gravação e grave-se a si próprio enquanto lê o texto abaixo com a sua própria voz.
       random_phrases:
         one: Estou pronto. Esta é uma gravação de teste para confirmar se o meu microfone e câmara estão a funcionar corretamente.
-      title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
   common:
     actions:
       add: Adicionar

@@ -1730,10 +1730,8 @@ ro:
       permissions: Permisiuni pentru webcam și audio
       title: Înainte de a începe această evaluare, sistemul dvs. trebuie să fie supus unor verificări.
     video_check:
-      description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
       random_phrases:
         one: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
-      title: Trebuie să ne asigurăm că sistemul dvs. poate înregistra înregistrarea video
   common:
     actions:
       add: Adăugați

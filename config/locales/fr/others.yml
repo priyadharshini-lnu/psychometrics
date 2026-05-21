@@ -1730,10 +1730,8 @@ fr:
       permissions: Autorisations pour la webcam et l'audio
       title: Avant de commencer cette évaluation, votre système doit subir quelques vérifications.
     video_check:
-      description: Cliquez sur Démarrer l'enregistrement et enregistrez-vous en lisant le passage ci-dessous de votre propre voix
       random_phrases:
         one: Je suis prêt. Ceci est un enregistrement test pour confirmer que ma vidéo et mon microphone fonctionnent correctement.
-      title: Nous devons nous assurer que votre système peut enregistrer la vidéo
   common:
     actions:
       add: Ajouter

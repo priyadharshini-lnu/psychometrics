@@ -1730,10 +1730,8 @@ ko:
       permissions: 웹캠 및 오디오 권한
       title: 이 평가를 시작하기 전에 시스템을 몇 가지 점검해야 합니다.
     video_check:
-      description: 설명
       random_phrases:
         one: 준비됐습니다. 이 녹화는 제 비디오와 마이크가 제대로 작동하는지 확인하기 위한 테스트 녹화입니다.
-      title: 시스템이 동영상을 녹화할 수 있는지 확인해야 합니다
   common:
     actions:
       add: 추가

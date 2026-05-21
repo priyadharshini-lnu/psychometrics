@@ -49,6 +49,17 @@
   height: 100%;
   object-fit: cover;
   background-color: black;
+  border-radius: 8px 8px 0 0;
+
+  &:focus-visible {
+    outline: 3px solid var(--ant-primary-color);
+    outline-offset: -3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 .dummyMessageOverlay {
@@ -61,8 +72,10 @@
   display: flex;
   align-self: flex-end;
   text-align: center;
-  position: relative;
+  position: absolute;
+  bottom: 0;
   margin-bottom: 0.25rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .dummyMessage {
@@ -72,6 +85,7 @@
   flex: 1;
   align-items: center;
   color: white;
+  width: 100%;
 }
 
 @media (max-width: 480px) {
@@ -94,6 +108,10 @@
   justify-content: center;
   pointer-events: none;
   will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
 }
 
 .recordMessageOverlayEnter {
@@ -137,6 +155,13 @@
   pointer-events: auto;
   max-width: 60%;
   text-align: center;
+
+  button {
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
 }
 
 .overlay {
@@ -238,6 +263,11 @@
   backdrop-filter: blur(14px);
   color: white;
   height: 32px;
+
+  &:focus-within {
+    outline: 2px solid var(--ant-color-primary-border);
+    outline-offset: 2px;
+  }
 }
 
 .deviceControlMain {
@@ -354,6 +384,11 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 500;
+  border: 2px solid var(--ant-warning-color);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -371,7 +406,7 @@
 .playbackControlBar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   padding: 8px 12px;
   background: @mr-surface-dark;
   border-radius: 0 0 8px 8px;
@@ -390,7 +425,7 @@
 
   .playbackSeekbarThumb {
       opacity: 1;
-      transform: translateX(-50%) scale(1);
+      transform: translateX(-100%) scale(1);
     }
 }
 
@@ -403,9 +438,9 @@
 
 .playbackSeekbarThumb {
   position: absolute;
-  top: 50%;
-  width: 12px;
-  height: 12px;
+  top: 25%;
+  width: 16px;
+  height: 16px;
   background: white;
   border-radius: 50%;
   transform: translateX(-50%) scale(0);
@@ -433,6 +468,16 @@
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
   }
 }
 
@@ -496,7 +541,7 @@
 .stopButton {
   color: white !important;
   border: none !important;
-  height: 36px !important;
+  height: 32px !important;
   font-size: 1rem;
   padding: 1rem;
   background-color: var(--ant-error-color) !important;
@@ -524,6 +569,11 @@
   background-color: var(--ant-error-color);
   border-radius: 50%;
   animation: pulse 1.5s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    opacity: 0.6;
+  }
 }
 
 // Countdown Overlay
@@ -545,6 +595,10 @@
   font-weight: 700;
   color: white;
   animation: countdownAnim 1s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
 }
 
 // Inline Timer in Floating Bar
@@ -565,7 +619,7 @@
 }
 
 .timerUrgent {
-  color: var(--ant-danger-color) !important;
+  color: var(--ant-error-color) !important;
 }
 
 .timerSeparator {
@@ -589,4 +643,25 @@
   background: var(--ant-primary-3);
   transition: none;
   border-radius: 0 2px 2px 0;
+}
+
+.videoPlayingStatusIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
 }

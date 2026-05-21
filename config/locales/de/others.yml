@@ -1744,10 +1744,8 @@ de:
       permissions: Webcam &amp; Audio Berechtigungen
       title: Bevor Sie mit dieser Bewertung beginnen, muss Ihr System einigen Prüfungen unterzogen werden.
     video_check:
-      description: Klicken Sie auf Aufnahme starten und nehmen Sie sich selbst auf, während Sie den folgenden Text mit Ihrer eigenen Stimme lesen
       random_phrases:
         one: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.
-      title: Wir müssen sicherstellen, dass Ihr System das Video aufzeichnen kann
   common:
     actions:
       add: Hinzufügen
