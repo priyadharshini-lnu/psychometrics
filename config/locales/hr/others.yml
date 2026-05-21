@@ -1730,10 +1730,8 @@ hr:
       permissions: Dozvole za kameru i zvuk
       title: Prije početka ove procjene, Vaš sustav mora proći kroz neke provjere.
     video_check:
-      description: Kliknite na "Pokrenuti snimanje" i snimite se dok čitate donji odlomak naglas
       random_phrases:
         one: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
-      title: Moramo osigurati da Vaš sustav može snimati video
   common:
     actions:
       add: Dodati

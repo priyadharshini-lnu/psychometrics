@@ -1739,10 +1739,8 @@ sl:
       permissions: Dovoljenja za kamero in zvok
       title: Pred začetkom ocenjevanja moramo preveriti, če vaš sistem brezhibno deluje.
     video_check:
-      description: Kliknite »Začni snemanje« in se posnemite med branjem spodnjega besedila
       random_phrases:
         one: Sem pripravljen. To je testni posnetek za potrditev, ali moj mikrofon in kamera delujeta pravilno.
-      title: Preveriti moramo, ali vaš sistem omogoča snemanje videov
   common:
     actions:
       add: Dodaj

@@ -101,7 +101,7 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 12,
+              gap: 8,
               alignSelf: 'flex-start',
               justifyContent: 'flex-start',
               flex: 1,
@@ -133,7 +133,7 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
                 onClick={onStopRecording}
                 icon={<StopOutlined />}
               >
-                {!isMobile && I18n.t('shared.stop', { defaultValue: 'Stop' })}
+                {!isMobile && I18n.t('enduser.stop')}
               </Button>
             </div>
 

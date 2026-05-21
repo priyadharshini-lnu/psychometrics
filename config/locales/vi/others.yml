@@ -1724,10 +1724,8 @@ vi:
       permissions: Quyền sử dụng Webcam và Âm thanh
       title: Trước khi bắt đầu đánh giá này, hệ thống của bạn cần phải trải qua một số bước kiểm tra.
     video_check:
-      description: Nhấp vào Bắt đầu ghi âm và tự ghi âm khi đọc đoạn văn bên dưới bằng giọng nói của bạn
       random_phrases:
         one: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
-      title: Chúng tôi cần đảm bảo hệ thống của bạn có thể ghi lại video
   common:
     actions:
       add: Thêm vào

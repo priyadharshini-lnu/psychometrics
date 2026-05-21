@@ -1740,10 +1740,8 @@ zh:
       permissions: 摄像头和音频权限
       title: 在开始此评估之前，你的系统需要进行一些检查。
     video_check:
-      description: 点击“开始录音”，用朗读下面的文章
       random_phrases:
         one: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。
-      title: 我们需要确保你的系统可以录制视频
   common:
     actions:
       add: 添加

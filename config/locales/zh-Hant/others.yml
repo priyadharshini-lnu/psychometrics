@@ -1730,10 +1730,8 @@ zh-Hant:
       permissions: 網路攝影機與音訊權限
       title: 在開始評估之前，您的系統需要進行一些檢查。
     video_check:
-      description: 按一下「開始錄音」，然後用您自己的聲音朗讀以下段落時錄音
       random_phrases:
         one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
-      title: 我們需要確保您的系統可以錄製視訊
   common:
     actions:
       add: 新增

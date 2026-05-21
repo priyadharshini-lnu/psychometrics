@@ -1730,10 +1730,8 @@ it:
       permissions: Autorizzazioni webcam e audio
       title: Prima di iniziare questa valutazione, il sistema deve essere sottoposto ad alcuni controlli.
     video_check:
-      description: Cliccate su Avvia registrazione e registrate voi stessi mentre leggete il brano sottostante con la vostra voce
       random_phrases:
         one: Sono pronto. Questa è una registrazione di prova per assicurarmi che il mio video e il mio microfono funzionino correttamente.
-      title: Dobbiamo assicurarci che il vostro sistema sia in grado di registrare il video
   common:
     actions:
       add: Aggiungi

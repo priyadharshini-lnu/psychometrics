@@ -1733,10 +1733,8 @@ sr-Latn:
       permissions: Dozvole za veb kameru i audio
       title: Pre nego što započnete ovu procenu, vaš sistem mora da prođe neke provere.
     video_check:
-      description: Kliknite na Počni snimanje i snimite se dok čitate donji pasus svojim glasom
       random_phrases:
         one: Sem spreman. Ovo je testni snimak da potvrdim da li moj mikrofon i kamera ispravno rade.
-      title: Moramo da obezbedimo vaš sistem može da snima video
   common:
     actions:
       add: Dodaj

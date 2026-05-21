@@ -1734,10 +1734,8 @@ pl:
       permissions: Uprawnienia do kamery internetowej i dźwięku
       title: Przed rozpoczęciem tej oceny system musi przejść kilka testów.
     video_check:
-      description: Kliknij przycisk "Rozpocznij nagrywanie" i nagraj siebie, czytając poniższy fragment własnym głosem
       random_phrases:
         one: Jestem gotowy. To nagranie testowe, które ma potwierdzić, czy mój mikrofon i kamera działają prawidłowo.
-      title: Musimy upewnić się, że system może nagrywać wideo
   common:
     actions:
       add: Dodaj

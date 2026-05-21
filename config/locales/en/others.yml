@@ -1742,10 +1742,8 @@ en:
       permissions: Webcam & Audio Permissions
       title: Before starting this assessment, your system needs to undergo some checks.
     video_check:
-      description: Click on Start Recording and Record yourself while reading the below passage in your own voice
       random_phrases:
         one: I am ready. This is a test recording to confirm that my video and microphone are working properly.
-      title: We need to ensure your system can record the video
   common:
     actions:
       add: Add

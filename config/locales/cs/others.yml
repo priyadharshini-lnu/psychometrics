@@ -1742,10 +1742,8 @@ cs:
       permissions: Oprávnění k webové kameře a zvuku
       title: Před zahájením tohoto hodnocení je třeba systém podrobit několika kontrolám.
     video_check:
-      description: Klikněte na Spustit nahrávání a nahrajte svůj hlas při čtení níže uvedené pasáže
       random_phrases:
         one: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.
-      title: Musíme se ujistit, že váš systém dokáže nahrávat video
   common:
     actions:
       add: Přidat

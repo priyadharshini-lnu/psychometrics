@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
-import { Button, Popover, Flex } from 'antd'
+import React, {
+  useEffect, useState, useRef,
+} from 'react'
+import {
+  Button, Popover, Select, RefSelectProps,
+} from 'antd'
 import styles from '../styles.less'
 import { VideoCameraOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
@@ -20,28 +24,32 @@ const CameraDeviceControl: React.FC<CameraDeviceControlProps> = ({
 }) => {
   const [open, setOpen] = useState(false)
 
+  const selectRef = useRef<RefSelectProps>(null)
+
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => {
+        selectRef.current?.focus()
+      }, 100)
+    }
+  }, [open])
+
   const popoverContent = (
     <div className={styles.devicePopover}>
       <div className={styles.devicePopoverTitle}>{I18n.t('shared.select_camera')}</div>
-      <Flex gap={4} vertical>
+      <Select
+        value={selectedCameraId}
+        onChange={(value) => { onChangeCamera(value); setOpen(false) }}
+        style={{ width: '100%' }}
+        ref={selectRef}
+        placement="topRight"
+      >
         {videoDevices.map(device => (
-          <Flex
-            key={device.deviceId}
-            className={`${styles.deviceOption} ${
-              selectedCameraId === device.deviceId ? styles.deviceOptionSelected : ''
-            }`}
-            onClick={() => { onChangeCamera(device.deviceId); setOpen(false) }}
-          >
-            <span className={styles.deviceCheckmark}>
-              {selectedCameraId === device.deviceId ? '✓' : ''}
-            </span>
-            <span className={styles.deviceOptionLabel}>
-              {device.label || `${I18n.t('shared.camera')} ${device.deviceId.slice(0, 8)}`}
-            </span>
-          </Flex>
-
+          <Select.Option key={device.deviceId} value={device.deviceId}>
+            {device.label || `${I18n.t('shared.camera')} ${device.deviceId.slice(0, 8)}`}
+          </Select.Option>
         ))}
-      </Flex>
+      </Select>
     </div>
   )
 
@@ -67,8 +75,8 @@ const CameraDeviceControl: React.FC<CameraDeviceControlProps> = ({
             aria-label={I18n.t('shared.select_camera')}
           >
             <div className={styles.deviceControlMain}>
-              <VideoCameraOutlined style={{ fontSize: '1.2rem' }} />
-              <DownOutlined style={{ fontSize: '0.75rem' }} />
+              <VideoCameraOutlined aria-hidden="true" style={{ fontSize: '1.2rem' }} />
+              <DownOutlined aria-hidden="true" style={{ fontSize: '0.75rem' }} />
             </div>
 
           </Button>

@@ -343,6 +343,9 @@ const VideoCheckComponent: React.FC<Props> = ({
         mediaStreamRef.current.getTracks().forEach(track => track.stop())
         mediaStreamRef.current = null
       }
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0
+      }
     } catch (e) {
       setCheckStatus(CHECK_STATUS.failed)
       dispatch(updateAccess(CheckListStatus.Failed))

@@ -1744,10 +1744,8 @@ zh-HK:
       permissions: 網路攝影機與音訊權限
       title: 在開始此評估之前，您的系統需要進行一些檢查。
     video_check:
-      description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
       random_phrases:
         one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
-      title: 我們需要確保您的系統可以錄影
   common:
     actions:
       add: 添加
