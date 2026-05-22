@@ -28,7 +28,7 @@ module Microsite
 
         next unless lighthouse_question_id
 
-        lighthouse_question = questions_by_id[lighthouse_question_id]
+        lighthouse_question = questions_by_id[lighthouse_question_id.to_i]
         next unless lighthouse_question
 
         canonical_answer = build_canonical_answer(raw_answer, lighthouse_question)
