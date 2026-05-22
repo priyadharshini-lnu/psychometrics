@@ -22,6 +22,7 @@ class UsersResult < ApplicationRecord
   has_one :mettl_user_assessment, through: :user_assessment
   has_one :simulation_user_assessment, through: :user_assessment
   has_one :skillvue_user_assessment, through: :user_assessment
+  has_one :microsite_user_assessment, through: :user_assessment
   has_one :yoodli_user_assessment, through: :user_assessment
 
   has_one :agile, through: :assessment

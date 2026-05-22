@@ -328,6 +328,7 @@ en:
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     enter_description: Enter description
     enter_name: Enter name
+    enter_question_id: Enter Question ID
     error: Error
     estimated_tokens: tokens (estimated)
     evaluation_status: Evaluation Status
@@ -421,6 +422,7 @@ en:
     import_users: Import Users
     internal: Internal
     invalid_csv_header: CSV file contains invalid headers.
+    invalid_question_ids: 'Question IDs not found in this assessment: %{ids}'
     job_roles: Job Roles
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
@@ -434,6 +436,8 @@ en:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    lighthouse_question: Lighthouse Question
+    lighthouse_question_id: Lighthouse Question ID
     linked_assessments: Linked Assessments
     low: Low
     maintenance: Maintenance
@@ -456,6 +460,10 @@ en:
     mhs_external_assessment_id: Mhs Assessment ID
     mhs_report_id: MHS Report ID
     mhs_session_id: Mhs Session ID
+    microsite: Microsite
+    microsite_assessment: Microsite Assessment
+    microsite_assessment_name: Microsite Assessment Name
+    microsite_question_id: Microsite Question ID
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
@@ -471,6 +479,7 @@ en:
     new_folder: New folder
     no_file_selected: No file selected
     no_notifications: No Notifications
+    no_question_mappings: No question mappings available
     no_status: No Status
     norm_editor_numeric_value_error: Only numeric values are allowed (integers or decimals).
     norms: Norms
@@ -947,6 +956,7 @@ en:
     question_editor_enable_transcription: Enable transcription
     question_editor_preview_question: Preview Question
     question_editor_validation_type: Validation type
+    question_mapping: Question Mapping
     question_randomization: Question Randomization
     question_type_audio_response: Audio Response
     question_type_constant_sum: Constant Sum
@@ -1100,6 +1110,7 @@ en:
     select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level
+    select_question: Search question by name or ID
     select_start_time: Select Start Time
     selective_proctoring: Selective Proctoring
     send_email: Send email

@@ -8,6 +8,7 @@ import { SimulationFields } from './SimulationFields'
 import { SkillvueFields } from './SkillvueFields'
 import { YoodliFields } from './YoodliFields'
 import { MhsFields } from './MhsFields'
+import { MicrositeFields } from './MicrositeFields'
 
 export const ExternalAssessmentFields = {
   hogan: HoganFields,
@@ -19,4 +20,5 @@ export const ExternalAssessmentFields = {
   simulation: SimulationFields,
   skillvue: SkillvueFields,
   yoodli: YoodliFields,
+  microsite: MicrositeFields,
 }

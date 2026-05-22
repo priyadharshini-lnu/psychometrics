@@ -1,7 +1,6 @@
 import {
   Button, Modal, Row, Tooltip, Typography,
 } from 'antd'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 
@@ -23,36 +22,55 @@ const JSONViewCopy = ({
   title,
   onCopy,
   onClose,
-}: Props) => (
-  <Modal
-    title={(
-      <Row align="middle">
-        <Typography.Title level={5} className="mb-0 mt-0">{title}</Typography.Title>
-      </Row>
-    )}
-    open={show}
-    onCancel={() => onClose?.()}
-    footer={null}
-    destroyOnHidden
-  >
-    <div className={styles.body}>
-      <ReactCodemirror
-        value={JSON.stringify(json, null, 2)}
-        mode="json"
-        readOnly
-        lineWrapping
-      />
-      <CopyToClipboard
-        text={JSON.stringify(json)}
-        onCopy={() => onCopy?.()}
-        className={styles.copy}
-      >
+}: Props) => {
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(json))
+      onCopy?.()
+    } catch {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea')
+      textArea.value = JSON.stringify(json)
+      textArea.style.position = 'fixed'
+      textArea.style.left = '-9999px'
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+      onCopy?.()
+    }
+  }
+
+  return (
+    <Modal
+      title={(
+        <Row align="middle">
+          <Typography.Title level={5} className="mb-0 mt-0">{title}</Typography.Title>
+        </Row>
+      )}
+      open={show}
+      onCancel={() => onClose?.()}
+      footer={null}
+      destroyOnHidden
+    >
+      <div className={styles.body}>
+        <ReactCodemirror
+          value={JSON.stringify(json, null, 2)}
+          mode="json"
+          readOnly
+          lineWrapping
+        />
         <Tooltip title={I18n.t('common.actions.copy')}>
-          <Button type="text" icon={<CopyOutlined />} />
+          <Button
+            type="text"
+            icon={<CopyOutlined />}
+            onClick={handleCopy}
+            className={styles.copy}
+          />
         </Tooltip>
-      </CopyToClipboard>
-    </div>
-  </Modal>
-)
+      </div>
+    </Modal>
+  )
+}
 
 export default JSONViewCopy

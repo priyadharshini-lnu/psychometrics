@@ -100,4 +100,28 @@ describe Integration, type: :model do
       non_skillvue_integration.update!(name: 'hogan')
     end
   end
+
+  describe 'trigger_fetch_microsite_assessments_job' do
+    it 'enqueues Microsite::FetchAssessmentsJob when creating a microsite integration' do
+      expect(Microsite::FetchAssessmentsJob).to receive(:perform_later).with(an_instance_of(Integer))
+
+      create(:integration, :microsite)
+    end
+
+    it 'enqueues Microsite::FetchAssessmentsJob when updating a microsite integration' do
+      microsite_integration = create(:integration, :microsite)
+
+      expect(Microsite::FetchAssessmentsJob).to receive(:perform_later).with(microsite_integration.project_id)
+
+      microsite_integration.update!(config: { 'api_key' => Base64.encode64(Encryptor.encrypt('new-key')) })
+    end
+
+    it 'does not enqueue Microsite::FetchAssessmentsJob for non-microsite integration' do
+      non_microsite_integration = create(:integration, :hogan_integration)
+
+      expect(Microsite::FetchAssessmentsJob).not_to receive(:perform_later)
+
+      non_microsite_integration.update!(name: 'hogan')
+    end
+  end
 end

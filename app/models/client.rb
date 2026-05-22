@@ -243,6 +243,10 @@ class Client < ApplicationRecord
     integrations.skillvue.first&.skillvue_config
   end
 
+  def microsite_config
+    integrations.microsite.first&.microsite_config
+  end
+
   def saml_setting
     super || build_saml_setting
   end

@@ -27,6 +27,7 @@ class UserAssessment < ApplicationRecord
   has_one :mettl_user_assessment, dependent: :destroy
   has_one :simulation_user_assessment, dependent: :destroy
   has_one :skillvue_user_assessment, dependent: :destroy
+  has_one :microsite_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
   has_one :client, through: :project
   has_one :meeting_room, as: :meetable, dependent: :destroy
@@ -57,7 +58,7 @@ class UserAssessment < ApplicationRecord
   enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?,
-           :mhs?, :assessor_form?,
+           :mhs?, :microsite?, :assessor_form?,
            :has_ai_questions?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
   delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
@@ -146,6 +147,7 @@ class UserAssessment < ApplicationRecord
   after_commit :publish_assessment_timeout_webhook, if: -> { status_previously_changed? && timed_out? }
 
   after_create_commit -> { publish_assessment_assigned_webhook }
+  after_create_commit :trigger_microsite_registration, if: -> { assessment&.microsite? }
   after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
   after_commit -> { finish_proctoring_session },
                if: proc { status_previously_changed? && deemed_completed? }, on: %i[update]
@@ -504,6 +506,10 @@ class UserAssessment < ApplicationRecord
 
   def publish_assessment_timeout_webhook
     UserAssessments::Webhook.new(self).publish_assessment_timeout
+  end
+
+  def trigger_microsite_registration
+    Microsite::RegisterParticipantJob.perform_later(id)
   end
 
   def should_send_workshop_invite_email?

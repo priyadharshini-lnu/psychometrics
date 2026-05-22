@@ -110,6 +110,7 @@ en:
     media_recorder_api_support: MediaRecorder API Support
     microphone_access_blocked: Microphone access was denied or blocked by your browser. Please check your browser permissions.
     microphone_check_passed: Microphone check passed successfully
+    microsite_assessment_external: This assessment must be completed on an external platform.
     min_word_limit: Must be at least %{min} words
     minimum_speed_requirements: Minimum Download Speed of %{minimum_download_speed} Mbps and Minimum Upload Speed of %{minimum_upload_speed} Mbps required for this campaign.
     minute: minute

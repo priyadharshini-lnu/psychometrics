@@ -16,6 +16,7 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   model_hint model: 'assessments/skillvue', resource: :assessment
   model_hint model: 'assessments/yoodli', resource: :assessment
   model_hint model: 'assessments/mhs', resource: :assessment
+  model_hint model: 'assessments/microsite', resource: :assessment
 
   class_attribute :_audit_log_config
 

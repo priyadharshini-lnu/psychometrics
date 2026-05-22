@@ -109,7 +109,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
           id="type"
           width={300}
           sorter
-          render={assessment => I18n.t(`admin.${assessment.type}_assessment`)}
+          render={assessment => (I18n.t(`admin.${assessment.type}_assessment`))}
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.category')}
@@ -123,7 +123,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
             }))
           }
           filteredValue={collectionFilteredValue}
-          render={assessment => I18n.t(`admin.${assessment.category}`)}
+          render={assessment => (I18n.t(`admin.${assessment.category}`))}
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.updated_at')}
@@ -162,7 +162,7 @@ const AssessmentId = ({ assessment }: { assessment: Assessment }) => {
     )
   }
 
-  if (assessment.type === 'common') {
+  if (assessment.type === 'common' || assessment.type === 'microsite') {
     return (
       <Button
         type="link"

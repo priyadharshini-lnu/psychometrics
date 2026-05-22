@@ -21,7 +21,8 @@ module Administration
           Assessment::TYPES[:simulation] => :build_simulation,
           Assessment::TYPES[:skillvue] => :build_skillvue,
           Assessment::TYPES[:yoodli] => :build_yoodli,
-          Assessment::TYPES[:mhs] => :build_mhs
+          Assessment::TYPES[:mhs] => :build_mhs,
+          Assessment::TYPES[:microsite] => :build_microsite
         }
 
         method = type_to_method[assessment.type]
@@ -81,6 +82,24 @@ module Administration
 
       def build_mhs
         { assessment_id: raw_external_settings[:assessment_id] }
+      end
+
+      def build_microsite
+        assessment_id = raw_external_settings[:assessment_id]
+        question_mappings =
+          if raw_external_settings[:question_mappings]
+            JSON.parse(raw_external_settings[:question_mappings])
+          else
+            default_question_mappings(assessment_id)
+          end
+        { assessment_id: assessment_id, question_mappings: question_mappings }.compact
+      end
+
+      def default_question_mappings(product_id)
+        catalog = MicrositeAssessment.find_by(product_id: product_id)
+        return unless catalog&.metadata&.dig('questions')
+
+        catalog.metadata['questions'].keys.index_with { |_| nil }
       end
     end
   end

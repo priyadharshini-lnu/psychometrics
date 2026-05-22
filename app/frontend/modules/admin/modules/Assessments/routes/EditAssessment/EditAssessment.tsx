@@ -16,9 +16,9 @@ export const EditAssessment: React.FC = () => {
   const { fetchSingle, getResource, memberAction } = useResources<Assessment>('assessments', {
     responseType: AssessmentTR,
     apiConfig: {
-      include: ['dimension', 'owner', 'project', 'linked_assessment'],
+      include: ['dimension', 'owner', 'project', 'linked_assessment', 'questions'],
       include_resource_meta: ['permissions'],
-      fields: { dimensions: ['name'], users: ['name'] },
+      fields: { dimensions: ['name'], users: ['name'], questions: ['name'] },
     },
   })
 

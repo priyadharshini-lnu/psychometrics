@@ -34,6 +34,11 @@ module Administration
         render json: { message: I18n.t('administration.integrations.load_skillvue_success') }, status: :ok
       end
 
+      def load_microsite_assessments
+        Microsite::FetchAssessmentsJob.perform_later(params[:project_id])
+        render json: { message: I18n.t('administration.integrations.load_microsite_success') }, status: :ok
+      end
+
       def update
         form = form_class.from_params(resource_params).with_context(project: project, integration: resource)
         if form.valid?
@@ -60,7 +65,8 @@ module Administration
           'hogan' => ::Integrations::HoganForm,
           'mettl' => ::Integrations::MettlForm,
           'skillvue' => ::Integrations::SkillvueForm,
-          'yoodli' => ::Integrations::YoodliForm
+          'yoodli' => ::Integrations::YoodliForm,
+          'microsite' => ::Integrations::MicrositeForm
         }[resource_params[:name]]
       end
 

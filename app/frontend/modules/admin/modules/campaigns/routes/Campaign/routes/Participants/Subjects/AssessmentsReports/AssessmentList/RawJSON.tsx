@@ -4,7 +4,6 @@ import {
 import {
   FC, useEffect, useState,
 } from 'react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import _ from 'lodash'
 import { CopyOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
@@ -12,10 +11,11 @@ import { useResources } from '~/hooks/useResources'
 import { JSONViewCopy } from '~/glint'
 
 
-type JSONType = 'answers' | 'scoring' | 'externalResults'
+type JSONType = 'answers' | 'scoring' | 'externalResults' | 'micrositeRawResponse'
 interface Props {
     I18n: I18nInterface
     usersResultId?: number
+    micrositeRawResponse?: Record<string, unknown> | null
 }
 
 interface Res {
@@ -30,7 +30,7 @@ interface Res {
   }
 }
 
-const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
+const RawJSON: FC<Props> = ({ I18n, usersResultId, micrositeRawResponse }) => {
   const [codeModal, setCodeModal] = useState<{
     type: JSONType | null,
     title?: string
@@ -58,19 +58,30 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
     }
   }, [usersResultId])
 
-  const getCode = (type: JSONType) => ((usersResults[type] && !_.isEmpty(usersResults[type]))
-    ? usersResults[type]
-    : I18n.t('user_assessment.drawer.no_data'))
+  const getCode = (type: JSONType) => {
+    if (type === 'micrositeRawResponse') {
+      return (micrositeRawResponse && !_.isEmpty(micrositeRawResponse))
+        ? micrositeRawResponse
+        : I18n.t('user_assessment.drawer.no_data')
+    }
+    return (usersResults[type] && !_.isEmpty(usersResults[type]))
+      ? usersResults[type]
+      : I18n.t('user_assessment.drawer.no_data')
+  }
+
+  const handleCopy = async (type: JSONType, name = '') => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(getCode(type)))
+      message.info(I18n.t('user_assessment.drawer.copied', { name }))
+    } catch {
+      message.error('Failed to copy')
+    }
+  }
 
   const renderCopyControl = (type: JSONType, name = '') => (
-    <CopyToClipboard
-      text={JSON.stringify(getCode(type))}
-      onCopy={() => message.info(I18n.t('user_assessment.drawer.copied', { name }))}
-    >
-      <Tooltip title={I18n.t('user_assessment.drawer.copy')}>
-        <Button type="text" icon={<CopyOutlined />} />
-      </Tooltip>
-    </CopyToClipboard>
+    <Tooltip title={I18n.t('user_assessment.drawer.copy')}>
+      <Button type="text" icon={<CopyOutlined />} onClick={() => handleCopy(type, name)} />
+    </Tooltip>
   )
 
   const renderCodeModal = () => (codeModal.type ? (
@@ -98,6 +109,8 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
 
   if (!usersResults.meta?.permissions.show) return null
 
+  const hasMicrositeRawResponse = micrositeRawResponse && !_.isEmpty(micrositeRawResponse)
+
   return (
     <>
       <Descriptions
@@ -108,7 +121,7 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
       >
         <Descriptions.Item
           label={I18n.t('common.column.json.answer')}
-          key="modified_by"
+          key="answers"
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
@@ -117,7 +130,7 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
         </Descriptions.Item>
         <Descriptions.Item
           label={I18n.t('common.column.json.scoring')}
-          key="modified_by"
+          key="scoring"
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
@@ -126,13 +139,24 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId }) => {
         </Descriptions.Item>
         <Descriptions.Item
           label={I18n.t('common.column.json.external_result')}
-          key="modified_by"
+          key="externalResults"
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
         >
           {renderViewCopyControls('externalResults', I18n.t('common.column.json.external_result'))}
         </Descriptions.Item>
+        {hasMicrositeRawResponse && (
+          <Descriptions.Item
+            label={I18n.t('common.column.json.microsite_raw_response')}
+            key="micrositeRawResponse"
+            className="va-t w-30"
+            labelStyle={{ width: '40%' }}
+            contentStyle={{ width: '60%' }}
+          >
+            {renderViewCopyControls('micrositeRawResponse', I18n.t('common.column.json.microsite_raw_response'))}
+          </Descriptions.Item>
+        )}
       </Descriptions>
       {renderCodeModal()}
     </>

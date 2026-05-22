@@ -7,6 +7,7 @@ export const ExternalSettingsTR = t.type({
   assessmentId: t.union([t.string, t.null, t.undefined]),
   normId: t.union([t.string, t.null, t.undefined]),
   scheduleConfig: t.union([t.string, t.null, t.undefined]),
+  questionMappings: t.union([t.string, t.null, t.undefined]),
   assessmentName: t.union([t.string, t.null, t.undefined]),
   normName: t.union([t.string, t.null, t.undefined]),
 })
@@ -70,6 +71,12 @@ export const AssessmentTR = t.type({
       name: t.string,
     }),
     t.undefined, t.null]),
+  questions: t.union([
+    t.array(t.type({
+      id: t.string,
+      name: t.string,
+    })),
+    t.undefined]),
 })
 
 
@@ -122,6 +129,7 @@ export const TYPES = [
   'simulation',
   'skillvue',
   'yoodli',
+  'microsite',
 ]
 
 export const Schema = {
@@ -138,6 +146,9 @@ export const Schema = {
     },
     linkedAssessment: {
       type: 'assessments',
+    },
+    questions: {
+      type: 'questions',
     },
   },
 }

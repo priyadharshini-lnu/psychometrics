@@ -25,6 +25,7 @@ module UsersResults
       recompute_skillvue_assessment if user_assessment.skillvue?
       recompute_yoodli_assessment if user_assessment.yoodli?
       recompute_mhs_assessment if user_assessment.mhs?
+      recompute_microsite_assessment if user_assessment.microsite?
 
       save_scores = UserAssessments::SaveScores.new(
         user_assessment, current_user,
@@ -67,6 +68,25 @@ module UsersResults
     def recompute_mhs_assessment
       user_assessment.user_reports.find_each do |user_report|
         Mhs::SaveReportsAndScoresJob.perform_later(user_assessment, [user_report])
+      end
+    end
+
+    def recompute_microsite_assessment
+      microsite_user_assessment = user_assessment.microsite_user_assessment
+      return unless microsite_user_assessment
+
+      Microsite::FetchResults.call(microsite_user_assessment) do |result|
+        result.on(:ok) do |results|
+          Microsite::SaveAnswers.call(
+            microsite_user_assessment,
+            raw_answers: results[:responses],
+            completed_at: results[:completed_at]
+          )
+        end
+
+        result.on(:failed) do |error|
+          Rails.logger.error("Microsite rescore failed: #{error}")
+        end
       end
     end
   end

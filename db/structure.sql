@@ -18,13 +18,6 @@ CREATE SCHEMA bi_models;
 
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -5136,6 +5129,77 @@ ALTER SEQUENCE public.mhs_user_assessments_id_seq OWNED BY public.mhs_user_asses
 
 
 --
+-- Name: microsite_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.microsite_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    name character varying NOT NULL,
+    metadata jsonb,
+    project_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: microsite_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.microsite_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: microsite_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.microsite_assessments_id_seq OWNED BY public.microsite_assessments.id;
+
+
+--
+-- Name: microsite_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.microsite_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    participant_id character varying,
+    url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    registration_status integer DEFAULT 0 NOT NULL,
+    error_message text,
+    answers jsonb DEFAULT '{}'::jsonb NOT NULL,
+    completed_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: microsite_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.microsite_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: microsite_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.microsite_user_assessments_id_seq OWNED BY public.microsite_user_assessments.id;
+
+
+--
 -- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -10220,6 +10284,20 @@ ALTER TABLE ONLY public.mhs_user_assessments ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: microsite_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.microsite_assessments ALTER COLUMN id SET DEFAULT nextval('public.microsite_assessments_id_seq'::regclass);
+
+
+--
+-- Name: microsite_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.microsite_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.microsite_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12038,6 +12116,22 @@ ALTER TABLE ONLY public.mettl_user_assessments
 
 ALTER TABLE ONLY public.mhs_user_assessments
     ADD CONSTRAINT mhs_user_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: microsite_assessments microsite_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.microsite_assessments
+    ADD CONSTRAINT microsite_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: microsite_user_assessments microsite_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.microsite_user_assessments
+    ADD CONSTRAINT microsite_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -15294,6 +15388,34 @@ CREATE INDEX index_mhs_user_assessments_on_user_assessment_id ON public.mhs_user
 
 
 --
+-- Name: index_microsite_assessments_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_microsite_assessments_on_product_id ON public.microsite_assessments USING btree (product_id);
+
+
+--
+-- Name: index_microsite_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_microsite_assessments_on_project_id ON public.microsite_assessments USING btree (project_id);
+
+
+--
+-- Name: index_microsite_user_assessments_on_participant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_microsite_user_assessments_on_participant_id ON public.microsite_user_assessments USING btree (participant_id);
+
+
+--
+-- Name: index_microsite_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_microsite_user_assessments_on_user_assessment_id ON public.microsite_user_assessments USING btree (user_assessment_id);
+
+
+--
 -- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17935,6 +18057,14 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: microsite_user_assessments fk_rails_338c864fb2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.microsite_user_assessments
+    ADD CONSTRAINT fk_rails_338c864fb2 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: libraries fk_rails_33d493c854; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19028,6 +19158,14 @@ ALTER TABLE ONLY public.threesixty_email_templates
 
 ALTER TABLE ONLY public.assigns_reports
     ADD CONSTRAINT fk_rails_9418a5a870 FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: microsite_assessments fk_rails_95ef37ace3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.microsite_assessments
+    ADD CONSTRAINT fk_rails_95ef37ace3 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -20381,22 +20519,26 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260513115126'),
+('20260513115038'),
+('20260513115037'),
+('20260512165457'),
 ('20260511092923'),
 ('20260507091734'),
-('20260212131448'),
 ('20260504120000'),
-('20260417093000'),
 ('20260424120000'),
-('20260331100000'),
+('20260417093000'),
 ('20260401053041'),
 ('20260401045303'),
 ('20260401031414'),
 ('20260401030425'),
-('20260320100000'),
+('20260331100000'),
 ('20260325000001'),
 ('20260323084342'),
 ('20260320102153'),
+('20260320100000'),
 ('20260311085954'),
+('20260310164641'),
 ('20260306120000'),
 ('20260306090626'),
 ('20260305110830'),
@@ -20411,6 +20553,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260213140414'),
 ('20260213112719'),
 ('20260213095708'),
+('20260212131448'),
 ('20260212093958'),
 ('20260212060354'),
 ('20260211083300'),
@@ -20429,7 +20572,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260124061828'),
 ('20260123131309'),
 ('20260123090109'),
-('20260310164641'),
 ('20260123071239'),
 ('20260122074311'),
 ('20260122034210'),
@@ -20440,6 +20582,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260119030942'),
 ('20260115095847'),
 ('20260113191036'),
+('20260113121455'),
 ('20260113120000'),
 ('20260113071404'),
 ('20260112091820'),
@@ -20448,7 +20591,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260106133315'),
 ('20260102064238'),
 ('20260102051528'),
-('20260113121455'),
 ('20251217070713'),
 ('20251216163732'),
 ('20251215073428'),
@@ -21416,3 +21558,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

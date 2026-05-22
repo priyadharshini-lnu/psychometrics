@@ -94,7 +94,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const {
     status, assessmentIconUrl, assessmentName, completionPercent, completionReason, id,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
-    requireScheduling, assessmentCategory, isTimed: timedAssessment,
+    requireScheduling, assessmentCategory, isTimed: timedAssessment, type: assessmentType,
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
@@ -121,6 +121,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const assessementLevelPrococtoringEnabled = selectiveProctoringEnabled && userAssessment.proctoringEnabled
   const assessmentNeedsProctoring = assessementLevelPrococtoringEnabled && !isProctored
   const isAssessmentProctoringMisconfigured = assessmentNeedsProctoring && !timedAssessment
+  const isMicrositeAssessment = assessmentType === 'microsite'
   const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
   const campaignNeedsProctoring = campaignLevelProctoringEnabled && !isProctored
 
@@ -130,7 +131,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const canContinueCampaign = (isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
     && !campaignClosedForUser && !campaignUserTimedOut && fixedTimed
 
-  let disableActionButton = disabled || isAssessmentProctoringMisconfigured
+  let disableActionButton = disabled || isAssessmentProctoringMisconfigured || isMicrositeAssessment
   if (isWorkshopActivity) {
     disableActionButton ||= disabled || !withinActivityScheduleTime || !workshopBooked || !workshopAttended
   } else if (requireScheduling || scheduleTime) {
@@ -143,6 +144,9 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   }
   if (campaignNotStarted) {
     actionDisabledText = I18n.t('campaign.begin_campaign_msg')
+  }
+  if (isMicrositeAssessment) {
+    actionDisabledText = I18n.t('enduser.microsite_assessment_external')
   }
 
   const buttonTextData = {
@@ -333,27 +337,31 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
         titleHeadingLevel={2}
         progressPercentage={assessmentCategory === 'meeting' ? undefined : completionPercent || 0}
         progressLabelAria={I18n.t('frontend.aria.task_progress_label')}
-        buttonText={assessmentCategory === 'meeting' ? null : buttonTextData[status]}
+        buttonText={assessmentCategory === 'meeting' || isMicrositeAssessment ? null : buttonTextData[status]}
         buttonId={`assessment-card-btn-${userAssessment.id}`}
         actionDisabled={disableActionButton}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}
         onButtonClick={handleStartCampaignActivities}
         subtitle={subtitleElement}
-        description={isAssessmentProctoringMisconfigured && (
+        description={(isAssessmentProctoringMisconfigured || isMicrositeAssessment) && (
           <Alert
             className="ta-s"
             title={(
               <Space>
-                {I18n.t('enduser.assessment_misconfigured')}
-                <Tooltip
-                  title={I18n.t('enduser.proctored_assessment_misconfigured_msg')}
-                >
-                  <span><InfoCircleOutlined /></span>
-                </Tooltip>
+                {isMicrositeAssessment
+                  ? I18n.t('enduser.microsite_assessment_external')
+                  : I18n.t('enduser.assessment_misconfigured')}
+                {!isMicrositeAssessment && (
+                  <Tooltip
+                    title={I18n.t('enduser.proctored_assessment_misconfigured_msg')}
+                  >
+                    <span><InfoCircleOutlined /></span>
+                  </Tooltip>
+                )}
               </Space>
           )}
-            type="warning"
+            type={isMicrositeAssessment ? 'info' : 'warning'}
             showIcon
           />
         )}

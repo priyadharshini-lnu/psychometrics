@@ -58,25 +58,25 @@ module Administration
     end
 
     # Can open builder of Assessment (Blocks, Questions and etc.)
-    # true if it's Common Assessment
+    # true if it's Common or Microsite Assessment
     #   and user is Superadmin or user has grants
     def show?
-      @record.common? &&
+      (@record.common? || @record.microsite?) &&
         (super || @user.has_permission?(:assessments, :manage, project_id: project_id))
     end
 
     # Can open Websocket Channel for build Assessment (Blocks, Questions and etc.)
-    # true if it's Common Assessment and user is Superadmin
+    # true if it's Common or Microsite Assessment and user is Superadmin
     def open_channel?
-      @record.common? &&
+      (@record.common? || @record.microsite?) &&
         (@user.is?(:superadmin) || @user.has_permission?(:assessments, :manage, project_id: @record.owner_id))
     end
 
     # Can preview Assessment (Blocks, Questions and etc.)
-    # true if it's Common Assessment
+    # true if it's Common or Microsite Assessment
     #   and user is Superadmin or user has grants
     def preview?
-      @record.common? &&
+      (@record.common? || @record.microsite?) &&
         (@user.is?(:superadmin) || @user.has_permission?(:assessments, :view, project_id: project_id))
     end
 
@@ -118,9 +118,9 @@ module Administration
     end
 
     # Can save Assessment (Blocks, Questions and etc.)
-    # true if it's Common Assessment and user is Superadmin
+    # true if it's Common or Microsite Assessment and user is Superadmin
     def save?
-      @record.common? &&
+      (@record.common? || @record.microsite?) &&
         @user.is?(:superadmin)
     end
 
