@@ -33,14 +33,14 @@ production:
   primary:
     <<: *default
     url: <%= ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL'] %>
-    pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+    pool: <%= ENV["DB_POOL"] || ENV['RAILS_DB_POOL'] || 5 %>
     prepared_statements: false
     advisory_locks: false
 
   primary_replica:
     <<: *default
     url: <%= ENV['ENV_REPLICA_DATABASE_URL'] ? ENV[ENV['ENV_REPLICA_DATABASE_URL']] : (ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL']) %>
-    pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+    pool: <%= ENV["DB_POOL"] || ENV['RAILS_DB_POOL'] || 5 %>
     prepared_statements: false
     advisory_locks: false
     replica: true
