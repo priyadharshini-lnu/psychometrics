@@ -1076,10 +1076,12 @@ providers:
         name: MTE Defense Trial
         possible_languages:
           - en
+          - ar
       - id: mte-defense-shape
         name: MTE Defense Shape
         possible_languages:
           - en
+          - ar
   pearson:
     v2_assessments:
       - id: prd:bmct-ii:c916dfd8-d922-4fe3-b08f-6fead3c787c4
