@@ -10,6 +10,10 @@ module Reports
 
     belongs_to :report, touch: true
 
+    include Tenantable
+
+    tenant_source :report
+
     has_many :modules, class_name: 'Reports::Module', dependent: :destroy
 
     default_scope { order(:position) }

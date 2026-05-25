@@ -7,6 +7,9 @@ class CommunicationEmail < ApplicationRecord
   belongs_to :user
   belongs_to :workshop
   belongs_to :workshop_invite
+  include Tenantable
+
+  tenant_source :communication
 
   has_many :communication_email_resources, inverse_of: :communication_email, dependent: :destroy
 

@@ -15,6 +15,9 @@ class Occupation < ApplicationRecord
   has_one_image_attachment :alternative_icon, variants: [:icon]
   has_one_image_attachment :indicative_roles_image, variants: [:icon]
   has_one_image_attachment :key_career_tracks_image, variants: [:icon]
+  include Tenantable
+
+  tenant_source :dimension
 
   def attachment_storage_path(attribute_name, filename)
     "public/occupation/#{id}/#{attribute_name}/#{filename}"

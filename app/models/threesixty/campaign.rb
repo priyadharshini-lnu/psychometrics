@@ -7,6 +7,9 @@ module Threesixty
     belongs_to :campaign, class_name: '::Campaign'
     belongs_to :assessment
     belongs_to :report
+    include Tenantable
+
+    tenant_source :assessment
 
     has_one :dimension, through: :assessment
     has_one :project, through: :campaign

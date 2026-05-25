@@ -9,6 +9,8 @@ class Relationship < ApplicationRecord
   SELF = 'Self'
 
   belongs_to :campaign
+  include Tenantable
+
   has_many :user_assessments, dependent: :restrict_with_exception
 
   enum :type, { global: 0, campaign: 1 }

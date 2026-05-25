@@ -16,6 +16,10 @@ class FactorsScoring < ApplicationRecord
   belongs_to :factor
   belongs_to :question
 
+  include Tenantable
+
+  tenant_source :assessment
+
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
   before_commit :invalidate_assessment_cache
 

@@ -3,6 +3,7 @@
 class CampaignIdp < ApplicationRecord
   belongs_to :campaign
   belongs_to :idp_template
+  include Tenantable
 
   has_many :dependencies, class_name: 'CampaignIdpDependency', dependent: :destroy
 

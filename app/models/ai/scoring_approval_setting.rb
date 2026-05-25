@@ -5,6 +5,7 @@ module AI
     self.table_name = 'ai_scoring_approval_settings'
     belongs_to :assessment
     belongs_to :campaign
+    include Tenantable
 
     enum :digest_frequency, { daily: 'daily', weekly: 'weekly', weekdays: 'weekdays' }
     enum :digest_delivery_mode, { immediate: 'immediate', scheduled: 'scheduled' }, prefix: :digest_delivery

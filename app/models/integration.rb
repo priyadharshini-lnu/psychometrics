@@ -5,6 +5,7 @@ class Integration < ApplicationRecord
   include ApplicationConfigurationLoggable
 
   belongs_to :project, class_name: 'Client'
+  include Tenantable
 
   enum :name, { iiht: 0, hogan: 1, mettl: 2, skillvue: 3, yoodli: 4, microsite: 5 }
 

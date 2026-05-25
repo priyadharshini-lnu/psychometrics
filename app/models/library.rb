@@ -12,6 +12,8 @@ class Library < ApplicationRecord
   belongs_to :updated_by, class_name: 'User'
   has_ancestry
 
+  include Tenantable
+
   enum :type, { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
   has_one_attachment :file,

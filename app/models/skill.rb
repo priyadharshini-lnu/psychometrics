@@ -12,6 +12,7 @@ class Skill < ApplicationRecord
 
   belongs_to :project
   belongs_to :skill_group, optional: true
+  include Tenantable
 
   has_one :proficiency_level
   has_one :question, dependent: :destroy

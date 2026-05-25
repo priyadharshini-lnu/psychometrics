@@ -28,6 +28,10 @@ class UsersResult < ApplicationRecord
   has_one :agile, through: :assessment
   has_many :agile_events, dependent: :destroy
 
+  include Tenantable
+
+  tenant_source :user_assessment
+
   enum :ai_scoring_status, {
     pending: 0,
     processing: 1,

@@ -2,6 +2,8 @@
 
 class ProjectFeature < ApplicationRecord
   belongs_to :project
+  include Tenantable
+
   include ApplicationConfigurationLoggable
 
   validates :project, presence: true

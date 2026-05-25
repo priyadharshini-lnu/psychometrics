@@ -7,6 +7,9 @@ class AI::AssistantChat < ApplicationRecord
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
   belongs_to :ai_assisted_user_session, class_name: 'AI::AssistedUserSession', optional: true
   belongs_to :user, class_name: 'User'
+  include Tenantable
+
+  tenant_source %i[ai_assisted_user_session user]
 
   has_many :messages,
            -> { order(created_at: :asc) },

@@ -3,4 +3,6 @@
 class SkillAlias < ApplicationRecord
   belongs_to :client
   belongs_to :skill
+
+  include Tenantable
 end

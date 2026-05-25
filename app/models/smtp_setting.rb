@@ -5,6 +5,7 @@ class SmtpSetting < ApplicationRecord
   include ApplicationConfigurationLoggable
 
   belongs_to :project, class_name: 'Client'
+  include Tenantable
 
   before_save :clear_smtp_credentials_if_needed
 

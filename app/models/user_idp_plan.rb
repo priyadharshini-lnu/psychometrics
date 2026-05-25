@@ -20,6 +20,8 @@ class UserIdpPlan < ApplicationRecord
   belongs_to :campaign
   belongs_to :idp_template
   belongs_to :creator, class_name: 'User'
+  include Tenantable
+
   has_many :user_idp_skills, autosave: true, dependent: :destroy
   has_many :skills, through: :user_idp_skills
   has_many :user_idp_development_actions, autosave: true, dependent: :destroy

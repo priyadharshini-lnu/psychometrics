@@ -4,6 +4,9 @@ class SavilleReportSetting < ApplicationRecord
   audited
 
   belongs_to :report
+  include Tenantable
+
+  tenant_source :report
 
   validates :saville_report_id, presence: true
 

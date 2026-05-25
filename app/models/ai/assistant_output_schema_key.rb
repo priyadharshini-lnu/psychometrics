@@ -5,6 +5,10 @@ class AI::AssistantOutputSchemaKey < ApplicationRecord
 
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
 
+  include Tenantable
+
+  tenant_source :ai_assistant
+
   enum :key_type, {
     string: 0,
     html: 1,

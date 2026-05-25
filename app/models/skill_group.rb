@@ -7,6 +7,8 @@ class SkillGroup < ApplicationRecord
   has_ancestry cache_depth: true
 
   belongs_to :project, class_name: 'Client', optional: true
+  include Tenantable
+
   has_many :skills
 
   validates :name, presence: true, uniqueness: { scope: :project_id }

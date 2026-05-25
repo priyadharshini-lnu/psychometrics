@@ -4,6 +4,9 @@ class SystemCheckRecord < ApplicationRecord
   include ActiveStorageAttachable
 
   belongs_to :system_check_session
+  include Tenantable
+
+  tenant_source :system_check_session
   has_one :user, through: :system_check_session
 
   has_one_attachment :media, service: Settings.storage.private_storage_service

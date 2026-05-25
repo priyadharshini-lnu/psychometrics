@@ -81,6 +81,8 @@ class Report < ApplicationRecord
   has_one :hogan_report_setting, dependent: :destroy
   has_one :saville_report_setting, dependent: :destroy
 
+  include Tenantable
+
   #   VALIDATIONS
   #
   validates :assessment, presence: true, unless: :assessment_not_applicable?

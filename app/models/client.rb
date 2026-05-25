@@ -161,6 +161,7 @@ class Client < ApplicationRecord
   after_create :create_idp_setting, if: :project?
   after_create :create_client_features
   after_create :create_project_features, if: :project?
+  after_create :set_self_as_tenant, unless: -> { parent_id.present? }
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -420,7 +421,11 @@ class Client < ApplicationRecord
   end
 
   def set_tte
-    update_column(:tte_id, root.id)
+    update_columns(tte_id: root.id, tenant_id: root.id)
+  end
+
+  def set_self_as_tenant
+    update_column(:tenant_id, id)
   end
 
   def set_end_level

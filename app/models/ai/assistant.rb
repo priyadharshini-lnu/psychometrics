@@ -8,6 +8,8 @@ class AI::Assistant < ApplicationRecord
 
   belongs_to :owner, class_name: 'Client', optional: true
   belongs_to :last_modified_by, class_name: 'User', optional: true
+  include Tenantable
+
   has_many :chats, class_name: 'AI::AssistantChat', foreign_key: 'ai_assistant_id', dependent: :destroy
   has_many :assistant_output_schema_keys,
            class_name: 'AI::AssistantOutputSchemaKey', foreign_key: 'ai_assistant_id', dependent: :destroy

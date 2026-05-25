@@ -6,6 +6,9 @@ class WorkshopInviteLog < ApplicationRecord
   belongs_to :workshop_invite
   belongs_to :user
   belongs_to :created_by, class_name: 'User'
+  include Tenantable
+
+  tenant_source :workshop_invite
 
   enum :action, {
     accepted: 1,

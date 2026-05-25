@@ -4,6 +4,9 @@ class MeetingRecording < ApplicationRecord
   include ActiveStorageAttachable
 
   belongs_to :meeting_room
+  include Tenantable
+
+  tenant_source :meeting_room
 
   enum :status, { started: 0, stopped: 1, finished: 2, failed: 3 }
   enum :transcription_status, { not_enabled: 0, t_in_progress: 1, t_finished: 2, t_error: 3 }

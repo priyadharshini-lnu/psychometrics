@@ -155,7 +155,8 @@ CREATE TABLE public.assessments (
     default_language character varying DEFAULT 'en'::character varying,
     campaign_factors_list jsonb DEFAULT '[]'::jsonb,
     translations_migrated boolean DEFAULT true,
-    data_role integer DEFAULT 0 NOT NULL
+    data_role integer DEFAULT 0 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -180,7 +181,8 @@ CREATE TABLE public.campaign_factor_groups (
     campaign_id bigint NOT NULL,
     "position" integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -210,7 +212,8 @@ CREATE TABLE public.campaign_factor_values (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     calculation_type integer DEFAULT 0,
-    label character varying
+    label character varying,
+    tenant_id bigint
 );
 
 
@@ -234,7 +237,8 @@ CREATE TABLE public.campaigns (
     encrypted_pdf_password_iv character varying,
     default_idp_template_id bigint,
     practice_campaign boolean DEFAULT false,
-    is_template boolean DEFAULT false
+    is_template boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -279,7 +283,8 @@ CREATE TABLE public.campaign_factors (
     ranked boolean DEFAULT false NOT NULL,
     min_value integer,
     max_value integer,
-    is_na_allowed boolean DEFAULT false NOT NULL
+    is_na_allowed boolean DEFAULT false NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -335,7 +340,8 @@ CREATE TABLE public.sheet_columns (
     visible_in_list boolean DEFAULT false,
     sheet_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -350,7 +356,8 @@ CREATE TABLE public.sheet_row_data (
     sheet_row_id bigint NOT NULL,
     sheet_column_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -365,7 +372,8 @@ CREATE TABLE public.sheet_rows (
     data_deprecated_on_11_07_2025 jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
+    migrated boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -381,7 +389,8 @@ CREATE TABLE public.sheets (
     updated_at timestamp without time zone NOT NULL,
     campaign_id bigint,
     type character varying DEFAULT 'Datasheet'::character varying,
-    flat_view_sha character varying
+    flat_view_sha character varying,
+    tenant_id bigint
 );
 
 
@@ -434,7 +443,8 @@ CREATE TABLE public.factors (
     score_max integer,
     score_definitions jsonb DEFAULT '[]'::jsonb,
     what_to_look_for text,
-    child_factor_type integer
+    child_factor_type integer,
+    tenant_id bigint
 );
 
 
@@ -458,7 +468,8 @@ CREATE TABLE public.user_assessment_factor_scores (
     factor_id bigint NOT NULL,
     scores jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -507,7 +518,8 @@ CREATE TABLE public.user_assessments (
     score_assessed_by_id bigint,
     score_approved_by_id bigint,
     score_assessed_at timestamp(6) without time zone,
-    score_approved_at timestamp(6) without time zone
+    score_approved_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -547,7 +559,8 @@ CREATE TABLE public.profile_field_values (
     user_profile_id bigint NOT NULL,
     profile_field_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -564,7 +577,8 @@ CREATE TABLE public.profile_fields (
     updated_at timestamp(6) without time zone NOT NULL,
     question_id bigint NOT NULL,
     profile_setting_id bigint NOT NULL,
-    locked boolean
+    locked boolean,
+    tenant_id bigint
 );
 
 
@@ -580,7 +594,8 @@ CREATE TABLE public.profile_settings (
     project_id bigint NOT NULL,
     required_default_fields json DEFAULT '{}'::json,
     locked_default_fields json DEFAULT '{}'::json,
-    enabled_default_fields json DEFAULT '{"age":true,"gender":true,"photo":true}'::json
+    enabled_default_fields json DEFAULT '{"age":true,"gender":true,"photo":true}'::json,
+    tenant_id bigint
 );
 
 
@@ -609,7 +624,8 @@ CREATE TABLE public.questions (
     owner_id integer,
     created_by_id bigint,
     updated_by_id bigint,
-    skill_id bigint
+    skill_id bigint,
+    tenant_id bigint
 );
 
 
@@ -628,7 +644,8 @@ CREATE TABLE public.user_profiles (
     custom_fields_deprecated_on_11_07_2025 json,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    user_id bigint NOT NULL
+    user_id bigint NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -660,7 +677,8 @@ CREATE TABLE public.relationships (
     type integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assign_type integer DEFAULT 0
+    assign_type integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -762,7 +780,8 @@ CREATE TABLE public.users (
     mobile_verified boolean DEFAULT false,
     unique_session_id character varying,
     external_id character varying,
-    disabled_at timestamp(6) without time zone
+    disabled_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -789,7 +808,8 @@ CREATE TABLE public.active_storage_attachments (
     record_type character varying NOT NULL,
     record_id bigint NOT NULL,
     blob_id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -930,7 +950,8 @@ CREATE TABLE public.admin_jobs (
     exception character varying,
     step character varying,
     weight double precision,
-    parent_job_id bigint
+    parent_job_id bigint,
+    tenant_id bigint
 );
 
 
@@ -962,7 +983,8 @@ CREATE TABLE public.admin_roles (
     name character varying,
     description text,
     client_id bigint,
-    permissions jsonb
+    permissions jsonb,
+    tenant_id bigint
 );
 
 
@@ -996,7 +1018,8 @@ CREATE TABLE public.agile_events (
     event character varying,
     data json DEFAULT '{}'::json,
     created_at timestamp without time zone NOT NULL,
-    users_result_id bigint
+    users_result_id bigint,
+    tenant_id bigint
 );
 
 
@@ -1027,7 +1050,8 @@ CREATE TABLE public.agiles (
     id bigint NOT NULL,
     assessment_id bigint,
     config json DEFAULT '{}'::json,
-    translations json DEFAULT '{}'::json
+    translations json DEFAULT '{}'::json,
+    tenant_id bigint
 );
 
 
@@ -1065,7 +1089,8 @@ CREATE TABLE public.ai_assistant_chats (
     ai_model_registry_id bigint,
     ai_assisted_user_session_id bigint,
     input_tokens integer DEFAULT 0,
-    output_tokens integer DEFAULT 0
+    output_tokens integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -1099,7 +1124,8 @@ CREATE TABLE public.ai_assistant_output_schema_keys (
     key_type integer DEFAULT 0 NOT NULL,
     description text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1147,7 +1173,8 @@ CREATE TABLE public.ai_assistant_requests (
     content_raw json,
     thinking_text text,
     thinking_signature text,
-    thinking_tokens integer
+    thinking_tokens integer,
+    tenant_id bigint
 );
 
 
@@ -1182,7 +1209,8 @@ CREATE TABLE public.ai_assistant_tool_calls (
     arguments jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    thought_signature character varying
+    thought_signature character varying,
+    tenant_id bigint
 );
 
 
@@ -1223,7 +1251,8 @@ CREATE TABLE public.ai_assistants (
     assistant_type integer DEFAULT 0 NOT NULL,
     dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
     status integer DEFAULT 0 NOT NULL,
-    advanced_prompting_enabled boolean DEFAULT false NOT NULL
+    advanced_prompting_enabled boolean DEFAULT false NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1264,7 +1293,8 @@ CREATE TABLE public.ai_assisted_user_sessions (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     resource_type character varying,
-    resource_id bigint
+    resource_id bigint,
+    tenant_id bigint
 );
 
 
@@ -1306,7 +1336,8 @@ CREATE TABLE public.ai_factor_scores (
     updated_at timestamp(6) without time zone NOT NULL,
     parent_factor_id bigint,
     scoring_type integer DEFAULT 0,
-    not_applicable boolean DEFAULT false
+    not_applicable boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -1395,7 +1426,8 @@ CREATE TABLE public.ai_scoring_approval_settings (
     updated_at timestamp(6) without time zone NOT NULL,
     allow_one_level_approve boolean DEFAULT false,
     approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
-    do_not_send_notifications boolean DEFAULT false
+    do_not_send_notifications boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -1429,7 +1461,8 @@ CREATE TABLE public.ai_translation_results (
     translatable_type character varying,
     hashsum bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1512,7 +1545,8 @@ CREATE TABLE public.assessment_assistants (
     ai_assistant_id bigint NOT NULL,
     assessment_prompt text,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1546,7 +1580,8 @@ CREATE TABLE public.assessment_consent_setting_translations (
     assessment_consent_setting_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    custom_acknowledgment_text text
+    custom_acknowledgment_text text,
+    tenant_id bigint
 );
 
 
@@ -1580,7 +1615,8 @@ CREATE TABLE public.assessment_consent_settings (
     assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    custom_acknowledgment_text text
+    custom_acknowledgment_text text,
+    tenant_id bigint
 );
 
 
@@ -1615,7 +1651,8 @@ CREATE TABLE public.assessment_translations (
     locale character varying NOT NULL,
     assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1703,7 +1740,8 @@ CREATE TABLE public.assessments_reports (
     assessment_id bigint NOT NULL,
     report_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1735,7 +1773,8 @@ CREATE TABLE public.assessors (
     campaign_id bigint,
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -1879,7 +1918,8 @@ CREATE TABLE public.audit_logs (
     interface integer,
     client_ip character varying,
     outcome integer DEFAULT 1,
-    failure_reason character varying
+    failure_reason character varying,
+    tenant_id bigint
 );
 
 
@@ -1921,7 +1961,8 @@ CREATE TABLE public.audits (
     comment character varying,
     remote_address character varying,
     request_uuid character varying,
-    created_at timestamp(6) without time zone
+    created_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -1961,7 +2002,8 @@ CREATE TABLE public.blocks (
     disabled boolean DEFAULT false,
     template_id integer,
     owner_id integer,
-    block_type integer DEFAULT 0
+    block_type integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -1994,7 +2036,8 @@ CREATE TABLE public.bulk_reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     files character varying[] DEFAULT '{}'::character varying[],
-    campaign_id bigint
+    campaign_id bigint,
+    tenant_id bigint
 );
 
 
@@ -2028,7 +2071,8 @@ CREATE TABLE public.campaign_ai_artifact_dependencies (
     dependency_id bigint NOT NULL,
     meta jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2065,7 +2109,8 @@ CREATE TABLE public.campaign_ai_artifacts (
     instructions text,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    dependencies_checksum character varying
+    dependencies_checksum character varying,
+    tenant_id bigint
 );
 
 
@@ -2102,7 +2147,8 @@ CREATE TABLE public.campaign_assessment_groups (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     group_type integer DEFAULT 0 NOT NULL,
-    require_previous_groups_completion_for_booking boolean DEFAULT false
+    require_previous_groups_completion_for_booking boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -2154,7 +2200,8 @@ CREATE TABLE public.campaign_assessments (
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint,
     caching_enabled boolean DEFAULT false,
-    proctoring_enabled boolean DEFAULT false
+    proctoring_enabled boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -2186,7 +2233,8 @@ CREATE TABLE public.campaign_assessor_assessment_factor_weights (
     campaign_id bigint NOT NULL,
     assessment_id bigint NOT NULL,
     factor_id bigint NOT NULL,
-    weight double precision DEFAULT 1.0 NOT NULL
+    weight double precision DEFAULT 1.0 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2220,7 +2268,8 @@ CREATE TABLE public.campaign_assessor_assessments (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     allow_multiple_responses boolean DEFAULT false,
-    campaign_assessment_group_id bigint
+    campaign_assessment_group_id bigint,
+    tenant_id bigint
 );
 
 
@@ -2310,7 +2359,8 @@ CREATE TABLE public.campaign_idp_dependencies (
     dependency_type character varying,
     dependency_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2343,7 +2393,8 @@ CREATE TABLE public.campaign_idps (
     campaign_id bigint NOT NULL,
     idp_template_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2377,7 +2428,8 @@ CREATE TABLE public.campaign_option_translations (
     campaign_option_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    description text
+    description text,
+    tenant_id bigint
 );
 
 
@@ -2435,7 +2487,8 @@ CREATE TABLE public.campaign_options (
     minimum_upload_speed integer,
     minimum_download_speed integer,
     enable_mobile_proctoring boolean DEFAULT false,
-    skip_assessment_level_checks boolean DEFAULT true NOT NULL
+    skip_assessment_level_checks boolean DEFAULT true NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2475,7 +2528,8 @@ CREATE TABLE public.campaign_reports (
     main_report boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     default_language character varying,
-    available_languages jsonb DEFAULT '[]'::jsonb
+    available_languages jsonb DEFAULT '[]'::jsonb,
+    tenant_id bigint
 );
 
 
@@ -2510,7 +2564,8 @@ CREATE TABLE public.campaign_templates (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
-    campaign_id bigint
+    campaign_id bigint,
+    tenant_id bigint
 );
 
 
@@ -2561,7 +2616,8 @@ CREATE TABLE public.campaign_users (
     target_job_role_id bigint,
     campaign_artifact_results_finalized boolean DEFAULT false,
     level integer,
-    campaign_artifact_results_finalized_at timestamp(6) without time zone
+    campaign_artifact_results_finalized_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -2613,7 +2669,8 @@ CREATE TABLE public.client_ai_assistants (
     hourly_rate_limit integer,
     license_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2655,7 +2712,8 @@ CREATE TABLE public.client_auditlog_export_settings (
     last_exported_at timestamp(6) without time zone,
     client_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2694,7 +2752,8 @@ CREATE TABLE public.client_features (
     idp boolean DEFAULT false NOT NULL,
     enhance_with_ai boolean DEFAULT false NOT NULL,
     ai_translation boolean DEFAULT false NOT NULL,
-    ai_content_analysis boolean DEFAULT false NOT NULL
+    ai_content_analysis boolean DEFAULT false NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2726,7 +2785,8 @@ CREATE TABLE public.client_privacy_settings (
     client_id bigint NOT NULL,
     disable_data_processing boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2759,7 +2819,8 @@ CREATE TABLE public.client_translations (
     locale character varying NOT NULL,
     client_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2816,7 +2877,8 @@ CREATE TABLE public.clients (
     custom_privacy_consent boolean DEFAULT false,
     custom_privacy_consent_text text,
     custom_privacy_policy_version integer,
-    restricted_to_countries text[] DEFAULT '{}'::text[]
+    restricted_to_countries text[] DEFAULT '{}'::text[],
+    tenant_id bigint
 );
 
 
@@ -2892,7 +2954,8 @@ CREATE TABLE public.communication_cc_users (
     communication_id bigint NOT NULL,
     user_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2925,7 +2988,8 @@ CREATE TABLE public.communication_email_resources (
     resource_type character varying NOT NULL,
     resource_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -2962,7 +3026,8 @@ CREATE TABLE public.communication_emails (
     campaign_user_id bigint,
     workshop_id bigint,
     workshop_invite_id bigint,
-    user_id bigint
+    user_id bigint,
+    tenant_id bigint
 );
 
 
@@ -2996,7 +3061,8 @@ CREATE TABLE public.communication_translations (
     locale character varying NOT NULL,
     communication_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3054,7 +3120,8 @@ CREATE TABLE public.communications (
     delivery_time_of_day time without time zone,
     delivery_timezone character varying,
     delivery_frequency character varying,
-    delivery_weekdays character varying[] DEFAULT '{}'::character varying[]
+    delivery_weekdays character varying[] DEFAULT '{}'::character varying[],
+    tenant_id bigint
 );
 
 
@@ -3067,7 +3134,8 @@ CREATE TABLE public.communications_assessments (
     communication_id bigint NOT NULL,
     assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3096,7 +3164,8 @@ ALTER SEQUENCE public.communications_assessments_id_seq OWNED BY public.communic
 
 CREATE TABLE public.communications_copy_memberships (
     communication_id integer NOT NULL,
-    membership_id integer NOT NULL
+    membership_id integer NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3125,7 +3194,8 @@ ALTER SEQUENCE public.communications_id_seq OWNED BY public.communications.id;
 
 CREATE TABLE public.communications_memberships (
     communication_id integer NOT NULL,
-    membership_id integer NOT NULL
+    membership_id integer NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3138,7 +3208,8 @@ CREATE TABLE public.communications_users (
     user_id integer,
     communication_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3211,7 +3282,8 @@ CREATE TABLE public.dashboards (
     refresh_tried_at timestamp without time zone,
     dashboard_type integer DEFAULT 0 NOT NULL,
     project_path character varying,
-    visual_header_visibility smallint DEFAULT 0
+    visual_header_visibility smallint DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -3282,7 +3354,8 @@ CREATE TABLE public.data_report_jobs (
     password character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    file character varying
+    file character varying,
+    tenant_id bigint
 );
 
 
@@ -3316,7 +3389,8 @@ CREATE TABLE public.data_reports (
     owner_id bigint,
     last_updated_by_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3349,7 +3423,8 @@ CREATE TABLE public.datasheet_column_preferences (
     resource_id bigint,
     visible_columns json,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3393,7 +3468,8 @@ CREATE TABLE public.design_settings (
     info_color character varying,
     background_size character varying DEFAULT 'cover'::character varying,
     logo_alt_text character varying,
-    secondary_logo_alt_text character varying
+    secondary_logo_alt_text character varying,
+    tenant_id bigint
 );
 
 
@@ -3427,7 +3503,8 @@ CREATE TABLE public.development_action_translations (
     locale character varying NOT NULL,
     development_action_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3471,7 +3548,8 @@ CREATE TABLE public.development_actions (
     available_languages jsonb DEFAULT '[]'::jsonb,
     owner_type character varying,
     owner_id bigint,
-    source_type integer DEFAULT 0 NOT NULL
+    source_type integer DEFAULT 0 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3509,7 +3587,8 @@ CREATE TABLE public.dimensions (
     innovation_styles_enabled boolean DEFAULT false NOT NULL,
     created_by_id bigint,
     updated_by_id bigint,
-    dimension_type integer DEFAULT 0
+    dimension_type integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -3616,7 +3695,8 @@ CREATE TABLE public.factor_benchmark_scores (
     campaign_id bigint NOT NULL,
     assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3650,7 +3730,8 @@ CREATE TABLE public.factor_translations (
     description character varying,
     factor_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3683,7 +3764,8 @@ CREATE TABLE public.factors_aliases (
     report_id bigint NOT NULL,
     name character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3734,7 +3816,8 @@ CREATE TABLE public.factors_norms (
     type public.factors_norms_types,
     factor_id integer,
     norm_id integer,
-    props json
+    props json,
+    tenant_id bigint
 );
 
 
@@ -3768,7 +3851,8 @@ CREATE TABLE public.factors_scoring (
     assessment_id integer,
     question_id integer,
     scoring_strategy integer DEFAULT 0,
-    ai_scoring_config jsonb
+    ai_scoring_config jsonb,
+    tenant_id bigint
 );
 
 
@@ -3804,7 +3888,8 @@ CREATE TABLE public.factors_sub_factors (
     updated_at timestamp without time zone NOT NULL,
     predicate character varying,
     value double precision,
-    "position" integer
+    "position" integer,
+    tenant_id bigint
 );
 
 
@@ -3837,7 +3922,8 @@ CREATE TABLE public.highlights (
     user_id bigint,
     data jsonb DEFAULT '{}'::jsonb NOT NULL,
     resource_id integer NOT NULL,
-    resource_type character varying NOT NULL
+    resource_type character varying NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3857,7 +3943,8 @@ CREATE TABLE public.hogan_credentials (
     provider integer DEFAULT 0,
     norm character varying,
     hogan_group_name character varying,
-    active boolean DEFAULT true
+    active boolean DEFAULT true,
+    tenant_id bigint
 );
 
 
@@ -3892,7 +3979,8 @@ CREATE TABLE public.hogan_logs (
     response jsonb,
     meta jsonb,
     call_stack jsonb,
-    created_at timestamp(6) without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -3928,7 +4016,8 @@ CREATE TABLE public.hogan_report_settings (
     load_report boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    hogan_suitability_id character varying
+    hogan_suitability_id character varying,
+    tenant_id bigint
 );
 
 
@@ -3963,7 +4052,8 @@ CREATE TABLE public.idp_report_pdfs (
     last_generated_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    include_reflective_questions boolean DEFAULT false
+    include_reflective_questions boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -3998,7 +4088,8 @@ CREATE TABLE public.idp_settings (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     project_id bigint,
-    require_all_development_actions_complete boolean DEFAULT false
+    require_all_development_actions_complete boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -4031,7 +4122,8 @@ CREATE TABLE public.idp_template_development_actions (
     development_action_id bigint NOT NULL,
     category integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4066,7 +4158,8 @@ CREATE TABLE public.idp_template_interview_questions (
     time_limit integer,
     mandatory boolean,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4101,7 +4194,8 @@ CREATE TABLE public.idp_template_reflection_questions (
     updated_at timestamp(6) without time zone NOT NULL,
     mandatory boolean DEFAULT false,
     min_words integer,
-    max_words integer
+    max_words integer,
+    tenant_id bigint
 );
 
 
@@ -4142,7 +4236,8 @@ CREATE TABLE public.idp_template_skills (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     factor_id bigint,
-    assessment_score_type integer DEFAULT 0 NOT NULL
+    assessment_score_type integer DEFAULT 0 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4178,7 +4273,8 @@ CREATE TABLE public.idp_template_translations (
     updated_at timestamp(6) without time zone NOT NULL,
     title_text character varying,
     subtitle_text character varying,
-    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
+    tenant_id bigint
 );
 
 
@@ -4244,7 +4340,8 @@ CREATE TABLE public.idp_templates (
     guideline_position integer DEFAULT 0,
     flip_background boolean DEFAULT false,
     page_styles jsonb DEFAULT '{}'::jsonb NOT NULL,
-    show_guidelines boolean DEFAULT true
+    show_guidelines boolean DEFAULT true,
+    tenant_id bigint
 );
 
 
@@ -4279,7 +4376,8 @@ CREATE TABLE public.iiht_user_assessments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     schedule_id integer,
-    email character varying
+    email character varying,
+    tenant_id bigint
 );
 
 
@@ -4315,7 +4413,8 @@ CREATE TABLE public.innovation_styles (
     updated_at timestamp without time zone NOT NULL,
     dimension_id bigint,
     full_description text,
-    "position" integer
+    "position" integer,
+    tenant_id bigint
 );
 
 
@@ -4332,7 +4431,8 @@ CREATE TABLE public.innovation_styles_factors (
     "position" integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    weight double precision DEFAULT 1.0
+    weight double precision DEFAULT 1.0,
+    tenant_id bigint
 );
 
 
@@ -4385,7 +4485,8 @@ CREATE TABLE public.integrations (
     config jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL
+    project_id bigint NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4421,7 +4522,8 @@ CREATE TABLE public.interview_questions (
     question_type integer DEFAULT 0,
     project_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4455,7 +4557,8 @@ CREATE TABLE public.job_groups (
     ancestry character varying,
     ancestry_depth integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4489,7 +4592,8 @@ CREATE TABLE public.job_role_translations (
     locale character varying NOT NULL,
     job_role_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4524,7 +4628,8 @@ CREATE TABLE public.job_roles (
     updated_at timestamp(6) without time zone NOT NULL,
     code character varying,
     project_id bigint,
-    job_group_id bigint
+    job_group_id bigint,
+    tenant_id bigint
 );
 
 
@@ -4595,7 +4700,8 @@ CREATE TABLE public.libraries (
     owner_id integer,
     ancestry character varying,
     created_by_id bigint,
-    updated_by_id bigint
+    updated_by_id bigint,
+    tenant_id bigint
 );
 
 
@@ -4642,7 +4748,8 @@ CREATE TABLE public.license_usages (
     consumer_id bigint,
     consumer_type character varying,
     project_id bigint,
-    project_license_id bigint
+    project_license_id bigint,
+    tenant_id bigint
 );
 
 
@@ -4682,7 +4789,8 @@ CREATE TABLE public.licenses (
     report_family_id integer,
     disabled boolean DEFAULT false,
     type integer DEFAULT 0,
-    is_project_specific boolean DEFAULT false NOT NULL
+    is_project_specific boolean DEFAULT false NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4789,7 +4897,8 @@ CREATE TABLE public.media_responses (
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
     assign_id integer,
-    user_selected boolean DEFAULT false
+    user_selected boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -4827,7 +4936,8 @@ CREATE TABLE public.meeting_recordings (
     transcription_status integer DEFAULT 0 NOT NULL,
     transcription_external_id character varying,
     transcription_s3key character varying,
-    meeting_session_id character varying
+    meeting_session_id character varying,
+    tenant_id bigint
 );
 
 
@@ -4863,7 +4973,8 @@ CREATE TABLE public.meeting_rooms (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     dailyco_api_version character varying DEFAULT 'v2'::character varying NOT NULL,
-    transcription_enabled boolean DEFAULT false NOT NULL
+    transcription_enabled boolean DEFAULT false NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4876,7 +4987,8 @@ CREATE TABLE public.membership_grants (
     membership_id bigint,
     data jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4918,7 +5030,8 @@ CREATE TABLE public.memberships (
     ancestry character varying,
     role integer DEFAULT 0 NOT NULL,
     already_invited boolean DEFAULT false NOT NULL,
-    campaign_id integer
+    campaign_id integer,
+    tenant_id bigint
 );
 
 
@@ -4931,7 +5044,8 @@ CREATE TABLE public.memberships_admin_roles (
     membership_id bigint NOT NULL,
     admin_role_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -4987,7 +5101,8 @@ CREATE TABLE public.mettl_assessments (
     registration_fields jsonb,
     project_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -5029,7 +5144,8 @@ CREATE TABLE public.mettl_schedule_records (
     proctoring_enabled boolean DEFAULT false,
     secure_browser_enabled boolean DEFAULT false,
     visual_proctoring_settings jsonb DEFAULT '{"enabled": false, "candidate_authorization": false, "candidate_screen_capture": false}'::jsonb,
-    web_proctoring_settings jsonb DEFAULT '{"count": 5, "enabled": false, "show_remaining_counts": false}'::jsonb
+    web_proctoring_settings jsonb DEFAULT '{"count": 5, "enabled": false, "show_remaining_counts": false}'::jsonb,
+    tenant_id bigint
 );
 
 
@@ -5063,7 +5179,8 @@ CREATE TABLE public.mettl_user_assessments (
     email character varying,
     mettl_schedule_record_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -5105,7 +5222,8 @@ CREATE TABLE public.mhs_user_assessments (
     confidence_interval integer DEFAULT 0,
     leadership_bar integer DEFAULT 0,
     norm_region integer DEFAULT 0,
-    norm_option integer DEFAULT 0
+    norm_option integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -5228,7 +5346,8 @@ CREATE TABLE public.norms (
     updated_at timestamp without time zone NOT NULL,
     dimension_id integer,
     owner_id integer,
-    norm_type integer DEFAULT 0
+    norm_type integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -5261,7 +5380,8 @@ CREATE TABLE public.notifications (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     assessment_id integer,
-    membership_id integer
+    membership_id integer,
+    tenant_id bigint
 );
 
 
@@ -5306,7 +5426,8 @@ CREATE TABLE public.occupations (
     color character varying,
     alternative_icon character varying,
     indicative_roles_image character varying,
-    key_career_tracks_image character varying
+    key_career_tracks_image character varying,
+    tenant_id bigint
 );
 
 
@@ -5323,7 +5444,8 @@ CREATE TABLE public.occupations_factors (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     "position" integer,
-    weight double precision DEFAULT 1.0
+    weight double precision DEFAULT 1.0,
+    tenant_id bigint
 );
 
 
@@ -5476,7 +5598,8 @@ CREATE TABLE public.pearson_user_assessments (
     url character varying,
     norm_id character varying,
     variation character varying,
-    error_details jsonb DEFAULT '{}'::jsonb
+    error_details jsonb DEFAULT '{}'::jsonb,
+    tenant_id bigint
 );
 
 
@@ -5543,7 +5666,8 @@ CREATE TABLE public.power_bi_settings (
     id bigint NOT NULL,
     capacity_id character varying,
     workspace_id character varying,
-    project_id bigint
+    project_id bigint,
+    tenant_id bigint
 );
 
 
@@ -5583,7 +5707,8 @@ CREATE TABLE public.privacy_consents (
     locale character varying,
     campaign_id bigint,
     assessment_id bigint,
-    data_role smallint DEFAULT 0 NOT NULL
+    data_role smallint DEFAULT 0 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -5650,7 +5775,8 @@ CREATE TABLE public.privacy_setting_translations (
     privacy_setting_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    custom_privacy_acknowledgment_text text
+    custom_privacy_acknowledgment_text text,
+    tenant_id bigint
 );
 
 
@@ -5700,7 +5826,8 @@ CREATE TABLE public.privacy_settings (
     video_call_recording_expiry_in_seconds integer,
     mask_identity_for_yoodli boolean DEFAULT false,
     mask_identity_for_mhs boolean DEFAULT false NOT NULL,
-    custom_privacy_acknowledgment_text text
+    custom_privacy_acknowledgment_text text,
+    tenant_id bigint
 );
 
 
@@ -5739,7 +5866,8 @@ CREATE TABLE public.proctoring_sessions (
     updated_at timestamp without time zone NOT NULL,
     invalid_session boolean DEFAULT false,
     last_status_checked_at timestamp without time zone,
-    user_assessment_id bigint
+    user_assessment_id bigint,
+    tenant_id bigint
 );
 
 
@@ -5772,7 +5900,8 @@ CREATE TABLE public.proficiency_level_translations (
     locale character varying NOT NULL,
     level_definition jsonb,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -5808,7 +5937,8 @@ CREATE TABLE public.proficiency_levels (
     level_definition jsonb DEFAULT '[]'::jsonb NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    skill_id bigint
+    skill_id bigint,
+    tenant_id bigint
 );
 
 
@@ -5899,7 +6029,8 @@ CREATE TABLE public.project_assessments (
     normalize_factor_scores boolean DEFAULT false,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    user_result_validity_in_days integer
+    user_result_validity_in_days integer,
+    tenant_id bigint
 );
 
 
@@ -5938,7 +6069,8 @@ CREATE TABLE public.project_features (
     updated_at timestamp(6) without time zone NOT NULL,
     enhance_with_ai boolean DEFAULT false NOT NULL,
     ai_translation boolean DEFAULT false NOT NULL,
-    ai_content_analysis boolean DEFAULT false NOT NULL
+    ai_content_analysis boolean DEFAULT false NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -5973,7 +6105,8 @@ CREATE TABLE public.project_licenses (
     usage_limit integer DEFAULT 0 NOT NULL,
     used_number integer DEFAULT 0 NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6004,7 +6137,8 @@ CREATE TABLE public.question_recoding (
     id bigint NOT NULL,
     assessment_id bigint,
     question_id bigint,
-    props jsonb
+    props jsonb,
+    tenant_id bigint
 );
 
 
@@ -6056,7 +6190,8 @@ CREATE TABLE public.reflection_question_translations (
     locale character varying NOT NULL,
     reflection_question_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6091,7 +6226,8 @@ CREATE TABLE public.reflection_questions (
     max_words integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    project_id bigint NOT NULL
+    project_id bigint NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6132,7 +6268,8 @@ CREATE TABLE public.registration_codes (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     campaign_id integer,
-    restricted_domains text[]
+    restricted_domains text[],
+    tenant_id bigint
 );
 
 
@@ -6165,7 +6302,8 @@ CREATE TABLE public.registration_settings (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     project_id bigint NOT NULL,
-    hide_signup boolean DEFAULT false
+    hide_signup boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -6232,7 +6370,8 @@ CREATE TABLE public.report_approval_settings (
     digest_timezone character varying DEFAULT 'Asia/Dubai'::character varying,
     digest_delivery_mode character varying DEFAULT 'immediate'::character varying,
     last_digest_sent_at timestamp(6) without time zone,
-    digest_emails_enabled_at timestamp(6) without time zone
+    digest_emails_enabled_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -6350,7 +6489,8 @@ CREATE TABLE public.reports (
     external_settings jsonb DEFAULT '{}'::jsonb,
     campaign_factors_deprecated_on_2024_12_23 jsonb DEFAULT '[]'::jsonb NOT NULL,
     styles jsonb DEFAULT '{}'::jsonb,
-    other_languages jsonb DEFAULT '[]'::jsonb
+    other_languages jsonb DEFAULT '[]'::jsonb,
+    tenant_id bigint
 );
 
 
@@ -6399,7 +6539,8 @@ CREATE TABLE public.reports_campaign_ai_artifacts (
     name character varying NOT NULL,
     ai_assistant_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6434,7 +6575,8 @@ CREATE TABLE public.reports_campaign_factors (
     output_type character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    description text
+    description text,
+    tenant_id bigint
 );
 
 
@@ -6469,7 +6611,8 @@ CREATE TABLE public.reports_filters (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     assessment_id integer,
-    min_required_responses integer DEFAULT 0
+    min_required_responses integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -6526,7 +6669,8 @@ CREATE TABLE public.reports_modules (
     updated_at timestamp without time zone NOT NULL,
     type character varying,
     assessment_id bigint,
-    meta json DEFAULT '{"hidden":false,"locked":false}'::json
+    meta json DEFAULT '{"hidden":false,"locked":false}'::json,
+    tenant_id bigint
 );
 
 
@@ -6562,7 +6706,8 @@ CREATE TABLE public.reports_pages (
     deleted_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    display_logic jsonb
+    display_logic jsonb,
+    tenant_id bigint
 );
 
 
@@ -6595,7 +6740,8 @@ CREATE TABLE public.resource_hogan_credentials (
     resource_type character varying NOT NULL,
     hogan_credential_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6636,7 +6782,8 @@ CREATE TABLE public.saml_service_providers (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     mask_identity boolean DEFAULT false NOT NULL,
-    integration_type integer DEFAULT 0 NOT NULL
+    integration_type integer DEFAULT 0 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6677,7 +6824,8 @@ CREATE TABLE public.saml_settings (
     updated_at timestamp without time zone NOT NULL,
     project_id bigint NOT NULL,
     name_identifier_format integer DEFAULT 0,
-    email_pipetext character varying
+    email_pipetext character varying,
+    tenant_id bigint
 );
 
 
@@ -6710,7 +6858,8 @@ CREATE TABLE public.saville_factors (
     factor_id character varying,
     name character varying,
     score_type character varying,
-    value_type character varying
+    value_type character varying,
+    tenant_id bigint
 );
 
 
@@ -6742,7 +6891,8 @@ CREATE TABLE public.saville_report_settings (
     report_id bigint NOT NULL,
     saville_report_id character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -6779,7 +6929,8 @@ CREATE TABLE public.saville_user_assessments (
     updated_at timestamp without time zone NOT NULL,
     data_seprator character varying,
     error_code character varying,
-    candidate_id bigint
+    candidate_id bigint,
+    tenant_id bigint
 );
 
 
@@ -6836,6 +6987,7 @@ CREATE TABLE public.security_settings (
     disallow_password_login boolean DEFAULT false,
     session_inactivity_timeout_in_seconds integer DEFAULT 7200 NOT NULL,
     enable_recaptcha boolean DEFAULT false,
+    tenant_id bigint,
     external_logout_redirect_enabled boolean DEFAULT false,
     external_logout_url character varying
 );
@@ -6984,7 +7136,8 @@ CREATE TABLE public.simulation_user_assessments (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     content_variation_id character varying,
-    time_extension double precision DEFAULT 1.0
+    time_extension double precision DEFAULT 1.0,
+    tenant_id bigint
 );
 
 
@@ -7017,7 +7170,8 @@ CREATE TABLE public.skill_aliases (
     skill_id bigint NOT NULL,
     name character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7051,7 +7205,8 @@ CREATE TABLE public.skill_groups (
     ancestry character varying,
     ancestry_depth integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7085,7 +7240,8 @@ CREATE TABLE public.skill_translations (
     locale character varying NOT NULL,
     skill_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7120,7 +7276,8 @@ CREATE TABLE public.skills (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     project_id bigint,
-    skill_group_id bigint
+    skill_group_id bigint,
+    tenant_id bigint
 );
 
 
@@ -7133,7 +7290,8 @@ CREATE TABLE public.skills_development_actions (
     skill_id bigint NOT NULL,
     development_action_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7186,7 +7344,8 @@ CREATE TABLE public.skills_job_roles (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     expected_proficiency_level integer,
-    project_id bigint
+    project_id bigint,
+    tenant_id bigint
 );
 
 
@@ -7221,7 +7380,8 @@ CREATE TABLE public.skillvue_assessments (
     expiration date,
     project_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7255,7 +7415,8 @@ CREATE TABLE public.skillvue_user_assessments (
     email character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    external_user_id character varying
+    external_user_id character varying,
+    tenant_id bigint
 );
 
 
@@ -7293,7 +7454,8 @@ CREATE TABLE public.sms_histories (
     price numeric,
     first_name character varying,
     last_name character varying,
-    mobile_no character varying
+    mobile_no character varying,
+    tenant_id bigint
 );
 
 
@@ -7333,7 +7495,8 @@ CREATE TABLE public.sms_invites (
     campaign_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    expiry timestamp without time zone
+    expiry timestamp without time zone,
+    tenant_id bigint
 );
 
 
@@ -7368,7 +7531,8 @@ CREATE TABLE public.sms_records (
     creator_id bigint NOT NULL,
     campaign_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7414,7 +7578,8 @@ CREATE TABLE public.smtp_settings (
     use_sender_verification boolean DEFAULT false,
     concurrency_limit integer DEFAULT 2 NOT NULL,
     rate_limit integer DEFAULT 90 NOT NULL,
-    rate_limit_period integer DEFAULT 1 NOT NULL
+    rate_limit_period integer DEFAULT 1 NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7449,7 +7614,8 @@ CREATE TABLE public.system_check_records (
     data jsonb,
     finished_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7481,7 +7647,8 @@ CREATE TABLE public.system_check_sessions (
     finished_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    user_id bigint NOT NULL
+    user_id bigint NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7517,7 +7684,8 @@ CREATE TABLE public.taggings (
     tagger_id bigint,
     context character varying(128),
     created_at timestamp without time zone,
-    tenant character varying(128)
+    tenant character varying(128),
+    tenant_id bigint
 );
 
 
@@ -7583,7 +7751,8 @@ CREATE TABLE public.taxonomy_levels (
     depth integer,
     label character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7657,7 +7826,8 @@ CREATE TABLE public.text_module_overrides (
     content text,
     approved boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7692,7 +7862,8 @@ CREATE TABLE public.threesixty_campaigns (
     status integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    category integer DEFAULT 0
+    category integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -7729,7 +7900,8 @@ CREATE TABLE public.threesixty_email_histories (
     meta json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    consolidated boolean DEFAULT false
+    consolidated boolean DEFAULT false,
+    tenant_id bigint
 );
 
 
@@ -7774,7 +7946,8 @@ CREATE TABLE public.threesixty_email_schedules (
     consolidated boolean DEFAULT false NOT NULL,
     auto_triggered boolean DEFAULT true,
     template_id bigint,
-    processing_started_at timestamp(6) without time zone
+    processing_started_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -7808,7 +7981,8 @@ CREATE TABLE public.threesixty_email_template_translations (
     locale character varying NOT NULL,
     threesixty_email_template_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7850,7 +8024,8 @@ CREATE TABLE public.threesixty_email_templates (
     updated_at timestamp without time zone NOT NULL,
     consolidated boolean DEFAULT false NOT NULL,
     daily_digest boolean,
-    schedule_time character varying
+    schedule_time character varying,
+    tenant_id bigint
 );
 
 
@@ -7883,7 +8058,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -7916,7 +8092,8 @@ CREATE TABLE public.threesixty_instruction_template_translations (
     locale character varying NOT NULL,
     threesixty_instruction_template_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7950,7 +8127,8 @@ CREATE TABLE public.threesixty_instruction_templates (
     content text,
     enabled boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -7985,7 +8163,8 @@ CREATE TABLE public.threesixty_nomination_requirements (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     "position" integer NOT NULL,
-    name character varying NOT NULL
+    name character varying NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8019,7 +8198,8 @@ CREATE TABLE public.threesixty_options (
     messages jsonb DEFAULT '{}'::jsonb,
     reports jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8052,7 +8232,8 @@ CREATE TABLE public.threesixty_reminder_histories (
     user_id bigint,
     email_name character varying,
     sent_count integer DEFAULT 0,
-    last_sent_at timestamp without time zone
+    last_sent_at timestamp without time zone,
+    tenant_id bigint
 );
 
 
@@ -8088,7 +8269,8 @@ CREATE TABLE public.threesixty_subjects (
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
     evaluation_status integer DEFAULT 0,
-    evaluation_status_updated_by_id bigint
+    evaluation_status_updated_by_id bigint,
+    tenant_id bigint
 );
 
 
@@ -8125,7 +8307,8 @@ CREATE TABLE public.transcriptions (
     error_details jsonb DEFAULT '{}'::jsonb NOT NULL,
     status integer DEFAULT 0 NOT NULL,
     segments jsonb DEFAULT '[]'::jsonb NOT NULL,
-    metadata jsonb DEFAULT '{}'::jsonb NOT NULL
+    metadata jsonb DEFAULT '{}'::jsonb NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8213,7 +8396,8 @@ CREATE TABLE public.user_assessment_verification_images (
     file character varying,
     user_assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8246,7 +8430,8 @@ CREATE TABLE public.user_assessment_verification_media (
     media_type integer DEFAULT 0 NOT NULL,
     user_assessment_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8368,7 +8553,8 @@ CREATE TABLE public.user_bookings (
     booked_by_resource_type character varying,
     booked_by_resource_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8409,7 +8595,8 @@ CREATE TABLE public.user_idp_comments (
     replies_count integer DEFAULT 0 NOT NULL,
     edited boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8446,7 +8633,8 @@ CREATE TABLE public.user_idp_development_actions (
     end_date_time timestamp(6) without time zone,
     private boolean DEFAULT false,
     deleted_at timestamp(6) without time zone,
-    deleted_by_id bigint
+    deleted_by_id bigint,
+    tenant_id bigint
 );
 
 
@@ -8488,7 +8676,8 @@ CREATE TABLE public.user_idp_plans (
     approval_status integer DEFAULT 0 NOT NULL,
     completion_status integer DEFAULT 0 NOT NULL,
     last_approved_at timestamp(6) without time zone,
-    review_note text
+    review_note text,
+    tenant_id bigint
 );
 
 
@@ -8523,7 +8712,8 @@ CREATE TABLE public.user_idp_skills (
     final_rating double precision,
     private boolean DEFAULT false NOT NULL,
     deleted_at timestamp(6) without time zone,
-    deleted_by_id bigint
+    deleted_by_id bigint,
+    tenant_id bigint
 );
 
 
@@ -8575,7 +8765,8 @@ CREATE TABLE public.user_reflection_question_answers (
     reflection_question_id bigint NOT NULL,
     user_idp_plan_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8613,7 +8804,8 @@ CREATE TABLE public.user_report_comments (
     deleted_by_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    parent_id bigint
+    parent_id bigint,
+    tenant_id bigint
 );
 
 
@@ -8647,7 +8839,8 @@ CREATE TABLE public.user_report_events (
     details jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    user_report_id bigint
+    user_report_id bigint,
+    tenant_id bigint
 );
 
 
@@ -8681,7 +8874,8 @@ CREATE TABLE public.user_report_pdfs (
     first_generated_at timestamp(6) without time zone,
     last_generated_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8726,7 +8920,8 @@ CREATE TABLE public.user_reports (
     approver_user_id bigint,
     qc_user_id integer,
     qc_at timestamp without time zone,
-    approved_at timestamp without time zone
+    approved_at timestamp without time zone,
+    tenant_id bigint
 );
 
 
@@ -8824,7 +9019,8 @@ CREATE TABLE public.users_results (
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
     progress integer,
-    ai_scoring_status integer
+    ai_scoring_status integer,
+    tenant_id bigint
 );
 
 
@@ -8858,7 +9054,8 @@ CREATE TABLE public.vector_embeddings (
     resource_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    embedding1536 public.vector(1536)
+    embedding1536 public.vector(1536),
+    tenant_id bigint
 );
 
 
@@ -8892,7 +9089,8 @@ CREATE TABLE public.version_associations (
     foreign_key_id bigint,
     foreign_type character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8929,7 +9127,8 @@ CREATE TABLE public.versions (
     object jsonb,
     object_changes jsonb,
     transaction_id bigint,
-    meta json
+    meta json,
+    tenant_id bigint
 );
 
 
@@ -8964,7 +9163,8 @@ CREATE TABLE public.webhook_event_logs (
     status integer NOT NULL,
     request text NOT NULL,
     response text NOT NULL,
-    created_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -8994,7 +9194,8 @@ ALTER SEQUENCE public.webhook_event_logs_id_seq OWNED BY public.webhook_event_lo
 CREATE TABLE public.webhook_subscription_topics (
     id bigint NOT NULL,
     name character varying NOT NULL,
-    subscription_id bigint NOT NULL
+    subscription_id bigint NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -9050,7 +9251,8 @@ CREATE TABLE public.webhook_subscriptions (
     encrypted_oauth_client_secret character varying,
     encrypted_oauth_client_secret_iv character varying,
     oauth_scope character varying,
-    assessment_ids jsonb DEFAULT '[]'::jsonb NOT NULL
+    assessment_ids jsonb DEFAULT '[]'::jsonb NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -9082,7 +9284,8 @@ CREATE TABLE public.workshop_assessors (
     workshop_id bigint,
     user_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -9117,7 +9320,8 @@ CREATE TABLE public.workshop_invite_logs (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     workshop_invite_id bigint,
-    action integer
+    action integer,
+    tenant_id bigint
 );
 
 
@@ -9151,7 +9355,8 @@ CREATE TABLE public.workshop_invite_translations (
     locale character varying NOT NULL,
     workshop_invite_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -9186,7 +9391,8 @@ CREATE TABLE public.workshop_invited_subjects (
     reason text,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reschedule_workshop_id bigint
+    reschedule_workshop_id bigint,
+    tenant_id bigint
 );
 
 
@@ -9224,7 +9430,8 @@ CREATE TABLE public.workshop_invites (
     updated_at timestamp(6) without time zone NOT NULL,
     campaign_id bigint,
     campaign_assessment_group_id bigint,
-    name character varying
+    name character varying,
+    tenant_id bigint
 );
 
 
@@ -9286,7 +9493,8 @@ CREATE TABLE public.workshop_managers (
     workshop_id bigint,
     user_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -9317,7 +9525,8 @@ CREATE TABLE public.workshop_resources (
     id bigint NOT NULL,
     name character varying,
     url character varying,
-    workshop_id bigint
+    workshop_id bigint,
+    tenant_id bigint
 );
 
 
@@ -9360,7 +9569,8 @@ CREATE TABLE public.workshop_subjects (
     neurodivergent_comments text,
     campaign_id integer,
     workshop_invited_subject_id bigint,
-    scheduling_status integer DEFAULT 0
+    scheduling_status integer DEFAULT 0,
+    tenant_id bigint
 );
 
 
@@ -9406,6 +9616,7 @@ CREATE TABLE public.workshops (
     allow_late_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
     campaign_assessment_group_id bigint,
     disable_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
+    tenant_id bigint,
     CONSTRAINT booked_seats_not_exceed_total_seats CHECK ((booked_seats <= total_seats)),
     CONSTRAINT booked_seats_positive CHECK ((booked_seats >= 0))
 );
@@ -9441,7 +9652,8 @@ CREATE TABLE public.yoodli_user_assessments (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     yoodli_activity_id character varying,
-    active boolean DEFAULT true NOT NULL
+    active boolean DEFAULT true NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -20519,6 +20731,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260514200000'),
 ('20260513115126'),
 ('20260513115038'),
 ('20260513115037'),
@@ -20528,6 +20741,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260504120000'),
 ('20260424120000'),
 ('20260417093000'),
+('20260408120000'),
 ('20260401053041'),
 ('20260401045303'),
 ('20260401031414'),
@@ -21558,4 +21772,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

@@ -15,6 +15,10 @@ class UserProfile < ApplicationRecord
   end
 
   belongs_to :user
+  include Tenantable
+
+  tenant_source :user
+
   has_one_image_attachment :photo, variants: [:icon]
 
   delegate :profile_fields, to: :user

@@ -4,6 +4,7 @@ class CampaignFactorGroup < ApplicationRecord
   audited
 
   belongs_to :campaign
+  include Tenantable
 
   has_many :campaign_factors, dependent: :destroy
 

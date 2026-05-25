@@ -2,6 +2,14 @@
 
 PaperTrail.config.track_associations = true
 
+Rails.application.config.to_prepare do
+  PaperTrail::Version.include(Tenantable)
+  PaperTrail::Version.tenant_source :item
+
+  PaperTrail::VersionAssociation.include(Tenantable)
+  PaperTrail::VersionAssociation.tenant_source :version
+end
+
 module PaperTrailAssociationTracking
   module Reifiers
     module HasMany

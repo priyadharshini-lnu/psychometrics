@@ -5,6 +5,9 @@ class SheetRow < ApplicationRecord
 
   belongs_to :sheet, inverse_of: :rows
   has_many :sheet_row_data, dependent: :destroy
+  include Tenantable
+
+  tenant_source :sheet
 
   before_save { self.email = email&.downcase }
 

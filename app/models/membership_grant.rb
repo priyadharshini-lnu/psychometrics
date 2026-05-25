@@ -5,6 +5,10 @@ class MembershipGrant < ApplicationRecord
 
   belongs_to :membership
 
+  include Tenantable
+
+  tenant_source :membership
+
   include SecurityContextLoggable
 
   before_save :capture_security_updates

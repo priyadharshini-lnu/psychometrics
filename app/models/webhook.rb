@@ -32,6 +32,7 @@ class Webhook < WebhookSystem::Subscription
   ].freeze
 
   belongs_to :project
+  include Tenantable
 
   after_update :clear_assessment_ids_if_needed
 

@@ -6,6 +6,10 @@ class MembershipsAdminRole < ApplicationRecord
   belongs_to :membership
   belongs_to :admin_role
 
+  include Tenantable
+
+  tenant_source :membership
+
   include SecurityContextLoggable
 
   before_destroy :capture_security_context_data

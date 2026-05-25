@@ -6,6 +6,10 @@ class FactorsSubFactor < ApplicationRecord
   belongs_to :sub_factor, class_name: 'Factor'
   belongs_to :factor
 
+  include Tenantable
+
+  tenant_source :factor
+
   after_commit :sync_parent_child_factor_type
 
   private
