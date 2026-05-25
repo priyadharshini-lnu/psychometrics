@@ -1179,16 +1179,11 @@ ko:
         failure: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 동영상 녹화를 위해서는 Chrome 또는 Firefox를 사용하세요
         success: 성공
         unsupported: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 다음 브라우저 중 하나를 사용하세요,
-      recording_duration_label: 최대 녹화 시간
-      recording_stop_label: 녹화가 다음에서 중지됩니다
       requesting_permission: 권한 요청 중...
       response_recorded: 응답 기록
       save: 저장
-      saved:
-        label: 동영상 저장
       seek: Seek
       start_recording: 녹화 시작
-      stop_recording: 녹화 중지
       tracker:
         backward: 화면에 너무 가까이 있습니다. 조금 뒤로 이동하세요
         forward: 화면에서 너무 멀리 떨어져 있습니다. 조금 더 가까이 오세요

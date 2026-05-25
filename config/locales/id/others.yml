@@ -1182,16 +1182,11 @@ id:
         failure: Browser ini tidak mendukung Perekaman Video. Silakan gunakan Chrome atau Firefox untuk Perekaman Video
         success: Izinkan penggunaan kamera dan mikrofon untuk merekam audio dan Video
         unsupported: Browser ini tidak mendukung Perekaman Video. Silakan gunakan salah satu browser berikut,
-      recording_duration_label: Durasi maksimum perekaman
-      recording_stop_label: Perekaman akan berhenti di
       requesting_permission: Meminta Izin...
       response_recorded: Tanggapan Dicatat
       save: Simpan
-      saved:
-        label: Video Tersimpan
       seek: Mencari
       start_recording: Mulai merekam
-      stop_recording: Berhenti merekam
       tracker:
         backward: Anda terlalu dekat dengan layar, mohon mundur sedikit
         forward: Anda terlalu jauh dari layar, mohon bergerak sedikit lebih dekat

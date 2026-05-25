@@ -1179,16 +1179,11 @@ vi:
         failure: Trình duyệt này không hỗ trợ Quay Video. Vui lòng sử dụng Chrome hoặc Firefox để Quay Video
         success: Vui lòng cho phép sử dụng camera và micrô để ghi âm thanh và video
         unsupported: Trình duyệt này không hỗ trợ Quay video. Vui lòng sử dụng bất kỳ trình duyệt nào sau đây,
-      recording_duration_label: Thời lượng ghi âm tối đa
-      recording_stop_label: Việc ghi âm sẽ dừng lại ở
       requesting_permission: Đang yêu cầu cấp phép...
       response_recorded: Phản hồi được ghi lại
       save: Cứu
-      saved:
-        label: Video đã lưu
       seek: Tìm kiếm
       start_recording: Bắt đầu ghi âm
-      stop_recording: Dừng ghi âm
       tracker:
         backward: Bạn đang ở quá gần màn hình. Vui lòng di chuyển ra xa một chút
         forward: Bạn đang ở quá xa màn hình. Vui lòng di chuyển gần hơn một chút

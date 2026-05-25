@@ -1179,16 +1179,11 @@ fr:
         failure: Ce navigateur ne prend pas en charge l'enregistrement vidéo. Veuillez utiliser Chrome ou Firefox pour l'enregistrement vidéo
         success: Veuillez autoriser l'utilisation d'un appareil photo et d'un microphone pour l'enregistrement audio et vidéo
         unsupported: Ce navigateur ne prend pas en charge l'enregistrement vidéo. Veuillez utiliser l'un des navigateurs suivants,
-      recording_duration_label: Durée maximale de l'enregistrement
-      recording_stop_label: L'enregistrement s'arrête dans
       requesting_permission: Demande d'autorisation...
       response_recorded: Réponse enregistrée
       save: Économiser
-      saved:
-        label: Vidéo sauvée
       seek: Chercher
       start_recording: Démarrer l'enregistrement
-      stop_recording: Arrêter l'enregistrement
       tracker:
         backward: Vous êtes trop près de l'écran, reculez un peu
         forward: Vous êtes trop loin de l'écran, rapprochez-vous un peu

@@ -1182,16 +1182,11 @@ cs:
         failure: Tento prohlížeč nepodporuje nahrávání videa. Pro nahrávání videa použijte Chrome nebo Firefox
         success: Povolte použití kamery a mikrofonu k nahrávání zvuku a videa
         unsupported: Tento prohlížeč nepodporuje nahrávání videa. Použijte prosím některý z následujících prohlížečů,
-      recording_duration_label: Maximální doba záznamu
-      recording_stop_label: Nahrávání se zastaví za
       requesting_permission: Žádáme o oprávnění…
       response_recorded: Odpověď zaznamenána
       save: Uložit
-      saved:
-        label: Video uloženo
       seek: Hledat
       start_recording: Spustit nahrávání
-      stop_recording: Zastavit nahrávání
       tracker:
         backward: Jste příliš blízko u obrazovky. Posuňte se mírně dozadu
         forward: Jste příliš daleko od obrazovky. Posuňte se o trošku blíž.

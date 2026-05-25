@@ -1182,16 +1182,11 @@ zh:
         failure: 此浏览器不支持视频录制。请使用 Chrome 或 Firefox 进行视频录制
         success: 请允许使用摄像头和麦克风来录制音频和视频
         unsupported: 此浏览器不支持视频录制，请使用以下任何一种浏览器、
-      recording_duration_label: 最长记录时间
-      recording_stop_label: 录音将在
       requesting_permission: 请求许可...
       response_recorded: 已记录回答
       save: 保存
-      saved:
-        label: 已保存
       seek: 寻找
       start_recording: 开始录制
-      stop_recording: 停止录制
       tracker:
         backward: 你离屏幕太近了。请靠后一点
         forward: 你离屏幕太远了。请靠近一点

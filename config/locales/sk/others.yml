@@ -1179,16 +1179,11 @@ sk:
         failure: Tento prehliadač nepodporuje nahrávanie videa. Na nahrávanie videa použite prehliadač Chrome alebo Firefox
         success: Povoľte používanie kamery a mikrofónu na nahrávanie zvuku a videa
         unsupported: 'Tento prehliadač nepodporuje nahrávanie videa. Použite niektorý z nasledujúcich prehliadačov:'
-      recording_duration_label: Maximálne trvanie záznamu
-      recording_stop_label: Nahrávanie sa zastaví v
       requesting_permission: Žiadosť o povolenie...
       response_recorded: Zaznamenaná odpoveď
       save: Uložiť
-      saved:
-        label: Uložené video
       seek: Hľadať
       start_recording: Spustenie nahrávania
-      stop_recording: Zastavenie nahrávania
       tracker:
         backward: Ste príliš blízko obrazovky. Prosím, posuňte sa trochu dozadu
         forward: Ste príliš ďaleko od obrazovky. Prosím, posuňte sa bližšie

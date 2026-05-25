@@ -1182,16 +1182,11 @@ sr-Latn:
         failure: Ovaj pretraživač ne podržava video snimanje. Molimo Vas da koristite Chrome ili Firefox za snimanje video zapisa
         success: Dozvolite da koristite kameru i mikrofon za snimanje audio i video
         unsupported: Ovaj pretraživač ne podržava video snimanje. Molimo Vas da koristite bilo koji od sledećih pretraživača,
-      recording_duration_label: Maksimalno trajanje snimanja
-      recording_stop_label: Snimanje će se zaustaviti za
       requesting_permission: Traženje dozvole ...
       response_recorded: Odgovor zabeležen
       save: Sačuvaj
-      saved:
-        label: Video sačuvan
       seek: Traћim
       start_recording: Započni snimanje
-      stop_recording: Zaustavi snimanje
       tracker:
         backward: Preblizu ste ekranu. Molimo vas da se pomerite malo unazad
         forward: Predaleko ste od ekrana. Molimo vas da se približite malo bliže

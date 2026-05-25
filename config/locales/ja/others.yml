@@ -1184,16 +1184,11 @@ ja:
         failure: このブラウザはビデオ録画をサポートしていません。ビデオ録画にはChromeまたはFirefoxをお使いください
         success: 音声付きビデオを録画するには、カメラとマイクの使用を許可してください
         unsupported: このブラウザはビデオ録画をサポートしていません。 以下のブラウザをご利用ください、
-      recording_duration_label: 最大録画時間
-      recording_stop_label: で録音が停止します。
       requesting_permission: 許可を求める...
       response_recorded: 応答記録
       save: 保存
-      saved:
-        label: 保存済み
       seek: シーク
       start_recording: 録画を開始
-      stop_recording: 録音停止
       tracker:
         backward: 画面に近づきすぎています。少し後ろに下がってください
         forward: 画面から離れすぎています。少し近づいてください

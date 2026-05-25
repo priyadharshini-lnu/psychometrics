@@ -1182,16 +1182,11 @@ pt:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
         unsupported: Este browser não suporta a gravação de vídeo. Utilize qualquer um dos seguintes browsers,
-      recording_duration_label: Duração máxima da gravação
-      recording_stop_label: A gravação irá parar dentro de
       requesting_permission: Pedido de autorização...
       response_recorded: Resposta registrada
       save: Salvar
-      saved:
-        label: Guardado
       seek: Procurar
       start_recording: Iniciar gravação
-      stop_recording: Parar a gravação
       tracker:
         backward: Está muito próximo do ecrã.  Afaste-se um pouco.
         forward: Está muito longe do ecrã.  Aproxime-se um pouco.

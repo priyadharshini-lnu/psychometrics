@@ -1179,16 +1179,11 @@ hr:
         failure: Ovaj preglednik ne podržava snimanje videa. Za snimanje videa koristite Chrome ili Firefox.
         success: Molimo, dopustite korištenje kamere i mikrofona za snimanje videa i zvuka
         unsupported: Ovaj preglednik ne podržava snimanje videozapisa. Koristite bilo koji od sljedećih preglednika,
-      recording_duration_label: Maksimalno trajanje snimanja
-      recording_stop_label: Snimanje će se zaustaviti za
       requesting_permission: Zahtjev za dopuštenje...
       response_recorded: Odgovor je zabilježen
       save: Spremiti
-      saved:
-        label: Videozapis spremljen
       seek: Tražiti
       start_recording: Započeti snimanje
-      stop_recording: Zaustaviti snimanje
       tracker:
         backward: Preblizu ste zaslonu. Molimo, odmaknite se unatrag.
         forward: Previše ste udaljeni od zaslona. Molimo, približite se.

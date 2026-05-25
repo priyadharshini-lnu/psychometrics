@@ -1184,16 +1184,11 @@ zh-HK:
         failure: 此瀏覽器不支援錄影。請使用 Chrome 或 Firefox 錄影
         success: 請允許使用相機和咪高峰錄音及錄影
         unsupported: 此瀏覽器不支援錄影。請使用以下任一瀏覽器，
-      recording_duration_label: 最長錄影時間
-      recording_stop_label: 錄製會在
       requesting_permission: 請求許可...
       response_recorded: 記錄的回應
       save: 儲存
-      saved:
-        label: 已儲存
       seek: 尋
       start_recording: 開始錄影
-      stop_recording: 停止錄影
       tracker:
         backward: 您距離螢幕太近。請後退一點
         forward: 您距離螢幕太遠。請靠近一點

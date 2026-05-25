@@ -1179,16 +1179,11 @@ pl:
         failure: Ta przeglądarka nie umożliwia nagrywania wideo. Do nagrywania wideo użyj przeglądarki Chrome lub Firefox
         success: Zezwól na używanie kamery i mikrofonu do nagrywania dźwięku i wideo
         unsupported: 'Ta przeglądarka nie obsługuje nagrywania wideo. Prosimy o korzystanie z jednej z następujących przeglądarek:'
-      recording_duration_label: Maksymalny czas nagrywania
-      recording_stop_label: Nagrywanie zostanie zatrzymane za
       requesting_permission: Prośba o pozwolenie...
       response_recorded: Odpowiedź zarejestrowana
       save: Zapisz
-      saved:
-        label: Zapisane wideo
       seek: Szukać
       start_recording: Rozpocznij nagrywanie
-      stop_recording: Zatrzymaj nagrywanie
       tracker:
         backward: Jesteś zbyt blisko ekranu, odsuń się trochę
         forward: Jesteś zbyt daleko od ekranu. Przysuń się trochę bliżej

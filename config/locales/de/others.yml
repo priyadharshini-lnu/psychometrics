@@ -1184,16 +1184,11 @@ de:
         failure: Dieser Browser unterstützt keine Videoaufzeichnung. Bitte verwenden Sie Chrome oder Firefox für Videoaufzeichnungen
         success: Bitte erlauben Sie die Verwendung von Kamera und Mikrofon für Audio- und Videoaufnahmen
         unsupported: Dieser Browser unterstützt keine Videoaufzeichnung, bitte verwenden Sie einen der folgenden Browser,
-      recording_duration_label: Maximale Dauer der Aufzeichnung
-      recording_stop_label: Die Aufnahme stoppt in
       requesting_permission: Bitte um Erlaubnis...
       response_recorded: Aufgezeichnete Antwort
       save: speich
-      saved:
-        label: Video gerettet
       seek: Suchen Sie
       start_recording: Aufnahme starten
-      stop_recording: Aufnahme stoppen
       tracker:
         backward: Sie sind zu nah am Bildschirm, bitte gehen Sie ein Stück zurück
         forward: Sie sind zu weit vom Bildschirm entfernt, bitte gehen Sie etwas näher ran

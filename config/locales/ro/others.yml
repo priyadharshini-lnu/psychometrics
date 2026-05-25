@@ -1179,16 +1179,11 @@ ro:
         failure: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați Chrome sau Firefox pentru înregistrarea video
         success: Vă rugăm să permiteți utilizarea camerei și a microfonului pentru înregistrarea audio și video
         unsupported: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați oricare dintre următoarele browsere,
-      recording_duration_label: Durata maximă de înregistrare
-      recording_stop_label: Înregistrarea se va opri în
       requesting_permission: Solicitarea permisiunii...
       response_recorded: Răspuns înregistrat
       save: Salvați
-      saved:
-        label: Video salvat
       seek: Căuta
       start_recording: Începeți înregistrarea
-      stop_recording: Opriți înregistrarea
       tracker:
         backward: Sunteți prea aproape de ecran. Vă rugăm să vă îndepărtați puțin
         forward: Sunteți prea departe de ecran. Vă rugăm să vă apropiați puțin

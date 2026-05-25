@@ -8,6 +8,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { WarningOutlined, CaretRightFilled, PauseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useAudioLevelMonitoring } from '~/hooks/useAudioLevelMonitoring'
 import styles from '../styles.less'
+import DotAudioVisualizer from './DotAudioVisualizer'
 
 
 const { I18n } = window
@@ -23,6 +24,9 @@ interface BaseVideoPlayerProps {
   maxRecordingDuration?: number;
   onPlay: () => void;
   renderControlBar: (stream: MediaStream) => React.ReactNode;
+  isTestMode?: boolean
+  permissionError?: string;
+  showVisualizer?: boolean;
 }
 
 interface VideoPlayerPropsWithCountdown extends BaseVideoPlayerProps {
@@ -50,10 +54,13 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
   stream = null,
   renderControlBar,
   maxRecordingDuration,
+  isTestMode = true,
+  permissionError,
+  showVisualizer = true,
 }) => {
   const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
 
-  const [showRecordNote, setShowRecordNote] = useState(true)
+  const [showRecordNote, setShowRecordNote] = useState(isTestMode)
   const [isRecordNoteClosing, setIsRecordNoteClosing] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -232,63 +239,93 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
           </motion.div>
         )}
 
-        {permissionGranted && status === 'idle' && showRecordNote && (
-          <div
-            className={`${styles.recordMessageOverlay} ${
-              isRecordNoteClosing ? styles.recordMessageOverlayExit : ''
-            }`}
-            role="alertdialog"
-            aria-label={`${I18n.t('enduser.video_overlay_label')} ${I18n.t('enduser.dummy_message')}`}
-            aria-live="polite"
-            aria-modal="true"
-          >
-            <div className={styles.recordMessage}>
-              {I18n.t('enduser.video_overlay_message')}
-              <Button type="primary" onClick={closeRecordNote}>
-                {I18n.t('enduser.lets_start')}
-              </Button>
-            </div>
+        {permissionError ? (
+          <div className={styles.errorOverlay} role="alert" aria-live="assertive">
+            <span>{permissionError}</span>
           </div>
-        )}
-        {!permissionGranted && !mediaUrl && !showRecordNote && (
-          <div className={styles.overlay} role="status" aria-live="polite">
-            <p>{I18n.t('shared.camera_preview')}</p>
-          </div>
+        ) : (
+          <>
+            {permissionGranted && status === 'idle' && showRecordNote && (
+              <div
+                className={`${styles.recordMessageOverlay} ${
+                  isRecordNoteClosing ? styles.recordMessageOverlayExit : ''
+                }`}
+                role="alertdialog"
+                aria-label={`${I18n.t('enduser.video_overlay_label')} ${I18n.t('enduser.dummy_message')}`}
+                aria-live="polite"
+                aria-modal="true"
+              >
+                <div className={styles.recordMessage}>
+                  {I18n.t('enduser.video_overlay_message')}
+                  <Button type="primary" onClick={closeRecordNote}>
+                    {I18n.t('enduser.lets_start')}
+                  </Button>
+                </div>
+              </div>
+            )}
+            {!permissionGranted && !mediaUrl && !showRecordNote && (
+              <div className={styles.overlay} role="status" aria-live="polite">
+                <p>{I18n.t('shared.camera_preview')}</p>
+              </div>
+            )}
+
+            {/* No audio warning overlay - top left */}
+            {showAudioWarning && status === 'recording' && (
+              <div
+                className={styles.audioWarningOverlay}
+                role="alert"
+                aria-live="assertive"
+                aria-label={I18n.t('shared.no_audio_warning')}
+              >
+                <WarningOutlined
+                  style={{ fontSize: '1rem' }}
+                  aria-hidden="true"
+                />
+                <span>{I18n.t('shared.no_audio_warning')}</span>
+              </div>
+            )}
+
+            {!showAudioWarning && status === 'recording' && showVisualizer && (
+              <div className={styles.audioVisualizerOverlay} aria-hidden="true">
+                <DotAudioVisualizer
+                  stream={stream}
+                  barCount={5}
+                  barWidth={6}
+                  barGap={2}
+                  height={48}
+                  minHeight={6}
+                  maxHeight={18}
+                  sensitivity={1.4}
+                  width={48}
+                  barColor="rgba(255, 255, 255, 0.9)"
+                />
+              </div>
+
+            )}
+
+            {isTestMode && (
+              <>
+                {status === 'recording' && (
+                  <div
+                    className={styles.dummyMessageOverlay}
+                    role="status"
+                    aria-live="polite"
+                    aria-label={I18n.t('enduser.dummy_message')}
+                  >
+                    <div className={styles.dummyMessage}>
+                      {I18n.t('enduser.dummy_message')}
+                    </div>
+                  </div>
+                )}
+
+                {status === 'recording' && maxRecordingDuration != null && (
+                  <RecordingProgressBar durationSeconds={maxRecordingDuration} />
+                )}
+              </>
+            )}
+          </>
         )}
 
-        {/* No audio warning overlay - top left */}
-        {showAudioWarning && status === 'recording' && (
-          <div
-            className={styles.audioWarningOverlay}
-            role="alert"
-            aria-live="assertive"
-            aria-label={I18n.t('shared.no_audio_warning')}
-          >
-            <WarningOutlined
-              style={{ fontSize: '1rem' }}
-              aria-hidden="true"
-            />
-            <span>{I18n.t('shared.no_audio_warning')}</span>
-          </div>
-        )}
-
-
-        {status === 'recording' && (
-          <div
-            className={styles.dummyMessageOverlay}
-            role="status"
-            aria-live="polite"
-            aria-label={I18n.t('enduser.dummy_message')}
-          >
-            <div className={styles.dummyMessage}>
-              {I18n.t('enduser.dummy_message')}
-            </div>
-          </div>
-        )}
-
-        {status === 'recording' && maxRecordingDuration != null && (
-          <RecordingProgressBar durationSeconds={maxRecordingDuration} />
-        )}
       </Flex>
 
       {!showRecordNote && renderControlBar(stream!)}

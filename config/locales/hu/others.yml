@@ -1179,16 +1179,11 @@ hu:
         failure: Ez a böngésző nem támogatja a videófelvételt. Kérjük, használja a Chrome vagy Firefox böngészőt a videófelvételhez
         success: Kérjük, engedélyezze a kamera és a mikrofon használatát hang- és videofelvételek rögzítéséhez
         unsupported: Ez a böngésző nem támogatja a videofelvételt. Kérjük, használja az alábbi böngészők bármelyikét,
-      recording_duration_label: A felvétel maximális időtartama
-      recording_stop_label: A felvétel leáll a
       requesting_permission: Engedélykérés...
       response_recorded: Felvett válasz
       save: Mentés
-      saved:
-        label: Megtakarított videó
       seek: Keres
       start_recording: Felvétel indítása
-      stop_recording: Felvétel leállítása
       tracker:
         backward: Túl közel van a képernyőhöz. Kérem, lépjen kicsit hátrébb
         forward: Túl messze van a képernyőtől, kérem, menjen egy kicsit közelebb

@@ -1179,16 +1179,11 @@ sl:
         failure: Vaš brskalnik ne omogoča snemanja videa. Priporočamo uporabo brskalnika Chrome ali Firefox
         success: Prosimo dovolite uporabo kamere in mikrofona za snemanje
         unsupported: 'Ta brskalnik ne podpira snemanja videoposnetkov. Uporabite katerega koli od naslednjih brskalnikov:'
-      recording_duration_label: Najdaljši dovoljen čas snemanja
-      recording_stop_label: Snemanje se bo ustavilo v
       requesting_permission: Prošnja za dovoljenje...
       response_recorded: Odgovor je zabeležen
       save: Shrani
-      saved:
-        label: Posnetek je shranjen
       seek: Iskati
       start_recording: Začetek snemanja
-      stop_recording: Konec snemanja
       tracker:
         backward: Nahajate se preblizu zaslona. Prosimo, pomaknite se nekoliko nazaj
         forward: Ste preveč oddaljeni od zaslona. Prosimo, pomaknite se nekoliko bližje

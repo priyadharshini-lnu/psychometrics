@@ -1179,16 +1179,11 @@ nl:
         failure: Deze browser ondersteunt het opnemen van video's niet. Gebruik Chrome of Firefox voor het opnemen van video's
         success: Sta het gebruik van camera en microfoon toe om audio en video op te nemen
         unsupported: Deze browser ondersteunt het opnemen van video's niet. Gebruik een van de volgende browsers,
-      recording_duration_label: Maximale duur van opname
-      recording_stop_label: De opname stopt in
       requesting_permission: Toestemming vragen...
       response_recorded: Reactie opgenomen
       save: Sla
-      saved:
-        label: Video opgeslagen
       seek: Zoek
       start_recording: Opname starten
-      stop_recording: Opname stoppen
       tracker:
         backward: U staat te dicht bij het scherm. Ga iets naar achteren
         forward: Je staat te ver van het scherm af. Ga alsjeblieft wat dichterbij staan

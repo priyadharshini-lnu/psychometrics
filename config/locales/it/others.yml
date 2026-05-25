@@ -1179,16 +1179,11 @@ it:
         failure: Questo browser non supporta la registrazione video. Utilizzare Chrome o Firefox per la registrazione video
         success: Consentire l'uso della fotocamera e del microfono per registrare audio e video
         unsupported: Questo browser non supporta la registrazione video. Utilizzare uno dei seguenti browser,
-      recording_duration_label: Durata massima della registrazione
-      recording_stop_label: La registrazione si interromperà in
       requesting_permission: Richiesta di autorizzazione...
       response_recorded: Risposta registrata
       save: Salva
-      saved:
-        label: Video salvato
       seek: Cercare
       start_recording: Avviare la registrazione
-      stop_recording: Interrompere la registrazione
       tracker:
         backward: Sei troppo vicino allo schermo, spostati un po' indietro
         forward: Sei troppo lontano dallo schermo. Avvicinati un po' di più

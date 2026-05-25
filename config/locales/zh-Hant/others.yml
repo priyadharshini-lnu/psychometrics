@@ -1179,16 +1179,11 @@ zh-Hant:
         failure: 此瀏覽器不支援視訊錄影，請使用 Chrome 或 Firefox 進行視訊錄影
         success: 請允許使用攝影機和麥克風錄製音訊和視訊
         unsupported: 此瀏覽器不支援視訊錄影，請使用下列任何一種瀏覽器、
-      recording_duration_label: 最長錄影時間
-      recording_stop_label: 錄製會在
       requesting_permission: 請求許可...
       response_recorded: 記錄的回應
       save: 節省
-      saved:
-        label: 儲存的視訊
       seek: 尋找
       start_recording: 開始錄影
-      stop_recording: 停止錄影
       tracker:
         backward: 您太靠近螢幕了，請往後移一點
         forward: 您離螢幕太遠，請再靠近一點
