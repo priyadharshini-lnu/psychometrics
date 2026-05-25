@@ -15,7 +15,7 @@ module UserReports::PdfGeneration
 
     audit! :view_report, resource, campaign: resource.campaign, payload: params.merge(resource.details_to_log)
 
-    respond_to do |format|
+    respond_to do |format| # rubocop:disable Metrics/BlockLength
       format.json do
         if resource.external_report? || resource.provider_custom_upload?
           return render(
