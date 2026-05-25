@@ -25,21 +25,23 @@ module UserReports::PdfGeneration
           )
         end
 
-        render json: ::UserReportSerializer.new(
-          context: {
-            report: resource.report,
-            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
-            piped_text_context: resource.piped_text_context,
-            user_results: resource.user_results(view_report_as),
-            view_report_as: view_report_as,
-            current_user: current_user,
-            campaign: resource.campaign,
-            threesixty_campaign: resource.threesixty_campaign,
-            options: resource.threesixty_campaign&.option,
-            lang: params[:report_lang],
-            campaign_user: resource.campaign_user
-          }
-        ).serialize(resource)
+        Mobility.with_locale(params[:report_lang] || resource.report.default_language) do
+          render json: ::UserReportSerializer.new(
+            context: {
+              report: resource.report,
+              results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
+              piped_text_context: resource.piped_text_context,
+              user_results: resource.user_results(view_report_as),
+              view_report_as: view_report_as,
+              current_user: current_user,
+              campaign: resource.campaign,
+              threesixty_campaign: resource.threesixty_campaign,
+              options: resource.threesixty_campaign&.option,
+              lang: params[:report_lang],
+              campaign_user: resource.campaign_user
+            }
+          ).serialize(resource)
+        end
       end
     end
   end
@@ -75,7 +77,9 @@ module UserReports::PdfGeneration
     selected_locale = params[:lang] || resource.report.default_language
     I18n.locale = selected_locale
 
-    @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+    Mobility.with_locale(selected_locale) do
+      @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+    end
     @pdf_export = true
 
     render 'shared/preview_report', layout: 'pdf'
