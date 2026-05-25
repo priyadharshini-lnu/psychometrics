@@ -102,5 +102,49 @@ describe Microsite::SaveAssessments do
         end.not_to change(MicrositeAssessment, :count)
       end
     end
+
+    context 'when syncing question mappings' do
+      let!(:lighthouse_assessment) do
+        create(:assessment, :microsite,
+               project: project,
+               external_settings: {
+                 'assessment_id' => 'ms-assessment-001',
+                 'question_mappings' => { 'q1' => '100' }
+               })
+      end
+
+      let(:assessments) do
+        [
+          {
+            'assessmentId' => 'ms-assessment-001',
+            'name' => 'Communication Skills',
+            'questions' => {
+              'q1' => { 'kind' => 'single_choice' },
+              'user-profile' => { 'kind' => 'form', 'fields' => [] },
+              'q2' => { 'kind' => 'single_choice' }
+            }
+          }
+        ]
+      end
+
+      it 'adds new catalog questions to existing question mappings' do
+        described_class.call(project, assessments)
+
+        mappings = Assessment.find(lighthouse_assessment.id).external_settings['question_mappings']
+
+        expect(mappings).to eq({
+          'q1' => '100',
+          'user-profile' => nil,
+          'q2' => nil
+        })
+      end
+
+      it 'does not overwrite existing mappings' do
+        described_class.call(project, assessments)
+
+        mappings = Assessment.find(lighthouse_assessment.id).external_settings['question_mappings']
+        expect(mappings['q1']).to eq('100')
+      end
+    end
   end
 end

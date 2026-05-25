@@ -7,7 +7,8 @@ module Microsite
       'multi_select' => AnswerConverters::MultiSelect,
       'free_text' => AnswerConverters::FreeText,
       'ranked' => AnswerConverters::Ranked,
-      'tf_grid' => AnswerConverters::TfGrid
+      'tf_grid' => AnswerConverters::TfGrid,
+      'form' => AnswerConverters::Form
     }.freeze
 
     attr_reader :microsite_user_assessment
@@ -56,6 +57,17 @@ module Microsite
       @questions_by_id ||= Question.where(id: question_mappings.values.compact).index_by(&:id)
     end
 
+    def microsite_questions
+      @microsite_questions ||= microsite_assessment&.metadata&.dig('questions') || {}
+    end
+
+    def microsite_assessment
+      @microsite_assessment ||= MicrositeAssessment.find_by(
+        project_id: microsite_user_assessment.user_assessment.project&.id,
+        product_id: assessment.external_assessment_id
+      )
+    end
+
     def build_canonical_answer(raw_answer, question)
       result = raw_answer['result']
       kind = result['kind']
@@ -66,7 +78,12 @@ module Microsite
         return nil
       end
 
-      converter_result = converter.build_answers(result, question)
+      converter_result = if kind == 'form'
+                           microsite_question = microsite_questions[raw_answer['questionId']]
+                           converter.build_answers(result, question, microsite_question)
+                         else
+                           converter.build_answers(result, question)
+                         end
       return nil unless converter_result
 
       # TfGrid returns a hash with 'answers' and 'not_applicable' keys
