@@ -253,6 +253,7 @@ vi:
     create_client: Tạo khách hàng
     create_indicator: Tạo chỉ báo
     current_job_role: Vị trí công việc hiện tại
+    custom_upload: Tải lên tùy chỉnh
     dashboard: Bảng điều khiển
     dashboards: Dashboards
     data_reports: Báo cáo dữ liệu

@@ -253,6 +253,7 @@ fr:
     create_client: Créer un client
     create_indicator: Créer un indicateur
     current_job_role: Fonction actuelle
+    custom_upload: Chargement personnalisé
     dashboard: Tableau de bord
     dashboards: Tableaux de bord
     data_reports: Rapports de données

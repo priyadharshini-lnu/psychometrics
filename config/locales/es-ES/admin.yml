@@ -253,6 +253,7 @@ es-ES:
     create_client: Crear cliente
     create_indicator: Crear indicador
     current_job_role: Puesto actual
+    custom_upload: Carga personalizada
     dashboard: Cuadro de mandos
     dashboards: Cuadros de mando
     data_reports: Informes de datos

@@ -253,6 +253,7 @@ th:
     create_client: สร้างไคลเอ็นต์
     create_indicator: สร้างตัวชี้วัด
     current_job_role: บทบาทงานปัจจุบัน
+    custom_upload: อัปโหลดแบบกําหนดเอง
     dashboard: แดชบอร์ด
     dashboards: แด ชบอร์ด
     data_reports: รายงานข้อมูล

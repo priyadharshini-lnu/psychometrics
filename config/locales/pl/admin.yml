@@ -253,6 +253,7 @@ pl:
     create_client: Utwórz klienta
     create_indicator: Utwórz wskaźnik
     current_job_role: Obecna rola zawodowa
+    custom_upload: Przesyłanie niestandardowe
     dashboard: Deska rozdzielcza
     dashboards: Pulpity nawigacyjne
     data_reports: Raporty danych

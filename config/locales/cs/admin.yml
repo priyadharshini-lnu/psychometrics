@@ -253,6 +253,7 @@ cs:
     create_client: Vytvořit klienta
     create_indicator: Vytvořit indikátor
     current_job_role: Současná pracovní pozice
+    custom_upload: Vlastní nahrávání
     dashboard: Přístrojová deska
     dashboards: Přístrojové panely
     data_reports: Datové zprávy

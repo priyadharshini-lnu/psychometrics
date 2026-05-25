@@ -253,6 +253,7 @@ pt:
     create_client: Criar cliente
     create_indicator: Criar indicador
     current_job_role: Função atual
+    custom_upload: Carregamento personalizado
     dashboard: Painel de controlo
     dashboards: Painéis de controlo
     data_reports: Relatórios de dados

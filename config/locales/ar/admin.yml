@@ -253,6 +253,7 @@ ar:
     create_client: إنشاء عميل
     create_indicator: إنشاء مؤشر
     current_job_role: الوظيفة الحالية
+    custom_upload: تحميل مخصص
     dashboard: لوحة القيادة
     dashboards: لوحات التحكم
     data_reports: تقارير البيانات

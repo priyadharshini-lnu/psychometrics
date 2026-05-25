@@ -253,6 +253,7 @@ ko:
     create_client: 클라이언트 만들기
     create_indicator: 지표 생성
     current_job_role: 현재 직무 역할
+    custom_upload: 사용자 지정 업로드
     dashboard: 대시보드
     dashboards: 대시보드
     data_reports: 데이터 보고서

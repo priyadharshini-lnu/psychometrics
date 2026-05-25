@@ -253,6 +253,7 @@ hr:
     create_client: Kreiraj klijenta
     create_indicator: Stvori pokazatelj
     current_job_role: Trenutna radna uloga
+    custom_upload: Prilagođeni prijenos
     dashboard: Nadzorna ploča
     dashboards: Nadzorne ploče
     data_reports: Izvješća o podacima

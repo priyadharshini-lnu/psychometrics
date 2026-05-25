@@ -253,6 +253,7 @@ it:
     create_client: Creare il cliente
     create_indicator: Crea indicatore
     current_job_role: Ruolo professionale attuale
+    custom_upload: Caricamento personalizzato
     dashboard: Dashboard
     dashboards: Cruscotti
     data_reports: Report sui dati

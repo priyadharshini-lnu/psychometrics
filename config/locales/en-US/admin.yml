@@ -253,6 +253,7 @@ en-US:
     create_client: Create Client
     create_indicator: Create Indicator
     current_job_role: Current Job Role
+    custom_upload: Custom Upload
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Data Reports

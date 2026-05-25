@@ -253,6 +253,7 @@ sr-Cyrl:
     create_client: Креирај клијента
     create_indicator: Креирај индикатор
     current_job_role: Тренутна радна улога
+    custom_upload: Прилагођено отпремање
     dashboard: Табла
     dashboards: Крме
     data_reports: Извештаји о подацима

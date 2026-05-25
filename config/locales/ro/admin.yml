@@ -253,6 +253,7 @@ ro:
     create_client: Creare client
     create_indicator: Creați indicator
     current_job_role: Funcția actuală
+    custom_upload: Încărcare personalizată
     dashboard: Tablou
     dashboards: Dashboards
     data_reports: Rapoarte de date

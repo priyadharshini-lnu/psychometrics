@@ -253,6 +253,7 @@ sl:
     create_client: Ustvari odjemalca
     create_indicator: Ustvari indikator
     current_job_role: Trenutna delovna vloga
+    custom_upload: Nalaganje po meri
     dashboard: Nadzorna plošča
     dashboards: Namizij
     data_reports: Poročila o podatkih

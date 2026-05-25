@@ -253,6 +253,7 @@ ru:
     create_client: Создать клиента
     create_indicator: Создать индикатор
     current_job_role: Текущая должность
+    custom_upload: Пользовательская загрузка
     dashboard: Панель управления
     dashboards: Панели инструментов
     data_reports: Отчеты по данным

@@ -253,6 +253,7 @@ id:
     create_client: Buat Klien
     create_indicator: Buat Indikator
     current_job_role: Posisi Pekerjaan Saat Ini
+    custom_upload: Unggahan Kustom
     dashboard: Dashboard
     dashboards: Dashboard
     data_reports: Laporan Data
