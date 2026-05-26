@@ -2998,6 +2998,7 @@ en:
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout
               campaign_results_available: Campaign Results Available
+              campaign_user_assessment_summary: Campaign User Assessment Summary
               campaign_user_status: Campaign User Status
               report_available: Report Available
               results_available: Results Available

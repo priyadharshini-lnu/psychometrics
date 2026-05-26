@@ -14,7 +14,8 @@ module WebhookSubscriptions
       scheduling_rescheduled: WorkshopSubjects::Webhook,
       scheduling_invited: WorkshopInvites::Webhook,
       workshop_attendance_status: WorkshopSubjects::Webhook,
-      assessment_raw_response: UserAssessments::Webhook
+      assessment_raw_response: UserAssessments::Webhook,
+      campaign_user_assessment_summary: UserAssessments::Webhook
     }.freeze
 
     def initialize(project, event_name, data, webhook_id: nil, record: nil)

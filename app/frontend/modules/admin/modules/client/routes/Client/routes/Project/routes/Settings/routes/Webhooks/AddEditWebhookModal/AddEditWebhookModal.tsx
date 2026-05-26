@@ -88,6 +88,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
     'campaign_user_status',
     'campaign_results_available',
     'assessment_raw_response',
+    'campaign_user_assessment_summary',
   ]
 
   const assessmentOptions = _.uniqBy([
@@ -108,7 +109,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
         storeManager={{ form }}
         close={close}
         scrollToFirstError
-        modalProps={{ width: 720 }}
+        modalProps={{ width: 900 }}
         request={{
           createResource: values => addWebhook({ ...values, projectId }),
           updateResource: updateWebhook,

@@ -148,6 +148,9 @@ class UserAssessment < ApplicationRecord
 
   after_commit :publish_assessment_timeout_webhook, if: -> { status_previously_changed? && timed_out? }
 
+  after_commit :publish_campaign_user_assessment_summary_webhook,
+               if: -> { status_previously_changed? }, on: %i[update]
+
   after_create_commit -> { publish_assessment_assigned_webhook }
   after_create_commit :trigger_microsite_registration, if: -> { assessment&.microsite? }
   after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
@@ -500,6 +503,10 @@ class UserAssessment < ApplicationRecord
 
   def publish_assessment_assigned_webhook
     UserAssessments::Webhook.new(self).publish_assessment_assigned
+  end
+
+  def publish_campaign_user_assessment_summary_webhook
+    UserAssessments::Webhook.new(self).publish_campaign_user_assessment_summary
   end
 
   def publish_assessment_started_webhook
