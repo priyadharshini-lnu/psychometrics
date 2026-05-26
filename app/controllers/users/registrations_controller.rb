@@ -28,8 +28,8 @@ module Users
           on(:ok) do |resource|
             audit!(
               :create,
-              resource,
-              user: resource,
+              resource[:ok],
+              user: resource[:ok],
               project: @current_project,
               payload: sign_up_params.except(:mobile_verification_token, :registration_code, :sms_invite_code)
             )

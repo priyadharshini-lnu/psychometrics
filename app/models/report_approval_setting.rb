@@ -6,6 +6,7 @@ class ReportApprovalSetting < ApplicationRecord
 
   belongs_to :campaign
   belongs_to :report
+  include Tenantable
 
   enum :digest_frequency, { daily: 'daily', weekly: 'weekly', weekdays: 'weekdays' }
   enum :digest_delivery_mode, { immediate: 'immediate', scheduled: 'scheduled' }, prefix: :digest_delivery

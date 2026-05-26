@@ -22,9 +22,11 @@ es-ES:
     assessors_list: Lista de evaluadores
     asset_not_present: Activo no presente
     audio: Audio
+    audio_devices: Dispositivos de audio
     authentication_failed: Fallo de autenticación. Por favor, inténtalo de nuevo.
     back: Atrás
     basic: Básico
+    camera: Cámara
     camera_preview: La vista previa de la cámara aparecerá aquí
     campaign: Campaña
     campaign_id: ID de campaña
@@ -44,6 +46,7 @@ es-ES:
     copied_successfully: Se ha copiado correctamente
     copied_to_clipboard: Copiado al portapapeles
     copy: Copiar
+    count_more: "{{count}} más"
     create: Crear
     created_at: Creado/a el
     created_date: Fecha de creación
@@ -59,6 +62,7 @@ es-ES:
     desktop_or_laptop_recommended: Se recomienda ordenador de sobremesa o portátil.
     desktop_or_laptop_required: Se requiere ordenador de sobremesa o portátil.
     disabled: Discapacitado
+    discard: Descartar
     download: Descargar
     download_audio: Descargar audio
     download_transcription: Descargar transcripción
@@ -99,6 +103,7 @@ es-ES:
     media_preview: Preestreno para los medios de comunicación
     media_question_transcriptions: Transcripciones de preguntas de los medios de comunicación
     media_responses: Respuestas de los medios de comunicación
+    microphones: Micrófonos
     mobile_proctoring_disabled_instructions: Para continuar con esta evaluación, es necesario utilizar un ordenador de sobremesa o portátil. Por favor, utilice un ordenador para completar la actividad.
     mobile_proctoring_enabled_instructions: Para disfrutar de la mejor experiencia, cambia a un ordenador de sobremesa o portátil si dispones de uno. Si es necesario, puedes continuar en tu dispositivo móvil.
     modified_by: Modificado por
@@ -146,9 +151,12 @@ es-ES:
     saving_video: Guardando vídeo... Por favor, no cierres ni actualices el navegador
     scoring_details: Detalles de la puntuación
     search: Buscar
+    select_camera: Selecciona una cámara
+    select_microphone: Selecciona un micrófono
     send_email: Enviar correo electrónico
     show_more: Mostrar más
     something_wrong: Algo ha ido mal. Póngase en contacto con su administrador.
+    speakers: Ponentes
     status: Estado
     status_unknown: Estado desconocido
     subject: Asunto
@@ -180,6 +188,7 @@ es-ES:
     update_failed: Actualización fallida
     updated_at: Actualizado el
     updated_successfully: Actualizado correctamente
+    user_report_pdf_url_not_generated: No se ha podido generar el enlace de descarga del PDF
     video: Vídeo
     view: Ver
     view_audio: Ver audio

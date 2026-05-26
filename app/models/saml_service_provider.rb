@@ -2,6 +2,8 @@
 
 class SamlServiceProvider < ApplicationRecord
   belongs_to :project, class_name: 'Client'
+  include Tenantable
+
   include ApplicationConfigurationLoggable
 
   enum :integration_type, {

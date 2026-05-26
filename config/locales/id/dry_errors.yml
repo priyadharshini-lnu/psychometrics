@@ -52,6 +52,7 @@ id:
         content_required: Konten diperlukan untuk instruksi
         tag_or_skill_required: Silakan pilih tag atau keterampilan saat opsi "Dipilih" dipilih.
       invalid_name: Hanya alfabet, angka, spasi, tanda hubung, dan titik yang diizinkan sebagai karakter yang valid
+      invalid_question_ids: 'ID soal yang tidak ditemukan dalam penilaian ini: %{ids}'
       invalid_value: pernyataan tidak valid '%{value}' pada nomor baris %{row}
       job_roles:
         unique_within_job_group: Peran pekerjaan dengan nama yang sama sudah ada.
@@ -88,6 +89,7 @@ id:
         unique_mappings: Pemetaan dengan keterampilan dan peran pekerjaan yang sama sudah ada.
       uniq: Penilaian Mettl ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
       uniq?: harus unik
+      uniq_microsite: Penilaian Microsite ini sudah ada di sistem. ID penilaian ini adalah %{id}
       uniq_simulation: Penilaian Simulasi ini sudah ada dalam sistem. ID penilaian ini adalah %{id}
       uniq_skillvue: Penilaian Skillvue ini sudah ada di dalam sistem. ID dari penilaian ini adalah %{id}
       uniq_yoodli: Penilaian Yoodli ini sudah ada dalam sistem. ID penilaian ini adalah %{id}

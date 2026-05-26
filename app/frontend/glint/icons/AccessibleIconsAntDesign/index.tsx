@@ -148,6 +148,7 @@ import AntdIcon, {
   CloudOutlined as AntdCloudOutlined,
   SafetyOutlined as AntdSafetyOutlined,
   Loading3QuartersOutlined as AntdLoading3QuartersOutlined,
+  CaretRightFilled as AntdCaretRightFilled,
 } from '@ant-design/icons'
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
@@ -306,5 +307,6 @@ export const BulbOutlined = withAccessibilityProps(AntdBulbOutlined)
 export const CloudOutlined = withAccessibilityProps(AntdCloudOutlined)
 export const SafetyOutlined = withAccessibilityProps(AntdSafetyOutlined)
 export const Loading3QuartersOutlined = withAccessibilityProps(AntdLoading3QuartersOutlined)
+export const CaretRightFilled = withAccessibilityProps(AntdCaretRightFilled)
 
 export default withAccessibilityProps(AntdIcon)

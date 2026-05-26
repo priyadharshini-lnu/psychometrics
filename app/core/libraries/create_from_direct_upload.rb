@@ -35,7 +35,8 @@ module Libraries
       client.copy_object(
         copy_source: source_copy_path,
         bucket: Settings.secrets.s3_compatible_storage[:public_bucket],
-        key: permanent_key
+        key: permanent_key,
+        acl: upload_acl
       )
 
       temporary_upload.processed!
@@ -56,6 +57,10 @@ module Libraries
 
     private
 
+    def upload_acl
+      Settings.storage.public_storage_service.to_s == 's3_public_bucket' ? 'public-read' : 'private'
+    end
+
     def resolve_checksum(client, temporary_upload)
       return temporary_upload.checksum if temporary_upload.checksum.present?
 
@@ -73,12 +78,7 @@ module Libraries
 
       resource.created_by = current_user
       resource.updated_by = current_user
-      resource.owner_id = if current_user.is?(:client_admin) && params[:owner_id].blank?
-                            current_user.client_admin_client_ids.first
-                          else
-                            params[:owner_id].presence || current_user.project_id
-                          end
-
+      resource.owner_id = params[:owner_id].presence
       resource
     end
 

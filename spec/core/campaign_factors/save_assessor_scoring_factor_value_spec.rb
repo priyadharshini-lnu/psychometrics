@@ -46,6 +46,22 @@ describe CampaignFactors::SaveAssessorScoringFactorValue do
     expect(campaign_factor.campaign_factor_values.first.numeric_value).to eq(3)
   end
 
+  it 'should not update scores when campaign scores are finalized' do
+    create(:campaign_user, campaign: campaign, user: user, campaign_scores_finalized: true)
+    params = {
+      scores: [{
+        campaign_factor_id: campaign_factor.id,
+        score: 5
+      }],
+      user_id: user.id
+    }
+
+    result = described_class.call(campaign, params, assessor)
+
+    expect(result[:error]).to eq(I18n.t('admin.scores_finalized'))
+    expect(campaign_factor.campaign_factor_values.first.reload.numeric_value).to eq(3)
+  end
+
   it 'should create or udpate factor values' do
     params = {
       scores: [

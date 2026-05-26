@@ -7,6 +7,7 @@ class Threesixty::EmailHistory < ApplicationRecord
   belongs_to :email_schedule, class_name: 'Threesixty::EmailSchedule', foreign_key: :threesixty_email_schedule_id
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
+  include Tenantable
 
   enum :status, { success: 0, bounce: 1 }
 end

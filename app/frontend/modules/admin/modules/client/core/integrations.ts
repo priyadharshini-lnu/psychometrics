@@ -6,7 +6,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { createReducer } from '~/utils/redux'
 
 export const get = (state: RootState) => _.get(state, ['project', 'integrations'])
-export const integrationNames = ['iiht', 'hogan', 'mettl', 'skillvue', 'yoodli']
+export const integrationNames = ['iiht', 'hogan', 'mettl', 'skillvue', 'yoodli', 'microsite']
 
 const Integration = t.type({
   id: t.number,
@@ -59,6 +59,16 @@ export const loadMettlAssessments = (projectId: string): ApiAction<void> => ({
   request: {
     method: 'post',
     url: `/administration/projects/${projectId}/integrations/load_mettl_assessments`,
+    loader: true,
+  },
+})
+
+export const LOAD_MICROSITE_ASSESSMENTS = 'resource/campaigns/integrations/LOAD_MICROSITE_ASSESSMENTS'
+export const loadMicrositeAssessments = (projectId: string): ApiAction<void> => ({
+  type: LOAD_MICROSITE_ASSESSMENTS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/integrations/load_microsite_assessments`,
     loader: true,
   },
 })

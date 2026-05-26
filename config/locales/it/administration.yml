@@ -2363,6 +2363,7 @@ it:
         add: Integrazioni
         back: Torna a Integrazioni
         load_mettl_catalog: Catalogo di valutazione Load Mettl
+        load_microsite_catalog: Carica il catalogo delle valutazioni dei micrositi
         load_skillvue_catalog: Caricare il catalogo di valutazione Skillvue
       columns:
         active: Attivi
@@ -2381,6 +2382,7 @@ it:
         webhookUrls: URL dei webhook
       integrations: Integrazioni
       load_mettl_success: Il lavoro di valutazione del carico è stato inserito con successo
+      load_microsite_success: L'attività di valutazione dei micrositi è stata inserita correttamente nella coda
       load_skillvue_success: Il lavoro di caricamento delle valutazioni di skillvue è stato eseguito con successo.
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ it:
           servers:
             mettl_eu: Europa
             mettl_india: India
+        microsite:
+          apiKey: Chiave API
+          apiKeyRequired: È richiesta una chiave API
         skillvue:
           apiKey: Chiave API
           apiKeyRequired: È richiesta la chiave API
@@ -2414,6 +2419,7 @@ it:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Microsito
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ it:
           tenant_id_present: L'id dell'inquilino è già presente in un altro progetto
         mettl:
           public_key_present: La chiave pubblica è già presente in un altro progetto
+        microsite:
+          api_key_present: La chiave API è già presente in un altro progetto
         skillvue:
           api_key_present: La chiave API è già presente in un altro progetto
       view_all_schedules: Visualizza tutti gli orari di Mettl
@@ -2990,6 +2998,7 @@ it:
               assessment_started: Valutazione avviata
               assessment_timeout: Timeout di valutazione
               campaign_results_available: Risultati della campagna disponibili
+              campaign_user_assessment_summary: Sintesi della valutazione degli utenti della campagna
               campaign_user_status: Stato dell'utente della campagna
               report_available: Rapporto disponibile
               results_available: Risultati disponibili

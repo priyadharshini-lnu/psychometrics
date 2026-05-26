@@ -20,7 +20,8 @@ class Report < ApplicationRecord
     mettl: 6,
     skillvue: 7,
     yoodli: 8,
-    mhs: 9
+    mhs: 9,
+    microsite: 10
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -79,6 +80,8 @@ class Report < ApplicationRecord
 
   has_one :hogan_report_setting, dependent: :destroy
   has_one :saville_report_setting, dependent: :destroy
+
+  include Tenantable
 
   #   VALIDATIONS
   #

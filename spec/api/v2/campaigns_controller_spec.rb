@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative 'concerns/taggable_api_endpoints_shared_examples'
 
 RSpec.describe Api::V2::Administration::CampaignsController, type: :request do
   let!(:campaign) { create(:campaign) }

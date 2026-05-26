@@ -24,7 +24,9 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentGroupsController, ty
     expect(parsed_response['groups'].first['name']).to eq 'Group'
     expect(parsed_response['assessments'].length).to eq 3
     expect(parsed_response['assessments'].find { |a| a['position'] == 1 }['campaign_assessment_group_id']).to be_nil
-    expect(parsed_response['assessments'].count { |a| a['campaign_assessment_group_id'] == 1 }).to eq 2
+    expect(parsed_response['assessments'].count do |a|
+      a['campaign_assessment_group_id'] == campaign_assessment_group.id
+    end).to eq 2
   end
 
   it 'create' do

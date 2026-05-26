@@ -5,4 +5,5 @@ class RegistrationSetting < ApplicationRecord
   include ApplicationConfigurationLoggable
 
   belongs_to :project, class_name: 'Client'
+  include Tenantable
 end

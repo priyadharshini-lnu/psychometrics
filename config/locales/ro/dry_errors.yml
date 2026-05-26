@@ -52,6 +52,7 @@ ro:
         content_required: Conținutul este necesar pentru instrucțiuni
         tag_or_skill_required: Vă rugăm să selectați fie o etichetă, fie o abilitate atunci când este aleasă opțiunea "Selectat".
       invalid_name: Numai alfabetul, numărul, spațiile, liniuța și punctul sunt permise ca caracter valid
+      invalid_question_ids: 'Codurile întrebărilor care nu se regăsesc în această evaluare: %{ids}'
       invalid_value: Declarația nevalidă '%{value}' pe numărul de linie %{row}
       job_roles:
         unique_within_job_group: Un rol de post cu același nume există deja.
@@ -88,6 +89,7 @@ ro:
         unique_mappings: Există deja o corespondență cu aceleași competențe și roluri.
       uniq: Această evaluare Mettl este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       uniq?: ar trebui să fie unice
+      uniq_microsite: Această evaluare a microsite-ului este deja înregistrată în sistem. ID-ul acestei evaluări este %{id}
       uniq_simulation: Această evaluare de simulare este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       uniq_skillvue: Această evaluare Skillvue este deja prezentă în sistem. ID-ul acestei evaluări este %{id}
       uniq_yoodli: Această evaluare Yoodli este deja prezentă în sistem. ID-ul acestei evaluări este %{id}

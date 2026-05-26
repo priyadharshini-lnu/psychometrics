@@ -22,9 +22,11 @@ pl:
     assessors_list: Lista oceniających
     asset_not_present: Brak zasobów
     audio: Audio
+    audio_devices: Urządzenia audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     back: Powrót
     basic: Podstawowy
+    camera: Aparat
     camera_preview: Podgląd kamery pojawi się tutaj
     campaign: Kampania
     campaign_id: Identyfikacja kampanii
@@ -44,6 +46,7 @@ pl:
     copied_successfully: Skopiowano pomyślnie
     copied_to_clipboard: Skopiowano do schowka
     copy: Kopiuj
+    count_more: "{{count}} więcej"
     create: Utwórz
     created_at: Utworzono w
     created_date: Data utworzenia
@@ -59,6 +62,7 @@ pl:
     desktop_or_laptop_recommended: Zalecany komputer stacjonarny lub laptop
     desktop_or_laptop_required: Wymagany komputer stacjonarny lub laptop
     disabled: Niepełnosprawni
+    discard: Odrzuć
     download: Pobierz
     download_audio: Pobierz plik audio
     download_transcription: Pobierz transkrypcję
@@ -99,6 +103,7 @@ pl:
     media_preview: Zapowiedź medialna
     media_question_transcriptions: Transkrypcje pytań mediów
     media_responses: Reakcje mediów
+    microphones: Mikrofony
     mobile_proctoring_disabled_instructions: Aby kontynuować tę ocenę, potrzebny jest komputer stacjonarny lub laptop. Przejdź do komputera, aby zakończyć zadanie.
     mobile_proctoring_enabled_instructions: Aby uzyskać najlepsze wrażenia, przejdź na komputer stacjonarny lub laptop, jeśli masz taki dostępny. W razie potrzeby możesz kontynuować korzystanie z urządzenia mobilnego.
     modified_by: Zmodyfikowane przez
@@ -146,9 +151,12 @@ pl:
     saving_video: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     scoring_details: Szczegóły punktacji
     search: Szukaj
+    select_camera: Wybierz aparat
+    select_microphone: Wybierz mikrofon
     send_email: Wyślij wiadomość e-mail
     show_more: Pokaż więcej
     something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
+    speakers: Prelegenci
     status: Status
     status_unknown: Status nieznany
     subject: Temat
@@ -180,6 +188,7 @@ pl:
     update_failed: Aktualizacja nie powiodła się
     updated_at: Zaktualizowano
     updated_successfully: Aktualizacja zakończona sukcesem
+    user_report_pdf_url_not_generated: Nie udało się wygenerować linku do pobrania pliku PDF
     video: Wideo
     view: Widok
     view_audio: Wyświetl audio

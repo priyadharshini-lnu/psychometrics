@@ -5,6 +5,8 @@ class Threesixty::EmailSchedule < ApplicationRecord
 
   belongs_to :threesixty_campaign, class_name: 'Threesixty::Campaign'
   belongs_to :template, class_name: 'Threesixty::EmailTemplate'
+  include Tenantable
+
   has_many :email_histories, class_name: 'Threesixty::EmailHistory', foreign_key: :threesixty_email_schedule_id,
             dependent: :destroy
 

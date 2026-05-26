@@ -22,9 +22,11 @@ nl:
     assessors_list: Lijst van beoordelaars
     asset_not_present: Asset niet aanwezig
     audio: Audio
+    audio_devices: Audioapparatuur
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
     back: Terug
     basic: Basisch
+    camera: Camera
     camera_preview: Hier verschijnt het voorbeeld van de camera
     campaign: Campagne
     campaign_id: Campagne-ID
@@ -44,6 +46,7 @@ nl:
     copied_successfully: Geslaagd gekopieerd
     copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
+    count_more: "{{count}} meer"
     create: Maken
     created_at: Gemaakt op
     created_date: Datum aangemaakt
@@ -59,6 +62,7 @@ nl:
     desktop_or_laptop_recommended: Desktop of laptop aanbevolen
     desktop_or_laptop_required: Desktop of laptop vereist
     disabled: Gehandicapt
+    discard: Verwijderen
     download: Downloaden
     download_audio: Audio downloaden
     download_transcription: Transcriptie downloaden
@@ -99,6 +103,7 @@ nl:
     media_preview: Media Preview
     media_question_transcriptions: Transcripties van vragen van de media
     media_responses: Reacties in de media
+    microphones: Microfoons
     mobile_proctoring_disabled_instructions: Voor deze beoordeling is een desktop of laptop nodig. Ga naar een computer om de activiteit te voltooien.
     mobile_proctoring_enabled_instructions: Voor de beste ervaring raden we u aan om over te schakelen naar een desktop of laptop als u die beschikbaar heeft. Indien nodig kunt u doorgaan op uw mobiele apparaat.
     modified_by: Gewijzigd door
@@ -146,9 +151,12 @@ nl:
     saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
     scoring_details: Scoredetails
     search: Zoek op
+    select_camera: Kies een camera
+    select_microphone: Kies een microfoon
     send_email: Stuur e-mail
     show_more: Laat meer zien
     something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
+    speakers: Sprekers
     status: Status
     status_unknown: Status onbekend
     subject: Onderwerp
@@ -180,6 +188,7 @@ nl:
     update_failed: Update mislukt
     updated_at: Bijgewerkt op
     updated_successfully: Succesvol bijgewerkt
+    user_report_pdf_url_not_generated: De downloadlink voor de PDF kon niet worden gegenereerd
     video: Video
     view: Bekijken
     view_audio: Audio bekijken

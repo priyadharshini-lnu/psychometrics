@@ -5,8 +5,9 @@ class Integration < ApplicationRecord
   include ApplicationConfigurationLoggable
 
   belongs_to :project, class_name: 'Client'
+  include Tenantable
 
-  enum :name, { iiht: 0, hogan: 1, mettl: 2, skillvue: 3, yoodli: 4 }
+  enum :name, { iiht: 0, hogan: 1, mettl: 2, skillvue: 3, yoodli: 4, microsite: 5 }
 
   scope :active, -> { where(active: true) }
   scope :lti_tools, -> { where(name: :yoodli) }
@@ -14,6 +15,7 @@ class Integration < ApplicationRecord
   after_commit :trigger_fetch_mettl_assessments_job, if: :mettl?
   after_commit :subscribe_to_skillvue_webhook, if: :skillvue?
   after_commit :trigger_fetch_skillvue_assessments_job, if: :skillvue?
+  after_commit :trigger_fetch_microsite_assessments_job, if: :microsite?
 
   def iiht_config
     decrypted_password = Encryptor.decrypt(Base64.decode64(config['password']))
@@ -31,6 +33,13 @@ class Integration < ApplicationRecord
 
   def skillvue_config
     return {} unless skillvue?
+
+    decrypted_api_key = Encryptor.decrypt(Base64.decode64(config['api_key']))
+    config.merge('api_key' => decrypted_api_key)
+  end
+
+  def microsite_config
+    return {} unless microsite?
 
     decrypted_api_key = Encryptor.decrypt(Base64.decode64(config['api_key']))
     config.merge('api_key' => decrypted_api_key)
@@ -59,6 +68,10 @@ class Integration < ApplicationRecord
 
   def trigger_fetch_skillvue_assessments_job
     Skillvue::FetchAssessmentsJob.perform_later(project_id)
+  end
+
+  def trigger_fetch_microsite_assessments_job
+    Microsite::FetchAssessmentsJob.perform_later(project_id)
   end
 
   def subscribe_to_skillvue_webhook

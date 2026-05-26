@@ -17,6 +17,9 @@ class InnovationStylesFactor < ApplicationRecord
 
   belongs_to :innovation_style
   belongs_to :factor
+  include Tenantable
+
+  tenant_source :innovation_style
 
   default_scope { order('position asc NULLS LAST') }
 

@@ -52,6 +52,7 @@ en:
         content_required: Content is required for instructions
         tag_or_skill_required: Please select either a tag or a skill when the "Selected" option is chosen.
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
+      invalid_question_ids: 'Question IDs not found in this assessment: %{ids}'
       invalid_value: invalid statement '%{value}' on line number %{row}
       job_roles:
         unique_within_job_group: A job role with the same name already exists.
@@ -88,6 +89,7 @@ en:
         unique_mappings: A mapping with the same skill and job role already exists.
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
+      uniq_microsite: This Microsite assessment is already present in the system. ID of this assessment is %{id}
       uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
       uniq_skillvue: This Skillvue assessment is already present in the system. ID of this assessment is %{id}
       uniq_yoodli: This Yoodli assessment is already present in the system. ID of this assessment is %{id}

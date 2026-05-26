@@ -20,11 +20,18 @@ module SecuritySettings
     attribute :disallow_password_login, Boolean
     attribute :session_inactivity_timeout_in_seconds, Integer
     attribute :enable_recaptcha, Boolean
+    attribute :external_logout_redirect_enabled, Boolean
+    attribute :external_logout_url, String
 
     validates :min_password_length, numericality: { greater_than_or_equal_to: 8, less_than_or_equal_to: 128 }
     validates :magic_link_expiry_in_seconds, presence: true
     validates :magic_link_expiry_in_seconds, numericality: { greater_than_or_equal_to: 5.minutes.to_i }
     validates :session_inactivity_timeout_in_seconds, presence: true
     validates :session_inactivity_timeout_in_seconds, numericality: { greater_than_or_equal_to: 60.minutes.to_i }
+    validates :external_logout_url,
+              presence: true,
+              format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
+                        message: I18n.t('admin.must_be_a_valid_url') },
+              if: :external_logout_redirect_enabled
   end
 end

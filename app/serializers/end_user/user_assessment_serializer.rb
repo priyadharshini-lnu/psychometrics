@@ -32,6 +32,7 @@ module EndUser
 
     def type
       return 'hogan' if object.assessment.hogan?
+      return 'microsite' if object.assessment.microsite?
 
       'user_assessment'
     end

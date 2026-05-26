@@ -19,6 +19,7 @@ class Campaign < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
   belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
+  include Tenantable
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id

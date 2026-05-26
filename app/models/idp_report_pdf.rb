@@ -4,6 +4,9 @@ class IdpReportPdf < ApplicationRecord
   include ActiveStorageAttachable
 
   belongs_to :user_idp_plan
+  include Tenantable
+
+  tenant_source :user_idp_plan
 
   has_one_attachment :pdf_file,
                      service: Settings.storage.private_storage_service,

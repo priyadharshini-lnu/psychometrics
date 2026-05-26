@@ -85,7 +85,7 @@ module AdminJobs
 
     def results
       @results ||= UsersResult.
-                   includes(user_assessment: %i[assessment subject project evaluator]).
+                   includes(user_assessment: %i[assessment subject project evaluator microsite_user_assessment]).
                    preload(user_assessment: { assessment: { dimension: %i[occupations innovation_styles] } }).
                    where(
                      user_assessments: {

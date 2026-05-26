@@ -454,14 +454,52 @@ status: :in_progress)
 
     context 'when an existing assessment is updated' do
       it 'does not send the assessment assigned webhook' do
-        webhook_instance = instance_double(UserAssessments::Webhook, publish_assessment_assigned: true)
+        webhook_instance = instance_double(
+          UserAssessments::Webhook,
+          publish_assessment_assigned: true,
+          publish_campaign_user_assessment_summary: true
+        )
         allow(UserAssessments::Webhook).to receive(:new).and_return(webhook_instance)
 
         user_assessment.save!
         user_assessment.update!(status: 'completed')
 
-        expect(UserAssessments::Webhook).to have_received(:new).once
         expect(webhook_instance).to have_received(:publish_assessment_assigned).once
+      end
+    end
+  end
+
+  describe '#publish_campaign_user_assessment_summary_webhook' do
+    let(:subject_user) { create(:user) }
+    let(:user_assessment) { create(:user_assessment, subject: subject_user, evaluator: subject_user) }
+
+    context 'when status changes' do
+      it 'sends the campaign user assessment summary webhook' do
+        webhook_instance = instance_double(
+          UserAssessments::Webhook,
+          publish_assessment_assigned: true,
+          publish_campaign_user_assessment_summary: true
+        )
+        allow(UserAssessments::Webhook).to receive(:new).and_return(webhook_instance)
+
+        user_assessment.update!(status: :completed)
+
+        expect(webhook_instance).to have_received(:publish_campaign_user_assessment_summary)
+      end
+    end
+
+    context 'when status does not change' do
+      it 'does not send the campaign user assessment summary webhook' do
+        webhook_instance = instance_double(
+          UserAssessments::Webhook,
+          publish_assessment_assigned: true,
+          publish_campaign_user_assessment_summary: true
+        )
+        allow(UserAssessments::Webhook).to receive(:new).and_return(webhook_instance)
+
+        user_assessment.update!(updated_at: Time.current)
+
+        expect(webhook_instance).not_to have_received(:publish_campaign_user_assessment_summary)
       end
     end
   end

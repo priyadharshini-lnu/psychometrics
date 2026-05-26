@@ -6,6 +6,9 @@ class WorkshopInvitedSubject < ApplicationRecord
   belongs_to :workshop_invite
   belongs_to :user
   belongs_to :reschedule_workshop, class_name: 'Workshop', optional: true
+  include Tenantable
+
+  tenant_source :workshop_invite
 
   has_one :workshop_subject, dependent: :nullify
   has_many :workshop_subjects, dependent: :nullify

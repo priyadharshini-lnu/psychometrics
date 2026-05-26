@@ -52,6 +52,7 @@ pl:
         content_required: Treść jest wymagana w instrukcjach
         tag_or_skill_required: Jeśli wybierzesz opcję „Wybrane", wybierz tag lub umiejętność.
       invalid_name: Tylko alfabet, cyfra, spacje, myślnik i kropka są dozwolone jako prawidłowy znak
+      invalid_question_ids: 'Nie znaleziono identyfikatorów pytań w tej ocenie: %{ids}'
       invalid_value: Nieprawidłowa instrukcja "%{value}" w wierszu o numerze %{row}
       job_roles:
         unique_within_job_group: Rola zawodowa o tej samej nazwie już istnieje.
@@ -88,6 +89,7 @@ pl:
         unique_mappings: Mapowanie z tymi samymi umiejętnościami i rolą zawodową już istnieje.
       uniq: Ta ocena Mettl jest już obecna w systemie. Identyfikator tej oceny to %{id}
       uniq?: powinien być unikalny
+      uniq_microsite: Ta ocena mikrostrony jest już dostępna w systemie. Identyfikator tej oceny to %{id}
       uniq_simulation: Ta ocena symulacyjna jest już obecna w systemie. Identyfikator tej oceny to %{id}
       uniq_skillvue: Ta ocena Skillvue jest już obecna w systemie. Identyfikator tej oceny to %{id}
       uniq_yoodli: Ta ocena Yoodli jest już obecna w systemie. ID tej oceny to %{id}

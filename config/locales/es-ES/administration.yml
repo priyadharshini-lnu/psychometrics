@@ -2363,6 +2363,7 @@ es-ES:
         add: Integraciones
         back: Volver a Integraciones
         load_mettl_catalog: Catálogo de evaluación Load Mettl
+        load_microsite_catalog: Cargar el catálogo de evaluación de micrositios
         load_skillvue_catalog: Cargar el catálogo de evaluación Skillvue
       columns:
         active: Activo
@@ -2381,6 +2382,7 @@ es-ES:
         webhookUrls: URL de webhooks
       integrations: Integraciones
       load_mettl_success: El trabajo de evaluación de métricas de carga se ha puesto en cola con éxito
+      load_microsite_success: La tarea de evaluar los micrositios se ha añadido correctamente a la cola
       load_skillvue_success: El trabajo de carga de evaluaciones de skillvue se ha puesto en cola con éxito
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ es-ES:
           servers:
             mettl_eu: Europa
             mettl_india: India
+        microsite:
+          apiKey: Clave API
+          apiKeyRequired: Se requiere una clave API
         skillvue:
           apiKey: Clave API
           apiKeyRequired: Se necesita la clave API
@@ -2414,6 +2419,7 @@ es-ES:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Micrositio
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ es-ES:
           tenant_id_present: El identificador de inquilino ya está presente en otro proyecto
         mettl:
           public_key_present: La clave pública ya está presente en otro proyecto
+        microsite:
+          api_key_present: La clave API ya está presente en otro proyecto
         skillvue:
           api_key_present: La clave API ya está presente en otro proyecto
       view_all_schedules: Ver todos los horarios de Mettl
@@ -2990,6 +2998,7 @@ es-ES:
               assessment_started: Evaluación iniciada
               assessment_timeout: Tiempo de evaluación
               campaign_results_available: Resultados de la campaña disponibles
+              campaign_user_assessment_summary: Resumen de la evaluación de los usuarios de la campaña
               campaign_user_status: Estado del usuario de la campaña
               report_available: Informe disponible
               results_available: Resultados disponibles

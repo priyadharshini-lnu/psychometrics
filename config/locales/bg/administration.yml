@@ -2363,6 +2363,7 @@ bg:
         add: Интеграции
         back: Обратно към Интеграции
         load_mettl_catalog: Заредете каталога за оценка на mettl
+        load_microsite_catalog: Зареждане на каталога за оценка на микросайтове
         load_skillvue_catalog: Заредете каталога за оценка на Skillvue
       columns:
         active: Активен
@@ -2381,6 +2382,7 @@ bg:
         webhookUrls: URL адреси на уеб кукички
       integrations: Интеграции
       load_mettl_success: Задачата за зареждане на оценявания на mettl е успешно поставена на опашка
+      load_microsite_success: Задачата за оценка на микросайтовете е добавена успешно в опашката
       load_skillvue_success: Задачата за зареждане на оценки на skillvue е успешно поставена на опашка
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ bg:
           servers:
             mettl_eu: Европа
             mettl_india: Индия
+        microsite:
+          apiKey: API ключ
+          apiKeyRequired: Необходим е API ключ
         skillvue:
           apiKey: API ключ
           apiKeyRequired: Изисква се API ключ
@@ -2414,6 +2419,7 @@ bg:
         hogan: ХОГАН
         iiht: ИИХТ
         mettl: МЕТТЛ
+        microsite: Микросайт
         skillvue: Skillvue
         yoodli: Юдли
       validations:
@@ -2422,6 +2428,8 @@ bg:
           tenant_id_present: ИД на клиент вече присъства в друг проект
         mettl:
           public_key_present: Публичният ключ вече присъства в друг проект
+        microsite:
+          api_key_present: API ключът вече съществува в друг проект
         skillvue:
           api_key_present: API ключът вече присъства в друг проект
       view_all_schedules: Вижте всички графици на Mettl
@@ -2990,6 +2998,7 @@ bg:
               assessment_started: Оценката започна
               assessment_timeout: Време за изчакване на оценяването
               campaign_results_available: Налични резултати от кампанията
+              campaign_user_assessment_summary: Обобщение на оценката на потребителите на кампанията
               campaign_user_status: Състояние на потребителя на кампанията
               report_available: Наличен отчет
               results_available: Налични резултати

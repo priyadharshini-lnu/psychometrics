@@ -2363,6 +2363,7 @@ ro:
         add: Integrări
         back: Înapoi la Integrări
         load_mettl_catalog: Catalogul de evaluare Load Mettl
+        load_microsite_catalog: Încărcați catalogul de evaluare a microsite-urilor
         load_skillvue_catalog: Încărcați catalogul de evaluare Skillvue
       columns:
         active: Activă
@@ -2381,6 +2382,7 @@ ro:
         webhookUrls: URL-uri webhook
       integrations: Integrări
       load_mettl_success: Sarcina de încărcare a evaluărilor mettl este pusă în coadă cu succes
+      load_microsite_success: Sarcina de evaluare a microsite-urilor a fost adăugată cu succes în coada de așteptare
       load_skillvue_success: Încărcarea activității de evaluare skillvue este pusă în coadă cu succes
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ ro:
           servers:
             mettl_eu: Europa
             mettl_india: India
+        microsite:
+          apiKey: Cheie API
+          apiKeyRequired: Este necesară o cheie API
         skillvue:
           apiKey: Cheie API
           apiKeyRequired: Este necesară cheia API
@@ -2414,6 +2419,7 @@ ro:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Microsite
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ ro:
           tenant_id_present: ID-ul entității găzduite este deja prezent în alt proiect
         mettl:
           public_key_present: Cheia publică este deja prezentă în alte proiecte
+        microsite:
+          api_key_present: Cheia API există deja într-un alt proiect
         skillvue:
           api_key_present: Cheia API este deja prezentă în alte proiecte
       view_all_schedules: Vezi toate programele Mettl
@@ -2990,6 +2998,7 @@ ro:
               assessment_started: Evaluarea a început
               assessment_timeout: Expirare evaluare
               campaign_results_available: Rezultatele campaniei disponibile
+              campaign_user_assessment_summary: Rezumatul evaluării utilizatorilor campaniei
               campaign_user_status: Starea utilizatorului campaniei
               report_available: Raport disponibil
               results_available: Rezultate disponibile

@@ -12,6 +12,9 @@ class MediaResponse < ApplicationRecord
   belongs_to :users_assessment
   belongs_to :question
   belongs_to :users_result
+  include Tenantable
+
+  tenant_source :users_result
 
   delegate :status, to: :transcription, prefix: true, allow_nil: true
 

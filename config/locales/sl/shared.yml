@@ -22,9 +22,11 @@ sl:
     assessors_list: Seznam ocenjevalcev
     asset_not_present: Sredstvo ni prisotno
     audio: Avdio
+    audio_devices: Avdio naprave
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     back: Nazaj
     basic: Osnoven
+    camera: Kamera
     camera_preview: Predogled kamere bo prikazan tukaj
     campaign: Kampanja
     campaign_id: ID kampanje
@@ -44,6 +46,7 @@ sl:
     copied_successfully: Kopiranje je uspelo
     copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
+    count_more: "{{count}} več"
     create: Ustvari
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne
@@ -59,6 +62,7 @@ sl:
     desktop_or_laptop_recommended: Priporočljiv namizni ali prenosni računalnik
     desktop_or_laptop_required: Potreben namizni ali prenosni računalnik
     disabled: Invalidi
+    discard: Zavrzi
     download: Prenesi
     download_audio: Prenesi avdio
     download_transcription: Prenesi transkripcijo
@@ -99,6 +103,7 @@ sl:
     media_preview: Predogled za medije
     media_question_transcriptions: Prepisi vprašanj medijev
     media_responses: Odzivi medijev
+    microphones: Mikrofoni
     mobile_proctoring_disabled_instructions: Za nadaljevanje te ocene potrebujete namizni ali prenosni računalnik. Preklopite na računalnik, da dokončate dejavnost.
     mobile_proctoring_enabled_instructions: Za najboljšo izkušnjo preklopite na namizni ali prenosni računalnik, če ga imate na voljo. Po potrebi lahko nadaljujete na mobilni napravi.
     modified_by: Spremenil
@@ -146,9 +151,12 @@ sl:
     saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
     scoring_details: Podrobnosti o točkovanju
     search: Iskanje
+    select_camera: Izberite kamero
+    select_microphone: Izberite mikrofon
     send_email: Pošlji e-pošto
     show_more: Pokaži več
     something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
+    speakers: Govorniki
     status: Status
     status_unknown: Status neznan
     subject: Predmet
@@ -180,6 +188,7 @@ sl:
     update_failed: Posodobitev ni uspela
     updated_at: Posodobljeno dne
     updated_successfully: Posodobljeno uspešno
+    user_report_pdf_url_not_generated: Povezave za prenos datoteke PDF ni bilo mogoče ustvariti
     video: Video
     view: Pogled
     view_audio: Poglej avdio

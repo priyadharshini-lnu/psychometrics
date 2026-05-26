@@ -14,6 +14,9 @@ class InnovationStyle < ApplicationRecord
   validates :position, numericality: { only_integer: true }, allow_nil: true
 
   has_one_image_attachment :icon, variants: [:icon]
+  include Tenantable
+
+  tenant_source :dimension
 
   def attachment_storage_path(attribute_name, filename)
     "public/innovation_style/#{id}/#{attribute_name}/#{filename}"

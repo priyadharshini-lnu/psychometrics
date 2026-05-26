@@ -19,6 +19,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   has_one :owner
   has_one :project
   has_one :linked_assessment, class_name: 'Assessment'
+  has_many :questions
 
   before_create do
     @model.created_by_id = context[:user].id
@@ -76,6 +77,11 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
     if settings['schedule_config']
       settings = settings.merge(
         'schedule_config' => settings['schedule_config'].to_json
+      )
+    end
+    if settings['question_mappings']
+      settings = settings.merge(
+        'question_mappings' => settings['question_mappings'].to_json
       )
     end
     settings.merge(

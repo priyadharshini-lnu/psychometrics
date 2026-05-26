@@ -85,6 +85,12 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     libraryFormData.append('data[type]', 'libraries')
     libraryFormData.append('data[attributes][name]', data.name)
     libraryFormData.append('data[attributes][description]', data.description)
+
+    const selectedFile = fileList[0]?.originFileObj
+    if (selectedFile instanceof File) {
+      libraryFormData.append('file', selectedFile)
+    }
+
     if (data.ownerId) {
       libraryFormData.append('data[attributes][owner_id]', String(data.ownerId))
     }
@@ -193,7 +199,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
             <Input.TextArea name="description" />
           </Form.Item>
 
-          {(isUpload || (!!library && library?.type === 'image'))
+          {(isUpload || (!!library && library?.type !== 'folder'))
             && (
               <Form.Item
                 name="file"

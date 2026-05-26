@@ -2363,6 +2363,7 @@ fr:
         add: Intégrations
         back: Retour à Intégrations
         load_mettl_catalog: Catalogue d'évaluation de Load Mettl
+        load_microsite_catalog: Charger le catalogue d'évaluation des microsites
         load_skillvue_catalog: Charger le catalogue d'évaluation Skillvue
       columns:
         active: Actif
@@ -2381,6 +2382,7 @@ fr:
         webhookUrls: URL des webhooks
       integrations: Intégrations
       load_mettl_success: Le travail d'évaluation des métriques de charge a été mis en file d'attente avec succès
+      load_microsite_success: La tâche d'évaluation des microsites a été ajoutée à la file d'attente avec succès
       load_skillvue_success: Le travail de chargement des évaluations skillvue a été mis en file d'attente avec succès.
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ fr:
           servers:
             mettl_eu: L'Europe
             mettl_india: Inde
+        microsite:
+          apiKey: Clé API
+          apiKeyRequired: Une clé API est requise
         skillvue:
           apiKey: Clé API
           apiKeyRequired: La clé API est nécessaire
@@ -2414,6 +2419,7 @@ fr:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Microsite
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ fr:
           tenant_id_present: L'identifiant du locataire est déjà présent dans un autre projet
         mettl:
           public_key_present: La clé publique est déjà présente dans un autre projet
+        microsite:
+          api_key_present: La clé API existe déjà dans un autre projet
         skillvue:
           api_key_present: La clé API est déjà présente dans un autre projet
       view_all_schedules: Voir tous les horaires de Mettl
@@ -2990,6 +2998,7 @@ fr:
               assessment_started: Début de l'évaluation
               assessment_timeout: Délai d'évaluation
               campaign_results_available: Résultats de la campagne disponibles
+              campaign_user_assessment_summary: Résumé de l'évaluation des utilisateurs de la campagne
               campaign_user_status: Statut de l'utilisateur de la campagne
               report_available: Rapport disponible
               results_available: Résultats disponibles

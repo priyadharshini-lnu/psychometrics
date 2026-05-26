@@ -8,6 +8,9 @@ module WebhookSystem
     MAX_JSON_ATTRIBUTE_SIZE = 40_000
 
     belongs_to :subscription, class_name: 'WebhookSystem::Subscription'
+    include Tenantable
+
+    tenant_source :subscription
 
     validates :event_id, presence: true
     validates :subscription_id, presence: true

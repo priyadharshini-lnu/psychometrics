@@ -5,4 +5,7 @@ class CommunicationsUser < ApplicationRecord
 
   belongs_to :user
   belongs_to :communication
+  include Tenantable
+
+  tenant_source :communication
 end

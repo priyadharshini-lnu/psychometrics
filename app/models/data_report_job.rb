@@ -6,6 +6,9 @@ class DataReportJob < ApplicationRecord
   belongs_to :data_report
   belongs_to :created_by, class_name: 'User'
   belongs_to :admin_job_record, dependent: :destroy
+  include Tenantable
+
+  tenant_source :data_report
 
   enum :status, { in_progress: 0, completed: 1, completed_with_errors: 2 }
 

@@ -9,6 +9,8 @@ class CampaignFactor < ApplicationRecord
   belongs_to :campaign
   belongs_to :factor
   belongs_to :assessment
+  include Tenantable
+
   has_one :dimension, through: :factor
 
   has_many :campaign_factor_values, dependent: :destroy

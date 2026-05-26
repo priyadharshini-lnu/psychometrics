@@ -75,6 +75,9 @@ module Administration
         required(:mhs_user_assessment_details).maybe do
           hash(Administration::MhsUserAssessmentSchema.schema(_, _))
         end
+        required(:microsite_user_assessment_details).maybe do
+          hash(Administration::MicrositeUserAssessmentSchema.schema(_, _))
+        end
         required(:hogan_participant_id).maybe(:str?)
       end
     end

@@ -2363,6 +2363,7 @@ th:
         add: การบูรณาการ
         back: กลับไปที่การผสานการทํางาน
         load_mettl_catalog: โหลดแคตตาล็อกการประเมิน Mettl
+        load_microsite_catalog: โหลดแคตตาล็อกการประเมินไมโครไซต์
         load_skillvue_catalog: โหลดแคตตาล็อกการประเมิน Skillvue
       columns:
         active: เปิดใช้งาน
@@ -2381,6 +2382,7 @@ th:
         webhookUrls: URL เว็บฮุค
       integrations: การบูรณาการ
       load_mettl_success: โหลดงานการประเมิน mettl ถูกจัดคิวเรียบร้อยแล้ว
+      load_microsite_success: การประเมินไมโครไซต์ได้ถูกจัดคิวเรียบร้อยแล้ว
       load_skillvue_success: โหลดงานการประเมิน skillvue ถูกจัดคิวสําเร็จแล้ว
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ th:
           servers:
             mettl_eu: ยุโรป
             mettl_india: อินเดีย
+        microsite:
+          apiKey: คีย์ API
+          apiKeyRequired: จำเป็นต้องใช้คีย์ API
         skillvue:
           apiKey: คีย์ API
           apiKeyRequired: ต้องใช้คีย์ API
@@ -2414,6 +2419,7 @@ th:
         hogan: โฮแกน
         iiht: ไอเอชที
         mettl: เมทเทล
+        microsite: ไมโครไซต์
         skillvue: สกิลวิว
         yoodli: ยุดลี
       validations:
@@ -2422,6 +2428,8 @@ th:
           tenant_id_present: รหัสผู้เช่ามีอยู่แล้วในโครงการอื่น
         mettl:
           public_key_present: คีย์สาธารณะมีอยู่แล้วในโครงการอื่น
+        microsite:
+          api_key_present: คีย์ API มีอยู่แล้วในโปรเจกต์อื่น
         skillvue:
           api_key_present: คีย์ API มีอยู่ในโปรเจ็กต์อื่นแล้ว
       view_all_schedules: ดูตาราง Mettl ทั้งหมด
@@ -2990,6 +2998,7 @@ th:
               assessment_started: เริ่มการประเมินแล้ว
               assessment_timeout: หมดเวลาการประเมิน
               campaign_results_available: ผลลัพธ์แคมเปญพร้อมใช้งาน
+              campaign_user_assessment_summary: สรุปการประเมินผู้ใช้แคมเปญ
               campaign_user_status: สถานะผู้ใช้แคมเปญ
               report_available: มีรายงาน
               results_available: ผลลัพธ์ที่มี

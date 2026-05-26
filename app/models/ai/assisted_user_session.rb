@@ -7,6 +7,10 @@ class AI::AssistedUserSession < ApplicationRecord
   belongs_to :user
   belongs_to :assistable, polymorphic: true
   belongs_to :resource, polymorphic: true, optional: true
+  include Tenantable
+
+  tenant_source %i[resource assistable user]
+
   has_many :chats, class_name: 'AI::AssistantChat', foreign_key: 'ai_assisted_user_session_id', dependent: :destroy
   has_many :messages, class_name: 'AI::AssistantRequest', through: :chats
 

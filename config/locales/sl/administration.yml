@@ -2363,6 +2363,7 @@ sl:
         add: Integracije
         back: Nazaj na Integracije
         load_mettl_catalog: Katalog ocenjevanja Load Mettl
+        load_microsite_catalog: Naloži katalog ocen mikrospletnih strani
         load_skillvue_catalog: Katalog ocenjevanja Load Skillvue
       columns:
         active: Aktivni
@@ -2381,6 +2382,7 @@ sl:
         webhookUrls: URL-ji spletnih kavljev
       integrations: Integracije
       load_mettl_success: Delo nalaganja mettl ocenjevanja je uspešno uvrščeno v čakalno vrsto
+      load_microsite_success: Naloga za ocenjevanje mikrospletnih strani je bila uspešno dodana v čakalno vrsto
       load_skillvue_success: Delo ocenjevanja spretnosti nalaganja je uspešno uvrščeno v čakalno vrsto
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ sl:
           servers:
             mettl_eu: Evropa
             mettl_india: Indija
+        microsite:
+          apiKey: API ključ
+          apiKeyRequired: Potreben je API-ključ
         skillvue:
           apiKey: API ključ
           apiKeyRequired: Potreben je ključ API
@@ -2414,6 +2419,7 @@ sl:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Mikrospletna stran
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ sl:
           tenant_id_present: ID najemnika je že prisoten v drugem projektu
         mettl:
           public_key_present: Javni ključ je že prisoten v drugih projektih
+        microsite:
+          api_key_present: API ključ je že prisoten v drugem projektu
         skillvue:
           api_key_present: API ključ je že prisoten v drugem projektu
       view_all_schedules: Oglejte si vse urnike Mettl
@@ -2990,6 +2998,7 @@ sl:
               assessment_started: Ocenjevanje se je začelo
               assessment_timeout: Časovna omejitev ocenjevanja
               campaign_results_available: Rezultati oglaševalske akcije so na voljo
+              campaign_user_assessment_summary: Povzetek ocene uporabnikov kampanje
               campaign_user_status: Status uporabnika oglaševalske akcije
               report_available: Poročilo je na voljo
               results_available: Rezultati so na voljo

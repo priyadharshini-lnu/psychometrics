@@ -9,7 +9,7 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
-  get, fetch, remove, REMOVE, loadMettlAssessments, loadSkillvueAssessments,
+  get, fetch, remove, REMOVE, loadMettlAssessments, loadSkillvueAssessments, loadMicrositeAssessments,
 } from '~/modules/admin/modules/client/core/integrations'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
@@ -32,6 +32,7 @@ const connector = connect(
     openModal,
     loadMettlAssessments,
     loadSkillvueAssessments,
+    loadMicrositeAssessments,
   },
 )
 
@@ -51,6 +52,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   openModal,
   loadMettlAssessments,
   loadSkillvueAssessments,
+  loadMicrositeAssessments,
   isDeleteRequestInProgress,
 }) => {
   const { projectId } = useParams() as { projectId: string }
@@ -77,6 +79,13 @@ const IntegrationsComponent: React.FC<Props> = ({
     loadSkillvueAssessments(projectId)
       .then(() => {
         message.success(I18n.t('administration.integrations.load_skillvue_success'))
+      })
+  }
+
+  const handleMicrositeLoad = () => {
+    loadMicrositeAssessments(projectId)
+      .then(() => {
+        message.success(I18n.t('administration.integrations.load_microsite_success'))
       })
   }
 
@@ -124,7 +133,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                         :
                       </b>
                       <div>
-                        <Typography.Text copyable={{ text: hoganIntegrationDetails.provider }}>
+                        <Typography.Text
+                          copyable={hoganIntegrationDetails.provider
+                            ? { text: hoganIntegrationDetails.provider }
+                            : false}
+                        >
                           {hoganIntegrationDetails.provider}
                         </Typography.Text>
                       </div>
@@ -141,12 +154,20 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </b>
                       <div>
                         <div>
-                          <Typography.Text copyable={{ text: mettlIntegrationDetails.completionWebhookUrl }}>
+                          <Typography.Text
+                            copyable={mettlIntegrationDetails.completionWebhookUrl
+                              ? { text: mettlIntegrationDetails.completionWebhookUrl }
+                              : false}
+                          >
                             {mettlIntegrationDetails.completionWebhookUrl}
                           </Typography.Text>
                         </div>
                         <div>
-                          <Typography.Text copyable={{ text: mettlIntegrationDetails.resultsWebhookUrl }}>
+                          <Typography.Text
+                            copyable={mettlIntegrationDetails.resultsWebhookUrl
+                              ? { text: mettlIntegrationDetails.resultsWebhookUrl }
+                              : false}
+                          >
                             {mettlIntegrationDetails.resultsWebhookUrl}
                           </Typography.Text>
                         </div>
@@ -164,12 +185,20 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </b>
                       <div>
                         <div>
-                          <Typography.Text copyable={{ text: skillvueIntegrationDetails.completionWebhookUrl }}>
+                          <Typography.Text
+                            copyable={skillvueIntegrationDetails.completionWebhookUrl
+                              ? { text: skillvueIntegrationDetails.completionWebhookUrl }
+                              : false}
+                          >
                             {skillvueIntegrationDetails.completionWebhookUrl}
                           </Typography.Text>
                         </div>
                         <div>
-                          <Typography.Text copyable={{ text: skillvueIntegrationDetails.resultsWebhookUrl }}>
+                          <Typography.Text
+                            copyable={skillvueIntegrationDetails.resultsWebhookUrl
+                              ? { text: skillvueIntegrationDetails.resultsWebhookUrl }
+                              : false}
+                          >
                             {skillvueIntegrationDetails.resultsWebhookUrl}
                           </Typography.Text>
                         </div>
@@ -187,13 +216,21 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </b>
                       <div>
                         <div>
-                          <Typography.Text copyable={{ text: iihtIntegrationDetails.webhookUrl }}>
+                          <Typography.Text
+                            copyable={iihtIntegrationDetails.webhookUrl
+                              ? { text: iihtIntegrationDetails.webhookUrl }
+                              : false}
+                          >
                             {iihtIntegrationDetails.webhookUrl}
                           </Typography.Text>
                         </div>
                       </div>
                     </>
                   )
+                }
+
+                if (name === 'microsite') {
+                  return null
                 }
 
                 if (name === 'yoodli') {
@@ -205,7 +242,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformId }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.platformId
+                            ? { text: yoodliIntegrationDetails.platformId }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.platformId}
                         </Typography.Text>
                       </div>
@@ -215,7 +256,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.clientId }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.clientId
+                            ? { text: yoodliIntegrationDetails.clientId }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.clientId}
                         </Typography.Text>
                       </div>
@@ -225,7 +270,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.deploymentId }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.deploymentId
+                            ? { text: yoodliIntegrationDetails.deploymentId }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.deploymentId}
                         </Typography.Text>
                       </div>
@@ -235,7 +284,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformPublicKeysetUrl }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.platformPublicKeysetUrl
+                            ? { text: yoodliIntegrationDetails.platformPublicKeysetUrl }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.platformPublicKeysetUrl}
                         </Typography.Text>
                       </div>
@@ -245,7 +298,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformAccessTokenUrl }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.platformAccessTokenUrl
+                            ? { text: yoodliIntegrationDetails.platformAccessTokenUrl }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.platformAccessTokenUrl}
                         </Typography.Text>
                       </div>
@@ -255,7 +312,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformAuthenticationRequestUrl }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.platformAuthenticationRequestUrl
+                            ? { text: yoodliIntegrationDetails.platformAuthenticationRequestUrl }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.platformAuthenticationRequestUrl}
                         </Typography.Text>
                       </div>
@@ -265,7 +326,11 @@ const IntegrationsComponent: React.FC<Props> = ({
                           :
                         </b>
                         {' '}
-                        <Typography.Text copyable={{ text: yoodliIntegrationDetails.platformHostName }}>
+                        <Typography.Text
+                          copyable={yoodliIntegrationDetails.platformHostName
+                            ? { text: yoodliIntegrationDetails.platformHostName }
+                            : false}
+                        >
                           {yoodliIntegrationDetails.platformHostName}
                         </Typography.Text>
                       </div>
@@ -297,6 +362,13 @@ const IntegrationsComponent: React.FC<Props> = ({
                     <>
                       <Tooltip title={I18n.t('administration.integrations.actions.load_skillvue_catalog')}>
                         <span><SyncOutlined onClick={handleSkillvueLoad} /></span>
+                      </Tooltip>
+                    </>
+                  )}
+                  {integration.name === 'microsite' && (
+                    <>
+                      <Tooltip title={I18n.t('administration.integrations.actions.load_microsite_catalog')}>
+                        <span><SyncOutlined onClick={handleMicrositeLoad} /></span>
                       </Tooltip>
                     </>
                   )}

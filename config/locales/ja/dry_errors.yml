@@ -52,6 +52,7 @@ ja:
         content_required: 指示にはコンテンツが必要です
         tag_or_skill_required: "「選択済み」オプションを選択した場合は、タグまたはスキルのいずれかを選択してください。"
       invalid_name: 有効な文字は、アルファベット、数字、スペース、ダッシュ、ドットのみです。
+      invalid_question_ids: この評価には以下の質問IDが含まれていません：%{ids}
       invalid_value: 行番号 %{row} に無効な文 '%{value}' があります。
       job_roles:
         unique_within_job_group: 同じ名前の職種が既に存在します。
@@ -88,6 +89,7 @@ ja:
         unique_mappings: 同じスキルと職務を持つマッピングがすでに存在する。
       uniq: このMettlアセスメントはすでにシステムに存在しています。 このアセスメントのIDは%{id}です。
       uniq?: ユニークでなければならない
+      uniq_microsite: このマイクロサイトの評価は、すでにシステムに登録されています。この評価のIDは %{id} です。
       uniq_simulation: このシミュレーション評価はシステムに既に存在しています。 この評価のIDは%{id}です。
       uniq_skillvue: このスキルビューアセスメントはすでにシステムに存在しています。このアセスメントのIDは %{id} です。
       uniq_yoodli: この Yoodli 評価はすでにシステムに存在します。この評価の ID は %{id}

@@ -17,6 +17,10 @@ class Block < ApplicationRecord
   has_many :translations, as: :translateable, dependent: :destroy
   belongs_to :owner, class_name: 'Client'
 
+  include Tenantable
+
+  tenant_source :assessment, :owner
+
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 

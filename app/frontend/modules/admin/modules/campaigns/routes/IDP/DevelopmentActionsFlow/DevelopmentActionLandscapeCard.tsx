@@ -3,7 +3,7 @@ import {
   Progress, Button, Flex, Typography, DatePicker, Divider,
   Tooltip, Empty, Modal,
 } from 'antd'
-import useMedia from 'use-media'
+import { useMedia } from 'use-media'
 import cs from 'classnames'
 import { DeleteOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Separator } from '~/components/IdpShared/Separator'

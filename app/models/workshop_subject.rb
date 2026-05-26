@@ -7,6 +7,8 @@ class WorkshopSubject < ApplicationRecord
   belongs_to :user
   belongs_to :campaign
   belongs_to :workshop_invited_subject
+  include Tenantable
+
   has_one :workshop_invite, through: :workshop_invited_subject
 
   enum :scheduling_status, { scheduled: 0, rescheduled: 1, cancelled: 2, late_rescheduled: 3, late_cancelled: 4 }

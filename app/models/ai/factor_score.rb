@@ -11,6 +11,10 @@ module AI
     belongs_to :question, optional: true
     belongs_to :factor
     belongs_to :parent_factor, class_name: 'Factor', optional: true
+    include Tenantable
+
+    tenant_source :users_result
+
     validates :users_result, presence: true
     validates :factor, presence: true
 

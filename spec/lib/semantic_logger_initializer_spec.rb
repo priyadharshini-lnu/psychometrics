@@ -12,19 +12,13 @@ RSpec.describe SemanticLoggerInitializer do
       allow(SemanticLogger).to receive(:appenders).and_return([mock_appender, other_appender])
       allow(SemanticLogger).to receive(:remove_appender)
       allow(SemanticLogger).to receive(:add_appender)
-      allow(mock_appender).to receive(:is_a?).with(SemanticLogger::Appender::IO).and_return(true)
-      allow(other_appender).to receive(:is_a?).with(SemanticLogger::Appender::IO).and_return(false)
 
       allow(Settings).to receive(:features).and_return(double(rails_log_to_json: false))
     end
 
-    it 'removes existing IO appenders' do
+    it 'removes all existing appenders' do
       expect(SemanticLogger).to receive(:remove_appender).with(mock_appender)
-      described_class.send(:setup_appenders)
-    end
-
-    it 'does not remove non-IO appenders' do
-      expect(SemanticLogger).not_to receive(:remove_appender).with(other_appender)
+      expect(SemanticLogger).to receive(:remove_appender).with(other_appender)
       described_class.send(:setup_appenders)
     end
 
@@ -97,6 +91,29 @@ RSpec.describe SemanticLoggerInitializer do
           expect(SemanticLogger).not_to receive(:add_appender).with(hash_including(file_name: anything))
           described_class.send(:setup_appenders)
         end
+      end
+    end
+  end
+
+  describe '.config_defaults' do
+    before do
+      allow(SemanticLogger).to receive(:default_level=)
+      allow(SemanticLogger).to receive(:sync!)
+    end
+
+    context 'in non-test environments' do
+      before { allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new('production')) }
+
+      it 'enables sync mode to prevent log loss after forking' do
+        expect(SemanticLogger).to receive(:sync!)
+        described_class.send(:config_defaults)
+      end
+    end
+
+    context 'in test environment' do
+      it 'does not enable sync mode' do
+        expect(SemanticLogger).not_to receive(:sync!)
+        described_class.send(:config_defaults)
       end
     end
   end

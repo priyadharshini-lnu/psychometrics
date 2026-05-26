@@ -60,7 +60,7 @@ export const General: React.FC<Props> = ({ assessment }) => {
           <Form.Item name="type" label={I18n.t('common.column.type')}>
             <Select disabled>
               <Select.Option value={assessment.type}>
-                {assessment.type === 'mhs' ? I18n.t('admin.mhs') : I18n.t(`assessments.fields.type.${assessment.type}`)}
+                {I18n.t(`admin.${assessment.type}_assessment`)}
               </Select.Option>
             </Select>
           </Form.Item>

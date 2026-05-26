@@ -8,6 +8,7 @@ class CampaignReport < ApplicationRecord
   belongs_to :campaign
   belongs_to :report
   belongs_to :report_family
+  include Tenantable
 
   has_one_attachment :bulk_assets_zip,
                      service: Settings.storage.private_storage_service,

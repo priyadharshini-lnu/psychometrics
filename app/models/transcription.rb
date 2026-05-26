@@ -3,6 +3,10 @@
 class Transcription < ApplicationRecord
   belongs_to :transcribable, polymorphic: true
 
+  include Tenantable
+
+  tenant_source :transcribable
+
   enum :status, {
     not_requested: 0,
     pending: 1,

@@ -34,6 +34,7 @@ class Membership < ApplicationRecord
   belongs_to :campaign
   belongs_to :user, inverse_of: :memberships, touch: true
   belongs_to :project_membership, class_name: 'Membership'
+  include Tenantable
 
   accepts_nested_attributes_for :user
 

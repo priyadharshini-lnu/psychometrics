@@ -8,8 +8,8 @@ module Administration
 
       def export_raw_results
         with_labels = params[:with_labels]&.to_s == 'true'
-        audit! :export_raw_results, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        audit! :export_raw_results, assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
         AdminJob.call(
           :assessment_raw_result_export,
           { assessment_id: assessment.id, campaign_id: campaign.id,
@@ -21,8 +21,8 @@ module Administration
       end
 
       def export_occupations
-        audit! :export_occupations, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        audit! :export_occupations, assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
         AdminJob.call(
           :export_occupations,
           { assessment_id: assessment.id, campaign_id: campaign.id },
@@ -33,10 +33,10 @@ module Administration
       end
 
       def export_scoring_results
-        audit! :export_scoring_results, campaign_assessment, campaign: campaign,
+        audit! :export_scoring_results, assessment, campaign: campaign,
           user: current_user,
           payload:
-          { assessment_id: assessment.id,
+          { campaign_assessment_id: campaign_assessment&.id,
             campaign_id: campaign.id }
         AdminJob.call(
           :assessment_scoring_export,
@@ -48,8 +48,8 @@ module Administration
       end
 
       def export_normed_results
-        audit! :export_normed_results, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        audit! :export_normed_results, assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
         AdminJob.call(
           :assessment_norm_export,
           { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -60,8 +60,8 @@ module Administration
       end
 
       def export_raw_factor_scores
-        audit! :export_raw_factor_scores, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        audit! :export_raw_factor_scores, assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
         AdminJob.call(
           :assessment_raw_factor_export,
           { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
@@ -72,8 +72,8 @@ module Administration
       end
 
       def export_external_results
-        audit! :export_external_results, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        audit! :export_external_results, assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
         AdminJob.call(
           :external_assessment_export,
           { assessment_id: assessment.id, campaign_id: campaign.id },
@@ -84,11 +84,11 @@ module Administration
       end
 
       def normalize_factor_scores
-        audit! :normalize_factor_scores, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+        audit! :normalize_factor_scores, assessment, campaign: campaign,
+               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
         AdminJob.call(
           :normalize_factor_scores,
-          { campaign_assessment_id: campaign_assessment.id },
+          { campaign_assessment_id: campaign_assessment&.id },
           current_user
         )
 

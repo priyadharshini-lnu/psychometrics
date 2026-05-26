@@ -17,6 +17,8 @@ class Dashboard < ApplicationRecord
   end
 
   belongs_to :campaign
+  include Tenantable
+
   has_one :project, through: :campaign
 
   scope :power_bi_report_present, -> { where('dataset_id IS NOT NULL AND report_id IS NOT NULL') }

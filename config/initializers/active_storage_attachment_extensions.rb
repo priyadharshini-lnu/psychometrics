@@ -13,9 +13,10 @@ module AttachmentAIAssistanceExtensions
 end
 
 Rails.application.config.to_prepare do
-  unless ActiveStorage::Attachment.included_modules.include?(AttachmentAIAssistanceExtensions)
-    ActiveSupport.on_load(:active_storage_attachment) do
-      include AttachmentAIAssistanceExtensions
-    end
+  ActiveSupport.on_load(:active_storage_attachment) do
+    include AttachmentAIAssistanceExtensions
+    include Tenantable
+
+    tenant_source :record
   end
 end

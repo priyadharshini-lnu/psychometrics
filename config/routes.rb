@@ -443,6 +443,7 @@ Rails.application.routes.draw do
           collection do
             post :load_mettl_assessments
             post :load_skillvue_assessments
+            post :load_microsite_assessments
           end
         end
       end
@@ -886,6 +887,8 @@ as: :simulation_progress_notification
     post '/:project_id/skillvue/completion_notification', to: 'skillvue#completion_notification',
                                                             as: :skillvue_completion_notification
     post '/:project_id/skillvue/results', to: 'skillvue#results', as: :skillvue_results_notification
+    post '/microsite/auth', to: 'microsite#auth', as: :microsite_auth
+    post '/microsite/results', to: 'microsite#results', as: :microsite_results
     match '/mhs/webhook', to: 'mhs#webhook', via: %i[head options post], as: :mhs_webhook
     post '/dailyco/recordings', to: 'daily_co#recordings', as: :dailyco_recordings
     post '/oci_speech_transcription', to: 'oci_speech_transcription#create', as: :oci_speech_transcription
@@ -923,6 +926,12 @@ as: :simulation_progress_notification
   # Manager's panel
   #
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
+
+  resources :user_report_downloads, only: [] do
+    member do
+      get :pdf_download_link
+    end
+  end
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
     get '/saml/idp/metadata/:id' => 'saml_idp#show', as: :saml_idp_metadata

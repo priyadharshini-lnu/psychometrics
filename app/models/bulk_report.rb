@@ -6,6 +6,7 @@ class BulkReport < ApplicationRecord
 
   belongs_to :user
   belongs_to :campaign, optional: true
+  include Tenantable
 
   has_many_attachments :files, service: Settings.storage.private_storage_service
   validates :files, content_type: %w[zip]

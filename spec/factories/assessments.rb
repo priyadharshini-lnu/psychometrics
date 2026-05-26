@@ -75,6 +75,12 @@ FactoryBot.define do
       type { Assessments::Mhs }
       external_settings { { assessment_id: 'assessmentId' } }
     end
+
+    trait :microsite do
+      category { Assessment::CATEGORIES[:microsite] }
+      type { Assessments::Microsite }
+      external_settings { { assessment_id: 'microsite-assessment-id' } }
+    end
   end
 
   factory :assessment_hogan, class: 'Assessments::Hogan' do

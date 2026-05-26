@@ -88,7 +88,7 @@ const ExternalReportPreviewComponent: FC<Props> = ({
                       && (
                         <Suspense fallback={<Spin />}>
                           <PDFViewer
-                            fileUrl={userReport.pdfUrl}
+                            fileUrl={`${userReport.pdfUrl}${userReport.pdfUrl.includes('?') ? '&' : '?'}view=true`}
                             onLoadingComplete={() => setPdfLoadingComplete(true)}
                           />
                         </Suspense>

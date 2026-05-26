@@ -10,6 +10,8 @@ class License < ApplicationRecord
   has_many :license_usages # on delete cascade
   has_many :project_licenses, dependent: :destroy
 
+  include Tenantable
+
   validates :start_date, :end_date, presence: true, allow_nil: false
   validates :client, presence: true, allow_nil: false
   validates :overuse_number, :used_number,

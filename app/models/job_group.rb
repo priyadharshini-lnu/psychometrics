@@ -7,6 +7,8 @@ class JobGroup < ApplicationRecord
   has_ancestry cache_depth: true
 
   belongs_to :project, class_name: 'Client', optional: true
+  include Tenantable
+
   has_many :job_roles
 
   validates :name, presence: true, uniqueness: { scope: :project_id }

@@ -11,6 +11,7 @@ class DesignSetting < ApplicationRecord
   ALLOWED_CHARACTERS_REGEX = /\A[a-zA-Z0-9\s\-.,()&']+\z/
 
   belongs_to :project
+  include Tenantable
 
   before_validation :set_default_logo_alt_texts, on: :create
 

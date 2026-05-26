@@ -7,6 +7,7 @@ class PrivacySetting < ApplicationRecord
   extend Mobility
 
   belongs_to :project
+  include Tenantable
 
   translates :custom_privacy_consent_text, :custom_privacy_acknowledgment_text
 

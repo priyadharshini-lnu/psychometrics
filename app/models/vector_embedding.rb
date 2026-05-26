@@ -4,6 +4,9 @@ class VectorEmbedding < ApplicationRecord
   DEFAULT_EMBEDDING_DIMENSIONS = 512
 
   belongs_to :resource, polymorphic: true
+  include Tenantable
+
+  tenant_source :resource
 
   has_neighbors :embedding
   has_neighbors :embedding1536

@@ -8,6 +8,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
+import * as t from 'io-ts'
 import type { ColumnsType } from 'antd/es/table'
 import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE } from '~/modules/admin/constants/campaignFactors'
@@ -18,6 +19,7 @@ import { median } from '~/utils/array'
 import { EMPTY_SCORE_INDICATOR } from '~/modules/admin/constants/string'
 import styles from './ScoringTable.less'
 import { useResources } from '~/hooks/useResources'
+import type { BaseMeta } from '~/hooks/useResources/interfaces'
 import { Weightages } from './Weightages'
 import { calculateAverageScores } from './commands/calculateAverageScores'
 import { calculateHighLowScores } from './commands/calculateHighLowScores'
@@ -34,6 +36,9 @@ interface ScoringTableProps {
 
 type DataType = {
   [key: string]: string | number | boolean | null;
+}
+interface ScoresMeta extends BaseMeta {
+  campaignScoresFinalized?: boolean
 }
 
 const getScoreStatus = (
@@ -99,8 +104,8 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   )
 
   const {
-    data: evaluatorsData, fetch: fetchScores, isLoading: isScoresLoading,
-  } = useResources<Score>(
+    data: evaluatorsData, meta: scoresMeta, fetch: fetchScores, isLoading: isScoresLoading,
+  } = useResources<Score, ScoresMeta>(
     'assessors_scores',
     {
       trackUrl: true,
@@ -108,6 +113,8 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       basePath: `campaigns/${campaignId}/users/${userId}`,
     },
   )
+
+  const scoresFinalized = scoresMeta?.campaignScoresFinalized || false
 
   const {
     data: finalScoreData, fetch: fetchFinalScore, isLoading: isFinalScoreLoading,
@@ -279,17 +286,21 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       {
         action: 'save_assessor_scoring_factor_value',
         method: 'post',
+        responseType: t.string,
         body: {
           scores,
           user_id: userId,
         },
       },
-    ).catch(() => {}).then(() => {
+    ).then(() => {
       message.success(I18n.t('administration.scoring.final_score_updated_successfully'))
       if (onSave) {
         onSave()
         setDisabled(true)
       }
+    }).catch((errors) => {
+      const errorMessage = errors?.base?.[0]?.title || I18n.t('shared.something_wrong')
+      message.error(errorMessage)
     }).finally(() => {
       setDisabledSave(false)
     })
@@ -371,7 +382,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
             : (
               <>
                 <InputNumber
-                  disabled={readOnly}
+                  disabled={readOnly || scoresFinalized}
                   status={getScoreStatus(finalScores[factor.factorId], factor)}
                   value={finalScores[factor.factorId]}
                   precision={2}
@@ -403,13 +414,13 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
                checked={!!enabledNAFactors[factor.factorId]}
                checkedChildren={I18n.t('shared.na_text')}
                unCheckedChildren={I18n.t('shared.na_text')}
-               disabled={readOnly}
+               disabled={readOnly || scoresFinalized}
              />
            )}
         </>
       ),
     }), {}),
-  }), [finalScores, columnsData, readOnly, enabledNAFactors])
+  }), [finalScores, columnsData, readOnly, scoresFinalized, enabledNAFactors])
 
   const rowClassName = (record, index): string => {
     if (record.key === 'final') {
@@ -497,12 +508,18 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
             />
           )}
         <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
-          <Button onClick={handleReset} disabled={disabled}>
+          <Typography.Text
+            className="self-center"
+            type="danger"
+          >
+            {scoresFinalized && I18n.t('admin.scores_finalized')}
+          </Typography.Text>
+          <Button onClick={handleReset} disabled={disabled || scoresFinalized}>
             {I18n.t('administration.common.reset')}
           </Button>
           <Button
             type="primary"
-            disabled={disabled || disabledSave}
+            disabled={disabled || disabledSave || scoresFinalized}
             onClick={handleSave}
           >
             {I18n.t('administration.common.save')}

@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+Rails.application.config.to_prepare do
+  ActsAsTaggableOn::Tagging.include(Tenantable)
+  ActsAsTaggableOn::Tagging.tenant_source :taggable
+end
+
 ActsAsTaggableOn::Tag.class_eval do
   def self.ransackable_associations(_auth_object = nil)
     ['taggings']
