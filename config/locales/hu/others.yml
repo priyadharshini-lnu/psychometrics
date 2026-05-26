@@ -1451,6 +1451,9 @@ hu:
       external_user_id: Skillvue jelölt azonosítója
       id: Kampányértékelési azonosító
       locales: Helyszínek
+      microsite_error_message: Hibaüzenet
+      microsite_participant_id: Mikrooldal résztvevői azonosító
+      microsite_registration_status: Regisztrációs állapot
       norm: Norma
       norm_id: Norma azonosító
       pearson_norm_id: Pearson Norm azonosító
@@ -1807,6 +1810,7 @@ hu:
       json:
         answer: Válasz JSON
         external_result: Külső eredmény JSON
+        microsite_raw_response: Raw Response mikroweboldal
         scoring: JSON-pontozás
       key: Kulcs
       last_name: Vezetéknév

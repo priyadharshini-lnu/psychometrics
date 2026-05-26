@@ -321,6 +321,7 @@ pt:
     enhance_with_ai_requires_ai_assistants: Para melhorar com IA, é necessário ativar o recurso Assistentes de IA.
     enter_description: Insira a descrição
     enter_name: Insira o nome
+    enter_question_id: Introduza o ID da pergunta
     error: Erro
     estimated_tokens: tokens (estimativa)
     evaluation_status: Status de Avaliação
@@ -414,6 +415,7 @@ pt:
     import_users: Importar Usuários
     internal: Interno
     invalid_csv_header: CSV contém cabeçalhos inválidos.
+    invalid_question_ids: 'IDs das perguntas não encontradas nesta avaliação: %{ids}'
     job_roles: Funções
     keywords: Palavras-chave
     keywords_placeholder: Insira palavras-chave separadas por vírgulas.
@@ -427,6 +429,8 @@ pt:
     libraries: Biblioteca multimédia
     library_invalid_type: Item da Biblioteca Inválido
     licenses: Licenças
+    lighthouse_question: Pergunta sobre o Farol
+    lighthouse_question_id: ID da pergunta do Lighthouse
     linked_assessments: Avaliações associadas
     low: Baixo
     maintenance: Manutenção
@@ -449,6 +453,10 @@ pt:
     mhs_external_assessment_id: Identificação da Avaliação Mhs
     mhs_report_id: ID do relatório MHS
     mhs_session_id: ID da sessão Mhs
+    microsite: Microsite
+    microsite_assessment: Avaliação do microsite
+    microsite_assessment_name: Nome da avaliação do microsite
+    microsite_question_id: ID da pergunta do microsite
     min_value: Valor mínimo
     minimum_10_words: Mínimo de 10 palavras
     minimum_download_speed: Velocidade mínima de download (em Mbps)
@@ -457,12 +465,14 @@ pt:
     missing_min_max_values: Os valores mínimo e máximo são obrigatórios.
     model_answer: Resposta modelo
     model_answer_placeholder: Insira a resposta modelo para pontuação da IA.
+    must_be_a_valid_url: URL inválida. Indique o URL completo, incluindo o protocolo http ou https
     name: Nome
     name_max_length: O nome não pode exceder %{length} caracteres
     name_required: O nome é necessário
     new_folder: Nova pasta
     no_file_selected: Nenhum arquivo selecionado
     no_notifications: Sem notificações
+    no_question_mappings: Não há mapeamentos de perguntas disponíveis
     no_status: Sem estado
     norm_editor_numeric_value_error: Só são permitidos valores numéricos (números inteiros ou decimais).
     norms: Normas
@@ -815,6 +825,8 @@ pt:
       projectSettings:
         assessments: Avaliações
         design: Conceção
+        external_logout_redirect_enabled: Ativar redirecionamento externo para sair da conta
+        external_logout_url: URL de saída externa
         feature_flags: Sinalizadores de recursos
         idp: PDI
         integrations: Integrações
@@ -937,6 +949,7 @@ pt:
     question_editor_enable_transcription: Ativar transcrição
     question_editor_preview_question: Pergunta de pré-visualização
     question_editor_validation_type: Tipo de validação
+    question_mapping: Mapeamento de perguntas
     question_randomization: Randomização das perguntas
     question_type_audio_response: Resposta de áudio
     question_type_constant_sum: Soma constante
@@ -1090,6 +1103,7 @@ pt:
     select_end_time: Selecionar hora de término
     select_language_to_translate: Selecione o idioma para traduzir
     select_level: Selecione o nível
+    select_question: Pesquisar uma pergunta pelo nome ou ID
     select_start_time: Selecione a hora de início
     selective_proctoring: Supervisão seletiva
     send_email: Enviar e-mail

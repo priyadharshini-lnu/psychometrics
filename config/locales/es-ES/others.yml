@@ -1465,6 +1465,9 @@ es-ES:
       external_user_id: Identificación del candidato Skillvue
       id: ID de evaluación de la campaña
       locales: Locales
+      microsite_error_message: Mensaje de error
+      microsite_participant_id: ID de participante en el micrositio
+      microsite_registration_status: Estado de la inscripción
       norm: Norma
       norm_id: Norma ID
       pearson_norm_id: Pearson Norm ID
@@ -1821,6 +1824,7 @@ es-ES:
       json:
         answer: Respuesta JSON
         external_result: Resultado externo JSON
+        microsite_raw_response: Micrositio «Raw Response»
         scoring: Puntuación JSON
       key: Clave
       last_name: Apellido

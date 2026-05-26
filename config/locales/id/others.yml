@@ -1455,6 +1455,9 @@ id:
       external_user_id: ID Kandidat Skillvue
       id: ID Penilaian Kampanye
       locales: Lokal
+      microsite_error_message: Pesan Kesalahan
+      microsite_participant_id: ID Peserta Situs Mikro
+      microsite_registration_status: Status Pendaftaran
       norm: Norma
       norm_id: ID Norma
       pearson_norm_id: ID Norma Pearson
@@ -1811,6 +1814,7 @@ id:
       json:
         answer: Jawab JSON
         external_result: JSON Hasil Eksternal
+        microsite_raw_response: Situs Mikro Raw Response
         scoring: Penilaian JSON
       key: Kunci
       last_name: Nama Belakang

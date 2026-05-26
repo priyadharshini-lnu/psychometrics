@@ -1454,6 +1454,9 @@ sr-Latn:
       external_user_id: Skillvue ID kandidata
       id: ID za procenu kampanje
       locales: Ćirilica
+      microsite_error_message: Порука о грешци
+      microsite_participant_id: ИД учесника микросајта
+      microsite_registration_status: Статус регистрације
       norm: Norma
       norm_id: Norma ID
       pearson_norm_id: Pirson Norma ID
@@ -1810,6 +1813,7 @@ sr-Latn:
       json:
         answer: Odgovor JSON
         external_result: Spoljni rezultat JSON
+        microsite_raw_response: Микросајт сиров одговор
         scoring: Bodovanje JSON
       key: Ključ
       last_name: Prezime

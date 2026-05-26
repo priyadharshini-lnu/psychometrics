@@ -321,6 +321,7 @@ ar:
     enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
     enter_description: أدخل الوصف
     enter_name: أدخل الاسم
+    enter_question_id: أدخل رقم السؤال
     error: خطأ
     estimated_tokens: الرموز (تقديرية)
     evaluation_status: حالة التقييم
@@ -414,6 +415,7 @@ ar:
     import_users: استيراد المستخدمين
     internal: داخلي
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
+    invalid_question_ids: 'لم يتم العثور على معرّفات الأسئلة التالية في هذا الاختبار: %{ids}'
     job_roles: الأدوار الوظيفية
     keywords: الكلمات المفتاحية
     keywords_placeholder: أدخل الكلمات الرئيسية مفصولة بفواصل.
@@ -427,6 +429,8 @@ ar:
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
+    lighthouse_question: السؤال الرئيسي
+    lighthouse_question_id: رقم سؤال "لايت هاوس"
     linked_assessments: التقييمات المرتبطة
     low: منخفض
     maintenance: الصيانة
@@ -449,6 +453,10 @@ ar:
     mhs_external_assessment_id: رقم تقييم Mhs
     mhs_report_id: رقم تقرير MHS
     mhs_session_id: معرف جلسة Mhs
+    microsite: موقع مصغر
+    microsite_assessment: تقييم الموقع المصغر
+    microsite_assessment_name: اسم تقييم الموقع المصغر
+    microsite_question_id: رقم سؤال الموقع المصغر
     min_value: القيمة الدنيا
     minimum_10_words: 10 كلمات على الأقل
     minimum_download_speed: الحد الأدنى لسرعة التنزيل (بالميجابت في الثانية)
@@ -457,12 +465,14 @@ ar:
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     model_answer: نموذج الإجابة
     model_answer_placeholder: أدخل الإجابة النموذجية لتقييم الذكاء الاصطناعي.
+    must_be_a_valid_url: عنوان URL غير صالح. يرجى تحديد عنوان URL الكامل مع تضمين بروتوكول http أو https فيه
     name: الاسم
     name_max_length: لا يمكن أن يتجاوز الاسم %{length} حرفًا
     name_required: الاسم مطلوب
     new_folder: مجلد جديد
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
+    no_question_mappings: لا توجد خرائط أسئلة متاحة
     no_status: لا يوجد حالة
     norm_editor_numeric_value_error: يُسمح فقط بالقيم الرقمية (أعداد صحيحة أو أعداد عشرية).
     norms: المعايير
@@ -815,6 +825,8 @@ ar:
       projectSettings:
         assessments: التقييمات
         design: التصميم
+        external_logout_redirect_enabled: تمكين إعادة التوجيه الخارجي عند تسجيل الخروج
+        external_logout_url: رابط تسجيل الخروج الخارجي
         feature_flags: علامات الميزة
         idp: IDP
         integrations: التكاملات
@@ -937,6 +949,7 @@ ar:
     question_editor_enable_transcription: تمكين النص المكتوب
     question_editor_preview_question: معاينة السؤال
     question_editor_validation_type: نوع التحقق من الصحة
+    question_mapping: تحديد الأسئلة
     question_randomization: ترتيب الأسئلة عشوائياً
     question_type_audio_response: الرد الصوتي
     question_type_constant_sum: المجموع الثابت
@@ -1090,6 +1103,7 @@ ar:
     select_end_time: حدد وقت الانتهاء
     select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
     select_level: اختر المستوى
+    select_question: البحث عن سؤال بالاسم أو الرقم التعريفي
     select_start_time: حدد وقت البدء
     selective_proctoring: المراقبة الانتقائية
     send_email: إرسال بريد إلكتروني

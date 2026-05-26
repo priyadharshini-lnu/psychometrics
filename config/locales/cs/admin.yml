@@ -321,6 +321,7 @@ cs:
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
     enter_description: Zadejte popis
     enter_name: Zadejte jméno
+    enter_question_id: Zadejte ID dotazu
     error: Chyba
     estimated_tokens: tokeny (odhad)
     evaluation_status: Stav hodnocení
@@ -414,6 +415,7 @@ cs:
     import_users: Importovat uživatele
     internal: Interní
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
+    invalid_question_ids: 'ID otázek, které se v tomto testu nevyskytují: %{ids}'
     job_roles: Pracovní role
     keywords: Klíčová slova
     keywords_placeholder: Zadejte klíčová slova oddělená čárkami.
@@ -427,6 +429,8 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    lighthouse_question: Základní otázka
+    lighthouse_question_id: ID dotazu Lighthouse
     linked_assessments: Související hodnocení
     low: Nízká
     maintenance: Údržba
@@ -449,6 +453,10 @@ cs:
     mhs_external_assessment_id: ID hodnocení Mhs
     mhs_report_id: ID zprávy MHS
     mhs_session_id: ID relace Mhs
+    microsite: mikrostránka
+    microsite_assessment: Hodnocení mikrostránek
+    microsite_assessment_name: Název hodnocení mikrostránky
+    microsite_question_id: ID dotazu na mikrowebu
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     minimum_download_speed: Minimální rychlost stahování (v Mbps)
@@ -457,12 +465,14 @@ cs:
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     model_answer: Vzorová odpověď
     model_answer_placeholder: Zadejte vzorovou odpověď pro hodnocení AI.
+    must_be_a_valid_url: Neplatná adresa URL. Zadejte úplnou adresu URL včetně protokolu http nebo https.
     name: Jméno
     name_max_length: Název nesmí překročit %{length} znaků.
     name_required: Jméno je vyžadováno
     new_folder: Nová složka
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
+    no_question_mappings: Nejsou k dispozici žádná přiřazení otázek
     no_status: Bez statusu
     norm_editor_numeric_value_error: Povoleny jsou pouze číselné hodnoty (celá čísla nebo desetinná čísla).
     norms: Normy
@@ -815,6 +825,8 @@ cs:
       projectSettings:
         assessments: Hodnocení
         design: Design
+        external_logout_redirect_enabled: Povolit externí přesměrování při odhlášení
+        external_logout_url: Externí adresa URL pro odhlášení
         feature_flags: Příznaky funkcí
         idp: IDP
         integrations: Integrace
@@ -937,6 +949,7 @@ cs:
     question_editor_enable_transcription: Zapnout přepis
     question_editor_preview_question: Náhled otázky
     question_editor_validation_type: Typ ověření
+    question_mapping: Mapování otázek
     question_randomization: Náhodné řazení otázek
     question_type_audio_response: Zvuková odezva
     question_type_constant_sum: Konstantní součet
@@ -1090,6 +1103,7 @@ cs:
     select_end_time: Vyberte čas ukončení
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň
+    select_question: Vyhledat dotaz podle názvu nebo ID
     select_start_time: Vyberte čas zahájení
     selective_proctoring: Selektivní dohled
     send_email: Odeslat e-mail

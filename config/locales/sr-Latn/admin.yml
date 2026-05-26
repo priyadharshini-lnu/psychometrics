@@ -321,6 +321,7 @@ sr-Latn:
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     enter_description: Унесите опис
     enter_name: Унесите име
+    enter_question_id: Унесите ИД питања
     error: Грешка
     estimated_tokens: токенс (процењено)
     evaluation_status: Status evaluacije
@@ -414,6 +415,7 @@ sr-Latn:
     import_users: Uvoz korisnika
     internal: Унутрашњи
     invalid_csv_header: CSV fajl sadrži nevažeća zaglavlja.
+    invalid_question_ids: 'ИД питања нису пронађени у овој процени: %{ids}'
     job_roles: Radne uloge
     keywords: Кључне речи
     keywords_placeholder: Унесите кључне речи раздвојене зарезима.
@@ -427,6 +429,8 @@ sr-Latn:
     libraries: Biblioteka medija
     library_invalid_type: Neispravna stavka biblioteke
     licenses: Licence
+    lighthouse_question: Питање светионика
+    lighthouse_question_id: ИД питања светла
     linked_assessments: Повезане процене
     low: Ниско
     maintenance: Одрживање
@@ -449,6 +453,10 @@ sr-Latn:
     mhs_external_assessment_id: ИД процене МХС
     mhs_report_id: ИД извештаја MHS
     mhs_session_id: ID сесије Mhs
+    microsite: Микросајт
+    microsite_assessment: Оценa микросајта
+    microsite_assessment_name: Назив процене микросајта
+    microsite_question_id: ИД питања микросајта
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
     minimum_download_speed: Минимална брзина преузимања (у Mbps)
@@ -457,12 +465,14 @@ sr-Latn:
     missing_min_max_values: Потребне су минималне и максималне вредности.
     model_answer: Узорни одговор
     model_answer_placeholder: Унесите моделски одговор за оцењивање вештачке интелигенције.
+    must_be_a_valid_url: Неважећи УРЛ. Наведите потпуни УРЛ са протоколом http или https.
     name: Име
     name_max_length: Име не смеје бити дуže од %{length} карактера
     name_required: Ime je obavezno
     new_folder: Нова фасцикла
     no_file_selected: Nijedan fajl nije izabran
     no_notifications: Nema obaveštenja
+    no_question_mappings: Нема доступних мапа питања
     no_status: Без статуса
     norm_editor_numeric_value_error: Дозвољене су само нумеричке вредности (цели бројеви или децимални бројеви).
     norms: Norme
@@ -815,6 +825,8 @@ sr-Latn:
       projectSettings:
         assessments: Procene
         design: Dizajn
+        external_logout_redirect_enabled: Омогући спољно преусмеравање приликом одјаве
+        external_logout_url: Спољни URL за одјаву
         feature_flags: Feature Zastave
         idp: IDP
         integrations: Integracije
@@ -937,6 +949,7 @@ sr-Latn:
     question_editor_enable_transcription: Омогући транскрипцију
     question_editor_preview_question: Преглед питања
     question_editor_validation_type: Тип валидације
+    question_mapping: Мапирање питања
     question_randomization: Насумичност питања
     question_type_audio_response: Аудио одговор
     question_type_constant_sum: Константна сума
@@ -1090,6 +1103,7 @@ sr-Latn:
     select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
+    select_question: Претражите питање по имену или ИД-у
     select_start_time: Изаберите време почетка
     selective_proctoring: Селективно надгледање
     send_email: Pošalji imejl

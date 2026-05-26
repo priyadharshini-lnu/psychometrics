@@ -1463,6 +1463,9 @@ cs:
       external_user_id: ID kandidáta Skillvue
       id: ID hodnocení kampaně
       locales: Lokality
+      microsite_error_message: Chybová zpráva
+      microsite_participant_id: ID účastníka mikrowebu
+      microsite_registration_status: Stav registrace
       norm: Norm
       norm_id: ID normy
       pearson_norm_id: ID Pearsonovy normy
@@ -1819,6 +1822,7 @@ cs:
       json:
         answer: Odpověď JSON
         external_result: Externí výsledek JSON
+        microsite_raw_response: Mikrostránka Raw Response
         scoring: Bodování JSON
       key: Klíč
       last_name: Příjmení

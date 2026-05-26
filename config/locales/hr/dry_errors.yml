@@ -52,6 +52,7 @@ hr:
         content_required: Sadržaj je potreban za upute
         tag_or_skill_required: Odaberite oznaku ili vještinu kada je odabrana opcija "Odabrano".
       invalid_name: samo abeceda, broj, razmaci, crtica i točka dopušteni su kao valjani znakovi
+      invalid_question_ids: 'ID-ovi pitanja koji nisu pronađeni u ovoj procjeni: %{ids}'
       invalid_value: nevažeća izjava '%{value}' u broju retka %{row}
       job_roles:
         unique_within_job_group: Pozicija s ovim imenom već postoji.
@@ -88,6 +89,7 @@ hr:
         unique_mappings: Mapiranje s navedenom vještinom i pozicijom već postoji.
       uniq: Ova Mettl procjena već je prisutna u sustavu. ID ove procjene je %{id}
       uniq?: trebao bi biti jedinstven
+      uniq_microsite: Ova procjena micrositea već je prisutna u sustavu. ID ove procjene je %{id}
       uniq_simulation: Ova simulacijska procjena već je prisutna u sustavu. ID ove procjene je %{id}
       uniq_skillvue: Ova Skillvue procjena je već dostupna u sustavu. ID ove procjene je %{id}
       uniq_yoodli: Ova Yoodlijeva procjena već je prisutna u sustavu. ID ove procjene je %{id}

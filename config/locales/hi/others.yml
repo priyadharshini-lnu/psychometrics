@@ -1456,6 +1456,9 @@ hi:
       external_user_id: स्किलव्यू उम्मीदवार आईडी
       id: अभियान मूल्यांकन आईडी
       locales: स्थानीय क्षेत्र
+      microsite_error_message: त्रुटि संदेश
+      microsite_participant_id: माइक्रोसाइट प्रतिभागी आईडी
+      microsite_registration_status: पंजीकरण स्थिति
       norm: नॉर्म
       norm_id: नॉर्म आईडी
       pearson_norm_id: पियर्सन मानक आईडी
@@ -1812,6 +1815,7 @@ hi:
       json:
         answer: JSON उत्तर
         external_result: बाहरी परिणाम JSON
+        microsite_raw_response: माइक्रोसाइट कच्चा प्रतिक्रिया
         scoring: स्कोरिंग JSON
       key: मुख्य
       last_name: आखिरी नाम

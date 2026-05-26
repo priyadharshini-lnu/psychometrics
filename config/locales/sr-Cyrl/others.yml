@@ -1445,6 +1445,9 @@ sr-Cyrl:
       external_user_id: Скиллвуе ИД кандидата
       id: ИД процене кампање
       locales: Локализације
+      microsite_error_message: Порука о грешци
+      microsite_participant_id: ИД учесника микросајта
+      microsite_registration_status: Статус регистрације
       norm: Норм
       norm_id: Норма ИД
       pearson_norm_id: Пирсон Норм ИД
@@ -1801,6 +1804,7 @@ sr-Cyrl:
       json:
         answer: Одговор ЈСОН
         external_result: Спољни резултат ЈСОН
+        microsite_raw_response: Микросајт сиров одговор
         scoring: Бодовање ЈСОН
       key: Кључ
       last_name: Презиме

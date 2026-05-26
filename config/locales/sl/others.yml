@@ -1460,6 +1460,9 @@ sl:
       external_user_id: ID kandidata za Skillvue
       id: ID kampanje
       locales: Lokalizacije
+      microsite_error_message: Napaka
+      microsite_participant_id: ID udeleženca na mikrospletni strani
+      microsite_registration_status: Stanje registracije
       norm: Norma
       norm_id: ID norma
       pearson_norm_id: Pearsonova normativna izkaznica
@@ -1816,6 +1819,7 @@ sl:
       json:
         answer: Odgovori JSON
         external_result: JSON zunanjega rezultata
+        microsite_raw_response: Mikrospletna stran Raw Response
         scoring: Točkovanje JSON
       key: Ključ
       last_name: Priimek

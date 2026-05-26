@@ -321,6 +321,7 @@ vi:
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
     enter_description: Nhập mô tả
     enter_name: Nhập tên
+    enter_question_id: Nhập ID câu hỏi
     error: Lỗi
     estimated_tokens: token (ước tính)
     evaluation_status: Trạng thái đánh giá
@@ -414,6 +415,7 @@ vi:
     import_users: Nhập người dùng
     internal: Nội bộ
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    invalid_question_ids: 'Không tìm thấy các mã câu hỏi sau trong bài kiểm tra này: %{ids}'
     job_roles: Vai trò công việc
     keywords: Từ khóa
     keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
@@ -427,6 +429,8 @@ vi:
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     licenses: Giấy phép
+    lighthouse_question: Câu hỏi về ngọn hải đăng
+    lighthouse_question_id: Mã câu hỏi Lighthouse
     linked_assessments: Các bài đánh giá liên quan
     low: Thấp
     maintenance: Bảo trì
@@ -449,6 +453,10 @@ vi:
     mhs_external_assessment_id: Mã đánh giá MHS
     mhs_report_id: Mã báo cáo MHS
     mhs_session_id: ID phiên làm việc MHS
+    microsite: Trang web chuyên biệt
+    microsite_assessment: Đánh giá trang web chuyên biệt
+    microsite_assessment_name: Tên đánh giá trang web chuyên biệt
+    microsite_question_id: Mã câu hỏi trên trang microsite
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
@@ -457,12 +465,14 @@ vi:
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     model_answer: Câu trả lời mẫu
     model_answer_placeholder: Nhập câu trả lời mẫu để đánh giá bằng AI.
+    must_be_a_valid_url: URL không hợp lệ. Vui lòng nhập URL đầy đủ kèm theo giao thức http hoặc https
     name: Tên
     name_max_length: Tên không được vượt quá %{length} ký tự.
     name_required: Tên là bắt buộc
     new_folder: Thư mục mới
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
+    no_question_mappings: Không có bản đồ câu hỏi nào có sẵn
     no_status: Không có trạng thái
     norm_editor_numeric_value_error: Chỉ cho phép các giá trị số (số nguyên hoặc số thập phân).
     norms: Tiêu chuẩn
@@ -815,6 +825,8 @@ vi:
       projectSettings:
         assessments: Đánh giá
         design: Thiết kế
+        external_logout_redirect_enabled: Bật tính năng đăng xuất qua chuyển hướng bên ngoài
+        external_logout_url: URL đăng xuất bên ngoài
         feature_flags: Cờ tính năng
         idp: IDP
         integrations: Tích hợp
@@ -937,6 +949,7 @@ vi:
     question_editor_enable_transcription: Bật tính năng chép lời
     question_editor_preview_question: Câu hỏi xem trước
     question_editor_validation_type: Loại xác thực
+    question_mapping: Lập bản đồ câu hỏi
     question_randomization: Xáo trộn câu hỏi
     question_type_audio_response: Phản hồi bằng âm thanh
     question_type_constant_sum: Tổng không đổi
@@ -1090,6 +1103,7 @@ vi:
     select_end_time: Chọn Thời gian kết thúc
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ
+    select_question: Tìm kiếm câu hỏi theo tên hoặc ID
     select_start_time: Chọn Thời gian bắt đầu
     selective_proctoring: Giám sát có chọn lọc
     send_email: Gửi email

@@ -1451,6 +1451,9 @@ bg:
       external_user_id: Skillvue ID на кандидата
       id: ИД на теста на кампанията
       locales: Локали
+      microsite_error_message: Съобщение за грешка
+      microsite_participant_id: Идентификационен номер на участника в микросайта
+      microsite_registration_status: Статус на регистрацията
       norm: Норма
       norm_id: Идентификационен номер на нормата
       pearson_norm_id: Pearson Norm ID
@@ -1807,6 +1810,7 @@ bg:
       json:
         answer: Отговор JSON
         external_result: Външен резултат JSON
+        microsite_raw_response: Микросайт „Raw Response“
         scoring: Оценяване на JSON
       key: Ключ
       last_name: Презиме

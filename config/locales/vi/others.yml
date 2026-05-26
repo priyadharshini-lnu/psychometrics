@@ -1445,6 +1445,9 @@ vi:
       external_user_id: ID ứng viên Skillvue
       id: ID đánh giá chiến dịch
       locales: Địa điểm
+      microsite_error_message: Thông báo lỗi
+      microsite_participant_id: Mã số người tham gia trang web chuyên biệt
+      microsite_registration_status: Tình trạng đăng ký
       norm: Chuẩn
       norm_id: ID định mức
       pearson_norm_id: Pearson Norm ID
@@ -1801,6 +1804,7 @@ vi:
       json:
         answer: Trả lời JSON
         external_result: JSON kết quả bên ngoài
+        microsite_raw_response: Trang web chuyên biệt Raw Response
         scoring: Chấm điểm JSON
       key: Chìa khoá
       last_name: Họ

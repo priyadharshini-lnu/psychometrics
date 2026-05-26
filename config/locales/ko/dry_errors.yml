@@ -52,6 +52,7 @@ ko:
         content_required: 지침에는 내용이 필요합니다
         tag_or_skill_required: 선택됨 옵션을 선택할 때 태그 또는 기술을 선택하십시오.
       invalid_name: 알파벳, 숫자, 공백, 대시 및 점만 유효한 문자로 허용됩니다
+      invalid_question_ids: '이 평가에서 찾을 수 없는 문제 ID: %{ids}'
       invalid_value: 줄 번호 %{value}에 잘못된 문 '%{row}'이 있습니다
       job_roles:
         unique_within_job_group: 같은 이름의 직무 역할이 이미 존재합니다.
@@ -88,6 +89,7 @@ ko:
         unique_mappings: 동일한 스킬과 직무 역할을 가진 매핑이 이미 존재합니다.
       uniq: 이 Mettl 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
       uniq?: 고유해야 합니다
+      uniq_microsite: 이 마이크로사이트 평가는 이미 시스템에 등록되어 있습니다. 해당 평가의 ID는 %{id}입니다.
       uniq_simulation: 이 시뮬레이션 평가는 시스템에 이미 존재합니다. 이 평가의 ID는 %{id}입니다
       uniq_skillvue: 이 스킬뷰 평가는 이미 시스템에 존재합니다. 이 평가의 ID는 %{id}입니다.
       uniq_yoodli: 이 Yoodli 평가는 이미 시스템에 존재합니다. 이 평가의 ID는 %{id}입니다.

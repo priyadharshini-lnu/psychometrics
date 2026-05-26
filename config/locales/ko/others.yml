@@ -1451,6 +1451,9 @@ ko:
       external_user_id: 스킬뷰 응시자 ID
       id: 캠페인 평가 ID
       locales: 로캘
+      microsite_error_message: 오류 메시지
+      microsite_participant_id: 마이크로사이트 참가자 ID
+      microsite_registration_status: 등록 상태
       norm: 표준
       norm_id: 표준 ID
       pearson_norm_id: Pearson Norm ID
@@ -1807,6 +1810,7 @@ ko:
       json:
         answer: 응답 JSON
         external_result: 외부 결과 JSON
+        microsite_raw_response: '마이크로사이트: 생생한 반응'
         scoring: JSON 채점
       key: 키
       last_name: 성

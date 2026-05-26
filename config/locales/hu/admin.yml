@@ -321,6 +321,7 @@ hu:
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
     enter_description: Írja be a leírást
     enter_name: Írja be a nevet
+    enter_question_id: Írja be a kérdés azonosítóját
     error: Hiba
     estimated_tokens: jelzők (becsült)
     evaluation_status: Értékelési állapot
@@ -414,6 +415,7 @@ hu:
     import_users: Importfelhasználók
     internal: Belső
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    invalid_question_ids: 'Az értékelésben nem található kérdésazonosítók: %{ids}'
     job_roles: Munkakörök
     keywords: Kulcsszavak
     keywords_placeholder: Írja be a kulcsszavakat vesszővel elválasztva.
@@ -427,6 +429,8 @@ hu:
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
+    lighthouse_question: A világítótorony kérdése
+    lighthouse_question_id: Lighthouse kérdésazonosító
     linked_assessments: Kapcsolódó értékelések
     low: Alacsony
     maintenance: Karbantartás
@@ -449,6 +453,10 @@ hu:
     mhs_external_assessment_id: Mhs értékelési azonosító
     mhs_report_id: MHS jelentés azonosítója
     mhs_session_id: Mhs munkamenet azonosító
+    microsite: Mikrooldal
+    microsite_assessment: Mikrooldal-értékelés
+    microsite_assessment_name: Mikrooldal értékelésének neve
+    microsite_question_id: Mikrooldal kérdésazonosító
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
@@ -457,12 +465,14 @@ hu:
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     model_answer: Minta válasz
     model_answer_placeholder: Írja be a modellválaszt az AI pontozáshoz.
+    must_be_a_valid_url: Érvénytelen URL. Adja meg a teljes URL-címet, beleértve az http vagy https protokollt is
     name: Név
     name_max_length: A név nem haladhatja meg a %{length} karaktert.
     name_required: Név szükséges
     new_folder: Új mappa
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
+    no_question_mappings: Nincs elérhető kérdés-leképezés
     no_status: Nincs állapot
     norm_editor_numeric_value_error: Csak numerikus értékek megengedettek (egész számok vagy tizedes számok).
     norms: Normák
@@ -815,6 +825,8 @@ hu:
       projectSettings:
         assessments: Értékelések
         design: Tervezés
+        external_logout_redirect_enabled: Külső átirányítás engedélyezése Kijelentkezés
+        external_logout_url: Külső kijelentkezési URL
         feature_flags: Funkció jelzők
         idp: IDP
         integrations: Integrációk
@@ -937,6 +949,7 @@ hu:
     question_editor_enable_transcription: Leírás engedélyezése
     question_editor_preview_question: Kérdés előnézete
     question_editor_validation_type: Ellenőrzés típusa
+    question_mapping: Kérdés-térkép
     question_randomization: A kérdések véletlenszerű elrendezése
     question_type_audio_response: Hangválasz
     question_type_constant_sum: Állandó összeg
@@ -1090,6 +1103,7 @@ hu:
     select_end_time: Végidő kiválasztása
     select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
     select_level: Szint kiválasztása
+    select_question: Keresés név vagy azonosító alapján
     select_start_time: Kezdési idő kiválasztása
     selective_proctoring: Szelektív felügyelet
     send_email: E-mail küldése

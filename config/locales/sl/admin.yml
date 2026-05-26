@@ -321,6 +321,7 @@ sl:
     enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
     enter_description: Vnesite opis
     enter_name: Vnesite ime
+    enter_question_id: Vnesite ID vprašanja
     error: Napaka
     estimated_tokens: žetoni (ocena)
     evaluation_status: Status ocenjevanja
@@ -414,6 +415,7 @@ sl:
     import_users: Uvoz uporabnikov
     internal: Notranji
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
+    invalid_question_ids: 'ID-ji vprašanj, ki jih v tej oceni ni: %{ids}'
     job_roles: Delovna mesta
     keywords: Ključne besede
     keywords_placeholder: Vnesite ključne besede, ločene z vejicami.
@@ -427,6 +429,8 @@ sl:
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
+    lighthouse_question: Ključno vprašanje
+    lighthouse_question_id: ID vprašanja Lighthouse
     linked_assessments: Povezane ocene
     low: Nizka
     maintenance: Vzdrževanje
@@ -449,6 +453,10 @@ sl:
     mhs_external_assessment_id: Mhs ocena ID
     mhs_report_id: ID poročila MHS
     mhs_session_id: Mhs ID seje
+    microsite: Mikrospletna stran
+    microsite_assessment: Ocena mikrospletne strani
+    microsite_assessment_name: Ime ocene mikrospletne strani
+    microsite_question_id: ID vprašanja na mikrospletni strani
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
     minimum_download_speed: Najmanjša hitrost prenosa (v Mbps)
@@ -457,12 +465,14 @@ sl:
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     model_answer: Vzorec odgovora
     model_answer_placeholder: Vnesite vzorčni odgovor za ocenjevanje AI.
+    must_be_a_valid_url: Neveljaven URL. Vnesite popoln URL z vključenim protokolom http ali https
     name: Ime
     name_max_length: Ime ne sme biti daljše od %{length} znakov.
     name_required: Ime je potrebno
     new_folder: Nova mapa
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
+    no_question_mappings: Na voljo ni nobenih preslikav vprašanj
     no_status: Brez statusa
     norm_editor_numeric_value_error: Dovoljene so le številčne vrednosti (cela števila ali decimalna števila).
     norms: Norme
@@ -815,6 +825,8 @@ sl:
       projectSettings:
         assessments: Ocenjevanja
         design: Dizajn
+        external_logout_redirect_enabled: Omogoči zunanje preusmerjanje ob odjavi
+        external_logout_url: Zunanji URL za odjavo
         feature_flags: Zastavice funkcij
         idp: IDP
         integrations: Integracije
@@ -937,6 +949,7 @@ sl:
     question_editor_enable_transcription: Omogoči prepis
     question_editor_preview_question: Predogled vprašanja
     question_editor_validation_type: Vrsta validacije
+    question_mapping: Zemljevid vprašanj
     question_randomization: Naključno razvrščanje vprašanj
     question_type_audio_response: Zvočni odziv
     question_type_constant_sum: Nespremenljiva vsota
@@ -1090,6 +1103,7 @@ sl:
     select_end_time: Izberite čas zaključka
     select_language_to_translate: Izberite jezik za prevajanje
     select_level: Izberite raven
+    select_question: Iskanje vprašanja po imenu ali ID-ju
     select_start_time: Izberite čas začetka
     selective_proctoring: Selektivno nadzorovanje
     send_email: Pošlji e-pošto

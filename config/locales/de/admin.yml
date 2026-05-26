@@ -321,6 +321,7 @@ de:
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
     enter_description: Beschreibung eingeben
     enter_name: Name eingeben
+    enter_question_id: Frage-ID eingeben
     error: Fehler
     estimated_tokens: Token (geschätzt)
     evaluation_status: Bewertungsstatus
@@ -414,6 +415,7 @@ de:
     import_users: Benutzer importieren
     internal: Intern
     invalid_csv_header: CSV-Datei enthält ungültige Header.
+    invalid_question_ids: 'In dieser Bewertung nicht gefundene Fragen-IDs: %{ids}'
     job_roles: Berufsrollen
     keywords: Schlüsselwörter
     keywords_placeholder: Geben Sie die Suchbegriffe durch Kommas getrennt ein.
@@ -427,6 +429,8 @@ de:
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
     licenses: Lizenzen
+    lighthouse_question: Leuchtturm-Frage
+    lighthouse_question_id: Lighthouse-Frage-ID
     linked_assessments: Verknüpfte Bewertungen
     low: Niedrig
     maintenance: Wartung
@@ -449,6 +453,10 @@ de:
     mhs_external_assessment_id: Mhs-Bewertungs-ID
     mhs_report_id: MHS-Bericht-ID
     mhs_session_id: Mhs-Sitzungs-ID
+    microsite: Microsite
+    microsite_assessment: Bewertung der Microsite
+    microsite_assessment_name: Name der Microsite-Bewertung
+    microsite_question_id: Microsite-Frage-ID
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     minimum_download_speed: Mindest-Download-Geschwindigkeit (in Mbit/s)
@@ -457,12 +465,14 @@ de:
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     model_answer: Musterlösung
     model_answer_placeholder: Geben Sie die Musterantwort für die KI-Bewertung ein.
+    must_be_a_valid_url: Ungültige URL. Geben Sie die vollständige URL mit dem Protokoll „http“ oder „https“ an.
     name: Name
     name_max_length: Der Name darf nicht länger als %{length} Zeichen sein.
     name_required: Name ist erforderlich
     new_folder: Neuer Ordner
     no_file_selected: Keine Datei ausgewählt
     no_notifications: Keine Benachrichtigungen
+    no_question_mappings: Es sind keine Fragenzuordnungen verfügbar
     no_status: Kein Status
     norm_editor_numeric_value_error: Es sind nur numerische Werte zulässig (ganze Zahlen oder Dezimalzahlen).
     norms: Normen
@@ -815,6 +825,8 @@ de:
       projectSettings:
         assessments: Beurteilungen
         design: Gestaltung
+        external_logout_redirect_enabled: Externe Weiterleitung beim Abmelden aktivieren
+        external_logout_url: Externe Abmelde-URL
         feature_flags: Feature-Flags
         idp: IDP
         integrations: Integrationen
@@ -937,6 +949,7 @@ de:
     question_editor_enable_transcription: Transkription aktivieren
     question_editor_preview_question: Vorschau-Frage
     question_editor_validation_type: Validierungsart
+    question_mapping: Fragenabgleich
     question_randomization: Zufällige Reihenfolge der Fragen
     question_type_audio_response: Audioantwort
     question_type_constant_sum: Konstante Summe
@@ -1090,6 +1103,7 @@ de:
     select_end_time: Endzeit auswählen
     select_language_to_translate: Bitte Sprache für die Übersetzung auswählen
     select_level: Stufe auswählen
+    select_question: Frage nach Name oder ID suchen
     select_start_time: Startzeit auswählen
     selective_proctoring: Selektive Prüfungsaufsicht
     send_email: E-Mail senden

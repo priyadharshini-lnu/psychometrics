@@ -1451,6 +1451,9 @@ ro:
       external_user_id: ID candidat Skillvue
       id: ID de evaluare a campaniei
       locales: Localizări
+      microsite_error_message: Mesaj de eroare
+      microsite_participant_id: ID participant microsite
+      microsite_registration_status: Starea înregistrării
       norm: Normă
       norm_id: ID normă
       pearson_norm_id: Pearson Norm ID
@@ -1807,6 +1810,7 @@ ro:
       json:
         answer: Răspuns JSON
         external_result: Rezultat extern JSON
+        microsite_raw_response: Microsite „Raw Response”
         scoring: Scor JSON
       key: Cheie
       last_name: Nume de familie

@@ -1451,6 +1451,9 @@ nl:
       external_user_id: Skillvue Kandidaat-ID
       id: Campagne Beoordeling ID
       locales: Locaties
+      microsite_error_message: Foutmelding
+      microsite_participant_id: Microsite-deelnemers-ID
+      microsite_registration_status: Registratiestatus
       norm: Norm
       norm_id: Norm ID
       pearson_norm_id: Pearson Norm-ID
@@ -1807,6 +1810,7 @@ nl:
       json:
         answer: Antwoord JSON
         external_result: Extern resultaat JSON
+        microsite_raw_response: Microsite Raw Response
         scoring: JSON scoren
       key: Sleutel
       last_name: Achternaam

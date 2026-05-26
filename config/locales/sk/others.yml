@@ -1451,6 +1451,9 @@ sk:
       external_user_id: Skillvue ID kandidáta
       id: Identifikátor hodnotenia kampane
       locales: Locales
+      microsite_error_message: Chybová správa
+      microsite_participant_id: ID účastníka mikrostránky
+      microsite_registration_status: Stav registrácie
       norm: Norma
       norm_id: ID normy
       pearson_norm_id: Pearson Norm ID
@@ -1807,6 +1810,7 @@ sk:
       json:
         answer: Odpoveď JSON
         external_result: Externý výsledok JSON
+        microsite_raw_response: Mikrostránka Raw Response
         scoring: Bodovanie JSON
       key: Kľúč
       last_name: Priezvisko

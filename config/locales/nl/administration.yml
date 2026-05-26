@@ -2363,6 +2363,7 @@ nl:
         add: Integraties
         back: Terug naar Integraties
         load_mettl_catalog: Load Mettl Beoordelingscatalogus
+        load_microsite_catalog: Microsite-beoordelingscatalogus laden
         load_skillvue_catalog: Skillvue-beoordelingscatalogus laden
       columns:
         active: Actief
@@ -2381,6 +2382,7 @@ nl:
         webhookUrls: Webhook URL's
       integrations: Integraties
       load_mettl_success: Laad mettl beoordeelt taak is succesvol enqueued
+      load_microsite_success: De taak voor het laden van microsite-evaluaties is succesvol in de wachtrij geplaatst
       load_skillvue_success: De taak voor het laden van vaardigheidsbeoordelingen is met succes in de wachtrij geplaatst
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ nl:
           servers:
             mettl_eu: Europa
             mettl_india: India
+        microsite:
+          apiKey: API-sleutel
+          apiKeyRequired: Een API-sleutel is vereist
         skillvue:
           apiKey: API-sleutel
           apiKeyRequired: API-sleutel is vereist
@@ -2414,6 +2419,7 @@ nl:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Microsite
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ nl:
           tenant_id_present: Huurder id is al aanwezig in ander project
         mettl:
           public_key_present: De openbare sleutel is al aanwezig in een ander project
+        microsite:
+          api_key_present: De API-sleutel is al aanwezig in een ander project
         skillvue:
           api_key_present: API-sleutel is al aanwezig in ander project
       view_all_schedules: Bekijk alle Mettl schema's
@@ -2990,6 +2998,7 @@ nl:
               assessment_started: Beoordeling gestart
               assessment_timeout: Time-out beoordeling
               campaign_results_available: Campagne resultaten beschikbaar
+              campaign_user_assessment_summary: Samenvatting van de gebruikersbeoordeling van de campagne
               campaign_user_status: Status campagnegebruiker
               report_available: Rapport beschikbaar
               results_available: Resultaten beschikbaar

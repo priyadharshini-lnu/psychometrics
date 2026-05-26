@@ -321,6 +321,7 @@ id:
     enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     enter_description: Masukkan deskripsi
     enter_name: Masukkan nama
+    enter_question_id: Masukkan ID Pertanyaan
     error: Kesalahan
     estimated_tokens: token (perkiraan)
     evaluation_status: Status Evaluasi
@@ -414,6 +415,7 @@ id:
     import_users: Impor Pengguna
     internal: Internal
     invalid_csv_header: File CSV berisi header yang tidak valid.
+    invalid_question_ids: 'ID soal yang tidak ditemukan dalam penilaian ini: %{ids}'
     job_roles: Peran Pekerjaan
     keywords: Kata kunci
     keywords_placeholder: Masukkan kata kunci yang dipisahkan dengan koma.
@@ -427,6 +429,8 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    lighthouse_question: Pertanyaan Utama
+    lighthouse_question_id: ID Pertanyaan Lighthouse
     linked_assessments: Penilaian Terkait
     low: Rendah
     maintenance: Perawatan
@@ -449,6 +453,10 @@ id:
     mhs_external_assessment_id: ID Penilaian Mhs
     mhs_report_id: Laporan MHS ID
     mhs_session_id: ID Sesi Mhs
+    microsite: Situs mini
+    microsite_assessment: Penilaian Situs Mikro
+    microsite_assessment_name: Nama Penilaian Situs Mikro
+    microsite_question_id: ID Pertanyaan Microsite
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
     minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
@@ -457,12 +465,14 @@ id:
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     model_answer: Jawaban Contoh
     model_answer_placeholder: Masukkan jawaban contoh untuk penilaian AI.
+    must_be_a_valid_url: URL tidak valid. Cantumkan URL lengkap yang menyertakan protokol http atau https
     name: Nama
     name_max_length: Nama tidak boleh melebihi %{length} karakter
     name_required: Nama diperlukan
     new_folder: Folder baru
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
+    no_question_mappings: Tidak ada pemetaan pertanyaan yang tersedia
     no_status: Tanpa Status
     norm_editor_numeric_value_error: Hanya nilai numerik yang diperbolehkan (bilangan bulat atau desimal).
     norms: Norma
@@ -815,6 +825,8 @@ id:
       projectSettings:
         assessments: Penilaian
         design: Desain
+        external_logout_redirect_enabled: Aktifkan Pengalihan Keluar Eksternal
+        external_logout_url: URL Keluar Eksternal
         feature_flags: Bendera Fitur
         idp: IDP
         integrations: Integrasi
@@ -937,6 +949,7 @@ id:
     question_editor_enable_transcription: Aktifkan transkripsi
     question_editor_preview_question: Pertanyaan Pratinjau
     question_editor_validation_type: Jenis validasi
+    question_mapping: Pemetaan Pertanyaan
     question_randomization: Pengacakan Pertanyaan
     question_type_audio_response: Respons Audio
     question_type_constant_sum: Jumlah Tetap
@@ -1090,6 +1103,7 @@ id:
     select_end_time: Pilih Waktu Berakhir
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
+    select_question: Cari pertanyaan berdasarkan nama atau ID
     select_start_time: Pilih Waktu Mulai
     selective_proctoring: Pengawasan Terpilih
     send_email: Kirim email

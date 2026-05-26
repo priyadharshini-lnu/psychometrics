@@ -22,9 +22,11 @@ de:
     assessors_list: Liste der Gutachter
     asset_not_present: Asset nicht vorhanden
     audio: Audio
+    audio_devices: Audiogeräte
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
     back: Zurück
     basic: Grundlegend
+    camera: Kamera
     camera_preview: Die Kamera-Vorschau wird hier angezeigt
     campaign: Kampagne
     campaign_id: Wahlkampf-ID
@@ -44,6 +46,7 @@ de:
     copied_successfully: Erfolgreich kopiert
     copied_to_clipboard: In die Zwischenablage kopiert
     copy: Kopie
+    count_more: "{{count}} weitere"
     create: Erstellen
     created_at: Erstellt am
     created_date: Erstellt am
@@ -59,6 +62,7 @@ de:
     desktop_or_laptop_recommended: Desktop oder Laptop empfohlen
     desktop_or_laptop_required: Desktop-PC oder Laptop erforderlich
     disabled: Deaktiviert
+    discard: Verwerfen
     download: Herunterladen
     download_audio: Audio herunterladen
     download_transcription: Transkription herunterladen
@@ -99,6 +103,7 @@ de:
     media_preview: Medienvorschau
     media_question_transcriptions: Transkriptionen von Medienfragen
     media_responses: Medienreaktionen
+    microphones: Mikrofone
     mobile_proctoring_disabled_instructions: Für diese Bewertung benötigen Sie einen Desktop-PC oder Laptop. Bitte wechseln Sie zu einem Computer, um die Aktivität abzuschließen.
     mobile_proctoring_enabled_instructions: Für ein optimales Erlebnis wechseln Sie bitte zu einem Desktop- oder Laptop-Computer, falls Sie einen zur Verfügung haben. Bei Bedarf können Sie auch auf Ihrem Mobilgerät fortfahren.
     modified_by: Geändert von
@@ -146,9 +151,12 @@ de:
     saving_video: Video speichert... Bitte schließen oder aktualisieren Sie den Browser nicht
     scoring_details: Punktestand-Details
     search: Suchen
+    select_camera: Wählen Sie eine Kamera aus
+    select_microphone: Wählen Sie ein Mikrofon aus
     send_email: E-Mail senden
     show_more: Mehr anzeigen
     something_wrong: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
+    speakers: Referenten
     status: Status
     status_unknown: Status unbekannt
     subject: Betreff
@@ -180,6 +188,7 @@ de:
     update_failed: Aktualisierung fehlgeschlagen
     updated_at: Aktualisiert am
     updated_successfully: Erfolgreich aktualisiert
+    user_report_pdf_url_not_generated: Der Link zum PDF-Download konnte nicht generiert werden
     video: Video
     view: Ansicht
     view_audio: Audio anzeigen

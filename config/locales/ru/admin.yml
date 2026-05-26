@@ -321,6 +321,7 @@ ru:
     enhance_with_ai_requires_ai_assistants: Для улучшения с помощью ИИ необходимо включить функцию «ИИ-помощники».
     enter_description: Введите описание
     enter_name: Введите имя
+    enter_question_id: Введите идентификатор вопроса
     error: Ошибка
     estimated_tokens: жетоны (оценочно)
     evaluation_status: Статус оценки
@@ -414,6 +415,7 @@ ru:
     import_users: Импорт пользователей
     internal: Внутренний
     invalid_csv_header: CSV-файл содержит недействительные заголовки.
+    invalid_question_ids: 'Идентификаторы вопросов, отсутствующие в данном тесте: %{ids}'
     job_roles: Должностные обязанности
     keywords: Ключевые слова
     keywords_placeholder: Введите ключевые слова, разделенные запятыми.
@@ -427,6 +429,8 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    lighthouse_question: Основной вопрос
+    lighthouse_question_id: Идентификатор вопроса Lighthouse
     linked_assessments: Связанные оценки
     low: Низкий
     maintenance: Техническое обслуживание
@@ -449,6 +453,10 @@ ru:
     mhs_external_assessment_id: Идентификатор оценки Mhs
     mhs_report_id: Идентификатор отчета MHS
     mhs_session_id: Идентификатор сеанса Mhs
+    microsite: Микросайт
+    microsite_assessment: Оценка микросайта
+    microsite_assessment_name: Название оценки микросайта
+    microsite_question_id: Идентификатор вопроса на микросайте
     min_value: Минимальное значение
     minimum_10_words: Минимум 10 слов
     minimum_download_speed: Минимальная скорость загрузки (в Мбит/с)
@@ -457,12 +465,14 @@ ru:
     missing_min_max_values: Требуются минимальные и максимальные значения.
     model_answer: Типовой ответ
     model_answer_placeholder: Введите образец ответа для оценки искусственным интеллектом.
+    must_be_a_valid_url: Неверный URL-адрес. Укажите полный URL-адрес с протоколом http или https
     name: Имя
     name_max_length: Имя не может превышать %{length} символов
     name_required: Имя обязательно
     new_folder: Новая папка
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
+    no_question_mappings: Сопоставления вопросов отсутствуют
     no_status: Без статуса
     norm_editor_numeric_value_error: Допускаются только числовые значения (целые числа или числа с десятичной запятой).
     norms: Нормы
@@ -815,6 +825,8 @@ ru:
       projectSettings:
         assessments: Оценки
         design: Дизайн
+        external_logout_redirect_enabled: Включить внешний перенаправление при выходе из системы
+        external_logout_url: URL для выхода из системы
         feature_flags: Флаги функций
         idp: ВПЛ
         integrations: Интеграции
@@ -937,6 +949,7 @@ ru:
     question_editor_enable_transcription: Включить транскрипцию
     question_editor_preview_question: Предварительный просмотр вопроса
     question_editor_validation_type: Тип проверки
+    question_mapping: Составление схемы вопросов
     question_randomization: Рандомизация вопросов
     question_type_audio_response: Аудиоответ
     question_type_constant_sum: Постоянная сумма
@@ -1090,6 +1103,7 @@ ru:
     select_end_time: Выберите время окончания
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень
+    select_question: Поиск вопроса по названию или идентификатору
     select_start_time: Выберите время начала
     selective_proctoring: Выборочный контроль
     send_email: Отправить электронное письмо

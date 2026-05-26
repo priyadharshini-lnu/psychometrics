@@ -52,6 +52,7 @@ hu:
         content_required: Az utasításokhoz tartalom szükséges
         tag_or_skill_required: Kérjük, válasszon ki egy címkét vagy egy képességet, amikor a "Kiválasztva" opciót választja.
       invalid_name: csak az ábécé, a szám, a szóközök, a kötőjel és a pont használható érvényes karakterként
+      invalid_question_ids: 'Az értékelésben nem található kérdésazonosítók: %{ids}'
       invalid_value: Érvénytelen "%{value}" utasítás a(z) %{row} sorszámon
       job_roles:
         unique_within_job_group: Ugyanilyen nevű munkakör már létezik.
@@ -88,6 +89,7 @@ hu:
         unique_mappings: Már létezik egy azonos készséggel és munkakörrel rendelkező leképezés.
       uniq: 'Ez a Mettl-értékelés már jelen van a rendszerben. Az értékelés azonosítója: %{id}'
       uniq?: egyedinek kell lennie
+      uniq_microsite: 'Ez a mikrowebhely-értékelés már szerepel a rendszerben. Az értékelés azonosítója: %{id}'
       uniq_simulation: 'Ez a szimulációs értékelés már jelen van a rendszerben. Az értékelés azonosítója: %{id}'
       uniq_skillvue: Ez a Skillvue-értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}
       uniq_yoodli: Ez a Yoodli értékelés már jelen van a rendszerben. Az értékelés azonosítója %{id}

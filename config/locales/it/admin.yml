@@ -321,6 +321,7 @@ it:
     enhance_with_ai_requires_ai_assistants: Per migliorare con l'IA è necessario che la funzione Assistenti IA sia abilitata.
     enter_description: Inserisci la descrizione
     enter_name: Inserisci nome
+    enter_question_id: Inserisci l'ID della domanda
     error: Errore
     estimated_tokens: gettoni (stimati)
     evaluation_status: Stato di valutazione
@@ -414,6 +415,7 @@ it:
     import_users: Importare utenti
     internal: Interno
     invalid_csv_header: Il file CSV contiene intestazioni non valide.
+    invalid_question_ids: 'ID delle domande non presenti in questa valutazione: %{ids}'
     job_roles: Ruoli lavorativi
     keywords: Parole chiave
     keywords_placeholder: Inserisci le parole chiave separate da virgole.
@@ -427,6 +429,8 @@ it:
     libraries: Biblioteca multimediale
     library_invalid_type: Voce della biblioteca invalida
     licenses: Licenze
+    lighthouse_question: Domanda chiave
+    lighthouse_question_id: ID domanda Lighthouse
     linked_assessments: Valutazioni correlate
     low: Basso
     maintenance: Manutenzione
@@ -449,6 +453,10 @@ it:
     mhs_external_assessment_id: ID valutazione Mhs
     mhs_report_id: ID rapporto MHS
     mhs_session_id: ID sessione Mhs
+    microsite: Microsito
+    microsite_assessment: Valutazione del microsito
+    microsite_assessment_name: Nome della valutazione del microsito
+    microsite_question_id: ID domanda del microsito
     min_value: Valore minimo
     minimum_10_words: Minimo 10 parole
     minimum_download_speed: Velocità minima di download (in Mbps)
@@ -457,12 +465,14 @@ it:
     missing_min_max_values: Sono richiesti valori minimi e massimi.
     model_answer: Risposta modello
     model_answer_placeholder: Inserisci la risposta modello per il punteggio AI.
+    must_be_a_valid_url: URL non valido. Specificare l'URL completo, includendo il protocollo http o https
     name: Nome
     name_max_length: Il nome non può superare i caratteri %{length}
     name_required: Il nome è richiesto
     new_folder: Nuova cartella
     no_file_selected: Nessun file selezionato
     no_notifications: Nessun messaggio
+    no_question_mappings: Non sono disponibili mappature delle domande
     no_status: Nessuno stato
     norm_editor_numeric_value_error: Sono ammessi solo valori numerici (numeri interi o decimali).
     norms: Norme
@@ -815,6 +825,8 @@ it:
       projectSettings:
         assessments: Assessment
         design: Design
+        external_logout_redirect_enabled: Abilita il reindirizzamento esterno al logout
+        external_logout_url: URL di disconnessione esterno
         feature_flags: Flag di funzionalità
         idp: IDP
         integrations: Integrazioni
@@ -937,6 +949,7 @@ it:
     question_editor_enable_transcription: Abilita la trascrizione
     question_editor_preview_question: Domanda di anteprima
     question_editor_validation_type: Tipo di convalida
+    question_mapping: Mappatura delle domande
     question_randomization: Randomizzazione delle domande
     question_type_audio_response: Risposta audio
     question_type_constant_sum: Somma costante
@@ -1090,6 +1103,7 @@ it:
     select_end_time: Seleziona ora di fine
     select_language_to_translate: Seleziona la lingua da tradurre
     select_level: Seleziona livello
+    select_question: Cerca una domanda per nome o ID
     select_start_time: Seleziona l'ora di inizio
     selective_proctoring: Sorveglianza selettiva
     send_email: Inviare l'e-mail

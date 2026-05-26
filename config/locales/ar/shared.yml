@@ -22,9 +22,11 @@ ar:
     assessors_list: قائمة المقيمين
     asset_not_present: الأصل غير موجود
     audio: الصوت
+    audio_devices: أجهزة الصوت
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
     back: العودة
     basic: أساسي
+    camera: الكاميرا
     camera_preview: ستظهر معاينة الكاميرا هنا
     campaign: حملة
     campaign_id: معرف الحملة
@@ -44,6 +46,7 @@ ar:
     copied_successfully: تم النسخ بنجاح
     copied_to_clipboard: نسخ إلى الحافظة
     copy: نسخ
+    count_more: "{{count}} أخرى"
     create: إنشاء
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء
@@ -59,6 +62,7 @@ ar:
     desktop_or_laptop_recommended: يوصى باستخدام جهاز كمبيوتر مكتبي أو محمول
     desktop_or_laptop_required: يلزم وجود جهاز كمبيوتر مكتبي أو محمول
     disabled: معاق
+    discard: تجاهل
     download: تنزيل
     download_audio: تنزيل الصوت
     download_transcription: تنزيل النص
@@ -99,6 +103,7 @@ ar:
     media_preview: معاينة وسائل الإعلام
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام
     media_responses: ردود فعل وسائل الإعلام
+    microphones: الميكروفونات
     mobile_proctoring_disabled_instructions: يتطلب هذا التقييم جهاز كمبيوتر مكتبي أو محمول لمتابعة العملية. يرجى التبديل إلى جهاز كمبيوتر لإكمال النشاط.
     mobile_proctoring_enabled_instructions: للحصول على أفضل تجربة، يرجى التبديل إلى جهاز كمبيوتر مكتبي أو محمول إذا كان متاحًا لديك. يمكنك الاستمرار على جهازك المحمول إذا لزم الأمر.
     modified_by: تم التعديل بواسطة
@@ -146,9 +151,12 @@ ar:
     saving_video: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
     scoring_details: تفاصيل النقاط
     search: بحث
+    select_camera: اختر كاميرا
+    select_microphone: اختر ميكروفونًا
     send_email: إرسال بريد إلكتروني
     show_more: عرض المزيد
     something_wrong: حدث خطأ ما. اتصل بالمشرف.
+    speakers: المتحدثون
     status: الحالة
     status_unknown: الحالة غير معروفة
     subject: الموضوع
@@ -180,6 +188,7 @@ ar:
     update_failed: فشل التحديث
     updated_at: تم التحديث في
     updated_successfully: تم التحديث بنجاح
+    user_report_pdf_url_not_generated: تعذر إنشاء رابط تنزيل ملف PDF
     video: فيديو
     view: عرض
     view_audio: عرض الصوت

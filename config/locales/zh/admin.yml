@@ -321,6 +321,7 @@ zh:
     enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
     enter_description: 输入描述
     enter_name: 输入姓名
+    enter_question_id: 输入问题 ID
     error: 错误
     estimated_tokens: 代币（估计值）
     evaluation_status: 评估状态
@@ -414,6 +415,7 @@ zh:
     import_users: 导入用户
     internal: 内部
     invalid_csv_header: CSV 文件中包含无效的头部。
+    invalid_question_ids: 未在此评估中找到以下试题编号：%{ids}
     job_roles: 工作角色
     keywords: 关键词
     keywords_placeholder: 请输入以逗号分隔的关键词。
@@ -427,6 +429,8 @@ zh:
     libraries: 媒体图书馆
     library_invalid_type: 无效的图书馆项目
     licenses: 许可证
+    lighthouse_question: 灯塔问题
+    lighthouse_question_id: Lighthouse 问题 ID
     linked_assessments: 关联评估
     low: 低
     maintenance: 维护
@@ -449,6 +453,10 @@ zh:
     mhs_external_assessment_id: Mhs评估ID
     mhs_report_id: MHS报告编号
     mhs_session_id: Mhs 会话标识符
+    microsite: 专题网站
+    microsite_assessment: 微网站评估
+    microsite_assessment_name: 微网站评估名称
+    microsite_question_id: 微网站问题 ID
     min_value: 最小值
     minimum_10_words: 至少10个单词
     minimum_download_speed: 最低下载速度（单位：Mbps）
@@ -457,12 +465,14 @@ zh:
     missing_min_max_values: 必须提供最小值和最大值。
     model_answer: 示范答案
     model_answer_placeholder: 输入供AI评分的模范答案。
+    must_be_a_valid_url: URL 无效。请输入包含 http 或 https 协议的完整 URL
     name: 名称
     name_max_length: 名称不能超过%{length}个字符
     name_required: 需要命名
     new_folder: 新建文件夹
     no_file_selected: 未选择文件
     no_notifications: 没有通知
+    no_question_mappings: 没有可用的问题映射
     no_status: 无状态
     norm_editor_numeric_value_error: 仅允许输入数值（整数或小数）。
     norms: 常模
@@ -815,6 +825,8 @@ zh:
       projectSettings:
         assessments: 评估
         design: 设计
+        external_logout_redirect_enabled: 启用外部重定向注销
+        external_logout_url: 外部注销链接
         feature_flags: 功能标志
         idp: IDP
         integrations: 集成
@@ -937,6 +949,7 @@ zh:
     question_editor_enable_transcription: 启用转录
     question_editor_preview_question: 预览问题
     question_editor_validation_type: 验证类型
+    question_mapping: 问题映射
     question_randomization: 试题随机排列
     question_type_audio_response: 语音回复
     question_type_constant_sum: 恒定和
@@ -1090,6 +1103,7 @@ zh:
     select_end_time: 选择结束时间
     select_language_to_translate: 请选择要翻译的语言
     select_level: 选择级别
+    select_question: 按名称或ID搜索问题
     select_start_time: 选择开始时间
     selective_proctoring: 选择性监考
     send_email: 发送电子邮件

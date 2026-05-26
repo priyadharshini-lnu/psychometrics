@@ -321,6 +321,7 @@ ja:
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
     enter_description: 説明を入力してください
     enter_name: 名前を入力してください
+    enter_question_id: 質問IDを入力してください
     error: エラー
     estimated_tokens: トークン（推定）
     evaluation_status: 評価状況
@@ -414,6 +415,7 @@ ja:
     import_users: インポートユーザー
     internal: 内部
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
+    invalid_question_ids: この評価には以下の質問IDが含まれていません：%{ids}
     job_roles: 仕事の役割
     keywords: キーワード
     keywords_placeholder: キーワードをコンマで区切って入力してください。
@@ -427,6 +429,8 @@ ja:
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
+    lighthouse_question: 灯台に関する質問
+    lighthouse_question_id: Lighthouse 質問ID
     linked_assessments: 関連する評価
     low: 低
     maintenance: 保守
@@ -449,6 +453,10 @@ ja:
     mhs_external_assessment_id: Mhs 評価ID
     mhs_report_id: MHSレポートID
     mhs_session_id: Mhs セッション ID
+    microsite: マイクロサイト
+    microsite_assessment: マイクロサイトの評価
+    microsite_assessment_name: マイクロサイト評価名
+    microsite_question_id: マイクロサイトの質問ID
     min_value: 最小値
     minimum_10_words: 最低10語
     minimum_download_speed: 最低ダウンロード速度（Mbps）
@@ -457,12 +465,14 @@ ja:
     missing_min_max_values: 最小値と最大値が必要です。
     model_answer: 模範解答
     model_answer_placeholder: AI採点用の模範解答を入力してください。
+    must_be_a_valid_url: URLが無効です。http または https プロトコルを含む完全な URL を指定してください
     name: 名前
     name_max_length: 名前は%{length}文字を超えてはいけません
     name_required: 名前が必要です
     new_folder: 新しいフォルダ
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
+    no_question_mappings: 利用可能なマッピングはありません
     no_status: ステータスなし
     norm_editor_numeric_value_error: 数値のみ入力可能です（整数または小数）。
     norms: 規範
@@ -815,6 +825,8 @@ ja:
       projectSettings:
         assessments: アセスメント
         design: デザイン
+        external_logout_redirect_enabled: 外部リダイレクトによるログアウトを有効にする
+        external_logout_url: 外部ログアウトURL
         feature_flags: 機能フラグ
         idp: アイディーピー
         integrations: 統合
@@ -937,6 +949,7 @@ ja:
     question_editor_enable_transcription: 文字起こしを有効にする
     question_editor_preview_question: プレビューの質問
     question_editor_validation_type: 検証タイプ
+    question_mapping: 質問マッピング
     question_randomization: 問題のランダム化
     question_type_audio_response: 音声応答
     question_type_constant_sum: 定和
@@ -1090,6 +1103,7 @@ ja:
     select_end_time: 終了時間を選択
     select_language_to_translate: 翻訳する言語を選択してください
     select_level: レベルを選択
+    select_question: 名前またはIDで質問を検索
     select_start_time: 開始時間を選択
     selective_proctoring: 選択的監督
     send_email: 電子メールを送信する

@@ -1463,6 +1463,9 @@ ar:
       external_user_id: هوية المرشح سكيلفيو
       id: معرف تقييم الحملة
       locales: لغات
+      microsite_error_message: رسالة خطأ
+      microsite_participant_id: رقم تعريف المشارك في الموقع المصغر
+      microsite_registration_status: حالة التسجيل
       norm: القاعده
       norm_id: معرف القاعدة
       pearson_norm_id: معرف بيرسون نورم
@@ -1819,6 +1822,7 @@ ar:
       json:
         answer: إجابة JSON
         external_result: النتيجة الخارجية JSON
+        microsite_raw_response: الموقع المصغر "Raw Response"
         scoring: تسجيل JSON
       key: مفتاح
       last_name: اسم العائلة

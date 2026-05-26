@@ -1463,6 +1463,9 @@ ru:
       external_user_id: Идентификатор кандидата Skillvue
       id: Идентификатор оценки кампании
       locales: Локаль
+      microsite_error_message: Сообщение об ошибке
+      microsite_participant_id: Идентификатор участника микросайта
+      microsite_registration_status: Статус регистрации
       norm: Норма
       norm_id: Идентификатор нормы
       pearson_norm_id: Идентификатор нормы Пирсона
@@ -1819,6 +1822,7 @@ ru:
       json:
         answer: Ответ JSON
         external_result: Внешний результат JSON
+        microsite_raw_response: Микросайт «Raw Response»
         scoring: Оценка JSON
       key: Ключ
       last_name: Фамилия

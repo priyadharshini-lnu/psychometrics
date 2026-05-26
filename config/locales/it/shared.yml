@@ -22,9 +22,11 @@ it:
     assessors_list: Elenco dei valutatori
     asset_not_present: Risorsa non presente
     audio: Audio
+    audio_devices: Dispositivi audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
     back: Indietro
     basic: Basico
+    camera: Fotocamera
     camera_preview: L'anteprima della fotocamera viene visualizzata qui
     campaign: Campagna
     campaign_id: ID della campagna elettorale
@@ -44,6 +46,7 @@ it:
     copied_successfully: Copia completata con successo
     copied_to_clipboard: Copiato negli appunti
     copy: Copia
+    count_more: "{{count}} in più"
     create: Crea
     created_at: Creato il
     created_date: Data di creazione
@@ -59,6 +62,7 @@ it:
     desktop_or_laptop_recommended: Desktop o laptop consigliato
     desktop_or_laptop_required: È necessario un computer desktop o portatile
     disabled: Disabile
+    discard: Elimina
     download: Scarica
     download_audio: Scarica audio
     download_transcription: Scarica la trascrizione
@@ -99,6 +103,7 @@ it:
     media_preview: Anteprima per i media
     media_question_transcriptions: Trascrizioni delle domande dei media
     media_responses: Risposte dei media
+    microphones: Microfoni
     mobile_proctoring_disabled_instructions: Per continuare questa valutazione è necessario un computer desktop o portatile. Passa a un computer per completare l'attività.
     mobile_proctoring_enabled_instructions: Per un'esperienza ottimale, passa a un computer desktop o portatile, se ne hai uno a disposizione. Se necessario, puoi continuare a utilizzare il tuo dispositivo mobile.
     modified_by: Modificato da
@@ -146,9 +151,12 @@ it:
     saving_video: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
     scoring_details: Dettagli del punteggio
     search: Cerca
+    select_camera: Seleziona una fotocamera
+    select_microphone: Seleziona un microfono
     send_email: Inviare l'e-mail
     show_more: Mostra di più
     something_wrong: Qualcosa è andato storto. Contattare l'amministratore.
+    speakers: Relatori
     status: Stato
     status_unknown: Stato sconosciuto
     subject: Oggetto
@@ -180,6 +188,7 @@ it:
     update_failed: Aggiornamento non riuscito
     updated_at: Aggiornato alle
     updated_successfully: Aggiornamento completato con successo
+    user_report_pdf_url_not_generated: Impossibile generare il link per il download del PDF
     video: Video
     view: Visualizza
     view_audio: Visualizza audio

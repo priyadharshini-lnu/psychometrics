@@ -46,6 +46,7 @@ en-US:
     copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
+    count_more: "{{count}} more"
     create: Create
     created_at: Created At
     created_date: Created Date
@@ -150,6 +151,8 @@ en-US:
     saving_video: Saving Video... Please do not close or refresh the browser
     scoring_details: Scoring Details
     search: Search
+    select_camera: Select a Camera
+    select_microphone: Select a Microphone
     send_email: Send email
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator.
@@ -185,6 +188,7 @@ en-US:
     update_failed: Update failed
     updated_at: Updated At
     updated_successfully: Updated successfully
+    user_report_pdf_url_not_generated: PDF download link could not be generated
     video: Video
     view: View
     view_audio: View Audio

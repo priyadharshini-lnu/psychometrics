@@ -321,6 +321,7 @@ th:
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
     enter_description: กรอกคำอธิบาย
     enter_name: กรุณากรอกชื่อ
+    enter_question_id: ป้อนรหัสคำถาม
     error: ข้อผิดพลาด
     estimated_tokens: โทเค็น (ประมาณการ)
     evaluation_status: สถานะการประเมิน
@@ -414,6 +415,7 @@ th:
     import_users: นําเข้าผู้ใช้
     internal: ภายใน
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
+    invalid_question_ids: 'รหัสคำถามไม่พบในการประเมินนี้: %{ids}'
     job_roles: บทบาทงาน
     keywords: คำสำคัญ
     keywords_placeholder: กรุณากรอกคำค้นหาโดยคั่นด้วยเครื่องหมายจุลภาค
@@ -427,6 +429,8 @@ th:
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
+    lighthouse_question: คำถามสำคัญ
+    lighthouse_question_id: รหัสคำถาม Lighthouse
     linked_assessments: การประเมินที่เชื่อมโยง
     low: ต่ำ
     maintenance: การบำรุงรักษา
@@ -449,6 +453,10 @@ th:
     mhs_external_assessment_id: รหัสการประเมิน Mhs
     mhs_report_id: รหัสรายงาน MHS
     mhs_session_id: รหัสเซสชันของนักศึกษา
+    microsite: ไมโครไซต์
+    microsite_assessment: การประเมินไมโครไซต์
+    microsite_assessment_name: การประเมินไมโครไซต์ ชื่อ
+    microsite_question_id: รหัสคำถามไมโครไซต์
     min_value: ค่าต่ำสุด
     minimum_10_words: อย่างน้อย 10 คำ
     minimum_download_speed: ความเร็วในการดาวน์โหลดขั้นต่ำ (ใน Mbps)
@@ -457,12 +465,14 @@ th:
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     model_answer: คำตอบตัวอย่าง
     model_answer_placeholder: กรุณากรอกคำตอบตัวอย่างสำหรับการให้คะแนนโดย AI
+    must_be_a_valid_url: URL ไม่ถูกต้อง กรุณาระบุ URL ที่สมบูรณ์พร้อมโปรโตคอล http หรือ https
     name: ชื่อ
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
     name_required: ต้องระบุชื่อ
     new_folder: โฟลเดอร์ใหม่
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
+    no_question_mappings: ไม่มีการจับคู่คำถามพร้อมใช้งาน
     no_status: ไม่มีสถานะ
     norm_editor_numeric_value_error: อนุญาตเฉพาะค่าตัวเลขเท่านั้น (จำนวนเต็มหรือทศนิยม)
     norms: ค่ามาตรฐาน
@@ -815,6 +825,8 @@ th:
       projectSettings:
         assessments: การประเมิน
         design: ออกแบบ
+        external_logout_redirect_enabled: เปิดใช้งานการออกจากระบบด้วยการเปลี่ยนเส้นทางภายนอก
+        external_logout_url: URL สำหรับออกจากระบบภายนอก
         feature_flags: แฟล็กคุณลักษณะ
         idp: IDP
         integrations: การบูรณาการ
@@ -937,6 +949,7 @@ th:
     question_editor_enable_transcription: เปิดใช้งานการถอดเสียง
     question_editor_preview_question: คำถามตัวอย่าง
     question_editor_validation_type: ประเภทการตรวจสอบความถูกต้อง
+    question_mapping: การจับคู่คำถาม
     question_randomization: การสุ่มคำถาม
     question_type_audio_response: การตอบสนองด้วยเสียง
     question_type_constant_sum: ผลรวมคงที่
@@ -1090,6 +1103,7 @@ th:
     select_end_time: เลือกเวลาสิ้นสุด
     select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
     select_level: เลือกระดับ
+    select_question: ค้นหาคำถามโดยชื่อหรือรหัส
     select_start_time: เลือกเวลาเริ่มต้น
     selective_proctoring: การคุมสอบแบบเลือกสรร
     send_email: ส่งอีเมล

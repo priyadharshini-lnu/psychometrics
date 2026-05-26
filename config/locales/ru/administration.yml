@@ -2363,6 +2363,7 @@ ru:
         add: Интеграции
         back: Вернуться к интеграциям
         load_mettl_catalog: Загрузить каталог оценок Mettl
+        load_microsite_catalog: Загрузить каталог оценки микросайтов
         load_skillvue_catalog: Загрузить каталог оценок Skillvue
       columns:
         active: Активный
@@ -2381,6 +2382,7 @@ ru:
         webhookUrls: URL-адреса веб-хуков
       integrations: Интеграции
       load_mettl_success: Задание по оценке mettl успешно добавлено в очередь
+      load_microsite_success: Задание по оценке микросайтов успешно добавлено в очередь
       load_skillvue_success: Задание по загрузке оценок Skillvue успешно добавлено в очередь
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ ru:
           servers:
             mettl_eu: Европа
             mettl_india: Индия
+        microsite:
+          apiKey: Ключ API
+          apiKeyRequired: Требуется ключ API
         skillvue:
           apiKey: Ключ API
           apiKeyRequired: Требуется ключ API
@@ -2414,6 +2419,7 @@ ru:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Микросайт
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ ru:
           tenant_id_present: Идентификатор арендатора уже присутствует в другом проекте
         mettl:
           public_key_present: Открытый ключ уже присутствует в другом проекте
+        microsite:
+          api_key_present: Ключ API уже используется в другом проекте
         skillvue:
           api_key_present: Ключ API уже присутствует в другом проекте
       view_all_schedules: Просмотреть все расписания Mettl
@@ -2990,6 +2998,7 @@ ru:
               assessment_started: Начало оценки
               assessment_timeout: Таймаут оценки
               campaign_results_available: Результаты кампании доступны
+              campaign_user_assessment_summary: Краткий отчет по оценке пользователей в рамках кампании
               campaign_user_status: Статус пользователя кампании
               report_available: Отчет доступен
               results_available: Результаты доступны

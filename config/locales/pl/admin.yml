@@ -321,6 +321,7 @@ pl:
     enhance_with_ai_requires_ai_assistants: Funkcja „Wzbogać dzięki AI” wymaga włączenia funkcji asystentów AI.
     enter_description: Wprowadź opis
     enter_name: Wpisz nazwę
+    enter_question_id: Wprowadź identyfikator pytania
     error: Błąd
     estimated_tokens: tokeny (szacunkowo)
     evaluation_status: Status oceny
@@ -414,6 +415,7 @@ pl:
     import_users: Import użytkowników
     internal: Wewnętrzny
     invalid_csv_header: Plik CSV zawiera nieprawidłowe nagłówki.
+    invalid_question_ids: 'Nie znaleziono identyfikatorów pytań w tej ocenie: %{ids}'
     job_roles: Role zawodowe
     keywords: Słowa kluczowe
     keywords_placeholder: Wpisz słowa kluczowe oddzielone przecinkami.
@@ -427,6 +429,8 @@ pl:
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     licenses: Licencje
+    lighthouse_question: Pytanie dotyczące latarni morskiej
+    lighthouse_question_id: Numer pytania w serwisie Lighthouse
     linked_assessments: Powiązane oceny
     low: Niski
     maintenance: Konserwacja
@@ -449,6 +453,10 @@ pl:
     mhs_external_assessment_id: Identyfikator oceny Mhs
     mhs_report_id: Numer raportu MHS
     mhs_session_id: Identyfikator sesji Mhs
+    microsite: Mikrostrona
+    microsite_assessment: Ocena mikrostrony
+    microsite_assessment_name: Nazwa oceny mikrostrony
+    microsite_question_id: Identyfikator pytania na mikrostronie
     min_value: Wartość minimalna
     minimum_10_words: Minimum 10 słów
     minimum_download_speed: Minimalna prędkość pobierania (w Mb/s)
@@ -457,12 +465,14 @@ pl:
     missing_min_max_values: Wymagane są wartości minimalne i maksymalne.
     model_answer: Odpowiedź modelowa
     model_answer_placeholder: Wprowadź wzorcową odpowiedź do oceny przez sztuczną inteligencję.
+    must_be_a_valid_url: Nieprawidłowy adres URL. Podaj pełny adres URL zawierający protokół http lub https
     name: Nazwa
     name_max_length: Nazwa nie może przekraczać %{length} znaków
     name_required: Wymagane jest imię
     new_folder: Nowy folder
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
+    no_question_mappings: Brak dostępnych mapowań pytań
     no_status: Brak statusu
     norm_editor_numeric_value_error: Dopuszczalne są wyłącznie wartości liczbowe (liczby całkowite lub ułamkowe).
     norms: Normy
@@ -815,6 +825,8 @@ pl:
       projectSettings:
         assessments: Oceny
         design: Projekt
+        external_logout_redirect_enabled: Włącz zewnętrzne przekierowanie przy wylogowaniu
+        external_logout_url: Zewnętrzny adres URL wylogowania
         feature_flags: Flagi funkcji
         idp: IDP
         integrations: Integracji
@@ -937,6 +949,7 @@ pl:
     question_editor_enable_transcription: Włącz transkrypcję
     question_editor_preview_question: Pytanie podglądowe
     question_editor_validation_type: Typ walidacji
+    question_mapping: Mapowanie pytań
     question_randomization: Losowe przydzielanie pytań
     question_type_audio_response: Odpowiedź głosowa
     question_type_constant_sum: Stała suma
@@ -1090,6 +1103,7 @@ pl:
     select_end_time: Wybierz czas zakończenia
     select_language_to_translate: Wybierz język do tłumaczenia
     select_level: Wybierz poziom
+    select_question: Wyszukaj pytanie według nazwy lub identyfikatora
     select_start_time: Wybierz czas rozpoczęcia
     selective_proctoring: Selektywny nadzór
     send_email: Wyślij wiadomość e-mail

@@ -1448,6 +1448,9 @@ th:
       external_user_id: รหัสผู้สมัคร Skillvue
       id: รหัสการประเมินแคมเปญ
       locales: ตำแหน่ง
+      microsite_error_message: ข้อความแสดงข้อผิดพลาด
+      microsite_participant_id: รหัสผู้เข้าร่วมไมโครไซต์
+      microsite_registration_status: สถานะการลงทะเบียน
       norm: บรรทัดฐาน
       norm_id: รหัสบรรทัดฐาน
       pearson_norm_id: รหัสนอร์มอลเพียร์สัน
@@ -1804,6 +1807,7 @@ th:
       json:
         answer: ตอบ JSON
         external_result: JSON ผลลัพธ์ภายนอก
+        microsite_raw_response: ไมโครไซต์ ตอบสนองแบบดิบ
         scoring: การให้คะแนน JSON
       key: กุญแจ
       last_name: นามสกุล

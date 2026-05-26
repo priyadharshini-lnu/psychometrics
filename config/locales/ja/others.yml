@@ -1464,6 +1464,9 @@ ja:
       external_user_id: スキルビュー候補者ID
       id: キャンペーン・アセスメントID
       locales: ロケール
+      microsite_error_message: エラーメッセージ
+      microsite_participant_id: マイクロサイト参加者ID
+      microsite_registration_status: 登録状況
       norm: ノーム
       norm_id: ノームID
       pearson_norm_id: ピアソン ノーム ID
@@ -1820,6 +1823,7 @@ ja:
       json:
         answer: 回答 JSON
         external_result: 外部結果JSON
+        microsite_raw_response: マイクロサイト「Raw Response」
         scoring: JSONの採点
       key: キー
       last_name: ラストネーム

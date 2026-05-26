@@ -1465,6 +1465,9 @@ zh-HK:
       external_user_id: Skillvue 候選人 ID
       id: 戰役評估識別碼
       locales: 地點
+      microsite_error_message: 错误信息
+      microsite_participant_id: 微网站参与者ID
+      microsite_registration_status: 注册状态
       norm: 模範
       norm_id: 範式識別
       pearson_norm_id: Pearson 標準識別碼
@@ -1821,6 +1824,7 @@ zh-HK:
       json:
         answer: 回答 JSON
         external_result: 外部結果 JSON
+        microsite_raw_response: 微网站原始响应
         scoring: JSON評分
       key: 鑰匙
       last_name: 姓氏

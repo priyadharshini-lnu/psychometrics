@@ -321,6 +321,7 @@ sr-Cyrl:
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
     enter_description: Унесите опис
     enter_name: Унесите име
+    enter_question_id: Унесите ИД питања
     error: Грешка
     estimated_tokens: токенс (процењено)
     evaluation_status: Статус процене
@@ -414,6 +415,7 @@ sr-Cyrl:
     import_users: Увоз корисника
     internal: Унутрашњи
     invalid_csv_header: CSV фајл садржи неважеће заглавља.
+    invalid_question_ids: 'ИД питања нису пронађени у овој процени: %{ids}'
     job_roles: Радне улоге
     keywords: Кључне речи
     keywords_placeholder: Унесите кључне речи раздвојене зарезима.
@@ -427,6 +429,8 @@ sr-Cyrl:
     libraries: Медијска библиотека
     library_invalid_type: Неважећи библиотечки предмет
     licenses: Лиценце
+    lighthouse_question: Питање светионика
+    lighthouse_question_id: ИД питања светла
     linked_assessments: Повезане процене
     low: Ниско
     maintenance: Одрживање
@@ -449,6 +453,10 @@ sr-Cyrl:
     mhs_external_assessment_id: ИД процене МХС
     mhs_report_id: ИД извештаја МХС
     mhs_session_id: ID сесије Mhs
+    microsite: Микросајт
+    microsite_assessment: Оценa микросајта
+    microsite_assessment_name: Назив процене микросајта
+    microsite_question_id: ИД питања микросајта
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
     minimum_download_speed: Минимална брзина преузимања (у Mbps)
@@ -457,12 +465,14 @@ sr-Cyrl:
     missing_min_max_values: Потребне су минималне и максималне вредности.
     model_answer: Узорни одговор
     model_answer_placeholder: Унесите моделски одговор за оцењивање вештачке интелигенције.
+    must_be_a_valid_url: Неважећи УРЛ. Наведите комплетан УРЛ са http или https протоколом.
     name: Име
     name_max_length: Име не смеје бити дуže од %{length} карактера
     name_required: Име је обавезно
     new_folder: Нова фасцикла
     no_file_selected: Није изабрана датотека
     no_notifications: Нема обавештења
+    no_question_mappings: Нема доступних мапа питања
     no_status: Без статуса
     norm_editor_numeric_value_error: Дозвољене су само нумеричке вредности (цели бројеви или децимални бројеви).
     norms: Норме
@@ -815,6 +825,8 @@ sr-Cyrl:
       projectSettings:
         assessments: Оцењивања
         design: Дизајн
+        external_logout_redirect_enabled: Омогући спољно преусмеравање приликом одјаве
+        external_logout_url: Спољни URL за одјаву
         feature_flags: Фичер флагс
         idp: ИДП
         integrations: Интеграције
@@ -937,6 +949,7 @@ sr-Cyrl:
     question_editor_enable_transcription: Омогући транскрипцију
     question_editor_preview_question: Преглед питања
     question_editor_validation_type: Тип валидације
+    question_mapping: Мапирање питања
     question_randomization: Насумичност питања
     question_type_audio_response: Аудио одговор
     question_type_constant_sum: Константна сума
@@ -1090,6 +1103,7 @@ sr-Cyrl:
     select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
+    select_question: Претражите питање по називу или ИД-у
     select_start_time: Изаберите време почетка
     selective_proctoring: Селективно надгледање
     send_email: Пошаљи имејл

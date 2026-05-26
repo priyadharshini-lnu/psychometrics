@@ -1461,6 +1461,9 @@ zh:
       external_user_id: Skillvue 候选人 ID
       id: 活动评估 ID
       locales: 地点
+      microsite_error_message: 错误信息
+      microsite_participant_id: 微网站参与者ID
+      microsite_registration_status: 注册状态
       norm: 常模
       norm_id: 常模 ID
       pearson_norm_id: 皮尔逊规范 ID
@@ -1817,6 +1820,7 @@ zh:
       json:
         answer: 回答 JSON
         external_result: 外部结果 JSON
+        microsite_raw_response: 微网站 原始反馈
         scoring: 评分 JSON
       key: 钥匙
       last_name: 姓氏
