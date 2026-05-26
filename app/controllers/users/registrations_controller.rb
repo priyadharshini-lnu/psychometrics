@@ -25,14 +25,14 @@ module Users
             @form.errors.add(:base, I18n.t('administration.clients.registration_codes.errors.license_issue'))
             respond_with @form
           end
-          on(:ok) do
-            # audit!(
-            #   :create,
-            #   resource,
-            #   user: resource,
-            #   project: @current_project,
-            #   payload: sign_up_params.except(:mobile_verification_token, :registration_code, :sms_invite_code)
-            # )
+          on(:ok) do |resource|
+            audit!(
+              :create,
+              resource[:ok],
+              user: resource[:ok],
+              project: @current_project,
+              payload: sign_up_params.except(:mobile_verification_token, :registration_code, :sms_invite_code)
+            )
             flash[:notice] = t('devise.registrations.success.instruction')
             redirect_to new_user_session_path
           end
