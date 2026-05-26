@@ -23,6 +23,7 @@ module CampaignFactors
     attribute :min_value, Integer
     attribute :max_value, Integer
     attribute :is_na_allowed, Boolean, default: false
+    attribute :disallow_lead_assessor_moderation, Boolean, default: false
 
     validates :code, :name, :output_type, :position, :factor_type, :public_visibility, presence: true
     validates :position, numericality: { only_integer: true }

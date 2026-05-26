@@ -27,8 +27,15 @@ class CampaignFactor < ApplicationRecord
 
   validate :validate_cyclic_path!
 
+  scope :auto_moderated, -> { where(disallow_lead_assessor_moderation: true) }
+  scope :manually_moderated, -> { where(disallow_lead_assessor_moderation: false) }
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id factor_type]
+  end
+
+  def auto_moderated?
+    assessor_scoring? && disallow_lead_assessor_moderation?
   end
 
   def set_position

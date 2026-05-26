@@ -338,6 +338,14 @@ export const AddEditFactorForm: FC<Props> = ({
             </>
           ) : null
         }
+        <Form.Item
+          name="disallowLeadAssessorModeration"
+          valuePropName="checked"
+          label={I18n.t('admin.disallow_lead_assessor_moderation')}
+          tooltip={I18n.t('admin.disallow_lead_assessor_moderation_info')}
+        >
+          <Switch />
+        </Form.Item>
       </Fragment>
     )
   }

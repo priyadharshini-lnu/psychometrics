@@ -284,7 +284,8 @@ CREATE TABLE public.campaign_factors (
     min_value integer,
     max_value integer,
     is_na_allowed boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    disallow_lead_assessor_moderation boolean DEFAULT false NOT NULL
 );
 
 
@@ -20731,6 +20732,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260520094000'),
 ('20260514200000'),
 ('20260513115126'),
 ('20260513115038'),
@@ -21772,3 +21774,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

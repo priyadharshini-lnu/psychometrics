@@ -278,10 +278,16 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     }
 
     setDisabledSave(true)
-    const scores = Object.keys(finalScores).map(key => ({
-      campaign_factor_id: factorIdToIdMap[`factorId${key}`],
-      score: Number.isNaN((finalScores[key])) ? Number(finalScores[key]) : finalScores[key],
-    }))
+    const autoModeratedFactorIds = new Set(
+      columnsData.filter(f => f.disallowLeadAssessorModeration).map(f => f.factorId),
+    )
+
+    const scores = Object.keys(finalScores)
+      .filter(key => !autoModeratedFactorIds.has(key))
+      .map(key => ({
+        campaign_factor_id: factorIdToIdMap[`factorId${key}`],
+        score: Number.isNaN((finalScores[key])) ? Number(finalScores[key]) : finalScores[key],
+      }))
     return updateFinalScore(
       {
         action: 'save_assessor_scoring_factor_value',
@@ -382,23 +388,30 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
             : (
               <>
                 <InputNumber
-                  disabled={readOnly || scoresFinalized}
+                  disabled={readOnly || scoresFinalized || factor.disallowLeadAssessorModeration}
                   status={getScoreStatus(finalScores[factor.factorId], factor)}
                   value={finalScores[factor.factorId]}
                   precision={2}
                   onChange={value => handleFinalScoreChange(factor.factorId, value)}
                 />
                 {
-                 !readOnly && (factor.minValue !== null && factor.maxValue !== null) && (
-                   <Tooltip
-                     title={I18n.t('admin.scoring_value_info', {
-                       min: factor.minValue,
-                       max: factor.maxValue,
-                     })}
-                   >
-                     <Button style={{ width: '20px' }} icon={<InfoCircleOutlined />} type="text" />
-                   </Tooltip>
+                 (!readOnly && (factor.minValue !== null
+                   && factor.maxValue !== null)
+                   && !factor.disallowLeadAssessorModeration) && (
+                     <Tooltip
+                       title={I18n.t('admin.scoring_value_info', {
+                         min: factor.minValue,
+                         max: factor.maxValue,
+                       })}
+                     >
+                       <Button style={{ width: '20px' }} icon={<InfoCircleOutlined />} type="text" />
+                     </Tooltip>
                  )}
+                {factor.disallowLeadAssessorModeration && (
+                  <Tooltip title={I18n.t('admin.auto_moderated_factor_info')}>
+                    <Button style={{ width: '20px', marginLeft: '8px' }} icon={<InfoCircleOutlined />} type="text" />
+                  </Tooltip>
+                )}
               </>
             )}
           {columnsData.find(f => f.factorId === factor.factorId)?.isNaAllowed
@@ -414,7 +427,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
                checked={!!enabledNAFactors[factor.factorId]}
                checkedChildren={I18n.t('shared.na_text')}
                unCheckedChildren={I18n.t('shared.na_text')}
-               disabled={readOnly || scoresFinalized}
+               disabled={readOnly || scoresFinalized || factor.disallowLeadAssessorModeration}
              />
            )}
         </>

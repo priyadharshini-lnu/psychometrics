@@ -42,6 +42,7 @@ module Api
             optional(:min_value).maybe(:integer)
             optional(:max_value).maybe(:integer)
             optional(:is_na_allowed).maybe(:bool)
+            optional(:disallow_lead_assessor_moderation).maybe(:bool)
           end
         end
 
@@ -62,6 +63,7 @@ module Api
             optional(:min_value).maybe(:integer)
             optional(:max_value).maybe(:integer)
             optional(:is_na_allowed).maybe(:bool)
+            optional(:disallow_lead_assessor_moderation).maybe(:bool)
           end
         end
 
@@ -86,6 +88,7 @@ module Api
                 optional(:min_value).maybe(:integer)
                 optional(:max_value).maybe(:integer)
                 optional(:is_na_allowed).maybe(:bool)
+                optional(:disallow_lead_assessor_moderation).maybe(:bool)
               end
             end
           end

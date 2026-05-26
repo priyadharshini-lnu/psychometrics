@@ -22,11 +22,13 @@ module CampaignFactors
         return broadcast :error, I18n.t('admin.scores_finalized')
       end
 
-      transaction do
-        valid_factor_ids = fetch_valid_assessor_scoring_factor_ids
-        params[:scores].each do |score|
-          next unless valid_factor_ids.include?(score[:campaign_factor_id].to_i)
+      auto_moderated_ids = fetch_auto_moderated_factor_ids
+      if auto_moderated_ids.any?
+        return broadcast :error, I18n.t('admin.auto_moderated_factor_info')
+      end
 
+      transaction do
+        params[:scores].each do |score|
           factor_value = campaign.campaign_factor_values.find_or_create_by(
             campaign_factor_id: score[:campaign_factor_id],
             user_id: params[:user_id]
@@ -41,9 +43,10 @@ module CampaignFactors
 
     private
 
-    def fetch_valid_assessor_scoring_factor_ids
+    def fetch_auto_moderated_factor_ids
       score_factor_ids = params[:scores].pluck(:campaign_factor_id)
-      CampaignFactor.where(id: score_factor_ids, factor_type: :assessor_scoring).pluck(:id).to_a
+      CampaignFactor.where(id: score_factor_ids, factor_type: :assessor_scoring,
+                           disallow_lead_assessor_moderation: true).pluck(:id)
     end
   end
 end
