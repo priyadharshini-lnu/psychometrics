@@ -57,7 +57,7 @@ unless Rails.env.test?
       font_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
 
       connect_src = [
-        :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com', 'https://*.cloudfront.net',
+        :self, :blob, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
         'https://*.osano.com', 'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://*.sentry.io',
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint,
@@ -65,6 +65,7 @@ unless Rails.env.test?
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
       connect_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+      connect_src << ENV.fetch('CLOUDFRONT_DOMAIN', nil) if ENV.fetch('CLOUDFRONT_DOMAIN', nil).present?
 
       object_src = [
         "https://#{Settings.secrets.s3_compatible_storage.public_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",
