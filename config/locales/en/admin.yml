@@ -449,6 +449,7 @@ en:
     maintenance_settings_description: Manage system maintenance windows and settings
     manager_approval_required: Report for %{user} requires manager approval before download
     max_value: Max value
+    mean: Mean
     media_files_label: Files
     media_library: Media Library
     media_library_page_title: Media Library - Dashboard - Mercer Lighthouse
@@ -1139,6 +1140,7 @@ en:
     sms_histories: SMS Histories
     sms_invites: SMS Invites
     specialty_questions: Specialty Questions
+    standard_deviation: Standard Deviation
     standard_questions: Standard Questions
     start: start
     start_time: Start Time

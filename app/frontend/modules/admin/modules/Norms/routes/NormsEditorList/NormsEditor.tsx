@@ -7,16 +7,18 @@ import {
   Form, InputNumber, message, Alert,
 } from 'antd'
 import cs from 'classnames'
-import keyBy from 'lodash/keyBy'
 import styles from './NormsEditor.less'
+import { useNormsTableConfig } from './useNormsTableConfig'
 import { useResources } from '~/hooks/useResources/useResources'
 import { useResourceContext } from '~/modules/admin/components/Resource/ResourceContext'
 import {
   NormEditor, NormEditorTR,
-  ColumnTypes, EditableCellProps, IRowData,
+  EditableCellProps,
+  Norm,
 } from '~/modules/admin/modules/client/core/norms'
 import { camelizeKeys } from '~/utils/object'
 import { NormFactorLevel } from '../../constants'
+import connect, { PropsFromRedux } from '~/modules/admin/modules/NormEditor/connect'
 
 const { I18n } = window
 const NUMERIC_INPUT_PATTERN = /^\d*\.?\d*$/
@@ -140,6 +142,14 @@ const EditableCell = ({
 }
 
 const getFieldNameAndLevel = (dataIndex:string) => {
+  if (dataIndex === 'mean') {
+    return { fieldName: 'mean' }
+  }
+
+  if (dataIndex === 'standardDeviation') {
+    return { fieldName: 'standard_deviation' }
+  }
+
   if (dataIndex.includes('From')) {
     const level = dataIndex.split('From')[0]
     return { level: NormFactorLevel[level], fieldName: 'score_from' }
@@ -148,151 +158,24 @@ const getFieldNameAndLevel = (dataIndex:string) => {
   return { level: NormFactorLevel[level], fieldName: 'score_to' }
 }
 
-const formatNumberWithPrecision = (value: number) => value.toLocaleString('en-US', {
-  minimumFractionDigits: 1, maximumFractionDigits: 10,
-})
-
-const formatScoreValue = (value?: string | number): string => (
-  value ? formatNumberWithPrecision(parseFloat(String(value))) : ''
-)
-
-type NormScoreFields = Omit<IRowData, 'factor' | 'key' | 'factorsNormId'>
-
-const LEVEL_FIELD_MAP: [string, keyof NormScoreFields, keyof NormScoreFields][] = [
-  ['verylow', 'veryLowFrom', 'veryLowTo'],
-  ['low', 'lowFrom', 'lowTo'],
-  ['average', 'averageFrom', 'averageTo'],
-  ['high', 'highFrom', 'highTo'],
-  ['veryhigh', 'veryHighFrom', 'veryHighTo'],
-]
-
-const buildNormScores = (factorsNormsProps: NormEditor[number]['factorsNormsProps']): NormScoreFields => {
-  const propsByLevel = keyBy(factorsNormsProps ?? [], prop => (prop.level ?? '').toLowerCase().replace(/\s/g, ''))
-
-  return LEVEL_FIELD_MAP.reduce<NormScoreFields>((scores, [levelKey, fromField, toField]) => {
-    const prop = propsByLevel[levelKey]
-    scores[fromField] = formatScoreValue(prop?.scoreFrom)
-    scores[toField] = formatScoreValue(prop?.scoreTo)
-    return scores
-  }, {
-    veryLowFrom: '',
-    veryLowTo: '',
-    lowFrom: '',
-    lowTo: '',
-    averageFrom: '',
-    averageTo: '',
-    highFrom: '',
-    highTo: '',
-    veryHighFrom: '',
-    veryHighTo: '',
-  })
-}
-
-
-const NormsEditor = () => {
+const NormsEditorComponent = ({ saveNorm }: PropsFromRedux) => {
   const [form] = Form.useForm()
-  const [data, setData] = useState<IRowData[]>([])
-  const [editingCell, setEditingCell] = useState<{ key: string; dataIndex: keyof IRowData } | null>(null)
+  const [editorData, setEditorData] = useState<NormEditor>([])
+  const [data, setData] = useState<Record<string, string | number>[]>([])
+  const [currentNorm, setCurrentNorm] = useState<Norm | null>(null)
+  const [editingCell, setEditingCell] = useState<{ key: string; dataIndex: string } | null>(null)
   const { resource } = useResourceContext()
   const resourceFactorNorms = useResources('factors_norms')
-
   const {
     collectionAction,
   } = resourceFactorNorms
+  const {
+    columns: tableColumns,
+    data: tableData,
+  } = useNormsTableConfig(currentNorm?.normType, editorData)
 
-  const defaultColumns = [{
-    title: I18n.t('admin.factors'),
-    key: 'factor',
-    fixed: 'start',
-    width: 200,
-    dataIndex: 'factor',
-    editable: false,
-  },
-  {
-    title: I18n.t('admin.very_low'),
-    children: [
-      {
-        key: 'veryLowFrom',
-        dataIndex: 'veryLowFrom',
-        title: I18n.t('admin.from'),
-        width: 100,
-        editable: true,
-      },
-      {
-        key: 'veryLowTo',
-        dataIndex: 'veryLowTo',
-        title: I18n.t('admin.to'),
-        width: 100,
-        editable: true,
-      }],
-  },
-
-  {
-    title: I18n.t('admin.low'),
-    children: [
-      {
-        key: 'lowFrom',
-        title: I18n.t('admin.from'),
-        width: 100,
-        dataIndex: 'lowFrom',
-        editable: true,
-      },
-      {
-        key: 'lowTo', title: I18n.t('admin.to'), width: 100, dataIndex: 'lowTo', editable: true,
-      }],
-  },
-
-  {
-    title: I18n.t('admin.average'),
-    children: [
-      {
-        key: 'averageFrom',
-        title: I18n.t('admin.from'),
-        width: 100,
-        dataIndex: 'averageFrom',
-        editable: true,
-      },
-      {
-        key: 'averageTo',
-        title: I18n.t('admin.to'),
-        width: 100,
-        dataIndex: 'averageTo',
-        editable: true,
-      }],
-  },
-
-  {
-    title: I18n.t('admin.high'),
-    children: [
-      {
-        key: 'highFrom',
-        title: I18n.t('admin.from'),
-        width: 100,
-        dataIndex: 'highFrom',
-        editable: true,
-      },
-      {
-        key: 'highTo',
-        title: I18n.t('admin.to'),
-        width: 100,
-        dataIndex: 'highTo',
-        editable: true,
-      }],
-  },
-
-  {
-    title: I18n.t('admin.very_high'),
-    children: [
-      {
-        key: 'veryHighFrom', title: I18n.t('admin.from'), width: 100, dataIndex: 'veryHighFrom', editable: true,
-      },
-      {
-        key: 'veryHighTo', title: I18n.t('admin.to'), width: 100, dataIndex: 'veryHighTo', editable: true,
-      }],
-  }]
-
-  const columns = defaultColumns.map((col) => {
-    if (!col.children) {
+  const columns = tableColumns.map((col) => {
+    if (!('children' in col) || !col.children) {
       return {
         ...col,
         onCell: (record, rowIndex) => ({
@@ -300,9 +183,15 @@ const NormsEditor = () => {
           dataIndex: col.dataIndex,
           editable: col.editable,
           rowIndex,
+          editing: editingCell?.key === record.key && editingCell?.dataIndex === col.dataIndex,
+          save: {
+            startEdit,
+            commit,
+          },
         }),
       }
     }
+
     return {
       ...col,
       children: col.children.map(childCol => ({
@@ -314,7 +203,8 @@ const NormsEditor = () => {
           rowIndex,
           editing: editingCell?.key === record.key && editingCell?.dataIndex === childCol.dataIndex,
           save: {
-            startEdit, commit,
+            startEdit,
+            commit,
           },
         }),
       })),
@@ -342,36 +232,67 @@ const NormsEditor = () => {
 
     const newValue = form.getFieldValue(fieldName)
 
-    collectionAction({
-      method: 'patch',
-      action: 'update_cell',
-      body: {
-        normId: Number(normId),
-        factorId: Number(record.key),
-        ...getFieldNameAndLevel(dataIndex),
+    if (currentNorm?.normType === 'percentile') {
+      const cellData = {
+        factorId: record.key,
+        fieldName: getFieldNameAndLevel(dataIndex).fieldName,
         fieldValue: (newValue ?? '').toString(),
-      },
-    }).then(() => {
-      const newData = data.map((item) => {
-        if (item.key === record.key) {
-          return {
-            ...item,
-            [dataIndex]: newValue ?? '',
+        normId: Number(normId),
+      }
+
+      saveNorm(cellData).then(() => {
+        const newData = data.map((item) => {
+          if (item.key === record.key) {
+            return {
+              ...item,
+              [dataIndex]: newValue ?? '',
+            }
           }
-        }
-        return item
+          return item
+        })
+        setData(newData)
+        setEditingCell((prev) => {
+          if (prev?.key === record.key && prev?.dataIndex === dataIndex) {
+            return null
+          }
+          return prev
+        })
+      }).catch((errors) => {
+        form.setFieldValue(fieldName, record[dataIndex])
+        message.error(`${errors['/fieldValue']?.title || I18n.t('admin.validation_error')}`)
       })
-      setData(newData)
-      setEditingCell((prev) => {
-        if (prev?.key === record.key && prev?.dataIndex === dataIndex) {
-          return null
-        }
-        return prev
+    } else {
+      collectionAction({
+        method: 'patch',
+        action: 'update_cell',
+        body: {
+          normId: Number(normId),
+          factorId: Number(record.key),
+          ...getFieldNameAndLevel(dataIndex),
+          fieldValue: (newValue ?? '').toString(),
+        },
+      }).then(() => {
+        const newData = data.map((item) => {
+          if (item.key === record.key) {
+            return {
+              ...item,
+              [dataIndex]: newValue ?? '',
+            }
+          }
+          return item
+        })
+        setData(newData)
+        setEditingCell((prev) => {
+          if (prev?.key === record.key && prev?.dataIndex === dataIndex) {
+            return null
+          }
+          return prev
+        })
+      }).catch((e) => {
+        form.setFieldValue(fieldName, record[dataIndex])
+        message.error(`${e['/fieldValue']?.title || I18n.t('admin.validation_error')}`)
       })
-    }).catch((e) => {
-      form.setFieldValue(fieldName, record[dataIndex])
-      message.error(`${e['/fieldValue']?.title || I18n.t('admin.validation_error')}`)
-    })
+    }
   }
 
   const fetchNormsEditorData = (normId: string) => {
@@ -381,21 +302,22 @@ const NormsEditor = () => {
       id: normId,
       responseType: NormEditorTR,
     }).then((response: unknown) => {
-      const editorData = response as NormEditor
-      setData(camelizeKeys(editorData).map(item => ({
-        factor: item.name,
-        ...buildNormScores(item.factorsNormsProps),
-        key: item.id.toString(),
-        factorsNormId: item.factorsNormId ?? '',
-      })))
+      setEditorData(camelizeKeys(response as NormEditor) as NormEditor)
       setIsLoading(false)
     })
   }
 
   useEffect(() => {
+    setData(tableData as Record<string, string | number>[])
+  }, [tableData])
+
+  useEffect(() => {
     if (normId) {
-      setIsLoading(true)
-      fetchNormsEditorData(normId as string)
+      resource.fetchSingle({ id: normId }).then((response) => {
+        setCurrentNorm(response as Norm)
+        setIsLoading(true)
+        fetchNormsEditorData(normId as string)
+      })
     }
   }, [normId])
 
@@ -413,7 +335,7 @@ const NormsEditor = () => {
           rowClassName={() => styles.editableRow}
           bordered
           dataSource={data}
-          columns={columns as ColumnTypes}
+          columns={columns}
           pagination={false}
           loading={isLoading}
           virtual
@@ -426,4 +348,4 @@ const NormsEditor = () => {
   )
 }
 
-export default NormsEditor
+export default connect(NormsEditorComponent)
