@@ -146,6 +146,7 @@ ar:
     assistant_validation_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
+    auto_moderated_factor_info: يخضع هذا التقييم للمراجعة التلقائية ولا يمكن تغييره
     auto_placeholder: السيارات
     availability: التوفر
     available_languages: التقرير متوفر باللغات
@@ -291,6 +292,8 @@ ar:
     dimension_translations_export_scheduled: تصدير الترجمات المجدولة للبعد %{name}.
     dimensions: الأبعاد
     disable_proctoring: تعطيل المراقبة
+    disallow_lead_assessor_moderation: منع المراقبة من قِبل المقيم الرئيسي
+    disallow_lead_assessor_moderation_info: سيتم حساب النتيجة تلقائيًا استنادًا إلى جميع نماذج التقييم التي تم تقديمها، ولا يمكن للمقيم الرئيسي تغييرها من شاشة المراجعة
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     download_bulk_asset_download_example_csv: تنزيل مثال CSV.
@@ -438,6 +441,7 @@ ar:
     maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     max_value: القيمة القصوى
+    mean: المتوسط
     media_files_label: الملفات
     media_library: مكتبة الوسائط
     media_library_page_title: مكتبة الوسائط - لوحة التحكم - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ ar:
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
     specialty_questions: أسئلة متخصصة
+    standard_deviation: الانحراف المعياري
     standard_questions: الأسئلة المعتادة
     start: ابدأ
     start_time: وقت البدء

@@ -46,7 +46,6 @@ ar:
     copied_successfully: تم النسخ بنجاح
     copied_to_clipboard: نسخ إلى الحافظة
     copy: نسخ
-    count_more: "{{count}} أخرى"
     create: إنشاء
     created_at: تم إنشاؤها في
     created_date: تاريخ الإنشاء

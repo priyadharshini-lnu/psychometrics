@@ -146,6 +146,7 @@ ko:
     assistant_validation_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다
     audit_logs: 감사 로그
     audit_reports: 감사 보고서
+    auto_moderated_factor_info: 이 점수는 자동 심사 대상이며 변경할 수 없습니다
     auto_placeholder: 자동
     availability: 가용성
     available_languages: 보고서는 언어로 제공됩니다
@@ -291,6 +292,8 @@ ko:
     dimension_translations_export_scheduled: "%{name} 차원에 대해 예약된 번역 내보내기."
     dimensions: 치수
     disable_proctoring: 감독 기능 비활성화
+    disallow_lead_assessor_moderation: 주 심사위원의 검토 기능 비활성화
+    disallow_lead_assessor_moderation_info: 점수는 모든 평가자 양식 제출 내용을 바탕으로 자동 산출되며, 주 평가자는 검토 화면에서 이를 변경할 수 없습니다.
     done: 수행
     done_tooltip: 이 사용자의 평가는 %{marked_by}에 의해 완료된 것으로 표시되어 있어 더 이상 평가를 제출할 수 없습니다
     download_bulk_asset_download_example_csv: 예제 CSV 다운로드.
@@ -438,6 +441,7 @@ ko:
     maintenance_settings_description: 시스템 유지보수 시간대와 설정 관리
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
     max_value: 최대값
+    mean: 평균
     media_files_label: 파일
     media_library: 미디어 라이브러리
     media_library_page_title: 미디어 라이브러리 - 대시보드 - 머서 라이트하우스
@@ -1128,6 +1132,7 @@ ko:
     sms_histories: SMS 기록
     sms_invites: SMS 초대
     specialty_questions: 전문 분야 관련 질문
+    standard_deviation: 표준편차
     standard_questions: 일반적인 질문
     start: 시작
     start_time: 시작 시간

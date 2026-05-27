@@ -1345,7 +1345,6 @@ ko:
     all_activities_are_completed: 이제 모든 활동이 완료되었습니다.
     all_activities_are_completed_multiple: 이제 이 캠페인의 모든 활동이 완료되었습니다. 대시보드로 이동하여 할당된 다른 활동이 있는지 확인하세요.
     already_joined: 이미 이 캠페인에 참여하셨습니다
-    begin_btn_msg_before_prework: 시간 제한 캠페인을 시작하기 전에 아래 작업을 완료해야 합니다
     begin_campaign_msg: 평가를 받기 전에 캠페인 시작
     campaigns: 캠페인
     closed_campaign_message: 이 캠페인은 종료되었습니다. 이 캠페인에서는 어떠한 평가도 받을 수 없습니다.

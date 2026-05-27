@@ -46,7 +46,6 @@ vi:
     copied_successfully: Đã sao chép thành công
     copied_to_clipboard: Đã sao chép vào khay nhớ tạm
     copy: Sao chép
-    count_more: "{{count}} thêm"
     create: Tạo
     created_at: Được tạo ra tại
     created_date: Ngày tạo

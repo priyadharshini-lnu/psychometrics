@@ -70,7 +70,14 @@ export const NormEditorTR = t.array(
         scoreFrom: t.union([t.number, t.string]),
         scoreTo: t.union([t.number, t.string]),
       }),
-    )]),
+    ),
+
+    t.array(t.type({
+      factor: t.string,
+      mean: t.union([t.number, t.string]),
+      standardDeviation: t.union([t.number, t.string]),
+    })),
+    ]),
   }),
 )
 
@@ -82,7 +89,7 @@ export const NormEditorResponseTR = t.type({
 
 export type NormEditorResponse = t.TypeOf<typeof NormEditorResponseTR>
 
-export interface IRowData {
+export interface IFiveScaleRowData {
   factor: string;
   veryLowFrom: number | string;
   veryLowTo: number | string;
@@ -98,16 +105,26 @@ export interface IRowData {
   factorsNormId: number | string;
 }
 
-export type ColumnTypes = Exclude<TableProps<IRowData>['columns'], undefined>;
+export interface IPercentileRowData {
+  factor: string;
+  mean: number | string | undefined;
+  standardDeviation: number | string | undefined;
+  key: string;
+  factorsNormId: number | string;
+}
+
+export type ColumnTypes = Exclude<TableProps<IFiveScaleRowData | IPercentileRowData>['columns'], undefined>;
 
 export interface EditableCellProps {
   editable: boolean;
   editing: boolean;
   children: React.ReactNode;
   save: {
-    startEdit: (record: IRowData, dataIndex: keyof IRowData) => void;
-    commit: (record: IRowData, dataIndex: keyof IRowData) => void;
+    startEdit: (record: IFiveScaleRowData |
+       IPercentileRowData, dataIndex: keyof (IFiveScaleRowData | IPercentileRowData)) => void;
+    commit: (record: IFiveScaleRowData |
+      IPercentileRowData, dataIndex: keyof (IFiveScaleRowData | IPercentileRowData)) => void;
   };
-  dataIndex: keyof IRowData;
-  record: IRowData;
+  dataIndex: keyof (IFiveScaleRowData | IPercentileRowData);
+  record: IFiveScaleRowData | IPercentileRowData;
 }

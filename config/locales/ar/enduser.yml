@@ -53,6 +53,7 @@ ar:
     check_video_recording: يرجى التأكد من جودة الصوت والصورة من خلال تشغيل المقطع المسجل
     checking_browser_compatibility: جاري التحقق من توافق المتصفح...
     checking_latency: التحقق من زمن الاستجابة...
+    complete_prework_message: أكمل جميع المهام التمهيدية للبدء.
     could_not_reach_servers: لم نتمكن من الوصول إلى خوادمنا للتحقق من سرعة الشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
     day: يوم
     day_plural: أيام
@@ -135,6 +136,8 @@ ar:
     play: تشغيل
     please_check_your_internet_connection: يُرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
     preparing_preview: جاري التحضير للمعاينة...
+    prework: التحضير المسبق
+    prework_not_completed_message: يرجى إنجاز جميع المهام التمهيدية قبل بدء الحملة.
     proctored: تحت إشراف
     proctored_assessment_misconfigured_msg: هذا الاختبار يخضع للإشراف، لكنه يفتقر إلى الإعدادات الزمنية اللازمة؛ يرجى الاتصال بالمسؤول.
     profile: تفاصيلي

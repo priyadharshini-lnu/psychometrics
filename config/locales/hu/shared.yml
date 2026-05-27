@@ -46,7 +46,6 @@ hu:
     copied_successfully: A másolás sikeresen megtörtént
     copied_to_clipboard: Másolva a vágólapra
     copy: Másolás
-    count_more: "{{count}} további"
     create: Létrehozás
     created_at: Létrehozva
     created_date: Létrehozás dátuma

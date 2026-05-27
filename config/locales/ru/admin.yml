@@ -146,6 +146,7 @@ ru:
     assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
     audit_logs: Журналы аудита
     audit_reports: Аудиторские отчеты
+    auto_moderated_factor_info: Эта оценка проходит автоматическую модерацию и не может быть изменена
     auto_placeholder: Авто
     availability: Доступность
     available_languages: Отчет доступен на следующих языках
@@ -291,6 +292,8 @@ ru:
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
     disable_proctoring: Отключить наблюдение
+    disallow_lead_assessor_moderation: Запретить модерацию ведущего эксперта
+    disallow_lead_assessor_moderation_info: Оценка будет рассчитываться автоматически на основе всех отправленных форм оценщиков, и ведущий оценщик не сможет изменить её на экране модерации
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
     download_bulk_asset_download_example_csv: Скачать пример CSV.
@@ -438,6 +441,7 @@ ru:
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     max_value: Максимальное значение
+    mean: Среднее
     media_files_label: Файлы
     media_library: Медиатека
     media_library_page_title: Медиатека — Панель управления — Mercer Lighthouse
@@ -1128,6 +1132,7 @@ ru:
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения
     specialty_questions: Специальные вопросы
+    standard_deviation: Стандартное отклонение
     standard_questions: Стандартные вопросы
     start: начало
     start_time: Время начала

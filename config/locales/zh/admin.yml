@@ -146,6 +146,7 @@ zh:
     assistant_validation_failed: 多次尝试后仍未能生成有效输出
     audit_logs: 审计日志
     audit_reports: 审计报告
+    auto_moderated_factor_info: 该评分由系统自动生成，无法修改
     auto_placeholder: 汽车
     availability: 可用性
     available_languages: 报告提供多种语言版本
@@ -291,6 +292,8 @@ zh:
     dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
     disable_proctoring: 禁用监考功能
+    disallow_lead_assessor_moderation: 禁止首席评估员进行审核
+    disallow_lead_assessor_moderation_info: 评分将根据所有评估员提交的表格自动计算，首席评估员无法在审核界面中修改该评分
     done: 做
     done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
     download_bulk_asset_download_example_csv: 下载示例 CSV 文件。
@@ -438,6 +441,7 @@ zh:
     maintenance_settings_description: 管理系统维护窗口和设置
     manager_approval_required: "%{user}报告下载前需要经理批准"
     max_value: 最大值
+    mean: 平均值
     media_files_label: 文件
     media_library: 媒体库
     media_library_page_title: 媒体库 - 仪表盘 - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ zh:
     sms_histories: 短信历史
     sms_invites: 短信邀请
     specialty_questions: 专业问题
+    standard_deviation: 标准差
     standard_questions: 标准问题
     start: 开始
     start_time: 开始时间

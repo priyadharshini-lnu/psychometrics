@@ -146,6 +146,7 @@ en-US:
     assistant_validation_failed: Failed to generate valid output after multiple attempts
     audit_logs: Audit Logs
     audit_reports: Audit Reports
+    auto_moderated_factor_info: This score is auto moderated and can't be changed
     auto_placeholder: Auto
     availability: Availability
     available_languages: Report Available in Languages
@@ -291,6 +292,8 @@ en-US:
     dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
     disable_proctoring: Disable Proctoring
+    disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
+    disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
@@ -438,6 +441,7 @@ en-US:
     maintenance_settings_description: Manage system maintenance windows and settings
     manager_approval_required: Report for %{user} requires manager approval before download
     max_value: Max value
+    mean: Mean
     media_files_label: Files
     media_library: Media Library
     media_library_page_title: Media Library - Dashboard - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ en-US:
     sms_histories: SMS Histories
     sms_invites: SMS Invites
     specialty_questions: Specialty Questions
+    standard_deviation: Standard Deviation
     standard_questions: Standard Questions
     start: start
     start_time: Start Time

@@ -146,6 +146,7 @@ hi:
     assistant_validation_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
     audit_logs: ऑडिट लॉग्स
     audit_reports: लेखा परीक्षा रिपोर्टें
+    auto_moderated_factor_info: यह स्कोर स्वचालित रूप से मॉडरेट किया जाता है और इसे बदला नहीं जा सकता।
     auto_placeholder: स्वचालित
     availability: उपलब्धता
     available_languages: रिपोर्ट भाषाओं में उपलब्ध है
@@ -291,6 +292,8 @@ hi:
     dimension_translations_export_scheduled: "%{name} आयाम के लिए निर्धारित अनुवाद निर्यात करें।"
     dimensions: आयाम
     disable_proctoring: प्रॉक्टरिंग अक्षम करें
+    disallow_lead_assessor_moderation: लीड आकलनकर्ता की मध्यस्थता निषेध करें
+    disallow_lead_assessor_moderation_info: स्कोर सभी आकलनकर्ता फॉर्म जमा होने पर स्वचालित रूप से गणना किया जाएगा और मुख्य आकलनकर्ता इसे मॉडरेशन स्क्रीन से नहीं बदल सकता।
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
     download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
@@ -438,6 +441,7 @@ hi:
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     max_value: अधिकतम मान
+    mean: औसत
     media_files_label: फ़ाइलें
     media_library: मीडिया पुस्तकालय
     media_library_page_title: मीडिया लाइब्रेरी - डैशबोर्ड - मर्सर लाइटहाउस
@@ -1128,6 +1132,7 @@ hi:
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण
     specialty_questions: विशेष प्रश्न
+    standard_deviation: मानक विचलन
     standard_questions: मानक प्रश्न
     start: शुरू करें
     start_time: शुरुआत का समय

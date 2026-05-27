@@ -146,6 +146,7 @@ ro:
     assistant_validation_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
     audit_logs: Jurnale de audit
     audit_reports: Rapoarte de audit
+    auto_moderated_factor_info: Acest scor este moderat automat și nu poate fi modificat
     auto_placeholder: Auto
     availability: Disponibilitate
     available_languages: Raport disponibil în limbi
@@ -291,6 +292,8 @@ ro:
     dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
     disable_proctoring: Dezactivează supravegherea
+    disallow_lead_assessor_moderation: Dezactivează moderarea evaluatorului principal
+    disallow_lead_assessor_moderation_info: Scorul va fi calculat automat pe baza tuturor formularelor trimise de evaluatori, iar evaluatorul principal nu îl poate modifica din ecranul de moderare
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     download_bulk_asset_download_example_csv: Descărcați exemplul CSV.
@@ -438,6 +441,7 @@ ro:
     maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     max_value: Valoarea maximă
+    mean: Medie
     media_files_label: Fișiere
     media_library: Biblioteca media
     media_library_page_title: Biblioteca media - Tablou de bord - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ ro:
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
     specialty_questions: Întrebări specifice
+    standard_deviation: Abaterea standard
     standard_questions: Întrebări standard
     start: începe
     start_time: Ora de începere

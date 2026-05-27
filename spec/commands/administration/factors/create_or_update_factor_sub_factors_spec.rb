@@ -34,6 +34,8 @@ RSpec.describe Administration::Factors::CreateOrUpdateFactorSubFactors do
                 { 'score' => 10, 'definition' => 'Excellent' }
               ],
               'what_to_look_for' => 'Test guidance',
+              'predicate' => '>=',
+              'value' => 3.5,
               'weight' => 2,
               'position' => 0
             }
@@ -73,6 +75,8 @@ RSpec.describe Administration::Factors::CreateOrUpdateFactorSubFactors do
           expect(join_record.sub_factor).to eq(Factor.last)
           expect(join_record.weight).to eq(2)
           expect(join_record.position).to eq(0)
+          expect(join_record.predicate).to eq('>=')
+          expect(join_record.value).to eq(3.5)
         end
 
         context 'with default values' do
@@ -424,7 +428,9 @@ RSpec.describe Administration::Factors::CreateOrUpdateFactorSubFactors do
                  factor: factor,
                  sub_factor: sub_factor,
                  weight: 1,
-                 position: 0)
+                 position: 0,
+                 predicate: '==',
+                 value: 1.0)
         end
 
         let(:factors_sub_factors_attrs) do
@@ -434,6 +440,8 @@ RSpec.describe Administration::Factors::CreateOrUpdateFactorSubFactors do
               'sub_factor_id' => sub_factor.id,
               'id' => join_record.id,
               'name' => 'Updated Sub Factor Name',
+              'predicate' => '<=',
+              'value' => 4.2,
               'weight' => 5,
               'position' => 2
             }
@@ -461,6 +469,8 @@ RSpec.describe Administration::Factors::CreateOrUpdateFactorSubFactors do
 
           expect(join_record.weight).to eq(5)
           expect(join_record.position).to eq(2)
+          expect(join_record.predicate).to eq('<=')
+          expect(join_record.value).to eq(4.2)
         end
 
         context 'with multiple sub-factors' do

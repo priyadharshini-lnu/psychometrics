@@ -53,6 +53,7 @@ ja:
     check_video_recording: 録画を再生して、映像と音声を確認してください。
     checking_browser_compatibility: ブラウザの互換性を確認中...
     checking_latency: 遅延を確認中...
+    complete_prework_message: 開始するには、すべての事前課題を完了してください。
     could_not_reach_servers: ネットワーク速度を確認するためにサーバーに接続できませんでした。インターネット接続を確認してから、もう一度お試しください。
     day: 日
     day_plural: 日
@@ -135,6 +136,8 @@ ja:
     play: 再生
     please_check_your_internet_connection: インターネット接続を確認してから、もう一度お試しください。
     preparing_preview: プレビューの準備中...
+    prework: 事前準備
+    prework_not_completed_message: キャンペーンを開始する前に、すべての事前課題を完了してください。
     proctored: 監督付き
     proctored_assessment_misconfigured_msg: この評価は監督下で行われますが、必要な時間設定がされていません。管理者にお問い合わせください。
     profile: プロフィール

@@ -46,6 +46,7 @@ interface Props {
   prevCompleted: boolean
   workshopBooked?: boolean
   workshopAttended?: boolean
+  allPreworkIsComplete?: boolean
 }
 
 const connector = connect(
@@ -79,6 +80,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   disabled,
   prevCompleted,
   campaignNotStarted,
+  allPreworkIsComplete,
   workshopBooked,
   workshopAttended,
   campaign,
@@ -95,6 +97,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     status, assessmentIconUrl, assessmentName, completionPercent, completionReason, id,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
     requireScheduling, assessmentCategory, isTimed: timedAssessment, type: assessmentType,
+    prework,
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
@@ -144,6 +147,9 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   }
   if (campaignNotStarted) {
     actionDisabledText = I18n.t('campaign.begin_campaign_msg')
+  }
+  if (!allPreworkIsComplete) {
+    actionDisabledText = I18n.t('enduser.complete_prework_message')
   }
   if (isMicrositeAssessment) {
     actionDisabledText = I18n.t('enduser.microsite_assessment_external')
@@ -231,10 +237,10 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
       navigate(`/campaign_system_check/${campaign.id}/welcome`)
       return
     }
-    const needToBeginOrContinueCampaign = canBeginCampaign || canContinueCampaign
+    const needToBeginOrContinueCampaign = (canBeginCampaign || canContinueCampaign) && !prework
     if (
       (proctoringEnabledOnWorkshopActivity && isProctored)
-      || (!needToBeginOrContinueCampaign && !campaignNeedsProctoring)
+      || (!needToBeginOrContinueCampaign && (!campaignNeedsProctoring || prework))
     ) {
       return navigateToAssessment()
     }
@@ -301,6 +307,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
         <Space>
           <TruncatedTitle id={titleId} title={assessmentName} />
           {assessementLevelPrococtoringEnabled && <Tag color="volcano">{I18n.t('enduser.proctored')}</Tag>}
+          {prework && <Tag color="blue">{I18n.t('enduser.prework')}</Tag>}
         </Space>
       </Col>
     </Row>

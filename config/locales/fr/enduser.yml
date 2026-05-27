@@ -53,6 +53,7 @@ fr:
     check_video_recording: Veuillez vérifier votre vidéo et votre audio en lisant l'enregistrement.
     checking_browser_compatibility: Vérification de la compatibilité du navigateur...
     checking_latency: Vérification de la latence...
+    complete_prework_message: Effectuez toutes les tâches préparatoires avant de commencer.
     could_not_reach_servers: Nous n'avons pas pu nous connecter à nos serveurs pour vérifier la vitesse du réseau. Veuillez vérifier votre connexion Internet et réessayer.
     day: jour
     day_plural: jours
@@ -135,6 +136,8 @@ fr:
     play: Jouer
     please_check_your_internet_connection: Veuillez vérifier votre connexion Internet et réessayer.
     preparing_preview: Préparation de l'aperçu...
+    prework: Préparation
+    prework_not_completed_message: Veuillez effectuer toutes les tâches préparatoires avant de lancer la campagne.
     proctored: Sous surveillance
     proctored_assessment_misconfigured_msg: Cette évaluation se déroule sous surveillance, mais les paramètres de durée ne sont pas configurés. Veuillez contacter votre administrateur.
     profile: Profil

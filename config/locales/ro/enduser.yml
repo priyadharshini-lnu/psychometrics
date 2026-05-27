@@ -53,6 +53,7 @@ ro:
     check_video_recording: Vă rugăm să verificați înregistrarea video și audio redând-o.
     checking_browser_compatibility: Se verifică compatibilitatea browserului...
     checking_latency: Verificarea latenței...
+    complete_prework_message: Finalizează toate sarcinile preliminare pentru a începe.
     could_not_reach_servers: Nu s-a putut stabili conexiunea cu serverele noastre pentru a verifica viteza rețelei. Vă rugăm să verificați conexiunea la internet și să încercați din nou.
     day: zi
     day_plural: zile
@@ -135,6 +136,8 @@ ro:
     play: Joacă
     please_check_your_internet_connection: Vă rugăm să verificați conexiunea la internet și să încercați din nou.
     preparing_preview: Se pregătește previzualizarea...
+    prework: Pregătire preliminară
+    prework_not_completed_message: Vă rugăm să finalizați toate sarcinile preliminare înainte de a începe campania.
     proctored: Sub supraveghere
     proctored_assessment_misconfigured_msg: Această evaluare se desfășoară sub supraveghere, dar nu are setările de timp necesare; vă rugăm să contactați administratorul.
     profile: Profil

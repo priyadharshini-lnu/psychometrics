@@ -53,6 +53,7 @@ sk:
     check_video_recording: Skontrolujte si prosím video aj zvuk prehratím nahrávky.
     checking_browser_compatibility: Overovanie kompatibility prehliadača...
     checking_latency: Kontrola latencie...
+    complete_prework_message: Najskôr si splňte všetky prípravné úlohy.
     could_not_reach_servers: Nepodarilo sa pripojiť k našim serverom na overenie rýchlosti siete. Skontrolujte si pripojenie k internetu a skúste to znovu.
     day: deň
     day_plural: dni
@@ -135,6 +136,8 @@ sk:
     play: Hrať
     please_check_your_internet_connection: Skontrolujte si pripojenie k internetu a skúste to znovu.
     preparing_preview: Pripravuje sa náhľad...
+    prework: Prípravné práce
+    prework_not_completed_message: Pred spustením kampane prosím vykonajte všetky prípravné úlohy.
     proctored: Pod dohľadom
     proctored_assessment_misconfigured_msg: Toto hodnotenie prebieha pod dohľadom, chýba však potrebné nastavenie času. Prosím, kontaktujte svojho správcu.
     profile: Profil

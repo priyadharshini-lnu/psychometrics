@@ -3,7 +3,7 @@
 class Api::V2::Administration::CampaignFactorResource < Api::V2::Administration::BaseResource
   attributes :name, :code, :position, :campaign_factor_group_id, :factor_type, :public_visibility, :description,
              :formula, :factor_id, :assessment_id, :output_type, :assessment_score_type, :dimension_id, :ranked,
-             :min_value, :max_value, :is_na_allowed
+             :min_value, :max_value, :is_na_allowed, :disallow_lead_assessor_moderation
 
   has_one :campaign
   has_one :campaign_factor_group, foreign_key_on: :related

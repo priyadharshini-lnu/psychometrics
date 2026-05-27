@@ -1345,7 +1345,6 @@ vi:
     all_activities_are_completed: Mọi hoạt động hiện đã hoàn tất.
     all_activities_are_completed_multiple: Mọi hoạt động cho chiến dịch này hiện đã hoàn tất. Vui lòng tiến hành đến Bảng điều khiển và kiểm tra xem bạn có hoạt động nào khác được chỉ định không.
     already_joined: Bạn đã tham gia chiến dịch này
-    begin_btn_msg_before_prework: Bạn phải hoàn thành các nhiệm vụ dưới đây trước khi bắt đầu chiến dịch có thời gian
     begin_campaign_msg: Bắt đầu chiến dịch trước khi thực hiện đánh giá
     campaigns: Chiến dịch
     closed_campaign_message: Chiến dịch này đã kết thúc. Bạn không thể thực hiện bất kỳ đánh giá nào trong chiến dịch này.

@@ -53,6 +53,7 @@ it:
     check_video_recording: Ti preghiamo di controllare video e audio riproducendo la registrazione.
     checking_browser_compatibility: Verifica della compatibilità del browser...
     checking_latency: Verifica della latenza...
+    complete_prework_message: Per iniziare, completa tutte le attività preliminari.
     could_not_reach_servers: Impossibile connettersi ai nostri server per verificare la velocità di rete. Controlla la tua connessione Internet e riprova.
     day: giorno
     day_plural: giorni
@@ -135,6 +136,8 @@ it:
     play: Gioca
     please_check_your_internet_connection: Controlla la tua connessione Internet e riprova.
     preparing_preview: Preparazione dell'anteprima...
+    prework: Preparazione
+    prework_not_completed_message: Si prega di completare tutte le attività preliminari prima di avviare la campagna.
     proctored: Sotto la supervisione di un sorvegliante
     proctored_assessment_misconfigured_msg: Questa valutazione è sorvegliata, ma manca l'impostazione del tempo richiesta; si prega di contattare l'amministratore.
     profile: Profilo

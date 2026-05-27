@@ -46,7 +46,6 @@ hi:
     copied_successfully: सफलतापूर्वक कॉपी किया गया
     copied_to_clipboard: क्लिपबोर्ड पर कॉपी हो गया
     copy: प्रतिलिपि
-    count_more: "{{count}} और"
     create: बनाएँ
     created_at: पर बनाया गया
     created_date: निर्मित तिथि

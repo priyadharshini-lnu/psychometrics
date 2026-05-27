@@ -5,7 +5,7 @@ module Webhooks
     skip_before_action :verify_authenticity_token
 
     def results
-      Saville::SaveResultsAndReportsJob.perform_later(request.raw_post)
+      Saville::SaveResultsAndReportsJob.perform_later(request.raw_post.to_s)
 
       head :ok
     end

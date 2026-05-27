@@ -146,6 +146,7 @@ sk:
     assistant_validation_failed: Po viacerých pokusoch sa nepodarilo vygenerovať platný výstup.
     audit_logs: Protokoly auditu
     audit_reports: Audítorské správy
+    auto_moderated_factor_info: Toto hodnotenie je automaticky moderované a nie je možné ho zmeniť
     auto_placeholder: Auto
     availability: Dostupnosť
     available_languages: Správa dostupná v jazykoch
@@ -291,6 +292,8 @@ sk:
     dimension_translations_export_scheduled: Export prekladov naplánovaný pre dimenziu „%{name}“.
     dimensions: Rozmery
     disable_proctoring: Vypnúť dohľad
+    disallow_lead_assessor_moderation: Zakázať moderovanie hlavným hodnotiteľom
+    disallow_lead_assessor_moderation_info: Skóre sa vypočíta automaticky na základe všetkých odoslaných formulárov hodnotiteľov a hlavný hodnotiteľ ho nemôže zmeniť na obrazovke moderovania
     done: Robené
     done_tooltip: Pre tohto používateľa už nie je možné vykonať ďalšie hodnotenie, pretože hodnotenie je označené ako vykonané %{marked_by}
     download_bulk_asset_download_example_csv: Stiahnuť príklad CSV.
@@ -438,6 +441,7 @@ sk:
     maintenance_settings_description: Správa okien a nastavení údržby systému
     manager_approval_required: Report for %{user} vyžaduje schválenie manažéra pred stiahnutím
     max_value: Maximálna hodnota
+    mean: Priemer
     media_files_label: Súbory
     media_library: Mediálna knižnica
     media_library_page_title: Mediálna knižnica – Riadiaci panel – Mercer Lighthouse
@@ -1128,6 +1132,7 @@ sk:
     sms_histories: História SMS
     sms_invites: SMS pozvánky
     specialty_questions: Špecifické otázky
+    standard_deviation: Štandardná odchýlka
     standard_questions: Štandardné otázky
     start: začať
     start_time: Čas začatia

@@ -146,6 +146,7 @@ pl:
     assistant_validation_failed: Nie udało się wygenerować prawidłowego wyniku po wielu próbach.
     audit_logs: Dzienniki audytu
     audit_reports: Raporty z audytu
+    auto_moderated_factor_info: Ta ocena jest moderowana automatycznie i nie można jej zmienić
     auto_placeholder: Auto
     availability: Dostępność
     available_languages: Raport dostępny w językach
@@ -291,6 +292,8 @@ pl:
     dimension_translations_export_scheduled: Zaplanowano eksport tłumaczeń dla wymiaru „%{name}”.
     dimensions: Wymiary
     disable_proctoring: Wyłącz nadzór
+    disallow_lead_assessor_moderation: Zablokuj moderację głównego rzeczoznawcy
+    disallow_lead_assessor_moderation_info: Wynik zostanie obliczony automatycznie na podstawie wszystkich przesłanych formularzy rzeczoznawców, a główny rzeczoznawca nie może go zmienić na ekranie moderacji
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
     download_bulk_asset_download_example_csv: Pobierz przykładowy plik CSV.
@@ -438,6 +441,7 @@ pl:
     maintenance_settings_description: Zarządzanie oknami konserwacji systemu i ustawieniami
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
     max_value: Wartość maksymalna
+    mean: Średnia
     media_files_label: Pliki
     media_library: Biblioteka multimediów
     media_library_page_title: Biblioteka multimediów – Pulpit nawigacyjny – Mercer Lighthouse
@@ -1128,6 +1132,7 @@ pl:
     sms_histories: Historie SMS
     sms_invites: Zaproszenia SMS
     specialty_questions: Pytania specjalistyczne
+    standard_deviation: Odchylenie standardowe
     standard_questions: Typowe pytania
     start: rozpocząć
     start_time: Czas rozpoczęcia

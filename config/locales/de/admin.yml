@@ -146,6 +146,7 @@ de:
     assistant_validation_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
     audit_logs: Audit-Protokolle
     audit_reports: Audit-Berichte
+    auto_moderated_factor_info: Diese Bewertung wird automatisch geprüft und kann nicht geändert werden
     auto_placeholder: Auto
     availability: Verfügbarkeit
     available_languages: Bericht in Sprachen verfügbar
@@ -291,6 +292,8 @@ de:
     dimension_translations_export_scheduled: Export der Übersetzungen für die Dimension „%{name}“ ist geplant.
     dimensions: Abmessungen
     disable_proctoring: Prüfungsaufsicht deaktivieren
+    disallow_lead_assessor_moderation: Moderation durch den leitenden Gutachter unterbinden
+    disallow_lead_assessor_moderation_info: Die Punktzahl wird automatisch auf Grundlage aller eingereichten Bewertungsbögen berechnet, und der leitende Bewerter kann sie im Moderationsbildschirm nicht ändern.
     done: Fertig
     done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
     download_bulk_asset_download_example_csv: Beispiel-CSV herunterladen.
@@ -438,6 +441,7 @@ de:
     maintenance_settings_description: Systemwartungsfenster und -einstellungen verwalten
     manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
     max_value: Maximalwert
+    mean: Mittelwert
     media_files_label: Dateien
     media_library: Medienbibliothek
     media_library_page_title: Medienbibliothek – Dashboard – Mercer Lighthouse
@@ -1128,6 +1132,7 @@ de:
     sms_histories: SMS-Geschichten
     sms_invites: SMS-Einladungen
     specialty_questions: Fachfragen
+    standard_deviation: Standardabweichung
     standard_questions: Standardfragen
     start: Start
     start_time: Startzeit

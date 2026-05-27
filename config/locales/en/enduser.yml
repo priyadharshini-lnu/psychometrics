@@ -53,6 +53,7 @@ en:
     check_video_recording: Please check your video and audio by playing it back.
     checking_browser_compatibility: Checking browser compatibility...
     checking_latency: Checking latency...
+    complete_prework_message: Complete all prework tasks to begin.
     could_not_reach_servers: Could not reach our servers to check network speed. Please check your internet connection and try again.
     day: day
     day_plural: days
@@ -135,6 +136,8 @@ en:
     play: Play
     please_check_your_internet_connection: Please check your internet connection and try again.
     preparing_preview: Preparing preview...
+    prework: Prework
+    prework_not_completed_message: Please complete all prework tasks before starting the campaign.
     proctored: Proctored
     proctored_assessment_misconfigured_msg: This assessment is proctored but is missing the necessary time configuration, please contact your administrator.
     profile: Profile

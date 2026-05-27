@@ -53,6 +53,7 @@ zh-HK:
     check_video_recording: 請回放錄製內容以檢查視訊與音訊。
     checking_browser_compatibility: 正在检查浏览器兼容性...
     checking_latency: 正在检测延迟...
+    complete_prework_message: 请先完成所有预习任务，然后开始。
     could_not_reach_servers: 无法连接到我们的服务器以检测网速。请检查您的网络连接，然后重试。
     day: 天
     day_plural: 天
@@ -135,6 +136,8 @@ zh-HK:
     play: 播放
     please_check_your_internet_connection: 请检查您的网络连接，然后重试。
     preparing_preview: 正在准备预览...
+    prework: 课前准备
+    prework_not_completed_message: 在开始活动之前，请先完成所有预备任务。
     proctored: 监考
     proctored_assessment_misconfigured_msg: 本次评估为监考形式，但缺少必要的时间设置，请联系您的管理员。
     profile: 个人资料

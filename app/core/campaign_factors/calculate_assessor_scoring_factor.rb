@@ -10,11 +10,22 @@ module CampaignFactors
     end
 
     def call
-      return broadcast :ok, {} if lead_assessor.present?
+      # Auto-moderation happens in two scenarios:
+      # 1. When there's no lead assessor (original behavior)
+      # 2. When there IS a lead assessor BUT the factor has disallow_lead_assessor_moderation enabled
+      return broadcast :ok, {} if lead_assessor.present? && !has_auto_moderated_factors?
 
       factor_values = {}
 
-      campaign.campaign_factors.assessor_scoring.each do |campaign_factor|
+      factors_to_calculate = if lead_assessor.present?
+                               # If lead assessor exists, only auto-moderate factors with the flag enabled
+                               campaign.campaign_factors.assessor_scoring.auto_moderated
+                             else
+                               # If no lead assessor, auto-moderate all assessor_scoring factors
+                               campaign.campaign_factors.assessor_scoring
+                             end
+
+      factors_to_calculate.each do |campaign_factor|
         next unless can_calculate_assessor_scoring_factor?(campaign_factor)
 
         computed_campaign_factor_value = calculate_factor_scores(campaign_factor)
@@ -25,6 +36,10 @@ module CampaignFactors
     end
 
     private
+
+    def has_auto_moderated_factors?
+      campaign.campaign_factors.assessor_scoring.auto_moderated.exists?
+    end
 
     def calculate_factor_scores(campaign_factor)
       assessor_scores = assessor_user_assessments(campaign_factor).each_with_object([]) do |assessor_ua, scores|

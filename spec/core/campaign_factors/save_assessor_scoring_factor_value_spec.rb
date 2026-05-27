@@ -62,6 +62,29 @@ describe CampaignFactors::SaveAssessorScoringFactorValue do
     expect(campaign_factor.campaign_factor_values.first.reload.numeric_value).to eq(3)
   end
 
+  it 'should return error when scores include auto-moderated factors' do
+    campaign_factor.update!(disallow_lead_assessor_moderation: true)
+    params = {
+      scores: [
+        {
+          campaign_factor_id: campaign_factor.id,
+          score: 5
+        },
+        {
+          campaign_factor_id: campaign_factor2.id,
+          score: 2
+        }
+      ],
+      user_id: user.id
+    }
+
+    result = described_class.call(campaign, params, assessor)
+
+    expect(result[:error]).to eq(I18n.t('admin.auto_moderated_factor_info'))
+    expect(campaign_factor.campaign_factor_values.first.reload.numeric_value).to eq(3)
+    expect(campaign_factor2.campaign_factor_values.first).to be_nil
+  end
+
   it 'should create or udpate factor values' do
     params = {
       scores: [

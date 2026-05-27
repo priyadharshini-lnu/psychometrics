@@ -46,7 +46,6 @@ bg:
     copied_successfully: Копирането приключи успешно
     copied_to_clipboard: Копирано в клипборда
     copy: Копиране
-    count_more: "{{count}} още"
     create: Създай
     created_at: Създаден в
     created_date: Дата на създаване

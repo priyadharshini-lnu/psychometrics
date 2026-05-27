@@ -46,7 +46,6 @@ sl:
     copied_successfully: Kopiranje je uspelo
     copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
-    count_more: "{{count}} več"
     create: Ustvari
     created_at: Ustvarjeno
     created_date: Ustvarjeno dne

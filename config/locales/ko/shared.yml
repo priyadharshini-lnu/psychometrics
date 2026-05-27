@@ -46,7 +46,6 @@ ko:
     copied_successfully: 복사되었습니다
     copied_to_clipboard: 클립보드에 복사됨
     copy: 복사
-    count_more: "{{count}}개 더 보기"
     create: 만들기
     created_at: 만든 곳
     created_date: 생성 날짜

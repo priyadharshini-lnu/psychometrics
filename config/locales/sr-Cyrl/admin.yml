@@ -146,6 +146,7 @@ sr-Cyrl:
     assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
     audit_logs: Логови ревизије
     audit_reports: Извештаји о ревизији
+    auto_moderated_factor_info: Ова оцена је аутоматски модерисана и не може се променити.
     auto_placeholder: Ауто
     availability: Доступност
     available_languages: Извештај доступан на језицима
@@ -291,6 +292,8 @@ sr-Cyrl:
     dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Димензије
     disable_proctoring: Онемогућите надзор
+    disallow_lead_assessor_moderation: Забрани посредовање главног процењивача
+    disallow_lead_assessor_moderation_info: Резултат ће бити аутоматски израчунат на основу свих поднетих формулара процењивача, а водећи процењивач га не може променити са екрана за модерацију.
     done: Готово
     done_tooltip: За овог корисника више не могу бити поднете оцене јер је његова оцена означена као завршена од стране %{marked_by}
     download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
@@ -438,6 +441,7 @@ sr-Cyrl:
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     max_value: Максимална вредност
+    mean: Просечан
     media_files_label: Датотеке
     media_library: Медијска библиотека
     media_library_page_title: Медијска библиотека - контролна табла - Мерсер Лајтхаус
@@ -1128,6 +1132,7 @@ sr-Cyrl:
     sms_histories: СМС историје
     sms_invites: SMS позиви
     specialty_questions: Специјална питања
+    standard_deviation: Стандардни одступање
     standard_questions: Стандардна питања
     start: почети
     start_time: Време почетка
