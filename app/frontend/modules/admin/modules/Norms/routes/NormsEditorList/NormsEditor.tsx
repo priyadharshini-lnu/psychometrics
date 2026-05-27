@@ -236,7 +236,7 @@ const NormsEditorComponent = ({ saveNorm }: PropsFromRedux) => {
       const cellData = {
         factorId: record.key,
         fieldName: getFieldNameAndLevel(dataIndex).fieldName,
-        fieldValue: (newValue ?? '').toString(),
+        fieldValue: newValue ? newValue.toString() : null,
         normId: Number(normId),
       }
 
