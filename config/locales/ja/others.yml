@@ -1350,7 +1350,6 @@ ja:
     all_activities_are_completed: これですべてのアクティビティが完了しました。
     all_activities_are_completed_multiple: これでこのキャンペーンのアクティビティはすべて完了しました。ダッシュボードに進み、その他のアクティビティが割り当てられているかどうかを確認してください。
     already_joined: すでにこのキャンペーンに参加している
-    begin_btn_msg_before_prework: タイムドキャンペーンを開始する前に、以下のタスクを完了する必要がある。
     begin_campaign_msg: 査定を受ける前にキャンペーンを開始する
     campaigns: キャンペーン
     closed_campaign_message: このキャンペーンは終了しました。このキャンペーン内のアセスメントを受けることはできません。

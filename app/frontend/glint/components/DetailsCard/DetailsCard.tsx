@@ -229,5 +229,5 @@ type ButtonWrapperProps = {
 }
 
 const ButtonWrapper: FC<ButtonWrapperProps> = ({ wrapText, children }) => (wrapText
-  ? <Tooltip title={wrapText} className="pe-0" placement="topLeft">{children}</Tooltip>
+  ? <Tooltip title={wrapText} className="pe-0" placement="topLeft"><span>{children}</span></Tooltip>
   : children)

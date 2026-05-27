@@ -1345,7 +1345,6 @@ it:
     all_activities_are_completed: Tutte le attività sono state completate.
     all_activities_are_completed_multiple: Tutte le attività per questa campagna sono state completate. Procedere alla Dashboard e verificare se sono state assegnate altre attività.
     already_joined: Hai già aderito a questa campagna
-    begin_btn_msg_before_prework: Prima di iniziare la campagna a tempo, è necessario completare le seguenti attività
     begin_campaign_msg: Avviare la campagna prima di effettuare le valutazioni
     campaigns: Campagne
     closed_campaign_message: Questa campagna è chiusa. Non è possibile eseguire alcuna valutazione all'interno di questa campagna.

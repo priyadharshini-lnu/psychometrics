@@ -62,6 +62,7 @@ export const AssessmentsContainer = ({
   campaign,
   campaignNotStarted,
   canNotStartPrework,
+  allPreworkIsComplete,
 }) => {
   const { isProctored } = useIsProctored()
   const [joinMeetingWorkshopData, setJoinMeetingWorkshopData] = useState({})
@@ -272,6 +273,7 @@ export const AssessmentsContainer = ({
                                         disabled={isDisabled}
                                         prevCompleted={prevCompleted}
                                         campaignNotStarted={campaignNotStarted}
+                                        allPreworkIsComplete={allPreworkIsComplete}
                                       />
                                     </Col>
                                     {isAssessmentCenter && index < userAssessments.length - 1 ? (
@@ -312,6 +314,7 @@ export const AssessmentsContainer = ({
                             disabled={userAssessment.prework ? canNotStartPrework : canNotStartAssessment}
                             campaignNotStarted={campaignNotStarted}
                             prevCompleted
+                            allPreworkIsComplete={allPreworkIsComplete}
                           />
                         </Col>
                       ))}

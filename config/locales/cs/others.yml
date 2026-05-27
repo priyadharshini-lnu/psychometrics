@@ -1348,7 +1348,6 @@ cs:
     all_activities_are_completed: Všechny aktivity byly dokončeny.
     all_activities_are_completed_multiple: Všechny činnosti v rámci této kampaně jsou nyní dokončeny. Přejděte na řídicí panel a zkontrolujte, zda máte přiřazeny další aktivity.
     already_joined: Do této kampaně jste se již zapojili
-    begin_btn_msg_before_prework: Před zahájením časové kampaně musíte splnit následující úkoly
     begin_campaign_msg: Spustit kampaň před zahájením hodnocení
     campaigns: Kampaně
     closed_campaign_message: Kampaň je uzavřena. V rámci této kampaně nelze provést žádné hodnocení.

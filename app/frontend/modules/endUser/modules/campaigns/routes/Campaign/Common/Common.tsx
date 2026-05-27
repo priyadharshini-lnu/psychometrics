@@ -122,6 +122,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     || isCampaignInterrupted
     || campaignUserTimedOut
     || hasNoExpiryDateForTimedCampaign
+    || !allPreworkIsComplete
   const canNotStartWorkshopActivity = campaignUser.status === 'completed'
     || campaignClosedForUser
     || disableWorkshopActivityBasedOnProctoringSetting
@@ -282,7 +283,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     <AssessmentCardContainer>
                       <Flash className="mt-2" />
                       <Row>
-                        <Col span={24} style={{ paddingInlineStart: '14px' }}>
+                        <Col span={24}>
                           {campaign.practiceCampaign && hasStartedCampaign && !isProctored && (
                             <>
                               <Title className={styles.beginText} level={4}>
@@ -303,7 +304,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                               <Space>
                                 <InfoCircleOutlined />
                                 <Typography.Text type="secondary">
-                                  {I18n.t('campaign.begin_btn_msg_before_prework')}
+                                  {I18n.t('enduser.prework_not_completed_message')}
                                 </Typography.Text>
                               </Space>
                             </div>
@@ -320,6 +321,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     canNotStartAssessment={canNotStartAssessment}
                     canNotStartWorkshopActivity={canNotStartWorkshopActivity}
                     campaignNotStarted={canBeginCampaign || canContinueCampaign}
+                    allPreworkIsComplete={allPreworkIsComplete}
                   />
                 </div>
               </Col>
