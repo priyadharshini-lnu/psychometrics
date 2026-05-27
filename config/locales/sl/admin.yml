@@ -146,6 +146,7 @@ sl:
     assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
+    auto_moderated_factor_info: Ta ocena je avtomatsko potrjena in je ni mogoče spremeniti
     auto_placeholder: Avto
     availability: Razpoložljivost
     available_languages: Poročilo je na voljo v jezikih
@@ -291,6 +292,8 @@ sl:
     dimension_translations_export_scheduled: Izvoz prevodov, načrtovan za dimenzijo »%{name}«.
     dimensions: Dimenzije
     disable_proctoring: Onemogoči nadzor
+    disallow_lead_assessor_moderation: Onemogoči moderiranje glavnega ocenjevalca
+    disallow_lead_assessor_moderation_info: Ocena se bo samodejno izračunala na podlagi vseh predloženih obrazcev ocenjevalcev, glavni ocenjevalec pa je ne more spremeniti na zaslonu za pregled.
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     download_bulk_asset_download_example_csv: Prenesi primer CSV.
@@ -438,6 +441,7 @@ sl:
     maintenance_settings_description: Upravljanje časovnih okvirjev in nastavitev za vzdrževanje sistema
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
     max_value: Največja vrednost
+    mean: Povprečje
     media_files_label: Datoteke
     media_library: Medijska knjižnica
     media_library_page_title: Medijska knjižnica – Nadzorna plošča – Mercer Lighthouse
@@ -1128,6 +1132,7 @@ sl:
     sms_histories: Zgodovina sporočil SMS
     sms_invites: SMS vabila
     specialty_questions: Posebna vprašanja
+    standard_deviation: Standardni odmik
     standard_questions: Standardna vprašanja
     start: začetek
     start_time: Začetek

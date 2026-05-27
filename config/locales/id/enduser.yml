@@ -53,6 +53,7 @@ id:
     check_video_recording: Silakan periksa video dan audio Anda dengan memutarnya kembali.
     checking_browser_compatibility: Memeriksa kompatibilitas browser...
     checking_latency: Memeriksa latensi...
+    complete_prework_message: Selesaikan semua tugas persiapan untuk memulai.
     could_not_reach_servers: Tidak dapat terhubung ke server kami untuk memeriksa kecepatan jaringan. Silakan periksa koneksi internet Anda dan coba lagi.
     day: hari
     day_plural: hari
@@ -135,6 +136,8 @@ id:
     play: Mainkan
     please_check_your_internet_connection: Silakan periksa koneksi internet Anda dan coba lagi.
     preparing_preview: Mempersiapkan pratinjau...
+    prework: Tugas Pra-Kuliah
+    prework_not_completed_message: Harap selesaikan semua tugas persiapan sebelum memulai kampanye.
     proctored: Diawasi
     proctored_assessment_misconfigured_msg: Penilaian ini diawasi, namun pengaturan waktunya belum lengkap; silakan hubungi administrator Anda.
     profile: Profil

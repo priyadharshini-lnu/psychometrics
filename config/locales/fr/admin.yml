@@ -146,6 +146,7 @@ fr:
     assistant_validation_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
     audit_logs: Journaux d'audit
     audit_reports: Rapports d'audit
+    auto_moderated_factor_info: Cette note est modérée automatiquement et ne peut pas être modifiée
     auto_placeholder: Auto
     availability: Disponibilité
     available_languages: Rapport disponible en langues
@@ -291,6 +292,8 @@ fr:
     dimension_translations_export_scheduled: Exportation des traductions prévue pour la dimension «%{name}».
     dimensions: Dimensions
     disable_proctoring: Désactiver la surveillance
+    disallow_lead_assessor_moderation: Désactiver la modération par l'évaluateur principal
+    disallow_lead_assessor_moderation_info: Le score sera calculé automatiquement à partir de toutes les soumissions des formulaires des évaluateurs, et l'évaluateur principal ne pourra pas le modifier depuis l'écran de modération.
     done: Fait
     done_tooltip: Aucune autre évaluation ne peut être soumise pour cet utilisateur, car celle-ci est marquée comme effectuée par %{marked_by}
     download_bulk_asset_download_example_csv: Télécharger l'exemple CSV.
@@ -438,6 +441,7 @@ fr:
     maintenance_settings_description: Gérer les fenêtres et les paramètres de maintenance du système
     manager_approval_required: Rapport pour %{user} nécessite l’approbation du manager avant téléchargement
     max_value: Valeur maximale
+    mean: Moyenne
     media_files_label: Fichiers
     media_library: Bibliothèque multimédia
     media_library_page_title: Bibliothèque multimédia - Tableau de bord - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ fr:
     sms_histories: Histoires de SMS
     sms_invites: Invitations par SMS
     specialty_questions: Questions spécifiques
+    standard_deviation: Écart type
     standard_questions: Questions courantes
     start: commencer
     start_time: Heure de début

@@ -146,6 +146,7 @@ th:
     assistant_validation_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
+    auto_moderated_factor_info: คะแนนนี้ได้รับการตรวจสอบโดยอัตโนมัติและไม่สามารถเปลี่ยนแปลงได้
     auto_placeholder: ออโต้
     availability: กำหนดการ
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
@@ -291,6 +292,8 @@ th:
     dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
     disable_proctoring: ปิดการใช้งานการตรวจสอบ
+    disallow_lead_assessor_moderation: ไม่อนุญาตให้ผู้ประเมินหลักเป็นผู้กลั่นกรอง
+    disallow_lead_assessor_moderation_info: คะแนนจะถูกคำนวณโดยอัตโนมัติตามการส่งแบบฟอร์มของผู้ประเมินทั้งหมด และผู้ประเมินหลักไม่สามารถเปลี่ยนแปลงคะแนนจากหน้าจอการตรวจสอบได้
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
@@ -438,6 +441,7 @@ th:
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
     max_value: ค่าสูงสุด
+    mean: ค่าเฉลี่ย
     media_files_label: ไฟล์
     media_library: คลังสื่อ
     media_library_page_title: ห้องสมุดสื่อ - แดชบอร์ด - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ th:
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
     specialty_questions: คำถามเฉพาะทาง
+    standard_deviation: ค่าเบี่ยงเบนมาตรฐาน
     standard_questions: คำถามมาตรฐาน
     start: เริ่มต้น
     start_time: เวลาเริ่มต้น

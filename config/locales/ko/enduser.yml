@@ -53,6 +53,7 @@ ko:
     check_video_recording: 동영상을 재생해 영상과 음성을 확인해 주세요.
     checking_browser_compatibility: 브라우저 호환성 확인 중...
     checking_latency: 지연 시간 확인 중...
+    complete_prework_message: 시작하려면 모든 사전 과제를 완료하세요.
     could_not_reach_servers: 네트워크 속도를 확인하기 위해 서버에 연결할 수 없습니다. 인터넷 연결 상태를 확인한 후 다시 시도해 주세요.
     day: 날
     day_plural: 일
@@ -135,6 +136,8 @@ ko:
     play: 재생
     please_check_your_internet_connection: 인터넷 연결 상태를 확인하신 후 다시 시도해 주세요.
     preparing_preview: 미리보기 준비 중...
+    prework: 사전 학습
+    prework_not_completed_message: 캠페인을 시작하기 전에 모든 사전 과제를 완료해 주십시오.
     proctored: 감독 하에
     proctored_assessment_misconfigured_msg: 이 평가 시험은 감독 하에 진행되지만, 필요한 시간 설정이 누락되어 있습니다. 관리자에게 문의해 주십시오.
     profile: 프로필

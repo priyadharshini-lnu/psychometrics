@@ -53,6 +53,7 @@ hu:
     check_video_recording: Kérjük, lejátszással ellenőrizze a videó- és hangfelvételt.
     checking_browser_compatibility: A böngésző kompatibilitásának ellenőrzése...
     checking_latency: A késleltetés ellenőrzése...
+    complete_prework_message: Kezdéshez végezze el az összes előkészítő feladatot.
     could_not_reach_servers: Nem sikerült kapcsolatba lépni a szerverünkkel a hálózati sebesség ellenőrzése érdekében. Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
     day: nap
     day_plural: napok
@@ -135,6 +136,8 @@ hu:
     play: Játék
     please_check_your_internet_connection: Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
     preparing_preview: Előnézet készítése...
+    prework: Előkészítés
+    prework_not_completed_message: Kérjük, a kampány megkezdése előtt végezze el az összes előkészítő feladatot.
     proctored: Felügyelt
     proctored_assessment_misconfigured_msg: Ez a felmérés felügyelet alatt zajlik, de hiányzik a szükséges időbeállítás; kérjük, vegye fel a kapcsolatot a rendszergazdával.
     profile: Profil

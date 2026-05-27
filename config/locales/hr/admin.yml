@@ -146,6 +146,7 @@ hr:
     assistant_validation_failed: Nije uspjelo generirati valjan izlaz nakon više pokušaja
     audit_logs: Zapisnici revizije
     audit_reports: Revizijska izvješća
+    auto_moderated_factor_info: Ova ocjena je automatski moderirana i ne može se promijeniti.
     auto_placeholder: Automatski
     availability: Raspoloživost
     available_languages: Izvještaj dostupan na jezicima
@@ -291,6 +292,8 @@ hr:
     dimension_translations_export_scheduled: Izvoz prijevoda zakazan za dimenziju%{name}.
     dimensions: Dimenzije
     disable_proctoring: Onemogući nadzor
+    disallow_lead_assessor_moderation: Onemogući moderaciju glavnog procjenitelja
+    disallow_lead_assessor_moderation_info: Rezultat će se automatski izračunati na temelju svih predanih obrazaca ocjenjivača, a glavni ocjenjivač ga ne može promijeniti na zaslonu za moderaciju.
     done: Učinjeno
     done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
     download_bulk_asset_download_example_csv: Preuzmi primjer CSV-a.
@@ -438,6 +441,7 @@ hr:
     maintenance_settings_description: Upravljajte prozorima i postavkama za održavanje sustava
     manager_approval_required: Izvještaj za %{user} zahtijeva odobrenje menadžera prije preuzimanja
     max_value: Najveća vrijednost
+    mean: Prosječno
     media_files_label: Datoteke
     media_library: Medijska knjižnica
     media_library_page_title: Medijska biblioteka - Kontrolna ploča - Svjetionik Mercer
@@ -1128,6 +1132,7 @@ hr:
     sms_histories: Povijest SMS-a
     sms_invites: SMS pozivnice
     specialty_questions: Posebna pitanja
+    standard_deviation: Standardna devijacija
     standard_questions: Standardna pitanja
     start: počni
     start_time: Vrijeme početka

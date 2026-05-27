@@ -53,6 +53,7 @@ nl:
     check_video_recording: Controleer uw video en audio door de opname af te spelen.
     checking_browser_compatibility: Browsercompatibiliteit wordt gecontroleerd...
     checking_latency: Latentie wordt gecontroleerd...
+    complete_prework_message: Voer eerst alle voorbereidende opdrachten uit om te kunnen beginnen.
     could_not_reach_servers: Onze servers konden niet worden bereikt om de netwerksnelheid te controleren. Controleer je internetverbinding en probeer het opnieuw.
     day: dag
     day_plural: dagen
@@ -135,6 +136,8 @@ nl:
     play: Spelen
     please_check_your_internet_connection: Controleer uw internetverbinding en probeer het nog eens.
     preparing_preview: Voorbeeld wordt geladen...
+    prework: Voorbereiding
+    prework_not_completed_message: Voer alle voorbereidende taken uit voordat u met de campagne begint.
     proctored: Onder toezicht
     proctored_assessment_misconfigured_msg: Deze toets wordt onder toezicht afgenomen, maar de vereiste tijdsinstelling ontbreekt. Neem contact op met uw beheerder.
     profile: Profiel

@@ -146,6 +146,7 @@ hu:
     assistant_validation_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
     audit_logs: Auditnaplók
     audit_reports: Auditjelentések
+    auto_moderated_factor_info: Ez az értékelés automatikus moderálás alatt áll, ezért nem módosítható
     auto_placeholder: Auto
     availability: Elérhetőség
     available_languages: Jelentés elérhető nyelveken
@@ -291,6 +292,8 @@ hu:
     dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
     disable_proctoring: A felügyelet letiltása
+    disallow_lead_assessor_moderation: A vezető értékelő moderálásának letiltása
+    disallow_lead_assessor_moderation_info: A pontszámot a rendszer automatikusan kiszámítja az összes értékelői űrlap benyújtása alapján, és a vezető értékelő a moderálási képernyőn nem módosíthatja azt.
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     download_bulk_asset_download_example_csv: Példa CSV letöltése.
@@ -438,6 +441,7 @@ hu:
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     max_value: Maximális érték
+    mean: Átlag
     media_files_label: Fájlok
     media_library: Médiakönyvtár
     media_library_page_title: Médiakönyvtár – Műszerfal – Mercer Lighthouse
@@ -1128,6 +1132,7 @@ hu:
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók
     specialty_questions: Speciális kérdések
+    standard_deviation: Szórás
     standard_questions: Gyakori kérdések
     start: kezdés
     start_time: Kezdési idő

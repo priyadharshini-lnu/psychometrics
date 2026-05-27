@@ -53,6 +53,7 @@ hi:
     check_video_recording: कृपया रिकॉर्डिंग को चलाकर अपना वीडियो और ऑडियो जांचें।
     checking_browser_compatibility: ब्राउज़र संगतता की जाँच...
     checking_latency: विलंबता की जाँच...
+    complete_prework_message: शुरू करने के लिए सभी पूर्व-कार्य पूरे करें।
     could_not_reach_servers: नेटवर्क गति की जाँच करने के लिए हमारे सर्वर से जुड़ने में असमर्थ। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से प्रयास करें।
     day: दिन
     day_plural: दिन
@@ -135,6 +136,8 @@ hi:
     play: बजाएँ
     please_check_your_internet_connection: कृपया अपना इंटरनेट कनेक्शन जांचें और फिर से प्रयास करें।
     preparing_preview: प्रीव्यू तैयार हो रहा है...
+    prework: पूर्व तैयारी
+    prework_not_completed_message: कृपया अभियान शुरू करने से पहले सभी पूर्वकार्य पूरे करें।
     proctored: निगरानी में
     proctored_assessment_misconfigured_msg: यह मूल्यांकन निगरानी में है, लेकिन इसमें आवश्यक समय विन्यास नहीं है। कृपया अपने व्यवस्थापक से संपर्क करें।
     profile: प्रोफ़ाइल

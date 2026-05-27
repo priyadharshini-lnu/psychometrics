@@ -53,6 +53,7 @@ de:
     check_video_recording: Bitte überprüfen Sie Ihr Video und Audio, indem Sie die Aufnahme abspielen.
     checking_browser_compatibility: Browserkompatibilität wird überprüft...
     checking_latency: Latenz wird überprüft...
+    complete_prework_message: Erledige zunächst alle Vorbereitungsaufgaben.
     could_not_reach_servers: Unsere Server konnten nicht erreicht werden, um die Netzwerkgeschwindigkeit zu überprüfen. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
     day: Tag
     day_plural: Tage
@@ -135,6 +136,8 @@ de:
     play: Spielen
     please_check_your_internet_connection: Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
     preparing_preview: Vorschau wird erstellt...
+    prework: Vorbereitung
+    prework_not_completed_message: Bitte erledigen Sie alle Vorbereitungsaufgaben, bevor Sie mit der Kampagne beginnen.
     proctored: Unter Aufsicht
     proctored_assessment_misconfigured_msg: Diese Prüfung wird beaufsichtigt, es fehlt jedoch die erforderliche Zeiteinstellung. Bitte wenden Sie sich an Ihren Administrator.
     profile: Profil

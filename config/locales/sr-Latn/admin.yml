@@ -146,6 +146,7 @@ sr-Latn:
     assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
     audit_logs: Evidencije revizije
     audit_reports: Izveštaji o reviziji
+    auto_moderated_factor_info: Овај резултат се аутоматски модерише и не може се променити.
     auto_placeholder: Ауто
     availability: Raspoloživost
     available_languages: Izveštaj dostupan na jezicima
@@ -291,6 +292,8 @@ sr-Latn:
     dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Dimenzije
     disable_proctoring: Онемогућите надзор
+    disallow_lead_assessor_moderation: Забрани посредовање водећег процењивача
+    disallow_lead_assessor_moderation_info: Резултат ће бити аутоматски израчунат на основу свих поднетих формулара процењивача, а водећи процењивач га не може променити са екрана за модерацију.
     done: Uradio
     done_tooltip: Za ovog korisnika se više ne može dostaviti evaluacija jer je evaluacija ovog korisnika označena kao urađeno od strane %{marked_by}
     download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
@@ -438,6 +441,7 @@ sr-Latn:
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     manager_approval_required: Izveštaj za %{user} zahteva odobrenje menadžera pre preuzimanja
     max_value: Максимална вредност
+    mean: Просечан
     media_files_label: Датотеке
     media_library: Медијска библиотека
     media_library_page_title: Медијска библиотека - контролна табла - Мерсер Лајтхаус
@@ -1128,6 +1132,7 @@ sr-Latn:
     sms_histories: SMS istorije
     sms_invites: SMS pozivnice
     specialty_questions: Специјална питања
+    standard_deviation: Стандардни одступање
     standard_questions: Стандардна питања
     start: почети
     start_time: Време почетка

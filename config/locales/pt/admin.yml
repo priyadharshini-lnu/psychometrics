@@ -146,6 +146,7 @@ pt:
     assistant_validation_failed: Não foi possível gerar uma saída válida após várias tentativas
     audit_logs: Registos de auditoria
     audit_reports: Relatórios de auditoria
+    auto_moderated_factor_info: Esta pontuação é moderada automaticamente e não pode ser alterada
     auto_placeholder: Automóvel
     availability: Disponibilidade
     available_languages: Relatório disponível em idiomas
@@ -291,6 +292,8 @@ pt:
     dimension_translations_export_scheduled: Exportar traduções agendadas para a dimensão «%{name}».
     dimensions: Dimensões
     disable_proctoring: Desativar supervisão
+    disallow_lead_assessor_moderation: Desativar a moderação do avaliador principal
+    disallow_lead_assessor_moderation_info: A pontuação será calculada automaticamente com base em todos os formulários enviados pelos avaliadores, e o avaliador principal não poderá alterá-la a partir do ecrã de moderação
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
     download_bulk_asset_download_example_csv: Baixar exemplo CSV.
@@ -438,6 +441,7 @@ pt:
     maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
     max_value: Valor máximo
+    mean: Média
     media_files_label: Ficheiros
     media_library: Biblioteca multimédia
     media_library_page_title: Biblioteca de multimédia - Painel de controlo - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ pt:
     sms_histories: Histórias SMS
     sms_invites: Convites SMS
     specialty_questions: Questões específicas
+    standard_deviation: Desvio padrão
     standard_questions: Perguntas habituais
     start: iniciar
     start_time: Hora de início

@@ -146,6 +146,7 @@ id:
     assistant_validation_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
     audit_logs: Log Audit
     audit_reports: Laporan Audit
+    auto_moderated_factor_info: Skor ini dimoderasi secara otomatis dan tidak dapat diubah
     auto_placeholder: Otomatis
     availability: Ketersediaan
     available_languages: Laporan tersedia dalam bahasa
@@ -291,6 +292,8 @@ id:
     dimension_translations_export_scheduled: Terjadwalkan untuk mengekspor terjemahan untuk dimensi "%{name}".
     dimensions: Dimensi
     disable_proctoring: Nonaktifkan Pengawasan
+    disallow_lead_assessor_moderation: Larang Moderasi oleh Penilai Utama
+    disallow_lead_assessor_moderation_info: Skor akan dihitung secara otomatis berdasarkan semua formulir yang dikirimkan oleh penilai, dan penilai utama tidak dapat mengubahnya dari layar moderasi
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     download_bulk_asset_download_example_csv: Unduh Contoh CSV.
@@ -438,6 +441,7 @@ id:
     maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     max_value: Nilai maksimum
+    mean: Rata-rata
     media_files_label: Berkas
     media_library: Perpustakaan Media
     media_library_page_title: Perpustakaan Media - Dasbor - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ id:
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
     specialty_questions: Pertanyaan Khusus
+    standard_deviation: Simpangan Baku
     standard_questions: Pertanyaan Standar
     start: mulai
     start_time: Waktu Mulai

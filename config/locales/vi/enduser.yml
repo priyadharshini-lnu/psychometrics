@@ -53,6 +53,7 @@ vi:
     check_video_recording: Vui lòng kiểm tra video và âm thanh của bạn bằng cách phát lại.
     checking_browser_compatibility: Đang kiểm tra tính tương thích của trình duyệt...
     checking_latency: Đang kiểm tra độ trễ...
+    complete_prework_message: Hãy hoàn thành tất cả các bài tập chuẩn bị trước khi bắt đầu.
     could_not_reach_servers: Không thể kết nối với máy chủ của chúng tôi để kiểm tra tốc độ mạng. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.
     day: ngày
     day_plural: ngày
@@ -135,6 +136,8 @@ vi:
     play: Chơi
     please_check_your_internet_connection: Vui lòng kiểm tra kết nối internet của bạn và thử lại.
     preparing_preview: Đang chuẩn bị bản xem trước...
+    prework: Bài tập chuẩn bị
+    prework_not_completed_message: Vui lòng hoàn thành tất cả các nhiệm vụ chuẩn bị trước khi bắt đầu chiến dịch.
     proctored: Có giám thị
     proctored_assessment_misconfigured_msg: Bài kiểm tra này có giám thị nhưng chưa được thiết lập thời gian phù hợp; vui lòng liên hệ với quản trị viên của bạn.
     profile: Hồ sơ

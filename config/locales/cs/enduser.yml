@@ -53,6 +53,7 @@ cs:
     check_video_recording: Zkontrolujte prosím své video i zvuk jeho přehráním.
     checking_browser_compatibility: Zjišťuji kompatibilitu prohlížeče...
     checking_latency: Zjišťuji latenci...
+    complete_prework_message: Nejprve proveďte všechny přípravné úkoly.
     could_not_reach_servers: Při ověřování rychlosti připojení se nepodařilo navázat spojení s našimi servery. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
     day: den
     day_plural: dny
@@ -135,6 +136,8 @@ cs:
     play: Hrát
     please_check_your_internet_connection: Zkontrolujte prosím připojení k internetu a zkuste to znovu.
     preparing_preview: Připravuje se náhled...
+    prework: Příprava
+    prework_not_completed_message: Než zahájíte kampaň, proveďte prosím všechny přípravné úkoly.
     proctored: Pod dohledem
     proctored_assessment_misconfigured_msg: Tento test je pod dohledem, ale chybí v něm nastavení času; obraťte se prosím na svého správce.
     profile: Profil

@@ -53,6 +53,7 @@ sl:
     check_video_recording: Preverite video in zvok tako, da predvajate posnetek.
     checking_browser_compatibility: Preverjanje združljivosti brskalnika...
     checking_latency: Preverjanje zakasnitve...
+    complete_prework_message: Za začetek opravite vse pripravljalne naloge.
     could_not_reach_servers: Naši strežniki niso bili dosegljivi, zato ni bilo mogoče preveriti hitrosti omrežja. Preverite svojo internetno povezavo in poskusite znova.
     day: dan
     day_plural: dni
@@ -135,6 +136,8 @@ sl:
     play: Igraj
     please_check_your_internet_connection: Preverite svojo internetno povezavo in poskusite znova.
     preparing_preview: Pripravlja se predogled...
+    prework: Priprava
+    prework_not_completed_message: Prosimo, da pred začetkom kampanje opravite vse pripravljalne naloge.
     proctored: Pod nadzorom
     proctored_assessment_misconfigured_msg: Ta preizkus poteka pod nadzorom, vendar ni nastavljena potrebna časovna omejitev; prosimo, obrnite se na svojega skrbnika.
     profile: Profil

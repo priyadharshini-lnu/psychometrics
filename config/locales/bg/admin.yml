@@ -146,6 +146,7 @@ bg:
     assistant_validation_failed: Не успях да генерирам валиден резултат след многократни опити
     audit_logs: Регистрационни файлове за одит
     audit_reports: Одиторски доклади
+    auto_moderated_factor_info: Тази оценка се определя автоматично и не може да бъде променена
     auto_placeholder: Авто
     availability: Наличност
     available_languages: Докладът е наличен на езици
@@ -291,6 +292,8 @@ bg:
     dimension_translations_export_scheduled: Запланирани преводи за износ за измерение „%{name}“.
     dimensions: Размери
     disable_proctoring: Деактивиране на наблюдението
+    disallow_lead_assessor_moderation: Да не се разрешава модерация от страна на главния оценител
+    disallow_lead_assessor_moderation_info: Оценката ще се изчислява автоматично въз основа на подадените формуляри от оценителите, а главният оценител няма да може да я променя от екрана за модерация
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     download_bulk_asset_download_example_csv: Изтеглете пример за CSV.
@@ -438,6 +441,7 @@ bg:
     maintenance_settings_description: Управление на прозорците и настройките за поддръжка на системата
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
     max_value: Максимална стойност
+    mean: Средна стойност
     media_files_label: Файлове
     media_library: Медийна библиотека
     media_library_page_title: Медийна библиотека – Табло за управление – Mercer Lighthouse
@@ -1128,6 +1132,7 @@ bg:
     sms_histories: История на SMS
     sms_invites: SMS покани
     specialty_questions: Специфични въпроси
+    standard_deviation: Стандартно отклонение
     standard_questions: Стандартни въпроси
     start: начало
     start_time: Начален час

@@ -53,6 +53,7 @@ hr:
     check_video_recording: Molimo provjerite svoj video i audio reprodukcijom snimke.
     checking_browser_compatibility: Provjera kompatibilnosti preglednika...
     checking_latency: Provjerava latenciju...
+    complete_prework_message: Završite sve pripremne zadatke da biste započeli.
     could_not_reach_servers: Nismo uspjeli doći do naših poslužitelja kako bismo provjerili brzinu mreže. Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
     day: dan
     day_plural: dani
@@ -135,6 +136,8 @@ hr:
     play: Pusti
     please_check_your_internet_connection: Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
     preparing_preview: Priprema pregleda...
+    prework: Priprema
+    prework_not_completed_message: Molimo vas da dovršite sve pripremne zadatke prije početka kampanje.
     proctored: Pod nadzorom
     proctored_assessment_misconfigured_msg: Ova procjena je nadzirana, ali nedostaje potrebna konfiguracija vremena. Molimo kontaktirajte svog administratora.
     profile: Profil

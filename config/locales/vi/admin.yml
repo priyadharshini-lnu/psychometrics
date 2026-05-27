@@ -146,6 +146,7 @@ vi:
     assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
+    auto_moderated_factor_info: Điểm số này được điều chỉnh tự động và không thể thay đổi
     auto_placeholder: Tự động
     availability: Sẵn sàng
     available_languages: Báo cáo có sẵn bằng ngôn ngữ
@@ -291,6 +292,8 @@ vi:
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
     disable_proctoring: Tắt tính năng giám sát
+    disallow_lead_assessor_moderation: Không cho phép Trưởng ban đánh giá thực hiện việc kiểm duyệt
+    disallow_lead_assessor_moderation_info: Điểm số sẽ được tính tự động dựa trên tất cả các biểu mẫu do người đánh giá gửi lên và người đánh giá chính không thể thay đổi điểm số này từ màn hình kiểm duyệt
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
@@ -438,6 +441,7 @@ vi:
     maintenance_settings_description: Quản lý các khung thời gian bảo trì hệ thống và cài đặt
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
     max_value: Giá trị tối đa
+    mean: Trung bình
     media_files_label: Tệp
     media_library: Thư viện phương tiện
     media_library_page_title: Thư viện phương tiện - Bảng điều khiển - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ vi:
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
     specialty_questions: Các câu hỏi chuyên sâu
+    standard_deviation: Độ lệch chuẩn
     standard_questions: Các câu hỏi thường gặp
     start: bắt đầu
     start_time: Thời gian bắt đầu

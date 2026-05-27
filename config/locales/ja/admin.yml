@@ -146,6 +146,7 @@ ja:
     assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
     audit_logs: 監査ログ
     audit_reports: 監査報告書
+    auto_moderated_factor_info: このスコアは自動で調整されており、変更することはできません
     auto_placeholder: 自動車
     availability: 空室状況
     available_languages: 報告書は言語で提供可能
@@ -291,6 +292,8 @@ ja:
     dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
     disable_proctoring: 監督機能を無効にする
+    disallow_lead_assessor_moderation: 主任審査員の審査を無効にする
+    disallow_lead_assessor_moderation_info: スコアは、すべての評価者フォームの提出内容に基づいて自動的に算出され、主任評価者はモデレーション画面からこれを変更することはできません。
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
@@ -438,6 +441,7 @@ ja:
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     max_value: 最大値
+    mean: 平均
     media_files_label: ファイル
     media_library: メディアライブラリ
     media_library_page_title: メディアライブラリ - ダッシュボード - マーサー・ライトハウス
@@ -1128,6 +1132,7 @@ ja:
     sms_histories: SMSヒストリー
     sms_invites: SMS招待
     specialty_questions: 専門的な質問
+    standard_deviation: 標準偏差
     standard_questions: よくある質問
     start: 開始
     start_time: 開始時刻

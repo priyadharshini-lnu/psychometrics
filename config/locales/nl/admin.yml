@@ -146,6 +146,7 @@ nl:
     assistant_validation_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
     audit_logs: Controlelogboeken
     audit_reports: Controleverslagen
+    auto_moderated_factor_info: Deze score wordt automatisch gemodereerd en kan niet worden gewijzigd
     auto_placeholder: Auto
     availability: Beschikbaarheid
     available_languages: Rapport beschikbaar in talen
@@ -291,6 +292,8 @@ nl:
     dimension_translations_export_scheduled: De vertalingen voor de dimensie '%{name}' staan gepland om te worden geëxporteerd.
     dimensions: Afmetingen
     disable_proctoring: Toezicht uitschakelen
+    disallow_lead_assessor_moderation: Moderatie door hoofdbeoordelaar uitschakelen
+    disallow_lead_assessor_moderation_info: De score wordt automatisch berekend op basis van alle ingediende beoordelingsformulieren en de hoofdbeoordelaar kan deze niet wijzigen via het moderatiescherm
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
@@ -438,6 +441,7 @@ nl:
     maintenance_settings_description: Beheer onderhoudsvensters en instellingen van het systeem
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
     max_value: Maximale waarde
+    mean: Gemiddelde
     media_files_label: Bestanden
     media_library: Mediabibliotheek
     media_library_page_title: Mediabibliotheek - Dashboard - Mercer Lighthouse
@@ -1128,6 +1132,7 @@ nl:
     sms_histories: SMS-geschiedenis
     sms_invites: SMS Uitnodigingen
     specialty_questions: Specifieke vragen
+    standard_deviation: Standaardafwijking
     standard_questions: Standaardvragen
     start: begin
     start_time: Starttijd
