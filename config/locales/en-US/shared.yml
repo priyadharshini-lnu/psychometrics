@@ -46,7 +46,6 @@ en-US:
     copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
-    count_more: "{{count}} more"
     create: Create
     created_at: Created At
     created_date: Created Date

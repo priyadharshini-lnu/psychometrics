@@ -46,7 +46,6 @@ es-ES:
     copied_successfully: Se ha copiado correctamente
     copied_to_clipboard: Copiado al portapapeles
     copy: Copiar
-    count_more: "{{count}} más"
     create: Crear
     created_at: Creado/a el
     created_date: Fecha de creación

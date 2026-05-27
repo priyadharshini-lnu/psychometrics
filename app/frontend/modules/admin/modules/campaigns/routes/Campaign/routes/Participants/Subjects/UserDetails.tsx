@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton, Space,
+  Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton, Space, Drawer, Empty,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-components'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
-import { PlusOutlined, ExclamationCircleOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  ArrowRightOutlined, PlusOutlined, ExclamationCircleOutlined, EditOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { camelizeKeys } from '~/utils/object'
 import { isRequestInProgress } from '~/core/request'
 import AssessmentsReports from './AssessmentsReports'
@@ -105,6 +107,8 @@ export const UserDetails: React.FC<Props> = ({
   const { modal, message } = App.useApp()
   const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
+  const [campaignsDrawerOpen, setCampaignsDrawerOpen] = useState(false)
+  const [drawerCampaigns, setDrawerCampaigns] = useState<{ id: number, name: string }[]>([])
   const { idpEnabled } = camelizeKeys(features)
 
   useEffect(() => {
@@ -134,15 +138,42 @@ export const UserDetails: React.FC<Props> = ({
   }
 
   const userCampaigns = () => {
-    const campaigns = _.map(user.campaigns, (campaign) => {
-      if (campaign.id === parsedCampaignId) { return campaign.name }
+    const allCampaigns = user.campaigns
+    const hasMore = allCampaigns.length > 3
+    const visibleCount = hasMore ? 2 : 3
+    const visibleCampaigns = allCampaigns.slice(0, visibleCount)
+    const hiddenCount = allCampaigns.length - visibleCount
+
+    const campaignLinks = _.map(visibleCampaigns, (campaign) => {
+      if (campaign.id === parsedCampaignId) { return <span key={campaign.id}>{campaign.name}</span> }
       return (
-        <a key={campaign.id} href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
+        <a key={campaign.id} href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}>
           {campaign.name}
         </a>
       )
     })
-    return array.joinJSXElements(campaigns, ', ')
+
+    return (
+      <div style={{
+        display: 'flex', flexWrap: 'wrap', gap: '4px', alignItems: 'center',
+      }}
+      >
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+          {array.joinJSXElements(campaignLinks, ', ')}
+        </div>
+        {hasMore && (
+          <Button
+            size="small"
+            onClick={() => {
+              setDrawerCampaigns(allCampaigns)
+              setCampaignsDrawerOpen(true)
+            }}
+          >
+            {`+${hiddenCount}`}
+          </Button>
+        )}
+      </div>
+    )
   }
 
   const campaign = _.find(user.campaigns, { id: parsedCampaignId })
@@ -393,6 +424,54 @@ export const UserDetails: React.FC<Props> = ({
         items={tabs}
       />
       <Modals modals={MODALS} />
+      <Drawer
+        title={I18n.t('common.model.campaigns')}
+        placement="right"
+        closable
+        onClose={() => setCampaignsDrawerOpen(false)}
+        open={campaignsDrawerOpen}
+        width="50%"
+        footer={(
+          <Space style={{ float: 'right' }}>
+            <Button onClick={() => setCampaignsDrawerOpen(false)}>
+              {I18n.t('common.actions.cancel')}
+            </Button>
+          </Space>
+        )}
+      >
+        {drawerCampaigns && drawerCampaigns.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {drawerCampaigns.map(campaign => (
+              <a
+                key={campaign.id}
+                href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '12px 8px',
+                  textDecoration: 'none',
+                  color: '#0066cc',
+                  borderBottom: '1px solid #d9d9d9',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f5f5f5'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }}
+              >
+                <span>{campaign.name}</span>
+                <ArrowRightOutlined style={{ marginLeft: '16px', flexShrink: 0, color: '#999' }} />
+              </a>
+            ))}
+          </div>
+        ) : (
+          <Empty description={I18n.t('shared.no_results_found')} />
+        )}
+      </Drawer>
     </div>
   )
 }

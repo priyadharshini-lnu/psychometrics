@@ -46,7 +46,6 @@ fr:
     copied_successfully: Copie effectuée
     copied_to_clipboard: Copié dans le presse-papiers
     copy: Copier
-    count_more: "{{count}} de plus"
     create: Créer
     created_at: Créé à
     created_date: Date de création

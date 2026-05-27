@@ -46,7 +46,6 @@ sk:
     copied_successfully: Kopírovanie prebehlo úspešne
     copied_to_clipboard: Kopírované do schránky
     copy: Kopírovať
-    count_more: ešte {{count}}
     create: Vytvoriť
     created_at: Vytvorené v
     created_date: Dátum vytvorenia

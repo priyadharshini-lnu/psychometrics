@@ -46,7 +46,6 @@ cs:
     copied_successfully: Kopírování proběhlo úspěšně
     copied_to_clipboard: Zkopírováno do schránky
     copy: Kopírovat
-    count_more: ještě {{count}}
     create: Vytvořit
     created_at: Vytvořeno v
     created_date: Datum vytvoření

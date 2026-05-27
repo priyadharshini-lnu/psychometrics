@@ -46,7 +46,6 @@ it:
     copied_successfully: Copia completata con successo
     copied_to_clipboard: Copiato negli appunti
     copy: Copia
-    count_more: "{{count}} in più"
     create: Crea
     created_at: Creato il
     created_date: Data di creazione

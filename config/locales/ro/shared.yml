@@ -46,7 +46,6 @@ ro:
     copied_successfully: Copierea s-a efectuat cu succes
     copied_to_clipboard: Copiată în clipboard
     copy: Copiere
-    count_more: "{{count}} în plus"
     create: Creează
     created_at: Creat la
     created_date: Data creării

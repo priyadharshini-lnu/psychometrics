@@ -46,7 +46,6 @@ nl:
     copied_successfully: Geslaagd gekopieerd
     copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
-    count_more: "{{count}} meer"
     create: Maken
     created_at: Gemaakt op
     created_date: Datum aangemaakt

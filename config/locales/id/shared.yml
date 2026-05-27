@@ -46,7 +46,6 @@ id:
     copied_successfully: Telah disalin dengan sukses
     copied_to_clipboard: Disalin ke clipboard
     copy: Salin
-    count_more: "{{count}} lagi"
     create: Buat
     created_at: Dibuat di
     created_date: Tanggal Dibuat

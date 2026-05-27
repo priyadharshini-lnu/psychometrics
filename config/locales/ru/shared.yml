@@ -46,7 +46,6 @@ ru:
     copied_successfully: Копирование завершено успешно
     copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
-    count_more: еще {{count}}
     create: Создать
     created_at: Создано в
     created_date: Дата создания

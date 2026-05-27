@@ -46,7 +46,6 @@ hr:
     copied_successfully: Uspješno kopirano
     copied_to_clipboard: Kopirano u međuspremnik
     copy: Kopiraj
-    count_more: Još {{count}}
     create: Stvori
     created_at: Kreirano u
     created_date: Datum izrade

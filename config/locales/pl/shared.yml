@@ -46,7 +46,6 @@ pl:
     copied_successfully: Skopiowano pomyślnie
     copied_to_clipboard: Skopiowano do schowka
     copy: Kopiuj
-    count_more: "{{count}} więcej"
     create: Utwórz
     created_at: Utworzono w
     created_date: Data utworzenia

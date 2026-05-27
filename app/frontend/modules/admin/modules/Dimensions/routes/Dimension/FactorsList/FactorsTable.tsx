@@ -8,6 +8,7 @@ import {
   Empty,
 } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
+import { ArrowRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -74,9 +75,10 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
           render={(factor) => {
             if (factor?.questionsCountByAssessmentDetails?.length) {
               const allQuestions = factor.questionsCountByAssessmentDetails
-              const visibleQuestions = allQuestions.slice(0, 2)
-              const hasMore = allQuestions.length > 2
-              const hiddenCount = allQuestions.length - 2
+              const hasMore = allQuestions.length > 3
+              const visibleCount = hasMore ? 2 : 3
+              const visibleQuestions = allQuestions.slice(0, visibleCount)
+              const hiddenCount = allQuestions.length - visibleCount
 
               return (
                 <>
@@ -93,9 +95,10 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
                   ))}
                   {hasMore && (
                     <Button
+                      size="small"
                       onClick={() => handleViewAllQuestions(allQuestions)}
                     >
-                      {`+${I18n.t('shared.count_more', { count: hiddenCount })}`}
+                      {`+${hiddenCount}`}
                     </Button>
                   )}
                 </>
@@ -173,20 +176,32 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
         )}
       >
         {selectedQuestions && selectedQuestions.length > 0 ? (
-          <div style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px', margin: '8px',
-          }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             {selectedQuestions.map(({ assessmentId, assessmentName, count }) => (
-              <div key={`${assessmentId}`} style={{ width: '100%' }}>
-                <Button
-                  type="link"
-                  href={`/administration/assessments/${assessmentId}/scoring`}
-                  style={{ padding: 0, textAlign: 'left' }}
-                >
-                  {assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}
-                </Button>
-              </div>
+              <a
+                key={`${assessmentId}`}
+                href={`/administration/assessments/${assessmentId}/scoring`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '12px 8px',
+                  textDecoration: 'none',
+                  color: '#0066cc',
+                  borderBottom: '1px solid #d9d9d9',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f5f5f5'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }}
+              >
+                <span>{assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}</span>
+                <ArrowRightOutlined style={{ marginLeft: '16px', flexShrink: 0, color: '#999' }} />
+              </a>
             ))}
           </div>
         ) : (
