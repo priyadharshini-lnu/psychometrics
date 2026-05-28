@@ -22,11 +22,13 @@ class UserReportDownloadPolicy < BasePolicy
     def resolve
       return scope.all if user.is?(:superadmin)
 
-      own_reports = scope.where(user: user, user_access: true)
-      permitted_reports = user.accessible_records(UserReport, 'results.view_report')
-      threesixty_reports = threesixty_reports_for_user
+      own_report_ids = scope.where(user: user, user_access: true).select(:id)
+      permitted_report_ids = user.accessible_records(UserReport, 'results.view_report').select(:id)
+      threesixty_report_ids = threesixty_reports_for_user.select(:id)
 
-      own_reports.or(permitted_reports).or(threesixty_reports)
+      scope.where(id: own_report_ids).
+        or(scope.where(id: permitted_report_ids)).
+        or(scope.where(id: threesixty_report_ids))
     end
 
     private
