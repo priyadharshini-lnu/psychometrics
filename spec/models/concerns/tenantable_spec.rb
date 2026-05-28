@@ -67,6 +67,7 @@ describe Tenantable do
 
       it 'leaves tenant_id nil when the transcribable has no tenant' do
         media_response = create(:media_response)
+        media_response.update_column(:tenant_id, nil)
 
         transcription = create(:transcription, transcribable: media_response)
 
