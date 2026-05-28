@@ -42,6 +42,7 @@ module Simulation
 
       payload[:modifiers][:contentId] = content_variation_id if content_variation_id.present?
       payload[:modifiers][:languageRestrictions] = available_locales if available_locales.present?
+      payload[:modifiers][:defaultLang] = default_locale if default_locale.present?
 
       if Settings.features.simulation_branding_enabled
         payload[:modifiers][:branding][:primary] = project.design_setting.primary_color
@@ -76,6 +77,14 @@ module Simulation
 
     def available_locales
       user_assessment.campaign_assessment&.available_locales
+    end
+
+    def default_locale
+      selected_locale = user_assessment.selected_locale
+
+      return selected_locale if available_locales.blank?
+
+      available_locales.include?(selected_locale) ? selected_locale : ''
     end
 
     def project
