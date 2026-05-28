@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import _ from 'lodash'
 import styles from '../styles.less'
 import { CaretRightFilled, PauseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { isRtl } from '~/utils/locales'
 
 const { I18n } = window
 
@@ -176,7 +177,14 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1, ease: 'linear' }}
           />
-          <div className={styles.playbackSeekbarThumb} style={{ left: `${progress}%` }} />
+          <div
+            className={styles.playbackSeekbarThumb}
+            style={{
+              [isRtl(I18n.locale) ? 'right'
+                : 'left']: `${progress}%`,
+              transform: `translateX(${isRtl(I18n.locale) ? '100%' : '-100%'})`,
+            }}
+          />
         </div>
 
         <span className={styles.playbackTime}>

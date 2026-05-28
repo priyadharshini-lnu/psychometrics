@@ -144,6 +144,7 @@ en:
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
+    record: Record
     recording_progress_bar: Recording Progress Bar
     recording_time_remaining: "%{remainingSeconds} seconds remaining"
     redirect_to_external_assessment: You will be redirected to the assessment site. Please click continue if you want to start the assessment.
