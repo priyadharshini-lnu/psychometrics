@@ -5258,7 +5258,8 @@ CREATE TABLE public.microsite_assessments (
     metadata jsonb,
     project_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
 );
 
 
@@ -5295,7 +5296,8 @@ CREATE TABLE public.microsite_user_assessments (
     registration_status integer DEFAULT 0 NOT NULL,
     error_message text,
     answers jsonb DEFAULT '{}'::jsonb NOT NULL,
-    completed_at timestamp(6) without time zone
+    completed_at timestamp(6) without time zone,
+    tenant_id bigint
 );
 
 
@@ -20732,6 +20734,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260527180000'),
 ('20260520094000'),
 ('20260514200000'),
 ('20260513115126'),

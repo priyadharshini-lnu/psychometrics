@@ -127,6 +127,7 @@ class UserAssessment < ApplicationRecord
   }
 
   before_save :set_default_relationship
+  after_create :backfill_users_result_tenant_id
   after_destroy :reset_user_report_approval_status
 
   after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
@@ -568,6 +569,12 @@ class UserAssessment < ApplicationRecord
 
   def calculated_expiry_date
     assessment.extra['timer']&.seconds&.from_now
+  end
+
+  def backfill_users_result_tenant_id
+    return if users_result.blank? || users_result.tenant_id.present? || tenant_id.blank?
+
+    users_result.update_column(:tenant_id, tenant_id)
   end
 
   def data_controller_consent_given?(user)
