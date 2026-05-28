@@ -5,6 +5,10 @@ class MicrositeUserAssessment < ApplicationRecord
 
   belongs_to :user_assessment
 
+  include Tenantable
+
+  tenant_source :user_assessment
+
   enum :registration_status, { pending: 0, registered: 1, failed: 2 }
 
   before_destroy :cancel_on_microsite

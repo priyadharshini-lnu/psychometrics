@@ -150,6 +150,8 @@ class Client < ApplicationRecord
   before_create lambda {
     self.migrated = true
   }, if: :project?
+  before_create :inherit_tenant_id, if: -> { parent_id.present? }
+  after_create :set_self_as_tenant, unless: -> { parent_id.present? }
   after_create :set_hogan_group_name, if: :project?
   after_create :create_smtp_setting, if: :project?
   after_create :create_security_setting, if: :project?
@@ -161,8 +163,7 @@ class Client < ApplicationRecord
   after_create :create_idp_setting, if: :project?
   after_create :create_client_features
   after_create :create_project_features, if: :project?
-  after_create :set_self_as_tenant, unless: -> { parent_id.present? }
-  after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
+  after_commit :set_tte, if: -> { parent_id.present? }, on: :update
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
   # Type of client.
@@ -418,6 +419,11 @@ class Client < ApplicationRecord
     return if Settings.reserved_subdomains.exclude? subdomain
 
     errors.add(:subdomain, "Subdomain #{subdomain} is reserved")
+  end
+
+  def inherit_tenant_id
+    self.tenant_id = root.id
+    self.tte_id = root.id
   end
 
   def set_tte
