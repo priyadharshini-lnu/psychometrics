@@ -8,6 +8,8 @@ class DeviseFailureApp < Devise::FailureApp
   end
 
   def redirect_url
+    return external_logout_url if external_logout_on_timeout?
+
     force_saml = request.params[:force_saml] == 'true'
     return super unless force_saml
 
@@ -27,5 +29,20 @@ class DeviseFailureApp < Devise::FailureApp
 
   def attempted_path
     Utility::Url.remove_query_params(warden_options[:attempted_path], 'force_saml') if warden_options[:attempted_path]
+  end
+
+  private
+
+  def external_logout_on_timeout?
+    return false unless warden_message == :timeout
+    return false unless request.env['sso_session']
+
+    project = GetProjectBySubdomain.call!(request.subdomain)
+    project&.security_setting&.external_logout_redirect_enabled == true
+  end
+
+  def external_logout_url
+    project = GetProjectBySubdomain.call!(request.subdomain)
+    project&.security_setting&.external_logout_url
   end
 end
