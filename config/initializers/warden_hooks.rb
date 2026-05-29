@@ -41,7 +41,6 @@ Warden::Manager.before_logout do |_user, auth, opts|
   scope = opts[:scope]
   request = auth.request
 
-  auth.env['sso_session'] = request.session[:sso].present?
   request.session["#{scope}.id"] = nil
 end
 
