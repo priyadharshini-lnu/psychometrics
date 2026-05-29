@@ -34,5 +34,101 @@ RSpec.describe Simulation::GetAssessmentUrl, type: :service do
 
       service.call
     end
+
+    context 'when language restrictions are set' do
+      before do
+        campaign_assessment.update!(available_locales: %w[en fr de])
+      end
+
+      it 'includes languageRestrictions in the token payload' do
+        service.call
+
+        expect(service).to have_received(:broadcast) do |_status, url|
+          token = url.split('token=').last
+          payload = JWT.decode(token, credentials[:shared_secret], true, algorithm: 'HS256').first
+          expect(payload['modifiers']['languageRestrictions']).to eq(%w[en fr de])
+        end
+      end
+
+      context 'when selected_locale is within restrictions' do
+        before do
+          user_assessment.update!(selected_locale: 'fr')
+        end
+
+        it 'includes defaultLang with selected_locale in the token payload' do
+          service.call
+
+          expect(service).to have_received(:broadcast) do |_status, url|
+            token = url.split('token=').last
+            payload = JWT.decode(token, credentials[:shared_secret], true, algorithm: 'HS256').first
+            expect(payload['modifiers']['defaultLang']).to eq('fr')
+          end
+        end
+      end
+
+      context 'when selected_locale is NOT within restrictions' do
+        before do
+          user_assessment.update!(selected_locale: 'es')
+        end
+
+        it 'does not include defaultLang in the token payload' do
+          service.call
+
+          expect(service).to have_received(:broadcast) do |_status, url|
+            token = url.split('token=').last
+            payload = JWT.decode(token, credentials[:shared_secret], true, algorithm: 'HS256').first
+            expect(payload['modifiers']).not_to have_key('defaultLang')
+          end
+        end
+      end
+
+      context 'when selected_locale is nil' do
+        before do
+          user_assessment.update!(selected_locale: nil)
+        end
+
+        it 'does not include defaultLang in the token payload' do
+          service.call
+
+          expect(service).to have_received(:broadcast) do |_status, url|
+            token = url.split('token=').last
+            payload = JWT.decode(token, credentials[:shared_secret], true, algorithm: 'HS256').first
+            expect(payload['modifiers']).not_to have_key('defaultLang')
+          end
+        end
+      end
+    end
+
+    context 'when no language restrictions are set' do
+      before do
+        campaign_assessment.update!(available_locales: [])
+      end
+
+      it 'does not include languageRestrictions in the token payload' do
+        service.call
+
+        expect(service).to have_received(:broadcast) do |_status, url|
+          token = url.split('token=').last
+          payload = JWT.decode(token, credentials[:shared_secret], true, algorithm: 'HS256').first
+          expect(payload['modifiers']).not_to have_key('languageRestrictions')
+        end
+      end
+
+      context 'when selected_locale is present' do
+        before do
+          user_assessment.update!(selected_locale: 'es')
+        end
+
+        it 'includes defaultLang with selected_locale in the token payload' do
+          service.call
+
+          expect(service).to have_received(:broadcast) do |_status, url|
+            token = url.split('token=').last
+            payload = JWT.decode(token, credentials[:shared_secret], true, algorithm: 'HS256').first
+            expect(payload['modifiers']['defaultLang']).to eq('es')
+          end
+        end
+      end
+    end
   end
 end
