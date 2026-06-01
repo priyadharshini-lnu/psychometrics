@@ -92,4 +92,29 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
       expect(response.status).to eq(422)
     end
   end
+
+  describe 'POST parse_metadata' do
+    let(:metadata_xml) { Rails.root.join('spec/fixtures/files/saml_metadata.xml').read }
+
+    it 'parses valid metadata XML and returns extracted fields' do
+      post :parse_metadata, params: { project_id: project.id, xml: metadata_xml }, format: :json
+
+      expect(response).to have_http_status(:ok)
+      result = response.parsed_body
+      expect(result).to include(
+        'idp_entity_id' => 'https://idp.example.com/entity',
+        'idp_sso_url' => 'https://idp.example.com/sso',
+        'idp_slo_url' => 'https://idp.example.com/slo'
+      )
+      expect(result['idp_cert']).to start_with('-----BEGIN CERTIFICATE-----')
+      expect(result['certificate_expiry']).to be_present
+    end
+
+    it 'returns 422 for invalid XML' do
+      post :parse_metadata, params: { project_id: project.id, xml: 'not valid xml <<<>>>' }, format: :json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body['errors']).to be_present
+    end
+  end
 end

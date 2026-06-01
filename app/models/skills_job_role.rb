@@ -5,6 +5,7 @@ class SkillsJobRole < ApplicationRecord
   belongs_to :job_role
   belongs_to :project, class_name: 'Client'
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   validates :expected_proficiency_level, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true

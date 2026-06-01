@@ -11,17 +11,22 @@ module AuditLogModule
       payload = options[:payload]
       user = options[:user]
 
+      campaign_id = campaign&.persisted? ? campaign.id : nil
+      project_id = project&.persisted? ? project.id : nil
+      client_id = client&.persisted? ? client.id : nil
+
       if Rails.logger.respond_to?(:silence)
         Rails.logger.silence do
           AuditLog.create!(
             action: action,
             record_id: record&.id,
             record_type: record&.class&.name || options[:record_type],
-            client_id: client&.id,
-            project_id: project&.id,
-            campaign_id: campaign&.id,
+            client_id: client_id,
+            project_id: project_id,
+            campaign_id: campaign_id,
             payload: (payload || {}).to_enum.to_h,
             user: user,
+            impersonated_by_id: options[:impersonated_by_id],
             request_uuid: options.dig(:request_details, :request_id),
             client_ip: options.dig(:request_details, :ip),
             interface: options.dig(:interface_details, :interface) || 'browser',

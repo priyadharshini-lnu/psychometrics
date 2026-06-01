@@ -2,6 +2,7 @@
 
 class AI::TranslationResult < ApplicationRecord
   belongs_to :translatable, polymorphic: true
+
   include Tenantable
 
   tenant_source :translatable

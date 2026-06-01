@@ -3534,13 +3534,11 @@ vi:
         title: Định cấu hình Idp với các thông tin sau
       email_pipetext: Văn bản đường ống email
       enabled: Kích hoạt
-      enforced: Thực thi SAML
       entity_id: ID thực thể/Tổ chức phát hành
       name_identifier_format: Mã định danh tên
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: Cài đặt SAML
       save: Lưu cài đặt
       sso_service_url: URL dịch vụ SSO

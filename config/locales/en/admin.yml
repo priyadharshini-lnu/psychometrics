@@ -144,6 +144,7 @@ en:
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     assistant_validation_failed: Failed to generate valid output after multiple attempts
+    audit_log_impersonated_by: Impersonated By
     audit_logs: Audit Logs
     audit_reports: Audit Reports
     auto_moderated_factor_info: This score is auto moderated and can't be changed
@@ -240,7 +241,11 @@ en:
     children_factor_type: Children Factor Type
     client: Client
     client_admins: Client Admins
+    client_selection_instruction: Select a client to continue to the administration panel.
+    client_selection_sign_out: Sign Out
+    client_selection_title: Select Client
     clients: Clients
+    clients_search_placeholder: Search Client
     code_required: Code is required
     common: TTE Assessment
     common_assessment: TTE Assessment
@@ -358,6 +363,7 @@ en:
     feature_flags_platform_group: Platform Features
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
+    feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
     file_size_must_be_less_than_mb: File {{name}} exceeds the maximum size of {{max_size_mb}} MB
     file_upload_failed: Failed to upload {{name}}
@@ -370,6 +376,10 @@ en:
     generate_transcription: Generate Transcription
     graphic: Graphic
     graphic_slider: Graphic Slider
+    handoff_client_mismatch: Authentication token is not valid for this client
+    handoff_invalid_token: Invalid or expired authentication token
+    handoff_token_expired: Authentication token has expired or already been used
+    handoff_user_disabled: Your account is disabled
     hide_middle_scores: Hide middle scores
     high: High
     hogan: Hogan
@@ -440,9 +450,11 @@ en:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    lighthouse_logo_alt_text: Lighthouse logo
     lighthouse_question: Lighthouse Question
     lighthouse_question_id: Lighthouse Question ID
     linked_assessments: Linked Assessments
+    logged_in: Logged in
     low: Low
     maintenance: Maintenance
     maintenance_settings: Maintenance Settings
@@ -482,6 +494,8 @@ en:
     name_max_length: Name cannot exceed %{length} characters
     name_required: Name is required
     new_folder: New folder
+    no_client_access: You do not have access to this client
+    no_clients_found: No clients found
     no_file_selected: No file selected
     no_notifications: No Notifications
     no_question_mappings: No question mappings available
@@ -502,6 +516,7 @@ en:
     options: Options
     organisational: Org Surveys
     original_text: Original Text
+    others: Others
     overall: Overall
     overall_score: Overall Score
     participants: Participants
@@ -982,6 +997,7 @@ en:
     questions_title: Question
     questions_type: Type
     range_min_max: RANGE %{min} - %{max}
+    recents: Recents
     reflection_questions: Reflection Questions
     regenerate_transcriptions_action: Regenerate Transcriptions
     regenerate_transcriptions_confirm_content: Are you sure you want to regenerate transcriptions for this assessment? This will re-process all incomplete transcriptions.
@@ -1013,6 +1029,10 @@ en:
     result: Result
     results: Results
     role: Role
+    role_campaign_admin: Campaign Admin
+    role_client_admin: Client Admin
+    role_project_admin: Project Admin
+    role_superadmin: Super Admin
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -1140,6 +1160,36 @@ en:
     sms_histories: SMS Histories
     sms_invites: SMS Invites
     specialty_questions: Specialty Questions
+    sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
+    sso_enforced: Enforce SSO
+    sso_label: SSO
+    sso_not_enabled: SSO is not enabled for this client
+    sso_settings: SSO Settings
+    sso_settings_allowed_domains: Allowed Domains
+    sso_settings_certificate: IdP Certificate
+    sso_settings_enabled: SSO Enabled
+    sso_settings_enforced: SSO Enforced
+    sso_settings_entity_id: Entity ID
+    sso_settings_metadata_certificate_expiry: 'Certificate expires: %{date}'
+    sso_settings_metadata_file_too_large: File exceeds maximum size of 1MB
+    sso_settings_metadata_invalid_xml: Invalid XML format
+    sso_settings_metadata_no_idp_descriptor: No IdP descriptor found in metadata
+    sso_settings_metadata_parse: Parse Metadata
+    sso_settings_metadata_parse_error: Failed to parse metadata
+    sso_settings_metadata_parse_success: IdP fields populated from metadata
+    sso_settings_metadata_parsing: Parsing metadata...
+    sso_settings_metadata_upload: Upload IdP Metadata XML
+    sso_settings_metadata_upload_again: Drop another file to replace
+    sso_settings_metadata_upload_drag_hint: Drag & drop .xml file here or click to browse
+    sso_settings_metadata_upload_hint: Upload .xml file to auto-populate IdP fields
+    sso_settings_metadata_upload_retry: Try again with a valid metadata XML file
+    sso_settings_or_configure_manually: Or configure manually
+    sso_settings_readable_resource_name: SSO Settings
+    sso_settings_save: Save
+    sso_settings_session_timeout: Session Timeout Duration
+    sso_settings_slo_url: SLO Service URL
+    sso_settings_sso_url: SSO Service URL
+    sso_settings_tab: SSO
     standard_deviation: Standard Deviation
     standard_questions: Standard Questions
     start: start
@@ -1149,7 +1199,13 @@ en:
     status_details: Status Details
     structured_learning: Formal Learning [10]
     subdomain: Subdomain
+    subdomain_admin_keyword: cannot use reserved admin subdomain pattern
+    subdomain_invalid_format: Wrong subdomain format.
+    subdomain_reserved: Subdomain %{value} is reserved
+    subdomain_too_long_max_32: Subdomain is too long (maximum is 32 characters)
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    superadmin_use_root_domain: Super administrators must sign in through the main domain
+    switch_client: Switch Client
     target_job_role: Target Job Role
     this_field_is_required: This field is required
     threesixty: 360 Campaign
@@ -1206,3 +1262,4 @@ en:
     yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: You are here

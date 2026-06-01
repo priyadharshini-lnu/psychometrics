@@ -22,7 +22,7 @@ export const SamlTabbed: React.FC = () => {
   const menuItems = [
     {
       key: 'settings',
-      label: I18n.t('admin.saml_settings'),
+      label: I18n.t('admin.sso_settings'),
     },
     {
       key: 'service-providers',

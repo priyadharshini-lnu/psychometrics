@@ -146,4 +146,53 @@ RSpec.describe ApplicationJob, type: :job do
       end
     end
   end
+
+  context 'tenant propagation and scoping' do
+    # rubocop:disable Lint/ConstantDefinitionInBlock
+    class TenantScopedReadJob < ApplicationJob
+      cattr_accessor :campaign_ids_seen
+
+      def perform
+        self.class.campaign_ids_seen = Campaign.order(:id).pluck(:id)
+      end
+    end
+    # rubocop:enable Lint/ConstantDefinitionInBlock
+
+    let(:tenant_a) { create(:tenancy) }
+    let(:tenant_b) { create(:tenancy) }
+    let(:project_a) { create(:project, parent: tenant_a) }
+    let(:project_b) { create(:project, parent: tenant_b) }
+    let!(:campaign_a) { create(:campaign, project: project_a) }
+    let!(:campaign_b) { create(:campaign, project: project_b) }
+
+    before do
+      TenantScopedReadJob.campaign_ids_seen = nil
+    end
+
+    it 'scopes job queries when run with current tenant' do
+      ActsAsTenant.with_tenant(tenant_a) do
+        TenantScopedReadJob.perform_now
+      end
+
+      expect(TenantScopedReadJob.campaign_ids_seen).to contain_exactly(campaign_a.id)
+    end
+
+    it 'propagates tenant through Sidekiq middleware payload and scopes within server middleware' do
+      message = {}
+
+      ActsAsTenant.with_tenant(tenant_a) do
+        ActsAsTenant::Sidekiq::Client.new.call(nil, message, nil, nil) { nil }
+      end
+
+      expect(message.dig('acts_as_tenant', 'class')).to eq('Client')
+      expect(message.dig('acts_as_tenant', 'id')).to eq(tenant_a.id)
+
+      seen_ids = nil
+      ActsAsTenant::Sidekiq::Server.new.call(nil, message, nil) do
+        seen_ids = Campaign.order(:id).pluck(:id)
+      end
+
+      expect(seen_ids).to contain_exactly(campaign_a.id)
+    end
+  end
 end

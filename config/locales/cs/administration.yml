@@ -3534,13 +3534,11 @@ cs:
         title: Konfigurace Idp s následujícími informacemi
       email_pipetext: E-mail Pipetext
       enabled: Povoleno
-      enforced: Vynucení SAML
       entity_id: ID subjektu/Issuer
       name_identifier_format: Identifikátor názvu
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: Nastavení SAML
       save: Uložit nastavení
       sso_service_url: Url služby SSO

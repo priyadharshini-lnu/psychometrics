@@ -16,6 +16,7 @@ class FactorsScoring < ApplicationRecord
   belongs_to :factor
   belongs_to :question
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :assessment

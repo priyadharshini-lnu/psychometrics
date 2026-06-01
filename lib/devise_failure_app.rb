@@ -8,6 +8,8 @@ class DeviseFailureApp < Devise::FailureApp
   end
 
   def redirect_url
+    return new_administration_session_path if admin_subdomain?
+
     force_saml = request.params[:force_saml] == 'true'
     return super unless force_saml
 
@@ -27,5 +29,11 @@ class DeviseFailureApp < Devise::FailureApp
 
   def attempted_path
     Utility::Url.remove_query_params(warden_options[:attempted_path], 'force_saml') if warden_options[:attempted_path]
+  end
+
+  private
+
+  def admin_subdomain?
+    AdminSubdomain.admin?(request.subdomain)
   end
 end

@@ -7,7 +7,7 @@ FactoryBot.define do
     created_by { create(:user) }
     client do
       create(:tenancy, :campaign_level, name: 'Project',
-                    subdomain: 'project',
+                    subdomain: 'project-site',
                     number: 2,
                     applicable_level: 'project')
     end

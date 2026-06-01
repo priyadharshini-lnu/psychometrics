@@ -41,13 +41,12 @@ module Administration
 
       def spoof
         user = User.find(params[:id])
+        audit! :sign_in_as, user, payload: { sign_in_as: user.email }
         if user.is?(:superadmin, :project_admin)
-          audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
           siem_log_impersonation_event(user, 'Admin')
-          sign_in(user)
+          impersonate_as_admin(user)
         else
-          spoof_token = SecureRandom.urlsafe_base64(64)
-          user.update_column(:spoof_token, spoof_token)
+          spoof_token = impersonate_as_end_user(user)
           siem_log_impersonation_event(user, 'End User')
           redirect_url = root_url(
             domain: Settings.domain,

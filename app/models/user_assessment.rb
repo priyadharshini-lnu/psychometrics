@@ -15,11 +15,12 @@ class UserAssessment < ApplicationRecord
   belongs_to :norm
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
-  belongs_to :assessor, primary_key: :user_id, foreign_key: :evaluator_id
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
   include Tenantable
+
+  belongs_to :assessor, primary_key: :user_id, foreign_key: :evaluator_id
 
   belongs_to :campaign_user, primary_key: :user_id, foreign_key: :evaluator_id, class_name: 'CampaignUser'
 

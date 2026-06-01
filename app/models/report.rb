@@ -81,6 +81,7 @@ class Report < ApplicationRecord
   has_one :hogan_report_setting, dependent: :destroy
   has_one :saville_report_setting, dependent: :destroy
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   #   VALIDATIONS

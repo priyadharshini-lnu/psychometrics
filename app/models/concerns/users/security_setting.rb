@@ -183,11 +183,20 @@ module Users
 
         return 24.hours if is_anonym?
 
-        applicable_security_setting.session_inactivity_timeout_in_seconds.seconds
+        client_admin_timeout || applicable_security_setting.session_inactivity_timeout_in_seconds.seconds
       end
 
       def applicable_security_setting
         security_setting || security_setting_for_admin
+      end
+
+      def client_admin_timeout
+        return unless Current.client_admin_context?
+
+        sso_setting = Current.client&.client_sso_setting
+        return unless sso_setting&.saml_login_allowed?
+
+        sso_setting.session_timeout&.seconds
       end
     end
     # rubocop:enable Metrics/BlockLength

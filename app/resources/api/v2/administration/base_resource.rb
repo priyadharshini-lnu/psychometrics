@@ -35,7 +35,10 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   end
 
   def self.records(opts = {})
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, _model_class])
+    result = ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, _model_class])
+    return result unless Current.client_admin_context? && Current.client
+
+    AdminAuth::ClientScopeFilter.apply(result, Current.client)
   end
 
   def self.add_tag_filter

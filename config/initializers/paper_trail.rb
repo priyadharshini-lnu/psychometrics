@@ -3,10 +3,14 @@
 PaperTrail.config.track_associations = true
 
 Rails.application.config.to_prepare do
-  PaperTrail::Version.include(Tenantable)
-  PaperTrail::Version.tenant_source :item
+  [PaperTrail::Version, PaperTrail::VersionAssociation].each do |klass|
+    next if klass.respond_to?(:scoped_by_tenant?)
 
-  PaperTrail::VersionAssociation.include(Tenantable)
+    klass.instance_variable_set(:@tenant_config_options, { has_global_records: true, optional: true })
+    klass.include(Tenantable)
+  end
+
+  PaperTrail::Version.tenant_source :item
   PaperTrail::VersionAssociation.tenant_source :version
 end
 

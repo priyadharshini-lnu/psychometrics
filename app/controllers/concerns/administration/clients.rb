@@ -21,9 +21,13 @@ module Administration
     end
 
     def client_root_breadcrumb
-      label = t('administration.breadcrumbs.clients') if current_user.is?(:superadmin)
-      label ||= t('administration.breadcrumbs.home')
-      add_breadcrumb label, %i[administration root]
+      if Current.client_admin_context?
+        add_breadcrumb Current.client.name, nil
+      elsif current_user.is?(:superadmin)
+        add_breadcrumb t('administration.breadcrumbs.clients'), %i[administration root]
+      else
+        add_breadcrumb t('administration.breadcrumbs.home'), %i[administration root]
+      end
     end
   end
 end

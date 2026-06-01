@@ -3534,13 +3534,11 @@ ko:
         title: 다음 정보를 사용하여 Idp를 구성합니다
       email_pipetext: 이메일 Pipetext
       enabled: 활성화됨
-      enforced: SAML 적용
       entity_id: 법인 ID/발급자
       name_identifier_format: 이름 식별자
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-형식:이메일주소
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML 설정
       save: 설정 저장
       sso_service_url: SSO 서비스 URL

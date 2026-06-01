@@ -72,6 +72,7 @@ class User < ApplicationRecord
          :secure_validatable, :password_archivable, :password_expirable, :lockable, :timeoutable,
          :session_limitable,
          request_keys: { subdomain: false }
+  prepend SubdomainSessionLimitable
 
   attr_accessor :create_by_invite, :terms, :current_membership
   # HRIS data
@@ -83,6 +84,8 @@ class User < ApplicationRecord
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
   belongs_to :project, class_name: 'Client'
   belongs_to :manager, class_name: 'User'
+
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   has_many :profile_fields, through: :project
@@ -190,12 +193,21 @@ class User < ApplicationRecord
     end
   end
 
-  def skip_session_limitable?
-    Settings.features.skip_session_limitable
+  def accessible_client_ids
+    (client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids).uniq.compact
   end
 
-  def accessible_client_ids
-    client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids
+  def clients_with_admin_access
+    return Client.tenancies.enabled if is?(:superadmin)
+
+    Client.enabled.where(id: accessible_client_ids)
+  end
+
+  def sole_admin_client
+    return nil if is?(:superadmin)
+
+    clients = clients_with_admin_access
+    clients.first if clients.one?
   end
 
   def campaign_user_external_id(campaign_id)
@@ -427,7 +439,7 @@ class User < ApplicationRecord
     def find_for_authentication(warden_conditions)
       # Cut from Subdomain part of expected Subdomain
       subdomain = warden_conditions[:subdomain]&.gsub(/\.{0,1}#{Settings.subdomain}/, '')
-      if subdomain.present?
+      if subdomain.present? && !AdminSubdomain.client_admin?(subdomain)
         project = Client.find_by(subdomain: subdomain)
         membership = Membership.join_user.find_by(
           users: { email: warden_conditions[:email]&.downcase }, client_id: project.id, role: 'member'

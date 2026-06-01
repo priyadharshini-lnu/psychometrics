@@ -7,6 +7,7 @@ require_relative '../lib/middlewares/set_locale_middleware'
 require_relative '../lib/middlewares/check_session'
 require_relative '../lib/middlewares/set_timeout_header_middleware'
 require_relative '../lib/middlewares/sidekiq_auth_middleware'
+require_relative '../lib/middlewares/admin_context_resolver'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -70,6 +71,7 @@ module Psychometrics
       ActionView::Template.register_template_handler :am, Handlers::CsvHandler::Handler
     end
 
+    config.middleware.insert_before(Warden::Manager, Middlewares::AdminContextResolver)
     config.middleware.use(Middlewares::SetLocaleMiddleware)
     config.middleware.use(Middlewares::CheckSession)
     config.middleware.use(Middlewares::SetTimeoutHeaderMiddleware)

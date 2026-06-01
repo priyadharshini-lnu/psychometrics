@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :webhook_event_log, class: 'WebhookSystem::EventLog' do
+    association :subscription, factory: :webhook_subscription
     event_id { '1' }
-    subscription_id { 1 }
     event_name { 'do_something' }
     status { 200 }
     request { { 'event' => 'body' } }

@@ -8,6 +8,8 @@ export const ClientTR = t.intersection([
     type: t.string,
     year: t.number,
     country: t.string,
+    subdomain: t.union([t.string, t.null]),
+    url: t.union([t.string, t.null]),
     projectManager: t.union([
       t.type({
         id: t.string,

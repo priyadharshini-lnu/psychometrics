@@ -14,6 +14,7 @@ gem 'jbuilder',                   '~> 2.12.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.6.0'
 gem 'newrelic_rpm', '~> 10.5', group: 'production', require: ENV.fetch('NEW_RELIC_AGENT_ENABLED', 'false') == 'true'
+gem 'acts_as_tenant', '~> 1.0', '>= 1.0.1'
 gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
@@ -41,6 +42,8 @@ gem 'icalendar', '~> 2.12.2'
 gem 'rotp', '~> 6.3'
 
 gem 'devise-security', '~> 0.18.0'
+
+gem 'activerecord-session_store', '~> 2.1'
 
 gem 'pundit', '~> 2.1.1'
 

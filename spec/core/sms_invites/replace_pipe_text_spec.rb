@@ -20,6 +20,7 @@ describe SmsInvites::ReplacePipeText do
   end
 
   it 'replaces {{invite_url}} pipetext' do
+    allow(Settings).to receive(:short_url_host).and_return(nil)
     result = described_class.call!('Invite Url: {{{invite_url}}}', sms_invite)
     invite_url = shortened_url(
       domain: Settings.domain,

@@ -14,6 +14,7 @@ class InnovationStyle < ApplicationRecord
   validates :position, numericality: { only_integer: true }, allow_nil: true
 
   has_one_image_attachment :icon, variants: [:icon]
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :dimension

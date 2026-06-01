@@ -12,6 +12,7 @@ class Library < ApplicationRecord
   belongs_to :updated_by, class_name: 'User'
   has_ancestry
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   enum :type, { folder: 0, image: 1, audio: 2, video: 3, other: 4 }

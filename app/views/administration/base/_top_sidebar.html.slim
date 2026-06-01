@@ -1,6 +1,8 @@
 /! START X-NAVIGATION VERTICAL
 header style="z-index: 5001;"
-  #admin-job-wrapper
+  .top-navigation-wrapper
+    #admin-job-wrapper
+    #client-switcher-portal
   /! END X-NAVIGATION VERTICAL
   /! START BREADCRUMB
   - if breadcrumbs.present?
@@ -11,3 +13,4 @@ header style="z-index: 5001;"
         = render_breadcrumbs tag: :li, separator: ''
 /! END BREADCRUMB
 = vite_javascript_tag 'entrypoints/admin/admin_jobs.jsx'
+= vite_javascript_tag 'entrypoints/admin/client_switcher.tsx'

@@ -8,6 +8,8 @@ class AI::Assistant < ApplicationRecord
 
   belongs_to :owner, class_name: 'Client', optional: true
   belongs_to :last_modified_by, class_name: 'User', optional: true
+
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   has_many :chats, class_name: 'AI::AssistantChat', foreign_key: 'ai_assistant_id', dependent: :destroy

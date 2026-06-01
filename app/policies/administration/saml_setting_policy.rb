@@ -14,6 +14,10 @@ module Administration
       can_manage_saml_setting?
     end
 
+    def parse_metadata?
+      can_manage_saml_setting?
+    end
+
     private
 
     def can_manage_saml_setting?

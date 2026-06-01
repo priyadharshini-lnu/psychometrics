@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :client do
     sequence(:name) { |i| "Client #{i}" }
+    sequence(:subdomain) { |i| "client#{i}" }
 
     factory :tenancy do
       transient do
@@ -15,6 +16,7 @@ FactoryBot.define do
       year { Time.zone.now.year }
       country { 'Barbados' }
       association :project_manager, factory: :superadmin
+      sequence(:subdomain) { |i| "tenancy#{i}" }
       after(:create) do |tenancy, evaluator|
         create :license, client: tenancy if evaluator.with_license
       end
@@ -69,6 +71,7 @@ FactoryBot.define do
     factory :campaign_base, traits: [:with_reports] do
       end_level { true }
       association :parent, factory: %i[project_base sub_campaign_level]
+      sequence(:subdomain) { |i| "campaign#{i}" }
       sequence(:name) { |i| "Campaign #{i}" }
     end
 
@@ -79,6 +82,7 @@ FactoryBot.define do
 
     factory :sub_campaign do
       association :parent, factory: :campaign_base
+      sequence(:subdomain) { |i| "subcampaign#{i}" }
       sequence(:name) { |i| "SubCampaign #{i}" }
       end_level { true }
     end

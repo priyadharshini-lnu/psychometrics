@@ -4,9 +4,16 @@ module Tenantable
   extend ActiveSupport::Concern
 
   included do
+    unless respond_to?(:scoped_by_tenant?)
+      config = @tenant_config_options || {}
+      acts_as_tenant(:tenant, class_name: 'Client', foreign_key: :tenant_id, **config)
+    end
+
     class_attribute :tenant_source_association
 
-    before_validation :assign_tenant_from_parent, if: -> { has_attribute?(:tenant_id) && tenant_id.blank? }
+    before_validation :assign_tenant_from_parent, if: lambda {
+      has_attribute?(:tenant_id) && tenant_id.blank? && ActsAsTenant.current_tenant.nil?
+    }
   end
 
   class_methods do

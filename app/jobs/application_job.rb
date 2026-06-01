@@ -23,6 +23,8 @@ class ApplicationJob < ActiveJob::Base
 
   around_perform do |job, block|
     Current.request_id = job.request_id
+    tenant = ActsAsTenant.current_tenant
+    logger.info "[Job] #{job.class.name} performing with tenant=#{tenant&.id}" if tenant
     block.call
   end
 

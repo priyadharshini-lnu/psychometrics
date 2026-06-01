@@ -12,6 +12,8 @@ class Skill < ApplicationRecord
 
   belongs_to :project
   belongs_to :skill_group, optional: true
+
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   has_one :proficiency_level

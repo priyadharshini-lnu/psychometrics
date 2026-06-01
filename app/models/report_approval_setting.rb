@@ -43,8 +43,8 @@ class ReportApprovalSetting < ApplicationRecord
 
     scope = geo_filtered_scope.joins(
       %(
-        join report_approval_settings as ras on user_reports.campaign_id = ras.campaign_id
-        AND user_reports.report_id = ras.report_id
+        join report_approval_settings on user_reports.campaign_id = report_approval_settings.campaign_id
+        AND user_reports.report_id = report_approval_settings.report_id
       )
     )
 
