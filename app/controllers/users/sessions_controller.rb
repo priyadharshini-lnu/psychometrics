@@ -14,11 +14,14 @@ module Users
 
     def destroy
       logged_in_user = current_user
+      impersonator_id = session[:impersonated_by_id]
       super do
+        session.delete(:impersonated_by_id)
         audit!(
           :sign_out, logged_in_user,
           user: logged_in_user,
-          payload: { email: logged_in_user.email }
+          payload: { email: logged_in_user.email },
+          impersonated_by_id: impersonator_id
         )
         Utility::Cookie.expire_auth_cookies(response)
         WardenAuthLogger.log_sign_out(logged_in_user, request, scope: :user)

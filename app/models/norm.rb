@@ -14,6 +14,7 @@ class Norm < ApplicationRecord
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client'
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   validates :name, :dimension, presence: true

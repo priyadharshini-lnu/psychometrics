@@ -152,6 +152,8 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
   describe 'GET pdf_preview' do
     it 'renders appropriate view' do
+      mock_vite_assets
+
       get :pdf_preview, params: { new_campaign_id: campaign.id, id: user_report.id }
 
       expect(response).to have_http_status(:success)

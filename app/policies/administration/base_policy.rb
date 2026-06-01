@@ -97,6 +97,26 @@ module Administration
       def resolve
         [scope].flatten.last
       end
+
+      private
+
+      def client_admin_scoped?
+        Current.client_admin_context? && Current.client.present?
+      end
+
+      def superadmin_bypass?
+        @user.is?(:superadmin) && !client_admin_scoped?
+      end
+
+      def client_admin_subtree_ids
+        @client_admin_subtree_ids ||= Current.client.subtree_ids
+      end
+
+      def restrict_to_client_subtree(ids)
+        return ids unless client_admin_scoped?
+
+        ids & client_admin_subtree_ids
+      end
     end
   end
 end

@@ -36,12 +36,15 @@ Rails.application.routes.draw do
     get 'speed_test/ping_url', to: 'speed_test#ping_url'
   end
 
-  get '/admin', to: 'administration/app#dashboard', as: :admin
-  get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
-  get '/admin/templates/questions/:id/edit', to: 'administration/templates/questions#edit',
-    as: :admin_template_question_edit
-  get '/admin/templates/blocks/:id/edit', to: 'administration/templates/blocks#edit', as: :admin_template_block_edit
-  get '/admin/*all', to: 'administration/app#dashboard'
+  constraints(->(req) { AdminSubdomain.admin?(req.subdomain) }) do
+    get '/admin', to: 'administration/app#dashboard', as: :admin
+    get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
+    get '/admin/templates/questions/:id/edit', to: 'administration/templates/questions#edit',
+      as: :admin_template_question_edit
+    get '/admin/templates/blocks/:id/edit', to: 'administration/templates/blocks#edit', as: :admin_template_block_edit
+    get '/admin/*all', to: 'administration/app#dashboard'
+  end
+
   get '/global_config', to: 'apps#global_config'
   get '/async_requests/status', to: 'async_requests#status'
   post 'extend_session', to: 'users/session_extensions#extend'
@@ -144,569 +147,561 @@ Rails.application.routes.draw do
 
   # Administration panel
   #
-  namespace :administration do
-    get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
-    get 'dashboards/:id/oracle_analytics_embed', to: 'dashboards#oracle_analytics_embed'
-    post 'dashboards/:id/get_embed_token', to: 'dashboards#get_embed_token'
+  constraints(->(req) { AdminSubdomain.admin?(req.subdomain) }) do
+    namespace :administration do
+      get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
+      get 'dashboards/:id/oracle_analytics_embed', to: 'dashboards#oracle_analytics_embed'
+      post 'dashboards/:id/get_embed_token', to: 'dashboards#get_embed_token'
 
-    get 'dashboards', to: 'dashboards#index', as: :dashboard
-    get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
-    post 'breadcrumbs', to: 'breadcrumbs#index'
-    post 'dashboards/:id/export_file', to: 'dashboards#export_file'
+      get 'dashboards', to: 'dashboards#index', as: :dashboard
+      get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
+      post 'breadcrumbs', to: 'breadcrumbs#index'
+      post 'dashboards/:id/export_file', to: 'dashboards#export_file'
 
-    resource :profiles, only: %i[update edit]
+      resource :profiles, only: %i[update edit]
 
-    resources :meeting_rooms, only: [] do
-      get :token, on: :member
-    end
-
-    resources :audit_logs do
-      collection do
-        get :actions
+      resources :meeting_rooms, only: [] do
+        get :token, on: :member
       end
-    end
 
-    scope module: :administrator do
-      resource :sessions, only: %i[new create], path: '',
-               path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
-        get 'sign_out', to: 'sessions#destroy', as: :destroy
-        post 'authenticate_user', to: 'sessions#authenticate_user'
+      resources :audit_logs do
+        collection do
+          get :actions
+        end
       end
-      resource :passwords, as: :password
-      resource :invitations, only: [:update], as: :invitation do
-        get 'accept', to: 'invitations#edit'
+
+      scope module: :administrator do
+        resource :sessions, only: %i[new create], path: '',
+                path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+          get 'sign_out', to: 'sessions#destroy', as: :destroy
+          post 'authenticate_user', to: 'sessions#authenticate_user'
+        end
+
+        get 'client_selection', to: 'client_selection#index'
+        post 'select_client', to: 'client_selection#select', as: :select_client
+        post 'switch_client', to: 'client_selection#switch', as: :switch_client
+        get 'full_signout', to: 'client_selection#full_signout', as: :full_signout
+
+        resource :passwords, as: :password
+        resource :invitations, only: [:update], as: :invitation do
+          get 'accept', to: 'invitations#edit'
+        end
+        resource :password_expired, only: %i[show update], controller: :password_expired
       end
-      resource :password_expired, only: %i[show update], controller: :password_expired
-    end
 
-    namespace :imports do
-      resource :users, only: %i[new create]
-      resource :hris, only: %i[new create], controller: :hris
-      scope module: :assessments do
-        resource :results, only: %i[new create]
+      namespace :imports do
+        resource :users, only: %i[new create]
+        resource :hris, only: %i[new create], controller: :hris
+        scope module: :assessments do
+          resource :results, only: %i[new create]
+        end
       end
-    end
 
-    resources :imports, only: %i[new create]
+      resources :imports, only: %i[new create]
 
-    concern :client_editable do
-      member do
-        get :copy
-        get :sidebar
-        patch :archive
-        patch :toggle_status
+      concern :client_editable do
+        member do
+          get :copy
+          get :sidebar
+          patch :archive
+          patch :toggle_status
+        end
       end
-    end
 
-    resources :new_campaigns, only: [] do
-      scope module: :campaigns do
-        resources :sms_invites, only: %i[index create update destroy] do
-          collection do
-            post :import
-            get :search
-            get :download_example_import_file
+      resources :new_campaigns, only: [] do
+        scope module: :campaigns do
+          resources :sms_invites, only: %i[index create update destroy] do
+            collection do
+              post :import
+              get :search
+              get :download_example_import_file
+            end
           end
-        end
-        resources :sms_records, only: %i[create]
+          resources :sms_records, only: %i[create]
 
-        resources :sheets, concerns: :sheet_management do
-          collection do
-            get :datasheet_columns
+          resources :sheets, concerns: :sheet_management do
+            collection do
+              get :datasheet_columns
+            end
           end
-        end
-        resources :sheet_rows, concerns: :sheet_row_management
+          resources :sheet_rows, concerns: :sheet_row_management
 
-        resources :stats, only: [] do
-          collection do
-            post :index
-            post :timeseries
-            get :datasheet_filter_options
-          end
-        end
-
-        resources :registration_codes do
-          member do
-            get :download_qrcode
-          end
-        end
-
-        resources :admins do
-          member do
-            get :spoof
-            get :reset_password
-          end
-        end
-
-        resources :reports, only: %i[create destroy] do
-          collection do
-            get :report_families
-            get :assessments_and_reports
-            get :other
-            post :regenerate
-            post :bulk_download
-          end
-          member do
-            post :export
-            patch :toggle_user_access
-            patch :toggle_assessor_access
-            patch :toggle_auto_assign
-            patch :toggle_user_dashboard
-            patch :toggle_main_report
-            patch :update_default_and_available_locales
-            post :get_bulk_assets_zip_presigned_upload_url
-            post :get_bulk_assets_csv_presigned_upload_url
-            put :attach_bulk_asset_csv_and_zip
-          end
-        end
-        resources :user_idp_reports do
-          member do
-            get :pdf_preview
-            post :download
-          end
-        end
-        resources :user_reports do
-          member do
-            get :pdf_preview
-            get :download
-            put :approve
-            put :start_qc
-            put :abort_qc
-            put :send_for_approval
-            put :request_changes
-            put :remove_approval
-            patch :toggle_user_access
-            get :webhook_payload
-            get :possible_webhook_events
-            put :upload_file
-            delete :remove_file
-            post :translate
-          end
-          collection do
-            post :regenerate
-            get :dashboard
-            post :bulk_download
-          end
-        end
-        resources :text_module_overrides do
-          collection do
-            post :approve
-          end
-          member do
-            delete :disapprove
-          end
-        end
-        resources :users do
-          resources :user_reports
-          member do
-            patch :toggle_status
-            post :extend_time
-            post :create_hogan_credentials
-            get :webhook_payload
-            put :update_level
-            put :update_job_role
-          end
-          collection do
-            post :import
-            post :assign_reports_and_assessments
-            post :export_reports_and_assessments
-            post :export
-            post :export_completion_status
-            post :export_compact_completion_status
-            post :search
-            post :bulk_download_idp_reports
-          end
-        end
-
-        resources :assessors do
-          collection do
-            post :import
-            get :available_assessments
-            get :lead_assessor_assessment
-            post :create_all
-          end
-          member do
-            get :spoof
+          resources :stats, only: [] do
+            collection do
+              post :index
+              post :timeseries
+              get :datasheet_filter_options
+            end
           end
 
-          scope module: :assessors do
-            resources :user_assessments, only: %i[index create] do
-              member do
-                put :reset
-                put :rescore
-                put :reset_progress
+          resources :registration_codes do
+            member do
+              get :download_qrcode
+            end
+          end
+
+          resources :admins do
+            member do
+              get :spoof
+              get :reset_password
+            end
+          end
+
+          resources :reports, only: %i[create destroy] do
+            collection do
+              get :report_families
+              get :assessments_and_reports
+              get :other
+              post :regenerate
+              post :bulk_download
+            end
+            member do
+              post :export
+              patch :toggle_user_access
+              patch :toggle_assessor_access
+              patch :toggle_auto_assign
+              patch :toggle_user_dashboard
+              patch :toggle_main_report
+              patch :update_default_and_available_locales
+              post :get_bulk_assets_zip_presigned_upload_url
+              post :get_bulk_assets_csv_presigned_upload_url
+              put :attach_bulk_asset_csv_and_zip
+            end
+          end
+          resources :user_idp_reports do
+            member do
+              get :pdf_preview
+              post :download
+            end
+          end
+          resources :user_reports do
+            member do
+              get :pdf_preview
+              get :download
+              put :approve
+              put :start_qc
+              put :abort_qc
+              put :send_for_approval
+              put :request_changes
+              put :remove_approval
+              patch :toggle_user_access
+              get :webhook_payload
+              get :possible_webhook_events
+              put :upload_file
+              delete :remove_file
+              post :translate
+            end
+            collection do
+              post :regenerate
+              get :dashboard
+              post :bulk_download
+            end
+          end
+          resources :text_module_overrides do
+            collection do
+              post :approve
+            end
+            member do
+              delete :disapprove
+            end
+          end
+          resources :users do
+            resources :user_reports
+            member do
+              patch :toggle_status
+              post :extend_time
+              post :create_hogan_credentials
+              get :webhook_payload
+              put :update_level
+              put :update_job_role
+            end
+            collection do
+              post :import
+              post :assign_reports_and_assessments
+              post :export_reports_and_assessments
+              post :export
+              post :export_completion_status
+              post :export_compact_completion_status
+              post :search
+              post :bulk_download_idp_reports
+            end
+          end
+
+          resources :assessors do
+            collection do
+              post :import
+              get :available_assessments
+              get :lead_assessor_assessment
+              post :create_all
+            end
+            member do
+              get :spoof
+            end
+
+            scope module: :assessors do
+              resources :user_assessments, only: %i[index create] do
+                member do
+                  put :reset
+                  put :rescore
+                  put :reset_progress
+                end
+                collection do
+                  delete :bulk_delete
+                end
               end
-              collection do
-                delete :bulk_delete
-              end
+            end
+          end
+
+          resources :universal_links, only: %i[show update] do
+            member do
+              put :enable
+              put :regenerate
+            end
+          end
+          resources :assessments, only: %i[create destroy] do
+            member do
+              post :export_raw_results
+              post :export_scoring_results
+              post :export_normed_results
+              post :export_raw_factor_scores
+              post :export_external_results
+              post :export_occupations
+              post :import_results
+              post :import_external_scoring_results
+              get :norms
+              post :update_norm
+              post :update_mettl_schedule
+              put :update_content_variation
+              put :update_pearson_variation
+              put :update_mhs_confidence_interval
+              put :update_mhs_leadership_bar
+              put :update_mhs_norm_region
+              put :update_mhs_norm_option
+              put :update_assessor_form
+              put :update_available_locales
+              post :rescore_responses
+              post :regenerate_transcriptions
+              put :update_prework
+              put :update_workshop_activity
+              put :toggle_require_scheduling
+              put :toggle_auto_assign
+              put :schedule_assessment
+              post :normalize_factor_scores
+              put :toggle_caching
+              put :update_proctoring_settings
+            end
+            collection do
+              get :other
+            end
+          end
+          resources :user_assessments, only: [:destroy] do
+            member do
+              post :update_norm
+              post :update_mettl_schedule
+              post :rescore_response
+              post :reset
+              post :reset_progress
+              post :update_additional_time
+              post :normalize_factor_scores
+              get :webhook_payload
+              put :schedule_assessment
+              put :toggle_require_scheduling
+              put :update_content_variation
+              put :update_simulation_time_extension
+              put :toggle_prework
+              post :mark_complete
+              post :update_mhs_confidence_interval
+              post :update_mhs_leadership_bar
+              post :update_mhs_norm_region
+              post :update_mhs_norm_option
+            end
+          end
+
+          resources :campaign_assessment_groups, only: %i[index create update destroy] do
+            collection do
+              post :update_positions
+            end
+          end
+          resources :campaign_assessments, only: %i[update] do
+            collection do
+              post :update_positions
+            end
+            member do
+              put :update_external_config
+            end
+          end
+        end
+      end
+
+      resources :projects, :new_projects do
+        scope module: :projects do
+          resources :sheets, concerns: :sheet_management
+          resources :sheet_rows, concerns: :sheet_row_management
+          resources :saml_settings, only: %i[create update] do
+            collection do
+              post :test_saml
+              post :parse_metadata
+            end
+          end
+          resources :smtp_settings, only: %i[update] do
+            collection do
+              post :send_test_email
+              post :validate_settings
+            end
+          end
+          resources :security_settings, only: %i[update]
+          resources :integrations, only: %i[index create update destroy] do
+            collection do
+              post :load_mettl_assessments
+              post :load_skillvue_assessments
+              post :load_microsite_assessments
             end
           end
         end
 
-        resources :universal_links, only: %i[show update] do
-          member do
-            put :enable
-            put :regenerate
-          end
-        end
-        resources :assessments, only: %i[create destroy] do
-          member do
-            post :export_raw_results
-            post :export_scoring_results
-            post :export_normed_results
-            post :export_raw_factor_scores
-            post :export_external_results
-            post :export_occupations
-            post :import_results
-            post :import_external_scoring_results
-            get :norms
-            post :update_norm
-            post :update_mettl_schedule
-            put :update_content_variation
-            put :update_pearson_variation
-            put :update_mhs_confidence_interval
-            put :update_mhs_leadership_bar
-            put :update_mhs_norm_region
-            put :update_mhs_norm_option
-            put :update_assessor_form
-            put :update_available_locales
-            post :rescore_responses
-            post :regenerate_transcriptions
-            put :update_prework
-            put :update_workshop_activity
-            put :toggle_require_scheduling
-            put :toggle_auto_assign
-            put :schedule_assessment
-            post :normalize_factor_scores
-            put :toggle_caching
-            put :update_proctoring_settings
-          end
-          collection do
-            get :other
-          end
-        end
-        resources :user_assessments, only: [:destroy] do
-          member do
-            post :update_norm
-            post :update_mettl_schedule
-            post :rescore_response
-            post :reset
-            post :reset_progress
-            post :update_additional_time
-            post :normalize_factor_scores
-            get :webhook_payload
-            put :schedule_assessment
-            put :toggle_require_scheduling
-            put :update_content_variation
-            put :update_simulation_time_extension
-            put :toggle_prework
-            post :mark_complete
-            post :update_mhs_confidence_interval
-            post :update_mhs_leadership_bar
-            post :update_mhs_norm_region
-            post :update_mhs_norm_option
+        resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
+          scope module: :campaigns do
+            resources :registration_codes
           end
         end
 
-        resources :campaign_assessment_groups, only: %i[index create update destroy] do
-          collection do
-            post :update_positions
-          end
-        end
-        resources :campaign_assessments, only: %i[update] do
-          collection do
-            post :update_positions
-          end
-          member do
-            put :update_external_config
+        scope module: :projects do
+          resources :new_campaigns do
+            collection do
+              get :templates_and_assessment
+              post :search_users
+            end
+
+            get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
+
+            member do
+              post :copy
+              get :fetch_campaign_options
+              get :fetch_campaign_instructions
+              get :fetch_descriptions
+              put :update_campaign_options
+              get :pdf_password
+              get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
+            end
           end
         end
       end
-    end
 
-    resources :projects, :new_projects do
-      scope module: :projects do
-        resources :sheets, concerns: :sheet_management
-        resources :sheet_rows, concerns: :sheet_row_management
-        resources :saml_settings, only: %i[create update] do
+      resources :projects do
+        member do
+          post :search_users
+        end
+      end
+
+      resources :workshops, only: %i[] do
+        resources :users, controller: 'workshops/users' do
           collection do
-            post :test_saml
+            post :search_subjects
+            post :search_assessors
           end
         end
-        resources :smtp_settings, only: %i[update] do
-          collection do
+      end
+
+      ### CLIENTS
+      resources :clients do
+        member do
+          get :edit
+          get :copy
+          get :sidebar
+          patch :toggle_status
+          get :license
+        end
+
+        collection do
+          get :export
+        end
+        scope module: :clients do
+          resources :projects, concerns: :client_editable do
+            scope module: :projects do
+              resources :new_campaigns
+
+              resources :threesixty_campaigns, concerns: :client_editable do
+                collection do
+                  get :factors
+                end
+              end
+            end
+          end
+          get '/projects/:project_id/threesixty_campaigns/:id/*all',
+              to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
+          get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
+          resources :sheet_rows, except: %i[show edit update]
+          resource :smtp_settings, only: %i[show update] do
             post :send_test_email
             post :validate_settings
           end
         end
-        resources :security_settings, only: %i[update]
-        resources :integrations, only: %i[index create update destroy] do
-          collection do
-            post :load_mettl_assessments
-            post :load_skillvue_assessments
-            post :load_microsite_assessments
-          end
-        end
       end
 
-      resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
-        scope module: :campaigns do
-          resources :registration_codes
-        end
-      end
+      resources :maintenance_settings, only: %i[index create update]
 
-      scope module: :projects do
-        resources :new_campaigns do
-          collection do
-            get :templates_and_assessment
-            post :search_users
-          end
+      ### END CLIENTS
+      resources :threesixty_campaigns do
+        scope module: 'threesixty_campaigns' do
+          resources :subjects do
+            collection do
+              get :download_example_import_file
+              post :create_all
+              post :search
+              post :import
+              patch :bulk_update_evaluation_status
+            end
+            member do
+              get :report_status_message
+              get :preview_report
+            end
 
-          get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
-
-          member do
-            post :copy
-            get :fetch_campaign_options
-            get :fetch_campaign_instructions
-            get :fetch_descriptions
-            put :update_campaign_options
-            get :pdf_password
-            get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
-          end
-        end
-      end
-    end
-
-    resources :projects do
-      member do
-        post :search_users
-      end
-    end
-
-    resources :workshops, only: %i[] do
-      resources :users, controller: 'workshops/users' do
-        collection do
-          post :search_subjects
-          post :search_assessors
-        end
-      end
-    end
-
-    ### CLIENTS
-    resources :clients do
-      member do
-        get :edit
-        get :copy
-        get :sidebar
-        patch :toggle_status
-        get :license
-      end
-
-      collection do
-        get :export
-      end
-      scope module: :clients do
-        resources :projects, concerns: :client_editable do
-          scope module: :projects do
-            resources :new_campaigns
-
-            resources :threesixty_campaigns, concerns: :client_editable do
-              collection do
-                get :factors
+            resource :reports, only: [:show] do
+              get :download, on: :member
+              post :regenerate, on: :member
+            end
+            resources :evaluations, only: %i[show update destroy] do
+              member do
+                get :upload_media_url
+                put :upload_callback
+                delete :remove_media
               end
             end
           end
-        end
-        get '/projects/:project_id/threesixty_campaigns/:id/*all',
-            to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
-        get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
-        resources :sheet_rows, except: %i[show edit update]
-        resource :smtp_settings, only: %i[show update] do
-          post :send_test_email
-          post :validate_settings
-        end
-      end
-    end
-
-    resources :maintenance_settings, only: %i[index create update]
-
-    ### END CLIENTS
-    resources :threesixty_campaigns do
-      scope module: 'threesixty_campaigns' do
-        resources :subjects do
-          collection do
-            get :download_example_import_file
-            post :create_all
-            post :search
-            post :import
-            patch :bulk_update_evaluation_status
-          end
-          member do
-            get :report_status_message
-            get :preview_report
+          resources :evaluators do
+            collection do
+              get :download_example_import_file
+              post :import
+              post :create_all
+            end
           end
 
-          resource :reports, only: [:show] do
-            get :download, on: :member
-            post :regenerate, on: :member
+          resource :options do
+            get :participant_options
+            get :report_options
+            get :message_options
+            put :update_language
           end
-          resources :evaluations, only: %i[show update destroy] do
+
+          resources :email_templates do
             member do
-              get :upload_media_url
-              put :upload_callback
-              delete :remove_media
+              get :send_test_email
+            end
+          end
+          resources :instruction_templates
+
+          resources :email_schedules do
+            collection do
+              get :schedulable_templates
+              post :recipient_by_criteria
+            end
+            member do
+              get :download, constraints: { format: :csv }
+            end
+          end
+
+          resources :users, only: [:update]
+
+          resources :managers
+          resources :relationships do
+            collection do
+              get :fetch_with_usage
+            end
+          end
+
+          resources :participants do
+            member do
+              get :spoof
+            end
+          end
+          resources :nomination_requirements do
+            collection do
+              put :save
             end
           end
         end
-        resources :evaluators do
-          collection do
-            get :download_example_import_file
-            post :import
-            post :create_all
-          end
-        end
-
-        resource :options do
-          get :participant_options
-          get :report_options
-          get :message_options
-          put :update_language
-        end
-
-        resources :email_templates do
-          member do
-            get :send_test_email
-          end
-        end
-        resources :instruction_templates
-
-        resources :email_schedules do
-          collection do
-            get :schedulable_templates
-            post :recipient_by_criteria
-          end
-          member do
-            get :download, constraints: { format: :csv }
-          end
-        end
-
-        resources :users, only: [:update]
-
-        resources :managers
-        resources :relationships do
-          collection do
-            get :fetch_with_usage
-          end
-        end
-
-        resources :participants do
-          member do
-            get :spoof
-          end
-        end
-        resources :nomination_requirements do
-          collection do
-            put :save
-          end
+        member do
+          post :export_threesixty_scores
+          post :export_results
+          post :import_results
+          post :export_completion_status
+          delete :reset
+          delete :reset_nominations
+          delete :remove_user
+          post :rescore_assessment
+          post :regenerate_reports
+          post :bulk_download
+          put :toggle_caching
         end
       end
-      member do
-        post :export_threesixty_scores
-        post :export_results
-        post :import_results
-        post :export_completion_status
-        delete :reset
-        delete :reset_nominations
-        delete :remove_user
-        post :rescore_assessment
-        post :regenerate_reports
-        post :bulk_download
-        put :toggle_caching
-      end
-    end
 
-    ### ASSESSMENTS
-    get '/assessments/active' => 'assessments#index'
-    get '/assessments/archived' => 'assessments#index'
-    get '/assessments/trash' => 'assessments#index'
-    get '/assessments/:id/edit' => 'assessments#index'
-    resources :assessments do
-      member do
-        get :copy
-        get :sidebar
-        patch :toggle_status
-        get :preview
-        post :preview
-        get :reports
-        put :save
-        patch :toggle_archive
-        get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
-        get :resources, to: 'assessments#show', constraints: { all: /.*/ }
-        get :assessments
-        get :questions
-        get :factors
-        post :upload_data_sheet
-        delete :soft_delete
-        put :restore
-        post :import_questions
-        post :export_questions
-        get :import_questions_sample_file
-      end
-
-      collection do
-        get :pearson_norms
-        get :projects
-        get :external_assessments
-      end
-
-      scope module: 'assessments' do
-        resource :builders, only: %i[show update] do
-          member do
-            post :upload_campaign_factors
-          end
-        end
-        resource :scoring, only: [:update], controller: :scoring
-        resource :agiles, only: %i[show update]
-      end
-    end
-    ### END ASSESSMENTS
-
-    ### DIMENSIONS
-    resources :dimensions do
-      member do
-        post :copy
-        get :sidebar
-        patch :toggle_status
-        get :translations
-        get :factors_modal
-        post :export_translations
-        post :import_translations
-        post :import_factors
-        post :export_json
-      end
-
-      collection do
-        post :validate_import
-        post :import
-        get :import
-      end
-      ### FACTORS
-      resources :factors do
+      ### ASSESSMENTS
+      get '/assessments/active' => 'assessments#index'
+      get '/assessments/archived' => 'assessments#index'
+      get '/assessments/trash' => 'assessments#index'
+      get '/assessments/:id/edit' => 'assessments#index'
+      resources :assessments do
         member do
           get :copy
           get :sidebar
           patch :toggle_status
+          get :preview
+          post :preview
+          get :reports
+          put :save
+          patch :toggle_archive
+          get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
+          get :resources, to: 'assessments#show', constraints: { all: /.*/ }
+          get :assessments
+          get :questions
+          get :factors
+          post :upload_data_sheet
+          delete :soft_delete
+          put :restore
+          post :import_questions
+          post :export_questions
+          get :import_questions_sample_file
+        end
+
+        collection do
+          get :pearson_norms
+          get :projects
+          get :external_assessments
+        end
+
+        scope module: 'assessments' do
+          resource :builders, only: %i[show update] do
+            member do
+              post :upload_campaign_factors
+            end
+          end
+          resource :scoring, only: [:update], controller: :scoring
+          resource :agiles, only: %i[show update]
         end
       end
-      ### END FACTORS
-      ### OCCUPATIONS
-      resources :occupations do
+      ### END ASSESSMENTS
+
+      ### DIMENSIONS
+      resources :dimensions do
         member do
-          get :copy
+          post :copy
           get :sidebar
           patch :toggle_status
+          get :translations
+          get :factors_modal
+          post :export_translations
+          post :import_translations
+          post :import_factors
+          post :export_json
+        end
+
+        collection do
+          post :validate_import
+          post :import
+          get :import
         end
         ### FACTORS
-        resources :factors, controller: :occupations_factors do
+        resources :factors do
           member do
             get :copy
             get :sidebar
@@ -714,157 +709,174 @@ Rails.application.routes.draw do
           end
         end
         ### END FACTORS
+        ### OCCUPATIONS
+        resources :occupations do
+          member do
+            get :copy
+            get :sidebar
+            patch :toggle_status
+          end
+          ### FACTORS
+          resources :factors, controller: :occupations_factors do
+            member do
+              get :copy
+              get :sidebar
+              patch :toggle_status
+            end
+          end
+          ### END FACTORS
+        end
+        ### END OCCUPATIONS
+        ### INNOVATION STYLES
+        resources :innovation_styles do
+          member do
+            get :copy
+            get :sidebar
+            patch :toggle_status
+          end
+          ### FACTORS
+          resources :factors, controller: :innovation_styles_factors do
+            member do
+              get :copy
+              get :sidebar
+              patch :toggle_status
+            end
+          end
+        end
+        ### END INNOVATION STYLES
       end
-      ### END OCCUPATIONS
-      ### INNOVATION STYLES
-      resources :innovation_styles do
+      ### END DIMENSIONS
+
+      ### USERS constraints
+      resources :users, only: [] do
+        member do
+          get :spoof
+        end
+        collection do
+          post :search_admins
+        end
+      end
+      get '/users/*all' => 'users#index', constraints: proc { |request| request.format == 'html' }, as: :users
+      ### END USERS
+
+      ### NORMS
+      resources :norms do
         member do
           get :copy
-          get :sidebar
           patch :toggle_status
+          get :sidebar
+          get :editor
+          get :export
         end
-        ### FACTORS
-        resources :factors, controller: :innovation_styles_factors do
+      end
+      ### END NORMS
+
+      ### TEMPLATES
+      namespace :templates do
+        resources :questions do
           member do
             get :copy
             get :sidebar
             patch :toggle_status
           end
         end
-      end
-      ### END INNOVATION STYLES
-    end
-    ### END DIMENSIONS
-
-    ### USERS constraints
-    resources :users, only: [] do
-      member do
-        get :spoof
-      end
-      collection do
-        post :search_admins
-      end
-    end
-    get '/users/*all' => 'users#index', constraints: proc { |request| request.format == 'html' }, as: :users
-    ### END USERS
-
-    ### NORMS
-    resources :norms do
-      member do
-        get :copy
-        patch :toggle_status
-        get :sidebar
-        get :editor
-        get :export
-      end
-    end
-    ### END NORMS
-
-    ### TEMPLATES
-    namespace :templates do
-      resources :questions do
-        member do
-          get :copy
-          get :sidebar
-          patch :toggle_status
-        end
-      end
-      resources :blocks do
-        member do
-          get :copy
-          get :sidebar
-          patch :toggle_status
-          get :preview
-        end
-      end
-    end
-    ### END TEMPLATES
-
-    ### Reports
-    get '/reports/active' => 'reports#index'
-    get '/reports/archived' => 'reports#index'
-    get '/reports/trash' => 'reports#index'
-    get '/reports/:id/edit' => 'reports#index'
-    resources :reports do
-      member do
-        get :preview
-        post :upload_data_sheet
-        put :remap_assessment
-      end
-      scope module: 'reports' do
-        resource :builders, only: %i[show update] do
+        resources :blocks do
           member do
-            post :upload_campaign_factors
-            post :upload_campaign_ai_artifacts
+            get :copy
+            get :sidebar
+            patch :toggle_status
+            get :preview
           end
         end
       end
+      ### END TEMPLATES
+
+      ### Reports
+      get '/reports/active' => 'reports#index'
+      get '/reports/archived' => 'reports#index'
+      get '/reports/trash' => 'reports#index'
+      get '/reports/:id/edit' => 'reports#index'
+      resources :reports do
+        member do
+          get :preview
+          post :upload_data_sheet
+          put :remap_assessment
+        end
+        scope module: 'reports' do
+          resource :builders, only: %i[show update] do
+            member do
+              post :upload_campaign_factors
+              post :upload_campaign_ai_artifacts
+            end
+          end
+        end
+      end
+
+      get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
+      get 'report_approvals/*all', to: 'report_approvals#app',
+        constraints: { all: /.*/, format: :html }, as: :report_approvals_all
+
+      get 'ai_scoring_approvals', to: 'ai_scoring_approvals#app', as: :ai_scoring_approvals
+      get 'ai_scoring_approvals/*all', to: 'ai_scoring_approvals#app',
+        constraints: { all: /.*/, format: :html }, as: :ai_scoring_approvals_all
+
+      resources :report_families, only: [:index] do
+        scope module: :report_families do
+          resources :reports, only: %i[index]
+        end
+      end
+
+      resources :bulk_reports, only: %i[] do
+        get 'download(/:index)', to: 'bulk_reports#download', on: :member, as: :download
+      end
+
+      resources :libraries
+
+      put '/factors_norms/update', to: 'factors_norms#update'
+      put '/factors_norms/update_percentile_norm', to: 'factors_norms#update_percentile_norm'
+
+      resources :admin_jobs, only: %i[index] do
+        collection do
+          put :read_all
+        end
+        member do
+          put :read
+        end
+      end
+
+      resources :communications, only: %i[index new create destroy show] do
+        member do
+          get :download_history, defaults: { format: :csv }
+          get :copy
+          get :sidebar
+          patch :toggle_status
+          put :update_translation, path: 'translation'
+          get :edit_translation
+        end
+
+        match :new_form, on: :collection, via: %i[post patch put]
+      end
+
+      namespace :translations do
+        resources :assessments, only: [] do
+          post :export
+          get :new
+          post :import
+        end
+        resources :questions, only: [] do
+          post :export
+          post :import
+        end
+        resources :reports, only: [] do
+          post :export
+          get :new
+          post :import
+        end
+      end
+
+      resources :campaign_templates
+      root to: redirect('admin')
     end
-
-    get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
-    get 'report_approvals/*all', to: 'report_approvals#app',
-      constraints: { all: /.*/, format: :html }, as: :report_approvals_all
-
-    get 'ai_scoring_approvals', to: 'ai_scoring_approvals#app', as: :ai_scoring_approvals
-    get 'ai_scoring_approvals/*all', to: 'ai_scoring_approvals#app',
-      constraints: { all: /.*/, format: :html }, as: :ai_scoring_approvals_all
-
-    resources :report_families, only: [:index] do
-      scope module: :report_families do
-        resources :reports, only: %i[index]
-      end
-    end
-
-    resources :bulk_reports, only: %i[] do
-      get 'download(/:index)', to: 'bulk_reports#download', on: :member, as: :download
-    end
-
-    resources :libraries
-
-    put '/factors_norms/update', to: 'factors_norms#update'
-    put '/factors_norms/update_percentile_norm', to: 'factors_norms#update_percentile_norm'
-
-    resources :admin_jobs, only: %i[index] do
-      collection do
-        put :read_all
-      end
-      member do
-        put :read
-      end
-    end
-
-    resources :communications, only: %i[index new create destroy show] do
-      member do
-        get :download_history, defaults: { format: :csv }
-        get :copy
-        get :sidebar
-        patch :toggle_status
-        put :update_translation, path: 'translation'
-        get :edit_translation
-      end
-
-      match :new_form, on: :collection, via: %i[post patch put]
-    end
-
-    namespace :translations do
-      resources :assessments, only: [] do
-        post :export
-        get :new
-        post :import
-      end
-      resources :questions, only: [] do
-        post :export
-        post :import
-      end
-      resources :reports, only: [] do
-        post :export
-        get :new
-        post :import
-      end
-    end
-
-    resources :campaign_templates
-    root to: redirect('admin')
   end
   #
   # END: Administration panel
@@ -933,7 +945,7 @@ as: :simulation_progress_notification
     end
   end
 
-  constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
+  constraints(->(req) { AdminSubdomain.end_user?(req.subdomain) }) do
     get '/saml/idp/metadata/:id' => 'saml_idp#show', as: :saml_idp_metadata
     get '/saml/idp/auth/:id' => 'saml_idp#new', as: :saml_idp_auth_new
     post '/saml/idp/auth/:id' => 'saml_idp#create', as: :saml_idp_auth
@@ -1256,7 +1268,9 @@ as: :simulation_progress_notification
 
   mount Sidekiq::Web, at: '/sidekiq'
 
-  root to: 'administration/administrator/sessions#new', as: :admin_root
+  constraints(->(req) { AdminSubdomain.admin?(req.subdomain) }) do
+    root to: 'administration/administrator/sessions#new', as: :admin_root
+  end
 
   constraints format: :json do
     namespace :api do
@@ -1325,6 +1339,11 @@ as: :simulation_progress_notification
             jsonapi_relationships
             jsonapi_resources :reports, only: %i[index], controller: 'clients/reports'
             jsonapi_resources :client_privacy_settings, only: %i[index update]
+            jsonapi_resources :client_sso_settings, only: %i[index update] do
+              collection do
+                post :parse_metadata
+              end
+            end
             jsonapi_resources :client_features, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do

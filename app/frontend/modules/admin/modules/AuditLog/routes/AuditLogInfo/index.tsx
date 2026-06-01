@@ -67,6 +67,11 @@ const AuditLogList: React.FC<Props> = ({
           <Descriptions.Item label={I18n.t('administration.audit_log.user')}>
             {record.user ? `${record.user.fullName} (${record.user.email})` : record.userId}
           </Descriptions.Item>
+          {record.impersonator && (
+            <Descriptions.Item label={I18n.t('admin.audit_log_impersonated_by')}>
+              {`${record.impersonator.fullName} (${record.impersonator.email})`}
+            </Descriptions.Item>
+          )}
           {record.requestUuid && (
             <Descriptions.Item label={I18n.t('administration.audit_log.request_id')}>
               {record.requestUuid}

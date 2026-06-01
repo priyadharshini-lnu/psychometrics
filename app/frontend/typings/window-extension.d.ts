@@ -23,6 +23,22 @@ declare global {
       features: {
         [key: string]: boolean
       },
+      clientContextData?: {
+        id: number
+        name: string
+        subdomain: string
+        logo_url?: string | null
+        sso_enabled?: boolean
+        sso_enforced?: boolean
+      } | null
+      switchableClients?: {
+        id: number
+        name: string
+        subdomain: string
+        sso_enforced?: boolean
+        has_active_session: boolean
+      }[]
+      recentClientIds?: number[]
     },
     Utils: {
       isElementInViewport: (HTMLElement) => boolean

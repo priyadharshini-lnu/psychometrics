@@ -62,6 +62,11 @@ const LoginComponent: React.FC<Props> = ({
 
       {projectConfig.saml_login_allowed && (
         <>
+          {projectConfig.saml_enforced && (
+            <div style={{ marginBottom: 16 }}>
+              <Flash />
+            </div>
+          )}
           <ButtonWithArrow
             href="/users/saml/sign_in"
             size="large"

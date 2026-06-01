@@ -782,6 +782,7 @@ CREATE TABLE public.users (
     unique_session_id character varying,
     external_id character varying,
     disabled_at timestamp(6) without time zone,
+    spoofed_by_id bigint,
     tenant_id bigint
 );
 
@@ -1920,6 +1921,7 @@ CREATE TABLE public.audit_logs (
     client_ip character varying,
     outcome integer DEFAULT 1,
     failure_reason character varying,
+    impersonated_by_id bigint,
     tenant_id bigint
 );
 
@@ -2808,6 +2810,45 @@ CREATE SEQUENCE public.client_privacy_settings_id_seq
 --
 
 ALTER SEQUENCE public.client_privacy_settings_id_seq OWNED BY public.client_privacy_settings.id;
+
+
+--
+-- Name: client_sso_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_sso_settings (
+    id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    sso_enabled boolean DEFAULT false NOT NULL,
+    sso_enforced boolean DEFAULT false NOT NULL,
+    idp_entity_id character varying,
+    idp_sso_url character varying,
+    idp_slo_url character varying,
+    idp_cert text,
+    session_timeout integer,
+    allowed_domains jsonb DEFAULT '[]'::jsonb NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_sso_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_sso_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_sso_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_sso_settings_id_seq OWNED BY public.client_sso_settings.id;
 
 
 --
@@ -7016,6 +7057,42 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sessions (
+    id bigint NOT NULL,
+    session_id character varying NOT NULL,
+    data text,
+    user_id bigint,
+    subdomain character varying,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    impersonator_id bigint
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
+
+
+--
 -- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -10058,6 +10135,13 @@ ALTER TABLE ONLY public.client_privacy_settings ALTER COLUMN id SET DEFAULT next
 
 
 --
+-- Name: client_sso_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_sso_settings ALTER COLUMN id SET DEFAULT nextval('public.client_sso_settings_id_seq'::regclass);
+
+
+--
 -- Name: client_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10839,6 +10923,13 @@ ALTER TABLE ONLY public.saville_user_assessments ALTER COLUMN id SET DEFAULT nex
 --
 
 ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('public.security_settings_id_seq'::regclass);
+
+
+--
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
 
 
 --
@@ -11814,6 +11905,14 @@ ALTER TABLE ONLY public.client_privacy_settings
 
 
 --
+-- Name: client_sso_settings client_sso_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_sso_settings
+    ADD CONSTRAINT client_sso_settings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: client_translations client_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12734,6 +12833,14 @@ ALTER TABLE ONLY public.security_settings
 
 
 --
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sheet_columns sheet_columns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13538,10 +13645,24 @@ CREATE INDEX idx_on_skill_gap_report_analysis_ai_assistant_id_2a87d39fe6 ON publ
 
 
 --
+-- Name: idx_on_tenant_id_8f3a1ee70f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_tenant_id_8f3a1ee70f ON public.threesixty_instruction_template_translations USING btree (tenant_id);
+
+
+--
 -- Name: idx_on_user_assessment_id_cb9cc55a9e; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_on_user_assessment_id_cb9cc55a9e ON public.user_assessment_verification_images USING btree (user_assessment_id);
+
+
+--
+-- Name: idx_sessions_user_client_impersonator; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_sessions_user_tenant_impersonator ON public.sessions USING btree (user_id, tenant_id, impersonator_id);
 
 
 --
@@ -13584,6 +13705,13 @@ CREATE UNIQUE INDEX index_acst_setting_t18n_on_consent_setting_id_and_locale ON 
 --
 
 CREATE INDEX index_active_storage_attachments_on_blob_id ON public.active_storage_attachments USING btree (blob_id);
+
+
+--
+-- Name: index_active_storage_attachments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_active_storage_attachments_on_tenant_id ON public.active_storage_attachments USING btree (tenant_id);
 
 
 --
@@ -13636,6 +13764,13 @@ CREATE INDEX index_admin_jobs_on_parent_job_id ON public.admin_jobs USING btree 
 
 
 --
+-- Name: index_admin_jobs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_jobs_on_tenant_id ON public.admin_jobs USING btree (tenant_id);
+
+
+--
 -- Name: index_admin_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13647,6 +13782,13 @@ CREATE INDEX index_admin_roles_on_client_id ON public.admin_roles USING btree (c
 --
 
 CREATE UNIQUE INDEX index_admin_roles_on_name_and_client_id ON public.admin_roles USING btree (name, client_id);
+
+
+--
+-- Name: index_admin_roles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_roles_on_tenant_id ON public.admin_roles USING btree (tenant_id);
 
 
 --
@@ -13668,6 +13810,13 @@ CREATE INDEX index_agile_events_on_users_result_id ON public.agile_events USING 
 --
 
 CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessment_id);
+
+
+--
+-- Name: index_agiles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agiles_on_tenant_id ON public.agiles USING btree (tenant_id);
 
 
 --
@@ -13699,6 +13848,13 @@ CREATE INDEX index_ai_assistant_chats_on_client_id ON public.ai_assistant_chats 
 
 
 --
+-- Name: index_ai_assistant_chats_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_chats_on_tenant_id ON public.ai_assistant_chats USING btree (tenant_id);
+
+
+--
 -- Name: index_ai_assistant_chats_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13710,6 +13866,13 @@ CREATE INDEX index_ai_assistant_chats_on_user_id ON public.ai_assistant_chats US
 --
 
 CREATE INDEX index_ai_assistant_output_schema_keys_on_ai_assistant_id ON public.ai_assistant_output_schema_keys USING btree (ai_assistant_id);
+
+
+--
+-- Name: index_ai_assistant_output_schema_keys_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_output_schema_keys_on_tenant_id ON public.ai_assistant_output_schema_keys USING btree (tenant_id);
 
 
 --
@@ -13741,10 +13904,24 @@ CREATE INDEX index_ai_assistant_requests_on_ai_model_registry_id ON public.ai_as
 
 
 --
+-- Name: index_ai_assistant_requests_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_requests_on_tenant_id ON public.ai_assistant_requests USING btree (tenant_id);
+
+
+--
 -- Name: index_ai_assistant_tool_calls_on_ai_assistant_request_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_ai_assistant_tool_calls_on_ai_assistant_request_id ON public.ai_assistant_tool_calls USING btree (ai_assistant_request_id);
+
+
+--
+-- Name: index_ai_assistant_tool_calls_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistant_tool_calls_on_tenant_id ON public.ai_assistant_tool_calls USING btree (tenant_id);
 
 
 --
@@ -13769,6 +13946,13 @@ CREATE INDEX index_ai_assistants_on_owner_id ON public.ai_assistants USING btree
 
 
 --
+-- Name: index_ai_assistants_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assistants_on_tenant_id ON public.ai_assistants USING btree (tenant_id);
+
+
+--
 -- Name: index_ai_assisted_user_sessions_on_assistable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13780,6 +13964,13 @@ CREATE INDEX index_ai_assisted_user_sessions_on_assistable ON public.ai_assisted
 --
 
 CREATE INDEX index_ai_assisted_user_sessions_on_resource ON public.ai_assisted_user_sessions USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_ai_assisted_user_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_assisted_user_sessions_on_tenant_id ON public.ai_assisted_user_sessions USING btree (tenant_id);
 
 
 --
@@ -13815,6 +14006,13 @@ CREATE INDEX index_ai_factor_scores_on_parent_factor_id ON public.ai_factor_scor
 --
 
 CREATE INDEX index_ai_factor_scores_on_question_id ON public.ai_factor_scores USING btree (question_id);
+
+
+--
+-- Name: index_ai_factor_scores_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_factor_scores_on_tenant_id ON public.ai_factor_scores USING btree (tenant_id);
 
 
 --
@@ -13888,10 +14086,24 @@ CREATE INDEX index_ai_scoring_approval_settings_on_campaign_id ON public.ai_scor
 
 
 --
+-- Name: index_ai_scoring_approval_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_scoring_approval_settings_on_tenant_id ON public.ai_scoring_approval_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_ai_sessions_on_assistable_and_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_ai_sessions_on_assistable_and_type ON public.ai_assisted_user_sessions USING btree (assistable_type, assistable_id, type);
+
+
+--
+-- Name: index_ai_translation_results_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_translation_results_on_tenant_id ON public.ai_translation_results USING btree (tenant_id);
 
 
 --
@@ -13951,6 +14163,13 @@ CREATE INDEX index_assessment_assistants_on_assessment_id ON public.assessment_a
 
 
 --
+-- Name: index_assessment_assistants_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_assistants_on_tenant_id ON public.assessment_assistants USING btree (tenant_id);
+
+
+--
 -- Name: index_assessment_consent_setting_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13958,10 +14177,24 @@ CREATE INDEX index_assessment_consent_setting_translations_on_locale ON public.a
 
 
 --
+-- Name: index_assessment_consent_setting_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_consent_setting_translations_on_tenant_id ON public.assessment_consent_setting_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_assessment_consent_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_assessment_consent_settings_on_assessment_id ON public.assessment_consent_settings USING btree (assessment_id);
+
+
+--
+-- Name: index_assessment_consent_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_consent_settings_on_tenant_id ON public.assessment_consent_settings USING btree (tenant_id);
 
 
 --
@@ -13976,6 +14209,13 @@ CREATE UNIQUE INDEX index_assessment_t18n_tables_on_assessment_id_and_locale ON 
 --
 
 CREATE INDEX index_assessment_translations_on_locale ON public.assessment_translations USING btree (locale);
+
+
+--
+-- Name: index_assessment_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_translations_on_tenant_id ON public.assessment_translations USING btree (tenant_id);
 
 
 --
@@ -14021,6 +14261,13 @@ CREATE INDEX index_assessments_on_project_id ON public.assessments USING btree (
 
 
 --
+-- Name: index_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_on_tenant_id ON public.assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_assessments_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14042,10 +14289,24 @@ CREATE INDEX index_assessments_reports_on_report_id ON public.assessments_report
 
 
 --
+-- Name: index_assessments_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_reports_on_tenant_id ON public.assessments_reports USING btree (tenant_id);
+
+
+--
 -- Name: index_assessors_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_assessors_on_campaign_id ON public.assessors USING btree (campaign_id);
+
+
+--
+-- Name: index_assessors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessors_on_tenant_id ON public.assessors USING btree (tenant_id);
 
 
 --
@@ -14119,6 +14380,13 @@ CREATE INDEX index_audit_logs_on_created_at ON public.audit_logs USING btree (cr
 
 
 --
+-- Name: index_audit_logs_on_impersonated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_impersonated_by_id ON public.audit_logs USING btree (impersonated_by_id);
+
+
+--
 -- Name: index_audit_logs_on_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14130,6 +14398,13 @@ CREATE INDEX index_audit_logs_on_record_id ON public.audit_logs USING btree (rec
 --
 
 CREATE INDEX index_audit_logs_on_record_type ON public.audit_logs USING btree (record_type);
+
+
+--
+-- Name: index_audit_logs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_tenant_id ON public.audit_logs USING btree (tenant_id);
 
 
 --
@@ -14161,6 +14436,13 @@ CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_
 
 
 --
+-- Name: index_audits_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_tenant_id ON public.audits USING btree (tenant_id);
+
+
+--
 -- Name: index_blocks_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14175,10 +14457,24 @@ CREATE INDEX index_blocks_on_template_id ON public.blocks USING btree (template_
 
 
 --
+-- Name: index_blocks_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_blocks_on_tenant_id ON public.blocks USING btree (tenant_id);
+
+
+--
 -- Name: index_bulk_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_bulk_reports_on_campaign_id ON public.bulk_reports USING btree (campaign_id);
+
+
+--
+-- Name: index_bulk_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bulk_reports_on_tenant_id ON public.bulk_reports USING btree (tenant_id);
 
 
 --
@@ -14193,6 +14489,13 @@ CREATE INDEX index_bulk_reports_on_user_id ON public.bulk_reports USING btree (u
 --
 
 CREATE INDEX index_campaign_ai_artifact_dependencies_on_dependency ON public.campaign_ai_artifact_dependencies USING btree (dependency_type, dependency_id);
+
+
+--
+-- Name: index_campaign_ai_artifact_dependencies_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifact_dependencies_on_tenant_id ON public.campaign_ai_artifact_dependencies USING btree (tenant_id);
 
 
 --
@@ -14217,10 +14520,24 @@ CREATE UNIQUE INDEX index_campaign_ai_artifacts_on_campaign_id_and_code ON publi
 
 
 --
+-- Name: index_campaign_ai_artifacts_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_ai_artifacts_on_tenant_id ON public.campaign_ai_artifacts USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_assessment_groups_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_assessment_groups_on_campaign_id ON public.campaign_assessment_groups USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_assessment_groups_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessment_groups_on_tenant_id ON public.campaign_assessment_groups USING btree (tenant_id);
 
 
 --
@@ -14266,10 +14583,24 @@ CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessment
 
 
 --
+-- Name: index_campaign_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessments_on_tenant_id ON public.campaign_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_assessor_assessment_factor_weights_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_assessor_assessment_factor_weights_on_factor_id ON public.campaign_assessor_assessment_factor_weights USING btree (factor_id);
+
+
+--
+-- Name: index_campaign_assessor_assessment_factor_weights_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessment_factor_weights_on_tenant_id ON public.campaign_assessor_assessment_factor_weights USING btree (tenant_id);
 
 
 --
@@ -14287,10 +14618,24 @@ CREATE INDEX index_campaign_assessor_assessments_on_campaign_id ON public.campai
 
 
 --
+-- Name: index_campaign_assessor_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessments_on_tenant_id ON public.campaign_assessor_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_factor_groups_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_factor_groups_on_campaign_id ON public.campaign_factor_groups USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_factor_groups_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factor_groups_on_tenant_id ON public.campaign_factor_groups USING btree (tenant_id);
 
 
 --
@@ -14305,6 +14650,13 @@ CREATE INDEX index_campaign_factor_values_on_campaign_factor_id ON public.campai
 --
 
 CREATE INDEX index_campaign_factor_values_on_campaign_id ON public.campaign_factor_values USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_factor_values_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factor_values_on_tenant_id ON public.campaign_factor_values USING btree (tenant_id);
 
 
 --
@@ -14350,6 +14702,13 @@ CREATE INDEX index_campaign_factors_on_factor_id ON public.campaign_factors USIN
 
 
 --
+-- Name: index_campaign_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factors_on_tenant_id ON public.campaign_factors USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_idp_dependencies_on_campaign_idp_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14361,6 +14720,13 @@ CREATE INDEX index_campaign_idp_dependencies_on_campaign_idp_id ON public.campai
 --
 
 CREATE INDEX index_campaign_idp_dependencies_on_dependency ON public.campaign_idp_dependencies USING btree (dependency_type, dependency_id);
+
+
+--
+-- Name: index_campaign_idp_dependencies_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_idp_dependencies_on_tenant_id ON public.campaign_idp_dependencies USING btree (tenant_id);
 
 
 --
@@ -14385,6 +14751,13 @@ CREATE INDEX index_campaign_idps_on_idp_template_id ON public.campaign_idps USIN
 
 
 --
+-- Name: index_campaign_idps_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_idps_on_tenant_id ON public.campaign_idps USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_option_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14392,10 +14765,24 @@ CREATE INDEX index_campaign_option_translations_on_locale ON public.campaign_opt
 
 
 --
+-- Name: index_campaign_option_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_option_translations_on_tenant_id ON public.campaign_option_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_options_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_options_on_campaign_id ON public.campaign_options USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_options_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_options_on_tenant_id ON public.campaign_options USING btree (tenant_id);
 
 
 --
@@ -14427,10 +14814,24 @@ CREATE INDEX index_campaign_reports_on_report_id ON public.campaign_reports USIN
 
 
 --
+-- Name: index_campaign_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_reports_on_tenant_id ON public.campaign_reports USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_templates_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_templates_on_campaign_id ON public.campaign_templates USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_templates_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_templates_on_tenant_id ON public.campaign_templates USING btree (tenant_id);
 
 
 --
@@ -14490,6 +14891,13 @@ CREATE INDEX index_campaign_users_on_target_job_role_id ON public.campaign_users
 
 
 --
+-- Name: index_campaign_users_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_tenant_id ON public.campaign_users USING btree (tenant_id);
+
+
+--
 -- Name: index_campaign_users_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14511,6 +14919,13 @@ CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (proj
 
 
 --
+-- Name: index_campaigns_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaigns_on_tenant_id ON public.campaigns USING btree (tenant_id);
+
+
+--
 -- Name: index_client_ai_assistants_on_ai_assistant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14525,10 +14940,24 @@ CREATE INDEX index_client_ai_assistants_on_license_id ON public.client_ai_assist
 
 
 --
+-- Name: index_client_ai_assistants_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_ai_assistants_on_tenant_id ON public.client_ai_assistants USING btree (tenant_id);
+
+
+--
 -- Name: index_client_auditlog_export_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client_auditlog_export_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_auditlog_export_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_auditlog_export_settings_on_tenant_id ON public.client_auditlog_export_settings USING btree (tenant_id);
 
 
 --
@@ -14539,10 +14968,24 @@ CREATE INDEX index_client_features_on_client_id ON public.client_features USING 
 
 
 --
+-- Name: index_client_features_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_features_on_tenant_id ON public.client_features USING btree (tenant_id);
+
+
+--
 -- Name: index_client_privacy_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_client_privacy_settings_on_client_id ON public.client_privacy_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_sso_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_client_sso_settings_on_tenant_id ON public.client_sso_settings USING btree (tenant_id);
 
 
 --
@@ -14557,6 +15000,13 @@ CREATE UNIQUE INDEX index_client_t18n_tables_on_client_id_and_locale ON public.c
 --
 
 CREATE INDEX index_client_translations_on_locale ON public.client_translations USING btree (locale);
+
+
+--
+-- Name: index_client_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_translations_on_tenant_id ON public.client_translations USING btree (tenant_id);
 
 
 --
@@ -14602,6 +15052,13 @@ CREATE UNIQUE INDEX index_clients_on_subdomain ON public.clients USING btree (su
 
 
 --
+-- Name: index_clients_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_on_tenant_id ON public.clients USING btree (tenant_id);
+
+
+--
 -- Name: index_clients_on_tte_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14644,6 +15101,13 @@ CREATE UNIQUE INDEX index_communication_cc_users_on_communication_id_and_user_id
 
 
 --
+-- Name: index_communication_cc_users_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_cc_users_on_tenant_id ON public.communication_cc_users USING btree (tenant_id);
+
+
+--
 -- Name: index_communication_cc_users_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14662,6 +15126,13 @@ CREATE INDEX index_communication_email_resources_on_communication_email_id ON pu
 --
 
 CREATE INDEX index_communication_email_resources_on_resource ON public.communication_email_resources USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_communication_email_resources_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_email_resources_on_tenant_id ON public.communication_email_resources USING btree (tenant_id);
 
 
 --
@@ -14686,6 +15157,13 @@ CREATE INDEX index_communication_emails_on_membership_id ON public.communication
 
 
 --
+-- Name: index_communication_emails_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_tenant_id ON public.communication_emails USING btree (tenant_id);
+
+
+--
 -- Name: index_communication_emails_on_workshop_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14707,6 +15185,13 @@ CREATE INDEX index_communication_translations_on_locale ON public.communication_
 
 
 --
+-- Name: index_communication_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_translations_on_tenant_id ON public.communication_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_communications_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14721,6 +15206,13 @@ CREATE INDEX index_communications_assessments_on_communication_id ON public.comm
 
 
 --
+-- Name: index_communications_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_assessments_on_tenant_id ON public.communications_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_communications_copy_memberships; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14728,10 +15220,24 @@ CREATE INDEX index_communications_copy_memberships ON public.communications_copy
 
 
 --
+-- Name: index_communications_copy_memberships_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_copy_memberships_on_tenant_id ON public.communications_copy_memberships USING btree (tenant_id);
+
+
+--
 -- Name: index_communications_memberships; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_communications_memberships ON public.communications_memberships USING btree (communication_id, membership_id);
+
+
+--
+-- Name: index_communications_memberships_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_memberships_on_tenant_id ON public.communications_memberships USING btree (tenant_id);
 
 
 --
@@ -14791,6 +15297,13 @@ CREATE INDEX index_communications_on_sub_campaign_id ON public.communications US
 
 
 --
+-- Name: index_communications_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_tenant_id ON public.communications USING btree (tenant_id);
+
+
+--
 -- Name: index_communications_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14802,6 +15315,13 @@ CREATE INDEX index_communications_on_updated_by_id ON public.communications USIN
 --
 
 CREATE INDEX index_communications_users_on_communication_id ON public.communications_users USING btree (communication_id);
+
+
+--
+-- Name: index_communications_users_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_users_on_tenant_id ON public.communications_users USING btree (tenant_id);
 
 
 --
@@ -14833,6 +15353,34 @@ CREATE INDEX index_dashboards_on_campaign_id ON public.dashboards USING btree (c
 
 
 --
+-- Name: index_dashboards_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_dashboards_on_tenant_id ON public.dashboards USING btree (tenant_id);
+
+
+--
+-- Name: index_data_report_jobs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_data_report_jobs_on_tenant_id ON public.data_report_jobs USING btree (tenant_id);
+
+
+--
+-- Name: index_data_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_data_reports_on_tenant_id ON public.data_reports USING btree (tenant_id);
+
+
+--
+-- Name: index_datasheet_column_preferences_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_datasheet_column_preferences_on_tenant_id ON public.datasheet_column_preferences USING btree (tenant_id);
+
+
+--
 -- Name: index_dd1550fac3e20f3c72e929b92570e38fc03f70a8; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14844,6 +15392,13 @@ CREATE UNIQUE INDEX index_dd1550fac3e20f3c72e929b92570e38fc03f70a8 ON public.cam
 --
 
 CREATE INDEX index_design_settings_on_project_id ON public.design_settings USING btree (project_id);
+
+
+--
+-- Name: index_design_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_settings_on_tenant_id ON public.design_settings USING btree (tenant_id);
 
 
 --
@@ -14861,6 +15416,13 @@ CREATE INDEX index_development_action_translations_on_name_and_locale ON public.
 
 
 --
+-- Name: index_development_action_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_development_action_translations_on_tenant_id ON public.development_action_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_development_actions_on_owner; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14875,10 +15437,24 @@ CREATE INDEX index_development_actions_on_source_type ON public.development_acti
 
 
 --
+-- Name: index_development_actions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_development_actions_on_tenant_id ON public.development_actions USING btree (tenant_id);
+
+
+--
 -- Name: index_dimensions_on_created_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_dimensions_on_created_by_id ON public.dimensions USING btree (created_by_id);
+
+
+--
+-- Name: index_dimensions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_dimensions_on_tenant_id ON public.dimensions USING btree (tenant_id);
 
 
 --
@@ -14924,6 +15500,13 @@ CREATE INDEX index_factor_benchmark_scores_on_factor_id ON public.factor_benchma
 
 
 --
+-- Name: index_factor_benchmark_scores_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_benchmark_scores_on_tenant_id ON public.factor_benchmark_scores USING btree (tenant_id);
+
+
+--
 -- Name: index_factor_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14942,6 +15525,13 @@ CREATE INDEX index_factor_translations_on_locale ON public.factor_translations U
 --
 
 CREATE INDEX index_factor_translations_on_name_and_locale ON public.factor_translations USING btree (name, locale);
+
+
+--
+-- Name: index_factor_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_translations_on_tenant_id ON public.factor_translations USING btree (tenant_id);
 
 
 --
@@ -14966,6 +15556,13 @@ CREATE UNIQUE INDEX index_factors_aliases_on_report_id_and_factor_id ON public.f
 
 
 --
+-- Name: index_factors_aliases_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_aliases_on_tenant_id ON public.factors_aliases USING btree (tenant_id);
+
+
+--
 -- Name: index_factors_norms_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14977,6 +15574,13 @@ CREATE INDEX index_factors_norms_on_factor_id ON public.factors_norms USING btre
 --
 
 CREATE INDEX index_factors_norms_on_norm_id ON public.factors_norms USING btree (norm_id);
+
+
+--
+-- Name: index_factors_norms_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_norms_on_tenant_id ON public.factors_norms USING btree (tenant_id);
 
 
 --
@@ -15008,6 +15612,13 @@ CREATE UNIQUE INDEX index_factors_on_skill_id ON public.factors USING btree (ski
 
 
 --
+-- Name: index_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_tenant_id ON public.factors USING btree (tenant_id);
+
+
+--
 -- Name: index_factors_scoring_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15036,6 +15647,13 @@ CREATE INDEX index_factors_scoring_on_question_id ON public.factors_scoring USIN
 
 
 --
+-- Name: index_factors_scoring_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_scoring_on_tenant_id ON public.factors_scoring USING btree (tenant_id);
+
+
+--
 -- Name: index_factors_sub_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15050,10 +15668,24 @@ CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_fa
 
 
 --
+-- Name: index_factors_sub_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_sub_factors_on_tenant_id ON public.factors_sub_factors USING btree (tenant_id);
+
+
+--
 -- Name: index_highlights_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_highlights_on_assessment_id ON public.highlights USING btree (assessment_id);
+
+
+--
+-- Name: index_highlights_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_highlights_on_tenant_id ON public.highlights USING btree (tenant_id);
 
 
 --
@@ -15071,6 +15703,13 @@ CREATE INDEX index_hogan_credentials_on_membership_id ON public.hogan_credential
 
 
 --
+-- Name: index_hogan_credentials_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_credentials_on_tenant_id ON public.hogan_credentials USING btree (tenant_id);
+
+
+--
 -- Name: index_hogan_credentials_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15078,10 +15717,31 @@ CREATE INDEX index_hogan_credentials_on_user_id ON public.hogan_credentials USIN
 
 
 --
+-- Name: index_hogan_logs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_logs_on_tenant_id ON public.hogan_logs USING btree (tenant_id);
+
+
+--
 -- Name: index_hogan_report_settings_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_settings USING btree (report_id);
+
+
+--
+-- Name: index_hogan_report_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_report_settings_on_tenant_id ON public.hogan_report_settings USING btree (tenant_id);
+
+
+--
+-- Name: index_idp_report_pdfs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_report_pdfs_on_tenant_id ON public.idp_report_pdfs USING btree (tenant_id);
 
 
 --
@@ -15099,10 +15759,24 @@ CREATE INDEX index_idp_settings_on_project_id ON public.idp_settings USING btree
 
 
 --
+-- Name: index_idp_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_settings_on_tenant_id ON public.idp_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_idp_template_development_actions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_idp_template_development_actions_on_idp_template_id ON public.idp_template_development_actions USING btree (idp_template_id);
+
+
+--
+-- Name: index_idp_template_development_actions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_development_actions_on_tenant_id ON public.idp_template_development_actions USING btree (tenant_id);
 
 
 --
@@ -15113,10 +15787,24 @@ CREATE INDEX index_idp_template_interview_questions_on_idp_template_id ON public
 
 
 --
+-- Name: index_idp_template_interview_questions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_interview_questions_on_tenant_id ON public.idp_template_interview_questions USING btree (tenant_id);
+
+
+--
 -- Name: index_idp_template_reflection_questions_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_idp_template_reflection_questions_on_idp_template_id ON public.idp_template_reflection_questions USING btree (idp_template_id);
+
+
+--
+-- Name: index_idp_template_reflection_questions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_reflection_questions_on_tenant_id ON public.idp_template_reflection_questions USING btree (tenant_id);
 
 
 --
@@ -15148,6 +15836,13 @@ CREATE INDEX index_idp_template_skills_on_skill_id ON public.idp_template_skills
 
 
 --
+-- Name: index_idp_template_skills_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_skills_on_tenant_id ON public.idp_template_skills USING btree (tenant_id);
+
+
+--
 -- Name: index_idp_template_translations_on_idp_template_id_and_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15159,6 +15854,13 @@ CREATE UNIQUE INDEX index_idp_template_translations_on_idp_template_id_and_local
 --
 
 CREATE INDEX index_idp_template_translations_on_locale ON public.idp_template_translations USING btree (locale);
+
+
+--
+-- Name: index_idp_template_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_translations_on_tenant_id ON public.idp_template_translations USING btree (tenant_id);
 
 
 --
@@ -15197,6 +15899,20 @@ CREATE INDEX index_idp_templates_on_report_id ON public.idp_templates USING btre
 
 
 --
+-- Name: index_idp_templates_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_templates_on_tenant_id ON public.idp_templates USING btree (tenant_id);
+
+
+--
+-- Name: index_iiht_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_iiht_user_assessments_on_tenant_id ON public.iiht_user_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_iiht_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15218,10 +15934,24 @@ CREATE INDEX index_innovation_styles_factors_on_innovation_style_id ON public.in
 
 
 --
+-- Name: index_innovation_styles_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_innovation_styles_factors_on_tenant_id ON public.innovation_styles_factors USING btree (tenant_id);
+
+
+--
 -- Name: index_innovation_styles_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_innovation_styles_on_dimension_id ON public.innovation_styles USING btree (dimension_id);
+
+
+--
+-- Name: index_innovation_styles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_innovation_styles_on_tenant_id ON public.innovation_styles USING btree (tenant_id);
 
 
 --
@@ -15232,10 +15962,24 @@ CREATE INDEX index_integrations_on_project_id ON public.integrations USING btree
 
 
 --
+-- Name: index_integrations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_integrations_on_tenant_id ON public.integrations USING btree (tenant_id);
+
+
+--
 -- Name: index_interview_questions_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_interview_questions_on_project_id ON public.interview_questions USING btree (project_id);
+
+
+--
+-- Name: index_interview_questions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_interview_questions_on_tenant_id ON public.interview_questions USING btree (tenant_id);
 
 
 --
@@ -15257,6 +16001,13 @@ CREATE INDEX index_job_groups_on_project_id ON public.job_groups USING btree (pr
 --
 
 CREATE UNIQUE INDEX index_job_groups_on_project_id_and_name ON public.job_groups USING btree (project_id, name);
+
+
+--
+-- Name: index_job_groups_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_groups_on_tenant_id ON public.job_groups USING btree (tenant_id);
 
 
 --
@@ -15288,6 +16039,13 @@ CREATE INDEX index_job_role_translations_on_name_and_locale ON public.job_role_t
 
 
 --
+-- Name: index_job_role_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_role_translations_on_tenant_id ON public.job_role_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_job_roles_on_code_and_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15316,6 +16074,13 @@ CREATE INDEX index_job_roles_on_project_id ON public.job_roles USING btree (proj
 
 
 --
+-- Name: index_job_roles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_job_roles_on_tenant_id ON public.job_roles USING btree (tenant_id);
+
+
+--
 -- Name: index_libraries_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15327,6 +16092,13 @@ CREATE INDEX index_libraries_on_ancestry ON public.libraries USING btree (ancest
 --
 
 CREATE INDEX index_libraries_on_created_by_id ON public.libraries USING btree (created_by_id);
+
+
+--
+-- Name: index_libraries_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_libraries_on_tenant_id ON public.libraries USING btree (tenant_id);
 
 
 --
@@ -15386,6 +16158,13 @@ CREATE INDEX index_license_usages_on_registration_code_id ON public.license_usag
 
 
 --
+-- Name: index_license_usages_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_tenant_id ON public.license_usages USING btree (tenant_id);
+
+
+--
 -- Name: index_license_usages_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15404,6 +16183,13 @@ CREATE INDEX index_licenses_on_client_id ON public.licenses USING btree (client_
 --
 
 CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
+
+
+--
+-- Name: index_licenses_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_licenses_on_tenant_id ON public.licenses USING btree (tenant_id);
 
 
 --
@@ -15456,6 +16242,13 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 
 
 --
+-- Name: index_media_responses_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_media_responses_on_tenant_id ON public.media_responses USING btree (tenant_id);
+
+
+--
 -- Name: index_media_responses_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15477,6 +16270,13 @@ CREATE INDEX index_meeting_recordings_on_meeting_session_id ON public.meeting_re
 
 
 --
+-- Name: index_meeting_recordings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_meeting_recordings_on_tenant_id ON public.meeting_recordings USING btree (tenant_id);
+
+
+--
 -- Name: index_meeting_rooms_on_meetable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15484,10 +16284,24 @@ CREATE INDEX index_meeting_rooms_on_meetable ON public.meeting_rooms USING btree
 
 
 --
+-- Name: index_meeting_rooms_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_meeting_rooms_on_tenant_id ON public.meeting_rooms USING btree (tenant_id);
+
+
+--
 -- Name: index_membership_grants_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_membership_grants_on_membership_id ON public.membership_grants USING btree (membership_id);
+
+
+--
+-- Name: index_membership_grants_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_membership_grants_on_tenant_id ON public.membership_grants USING btree (tenant_id);
 
 
 --
@@ -15502,6 +16316,13 @@ CREATE INDEX index_memberships_admin_roles_on_admin_role_id ON public.membership
 --
 
 CREATE INDEX index_memberships_admin_roles_on_membership_id ON public.memberships_admin_roles USING btree (membership_id);
+
+
+--
+-- Name: index_memberships_admin_roles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_admin_roles_on_tenant_id ON public.memberships_admin_roles USING btree (tenant_id);
 
 
 --
@@ -15554,6 +16375,13 @@ CREATE INDEX index_memberships_on_role ON public.memberships USING btree (role);
 
 
 --
+-- Name: index_memberships_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_tenant_id ON public.memberships USING btree (tenant_id);
+
+
+--
 -- Name: index_memberships_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15575,6 +16403,13 @@ CREATE INDEX index_mettl_assessments_on_project_id ON public.mettl_assessments U
 
 
 --
+-- Name: index_mettl_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_assessments_on_tenant_id ON public.mettl_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_mettl_schedule_records_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15589,10 +16424,31 @@ CREATE INDEX index_mettl_schedule_records_on_project_id ON public.mettl_schedule
 
 
 --
+-- Name: index_mettl_schedule_records_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_schedule_records_on_tenant_id ON public.mettl_schedule_records USING btree (tenant_id);
+
+
+--
+-- Name: index_mettl_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_user_assessments_on_tenant_id ON public.mettl_user_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_mettl_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_mhs_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mhs_user_assessments_on_tenant_id ON public.mhs_user_assessments USING btree (tenant_id);
 
 
 --
@@ -15638,6 +16494,13 @@ CREATE INDEX index_norms_on_dimension_id ON public.norms USING btree (dimension_
 
 
 --
+-- Name: index_norms_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_norms_on_tenant_id ON public.norms USING btree (tenant_id);
+
+
+--
 -- Name: index_notifications_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15649,6 +16512,13 @@ CREATE INDEX index_notifications_on_assessment_id ON public.notifications USING 
 --
 
 CREATE INDEX index_notifications_on_membership_id ON public.notifications USING btree (membership_id);
+
+
+--
+-- Name: index_notifications_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_notifications_on_tenant_id ON public.notifications USING btree (tenant_id);
 
 
 --
@@ -15666,10 +16536,24 @@ CREATE INDEX index_occupations_factors_on_occupation_id ON public.occupations_fa
 
 
 --
+-- Name: index_occupations_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_factors_on_tenant_id ON public.occupations_factors USING btree (tenant_id);
+
+
+--
 -- Name: index_occupations_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree (dimension_id);
+
+
+--
+-- Name: index_occupations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_on_tenant_id ON public.occupations USING btree (tenant_id);
 
 
 --
@@ -15684,6 +16568,13 @@ CREATE UNIQUE INDEX index_oracle_credentials_on_user_id ON public.oracle_credent
 --
 
 CREATE INDEX index_password_archivable ON public.old_passwords USING btree (password_archivable_type, password_archivable_id);
+
+
+--
+-- Name: index_pearson_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pearson_user_assessments_on_tenant_id ON public.pearson_user_assessments USING btree (tenant_id);
 
 
 --
@@ -15715,6 +16606,13 @@ CREATE INDEX index_power_bi_settings_on_project_id ON public.power_bi_settings U
 
 
 --
+-- Name: index_power_bi_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_power_bi_settings_on_tenant_id ON public.power_bi_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_privacy_consents_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15733,6 +16631,13 @@ CREATE INDEX index_privacy_consents_on_campaign_id ON public.privacy_consents US
 --
 
 CREATE INDEX index_privacy_consents_on_membership_id ON public.privacy_consents USING btree (membership_id);
+
+
+--
+-- Name: index_privacy_consents_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_consents_on_tenant_id ON public.privacy_consents USING btree (tenant_id);
 
 
 --
@@ -15764,6 +16669,13 @@ CREATE INDEX index_privacy_setting_translations_on_locale ON public.privacy_sett
 
 
 --
+-- Name: index_privacy_setting_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_setting_translations_on_tenant_id ON public.privacy_setting_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_privacy_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15771,10 +16683,24 @@ CREATE INDEX index_privacy_settings_on_project_id ON public.privacy_settings USI
 
 
 --
+-- Name: index_privacy_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_settings_on_tenant_id ON public.privacy_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_proctoring_sessions_on_campaign_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
+
+
+--
+-- Name: index_proctoring_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proctoring_sessions_on_tenant_id ON public.proctoring_sessions USING btree (tenant_id);
 
 
 --
@@ -15789,6 +16715,13 @@ CREATE INDEX index_proctoring_sessions_on_user_assessment_id ON public.proctorin
 --
 
 CREATE INDEX index_proficiency_level_translations_on_proficiency_level_id ON public.proficiency_level_translations USING btree (proficiency_level_id);
+
+
+--
+-- Name: index_proficiency_level_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proficiency_level_translations_on_tenant_id ON public.proficiency_level_translations USING btree (tenant_id);
 
 
 --
@@ -15813,10 +16746,24 @@ CREATE INDEX index_proficiency_levels_on_skill_id ON public.proficiency_levels U
 
 
 --
+-- Name: index_proficiency_levels_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proficiency_levels_on_tenant_id ON public.proficiency_levels USING btree (tenant_id);
+
+
+--
 -- Name: index_profile_field_values_on_profile_field_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_profile_field_values_on_profile_field_id ON public.profile_field_values USING btree (profile_field_id);
+
+
+--
+-- Name: index_profile_field_values_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_field_values_on_tenant_id ON public.profile_field_values USING btree (tenant_id);
 
 
 --
@@ -15841,10 +16788,24 @@ CREATE INDEX index_profile_fields_on_question_id ON public.profile_fields USING 
 
 
 --
+-- Name: index_profile_fields_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_fields_on_tenant_id ON public.profile_fields USING btree (tenant_id);
+
+
+--
 -- Name: index_profile_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USING btree (project_id);
+
+
+--
+-- Name: index_profile_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_settings_on_tenant_id ON public.profile_settings USING btree (tenant_id);
 
 
 --
@@ -15862,10 +16823,24 @@ CREATE INDEX index_project_assessments_on_project_id ON public.project_assessmen
 
 
 --
+-- Name: index_project_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_tenant_id ON public.project_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_project_features_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_project_features_on_project_id ON public.project_features USING btree (project_id);
+
+
+--
+-- Name: index_project_features_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_features_on_tenant_id ON public.project_features USING btree (tenant_id);
 
 
 --
@@ -15890,6 +16865,13 @@ CREATE INDEX index_project_licenses_on_project_id ON public.project_licenses USI
 
 
 --
+-- Name: index_project_licenses_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_licenses_on_tenant_id ON public.project_licenses USING btree (tenant_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15908,6 +16890,13 @@ CREATE UNIQUE INDEX index_question_recoding_on_question_assessment_id ON public.
 --
 
 CREATE INDEX index_question_recoding_on_question_id ON public.question_recoding USING btree (question_id);
+
+
+--
+-- Name: index_question_recoding_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_question_recoding_on_tenant_id ON public.question_recoding USING btree (tenant_id);
 
 
 --
@@ -15946,10 +16935,24 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
+-- Name: index_questions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_tenant_id ON public.questions USING btree (tenant_id);
+
+
+--
 -- Name: index_questions_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_questions_on_updated_by_id ON public.questions USING btree (updated_by_id);
+
+
+--
+-- Name: index_reflection_question_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reflection_question_translations_on_tenant_id ON public.reflection_question_translations USING btree (tenant_id);
 
 
 --
@@ -15960,10 +16963,24 @@ CREATE INDEX index_reflection_questions_on_project_id ON public.reflection_quest
 
 
 --
+-- Name: index_reflection_questions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reflection_questions_on_tenant_id ON public.reflection_questions USING btree (tenant_id);
+
+
+--
 -- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
+
+
+--
+-- Name: index_registration_codes_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_registration_codes_on_tenant_id ON public.registration_codes USING btree (tenant_id);
 
 
 --
@@ -15974,10 +16991,24 @@ CREATE INDEX index_registration_settings_on_project_id ON public.registration_se
 
 
 --
+-- Name: index_registration_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_registration_settings_on_tenant_id ON public.registration_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_relationships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_relationships_on_campaign_id ON public.relationships USING btree (campaign_id);
+
+
+--
+-- Name: index_relationships_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_tenant_id ON public.relationships USING btree (tenant_id);
 
 
 --
@@ -15999,6 +17030,13 @@ CREATE UNIQUE INDEX index_report_approval_settings_on_campaign_id_and_report_id 
 --
 
 CREATE INDEX index_report_approval_settings_on_report_id ON public.report_approval_settings USING btree (report_id);
+
+
+--
+-- Name: index_report_approval_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_report_approval_settings_on_tenant_id ON public.report_approval_settings USING btree (tenant_id);
 
 
 --
@@ -16065,6 +17103,13 @@ CREATE UNIQUE INDEX index_reports_campaign_ai_artifacts_on_report_id_and_code ON
 
 
 --
+-- Name: index_reports_campaign_ai_artifacts_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_campaign_ai_artifacts_on_tenant_id ON public.reports_campaign_ai_artifacts USING btree (tenant_id);
+
+
+--
 -- Name: index_reports_campaign_factors_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16079,10 +17124,24 @@ CREATE UNIQUE INDEX index_reports_campaign_factors_on_report_id_and_code ON publ
 
 
 --
+-- Name: index_reports_campaign_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_campaign_factors_on_tenant_id ON public.reports_campaign_factors USING btree (tenant_id);
+
+
+--
 -- Name: index_reports_filters_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_reports_filters_on_report_id ON public.reports_filters USING btree (report_id);
+
+
+--
+-- Name: index_reports_filters_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_filters_on_tenant_id ON public.reports_filters USING btree (tenant_id);
 
 
 --
@@ -16097,6 +17156,13 @@ CREATE INDEX index_reports_modules_on_assessment_id ON public.reports_modules US
 --
 
 CREATE INDEX index_reports_modules_on_page_id ON public.reports_modules USING btree (page_id);
+
+
+--
+-- Name: index_reports_modules_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_modules_on_tenant_id ON public.reports_modules USING btree (tenant_id);
 
 
 --
@@ -16121,6 +17187,13 @@ CREATE INDEX index_reports_on_deleted_by_id ON public.reports USING btree (delet
 
 
 --
+-- Name: index_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_on_tenant_id ON public.reports USING btree (tenant_id);
+
+
+--
 -- Name: index_reports_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16135,10 +17208,24 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_reports_pages_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_pages_on_tenant_id ON public.reports_pages USING btree (tenant_id);
+
+
+--
 -- Name: index_resource_hogan_credentials_on_hogan_credential_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_resource_hogan_credentials_on_hogan_credential_id ON public.resource_hogan_credentials USING btree (hogan_credential_id);
+
+
+--
+-- Name: index_resource_hogan_credentials_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resource_hogan_credentials_on_tenant_id ON public.resource_hogan_credentials USING btree (tenant_id);
 
 
 --
@@ -16163,10 +17250,31 @@ CREATE INDEX index_saml_service_providers_on_project_id ON public.saml_service_p
 
 
 --
+-- Name: index_saml_service_providers_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_service_providers_on_tenant_id ON public.saml_service_providers USING btree (tenant_id);
+
+
+--
 -- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_saml_settings_on_project_id ON public.saml_settings USING btree (project_id);
+
+
+--
+-- Name: index_saml_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saml_settings_on_tenant_id ON public.saml_settings USING btree (tenant_id);
+
+
+--
+-- Name: index_saville_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saville_factors_on_tenant_id ON public.saville_factors USING btree (tenant_id);
 
 
 --
@@ -16177,10 +17285,66 @@ CREATE INDEX index_saville_report_settings_on_report_id ON public.saville_report
 
 
 --
+-- Name: index_saville_report_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saville_report_settings_on_tenant_id ON public.saville_report_settings USING btree (tenant_id);
+
+
+--
+-- Name: index_saville_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saville_user_assessments_on_tenant_id ON public.saville_user_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_saville_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.saville_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_tenant_id ON public.sessions USING btree (tenant_id);
+
+
+--
+-- Name: index_sessions_on_impersonator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_impersonator_id ON public.sessions USING btree (impersonator_id);
+
+
+--
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_updated_at ON public.sessions USING btree (updated_at);
+
+
+--
+-- Name: index_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_user_id ON public.sessions USING btree (user_id);
+
+
+--
+-- Name: index_sessions_on_user_id_and_subdomain; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_user_id_and_subdomain ON public.sessions USING btree (user_id, subdomain);
 
 
 --
@@ -16191,6 +17355,13 @@ CREATE INDEX index_sheet_columns_on_sheet_id ON public.sheet_columns USING btree
 
 
 --
+-- Name: index_sheet_columns_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_columns_on_tenant_id ON public.sheet_columns USING btree (tenant_id);
+
+
+--
 -- Name: index_sheet_row_data_on_sheet_row_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16198,10 +17369,24 @@ CREATE INDEX index_sheet_row_data_on_sheet_row_id ON public.sheet_row_data USING
 
 
 --
+-- Name: index_sheet_row_data_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_row_data_on_tenant_id ON public.sheet_row_data USING btree (tenant_id);
+
+
+--
 -- Name: index_sheet_rows_on_sheet_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_sheet_rows_on_sheet_id ON public.sheet_rows USING btree (sheet_id);
+
+
+--
+-- Name: index_sheet_rows_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_rows_on_tenant_id ON public.sheet_rows USING btree (tenant_id);
 
 
 --
@@ -16216,6 +17401,13 @@ CREATE INDEX index_sheets_on_campaign_id ON public.sheets USING btree (campaign_
 --
 
 CREATE INDEX index_sheets_on_project_id ON public.sheets USING btree (project_id);
+
+
+--
+-- Name: index_sheets_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheets_on_tenant_id ON public.sheets USING btree (tenant_id);
 
 
 --
@@ -16254,6 +17446,13 @@ CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (u
 
 
 --
+-- Name: index_simulation_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_simulation_user_assessments_on_tenant_id ON public.simulation_user_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_simulation_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16275,6 +17474,13 @@ CREATE INDEX index_skill_aliases_on_skill_id ON public.skill_aliases USING btree
 
 
 --
+-- Name: index_skill_aliases_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_aliases_on_tenant_id ON public.skill_aliases USING btree (tenant_id);
+
+
+--
 -- Name: index_skill_groups_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16293,6 +17499,13 @@ CREATE INDEX index_skill_groups_on_project_id ON public.skill_groups USING btree
 --
 
 CREATE UNIQUE INDEX index_skill_groups_on_project_id_and_name ON public.skill_groups USING btree (project_id, name);
+
+
+--
+-- Name: index_skill_groups_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_groups_on_tenant_id ON public.skill_groups USING btree (tenant_id);
 
 
 --
@@ -16324,6 +17537,13 @@ CREATE UNIQUE INDEX index_skill_translations_on_skill_id_and_locale ON public.sk
 
 
 --
+-- Name: index_skill_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_translations_on_tenant_id ON public.skill_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_skills_development_actions_on_development_action_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16335,6 +17555,13 @@ CREATE INDEX index_skills_development_actions_on_development_action_id ON public
 --
 
 CREATE INDEX index_skills_development_actions_on_skill_id ON public.skills_development_actions USING btree (skill_id);
+
+
+--
+-- Name: index_skills_development_actions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skills_development_actions_on_tenant_id ON public.skills_development_actions USING btree (tenant_id);
 
 
 --
@@ -16366,6 +17593,13 @@ CREATE INDEX index_skills_job_roles_on_skill_id ON public.skills_job_roles USING
 
 
 --
+-- Name: index_skills_job_roles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skills_job_roles_on_tenant_id ON public.skills_job_roles USING btree (tenant_id);
+
+
+--
 -- Name: index_skills_on_name_and_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16394,6 +17628,13 @@ CREATE INDEX index_skills_on_skill_group_id ON public.skills USING btree (skill_
 
 
 --
+-- Name: index_skills_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skills_on_tenant_id ON public.skills USING btree (tenant_id);
+
+
+--
 -- Name: index_skillvue_assessments_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16408,6 +17649,20 @@ CREATE INDEX index_skillvue_assessments_on_project_id ON public.skillvue_assessm
 
 
 --
+-- Name: index_skillvue_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skillvue_assessments_on_tenant_id ON public.skillvue_assessments USING btree (tenant_id);
+
+
+--
+-- Name: index_skillvue_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skillvue_user_assessments_on_tenant_id ON public.skillvue_user_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_skillvue_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16419,6 +17674,13 @@ CREATE INDEX index_skillvue_user_assessments_on_user_assessment_id ON public.ski
 --
 
 CREATE INDEX index_sms_histories_on_sms_record_id ON public.sms_histories USING btree (sms_record_id);
+
+
+--
+-- Name: index_sms_histories_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_histories_on_tenant_id ON public.sms_histories USING btree (tenant_id);
 
 
 --
@@ -16450,6 +17712,13 @@ CREATE INDEX index_sms_invites_on_registered_user_id ON public.sms_invites USING
 
 
 --
+-- Name: index_sms_invites_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_invites_on_tenant_id ON public.sms_invites USING btree (tenant_id);
+
+
+--
 -- Name: index_sms_records_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16464,6 +17733,13 @@ CREATE INDEX index_sms_records_on_creator_id ON public.sms_records USING btree (
 
 
 --
+-- Name: index_sms_records_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sms_records_on_tenant_id ON public.sms_records USING btree (tenant_id);
+
+
+--
 -- Name: index_smtp_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16471,10 +17747,31 @@ CREATE INDEX index_smtp_settings_on_project_id ON public.smtp_settings USING btr
 
 
 --
+-- Name: index_smtp_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_smtp_settings_on_tenant_id ON public.smtp_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_system_check_records_on_system_check_session_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_system_check_records_on_system_check_session_id ON public.system_check_records USING btree (system_check_session_id);
+
+
+--
+-- Name: index_system_check_records_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_system_check_records_on_tenant_id ON public.system_check_records USING btree (tenant_id);
+
+
+--
+-- Name: index_system_check_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_system_check_sessions_on_tenant_id ON public.system_check_sessions USING btree (tenant_id);
 
 
 --
@@ -16548,6 +17845,13 @@ CREATE INDEX index_taggings_on_tenant ON public.taggings USING btree (tenant);
 
 
 --
+-- Name: index_taggings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taggings_on_tenant_id ON public.taggings USING btree (tenant_id);
+
+
+--
 -- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16559,6 +17863,13 @@ CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
 --
 
 CREATE INDEX index_taxonomy_levels_on_project_id ON public.taxonomy_levels USING btree (project_id);
+
+
+--
+-- Name: index_taxonomy_levels_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxonomy_levels_on_tenant_id ON public.taxonomy_levels USING btree (tenant_id);
 
 
 --
@@ -16580,6 +17891,13 @@ CREATE INDEX index_temporary_uploads_on_user_id ON public.temporary_uploads USIN
 --
 
 CREATE INDEX index_text_module_overrides_on_editor_id ON public.text_module_overrides USING btree (editor_id);
+
+
+--
+-- Name: index_text_module_overrides_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_text_module_overrides_on_tenant_id ON public.text_module_overrides USING btree (tenant_id);
 
 
 --
@@ -16611,6 +17929,13 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
+-- Name: index_threesixty_campaigns_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_campaigns_on_tenant_id ON public.threesixty_campaigns USING btree (tenant_id);
+
+
+--
 -- Name: index_threesixty_email_histories_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16622,6 +17947,13 @@ CREATE INDEX index_threesixty_email_histories_on_evaluator_id ON public.threesix
 --
 
 CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty_email_histories USING btree (subject_id);
+
+
+--
+-- Name: index_threesixty_email_histories_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_histories_on_tenant_id ON public.threesixty_email_histories USING btree (tenant_id);
 
 
 --
@@ -16653,10 +17985,24 @@ CREATE INDEX index_threesixty_email_schedules_on_template_id ON public.threesixt
 
 
 --
+-- Name: index_threesixty_email_schedules_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_tenant_id ON public.threesixty_email_schedules USING btree (tenant_id);
+
+
+--
 -- Name: index_threesixty_email_template_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_threesixty_email_template_translations_on_locale ON public.threesixty_email_template_translations USING btree (locale);
+
+
+--
+-- Name: index_threesixty_email_template_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_template_translations_on_tenant_id ON public.threesixty_email_template_translations USING btree (tenant_id);
 
 
 --
@@ -16667,10 +18013,24 @@ CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.thr
 
 
 --
+-- Name: index_threesixty_email_templates_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_templates_on_tenant_id ON public.threesixty_email_templates USING btree (tenant_id);
+
+
+--
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_threesixty_evaluators_on_campaign_id ON public.threesixty_evaluators USING btree (campaign_id);
+
+
+--
+-- Name: index_threesixty_evaluators_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_evaluators_on_tenant_id ON public.threesixty_evaluators USING btree (tenant_id);
 
 
 --
@@ -16695,10 +18055,38 @@ CREATE UNIQUE INDEX index_threesixty_instruction_templates_campaign_name ON publ
 
 
 --
+-- Name: index_threesixty_instruction_templates_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_instruction_templates_on_tenant_id ON public.threesixty_instruction_templates USING btree (tenant_id);
+
+
+--
+-- Name: index_threesixty_nomination_requirements_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_nomination_requirements_on_tenant_id ON public.threesixty_nomination_requirements USING btree (tenant_id);
+
+
+--
+-- Name: index_threesixty_options_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_options_on_tenant_id ON public.threesixty_options USING btree (tenant_id);
+
+
+--
 -- Name: index_threesixty_options_on_threesixty_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_threesixty_options_on_threesixty_campaign_id ON public.threesixty_options USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: index_threesixty_reminder_histories_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_reminder_histories_on_tenant_id ON public.threesixty_reminder_histories USING btree (tenant_id);
 
 
 --
@@ -16723,6 +18111,13 @@ CREATE INDEX index_threesixty_subjects_on_evaluation_status_updated_by_id ON pub
 
 
 --
+-- Name: index_threesixty_subjects_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_subjects_on_tenant_id ON public.threesixty_subjects USING btree (tenant_id);
+
+
+--
 -- Name: index_threesixty_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16734,6 +18129,13 @@ CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects 
 --
 
 CREATE INDEX index_transcriptions_on_status ON public.transcriptions USING btree (status);
+
+
+--
+-- Name: index_transcriptions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_transcriptions_on_tenant_id ON public.transcriptions USING btree (tenant_id);
 
 
 --
@@ -16786,10 +18188,31 @@ CREATE INDEX index_user_assessment_factor_scores_on_factor_id ON public.user_ass
 
 
 --
+-- Name: index_user_assessment_factor_scores_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_tenant_id ON public.user_assessment_factor_scores USING btree (tenant_id);
+
+
+--
 -- Name: index_user_assessment_factor_scores_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_user_assessment_factor_scores_on_user_assessment_id ON public.user_assessment_factor_scores USING btree (user_assessment_id);
+
+
+--
+-- Name: index_user_assessment_verification_images_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_verification_images_on_tenant_id ON public.user_assessment_verification_images USING btree (tenant_id);
+
+
+--
+-- Name: index_user_assessment_verification_media_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_verification_media_on_tenant_id ON public.user_assessment_verification_media USING btree (tenant_id);
 
 
 --
@@ -16849,6 +18272,13 @@ CREATE INDEX index_user_assessments_on_subject_id ON public.user_assessments USI
 
 
 --
+-- Name: index_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessments_on_tenant_id ON public.user_assessments USING btree (tenant_id);
+
+
+--
 -- Name: index_user_assessments_on_users_result_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16874,6 +18304,13 @@ CREATE INDEX index_user_availability_days_on_user_availability_date_id ON public
 --
 
 CREATE INDEX index_user_bookings_on_booked_by_resource ON public.user_bookings USING btree (booked_by_resource_type, booked_by_resource_id);
+
+
+--
+-- Name: index_user_bookings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_bookings_on_tenant_id ON public.user_bookings USING btree (tenant_id);
 
 
 --
@@ -16926,6 +18363,13 @@ CREATE INDEX index_user_idp_comments_on_resource ON public.user_idp_comments USI
 
 
 --
+-- Name: index_user_idp_comments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_comments_on_tenant_id ON public.user_idp_comments USING btree (tenant_id);
+
+
+--
 -- Name: index_user_idp_comments_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16951,6 +18395,13 @@ CREATE INDEX index_user_idp_development_actions_on_deleted_by_id ON public.user_
 --
 
 CREATE INDEX index_user_idp_development_actions_on_development_action_id ON public.user_idp_development_actions USING btree (development_action_id);
+
+
+--
+-- Name: index_user_idp_development_actions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_development_actions_on_tenant_id ON public.user_idp_development_actions USING btree (tenant_id);
 
 
 --
@@ -16989,6 +18440,13 @@ CREATE INDEX index_user_idp_plans_on_idp_template_id ON public.user_idp_plans US
 
 
 --
+-- Name: index_user_idp_plans_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_plans_on_tenant_id ON public.user_idp_plans USING btree (tenant_id);
+
+
+--
 -- Name: index_user_idp_plans_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17024,6 +18482,13 @@ CREATE INDEX index_user_idp_skills_on_skill_id ON public.user_idp_skills USING b
 
 
 --
+-- Name: index_user_idp_skills_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_idp_skills_on_tenant_id ON public.user_idp_skills USING btree (tenant_id);
+
+
+--
 -- Name: index_user_idp_skills_on_user_idp_plan_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17031,10 +18496,24 @@ CREATE INDEX index_user_idp_skills_on_user_idp_plan_id ON public.user_idp_skills
 
 
 --
+-- Name: index_user_profiles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_profiles_on_tenant_id ON public.user_profiles USING btree (tenant_id);
+
+
+--
 -- Name: index_user_profiles_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_user_profiles_on_user_id ON public.user_profiles USING btree (user_id);
+
+
+--
+-- Name: index_user_reflection_question_answers_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reflection_question_answers_on_tenant_id ON public.user_reflection_question_answers USING btree (tenant_id);
 
 
 --
@@ -17073,6 +18552,13 @@ CREATE INDEX index_user_report_comments_on_reports_module_id ON public.user_repo
 
 
 --
+-- Name: index_user_report_comments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_comments_on_tenant_id ON public.user_report_comments USING btree (tenant_id);
+
+
+--
 -- Name: index_user_report_comments_on_user_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17087,10 +18573,24 @@ CREATE INDEX index_user_report_events_on_initiator_id ON public.user_report_even
 
 
 --
+-- Name: index_user_report_events_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_events_on_tenant_id ON public.user_report_events USING btree (tenant_id);
+
+
+--
 -- Name: index_user_report_events_on_user_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_user_report_events_on_user_report_id ON public.user_report_events USING btree (user_report_id);
+
+
+--
+-- Name: index_user_report_pdfs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_report_pdfs_on_tenant_id ON public.user_report_pdfs USING btree (tenant_id);
 
 
 --
@@ -17133,6 +18633,13 @@ CREATE INDEX index_user_reports_on_report_family_id ON public.user_reports USING
 --
 
 CREATE INDEX index_user_reports_on_report_id ON public.user_reports USING btree (report_id);
+
+
+--
+-- Name: index_user_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reports_on_tenant_id ON public.user_reports USING btree (tenant_id);
 
 
 --
@@ -17255,6 +18762,27 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_users_on_spoofed_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_spoofed_by_id ON public.users USING btree (spoofed_by_id);
+
+
+--
+-- Name: index_users_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_tenant_id ON public.users USING btree (tenant_id);
+
+
+--
+-- Name: index_users_results_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_tenant_id ON public.users_results USING btree (tenant_id);
+
+
+--
 -- Name: index_vector_embeddings_on_embedding; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17276,10 +18804,24 @@ CREATE INDEX index_vector_embeddings_on_resource ON public.vector_embeddings USI
 
 
 --
+-- Name: index_vector_embeddings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_vector_embeddings_on_tenant_id ON public.vector_embeddings USING btree (tenant_id);
+
+
+--
 -- Name: index_version_associations_on_foreign_key; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_version_associations_on_foreign_key ON public.version_associations USING btree (foreign_key_name, foreign_key_id, foreign_type);
+
+
+--
+-- Name: index_version_associations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_version_associations_on_tenant_id ON public.version_associations USING btree (tenant_id);
 
 
 --
@@ -17294,6 +18836,13 @@ CREATE INDEX index_version_associations_on_version_id ON public.version_associat
 --
 
 CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
+
+
+--
+-- Name: index_versions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_versions_on_tenant_id ON public.versions USING btree (tenant_id);
 
 
 --
@@ -17339,6 +18888,13 @@ CREATE INDEX index_webhook_event_logs_on_subscription_id ON public.webhook_event
 
 
 --
+-- Name: index_webhook_event_logs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_event_logs_on_tenant_id ON public.webhook_event_logs USING btree (tenant_id);
+
+
+--
 -- Name: index_webhook_subscription_topics_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17350,6 +18906,13 @@ CREATE INDEX index_webhook_subscription_topics_on_name ON public.webhook_subscri
 --
 
 CREATE INDEX index_webhook_subscription_topics_on_subscription_id ON public.webhook_subscription_topics USING btree (subscription_id);
+
+
+--
+-- Name: index_webhook_subscription_topics_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscription_topics_on_tenant_id ON public.webhook_subscription_topics USING btree (tenant_id);
 
 
 --
@@ -17381,6 +18944,20 @@ CREATE INDEX index_webhook_subscriptions_on_project_id ON public.webhook_subscri
 
 
 --
+-- Name: index_webhook_subscriptions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscriptions_on_tenant_id ON public.webhook_subscriptions USING btree (tenant_id);
+
+
+--
+-- Name: index_workshop_assessors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_assessors_on_tenant_id ON public.workshop_assessors USING btree (tenant_id);
+
+
+--
 -- Name: index_workshop_assessors_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17399,6 +18976,13 @@ CREATE INDEX index_workshop_assessors_on_workshop_id ON public.workshop_assessor
 --
 
 CREATE INDEX index_workshop_invite_logs_on_created_by_id ON public.workshop_invite_logs USING btree (created_by_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_tenant_id ON public.workshop_invite_logs USING btree (tenant_id);
 
 
 --
@@ -17430,6 +19014,13 @@ CREATE INDEX index_workshop_invite_translations_on_locale ON public.workshop_inv
 
 
 --
+-- Name: index_workshop_invite_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_tenant_id ON public.workshop_invite_translations USING btree (tenant_id);
+
+
+--
 -- Name: index_workshop_invite_translations_on_title_and_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17441,6 +19032,13 @@ CREATE INDEX index_workshop_invite_translations_on_title_and_locale ON public.wo
 --
 
 CREATE INDEX index_workshop_invited_subjects_on_reschedule_workshop_id ON public.workshop_invited_subjects USING btree (reschedule_workshop_id);
+
+
+--
+-- Name: index_workshop_invited_subjects_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invited_subjects_on_tenant_id ON public.workshop_invited_subjects USING btree (tenant_id);
 
 
 --
@@ -17472,6 +19070,13 @@ CREATE INDEX index_workshop_invites_on_campaign_id ON public.workshop_invites US
 
 
 --
+-- Name: index_workshop_invites_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_on_tenant_id ON public.workshop_invites USING btree (tenant_id);
+
+
+--
 -- Name: index_workshop_invites_workshops_on_workshop_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17483,6 +19088,13 @@ CREATE INDEX index_workshop_invites_workshops_on_workshop_id ON public.workshop_
 --
 
 CREATE INDEX index_workshop_invites_workshops_on_workshop_invite_id ON public.workshop_invites_workshops USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_workshop_managers_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_managers_on_tenant_id ON public.workshop_managers USING btree (tenant_id);
 
 
 --
@@ -17500,10 +19112,24 @@ CREATE INDEX index_workshop_managers_on_workshop_id ON public.workshop_managers 
 
 
 --
+-- Name: index_workshop_resources_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_resources_on_tenant_id ON public.workshop_resources USING btree (tenant_id);
+
+
+--
 -- Name: index_workshop_resources_on_workshop_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_workshop_resources_on_workshop_id ON public.workshop_resources USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_subjects_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_tenant_id ON public.workshop_subjects USING btree (tenant_id);
 
 
 --
@@ -17549,10 +19175,24 @@ CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (cam
 
 
 --
+-- Name: index_workshops_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshops_on_tenant_id ON public.workshops USING btree (tenant_id);
+
+
+--
 -- Name: index_yoodli_user_assessments_on_active; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_yoodli_user_assessments_on_active ON public.yoodli_user_assessments USING btree (active);
+
+
+--
+-- Name: index_yoodli_user_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_yoodli_user_assessments_on_tenant_id ON public.yoodli_user_assessments USING btree (tenant_id);
 
 
 --
@@ -17680,6 +19320,46 @@ ALTER TABLE ONLY public.profile_settings
 
 
 --
+-- Name: user_assessments fk_rails_00bab7d492; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessments
+    ADD CONSTRAINT fk_rails_00bab7d492 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: mettl_user_assessments fk_rails_010752ae59; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_user_assessments
+    ADD CONSTRAINT fk_rails_010752ae59 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: skill_translations fk_rails_0180bb7b05; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_translations
+    ADD CONSTRAINT fk_rails_0180bb7b05 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: saml_settings fk_rails_01ff451dbb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_settings
+    ADD CONSTRAINT fk_rails_01ff451dbb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: workshop_invited_subjects fk_rails_0236e105b0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT fk_rails_0236e105b0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: skills fk_rails_026350ab95; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17693,6 +19373,14 @@ ALTER TABLE ONLY public.skills
 
 ALTER TABLE ONLY public.report_approval_settings
     ADD CONSTRAINT fk_rails_0338cad702 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: audits fk_rails_03e3e18aab; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits
+    ADD CONSTRAINT fk_rails_03e3e18aab FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -17760,6 +19448,30 @@ ALTER TABLE ONLY public.assigns
 
 
 --
+-- Name: system_check_sessions fk_rails_061c27fb51; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_sessions
+    ADD CONSTRAINT fk_rails_061c27fb51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: versions fk_rails_06b8b76679; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions
+    ADD CONSTRAINT fk_rails_06b8b76679 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: iiht_user_assessments fk_rails_071fc242ae; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.iiht_user_assessments
+    ADD CONSTRAINT fk_rails_071fc242ae FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: campaign_factor_values fk_rails_07fa4c59b5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17800,6 +19512,22 @@ ALTER TABLE ONLY public.idp_templates
 
 
 --
+-- Name: skillvue_assessments fk_rails_0b2142735a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_assessments
+    ADD CONSTRAINT fk_rails_0b2142735a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: meeting_recordings fk_rails_0b64b80f51; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.meeting_recordings
+    ADD CONSTRAINT fk_rails_0b64b80f51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: workshop_resources fk_rails_0b9b541d1c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17808,11 +19536,51 @@ ALTER TABLE ONLY public.workshop_resources
 
 
 --
+-- Name: profile_settings fk_rails_0ca0529d6f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_settings
+    ADD CONSTRAINT fk_rails_0ca0529d6f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: workshop_invite_logs fk_rails_0cb58ea600; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.workshop_invite_logs
     ADD CONSTRAINT fk_rails_0cb58ea600 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skillvue_user_assessments fk_rails_0d404785ab; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skillvue_user_assessments
+    ADD CONSTRAINT fk_rails_0d404785ab FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: sms_histories fk_rails_0defde8966; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_histories
+    ADD CONSTRAINT fk_rails_0defde8966 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: communications_copy_memberships fk_rails_0df4abe90c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_copy_memberships
+    ADD CONSTRAINT fk_rails_0df4abe90c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: relationships fk_rails_0e33db3c74; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relationships
+    ADD CONSTRAINT fk_rails_0e33db3c74 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -17832,11 +19600,27 @@ ALTER TABLE ONLY public.user_idp_development_actions
 
 
 --
+-- Name: campaign_assessor_assessments fk_rails_0f3a69b748; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_0f3a69b748 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_bookings fk_rails_0f6d7c0f39; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_bookings
     ADD CONSTRAINT fk_rails_0f6d7c0f39 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_scoring_approval_settings fk_rails_0fab93dd72; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_scoring_approval_settings
+    ADD CONSTRAINT fk_rails_0fab93dd72 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -17853,6 +19637,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT fk_rails_105380adfd FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_template_development_actions fk_rails_108b41b8fc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_development_actions
+    ADD CONSTRAINT fk_rails_108b41b8fc FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -17880,6 +19672,14 @@ ALTER TABLE ONLY public.user_reports
 
 
 --
+-- Name: users fk_rails_135c8f54b2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_135c8f54b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: licenses fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17888,11 +19688,51 @@ ALTER TABLE ONLY public.licenses
 
 
 --
+-- Name: campaign_reports fk_rails_13aa9f63fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_reports
+    ADD CONSTRAINT fk_rails_13aa9f63fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: threesixty_email_histories fk_rails_14d2e43e9e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_14d2e43e9e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: communication_cc_users fk_rails_1530ab8a7e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_cc_users
+    ADD CONSTRAINT fk_rails_1530ab8a7e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_assessment_groups fk_rails_154a268175; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_groups
+    ADD CONSTRAINT fk_rails_154a268175 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: ai_assistant_chats fk_rails_15a36d90ff; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_chats
     ADD CONSTRAINT fk_rails_15a36d90ff FOREIGN KEY (ai_assisted_user_session_id) REFERENCES public.ai_assisted_user_sessions(id);
+
+
+--
+-- Name: user_report_pdfs fk_rails_16b14d3148; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_pdfs
+    ADD CONSTRAINT fk_rails_16b14d3148 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -17912,11 +19752,27 @@ ALTER TABLE ONLY public.admin_jobs
 
 
 --
+-- Name: client_features fk_rails_16fbe20b71; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_features
+    ADD CONSTRAINT fk_rails_16fbe20b71 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: privacy_settings fk_rails_1756fc8ca2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.privacy_settings
     ADD CONSTRAINT fk_rails_1756fc8ca2 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_assessors fk_rails_176303cc7d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT fk_rails_176303cc7d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -17928,11 +19784,27 @@ ALTER TABLE ONLY public.reports
 
 
 --
+-- Name: questions fk_rails_182a857994; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.questions
+    ADD CONSTRAINT fk_rails_182a857994 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: project_features fk_rails_18513d9b92; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.project_features
     ADD CONSTRAINT fk_rails_18513d9b92 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: hogan_report_settings fk_rails_1a1f1f15cb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_report_settings
+    ADD CONSTRAINT fk_rails_1a1f1f15cb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -17968,6 +19840,38 @@ ALTER TABLE ONLY public.campaign_templates
 
 
 --
+-- Name: threesixty_email_schedules fk_rails_1d28372050; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_schedules
+    ADD CONSTRAINT fk_rails_1d28372050 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: idp_settings fk_rails_1d8833379b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_settings
+    ADD CONSTRAINT fk_rails_1d8833379b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: proficiency_level_translations fk_rails_1dbceeb51b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_level_translations
+    ADD CONSTRAINT fk_rails_1dbceeb51b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: privacy_consents fk_rails_1dc6eadc30; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents
+    ADD CONSTRAINT fk_rails_1dc6eadc30 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: course_schedules fk_rails_1df435457d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -17992,6 +19896,14 @@ ALTER TABLE ONLY public.admin_jobs
 
 
 --
+-- Name: agiles fk_rails_1e58a4732c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles
+    ADD CONSTRAINT fk_rails_1e58a4732c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: questions fk_rails_1e5e392d5a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18005,6 +19917,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.communication_email_resources
     ADD CONSTRAINT fk_rails_1e6187986b FOREIGN KEY (communication_email_id) REFERENCES public.communication_emails(id);
+
+
+--
+-- Name: saville_factors fk_rails_1ee38b5608; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_factors
+    ADD CONSTRAINT fk_rails_1ee38b5608 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18048,11 +19968,35 @@ ALTER TABLE ONLY public.client_privacy_settings
 
 
 --
+-- Name: innovation_styles fk_rails_23071c14a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles
+    ADD CONSTRAINT fk_rails_23071c14a6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessors
     ADD CONSTRAINT fk_rails_232405a599 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skills fk_rails_232b6298ae; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skills
+    ADD CONSTRAINT fk_rails_232b6298ae FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: mettl_schedule_records fk_rails_237b56bea4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_schedule_records
+    ADD CONSTRAINT fk_rails_237b56bea4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18064,11 +20008,27 @@ ALTER TABLE ONLY public.license_usages
 
 
 --
+-- Name: transcriptions fk_rails_23b8230a7c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.transcriptions
+    ADD CONSTRAINT fk_rails_23b8230a7c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: idp_template_reflection_questions fk_rails_2414e644c0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.idp_template_reflection_questions
     ADD CONSTRAINT fk_rails_2414e644c0 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: data_reports fk_rails_2417dda3dd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_reports
+    ADD CONSTRAINT fk_rails_2417dda3dd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18080,11 +20040,35 @@ ALTER TABLE ONLY public.communication_emails
 
 
 --
+-- Name: dimensions fk_rails_24904426c2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dimensions
+    ADD CONSTRAINT fk_rails_24904426c2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: assessment_consent_settings fk_rails_24a0bd06fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_settings
+    ADD CONSTRAINT fk_rails_24a0bd06fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: sms_invites fk_rails_24c0e9c4ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sms_invites
     ADD CONSTRAINT fk_rails_24c0e9c4ce FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: communications fk_rails_255082bfab; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications
+    ADD CONSTRAINT fk_rails_255082bfab FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18101,6 +20085,14 @@ ALTER TABLE ONLY public.campaign_idps
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT fk_rails_26caa38e1a FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: users fk_rails_26f59ec390; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_26f59ec390 FOREIGN KEY (spoofed_by_id) REFERENCES public.users(id);
 
 
 --
@@ -18152,6 +20144,14 @@ ALTER TABLE ONLY public.communication_emails
 
 
 --
+-- Name: data_report_jobs fk_rails_2a7c0b49ad; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.data_report_jobs
+    ADD CONSTRAINT fk_rails_2a7c0b49ad FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: campaign_option_translations fk_rails_2a7cce45bd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18184,6 +20184,14 @@ ALTER TABLE ONLY public.power_bi_settings
 
 
 --
+-- Name: resource_hogan_credentials fk_rails_2ca37623d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.resource_hogan_credentials
+    ADD CONSTRAINT fk_rails_2ca37623d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: idp_template_reflection_questions fk_rails_2ca5733848; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18197,6 +20205,14 @@ ALTER TABLE ONLY public.idp_template_reflection_questions
 
 ALTER TABLE ONLY public.innovation_styles_factors
     ADD CONSTRAINT fk_rails_2d436cbfdb FOREIGN KEY (innovation_style_id) REFERENCES public.innovation_styles(id);
+
+
+--
+-- Name: power_bi_settings fk_rails_2f05b80bd4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.power_bi_settings
+    ADD CONSTRAINT fk_rails_2f05b80bd4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18224,6 +20240,22 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 
 --
+-- Name: bulk_reports fk_rails_305b903068; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bulk_reports
+    ADD CONSTRAINT fk_rails_305b903068 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: idp_template_reflection_questions fk_rails_30bc07fffb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_reflection_questions
+    ADD CONSTRAINT fk_rails_30bc07fffb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: oracle_credentials fk_rails_30dd1b931a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18240,11 +20272,27 @@ ALTER TABLE ONLY public.client_features
 
 
 --
+-- Name: workshop_subjects fk_rails_3180e6c333; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_3180e6c333 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: system_check_records fk_rails_31829aa176; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.system_check_records
     ADD CONSTRAINT fk_rails_31829aa176 FOREIGN KEY (system_check_session_id) REFERENCES public.system_check_sessions(id);
+
+
+--
+-- Name: ai_translation_results fk_rails_321d4a2d21; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_translation_results
+    ADD CONSTRAINT fk_rails_321d4a2d21 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18296,11 +20344,51 @@ ALTER TABLE ONLY public.workshop_invites
 
 
 --
+-- Name: datasheet_column_preferences fk_rails_34f958abd8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheet_column_preferences
+    ADD CONSTRAINT fk_rails_34f958abd8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: ai_assistants fk_rails_35091bc14b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistants
+    ADD CONSTRAINT fk_rails_35091bc14b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: reports fk_rails_3523aa4198; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT fk_rails_3523aa4198 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: question_recoding fk_rails_353fbe9a3f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT fk_rails_353fbe9a3f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: campaign_assessor_assessment_factor_weights fk_rails_35545a6526; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
     ADD CONSTRAINT fk_rails_35545a6526 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: development_action_translations fk_rails_355bf2e419; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.development_action_translations
+    ADD CONSTRAINT fk_rails_355bf2e419 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18384,6 +20472,14 @@ ALTER TABLE ONLY public.highlights
 
 
 --
+-- Name: assessment_assistants fk_rails_3ba0082822; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_assistants
+    ADD CONSTRAINT fk_rails_3ba0082822 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: privacy_consents fk_rails_3bf1289bd9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18416,6 +20512,22 @@ ALTER TABLE ONLY public.threesixty_email_histories
 
 
 --
+-- Name: mettl_assessments fk_rails_3d11060354; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_assessments
+    ADD CONSTRAINT fk_rails_3d11060354 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: user_idp_skills fk_rails_3da8352e19; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_skills
+    ADD CONSTRAINT fk_rails_3da8352e19 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_instruction_templates fk_rails_3e304e0709; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18432,11 +20544,35 @@ ALTER TABLE ONLY public.campaign_reports
 
 
 --
+-- Name: registration_settings fk_rails_40695b33e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings
+    ADD CONSTRAINT fk_rails_40695b33e5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: workshop_resources fk_rails_4101702f57; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources
+    ADD CONSTRAINT fk_rails_4101702f57 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: yoodli_user_assessments fk_rails_41044cc377; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.yoodli_user_assessments
     ADD CONSTRAINT fk_rails_41044cc377 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
+-- Name: active_storage_attachments fk_rails_416c0e3daf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_storage_attachments
+    ADD CONSTRAINT fk_rails_416c0e3daf FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18448,6 +20584,14 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: job_roles fk_rails_41e0791cf4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_roles
+    ADD CONSTRAINT fk_rails_41e0791cf4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: workshop_assessors fk_rails_43709c1a28; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18456,11 +20600,27 @@ ALTER TABLE ONLY public.workshop_assessors
 
 
 --
+-- Name: meeting_rooms fk_rails_43d463df7a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.meeting_rooms
+    ADD CONSTRAINT fk_rails_43d463df7a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_availability_dates fk_rails_4408ce5ec7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_availability_dates
     ADD CONSTRAINT fk_rails_4408ce5ec7 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors_scoring fk_rails_44210345ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_scoring
+    ADD CONSTRAINT fk_rails_44210345ff FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18488,6 +20648,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: skills_development_actions fk_rails_4593dac76e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skills_development_actions
+    ADD CONSTRAINT fk_rails_4593dac76e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: media_responses fk_rails_4769c5e3ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18504,11 +20672,35 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: threesixty_options fk_rails_481a08952d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_options
+    ADD CONSTRAINT fk_rails_481a08952d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: sheets fk_rails_481da9714d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: clients fk_rails_4904dbddb8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.clients
+    ADD CONSTRAINT fk_rails_4904dbddb8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: libraries fk_rails_491d7a5b1f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.libraries
+    ADD CONSTRAINT fk_rails_491d7a5b1f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18536,6 +20728,14 @@ ALTER TABLE ONLY public.resource_hogan_credentials
 
 
 --
+-- Name: sheet_columns fk_rails_49d87605e5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_columns
+    ADD CONSTRAINT fk_rails_49d87605e5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_report_comments fk_rails_4a3b56dde9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18549,6 +20749,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 ALTER TABLE ONLY public.simulation_user_assessments
     ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factor_benchmark_scores fk_rails_4c3153b621; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_benchmark_scores
+    ADD CONSTRAINT fk_rails_4c3153b621 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18608,6 +20816,14 @@ ALTER TABLE ONLY public.idp_templates
 
 
 --
+-- Name: project_licenses fk_rails_4fca944b71; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_licenses
+    ADD CONSTRAINT fk_rails_4fca944b71 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: idp_templates fk_rails_50e8be9955; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18624,6 +20840,22 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: client_auditlog_export_settings fk_rails_51a5f6cc28; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings
+    ADD CONSTRAINT fk_rails_51a5f6cc28 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: taggings fk_rails_51de8abb84; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggings
+    ADD CONSTRAINT fk_rails_51de8abb84 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: workshop_assessors fk_rails_524f182ee9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18632,11 +20864,35 @@ ALTER TABLE ONLY public.workshop_assessors
 
 
 --
+-- Name: campaign_ai_artifact_dependencies fk_rails_527a9ce116; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
+    ADD CONSTRAINT fk_rails_527a9ce116 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: interview_questions fk_rails_53c904b7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.interview_questions
     ADD CONSTRAINT fk_rails_53c904b7d5 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_report_comments fk_rails_54fe2d8f31; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_comments
+    ADD CONSTRAINT fk_rails_54fe2d8f31 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_factor_values fk_rails_576c8dd023; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_values
+    ADD CONSTRAINT fk_rails_576c8dd023 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18656,11 +20912,35 @@ ALTER TABLE ONLY public.workshop_invited_subjects
 
 
 --
+-- Name: workshops fk_rails_5a18ed4b75; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT fk_rails_5a18ed4b75 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: lti_oauth2_access_tokens fk_rails_5aa1c20c50; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.lti_oauth2_access_tokens
     ADD CONSTRAINT fk_rails_5aa1c20c50 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: admin_roles fk_rails_5ac63da10f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles
+    ADD CONSTRAINT fk_rails_5ac63da10f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: membership_grants fk_rails_5ae73a639d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT fk_rails_5ae73a639d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18704,11 +20984,27 @@ ALTER TABLE ONLY public.user_idp_plans
 
 
 --
+-- Name: idp_template_interview_questions fk_rails_5c13980b03; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_interview_questions
+    ADD CONSTRAINT fk_rails_5c13980b03 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: communication_emails fk_rails_5c47ebbe76; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT fk_rails_5c47ebbe76 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id);
+
+
+--
+-- Name: taxonomy_levels fk_rails_5ceb3c0449; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxonomy_levels
+    ADD CONSTRAINT fk_rails_5ceb3c0449 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18733,6 +21029,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 ALTER TABLE ONLY public.workshop_invite_logs
     ADD CONSTRAINT fk_rails_5f05631202 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors_sub_factors fk_rails_5f180a6f59; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT fk_rails_5f180a6f59 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18768,6 +21072,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 
 --
+-- Name: threesixty_email_template_translations fk_rails_620a591be5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_template_translations
+    ADD CONSTRAINT fk_rails_620a591be5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_comments fk_rails_625bce6b01; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18800,11 +21112,35 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: occupations fk_rails_63bf08b91c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupations
+    ADD CONSTRAINT fk_rails_63bf08b91c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: reports fk_rails_6437d9c02f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_6437d9c02f FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_invite_translations fk_rails_6453ada747; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations
+    ADD CONSTRAINT fk_rails_6453ada747 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: communication_translations fk_rails_649fbaaf30; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_translations
+    ADD CONSTRAINT fk_rails_649fbaaf30 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18816,11 +21152,35 @@ ALTER TABLE ONLY public.workshop_managers
 
 
 --
+-- Name: factors_norms fk_rails_65037f07dc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_norms
+    ADD CONSTRAINT fk_rails_65037f07dc FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: user_reports fk_rails_662ac624d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reports
+    ADD CONSTRAINT fk_rails_662ac624d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: campaign_factors fk_rails_667cccdf0c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_667cccdf0c FOREIGN KEY (campaign_factor_group_id) REFERENCES public.campaign_factor_groups(id);
+
+
+--
+-- Name: profile_field_values fk_rails_67bd976b7b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT fk_rails_67bd976b7b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18848,6 +21208,22 @@ ALTER TABLE ONLY public.webhook_subscriptions
 
 
 --
+-- Name: users_results fk_rails_68864abce3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT fk_rails_68864abce3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_templates fk_rails_6914dfd8eb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_templates
+    ADD CONSTRAINT fk_rails_6914dfd8eb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: pearson_user_assessments fk_rails_6974a21fca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18872,6 +21248,30 @@ ALTER TABLE ONLY public.campaign_factor_values
 
 
 --
+-- Name: campaign_idp_dependencies fk_rails_6a5f6a838e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idp_dependencies
+    ADD CONSTRAINT fk_rails_6a5f6a838e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: registration_codes fk_rails_6b0d3224cb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes
+    ADD CONSTRAINT fk_rails_6b0d3224cb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: user_reflection_question_answers fk_rails_6b85256d6b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reflection_question_answers
+    ADD CONSTRAINT fk_rails_6b85256d6b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: profile_field_values fk_rails_6bc6ed19b8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18880,11 +21280,27 @@ ALTER TABLE ONLY public.profile_field_values
 
 
 --
+-- Name: privacy_setting_translations fk_rails_6bc706fc4d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations
+    ADD CONSTRAINT fk_rails_6bc706fc4d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: email_templates fk_rails_6bdfe93e2e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_templates
     ADD CONSTRAINT fk_rails_6bdfe93e2e FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: development_actions fk_rails_6c3ca0d8a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.development_actions
+    ADD CONSTRAINT fk_rails_6c3ca0d8a1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18944,11 +21360,27 @@ ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
 
 
 --
+-- Name: security_settings fk_rails_6e59d3360c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.security_settings
+    ADD CONSTRAINT fk_rails_6e59d3360c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_invites fk_rails_6f5632544f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites
+    ADD CONSTRAINT fk_rails_6f5632544f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -18976,6 +21408,14 @@ ALTER TABLE ONLY public.skills_development_actions
 
 
 --
+-- Name: memberships_admin_roles fk_rails_712aed4296; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT fk_rails_712aed4296 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_assessment_factor_scores fk_rails_71d3d729a1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -18997,6 +21437,22 @@ ALTER TABLE ONLY public.bulk_reports
 
 ALTER TABLE ONLY public.assessment_consent_settings
     ADD CONSTRAINT fk_rails_7340e6fd68 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
+-- Name: assessment_translations fk_rails_73d33bf7fd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT fk_rails_73d33bf7fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: norms fk_rails_745f8fa5e7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.norms
+    ADD CONSTRAINT fk_rails_745f8fa5e7 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19032,11 +21488,35 @@ ALTER TABLE ONLY public.sheet_rows
 
 
 --
+-- Name: hogan_credentials fk_rails_783b6b7a7c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_credentials
+    ADD CONSTRAINT fk_rails_783b6b7a7c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: privacy_consents fk_rails_78a8331821; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.privacy_consents
     ADD CONSTRAINT fk_rails_78a8331821 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
+-- Name: hogan_logs fk_rails_7920aef002; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_logs
+    ADD CONSTRAINT fk_rails_7920aef002 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: text_module_overrides fk_rails_79319e5680; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.text_module_overrides
+    ADD CONSTRAINT fk_rails_79319e5680 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19056,6 +21536,14 @@ ALTER TABLE ONLY public.sms_histories
 
 
 --
+-- Name: ai_assistant_tool_calls fk_rails_79c54a9dce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_tool_calls
+    ADD CONSTRAINT fk_rails_79c54a9dce FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19069,6 +21557,14 @@ ALTER TABLE ONLY public.communications_users
 
 ALTER TABLE ONLY public.factors
     ADD CONSTRAINT fk_rails_7b28110d6b FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_idp_plans fk_rails_7b601e5428; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_plans
+    ADD CONSTRAINT fk_rails_7b601e5428 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19088,11 +21584,35 @@ ALTER TABLE ONLY public.iiht_user_assessments
 
 
 --
+-- Name: notifications fk_rails_7c99fe0556; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications
+    ADD CONSTRAINT fk_rails_7c99fe0556 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: saml_settings fk_rails_7cfb21e09c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.saml_settings
     ADD CONSTRAINT fk_rails_7cfb21e09c FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_template_skills fk_rails_7d3a970a77; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_skills
+    ADD CONSTRAINT fk_rails_7d3a970a77 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: system_check_records fk_rails_7d46b13fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.system_check_records
+    ADD CONSTRAINT fk_rails_7d46b13fcb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19120,6 +21640,14 @@ ALTER TABLE ONLY public.saml_service_providers
 
 
 --
+-- Name: reports_campaign_ai_artifacts fk_rails_7dd73ea1a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_ai_artifacts
+    ADD CONSTRAINT fk_rails_7dd73ea1a6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: proficiency_level_translations fk_rails_7e2f5d2b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19133,6 +21661,22 @@ ALTER TABLE ONLY public.proficiency_level_translations
 
 ALTER TABLE ONLY public.mettl_assessments
     ADD CONSTRAINT fk_rails_7f18bbad7b FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: highlights fk_rails_7f297908a0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.highlights
+    ADD CONSTRAINT fk_rails_7f297908a0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: communications_assessments fk_rails_8164f9bc1a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_assessments
+    ADD CONSTRAINT fk_rails_8164f9bc1a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19160,11 +21704,27 @@ ALTER TABLE ONLY public.ai_assistant_requests
 
 
 --
+-- Name: sheet_row_data fk_rails_82211a7ad0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_row_data
+    ADD CONSTRAINT fk_rails_82211a7ad0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_comments fk_rails_824db9755d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_idp_comments
     ADD CONSTRAINT fk_rails_824db9755d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: profile_fields fk_rails_837627e94f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_fields
+    ADD CONSTRAINT fk_rails_837627e94f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19256,6 +21816,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 
 --
+-- Name: webhook_event_logs fk_rails_8b120bcf25; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_event_logs
+    ADD CONSTRAINT fk_rails_8b120bcf25 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: hogan_credentials fk_rails_8b50dd238d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19304,6 +21872,22 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
+-- Name: client_ai_assistants fk_rails_8c95cbfa65; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_ai_assistants
+    ADD CONSTRAINT fk_rails_8c95cbfa65 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaigns fk_rails_8de91ec8d1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT fk_rails_8de91ec8d1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: reflection_question_translations fk_rails_8dff8966af; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19320,11 +21904,35 @@ ALTER TABLE ONLY public.campaign_factors
 
 
 --
+-- Name: job_role_translations fk_rails_8e86d5b5e3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_role_translations
+    ADD CONSTRAINT fk_rails_8e86d5b5e3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: workshop_invited_subjects fk_rails_8ec909c062; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.workshop_invited_subjects
     ADD CONSTRAINT fk_rails_8ec909c062 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
+-- Name: vector_embeddings fk_rails_8edacfd04b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.vector_embeddings
+    ADD CONSTRAINT fk_rails_8edacfd04b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: project_assessments fk_rails_8fd810d074; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_8fd810d074 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19360,11 +21968,27 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: saville_report_settings fk_rails_92d211f01b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_report_settings
+    ADD CONSTRAINT fk_rails_92d211f01b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_templates fk_rails_93d2d461ed; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.threesixty_email_templates
     ADD CONSTRAINT fk_rails_93d2d461ed FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: campaign_idps fk_rails_93f035e4b1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_idps
+    ADD CONSTRAINT fk_rails_93f035e4b1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19392,6 +22016,14 @@ ALTER TABLE ONLY public.campaign_users
 
 
 --
+-- Name: sessions fk_rails_96502740f9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT fk_rails_96502740f9 FOREIGN KEY (impersonator_id) REFERENCES public.users(id);
+
+
+--
 -- Name: threesixty_email_schedules fk_rails_965ab844ab; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19408,6 +22040,14 @@ ALTER TABLE ONLY public.workshop_invite_translations
 
 
 --
+-- Name: reports_modules fk_rails_9748809208; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_modules
+    ADD CONSTRAINT fk_rails_9748809208 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assigns fk_rails_981aa6c161; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19421,6 +22061,30 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.membership_grants
     ADD CONSTRAINT fk_rails_98668bfd47 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: sheets fk_rails_987c02568d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheets
+    ADD CONSTRAINT fk_rails_987c02568d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: threesixty_instruction_template_translations fk_rails_98be498569; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_template_translations
+    ADD CONSTRAINT fk_rails_98be498569 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: threesixty_evaluators fk_rails_991c04b7d6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_evaluators
+    ADD CONSTRAINT fk_rails_991c04b7d6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19480,11 +22144,27 @@ ALTER TABLE ONLY public.skillvue_assessments
 
 
 --
+-- Name: idp_report_pdfs fk_rails_9bef385cc9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_report_pdfs
+    ADD CONSTRAINT fk_rails_9bef385cc9 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: reports fk_rails_9c1b8d7e35; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communications_memberships fk_rails_9c70af2c70; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_memberships
+    ADD CONSTRAINT fk_rails_9c70af2c70 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19504,11 +22184,43 @@ ALTER TABLE ONLY public.saville_report_settings
 
 
 --
+-- Name: factor_translations fk_rails_9dc88c24b2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_translations
+    ADD CONSTRAINT fk_rails_9dc88c24b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: assessments_reports fk_rails_9de6d6093f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT fk_rails_9de6d6093f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: ai_assistant_chats fk_rails_9e1d60be6d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_chats
     ADD CONSTRAINT fk_rails_9e1d60be6d FOREIGN KEY (ai_model_registry_id) REFERENCES public.ai_model_registries(id);
+
+
+--
+-- Name: sessions fk_rails_9e410b9855; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT fk_rails_9e410b9855 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: user_idp_comments fk_rails_9e711aa4d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_comments
+    ADD CONSTRAINT fk_rails_9e711aa4d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19544,6 +22256,14 @@ ALTER TABLE ONLY public.api_keys
 
 
 --
+-- Name: project_features fk_rails_a12db21c61; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_features
+    ADD CONSTRAINT fk_rails_a12db21c61 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: profile_fields fk_rails_a132f26c57; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19557,6 +22277,14 @@ ALTER TABLE ONLY public.profile_fields
 
 ALTER TABLE ONLY public.idp_template_development_actions
     ADD CONSTRAINT fk_rails_a1971262fa FOREIGN KEY (development_action_id) REFERENCES public.development_actions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: idp_templates fk_rails_a2aec4f928; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_templates
+    ADD CONSTRAINT fk_rails_a2aec4f928 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19584,6 +22312,14 @@ ALTER TABLE ONLY public.workshops
 
 
 --
+-- Name: skills_job_roles fk_rails_a518d3f016; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skills_job_roles
+    ADD CONSTRAINT fk_rails_a518d3f016 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: text_module_overrides fk_rails_a5943c7cee; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19600,6 +22336,14 @@ ALTER TABLE ONLY public.campaign_assessor_assessments
 
 
 --
+-- Name: user_report_events fk_rails_a5eeb9e965; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_report_events
+    ADD CONSTRAINT fk_rails_a5eeb9e965 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assessments_clients fk_rails_a7b4e42c48; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19608,11 +22352,35 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
+-- Name: saml_service_providers fk_rails_a926eacb83; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saml_service_providers
+    ADD CONSTRAINT fk_rails_a926eacb83 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: ai_assistant_chats fk_rails_a92f88de99; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_assistant_chats
     ADD CONSTRAINT fk_rails_a92f88de99 FOREIGN KEY (ai_assistant_id) REFERENCES public.ai_assistants(id);
+
+
+--
+-- Name: memberships fk_rails_a959f0d1fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships
+    ADD CONSTRAINT fk_rails_a959f0d1fb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: communications_users fk_rails_a984a80778; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communications_users
+    ADD CONSTRAINT fk_rails_a984a80778 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19656,6 +22424,22 @@ ALTER TABLE ONLY public.campaign_users
 
 
 --
+-- Name: user_assessment_verification_images fk_rails_ac7695fcce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_verification_images
+    ADD CONSTRAINT fk_rails_ac7695fcce FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_factor_groups fk_rails_ac7ac4c1fa; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_groups
+    ADD CONSTRAINT fk_rails_ac7ac4c1fa FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_schedules fk_rails_ac81b040c5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19688,6 +22472,14 @@ ALTER TABLE ONLY public.dimensions
 
 
 --
+-- Name: simulation_user_assessments fk_rails_ae6b550ac4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simulation_user_assessments
+    ADD CONSTRAINT fk_rails_ae6b550ac4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: communication_translations fk_rails_af0644ded0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19696,11 +22488,35 @@ ALTER TABLE ONLY public.communication_translations
 
 
 --
+-- Name: design_settings fk_rails_af556142e4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_af556142e4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: factor_benchmark_scores fk_rails_b025f0548c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.factor_benchmark_scores
     ADD CONSTRAINT fk_rails_b025f0548c FOREIGN KEY (factor_id) REFERENCES public.factors(id);
+
+
+--
+-- Name: sms_records fk_rails_b03234e439; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_records
+    ADD CONSTRAINT fk_rails_b03234e439 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: webhook_subscriptions fk_rails_b079b5ac77; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscriptions
+    ADD CONSTRAINT fk_rails_b079b5ac77 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19728,11 +22544,27 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 
 --
+-- Name: communication_emails fk_rails_b0fa8c7a1b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_b0fa8c7a1b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: question_recoding fk_rails_b15be6b218; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.question_recoding
     ADD CONSTRAINT fk_rails_b15be6b218 FOREIGN KEY (question_id) REFERENCES public.questions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: threesixty_campaigns fk_rails_b2d78bd457; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_campaigns
+    ADD CONSTRAINT fk_rails_b2d78bd457 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19816,11 +22648,43 @@ ALTER TABLE ONLY public.idp_templates
 
 
 --
+-- Name: threesixty_subjects fk_rails_bdd0f9c656; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT fk_rails_bdd0f9c656 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_options fk_rails_be239b96ac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options
+    ADD CONSTRAINT fk_rails_be239b96ac FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: proctoring_sessions fk_rails_be5ab3be9f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.proctoring_sessions
     ADD CONSTRAINT fk_rails_be5ab3be9f FOREIGN KEY (campaign_user_id) REFERENCES public.campaign_users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reports_filters fk_rails_be92bb6806; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_filters
+    ADD CONSTRAINT fk_rails_be92bb6806 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: smtp_settings fk_rails_bf519d8986; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.smtp_settings
+    ADD CONSTRAINT fk_rails_bf519d8986 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19832,11 +22696,27 @@ ALTER TABLE ONLY public.user_reports
 
 
 --
+-- Name: report_approval_settings fk_rails_c0e49f8ff2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_approval_settings
+    ADD CONSTRAINT fk_rails_c0e49f8ff2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_plans fk_rails_c2e94ce0f4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_idp_plans
     ADD CONSTRAINT fk_rails_c2e94ce0f4 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: media_responses fk_rails_c34a28fea5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.media_responses
+    ADD CONSTRAINT fk_rails_c34a28fea5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19864,11 +22744,27 @@ ALTER TABLE ONLY public.smtp_settings
 
 
 --
+-- Name: idp_template_translations fk_rails_c4b210f807; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_translations
+    ADD CONSTRAINT fk_rails_c4b210f807 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: campaign_idps fk_rails_c613668bf8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.campaign_idps
     ADD CONSTRAINT fk_rails_c613668bf8 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
+-- Name: proctoring_sessions fk_rails_c63aaef42d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT fk_rails_c63aaef42d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19912,6 +22808,14 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 
 
 --
+-- Name: proficiency_levels fk_rails_c8ae3f4099; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proficiency_levels
+    ADD CONSTRAINT fk_rails_c8ae3f4099 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: reports_campaign_ai_artifacts fk_rails_c8d4637ba7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19925,6 +22829,14 @@ ALTER TABLE ONLY public.reports_campaign_ai_artifacts
 
 ALTER TABLE ONLY public.threesixty_email_histories
     ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: job_groups fk_rails_c9bd10dd9e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.job_groups
+    ADD CONSTRAINT fk_rails_c9bd10dd9e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -19952,6 +22864,14 @@ ALTER TABLE ONLY public.taxonomy_levels
 
 
 --
+-- Name: workshop_managers fk_rails_cb61879a66; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT fk_rails_cb61879a66 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: media_responses fk_rails_cbc8996aca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -19976,11 +22896,35 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
+-- Name: user_idp_development_actions fk_rails_cc6a771861; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_idp_development_actions
+    ADD CONSTRAINT fk_rails_cc6a771861 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: ai_scoring_approval_settings fk_rails_cc75bf0bd2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ai_scoring_approval_settings
     ADD CONSTRAINT fk_rails_cc75bf0bd2 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
+-- Name: privacy_settings fk_rails_cd3488c540; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings
+    ADD CONSTRAINT fk_rails_cd3488c540 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_ce86ab4ccb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_ce86ab4ccb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20008,11 +22952,27 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 
 --
+-- Name: campaign_factors fk_rails_cff428b57f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors
+    ADD CONSTRAINT fk_rails_cff428b57f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_histories fk_rails_d00d71891f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
     ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: licenses fk_rails_d0e4537c54; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.licenses
+    ADD CONSTRAINT fk_rails_d0e4537c54 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20045,6 +23005,14 @@ ALTER TABLE ONLY public.text_module_overrides
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_d2e6622e0f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: integrations fk_rails_d329ca1b17; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.integrations
+    ADD CONSTRAINT fk_rails_d329ca1b17 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20200,11 +23168,27 @@ ALTER TABLE ONLY public.idp_template_skills
 
 
 --
+-- Name: ai_factor_scores fk_rails_d8ab2df12d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_factor_scores
+    ADD CONSTRAINT fk_rails_d8ab2df12d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: libraries fk_rails_d8bfc9ac20; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.libraries
     ADD CONSTRAINT fk_rails_d8bfc9ac20 FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: client_translations fk_rails_d90d0664a3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations
+    ADD CONSTRAINT fk_rails_d90d0664a3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20216,6 +23200,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: campaign_assessments fk_rails_d92726ee86; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessments
+    ADD CONSTRAINT fk_rails_d92726ee86 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: communications_assessments fk_rails_d9557c0769; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20224,11 +23216,67 @@ ALTER TABLE ONLY public.communications_assessments
 
 
 --
+-- Name: campaign_option_translations fk_rails_d98986c45a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_option_translations
+    ADD CONSTRAINT fk_rails_d98986c45a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: profile_field_values fk_rails_da47a0e23d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.profile_field_values
     ADD CONSTRAINT fk_rails_da47a0e23d FOREIGN KEY (user_profile_id) REFERENCES public.user_profiles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assessments fk_rails_da7f5005f0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments
+    ADD CONSTRAINT fk_rails_da7f5005f0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: factors_aliases fk_rails_da816dc3ab; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_aliases
+    ADD CONSTRAINT fk_rails_da816dc3ab FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: skill_aliases fk_rails_dae6991e57; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_aliases
+    ADD CONSTRAINT fk_rails_dae6991e57 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_ai_artifacts fk_rails_db2057ad60; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_ai_artifacts
+    ADD CONSTRAINT fk_rails_db2057ad60 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: user_profiles fk_rails_db79de0ef5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_profiles
+    ADD CONSTRAINT fk_rails_db79de0ef5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: reports_pages fk_rails_db7fa0a509; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_pages
+    ADD CONSTRAINT fk_rails_db7fa0a509 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20253,6 +23301,30 @@ ALTER TABLE ONLY public.user_availability_days
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_dc18fe0d04 FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skill_groups fk_rails_dc4f438553; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_groups
+    ADD CONSTRAINT fk_rails_dc4f438553 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: campaign_users fk_rails_dd0d199f89; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_users
+    ADD CONSTRAINT fk_rails_dd0d199f89 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: webhook_subscription_topics fk_rails_dd33716dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscription_topics
+    ADD CONSTRAINT fk_rails_dd33716dd0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20320,11 +23392,43 @@ ALTER TABLE ONLY public.assessments_reports
 
 
 --
+-- Name: threesixty_reminder_histories fk_rails_e12dc4543e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_reminder_histories
+    ADD CONSTRAINT fk_rails_e12dc4543e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_saved_filters fk_rails_e25c5bac06; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_saved_filters
     ADD CONSTRAINT fk_rails_e25c5bac06 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: ai_assistant_requests fk_rails_e310ce83f8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_requests
+    ADD CONSTRAINT fk_rails_e310ce83f8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: version_associations fk_rails_e35f5b7625; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.version_associations
+    ADD CONSTRAINT fk_rails_e35f5b7625 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: reflection_questions fk_rails_e37d558366; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_questions
+    ADD CONSTRAINT fk_rails_e37d558366 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20341,6 +23445,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 ALTER TABLE ONLY public.user_idp_plans
     ADD CONSTRAINT fk_rails_e4006a6748 FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_assessment_factor_scores fk_rails_e405efb3a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_e405efb3a1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20376,11 +23488,43 @@ ALTER TABLE ONLY public.communications_assessments
 
 
 --
+-- Name: workshop_invite_logs fk_rails_e5676f2fa7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_e5676f2fa7 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: sms_invites fk_rails_e5ead21bf8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sms_invites
+    ADD CONSTRAINT fk_rails_e5ead21bf8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: ai_assistant_chats fk_rails_e6115669f1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_chats
+    ADD CONSTRAINT fk_rails_e6115669f1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: license_usages fk_rails_e622a076e5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_e622a076e5 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: mhs_user_assessments fk_rails_e7d7ca1dde; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mhs_user_assessments
+    ADD CONSTRAINT fk_rails_e7d7ca1dde FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20408,6 +23552,14 @@ ALTER TABLE ONLY public.assessment_translations
 
 
 --
+-- Name: sheet_rows fk_rails_e8feaeff28; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_rows
+    ADD CONSTRAINT fk_rails_e8feaeff28 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: development_action_translations fk_rails_e95d83a2fe; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20421,6 +23573,14 @@ ALTER TABLE ONLY public.development_action_translations
 
 ALTER TABLE ONLY public.threesixty_evaluators
     ADD CONSTRAINT fk_rails_e96676a310 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: dashboards fk_rails_ea67961578; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dashboards
+    ADD CONSTRAINT fk_rails_ea67961578 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20472,6 +23632,14 @@ ALTER TABLE ONLY public.idp_report_pdfs
 
 
 --
+-- Name: audit_logs fk_rails_ecbd71e2ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audit_logs
+    ADD CONSTRAINT fk_rails_ecbd71e2ce FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: norms fk_rails_ecfeaf1ba0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20493,6 +23661,22 @@ ALTER TABLE ONLY public.communication_cc_users
 
 ALTER TABLE ONLY public.campaign_assessor_assessments
     ADD CONSTRAINT fk_rails_ee2e737b88 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: threesixty_email_templates fk_rails_ee64242b49; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates
+    ADD CONSTRAINT fk_rails_ee64242b49 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: audit_logs fk_rails_ee678a1ab9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audit_logs
+    ADD CONSTRAINT fk_rails_ee678a1ab9 FOREIGN KEY (impersonated_by_id) REFERENCES public.users(id);
 
 
 --
@@ -20544,11 +23728,27 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: admin_jobs fk_rails_f051f81fee; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_jobs
+    ADD CONSTRAINT fk_rails_f051f81fee FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assessments fk_rails_f076a5c10f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_f076a5c10f FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_nomination_requirements fk_rails_f0f1000797; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_nomination_requirements
+    ADD CONSTRAINT fk_rails_f0f1000797 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20568,6 +23768,22 @@ ALTER TABLE ONLY public.idp_template_development_actions
 
 
 --
+-- Name: interview_questions fk_rails_f179bb7be6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.interview_questions
+    ADD CONSTRAINT fk_rails_f179bb7be6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: occupations_factors fk_rails_f1834f8dbf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupations_factors
+    ADD CONSTRAINT fk_rails_f1834f8dbf FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: idp_settings fk_rails_f18b32fc3c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20584,11 +23800,27 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: yoodli_user_assessments fk_rails_f2ce628c93; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.yoodli_user_assessments
+    ADD CONSTRAINT fk_rails_f2ce628c93 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: client_auditlog_export_settings fk_rails_f330a54325; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.client_auditlog_export_settings
     ADD CONSTRAINT fk_rails_f330a54325 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: saville_user_assessments fk_rails_f33a76b413; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.saville_user_assessments
+    ADD CONSTRAINT fk_rails_f33a76b413 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20608,6 +23840,14 @@ ALTER TABLE ONLY public.project_assessments
 
 
 --
+-- Name: license_usages fk_rails_f412a5330c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_f412a5330c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20624,11 +23864,43 @@ ALTER TABLE ONLY public.client_translations
 
 
 --
+-- Name: user_assessment_verification_media fk_rails_f4738fdb51; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_verification_media
+    ADD CONSTRAINT fk_rails_f4738fdb51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: license_usages fk_rails_f4894a9b56; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_f4894a9b56 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reflection_question_translations fk_rails_f5a66c415e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reflection_question_translations
+    ADD CONSTRAINT fk_rails_f5a66c415e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: assessors fk_rails_f693f76e0a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessors
+    ADD CONSTRAINT fk_rails_f693f76e0a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: ai_assistant_output_schema_keys fk_rails_f6e524851c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assistant_output_schema_keys
+    ADD CONSTRAINT fk_rails_f6e524851c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20648,11 +23920,35 @@ ALTER TABLE ONLY public.agile_events
 
 
 --
+-- Name: communication_email_resources fk_rails_f7eb156bc0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_email_resources
+    ADD CONSTRAINT fk_rails_f7eb156bc0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: reports_campaign_factors fk_rails_f82d6f32ac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_campaign_factors
+    ADD CONSTRAINT fk_rails_f82d6f32ac FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: campaign_factor_groups fk_rails_f82fe585a1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.campaign_factor_groups
     ADD CONSTRAINT fk_rails_f82fe585a1 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_assisted_user_sessions fk_rails_f8424d4f42; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_assisted_user_sessions
+    ADD CONSTRAINT fk_rails_f8424d4f42 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20688,6 +23984,38 @@ ALTER TABLE ONLY public.campaigns
 
 
 --
+-- Name: pearson_user_assessments fk_rails_fa0873e37c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pearson_user_assessments
+    ADD CONSTRAINT fk_rails_fa0873e37c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: factors fk_rails_fade5b73f5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_fade5b73f5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: assessment_consent_setting_translations fk_rails_fb98bf721c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_consent_setting_translations
+    ADD CONSTRAINT fk_rails_fb98bf721c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: client_privacy_settings fk_rails_fbcbbfe438; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_privacy_settings
+    ADD CONSTRAINT fk_rails_fbcbbfe438 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_development_actions fk_rails_fca1cf9d59; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20701,6 +24029,14 @@ ALTER TABLE ONLY public.user_idp_development_actions
 
 ALTER TABLE ONLY public.user_assessment_factor_scores
     ADD CONSTRAINT fk_rails_fceff3a97b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: user_bookings fk_rails_fd5eac44ec; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings
+    ADD CONSTRAINT fk_rails_fd5eac44ec FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -20734,6 +24070,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260526000001'),
 ('20260527180000'),
 ('20260520094000'),
 ('20260514200000'),
@@ -20742,10 +24079,19 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260513115037'),
 ('20260512165457'),
 ('20260511092923'),
+('20260507171301'),
+('20260507171240'),
+('20260507171239'),
 ('20260507091734'),
 ('20260504120000'),
+('20260429130533'),
 ('20260424120000'),
+('20260423120000'),
+('20260423084117'),
 ('20260417093000'),
+('20260414030000'),
+('20260409120000'),
+('20260408123820'),
 ('20260408120000'),
 ('20260401053041'),
 ('20260401045303'),
@@ -20756,6 +24102,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260323084342'),
 ('20260320102153'),
 ('20260320100000'),
+('20260316160000'),
+('20260314030950'),
 ('20260311085954'),
 ('20260310164641'),
 ('20260306120000'),
@@ -21777,4 +25125,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

@@ -210,7 +210,8 @@ RSpec.describe Users::SessionsController, type: :controller do
         expect(controller).to receive(:audit!).with(
           :sign_out, user,
           user: user,
-          payload: { email: user.email }
+          payload: { email: user.email },
+          impersonated_by_id: nil
         )
 
         delete :destroy

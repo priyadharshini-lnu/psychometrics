@@ -9,7 +9,7 @@ RSpec.describe Administration::AuditLogsController, type: :request do
     %w[
       id action campaign_id client_id payload project_id user_id created_at request_uuid
       client project campaign user record_id record_type request active_record_audits
-      client_ip interface user_agent outcome failure_reason
+      client_ip interface user_agent outcome failure_reason impersonator
     ]
   end
 

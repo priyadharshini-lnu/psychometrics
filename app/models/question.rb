@@ -37,6 +37,7 @@ class Question < ApplicationRecord
   has_many :campaign_idp_dependencies, class_name: 'CampaignIdpDependency',
             foreign_key: 'dependency_id', dependent: :destroy
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :assessment, :owner

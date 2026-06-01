@@ -3534,13 +3534,11 @@ ru:
         title: Настройте Idp с помощью следующей информации
       email_pipetext: Электронная почта Pipetext
       enabled: Включено
-      enforced: Применять SAML
       entity_id: Идентификатор субъекта/эмитента
       name_identifier_format: Идентификатор имени
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: Настройка SAML
       save: Сохранить настройки
       sso_service_url: URL службы SSO

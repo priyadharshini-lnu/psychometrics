@@ -305,7 +305,7 @@ module Administration
       end
 
       def resolve
-        return scope if @user.is?(:superadmin)
+        return scope if superadmin_bypass?
 
         permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
           @user.has_permission?(@group, @permission, project_id: project_id)
@@ -320,6 +320,13 @@ module Administration
         end.pluck(:id)
 
         permitted_campaign_ids += @user.assessors_campaings.pluck(:id)
+
+        permitted_client_admin_project_ids = restrict_to_client_subtree(permitted_client_admin_project_ids)
+        permitted_project_admin_project_ids = restrict_to_client_subtree(permitted_project_admin_project_ids)
+        if client_admin_scoped?
+          valid_campaign_ids = Campaign.where(project_id: client_admin_subtree_ids).pluck(:id)
+          permitted_campaign_ids &= valid_campaign_ids
+        end
 
         scope.where(
           'campaigns.id IN (?) OR campaigns.project_id IN (?)',

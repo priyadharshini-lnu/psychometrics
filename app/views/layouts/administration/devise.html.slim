@@ -30,6 +30,7 @@ html.body-full-height lang="#{I18n.locale}"
         projectConfig: #{{background: image_url(randomized_background_image)}.to_json.html_safe},
         flash: #{flash_json_messages.to_json.html_safe}
       }
+      #{("__INITIAL_STATE__['clientContext'] = " + @client_context.as_json(only: [:id, :name, :subdomain]).to_json).html_safe if @client_context.present?}
 
     - if resource && resource.errors.present?
         javascript [nonce=content_security_policy_nonce]:

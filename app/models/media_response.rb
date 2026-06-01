@@ -9,11 +9,12 @@ class MediaResponse < ApplicationRecord
   has_one_attachment :asset, service: Settings.storage.private_storage_service
   has_one :transcription, as: :transcribable, dependent: :destroy
 
-  belongs_to :users_assessment
   belongs_to :question
   belongs_to :users_result
+
   include Tenantable
 
+  belongs_to :users_assessment
   tenant_source :users_result
 
   delegate :status, to: :transcription, prefix: true, allow_nil: true

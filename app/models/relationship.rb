@@ -9,6 +9,8 @@ class Relationship < ApplicationRecord
   SELF = 'Self'
 
   belongs_to :campaign
+
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   has_many :user_assessments, dependent: :restrict_with_exception

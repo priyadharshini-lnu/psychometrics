@@ -11,6 +11,7 @@ module Reports
     belongs_to :page, class_name: 'Reports::Page', touch: true
     belongs_to :assessment
 
+    tenant_config has_global_records: true, optional: true
     include Tenantable
 
     tenant_source :page

@@ -4,7 +4,13 @@ require 'rails_helper'
 
 RSpec.describe PortableData::Imports::Base do
   before do
-    allow(Settings).to receive_message_chain(:secrets, :import_export_secret).and_return('abc')
+    secrets = instance_double(
+      'Settings::Secrets',
+      import_export_secret: 'abc',
+      encrypted_key: Base64.strict_encode64('a' * 32)
+    )
+
+    allow(Settings).to receive(:secrets).and_return(secrets)
   end
 
   let(:hmac_signature) do

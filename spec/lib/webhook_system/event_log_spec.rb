@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe WebhookSystem::EventLog do
-  let(:subscription_id) { 1 }
+  let(:subscription) { create(:webhook_subscription) }
   let(:event_id) { 2 }
   let(:event_name) { 'do_something' }
   let(:status) { 200 }
@@ -13,7 +13,7 @@ RSpec.describe WebhookSystem::EventLog do
   context 'validations' do
     subject(:log) do
       build :webhook_event_log,
-            subscription_id: subscription_id,
+            subscription: subscription,
             event_id: event_id,
             event_name: event_name,
             status: status,
@@ -34,7 +34,7 @@ RSpec.describe WebhookSystem::EventLog do
     end
 
     context 'subscription_id' do
-      let(:subscription_id) { nil }
+      let(:subscription) { nil }
 
       it 'validates presence of subscription_id' do
         expect(subject).to_not be_valid

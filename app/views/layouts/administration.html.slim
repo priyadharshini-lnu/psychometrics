@@ -22,9 +22,10 @@ html lang="en"
   body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     = render 'shared/maintenance_alert_banner'
     .page-container
-      = render partial: 'left_sidebar'
+      - unless @hide_navigation
+        = render partial: 'left_sidebar'
       .page-content
-        - unless request.path =~ /\/admin\/meet\//
+        - unless @hide_navigation || request.path =~ /\/admin\/meet\//
           = render partial: 'top_sidebar'
         #flash-messages-container
           #flash-messages.col-md-12

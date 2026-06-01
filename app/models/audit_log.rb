@@ -8,13 +8,15 @@ class AuditLog < ApplicationRecord
   serialize :request, coder: JSON
 
   belongs_to :user, optional: true
+  belongs_to :impersonator, class_name: 'User', foreign_key: 'impersonated_by_id', optional: true
   belongs_to :record, polymorphic: true, optional: true
-  belongs_to :client
-  belongs_to :project, class_name: 'Client'
-  belongs_to :campaign
+  belongs_to :client, optional: true
+  belongs_to :project, class_name: 'Client', optional: true
+  belongs_to :campaign, optional: true
 
   has_many :active_record_audits, foreign_key: 'request_uuid', primary_key: 'request_uuid'
 
+  tenant_config optional: true
   include Tenantable
 
   tenant_source :client, :user

@@ -5,6 +5,8 @@ module Administration
     class SamlSettingsController < Administration::Projects::BaseController
       before_action :set_resource, only: %i[update]
 
+      MAX_METADATA_SIZE = 1.megabyte
+
       def create
         form = SamlSettings::Form.from_params(resource_params).with_context(new_record: true)
         if form.valid?
@@ -29,6 +31,20 @@ module Administration
         audit! :update, project.saml_setting, payload: resource_params, project: project
 
         render json: ::Administration::Projects::SamlSettingSerializer.new.serialize(project.saml_setting)
+      end
+
+      def parse_metadata
+        xml = params.require(:xml)
+
+        if xml.bytesize > MAX_METADATA_SIZE
+          return render json: { errors: [{ title: I18n.t('admin.sso_settings_metadata_file_too_large') }] },
+                        status: :unprocessable_entity
+        end
+
+        SamlSettings::ParseMetaData.call(xml) do
+          on(:ok) { |result| render json: result }
+          on(:error) { |error| render json: { errors: [{ title: error }] }, status: :unprocessable_entity }
+        end
       end
 
       def destroy

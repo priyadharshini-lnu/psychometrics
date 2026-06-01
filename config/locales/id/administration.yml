@@ -3534,13 +3534,11 @@ id:
         title: Konfigurasikan Idp dengan info berikut
       email_pipetext: Email Pipetext
       enabled: Diaktifkan
-      enforced: Terapkan SAML
       entity_id: ID Entitas/Penerbit
       name_identifier_format: Pengenal Nama
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: Pengaturan SAML
       save: Simpan Pengaturan
       sso_service_url: URL Layanan SSO

@@ -3534,13 +3534,11 @@ bg:
         title: Конфигуриране на Idp със следната информация
       email_pipetext: Имейл текст
       enabled: Разрешено
-      enforced: Прилагане на SAML
       entity_id: ИД на предприятието/емитент
       name_identifier_format: Идентификатор на името
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: Настройка на SAML
       save: Запазване на настройката
       sso_service_url: URL адрес на услугата на SSO

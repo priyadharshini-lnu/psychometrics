@@ -3592,13 +3592,11 @@ hi:
         title: निम्नलिखित जानकारी के साथ Idp कॉन्फ़िगर करें
       email_pipetext: ईमेल पिपेटटेक्स्ट
       enabled: सक्षम
-      enforced: SAML लागू करें
       entity_id: इकाई आईडी/जारीकर्ता
       name_identifier_format: नाम पहचानकर्ता
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: स्थायी
-      saml: एसएएमएल
       saml_setting: SAML सेटिंग
       save: सेटिंग सहेजें
       sso_service_url: एसएसओ सेवा यूआरएल

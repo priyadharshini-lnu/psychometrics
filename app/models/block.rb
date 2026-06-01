@@ -17,6 +17,7 @@ class Block < ApplicationRecord
   has_many :translations, as: :translateable, dependent: :destroy
   belongs_to :owner, class_name: 'Client'
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :assessment, :owner

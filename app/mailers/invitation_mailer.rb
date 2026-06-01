@@ -45,10 +45,13 @@ class InvitationMailer < ApplicationMailer
       @section_name = membership.client.name
     end
 
+    tenancy = membership.client&.client
+    @sign_in_url = tenancy.admin_url
+
     send_email(
       @resource,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),
-      **admin_sender_attributes(membership.client&.client)
+      **admin_sender_attributes(tenancy)
     ) do |format|
       format.html { render(template: '/devise/mailer/link_to_client', layout: 'admin_email') }
     end

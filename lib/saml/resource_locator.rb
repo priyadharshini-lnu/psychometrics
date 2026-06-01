@@ -13,7 +13,9 @@ module Saml
     end
 
     def call
-      if admin_saml_issuer?
+      if client_admin_saml_issuer?
+        find_client_admin_user
+      elsif admin_saml_issuer?
         find_admin_user_by_auth_value
       else
         find_user_by_subdomain
@@ -27,11 +29,23 @@ module Saml
 
     attr_reader :model, :decorated_saml_response
 
+    def client_admin_saml_issuer?
+      AdminSubdomain.client_admin?(subdomain)
+    end
+
     def admin_saml_issuer?
       decorated_saml_response.raw_response.issuers.include?(Settings.saml.idp_entity_id)
     end
 
+    def find_client_admin_user
+      find_user_by_auth_value
+    end
+
     def find_admin_user_by_auth_value
+      find_user_by_auth_value
+    end
+
+    def find_user_by_auth_value
       model.find_by(Devise.saml_default_user_key => @auth_value)
     end
 

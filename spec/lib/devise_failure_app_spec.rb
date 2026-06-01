@@ -6,6 +6,28 @@ describe DeviseFailureApp do
   include Rails.application.routes.url_helpers
 
   describe '#redirect_url' do
+    context 'on an admin subdomain' do
+      it 'redirects to admin sign-in path' do
+        failure_app = DeviseFailureApp.new
+        request = build_request(subdomain: 'client1-admin', params: {})
+        allow(failure_app).to receive(:request).and_return(request)
+        allow(failure_app).to receive(:warden_options).and_return(attempted_path: '/admin/dashboard')
+
+        expect(failure_app.redirect_url).to eq('/administration/sign_in')
+      end
+    end
+
+    context 'on root admin domain' do
+      it 'redirects to admin sign-in path' do
+        failure_app = DeviseFailureApp.new
+        request = build_request(subdomain: '', params: {})
+        allow(failure_app).to receive(:request).and_return(request)
+        allow(failure_app).to receive(:warden_options).and_return(attempted_path: '/admin/dashboard')
+
+        expect(failure_app.redirect_url).to eq('/administration/sign_in')
+      end
+    end
+
     it 'returns warden_options[:attempted_path] if force_saml params is not true' do
       failure_app = DeviseFailureApp.new
       request = build_request(subdomain: 'sub1', params: {})

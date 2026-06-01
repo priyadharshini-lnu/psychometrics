@@ -5,6 +5,7 @@ class Assessor < ApplicationRecord
 
   belongs_to :user
   belongs_to :campaign
+
   include Tenantable
 
   has_many :user_assessments, primary_key: :user_id, foreign_key: :evaluator_id

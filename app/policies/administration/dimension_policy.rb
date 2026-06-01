@@ -66,12 +66,15 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   class Scope < Scope
     def resolve
       scope = super
-      return scope if @user.is?(:superadmin)
+      return scope if superadmin_bypass?
 
-      permitted_owner_ids = @user.client_admin_client_ids.uniq.select do |owner_id|
+      owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
+
+      permitted_owner_ids = owner_ids.uniq.select do |owner_id|
         @user.has_permission?(:dimensions, :view, project_id: owner_id)
       end
-      scope.where(owner_id: permitted_owner_ids)
+
+      scope.where(owner_id: restrict_to_client_subtree(permitted_owner_ids))
     end
   end
 end

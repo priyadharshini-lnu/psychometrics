@@ -26,6 +26,12 @@ class Client < ApplicationRecord
     sub_campaign: 3
   }.freeze
 
+  RESERVED_ADMIN_SUBDOMAIN_PATTERNS = [
+    /-admin$/i,
+    /^admin$/i,
+    /-admin-/i
+  ].freeze
+
   has_ancestry cache_depth: true
 
   # Disables single column inheritance
@@ -38,6 +44,8 @@ class Client < ApplicationRecord
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
 
+  acts_as_tenant(:tenant, class_name: 'Client', foreign_key: :tenant_id)
+
   has_one :retail_user, class_name: 'User'
   has_one :smtp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
@@ -49,6 +57,7 @@ class Client < ApplicationRecord
   has_one :privacy_setting, dependent: :destroy, foreign_key: :project_id
   has_one :idp_setting, dependent: :destroy, foreign_key: :project_id
   has_one :client_privacy_setting, dependent: :destroy
+  has_one :client_sso_setting, dependent: :destroy, foreign_key: :tenant_id
   has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
@@ -132,13 +141,13 @@ class Client < ApplicationRecord
     validates :number, :country, :year, presence: true
     validates :project_manager, presence: true, on: :create
   end
+  validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
+  validate :subdomain_format_validation
+  validate :reserved_subdomain_validation
+  validate :admin_subdomain_validation
+
   with_options if: :project? do
-    validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
     validates :webhook, http_url: { presence: false }
-  end
-  with_options if: :project? do
-    validate :subdomain_format_validation
-    validate :reserved_subdomain_validation
   end
 
   # disabled this validation as it was causing error while saving sub-campaign
@@ -160,6 +169,7 @@ class Client < ApplicationRecord
   after_create :create_registration_setting, if: :project?
   after_create :create_privacy_setting, if: :project?
   after_create :create_client_privacy_setting, if: :root?
+  after_create :create_client_sso_setting, if: :root?
   after_create :create_idp_setting, if: :project?
   after_create :create_client_features
   after_create :create_project_features, if: :project?
@@ -225,6 +235,13 @@ class Client < ApplicationRecord
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields projects_of resource_disabled search_query has_integration]
+  end
+
+  def admin_url
+    return nil unless AdminSubdomain.client_admin_sso_enabled?
+    return nil if subdomain.blank?
+
+    AdminSubdomain.admin_url_for(self)
   end
 
   def current_privacy_policy_version
@@ -410,15 +427,22 @@ class Client < ApplicationRecord
   end
 
   def subdomain_format_validation
-    return if /^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$/.match?(subdomain)
+    return if subdomain.to_s.start_with?('retail_')
+    return if /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.match?(subdomain)
 
-    errors.add(:subdomain, 'Wrong subdomain format')
+    errors.add(:subdomain, I18n.t('admin.subdomain_invalid_format'))
   end
 
   def reserved_subdomain_validation
     return if Settings.reserved_subdomains.exclude? subdomain
 
-    errors.add(:subdomain, "Subdomain #{subdomain} is reserved")
+    errors.add(:subdomain, I18n.t('admin.subdomain_reserved', value: subdomain))
+  end
+
+  def admin_subdomain_validation
+    return unless RESERVED_ADMIN_SUBDOMAIN_PATTERNS.any? { |pattern| pattern.match?(subdomain) }
+
+    errors.add(:subdomain, I18n.t('admin.subdomain_admin_keyword'))
   end
 
   def inherit_tenant_id

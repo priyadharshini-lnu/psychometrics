@@ -246,10 +246,9 @@ module Administration
 
       def spoof
         authorize(resource, nil, policy_class: Campaigns::UserPolicy)
-        audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+        audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
         siem_log_impersonation_event(resource, 'End User')
-        spoof_token = SecureRandom.urlsafe_base64(64)
-        resource.update_column(:spoof_token, spoof_token)
+        spoof_token = impersonate_as_end_user(resource)
 
         redirect_to root_url(domain: Settings.domain, subdomain: project.subdomain, spoof_token: spoof_token),
                     allow_other_host: true

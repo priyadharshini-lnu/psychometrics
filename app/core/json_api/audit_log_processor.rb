@@ -93,7 +93,8 @@ module JsonApi
         current_record,
         {
           user: context[:user], payload: audit_log_payload, record_type: config_klass._model_class,
-          request_details: context[:request_details]
+          request_details: context[:request_details],
+          impersonated_by_id: context[:impersonated_by_id]
         }.merge(parent_resource_detail || {})
       )
     end

@@ -116,25 +116,48 @@ class Administration::UsersController < Administration::BaseController
   protected
 
   def login_as_other_admin
-    redirect_url = if resource.is?(:client_admin, :project_admin, :campaign_admin)
-                     admin_path
-                   elsif resource.assessors.exists?
+    return spoof_on_root_domain unless AdminSubdomain.client_admin_sso_enabled?
+
+    return spoof_on_root_domain unless resource.is?(:client_admin, :project_admin, :campaign_admin)
+
+    clients = resource.clients_with_admin_access
+    return spoof_via_client_selection if clients.size > 1
+
+    client = clients.first
+    return spoof_on_root_domain unless client
+
+    spoof_via_handoff(client)
+  end
+
+  def spoof_via_handoff(client)
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
+    siem_log_impersonation_event(resource, 'Admin')
+    redirect_via_handoff(resource, client, impersonated_by: current_user)
+  end
+
+  def spoof_via_client_selection
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
+    siem_log_impersonation_event(resource, 'Admin')
+    redirect_to administration_client_selection_path(spoof_user_id: resource.id)
+  end
+
+  def spoof_on_root_domain
+    redirect_url = if resource.assessors.exists?
                      assessors_dashboard_path
                    else
                      "#{admin_path}/user_availabilities"
                    end
-    audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
     siem_log_impersonation_event(resource, 'Admin')
-    sign_in(resource)
+    impersonate_as_admin(resource)
     flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
     redirect_to redirect_url
   end
 
   def login_as_end_user
-    audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
     siem_log_impersonation_event(resource, 'End User')
-    spoof_token = SecureRandom.urlsafe_base64(64)
-    resource.update_column(:spoof_token, spoof_token)
+    spoof_token = impersonate_as_end_user(resource)
 
     redirect_url = root_url(domain: Settings.domain, subdomain: resource.project.subdomain, spoof_token: spoof_token)
     redirect_to redirect_url, allow_other_host: true
