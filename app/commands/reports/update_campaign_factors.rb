@@ -59,7 +59,8 @@ module Reports
           name: factor_params['name'],
           output_type: factor_params['output_type'],
           description: factor_params['description'],
-          report_id: report.id
+          report_id: report.id,
+          tenant_id: report.tenant_id
         }
       end
 

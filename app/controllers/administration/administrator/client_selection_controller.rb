@@ -9,6 +9,7 @@ module Administration
       skip_after_action :verify_authorized
       skip_after_action :verify_policy_scoped
 
+      around_action :skip_tenant_scoping
       before_action :ensure_feature_enabled
       before_action :hide_navigation
       before_action :redirect_superadmin_without_spoof
@@ -125,6 +126,10 @@ module Administration
       # from auto-authenticating them after they log out from the client subdomain.
       def clear_central_session_for_single_client_user
         sign_out(current_user)
+      end
+
+      def skip_tenant_scoping(&)
+        ActsAsTenant.without_tenant(&)
       end
     end
   end
