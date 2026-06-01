@@ -42,6 +42,19 @@ describe Reports::UpdateCampaignFactors do
         )
       end
 
+      it 'sets tenant_id from the report on imported factors' do
+        tenant = create(:tenancy)
+        report.update_column(:tenant_id, tenant.id)
+        new_factors_params = [
+          { 'code' => 'factor_new', 'name' => 'Tenanted Factor', 'output_type' => 'numeric' }
+        ]
+
+        described_class.call(report, new_factors_params)
+
+        new_factor = report.campaign_factors.find_by(code: 'factor_new')
+        expect(new_factor.tenant_id).to eq(tenant.id)
+      end
+
       it 'removes all factors when empty array is provided' do
         described_class.call(report, [])
 

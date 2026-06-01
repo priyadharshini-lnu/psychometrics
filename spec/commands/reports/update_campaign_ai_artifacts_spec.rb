@@ -46,6 +46,20 @@ describe Reports::UpdateCampaignAIArtifacts do
         )
       end
 
+      it 'sets tenant_id from the report on imported artifacts' do
+        tenant = create(:tenancy)
+        report.update_column(:tenant_id, tenant.id)
+        new_artifacts_params = [
+          { 'code' => 'artifact_new', 'name' => 'Tenanted Artifact',
+            'ai_assistant' => { 'id' => ai_assistant.id.to_s } }
+        ]
+
+        described_class.call(report, new_artifacts_params)
+
+        new_artifact = report.campaign_ai_artifacts.find_by(code: 'artifact_new')
+        expect(new_artifact.tenant_id).to eq(tenant.id)
+      end
+
       it 'removes all artifacts when empty array is provided' do
         described_class.call(report, [])
 

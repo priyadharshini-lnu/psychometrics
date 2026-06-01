@@ -194,13 +194,20 @@ class User < ApplicationRecord
   end
 
   def accessible_client_ids
-    (client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids).uniq.compact
+    ActsAsTenant.without_tenant do
+      association(:client_admin_clients).reset
+      association(:project_admin_clients).reset
+      association(:campaign_admin_clients).reset
+      (client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids).uniq.compact
+    end
   end
 
   def clients_with_admin_access
-    return Client.tenancies.enabled if is?(:superadmin)
+    ActsAsTenant.without_tenant do
+      return Client.tenancies.enabled if is?(:superadmin)
 
-    Client.enabled.where(id: accessible_client_ids)
+      Client.enabled.where(id: accessible_client_ids)
+    end
   end
 
   def sole_admin_client
