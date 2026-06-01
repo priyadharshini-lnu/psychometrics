@@ -125,7 +125,7 @@ const ClientList: React.FC<Props> = ({
             url,
           }: Client) => (
             <Space direction="vertical" size={0}>
-              <Link to={`/admin/clients/${id}/projects`}>{name}</Link>
+              <Link to={`/admin/clients/${id}/projects`} style={{ fontWeight: 'bold' }}>{name}</Link>
               {url && (
                 <Typography.Link
                   href={url}

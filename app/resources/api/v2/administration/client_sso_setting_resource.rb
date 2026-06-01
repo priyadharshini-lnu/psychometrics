@@ -20,8 +20,7 @@ class Api::V2::Administration::ClientSsoSettingResource < Api::V2::Administratio
 
   def url_options
     {
-      host: Settings.domain,
-      subdomain: @model.client.subdomain,
+      host: AdminSubdomain.admin_host_for(@model.client),
       protocol: Settings.protocol,
       port: Settings.port
     }
