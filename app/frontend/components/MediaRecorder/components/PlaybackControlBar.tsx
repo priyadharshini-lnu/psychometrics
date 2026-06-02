@@ -96,16 +96,34 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
       seekToClientX(event.clientX)
     }
 
+    const onTouchMove = (event: TouchEvent) => {
+      if (event.touches.length === 0) return
+      if (event.cancelable) {
+        event.preventDefault()
+      }
+      seekToClientX(event.touches[0].clientX)
+    }
+
     const onMouseUp = () => {
+      setIsSeeking(false)
+    }
+
+    const onTouchEnd = () => {
       setIsSeeking(false)
     }
 
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
+    document.addEventListener('touchmove', onTouchMove, { passive: false })
+    document.addEventListener('touchend', onTouchEnd)
+    document.addEventListener('touchcancel', onTouchEnd)
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseup', onMouseUp)
+      document.removeEventListener('touchmove', onTouchMove)
+      document.removeEventListener('touchend', onTouchEnd)
+      document.removeEventListener('touchcancel', onTouchEnd)
     }
   }, [isSeeking, seekToClientX])
 
@@ -134,9 +152,16 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
     seekToClientX(e.clientX)
   }
 
-  const handleSeekStart = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleSeekStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     setIsSeeking(true)
-    seekToClientX(e.clientX)
+    if ('clientX' in e) {
+      seekToClientX(e.clientX)
+    } else if (e.touches && e.touches.length > 0) {
+      if (e.cancelable) {
+        e.preventDefault()
+      }
+      seekToClientX(e.touches[0].clientX)
+    }
   }
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0
@@ -153,7 +178,7 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
           type="button"
           className={styles.playbackBtn}
           onClick={togglePlay}
-          aria-label={isPlaying ? I18n.t('enduser.pause') : I18n.t('enduser.play')}
+          aria-label={isPlaying ? I18n.t('shared.pause') : I18n.t('shared.play')}
         >
           {isPlaying ? (
             <PauseOutlined style={{ fontSize: '1.5rem' }} />
@@ -171,6 +196,7 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
           ref={progressRef}
           onClick={handleSeek}
           onMouseDown={handleSeekStart}
+          onTouchStart={handleSeekStart}
         >
           <motion.div
             className={styles.playbackSeekbarFill}

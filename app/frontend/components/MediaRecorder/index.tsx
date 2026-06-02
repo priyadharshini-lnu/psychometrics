@@ -18,7 +18,6 @@ import {
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
-import { useRecording } from '~/context/RecordingContext'
 import VideoRecorder from '~/components/MediaRecorder/components/VideoRecorder'
 import FloatingControlBar from '~/components/MediaRecorder/components/FloatingControlBar'
 import PlaybackControlBar from '~/components/MediaRecorder/components/PlaybackControlBar'
@@ -94,13 +93,12 @@ const MediaRecorderComponent: React.FC<Props> = ({
   mediaUrl, questionId, maxDuration, mediaResponse, onSuccessUpload, onDeleteMedia, markQuestionInProgress,
   removeQuestionInProgress, isAssessmentTimedOut,
 }) => {
-  const { isRecording, startVideoRecording, stopVideoRecording } = useRecording()
-
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const [showMessage, setShowMessage] = useState<boolean>(false)
   const [videoReady, setVideoReady] = useState<boolean>(false)
   const [recordingStartedAt, setRecordingStartedAt] = useState<number | null>(null)
+  const [isRecording, setIsRecording] = useState<boolean>(false)
 
 
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -235,7 +233,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
   }
 
   const handleRecordingSaved = (data: MediaResponse): void => {
-    stopVideoRecording()
+    setIsRecording(false)
     removeQuestionInProgress(questionId)
     onSuccessUpload(data)
     setExistingMedia(data)
@@ -349,7 +347,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
         isDiscardedAfterRecordingRef.current = false
         return
       }
-      startVideoRecording()
+      setIsRecording(true)
       markQuestionInProgress(questionId, 'recording')
       handleStartRecording()
     } catch (error) {
@@ -392,10 +390,12 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
 
     return () => {
+      setPreviewStream(null)
       video.removeEventListener('canplay', markVideoReady)
       video.removeEventListener('loadedmetadata', markVideoReady)
     }
-  }, [playbackSource])
+  }, [playbackSource, isRecording])
+
 
   const resetRecorder = useCallback(async (): Promise<void> => {
     isRerunningRef.current = true
@@ -454,7 +454,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
 
   const handleStopRecording = useCallback((): void => {
     setRecordingStartedAt(null)
-    stopVideoRecording()
+    setIsRecording(false)
     stopRecording()
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach(track => track.stop())
@@ -465,7 +465,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       setPreviewStream(null)
     }
     setVideoReady(true)
-  }, [stopVideoRecording, stopRecording, previewStream, setPreviewStream])
+  }, [stopRecording, previewStream, setPreviewStream])
 
   const handleStartRecording = useCallback((): void => {
     if (!isRecording) {
@@ -521,7 +521,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       {isUploading && (
         <>
           <LoadingOutlined />
-          <span>{I18n.t('enduser.system_check_uploading')}</span>
+          <span>{I18n.t('shared.system_check_uploading')}</span>
         </>
       )}
       {(mediaBlobUrl || existingVideoUrl) && !isUploading && !showMessage && renderDiscardButton()}

@@ -88,6 +88,7 @@ en:
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Last Name
     learning_on_the_job_label: Learning on the Job
+    lets_start: Let's start!
     loading: Loading...
     login: Login
     maintenance_in_hours: "%{hours} hours"
@@ -120,7 +121,9 @@ en:
     ok: Ok
     options: Options
     owner: Owner
+    pause: Pause
     pending: Pending
+    play: Play
     policy_version: Policy Version
     policy_version_format: Only whole numbers are allowed
     positive: Positive
@@ -158,11 +161,13 @@ en:
     speakers: Speakers
     status: Status
     status_unknown: Status Unknown
+    stop: Stop
     subject: Subject
     submit: Submit
     submit_and_finish_proctoring: Submit and Finish Proctoring
     suspended: Suspended
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
+    system_check_uploading: Uploading
     table:
       entries:
         selected:
