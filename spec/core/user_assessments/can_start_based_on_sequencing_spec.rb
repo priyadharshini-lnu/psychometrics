@@ -154,4 +154,19 @@ previous_assessments_required: true)
 
     expect(described_class.call!(ua)).to eq(true)
   end
+
+  it 'returns true when previous_group_required is true but previous group position is missing' do
+    campaign_group = create(
+      :campaign_assessment_group, campaign: campaign, position: 2, previous_group_required: true
+    )
+    campaign_group_assessment = create(
+      :campaign_assessment, campaign: campaign, campaign_assessment_group: campaign_group, position: 1
+    )
+    user_assessment = create(
+      :user_assessment, campaign: campaign, subject: user, evaluator: user,
+      assessment: campaign_group_assessment.assessment, status: :not_started
+    )
+
+    expect(described_class.call!(user_assessment)).to eq(true)
+  end
 end
