@@ -53,6 +53,13 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
   const submit = async () => {
     const values = await form.validateFields()
 
+    const uploadedBackgroundFile = values.background?.file?.status !== 'removed'
+      ? values.background?.file?.originFileObj || values.background?.file
+      : null
+    const uploadedClientLogoFile = values.clientLogo?.file?.status !== 'removed'
+      ? values.clientLogo?.file?.originFileObj || values.clientLogo?.file
+      : null
+
     const payload = {
       name: values.name,
       project: { id: projectId, type: 'projects' },
@@ -75,23 +82,32 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
 
     if (values.background || values.clientLogo || values.removeBackground || values.removeClientLogo) {
       const data = new FormData()
-      if (values.background && values.background.file) {
-        data.append('background', values.background.file)
+      if (uploadedBackgroundFile instanceof Blob) {
+        data.append('background', uploadedBackgroundFile)
       }
-      if (values.clientLogo && values.clientLogo.file) {
-        data.append('client_logo', values.clientLogo.file)
+      if (uploadedClientLogoFile instanceof Blob) {
+        data.append('client_logo', uploadedClientLogoFile)
       }
-      if (values.removeBackground && !background) {
+      if (values.removeBackground && !uploadedBackgroundFile) {
         data.append('purge_background', 'true')
       }
-      if (values.removeClientLogo && !clientLogo) {
+      if (values.removeClientLogo && !uploadedClientLogoFile) {
         data.append('purge_client_logo', values.removeClientLogo)
       }
 
       try {
         await uploadFileAction(`idp_templates/${idp.id}/uploads`, data)
+      } catch (e) {
+        const errors = e && typeof e === 'object' ? e as Record<string, string[]> : {}
+        form.setFields(
+          Object.entries(errors).map(([key, messages]) => ({
+            name: _.camelCase(key),
+            errors: messages,
+          })),
+        )
         setLoading(false)
-      } catch (e) { /* empty */ }
+        return
+      }
       form.setFieldsValue({
         background: null, clientLogo: null, removeBackground: null, removeClientLogo: null,
       })

@@ -2163,6 +2163,7 @@ en:
     invalid_token: Something went wrong. Plese reload the page and try again.
     max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
     messages:
+      content_type_invalid: invalid content type
       data_report_blank: Data Report doesn not exist
       password_complexity:
         digit:
