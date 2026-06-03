@@ -29,7 +29,6 @@ import { ChatCompose } from './ChatCompose'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import BubbleTypes from './bubbles'
 import { ASSISTANT_FAILURE_FALLBACK_CONTENT, MAXIMUM_FILE_SIZE_MB } from './constants'
-import { AWS_SPEECH_TO_TEXT_URL } from '~/modules/survey/core/preview/FlowProcessor/consts'
 import { useSpeechToText } from '~/hooks/useSpeechToText'
 
 const { I18n } = window
@@ -145,14 +144,6 @@ export const AIChat = () => {
     setUserPrompt(value)
   }
 
-  const fetchAwsSpeechTextPresignedUrl = () => dispatch({
-    type: AWS_SPEECH_TO_TEXT_URL,
-    request:
-    {
-      method: 'get',
-      url: '/transcribe/pre_sign_url',
-    },
-  }) as unknown as Promise<{ response: { url: string } }>
 
   const fetchMessages = () => dispatch({
     type: 'FETCH/AI_CHAT_MESSAGES',
@@ -164,7 +155,8 @@ export const AIChat = () => {
   }) as unknown as Promise<{ response: AIAssistedIDPSession }>
 
   const { startDictation, stopDictation } = useSpeechToText({
-    value: userPrompt, onChange: changeValue, fetchPresignUrl: fetchAwsSpeechTextPresignedUrl,
+    value: userPrompt,
+    onChange: changeValue,
   })
 
   const addUserMessage = (message) => {

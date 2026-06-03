@@ -408,14 +408,20 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                   }}
                 >
                   <Typography.Text style={{ whiteSpace: 'nowrap', fontSize: '1rem', fontWeight: 500 }}>
+                    {testState.currentTest === 'latency' && I18n.t('enduser.checking_latency')}
                     {testState.currentTest === null && I18n.t('enduser.initializing')}
                     {testState.currentTest === 'download' && I18n.t('enduser.testing_download_speed')}
                     {testState.currentTest === 'upload' && I18n.t('enduser.testing_upload_speed')}
-                    {testState.currentTest === 'latency' && I18n.t('enduser.checking_latency')}
                   </Typography.Text>
-                  {testState.status === 'testing' && (
+                  {testState.status === 'testing'
+                  && (testState.currentTest === 'download' || testState.currentTest === 'upload') && (
                     <Progress
-                      percent={Math.min((testState.elapsedSeconds / 20) * 100, 99)}
+                      percent={(() => {
+                        const phaseProgress = Math.min(testState.elapsedSeconds / 20, 1)
+                        if (testState.currentTest === 'download') return phaseProgress * 50
+                        if (testState.currentTest === 'upload') return 50 + phaseProgress * 49
+                        return 0
+                      })()}
                       showInfo={false}
                       strokeColor="var(--ant-primary-color)"
                       size="small"
@@ -439,7 +445,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               </Flex>
             )}
 
-            <Flex justify="space-evenly" style={{ width: '100%' }}>
+            <Flex justify="center" gap={32} style={{ width: '100%' }}>
               {(showDownloadSpeed || testCompleted) && (
                 <Flex vertical style={{ textAlign: 'center' }}>
                   <h1 className="mb-0 mt-0" style={{ color: 'var(--ant-primary-color)' }}>

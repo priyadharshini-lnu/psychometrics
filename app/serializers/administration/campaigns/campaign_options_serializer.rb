@@ -9,11 +9,11 @@ module Administration
                  :proctoring_type, :workshop_invite_requires_prework_completion,
                  :proctoring_enabled_on_workshop_activity, :enable_video_call_recording,
                  :enable_mobile_proctoring, :allow_video_call_recording, :system_check_enabled,
-                 :system_check_validity, :allow_continue_with_warning, :skip_assessment_level_checks,
+                 :system_check_validity, :allow_continue_with_warning,
                  :minimum_upload_speed, :minimum_download_speed,
                  :calculated_minimum_upload_speed, :calculated_minimum_download_speed,
-                 :selective_proctoring_enabled
-
+                 :skip_assessment_level_checks, :face_detection_enabled, :minimum_face_detection_ratio,
+                 :phrase_verification_enabled, :selective_proctoring_enabled
       delegate :campaign, to: :object
       delegate :calculated_minimum_upload_speed, :calculated_minimum_download_speed, to: :campaign
     end

@@ -5,10 +5,8 @@ module EndUser
     skip_before_action :verify_authenticity_token
 
     before_action :set_campaign_user
-    before_action :set_system_check_session,
-                  only: %i[show add_record complete results upload_media_url complete_multipart_upload]
-    before_action :set_system_check_record,
-                  only: %i[upload_media_url complete_multipart_upload]
+    before_action :set_system_check_session, except: %i[create requirements_status]
+    before_action :set_system_check_record, only: %i[upload_media_url complete_multipart_upload update]
     before_action :validate_system_check_enabled, only: %i[create requirements_status]
 
     def requirements_status
@@ -33,6 +31,12 @@ module EndUser
     def add_record
       record = @system_check_session.system_check_records.create!(record_params)
       render json: serialize_record(record), status: :created
+    end
+
+    def update
+      @system_check_record.data = @system_check_record.data.to_h.merge(record_params[:data].to_h)
+      @system_check_record.update!(record_params.except(:data))
+      render json: serialize_record(@system_check_record), status: :ok
     end
 
     def complete
@@ -60,13 +64,17 @@ module EndUser
     end
 
     def complete_multipart_upload
-      SystemCheckRecords::CompleteMultipartUpload.call(@system_check_record, {
+      SystemCheckRecords::ProcessMediaUpload.call(@system_check_record, {
         asset_key: params[:asset_key],
         upload_id: params[:upload_id],
         parts: params[:parts],
         file_size: params[:file_size],
         content_type: params[:content_type],
-        checksum: params[:checksum]
+        checksum: params[:checksum],
+        test_phrase: params[:test_phrase],
+        locale: params[:locale],
+        transcribed_text: params[:transcribed_text],
+        face_detection_ratio: params[:face_detection_ratio]
       }) do
         on(:ok) { |record| render json: serialize_record(record) }
         on(:error) { |error| render json: { error: error }, status: :unprocessable_entity }

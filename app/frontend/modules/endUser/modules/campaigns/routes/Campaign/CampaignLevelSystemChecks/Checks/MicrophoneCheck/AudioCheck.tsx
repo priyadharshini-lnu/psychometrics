@@ -21,13 +21,13 @@ import {
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
 import AudioWaveVisualizer from '~/components/MediaRecorder/components/AudioWaveVisualizer'
 import { useReactMediaRecorder, StatusMessages } from '~/components/MediaRecorder/components/MediaRecorder'
-import { preSignUrl } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { CheckList } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/CheckList'
 import { CheckListStatus } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/interfaces'
 import reducer, {
-  initialState, updateAccess, updateUploading, updateSpeechTestText, State,
+  initialState, updateAccess, updateUploading, updateSpeechTestText, updateSpeechVerification, State,
 } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/VideoCheck/reducer'
+import { useSpeechToText } from '~/hooks/useSpeechToText'
 import styles from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/AudioCheck/AudioCheck.less'
 import {
   getRandomAudioTestPhrase, startAudioLevelMonitoring,
@@ -44,9 +44,7 @@ window.Buffer = Buffer
 const connector = connect(({ checkingWizard }: RootState) => ({
   preSignedUrl: checkingWizard.preSignedUrl,
   transcribeSupportedLocales: checkingWizard.transcribeSupportedLocales,
-}), {
-  preSignUrl,
-})
+}), {})
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {
@@ -56,6 +54,9 @@ type Props = PropsFromRedux & {
   setCheckStatus: (status: CHECK_STATUS.passed | CHECK_STATUS.failed | CHECK_STATUS.pending) => void
   setIsDeviceRequestGranted: (granted: boolean) => void
   setNoAudioDetected: (noAudio: boolean) => void
+  setSpeechVerificationFailed: (failed: boolean) => void
+  setSpeechVerificationError: (error: boolean) => void
+  phraseVerificationEnabled: boolean
 }
 
 interface DeviceDetails {
@@ -65,9 +66,16 @@ interface DeviceDetails {
 const { I18n } = window
 
 const AudioCheckComponent: React.FC<Props> = ({
-  nextStep, setCheckStatus, postRecordingCallbackURL = '', directUploadURL = '', setIsDeviceRequestGranted,
-  setNoAudioDetected,
+  nextStep, setCheckStatus, postRecordingCallbackURL = '', directUploadURL = '',
+  setIsDeviceRequestGranted, setNoAudioDetected, setSpeechVerificationFailed, setSpeechVerificationError,
+  phraseVerificationEnabled,
 }) => {
+  const {
+    startDictation: startSpeech,
+    stopDictation: stopSpeech,
+    transcriptRef,
+    isConnecting,
+  } = useSpeechToText()
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
@@ -81,6 +89,9 @@ const AudioCheckComponent: React.FC<Props> = ({
   const assetKeyRef = useRef<string>('')
   const urlsRef = useRef<string[]>([])
   const fileSizeRef = useRef<number>(0)
+  const completeUploadRef = useRef<(blob: Blob) => Promise<void>>(async () => {})
+  const pendingCompleteBlobRef = useRef<Blob | null>(null)
+  const uploadReadyResolverRef = useRef<(() => void) | null>(null)
 
   const [state, dispatch] = useReducer(reducer, initialState)
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
@@ -104,17 +115,21 @@ const AudioCheckComponent: React.FC<Props> = ({
     })
     setAudioBlob(completeBlob)
 
-    if (showAudioWarning) {
+    if (!audioDetectedRef.current) {
       setCheckStatus(CHECK_STATUS.failed)
       dispatch(updateUploading(CheckListStatus.Failed))
       setNoAudioDetected(true)
+      uploadReadyResolverRef.current?.()
+      uploadReadyResolverRef.current = null
       return
     }
 
-    uploadPart(lastBlob).then(() => {
-      completeUpload(completeBlob)
+    pendingCompleteBlobRef.current = completeBlob
+    uploadPart(lastBlob).finally(() => {
+      uploadReadyResolverRef.current?.()
+      uploadReadyResolverRef.current = null
     })
-  }, [showAudioWarning])
+  }, [])
 
 
   const isAccessDone = state.access === CheckListStatus.Done
@@ -136,6 +151,7 @@ const AudioCheckComponent: React.FC<Props> = ({
       partIndexRef.current += 1
       fileSizeRef.current += blob.size
     } catch (error) {
+      console.error('[AudioCheck] uploadPart failed:', error)
       setCheckStatus(CHECK_STATUS.failed)
       dispatch(updateUploading(CheckListStatus.Failed))
     }
@@ -184,24 +200,52 @@ const AudioCheckComponent: React.FC<Props> = ({
 
   const completeUpload = async (completeBlob: Blob) => {
     const sortedParts = uploadedPartsRef.current.sort((a, b) => a.part_number - b.part_number)
+    if (phraseVerificationEnabled) {
+      dispatch(updateSpeechVerification(CheckListStatus.InProgress))
+    }
     try {
       const checksum = await calculateMD5Checksum(completeBlob)
 
-      await axios.put(postRecordingCallbackURL, {
+      const phraseVerificationPayload = phraseVerificationEnabled
+        ? { test_phrase: state.speechTestText, locale: I18n.locale, transcribed_text: transcriptRef.current }
+        : {}
+
+      const { data: record } = await axios.put(postRecordingCallbackURL, {
         upload_id: uploadIdRef.current,
         asset_key: assetKeyRef.current,
         parts: sortedParts,
         file_size: fileSizeRef.current,
         content_type: 'audio/webm',
         checksum,
+        ...phraseVerificationPayload,
       })
-      setCheckStatus(CHECK_STATUS.passed)
       dispatch(updateUploading(CheckListStatus.Done))
+      if (!phraseVerificationEnabled) {
+        setCheckStatus(CHECK_STATUS.passed)
+        return
+      }
+      if (record.phrase_verification_status === 'completed') {
+        if (record.phrase_matched) {
+          dispatch(updateSpeechVerification(CheckListStatus.Done))
+          setCheckStatus(CHECK_STATUS.passed)
+        } else {
+          dispatch(updateSpeechVerification(CheckListStatus.Failed))
+          setSpeechVerificationFailed(true)
+          setCheckStatus(CHECK_STATUS.failed)
+        }
+      } else if (record.phrase_verification_status === 'error') {
+        dispatch(updateSpeechVerification(CheckListStatus.Failed))
+        setSpeechVerificationError(true)
+        setCheckStatus(CHECK_STATUS.failed)
+      }
     } catch (error) {
+      console.error('[AudioCheck] completeUpload failed:', error)
       setCheckStatus(CHECK_STATUS.failed)
       dispatch(updateUploading(CheckListStatus.Failed))
     }
   }
+
+  completeUploadRef.current = completeUpload
 
   useEffect(() => {
     const random = getRandomAudioTestPhrase(RANDOM_CONSTS_ARRAY)
@@ -251,9 +295,18 @@ const AudioCheckComponent: React.FC<Props> = ({
 
     return (
       <Button
-        onClick={() => {
-          startRecording()
+        onClick={async () => {
+          if (phraseVerificationEnabled) {
+            try {
+              await startSpeech(() => startRecording())
+            } catch {
+              setCheckStatus(CHECK_STATUS.failed)
+            }
+          } else {
+            startRecording()
+          }
         }}
+        loading={isConnecting && phraseVerificationEnabled}
         type="primary"
         icon={<VideoCameraOutlined />}
       >
@@ -269,7 +322,7 @@ const AudioCheckComponent: React.FC<Props> = ({
   )
 
   const requestAccess = async () => {
-    if (!audioRef.current) {
+    if (!audioRef.current || !directUploadURL) {
       return
     }
 
@@ -363,6 +416,7 @@ const AudioCheckComponent: React.FC<Props> = ({
     clearBlobUrl()
     setAudioBlob(null)
     setShowAudioWarning(false)
+    setSpeechVerificationFailed(false)
     dispatch(updateUploading(CheckListStatus.Pending))
 
     partIndexRef.current = 0
@@ -389,11 +443,19 @@ const AudioCheckComponent: React.FC<Props> = ({
       audioRef.current.src = ''
     }
 
+    if (phraseVerificationEnabled) {
+      dispatch(updateSpeechVerification(CheckListStatus.Pending))
+    }
+
     requestAccess()
   }
 
 
-  const handleStopRecording = React.useCallback((): void => {
+  const handleStopRecording = React.useCallback(async (): Promise<void> => {
+    const uploadReadyPromise = new Promise<void>((resolve) => {
+      uploadReadyResolverRef.current = resolve
+    })
+
     stopRecording()
 
     cleanupAudioMonitoring({
@@ -408,10 +470,21 @@ const AudioCheckComponent: React.FC<Props> = ({
       mediaStreamRef.current = null
     }
 
+    const stopActions: Promise<unknown>[] = [uploadReadyPromise]
+    if (phraseVerificationEnabled) {
+      stopActions.push(stopSpeech())
+    }
+    await Promise.all(stopActions)
+
+    if (pendingCompleteBlobRef.current) {
+      await completeUploadRef.current(pendingCompleteBlobRef.current)
+      pendingCompleteBlobRef.current = null
+    }
+
     if (audioRef.current) {
       audioRef.current.srcObject = null
     }
-  }, [stopRecording])
+  }, [stopRecording, stopSpeech])
 
 
   const renderProgressAndChecklist = () => (
@@ -421,6 +494,10 @@ const AudioCheckComponent: React.FC<Props> = ({
         dataSource={[
           { name: I18n.t('enduser.system_check_access'), status: state.access },
           { name: I18n.t('enduser.system_check_uploading'), status: state.uploading },
+          ...(phraseVerificationEnabled
+            ? [{ name: I18n.t('enduser.system_check_speech_verification'), status: state.speechVerification }]
+            : []
+          ),
         ]}
       />
     </div>
@@ -548,7 +625,7 @@ export const AudioCheck = connector(AudioCheckComponent)
 type RecordCardProps = {
   mediaBlobUrl: undefined | string;
   stream: MediaStream | null;
-  handleStopRecording : () => void;
+  handleStopRecording : () => Promise<void>;
   status: StatusMessages
   state: State,
 }
@@ -597,7 +674,7 @@ const RecordCard = forwardRef<HTMLAudioElement, RecordCardProps>(({
       </div>
       <audio
         preload="metadata"
-        className={cs(styles.audioElement, 'pos-rel')}
+        className={styles.audioElement}
         ref={ref}
         src={mediaBlobUrl}
         controls={!!mediaBlobUrl}

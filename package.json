@@ -55,6 +55,8 @@
     "@dnd-kit/core": "^5.0.1",
     "@dnd-kit/sortable": "^6.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@mediapipe/tasks-vision": "^0.10.34",
+    "@oracle/oci-ai-speech-realtime-web": "^2.2.0",
     "@rails/actioncable": "^8.1.200",
     "@rails/activestorage": "^7.1.2",
     "@reduxjs/toolkit": "^2.2.6",

@@ -67,8 +67,10 @@ const CampaignOptions: React.FC<Props> = ({
 
   const [isEditingDownloadSpeed, setIsEditingDownloadSpeed] = useState<boolean>(false)
   const [isEditingUploadSpeed, setIsEditingUploadSpeed] = useState<boolean>(false)
+  const [isEditingFaceDetectionRatio, setIsEditingFaceDetectionRatio] = useState<boolean>(false)
   const [downloadSpeed, setDownloadSpeed] = useState<number>(options.calculatedMinimumDownloadSpeed)
   const [uploadSpeed, setUploadSpeed] = useState<number>(options.calculatedMinimumUploadSpeed)
+  const [faceDetectionRatio, setFaceDetectionRatio] = useState<number>(options.minimumFaceDetectionRatio ?? 85)
 
   const inputDurationRef = useRef<InputRef>(null)
 
@@ -539,7 +541,7 @@ const CampaignOptions: React.FC<Props> = ({
                       />
                     ) : (
                       <Button type="link" onClick={() => setIsEditingDownloadSpeed(false)}>
-                        Save
+                        {I18n.t('shared.save')}
                       </Button>
                     ) }
                   </Flex>
@@ -573,11 +575,70 @@ const CampaignOptions: React.FC<Props> = ({
                       />
                     ) : (
                       <Button type="link" onClick={() => setIsEditingUploadSpeed(false)}>
-                        Save
+                        {I18n.t('shared.save')}
                       </Button>
                     )}
                   </Flex>
 
+                </Col>
+              </Row>
+
+              <Row className="mbl" gutter={16} align="middle">
+                <Col offset={2} span={22}>
+                  <Option
+                    label={I18n.t('admin.enable_face_detection')}
+                    {...parametersForField('faceDetectionEnabled')}
+                  />
+                </Col>
+              </Row>
+
+              {options.faceDetectionEnabled && (
+                <Row justify="start" className="mbl" align="middle">
+                  <Col flex="200px" offset={4}>
+                    <label>{I18n.t('admin.minimum_face_detection_ratio')}</label>
+                  </Col>
+                  <Col flex="300px" offset={1}>
+                    <Flex gap={4} align="center">
+                      <Input
+                        style={{ width: '100px' }}
+                        type="number"
+                        min={0}
+                        max={100}
+                        disabled={!isEditingFaceDetectionRatio}
+                        value={faceDetectionRatio}
+                        onChange={(e) => {
+                          const value = Math.min(100, Math.max(0, Number(e.target.value)))
+                          setFaceDetectionRatio(value)
+                          update(
+                            parsedProjectId, parsedCampaignId,
+                            { ...options, minimumFaceDetectionRatio: value },
+                          )
+                        }}
+                        suffix="%"
+                      />
+                      {!isEditingFaceDetectionRatio ? (
+                        <EditOutlined
+                          className="ms-2"
+                          onClick={() => {
+                            setIsEditingFaceDetectionRatio(true)
+                          }}
+                        />
+                      ) : (
+                        <Button type="link" onClick={() => setIsEditingFaceDetectionRatio(false)}>
+                          {I18n.t('shared.save')}
+                        </Button>
+                      )}
+                    </Flex>
+                  </Col>
+                </Row>
+              )}
+
+              <Row className="mbl" gutter={16} align="middle">
+                <Col offset={2} span={22}>
+                  <Option
+                    label={I18n.t('admin.enable_phrase_verification')}
+                    {...parametersForField('phraseVerificationEnabled')}
+                  />
                 </Col>
               </Row>
             </>

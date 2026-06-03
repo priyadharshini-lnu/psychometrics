@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SystemCheckRecords::CompleteMultipartUpload, type: :command do
+RSpec.describe SystemCheckRecords::ProcessMediaUpload, type: :command do
   let(:user) { create(:user, :with_project_membership) }
   let(:campaign) { user.project.campaigns.first || create(:campaign, project: user.project) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }

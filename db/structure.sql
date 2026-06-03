@@ -2490,6 +2490,9 @@ CREATE TABLE public.campaign_options (
     minimum_upload_speed integer,
     minimum_download_speed integer,
     enable_mobile_proctoring boolean DEFAULT false,
+    face_detection_enabled boolean DEFAULT false NOT NULL,
+    minimum_face_detection_ratio integer DEFAULT 85,
+    phrase_verification_enabled boolean DEFAULT false NOT NULL,
     skip_assessment_level_checks boolean DEFAULT true NOT NULL,
     tenant_id bigint
 );
@@ -24086,6 +24089,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260504120000'),
 ('20260429130533'),
 ('20260424120000'),
+('20260331100000'),
+('20260415153054'),
 ('20260423120000'),
 ('20260423084117'),
 ('20260417093000'),
@@ -24097,7 +24102,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260401045303'),
 ('20260401031414'),
 ('20260401030425'),
-('20260331100000'),
 ('20260325000001'),
 ('20260323084342'),
 ('20260320102153'),

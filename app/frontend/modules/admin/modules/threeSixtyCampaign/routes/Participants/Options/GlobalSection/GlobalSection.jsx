@@ -21,8 +21,10 @@ export default function GlobalSection ({
 
   const [isEditingDownloadSpeed, setIsEditingDownloadSpeed] = useState(false)
   const [isEditingUploadSpeed, setIsEditingUploadSpeed] = useState(false)
+  const [isEditingFaceDetectionRatio, setIsEditingFaceDetectionRatio] = useState(false)
   const [downloadSpeed, setDownloadSpeed] = useState(options.calculatedMinimumDownloadSpeed)
   const [uploadSpeed, setUploadSpeed] = useState(options.calculatedMinimumUploadSpeed)
+  const [faceDetectionRatio, setFaceDetectionRatio] = useState(options.minimumFaceDetectionRatio ?? 85)
 
   useEffect(() => {
     setWatermarkContent(options.watermarkContent || '')
@@ -143,7 +145,7 @@ export default function GlobalSection ({
                     />
                   ) : (
                     <Button type="link" onClick={() => setIsEditingDownloadSpeed(false)}>
-                      Save
+                      {I18n.t('shared.save')}
                     </Button>
                   ) }
                 </Flex>
@@ -176,10 +178,67 @@ export default function GlobalSection ({
                     />
                   ) : (
                     <Button type="link" onClick={() => setIsEditingUploadSpeed(false)}>
-                      Save
+                      {I18n.t('shared.save')}
                     </Button>
                   )}
                 </Flex>
+              </Col>
+            </Row>
+
+            <Row gutter={16} align="top">
+              <Col offset={2} span={22}>
+                <ExpandableOption
+                  label={I18n.t('admin.enable_face_detection')}
+                  {...parametersForSwitch('faceDetectionEnabled')}
+                />
+              </Col>
+            </Row>
+
+            {options.faceDetectionEnabled && (
+              <Row className="mbl" align="middle">
+                <Col flex="200px" offset={4}>
+                  <label>{I18n.t('admin.minimum_face_detection_ratio')}</label>
+                </Col>
+                <Col flex="300px" offset={1}>
+                  <Flex gap={4} align="center">
+                    <Input
+                      style={{ width: '100px' }}
+                      type="number"
+                      min={0}
+                      max={100}
+                      disabled={!isEditingFaceDetectionRatio}
+                      value={faceDetectionRatio}
+                      onChange={(e) => {
+                        const value = Math.min(100, Math.max(0, Number(e.target.value)))
+                        setFaceDetectionRatio(value)
+                        updateParticipantOptions([OBJECT_KEY,
+                          'minimumFaceDetectionRatio'], value)
+                      }}
+                      suffix="%"
+                    />
+                    {!isEditingFaceDetectionRatio ? (
+                      <EditOutlined
+                        className="ms-2"
+                        onClick={() => {
+                          setIsEditingFaceDetectionRatio(true)
+                        }}
+                      />
+                    ) : (
+                      <Button type="link" onClick={() => setIsEditingFaceDetectionRatio(false)}>
+                        {I18n.t('shared.save')}
+                      </Button>
+                    )}
+                  </Flex>
+                </Col>
+              </Row>
+            )}
+
+            <Row gutter={16} align="top">
+              <Col offset={2} span={22}>
+                <ExpandableOption
+                  label={I18n.t('admin.enable_phrase_verification')}
+                  {...parametersForSwitch('phraseVerificationEnabled')}
+                />
               </Col>
             </Row>
           </>

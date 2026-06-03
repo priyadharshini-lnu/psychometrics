@@ -29,13 +29,21 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
 
     context 'when campaign has no video questions' do
       it 'returns video as not required' do
-        expect(result[:video]).to eq({ required: false })
+        expect(result[:video]).to eq({
+          required: false,
+          face_detection_enabled: false,
+          minimum_face_detection_ratio: 85,
+          phrase_verification_enabled: false
+        })
       end
     end
 
     context 'when campaign has no audio questions' do
       it 'returns audio as not required' do
-        expect(result[:audio]).to eq({ required: false })
+        expect(result[:audio]).to eq({
+          required: false,
+          phrase_verification_enabled: false
+        })
       end
     end
 
@@ -49,7 +57,10 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
       end
 
       it 'returns audio as required' do
-        expect(result[:audio]).to eq({ required: true })
+        expect(result[:audio]).to eq({
+          required: true,
+          phrase_verification_enabled: false
+        })
       end
     end
 
@@ -60,11 +71,19 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
       end
 
       it 'returns video as required' do
-        expect(result[:video]).to eq({ required: true })
+        expect(result[:video]).to eq({
+          required: true,
+          face_detection_enabled: false,
+          minimum_face_detection_ratio: 85,
+          phrase_verification_enabled: false
+        })
       end
 
       it 'returns audio as not required since video covers audio' do
-        expect(result[:audio]).to eq({ required: false })
+        expect(result[:audio]).to eq({
+          required: false,
+          phrase_verification_enabled: false
+        })
       end
     end
 
@@ -84,7 +103,12 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
       end
 
       it 'returns video as required' do
-        expect(result[:video]).to eq({ required: true })
+        expect(result[:video]).to eq({
+          required: true,
+          face_detection_enabled: false,
+          minimum_face_detection_ratio: 85,
+          phrase_verification_enabled: false
+        })
       end
     end
 
@@ -142,13 +166,23 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
         end
 
         it 'returns video as required' do
-          expect(result[:video]).to eq({ required: true })
+          expect(result[:video]).to eq({
+            required: true,
+            face_detection_enabled: false,
+            minimum_face_detection_ratio: 85,
+            phrase_verification_enabled: false
+          })
         end
       end
 
       context 'when threesixty assessment has no video questions' do
         it 'returns video as not required' do
-          expect(result[:video]).to eq({ required: false })
+          expect(result[:video]).to eq({
+            required: false,
+            face_detection_enabled: false,
+            minimum_face_detection_ratio: 85,
+            phrase_verification_enabled: false
+          })
         end
       end
     end
@@ -164,7 +198,12 @@ RSpec.describe SystemCheckSessions::RequirementsCalculator do
       end
 
       it 'does not consider video questions from other campaigns' do
-        expect(result[:video]).to eq({ required: false })
+        expect(result[:video]).to eq({
+          required: false,
+          face_detection_enabled: false,
+          minimum_face_detection_ratio: 85,
+          phrase_verification_enabled: false
+        })
       end
     end
   end

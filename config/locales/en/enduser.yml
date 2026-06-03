@@ -43,6 +43,7 @@ en:
     camera_check: Camera and Microphone Test
     camera_check_abruptly_ended: Camera was turned off abruptly. Please enable your camera and re-run the check.
     camera_check_description: Verify your camera and microphone work properly, then play back your recording to confirm.
+    camera_check_failed: Video check failed
     camera_check_passed: Video and Audio check passed successfully
     camera_check_record_instruction: Click Record and read the following passage aloud
     camera_test_step: Video and Audio Test Step
@@ -69,6 +70,9 @@ en:
     error_uploading_audio_detail: There was an error uploading your audio
     error_uploading_video: Error uploading video
     error_uploading_video_detail: There was some error while uploading the video
+    face_detection_error: An error occurred during face detection. Please ensure your camera is working and try again.
+    face_detection_failed: Face was not detected in the video recording. Please ensure your camera is uncovered and your face is visible.
+    face_not_detected_warning: No face detected. Please ensure your face is visible to the camera.
     fail: Fail
     file_submission_already_exists: We already have your submission for this question. Kindly refresh the page and if you still can't see you previous submission, please contact your administrator.
     follow_these_steps: Follow these steps to resolve the issues detected during the system check
@@ -161,6 +165,8 @@ en:
     select_video_device: Select Video Device
     selected_count: "%{count} selected"
     skill_type: Skill Type
+    speech_verification_error: An error occurred while verifying your speech. Please try again.
+    speech_verification_failed: Your speech did not match the test phrase. Please try again and speak the phrase clearly.
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
@@ -185,10 +191,12 @@ en:
       one: I scream, you scream, we all scream for ice cream!
       seven: Every day is a new beginning. Say it loud and proud!
       six: Pizza or pasta? Decisions are hard.
+      ten: I am ready. This is a test recording to confirm that my microphone is working properly.
       three: Testing, one two three, the sound is clear as can be!.
       two: The quick brown fox jumps over the lazy dog.
     system_check_audio_title: Please speak and repeat the following sentence 3 times.
     system_check_complete: System Check Complete
+    system_check_face_detection: Face Detection
     system_check_failed: System Check Failed
     system_check_failed_description: Please resolve the issues and re-run the system checks.
     system_check_failed_message: Some system checks failed. Please review the details and try again.
@@ -199,6 +207,7 @@ en:
     system_check_retake: No, I want to retake
     system_check_run_again: Run again
     system_check_session_not_found: System check session not found. Please start a new system check.
+    system_check_speech_verification: Speech Verification
     system_check_start_recording: Start Recording
     system_check_stop_recording: Stop Recording
     system_check_test_message: great to speak with you
@@ -256,6 +265,10 @@ en:
     video_overlay_label: Select your microphone and camera, click Record,then read the following message once you hit Record button
     video_overlay_message: Select your microphone and camera, click Record, then read aloud the sentence appearing at the bottom.
     video_recorder_label: Video Recorder
+    video_upload_failed_camera_access: Unable to access your camera or microphone. Please check your device permissions and try again.
+    video_upload_failed_chunk_upload: A part of the recording failed to upload. Please check your internet connection and try again.
+    video_upload_failed_finalize: The recording was captured but could not be saved. Please try again.
+    video_upload_failed_no_recording: No recording was found to upload. Please record again.
     view_details: View Details
     webgl_api_fix_description_first: Ensure that your browser supports WebGL and that it is enabled in the settings
     webgl_api_fix_description_second: Update your graphics drivers to the latest version

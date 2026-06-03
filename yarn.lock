@@ -1747,6 +1747,11 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@marijn/find-cluster-break/-/find-cluster-break-1.0.2.tgz#775374306116d51c0c500b8c4face0f9a04752d8"
   integrity sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==
 
+"@mediapipe/tasks-vision@^0.10.34":
+  version "0.10.34"
+  resolved "https://registry.yarnpkg.com/@mediapipe/tasks-vision/-/tasks-vision-0.10.34.tgz#ba90710a9396b795a7f52435a3c1fea71a439585"
+  integrity sha512-KFGyhDsjJ+9WUMcMfjTOpcEp3LJNS3KwC7BfvKrCYELn/7G/5kmwnU7z6Spps+iWQoTGL8xW8i68r65OTa3DwA==
+
 "@microsoft/api-extractor-model@7.33.6":
   version "7.33.6"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@microsoft/api-extractor-model/-/api-extractor-model-7.33.6.tgz#7bef639b673c96e4273cc5cd91b628b5a95c56e6"
@@ -1818,6 +1823,11 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@oracle/oci-ai-speech-realtime-web@^2.2.0":
+  version "2.2.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@oracle/oci-ai-speech-realtime-web/-/oci-ai-speech-realtime-web-2.2.0.tgz#dffecbffb5591bff50e26753dd5924807d9d4ba2"
+  integrity sha512-rjXFjJXvUvNFEea7kw/qtT6vFrxuvM6x36zXEZCnc6OqTlQNWWuoPc7X3RNnsEjIzsAY3KeJ18fzBqUlpvK0AQ==
 
 "@oxc-project/types@=0.124.0":
   version "0.124.0"
@@ -8061,7 +8071,7 @@ lodash.throttle@^4.1.1:
 
 lodash@^4.17.15, lodash@^4.17.21, lodash@^4.18.1, lodash@~4.18.1:
   version "4.18.1"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash/-/lodash-4.18.1.tgz#ff2b66c1f6326d59513de2407bf881439812771c"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.18.1.tgz#ff2b66c1f6326d59513de2407bf881439812771c"
   integrity sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.4.0:

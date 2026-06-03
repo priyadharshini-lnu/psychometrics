@@ -325,8 +325,10 @@ en:
     empty: Empty
     empty_csv_file: CSV file does not contain any data.
     enable_enhance_with_ai_client_level: Enhance with AI is disabled by client
+    enable_face_detection: Enable Face Detection
     enable_maintenance: Enable Maintenance
     enable_mobile_proctoring: Enable Mobile Proctoring
+    enable_phrase_verification: Enable Phrase Verification
     enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
@@ -484,6 +486,7 @@ en:
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_face_detection_ratio: Minimum Face Detection Ratio
     minimum_system_check_validity: Minimum Campaign level System Check validity should be 15 minutes
     minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
