@@ -88,6 +88,7 @@ it:
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
     last_name: Cognome
     learning_on_the_job_label: Imparare sul campo
+    lets_start: Cominciamo!
     loading: Caricamento in corso...
     login: Accesso
     maintenance_in_hours: "%{hours} ore"
@@ -120,7 +121,9 @@ it:
     ok: Ok
     options: Opzioni
     owner: Proprietario
+    pause: Pausa
     pending: In sospeso
+    play: Gioca
     policy_version: Versione della politica
     policy_version_format: Sono ammessi solo numeri interi
     positive: Positivo
@@ -134,6 +137,7 @@ it:
     question_id: ID domanda
     question_transcription_disabled: La trascrizione è disabilitata per questa domanda.
     rec: REC
+    record: Record
     recorded: Registrato
     recording: Registrazione
     recording_consent_notice: Questa sessione di riunione sarà registrata. La tua partecipazione a questa riunione costituisce il tuo consenso a essere registrato.
@@ -158,11 +162,13 @@ it:
     speakers: Relatori
     status: Stato
     status_unknown: Stato sconosciuto
+    stop: Basta
     subject: Oggetto
     submit: Invia
     submit_and_finish_proctoring: Invia e concludi la sessione di sorveglianza
     suspended: Sospeso
     switch_to_laptop_or_desktop: Passa al laptop o al desktop
+    system_check_uploading: Caricamento
     table:
       entries:
         selected:

@@ -88,6 +88,7 @@ zh-HK:
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
     last_name: 姓氏
     learning_on_the_job_label: 邊做邊學
+    lets_start: 开始吧！
     loading: 正在加载...
     login: 登入
     maintenance_in_hours: "%{hours} 小时"
@@ -120,7 +121,9 @@ zh-HK:
     ok: 好
     options: 选项
     owner: 所有者
+    pause: 暂停
     pending: 待定
+    play: 播放
     policy_version: 政策版本
     policy_version_format: 仅允许整数
     positive: 积极
@@ -134,6 +137,7 @@ zh-HK:
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: REC
+    record: 记录
     recorded: 记录
     recording: 录音
     recording_consent_notice: 本次會議將被錄音。您參與本次會議即表示您同意被錄音。
@@ -158,11 +162,13 @@ zh-HK:
     speakers: 演讲嘉宾
     status: 状态
     status_unknown: 状态未知
+    stop: 停止
     subject: 主题
     submit: 提交
     submit_and_finish_proctoring: 提交并结束监考
     suspended: 暂停
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
+    system_check_uploading: 正在上传
     table:
       entries:
         selected:

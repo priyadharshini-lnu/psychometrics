@@ -137,6 +137,7 @@ en:
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     rec: REC
+    record: Record
     recorded: recorded
     recording: recording
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.

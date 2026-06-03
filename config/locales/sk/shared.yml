@@ -88,6 +88,7 @@ sk:
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
     last_name: Priezvisko
     learning_on_the_job_label: Učenie sa priamo v práci
+    lets_start: Tak poďme na to!
     loading: Načítava sa...
     login: Prihlásenie
     maintenance_in_hours: "%{hours} hodiny"
@@ -120,7 +121,9 @@ sk:
     ok: Ok
     options: Možnosti
     owner: Majiteľ
+    pause: Pauza
     pending: Čaká na vybavenie
+    play: Hrať
     policy_version: Verzia politiky
     policy_version_format: Povolené sú iba celé čísla
     positive: Pozitívne
@@ -134,6 +137,7 @@ sk:
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     rec: REC
+    record: Záznam
     recorded: Nahrané
     recording: Nahrávanie
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
@@ -158,11 +162,13 @@ sk:
     speakers: Prednášajúci
     status: Stav
     status_unknown: Stav neznámy
+    stop: Zastav
     subject: Predmet
     submit: Odoslať
     submit_and_finish_proctoring: Odoslať a ukončiť dohľad
     suspended: Pozastavené
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
+    system_check_uploading: Nahrávanie
     table:
       entries:
         selected:

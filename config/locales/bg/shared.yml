@@ -88,6 +88,7 @@ bg:
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     last_name: Фамилия
     learning_on_the_job_label: Учене на работа
+    lets_start: Да започнем!
     loading: Зареждане...
     login: Вход
     maintenance_in_hours: "%{hours} часа"
@@ -120,7 +121,9 @@ bg:
     ok: Добре
     options: Опции
     owner: Собственик
+    pause: Пауза
     pending: В очакване
+    play: Играй
     policy_version: Версия на политиката
     policy_version_format: Допускат се само цели числа
     positive: Положителен
@@ -134,6 +137,7 @@ bg:
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
     rec: REC
+    record: Запис
     recorded: Записан
     recording: Запис
     recording_consent_notice: Тази сесия на срещата ще бъде записана. Вашето участие в тази среща представлява вашето съгласие да бъдете записани.
@@ -158,11 +162,13 @@ bg:
     speakers: Лектори
     status: Статус
     status_unknown: Статус неизвестен
+    stop: Спри
     subject: Тема
     submit: Изпрати
     submit_and_finish_proctoring: Изпращане и приключване на наблюдението
     suspended: Отложено
     switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър
+    system_check_uploading: Качване
     table:
       entries:
         selected:

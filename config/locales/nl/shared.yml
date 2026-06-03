@@ -88,6 +88,7 @@ nl:
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     last_name: Achternaam
     learning_on_the_job_label: Leren op de werkvloer
+    lets_start: Laten we beginnen!
     loading: Bezig met laden...
     login: Inloggen
     maintenance_in_hours: "%{hours} uren"
@@ -120,7 +121,9 @@ nl:
     ok: Ok
     options: Opties
     owner: Eigenaar
+    pause: Pauze
     pending: In behandeling
+    play: Spelen
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
     positive: Positief
@@ -134,6 +137,7 @@ nl:
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     rec: REC
+    record: Record
     recorded: Opgenomen
     recording: Opname
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
@@ -158,11 +162,13 @@ nl:
     speakers: Sprekers
     status: Status
     status_unknown: Status onbekend
+    stop: Stop
     subject: Onderwerp
     submit: Verzenden
     submit_and_finish_proctoring: Verzenden en toezicht afronden
     suspended: Opgeschort
     switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop
+    system_check_uploading: Uploaden
     table:
       entries:
         selected:

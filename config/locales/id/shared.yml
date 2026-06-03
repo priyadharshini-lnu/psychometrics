@@ -88,6 +88,7 @@ id:
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     last_name: Nama belakang
     learning_on_the_job_label: Belajar di Tempat Kerja
+    lets_start: Ayo mulai!
     loading: Muat...
     login: Masuk
     maintenance_in_hours: "%{hours} jam"
@@ -120,7 +121,9 @@ id:
     ok: Ok
     options: Pilihan
     owner: Pemilik
+    pause: Jeda
     pending: Menunggu
+    play: Mainkan
     policy_version: Versi Kebijakan
     policy_version_format: Hanya bilangan bulat yang diperbolehkan.
     positive: Positif
@@ -134,6 +137,7 @@ id:
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
     rec: REC
+    record: Rekor
     recorded: direkam
     recording: Rekaman
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
@@ -158,11 +162,13 @@ id:
     speakers: Pembicara
     status: Status
     status_unknown: Status Tidak Diketahui
+    stop: Berhenti
     subject: Subjek
     submit: Kirim
     submit_and_finish_proctoring: Kirim dan Selesaikan Pengawasan
     suspended: Ditangguhkan
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
+    system_check_uploading: Mengunggah
     table:
       entries:
         selected:

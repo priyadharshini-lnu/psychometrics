@@ -88,6 +88,7 @@ fr:
     internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
     last_name: Nom de famille
     learning_on_the_job_label: Apprendre sur le terrain
+    lets_start: C'est parti !
     loading: Chargement...
     login: Connexion
     maintenance_in_hours: "%{hours} heures"
@@ -120,7 +121,9 @@ fr:
     ok: Ok
     options: Options
     owner: Propriétaire
+    pause: Pause
     pending: En attente
+    play: Jouer
     policy_version: Version de la politique
     policy_version_format: Seuls les nombres entiers sont autorisés.
     positive: Positif
@@ -134,6 +137,7 @@ fr:
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
     rec: REC
+    record: Enregistrement
     recorded: Enregistré
     recording: Enregistrement
     recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
@@ -158,11 +162,13 @@ fr:
     speakers: Intervenants
     status: Statut
     status_unknown: Statut inconnu
+    stop: Arrête
     subject: Objet
     submit: Soumettre
     submit_and_finish_proctoring: Soumettre et terminer la surveillance
     suspended: Suspendu
     switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau
+    system_check_uploading: Téléchargement
     table:
       entries:
         selected:

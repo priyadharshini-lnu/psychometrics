@@ -88,6 +88,7 @@ sr-Cyrl:
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     last_name: Презиме
     learning_on_the_job_label: Учење на послу
+    lets_start: Хајде да почнемо!
     loading: Учитавање...
     login: Пријавите се
     maintenance_in_hours: "%{hours} сати"
@@ -120,7 +121,9 @@ sr-Cyrl:
     ok: У реду
     options: Опције
     owner: Власник
+    pause: Пауза
     pending: У току
+    play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
     positive: Позитивно
@@ -134,6 +137,7 @@ sr-Cyrl:
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: СНИМАЊЕ
+    record: Запис
     recorded: снимано
     recording: снимање
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
@@ -158,11 +162,13 @@ sr-Cyrl:
     speakers: Говорници
     status: Статус
     status_unknown: Статус непознат
+    stop: Стоп
     subject: Предмет
     submit: Пошаљи
     submit_and_finish_proctoring: Поднесите и завршите надгледање
     suspended: Сuspended
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
+    system_check_uploading: Постављање
     table:
       entries:
         selected:

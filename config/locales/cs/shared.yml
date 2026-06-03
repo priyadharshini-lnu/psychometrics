@@ -88,6 +88,7 @@ cs:
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     last_name: Příjmení
     learning_on_the_job_label: Učení se přímo v práci
+    lets_start: Tak jdeme na to!
     loading: Načítání...
     login: Přihlášení
     maintenance_in_hours: "%{hours} hodiny"
@@ -120,7 +121,9 @@ cs:
     ok: OK
     options: Možnosti
     owner: Majitel
+    pause: Pauza
     pending: Čeká na vyřízení
+    play: Hrát
     policy_version: Verze politiky
     policy_version_format: Povolena jsou pouze celá čísla.
     positive: Pozitivní
@@ -134,6 +137,7 @@ cs:
     question_id: ID otázky
     question_transcription_disabled: Přepis je pro tuto otázku zakázán.
     rec: NAHRÁVÁNÍ
+    record: Záznam
     recorded: Nahrávka
     recording: Nahrávání
     recording_consent_notice: Toto zasedání bude nahráváno. Vaše účast na tomto setkání znamená váš souhlas s nahráváním.
@@ -158,11 +162,13 @@ cs:
     speakers: Řečníci
     status: Stav
     status_unknown: Stav neznámý
+    stop: Zastavit
     subject: Předmět
     submit: Odeslat
     submit_and_finish_proctoring: Odeslat a dokončit dohled
     suspended: Pozastaveno
     switch_to_laptop_or_desktop: Přepnout na notebook nebo stolní počítač
+    system_check_uploading: Nahrávání
     table:
       entries:
         selected:

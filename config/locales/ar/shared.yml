@@ -88,6 +88,7 @@ ar:
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
     last_name: إسم العائلة
     learning_on_the_job_label: التعلم أثناء العمل
+    lets_start: لنبدأ!
     loading: جاري التحميل...
     login: تسجيل الدخول
     maintenance_in_hours: "%{hours} ساعات"
@@ -120,7 +121,9 @@ ar:
     ok: موافق
     options: خيارات
     owner: المالك
+    pause: توقف مؤقت
     pending: قيد الانتظار
+    play: تشغيل
     policy_version: إصدار السياسة
     policy_version_format: يُسمح فقط بالأرقام الصحيحة
     positive: إيجابي
@@ -134,6 +137,7 @@ ar:
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
     rec: تسجيل
+    record: سجل
     recorded: تم التسجيل
     recording: التسجيل
     recording_consent_notice: سيتم تسجيل جلسة الاجتماع هذه. مشاركتك في هذا الاجتماع تعني موافقتك على التسجيل.
@@ -158,11 +162,13 @@ ar:
     speakers: المتحدثون
     status: الحالة
     status_unknown: الحالة غير معروفة
+    stop: توقف
     subject: الموضوع
     submit: إرسال
     submit_and_finish_proctoring: إرسال الاختبار وإنهاء المراقبة
     suspended: معلق
     switch_to_laptop_or_desktop: التبديل إلى الكمبيوتر المحمول أو المكتبي
+    system_check_uploading: التحميل
     table:
       entries:
         selected:

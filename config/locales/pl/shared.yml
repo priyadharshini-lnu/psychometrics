@@ -88,6 +88,7 @@ pl:
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
     last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
+    lets_start: Zaczynamy!
     loading: Ładowanie...
     login: Logowanie
     maintenance_in_hours: "%{hours} godziny"
@@ -120,7 +121,9 @@ pl:
     ok: Ok
     options: Opcje
     owner: Właściciel
+    pause: Pauza
     pending: W toku
+    play: Zagraj
     policy_version: Wersja polityki
     policy_version_format: Dopuszczalne są tylko liczby całkowite.
     positive: Pozytywny
@@ -134,6 +137,7 @@ pl:
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     rec: REC
+    record: Rekord
     recorded: Nagranie
     recording: Nagrania
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
@@ -158,11 +162,13 @@ pl:
     speakers: Prelegenci
     status: Status
     status_unknown: Status nieznany
+    stop: Zatrzymaj się
     subject: Temat
     submit: Prześlij
     submit_and_finish_proctoring: Prześlij i zakończ nadzór
     suspended: Zawieszone
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
+    system_check_uploading: Przesyłanie
     table:
       entries:
         selected:

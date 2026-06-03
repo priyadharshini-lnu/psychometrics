@@ -88,6 +88,7 @@ ro:
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
+    lets_start: Să începem!
     loading: Se încarcă...
     login: Autentificare
     maintenance_in_hours: "%{hours} ore"
@@ -120,7 +121,9 @@ ro:
     ok: Bine
     options: Opțiuni
     owner: Proprietar
+    pause: Pauză
     pending: În așteptare
+    play: Joacă
     policy_version: Versiunea politicii
     policy_version_format: Sunt permise numai numere întregi
     positive: Pozitiv
@@ -134,6 +137,7 @@ ro:
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     rec: REC
+    record: Înregistrare
     recorded: înregistrat
     recording: Înregistrare
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
@@ -158,11 +162,13 @@ ro:
     speakers: Vorbitori
     status: Stare
     status_unknown: Stare necunoscută
+    stop: Oprește-te
     subject: Subiect
     submit: Trimite
     submit_and_finish_proctoring: Trimite și finalizează supravegherea
     suspended: Suspendat
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop
+    system_check_uploading: Încărcare
     table:
       entries:
         selected:

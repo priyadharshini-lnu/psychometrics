@@ -88,6 +88,7 @@ ko:
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
     last_name: 성
     learning_on_the_job_label: 현장에서 배우기
+    lets_start: 그럼 시작해 볼까요!
     loading: 로딩 중...
     login: 로그인
     maintenance_in_hours: "%{hours} 시간"
@@ -120,7 +121,9 @@ ko:
     ok: 확인
     options: 옵션
     owner: 소유자
+    pause: 일시 정지
     pending: 보류 중
+    play: 재생
     policy_version: 정책 버전
     policy_version_format: 정수만 허용됩니다
     positive: 긍정적인
@@ -134,6 +137,7 @@ ko:
     question_id: 질문 ID
     question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
     rec: REC
+    record: 기록
     recorded: 녹음
     recording: 녹음
     recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
@@ -158,11 +162,13 @@ ko:
     speakers: 연사
     status: 상태
     status_unknown: 상태 미상
+    stop: 중지
     subject: 제목
     submit: 제출
     submit_and_finish_proctoring: 제출 및 감독 종료
     suspended: 정지됨
     switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환
+    system_check_uploading: 업로드 중
     table:
       entries:
         selected:

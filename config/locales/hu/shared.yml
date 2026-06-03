@@ -88,6 +88,7 @@ hu:
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
+    lets_start: Kezdjük!
     loading: Betöltés...
     login: Bejelentkezés
     maintenance_in_hours: "%{hours} órák"
@@ -120,7 +121,9 @@ hu:
     ok: Oké
     options: Beállítások
     owner: Tulajdonos
+    pause: Szünet
     pending: Függőben
+    play: Játék
     policy_version: Politika verzió
     policy_version_format: Csak egész számok megengedettek
     positive: Pozitív
@@ -134,6 +137,7 @@ hu:
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     rec: REC
+    record: Felvétel
     recorded: Felvétel
     recording: Felvétel
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
@@ -158,11 +162,13 @@ hu:
     speakers: Előadók
     status: Állapot
     status_unknown: Állapot ismeretlen
+    stop: Állj meg
     subject: Tárgy
     submit: Beküldés
     submit_and_finish_proctoring: A vizsga benyújtása és befejezése
     suspended: Felfüggesztve
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
+    system_check_uploading: Feltöltés
     table:
       entries:
         selected:
