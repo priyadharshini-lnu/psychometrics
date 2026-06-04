@@ -677,7 +677,8 @@ GEM
       rspec-expectations
     jsonpath (1.1.5)
       multi_json
-    jwt (2.6.0)
+    jwt (2.10.3)
+      base64
     kramdown (2.5.1)
       rexml (>= 3.3.9)
     kramdown-parser-gfm (1.1.0)
@@ -1374,7 +1375,7 @@ DEPENDENCIES
   jsonapi-rspec (~> 0.0.11)
   jsonapi-utils!
   jsonpath (~> 1.1.2)
-  jwt (~> 2.6.0)
+  jwt (~> 2.10)
   kaminari!
   liquid
   listen (~> 3.7.1)

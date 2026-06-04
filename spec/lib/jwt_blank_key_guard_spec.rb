@@ -9,7 +9,19 @@ RSpec.describe 'JWT CVE-2026-45363 Mitigation' do
 
   describe 'CVE-2026-45363 attack scenario' do
     let(:forged_token) do
-      JWT.encode({ 'sub' => 'attacker', 'role' => 'admin', 'exp' => 1.hour.from_now.to_i }, '', 'HS256')
+      # Manually construct a JWT signed with an empty HMAC key to simulate an attacker-forged
+      # token. jwt >= 2.10.3 refuses to encode with a blank key, so we build the token by hand.
+      header    = Base64.urlsafe_encode64('{"alg":"HS256","typ":"JWT"}', padding: false)
+      body      = Base64.urlsafe_encode64(
+        { 'sub' => 'attacker', 'role' => 'admin', 'exp' => 1.hour.from_now.to_i }.to_json,
+        padding: false
+      )
+      signing_input = "#{header}.#{body}"
+      signature = Base64.urlsafe_encode64(
+        OpenSSL::HMAC.digest('SHA256', '', signing_input),
+        padding: false
+      )
+      "#{signing_input}.#{signature}"
     end
 
     it 'blocks a forged token signed with an empty key' do
