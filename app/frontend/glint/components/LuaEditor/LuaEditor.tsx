@@ -17,5 +17,6 @@ export const LuaEditor: React.FC<LuaEditorProps> = ({
     lineNumbers
     foldGutter
     autocomplete
+    minHeight="320px"
   />
 )
