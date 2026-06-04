@@ -114,7 +114,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const campaignClosedForUser = campaignClosed
     || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
   const disableWorkshopActivityBasedOnProctoringSetting = proctoringEnabledOnWorkshopActivity
-    ? campaignNeedsProctoring : isProctored
+    ? false : isProctored
 
   const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
   const canNotStartAssessment = campaignClosedForUser
