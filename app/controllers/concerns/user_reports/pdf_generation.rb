@@ -55,8 +55,6 @@ module UserReports::PdfGeneration
       skip_logic: params[:skip_logic],
       view_report_as: view_report_as
     }
-    audit! :download_report, resource, campaign: resource.campaign,
-      payload: params.merge(resource.details_to_log)
     respond_to do |format|
       format.json do
         ::UserReports::GeneratePdfJob.perform_later(
@@ -66,6 +64,8 @@ module UserReports::PdfGeneration
         render json: { success: true }
       end
       format.pdf do
+        audit! :download_report, resource, campaign: resource.campaign,
+               payload: params.merge(resource.details_to_log)
         data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
         send_tmp_file data[:file_path], type: 'application/pdf'
       end
