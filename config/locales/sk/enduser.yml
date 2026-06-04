@@ -144,6 +144,7 @@ sk:
     profile_details: Podrobnosti profilu
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Dôvod odmietnutia
+    record: Záznam
     recording_progress_bar: Indikátor priebehu nahrávania
     recording_time_remaining: "%{remainingSeconds} zostávajúce sekundy"
     redirect_to_external_assessment: Budete presmerovaní na stránku s testom. Ak chcete začať s testom, kliknite na tlačidlo Pokračovať.

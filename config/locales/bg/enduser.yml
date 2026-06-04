@@ -144,6 +144,7 @@ bg:
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
+    record: Регистър
     recording_progress_bar: Индикатор за напредъка на записването
     recording_time_remaining: "%{remainingSeconds} оставащи секунди"
     redirect_to_external_assessment: Ще бъдете пренасочени към сайта за оценяване. Моля, натиснете „Продължи“, ако искате да започнете оценяването.
