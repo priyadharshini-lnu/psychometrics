@@ -5,6 +5,7 @@ module Administration
     class SessionsController < Devise::SessionsController
       include Administration::ClientAdminAuthentication
 
+      skip_before_action :set_current_user_in_current_attributes, only: [:create]
       prepend_before_action :clear_stale_session_for_handoff, only: [:new]
       prepend_before_action :ensure_redirect_to_saml, only: [:create]
       prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
@@ -203,6 +204,10 @@ module Administration
         else
           AdminAuth::SessionRegistry.invalidate_all_real(user)
         end
+      end
+
+      def skip_authentication?
+        true
       end
     end
   end
