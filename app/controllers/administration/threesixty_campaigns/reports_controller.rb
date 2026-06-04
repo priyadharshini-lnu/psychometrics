@@ -32,8 +32,7 @@ module Administration
             selected_locale = params[:lang] || @user_report.report.default_language
             I18n.locale = selected_locale
             @pdf_export = true
-            audit! :download_report, @user_report, campaign: threesixty_campaign.campaign,
-              payload: params.merge(@user_report.details_to_log)
+
             render :export, formats: :html, layout: 'pdf', content_type: 'text/html'
           end
         end
@@ -58,8 +57,6 @@ module Administration
             render json: { success: true }
           end
           format.pdf do
-            audit! :download_report, user_report, campaign: threesixty_campaign.campaign,
-                   payload: params.merge(user_report.log_attributes)
             add_cookie_for_file_download
             data = ::UserReports::GeneratePdf.call!(user_report, current_user, options)
             send_tmp_file data[:file_path], type: 'application/pdf'
