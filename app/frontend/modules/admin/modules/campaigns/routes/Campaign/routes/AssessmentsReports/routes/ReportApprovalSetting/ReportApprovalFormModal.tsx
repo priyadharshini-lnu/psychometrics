@@ -4,7 +4,7 @@ import {
   TimePicker,
 } from 'antd'
 import _ from 'lodash'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Report, ReportTR } from '~/modules/admin/modules/campaigns/core/reportList'
@@ -94,9 +94,15 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     reportApprovalSettings, 'approvalNotificationUsers', notificationUsers,
   )
 
+  useEffect(() => {
+    fetchReports({
+      apiConfig: { filter: { with_campaign: campaignId } },
+    })
+  }, [])
+
   const fetchReportDebounce = useCallback(_.debounce((value) => {
     fetchReports({
-      apiConfig: { filter: { name_cont: value } },
+      apiConfig: { filter: { with_campaign: campaignId, name_cont: value } },
     })
   }, 300), [])
 
