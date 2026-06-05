@@ -44,6 +44,7 @@ vi:
     camera_check_abruptly_ended: Camera đã bị tắt đột ngột. Vui lòng bật camera và thực hiện lại quá trình kiểm tra.
     camera_check_description: Hãy kiểm tra xem camera và micrô của bạn có hoạt động bình thường để ghi âm không
     camera_check_passed: Kiểm tra video và âm thanh đã hoàn tất thành công
+    camera_check_record_instruction: Nhấn nút Ghi âm và đọc to đoạn văn sau đây
     camera_test_step: Bước kiểm tra video và âm thanh
     campaign: Chiến dịch
     campaign_check_status: 'Trạng thái: %{status}'
@@ -52,6 +53,7 @@ vi:
     check_video_recording: Vui lòng kiểm tra video và âm thanh của bạn bằng cách phát lại.
     checking_browser_compatibility: Đang kiểm tra tính tương thích của trình duyệt...
     checking_latency: Đang kiểm tra độ trễ...
+    complete_prework_message: Hãy hoàn thành tất cả các bài tập chuẩn bị trước khi bắt đầu.
     could_not_reach_servers: Không thể kết nối với máy chủ của chúng tôi để kiểm tra tốc độ mạng. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.
     day: ngày
     day_plural: ngày
@@ -61,6 +63,7 @@ vi:
     download: Tải xuống
     download_pdf: Tải PDF
     download_speed_below_minimum: Tốc độ tải xuống %{download_speed} thấp hơn tốc độ tải xuống tối thiểu yêu cầu là %{minimum_download_speed} Mbps
+    dummy_message: Tôi đã sẵn sàng. Đây là bản ghi thử để kiểm tra xem camera và micro của tôi có hoạt động bình thường không.
     environment_setup: Cài đặt môi trường
     error_uploading_audio: Lỗi khi tải lên tệp âm thanh
     error_uploading_audio_detail: Đã xảy ra lỗi khi tải lên tệp âm thanh của bạn
@@ -92,6 +95,7 @@ vi:
     internet_speed_optimal: Tốc độ kết nối của bạn đang ở mức tối ưu
     internet_speed_slow: Tốc độ Internet chậm hơn mức yêu cầu cho chiến dịch
     less_than_five_minutes: Chưa đầy 5 phút
+    lets_start: Hãy bắt đầu nào!
     lighthouse_assistant: Trợ lý ngọn hải đăng
     localstorage_fix_description_first: Hãy đảm bảo rằng bạn không đang ở chế độ riêng tư/ẩn danh, vì localStorage thường bị tắt trong các chế độ này.
     localstorage_fix_title: Tính năng Lưu trữ cục bộ chưa được bật trong trình duyệt của bạn
@@ -107,6 +111,7 @@ vi:
     media_recorder_api_support: Hỗ trợ API MediaRecorder
     microphone_access_blocked: Trình duyệt của bạn đã từ chối hoặc chặn quyền truy cập vào micrô. Vui lòng kiểm tra quyền truy cập trong trình duyệt.
     microphone_check_passed: Kiểm tra micro đã thành công
+    microsite_assessment_external: Bài đánh giá này phải được hoàn thành trên một nền tảng bên ngoài.
     min_word_limit: Phải có ít nhất %{min} từ
     minimum_speed_requirements: Chiến dịch này yêu cầu tốc độ tải xuống tối thiểu là %{minimum_download_speed} Mbps và tốc độ tải lên tối thiểu là %{minimum_upload_speed} Mbps.
     minute: phút
@@ -124,16 +129,24 @@ vi:
     network_test_step: Bước kiểm tra mạng
     no_audio_detected: Không phát hiện thấy âm thanh. Vui lòng kiểm tra xem micrô của bạn đã được kết nối và hoạt động bình thường chưa.
     pass: Bỏ qua
+    pause: Tạm dừng
     pending: Đang chờ xử lý
     personal_readiness: Sự chuẩn bị cá nhân
     plan_text: Hãy lên kế hoạch cho toàn bộ thời gian thi. Một khi đã bắt đầu, tùy thuộc vào loại hình đánh giá, có thể sẽ không được phép nghỉ giải lao.
+    play: Chơi
     please_check_your_internet_connection: Vui lòng kiểm tra kết nối internet của bạn và thử lại.
+    preparing_preview: Đang chuẩn bị bản xem trước...
+    prework: Bài tập chuẩn bị
+    prework_not_completed_message: Vui lòng hoàn thành tất cả các nhiệm vụ chuẩn bị trước khi bắt đầu chiến dịch.
     proctored: Có giám thị
     proctored_assessment_misconfigured_msg: Bài kiểm tra này có giám thị nhưng chưa được thiết lập thời gian phù hợp; vui lòng liên hệ với quản trị viên của bạn.
     profile: Hồ sơ
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     reason_for_idp_plan_rejection: Lý do từ chối
+    record: Bảng ghi chép
+    recording_progress_bar: Thanh tiến trình ghi âm
+    recording_time_remaining: "%{remainingSeconds} thời gian còn lại"
     redirect_to_external_assessment: Bạn sẽ được chuyển hướng đến trang đánh giá. Vui lòng nhấp vào “Tiếp tục” nếu bạn muốn bắt đầu bài đánh giá.
     reject_idp_plan: Kế hoạch từ chối
     request_retry_message: Bạn đang ngoại tuyến. Câu trả lời của bạn không thể được lưu nhưng sẽ được lưu tự động khi bạn trực tuyến trở lại. Vui lòng không làm mới hoặc đóng trang.
@@ -145,13 +158,15 @@ vi:
     results: Kết quả
     safari_proctoring_description: Có vẻ như bạn đang sử dụng trình duyệt Safari, trình duyệt này có thể có một số hạn chế liên quan đến các tính năng theo dõi được kích hoạt trong chiến dịch này. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Chrome, Edge hoặc Firefox.
     safari_proctoring_title: Đã phát hiện trình duyệt Safari
+    select_audio_device: Chọn thiết bị âm thanh
+    select_video_device: Chọn thiết bị video
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
     start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
-    start_campaign_message_timed_proctored: Đây là một chiến dịch có thời gian và giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_readiness_check: Bắt đầu kiểm tra sự sẵn sàng
     start_system_check: Bắt đầu kiểm tra hệ thống
+    stop: Dừng lại
     subinstruction_audio: Microphone đang hoạt động
     subinstruction_eight: Hãy dành ra một khoảng thời gian không bị gián đoạn để tiến hành đánh giá toàn diện
     subinstruction_five: Bạn đã sẵn sàng chia sẻ màn hình trong suốt buổi họp chưa?
@@ -239,6 +254,9 @@ vi:
     video_check_fix_second: Vào cài đặt trình duyệt và bật quyền truy cập camera cho trang web này
     video_check_fix_sixth: Hãy khởi động lại trình duyệt và thử lại
     video_check_fix_third: Đóng các ứng dụng khác đang sử dụng camera (Zoom, Teams, v.v.)
+    video_overlay_label: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc thông báo sau khi bạn nhấn nút Ghi âm
+    video_overlay_message: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc to câu xuất hiện ở phía dưới.
+    video_recorder_label: Máy quay video
     view_details: Xem chi tiết
     webgl_api_fix_description_first: Hãy đảm bảo rằng trình duyệt của bạn hỗ trợ WebGL và tính năng này đã được bật trong phần cài đặt
     webgl_api_fix_description_second: Cập nhật trình điều khiển đồ họa của bạn lên phiên bản mới nhất

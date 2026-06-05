@@ -19,7 +19,7 @@ const StaticContent = ({
 }) => {
   const containerRef = useRef()
   const shouldEnableContentCopy = staticContent?.allowContentCopy ?? false
-  useImageZoom(containerRef)
+  useImageZoom(containerRef, { background: 'rgba(0,0,0,0.8)', margin: 48 })
 
   const [selection, setSelection] = useState(null)
 

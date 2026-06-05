@@ -7,6 +7,7 @@ module Users
     prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
     before_action :check_if_saml_is_enforced, only: [:create]
     before_action :compute_after_signout_path, only: [:destroy]
+    before_action :redirect_external_logout_url, only: [:new]
     before_action :perform_browser_check, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
     after_action :set_user_flash_message, only: [:create]
@@ -28,6 +29,10 @@ module Users
 
     private
 
+    def redirect_external_logout_url
+      redirect_to(external_logout_url) if external_logout_available?
+    end
+
     def set_return_url_for_redirect
       store_location_for(:user, params[:return_url]) if params[:return_url].present?
     end
@@ -41,15 +46,35 @@ module Users
     end
 
     def compute_after_signout_path
-      @after_signout_path = if session[:saml_login] && @current_project&.saml_setting&.after_signout_url
-                              @current_project.saml_setting.after_signout_url
-                            else
-                              new_user_session_path
-                            end
+      @after_signout_path = determine_target_path
+    end
+
+    def determine_target_path
+      return saml_signout_url if saml_signout_available?
+      return external_logout_url if external_logout_available?
+
+      new_user_session_path
+    end
+
+    def saml_signout_available?
+      session[:saml_login].present? && @current_project&.saml_setting&.after_signout_url.present?
+    end
+
+    def saml_signout_url
+      @current_project&.saml_setting&.after_signout_url
+    end
+
+    def external_logout_available?
+      cookies[:sso_session] == 'true' && @current_project&.security_setting&.external_logout_redirect_enabled == true
+    end
+
+    def external_logout_url
+      cookies.delete(:sso_session)
+      @current_project&.security_setting&.external_logout_url
     end
 
     def check_if_saml_is_enforced
-      redirect_to(new_saml_user_session_path) if @current_project.saml_enforced?
+      redirect_to(new_saml_user_session_path(return_url: stored_location_for(:user))) if @current_project.saml_enforced?
     end
 
     def after_sign_in_path_for(resource)

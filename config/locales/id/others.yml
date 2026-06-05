@@ -1103,36 +1103,9 @@ id:
       title: Detail Penilaian
     edit: Mengedit
     fields:
-      category:
-        agile: LINCAH
-        assessor_form: Formulir Penilai
-        case_study: Studi Kasus
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulir Penilai Utama
-        meeting: Rapat
-        mettl: Mettl
-        organisational: Survei Organisasi
-        pearson: Pearson
-        psychometric: Psikometrik
-        saville: Saville
-        simulation: Simulasi
-        skillvue: Skillvue
-        threesixty: Kampanye 360
-        yoodli: Yoodli
       status:
         finished: Selesai
         in_progress: Sedang Berlangsung
-      type:
-        common: Penilaian TTE
-        hogan: Hogan
-        iiht: Penilaian IIHT
-        mettl: Penilaian Mettl
-        pearson: Penilaian Pearson
-        saville: Penilaian Saville
-        simulation: Penilaian Simulasi
-        skillvue: Penilaian Skillvue
-        yoodli: Penilaian Yoodli
     flow:
       end_assessment_modal:
         custom_message: Pesan akhir penilaian kustom
@@ -1209,16 +1182,11 @@ id:
         failure: Browser ini tidak mendukung Perekaman Video. Silakan gunakan Chrome atau Firefox untuk Perekaman Video
         success: Izinkan penggunaan kamera dan mikrofon untuk merekam audio dan Video
         unsupported: Browser ini tidak mendukung Perekaman Video. Silakan gunakan salah satu browser berikut,
-      recording_duration_label: Durasi maksimum perekaman
-      recording_stop_label: Perekaman akan berhenti di
       requesting_permission: Meminta Izin...
       response_recorded: Tanggapan Dicatat
       save: Simpan
-      saved:
-        label: Video Tersimpan
       seek: Mencari
       start_recording: Mulai merekam
-      stop_recording: Berhenti merekam
       tracker:
         backward: Anda terlalu dekat dengan layar, mohon mundur sedikit
         forward: Anda terlalu jauh dari layar, mohon bergerak sedikit lebih dekat
@@ -1380,15 +1348,12 @@ id:
     all_activities_are_completed: Semua aktivitas sekarang telah selesai.
     all_activities_are_completed_multiple: Semua aktivitas untuk kampanye ini sekarang telah selesai. Silakan lanjutkan ke Dasbor dan periksa apakah Anda memiliki aktivitas lain yang telah ditetapkan.
     already_joined: Anda sudah bergabung dengan kampanye ini
-    begin: Mulai tugas Anda
-    begin_btn_msg_before_prework: Anda harus menyelesaikan tugas di bawah ini sebelum memulai kampanye berjangka waktu
     begin_campaign_msg: Memulai kampanye sebelum melakukan penilaian
     campaigns: Kampanye
     closed_campaign_message: Kampanye ini sudah ditutup. Anda tidak dapat melakukan penilaian dalam kampanye ini.
     code_usage_limit_reached: Batas penggunaan kode tercapai, silakan hubungi administrator
     complete_prev: Menyelesaikan semua penilaian sebelumnya
     complete_tasks: Selesaikan tugas-tugas di bawah ini sebelum melakukan tindakan ini.
-    continue: Lanjutkan tugas Anda
     dashboard_instructions: Anda mungkin telah ditugaskan beberapa aktivitas yang harus Anda selesaikan. Pastikan untuk memeriksa apakah semua aktivitas yang ditugaskan telah diselesaikan di semua kampanye.
     dashboard_menu:
       campaign: Kampanye
@@ -1489,6 +1454,9 @@ id:
       external_user_id: ID Kandidat Skillvue
       id: ID Penilaian Kampanye
       locales: Lokal
+      microsite_error_message: Pesan Kesalahan
+      microsite_participant_id: ID Peserta Situs Mikro
+      microsite_registration_status: Status Pendaftaran
       norm: Norma
       norm_id: ID Norma
       pearson_norm_id: ID Norma Pearson
@@ -1763,10 +1731,8 @@ id:
       permissions: Izin Webcam & Audio
       title: Sebelum memulai penilaian ini, sistem Anda perlu menjalani beberapa pemeriksaan.
     video_check:
-      description: Klik Mulai Merekam dan Rekam diri Anda sambil membaca bagian di bawah ini dengan suara Anda sendiri
       random_phrases:
         one: Saya siap. Ini adalah rekaman uji coba untuk memastikan video dan mikrofon saya berfungsi dengan baik.
-      title: Kami perlu memastikan sistem Anda dapat merekam video
   common:
     actions:
       add: Menambahkan
@@ -1847,6 +1813,7 @@ id:
       json:
         answer: Jawab JSON
         external_result: JSON Hasil Eksternal
+        microsite_raw_response: Situs Mikro Raw Response
         scoring: Penilaian JSON
       key: Kunci
       last_name: Nama Belakang
@@ -3305,13 +3272,6 @@ id:
     fields:
       provider:
         custom_upload: Unggahan Kustom
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Keterampilan
-        yoodli: Yoodli
     form:
       load_from_mettl: Muat dari Mettl
       load_from_pearson: Muat dari Pearson

@@ -22,9 +22,11 @@ pl:
     assessors_list: Lista oceniających
     asset_not_present: Brak zasobów
     audio: Audio
+    audio_devices: Urządzenia audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     back: Powrót
     basic: Podstawowy
+    camera: Aparat
     camera_preview: Podgląd kamery pojawi się tutaj
     campaign: Kampania
     campaign_id: Identyfikacja kampanii
@@ -59,6 +61,7 @@ pl:
     desktop_or_laptop_recommended: Zalecany komputer stacjonarny lub laptop
     desktop_or_laptop_required: Wymagany komputer stacjonarny lub laptop
     disabled: Niepełnosprawni
+    discard: Odrzuć
     download: Pobierz
     download_audio: Pobierz plik audio
     download_transcription: Pobierz transkrypcję
@@ -85,6 +88,7 @@ pl:
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
     last_name: Nazwisko
     learning_on_the_job_label: Nauka w pracy
+    lets_start: Zaczynamy!
     loading: Ładowanie...
     login: Logowanie
     maintenance_in_hours: "%{hours} godziny"
@@ -99,6 +103,7 @@ pl:
     media_preview: Zapowiedź medialna
     media_question_transcriptions: Transkrypcje pytań mediów
     media_responses: Reakcje mediów
+    microphones: Mikrofony
     mobile_proctoring_disabled_instructions: Aby kontynuować tę ocenę, potrzebny jest komputer stacjonarny lub laptop. Przejdź do komputera, aby zakończyć zadanie.
     mobile_proctoring_enabled_instructions: Aby uzyskać najlepsze wrażenia, przejdź na komputer stacjonarny lub laptop, jeśli masz taki dostępny. W razie potrzeby możesz kontynuować korzystanie z urządzenia mobilnego.
     modified_by: Zmodyfikowane przez
@@ -116,7 +121,9 @@ pl:
     ok: Ok
     options: Opcje
     owner: Właściciel
+    pause: Pauza
     pending: W toku
+    play: Zagraj
     policy_version: Wersja polityki
     policy_version_format: Dopuszczalne są tylko liczby całkowite.
     positive: Pozytywny
@@ -130,6 +137,7 @@ pl:
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     rec: REC
+    record: Rekord
     recorded: Nagranie
     recording: Nagrania
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
@@ -146,16 +154,21 @@ pl:
     saving_video: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     scoring_details: Szczegóły punktacji
     search: Szukaj
+    select_camera: Wybierz aparat
+    select_microphone: Wybierz mikrofon
     send_email: Wyślij wiadomość e-mail
     show_more: Pokaż więcej
     something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
+    speakers: Prelegenci
     status: Status
     status_unknown: Status nieznany
+    stop: Zatrzymaj się
     subject: Temat
     submit: Prześlij
     submit_and_finish_proctoring: Prześlij i zakończ nadzór
     suspended: Zawieszone
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
+    system_check_uploading: Przesyłanie
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ pl:
     update_failed: Aktualizacja nie powiodła się
     updated_at: Zaktualizowano
     updated_successfully: Aktualizacja zakończona sukcesem
+    user_report_pdf_url_not_generated: Nie udało się wygenerować linku do pobrania pliku PDF
     video: Wideo
     view: Widok
     view_audio: Wyświetl audio

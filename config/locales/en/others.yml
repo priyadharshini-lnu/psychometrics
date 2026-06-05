@@ -1100,36 +1100,9 @@ en:
       title: Assessment Details
     edit: Edit
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Assessor Form
-        case_study: Case Studies
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Lead Assessor Form
-        meeting: Meeting
-        mettl: Mettl
-        organisational: Org Surveys
-        pearson: Pearson
-        psychometric: Psychometric
-        saville: Saville
-        simulation: Simulation
-        skillvue: Skillvue
-        threesixty: 360 Campaign
-        yoodli: Yoodli
       status:
         finished: Finished
         in_progress: In Progress
-      type:
-        common: TTE Assessment
-        hogan: Hogan
-        iiht: IIHT Assessment
-        mettl: Mettl Assessment
-        pearson: Pearson Assessment
-        saville: Saville Assessment
-        simulation: Simulation Assessment
-        skillvue: Skillvue Assessment
-        yoodli: Yoodli Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1209,16 +1182,11 @@ en:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
-      recording_duration_label: Maximum duration of recording
-      recording_stop_label: Recording will stop in
       requesting_permission: Requesting Permission...
       response_recorded: Response Recorded
       save: Save
-      saved:
-        label: Video Saved
       seek: Seek
       start_recording: Start recording
-      stop_recording: Stop recording
       tracker:
         backward: You are too close to the screen. Please move a bit back
         forward: You are too far away from the screen. Please move a bit closer
@@ -1380,15 +1348,12 @@ en:
     all_activities_are_completed: All activities are now complete.
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
     already_joined: You already joined this campaign
-    begin: Begin your tasks
-    begin_btn_msg_before_prework: You have to complete the below tasks before starting the timed campaign
     begin_campaign_msg: Start campaign before taking assessments
     campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     code_usage_limit_reached: Code usage limit reached, please contact administrator
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
-    continue: Continue your tasks
     dashboard_instructions: You may have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
       campaign: Campaign
@@ -1497,6 +1462,9 @@ en:
       external_user_id: Skillvue Candidate ID
       id: Campaign Assessment ID
       locales: Locales
+      microsite_error_message: Error Message
+      microsite_participant_id: Microsite Participant ID
+      microsite_registration_status: Registration Status
       norm: Norm
       norm_id: Norm ID
       pearson_norm_id: Pearson Norm ID
@@ -1771,10 +1739,8 @@ en:
       permissions: Webcam & Audio Permissions
       title: Before starting this assessment, your system needs to undergo some checks.
     video_check:
-      description: Click on Start Recording and Record yourself while reading the below passage in your own voice
       random_phrases:
         one: I am ready. This is a test recording to confirm that my video and microphone are working properly.
-      title: We need to ensure your system can record the video
   common:
     actions:
       add: Add
@@ -1855,6 +1821,7 @@ en:
       json:
         answer: Answer JSON
         external_result: External Result JSON
+        microsite_raw_response: Microsite Raw Response
         scoring: Scoring JSON
       key: Key
       last_name: Last Name
@@ -3380,13 +3347,6 @@ en:
     fields:
       provider:
         custom_upload: Custom Upload
-        hogan: Hogan
-        internal: Internal
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson

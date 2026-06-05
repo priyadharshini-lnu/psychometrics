@@ -22,6 +22,7 @@ hu:
     admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
     admins: Adminisztrátorok
     advanced: Haladó
+    agile: FÜRGE
     ai_artifact_result_generation_admin_job_failed: A „%{artifact_name}” műtárgy nem hozható létre a „%{user_email}” felhasználó számára.
     ai_artifact_result_stale: Az eredmény elavult lehet, mivel az AI-artefaktum függőségei az utolsó eredmény generálása óta megváltoztak. Fontolja meg az artefaktum újragenerálását a legfrissebb függőségekkel.
     ai_artifacts: AI-összetevők
@@ -137,6 +138,7 @@ hu:
     assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult
+    assessor_form: Értékelő űrlap
     assessor_workshops: Értékelési központ
     assessors: Értékelők
     assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
@@ -144,6 +146,7 @@ hu:
     assistant_validation_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
     audit_logs: Auditnaplók
     audit_reports: Auditjelentések
+    auto_moderated_factor_info: Ez az értékelés automatikus moderálás alatt áll, ezért nem módosítható
     auto_placeholder: Auto
     availability: Elérhetőség
     available_languages: Jelentés elérhető nyelveken
@@ -221,6 +224,7 @@ hu:
     cancel: Mégse
     cancellation_and_rescheduling_disabled: A lemondás és az átütemezés funkció le van tiltva.
     captcha: Captcha-ellenőrzés
+    case_study: Esettanulmányok
     casual: Alkalmi
     cell_save_msg: A szerkesztés után, amint elhagyja a cellát, a érvényes módosítások automatikusan mentésre kerülnek.
     characters: szereplők
@@ -230,6 +234,8 @@ hu:
     client_admins: Ügyféladminisztrátorok
     clients: Ügyfélcsoportok
     code_required: Kód szükséges
+    common: TTE értékelés
+    common_assessment: TTE értékelés
     communication_center: Kommunikációs központ
     communications: Kommunikáció
     completed: Befejezett
@@ -248,6 +254,7 @@ hu:
     create_client: Ügyfél létrehozása
     create_indicator: Indikátor létrehozása
     current_job_role: Jelenlegi munkakör
+    custom_upload: Egyéni feltöltés
     dashboard: Irányítópult
     dashboards: Irányítópultok
     data_reports: Adatjelentések
@@ -285,6 +292,8 @@ hu:
     dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
     disable_proctoring: A felügyelet letiltása
+    disallow_lead_assessor_moderation: A vezető értékelő moderálásának letiltása
+    disallow_lead_assessor_moderation_info: A pontszámot a rendszer automatikusan kiszámítja az összes értékelői űrlap benyújtása alapján, és a vezető értékelő a moderálási képernyőn nem módosíthatja azt.
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
     download_bulk_asset_download_example_csv: Példa CSV letöltése.
@@ -315,6 +324,7 @@ hu:
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
     enter_description: Írja be a leírást
     enter_name: Írja be a nevet
+    enter_question_id: Írja be a kérdés azonosítóját
     error: Hiba
     estimated_tokens: jelzők (becsült)
     evaluation_status: Értékelési állapot
@@ -381,6 +391,8 @@ hu:
     idp_appearance_title: Cím
     idp_plan_reset_success: A tervet sikeresen újraindították
     idp_templates: IDP-sablonok
+    iiht: IIHT
+    iiht_assessment: IIHT értékelés
     import_ai_artifacts: MI tárgyak importálása
     import_csv_assessment_group_error: "%{index} sor: a %{email} e-mail címmel rendelkező felhasználó már meghívást kapott a „%{workshopInviteName}” csoportba."
     import_csv_error: "%{index}. sor: %{email} e-mail felhasználó nem része ebben a kampányban"
@@ -406,9 +418,11 @@ hu:
     import_users: Importfelhasználók
     internal: Belső
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    invalid_question_ids: 'Az értékelésben nem található kérdésazonosítók: %{ids}'
     job_roles: Munkakörök
     keywords: Kulcsszavak
     keywords_placeholder: Írja be a kulcsszavakat vesszővel elválasztva.
+    lead_assessor_form: Vezető értékelő űrlap
     learning_from_others: Együttműködő tanulás [20]
     level: Szint
     level_apply: Jelentkezés
@@ -418,6 +432,8 @@ hu:
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
+    lighthouse_question: A világítótorony kérdése
+    lighthouse_question_id: Lighthouse kérdésazonosító
     linked_assessments: Kapcsolódó értékelések
     low: Alacsony
     maintenance: Karbantartás
@@ -425,10 +441,14 @@ hu:
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     max_value: Maximális érték
+    mean: Átlag
     media_files_label: Fájlok
     media_library: Médiakönyvtár
     media_library_page_title: Médiakönyvtár – Műszerfal – Mercer Lighthouse
+    meeting: Találkozó
     messages: Üzenetek
+    mettl: METTL
+    mettl_assessment: Mettl értékelés
     mhs: MHS
     mhs_assessment: MHS értékelés
     mhs_assessment_name: MHS értékelés neve
@@ -437,6 +457,10 @@ hu:
     mhs_external_assessment_id: Mhs értékelési azonosító
     mhs_report_id: MHS jelentés azonosítója
     mhs_session_id: Mhs munkamenet azonosító
+    microsite: Mikrooldal
+    microsite_assessment: Mikrooldal-értékelés
+    microsite_assessment_name: Mikrooldal értékelésének neve
+    microsite_question_id: Mikrooldal kérdésazonosító
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
@@ -445,12 +469,14 @@ hu:
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
     model_answer: Minta válasz
     model_answer_placeholder: Írja be a modellválaszt az AI pontozáshoz.
+    must_be_a_valid_url: Érvénytelen URL. Adja meg a teljes URL-címet, beleértve az http vagy https protokollt is
     name: Név
     name_max_length: A név nem haladhatja meg a %{length} karaktert.
     name_required: Név szükséges
     new_folder: Új mappa
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
+    no_question_mappings: Nincs elérhető kérdés-leképezés
     no_status: Nincs állapot
     norm_editor_numeric_value_error: Csak numerikus értékek megengedettek (egész számok vagy tizedes számok).
     norms: Normák
@@ -466,10 +492,13 @@ hu:
     on_the_job: A munkában [70]
     only_editable_on_create: Ez az opció csak létrehozáskor szerkeszthető.
     options: Beállítások
+    organisational: FÜRGE
     original_text: Eredeti szöveg
     overall: Összességében
     overall_score: Összes pontszám
     participants: Résztvevők
+    pearson: Pearson
+    pearson_assessment: Pearson értékelés
     permissions:
       aiArtifacts:
         export: Kivitel
@@ -800,6 +829,8 @@ hu:
       projectSettings:
         assessments: Értékelések
         design: Tervezés
+        external_logout_redirect_enabled: Külső átirányítás engedélyezése Kijelentkezés
+        external_logout_url: Külső kijelentkezési URL
         feature_flags: Funkció jelzők
         idp: IDP
         integrations: Integrációk
@@ -913,6 +944,7 @@ hu:
     project_settings: Projekt beállításai
     projects: Projektek
     prompt: Prompt
+    psychometric: Pszichometriai
     question_center: Kérdésközpont
     question_center_page_title: Kérdések központja – Műszerfal – Mercer Lighthouse
     question_editor_change_type: Típus módosítása
@@ -921,6 +953,7 @@ hu:
     question_editor_enable_transcription: Leírás engedélyezése
     question_editor_preview_question: Kérdés előnézete
     question_editor_validation_type: Ellenőrzés típusa
+    question_mapping: Kérdés-térkép
     question_randomization: A kérdések véletlenszerű elrendezése
     question_type_audio_response: Hangválasz
     question_type_constant_sum: Állandó összeg
@@ -1037,6 +1070,8 @@ hu:
       subject_full_name_cont: Tárgy neve
       user_email_cont: Felhasználói e-mail-cím
       user_full_name_cont: Felhasználónév
+    saville: Saville
+    saville_assessment: Saville-értékelés
     scheduling: Ütemezés
     score: Pontszám
     score_approval_not_allowed_to_approve: Nem engedélyezheti ezt az eredményt.
@@ -1072,6 +1107,7 @@ hu:
     select_end_time: Végidő kiválasztása
     select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
     select_level: Szint kiválasztása
+    select_question: Keresés név vagy azonosító alapján
     select_start_time: Kezdési idő kiválasztása
     selective_proctoring: Szelektív felügyelet
     send_email: E-mail küldése
@@ -1084,14 +1120,19 @@ hu:
     show_submenu: Almenü megjelenítése
     show_translated: Fordítás megjelenítése
     siem: SIEM
+    simulation: Szimuláció
+    simulation_assessment: Szimulációs értékelés
     skill_aliases: Készség aliasok
     skills: Készségek
     skills_taxonomy: Készségek taxonómiája
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue értékelés
     skip_assessment_level_checks: Az értékelési szintű rendszerellenőrzések kihagyása
     slot_name: Nyerő neve
     sms_histories: SMS-előzmények
     sms_invites: SMS-meghívók
     specialty_questions: Speciális kérdések
+    standard_deviation: Szórás
     standard_questions: Gyakori kérdések
     start: kezdés
     start_time: Kezdési idő
@@ -1152,6 +1193,8 @@ hu:
     x_axis_interval_label: X-tengely intervallum
     y_axis_interval_label: Y-tengely intervallum
     year: Ország
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodli értékelés
     yoodli_email_id: Yoodli jelölt e-mail azonosító
     yoodli_external_assessment_id: Yoodli Assessment ID

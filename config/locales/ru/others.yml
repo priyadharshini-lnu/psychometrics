@@ -1100,36 +1100,9 @@ ru:
       title: Детали оценки
     edit: Редактировать
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Форма оценщика
-        case_study: Примеры из практики
-        hogan: Хоган
-        iiht: IIHT
-        lead_assessor_form: Форма ведущего оценщика
-        meeting: Встреча
-        mettl: Меттл
-        organisational: Опросы Org
-        pearson: Пирсон
-        psychometric: Психометрический
-        saville: Сэвилл
-        simulation: Моделирование
-        skillvue: Skillvue
-        threesixty: Кампания 360
-        yoodli: Yoodli
       status:
         finished: Завершено
         in_progress: В процессе
-      type:
-        common: Оценка TTE
-        hogan: Хоган
-        iiht: Оценка IIHT
-        mettl: Оценка Mettl
-        pearson: Оценка Пирсона
-        saville: Оценка Saville
-        simulation: Оценка моделирования
-        skillvue: Оценка Skillvue
-        yoodli: Оценка Yoodli
     flow:
       end_assessment_modal:
         custom_message: Пользовательское сообщение об окончании оценки
@@ -1209,16 +1182,11 @@ ru:
         failure: Этот браузер не поддерживает запись видео. Для записи видео используйте Chrome или Firefox.
         success: Разрешите использовать камеру и микрофон для записи аудио и видео
         unsupported: 'Этот браузер не поддерживает запись видео. Пожалуйста, используйте любой из следующих браузеров:'
-      recording_duration_label: Максимальная продолжительность записи
-      recording_stop_label: Запись будет остановлена через
       requesting_permission: Запрос разрешения...
       response_recorded: Запись ответа
       save: Сохранить
-      saved:
-        label: Видео сохранено
       seek: Искать
       start_recording: Начать запись
-      stop_recording: Остановить запись
       tracker:
         backward: Вы находитесь слишком близко к экрану. Пожалуйста, отодвиньтесь немного назад.
         forward: Вы находитесь слишком далеко от экрана. Пожалуйста, подойдите поближе.
@@ -1380,15 +1348,12 @@ ru:
     all_activities_are_completed: Все мероприятия завершены.
     all_activities_are_completed_multiple: Все мероприятия в рамках этой кампании завершены. Перейдите на панель управления и проверьте, есть ли у вас другие назначенные мероприятия.
     already_joined: Вы уже присоединились к этой кампании
-    begin: Начните выполнять свои задачи
-    begin_btn_msg_before_prework: Перед началом кампании с ограничением по времени необходимо выполнить следующие задачи
     begin_campaign_msg: Начните кампанию перед проведением оценок
     campaigns: Кампании
     closed_campaign_message: Эта кампания завершена. Вы не можете пройти никаких оценок в рамках этой кампании.
     code_usage_limit_reached: Достигнут лимит использования кода, обратитесь к администратору
     complete_prev: Завершите все предыдущие оценки
     complete_tasks: Перед выполнением этого действия выполните следующие задачи.
-    continue: Продолжайте выполнять свои задачи
     dashboard_instructions: Возможно, вам было назначено несколько действий, которые необходимо выполнить. Обязательно проверьте, что все назначенные действия были выполнены во всех кампаниях.
     dashboard_menu:
       campaign: Кампания
@@ -1497,6 +1462,9 @@ ru:
       external_user_id: Идентификатор кандидата Skillvue
       id: Идентификатор оценки кампании
       locales: Локаль
+      microsite_error_message: Сообщение об ошибке
+      microsite_participant_id: Идентификатор участника микросайта
+      microsite_registration_status: Статус регистрации
       norm: Норма
       norm_id: Идентификатор нормы
       pearson_norm_id: Идентификатор нормы Пирсона
@@ -1771,10 +1739,8 @@ ru:
       permissions: Разрешения для веб-камеры и аудио
       title: Перед началом этой оценки ваша система должна пройти некоторые проверки.
     video_check:
-      description: Нажмите «Начать запись» и запишите себя, читая нижеприведенный отрывок своим голосом.
       random_phrases:
         one: Поднимите руку, если вы меня слышите, или просто помашите рукой в камеру!
-      title: Мы должны убедиться, что ваша система может записывать видео.
   common:
     actions:
       add: Добавить
@@ -1855,6 +1821,7 @@ ru:
       json:
         answer: Ответ JSON
         external_result: Внешний результат JSON
+        microsite_raw_response: Микросайт «Raw Response»
         scoring: Оценка JSON
       key: Ключ
       last_name: Фамилия
@@ -3315,13 +3282,6 @@ ru:
     fields:
       provider:
         custom_upload: Пользовательская загрузка
-        hogan: Хоган
-        internal: Внутренний
-        mettl: Меттл
-        pearson: Пирсон
-        saville: Сэвилл
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Загрузить из Mettl
       load_from_pearson: Нагрузка от Пирсона

@@ -6,6 +6,9 @@ class MeetingRoom < ApplicationRecord
   belongs_to :meetable, polymorphic: true
 
   has_many :meeting_recordings, dependent: :destroy
+  include Tenantable
+
+  tenant_source :meetable
 
   after_create_commit :create_room
 

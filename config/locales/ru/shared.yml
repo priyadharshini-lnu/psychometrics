@@ -22,9 +22,11 @@ ru:
     assessors_list: Список оценщиков
     asset_not_present: Актив отсутствует
     audio: Аудио
+    audio_devices: Аудиоустройства
     authentication_failed: Аутентификация не удалась. Повторите попытку.
     back: Назад
     basic: Базовый
+    camera: Камера
     camera_preview: Здесь появится предварительный просмотр камеры
     campaign: Кампания
     campaign_id: Идентификатор кампании
@@ -59,6 +61,7 @@ ru:
     desktop_or_laptop_recommended: Рекомендуется использовать настольный компьютер или ноутбук
     desktop_or_laptop_required: Требуется настольный компьютер или ноутбук
     disabled: С ограниченными возможностями
+    discard: Отклонить
     download: Скачать
     download_audio: Скачать аудио
     download_transcription: Скачать транскрипцию
@@ -85,6 +88,7 @@ ru:
     internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
     last_name: Фамилия
     learning_on_the_job_label: Обучение на рабочем месте
+    lets_start: Начнём!
     loading: Загрузка...
     login: Вход
     maintenance_in_hours: "%{hours} часы"
@@ -99,6 +103,7 @@ ru:
     media_preview: Предварительный просмотр для СМИ
     media_question_transcriptions: Транскрипции вопросов СМИ
     media_responses: Реакция СМИ
+    microphones: Микрофоны
     mobile_proctoring_disabled_instructions: Для продолжения этой оценки требуется настольный компьютер или ноутбук. Пожалуйста, перейдите на компьютер, чтобы завершить задание.
     mobile_proctoring_enabled_instructions: Для оптимального просмотра переключитесь на настольный компьютер или ноутбук, если у вас есть такой. При необходимости вы можете продолжить просмотр на мобильном устройстве.
     modified_by: Изменено
@@ -116,7 +121,9 @@ ru:
     ok: Хорошо
     options: Параметры
     owner: Владелец
+    pause: Пауза
     pending: В ожидании
+    play: Играть
     policy_version: Версия политики
     policy_version_format: Допускаются только целые числа
     positive: Положительный
@@ -130,6 +137,7 @@ ru:
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
     rec: REC
+    record: Запись
     recorded: записанный
     recording: запись
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
@@ -146,16 +154,21 @@ ru:
     saving_video: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
     scoring_details: Детали подсчета очков
     search: Поиск
+    select_camera: Выберите камеру
+    select_microphone: Выберите микрофон
     send_email: Отправить электронное письмо
     show_more: Показать больше
     something_wrong: Что-то пошло не так. Обратитесь к администратору.
+    speakers: Докладчики
     status: Статус
     status_unknown: Статус неизвестен
+    stop: Стоп
     subject: Тема
     submit: Отправить
     submit_and_finish_proctoring: Отправить и завершить наблюдение
     suspended: Приостановлено
     switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер
+    system_check_uploading: Загрузка
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ ru:
     update_failed: Ошибка обновления
     updated_at: Обновлено
     updated_successfully: Обновление успешно завершено
+    user_report_pdf_url_not_generated: Не удалось сгенерировать ссылку для скачивания PDF-файла
     video: Видео
     view: Просмотр
     view_audio: Просмотр аудио

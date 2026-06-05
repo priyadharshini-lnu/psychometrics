@@ -22,6 +22,7 @@ cs:
     admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
     admins: Administrátoři
     advanced: Pokročilé
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nelze vygenerovat pro uživatele „%{user_email}“.
     ai_artifact_result_stale: Výsledek může být zastaralý, protože závislosti artefaktu AI se od posledního vygenerování výsledku změnily. Zvažte opětovné vygenerování artefaktu s nejnovějšími závislostmi.
     ai_artifacts: Artefakty AI
@@ -137,6 +138,7 @@ cs:
     assessments_not_mhs: Všechna hodnocení musí být typu MHS.
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele
+    assessor_form: Formulář hodnotitele
     assessor_workshops: Hodnotící centrum
     assessors: Posuzovatelé
     assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
@@ -144,6 +146,7 @@ cs:
     assistant_validation_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
     audit_logs: Protokoly o auditu
     audit_reports: Auditní zprávy
+    auto_moderated_factor_info: Toto hodnocení je generováno automaticky a nelze jej změnit
     auto_placeholder: Auto
     availability: Dostupnost
     available_languages: Zpráva dostupná v jazycích
@@ -221,6 +224,7 @@ cs:
     cancel: Zrušit
     cancellation_and_rescheduling_disabled: Zrušení a změna termínu jsou zakázány.
     captcha: Ověření pomocí CAPTCHA
+    case_study: Případové studie
     casual: Neformální
     cell_save_msg: Platné změny se automaticky uloží, jakmile po úpravách opustíte buňku.
     characters: postavy
@@ -230,6 +234,8 @@ cs:
     client_admins: Správci klientů
     clients: Nájemní smlouvy klientů
     code_required: Je vyžadován kód
+    common: Hodnocení TTE
+    common_assessment: Hodnocení TTE
     communication_center: Komunikační centrum
     communications: Komunikace
     completed: Hotový
@@ -248,6 +254,7 @@ cs:
     create_client: Vytvořit klienta
     create_indicator: Vytvořit indikátor
     current_job_role: Současná pracovní pozice
+    custom_upload: Vlastní nahrávání
     dashboard: Přístrojová deska
     dashboards: Přístrojové panely
     data_reports: Datové zprávy
@@ -285,6 +292,8 @@ cs:
     dimension_translations_export_scheduled: Export překladů naplánovaný pro dimenzi „%{name}“.
     dimensions: Rozměry
     disable_proctoring: Zrušit dohled
+    disallow_lead_assessor_moderation: Zakázat moderování vedoucím hodnotitelem
+    disallow_lead_assessor_moderation_info: Skóre se vypočítá automaticky na základě všech odeslaných formulářů hodnotitelů a vedoucí hodnotitel jej nemůže na obrazovce pro kontrolu změnit
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
     download_bulk_asset_download_example_csv: Stáhnout příklad CSV.
@@ -315,6 +324,7 @@ cs:
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
     enter_description: Zadejte popis
     enter_name: Zadejte jméno
+    enter_question_id: Zadejte ID dotazu
     error: Chyba
     estimated_tokens: tokeny (odhad)
     evaluation_status: Stav hodnocení
@@ -381,6 +391,8 @@ cs:
     idp_appearance_title: Název
     idp_plan_reset_success: Plán byl úspěšně resetován
     idp_templates: Šablony IDP
+    iiht: IIHT
+    iiht_assessment: Hodnocení IIHT
     import_ai_artifacts: Import AI artefaktů
     import_csv_assessment_group_error: 'Řádek %{index}: uživatel s e-mailem %{email} již byl pozván do skupiny „%{workshopInviteName}“.'
     import_csv_error: 'Řádek %{index}: uživatel s e-mailem %{email} není v této kampani'
@@ -406,9 +418,11 @@ cs:
     import_users: Importovat uživatele
     internal: Interní
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
+    invalid_question_ids: 'ID otázek, které se v tomto testu nevyskytují: %{ids}'
     job_roles: Pracovní role
     keywords: Klíčová slova
     keywords_placeholder: Zadejte klíčová slova oddělená čárkami.
+    lead_assessor_form: Formulář vedoucího hodnotitele
     learning_from_others: Společné učení [20]
     level: Úroveň
     level_apply: Použít
@@ -418,6 +432,8 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    lighthouse_question: Základní otázka
+    lighthouse_question_id: ID dotazu Lighthouse
     linked_assessments: Související hodnocení
     low: Nízká
     maintenance: Údržba
@@ -425,10 +441,14 @@ cs:
     maintenance_settings_description: Správa časových oken a nastavení údržby systému
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
     max_value: Maximální hodnota
+    mean: Průměr
     media_files_label: Soubory
     media_library: Mediální knihovna
     media_library_page_title: Mediální knihovna – Řídicí panel – Mercer Lighthouse
+    meeting: Setkání
     messages: Zprávy
+    mettl: METTL
+    mettl_assessment: Hodnocení Mettl
     mhs: MHS
     mhs_assessment: Hodnocení MHS
     mhs_assessment_name: Název hodnocení MHS
@@ -437,6 +457,10 @@ cs:
     mhs_external_assessment_id: ID hodnocení Mhs
     mhs_report_id: ID zprávy MHS
     mhs_session_id: ID relace Mhs
+    microsite: mikrostránka
+    microsite_assessment: Hodnocení mikrostránek
+    microsite_assessment_name: Název hodnocení mikrostránky
+    microsite_question_id: ID dotazu na mikrowebu
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     minimum_download_speed: Minimální rychlost stahování (v Mbps)
@@ -445,12 +469,14 @@ cs:
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     model_answer: Vzorová odpověď
     model_answer_placeholder: Zadejte vzorovou odpověď pro hodnocení AI.
+    must_be_a_valid_url: Neplatná adresa URL. Zadejte úplnou adresu URL včetně protokolu http nebo https.
     name: Jméno
     name_max_length: Název nesmí překročit %{length} znaků.
     name_required: Jméno je vyžadováno
     new_folder: Nová složka
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
+    no_question_mappings: Nejsou k dispozici žádná přiřazení otázek
     no_status: Bez statusu
     norm_editor_numeric_value_error: Povoleny jsou pouze číselné hodnoty (celá čísla nebo desetinná čísla).
     norms: Normy
@@ -466,10 +492,13 @@ cs:
     on_the_job: V práci [70]
     only_editable_on_create: Tuto možnost lze upravit pouze při vytváření.
     options: Možnosti
+    organisational: AGILE
     original_text: Původní text
     overall: Celkově
     overall_score: Celkové skóre
     participants: Účastníci
+    pearson: Pearson
+    pearson_assessment: Hodnocení Pearson
     permissions:
       aiArtifacts:
         export: Vývoz
@@ -800,6 +829,8 @@ cs:
       projectSettings:
         assessments: Hodnocení
         design: Design
+        external_logout_redirect_enabled: Povolit externí přesměrování při odhlášení
+        external_logout_url: Externí adresa URL pro odhlášení
         feature_flags: Příznaky funkcí
         idp: IDP
         integrations: Integrace
@@ -913,6 +944,7 @@ cs:
     project_settings: Nastavení projektu
     projects: Projekty
     prompt: Výzva
+    psychometric: Psychometrické údaje
     question_center: Centrum otázek
     question_center_page_title: Centrum dotazů – Přehled – Mercer Lighthouse
     question_editor_change_type: Změnit typ
@@ -921,6 +953,7 @@ cs:
     question_editor_enable_transcription: Zapnout přepis
     question_editor_preview_question: Náhled otázky
     question_editor_validation_type: Typ ověření
+    question_mapping: Mapování otázek
     question_randomization: Náhodné řazení otázek
     question_type_audio_response: Zvuková odezva
     question_type_constant_sum: Konstantní součet
@@ -1037,6 +1070,8 @@ cs:
       subject_full_name_cont: Název předmětu
       user_email_cont: E-mail uživatele
       user_full_name_cont: Uživatelské jméno
+    saville: Saville
+    saville_assessment: Hodnocení Saville
     scheduling: Plánování
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nesmíte schválit.
@@ -1072,6 +1107,7 @@ cs:
     select_end_time: Vyberte čas ukončení
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň
+    select_question: Vyhledat dotaz podle názvu nebo ID
     select_start_time: Vyberte čas zahájení
     selective_proctoring: Selektivní dohled
     send_email: Odeslat e-mail
@@ -1084,14 +1120,19 @@ cs:
     show_submenu: Zobrazit dílčí nabídku
     show_translated: Zobrazit překlad
     siem: SIEM
+    simulation: Simulace
+    simulation_assessment: Posouzení simulace
     skill_aliases: Pseudonymy dovedností
     skills: Dovednosti
     skills_taxonomy: Taxonomie dovedností
+    skillvue: Skillvue
+    skillvue_assessment: Hodnocení dovedností
     skip_assessment_level_checks: Přeskočit kontroly systému na úrovni hodnocení
     slot_name: Název slotu
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS
     specialty_questions: Specifické dotazy
+    standard_deviation: Směrodatná odchylka
     standard_questions: Standardní otázky
     start: začátek
     start_time: Čas zahájení
@@ -1152,6 +1193,8 @@ cs:
     x_axis_interval_label: Interval osy X
     y_axis_interval_label: Interval osy Y
     year: Země
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodliho hodnocení
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

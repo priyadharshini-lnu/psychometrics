@@ -8,7 +8,8 @@ module Administration
                :users_result_id, :hogan_participant_id, :prework, :started_at, :completed_at,
                :hogan_user_assessment_details, :saville_user_assessment_details,
                :simulation_user_assessment_details, :pearson_user_assessment_details,
-               :skillvue_user_assessment_details, :yoodli_user_assessment_details, :mhs_user_assessment_details
+               :skillvue_user_assessment_details, :yoodli_user_assessment_details, :mhs_user_assessment_details,
+               :microsite_user_assessment_details
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -94,6 +95,12 @@ module Administration
       return nil unless object.mhs?
 
       Administration::MhsUserAssessmentSerializer.new.serialize(object.mhs_user_assessment)
+    end
+
+    def microsite_user_assessment_details
+      return nil unless object.microsite?
+
+      Administration::MicrositeUserAssessmentSerializer.new.serialize(object.microsite_user_assessment)
     end
 
     def permissions

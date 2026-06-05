@@ -44,6 +44,7 @@ bg:
     camera_check_abruptly_ended: Камерата беше изключена внезапно. Моля, включете камерата и повторете проверката.
     camera_check_description: Уверете се, че камерата и микрофонът ви работят правилно за запис
     camera_check_passed: Проверката на видеото и аудиото премина успешно
+    camera_check_record_instruction: Натиснете бутона „Запис“ и прочетете на глас следния откъс
     camera_test_step: Стъпка за тестване на видео и аудио
     campaign: Кампания
     campaign_check_status: 'Статус: %{status}'
@@ -52,6 +53,7 @@ bg:
     check_video_recording: Моля, проверете видеото и аудиото, като възпроизведете записа.
     checking_browser_compatibility: Проверява се съвместимостта с браузъра...
     checking_latency: Проверява се латентността...
+    complete_prework_message: Изпълнете всички предварителни задачи, за да започнете.
     could_not_reach_servers: Не успяхме да се свържем със сървърите ни, за да проверим скоростта на мрежата. Моля, проверете интернет връзката си и опитайте отново.
     day: ден
     day_plural: дни
@@ -61,6 +63,7 @@ bg:
     download: Изтегли
     download_pdf: Изтеглете PDF
     download_speed_below_minimum: Скоростта на изтегляне %{download_speed} е по-ниска от минималната изисквана скорост на изтегляне от %{minimum_download_speed} Mbps
+    dummy_message: Готов съм. Това е пробен запис, за да се увери, че камерата и микрофонът ми работят правилно.
     environment_setup: Настройки на средата
     error_uploading_audio: Грешка при качването на аудиофайл
     error_uploading_audio_detail: Възникна грешка при качването на аудиофайла
@@ -92,6 +95,7 @@ bg:
     internet_speed_optimal: Скоростта на вашата връзка е оптимална
     internet_speed_slow: Скоростта на интернет е по-ниска от необходимата за кампанията
     less_than_five_minutes: По-малко от 5 минути
+    lets_start: Да започнем!
     lighthouse_assistant: Асистент на фара
     localstorage_fix_description_first: Уверете се, че не сте в режим на частно сърфиране/инкогнито, тъй като localStorage често е деактивиран в тези режими.
     localstorage_fix_title: Локалното съхранение не е активирано във вашия браузър
@@ -107,6 +111,7 @@ bg:
     media_recorder_api_support: Поддръжка на MediaRecorder API
     microphone_access_blocked: Достъпът до микрофона е бил отказан или блокиран от браузъра ви. Моля, проверете настройките за разрешенията на браузъра си.
     microphone_check_passed: Проверката на микрофона премина успешно
+    microsite_assessment_external: Тази оценка трябва да бъде попълнена на външна платформа.
     min_word_limit: Трябва да бъде най-малко %{min} думи
     minimum_speed_requirements: За тази кампания се изисква минимална скорост на изтегляне от %{minimum_download_speed} Mbps и минимална скорост на качване от %{minimum_upload_speed} Mbps.
     minute: минута
@@ -124,16 +129,24 @@ bg:
     network_test_step: Етап на тестване на мрежата
     no_audio_detected: Не се открива звук. Моля, проверете дали микрофонът ви е свързан и работи правилно.
     pass: Пропусни
+    pause: Пауза
     pending: В очакване
     personal_readiness: Лична готовност
     plan_text: Планирайте за целия период. След като започнете, може да не се допускат паузи в зависимост от вида на оценката.
+    play: Играй
     please_check_your_internet_connection: Моля, проверете интернет връзката си и опитайте отново.
+    preparing_preview: Подготвя се предварителен преглед...
+    prework: Подготовка
+    prework_not_completed_message: Моля, изпълнете всички предварителни задачи, преди да започнете кампанията.
     proctored: Под наблюдение
     proctored_assessment_misconfigured_msg: Този тест се провежда под наблюдение, но липсва необходимата настройка за времето; моля, свържете се с вашия администратор.
     profile: Профил
     profile_details: Подробности
     question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
+    record: Регистър
+    recording_progress_bar: Индикатор за напредъка на записването
+    recording_time_remaining: "%{remainingSeconds} оставащи секунди"
     redirect_to_external_assessment: Ще бъдете пренасочени към сайта за оценяване. Моля, натиснете „Продължи“, ако искате да започнете оценяването.
     reject_idp_plan: Отхвърляне на плана
     request_retry_message: Ти си офлайн. Отговорите ви не могат да бъдат запазени, но ще бъдат запазени автоматично, след като сте отново онлайн. Моля, не обновявайте и не затваряйте страницата.
@@ -145,13 +158,15 @@ bg:
     results: Резултат
     safari_proctoring_description: Изглежда, че използвате браузъра Safari, който може да има някои ограничения по отношение на активираните функции за проследяване в тази кампания. За да се възползвате от най-доброто преживяване, препоръчваме да използвате браузърите Chrome,Edge или Firefox.
     safari_proctoring_title: Засечен браузър Safari
+    select_audio_device: Избор на аудиоустройство
+    select_video_device: Изберете видеоустройство
     selected_count: Избран
     skill_type: Тип умение
     start_campaign_message_proctored: Това е кампания с проктор, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_campaign_message_timed: Това е кампания с ограничено време, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
-    start_campaign_message_timed_proctored: Това е кампания с ограничено време и наблюдение, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_readiness_check: Започнете проверка на готовността
     start_system_check: Започни проверка на системата
+    stop: Спри
     subinstruction_audio: Работещ микрофон
     subinstruction_eight: Отделете достатъчно време, без да ви прекъсват, за да се извърши пълната оценка
     subinstruction_five: Готови ли сте да споделите екрана си по време на сесията?
@@ -239,6 +254,9 @@ bg:
     video_check_fix_second: Отидете в настройките на браузъра и разрешете достъпа до камерата за този сайт
     video_check_fix_sixth: Рестартирайте браузъра си и опитайте отново
     video_check_fix_third: Затворете другите приложения, които използват камерата (Zoom, Teams и др.)
+    video_overlay_label: Изберете микрофона и камерата си, натиснете бутона „Запис“, а след като натиснете бутона „Запис“, прочетете следното съобщение
+    video_overlay_message: Изберете микрофона и камерата си, натиснете „Запис“, след което прочетете на глас изречението, което се появява в долната част на екрана.
+    video_recorder_label: Видеорекордер
     view_details: Виж подробности
     webgl_api_fix_description_first: Уверете се, че браузърът ви поддържа WebGL и че тази опция е активирана в настройките
     webgl_api_fix_description_second: Актуализирайте драйверите за графичната карта до най-новата версия

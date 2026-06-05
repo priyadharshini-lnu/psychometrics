@@ -3,6 +3,9 @@
 class SheetRowDatum < ApplicationRecord
   belongs_to :sheet_row
   belongs_to :sheet_column
+  include Tenantable
+
+  tenant_source :sheet_row
 
   def value
     if sheet_column.number?

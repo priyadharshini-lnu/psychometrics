@@ -66,6 +66,7 @@ const securityComponent: React.FC<Props> = ({
         >
           {({ form }) => {
             const lock = form.getFieldValue('lockAccount')
+            const redirect_enabled = form.getFieldValue('externalLogoutRedirectEnabled')
             return (
               <>
                 <Form.Item
@@ -191,6 +192,25 @@ const securityComponent: React.FC<Props> = ({
                 >
                   <Switch />
                 </Form.Item>
+
+                <Form.Item
+                  name="externalLogoutRedirectEnabled"
+                  label={I18n.t('admin.permissions.projectSettings.external_logout_redirect_enabled')}
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+                {redirect_enabled && (
+                  <>
+                    <Form.Item
+                      name="externalLogoutUrl"
+                      label={I18n.t('admin.permissions.projectSettings.external_logout_url')}
+                      required
+                    >
+                      <Input />
+                    </Form.Item>
+                  </>
+                )}
 
                 {!disable_recaptcha && (
                   <Form.Item

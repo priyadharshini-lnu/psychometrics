@@ -44,6 +44,7 @@ pt:
     camera_check_abruptly_ended: A câmara foi desligada abruptamente. Por favor, ligue a câmara e repita a verificação.
     camera_check_description: Verifique se a sua câmara e o seu microfone estão a funcionar corretamente para a gravação
     camera_check_passed: A verificação de vídeo e áudio foi concluída com sucesso
+    camera_check_record_instruction: Clique em «Gravar» e leia a seguinte passagem em voz alta
     camera_test_step: Etapa de teste de vídeo e áudio
     campaign: Campanha
     campaign_check_status: 'Estado: %{status}'
@@ -52,6 +53,7 @@ pt:
     check_video_recording: Verifique o vídeo e o áudio reproduzindo a gravação.
     checking_browser_compatibility: A verificar a compatibilidade do navegador...
     checking_latency: A verificar a latência...
+    complete_prework_message: Conclua todas as tarefas preparatórias para começar.
     could_not_reach_servers: Não foi possível estabelecer ligação com os nossos servidores para verificar a velocidade da rede. Verifique a sua ligação à Internet e tente novamente.
     day: dia
     day_plural: dias
@@ -61,6 +63,7 @@ pt:
     download: Descarregar
     download_pdf: Baixar PDF
     download_speed_below_minimum: A velocidade de download %{download_speed} está abaixo da velocidade mínima exigida de %{minimum_download_speed} Mbps
+    dummy_message: Estou pronto. Esta é uma gravação de teste para verificar se o meu vídeo e o meu microfone estão a funcionar corretamente.
     environment_setup: Configuração do ambiente
     error_uploading_audio: Erro ao carregar o áudio
     error_uploading_audio_detail: Ocorreu um erro ao carregar o seu ficheiro de áudio
@@ -92,6 +95,7 @@ pt:
     internet_speed_optimal: A velocidade da sua ligação está ótima
     internet_speed_slow: A velocidade da Internet é inferior à necessária para a campanha
     less_than_five_minutes: Menos de 5 minutos
+    lets_start: Vamos começar!
     lighthouse_assistant: Assistente de Farol
     localstorage_fix_description_first: Certifique-se de que não está no modo privado/incógnito, uma vez que o localStorage costuma estar desativado nesses modos.
     localstorage_fix_title: O armazenamento local não está ativado no seu navegador
@@ -107,6 +111,7 @@ pt:
     media_recorder_api_support: Suporte à API MediaRecorder
     microphone_access_blocked: O acesso ao microfone foi recusado ou bloqueado pelo seu navegador. Verifique as permissões do seu navegador.
     microphone_check_passed: O teste do microfone foi bem-sucedido
+    microsite_assessment_external: Esta avaliação deve ser realizada numa plataforma externa.
     min_word_limit: Deve ter pelo menos %{min} palavras
     minimum_speed_requirements: Para esta campanha, é necessária uma velocidade mínima de download de %{minimum_download_speed} Mbps e uma velocidade mínima de upload de %{minimum_upload_speed} Mbps.
     minute: minuto
@@ -124,16 +129,24 @@ pt:
     network_test_step: Etapa de teste da rede
     no_audio_detected: Não foi detetado áudio. Verifique se o seu microfone está ligado e a funcionar corretamente.
     pass: Passe
+    pause: Pausa
     pending: Em espera
     personal_readiness: Preparação pessoal
     plan_text: Planeie para toda a duração. Uma vez iniciada, poderá não ser permitido fazer pausas, dependendo do tipo de avaliação.
+    play: Jogar
     please_check_your_internet_connection: Verifique a sua ligação à Internet e tente novamente.
+    preparing_preview: A preparar a pré-visualização...
+    prework: Trabalho preliminar
+    prework_not_completed_message: Por favor, conclua todas as tarefas preparatórias antes de iniciar a campanha.
     proctored: Sob supervisão
     proctored_assessment_misconfigured_msg: Esta avaliação é supervisionada, mas não possui a configuração de tempo necessária; por favor, contacte o seu administrador.
     profile: Perfil
     profile_details: Detalhes
     question_counter: Pergunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo da Rejeição
+    record: Registo
+    recording_progress_bar: Barra de progresso da gravação
+    recording_time_remaining: "%{remainingSeconds} segundos restantes"
     redirect_to_external_assessment: Será redirecionado para o site da avaliação. Clique em «Continuar» se desejar iniciar a avaliação.
     reject_idp_plan: Rejeitar o Plano
     request_retry_message: Você está offline. Suas respostas não puderam ser salvas, mas serão salvas automaticamente quando você voltar a estar online. Por favor, não atualize nem feche a página.
@@ -145,13 +158,15 @@ pt:
     results: Resultado
     safari_proctoring_description: Parece que está a utilizar o navegador Safari, o que pode implicar algumas limitações no que diz respeito às funcionalidades de monitorização ativadas para esta campanha. Para uma melhor experiência, recomendamos a utilização dos navegadores Chrome, Edge ou Firefox.
     safari_proctoring_title: Detetado o navegador Safari
+    select_audio_device: Selecionar dispositivo de áudio
+    select_video_device: Selecionar dispositivo de vídeo
     selected_count: Selecionado
     skill_type: Tipo de habilidade
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
-    start_campaign_message_timed_proctored: Esta é uma campanha cronometrada e supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     start_readiness_check: Iniciar verificação de prontidão
     start_system_check: Iniciar verificação do sistema
+    stop: Pare
     subinstruction_audio: Microfone em funcionamento
     subinstruction_eight: Reserve um período de tempo sem interrupções para a avaliação completa
     subinstruction_five: Pronto para partilhar o seu ecrã durante toda a sessão
@@ -239,6 +254,9 @@ pt:
     video_check_fix_second: Vá às definições do navegador e ative o acesso à câmara para este site
     video_check_fix_sixth: Reinicie o seu navegador e tente novamente
     video_check_fix_third: Feche outras aplicações que estejam a utilizar a câmara (Zoom, Teams, etc.)
+    video_overlay_label: Selecione o seu microfone e a sua câmara, clique em «Gravar» e, depois de clicar no botão «Gravar», leia a seguinte mensagem
+    video_overlay_message: Selecione o seu microfone e a sua câmara, clique em «Gravar» e, em seguida, leia em voz alta a frase que aparece na parte inferior.
+    video_recorder_label: Gravador de vídeo
     view_details: Ver detalhes
     webgl_api_fix_description_first: Certifique-se de que o seu navegador suporta WebGL e de que esta funcionalidade está ativada nas definições
     webgl_api_fix_description_second: Atualize os controladores gráficos para a versão mais recente

@@ -13,11 +13,9 @@ module UserReports::PdfGeneration
     @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
     @selected_locale = params[:report_lang] || resource.report.default_language
 
+    audit! :view_report, resource, campaign: resource.campaign, payload: params.merge(resource.details_to_log)
+
     respond_to do |format| # rubocop:disable Metrics/BlockLength
-      format.html do
-        audit! :view_report, resource, campaign: resource.campaign,
-          payload: params.merge(resource.details_to_log)
-      end
       format.json do
         if resource.external_report? || resource.provider_custom_upload?
           return render(
@@ -27,21 +25,23 @@ module UserReports::PdfGeneration
           )
         end
 
-        render json: ::UserReportSerializer.new(
-          context: {
-            report: resource.report,
-            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
-            piped_text_context: resource.piped_text_context,
-            user_results: resource.user_results(view_report_as),
-            view_report_as: view_report_as,
-            current_user: current_user,
-            campaign: resource.campaign,
-            threesixty_campaign: resource.threesixty_campaign,
-            options: resource.threesixty_campaign&.option,
-            lang: params[:report_lang],
-            campaign_user: resource.campaign_user
-          }
-        ).serialize(resource)
+        Mobility.with_locale(params[:report_lang] || resource.report.default_language) do
+          render json: ::UserReportSerializer.new(
+            context: {
+              report: resource.report,
+              results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
+              piped_text_context: resource.piped_text_context,
+              user_results: resource.user_results(view_report_as),
+              view_report_as: view_report_as,
+              current_user: current_user,
+              campaign: resource.campaign,
+              threesixty_campaign: resource.threesixty_campaign,
+              options: resource.threesixty_campaign&.option,
+              lang: params[:report_lang],
+              campaign_user: resource.campaign_user
+            }
+          ).serialize(resource)
+        end
       end
     end
   end
@@ -55,8 +55,6 @@ module UserReports::PdfGeneration
       skip_logic: params[:skip_logic],
       view_report_as: view_report_as
     }
-    audit! :download_report, resource, campaign: resource.campaign,
-      payload: params.merge(resource.details_to_log)
     respond_to do |format|
       format.json do
         ::UserReports::GeneratePdfJob.perform_later(
@@ -66,6 +64,8 @@ module UserReports::PdfGeneration
         render json: { success: true }
       end
       format.pdf do
+        audit! :download_report, resource, campaign: resource.campaign,
+               payload: params.merge(resource.details_to_log)
         data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
         send_tmp_file data[:file_path], type: 'application/pdf'
       end
@@ -77,7 +77,9 @@ module UserReports::PdfGeneration
     selected_locale = params[:lang] || resource.report.default_language
     I18n.locale = selected_locale
 
-    @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+    Mobility.with_locale(selected_locale) do
+      @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+    end
     @pdf_export = true
 
     render 'shared/preview_report', layout: 'pdf'

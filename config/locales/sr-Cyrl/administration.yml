@@ -2395,6 +2395,7 @@ sr-Cyrl:
         add: Интеграције
         back: Повратак на интеграције
         load_mettl_catalog: Учитајте каталог Mettl процена
+        load_microsite_catalog: Учитај каталог процене микросајта
         load_skillvue_catalog: Учитај каталог Skillvue процена
       columns:
         active: Активан
@@ -2413,6 +2414,7 @@ sr-Cyrl:
         webhookUrls: URL-ови вебхукова
       integrations: Интеграције
       load_mettl_success: Задатак учитавања Метл процена посла је успешно стављен у ред.
+      load_microsite_success: Посао за процену микросајтова је успешно стављен у ред.
       load_skillvue_success: Задатак учитавања SkillVue процена је успешно стављен у ред.
       modal:
         hogan:
@@ -2435,6 +2437,9 @@ sr-Cyrl:
           servers:
             mettl_eu: Европа
             mettl_india: Индија
+        microsite:
+          apiKey: АПИ кључ
+          apiKeyRequired: API кључ је потребан
         skillvue:
           apiKey: АПИ кључ
           apiKeyRequired: API кључ је потребан
@@ -2446,6 +2451,7 @@ sr-Cyrl:
         hogan: Хоган
         iiht: ИИХТ
         mettl: МЕТТЛ
+        microsite: Микросајт
         skillvue: Скилвју
         yoodli: Јуудили
       validations:
@@ -2454,6 +2460,8 @@ sr-Cyrl:
           tenant_id_present: ИД станара је већ присутан у другом пројекту.
         mettl:
           public_key_present: Јавни кључ је већ присутан у другом пројекту.
+        microsite:
+          api_key_present: API кључ је већ присутан у другом пројекту.
         skillvue:
           api_key_present: API кључ је већ присутан у другом пројекту.
       view_all_schedules: Прикажи све Метл распореде
@@ -3030,6 +3038,7 @@ sr-Cyrl:
               assessment_started: Почена процена
               assessment_timeout: Време истека процене
               campaign_results_available: Резултати кампање доступни
+              campaign_user_assessment_summary: Резиме процене корисника кампање
               campaign_user_status: Статус корисника кампање
               report_available: Извештај доступан
               results_available: Резултати доступни

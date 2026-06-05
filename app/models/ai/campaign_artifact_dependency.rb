@@ -5,6 +5,9 @@ class AI::CampaignArtifactDependency < ApplicationRecord
 
   belongs_to :campaign_ai_artifact, class_name: 'AI::CampaignArtifact'
   belongs_to :dependency, polymorphic: true
+  include Tenantable
+
+  tenant_source :campaign_ai_artifact
 
   validates :dependency, presence: true
   validates :campaign_ai_artifact_id, uniqueness: { scope: %i[dependency_type dependency_id] }

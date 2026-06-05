@@ -44,6 +44,7 @@ ro:
     camera_check_abruptly_ended: Camera s-a oprit brusc. Vă rugăm să activați camera și să repetați verificarea.
     camera_check_description: Verificați dacă camera și microfonul funcționează corect pentru înregistrare
     camera_check_passed: Verificarea sunetului și a imaginii s-a încheiat cu succes
+    camera_check_record_instruction: Dă clic pe „Înregistrare” și citește cu voce tare următorul fragment
     camera_test_step: Etapa de testare video și audio
     campaign: Campanie
     campaign_check_status: 'Stare: %{status}'
@@ -52,6 +53,7 @@ ro:
     check_video_recording: Vă rugăm să verificați înregistrarea video și audio redând-o.
     checking_browser_compatibility: Se verifică compatibilitatea browserului...
     checking_latency: Verificarea latenței...
+    complete_prework_message: Finalizează toate sarcinile preliminare pentru a începe.
     could_not_reach_servers: Nu s-a putut stabili conexiunea cu serverele noastre pentru a verifica viteza rețelei. Vă rugăm să verificați conexiunea la internet și să încercați din nou.
     day: zi
     day_plural: zile
@@ -61,6 +63,7 @@ ro:
     download: Descărcați
     download_pdf: Descarcă PDF
     download_speed_below_minimum: Viteza de descărcare %{download_speed} este sub viteza minimă necesară de descărcare de %{minimum_download_speed} Mbps
+    dummy_message: Sunt gata. Aceasta este o înregistrare de test pentru a verifica dacă camera video și microfonul funcționează corect.
     environment_setup: Configurarea mediului
     error_uploading_audio: Eroare la încărcarea fișierului audio
     error_uploading_audio_detail: A apărut o eroare la încărcarea fișierului audio
@@ -92,6 +95,7 @@ ro:
     internet_speed_optimal: Viteza conexiunii tale este optimă
     internet_speed_slow: Viteza conexiunii la internet este mai mică decât cea necesară pentru campanie
     less_than_five_minutes: Mai puțin de 5 minute
+    lets_start: Să începem!
     lighthouse_assistant: Asistent de far
     localstorage_fix_description_first: Asigură-te că nu te afli în modul privat/incognito, deoarece localStorage este adesea dezactivat în aceste moduri.
     localstorage_fix_title: Funcția de stocare locală nu este activată în browserul dumneavoastră
@@ -107,6 +111,7 @@ ro:
     media_recorder_api_support: Suport pentru API-ul MediaRecorder
     microphone_access_blocked: Accesul la microfon a fost refuzat sau blocat de browserul dumneavoastră. Vă rugăm să verificați permisiunile browserului.
     microphone_check_passed: Verificarea microfonului s-a efectuat cu succes
+    microsite_assessment_external: Această evaluare trebuie efectuată pe o platformă externă.
     min_word_limit: Trebuie să aibă cel puțin %{min} cuvinte
     minimum_speed_requirements: Pentru această campanie sunt necesare o viteză minimă de descărcare de %{minimum_download_speed} Mbps și o viteză minimă de încărcare de %{minimum_upload_speed} Mbps.
     minute: minut
@@ -124,16 +129,24 @@ ro:
     network_test_step: Etapa de testare a rețelei
     no_audio_detected: Nu s-a detectat niciun semnal audio. Vă rugăm să verificați dacă microfonul este conectat și funcționează corect.
     pass: Treci
+    pause: Pauză
     pending: În așteptare
     personal_readiness: Pregătirea personală
     plan_text: Planificați-vă pentru întreaga durată. Odată ce ați început, este posibil să nu vi se permită pauze, în funcție de tipul de evaluare.
+    play: Joacă
     please_check_your_internet_connection: Vă rugăm să verificați conexiunea la internet și să încercați din nou.
+    preparing_preview: Se pregătește previzualizarea...
+    prework: Pregătire preliminară
+    prework_not_completed_message: Vă rugăm să finalizați toate sarcinile preliminare înainte de a începe campania.
     proctored: Sub supraveghere
     proctored_assessment_misconfigured_msg: Această evaluare se desfășoară sub supraveghere, dar nu are setările de timp necesare; vă rugăm să contactați administratorul.
     profile: Profil
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
     reason_for_idp_plan_rejection: Motivul respingerii
+    record: Registru
+    recording_progress_bar: Bara de progres a înregistrării
+    recording_time_remaining: "%{remainingSeconds} secunde rămase"
     redirect_to_external_assessment: Veți fi redirecționat către pagina de evaluare. Vă rugăm să faceți clic pe „Continuați” dacă doriți să începeți evaluarea.
     reject_idp_plan: Planul de respingere
     request_retry_message: Ești offline. Răspunsurile tale nu au putut fi salvate, dar vor fi salvate automat odată ce vei fi din nou online. Vă rugăm să nu reîmprospătați sau să închideți pagina.
@@ -145,13 +158,15 @@ ro:
     results: Rezultat
     safari_proctoring_description: Se pare că utilizați browserul Safari, care poate prezenta anumite limitări în ceea ce privește funcțiile de monitorizare activate pentru această campanie. Pentru o experiență optimă, vă recomandăm să utilizați browserele Chrome, Edge sau Firefox.
     safari_proctoring_title: S-a detectat browserul Safari
+    select_audio_device: Selectează dispozitivul audio
+    select_video_device: Selectează dispozitivul video
     selected_count: Selectat
     skill_type: Tip de abilitate
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_campaign_message_timed: Aceasta este o campanie cu timp limitat, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
-    start_campaign_message_timed_proctored: Aceasta este o campanie cronometrată și supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_readiness_check: Începe verificarea pregătirii
     start_system_check: Pornește verificarea sistemului
+    stop: Oprește-te
     subinstruction_audio: Microfon funcțional
     subinstruction_eight: Rezervați-vă un interval de timp neîntrerupt pentru evaluarea completă
     subinstruction_five: Ești gata să îți partajezi ecranul pe durata sesiunii
@@ -239,6 +254,9 @@ ro:
     video_check_fix_second: Accesează setările browserului și activează accesul la cameră pentru acest site
     video_check_fix_sixth: Reporniți browserul și încercați din nou
     video_check_fix_third: Închideți celelalte aplicații care utilizează camera (Zoom, Teams etc.)
+    video_overlay_label: Alegeți microfonul și camera, faceți clic pe „Înregistrare”, apoi citiți mesajul următor după ce ați apăsat butonul „Înregistrare”
+    video_overlay_message: Alege microfonul și camera, apasă pe „Înregistrare”, apoi citește cu voce tare propoziția care apare în partea de jos.
+    video_recorder_label: Aparat de înregistrare video
     view_details: Vezi detalii
     webgl_api_fix_description_first: Asigură-te că browserul tău acceptă WebGL și că această funcție este activată în setări
     webgl_api_fix_description_second: Actualizați driverele grafice la cea mai recentă versiune

@@ -1100,36 +1100,9 @@ sr-Cyrl:
       title: Детаљи процене
     edit: Уређивање
     fields:
-      category:
-        agile: Окретан
-        assessor_form: Образац за оцењивача
-        case_study: Студије случаја
-        hogan: Хоган
-        iiht: ИИХТ
-        lead_assessor_form: Образац главног процењивача
-        meeting: Састанак
-        mettl: ОМИЉЕНО
-        organisational: Орг анкете
-        pearson: Пирсон
-        psychometric: Психометријски
-        saville: Ел Салвадор
-        simulation: Симулација
-        skillvue: ОМИЉЕНО
-        threesixty: 360 Кампања
-        yoodli: Јоодли
       status:
         finished: Заврљио
         in_progress: У току
-      type:
-        common: ТТЕ Процена
-        hogan: Хоган
-        iiht: ИИХТ Процена
-        mettl: Меттл Процена
-        pearson: Пирсонова процена
-        saville: Савилле Процена
-        simulation: Симулација Процена
-        skillvue: Скиллвуе Процена
-        yoodli: Јоодли Процена
     flow:
       end_assessment_modal:
         custom_message: Прилагођена порука о крају процене
@@ -1206,16 +1179,11 @@ sr-Cyrl:
         failure: Овај прегледач не подржава снимање видеа. Користите Chrome или Firefox за снимање видеа.
         success: Молимо вас да дозволите коришћење камере и микрофона за снимање звука и видеа
         unsupported: Овај претраживач не подржава видео снимање. Молимо Вас да користите било који од следећих претраживача,
-      recording_duration_label: Максимално трајање снимања
-      recording_stop_label: Снимање ће се зауставити за
       requesting_permission: Тражење дозволе...
       response_recorded: Одговор је забележен
       save: Сачувај
-      saved:
-        label: Видео је сачуван
       seek: Траћим
       start_recording: Почни снимање
-      stop_recording: Заустави снимање
       tracker:
         backward: Преблизу сте екрану. Молимо вас да се мало померите уназад.
         forward: Превише сте удаљени од екрана. Молимо вас да се мало приближите.
@@ -1377,15 +1345,12 @@ sr-Cyrl:
     all_activities_are_completed: Све активности су сада завршене.
     all_activities_are_completed_multiple: Све активности за ову кампању су сада завршене. Молимо вас да пређете на контролну таблу и проверите да ли имате додељене још неке активности.
     already_joined: Већ сте се придружили овој кампањи
-    begin: Започните своје задатке
-    begin_btn_msg_before_prework: Морате да завршите доле наведене задатке пре него што започнете временски ограничену кампању
     begin_campaign_msg: Започните кампању пре полагања процена
     campaigns: Кампање
     closed_campaign_message: Ова кампања је затворена. Не можете полагати никакве процене у оквиру ове кампање.
     code_usage_limit_reached: Достигнута граница употребе кода, контактирајте администратора
     complete_prev: Завршите све претходне процене
     complete_tasks: Молимо вас да завршите доленаведене задатке пре него што предузмете ову акцију.
-    continue: Наставите са својим задацима
     dashboard_instructions: Можда вам је додељено више активности које треба да завршите. Молимо вас да проверите да ли су све додељене активности завршене у свим кампањама.
     dashboard_menu:
       campaign: Кампања
@@ -1479,6 +1444,9 @@ sr-Cyrl:
       external_user_id: Скиллвуе ИД кандидата
       id: ИД процене кампање
       locales: Локализације
+      microsite_error_message: Порука о грешци
+      microsite_participant_id: ИД учесника микросајта
+      microsite_registration_status: Статус регистрације
       norm: Норм
       norm_id: Норма ИД
       pearson_norm_id: Пирсон Норм ИД
@@ -1753,10 +1721,8 @@ sr-Cyrl:
       permissions: Дозволе за веб камеру и звук
       title: Пре него што започнете ову процену, ваш систем мора да прође кроз неке провере.
     video_check:
-      description: Кликните на Почни снимање и снимите себе док читате доњи одломак својим гласом
       random_phrases:
         one: Сем спреман. Ово је тестни снимак да потврдим да ли мој микрофон и камера исправно раде.
-      title: Морамо да се уверимо да ваш систем може да снима видео
   common:
     actions:
       add: Додај
@@ -1837,6 +1803,7 @@ sr-Cyrl:
       json:
         answer: Одговор ЈСОН
         external_result: Спољни резултат ЈСОН
+        microsite_raw_response: Микросајт сиров одговор
         scoring: Бодовање ЈСОН
       key: Кључ
       last_name: Презиме
@@ -3295,13 +3262,6 @@ sr-Cyrl:
     fields:
       provider:
         custom_upload: Прилагођено отпремање
-        hogan: Хоган
-        internal: Унутрашње
-        mettl: ОМИЉЕНО
-        pearson: Пирсон
-        saville: Ел Салвадор
-        skillvue: ОМИЉЕНО
-        yoodli: Јоодли
     form:
       load_from_mettl: Учитавање из Меттла
       load_from_pearson: Оптерећење од Пеарсона

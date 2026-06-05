@@ -1100,36 +1100,9 @@ zh:
       title: 评估细节
     edit: 编辑
     fields:
-      category:
-        agile: AGILE
-        assessor_form: 评估员表格
-        case_study: 案例研究
-        hogan: 霍根
-        iiht: IIHT
-        lead_assessor_form: 主任评估员表格
-        meeting: 会议
-        mettl: 水
-        organisational: 组织调查
-        pearson: 皮尔森
-        psychometric: 心理测量
-        saville: 萨维尔
-        simulation: 模拟
-        skillvue: Skillvue
-        threesixty: 360 运动
-        yoodli: 尤德利
       status:
         finished: 完成
         in_progress: 进行中
-      type:
-        common: TTE 评估
-        hogan: 霍根
-        iiht: IIHT 评估
-        mettl: 梅特尔评估
-        pearson: 培生评估
-        saville: 萨维尔评估
-        simulation: 模拟评估
-        skillvue: Skillvue 评估
-        yoodli: 尤德利评估
     flow:
       end_assessment_modal:
         custom_message: 自定义评估结束信息
@@ -1209,16 +1182,11 @@ zh:
         failure: 此浏览器不支持视频录制。请使用 Chrome 或 Firefox 进行视频录制
         success: 请允许使用摄像头和麦克风来录制音频和视频
         unsupported: 此浏览器不支持视频录制，请使用以下任何一种浏览器、
-      recording_duration_label: 最长记录时间
-      recording_stop_label: 录音将在
       requesting_permission: 请求许可...
       response_recorded: 已记录回答
       save: 保存
-      saved:
-        label: 已保存
       seek: 寻找
       start_recording: 开始录制
-      stop_recording: 停止录制
       tracker:
         backward: 你离屏幕太近了。请靠后一点
         forward: 你离屏幕太远了。请靠近一点
@@ -1380,15 +1348,12 @@ zh:
     all_activities_are_completed: 所有活动现已完成。
     all_activities_are_completed_multiple: 此项目的所有活动现已完成。请前往仪表板，检查是否有其他活动分配给你。
     already_joined: 您已经参加了这项活动
-    begin: 开始你的任务
-    begin_btn_msg_before_prework: 在开始计时活动之前，您必须完成以下任务
     begin_campaign_msg: 在接受评估前启动活动
     campaigns: 项目
     closed_campaign_message: 此项目已关闭。你无法参加此项目中的任何评估。
     code_usage_limit_reached: 代码使用量已达上限，请联系管理员
     complete_prev: 完成所有前面的评估
     complete_tasks: 请在执行此操作前完成以下任务。
-    continue: 继续你的任务
     dashboard_instructions: 你被分配了多个需要完成的活动。请确保本项目中所有分配活动的都已完成。
     dashboard_menu:
       campaign: 项目
@@ -1495,6 +1460,9 @@ zh:
       external_user_id: Skillvue 候选人 ID
       id: 活动评估 ID
       locales: 地点
+      microsite_error_message: 错误信息
+      microsite_participant_id: 微网站参与者ID
+      microsite_registration_status: 注册状态
       norm: 常模
       norm_id: 常模 ID
       pearson_norm_id: 皮尔逊规范 ID
@@ -1769,10 +1737,8 @@ zh:
       permissions: 摄像头和音频权限
       title: 在开始此评估之前，你的系统需要进行一些检查。
     video_check:
-      description: 点击“开始录音”，用朗读下面的文章
       random_phrases:
         one: 我准备好了。这是一段测试录像，用来确认我的视频和麦克风工作正常。
-      title: 我们需要确保你的系统可以录制视频
   common:
     actions:
       add: 添加
@@ -1853,6 +1819,7 @@ zh:
       json:
         answer: 回答 JSON
         external_result: 外部结果 JSON
+        microsite_raw_response: 微网站 原始反馈
         scoring: 评分 JSON
       key: 钥匙
       last_name: 姓氏
@@ -3284,13 +3251,6 @@ zh:
     fields:
       provider:
         custom_upload: 自定义上传
-        hogan: 霍根
-        internal: 内部
-        mettl: 水
-        pearson: 皮尔森
-        saville: 萨维尔
-        skillvue: Skillvue
-        yoodli: 尤德利
     form:
       load_from_mettl: 来自 Mettl 的负载
       load_from_pearson: 从培生加载

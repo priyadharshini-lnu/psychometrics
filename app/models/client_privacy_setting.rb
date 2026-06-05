@@ -6,6 +6,8 @@ class ClientPrivacySetting < ApplicationRecord
 
   belongs_to :client
 
+  include Tenantable
+
   validates :client, presence: true
 
   def self.ransackable_attributes(_auth_object = nil)

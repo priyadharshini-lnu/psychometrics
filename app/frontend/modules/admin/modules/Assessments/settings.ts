@@ -18,6 +18,7 @@ const settings = {
     'simulation',
     'skillvue',
     'yoodli',
+    'microsite',
   ],
 }
 

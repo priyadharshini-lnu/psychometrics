@@ -2395,6 +2395,7 @@ hi:
         add: एकीकरण
         back: एकीकरण पर वापस
         load_mettl_catalog: Mettl मूल्यांकन कैटलॉग लोड करें
+        load_microsite_catalog: माइक्रोसाइट मूल्यांकन कैटलॉग लोड करें
         load_skillvue_catalog: स्किलव्यू मूल्यांकन सूची लोड करें
       columns:
         active: सक्रिय
@@ -2413,6 +2414,7 @@ hi:
         webhookUrls: वेबहुक यूआरएल
       integrations: एकीकरण
       load_mettl_success: लोड मेटल असेसमेंट्स जॉब सफलतापूर्वक कतारबद्ध हो गया है।
+      load_microsite_success: माइक्रोसाइट मूल्यांकन कार्य सफलतापूर्वक कतारबद्ध हो गया है।
       load_skillvue_success: स्किलव्यू मूल्यांकन कार्य सफलतापूर्वक कतारबद्ध हो गया है।
       modal:
         hogan:
@@ -2435,6 +2437,9 @@ hi:
           servers:
             mettl_eu: यूरोप
             mettl_india: भारत
+        microsite:
+          apiKey: एपीआई कुंजी
+          apiKeyRequired: एपीआई कुंजी आवश्यक है
         skillvue:
           apiKey: एपीआई कुंजी
           apiKeyRequired: एपीआई कुंजी आवश्यक है
@@ -2446,6 +2451,7 @@ hi:
         hogan: होगन
         iiht: आईआईएचटी
         mettl: मेट्टल
+        microsite: माइक्रोसाइट
         skillvue: स्किलव्यू
         yoodli: यूडली
       validations:
@@ -2454,6 +2460,8 @@ hi:
           tenant_id_present: किरायेदार आईडी पहले से ही अन्य प्रोजेक्ट में मौजूद है।
         mettl:
           public_key_present: पब्लिक की पहले से ही दूसरे प्रोजेक्ट में मौजूद है।
+        microsite:
+          api_key_present: एपीआई कुंजी पहले से ही दूसरे प्रोजेक्ट में मौजूद है।
         skillvue:
           api_key_present: एपीआई कुंजी पहले से ही दूसरे प्रोजेक्ट में मौजूद है।
       view_all_schedules: सभी Mettl शेड्यूल देखें
@@ -3030,6 +3038,7 @@ hi:
               assessment_started: मूल्यांकन शुरू
               assessment_timeout: मूल्यांकन टाइमआउट
               campaign_results_available: अभियान के परिणाम उपलब्ध हैं
+              campaign_user_assessment_summary: अभियान उपयोगकर्ता मूल्यांकन सारांश
               campaign_user_status: अभियान उपयोगकर्ता स्थिति
               report_available: रिपोर्ट उपलब्ध
               results_available: परिणाम उपलब्ध

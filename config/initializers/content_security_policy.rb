@@ -65,6 +65,7 @@ unless Rails.env.test?
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
       connect_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+      connect_src << ENV.fetch('CLOUDFRONT_DOMAIN', nil) if ENV.fetch('CLOUDFRONT_DOMAIN', nil).present?
 
       object_src = [
         "https://#{Settings.secrets.s3_compatible_storage.public_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",

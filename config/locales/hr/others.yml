@@ -1100,36 +1100,9 @@ hr:
       title: Pojedinosti o procjeni
     edit: Urediti
     fields:
-      category:
-        agile: OKRETAN
-        assessor_form: Obrazac procjenitelja
-        case_study: Studije slučaja
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Obrazac glavnog procjenitelja
-        meeting: Sastanak
-        mettl: Mettl
-        organisational: Org ankete
-        pearson: Pearson
-        psychometric: Psihometrijski
-        saville: Saville
-        simulation: Simulacija
-        skillvue: Skillvue
-        threesixty: Kampanja 360
-        yoodli: Yoodli
       status:
         finished: Završen
         in_progress: U tijeku
-      type:
-        common: Procjena TTE
-        hogan: Hogan
-        iiht: Procjena IIHT-a
-        mettl: Mettl procjena
-        pearson: Pearsonova procjena
-        saville: Procjena Savillea
-        simulation: Simulacijska procjena
-        skillvue: Procjena vještina
-        yoodli: Yoodli procjena
     flow:
       end_assessment_modal:
         custom_message: Prilagođena poruka o završetku procjene
@@ -1206,16 +1179,11 @@ hr:
         failure: Ovaj preglednik ne podržava snimanje videa. Za snimanje videa koristite Chrome ili Firefox.
         success: Molimo, dopustite korištenje kamere i mikrofona za snimanje videa i zvuka
         unsupported: Ovaj preglednik ne podržava snimanje videozapisa. Koristite bilo koji od sljedećih preglednika,
-      recording_duration_label: Maksimalno trajanje snimanja
-      recording_stop_label: Snimanje će se zaustaviti za
       requesting_permission: Zahtjev za dopuštenje...
       response_recorded: Odgovor je zabilježen
       save: Spremiti
-      saved:
-        label: Videozapis spremljen
       seek: Tražiti
       start_recording: Započeti snimanje
-      stop_recording: Zaustaviti snimanje
       tracker:
         backward: Preblizu ste zaslonu. Molimo, odmaknite se unatrag.
         forward: Previše ste udaljeni od zaslona. Molimo, približite se.
@@ -1377,15 +1345,12 @@ hr:
     all_activities_are_completed: Sve aktivnosti su sada završene.
     all_activities_are_completed_multiple: Sve aktivnosti za ovu kampanju su sada dovršene. Molimo, vratite se na Nadzornu ploču i provjerite imate li dodijeljene još neke aktivnosti.
     already_joined: Već ste se pridružili ovoj kampanji
-    begin: Započnite svoje zadatke
-    begin_btn_msg_before_prework: Prije početka vremenski ograničene kampanje morate dovršiti sljedeće zadatke
     begin_campaign_msg: Započnite kampanju prije početka procjene
     campaigns: Kampanje
     closed_campaign_message: Ova kampanja je zatvorena. Ne možete ući ni u jednu procjenu unutar ove kampanje.
     code_usage_limit_reached: Dosegnuto ograničenje korištenja koda, obratite se administratoru
     complete_prev: Završite sve prethodne procjene
     complete_tasks: Molimo, dovršite zadatke u nastavku prije nego što poduzmete ovu radnju.
-    continue: Nastavite svoje zadatke
     dashboard_instructions: Možda Vam je dodijeljeno više aktivnosti koje morate dovršiti. Molimo, provjerite jeste li dovršili sve dodijeljene aktivnosti u svim kampanjama.
     dashboard_menu:
       campaign: Kampanja
@@ -1485,6 +1450,9 @@ hr:
       external_user_id: Skillvue ID kandidata
       id: ID procjene kampanje
       locales: Poprište
+      microsite_error_message: Poruka o pogrešci
+      microsite_participant_id: ID sudionika mikrolokacije
+      microsite_registration_status: Status registracije
       norm: Norma
       norm_id: ID norme
       pearson_norm_id: Pearson Norm ID
@@ -1759,10 +1727,8 @@ hr:
       permissions: Dozvole za kameru i zvuk
       title: Prije početka ove procjene, Vaš sustav mora proći kroz neke provjere.
     video_check:
-      description: Kliknite na "Pokrenuti snimanje" i snimite se dok čitate donji odlomak naglas
       random_phrases:
         one: Spreman sam. Ovo je probna snimka kako bih potvrdio da moja video i mikrofon ispravno rade.
-      title: Moramo osigurati da Vaš sustav može snimati video
   common:
     actions:
       add: Dodati
@@ -1843,6 +1809,7 @@ hr:
       json:
         answer: Odgovorite JSON
         external_result: Vanjski rezultat JSON
+        microsite_raw_response: Mikrosajt sirovi odgovor
         scoring: Bodovanje JSON
       key: Ključ
       last_name: Prezime
@@ -3301,13 +3268,6 @@ hr:
     fields:
       provider:
         custom_upload: Prilagođeni prijenos
-        hogan: Hogan
-        internal: Unutarnje
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Učitaj iz Mettl
       load_from_pearson: Učitaj iz Pearsona

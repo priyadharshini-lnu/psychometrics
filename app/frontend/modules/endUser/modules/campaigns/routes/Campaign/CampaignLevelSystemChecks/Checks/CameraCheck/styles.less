@@ -11,4 +11,145 @@
 }
 .video-player-parent {
   width: 100%;
+  position: relative;
+  z-index: 2;
 }
+
+.videoQuoteGroup {
+  width: 100%;
+  border-radius: 10px;
+  overflow: visible;
+  position: relative;
+}
+
+// Instruction text with transition
+.instructionText {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+  max-height: 40px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.4s ease;
+}
+
+.instructionHidden {
+  max-height: 0;
+  opacity: 0;
+  margin: 0 !important;
+}
+
+// Quote card
+.quoteV1 {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 20px 20px 14px;
+  background: linear-gradient(135deg, #f8f9fb 0%, #f0f2f5 100%);
+  border-radius: 10px;
+  text-align: left;
+  max-height: 300px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease, margin 0.4s ease;
+}
+
+// Loading bar (preparing preview)
+.loadingBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(20, 20, 20, 1);
+  border-radius: 0 0 8px 8px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 5;
+  width: 100%;
+}
+
+.loadingSpinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.quoteMarkClose {
+  position: absolute;
+  bottom: 4px;
+  right: 14px;
+  pointer-events: none;
+  color: #4a6cf7;
+  opacity: 0.15;
+}
+
+.quoteV1Label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a6cf7;
+  margin-bottom: 8px;
+}
+.quoteV1Text {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #1a1a1a;
+  font-style: italic;
+  margin: 0;
+  font-weight: 500;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+// Review checklist (inside quote card)
+.reviewChecklist {
+  padding: 0;
+}
+
+.reviewCheckItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #333;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.reviewSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e8e8e8;
+  border-top-color: #4a6cf7;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.reviewPending {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d9d9d9;
+  border-radius: 50%;
+}
+
+.reviewActions {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 0;
+}
+

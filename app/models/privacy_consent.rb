@@ -8,6 +8,10 @@ class PrivacyConsent < ApplicationRecord
   belongs_to :campaign, optional: true
   belongs_to :assessment, optional: true
 
+  include Tenantable
+
+  tenant_source :user
+
   before_save :set_policy_type
   before_save :set_data_role
 

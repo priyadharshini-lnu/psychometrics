@@ -22,9 +22,11 @@ sr-Cyrl:
     assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
     audio: Аудио
+    audio_devices: Аудио уређаји
     authentication_failed: Аутентификација није успела. Покушајте поново.
     back: Назад
     basic: Основне
+    camera: Камера
     camera_preview: Преглед камере ће се појавити овде
     campaign: Кампања
     campaign_id: ИД кампање
@@ -59,6 +61,7 @@ sr-Cyrl:
     desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
     desktop_or_laptop_required: Потребан десктоп или лаптоп
     disabled: Онеспособљен
+    discard: Баци
     download: Преузми
     download_audio: Преузми аудио
     download_transcription: Преузми транскрипт
@@ -85,6 +88,7 @@ sr-Cyrl:
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     last_name: Презиме
     learning_on_the_job_label: Учење на послу
+    lets_start: Хајде да почнемо!
     loading: Учитавање...
     login: Пријавите се
     maintenance_in_hours: "%{hours} сати"
@@ -99,6 +103,7 @@ sr-Cyrl:
     media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    microphones: Микрофони
     mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
     mobile_proctoring_enabled_instructions: За најбоље искуство, молимо вас да пређете на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
     modified_by: Измењено од стране
@@ -116,7 +121,9 @@ sr-Cyrl:
     ok: У реду
     options: Опције
     owner: Власник
+    pause: Пауза
     pending: У току
+    play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
     positive: Позитивно
@@ -130,6 +137,7 @@ sr-Cyrl:
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: СНИМАЊЕ
+    record: Запис
     recorded: снимано
     recording: снимање
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
@@ -146,16 +154,21 @@ sr-Cyrl:
     saving_video: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
     scoring_details: Детаљи бодовања
     search: Претраге
+    select_camera: Изаберите камеру
+    select_microphone: Изаберите микрофон
     send_email: Пошаљи е-пошту
     show_more: Прикажи још
     something_wrong: Нешто је пошло наопако. Контактирајте свог администратора
+    speakers: Говорници
     status: Статус
     status_unknown: Статус непознат
+    stop: Стоп
     subject: Предмет
     submit: Пошаљи
     submit_and_finish_proctoring: Поднесите и завршите надгледање
     suspended: Сuspended
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
+    system_check_uploading: Постављање
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ sr-Cyrl:
     update_failed: Ажурирање није успело
     updated_at: Ажурирано у
     updated_successfully: Успешно ажурирано
+    user_report_pdf_url_not_generated: Није могуће генерисати везу за преузимање PDF-а
     video: Видео
     view: Приказ
     view_audio: Погледај аудио

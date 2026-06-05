@@ -22,6 +22,7 @@ en-US:
     admin_updated_successfully: Admin '%{name}' was updated successfully
     admins: Admins
     advanced: Advanced
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
@@ -137,6 +138,7 @@ en-US:
     assessments_not_mhs: All Assessment must be a MHS type
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard
+    assessor_form: Assessor Form
     assessor_workshops: Assessment Center
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
@@ -144,6 +146,7 @@ en-US:
     assistant_validation_failed: Failed to generate valid output after multiple attempts
     audit_logs: Audit Logs
     audit_reports: Audit Reports
+    auto_moderated_factor_info: This score is auto moderated and can't be changed
     auto_placeholder: Auto
     availability: Availability
     available_languages: Report Available in Languages
@@ -221,6 +224,7 @@ en-US:
     cancel: Cancel
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
     captcha: Captcha Verification
+    case_study: Case Studies
     casual: Casual
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     characters: characters
@@ -230,6 +234,8 @@ en-US:
     client_admins: Client Admins
     clients: Client Tenancies
     code_required: Code is required
+    common: TTE Assessment
+    common_assessment: TTE Assessment
     communication_center: Communication Center
     communications: Communications
     completed: Completed
@@ -248,6 +254,7 @@ en-US:
     create_client: Create Client
     create_indicator: Create Indicator
     current_job_role: Current Job Role
+    custom_upload: Custom Upload
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Data Reports
@@ -285,6 +292,8 @@ en-US:
     dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
     disable_proctoring: Disable Proctoring
+    disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
+    disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
@@ -315,6 +324,7 @@ en-US:
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
     enter_description: Enter description
     enter_name: Enter name
+    enter_question_id: Enter Question ID
     error: Error
     estimated_tokens: tokens (estimated)
     evaluation_status: Evaluation Status
@@ -381,6 +391,8 @@ en-US:
     idp_appearance_title: Title
     idp_plan_reset_success: Plan has been reset successfully
     idp_templates: IDP Templates
+    iiht: IIHT
+    iiht_assessment: IIHT Assessment
     import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
@@ -406,9 +418,11 @@ en-US:
     import_users: Import Users
     internal: Internal
     invalid_csv_header: CSV file contains invalid headers.
+    invalid_question_ids: 'Question IDs not found in this assessment: %{ids}'
     job_roles: Job Roles
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
+    lead_assessor_form: Lead Assessor Form
     learning_from_others: Collaborative Learning [20]
     level: Level
     level_apply: Apply
@@ -418,6 +432,8 @@ en-US:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    lighthouse_question: Lighthouse Question
+    lighthouse_question_id: Lighthouse Question ID
     linked_assessments: Linked Assessments
     low: Low
     maintenance: Maintenance
@@ -425,10 +441,14 @@ en-US:
     maintenance_settings_description: Manage system maintenance windows and settings
     manager_approval_required: Report for %{user} requires manager approval before download
     max_value: Max value
+    mean: Mean
     media_files_label: Files
     media_library: Media Library
     media_library_page_title: Media Library - Dashboard - Mercer Lighthouse
+    meeting: Meeting
     messages: Messages
+    mettl: METTL
+    mettl_assessment: Mettl Assessment
     mhs: MHS
     mhs_assessment: MHS Assessment
     mhs_assessment_name: MHS Assessment Name
@@ -437,6 +457,10 @@ en-US:
     mhs_external_assessment_id: Mhs Assessment ID
     mhs_report_id: MHS Report ID
     mhs_session_id: Mhs Session ID
+    microsite: Microsite
+    microsite_assessment: Microsite Assessment
+    microsite_assessment_name: Microsite Assessment Name
+    microsite_question_id: Microsite Question ID
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
@@ -445,12 +469,14 @@ en-US:
     missing_min_max_values: Minimum and Maximum values are required.
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
+    must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
     name_required: Name is required
     new_folder: New folder
     no_file_selected: No file selected
     no_notifications: No Notifications
+    no_question_mappings: No question mappings available
     no_status: No Status
     norm_editor_numeric_value_error: Only numeric values are allowed (integers or decimals).
     norms: Norms
@@ -466,10 +492,13 @@ en-US:
     on_the_job: On the Job [70]
     only_editable_on_create: This option is editable only while creating.
     options: Options
+    organisational: AGILE
     original_text: Original Text
     overall: Overall
     overall_score: Overall Score
     participants: Participants
+    pearson: Pearson
+    pearson_assessment: Pearson Assessment
     permissions:
       aiArtifacts:
         export: Export
@@ -800,6 +829,8 @@ en-US:
       projectSettings:
         assessments: Assessments
         design: Design
+        external_logout_redirect_enabled: Enable External Redirect Logout
+        external_logout_url: External Logout URL
         feature_flags: Feature Flags
         idp: IDP
         integrations: Integrations
@@ -913,6 +944,7 @@ en-US:
     project_settings: Project Settings
     projects: Projects
     prompt: Prompt
+    psychometric: Psychometric
     question_center: Question Center
     question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
@@ -921,6 +953,7 @@ en-US:
     question_editor_enable_transcription: Enable transcription
     question_editor_preview_question: Preview Question
     question_editor_validation_type: Validation type
+    question_mapping: Question Mapping
     question_randomization: Question Randomization
     question_type_audio_response: Audio Response
     question_type_constant_sum: Constant Sum
@@ -1037,6 +1070,8 @@ en-US:
       subject_full_name_cont: Subject Name
       user_email_cont: User Email
       user_full_name_cont: User Name
+    saville: Saville
+    saville_assessment: Saville Assessment
     scheduling: Scheduling
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
@@ -1072,6 +1107,7 @@ en-US:
     select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level
+    select_question: Search question by name or ID
     select_start_time: Select Start Time
     selective_proctoring: Selective Proctoring
     send_email: Send email
@@ -1084,14 +1120,19 @@ en-US:
     show_submenu: Show Sub Menu
     show_translated: Show Translated
     siem: SIEM
+    simulation: Simulation
+    simulation_assessment: Simulation Assessment
     skill_aliases: Skill Aliases
     skills: Skills
     skills_taxonomy: Skills Taxonomy
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Assessment
     skip_assessment_level_checks: Skip Assessment-Level System Checks
     slot_name: Slot Name
     sms_histories: SMS Histories
     sms_invites: SMS Invites
     specialty_questions: Specialty Questions
+    standard_deviation: Standard Deviation
     standard_questions: Standard Questions
     start: start
     start_time: Start Time
@@ -1152,6 +1193,8 @@ en-US:
     x_axis_interval_label: X-Axis Interval
     y_axis_interval_label: Y-Axis Interval
     year: Year
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID

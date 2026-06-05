@@ -57,6 +57,13 @@ interface MhsUserAssessmentDetails {
   normOptions: MhsNormOption[]
 }
 
+interface MicrositeUserAssessmentDetails {
+  participantId: string | null
+  registrationStatus: string | null
+  errorMessage: string | null
+  rawResponse: Record<string, unknown> | null
+}
+
 export default interface UserAssessment {
   id: number
   name: string
@@ -83,6 +90,7 @@ export default interface UserAssessment {
   skillvueUserAssessmentDetails: SkillvueUserAssessmentDetails | null
   yoodliUserAssessmentDetails: YoodliUserAssessmentDetails | null
   mhsUserAssessmentDetails: MhsUserAssessmentDetails | null
+  micrositeUserAssessmentDetails: MicrositeUserAssessmentDetails | null
 
   permissions: {
     updateAdditionalTime: boolean

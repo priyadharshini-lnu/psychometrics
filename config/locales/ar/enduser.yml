@@ -42,8 +42,9 @@ ar:
     camera_access_blocked: تم رفض الوصول إلى الكاميرا/الميكروفون أو حظره من قِبَل متصفحك. يُرجى التحقق من أذونات المتصفح.
     camera_check: اختبار الكاميرا والميكروفون
     camera_check_abruptly_ended: تم إيقاف الكاميرا فجأة. يرجى تمكين الكاميرا وإعادة تشغيل الفحص.
-    camera_check_description: تحقق من أن الكاميرا والميكروفون يعملان بشكل صحيح للتسجيل.
+    camera_check_description: تحقق من أن الكاميرا والميكروفون يعملان بشكل صحيح، ثم قم بتشغيل التسجيل للتأكد.
     camera_check_passed: اجتاز فحص الفيديو والصوت بنجاح
+    camera_check_record_instruction: انقر على «تسجيل» واقرأ المقطع التالي بصوت عالٍ
     camera_test_step: خطوة اختبار الفيديو والصوت
     campaign: الحملة
     campaign_check_status: 'حالة: %{status}'
@@ -52,6 +53,7 @@ ar:
     check_video_recording: يرجى التأكد من جودة الصوت والصورة من خلال تشغيل المقطع المسجل
     checking_browser_compatibility: جاري التحقق من توافق المتصفح...
     checking_latency: التحقق من زمن الاستجابة...
+    complete_prework_message: أكمل جميع المهام التمهيدية للبدء.
     could_not_reach_servers: لم نتمكن من الوصول إلى خوادمنا للتحقق من سرعة الشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
     day: يوم
     day_plural: أيام
@@ -61,6 +63,7 @@ ar:
     download: تنزيل
     download_pdf: تحميل ملف PDF
     download_speed_below_minimum: سرعة التنزيل %{download_speed} أقل من الحد الأدنى المطلوب لسرعة التنزيل وهو %{minimum_download_speed} ميغابت في الثانية
+    dummy_message: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الكاميرا والميكروفون يعملان بشكل صحيح.
     environment_setup: إعداد البيئة
     error_uploading_audio: خطأ في رفع الملف الصوتي
     error_uploading_audio_detail: حدث خطأ أثناء تحميل الملف الصوتي
@@ -92,6 +95,7 @@ ar:
     internet_speed_optimal: سرعة اتصالك بالإنترنت مناسبة
     internet_speed_slow: سرعة الإنترنت أبطأ من المطلوب لهذا التقييم
     less_than_five_minutes: أقل من 5 دقائق
+    lets_start: لنبدأ!
     lighthouse_assistant: دليل التطوير الخاص بك
     localstorage_fix_description_first: تأكد من أنك لا تستخدم وضع التصفح الخفي/ الخاص، لأن خاصية التخزين المحلي (LocalStorage) غالباً تكون معطلة في هذه الحالة
     localstorage_fix_title: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك
@@ -107,6 +111,7 @@ ar:
     media_recorder_api_support: دعم MediaRecorder API
     microphone_access_blocked: تم رفض الوصول إلى الميكروفون أو حظره من قِبَل متصفحك. يُرجى التحقق من أذونات المتصفح.
     microphone_check_passed: تم اجتياز اختبار الميكروفون بنجاح
+    microsite_assessment_external: يجب إكمال هذا التقييم على منصة خارجية.
     min_word_limit: يجب أن تكون على الأقل %{min} كلمة
     minimum_speed_requirements: يتطلب الحد الأدنى لسرعة التنزيل %{minimum_download_speed} ميغابت في الثانية والحد الأدنى لسرعة الرفع %{minimum_upload_speed} ميغابت في الثانية لهذه الحملة.
     minute: دقيقة
@@ -124,16 +129,24 @@ ar:
     network_test_step: خطوة اختبار الشبكة
     no_audio_detected: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون ومن أنه يعمل بشكل صحيح.
     pass: يمر
+    pause: توقف مؤقت
     pending: قيد الانتظار
     personal_readiness: الجاهزية الشخصية
     plan_text: خطّط لإجراء التقييم بشكل كامل. بعد البدء، قد لا يُسمح ببأخذ استراحات، وذلك حسب نوع التقييم
+    play: تشغيل
     please_check_your_internet_connection: يُرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
+    preparing_preview: جاري التحضير للمعاينة...
+    prework: التحضير المسبق
+    prework_not_completed_message: يرجى إنجاز جميع المهام التمهيدية قبل بدء الحملة.
     proctored: تحت إشراف
     proctored_assessment_misconfigured_msg: هذا الاختبار يخضع للإشراف، لكنه يفتقر إلى الإعدادات الزمنية اللازمة؛ يرجى الاتصال بالمسؤول.
     profile: تفاصيلي
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
+    record: سجل
+    recording_progress_bar: شريط تقدم التسجيل
+    recording_time_remaining: "%{remainingSeconds} الثواني المتبقية"
     redirect_to_external_assessment: سيتم توجيهك إلى موقع الاختبار. يرجى النقر على "متابعة" إذا كنت ترغب في بدء الاختبار.
     reject_idp_plan: رفض الخطة
     request_retry_message: أنت غير متصل. لم يكن بالإمكان حفظ إجاباتك لكنها ستحفظ تلقائيا بمجرد عودتك للاتصال. يرجى عدم تحديث الصفحة أو إغلاقها.
@@ -145,13 +158,15 @@ ar:
     results: النتيجة
     safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome,Edge أو Firefox.
     safari_proctoring_title: تم اكتشاف متصفح Safari
+    select_audio_device: اختر جهاز الصوت
+    select_video_device: اختر جهاز الفيديو
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
-    start_campaign_message_timed_proctored: هذه حملة محددة بالوقت وتحت المراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_readiness_check: بدء التحقق من الجاهزية
     start_system_check: بدء فحص النظام
+    stop: توقف
     subinstruction_audio: ميكروفون يعمل
     subinstruction_eight: خصّص وقت كافي لإجراء التقييم بالكامل دون انقطاع
     subinstruction_five: كن مستعداً لمشاركة شاشتك طوال مدة الجلسة
@@ -239,6 +254,9 @@ ar:
     video_check_fix_second: انتقل إلى إعدادات المتصفح وفعّل الوصول إلى الكاميرا لهذا الموقع
     video_check_fix_sixth: أعد تشغيل المتصفح ثم حاول مرة أخرى
     video_check_fix_third: أغلق التطبيقات الأخرى التي قد تستخدم الكاميرا (مثل Zoom أو Teams وغيرها)
+    video_overlay_label: اختر الميكروفون والكاميرا، وانقر على «تسجيل»، ثم اقرأ الرسالة التالية بمجرد الضغط على زر «تسجيل»
+    video_overlay_message: اختر الميكروفون والكاميرا، وانقر على «تسجيل»، ثم اقرأ بصوت عالٍ الجملة التي تظهر في الأسفل.
+    video_recorder_label: مسجل الفيديو
     view_details: عرض التفاصيل
     webgl_api_fix_description_first: تأكد من أن متصفحك يدعم WebGL وأنه مفعّل في الإعدادات
     webgl_api_fix_description_second: حدّث تعريفات برامج تشغيل الرسومات إلى أحدث إصدار

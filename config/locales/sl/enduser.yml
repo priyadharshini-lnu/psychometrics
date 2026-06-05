@@ -44,6 +44,7 @@ sl:
     camera_check_abruptly_ended: Kamera se je nenadoma izklopila. Vklopite kamero in ponovno izvedite preverjanje.
     camera_check_description: Preverite, ali kamera in mikrofon delujeta pravilno za snemanje
     camera_check_passed: Preverjanje zvoka in slike je bilo uspešno opravljeno
+    camera_check_record_instruction: Klikni na »Snemaj« in glasno preberi naslednji odlomek
     camera_test_step: Korak za preizkus zvoka in slike
     campaign: Kampanja
     campaign_check_status: 'Stanje: %{status}'
@@ -52,6 +53,7 @@ sl:
     check_video_recording: Preverite video in zvok tako, da predvajate posnetek.
     checking_browser_compatibility: Preverjanje združljivosti brskalnika...
     checking_latency: Preverjanje zakasnitve...
+    complete_prework_message: Za začetek opravite vse pripravljalne naloge.
     could_not_reach_servers: Naši strežniki niso bili dosegljivi, zato ni bilo mogoče preveriti hitrosti omrežja. Preverite svojo internetno povezavo in poskusite znova.
     day: dan
     day_plural: dni
@@ -61,6 +63,7 @@ sl:
     download: Prenesi
     download_pdf: Prenesi PDF
     download_speed_below_minimum: Hitrost prenosa %{download_speed} je nižja od minimalne zahtevane hitrosti prenosa, ki znaša %{minimum_download_speed} Mbps
+    dummy_message: Pripravljen sem. To je preskusni posnetek, s katerim želim preveriti, ali mi video in mikrofon delujeta pravilno.
     environment_setup: Nastavitve okolja
     error_uploading_audio: Napaka pri nalaganju avdio datoteke
     error_uploading_audio_detail: Pri nalaganju zvočnega posnetka je prišlo do napake
@@ -92,6 +95,7 @@ sl:
     internet_speed_optimal: Vaša hitrost povezave je optimalna
     internet_speed_slow: Hitrost interneta je nižja od tiste, ki je potrebna za kampanjo
     less_than_five_minutes: Manj kot 5 minut
+    lets_start: Začnimo!
     lighthouse_assistant: Pomočnik svetilnika
     localstorage_fix_description_first: Prepričajte se, da niste v zasebnem/inkognito načinu, saj je v teh načinih pogosto onemogočena funkcija localStorage.
     localstorage_fix_title: V vašem brskalniku lokalno shranjevanje ni omogočeno
@@ -107,6 +111,7 @@ sl:
     media_recorder_api_support: Podpora za vmesnik API MediaRecorder
     microphone_access_blocked: Vaš brskalnik je zavrnil ali blokiral dostop do mikrofona. Preverite nastavitve dovoljenj v brskalniku.
     microphone_check_passed: Preverjanje mikrofona je bilo uspešno
+    microsite_assessment_external: To ocenjevanje je treba opraviti na zunanji platformi.
     min_word_limit: Mora imeti najmanj %{min} besed
     minimum_speed_requirements: Za to akcijo je potrebna minimalna hitrost prenosa podatkov %{minimum_download_speed} Mbps in minimalna hitrost pošiljanja podatkov %{minimum_upload_speed} Mbps.
     minute: minuta
@@ -124,16 +129,24 @@ sl:
     network_test_step: Korak preizkušanja omrežja
     no_audio_detected: Zvok ni zaznan. Preverite, ali je mikrofon priključen in ali deluje pravilno.
     pass: Preskoči
+    pause: Premor
     pending: V obravnavi
     personal_readiness: Osebna pripravljenost
     plan_text: Načrtujte za celotno trajanje. Ko se preizkus začne, odmorji morda ne bodo dovoljeni, odvisno od vrste preizkusa.
+    play: Igraj
     please_check_your_internet_connection: Preverite svojo internetno povezavo in poskusite znova.
+    preparing_preview: Pripravlja se predogled...
+    prework: Priprava
+    prework_not_completed_message: Prosimo, da pred začetkom kampanje opravite vse pripravljalne naloge.
     proctored: Pod nadzorom
     proctored_assessment_misconfigured_msg: Ta preizkus poteka pod nadzorom, vendar ni nastavljena potrebna časovna omejitev; prosimo, obrnite se na svojega skrbnika.
     profile: Profil
     profile_details: Podrobnosti profila
     question_counter: Vprašanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog za zavrnitev
+    record: Dnevnik
+    recording_progress_bar: Napredek snemanja
+    recording_time_remaining: "%{remainingSeconds} preostalih sekund"
     redirect_to_external_assessment: Preusmerjeni boste na stran z ocenjevanjem. Če želite začeti z ocenjevanjem, kliknite »Nadaljuj«.
     reject_idp_plan: Načrt zavrnitve
     request_retry_message: Si offline. Vaših odgovorov ni bilo mogoče shraniti, bodo pa samodejno shranjeni, ko boste ponovno na spletu. Prosimo, ne osvežujte ali zapirajte strani.
@@ -145,13 +158,15 @@ sl:
     results: Rezultat
     safari_proctoring_description: Zdi se, da uporabljate brskalnik Safari, ki ima morda nekatere omejitve glede funkcij sledenja, ki so v tej kampanji omogočene. Za najboljšo izkušnjo priporočamo uporabo brskalnikov Chrome, Edge ali Firefox.
     safari_proctoring_title: Zaznan brskalnik Safari
+    select_audio_device: Izberi zvočno napravo
+    select_video_device: Izberi video napravo
     selected_count: Izbrano
     skill_type: Vrsta spretnosti
     start_campaign_message_proctored: To je nadzorovana kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
     start_campaign_message_timed: To je časovno omejena kampanja, kliknite gumb '%{buttonText}' za začetek aktivnosti.
-    start_campaign_message_timed_proctored: To je časovno omejena in nadzorovana kampanja, za začetek aktivnosti kliknite gumb '%{buttonText}'.
     start_readiness_check: Začni s preverjanjem pripravljenosti
     start_system_check: Začni preverjanje sistema
+    stop: Stop
     subinstruction_audio: Delujoči mikrofon
     subinstruction_eight: Za celotno ocenjevanje si rezervirajte čas, ko vas ne bo nihče motil
     subinstruction_five: Ste pripravljeni deliti svoj zaslon med celotnim srečanjem?
@@ -239,6 +254,9 @@ sl:
     video_check_fix_second: Odpri nastavitve brskalnika in tej spletni strani omogoči dostop do kamere
     video_check_fix_sixth: Znova zaženi brskalnik in poskusi še enkrat
     video_check_fix_third: Zaprite druge programe, ki uporabljajo kamero (Zoom, Teams itd.)
+    video_overlay_label: Izberite mikrofon in kamero, kliknite »Snemi«, nato pa, ko pritisnete gumb »Snemi«, preberite naslednje sporočilo
+    video_overlay_message: Izberite mikrofon in kamero, kliknite »Snemaj«, nato pa glasno preberite stavek, ki se prikaže na dnu zaslona.
+    video_recorder_label: Videorekorder
     view_details: Poglej podrobnosti
     webgl_api_fix_description_first: Preverite, ali vaš brskalnik podpira WebGL in ali je ta funkcija omogočena v nastavitvah
     webgl_api_fix_description_second: Posodobite grafične gonilnike na najnovejšo različico

@@ -13,7 +13,7 @@ gem 'faraday',                    '~> 1.10.5'
 gem 'jbuilder',                   '~> 2.12.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.6.0'
-# gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
+gem 'newrelic_rpm', '~> 10.5', group: 'production', require: ENV.fetch('NEW_RELIC_AGENT_ENABLED', 'false') == 'true'
 gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
@@ -27,7 +27,7 @@ gem 'vite_rails'
 gem 'vite_ruby'
 
 ### Authentication and authorization
-gem 'devise',                     '~> 5.0.3'
+gem 'devise',                     '~> 5.0.4'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'
@@ -76,6 +76,8 @@ gem 'config',                     '~> 5.1.0'
 gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails',            '~> 1.11.1'
+
+gem 'net-imap',                   '~> 0.6.4'
 
 ### XLS import
 gem 'file_validators',            '~> 3.0.0'
@@ -242,7 +244,7 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 2.3.1'
+gem 'sidekiq-cron', '~> 2.4.0'
 
 gem 'xml-simple', '~> 1.1.5'
 

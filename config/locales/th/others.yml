@@ -1100,36 +1100,9 @@ th:
       title: รายละเอียดการประเมิน
     edit: แก้ไข
     fields:
-      category:
-        agile: ว่องไว
-        assessor_form: แบบฟอร์มผู้ประเมิน
-        case_study: กรณีศึกษา
-        hogan: โฮแกน
-        iiht: ไอเอชที
-        lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
-        meeting: การประชุม
-        mettl: เมทเทล
-        organisational: แบบสํารวจขององค์กร
-        pearson: เพียร์สัน
-        psychometric: ไซโครเมตริก
-        saville: ซาวิลล์
-        simulation: การลอกเลียนแบบ
-        skillvue: Skillvue
-        threesixty: แคมเปญ 360
-        yoodli: ยุดลี
       status:
         finished: เสร็จแล้ว
         in_progress: อยู่ระหว่างดําเนินการ
-      type:
-        common: การประเมิน TTE
-        hogan: โฮแกน
-        iiht: การประเมิน IIHT
-        mettl: การประเมิน Mettl
-        pearson: การประเมินเพียร์สัน
-        saville: การประเมิน Saville
-        simulation: การประเมินการจําลอง
-        skillvue: การประเมิน Skillvue
-        yoodli: การประเมิน Yoodli
     flow:
       end_assessment_modal:
         custom_message: ข้อความสิ้นสุดการประเมินแบบกําหนดเอง
@@ -1206,16 +1179,11 @@ th:
         failure: เบราว์เซอร์นี้ไม่รองรับการบันทึกวิดีโอ โปรดใช้ Chrome หรือ Firefox สำหรับการบันทึกวิดีโอ
         success: กรุณาอนุญาตให้ใช้กล้องและไมโครโฟนในการบันทึกเสียงและวิดีโอ
         unsupported: เบราว์เซอร์นี้ไม่รองรับการบันทึกวิดีโอ โปรดใช้เบราว์เซอร์ต่อไปนี้
-      recording_duration_label: ระยะเวลาบันทึกสูงสุด
-      recording_stop_label: การบันทึกจะหยุดใน
       requesting_permission: กำลังขออนุญาต...
       response_recorded: บันทึกคำตอบแล้ว
       save: บันทึก
-      saved:
-        label: บันทึกวีดีโอ
       seek: หา
       start_recording: เริ่มการบันทึก
-      stop_recording: หยุดการบันทึก
       tracker:
         backward: คุณอยู่ใกล้หน้าจอมากเกินไป กรุณาขยับถอยหลังเล็กน้อย
         forward: คุณอยู่ไกลจากหน้าจอมากเกินไป กรุณาขยับเข้ามาใกล้อีกนิด
@@ -1377,15 +1345,12 @@ th:
     all_activities_are_completed: กิจกรรมทั้งหมดเสร็จสมบูรณ์แล้ว
     all_activities_are_completed_multiple: กิจกรรมทั้งหมดสำหรับแคมเปญนี้เสร็จสมบูรณ์แล้ว โปรดดำเนินการไปที่แดชบอร์ดและตรวจสอบว่าคุณมีกิจกรรมอื่น ๆ ที่ได้รับมอบหมายอีกหรือไม่
     already_joined: คุณได้เข้าร่วมแคมเปญนี้แล้ว
-    begin: เริ่มต้นงานของคุณ
-    begin_btn_msg_before_prework: คุณต้องทำภารกิจด้านล่างให้เสร็จก่อนจึงจะเริ่มแคมเปญแบบจำกัดเวลาได้
     begin_campaign_msg: เริ่มแคมเปญก่อนทำการประเมิน
     campaigns: แคมเปญ
     closed_campaign_message: แคมเปญนี้ปิดลงแล้ว คุณไม่สามารถทำการประเมินใดๆ ภายในแคมเปญนี้ได้
     code_usage_limit_reached: ถึงขีดจํากัดการใช้รหัส โปรดติดต่อผู้ดูแลระบบ
     complete_prev: ทำการประเมินก่อนหน้าให้ครบถ้วน
     complete_tasks: กรุณาทำงานด้านล่างนี้ให้เสร็จเรียบร้อยก่อนดำเนินการนี้
-    continue: ดำเนินงานของคุณต่อไป
     dashboard_instructions: คุณอาจได้รับมอบหมายกิจกรรมหลายรายการที่ต้องดำเนินการให้แล้วเสร็จ กรุณาตรวจสอบให้แน่ใจว่าคุณได้ทำกิจกรรมที่ได้รับมอบหมายทั้งหมดครบถ้วนในทุกแคมเปญแล้ว
     dashboard_menu:
       campaign: แคมเปญ
@@ -1482,6 +1447,9 @@ th:
       external_user_id: รหัสผู้สมัคร Skillvue
       id: รหัสการประเมินแคมเปญ
       locales: ตำแหน่ง
+      microsite_error_message: ข้อความแสดงข้อผิดพลาด
+      microsite_participant_id: รหัสผู้เข้าร่วมไมโครไซต์
+      microsite_registration_status: สถานะการลงทะเบียน
       norm: บรรทัดฐาน
       norm_id: รหัสบรรทัดฐาน
       pearson_norm_id: รหัสนอร์มอลเพียร์สัน
@@ -1756,10 +1724,8 @@ th:
       permissions: การอนุญาตการเข้าถึงเว็บแคมและเสียง
       title: ก่อนที่จะเริ่มการประเมินนี้ ระบบของคุณต้องทำการทดสอบบางอย่าง
     video_check:
-      description: คลิกที่เริ่มการบันทึกและบันทึกเสียงของตัวเองในขณะที่อ่านข้อความด้านล่าง
       random_phrases:
         one: เซ็มพร้อม นี่คือการทดสอบเพื่อยืนยันว่าไมโครโฟนและกล้องของฉันทำงานอย่างถูกต้อง
-      title: เราจำเป็นต้องแน่ใจว่าระบบของคุณสามารถบันทึกวิดีโอได้
   common:
     actions:
       add: เพิ่ม
@@ -1840,6 +1806,7 @@ th:
       json:
         answer: ตอบ JSON
         external_result: JSON ผลลัพธ์ภายนอก
+        microsite_raw_response: ไมโครไซต์ ตอบสนองแบบดิบ
         scoring: การให้คะแนน JSON
       key: กุญแจ
       last_name: นามสกุล
@@ -3298,13 +3265,6 @@ th:
     fields:
       provider:
         custom_upload: อัปโหลดแบบกําหนดเอง
-        hogan: โฮแกน
-        internal: ภายใน
-        mettl: เมทเทล
-        pearson: เพียร์สัน
-        saville: ซาวิลล์
-        skillvue: สกิลวิว
-        yoodli: ยุดลี
     form:
       load_from_mettl: โหลดจาก Mettl
       load_from_pearson: โหลดจาก Pearson

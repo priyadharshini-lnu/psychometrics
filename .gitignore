@@ -110,3 +110,7 @@ vite.config.ts.timestamp*
 support/dev-ssl/ttedev.me.key
 support/dev-ssl/ttedev.me.pem
 .cursor
+
+# Safe-Coder checkpoints (auto-generated)
+.lencode-shadow/
+.lenwork/

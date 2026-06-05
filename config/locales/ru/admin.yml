@@ -22,6 +22,7 @@ ru:
     admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
     admins: Администраторы
     advanced: Для опытных пользователей
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Артефакт «%{artifact_name}» не может быть сгенерирован для пользователя «%{user_email}».
     ai_artifact_result_stale: Результат может быть устаревшим, поскольку зависимости артефакта ИИ изменились с момента генерации последнего результата. Рассмотрите возможность повторной генерации артефакта с использованием последних зависимостей.
     ai_artifacts: Артефакты искусственного интеллекта
@@ -137,6 +138,7 @@ ru:
     assessments_not_mhs: Все оценки должны быть типа MHS.
     assessments_reports: Оценки и отчеты
     assessor_dashboard: Панель инструментов оценщика
+    assessor_form: Форма оценщика
     assessor_workshops: Центр оценки
     assessors: Оценщики
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
@@ -144,6 +146,7 @@ ru:
     assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
     audit_logs: Журналы аудита
     audit_reports: Аудиторские отчеты
+    auto_moderated_factor_info: Эта оценка проходит автоматическую модерацию и не может быть изменена
     auto_placeholder: Авто
     availability: Доступность
     available_languages: Отчет доступен на следующих языках
@@ -221,6 +224,7 @@ ru:
     cancel: Отменить
     cancellation_and_rescheduling_disabled: Отмена и перенос заказа отключены
     captcha: Проверка по капче
+    case_study: Примеры из практики
     casual: Повседневный
     cell_save_msg: Допустимые изменения сохраняются автоматически, как только вы выходите из ячейки после редактирования.
     characters: символы
@@ -230,6 +234,8 @@ ru:
     client_admins: Администраторы клиентов
     clients: Клиенты
     code_required: Требуется код
+    common: Оценка TTE
+    common_assessment: Оценка TTE
     communication_center: Коммуникационный центр
     communications: Коммуникации
     completed: Завершено
@@ -248,6 +254,7 @@ ru:
     create_client: Создать клиента
     create_indicator: Создать индикатор
     current_job_role: Текущая должность
+    custom_upload: Пользовательская загрузка
     dashboard: Панель управления
     dashboards: Панели инструментов
     data_reports: Отчеты по данным
@@ -285,6 +292,8 @@ ru:
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
     disable_proctoring: Отключить наблюдение
+    disallow_lead_assessor_moderation: Запретить модерацию ведущего эксперта
+    disallow_lead_assessor_moderation_info: Оценка будет рассчитываться автоматически на основе всех отправленных форм оценщиков, и ведущий оценщик не сможет изменить её на экране модерации
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
     download_bulk_asset_download_example_csv: Скачать пример CSV.
@@ -315,6 +324,7 @@ ru:
     enhance_with_ai_requires_ai_assistants: Для улучшения с помощью ИИ необходимо включить функцию «ИИ-помощники».
     enter_description: Введите описание
     enter_name: Введите имя
+    enter_question_id: Введите идентификатор вопроса
     error: Ошибка
     estimated_tokens: жетоны (оценочно)
     evaluation_status: Статус оценки
@@ -381,6 +391,8 @@ ru:
     idp_appearance_title: Название
     idp_plan_reset_success: План был успешно сброшен
     idp_templates: Шаблоны IDP
+    iiht: IIHT
+    iiht_assessment: Оценка IIHT
     import_ai_artifacts: Импорт артефактов искусственного интеллекта
     import_csv_assessment_group_error: 'Строка %{index}: пользователь с адресом электронной почты %{email} уже приглашен в «%{workshopInviteName}».'
     import_csv_error: "%{index}: пользователь с адресом электронной почты %{email} не участвует в этой кампании"
@@ -406,9 +418,11 @@ ru:
     import_users: Импорт пользователей
     internal: Внутренний
     invalid_csv_header: CSV-файл содержит недействительные заголовки.
+    invalid_question_ids: 'Идентификаторы вопросов, отсутствующие в данном тесте: %{ids}'
     job_roles: Должностные обязанности
     keywords: Ключевые слова
     keywords_placeholder: Введите ключевые слова, разделенные запятыми.
+    lead_assessor_form: Форма ведущего оценщика
     learning_from_others: Совместное обучение [20]
     level: Уровень
     level_apply: Применить
@@ -418,6 +432,8 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    lighthouse_question: Основной вопрос
+    lighthouse_question_id: Идентификатор вопроса Lighthouse
     linked_assessments: Связанные оценки
     low: Низкий
     maintenance: Техническое обслуживание
@@ -425,10 +441,14 @@ ru:
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     max_value: Максимальное значение
+    mean: Среднее
     media_files_label: Файлы
     media_library: Медиатека
     media_library_page_title: Медиатека — Панель управления — Mercer Lighthouse
+    meeting: Встреча
     messages: Сообщения
+    mettl: METTL
+    mettl_assessment: Оценка Mettl
     mhs: MHS
     mhs_assessment: Оценка MHS
     mhs_assessment_name: Название оценки MHS
@@ -437,6 +457,10 @@ ru:
     mhs_external_assessment_id: Идентификатор оценки Mhs
     mhs_report_id: Идентификатор отчета MHS
     mhs_session_id: Идентификатор сеанса Mhs
+    microsite: Микросайт
+    microsite_assessment: Оценка микросайта
+    microsite_assessment_name: Название оценки микросайта
+    microsite_question_id: Идентификатор вопроса на микросайте
     min_value: Минимальное значение
     minimum_10_words: Минимум 10 слов
     minimum_download_speed: Минимальная скорость загрузки (в Мбит/с)
@@ -445,12 +469,14 @@ ru:
     missing_min_max_values: Требуются минимальные и максимальные значения.
     model_answer: Типовой ответ
     model_answer_placeholder: Введите образец ответа для оценки искусственным интеллектом.
+    must_be_a_valid_url: Неверный URL-адрес. Укажите полный URL-адрес с протоколом http или https
     name: Имя
     name_max_length: Имя не может превышать %{length} символов
     name_required: Имя обязательно
     new_folder: Новая папка
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
+    no_question_mappings: Сопоставления вопросов отсутствуют
     no_status: Без статуса
     norm_editor_numeric_value_error: Допускаются только числовые значения (целые числа или числа с десятичной запятой).
     norms: Нормы
@@ -466,10 +492,13 @@ ru:
     on_the_job: На работе [70]
     only_editable_on_create: Этот параметр можно изменить только во время создания.
     options: Варианты
+    organisational: AGILE
     original_text: Оригинальный текст
     overall: В целом
     overall_score: Общий балл
     participants: Участники
+    pearson: Пирсон
+    pearson_assessment: Оценка Пирсона
     permissions:
       aiArtifacts:
         export: Экспорт
@@ -800,6 +829,8 @@ ru:
       projectSettings:
         assessments: Оценки
         design: Дизайн
+        external_logout_redirect_enabled: Включить внешний перенаправление при выходе из системы
+        external_logout_url: URL для выхода из системы
         feature_flags: Флаги функций
         idp: ВПЛ
         integrations: Интеграции
@@ -913,6 +944,7 @@ ru:
     project_settings: Настройки проекта
     projects: Проекты
     prompt: Подсказка
+    psychometric: Психометрический
     question_center: Центр вопросов
     question_center_page_title: Центр вопросов — Панель управления — Mercer Lighthouse
     question_editor_change_type: Изменить тип
@@ -921,6 +953,7 @@ ru:
     question_editor_enable_transcription: Включить транскрипцию
     question_editor_preview_question: Предварительный просмотр вопроса
     question_editor_validation_type: Тип проверки
+    question_mapping: Составление схемы вопросов
     question_randomization: Рандомизация вопросов
     question_type_audio_response: Аудиоответ
     question_type_constant_sum: Постоянная сумма
@@ -1037,6 +1070,8 @@ ru:
       subject_full_name_cont: Название предмета
       user_email_cont: Электронная почта пользователя
       user_full_name_cont: Имя пользователя
+    saville: Сэвилл
+    saville_assessment: Оценка Saville
     scheduling: Планирование
     score: Счет
     score_approval_not_allowed_to_approve: Вы не имеете права утверждать эту оценку.
@@ -1072,6 +1107,7 @@ ru:
     select_end_time: Выберите время окончания
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень
+    select_question: Поиск вопроса по названию или идентификатору
     select_start_time: Выберите время начала
     selective_proctoring: Выборочный контроль
     send_email: Отправить электронное письмо
@@ -1084,14 +1120,19 @@ ru:
     show_submenu: Показать подменю
     show_translated: Показать перевод
     siem: SIEM
+    simulation: Моделирование
+    simulation_assessment: Оценка моделирования
     skill_aliases: Псевдонимы навыков
     skills: Навыки
     skills_taxonomy: Таксономия навыков
+    skillvue: Skillvue
+    skillvue_assessment: Оценка Skillvue
     skip_assessment_level_checks: Пропустить проверки системы на уровне оценки
     slot_name: Название слота
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения
     specialty_questions: Специальные вопросы
+    standard_deviation: Стандартное отклонение
     standard_questions: Стандартные вопросы
     start: начало
     start_time: Время начала
@@ -1152,6 +1193,8 @@ ru:
     x_axis_interval_label: Интервал по оси X
     y_axis_interval_label: Интервал по оси Y
     year: Год
+    yoodli: Yoodli
     yoodli_activity_id: Идентификатор активности Yoodli
+    yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli

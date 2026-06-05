@@ -22,9 +22,11 @@ bg:
     assessors_list: Списък на оценителите
     asset_not_present: Активът не е наличен
     audio: Аудио
+    audio_devices: Аудиоустройства
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
     back: Назад
     basic: Основен
+    camera: Камера
     camera_preview: Прегледът на камерата ще се появи тук
     campaign: Кампания
     campaign_id: Идентификация на кампанията
@@ -59,6 +61,7 @@ bg:
     desktop_or_laptop_recommended: Препоръчва се настолен или преносим компютър
     desktop_or_laptop_required: Необходим настолен или преносим компютър
     disabled: С увреждания
+    discard: Изтрий
     download: Изтегляне
     download_audio: Изтегли аудио
     download_transcription: Изтегли транскрипция
@@ -85,6 +88,7 @@ bg:
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     last_name: Фамилия
     learning_on_the_job_label: Учене на работа
+    lets_start: Да започнем!
     loading: Зареждане...
     login: Вход
     maintenance_in_hours: "%{hours} часа"
@@ -99,6 +103,7 @@ bg:
     media_preview: Предварителна преглед за медиите
     media_question_transcriptions: Транскрипции на въпроси от медиите
     media_responses: Отговори на медиите
+    microphones: Микрофони
     mobile_proctoring_disabled_instructions: За да продължите с тази оценка, е необходим настолен или преносим компютър. Моля, превключете на компютър, за да завършите дейността.
     mobile_proctoring_enabled_instructions: За най-добро преживяване, моля, превключете на настолен или преносим компютър, ако имате такъв на разположение. При необходимост можете да продължите на мобилното си устройство.
     modified_by: Променено от
@@ -116,7 +121,9 @@ bg:
     ok: Добре
     options: Опции
     owner: Собственик
+    pause: Пауза
     pending: В очакване
+    play: Играй
     policy_version: Версия на политиката
     policy_version_format: Допускат се само цели числа
     positive: Положителен
@@ -130,6 +137,7 @@ bg:
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
     rec: REC
+    record: Запис
     recorded: Записан
     recording: Запис
     recording_consent_notice: Тази сесия на срещата ще бъде записана. Вашето участие в тази среща представлява вашето съгласие да бъдете записани.
@@ -146,16 +154,21 @@ bg:
     saving_video: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
     scoring_details: Подробности за точковата система
     search: Търсете
+    select_camera: Изберете камера
+    select_microphone: Изберете микрофон
     send_email: Изпрати имейл
     show_more: Покажи повече
     something_wrong: Нещо се обърка. Свържете се с администратора си.
+    speakers: Лектори
     status: Статус
     status_unknown: Статус неизвестен
+    stop: Спри
     subject: Тема
     submit: Изпрати
     submit_and_finish_proctoring: Изпращане и приключване на наблюдението
     suspended: Отложено
     switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър
+    system_check_uploading: Качване
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ bg:
     update_failed: Актуализацията се провали
     updated_at: Актуализирано на
     updated_successfully: Актуализирано успешно
+    user_report_pdf_url_not_generated: Не е възможно да се генерира линк за изтегляне на PDF
     video: Видео
     view: Преглед
     view_audio: Виж аудио

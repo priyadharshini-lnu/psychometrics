@@ -10,6 +10,10 @@ class QuestionRecoding < ApplicationRecord
   belongs_to :assessment
   belongs_to :question
 
+  include Tenantable
+
+  tenant_source :assessment
+
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
 
   def set_assessment_id

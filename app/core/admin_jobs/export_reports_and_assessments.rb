@@ -14,13 +14,15 @@ module AdminJobs
     end
 
     def records_for_export
-      campaign.campaign_users.includes(:user, :user_assessments, user_reports: :report).find_each(batch_size: 100)
+      campaign.campaign_users.includes(:user).find_each(batch_size: 100)
     end
 
     def data_row(campaign_user)
-      campaign_user.user_reports.filter_map do |user_report|
+      assessments_by_id = campaign_user.campaign_user_assessments.index_by(&:assessment_id)
+
+      campaign_user.campaign_user_reports.includes(report: :assessments).filter_map do |user_report|
         user_report.report.assessments.filter_map do |assessment|
-          user_assessment = campaign_user.user_assessments.find_by(assessment_id: assessment.id)
+          user_assessment = assessments_by_id[assessment.id]
           next unless user_assessment
 
           [

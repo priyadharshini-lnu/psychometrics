@@ -159,4 +159,44 @@ describe UsersResults::Recompute do
       described_class.call!(user_assessment.users_result, user_assessment.user)
     end
   end
+
+  describe 'microsite user_assessment' do
+    let(:assessment) { create(:assessment, :microsite) }
+    let(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:microsite_user_assessment) do
+      create(:microsite_user_assessment, user_assessment: user_assessment)
+    end
+
+    let(:fetch_results) do
+      {
+        responses: { 'q1' => 'answer1' },
+        completed_at: '2026-05-16T10:00:00Z'
+      }
+    end
+
+    it 'calls Microsite::FetchResults on completed assessment' do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+
+      expect(Microsite::FetchResults).to receive(:call).with(microsite_user_assessment)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call Microsite::FetchResults if assessment is not_started" do
+      allow(user_assessment).to receive(:not_started?).and_return(true)
+      expect(Microsite::FetchResults).to_not receive(:call)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call Microsite::FetchResults if no microsite_user_assessment exists" do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+      microsite_user_assessment.destroy
+      user_assessment.reload
+
+      expect(Microsite::FetchResults).to_not receive(:call)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+  end
 end

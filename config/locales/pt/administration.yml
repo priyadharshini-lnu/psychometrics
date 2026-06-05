@@ -2363,6 +2363,7 @@ pt:
         add: Integrações
         back: Voltar a Integrações
         load_mettl_catalog: Catálogo de Avaliação de Metais de Carga
+        load_microsite_catalog: Carregar o catálogo de avaliação do microsite
         load_skillvue_catalog: Carregar o catálogo de avaliação do Skillvue
       columns:
         active: Ativo
@@ -2381,6 +2382,7 @@ pt:
         webhookUrls: URLs de webhook
       integrations: Integrações
       load_mettl_success: O trabalho de avaliação dos parâmetros de carga foi colocado na fila de espera com êxito
+      load_microsite_success: A tarefa de avaliação do microsite foi colocada na fila com sucesso
       load_skillvue_success: Carregar avaliações de competências A tarefa foi colocada na fila de espera com êxito
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ pt:
           servers:
             mettl_eu: Europa
             mettl_india: Índia
+        microsite:
+          apiKey: Chave API
+          apiKeyRequired: É necessária uma chave API
         skillvue:
           apiKey: Chave API
           apiKeyRequired: É necessária uma chave API
@@ -2414,6 +2419,7 @@ pt:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Microsite
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ pt:
           tenant_id_present: O ID do inquilino já está presente noutro projeto
         mettl:
           public_key_present: A chave pública já está presente noutro projeto
+        microsite:
+          api_key_present: A chave API já existe noutro projeto
         skillvue:
           api_key_present: A chave API já está presente noutro projeto
       view_all_schedules: Ver todos os horários de Mettl
@@ -2990,6 +2998,7 @@ pt:
               assessment_started: Avaliação iniciada
               assessment_timeout: Tempo limite de avaliação
               campaign_results_available: Resultados da campanha disponíveis
+              campaign_user_assessment_summary: Resumo da avaliação dos utilizadores da campanha
               campaign_user_status: Estado do utilizador da campanha
               report_available: Relatório disponível
               results_available: Resultados disponíveis

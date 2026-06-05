@@ -28,6 +28,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   SKILLVUE = 'skillvue'
   YOODLI = 'yoodli'
   MHS = 'mhs'
+  MICROSITE = 'microsite'
 
   DEFAULT_SCORE_VALIDITY_PERIOD = 18.months.in_days
 
@@ -44,7 +45,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     PEARSON,
     IIHT,
     MEETING,
-    MHS
+    MHS,
+    MICROSITE
   ].freeze
 
   COMMON_CATEGORIES_TYPES = [
@@ -75,7 +77,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     simulation: SIMULATION,
     skillvue: SKILLVUE,
     yoodli: YOODLI,
-    mhs: MHS
+    mhs: MHS,
+    microsite: MICROSITE
   }.freeze
 
   # Assessments constant
@@ -89,7 +92,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     simulation: 'Assessments::Simulation',
     skillvue: 'Assessments::Skillvue',
     yoodli: 'Assessments::Yoodli',
-    mhs: 'Assessments::Mhs'
+    mhs: 'Assessments::Mhs',
+    microsite: 'Assessments::Microsite'
   }.freeze
 
   NON_USER_ASSESSMENT_CATEGORY = [
@@ -121,6 +125,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :communications, dependent: :destroy
   has_many :campaign_templates, dependent: :destroy
   has_many :project_assessments, dependent: :destroy
+  has_many :privacy_consents, dependent: :nullify
 
   # HABTM Factors
   has_many :factors_scoring, dependent: :destroy
@@ -140,6 +145,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :mettl_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :skillvue_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :yoodli_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :microsite_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :simulation_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
@@ -157,6 +163,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   has_one :linked_assessor_form, foreign_key: :linked_assessment_id, class_name: 'Assessment'
   belongs_to :linked_assessment, class_name: 'Assessment'
+
+  include Tenantable
 
   before_create :init_defaults, if: :common?
   after_create :create_agile, if: :agile?
@@ -208,6 +216,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :mhs, -> { where(type: TYPES[:mhs]) }
   scope :simulation, -> { where(type: TYPES[:simulation]) }
   scope :skillvue, -> { where(type: TYPES[:skillvue]) }
+  scope :microsite, -> { where(type: TYPES[:microsite]) }
   scope :yoodli, -> { where(type: TYPES[:yoodli]) }
   scope :external, -> { where(type: [TYPES[:hogan]]) }
   scope :enabled, -> { where.not(disabled: true) }
@@ -298,6 +307,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
         MettlAssessment.find_by(product_id: external_assessment_id)&.name
       when 'skillvue'
         SkillvueAssessment.find_by(product_id: external_assessment_id)&.name
+      when 'microsite'
+        MicrositeAssessment.find_by(product_id: external_assessment_id)&.name
       when 'yoodli'
         external_assessment_id
       when 'simulation'
@@ -408,6 +419,10 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:skillvue]
   end
 
+  def microsite?
+    type == TYPES[:microsite]
+  end
+
   def yoodli?
     type == TYPES[:yoodli]
   end
@@ -421,7 +436,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   def external?
-    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue? || yoodli? || mhs?
+    hogan? || saville? || pearson? || iiht? || mettl? || simulation? || skillvue? || yoodli? || mhs? || microsite?
   end
 
   def internal?
@@ -436,7 +451,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     extra['timer']&.positive?
   end
 
-  delegate :skill_rater?, to: :dimension
+  delegate :skill_rater?, to: :dimension, allow_nil: true
 
   class << self
     # Available role for the filter form

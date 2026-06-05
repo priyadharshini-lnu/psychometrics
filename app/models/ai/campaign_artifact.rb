@@ -9,6 +9,7 @@ class AI::CampaignArtifact < ApplicationRecord
 
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
   belongs_to :campaign
+  include Tenantable
 
   has_many :results,
            -> { where(type: 'AI::CampaignArtifactResult') },

@@ -1100,36 +1100,9 @@ cs:
       title: Podrobnosti o hodnocení
     edit: Upravit
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Formulář hodnotitele
-        case_study: Případové studie
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulář vedoucího hodnotitele
-        meeting: Setkání
-        mettl: Mettl
-        organisational: Org Průzkumy
-        pearson: Pearson
-        psychometric: Psychometrické údaje
-        saville: Saville
-        simulation: Simulace
-        skillvue: Skillvue
-        threesixty: kampaň 360
-        yoodli: Yoodli
       status:
         finished: Dokončeno
         in_progress: Probíhá
-      type:
-        common: Hodnocení TTE
-        hogan: Hogan
-        iiht: Hodnocení IIHT
-        mettl: Hodnocení Mettl
-        pearson: Hodnocení Pearson
-        saville: Hodnocení Saville
-        simulation: Hodnocení simulací
-        skillvue: Hodnocení dovedností
-        yoodli: Yoodliho hodnocení
     flow:
       end_assessment_modal:
         custom_message: Vlastní zpráva o ukončení hodnocení
@@ -1209,16 +1182,11 @@ cs:
         failure: Tento prohlížeč nepodporuje nahrávání videa. Pro nahrávání videa použijte Chrome nebo Firefox
         success: Povolte použití kamery a mikrofonu k nahrávání zvuku a videa
         unsupported: Tento prohlížeč nepodporuje nahrávání videa. Použijte prosím některý z následujících prohlížečů,
-      recording_duration_label: Maximální doba záznamu
-      recording_stop_label: Nahrávání se zastaví za
       requesting_permission: Žádáme o oprávnění…
       response_recorded: Odpověď zaznamenána
       save: Uložit
-      saved:
-        label: Video uloženo
       seek: Hledat
       start_recording: Spustit nahrávání
-      stop_recording: Zastavit nahrávání
       tracker:
         backward: Jste příliš blízko u obrazovky. Posuňte se mírně dozadu
         forward: Jste příliš daleko od obrazovky. Posuňte se o trošku blíž.
@@ -1380,15 +1348,12 @@ cs:
     all_activities_are_completed: Všechny aktivity byly dokončeny.
     all_activities_are_completed_multiple: Všechny činnosti v rámci této kampaně jsou nyní dokončeny. Přejděte na řídicí panel a zkontrolujte, zda máte přiřazeny další aktivity.
     already_joined: Do této kampaně jste se již zapojili
-    begin: Začněte plnit úkoly
-    begin_btn_msg_before_prework: Před zahájením časové kampaně musíte splnit následující úkoly
     begin_campaign_msg: Spustit kampaň před zahájením hodnocení
     campaigns: Kampaně
     closed_campaign_message: Kampaň je uzavřena. V rámci této kampaně nelze provést žádné hodnocení.
     code_usage_limit_reached: Dosažen limit pro použití kódu, kontaktujte prosím správce
     complete_prev: Dokončete všechna předchozí hodnocení
     complete_tasks: Před provedením této akce dokončete níže uvedené úkoly.
-    continue: Pokračujte v plnění úkolů
     dashboard_instructions: Je možné, že vám bylo přiděleno více aktivit, které musíte dokončit. Ujistěte se, že jste ve všech kampaních splnili všechny zadané aktivity.
     dashboard_menu:
       campaign: Kampaň
@@ -1497,6 +1462,9 @@ cs:
       external_user_id: ID kandidáta Skillvue
       id: ID hodnocení kampaně
       locales: Lokality
+      microsite_error_message: Chybová zpráva
+      microsite_participant_id: ID účastníka mikrowebu
+      microsite_registration_status: Stav registrace
       norm: Norm
       norm_id: ID normy
       pearson_norm_id: ID Pearsonovy normy
@@ -1771,10 +1739,8 @@ cs:
       permissions: Oprávnění k webové kameře a zvuku
       title: Před zahájením tohoto hodnocení je třeba systém podrobit několika kontrolám.
     video_check:
-      description: Klikněte na Spustit nahrávání a nahrajte svůj hlas při čtení níže uvedené pasáže
       random_phrases:
         one: Jsem připraven/a. Toto je zkušební nahrávka, která potvrdí, že moje video a mikrofon fungují správně.
-      title: Musíme se ujistit, že váš systém dokáže nahrávat video
   common:
     actions:
       add: Přidat
@@ -1855,6 +1821,7 @@ cs:
       json:
         answer: Odpověď JSON
         external_result: Externí výsledek JSON
+        microsite_raw_response: Mikrostránka Raw Response
         scoring: Bodování JSON
       key: Klíč
       last_name: Příjmení
@@ -3286,13 +3253,6 @@ cs:
     fields:
       provider:
         custom_upload: Vlastní nahrávání
-        hogan: Hogan
-        internal: Interní
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Zatížení od Mettl
       load_from_pearson: Zatížení od společnosti Pearson

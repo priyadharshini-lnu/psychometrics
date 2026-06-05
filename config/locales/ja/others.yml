@@ -1100,36 +1100,9 @@ ja:
       title: 評価内容
     edit: 編集
     fields:
-      category:
-        agile: AGILE
-        assessor_form: アセッサフォーム
-        case_study: ケーススタディ
-        hogan: ホーガン
-        iiht: IIHT
-        lead_assessor_form: 主任査定者フォーム
-        meeting: ミーティング
-        mettl: メトル
-        organisational: 組織調査
-        pearson: ピアソン
-        psychometric: サイコメトリック
-        saville: サヴィル
-        simulation: シミュレーション
-        skillvue: スキルビュー
-        threesixty: 360キャンペーン
-        yoodli: ユードリ
       status:
         finished: 終了
         in_progress: 進行中
-      type:
-        common: TTEアセスメント
-        hogan: ホーガン
-        iiht: IIHTアセスメント
-        mettl: メトル・アセスメント
-        pearson: ピアソン・アセスメント
-        saville: サヴィル査定
-        simulation: シミュレーション評価
-        skillvue: Skillvueの評価
-        yoodli: ユードリ評価
     flow:
       end_assessment_modal:
         custom_message: カスタム評価終了メッセージ
@@ -1211,16 +1184,11 @@ ja:
         failure: このブラウザはビデオ録画をサポートしていません。ビデオ録画にはChromeまたはFirefoxをお使いください
         success: 音声付きビデオを録画するには、カメラとマイクの使用を許可してください
         unsupported: このブラウザはビデオ録画をサポートしていません。 以下のブラウザをご利用ください、
-      recording_duration_label: 最大録画時間
-      recording_stop_label: で録音が停止します。
       requesting_permission: 許可を求める...
       response_recorded: 応答記録
       save: 保存
-      saved:
-        label: 保存済み
       seek: シーク
       start_recording: 録画を開始
-      stop_recording: 録音停止
       tracker:
         backward: 画面に近づきすぎています。少し後ろに下がってください
         forward: 画面から離れすぎています。少し近づいてください
@@ -1382,15 +1350,12 @@ ja:
     all_activities_are_completed: これですべてのアクティビティが完了しました。
     all_activities_are_completed_multiple: これでこのキャンペーンのアクティビティはすべて完了しました。ダッシュボードに進み、その他のアクティビティが割り当てられているかどうかを確認してください。
     already_joined: すでにこのキャンペーンに参加している
-    begin: タスクを開始してください
-    begin_btn_msg_before_prework: タイムドキャンペーンを開始する前に、以下のタスクを完了する必要がある。
     begin_campaign_msg: 査定を受ける前にキャンペーンを開始する
     campaigns: キャンペーン
     closed_campaign_message: このキャンペーンは終了しました。このキャンペーン内のアセスメントを受けることはできません。
     code_usage_limit_reached: コード使用制限に達しました。
     complete_prev: 以前のアセスメントをすべて完了する
     complete_tasks: このアクションを起こす前に、以下のタスクを完了させてください。
-    continue: タスクを続行してください
     dashboard_instructions: 完了すべき複数のアクティビティが割り当てられています。すべてのキャンペーンで割り当てられたアクティビティがすべて完了していることを確認してください。
     dashboard_menu:
       campaign: キャンペーン
@@ -1498,6 +1463,9 @@ ja:
       external_user_id: スキルビュー候補者ID
       id: キャンペーン・アセスメントID
       locales: ロケール
+      microsite_error_message: エラーメッセージ
+      microsite_participant_id: マイクロサイト参加者ID
+      microsite_registration_status: 登録状況
       norm: ノーム
       norm_id: ノームID
       pearson_norm_id: ピアソン ノーム ID
@@ -1772,10 +1740,8 @@ ja:
       permissions: ウェブカメラとオーディオの許可
       title: このアセスメントの開始前に、システムでいくつかのチェックを行う必要があります。
     video_check:
-      description: この段階でキャプチャされたビデオや写真は、保存または使用されることはありません。ビデオ録画を必要とする可能性のある今後の質問のために、デバイスでローカルに使用してカメラが機能していることを確認します。
       random_phrases:
         one: 準備はできました。ビデオとマイクが正常に動作していることを確認するためのテスト録画です。
-      title: お使いのシステムでビデオの録画をできるようにする必要があります
   common:
     actions:
       add: 追加
@@ -1856,6 +1822,7 @@ ja:
       json:
         answer: 回答 JSON
         external_result: 外部結果JSON
+        microsite_raw_response: マイクロサイト「Raw Response」
         scoring: JSONの採点
       key: キー
       last_name: ラストネーム
@@ -3287,13 +3254,6 @@ ja:
     fields:
       provider:
         custom_upload: カスタムアップロード
-        hogan: ホーガン
-        internal: 内部
-        mettl: メトル
-        pearson: ピアソン
-        saville: サヴィル
-        skillvue: スキルビュー
-        yoodli: ユードリ
     form:
       load_from_mettl: メトルからのロード
       load_from_pearson: ピアソンからのロード

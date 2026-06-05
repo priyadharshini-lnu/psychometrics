@@ -22,6 +22,7 @@ hi:
     admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
     admins: प्रशासक
     advanced: उन्नत
+    agile: चपल
     ai_artifact_result_generation_admin_job_failed: उपयोगकर्ता '%{user_email}' के लिए कलाकृति '%{artifact_name}' उत्पन्न नहीं की जा सकती।
     ai_artifact_result_stale: परिणाम पुराना हो सकता है क्योंकि एआई आर्टिफैक्ट की निर्भरताएँ अंतिम परिणाम उत्पन्न होने के बाद बदल गई हैं। नवीनतम निर्भरताओं के साथ आर्टिफैक्ट को पुनः उत्पन्न करने पर विचार करें।
     ai_artifacts: एआई कलाकृतियाँ
@@ -137,6 +138,7 @@ hi:
     assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
     assessments_reports: मूल्यांकन एवं रिपोर्टें
     assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
+    assessor_form: मूल्यांकनकर्ता प्रपत्र
     assessor_workshops: मूल्यांकन केंद्र
     assessors: मूल्यांकनकर्ता
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
@@ -144,6 +146,7 @@ hi:
     assistant_validation_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
     audit_logs: ऑडिट लॉग्स
     audit_reports: लेखा परीक्षा रिपोर्टें
+    auto_moderated_factor_info: यह स्कोर स्वचालित रूप से मॉडरेट किया जाता है और इसे बदला नहीं जा सकता।
     auto_placeholder: स्वचालित
     availability: उपलब्धता
     available_languages: रिपोर्ट भाषाओं में उपलब्ध है
@@ -221,6 +224,7 @@ hi:
     cancel: रद्द करें
     cancellation_and_rescheduling_disabled: रद्दीकरण और पुनःनिर्धारण अक्षम है।
     captcha: कैप्चा सत्यापन
+    case_study: केस स्टडीज़
     casual: आकस्मिक
     cell_save_msg: संपादन के बाद सेल से बाहर निकलते ही मान्य परिवर्तन स्वचालित रूप से सहेजे जाते हैं।
     characters: चरित्र
@@ -230,6 +234,8 @@ hi:
     client_admins: क्लाइंट एडमिन
     clients: ग्राहक
     code_required: कोड आवश्यक है
+    common: टीटीई मूल्यांकन
+    common_assessment: टीटीई मूल्यांकन
     communication_center: संचार केंद्र
     communications: संचार
     completed: पूर्ण
@@ -248,6 +254,7 @@ hi:
     create_client: ग्राहक बनाएँ
     create_indicator: सूचक बनाएँ
     current_job_role: वर्तमान नौकरी की भूमिका
+    custom_upload: कस्टम अपलोड
     dashboard: डैशबोर्ड
     dashboards: डैशबोर्ड
     data_reports: डेटा रिपोर्टें
@@ -285,6 +292,8 @@ hi:
     dimension_translations_export_scheduled: "%{name} आयाम के लिए निर्धारित अनुवाद निर्यात करें।"
     dimensions: आयाम
     disable_proctoring: प्रॉक्टरिंग अक्षम करें
+    disallow_lead_assessor_moderation: लीड आकलनकर्ता की मध्यस्थता निषेध करें
+    disallow_lead_assessor_moderation_info: स्कोर सभी आकलनकर्ता फॉर्म जमा होने पर स्वचालित रूप से गणना किया जाएगा और मुख्य आकलनकर्ता इसे मॉडरेशन स्क्रीन से नहीं बदल सकता।
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
     download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
@@ -315,6 +324,7 @@ hi:
     enhance_with_ai_requires_ai_assistants: AI के साथ बढ़ाएँ के लिए AI सहायक सुविधा सक्षम होना आवश्यक है।
     enter_description: विवरण दर्ज करें
     enter_name: नाम दर्ज करें
+    enter_question_id: प्रश्न आईडी दर्ज करें
     error: त्रुटि
     estimated_tokens: टोकन (अनुमानित)
     evaluation_status: मूल्यांकन स्थिति
@@ -381,6 +391,8 @@ hi:
     idp_appearance_title: शीर्षक
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
     idp_templates: आईडीपी टेम्पलेट्स
+    iiht: आईआईएचटी
+    iiht_assessment: आईआईएचटी मूल्यांकन
     import_ai_artifacts: AI कलाकृतियों को आयात करें
     import_csv_assessment_group_error: "%{index} पंक्ति: %{email} ईमेल वाले उपयोगकर्ता को पहले ही '%{workshopInviteName}' में आमंत्रित किया जा चुका है।"
     import_csv_error: "%{index} पंक्ति: ईमेल %{email} वाला उपयोगकर्ता इस अभियान में नहीं है।"
@@ -406,9 +418,11 @@ hi:
     import_users: उपयोगकर्ताओं को आयात करें
     internal: आंतरिक
     invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
+    invalid_question_ids: 'इस मूल्यांकन में प्रश्न आईडी नहीं मिले: %{ids}'
     job_roles: भूमिकाएँ
     keywords: मुख्य शब्द
     keywords_placeholder: अल्पविरामों से अलग किए गए कीवर्ड दर्ज करें।
+    lead_assessor_form: प्रमुख मूल्यांकनकर्ता प्रपत्र
     learning_from_others: सहयोगात्मक अधिगम [20]
     level: स्तर
     level_apply: लागू करें
@@ -418,6 +432,8 @@ hi:
     libraries: मीडिया पुस्तकालय
     library_invalid_type: अमान्य पुस्तकालय आइटम
     licenses: लाइसेंस
+    lighthouse_question: लाइटहाउस प्रश्न
+    lighthouse_question_id: लाइटहाउस प्रश्न आईडी
     linked_assessments: लिंक्ड आकलन
     low: कम
     maintenance: रखरखाव
@@ -425,10 +441,14 @@ hi:
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     max_value: अधिकतम मान
+    mean: औसत
     media_files_label: फ़ाइलें
     media_library: मीडिया पुस्तकालय
     media_library_page_title: मीडिया लाइब्रेरी - डैशबोर्ड - मर्सर लाइटहाउस
+    meeting: बैठक
     messages: संदेश
+    mettl: मेट्टल
+    mettl_assessment: मेटल असेसमेंट
     mhs: एमएचएस
     mhs_assessment: एमएचएस मूल्यांकन
     mhs_assessment_name: एमएचएस मूल्यांकन नाम
@@ -437,6 +457,10 @@ hi:
     mhs_external_assessment_id: एमएचएस मूल्यांकन आईडी
     mhs_report_id: एमएचएस रिपोर्ट आईडी
     mhs_session_id: एमएचएस सत्र आईडी
+    microsite: माइक्रोसाइट
+    microsite_assessment: माइक्रोसाइट मूल्यांकन
+    microsite_assessment_name: माइक्रोसाइट मूल्यांकन नाम
+    microsite_question_id: माइक्रोसाइट प्रश्न आईडी
     min_value: न्यूनतम मान
     minimum_10_words: न्यूनतम 10 शब्द
     minimum_download_speed: न्यूनतम डाउनलोड गति (एमबीपीएस में)
@@ -445,12 +469,14 @@ hi:
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
     model_answer: आदर्श उत्तर
     model_answer_placeholder: AI स्कोरिंग के लिए मॉडल उत्तर दर्ज करें।
+    must_be_a_valid_url: अमान्य URL। इसमें http या https प्रोटोकॉल के साथ पूरा URL निर्दिष्ट करें।
     name: नाम
     name_max_length: नाम %{length} वर्णों से अधिक नहीं हो सकता।
     name_required: नाम आवश्यक है
     new_folder: नया फ़ोल्डर
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
+    no_question_mappings: प्रश्न मैपिंग उपलब्ध नहीं हैं
     no_status: कोई स्थिति नहीं
     norm_editor_numeric_value_error: केवल संख्यात्मक मान ही अनुमत हैं (पूर्णांक या दशमलव)।
     norms: मानदंड
@@ -466,10 +492,13 @@ hi:
     on_the_job: काम पर [70]
     only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
+    organisational: चपल
     original_text: मूल पाठ
     overall: कुल मिलाकर
     overall_score: कुल स्कोर
     participants: प्रतिभागी
+    pearson: पियर्सन
+    pearson_assessment: पियर्सन मूल्यांकन
     permissions:
       aiArtifacts:
         export: निर्यात
@@ -800,6 +829,8 @@ hi:
       projectSettings:
         assessments: मूल्यांकन
         design: डिज़ाइन
+        external_logout_redirect_enabled: बाहरी रीडायरेक्ट लॉगआउट सक्षम करें
+        external_logout_url: बाहरी लॉगआउट यूआरएल
         feature_flags: फ़ीचर फ़्लैग्स
         idp: आईडीपी
         integrations: एकीकरण
@@ -913,6 +944,7 @@ hi:
     project_settings: परियोजना सेटिंग्स
     projects: परियोजनाएँ
     prompt: तुरंत
+    psychometric: मनोमापी
     question_center: प्रश्न केंद्र
     question_center_page_title: प्रश्न केंद्र - डैशबोर्ड - मर्सर लाइटहाउस
     question_editor_change_type: प्रकार बदलें
@@ -921,6 +953,7 @@ hi:
     question_editor_enable_transcription: प्रतिलेखन सक्षम करें
     question_editor_preview_question: प्रश्न पूर्वावलोकन
     question_editor_validation_type: प्रमाणीकरण का प्रकार
+    question_mapping: प्रश्न मानचित्रण
     question_randomization: प्रश्न यादृच्छिकीकरण
     question_type_audio_response: ऑडियो प्रतिक्रिया
     question_type_constant_sum: स्थिर योग
@@ -1037,6 +1070,8 @@ hi:
       subject_full_name_cont: विषय नाम
       user_email_cont: उपयोगकर्ता ईमेल
       user_full_name_cont: उपयोगकर्ता नाम
+    saville: सैविल
+    saville_assessment: सैविल मूल्यांकन
     scheduling: अनुसूचीकरण
     score: स्कोर
     score_approval_not_allowed_to_approve: आपको इस स्कोर को मंजूरी देने की अनुमति नहीं है।
@@ -1072,6 +1107,7 @@ hi:
     select_end_time: अंत का समय चुनें
     select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
     select_level: स्तर चुनें
+    select_question: नाम या आईडी से प्रश्न खोजें
     select_start_time: आरंभ समय चुनें
     selective_proctoring: चयनात्मक निगरानी
     send_email: ईमेल भेजें
@@ -1084,14 +1120,19 @@ hi:
     show_submenu: उप मेनू दिखाएँ
     show_translated: अनुवादित दिखाएँ
     siem: एसआईईएम
+    simulation: अनुकरण
+    simulation_assessment: अनुकरण मूल्यांकन
     skill_aliases: कौशल उपनाम
     skills: कौशल
     skills_taxonomy: कौशल वर्गीकरण
+    skillvue: स्किलव्यू
+    skillvue_assessment: स्किलव्यू मूल्यांकन
     skip_assessment_level_checks: मूल्यांकन-स्तर प्रणाली जाँचों को छोड़ें
     slot_name: स्लॉट का नाम
     sms_histories: एसएमएस इतिहास
     sms_invites: एसएमएस निमंत्रण
     specialty_questions: विशेष प्रश्न
+    standard_deviation: मानक विचलन
     standard_questions: मानक प्रश्न
     start: शुरू करें
     start_time: शुरुआत का समय
@@ -1152,6 +1193,8 @@ hi:
     x_axis_interval_label: एक्स-अक्ष अंतराल
     y_axis_interval_label: वाई-अक्ष अंतराल
     year: वर्ष
+    yoodli: यूडली
     yoodli_activity_id: यूडल एक्टिविटी आईडी
+    yoodli_assessment: यूडली मूल्यांकन
     yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
     yoodli_external_assessment_id: यूडली मूल्यांकन आईडी

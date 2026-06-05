@@ -1100,36 +1100,9 @@ nl:
       title: Beoordeling Details
     edit: Bewerk
     fields:
-      category:
-        agile: AGIEL
-        assessor_form: Beoordelaarsformulier
-        case_study: Casestudies
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulier hoofdbeoordelaar
-        meeting: Vergadering
-        mettl: Mettl
-        organisational: Organisatie Enquêtes
-        pearson: Pearson
-        psychometric: Psychometrisch
-        saville: Saville
-        simulation: Simulatie
-        skillvue: Skillvue
-        threesixty: 360 Campagne
-        yoodli: Yoodli
       status:
         finished: Afgewerkt
         in_progress: In uitvoering
-      type:
-        common: TTE-beoordeling
-        hogan: Hogan
-        iiht: IIHT-beoordeling
-        mettl: Mettl Beoordeling
-        pearson: Pearson Beoordeling
-        saville: Beoordeling Saville
-        simulation: Simulatie Beoordeling
-        skillvue: Skillvue Assessment
-        yoodli: Yoodli-beoordeling
     flow:
       end_assessment_modal:
         custom_message: Aangepast bericht einde beoordeling
@@ -1206,16 +1179,11 @@ nl:
         failure: Deze browser ondersteunt het opnemen van video's niet. Gebruik Chrome of Firefox voor het opnemen van video's
         success: Sta het gebruik van camera en microfoon toe om audio en video op te nemen
         unsupported: Deze browser ondersteunt het opnemen van video's niet. Gebruik een van de volgende browsers,
-      recording_duration_label: Maximale duur van opname
-      recording_stop_label: De opname stopt in
       requesting_permission: Toestemming vragen...
       response_recorded: Reactie opgenomen
       save: Sla
-      saved:
-        label: Video opgeslagen
       seek: Zoek
       start_recording: Opname starten
-      stop_recording: Opname stoppen
       tracker:
         backward: U staat te dicht bij het scherm. Ga iets naar achteren
         forward: Je staat te ver van het scherm af. Ga alsjeblieft wat dichterbij staan
@@ -1377,15 +1345,12 @@ nl:
     all_activities_are_completed: Alle activiteiten zijn nu voltooid.
     all_activities_are_completed_multiple: Alle activiteiten voor deze campagne zijn nu voltooid. Ga naar het Dashboard en controleer of je nog andere activiteiten hebt toegewezen.
     already_joined: Je hebt je al aangesloten bij deze campagne
-    begin: Begin je taken
-    begin_btn_msg_before_prework: Je moet de onderstaande taken uitvoeren voordat je de getimede campagne start
     begin_campaign_msg: Campagne starten voordat je assessments doet
     campaigns: Campagnes
     closed_campaign_message: Deze campagne is gesloten. Je kunt geen beoordeling maken binnen deze campagne.
     code_usage_limit_reached: Gebruikslimiet code bereikt, neem contact op met beheerder
     complete_prev: Voltooi alle voorgaande beoordelingen
     complete_tasks: Voer onderstaande taken uit voordat u deze actie onderneemt.
-    continue: Doorgaan met je taken
     dashboard_instructions: Er kunnen meerdere activiteiten aan je zijn toegewezen die je moet voltooien. Controleer of alle toegewezen activiteiten zijn voltooid in alle campagnes.
     dashboard_menu:
       campaign: Campagne
@@ -1485,6 +1450,9 @@ nl:
       external_user_id: Skillvue Kandidaat-ID
       id: Campagne Beoordeling ID
       locales: Locaties
+      microsite_error_message: Foutmelding
+      microsite_participant_id: Microsite-deelnemers-ID
+      microsite_registration_status: Registratiestatus
       norm: Norm
       norm_id: Norm ID
       pearson_norm_id: Pearson Norm-ID
@@ -1759,10 +1727,8 @@ nl:
       permissions: Webcam en audio rechten
       title: Voordat je met deze beoordeling begint, moet je systeem een aantal controles ondergaan.
     video_check:
-      description: Klik op Start opname en neem jezelf op terwijl je de onderstaande passage voorleest met je eigen stem
       random_phrases:
         one: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn video en microfoon goed werken.
-      title: We moeten ervoor zorgen dat je systeem de video kan opnemen
   common:
     actions:
       add: Voeg  toe
@@ -1843,6 +1809,7 @@ nl:
       json:
         answer: Antwoord JSON
         external_result: Extern resultaat JSON
+        microsite_raw_response: Microsite Raw Response
         scoring: JSON scoren
       key: Sleutel
       last_name: Achternaam
@@ -3274,13 +3241,6 @@ nl:
     fields:
       provider:
         custom_upload: Aangepast uploaden
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Belasting van Mettl
       load_from_pearson: Laden van Pearson

@@ -44,6 +44,7 @@ hu:
     camera_check_abruptly_ended: A kamera hirtelen kikapcsolt. Kérjük, kapcsolja be a kamerát, és futtassa újra az ellenőrzést.
     camera_check_description: Ellenőrizze, hogy a kamera és a mikrofon megfelelően működik-e a felvételhez
     camera_check_passed: A videó- és hangellenőrzés sikeresen lezajlott
+    camera_check_record_instruction: Kattintson a „Felvétel” gombra, és olvassa fel hangosan az alábbi szöveget
     camera_test_step: Videó- és hangteszt lépés
     campaign: Kampány
     campaign_check_status: 'Állapot: %{status}'
@@ -52,6 +53,7 @@ hu:
     check_video_recording: Kérjük, lejátszással ellenőrizze a videó- és hangfelvételt.
     checking_browser_compatibility: A böngésző kompatibilitásának ellenőrzése...
     checking_latency: A késleltetés ellenőrzése...
+    complete_prework_message: Kezdéshez végezze el az összes előkészítő feladatot.
     could_not_reach_servers: Nem sikerült kapcsolatba lépni a szerverünkkel a hálózati sebesség ellenőrzése érdekében. Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
     day: nap
     day_plural: napok
@@ -61,6 +63,7 @@ hu:
     download: Letöltés
     download_pdf: Letöltés PDF
     download_speed_below_minimum: A letöltési sebesség (%{download_speed}) alacsonyabb a szükséges minimális letöltési sebességnél (%{minimum_download_speed} Mbps)
+    dummy_message: Készen állok. Ez egy próbafelvétel, amellyel ellenőrizni szeretném, hogy a videó és a mikrofon megfelelően működik-e.
     environment_setup: A környezet beállítása
     error_uploading_audio: Hiba az audiofájl feltöltése közben
     error_uploading_audio_detail: Hiba történt az audiofájl feltöltése közben
@@ -92,6 +95,7 @@ hu:
     internet_speed_optimal: A kapcsolat sebessége optimális
     internet_speed_slow: Az internet sebessége alacsonyabb, mint amennyire a kampányhoz szükség lenne
     less_than_five_minutes: Kevesebb mint 5 perc
+    lets_start: Kezdjük!
     lighthouse_assistant: Világítótorony asszisztens
     localstorage_fix_description_first: Győződjön meg arról, hogy nem privát/inkognitó módban van, mivel ezekben a módokban a localStorage gyakran le van tiltva.
     localstorage_fix_title: A böngészőben a helyi tárolás nincs engedélyezve
@@ -107,6 +111,7 @@ hu:
     media_recorder_api_support: MediaRecorder API támogatás
     microphone_access_blocked: A böngésző elutasította vagy letiltotta a mikrofonhoz való hozzáférést. Kérjük, ellenőrizze a böngésző engedélyezési beállításait.
     microphone_check_passed: A mikrofonpróba sikeresen lezajlott
+    microsite_assessment_external: Ezt az értékelést egy külső platformon kell elvégezni.
     min_word_limit: Legalább %{min} szó kell
     minimum_speed_requirements: Ehhez az akcióhoz legalább %{minimum_download_speed} Mbps letöltési és legalább %{minimum_upload_speed} Mbps feltöltési sebesség szükséges.
     minute: perc
@@ -124,16 +129,24 @@ hu:
     network_test_step: Hálózati tesztlépés
     no_audio_detected: Nem érzékelhető hang. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
     pass: Tovább
+    pause: Szünet
     pending: Függőben
     personal_readiness: Személyes felkészültség
     plan_text: Tervezzen a teljes időtartamra. A vizsga megkezdése után – a vizsga típusától függően – szünetek nem engedélyezettek.
+    play: Játék
     please_check_your_internet_connection: Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
+    preparing_preview: Előnézet készítése...
+    prework: Előkészítés
+    prework_not_completed_message: Kérjük, a kampány megkezdése előtt végezze el az összes előkészítő feladatot.
     proctored: Felügyelt
     proctored_assessment_misconfigured_msg: Ez a felmérés felügyelet alatt zajlik, de hiányzik a szükséges időbeállítás; kérjük, vegye fel a kapcsolatot a rendszergazdával.
     profile: Profil
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}
     reason_for_idp_plan_rejection: Az elutasítás oka
+    record: Napló
+    recording_progress_bar: Felvétel állapotjelző sáv
+    recording_time_remaining: "%{remainingSeconds} hátralévő másodpercek"
     redirect_to_external_assessment: A rendszer átirányítja Önt az értékelés oldalára. Kérjük, kattintson a „Tovább” gombra, ha el szeretné kezdeni az értékelést.
     reject_idp_plan: Elutasít tervet
     request_retry_message: Offline vagy. A válaszaid nem menthetők el, de automatikusan mentődni fognak, amint újra online vagy. Kérjük, ne frissítse vagy zárja be az oldalt.
@@ -145,13 +158,15 @@ hu:
     results: Eredmény
     safari_proctoring_description: Úgy tűnik, hogy a Safari böngészőt használja, amely bizonyos korlátozásokat jelenthet a kampányhoz kapcsolódó nyomonkövetési funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome, Edge vagy a Firefox böngésző használatát javasoljuk.
     safari_proctoring_title: Safari böngésző észlelve
+    select_audio_device: Hangkészülék kiválasztása
+    select_video_device: Videóeszköz kiválasztása
     selected_count: Kiválasztott
     skill_type: Képesség típusa
     start_campaign_message_proctored: Ez egy felügyelt kampány, kérjük, kattintson a '%{buttonText}' gombra a tevékenységek elindításához.
     start_campaign_message_timed: Ez egy időzített kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
-    start_campaign_message_timed_proctored: Ez egy időzített és felügyelt kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
     start_readiness_check: Indítsa el az indulás előtti ellenőrzést
     start_system_check: Rendszerellenőrzés indítása
+    stop: Állj meg
     subinstruction_audio: Működő mikrofon
     subinstruction_eight: Szánjon rá zavartalan időt a teljes értékelésre
     subinstruction_five: Készen állsz a képernyő megosztására a munkamenet során?
@@ -239,6 +254,9 @@ hu:
     video_check_fix_second: Nyisd meg a böngésző beállításait, és engedélyezd a kamera használatát ezen az oldalon
     video_check_fix_sixth: Indítsd újra a böngészőt, és próbáld meg újra
     video_check_fix_third: Zárja be a kamerát használó egyéb alkalmazásokat (Zoom, Teams stb.)
+    video_overlay_label: Válassza ki a mikrofont és a kamerát, kattintson a „Felvétel” gombra, majd miután megnyomta a „Felvétel” gombot, olvassa fel az alábbi üzenetet
+    video_overlay_message: Válaszd ki a mikrofont és a kamerát, kattints a „Felvétel” gombra, majd olvasd fel hangosan az alul megjelenő mondatot.
+    video_recorder_label: Videofelvevő
     view_details: Részletek megtekintése
     webgl_api_fix_description_first: Győződjön meg arról, hogy a böngészője támogatja a WebGL-t, és hogy az be van kapcsolva a beállításokban
     webgl_api_fix_description_second: Frissítse a grafikus illesztőprogramokat a legújabb verzióra

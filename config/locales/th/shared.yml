@@ -22,9 +22,11 @@ th:
     assessors_list: รายชื่อผู้ประเมิน
     asset_not_present: ไม่มีสินทรัพย์
     audio: เสียง
+    audio_devices: อุปกรณ์เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
     back: กลับ
     basic: พื้นฐาน
+    camera: กล้อง
     camera_preview: ตัวอย่างภาพจากกล้องจะแสดงที่นี่
     campaign: แคมเปญ
     campaign_id: รหัสแคมเปญ
@@ -59,6 +61,7 @@ th:
     desktop_or_laptop_recommended: แนะนำใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
     desktop_or_laptop_required: จำเป็นต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
     disabled: ผู้พิการ
+    discard: ทิ้ง
     download: ดาวน์โหลด
     download_audio: ดาวน์โหลดเสียง
     download_transcription: ดาวน์โหลดการถอดความ
@@ -85,6 +88,7 @@ th:
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
     last_name: นามสกุล
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
+    lets_start: มาเริ่มกันเลย!
     loading: กำลังโหลด...
     login: เข้าสู่ระบบ
     maintenance_in_hours: "%{hours} ชั่วโมง"
@@ -99,6 +103,7 @@ th:
     media_preview: การพรีวิวสื่อ
     media_question_transcriptions: ถอดความคำถามจากสื่อ
     media_responses: การตอบสนองของสื่อ
+    microphones: ไมโครโฟน
     mobile_proctoring_disabled_instructions: การประเมินนี้ต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อปเพื่อดำเนินการต่อ กรุณาเปลี่ยนไปใช้คอมพิวเตอร์เพื่อทำกิจกรรมให้เสร็จสมบูรณ์
     mobile_proctoring_enabled_instructions: เพื่อประสบการณ์ที่ดีที่สุด กรุณาเปลี่ยนไปใช้เดสก์ท็อปหรือแล็ปท็อปหากคุณมีอยู่ คุณสามารถใช้โทรศัพท์มือถือของคุณต่อไปได้หากจำเป็น
     modified_by: แก้ไขโดย
@@ -116,7 +121,9 @@ th:
     ok: ตกลง
     options: ตัวเลือก
     owner: เจ้าของ
+    pause: หยุดชั่วคราว
     pending: รอดำเนินการ
+    play: เล่น
     policy_version: นโยบายเวอร์ชัน
     policy_version_format: อนุญาตเฉพาะจำนวนเต็มเท่านั้น
     positive: บวก
@@ -130,6 +137,7 @@ th:
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
     rec: บันทึก
+    record: บันทึก
     recorded: บันทึก
     recording: การบันทึก
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
@@ -146,16 +154,21 @@ th:
     saving_video: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
     scoring_details: รายละเอียดการให้คะแนน
     search: ค้นหา
+    select_camera: เลือกกล้อง
+    select_microphone: เลือกไมโครโฟน
     send_email: ส่งอีเมล
     show_more: แสดงเพิ่มเติม
     something_wrong: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
+    speakers: ผู้พูด
     status: สถานะ
     status_unknown: ไม่ทราบสถานะ
+    stop: หยุด
     subject: เรื่อง
     submit: ส่ง
     submit_and_finish_proctoring: ส่งและเสร็จสิ้นการคุมสอบ
     suspended: ระงับ
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
+    system_check_uploading: กำลังอัปโหลด
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ th:
     update_failed: การอัปเดตล้มเหลว
     updated_at: อัปเดตเมื่อ
     updated_successfully: อัปเดตสำเร็จ
+    user_report_pdf_url_not_generated: ไม่สามารถสร้างลิงก์ดาวน์โหลด PDF ได้
     video: วิดีโอ
     view: มุมมอง
     view_audio: ดูเสียง

@@ -22,6 +22,7 @@ pt:
     admin_updated_successfully: O administrador '%{name}' foi atualizado com êxito
     admins: Administradores
     advanced: Avançado
+    agile: ÁGIL
     ai_artifact_result_generation_admin_job_failed: O artefato "%{artifact_name}" não pode ser gerado para o usuário "%{user_email}".
     ai_artifact_result_stale: O resultado pode estar desatualizado, pois as dependências do artefato de IA foram alteradas desde que o último resultado foi gerado. Considere regenerar o artefato para gerá-lo com as dependências mais recentes.
     ai_artifacts: Artefatos de IA
@@ -137,6 +138,7 @@ pt:
     assessments_not_mhs: Todas as avaliações devem ser do tipo MHS.
     assessments_reports: Avaliações e relatórios
     assessor_dashboard: Painel de controlo do avaliador
+    assessor_form: Formulário do assessor
     assessor_workshops: Centro de avaliação
     assessors: Avaliadores
     assistant_toolbar_failed: Não foi possível gerar uma saída válida após várias tentativas
@@ -144,6 +146,7 @@ pt:
     assistant_validation_failed: Não foi possível gerar uma saída válida após várias tentativas
     audit_logs: Registos de auditoria
     audit_reports: Relatórios de auditoria
+    auto_moderated_factor_info: Esta pontuação é moderada automaticamente e não pode ser alterada
     auto_placeholder: Automóvel
     availability: Disponibilidade
     available_languages: Relatório disponível em idiomas
@@ -221,6 +224,7 @@ pt:
     cancel: Cancelar
     cancellation_and_rescheduling_disabled: O cancelamento e o reagendamento estão desativados.
     captcha: Verificação do Captcha
+    case_study: Estudos de caso
     casual: Casual
     cell_save_msg: As alterações válidas são guardadas automaticamente assim que sair da célula após a edição.
     characters: personagens
@@ -230,6 +234,8 @@ pt:
     client_admins: Administradores de clientes
     clients: Clientes
     code_required: Código é obrigatório
+    common: Avaliação TTE
+    common_assessment: Avaliação TTE
     communication_center: Centro de Comunicação
     communications: Comunicações
     completed: Concluído
@@ -248,6 +254,7 @@ pt:
     create_client: Criar cliente
     create_indicator: Criar indicador
     current_job_role: Função atual
+    custom_upload: Carregamento personalizado
     dashboard: Painel de controlo
     dashboards: Painéis de controlo
     data_reports: Relatórios de dados
@@ -285,6 +292,8 @@ pt:
     dimension_translations_export_scheduled: Exportar traduções agendadas para a dimensão «%{name}».
     dimensions: Dimensões
     disable_proctoring: Desativar supervisão
+    disallow_lead_assessor_moderation: Desativar a moderação do avaliador principal
+    disallow_lead_assessor_moderation_info: A pontuação será calculada automaticamente com base em todos os formulários enviados pelos avaliadores, e o avaliador principal não poderá alterá-la a partir do ecrã de moderação
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
     download_bulk_asset_download_example_csv: Baixar exemplo CSV.
@@ -315,6 +324,7 @@ pt:
     enhance_with_ai_requires_ai_assistants: Para melhorar com IA, é necessário ativar o recurso Assistentes de IA.
     enter_description: Insira a descrição
     enter_name: Insira o nome
+    enter_question_id: Introduza o ID da pergunta
     error: Erro
     estimated_tokens: tokens (estimativa)
     evaluation_status: Status de Avaliação
@@ -381,6 +391,8 @@ pt:
     idp_appearance_title: Título
     idp_plan_reset_success: O plano foi reiniciado com sucesso
     idp_templates: Modelos de PDI
+    iiht: IIHT
+    iiht_assessment: Avaliação IIHT
     import_ai_artifacts: Importar artefatos de IA
     import_csv_assessment_group_error: "%{index} de linha: o usuário com e-mail %{email} já foi convidado para '%{workshopInviteName}'"
     import_csv_error: 'Fila %{index}: usuário com e-mail %{email} não está nesta campanha'
@@ -406,9 +418,11 @@ pt:
     import_users: Importar Usuários
     internal: Interno
     invalid_csv_header: CSV contém cabeçalhos inválidos.
+    invalid_question_ids: 'IDs das perguntas não encontradas nesta avaliação: %{ids}'
     job_roles: Funções
     keywords: Palavras-chave
     keywords_placeholder: Insira palavras-chave separadas por vírgulas.
+    lead_assessor_form: Formulário do avaliador principal
     learning_from_others: Aprendizagem Colaborativa [20]
     level: Nível
     level_apply: Aplicar
@@ -418,6 +432,8 @@ pt:
     libraries: Biblioteca multimédia
     library_invalid_type: Item da Biblioteca Inválido
     licenses: Licenças
+    lighthouse_question: Pergunta sobre o Farol
+    lighthouse_question_id: ID da pergunta do Lighthouse
     linked_assessments: Avaliações associadas
     low: Baixo
     maintenance: Manutenção
@@ -425,10 +441,14 @@ pt:
     maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
     max_value: Valor máximo
+    mean: Média
     media_files_label: Ficheiros
     media_library: Biblioteca multimédia
     media_library_page_title: Biblioteca de multimédia - Painel de controlo - Mercer Lighthouse
+    meeting: Reunião
     messages: Mensagens
+    mettl: METTL
+    mettl_assessment: Avaliação da Mettl
     mhs: MHS
     mhs_assessment: Avaliação MHS
     mhs_assessment_name: Nome da avaliação MHS
@@ -437,6 +457,10 @@ pt:
     mhs_external_assessment_id: Identificação da Avaliação Mhs
     mhs_report_id: ID do relatório MHS
     mhs_session_id: ID da sessão Mhs
+    microsite: Microsite
+    microsite_assessment: Avaliação do microsite
+    microsite_assessment_name: Nome da avaliação do microsite
+    microsite_question_id: ID da pergunta do microsite
     min_value: Valor mínimo
     minimum_10_words: Mínimo de 10 palavras
     minimum_download_speed: Velocidade mínima de download (em Mbps)
@@ -445,12 +469,14 @@ pt:
     missing_min_max_values: Os valores mínimo e máximo são obrigatórios.
     model_answer: Resposta modelo
     model_answer_placeholder: Insira a resposta modelo para pontuação da IA.
+    must_be_a_valid_url: URL inválida. Indique o URL completo, incluindo o protocolo http ou https
     name: Nome
     name_max_length: O nome não pode exceder %{length} caracteres
     name_required: O nome é necessário
     new_folder: Nova pasta
     no_file_selected: Nenhum arquivo selecionado
     no_notifications: Sem notificações
+    no_question_mappings: Não há mapeamentos de perguntas disponíveis
     no_status: Sem estado
     norm_editor_numeric_value_error: Só são permitidos valores numéricos (números inteiros ou decimais).
     norms: Normas
@@ -466,10 +492,13 @@ pt:
     on_the_job: No Trabalho [70]
     only_editable_on_create: Esta opção só pode ser editada durante a criação.
     options: Opções
+    organisational: ÁGIL
     original_text: Texto original
     overall: No geral
     overall_score: Pontuação geral
     participants: Participantes
+    pearson: Pearson
+    pearson_assessment: Avaliação da Pearson
     permissions:
       aiArtifacts:
         export: Exportação
@@ -800,6 +829,8 @@ pt:
       projectSettings:
         assessments: Avaliações
         design: Conceção
+        external_logout_redirect_enabled: Ativar redirecionamento externo para sair da conta
+        external_logout_url: URL de saída externa
         feature_flags: Sinalizadores de recursos
         idp: PDI
         integrations: Integrações
@@ -913,6 +944,7 @@ pt:
     project_settings: Definições do projeto
     projects: Projectos
     prompt: Prompt
+    psychometric: Psicométrico
     question_center: Centro de perguntas
     question_center_page_title: Centro de Perguntas - Painel de Controlo - Mercer Lighthouse
     question_editor_change_type: Alterar tipo
@@ -921,6 +953,7 @@ pt:
     question_editor_enable_transcription: Ativar transcrição
     question_editor_preview_question: Pergunta de pré-visualização
     question_editor_validation_type: Tipo de validação
+    question_mapping: Mapeamento de perguntas
     question_randomization: Randomização das perguntas
     question_type_audio_response: Resposta de áudio
     question_type_constant_sum: Soma constante
@@ -1037,6 +1070,8 @@ pt:
       subject_full_name_cont: Nome da disciplina
       user_email_cont: E-mail do utilizador
       user_full_name_cont: Nome de utilizador
+    saville: Saville
+    saville_assessment: Avaliação Saville
     scheduling: Programação
     score: Pontuação
     score_approval_not_allowed_to_approve: Você não tem permissão para aprovar esta pontuação.
@@ -1072,6 +1107,7 @@ pt:
     select_end_time: Selecionar hora de término
     select_language_to_translate: Selecione o idioma para traduzir
     select_level: Selecione o nível
+    select_question: Pesquisar uma pergunta pelo nome ou ID
     select_start_time: Selecione a hora de início
     selective_proctoring: Supervisão seletiva
     send_email: Enviar e-mail
@@ -1084,14 +1120,19 @@ pt:
     show_submenu: Mostrar submenu
     show_translated: Mostrar traduzido
     siem: SIEM
+    simulation: Simulação
+    simulation_assessment: Avaliação de simulação
     skill_aliases: Apelidos de habilidade
     skills: Competências
     skills_taxonomy: Taxonomia de competências
+    skillvue: Skillvue
+    skillvue_assessment: Avaliação Skillvue
     skip_assessment_level_checks: Ignorar verificações do sistema de níveis de avaliação
     slot_name: Nome do Slot
     sms_histories: Histórias SMS
     sms_invites: Convites SMS
     specialty_questions: Questões específicas
+    standard_deviation: Desvio padrão
     standard_questions: Perguntas habituais
     start: iniciar
     start_time: Hora de início
@@ -1152,6 +1193,8 @@ pt:
     x_axis_interval_label: Intervalo do eixo X
     y_axis_interval_label: Intervalo do eixo Y
     year: País
+    yoodli: Yoodli
     yoodli_activity_id: ID de atividade Yoodli
+    yoodli_assessment: Avaliação de Yoodli
     yoodli_email_id: ID de e-mail do candidato Yoodli
     yoodli_external_assessment_id: ID de Avaliação Yoodli

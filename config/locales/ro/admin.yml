@@ -22,6 +22,7 @@ ro:
     admin_updated_successfully: Admin '%{name}' a fost actualizat cu succes
     admins: Administratori
     advanced: Avansat
+    agile: AGIL
     ai_artifact_result_generation_admin_job_failed: Artefactul „%{artifact_name}” nu poate fi generat pentru utilizatorul „%{user_email}”.
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
@@ -137,6 +138,7 @@ ro:
     assessments_not_mhs: Toate evaluările trebuie să fie de tip MHS.
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului
+    assessor_form: Formular evaluator
     assessor_workshops: Centrul de evaluare
     assessors: Evaluatori
     assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
@@ -144,6 +146,7 @@ ro:
     assistant_validation_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
     audit_logs: Jurnale de audit
     audit_reports: Rapoarte de audit
+    auto_moderated_factor_info: Acest scor este moderat automat și nu poate fi modificat
     auto_placeholder: Auto
     availability: Disponibilitate
     available_languages: Raport disponibil în limbi
@@ -221,6 +224,7 @@ ro:
     cancel: Anulează
     cancellation_and_rescheduling_disabled: Anularea și reprogramarea sunt dezactivate
     captcha: Verificare Captcha
+    case_study: Studii de caz
     casual: Casual
     cell_save_msg: Modificările valide sunt salvate automat imediat ce ieșiți din celulă după editare.
     characters: caractere
@@ -230,6 +234,8 @@ ro:
     client_admins: Administratori clienți
     clients: Clienți
     code_required: Este necesar codul
+    common: Evaluarea TTE
+    common_assessment: Evaluarea TTE
     communication_center: Centrul de comunicare
     communications: Comunicaţii
     completed: Completat
@@ -248,6 +254,7 @@ ro:
     create_client: Creare client
     create_indicator: Creați indicator
     current_job_role: Funcția actuală
+    custom_upload: Încărcare personalizată
     dashboard: Tablou
     dashboards: Dashboards
     data_reports: Rapoarte de date
@@ -285,6 +292,8 @@ ro:
     dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
     disable_proctoring: Dezactivează supravegherea
+    disallow_lead_assessor_moderation: Dezactivează moderarea evaluatorului principal
+    disallow_lead_assessor_moderation_info: Scorul va fi calculat automat pe baza tuturor formularelor trimise de evaluatori, iar evaluatorul principal nu îl poate modifica din ecranul de moderare
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
     download_bulk_asset_download_example_csv: Descărcați exemplul CSV.
@@ -315,6 +324,7 @@ ro:
     enhance_with_ai_requires_ai_assistants: Pentru a îmbunătăți cu AI, este necesar să fie activată funcția Asistenți AI.
     enter_description: Introduceți descrierea
     enter_name: Introduceți numele
+    enter_question_id: Introduceți ID-ul întrebării
     error: Eroare
     estimated_tokens: jetoane (estimativ)
     evaluation_status: Stare de evaluare
@@ -381,6 +391,8 @@ ro:
     idp_appearance_title: Titlu
     idp_plan_reset_success: Planul a fost resetat cu succes
     idp_templates: Șabloane IDP
+    iiht: IIHT
+    iiht_assessment: Evaluarea IIHT
     import_ai_artifacts: Importul artefactelor AI
     import_csv_assessment_group_error: "%{index} de rând: utilizatorul cu adresa de e-mail %{email} este deja invitat la „%{workshopInviteName}”"
     import_csv_error: 'Rândul %{index}: utilizator cu email %{email} nu face parte din această campanie'
@@ -406,9 +418,11 @@ ro:
     import_users: Importă utilizatori
     internal: Intern
     invalid_csv_header: CSV conține antete invalide.
+    invalid_question_ids: 'Codurile întrebărilor care nu se regăsesc în această evaluare: %{ids}'
     job_roles: Roluri de post
     keywords: Cuvinte cheie
     keywords_placeholder: Introduceți cuvintele cheie separate prin virgule.
+    lead_assessor_form: Formular de evaluator principal
     learning_from_others: Învățare colaborativă [20]
     level: Nivel
     level_apply: Aplicați
@@ -418,6 +432,8 @@ ro:
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     licenses: Licenţe
+    lighthouse_question: Întrebarea-cheie
+    lighthouse_question_id: ID întrebare Lighthouse
     linked_assessments: Evaluări asociate
     low: Scăzut
     maintenance: Întreținere
@@ -425,10 +441,14 @@ ro:
     maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     max_value: Valoarea maximă
+    mean: Medie
     media_files_label: Fișiere
     media_library: Biblioteca media
     media_library_page_title: Biblioteca media - Tablou de bord - Mercer Lighthouse
+    meeting: Ședință
     messages: Mesaje
+    mettl: METTL
+    mettl_assessment: Evaluarea Mettl
     mhs: MHS
     mhs_assessment: Evaluarea MHS
     mhs_assessment_name: Numele evaluării MHS
@@ -437,6 +457,10 @@ ro:
     mhs_external_assessment_id: ID evaluare Mhs
     mhs_report_id: ID raport MHS
     mhs_session_id: ID sesiune Mhs
+    microsite: Microsite
+    microsite_assessment: Evaluarea microsite-ului
+    microsite_assessment_name: Denumirea evaluării microsite-ului
+    microsite_question_id: ID întrebare microsite
     min_value: Valoarea minimă
     minimum_10_words: Minimum 10 cuvinte
     minimum_download_speed: Viteza minimă de descărcare (în Mbps)
@@ -445,12 +469,14 @@ ro:
     missing_min_max_values: Sunt necesare valorile minime și maxime.
     model_answer: Răspuns model
     model_answer_placeholder: Introduceți răspunsul model pentru evaluarea AI.
+    must_be_a_valid_url: Adresă URL nevalidă. Introduceți adresa URL completă, incluzând protocolul http sau https
     name: Nume
     name_max_length: Numele nu poate depăși %{length} caractere
     name_required: Este necesar numele
     new_folder: Dosar nou
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
+    no_question_mappings: Nu sunt disponibile corespondențe între întrebări
     no_status: Fără statut
     norm_editor_numeric_value_error: Sunt permise doar valori numerice (numere întregi sau zecimale).
     norms: Normele
@@ -466,10 +492,13 @@ ro:
     on_the_job: La locul de muncă [70]
     only_editable_on_create: Această opțiune poate fi editată numai în timpul creării.
     options: Opțiuni
+    organisational: AGIL
     original_text: Textul original
     overall: În general
     overall_score: Scorul general
     participants: Participanţii
+    pearson: Pearson
+    pearson_assessment: Evaluarea Pearson
     permissions:
       aiArtifacts:
         export: Export
@@ -800,6 +829,8 @@ ro:
       projectSettings:
         assessments: Evaluări
         design: Design
+        external_logout_redirect_enabled: Activare redirecționare externă la ieșire
+        external_logout_url: URL extern pentru deconectare
         feature_flags: Steaguri de caracteristici
         idp: IDP
         integrations: Integrări
@@ -913,6 +944,7 @@ ro:
     project_settings: Setările proiectului
     projects: Proiecte
     prompt: Prompt
+    psychometric: Psihometrice
     question_center: Centrul de întrebări
     question_center_page_title: Centrul de întrebări - Tablou de bord - Mercer Lighthouse
     question_editor_change_type: Schimbă tipul
@@ -921,6 +953,7 @@ ro:
     question_editor_enable_transcription: Activează transcrierea
     question_editor_preview_question: Întrebare de previzualizare
     question_editor_validation_type: Tipul de validare
+    question_mapping: Cartografierea întrebărilor
     question_randomization: Randomizarea întrebărilor
     question_type_audio_response: Răspuns audio
     question_type_constant_sum: Suma constantă
@@ -1037,6 +1070,8 @@ ro:
       subject_full_name_cont: Numele subiectului
       user_email_cont: Adresa de e-mail a utilizatorului
       user_full_name_cont: Nume de utilizator
+    saville: Saville
+    saville_assessment: Evaluarea Saville
     scheduling: Programarea
     score: Scor
     score_approval_not_allowed_to_approve: Nu aveți voie să aprobați acest scor.
@@ -1072,6 +1107,7 @@ ro:
     select_end_time: Selectați ora de încheiere
     select_language_to_translate: Vă rugăm să selectați limba pentru traducere
     select_level: Selectați nivelul
+    select_question: Căutați o întrebare după nume sau ID
     select_start_time: Selectați ora de începere
     selective_proctoring: Supraveghere selectivă
     send_email: Trimite e-mail
@@ -1084,14 +1120,19 @@ ro:
     show_submenu: Afișează submeniu
     show_translated: Afișează traducerea
     siem: SIEM
+    simulation: Simulare
+    simulation_assessment: Evaluarea simulării
     skill_aliases: Aliasuri de abilități
     skills: Aptitudini
     skills_taxonomy: Taxonomia abilităților
+    skillvue: Skillvue
+    skillvue_assessment: Evaluarea Skillvue
     skip_assessment_level_checks: Omite verificările sistemului la nivel de evaluare
     slot_name: Numele slotului
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
     specialty_questions: Întrebări specifice
+    standard_deviation: Abaterea standard
     standard_questions: Întrebări standard
     start: începe
     start_time: Ora de începere
@@ -1152,6 +1193,8 @@ ro:
     x_axis_interval_label: Intervalul axei X
     y_axis_interval_label: Intervalul axei Y
     year: Țara
+    yoodli: Yoodli
     yoodli_activity_id: ID-ul activității Yoodli
+    yoodli_assessment: Evaluarea Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli
     yoodli_external_assessment_id: ID de evaluare Yoodli

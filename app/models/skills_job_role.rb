@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class SkillsJobRole < ApplicationRecord
-  include RansackSearchableFields
-
   belongs_to :skill
   belongs_to :job_role
   belongs_to :project, class_name: 'Client'
+
+  include Tenantable
 
   validates :expected_proficiency_level, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 

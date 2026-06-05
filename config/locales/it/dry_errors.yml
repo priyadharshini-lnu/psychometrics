@@ -52,6 +52,7 @@ it:
         content_required: Il contenuto è richiesto per le istruzioni
         tag_or_skill_required: Seleziona un tag o un'abilità quando scegli l'opzione "Selezionato".
       invalid_name: solo i caratteri alfabetici, i numeri, gli spazi, i trattini e i punti sono ammessi come caratteri validi
+      invalid_question_ids: 'ID delle domande non presenti in questa valutazione: %{ids}'
       invalid_value: istruzione non valida "%{value}" sulla riga numero %{row}
       job_roles:
         unique_within_job_group: Esiste già un ruolo lavorativo con lo stesso nome.
@@ -88,6 +89,7 @@ it:
         unique_mappings: Esiste già una mappatura con le stesse competenze e lo stesso ruolo.
       uniq: Questa valutazione Mettl è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq?: dovrebbe essere unico
+      uniq_microsite: Questa valutazione del microsito è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq_simulation: Questa valutazione di simulazione è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq_skillvue: Questa valutazione Skillvue è già presente nel sistema. L'ID di questa valutazione è %{id}
       uniq_yoodli: Questa valutazione Yoodli è già presente nel sistema. L'ID di questa valutazione è %{id}

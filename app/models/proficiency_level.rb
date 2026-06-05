@@ -8,6 +8,8 @@ class ProficiencyLevel < ApplicationRecord
   belongs_to :project, class_name: 'Client', optional: true
   belongs_to :skill
 
+  include Tenantable
+
   enum :proficiency_type, {
     default: 0,
     by_skill_type: 1,

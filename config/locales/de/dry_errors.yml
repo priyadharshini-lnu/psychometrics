@@ -52,6 +52,7 @@ de:
         content_required: Für die Anleitung wird der Inhalt benötigt
         tag_or_skill_required: Bitte wählen Sie entweder ein Tag oder eine Fähigkeit aus, wenn die Option „Ausgewählt“ gewählt ist.
       invalid_name: nur Alphabet, Zahl, Leerzeichen, Bindestrich und Punkt sind als gültige Zeichen erlaubt
+      invalid_question_ids: 'In dieser Bewertung nicht gefundene Fragen-IDs: %{ids}'
       invalid_value: ungültige Anweisung '%{value}' in Zeile Nummer %{row}
       job_roles:
         unique_within_job_group: Eine Jobrolle mit demselben Namen existiert bereits.
@@ -88,6 +89,7 @@ de:
         unique_mappings: Es gibt bereits ein Mapping mit der gleichen Qualifikation und Aufgabenstellung.
       uniq: Diese Mettl-Bewertung ist bereits im System vorhanden. Die ID dieser Bewertung lautet %{id}
       uniq?: sollte einzigartig sein
+      uniq_microsite: Diese Microsite-Bewertung ist bereits im System vorhanden. Die ID dieser Bewertung lautet %{id}
       uniq_simulation: Diese Simulationsbeurteilung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}
       uniq_skillvue: Diese Skillvue-Bewertung ist bereits im System vorhanden. Die ID dieser Beurteilung lautet %{id}
       uniq_yoodli: Diese Yoodli-Bewertung ist bereits im System vorhanden. Die ID dieser Bewertung ist %{id}

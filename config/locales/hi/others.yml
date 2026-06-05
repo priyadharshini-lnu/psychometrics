@@ -1100,36 +1100,9 @@ hi:
       title: मूल्यांकन विवरण
     edit: संपादित करें
     fields:
-      category:
-        agile: चपल
-        assessor_form: मूल्यांकनकर्ता प्रपत्र
-        case_study: केस स्टडीज़
-        hogan: होगन
-        iiht: आईआईएचटी
-        lead_assessor_form: प्रमुख मूल्यांकनकर्ता प्रपत्र
-        meeting: बैठक
-        mettl: मेटल
-        organisational: संगठन सर्वेक्षण
-        pearson: पियर्सन
-        psychometric: मनोमापी
-        saville: सैविल
-        simulation: अनुकरण
-        skillvue: स्किलव्यू
-        threesixty: 360 अभियान
-        yoodli: यूडली
       status:
         finished: समाप्त
         in_progress: प्रगति में
-      type:
-        common: टीटीई मूल्यांकन
-        hogan: होगन
-        iiht: आईआईएचटी मूल्यांकन
-        mettl: मेटल असेसमेंट
-        pearson: पियर्सन मूल्यांकन
-        saville: सैविल मूल्यांकन
-        simulation: अनुकरण मूल्यांकन
-        skillvue: स्किलव्यू मूल्यांकन
-        yoodli: यूडली मूल्यांकन
     flow:
       end_assessment_modal:
         custom_message: मूल्यांकन के अंत का अनुकूलित संदेश
@@ -1209,16 +1182,11 @@ hi:
         failure: यह ब्राउज़र वीडियो रिकॉर्डिंग का समर्थन नहीं करता है। कृपया वीडियो रिकॉर्डिंग के लिए Chrome या Firefox का उपयोग करें।
         success: कृपया ऑडियो और वीडियो रिकॉर्ड करने के लिए कैमरा और माइक्रोफोन का उपयोग करने की अनुमति दें।
         unsupported: यह ब्राउज़र वीडियो रिकॉर्डिंग का समर्थन नहीं करता है। कृपया निम्नलिखित में से कोई भी ब्राउज़र उपयोग करें,
-      recording_duration_label: रिकॉर्डिंग की अधिकतम अवधि
-      recording_stop_label: रिकॉर्डिंग रुकेगी
       requesting_permission: अनुमति मांगी जा रही है...
       response_recorded: प्रतिक्रिया दर्ज की गई
       save: बचाएँ
-      saved:
-        label: वीडियो सहेजा गया
       seek: खोजो
       start_recording: रिकॉर्डिंग शुरू करें
-      stop_recording: रिकॉर्डिंग बंद करें
       tracker:
         backward: आप स्क्रीन के बहुत करीब हैं। कृपया थोड़ा पीछे हटें।
         forward: आप स्क्रीन से बहुत दूर हैं। कृपया थोड़ा करीब आएं।
@@ -1380,15 +1348,12 @@ hi:
     all_activities_are_completed: सभी गतिविधियाँ अब पूरी हो चुकी हैं।
     all_activities_are_completed_multiple: इस अभियान की सभी गतिविधियाँ अब पूरी हो चुकी हैं। कृपया डैशबोर्ड पर जाएँ और देखें कि क्या आपको कोई अन्य गतिविधियाँ सौंपी गई हैं।
     already_joined: आप पहले ही इस अभियान में शामिल हो चुके हैं।
-    begin: अपने कार्य शुरू करें
-    begin_btn_msg_before_prework: टाइमड अभियान शुरू करने से पहले आपको नीचे दिए गए कार्यों को पूरा करना होगा।
     begin_campaign_msg: मूल्यांकन करने से पहले अभियान शुरू करें
     campaigns: अभियान
     closed_campaign_message: यह अभियान बंद है। आप इस अभियान के अंतर्गत कोई भी मूल्यांकन नहीं कर सकते।
     code_usage_limit_reached: कोड उपयोग सीमा समाप्त हो गई है, कृपया प्रशासक से संपर्क करें।
     complete_prev: सभी पिछले मूल्यांकन पूरे करें
     complete_tasks: कृपया इस कार्रवाई को करने से पहले नीचे दिए गए कार्यों को पूरा करें।
-    continue: अपने कार्यों को जारी रखें
     dashboard_instructions: आपको कई गतिविधियाँ सौंपी गई हो सकती हैं जिन्हें आपको पूरा करना है। कृपया सुनिश्चित करें कि सभी अभियानों में सभी सौंपी गई गतिविधियाँ पूरी हो चुकी हैं।
     dashboard_menu:
       campaign: अभियान
@@ -1490,6 +1455,9 @@ hi:
       external_user_id: स्किलव्यू उम्मीदवार आईडी
       id: अभियान मूल्यांकन आईडी
       locales: स्थानीय क्षेत्र
+      microsite_error_message: त्रुटि संदेश
+      microsite_participant_id: माइक्रोसाइट प्रतिभागी आईडी
+      microsite_registration_status: पंजीकरण स्थिति
       norm: नॉर्म
       norm_id: नॉर्म आईडी
       pearson_norm_id: पियर्सन मानक आईडी
@@ -1764,10 +1732,8 @@ hi:
       permissions: वेबकैम और ऑडियो अनुमतियाँ
       title: इस मूल्यांकन को शुरू करने से पहले, आपकी प्रणाली को कुछ जांचों से गुजरना होगा।
     video_check:
-      description: रिकॉर्डिंग शुरू करने पर क्लिक करें और नीचे दिए गए अंश को अपनी आवाज़ में पढ़ते हुए अपना वीडियो रिकॉर्ड करें।
       random_phrases:
         one: अगर आप मुझे सुन सकते हैं तो अपना हाथ उठाएँ, या बस कैमरे के लिए हाथ हिलाएँ!
-      title: हमें यह सुनिश्चित करना होगा कि आपका सिस्टम वीडियो रिकॉर्ड कर सके।
   common:
     actions:
       add: जोड़ें
@@ -1848,6 +1814,7 @@ hi:
       json:
         answer: JSON उत्तर
         external_result: बाहरी परिणाम JSON
+        microsite_raw_response: माइक्रोसाइट कच्चा प्रतिक्रिया
         scoring: स्कोरिंग JSON
       key: मुख्य
       last_name: आखिरी नाम
@@ -3308,13 +3275,6 @@ hi:
     fields:
       provider:
         custom_upload: कस्टम अपलोड
-        hogan: होगन
-        internal: आंतरिक
-        mettl: मेटल
-        pearson: पियर्सन
-        saville: सैविल
-        skillvue: स्किलव्यू
-        yoodli: यूडली
     form:
       load_from_mettl: Mettl से लोड करें
       load_from_pearson: पिअर्सन से लोड करें

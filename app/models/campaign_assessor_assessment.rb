@@ -6,6 +6,7 @@ class CampaignAssessorAssessment < ApplicationRecord
   belongs_to :campaign
   belongs_to :assessment
   belongs_to :campaign_assessment_group
+  include Tenantable
 
   has_many :factors, -> { distinct }, through: :assessment
 

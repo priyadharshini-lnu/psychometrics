@@ -22,9 +22,11 @@ nl:
     assessors_list: Lijst van beoordelaars
     asset_not_present: Asset niet aanwezig
     audio: Audio
+    audio_devices: Audioapparatuur
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
     back: Terug
     basic: Basisch
+    camera: Camera
     camera_preview: Hier verschijnt het voorbeeld van de camera
     campaign: Campagne
     campaign_id: Campagne-ID
@@ -59,6 +61,7 @@ nl:
     desktop_or_laptop_recommended: Desktop of laptop aanbevolen
     desktop_or_laptop_required: Desktop of laptop vereist
     disabled: Gehandicapt
+    discard: Verwijderen
     download: Downloaden
     download_audio: Audio downloaden
     download_transcription: Transcriptie downloaden
@@ -85,6 +88,7 @@ nl:
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     last_name: Achternaam
     learning_on_the_job_label: Leren op de werkvloer
+    lets_start: Laten we beginnen!
     loading: Bezig met laden...
     login: Inloggen
     maintenance_in_hours: "%{hours} uren"
@@ -99,6 +103,7 @@ nl:
     media_preview: Media Preview
     media_question_transcriptions: Transcripties van vragen van de media
     media_responses: Reacties in de media
+    microphones: Microfoons
     mobile_proctoring_disabled_instructions: Voor deze beoordeling is een desktop of laptop nodig. Ga naar een computer om de activiteit te voltooien.
     mobile_proctoring_enabled_instructions: Voor de beste ervaring raden we u aan om over te schakelen naar een desktop of laptop als u die beschikbaar heeft. Indien nodig kunt u doorgaan op uw mobiele apparaat.
     modified_by: Gewijzigd door
@@ -116,7 +121,9 @@ nl:
     ok: Ok
     options: Opties
     owner: Eigenaar
+    pause: Pauze
     pending: In behandeling
+    play: Spelen
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
     positive: Positief
@@ -130,6 +137,7 @@ nl:
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     rec: REC
+    record: Record
     recorded: Opgenomen
     recording: Opname
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
@@ -146,16 +154,21 @@ nl:
     saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
     scoring_details: Scoredetails
     search: Zoek op
+    select_camera: Kies een camera
+    select_microphone: Kies een microfoon
     send_email: Stuur e-mail
     show_more: Laat meer zien
     something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
+    speakers: Sprekers
     status: Status
     status_unknown: Status onbekend
+    stop: Stop
     subject: Onderwerp
     submit: Verzenden
     submit_and_finish_proctoring: Verzenden en toezicht afronden
     suspended: Opgeschort
     switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop
+    system_check_uploading: Uploaden
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ nl:
     update_failed: Update mislukt
     updated_at: Bijgewerkt op
     updated_successfully: Succesvol bijgewerkt
+    user_report_pdf_url_not_generated: De downloadlink voor de PDF kon niet worden gegenereerd
     video: Video
     view: Bekijken
     view_audio: Audio bekijken

@@ -19,6 +19,7 @@ class Campaign < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
   belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
+  include Tenantable
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id
@@ -92,6 +93,7 @@ class Campaign < ApplicationRecord
   has_many :ai_score_approvals, dependent: :destroy, class_name: 'AI::ScoreApproval'
   has_many :communications, dependent: :destroy
   has_many :user_idp_plans
+  has_many :privacy_consents, dependent: :nullify
 
   accepts_nested_attributes_for :campaign_options
 

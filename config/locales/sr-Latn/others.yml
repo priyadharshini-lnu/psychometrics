@@ -1100,36 +1100,9 @@ sr-Latn:
       title: Detalji procene
     edit: Uređivanje
     fields:
-      category:
-        agile: GIBGIB
-        assessor_form: Obrazac ocenjivača
-        case_study: Studije slučaja
-        hogan: Hogan
-        iiht: OMILjENO
-        lead_assessor_form: Obrazac glavnog procenjivača
-        meeting: Sastanak
-        mettl: OMILjENO
-        organisational: Org Ankete
-        pearson: Pirson
-        psychometric: Psihometrijski
-        saville: San-Tome i Prinsipi
-        simulation: Simulacija
-        skillvue: Skillvue
-        threesixty: 360 Kampanja
-        yoodli: Joodli
       status:
         finished: Zavrљio
         in_progress: U toku
-      type:
-        common: TTE Procena
-        hogan: Hogan
-        iiht: IIHT procena
-        mettl: Mettl Procena
-        pearson: Pirsonova procena
-        saville: Savil Procena
-        simulation: Simulacija Procena
-        skillvue: Skillvue Procena
-        yoodli: Joodli Procena
     flow:
       end_assessment_modal:
         custom_message: Prilagođeni kraj poruke o proceni
@@ -1209,16 +1182,11 @@ sr-Latn:
         failure: Ovaj pretraživač ne podržava video snimanje. Molimo Vas da koristite Chrome ili Firefox za snimanje video zapisa
         success: Dozvolite da koristite kameru i mikrofon za snimanje audio i video
         unsupported: Ovaj pretraživač ne podržava video snimanje. Molimo Vas da koristite bilo koji od sledećih pretraživača,
-      recording_duration_label: Maksimalno trajanje snimanja
-      recording_stop_label: Snimanje će se zaustaviti za
       requesting_permission: Traženje dozvole ...
       response_recorded: Odgovor zabeležen
       save: Sačuvaj
-      saved:
-        label: Video sačuvan
       seek: Traћim
       start_recording: Započni snimanje
-      stop_recording: Zaustavi snimanje
       tracker:
         backward: Preblizu ste ekranu. Molimo vas da se pomerite malo unazad
         forward: Predaleko ste od ekrana. Molimo vas da se približite malo bliže
@@ -1380,15 +1348,12 @@ sr-Latn:
     all_activities_are_completed: Sve aktivnosti su sada završene.
     all_activities_are_completed_multiple: Sve aktivnosti za ovu kampanju su sada završene. Molimo vas da pređete na kontrolnu tablu i proverite da li imate dodeljene neke druge aktivnosti.
     already_joined: Već ste se pridružili ovoj kampanji
-    begin: Započnite svoje zadatke
-    begin_btn_msg_before_prework: Morate da završite zadatke ispod pre nego što započnete vremenski ograničenu kampanju
     begin_campaign_msg: Započnite kampanju pre nego što uzmete procene
     campaigns: Kampanje
     closed_campaign_message: Ova kampanja je zatvorena. Ne možete uzeti nikakvu procenu u okviru ove kampanje.
     code_usage_limit_reached: Ograničenje korišćenja koda dostignuto, kontaktirajte administratora
     complete_prev: Popunite sve prethodne procene
     complete_tasks: Molimo vas da završite zadatke ispod pre nego što preduzmete ovu akciju.
-    continue: Nastavite sa svojim zadacima
     dashboard_instructions: Možda vam je dodeljeno više aktivnosti koje morate da završite. Proverite da li su sve dodeljene aktivnosti završene u svim kampanjama.
     dashboard_menu:
       campaign: Kampanja
@@ -1488,6 +1453,9 @@ sr-Latn:
       external_user_id: Skillvue ID kandidata
       id: ID za procenu kampanje
       locales: Ćirilica
+      microsite_error_message: Порука о грешци
+      microsite_participant_id: ИД учесника микросајта
+      microsite_registration_status: Статус регистрације
       norm: Norma
       norm_id: Norma ID
       pearson_norm_id: Pirson Norma ID
@@ -1762,10 +1730,8 @@ sr-Latn:
       permissions: Dozvole za veb kameru i audio
       title: Pre nego što započnete ovu procenu, vaš sistem mora da prođe neke provere.
     video_check:
-      description: Kliknite na Počni snimanje i snimite se dok čitate donji pasus svojim glasom
       random_phrases:
         one: Sem spreman. Ovo je testni snimak da potvrdim da li moj mikrofon i kamera ispravno rade.
-      title: Moramo da obezbedimo vaš sistem može da snima video
   common:
     actions:
       add: Dodaj
@@ -1846,6 +1812,7 @@ sr-Latn:
       json:
         answer: Odgovor JSON
         external_result: Spoljni rezultat JSON
+        microsite_raw_response: Микросајт сиров одговор
         scoring: Bodovanje JSON
       key: Ključ
       last_name: Prezime
@@ -3304,13 +3271,6 @@ sr-Latn:
     fields:
       provider:
         custom_upload: Prilagođeno otpremanje
-        hogan: Hogan
-        internal: Unutrašnje
-        mettl: OMILjENO
-        pearson: Pirson
-        saville: San-Tome i Prinsipi
-        skillvue: OMILjENO
-        yoodli: Joodli
     form:
       load_from_mettl: Učitaj od Mettl
       load_from_pearson: Učitaj od Pirsona

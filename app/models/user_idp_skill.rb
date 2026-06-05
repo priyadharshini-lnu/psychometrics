@@ -13,6 +13,10 @@ class UserIdpSkill < ApplicationRecord
 
   belongs_to :user_idp_plan, autosave: true
   belongs_to :skill
+  include Tenantable
+
+  tenant_source :user_idp_plan
+
   has_one :user, through: :user_idp_plan
   has_many :user_idp_development_actions, dependent: :destroy
   has_many :development_actions, through: :skill

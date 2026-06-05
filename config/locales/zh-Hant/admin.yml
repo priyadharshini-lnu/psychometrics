@@ -22,6 +22,7 @@ zh-Hant:
     admin_updated_successfully: 管理員 '%{name}' 已成功更新
     admins: 管理員
     advanced: 高级
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: 无法为用户 '%{user_email}' 生成工件 '%{artifact_name}'
     ai_artifact_result_stale: 结果可能已过时，因为自上次生成结果以来，AI工件的依赖项已发生变化。建议重新生成工件以使用最新依赖项进行构建。
     ai_artifacts: 人工智慧神器
@@ -137,6 +138,7 @@ zh-Hant:
     assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板
+    assessor_form: 評估員表格
     assessor_workshops: 評估中心
     assessors: 評估員
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
@@ -144,6 +146,7 @@ zh-Hant:
     assistant_validation_failed: 多次尝试后仍未能生成有效输出
     audit_logs: 稽核記錄
     audit_reports: 審計報告
+    auto_moderated_factor_info: 该评分由系统自动生成，无法修改
     auto_placeholder: 汽车
     availability: 可用性
     available_languages: 報告提供多種語言版本
@@ -221,6 +224,7 @@ zh-Hant:
     cancel: 取消
     cancellation_and_rescheduling_disabled: 取消和重新安排功能已禁用
     captcha: 验证码验证
+    case_study: 案例研究
     casual: 休闲
     cell_save_msg: 编辑完成后，只要离开单元格，有效的更改就会自动保存。
     characters: 字符
@@ -230,6 +234,8 @@ zh-Hant:
     client_admins: 客戶端管理員
     clients: 客戶租約
     code_required: 必須使用程式碼
+    common: TTE 評估
+    common_assessment: TTE 評估
     communication_center: 通訊中心
     communications: 通訊
     completed: 成
@@ -248,6 +254,7 @@ zh-Hant:
     create_client: 建立客戶端
     create_indicator: 创建指标
     current_job_role: 当前职位
+    custom_upload: 自訂上傳
     dashboard: 儀表板
     dashboards: 儀表板
     data_reports: 資料報告
@@ -285,6 +292,8 @@ zh-Hant:
     dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
     disable_proctoring: 禁用监考功能
+    disallow_lead_assessor_moderation: 禁止首席评估员进行审核
+    disallow_lead_assessor_moderation_info: 评分将根据所有评估员提交的表格自动计算，首席评估员无法在审核界面中修改该评分
     done: 熟
     done_tooltip: 此用戶無法再提交評估，因為該用戶的評估已被標記為已完成%{marked_by}
     download_bulk_asset_download_example_csv: 下载示例 CSV 文件。
@@ -315,6 +324,7 @@ zh-Hant:
     enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
     enter_description: 输入描述
     enter_name: 输入姓名
+    enter_question_id: 输入问题 ID
     error: 错误
     estimated_tokens: 代币（估计值）
     evaluation_status: 評估狀態
@@ -381,6 +391,8 @@ zh-Hant:
     idp_appearance_title: 标题
     idp_plan_reset_success: 計畫已成功重置
     idp_templates: IDP 範本
+    iiht: IIHT
+    iiht_assessment: IIHT 評估
     import_ai_artifacts: 匯入 AI 工件
     import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
     import_csv_error: 第 %{index} 列：擁有電子郵件 %{email} 的使用者未參與本次活動
@@ -406,9 +418,11 @@ zh-Hant:
     import_users: 匯入使用者
     internal: 内部
     invalid_csv_header: CSV 檔案包含無效標頭。
+    invalid_question_ids: 未在此评估中找到以下试题编号：%{ids}
     job_roles: 工作角色
     keywords: 关键词
     keywords_placeholder: 请输入以逗号分隔的关键词。
+    lead_assessor_form: 首席評估員表格
     learning_from_others: 協作學習 [20]
     level: 等级
     level_apply: 申请
@@ -418,6 +432,8 @@ zh-Hant:
     libraries: 媒體圖書館
     library_invalid_type: 無效圖書館項目
     licenses: 許可證
+    lighthouse_question: 灯塔问题
+    lighthouse_question_id: Lighthouse 问题 ID
     linked_assessments: 关联评估
     low: 低
     maintenance: 维护
@@ -425,10 +441,14 @@ zh-Hant:
     maintenance_settings_description: 管理系统维护窗口和设置
     manager_approval_required: "%{user}報告需要經理批准才能下載。"
     max_value: 最大值
+    mean: 平均值
     media_files_label: 文件
     media_library: 媒体库
     media_library_page_title: 媒体库 - 仪表盘 - Mercer Lighthouse
+    meeting: 會議
     messages: 訊息
+    mettl: METTL
+    mettl_assessment: Mettl 評估
     mhs: MHS
     mhs_assessment: MHS评估
     mhs_assessment_name: MHS评估名称
@@ -437,6 +457,10 @@ zh-Hant:
     mhs_external_assessment_id: Mhs评估ID
     mhs_report_id: MHS报告编号
     mhs_session_id: Mhs 会话标识符
+    microsite: 专题网站
+    microsite_assessment: 微网站评估
+    microsite_assessment_name: 微网站评估名称
+    microsite_question_id: 微网站问题 ID
     min_value: 最小值
     minimum_10_words: 至少10个单词
     minimum_download_speed: 最低下载速度（单位：Mbps）
@@ -445,12 +469,14 @@ zh-Hant:
     missing_min_max_values: 必须提供最小值和最大值。
     model_answer: 示范答案
     model_answer_placeholder: 输入供AI评分的模范答案。
+    must_be_a_valid_url: URL 无效。请输入包含 http 或 https 协议的完整 URL
     name: 名称
     name_max_length: 名称不能超过%{length}个字符
     name_required: 需命名
     new_folder: 新建文件夹
     no_file_selected: 未選取任何檔案
     no_notifications: 沒有通知
+    no_question_mappings: 没有可用的问题映射
     no_status: 无状态
     norm_editor_numeric_value_error: 仅允许输入数值（整数或小数）。
     norms: 規範
@@ -466,10 +492,13 @@ zh-Hant:
     on_the_job: 在職 [70]
     only_editable_on_create: 此选项仅在创建时可编辑。
     options: 選項
+    organisational: AGILE
     original_text: 原文
     overall: 总体而言
     overall_score: 总分
     participants: 參與者
+    pearson: 培生
+    pearson_assessment: 培生評估
     permissions:
       aiArtifacts:
         export: 出口
@@ -800,6 +829,8 @@ zh-Hant:
       projectSettings:
         assessments: 評估
         design: 設計
+        external_logout_redirect_enabled: 启用外部重定向注销
+        external_logout_url: 外部注销链接
         feature_flags: 功能旗標
         idp: IDP
         integrations: 整合
@@ -913,6 +944,7 @@ zh-Hant:
     project_settings: 專案設定
     projects: 專案
     prompt: 提示
+    psychometric: 心理測量
     question_center: 問題中心
     question_center_page_title: 问题中心 - 仪表盘 - Mercer Lighthouse
     question_editor_change_type: 更改类型
@@ -921,6 +953,7 @@ zh-Hant:
     question_editor_enable_transcription: 启用转录
     question_editor_preview_question: 预览问题
     question_editor_validation_type: 验证类型
+    question_mapping: 问题映射
     question_randomization: 试题随机排列
     question_type_audio_response: 语音回复
     question_type_constant_sum: 恒定和
@@ -1037,6 +1070,8 @@ zh-Hant:
       subject_full_name_cont: 科目名称
       user_email_cont: 用户邮箱
       user_full_name_cont: 用户名
+    saville: 薩維爾
+    saville_assessment: 薩維爾評估
     scheduling: 排程
     score: 得分
     score_approval_not_allowed_to_approve: 您无权批准此分数。
@@ -1072,6 +1107,7 @@ zh-Hant:
     select_end_time: 选择结束时间
     select_language_to_translate: 请选择要翻译的语言
     select_level: 选择级别
+    select_question: 按名称或ID搜索问题
     select_start_time: 选择开始时间
     selective_proctoring: 选择性监考
     send_email: 發送電子郵件
@@ -1084,14 +1120,19 @@ zh-Hant:
     show_submenu: 顯示子選單
     show_translated: 显示翻译
     siem: SIEM
+    simulation: 模擬
+    simulation_assessment: 模擬評估
     skill_aliases: 技能別名
     skills: 技術
     skills_taxonomy: 技能分類法
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue 評估
     skip_assessment_level_checks: 跳过评估级别的系统检查
     slot_name: 車位名稱
     sms_histories: 簡訊歷史
     sms_invites: 簡訊邀請
     specialty_questions: 专业问题
+    standard_deviation: 标准差
     standard_questions: 标准问题
     start: 开始
     start_time: 开始时间
@@ -1152,6 +1193,8 @@ zh-Hant:
     x_axis_interval_label: X轴间隔
     y_axis_interval_label: Y轴间隔
     year: 國家
+    yoodli: 尤德利
     yoodli_activity_id: Yoodli 活動識別碼
+    yoodli_assessment: Yoodli 評估
     yoodli_email_id: Yoodli 候選人電子郵件 ID
     yoodli_external_assessment_id: Yoodli 評估識別碼

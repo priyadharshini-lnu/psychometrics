@@ -1,25 +1,45 @@
 @import "~/styles/antv4.variable.less";
 @import "~/styles/spacing.less";
 
+@mr-surface-dark: rgba(20, 20, 20, 1);
+@mr-surface-dark-translucent: rgba(20, 20, 20, 0.6);
+@mr-overlay: rgba(0, 0, 0, 0.5);
+@mr-overlay-heavy: rgba(0, 0, 0, 0.7);
+@mr-white-subtle: rgba(255, 255, 255, 0.1);
+@mr-white-light: rgba(255, 255, 255, 0.18);
+@mr-white-medium: rgba(255, 255, 255, 0.4);
+@mr-white-strong: rgba(255, 255, 255, 0.8);
+@mr-text-primary: #1a1a1a;
+@mr-text-secondary: #333;
+@mr-text-muted: #888;
+@mr-popover-bg: #fff;
+@mr-popover-hover: #f5f5f5;
+@mr-popover-divider: #eee;
+
 .container {
   overflow: hidden;
 }
 
-.videoPlayerContainer{
+.videoPlayerContainer {
   width: 100%;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 16px;
 }
 
 .videoContainer {
   width: 100%;
   aspect-ratio: 16 / 9;
   background-color: black;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   overflow: hidden;
   position: relative;
 }
 
 .videoPlayerWrapper{
   padding-inline: @space-8;
+  padding-top: @space-8;
   width: 100%;
 }
 
@@ -30,6 +50,133 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-color: black;
+  border-radius: 8px 8px 0 0;
+
+  &:focus-visible {
+    outline: 3px solid var(--ant-primary-color);
+    outline-offset: -3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.dummyMessageOverlay {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  pointer-events: none;
+  height: fit-content;
+  display: flex;
+  align-self: flex-end;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0.25rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.dummyMessage {
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+  color: white;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+.dummyMessage {
+  font-size: 0.85rem;
+ }
+}
+
+.recordMessageOverlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: 2;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: transform;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
+}
+
+.recordMessageOverlayEnter {
+  animation: record-message-slide-down 320ms ease-out forwards;
+}
+
+.recordMessageOverlayExit {
+  animation: record-message-slide-up 260ms ease-in forwards;
+}
+
+@keyframes record-message-slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes record-message-slide-up {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.errorOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1em;
+}
+
+.recordMessage {
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: @space-4;
+  flex: 1;
+  align-items: center;
+  color: white;
+  height: 100%;
+  pointer-events: auto;
+  max-width: 60%;
+  text-align: center;
+
+  button {
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+  }
 }
 
 .overlay {
@@ -41,7 +188,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: @mr-overlay;
   color: white;
   font-size: 18px;
 }
@@ -52,7 +199,7 @@
   left: 10px;
   display: flex;
   align-items: center;
-  background-color: rgba(20, 20, 20, 0.6);
+  background-color: @mr-surface-dark-translucent;
   border-radius: 4px;
   padding: 5px;
   color: white;
@@ -62,7 +209,7 @@
 .dot {
   width: 10px;
   height: 10px;
-  background-color: rgb(255, 0, 0);
+  background-color: var(--ant-danger-color);
   border-radius: 50%;
   margin-right: 5px;
 }
@@ -91,7 +238,7 @@
 
 .countdownIndicator :global(.ant-statistic-content) {
   margin-left: 6px;
-  color: @white;
+  color: white;
   border-left: 1px solid;
   height: 20px;
   padding-left: 6px;
@@ -104,5 +251,439 @@
     .ant-select-disabled {
       background: transparent;
     }
+  }
+}
+
+// Device selectors overlay
+.deviceSelectorsOverlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+  display: flex;
+  gap: 6px;
+}
+
+// Pipecat-style compound device control
+.deviceControlWrapper {
+  position: relative;
+}
+
+.deviceControlButton {
+  display: flex;
+  align-items: stretch;
+  border-radius: 8px;
+  overflow: hidden;
+  background: @mr-overlay;
+  backdrop-filter: blur(14px);
+  color: white;
+  height: 32px;
+
+  &:focus-within {
+    outline: 2px solid var(--ant-color-primary-border);
+    outline-offset: 2px;
+  }
+}
+
+.deviceControlMain {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.deviceControlChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.15s;
+  padding: 0;
+
+  &:hover {
+    background:rgba(255, 255, 255, 0.2) !important;
+    border: none !important;
+    color: white !important;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.devicePopoverOverlay {
+  :global(.ant-popover-inner) {
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  :global(.ant-popover-arrow) {
+    display: none;
+  }
+
+  .devicePopover {
+    position: static;
+  }
+}
+
+.devicePopoverTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: @mr-text-primary;
+  margin-bottom: 0.5rem;
+}
+
+
+.deviceOption {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: @mr-text-secondary;
+  text-align: left;
+  transition: background 0.1s;
+
+  &:hover {
+    background: @mr-popover-hover !important;
+    border: none !important;
+    color: @mr-text-primary !important;
+  }
+}
+
+.deviceOptionSelected {
+  font-weight: 600;
+  color: @mr-text-primary;
+}
+
+.deviceCheckmark {
+  width: 16px;
+  flex-shrink: 0;
+  font-size: 13px;
+  color: @mr-text-primary;
+  font-weight: 700;
+}
+
+.deviceOptionLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+// No audio warning overlay
+.audioWarningOverlay {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  right: 10px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  width: fit-content;
+  background: var(--ant-warning-color);
+  backdrop-filter: blur(8px);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 2px solid var(--ant-warning-color);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
+}
+
+.audioVisualizerOverlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
+}
+
+// Playback controls
+.playbackWrapper {
+  width: 100%;
+  z-index: 5;
+}
+
+.playbackControlBar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 12px;
+  background: @mr-surface-dark;
+  border-radius: 0 0 8px 8px;
+  color: white;
+  width: 100%;
+}
+
+.playbackSeekbarInline {
+  flex: 1;
+  position: relative;
+  height: 6px;
+  background: @mr-white-light;
+  border-radius: 3px;
+  cursor: pointer;
+  min-width: 60px;
+
+  .playbackSeekbarThumb {
+      opacity: 1;
+    }
+}
+
+.playbackSeekbarFill {
+  height: 100%;
+  background: white;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.playbackSeekbarThumb {
+  position: absolute;
+  top: 25%;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0);
+  margin-top: -6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  pointer-events: none;
+}
+
+.playbackBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none !important;
+  }
+}
+
+.playbackTime {
+  font-size: 12px;
+  font-family: 'SF Mono', 'Menlo', 'Monaco', monospace;
+  color: @mr-white-strong;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// Animations
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+@keyframes countdownAnim {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+// Floating Control Bar
+.floatingControlBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: @mr-surface-dark;
+  border-radius: 0 0 8px 8px;
+  z-index: 5;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.recordButtonContainer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.controlButton {
+  color: white !important;
+  border: none !important;
+  background: transparent !important;
+
+  &:hover {
+    background: @mr-white-light !important;
+  }
+}
+
+.recordButton {
+  border: none !important;
+  height: 36px !important;
+  font-size: 1em;
+  padding: 1rem;
+}
+
+.stopButton {
+  color: white !important;
+  border: none !important;
+  height: 32px !important;
+  font-size: 1em;
+  padding: 1rem;
+  background-color: var(--ant-error-color) !important;
+
+  &:hover {
+    background-color: rgba(255, 120, 117, 0.9) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .recordButton, .stopButton {
+    border-radius: 50%;
+    height: 32px !important;
+  }
+}
+
+.recIndicator {
+  color: white;
+  font-size: 13px;
+}
+
+.dotPulsing {
+  width: 10px;
+  height: 10px;
+  background-color: var(--ant-error-color);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    opacity: 0.6;
+  }
+}
+
+// Countdown Overlay
+.countdownOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: @mr-overlay-heavy;
+  z-index: 10;
+}
+
+.countdownNumber {
+  font-size: 72px;
+  font-weight: 700;
+  color: white;
+  animation: countdownAnim 1s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
+}
+
+// Inline Timer in Floating Bar
+.inlineTimer {
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.timerNormal {
+  color: @mr-white-strong !important;
+}
+
+.timerWarning {
+  color: var(--ant-warning-color) !important;
+}
+
+.timerUrgent {
+  color: var(--ant-error-color) !important;
+}
+
+.timerSeparator {
+  color: @mr-white-medium;
+  margin: 0 2px;
+}
+
+// Video Progress Bar (bottom of video)
+.videoProgressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: @mr-white-strong;
+  z-index: 6;
+}
+
+.videoProgressFill {
+  height: 100%;
+  background: var(--ant-primary-3);
+  transition: none;
+  border-radius: 0 2px 2px 0;
+}
+
+.videoPlayingStatusIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
   }
 }

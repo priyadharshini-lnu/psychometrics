@@ -1100,36 +1100,9 @@ hu:
       title: Az értékelés részletei
     edit: Szerkeszt
     fields:
-      category:
-        agile: FÜRGE
-        assessor_form: Értékelő űrlap
-        case_study: Esettanulmányok
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Vezető értékelői űrlap
-        meeting: Találkozó
-        mettl: Mettl
-        organisational: Szervezeti felmérések
-        pearson: Pearson
-        psychometric: Pszichometriai
-        saville: Saville
-        simulation: Szimuláció
-        skillvue: Skillvue
-        threesixty: 360 fokos kampány
-        yoodli: Yoodli
       status:
         finished: Kész
         in_progress: Folyamatban
-      type:
-        common: TTE értékelés
-        hogan: Hogan
-        iiht: IIHT értékelés
-        mettl: Mettl értékelés
-        pearson: Pearson értékelés
-        saville: Saville-értékelés
-        simulation: Szimulációs értékelés
-        skillvue: Skillvue értékelés
-        yoodli: Yoodli értékelés
     flow:
       end_assessment_modal:
         custom_message: Egyéni értékelés végi üzenet
@@ -1206,16 +1179,11 @@ hu:
         failure: Ez a böngésző nem támogatja a videófelvételt. Kérjük, használja a Chrome vagy Firefox böngészőt a videófelvételhez
         success: Kérjük, engedélyezze a kamera és a mikrofon használatát hang- és videofelvételek rögzítéséhez
         unsupported: Ez a böngésző nem támogatja a videofelvételt. Kérjük, használja az alábbi böngészők bármelyikét,
-      recording_duration_label: A felvétel maximális időtartama
-      recording_stop_label: A felvétel leáll a
       requesting_permission: Engedélykérés...
       response_recorded: Felvett válasz
       save: Mentés
-      saved:
-        label: Megtakarított videó
       seek: Keres
       start_recording: Felvétel indítása
-      stop_recording: Felvétel leállítása
       tracker:
         backward: Túl közel van a képernyőhöz. Kérem, lépjen kicsit hátrébb
         forward: Túl messze van a képernyőtől, kérem, menjen egy kicsit közelebb
@@ -1377,15 +1345,12 @@ hu:
     all_activities_are_completed: Mostanra minden tevékenység befejeződött.
     all_activities_are_completed_multiple: A kampány összes tevékenysége befejeződött. Kérjük, lépjen tovább az irányítópultra, és ellenőrizze, hogy vannak-e még hozzárendelt tevékenységei.
     already_joined: Már csatlakozott ehhez a kampányhoz
-    begin: Kezdje el a feladatokat
-    begin_btn_msg_before_prework: Az időzített kampány megkezdése előtt az alábbi feladatokat kell elvégeznie
     begin_campaign_msg: Indítsa el a kampányt az értékelések előtt
     campaigns: Kampányok
     closed_campaign_message: Ez a kampány lezárult, ebben a kampányban nem tudsz értékelést végezni.
     code_usage_limit_reached: Elérte a kódhasználati korlátot, forduljon az adminisztrátorhoz
     complete_prev: Az összes korábbi értékelés elvégzése
     complete_tasks: Kérjük, a művelet elvégzése előtt végezze el az alábbi feladatokat.
-    continue: Folytassa feladatait
     dashboard_instructions: Előfordulhat, hogy több tevékenységet is kijelöltek Önnek, amelyeket el kell végeznie. Kérjük, ellenőrizze, hogy az összes kampányban minden kijelölt tevékenységet elvégeztek-e.
     dashboard_menu:
       campaign: Kampány
@@ -1485,6 +1450,9 @@ hu:
       external_user_id: Skillvue jelölt azonosítója
       id: Kampányértékelési azonosító
       locales: Helyszínek
+      microsite_error_message: Hibaüzenet
+      microsite_participant_id: Mikrooldal résztvevői azonosító
+      microsite_registration_status: Regisztrációs állapot
       norm: Norma
       norm_id: Norma azonosító
       pearson_norm_id: Pearson Norm azonosító
@@ -1759,10 +1727,8 @@ hu:
       permissions: Webkamera és hang engedélyek
       title: Az értékelés megkezdése előtt a rendszernek át kell esnie néhány ellenőrzésen.
     video_check:
-      description: Kattintson a Start Recording gombra, és vegye fel magát, miközben az alábbi szöveget olvassa a saját hangján
       random_phrases:
         one: Készen állok. Ez egy tesztfelvétel, hogy megbizonyosodjak arról, hogy a videóm és a mikrofonom megfelelően működik.
-      title: Biztosítanunk kell, hogy a rendszer képes legyen a videó rögzítésére
   common:
     actions:
       add: Add
@@ -1843,6 +1809,7 @@ hu:
       json:
         answer: Válasz JSON
         external_result: Külső eredmény JSON
+        microsite_raw_response: Raw Response mikroweboldal
         scoring: JSON-pontozás
       key: Kulcs
       last_name: Vezetéknév
@@ -3288,13 +3255,6 @@ hu:
     fields:
       provider:
         custom_upload: Egyéni feltöltés
-        hogan: Hogan
-        internal: Belső
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Terhelés a Mettl-től
       load_from_pearson: Rakomány Pearsontól

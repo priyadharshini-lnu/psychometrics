@@ -9,6 +9,9 @@ class AI::AssistantToolCall < ApplicationRecord
 
   belongs_to :ai_assistant_request,
              class_name: 'AI::AssistantRequest'
+  include Tenantable
+
+  tenant_source :ai_assistant_request
 
   has_one :result,
           class_name: 'AI::AssistantRequest',

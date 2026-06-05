@@ -2,6 +2,7 @@
 
 module UserReportPdfHelper
   extend ActiveSupport::Concern
+  include Rails.application.routes.url_helpers
 
   included do
     scope :with_pdf_attachments, -> { joins(user_report_pdfs: :pdf_file_attachment) }
@@ -61,11 +62,16 @@ module UserReportPdfHelper
     user_report_pdf(locale: locale)&.pdf_file&.purge_later
   end
 
-  def pdf_download_url(locale: nil)
+  def pdf_download_url(locale: nil, only_path: true)
     return unless pdf_exists?(locale: locale)
 
-    user_report_pdf(locale: locale)&.pdf_file&.url(
-      disposition: 'attachment', filename: report_name_for_download(locale: locale)
+    Rails.application.routes.url_helpers.pdf_download_link_user_report_download_url(
+      id,
+      locale: locale,
+      host: Settings.domain,
+      port: Settings.port,
+      protocol: Settings.protocol,
+      only_path: only_path
     )
   end
 

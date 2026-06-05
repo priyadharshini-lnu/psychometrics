@@ -59,6 +59,9 @@ export const useMediaPreview = ({
         if (audioDevices.length > 0) setSelectedAudioDevice(audioDevices[0].deviceId)
       } catch (error) {
         console.error('Error enumerating devices:', error)
+        if (onError) {
+          onError(I18n.t('assessments.video_response.failed_to_access_permission'))
+        }
       } finally {
         stream?.getTracks().forEach(track => track.stop())
       }

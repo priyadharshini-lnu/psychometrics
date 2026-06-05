@@ -23,4 +23,14 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
   def auth_options
     { scope: resource_name, recall: nil }
   end
+
+  def after_sign_in_path_for(_resource)
+    params[:RelayState].presence || '/'
+  end
+
+  protected
+
+  def relay_state
+    params[:return_url]
+  end
 end

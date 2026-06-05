@@ -11,6 +11,7 @@ import { HoganForm } from './HoganForm'
 import { MettlForm } from './MettlForm'
 import { SkillvueForm } from './SkillvueForm'
 import { YoodliForm } from './YoodliForm'
+import { MicrositeForm } from './MicrositeForm'
 
 type FieldData = GetProp<FormProps, 'fields'>[number]
 
@@ -23,6 +24,7 @@ const integrationComponents = {
   mettl: MettlForm,
   skillvue: SkillvueForm,
   yoodli: YoodliForm,
+  microsite: MicrositeForm,
 }
 
 type OwnProps = {

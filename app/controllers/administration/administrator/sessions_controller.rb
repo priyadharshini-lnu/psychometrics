@@ -14,7 +14,7 @@ module Administration
 
         if user
           if user.saml_enforced_for_admins?
-            redirect_to new_saml_user_session_url
+            redirect_to new_saml_user_session_url(return_url: stored_location_for(:user))
           else
             session[:user_email] = user.email
             redirect_to new_administration_session_path
@@ -68,7 +68,7 @@ module Administration
 
         user = User.find_by(email: params[:user][:email])
         if user&.saml_enforced_for_admins?
-          redirect_to new_saml_user_session_url and return
+          redirect_to new_saml_user_session_url(return_url: stored_location_for(:user)) and return
         end
       end
 

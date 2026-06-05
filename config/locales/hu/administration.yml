@@ -2365,6 +2365,7 @@ hu:
         add: Integrációk
         back: Vissza az integrációkhoz
         load_mettl_catalog: Mettl értékelési katalógus betöltése
+        load_microsite_catalog: Mikrooldal-értékelési katalógus betöltése
         load_skillvue_catalog: Skillvue értékelési katalógus betöltése
       columns:
         active: Aktív
@@ -2383,6 +2384,7 @@ hu:
         webhookUrls: Webhook URL-címek
       integrations: Integrációk
       load_mettl_success: A Mettl értékelési feladat sikeresen  a várakozási sorba került
+      load_microsite_success: A mikroweboldal-értékelések betöltése sikeresen sorba került
       load_skillvue_success: A Skillvue értékelési feladat sikeresen a várakozási sorba került
       modal:
         hogan:
@@ -2405,6 +2407,9 @@ hu:
           servers:
             mettl_eu: Európa
             mettl_india: India
+        microsite:
+          apiKey: API-kulcs
+          apiKeyRequired: API-kulcs szükséges
         skillvue:
           apiKey: API-kulcs
           apiKeyRequired: API-kulcs szükséges
@@ -2416,6 +2421,7 @@ hu:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Mikrooldal
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2424,6 +2430,8 @@ hu:
           tenant_id_present: A bérlőazonosító már jelen van egy másik projektben
         mettl:
           public_key_present: A nyilvános kulcs már jelen van egy másik projektben
+        microsite:
+          api_key_present: Az API-kulcs már szerepel egy másik projektben
         skillvue:
           api_key_present: Az API-kulcs már jelen van egy másik projektben
       view_all_schedules: Az összes Mettl-menetrend megtekintése
@@ -2992,6 +3000,7 @@ hu:
               assessment_started: Megkezdődött az értékelés
               assessment_timeout: Értékelési időtúllépés
               campaign_results_available: Elérhető kampányeredmények
+              campaign_user_assessment_summary: Kampányfelhasználói értékelés összefoglalója
               campaign_user_status: Kampány felhasználói státusza
               report_available: Jelentés elérhető
               results_available: Elérhető eredmények

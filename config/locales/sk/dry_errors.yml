@@ -52,6 +52,7 @@ sk:
         content_required: Obsah je potrebný pre pokyny
         tag_or_skill_required: Pri výbere možnosti "Vybraté" vyberte buď značku alebo zručnosť.
       invalid_name: ako platné znaky sú povolené iba abeceda, číslo, medzery, pomlčka a bodka
+      invalid_question_ids: 'ID otázok, ktoré sa v tomto hodnotení nenachádzajú: %{ids}'
       invalid_value: neplatný príkaz %{value} na riadku číslo %{row}
       job_roles:
         unique_within_job_group: Úloha s rovnakým názvom už existuje.
@@ -88,6 +89,7 @@ sk:
         unique_mappings: Mapovanie s rovnakými zručnosťami a pracovnou úlohou už existuje.
       uniq: Toto hodnotenie Mettl je už v systéme prítomné. ID tohto hodnotenia je %{id}
       uniq?: by mal byť jedinečný
+      uniq_microsite: Toto hodnotenie mikrostránky je už v systéme prítomné. ID tohto hodnotenia je %{id}
       uniq_simulation: Toto simulačné hodnotenie je už v systéme prítomné. ID tohto hodnotenia je %{id}
       uniq_skillvue: Toto hodnotenie Skillvue je už v systéme prítomné. ID tohto hodnotenia je %{id}
       uniq_yoodli: Toto hodnotenie Yoodli je už v systéme prítomné. ID tohto hodnotenia je %{id}

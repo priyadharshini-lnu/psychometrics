@@ -7,6 +7,8 @@ module Threesixty
     extend Mobility
 
     belongs_to :threesixty_campaign, class_name: 'Threesixty::Campaign'
+    include Tenantable
+
     has_one :project, through: :threesixty_campaign
 
     translates :subject, :content

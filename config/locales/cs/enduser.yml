@@ -44,6 +44,7 @@ cs:
     camera_check_abruptly_ended: Kamera byla náhle vypnuta. Zapněte prosím kameru a zkontrolujte to znovu.
     camera_check_description: Zkontrolujte, zda kamera a mikrofon správně fungují pro nahrávání
     camera_check_passed: Kontrola obrazu a zvuku proběhla úspěšně
+    camera_check_record_instruction: Klikněte na tlačítko „Nahrát“ a přečtěte nahlas následující text
     camera_test_step: Krok pro testování obrazu a zvuku
     campaign: Kampaň
     campaign_check_status: 'Stav: %{status}'
@@ -52,6 +53,7 @@ cs:
     check_video_recording: Zkontrolujte prosím své video i zvuk jeho přehráním.
     checking_browser_compatibility: Zjišťuji kompatibilitu prohlížeče...
     checking_latency: Zjišťuji latenci...
+    complete_prework_message: Nejprve proveďte všechny přípravné úkoly.
     could_not_reach_servers: Při ověřování rychlosti připojení se nepodařilo navázat spojení s našimi servery. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
     day: den
     day_plural: dny
@@ -61,6 +63,7 @@ cs:
     download: Stáhnout
     download_pdf: Stáhněte si PDF
     download_speed_below_minimum: Rychlost stahování %{download_speed} je nižší než minimální požadovaná rychlost stahování %{minimum_download_speed} Mbps
+    dummy_message: Jsem připraven. Toto je zkušební nahrávka, která má ověřit, zda mi správně funguje kamera a mikrofon.
     environment_setup: Nastavení prostředí
     error_uploading_audio: Chyba při nahrávání zvuku
     error_uploading_audio_detail: Při nahrávání zvukového souboru došlo k chybě
@@ -92,6 +95,7 @@ cs:
     internet_speed_optimal: Rychlost vašeho připojení je optimální
     internet_speed_slow: Rychlost internetu je nižší, než je pro kampaň požadováno
     less_than_five_minutes: Méně než 5 minut
+    lets_start: Tak jdeme na to!
     lighthouse_assistant: Asistent majáku
     localstorage_fix_description_first: Ujistěte se, že nepoužíváte režim soukromého prohlížení nebo anonymního prohlížení, protože v těchto režimech je často funkce localStorage deaktivována.
     localstorage_fix_title: Ve vašem prohlížeči není povoleno lokální úložiště
@@ -107,6 +111,7 @@ cs:
     media_recorder_api_support: Podpora rozhraní API MediaRecorder
     microphone_access_blocked: Váš prohlížeč odepřel nebo zablokoval přístup k mikrofonu. Zkontrolujte prosím oprávnění ve svém prohlížeči.
     microphone_check_passed: Zkouška mikrofonu proběhla úspěšně
+    microsite_assessment_external: Toto hodnocení je nutné vyplnit na externí platformě.
     min_word_limit: Musí mít nejméně %{min} slov
     minimum_speed_requirements: Pro tuto akci je vyžadována minimální rychlost stahování %{minimum_download_speed} Mbps a minimální rychlost nahrávání %{minimum_upload_speed} Mbps.
     minute: minuta
@@ -124,16 +129,24 @@ cs:
     network_test_step: Krok testování sítě
     no_audio_detected: Nebylo zjištěno žádné zvukové zařízení. Zkontrolujte prosím, zda je mikrofon připojen a zda správně funguje.
     pass: Přeskočit
+    pause: Pauza
     pending: V řešení
     personal_readiness: Osobní připravenost
     plan_text: Naplánujte si čas na celou dobu trvání. Jakmile začnete, nemusí být v závislosti na typu hodnocení povoleny přestávky.
+    play: Hrát
     please_check_your_internet_connection: Zkontrolujte prosím připojení k internetu a zkuste to znovu.
+    preparing_preview: Připravuje se náhled...
+    prework: Příprava
+    prework_not_completed_message: Než zahájíte kampaň, proveďte prosím všechny přípravné úkoly.
     proctored: Pod dohledem
     proctored_assessment_misconfigured_msg: Tento test je pod dohledem, ale chybí v něm nastavení času; obraťte se prosím na svého správce.
     profile: Profil
     profile_details: Detaily
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Důvod zamítnutí plánu
+    record: Záznam
+    recording_progress_bar: Ukazatel průběhu nahrávání
+    recording_time_remaining: "%{remainingSeconds} zbývající sekundy"
     redirect_to_external_assessment: Budete přesměrováni na stránku s testem. Pokud chcete začít s testem, klikněte prosím na tlačítko „Pokračovat“.
     reject_idp_plan: Zamítnout plán
     request_retry_message: Jste offline. Vaše odpovědi nemohly být uloženy, ale automaticky se uloží, jakmile se vrátíte online. Prosím, neobnovujte ani nezavírejte stránku.
@@ -145,13 +158,15 @@ cs:
     results: Výsledek
     safari_proctoring_description: Zdá se, že používáte prohlížeč Safari, který může mít určitá omezení, pokud jde o funkce sledování aktivované v rámci této kampaně. Pro co nejlepší zážitek doporučujeme používat prohlížeče Chrome,Edge nebo Firefox.
     safari_proctoring_title: Zjištěn prohlížeč Safari
+    select_audio_device: Vybrat zvukové zařízení
+    select_video_device: Vybrat video zařízení
     selected_count: Vybrané stránky
     skill_type: Typ dovednosti
     start_campaign_message_proctored: Toto je dozorovaná kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_campaign_message_timed: Toto je časově omezená kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
-    start_campaign_message_timed_proctored: Jedná se o časově omezenou a dozorovanou kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_readiness_check: Spustit kontrolu připravenosti
     start_system_check: Spustit kontrolu systému
+    stop: Zastav
     subinstruction_audio: Fungující mikrofon
     subinstruction_eight: Vyhraďte si na kompletní posouzení čas, během kterého vás nikdo nebude rušit
     subinstruction_five: Jste připraveni sdílet svou obrazovku po celou dobu relace?
@@ -239,6 +254,9 @@ cs:
     video_check_fix_second: Přejděte do nastavení prohlížeče a povolte této stránce přístup k fotoaparátu
     video_check_fix_sixth: Restartujte prohlížeč a zkuste to znovu
     video_check_fix_third: Ukončete ostatní aplikace, které využívají kameru (Zoom, Teams atd.)
+    video_overlay_label: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté, co stisknete tlačítko Nahrát, přečtěte následující zprávu
+    video_overlay_message: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté nahlas přečtěte větu, která se zobrazí v dolní části obrazovky.
+    video_recorder_label: Videorekordér
     view_details: Zobrazit podrobnosti
     webgl_api_fix_description_first: Ujistěte se, že váš prohlížeč podporuje WebGL a že je tato funkce v nastavení zapnutá
     webgl_api_fix_description_second: Aktualizujte ovladače grafické karty na nejnovější verzi

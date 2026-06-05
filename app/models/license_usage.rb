@@ -15,6 +15,8 @@ class LicenseUsage < ApplicationRecord
   belongs_to :status_updated_by, class_name: 'User'
   belongs_to :consumer, polymorphic: true
 
+  include Tenantable
+
   enum :status, { active: 0, inactive: 1 }
 
   ransack_searchable_json_fields :subject_name, :campaign_name, :subject_email, column: :extras

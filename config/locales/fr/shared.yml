@@ -22,9 +22,11 @@ fr:
     assessors_list: Liste des évaluateurs
     asset_not_present: Actif non présent
     audio: Audio
+    audio_devices: Périphériques audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
     back: Retour
     basic: Basique
+    camera: Appareil photo
     camera_preview: L'aperçu de l'appareil photo apparaît ici
     campaign: Campagne
     campaign_id: ID de campagne
@@ -59,6 +61,7 @@ fr:
     desktop_or_laptop_recommended: Ordinateur de bureau ou portable recommandé
     desktop_or_laptop_required: Ordinateur de bureau ou portable requis
     disabled: Personnes handicapées
+    discard: Ignorer
     download: Télécharger
     download_audio: Télécharger l'audio
     download_transcription: Télécharger la transcription
@@ -85,6 +88,7 @@ fr:
     internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
     last_name: Nom de famille
     learning_on_the_job_label: Apprendre sur le terrain
+    lets_start: C'est parti !
     loading: Chargement...
     login: Connexion
     maintenance_in_hours: "%{hours} heures"
@@ -99,6 +103,7 @@ fr:
     media_preview: Aperçu pour les médias
     media_question_transcriptions: Transcriptions des questions des médias
     media_responses: Réactions des médias
+    microphones: Microphones
     mobile_proctoring_disabled_instructions: Cette évaluation nécessite un ordinateur de bureau ou portable pour continuer. Veuillez passer à un ordinateur pour terminer l'activité.
     mobile_proctoring_enabled_instructions: Pour une expérience optimale, veuillez passer à un ordinateur de bureau ou portable si vous en avez un à disposition. Vous pouvez continuer sur votre appareil mobile si nécessaire.
     modified_by: Modifié par
@@ -116,7 +121,9 @@ fr:
     ok: Ok
     options: Options
     owner: Propriétaire
+    pause: Pause
     pending: En attente
+    play: Jouer
     policy_version: Version de la politique
     policy_version_format: Seuls les nombres entiers sont autorisés.
     positive: Positif
@@ -130,6 +137,7 @@ fr:
     question_id: Identifiant de la question
     question_transcription_disabled: La transcription est désactivée pour cette question.
     rec: REC
+    record: Enregistrement
     recorded: Enregistré
     recording: Enregistrement
     recording_consent_notice: Cette réunion sera enregistrée. Votre participation à cette réunion constitue votre consentement à être enregistré.
@@ -146,16 +154,21 @@ fr:
     saving_video: Sauvegarde vidéo... Merci de ne pas fermer ni rafraîchir le navigateur
     scoring_details: Détails du score
     search: Recherche
+    select_camera: Choisissez un appareil photo
+    select_microphone: Choisissez un microphone
     send_email: Envoyer un courriel
     show_more: Afficher plus
     something_wrong: Contactez votre administrateur.
+    speakers: Intervenants
     status: Statut
     status_unknown: Statut inconnu
+    stop: Arrête
     subject: Objet
     submit: Soumettre
     submit_and_finish_proctoring: Soumettre et terminer la surveillance
     suspended: Suspendu
     switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau
+    system_check_uploading: Téléchargement
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ fr:
     update_failed: Échec de la mise à jour
     updated_at: Mis à jour le
     updated_successfully: Mise à jour réussie
+    user_report_pdf_url_not_generated: Le lien de téléchargement du fichier PDF n'a pas pu être généré
     video: Vidéo
     view: Afficher
     view_audio: Voir l'audio

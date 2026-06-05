@@ -22,9 +22,11 @@ ko:
     assessors_list: 평가자 명단
     asset_not_present: 자산이 존재하지 않습니다
     audio: 오디오
+    audio_devices: 오디오 장치
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
     back: 뒤로
     basic: 기초의
+    camera: 카메라
     camera_preview: 카메라 미리보기가 여기에 표시됩니다
     campaign: 캠페인
     campaign_id: 캠페인 ID
@@ -59,6 +61,7 @@ ko:
     desktop_or_laptop_recommended: 데스크톱 또는 노트북 권장
     desktop_or_laptop_required: 데스크톱 또는 노트북 필요
     disabled: 비활성화됨
+    discard: 취소
     download: 다운로드
     download_audio: 오디오 다운로드
     download_transcription: 다운로드 트랜스크립션
@@ -85,6 +88,7 @@ ko:
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
     last_name: 성
     learning_on_the_job_label: 현장에서 배우기
+    lets_start: 그럼 시작해 볼까요!
     loading: 로딩 중...
     login: 로그인
     maintenance_in_hours: "%{hours} 시간"
@@ -99,6 +103,7 @@ ko:
     media_preview: 미디어 프리뷰
     media_question_transcriptions: 미디어 질문 전문
     media_responses: 미디어 반응
+    microphones: 마이크
     mobile_proctoring_disabled_instructions: 이 평가를 계속하려면 데스크톱 또는 노트북이 필요합니다. 활동을 완료하려면 컴퓨터로 전환해 주세요.
     mobile_proctoring_enabled_instructions: 최상의 경험을 위해 사용 가능한 데스크톱이나 노트북으로 전환해 주십시오. 필요한 경우 모바일 기기에서 계속 이용하실 수 있습니다.
     modified_by: 수정자
@@ -116,7 +121,9 @@ ko:
     ok: 확인
     options: 옵션
     owner: 소유자
+    pause: 일시 정지
     pending: 보류 중
+    play: 재생
     policy_version: 정책 버전
     policy_version_format: 정수만 허용됩니다
     positive: 긍정적인
@@ -130,6 +137,7 @@ ko:
     question_id: 질문 ID
     question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
     rec: REC
+    record: 기록
     recorded: 녹음
     recording: 녹음
     recording_consent_notice: 이 회의 세션은 녹화될 것입니다. 이 회의에 참여하는 것은 녹음에 동의한 것으로 간주됩니다.
@@ -146,16 +154,21 @@ ko:
     saving_video: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
     scoring_details: 점수 내역
     search: 검색
+    select_camera: 카메라 선택
+    select_microphone: 마이크 선택
     send_email: 이메일 보내기
     show_more: 더 보기
     something_wrong: 문제가 발생했습니다. 관리자에게 문의하세요.
+    speakers: 연사
     status: 상태
     status_unknown: 상태 미상
+    stop: 중지
     subject: 제목
     submit: 제출
     submit_and_finish_proctoring: 제출 및 감독 종료
     suspended: 정지됨
     switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환
+    system_check_uploading: 업로드 중
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ ko:
     update_failed: 업데이트에 실패했습니다
     updated_at: '업데이트됨:'
     updated_successfully: 성공적으로 업데이트되었습니다
+    user_report_pdf_url_not_generated: PDF 다운로드 링크를 생성할 수 없습니다
     video: 영상
     view: 보기
     view_audio: 오디오 보기

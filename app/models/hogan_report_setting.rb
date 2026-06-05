@@ -5,6 +5,10 @@ class HoganReportSetting < ApplicationRecord
 
   belongs_to :report
 
+  include Tenantable
+
+  tenant_source :report
+
   before_create :set_hogan_details
 
   private

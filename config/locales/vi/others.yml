@@ -1100,36 +1100,9 @@ vi:
       title: Chi tiết đánh giá
     edit: Biên tập
     fields:
-      category:
-        agile: NHANH NHẸN
-        assessor_form: Biểu mẫu đánh giá viên
-        case_study: Nghiên cứu điển hình
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Biểu mẫu đánh giá viên chính
-        meeting: Hội nghị
-        mettl: Mettl
-        organisational: Khảo sát tổ chức
-        pearson: Pearson
-        psychometric: Tâm lý học
-        saville: Saville
-        simulation: Mô phỏng
-        skillvue: Kỹ năng trực quan
-        threesixty: Chiến dịch 360
-        yoodli: Yoodli
       status:
         finished: Xong
         in_progress: Đang tiến hành
-      type:
-        common: Đánh giá TTE
-        hogan: Hogan
-        iiht: Đánh giá IIHT
-        mettl: Đánh giá Mettl
-        pearson: Đánh giá Pearson
-        saville: Đánh giá Saville
-        simulation: Đánh giá mô phỏng
-        skillvue: Đánh giá Skillvue
-        yoodli: Đánh giá Yoodli
     flow:
       end_assessment_modal:
         custom_message: Thông báo kết thúc đánh giá tùy chỉnh
@@ -1206,16 +1179,11 @@ vi:
         failure: Trình duyệt này không hỗ trợ Quay Video. Vui lòng sử dụng Chrome hoặc Firefox để Quay Video
         success: Vui lòng cho phép sử dụng camera và micrô để ghi âm thanh và video
         unsupported: Trình duyệt này không hỗ trợ Quay video. Vui lòng sử dụng bất kỳ trình duyệt nào sau đây,
-      recording_duration_label: Thời lượng ghi âm tối đa
-      recording_stop_label: Việc ghi âm sẽ dừng lại ở
       requesting_permission: Đang yêu cầu cấp phép...
       response_recorded: Phản hồi được ghi lại
       save: Cứu
-      saved:
-        label: Video đã lưu
       seek: Tìm kiếm
       start_recording: Bắt đầu ghi âm
-      stop_recording: Dừng ghi âm
       tracker:
         backward: Bạn đang ở quá gần màn hình. Vui lòng di chuyển ra xa một chút
         forward: Bạn đang ở quá xa màn hình. Vui lòng di chuyển gần hơn một chút
@@ -1377,15 +1345,12 @@ vi:
     all_activities_are_completed: Mọi hoạt động hiện đã hoàn tất.
     all_activities_are_completed_multiple: Mọi hoạt động cho chiến dịch này hiện đã hoàn tất. Vui lòng tiến hành đến Bảng điều khiển và kiểm tra xem bạn có hoạt động nào khác được chỉ định không.
     already_joined: Bạn đã tham gia chiến dịch này
-    begin: Bắt đầu nhiệm vụ của bạn
-    begin_btn_msg_before_prework: Bạn phải hoàn thành các nhiệm vụ dưới đây trước khi bắt đầu chiến dịch có thời gian
     begin_campaign_msg: Bắt đầu chiến dịch trước khi thực hiện đánh giá
     campaigns: Chiến dịch
     closed_campaign_message: Chiến dịch này đã kết thúc. Bạn không thể thực hiện bất kỳ đánh giá nào trong chiến dịch này.
     code_usage_limit_reached: Đạt đến giới hạn sử dụng mã, vui lòng liên hệ với quản trị viên
     complete_prev: Hoàn thành tất cả các đánh giá trước đó
     complete_tasks: Vui lòng hoàn thành các nhiệm vụ bên dưới trước khi thực hiện hành động này.
-    continue: Tiếp tục nhiệm vụ của bạn
     dashboard_instructions: Bạn có thể đã được giao nhiều hoạt động cần hoàn thành. Vui lòng đảm bảo kiểm tra xem tất cả các hoạt động được giao đã được hoàn thành trong tất cả các chiến dịch hay chưa.
     dashboard_menu:
       campaign: Chiến dịch
@@ -1479,6 +1444,9 @@ vi:
       external_user_id: ID ứng viên Skillvue
       id: ID đánh giá chiến dịch
       locales: Địa điểm
+      microsite_error_message: Thông báo lỗi
+      microsite_participant_id: Mã số người tham gia trang web chuyên biệt
+      microsite_registration_status: Tình trạng đăng ký
       norm: Chuẩn
       norm_id: ID định mức
       pearson_norm_id: Pearson Norm ID
@@ -1753,10 +1721,8 @@ vi:
       permissions: Quyền sử dụng Webcam và Âm thanh
       title: Trước khi bắt đầu đánh giá này, hệ thống của bạn cần phải trải qua một số bước kiểm tra.
     video_check:
-      description: Nhấp vào Bắt đầu ghi âm và tự ghi âm khi đọc đoạn văn bên dưới bằng giọng nói của bạn
       random_phrases:
         one: Sem sẵn sàng. Đây là bài kiểm tra để xác nhận rằng micrô và máy ảnh của tôi hoạt động đúng cách.
-      title: Chúng tôi cần đảm bảo hệ thống của bạn có thể ghi lại video
   common:
     actions:
       add: Thêm vào
@@ -1837,6 +1803,7 @@ vi:
       json:
         answer: Trả lời JSON
         external_result: JSON kết quả bên ngoài
+        microsite_raw_response: Trang web chuyên biệt Raw Response
         scoring: Chấm điểm JSON
       key: Chìa khoá
       last_name: Họ
@@ -3295,13 +3262,6 @@ vi:
     fields:
       provider:
         custom_upload: Tải lên tùy chỉnh
-        hogan: Hogan
-        internal: Nội
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Kỹ năng
-        yoodli: Yoodli
     form:
       load_from_mettl: Tải từ Mettl
       load_from_pearson: Tải từ Pearson

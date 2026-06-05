@@ -44,6 +44,7 @@ zh:
     camera_check_abruptly_ended: 摄像头突然关闭。请打开摄像头并重新运行检测。
     camera_check_description: 请确认您的摄像头和麦克风能否正常工作，以便进行录制
     camera_check_passed: 视频和音频测试已成功通过
+    camera_check_record_instruction: 点击“录制”，然后大声朗读以下段落
     camera_test_step: 视频和音频测试步骤
     campaign: 活动
     campaign_check_status: 状态：%{status}
@@ -52,6 +53,7 @@ zh:
     check_video_recording: 请回放录制内容以检查视频和音频。
     checking_browser_compatibility: 正在检查浏览器兼容性...
     checking_latency: 正在检测延迟...
+    complete_prework_message: 请先完成所有预习任务，然后开始。
     could_not_reach_servers: 无法连接到我们的服务器以检测网速。请检查您的网络连接，然后重试。
     day: 天
     day_plural: 天
@@ -61,6 +63,7 @@ zh:
     download: 下载
     download_pdf: 下载PDF
     download_speed_below_minimum: 下载速度 %{download_speed} 低于 %{minimum_download_speed} Mbps 的最低要求下载速度
+    dummy_message: 我准备好了。这是一段测试录音，用于确认我的摄像头和麦克风是否正常工作。
     environment_setup: 环境设置
     error_uploading_audio: 上传音频时出错
     error_uploading_audio_detail: 上传音频时发生错误
@@ -92,6 +95,7 @@ zh:
     internet_speed_optimal: 您的连接速度处于最佳状态
     internet_speed_slow: 网速低于活动要求
     less_than_five_minutes: 不到5分钟
+    lets_start: 开始吧！
     lighthouse_assistant: 灯塔助理
     localstorage_fix_description_first: 请确保您未处于隐私/无痕浏览模式，因为在这些模式下 localStorage 通常会被禁用。
     localstorage_fix_title: 您的浏览器未启用本地存储
@@ -107,6 +111,7 @@ zh:
     media_recorder_api_support: MediaRecorder API 支持
     microphone_access_blocked: 您的浏览器拒绝或阻止了麦克风的访问权限。请检查您的浏览器权限设置。
     microphone_check_passed: 麦克风测试通过
+    microsite_assessment_external: 此评估必须在外部平台上完成。
     min_word_limit: 最少需要 %{min} 个字
     minimum_speed_requirements: 此活动要求最低下载速度为 %{minimum_download_speed} Mbps，最低上传速度为 %{minimum_upload_speed} Mbps。
     minute: 分钟
@@ -124,16 +129,24 @@ zh:
     network_test_step: 网络测试步骤
     no_audio_detected: 未检测到声音。请检查麦克风是否已连接且工作正常。
     pass: 跳过
+    pause: 暂停
     pending: 待定
     personal_readiness: 个人准备情况
     plan_text: 请为整个考试时长做好准备。考试开始后，根据考试类型的不同，可能不允许中途休息。
+    play: 播放
     please_check_your_internet_connection: 请检查您的网络连接，然后重试。
+    preparing_preview: 正在准备预览...
+    prework: 课前准备
+    prework_not_completed_message: 在开始活动之前，请先完成所有预备任务。
     proctored: 监考
     proctored_assessment_misconfigured_msg: 本次评估为监考形式，但缺少必要的时间设置，请联系您的管理员。
     profile: 个人资料
     profile_details: 详细信息
     question_counter: 第 %{current} 题，共 %{total} 题
     reason_for_idp_plan_rejection: 拒绝原因
+    record: 记录
+    recording_progress_bar: 录制进度条
+    recording_time_remaining: "%{remainingSeconds} 剩余秒数"
     redirect_to_external_assessment: 您将被重定向至测评页面。如需开始测评，请点击“继续”。
     reject_idp_plan: 拒绝计划
     request_retry_message: 你已经离线了。你的答案无法保存，但一旦你重新上线，答案将自动保存。请不要刷新或关闭页面。
@@ -145,13 +158,15 @@ zh:
     results: 结果
     safari_proctoring_description: 您似乎正在使用 Safari 浏览器，该浏览器在支持本次活动的跟踪功能方面可能存在一些限制。为了获得最佳体验，我们建议您使用 Chrome, Edge 或 Firefox 浏览器。
     safari_proctoring_title: 检测到 Safari 浏览器
+    select_audio_device: 选择音频设备
+    select_video_device: 选择视频设备
     selected_count: 已选择
     skill_type: 技能类型
     start_campaign_message_proctored: 这是一个监考活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed: 这是一个限时活动，请点击“%{buttonText}”按钮开始活动。
-    start_campaign_message_timed_proctored: 这是一个限时监考的活动，请点击“%{buttonText}”按钮开始活动。
     start_readiness_check: 开始就绪检查
     start_system_check: 开始系统检查
+    stop: 停止
     subinstruction_audio: 麦克风正常工作
     subinstruction_eight: 请预留一段不受打扰的时间，以便进行全面评估
     subinstruction_five: 准备好在整个会议期间共享屏幕了吗
@@ -239,6 +254,9 @@ zh:
     video_check_fix_second: 请进入浏览器设置，并为该网站启用摄像头访问权限
     video_check_fix_sixth: 请重新启动浏览器，然后重试
     video_check_fix_third: 关闭其他正在使用摄像头的应用程序（如Zoom、Teams等）
+    video_overlay_label: 选择麦克风和摄像头，点击“录制”，然后在点击“录制”按钮后朗读以下内容
+    video_overlay_message: 选择麦克风和摄像头，点击“录制”，然后大声朗读屏幕底部的句子。
+    video_recorder_label: 视频录像机
     view_details: 查看详情
     webgl_api_fix_description_first: 请确保您的浏览器支持 WebGL，并且已在设置中启用该功能
     webgl_api_fix_description_second: 将显卡驱动程序更新至最新版本

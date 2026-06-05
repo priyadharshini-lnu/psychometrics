@@ -2363,6 +2363,7 @@ cs:
         add: Integrace
         back: Zpět na Integrace
         load_mettl_catalog: Katalog hodnocení zatížení Mettl
+        load_microsite_catalog: Načíst katalog hodnocení mikrostránek
         load_skillvue_catalog: Načíst katalog hodnocení dovedností Skillvue
       columns:
         active: Aktivní
@@ -2381,6 +2382,7 @@ cs:
         webhookUrls: Adresy URL webhooku
       integrations: Integrace
       load_mettl_success: Úloha pro vyhodnocování mettlů zatížení je úspěšně zařazena do fronty
+      load_microsite_success: Úloha vyhodnocení mikrowebů byla úspěšně zařazena do fronty
       load_skillvue_success: Úloha Load skillvue assessments byla úspěšně zařazena do fronty
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ cs:
           servers:
             mettl_eu: Evropa
             mettl_india: Indie
+        microsite:
+          apiKey: API klíč
+          apiKeyRequired: Je vyžadován klíč API
         skillvue:
           apiKey: Klíč API
           apiKeyRequired: Je vyžadován klíč API
@@ -2414,6 +2419,7 @@ cs:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: mikrostránka
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ cs:
           tenant_id_present: ID nájemce je již uvedeno v jiném projektu
         mettl:
           public_key_present: Veřejný klíč se již nachází v jiném projektu
+        microsite:
+          api_key_present: API klíč již existuje v jiném projektu
         skillvue:
           api_key_present: Klíč API již existuje v jiném projektu
       view_all_schedules: Zobrazit všechny plány Mettl
@@ -2990,6 +2998,7 @@ cs:
               assessment_started: Hodnocení zahájeno
               assessment_timeout: Časový limit hodnocení
               campaign_results_available: Výsledky kampaně jsou k dispozici
+              campaign_user_assessment_summary: Souhrn hodnocení uživatelů kampaně
               campaign_user_status: Stav uživatele kampaně
               report_available: Zpráva je k dispozici
               results_available: Dostupné výsledky

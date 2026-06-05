@@ -8,12 +8,14 @@ module Administration
       append_before_action :pundit_authorize
 
       def show
-        render json: ReportSerializer.new(
-          context: {
-            builder: true,
-            lang: params[:lang]
-          }
-        ).serialize(@report)
+        Mobility.with_locale(params[:lang] || @report.default_language) do
+          render json: ReportSerializer.new(
+            context: {
+              builder: true,
+              lang: params[:lang]
+            }
+          ).serialize(@report)
+        end
       end
 
       def update

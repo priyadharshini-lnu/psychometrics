@@ -22,9 +22,11 @@ vi:
     assessors_list: Danh sách các đánh giá viên
     asset_not_present: Tài sản không có sẵn
     audio: Âm thanh
+    audio_devices: Thiết bị âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
     back: Quay lại
     basic: Cơ bản
+    camera: Máy ảnh
     camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
     campaign: Chiến dịch
     campaign_id: ID chiến dịch
@@ -59,6 +61,7 @@ vi:
     desktop_or_laptop_recommended: Máy tính để bàn hoặc laptop được khuyến nghị
     desktop_or_laptop_required: Máy tính để bàn hoặc laptop là bắt buộc.
     disabled: Người khuyết tật
+    discard: Bỏ đi
     download: Tải xuống
     download_audio: Tải xuống âm thanh
     download_transcription: Tải xuống bản chép lời
@@ -85,6 +88,7 @@ vi:
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     last_name: Họ
     learning_on_the_job_label: Học tập trong công việc
+    lets_start: Hãy bắt đầu nào!
     loading: Đang tải...
     login: Đăng nhập
     maintenance_in_hours: "%{hours} giờ"
@@ -99,6 +103,7 @@ vi:
     media_preview: Xem trước truyền thông
     media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
     media_responses: Phản ứng của truyền thông
+    microphones: Loa
     mobile_proctoring_disabled_instructions: Đánh giá này yêu cầu sử dụng máy tính để bàn hoặc laptop để tiếp tục. Vui lòng chuyển sang máy tính để hoàn thành hoạt động.
     mobile_proctoring_enabled_instructions: Để có trải nghiệm tốt nhất, vui lòng chuyển sang sử dụng máy tính để bàn hoặc laptop nếu bạn có sẵn. Bạn có thể tiếp tục sử dụng thiết bị di động nếu cần thiết.
     modified_by: Sửa đổi bởi
@@ -116,7 +121,9 @@ vi:
     ok: Được rồi
     options: Tùy chọn
     owner: Chủ sở hữu
+    pause: Tạm dừng
     pending: Đang chờ xử lý
+    play: Chơi
     policy_version: Phiên bản chính sách
     policy_version_format: Chỉ cho phép các số nguyên.
     positive: Tích cực
@@ -130,6 +137,7 @@ vi:
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     rec: GHI NHẬN
+    record: Bản ghi
     recorded: được ghi lại
     recording: Ghi âm
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
@@ -146,16 +154,21 @@ vi:
     saving_video: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
     scoring_details: Chi tiết điểm số
     search: Tìm kiếm
+    select_camera: Chọn máy ảnh
+    select_microphone: Chọn micro
     send_email: Gửi email
     show_more: Hiển thị nhiều hơn
     something_wrong: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
+    speakers: Diễn giả
     status: Trạng thái
     status_unknown: Trạng thái không xác định
+    stop: Dừng lại
     subject: Chủ đề
     submit: Gửi
     submit_and_finish_proctoring: Gửi và kết thúc giám sát
     suspended: Bị đình chỉ
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
+    system_check_uploading: Đang tải lên
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ vi:
     update_failed: Cập nhật không thành công
     updated_at: Cập nhật vào
     updated_successfully: Đã cập nhật thành công
+    user_report_pdf_url_not_generated: Không thể tạo liên kết tải xuống PDF
     video: Video
     view: Xem
     view_audio: Xem video âm thanh

@@ -281,6 +281,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                 directUploadURL={directUploadURL || ''}
                 postRecordingCallbackURL={postRecordingCallbackURL || ''}
                 nextStep={handleNext}
+                onPrev={onPrev}
                 setCheckStatus={setCheckStatus}
                 setIsDeviceRequestGranted={setIsDeviceRequestGranted}
                 onCheckAbruptlyEnded={onCheckAbruptlyEnded}

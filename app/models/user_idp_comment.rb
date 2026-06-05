@@ -7,6 +7,9 @@ class UserIdpComment < ApplicationRecord
   belongs_to :resource, polymorphic: true, optional: true
   has_many :replies, class_name: 'UserIdpComment', foreign_key: 'parent_id', dependent: :destroy
   belongs_to :parent, class_name: 'UserIdpComment', optional: true, counter_cache: :replies_count
+  include Tenantable
+
+  tenant_source :user_idp_plan
 
   validates :content, presence: true
   validate :cannot_reply_to_reply

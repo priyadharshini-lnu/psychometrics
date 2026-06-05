@@ -2363,6 +2363,7 @@ de:
         add: Integrationen
         back: Zurück zu Integrationen
         load_mettl_catalog: Katalog für die Bewertung der Lastverteilung (Load Mettl)
+        load_microsite_catalog: Katalog zur Bewertung von Microsites laden
         load_skillvue_catalog: Skillvue-Bewertungskatalog laden
       columns:
         active: Aktiv
@@ -2381,6 +2382,7 @@ de:
         webhookUrls: Webhook-URLs
       integrations: Integrationen
       load_mettl_success: Der Auftrag zur Bewertung der Lastverteilung wurde erfolgreich in die Warteschlange aufgenommen
+      load_microsite_success: Der Auftrag zum Laden der Microsite-Bewertungen wurde erfolgreich in die Warteschlange gestellt
       load_skillvue_success: Skillvue-Bewertungen laden Auftrag wurde erfolgreich in die Warteschlange gestellt
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ de:
           servers:
             mettl_eu: Europa
             mettl_india: Indien
+        microsite:
+          apiKey: API-Schlüssel
+          apiKeyRequired: Ein API-Schlüssel ist erforderlich
         skillvue:
           apiKey: API-Schlüssel
           apiKeyRequired: API-Schlüssel ist erforderlich
@@ -2414,6 +2419,7 @@ de:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Microsite
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ de:
           tenant_id_present: Mieter-ID ist bereits in einem anderen Projekt vorhanden
         mettl:
           public_key_present: Der öffentliche Schlüssel ist bereits in einem anderen Projekt vorhanden
+        microsite:
+          api_key_present: Der API-Schlüssel ist bereits in einem anderen Projekt vorhanden
         skillvue:
           api_key_present: Der API-Schlüssel ist bereits in einem anderen Projekt vorhanden
       view_all_schedules: Alle Mettl-Zeitpläne anzeigen
@@ -2990,6 +2998,7 @@ de:
               assessment_started: Begonnene Bewertung
               assessment_timeout: Bewertung Timeout
               campaign_results_available: Kampagnenergebnisse verfügbar
+              campaign_user_assessment_summary: Zusammenfassung der Nutzerbewertung der Kampagne
               campaign_user_status: Kampagnen-Benutzerstatus
               report_available: Bericht verfügbar
               results_available: Ergebnisse verfügbar

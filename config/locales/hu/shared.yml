@@ -22,9 +22,11 @@ hu:
     assessors_list: Értékelők listája
     asset_not_present: Az eszköz nincs jelen
     audio: Audio
+    audio_devices: Hangeszközök
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     back: Vissza
     basic: Alapvető
+    camera: Fényképezőgép
     camera_preview: A kamera előnézet itt jelenik meg
     campaign: Kampány
     campaign_id: Kampányazonosító
@@ -59,6 +61,7 @@ hu:
     desktop_or_laptop_recommended: Asztali vagy laptop számítógép ajánlott
     desktop_or_laptop_required: Asztali vagy laptop számítógép szükséges
     disabled: Fogyatékkal élők
+    discard: Elvetés
     download: Letöltés
     download_audio: Audio letöltése
     download_transcription: Letöltés Átírás
@@ -85,6 +88,7 @@ hu:
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
     last_name: Vezetéknév
     learning_on_the_job_label: Tanulás munka közben
+    lets_start: Kezdjük!
     loading: Betöltés...
     login: Bejelentkezés
     maintenance_in_hours: "%{hours} órák"
@@ -99,6 +103,7 @@ hu:
     media_preview: Média előzetes
     media_question_transcriptions: Média kérdések átirata
     media_responses: Média reakciók
+    microphones: Mikrofonok
     mobile_proctoring_disabled_instructions: A felmérés folytatásához asztali vagy hordozható számítógépre van szükség. Kérjük, váltson számítógépre a feladat befejezéséhez.
     mobile_proctoring_enabled_instructions: A legjobb élmény érdekében kérjük, váltson át asztali vagy hordozható számítógépre, ha rendelkezik ilyennel. Szükség esetén folytathatja a mobil eszközén is.
     modified_by: Módosította
@@ -116,7 +121,9 @@ hu:
     ok: Oké
     options: Beállítások
     owner: Tulajdonos
+    pause: Szünet
     pending: Függőben
+    play: Játék
     policy_version: Politika verzió
     policy_version_format: Csak egész számok megengedettek
     positive: Pozitív
@@ -130,6 +137,7 @@ hu:
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     rec: REC
+    record: Felvétel
     recorded: Felvétel
     recording: Felvétel
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
@@ -146,16 +154,21 @@ hu:
     saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
     scoring_details: Pontszámok részletei
     search: Keresés
+    select_camera: Válasszon kamerát
+    select_microphone: Válasszon mikrofont
     send_email: E-mail küldése
     show_more: Több
     something_wrong: Valami elromlott. Forduljon a rendszergazdához.
+    speakers: Előadók
     status: Állapot
     status_unknown: Állapot ismeretlen
+    stop: Állj meg
     subject: Tárgy
     submit: Beküldés
     submit_and_finish_proctoring: A vizsga benyújtása és befejezése
     suspended: Felfüggesztve
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
+    system_check_uploading: Feltöltés
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ hu:
     update_failed: A frissítés sikertelen volt
     updated_at: 'Frissítve:'
     updated_successfully: Sikeresen frissítve
+    user_report_pdf_url_not_generated: A PDF-letöltési link nem állítható elő
     video: Videó
     view: Megtekintés
     view_audio: Audio megtekintése

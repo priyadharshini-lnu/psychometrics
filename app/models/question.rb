@@ -37,6 +37,10 @@ class Question < ApplicationRecord
   has_many :campaign_idp_dependencies, class_name: 'CampaignIdpDependency',
             foreign_key: 'dependency_id', dependent: :destroy
 
+  include Tenantable
+
+  tenant_source :assessment, :owner
+
   enum :view, { assessments: 0, templates: 1, blocks: 2 }
 
   scope :deleted, -> { where.not(deleted_at: nil) }

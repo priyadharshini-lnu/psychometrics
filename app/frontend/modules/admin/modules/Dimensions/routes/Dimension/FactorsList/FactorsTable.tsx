@@ -1,10 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import {
   Button, MenuProps,
   Switch,
   Tag,
+  Drawer,
+  Space,
+  Empty,
 } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
+import { ArrowRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -15,115 +19,198 @@ type Props = {
   openModal: (modalName: string, modalProps?: unknown) => void
 }
 
+interface QuestionsDetail {
+  assessmentId: string
+  assessmentName?: string
+  count: number
+}
+
 const { I18n } = window
 
-export const FactorsTable: FC<Props> = ({ openModal }) => (
-  <>
-    <Resource.Table pagination>
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.id')}
-        id="id"
-        sorter
-        render={factor => factor.id}
-        width={100}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.active')}
-        id="active"
-        render={factor => <ActiveSwitch factor={factor} />}
-        width={10}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.icon')}
-        id="icon"
-        render={factor => (
-          <ResourceAvatar
-            url={factor.iconUrl}
-            name={factor.name || ''}
-          />
-        )}
-        width={70}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.name')}
-        id="name"
-        sorter
-        width={200}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('simple_form.placeholders.factor.questions_count')}
-        id="questions_count"
-        render={(factor) => {
-          if (factor?.questionsCountByAssessmentDetails?.length) {
-            return factor.questionsCountByAssessmentDetails.map(({ assessmentId, assessmentName, count }) => (
-              <div key={`${factor.id}-${assessmentId}`}>
-                <Button
-                  type="link"
-                  href={`/administration/assessments/${assessmentId}/scoring?factor_id=${factor.id}`}
-                >
-                  {assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}
-                </Button>
-              </div>
-            ))
-          }
+export const FactorsTable: FC<Props> = ({ openModal }) => {
+  const [questionsDrawerOpen, setQuestionsDrawerOpen] = useState(false)
+  const [selectedQuestions, setSelectedQuestions] = useState<QuestionsDetail[] | null>(null)
 
-          return factor?.questionsCount
-        }}
-        width={140}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('administration.factors.index.scoring_strategy')}
-        id="scoring_strategy"
-        sorter
-        render={factor => I18n.t(`administration.factors.index.scoring_strategies.${factor.scoringStrategy}`)}
-        width={100}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('administration.factors.index.sub_factors')}
-        width={60}
-        id="sub_factors"
-        render={factor => (
-          factor?.subFactors?.map(fact => (
-            <div key={fact.id}><Tag color="green">{fact.name}</Tag></div>
-          ))
+  const handleViewAllQuestions = (questions: QuestionsDetail[]) => {
+    setSelectedQuestions(questions)
+    setQuestionsDrawerOpen(true)
+  }
+
+  return (
+    <>
+      <Resource.Table pagination>
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.id')}
+          id="id"
+          sorter
+          render={factor => factor.id}
+          width={100}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.active')}
+          id="active"
+          render={factor => <ActiveSwitch factor={factor} />}
+          width={10}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.icon')}
+          id="icon"
+          render={factor => (
+            <ResourceAvatar
+              url={factor.iconUrl}
+              name={factor.name || ''}
+            />
+          )}
+          width={70}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.name')}
+          id="name"
+          sorter
+          width={200}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('simple_form.placeholders.factor.questions_count')}
+          id="questions_count"
+          render={(factor) => {
+            if (factor?.questionsCountByAssessmentDetails?.length) {
+              const allQuestions = factor.questionsCountByAssessmentDetails
+              const hasMore = allQuestions.length > 3
+              const visibleCount = hasMore ? 2 : 3
+              const visibleQuestions = allQuestions.slice(0, visibleCount)
+              const hiddenCount = allQuestions.length - visibleCount
+
+              return (
+                <>
+                  {visibleQuestions.map(({ assessmentId, assessmentName, count }) => (
+                    <div key={`${factor.id}-${assessmentId}`} style={{ marginBottom: '4px' }}>
+                      <Button
+                        type="link"
+                        href={`/administration/assessments/${assessmentId}/scoring?factor_id=${factor.id}`}
+                        style={{ padding: 0 }}
+                      >
+                        {assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}
+                      </Button>
+                    </div>
+                  ))}
+                  {hasMore && (
+                    <Button
+                      size="small"
+                      onClick={() => handleViewAllQuestions(allQuestions)}
+                    >
+                      {`+${hiddenCount}`}
+                    </Button>
+                  )}
+                </>
+              )
+            }
+
+            return factor?.questionsCount
+          }}
+          width={140}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('administration.factors.index.scoring_strategy')}
+          id="scoring_strategy"
+          sorter
+          render={factor => I18n.t(`administration.factors.index.scoring_strategies.${factor.scoringStrategy}`)}
+          width={100}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('administration.factors.index.sub_factors')}
+          width={60}
+          id="sub_factors"
+          render={factor => (
+            factor?.subFactors?.map(fact => (
+              <div key={fact.id}><Tag color="green">{fact.name}</Tag></div>
+            ))
+          )}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.created_at')}
+          id="created_at"
+          dataIndex="createdAt"
+          sorter
+          render={createdAt => (
+            dayjs(createdAt).format('lll')
+          )}
+          align="center"
+          width={100}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.updated_at')}
+          id="updated_at"
+          dataIndex="updatedAt"
+          sorter
+          render={updatedAt => (
+            dayjs(updatedAt).format('lll')
+          )}
+          align="center"
+          width={100}
+        />
+        <Resource.Column<Factor>
+          title={I18n.t('common.column.action')}
+          id="action"
+          render={(_, factor) => (
+            <Dropdown
+              factor={factor}
+              openModal={openModal}
+            />
+          )}
+          width={100}
+        />
+      </Resource.Table>
+      <Drawer
+        title={I18n.t('simple_form.placeholders.factor.questions_count')}
+        placement="right"
+        closable
+        onClose={() => setQuestionsDrawerOpen(false)}
+        open={questionsDrawerOpen}
+        width="50%"
+        footer={(
+          <Space style={{ float: 'right' }}>
+            <Button onClick={() => setQuestionsDrawerOpen(false)}>
+              {I18n.t('common.actions.cancel')}
+            </Button>
+          </Space>
         )}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.created_at')}
-        id="created_at"
-        dataIndex="createdAt"
-        sorter
-        render={createdAt => (
-          dayjs(createdAt).format('lll')
+      >
+        {selectedQuestions && selectedQuestions.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {selectedQuestions.map(({ assessmentId, assessmentName, count }) => (
+              <a
+                key={`${assessmentId}`}
+                href={`/administration/assessments/${assessmentId}/scoring`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '12px 8px',
+                  textDecoration: 'none',
+                  color: '#0066cc',
+                  borderBottom: '1px solid #d9d9d9',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f5f5f5'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }}
+              >
+                <span>{assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}</span>
+                <ArrowRightOutlined style={{ marginLeft: '16px', flexShrink: 0, color: '#999' }} />
+              </a>
+            ))}
+          </div>
+        ) : (
+          <Empty description={I18n.t('shared.no_results_found')} />
         )}
-        align="center"
-        width={100}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.updated_at')}
-        id="updated_at"
-        dataIndex="updatedAt"
-        sorter
-        render={updatedAt => (
-          dayjs(updatedAt).format('lll')
-        )}
-        align="center"
-        width={100}
-      />
-      <Resource.Column<Factor>
-        title={I18n.t('common.column.action')}
-        id="action"
-        render={(_, factor) => (
-          <Dropdown
-            factor={factor}
-            openModal={openModal}
-          />
-        )}
-        width={100}
-      />
-    </Resource.Table>
-  </>
-)
+      </Drawer>
+    </>
+  )
+}
 type DropDownProps = {
   factor: Factor,
   openModal: (modalName: string, modalProps?: unknown) => void

@@ -27,6 +27,8 @@ module Auth
         required(:hide_signup).filled(:bool?)
         required(:logo_alt_text).maybe(:str?)
         required(:enable_recaptcha).maybe(:bool?)
+        required(:external_logout_redirect_enabled).maybe(:bool?)
+        required(:external_logout_url).maybe(:str?)
       end
     end
   end

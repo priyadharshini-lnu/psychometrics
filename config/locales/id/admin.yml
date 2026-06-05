@@ -22,6 +22,7 @@ id:
     admin_updated_successfully: Admin '%{name}' berhasil diperbarui
     admins: Admin
     advanced: Lanjutan
+    agile: LINCAH
     ai_artifact_result_generation_admin_job_failed: Artefak '%{artifact_name}' tidak dapat dihasilkan untuk Pengguna '%{user_email}'
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
@@ -137,6 +138,7 @@ id:
     assessments_not_mhs: Semua penilaian harus berupa jenis MHS.
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai
+    assessor_form: Formulir Penilai
     assessor_workshops: Pusat Penilaian
     assessors: Asesor
     assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
@@ -144,6 +146,7 @@ id:
     assistant_validation_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
     audit_logs: Log Audit
     audit_reports: Laporan Audit
+    auto_moderated_factor_info: Skor ini dimoderasi secara otomatis dan tidak dapat diubah
     auto_placeholder: Otomatis
     availability: Ketersediaan
     available_languages: Laporan tersedia dalam bahasa
@@ -221,6 +224,7 @@ id:
     cancel: Batalkan
     cancellation_and_rescheduling_disabled: Pembatalan dan Penjadwalan Ulang dinonaktifkan
     captcha: Verifikasi Captcha
+    case_study: Studi Kasus
     casual: Santai
     cell_save_msg: Perubahan yang valid akan disimpan secara otomatis begitu Anda keluar dari sel setelah mengedit.
     characters: karakter
@@ -230,6 +234,8 @@ id:
     client_admins: Admin Klien
     clients: Klien Pengguna
     code_required: Kode diperlukan
+    common: Penilaian TTE
+    common_assessment: Penilaian TTE
     communication_center: Pusat Komunikasi
     communications: Komunikasi
     completed: Selesai
@@ -248,6 +254,7 @@ id:
     create_client: Buat Klien
     create_indicator: Buat Indikator
     current_job_role: Posisi Pekerjaan Saat Ini
+    custom_upload: Unggahan Kustom
     dashboard: Dashboard
     dashboards: Dashboard
     data_reports: Laporan Data
@@ -285,6 +292,8 @@ id:
     dimension_translations_export_scheduled: Terjadwalkan untuk mengekspor terjemahan untuk dimensi "%{name}".
     dimensions: Dimensi
     disable_proctoring: Nonaktifkan Pengawasan
+    disallow_lead_assessor_moderation: Larang Moderasi oleh Penilai Utama
+    disallow_lead_assessor_moderation_info: Skor akan dihitung secara otomatis berdasarkan semua formulir yang dikirimkan oleh penilai, dan penilai utama tidak dapat mengubahnya dari layar moderasi
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
     download_bulk_asset_download_example_csv: Unduh Contoh CSV.
@@ -315,6 +324,7 @@ id:
     enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
     enter_description: Masukkan deskripsi
     enter_name: Masukkan nama
+    enter_question_id: Masukkan ID Pertanyaan
     error: Kesalahan
     estimated_tokens: token (perkiraan)
     evaluation_status: Status Evaluasi
@@ -381,6 +391,8 @@ id:
     idp_appearance_title: Judul
     idp_plan_reset_success: Paket telah berhasil diatur ulang
     idp_templates: Template IDP
+    iiht: IIHT
+    iiht_assessment: Penilaian IIHT
     import_ai_artifacts: Impor Artefak AI
     import_csv_assessment_group_error: 'Baris %{index}: Pengguna dengan alamat email %{email} sudah diundang ke ''%{workshopInviteName}'''
     import_csv_error: 'Baris %{index}: pengguna dengan email %{email} tidak ada dalam kampanye ini'
@@ -406,9 +418,11 @@ id:
     import_users: Impor Pengguna
     internal: Internal
     invalid_csv_header: File CSV berisi header yang tidak valid.
+    invalid_question_ids: 'ID soal yang tidak ditemukan dalam penilaian ini: %{ids}'
     job_roles: Peran Pekerjaan
     keywords: Kata kunci
     keywords_placeholder: Masukkan kata kunci yang dipisahkan dengan koma.
+    lead_assessor_form: Formulir Penilai Utama
     learning_from_others: Pembelajaran Kolaboratif [20]
     level: Tingkat
     level_apply: Ajukan
@@ -418,6 +432,8 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    lighthouse_question: Pertanyaan Utama
+    lighthouse_question_id: ID Pertanyaan Lighthouse
     linked_assessments: Penilaian Terkait
     low: Rendah
     maintenance: Perawatan
@@ -425,10 +441,14 @@ id:
     maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     max_value: Nilai maksimum
+    mean: Rata-rata
     media_files_label: Berkas
     media_library: Perpustakaan Media
     media_library_page_title: Perpustakaan Media - Dasbor - Mercer Lighthouse
+    meeting: Rapat
     messages: Pesan
+    mettl: METTL
+    mettl_assessment: Penilaian Mettl
     mhs: MHS
     mhs_assessment: Penilaian MHS
     mhs_assessment_name: Nama Penilaian MHS
@@ -437,6 +457,10 @@ id:
     mhs_external_assessment_id: ID Penilaian Mhs
     mhs_report_id: Laporan MHS ID
     mhs_session_id: ID Sesi Mhs
+    microsite: Situs mini
+    microsite_assessment: Penilaian Situs Mikro
+    microsite_assessment_name: Nama Penilaian Situs Mikro
+    microsite_question_id: ID Pertanyaan Microsite
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
     minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
@@ -445,12 +469,14 @@ id:
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
     model_answer: Jawaban Contoh
     model_answer_placeholder: Masukkan jawaban contoh untuk penilaian AI.
+    must_be_a_valid_url: URL tidak valid. Cantumkan URL lengkap yang menyertakan protokol http atau https
     name: Nama
     name_max_length: Nama tidak boleh melebihi %{length} karakter
     name_required: Nama diperlukan
     new_folder: Folder baru
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
+    no_question_mappings: Tidak ada pemetaan pertanyaan yang tersedia
     no_status: Tanpa Status
     norm_editor_numeric_value_error: Hanya nilai numerik yang diperbolehkan (bilangan bulat atau desimal).
     norms: Norma
@@ -466,10 +492,13 @@ id:
     on_the_job: Di Tempat Kerja [70]
     only_editable_on_create: Opsi ini hanya dapat diedit saat sedang dibuat.
     options: Pilihan
+    organisational: LINCAH
     original_text: Teks Asli
     overall: Secara keseluruhan
     overall_score: Skor Total
     participants: Peserta
+    pearson: Pearson
+    pearson_assessment: Penilaian Pearson
     permissions:
       aiArtifacts:
         export: Ekspor
@@ -800,6 +829,8 @@ id:
       projectSettings:
         assessments: Penilaian
         design: Desain
+        external_logout_redirect_enabled: Aktifkan Pengalihan Keluar Eksternal
+        external_logout_url: URL Keluar Eksternal
         feature_flags: Bendera Fitur
         idp: IDP
         integrations: Integrasi
@@ -913,6 +944,7 @@ id:
     project_settings: Pengaturan Proyek
     projects: Proyek
     prompt: Perintah
+    psychometric: Psikometrik
     question_center: Pusat Pertanyaan
     question_center_page_title: Pusat Pertanyaan - Dasbor - Mercer Lighthouse
     question_editor_change_type: Ubah jenis
@@ -921,6 +953,7 @@ id:
     question_editor_enable_transcription: Aktifkan transkripsi
     question_editor_preview_question: Pertanyaan Pratinjau
     question_editor_validation_type: Jenis validasi
+    question_mapping: Pemetaan Pertanyaan
     question_randomization: Pengacakan Pertanyaan
     question_type_audio_response: Respons Audio
     question_type_constant_sum: Jumlah Tetap
@@ -1037,6 +1070,8 @@ id:
       subject_full_name_cont: Nama Mata Kuliah
       user_email_cont: Alamat Email Pengguna
       user_full_name_cont: Nama Pengguna
+    saville: Saville
+    saville_assessment: Penilaian Saville
     scheduling: Penjadwalan
     score: Skor
     score_approval_not_allowed_to_approve: Anda tidak diizinkan untuk menyetujui skor ini.
@@ -1072,6 +1107,7 @@ id:
     select_end_time: Pilih Waktu Berakhir
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
+    select_question: Cari pertanyaan berdasarkan nama atau ID
     select_start_time: Pilih Waktu Mulai
     selective_proctoring: Pengawasan Terpilih
     send_email: Kirim email
@@ -1084,14 +1120,19 @@ id:
     show_submenu: Tampilkan Sub Menu
     show_translated: Tampilkan Terjemahan
     siem: SIEM
+    simulation: Simulasi
+    simulation_assessment: Penilaian Simulasi
     skill_aliases: Alias Keterampilan
     skills: Keterampilan
     skills_taxonomy: Taksonomi Keterampilan
+    skillvue: Keterampilan
+    skillvue_assessment: Penilaian Skillvue
     skip_assessment_level_checks: Lewati Pemeriksaan Sistem Tingkat Penilaian
     slot_name: Nama Slot
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
     specialty_questions: Pertanyaan Khusus
+    standard_deviation: Simpangan Baku
     standard_questions: Pertanyaan Standar
     start: mulai
     start_time: Waktu Mulai
@@ -1152,6 +1193,8 @@ id:
     x_axis_interval_label: Interval Sumbu X
     y_axis_interval_label: Interval Sumbu Y
     year: Negara
+    yoodli: Yoodli
     yoodli_activity_id: ID Aktivitas Yoodli
+    yoodli_assessment: Penilaian Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli
     yoodli_external_assessment_id: ID Penilaian Yoodli

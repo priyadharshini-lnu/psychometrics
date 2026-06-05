@@ -7,6 +7,7 @@ class SamlSetting < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   belongs_to :project, class_name: 'Client'
+  include Tenantable
 
   enum :name_identifier_format, { email: 0, persistent: 1 }, suffix: :name_identifier
 

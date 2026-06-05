@@ -10,6 +10,7 @@ import { PearsonDetails } from './PearsonDetails'
 import { HoganDetails } from './HoganDetails'
 import { SkillvueDetails } from './SkillvueDetails'
 import { YoodliDetails } from './YoodliDetails'
+import { MicrositeDetails } from './MicrositeDetails'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import RawJSON from './RawJSON'
 import MhsDetails from './MhsDetails'
@@ -165,6 +166,10 @@ export const DetailsDrawer: FC<Props> = ({
               I18n={I18n}
               assessment={assessment}
             />
+            <MicrositeDetails
+              I18n={I18n}
+              assessment={assessment}
+            />
             <MhsDetails
               I18n={I18n}
               assessment={assessment}
@@ -178,6 +183,11 @@ export const DetailsDrawer: FC<Props> = ({
             <RawJSON
               I18n={I18n}
               usersResultId={assessment?.usersResultId}
+              micrositeRawResponse={
+                assessment?.category === 'microsite'
+                  ? assessment?.micrositeUserAssessmentDetails?.rawResponse
+                  : undefined
+              }
             />
           </>
         )}

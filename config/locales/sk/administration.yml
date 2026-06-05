@@ -2363,6 +2363,7 @@ sk:
         add: Integrácie
         back: Späť na Integrácie
         load_mettl_catalog: Katalóg hodnotenia zaťaženia Mettl
+        load_microsite_catalog: Načítať katalóg hodnotení mikrostránok
         load_skillvue_catalog: Katalóg hodnotenia Load Skillvue
       columns:
         active: Aktívny
@@ -2381,6 +2382,7 @@ sk:
         webhookUrls: URL adresy webhooku
       integrations: Integrácie
       load_mettl_success: Načítanie úlohy mettl assessments je úspešne zaradené do frontu
+      load_microsite_success: Úloha na vyhodnotenie mikrostránok bola úspešne zaradená do fronty
       load_skillvue_success: Úloha hodnotenia načítania zručností je úspešne zaradená do frontu
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ sk:
           servers:
             mettl_eu: Európa
             mettl_india: India
+        microsite:
+          apiKey: Kľúč API
+          apiKeyRequired: Je potrebný kľúč API
         skillvue:
           apiKey: Kľúč API
           apiKeyRequired: Vyžaduje sa kľúč API
@@ -2414,6 +2419,7 @@ sk:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Mikrostránka
         skillvue: Skillvue
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ sk:
           tenant_id_present: ID nájomníka je už prítomné v inom projekte
         mettl:
           public_key_present: Verejný kľúč je už prítomný v inom projekte
+        microsite:
+          api_key_present: Kľúč API už existuje v inom projekte
         skillvue:
           api_key_present: API kľúč je už prítomný v inom projekte
       view_all_schedules: Zobraziť všetky cestovné poriadky Mettl
@@ -2990,6 +2998,7 @@ sk:
               assessment_started: Začiatok hodnotenia
               assessment_timeout: Časový limit hodnotenia
               campaign_results_available: Dostupné výsledky kampane
+              campaign_user_assessment_summary: Súhrn hodnotenia používateľov kampane
               campaign_user_status: Stav používateľa kampane
               report_available: Správa k dispozícii
               results_available: Dostupné výsledky

@@ -2363,6 +2363,7 @@ hr:
         add: Integracije
         back: Natrag na Integracije
         load_mettl_catalog: Katalog za procjenu opterećenja Mettl
+        load_microsite_catalog: Učitaj katalog za procjenu micrositea
         load_skillvue_catalog: Katalog za procjenu vještina opterećenja
       columns:
         active: Aktivan
@@ -2381,6 +2382,7 @@ hr:
         webhookUrls: URL-ovi web-dojavnika
       integrations: Integracije
       load_mettl_success: Posao učitavanja mettl procjene uspješno je stavljen u red čekanja
+      load_microsite_success: Zadatak učitavanja procjena micrositea uspješno je stavljen u red.
       load_skillvue_success: Posao procjene vještina učitavanja uspješno je stavljen u red čekanja
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ hr:
           servers:
             mettl_eu: Europa
             mettl_india: Indija
+        microsite:
+          apiKey: API ključ
+          apiKeyRequired: Potreban je API ključ
         skillvue:
           apiKey: API ključ
           apiKeyRequired: Potreban je API ključ
@@ -2414,6 +2419,7 @@ hr:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Mikrosajt
         skillvue: Vještina
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ hr:
           tenant_id_present: ID stanara već je prisutan u drugom projektu
         mettl:
           public_key_present: Javni ključ je već prisutan u drugim projektima
+        microsite:
+          api_key_present: API ključ je već prisutan u drugom projektu.
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledajte sve rasporede tvrtke Mettl
@@ -2990,6 +2998,7 @@ hr:
               assessment_started: Procjena je započela
               assessment_timeout: Vremensko ograničenje procjene
               campaign_results_available: Dostupni rezultati kampanje
+              campaign_user_assessment_summary: Sažetak ocjene korisnika kampanje
               campaign_user_status: Status korisnika kampanje
               report_available: Dostupno izvješće
               results_available: Dostupni rezultati

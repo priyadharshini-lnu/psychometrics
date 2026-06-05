@@ -2,17 +2,16 @@ import {
   FC, useContext, useState,
 } from 'react'
 import {
-  connect, ConnectedProps, useDispatch, useSelector,
+  connect, ConnectedProps, useSelector,
 } from 'react-redux'
 import _ from 'lodash'
 import {
   Row, Col, Alert, Button, Result, Typography, Space, App,
-  Skeleton, theme,
+  Skeleton,
 } from 'antd'
 import cs from 'classnames'
-import { useNavigate } from 'react-router-dom'
 import {
-  InfoCircleOutlined, InfoCircleFilled,
+  InfoCircleOutlined,
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined, ReloadOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
@@ -24,14 +23,12 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   reset as resetCampaign,
   resetPracticeCampaign,
-  setCampaignUser,
 } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
 import { SafeHTML } from '~/components/SafeHTML'
 import { useIsProctored } from '~/hooks/useProctoringState'
-import { useDeviceDetection } from '~/hooks/useDeviceDetection'
-import { ProgressStatus, DirectionalArrowIcon, MediaQueryContext } from '~/glint'
+import { ProgressStatus, MediaQueryContext } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
 import { InstructionsPanel } from './InstructionsPanel'
@@ -43,14 +40,6 @@ import {
 } from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import styles from './styles.less'
 import { MaintenanceStatus, MaintenanceAlert } from '~/glint/components/MaintenanceAlert'
-
-const isCampaignSystemCheckValid = (
-  lastSuccessfulCheckAt: number,
-  systemCheckValidity: number,
-) => {
-  const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
-  return campaignSystemCheckExpiryTime > (Date.now() / 1000)
-}
 
 const connector = connect(
   (state: RootState) => ({
@@ -85,24 +74,19 @@ const CommonComponent: FC<CommonComponentProps> = ({
   maintenanceSettings,
 }) => {
   const { modal, message } = App.useApp()
-  const navigate = useNavigate()
   const { isMobile } = useContext(MediaQueryContext)
   const {
     isTimedCampaign,
     fixedTimed,
     campaignsCount,
     campaignOptions: {
-      instructionsEnabled, instructions, proctoringEnabled, integrationType, proctoringEnabledOnWorkshopActivity,
-      systemCheckEnabled, enableMobileProctoring, selectiveProctoringEnabled,
+      instructionsEnabled, instructions, proctoringEnabled, proctoringEnabledOnWorkshopActivity,
+      selectiveProctoringEnabled,
     },
-    campaignTime,
-    lastSuccessfulCheckAt,
   } = campaign
   const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
 
-  const dispatch = useDispatch()
   const hasFlashMessages = useSelector((state: RootState) => state.flash?.length > 0)
-  const { token } = theme.useToken()
   const { isProctored, proctoringCheckInProgress } = useIsProctored()
   const campaignNeedsProctoring = campaignLevelProctoringEnabled && !isProctored
   const campaignClosed = campaign.status === STATUSES.CLOSED
@@ -130,16 +114,15 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const campaignClosedForUser = campaignClosed
     || campaignUserTimedOut || (isTimedCampaign && campaignUser.status === 'completed')
   const disableWorkshopActivityBasedOnProctoringSetting = proctoringEnabledOnWorkshopActivity
-    ? campaignNeedsProctoring : isProctored
+    ? false : isProctored
 
   const canNotStartPrework = campaignClosedForUser || campaignUser.status === 'completed'
-  const canNotStartAssessment = campaignNeedsProctoring
-    || (fixedTimed && !hasStartedCampaign)
-    || campaignClosedForUser
+  const canNotStartAssessment = campaignClosedForUser
     || campaignUser.status === 'completed'
-    || isCampaignInterrupted
     || campaignUserTimedOut
     || hasNoExpiryDateForTimedCampaign
+    || !allPreworkIsComplete
+
   const canNotStartWorkshopActivity = campaignUser.status === 'completed'
     || campaignClosedForUser
     || disableWorkshopActivityBasedOnProctoringSetting
@@ -168,114 +151,20 @@ const CommonComponent: FC<CommonComponentProps> = ({
   )
 
   const [maintenanceStatus, setMaintenanceStatus] = useState<MaintenanceStatus>('')
-  const proctoringUnderMaintenance = proctoringEnabled && maintenanceStatus === 'inProgress'
-  const { isMobileDevice } = useDeviceDetection()
 
-  const campaignStartInstruction = () => {
-    const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
-    if (campaignLevelProctoringEnabled) {
-      messages.push(I18n.t('campaign.instruction_modal.common_proctoring_instructions'))
-    }
-
-    if (integrationType === 'ldb') { messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction')) }
-
-    messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
-
-    return (
-      messages.map((message, index) => (
-        <Typography.Paragraph key={index}>
-          <SafeHTML html={message} />
-        </Typography.Paragraph>
-      ))
-    )
-  }
 
   const asyncUrl = canBeginCampaign
     ? `/campaign_users/${campaignUser.id}/begin_campaign`
     : `/campaign_users/${campaignUser.id}/continue_campaign`
 
   const {
-    asyncLoading, makeAsyncRequest,
+    asyncLoading,
   } = useAsyncRequestResponse<AsyncRequestResponse>({
     url: asyncUrl,
     data: { id: campaignUser.id },
     responseType: AsyncRequestResponseTR,
   })
 
-  const startCampaignActivities = async () => {
-    try {
-      const { responseData } = await makeAsyncRequest()
-      const { examusSessionUrl } = responseData
-
-      if (campaignLevelProctoringEnabled && examusSessionUrl) {
-        window.location.href = examusSessionUrl
-      } else {
-        dispatch(setCampaignUser(responseData))
-      }
-    } catch (error) {
-      message.error(error)
-    }
-  }
-
-  const showCampaignStartModal = () => {
-    modal.info({
-      icon: false,
-      title: null,
-      content: campaignStartInstruction(),
-      okText: I18n.t('common.actions.start'),
-      closable: true,
-      width: 600,
-      onOk () {
-        startCampaignActivities()
-      },
-    })
-  }
-
-  const handleStartCampaignActivities = () => {
-    if (systemCheckEnabled
-      && !isCampaignSystemCheckValid(lastSuccessfulCheckAt, campaign.campaignOptions.systemCheckValidity)) {
-      navigate(`/campaign_system_check/${campaign.id}/welcome`)
-      return
-    }
-
-    if (!fixedTimed) { return startCampaignActivities() }
-
-    if (isMobileDevice && proctoringEnabled) {
-      if (enableMobileProctoring) {
-        modal.confirm({
-          icon: <InfoCircleFilled style={{ color: token.colorInfo }} />,
-          title: I18n.t('shared.desktop_or_laptop_recommended'),
-          content: (
-            <Typography.Paragraph>
-              <SafeHTML html={I18n.t('shared.mobile_proctoring_enabled_instructions')} />
-            </Typography.Paragraph>
-          ),
-          closable: true,
-          width: 600,
-          okText: I18n.t('common.actions.continue'),
-          cancelText: I18n.t('shared.switch_to_laptop_or_desktop'),
-          cancelButtonProps: { color: 'primary', variant: 'outlined' },
-          onOk: () => showCampaignStartModal(),
-        })
-      } else {
-        modal.info({
-          icon: false,
-          title: I18n.t('shared.desktop_or_laptop_required'),
-          content: (
-            <Typography.Paragraph>
-              <SafeHTML html={I18n.t('shared.mobile_proctoring_disabled_instructions')} />
-            </Typography.Paragraph>
-          ),
-          closable: true,
-          width: 600,
-        })
-      }
-    } else {
-      showCampaignStartModal()
-    }
-
-    return null
-  }
 
   const handleResetPracticeCampaign = (campaignId) => {
     modal.confirm({
@@ -319,19 +208,6 @@ const CommonComponent: FC<CommonComponentProps> = ({
       </Col>
     </Row>
   )
-
-  const timedAndProctoredAlert = maintenanceStatus !== 'inProgress' && (canBeginCampaign || canContinueCampaign) ? (
-    <Alert
-      className="mt-2"
-      type="warning"
-      title={
-        getBeginOrContinueMessage(
-          fixedTimed, campaignLevelProctoringEnabled,
-          canBeginCampaign ? I18n.t('campaign.begin') : I18n.t('campaign.continue'),
-        )
-      }
-    />
-  ) : null
 
   if (campaignLevelProctoringEnabled && proctoringCheckInProgress) { return <Skeleton /> }
 
@@ -406,26 +282,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
                   {(canBeginCampaign || canContinueCampaign || campaign.practiceCampaign || hasFlashMessages) && (
                     <AssessmentCardContainer>
                       <Flash className="mt-2" />
-                      {timedAndProctoredAlert}
                       <Row>
-                        <Col span={24} style={{ paddingInlineStart: '14px' }}>
-                          {canBeginCampaign && (
-                            <>
-                              <Title className={styles.beginText} level={4}>
-                                {I18n.t('campaign.begin')}
-                              </Title>
-                              <Button
-                                size="middle"
-                                type="primary"
-                                onClick={handleStartCampaignActivities}
-                                disabled={!allPreworkIsComplete || proctoringUnderMaintenance}
-                              >
-                                {I18n.t('campaign.begin')}
-                                {' '}
-                                <DirectionalArrowIcon />
-                              </Button>
-                            </>
-                          )}
+                        <Col span={24}>
                           {campaign.practiceCampaign && hasStartedCampaign && !isProctored && (
                             <>
                               <Title className={styles.beginText} level={4}>
@@ -441,30 +299,12 @@ const CommonComponent: FC<CommonComponentProps> = ({
                               </Button>
                             </>
                           )}
-                          {canContinueCampaign && (
-                            <>
-                              <Title className={styles.beginText} level={4}>
-                                {I18n.t('campaign.continue')}
-                              </Title>
-                              <Button
-                                size="middle"
-                                type="primary"
-                                onClick={handleStartCampaignActivities}
-                                disabled={!allPreworkIsComplete || proctoringUnderMaintenance}
-                              >
-                                {I18n.t('campaign.continue')}
-                                {' '}
-                                <DirectionalArrowIcon />
-                              </Button>
-
-                            </>
-                          )}
                           {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
                             <div className="mt-1">
                               <Space>
                                 <InfoCircleOutlined />
                                 <Typography.Text type="secondary">
-                                  {I18n.t('campaign.begin_btn_msg_before_prework')}
+                                  {I18n.t('enduser.prework_not_completed_message')}
                                 </Typography.Text>
                               </Space>
                             </div>
@@ -481,6 +321,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                     canNotStartAssessment={canNotStartAssessment}
                     canNotStartWorkshopActivity={canNotStartWorkshopActivity}
                     campaignNotStarted={canBeginCampaign || canContinueCampaign}
+                    allPreworkIsComplete={allPreworkIsComplete}
                   />
                 </div>
               </Col>
@@ -490,21 +331,6 @@ const CommonComponent: FC<CommonComponentProps> = ({
       }
     </>
   )
-}
-
-const getBeginOrContinueMessage = (
-  fixedTimed: boolean, campaignLevelProctoringEnabled: boolean, buttonText: string,
-) => {
-  if (fixedTimed && campaignLevelProctoringEnabled) {
-    return I18n.t('enduser.start_campaign_message_timed_proctored', { buttonText })
-  }
-  if (campaignLevelProctoringEnabled) {
-    return I18n.t('enduser.start_campaign_message_proctored', { buttonText })
-  }
-  if (fixedTimed) {
-    return I18n.t('enduser.start_campaign_message_timed', { buttonText })
-  }
-  return ''
 }
 
 

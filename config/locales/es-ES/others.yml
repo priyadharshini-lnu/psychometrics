@@ -1100,36 +1100,9 @@ es-ES:
       title: Detalles de la evaluación
     edit: Editar
     fields:
-      category:
-        agile: AGIL
-        assessor_form: Formulario para evaluadores
-        case_study: Casos prácticos
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulario del asesor principal
-        meeting: Reunión
-        mettl: Mettl
-        organisational: Org Encuestas
-        pearson: Pearson
-        psychometric: Psicométrico
-        saville: Saville
-        simulation: Simulación
-        skillvue: Skillvue
-        threesixty: campaña 360
-        yoodli: Yoodli
       status:
         finished: Terminado
         in_progress: En curso
-      type:
-        common: Evaluación TTE
-        hogan: Hogan
-        iiht: Evaluación del IIHT
-        mettl: Evaluación Mettl
-        pearson: Evaluación Pearson
-        saville: Evaluación Saville
-        simulation: Evaluación de la simulación
-        skillvue: Evaluación de habilidades
-        yoodli: Evaluación de Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mensaje personalizado de fin de evaluación
@@ -1211,16 +1184,11 @@ es-ES:
         failure: Su navegador no admite la grabación de vídeo. Use Chrome o Firefox para poder grabar vídeo.
         success: Permita el uso de la cámara y el micrófono para grabar audio y vídeo
         unsupported: Este navegador no soporta la grabación de vídeo. Por favor, utilice cualquiera de los siguientes navegadores,
-      recording_duration_label: Duración máxima de la grabación
-      recording_stop_label: La grabación se detendrá en
       requesting_permission: Solicitar permiso...
       response_recorded: Respuesta registrada
       save: Salvar
-      saved:
-        label: Guardado/a
       seek: Buscar
       start_recording: Empezar a grabar
-      stop_recording: Detener la grabación
       tracker:
         backward: Está demasiado cerca de la pantalla. Aléjese un poco
         forward: Está demasiado lejos de la pantalla. Acérquese un poco
@@ -1382,15 +1350,12 @@ es-ES:
     all_activities_are_completed: Ha completado todas las actividades.
     all_activities_are_completed_multiple: Ha completado todas las actividades de esta campaña. Acceda al panel de control y compruebe si se le han asignado otras actividades.
     already_joined: Ya te has unido a esta campaña
-    begin: Comenzar sus tareas
-    begin_btn_msg_before_prework: Tienes que completar las siguientes tareas antes de empezar la campaña cronometrada
     begin_campaign_msg: Iniciar la campaña antes de realizar las evaluaciones
     campaigns: Campañas
     closed_campaign_message: Esta campaña se ha cerrado. No puede realizar ninguna evaluación de esta campaña.
     code_usage_limit_reached: Límite de uso de código alcanzado, póngase en contacto con el administrador
     complete_prev: Complete todas las evaluaciones previas
     complete_tasks: Realice las tareas que se indican a continuación antes de emprender esta acción.
-    continue: Continúe con sus tareas
     dashboard_instructions: Se le han asignado varias actividades que debe completar. No olvide comprobar si ha completado todas las actividades asignadas de todas las campañas.
     dashboard_menu:
       campaign: Campaña
@@ -1499,6 +1464,9 @@ es-ES:
       external_user_id: Identificación del candidato Skillvue
       id: ID de evaluación de la campaña
       locales: Locales
+      microsite_error_message: Mensaje de error
+      microsite_participant_id: ID de participante en el micrositio
+      microsite_registration_status: Estado de la inscripción
       norm: Norma
       norm_id: Norma ID
       pearson_norm_id: Pearson Norm ID
@@ -1773,10 +1741,8 @@ es-ES:
       permissions: Permisos de cámara web y audio
       title: Antes de comenzar con esta evaluación, es necesario realizar algunas comprobaciones en su equipo.
     video_check:
-      description: Los vídeos o las fotos que se registren en esta fase no se guardarán ni se usarán. Se utilizarán de forma local en su dispositivo para comprobar que la cámara funciona en caso de que alguna pregunta requiera la grabación de vídeo.
       random_phrases:
         one: Levanta la mano si me oyes o saluda a la cámara
-      title: Tenemos que comprobar si su sistema puede grabar vídeo
   common:
     actions:
       add: Añadir
@@ -1857,6 +1823,7 @@ es-ES:
       json:
         answer: Respuesta JSON
         external_result: Resultado externo JSON
+        microsite_raw_response: Micrositio «Raw Response»
         scoring: Puntuación JSON
       key: Clave
       last_name: Apellido
@@ -3315,13 +3282,6 @@ es-ES:
     fields:
       provider:
         custom_upload: Carga personalizada
-        hogan: Hogan
-        internal: Interno
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Carga de Mettl
       load_from_pearson: Carga de Pearson

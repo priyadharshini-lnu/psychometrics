@@ -11,6 +11,14 @@ module Api
         @user.has_grant?(:campaigns, :read)
       end
 
+      def add_tag?
+        @user.has_grant?(:campaigns, :manage)
+      end
+
+      def remove_tag?
+        @user.has_grant?(:campaigns, :manage)
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           ::Administration::CampaignPolicy::Scope.new(user, Campaign).resolve

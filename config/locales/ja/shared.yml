@@ -22,9 +22,11 @@ ja:
     assessors_list: 評価者リスト
     asset_not_present: 資産が存在しません
     audio: オーディオ
+    audio_devices: オーディオ機器
     authentication_failed: 認証に失敗しました。もう一度お試しください。
     back: 戻る
     basic: 基本的な
+    camera: カメラ
     camera_preview: カメラのプレビューはここに表示されます
     campaign: キャンペーン
     campaign_id: キャンペーンID
@@ -59,6 +61,7 @@ ja:
     desktop_or_laptop_recommended: デスクトップまたはノートパソコンが推奨されます
     desktop_or_laptop_required: デスクトップまたはノートパソコンが必要です
     disabled: 無効
+    discard: 破棄
     download: ダウンロード
     download_audio: オーディオをダウンロード
     download_transcription: 文字起こしをダウンロード
@@ -85,6 +88,7 @@ ja:
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
     last_name: 姓
     learning_on_the_job_label: 現場での学び
+    lets_start: さあ、始めましょう！
     loading: 読み込み中...
     login: ログイン
     maintenance_in_hours: "%{hours} 時間"
@@ -99,6 +103,7 @@ ja:
     media_preview: メディア向けプレビュー
     media_question_transcriptions: メディア質問の文字起こし
     media_responses: メディアの反応
+    microphones: マイク
     mobile_proctoring_disabled_instructions: この評価を続けるにはデスクトップまたはノートパソコンが必要です。活動を完了するにはコンピューターに切り替えてください。
     mobile_proctoring_enabled_instructions: 最適な体験のため、ご利用可能な場合はデスクトップまたはノートパソコンに切り替えてください。必要に応じてモバイル端末でのご利用も可能です。
     modified_by: 変更者
@@ -116,7 +121,9 @@ ja:
     ok: OK
     options: オプション
     owner: オーナー
+    pause: 一時停止
     pending: 保留中
+    play: 再生
     policy_version: ポリシーバージョン
     policy_version_format: 整数のみが許可されます
     positive: 肯定的
@@ -130,6 +137,7 @@ ja:
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
     rec: REC
+    record: 記録
     recorded: 録音
     recording: 録音
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
@@ -146,16 +154,21 @@ ja:
     saving_video: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
     scoring_details: 得点詳細
     search: 検索
+    select_camera: カメラを選択してください
+    select_microphone: マイクを選択してください
     send_email: 電子メールを送信する
     show_more: 続きを表示
     something_wrong: 管理者に連絡してください。
+    speakers: 登壇者
     status: ステータス
     status_unknown: 状況不明
+    stop: 停止
     subject: 件名
     submit: 送信
     submit_and_finish_proctoring: 送信して試験監督を終了する
     suspended: 停止中
     switch_to_laptop_or_desktop: ノートパソコンまたはデスクトップに切り替える
+    system_check_uploading: アップロード中
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ ja:
     update_failed: 更新に失敗しました
     updated_at: 更新日時
     updated_successfully: 更新に成功しました
+    user_report_pdf_url_not_generated: PDFのダウンロードリンクを生成できませんでした
     video: 動画
     view: 表示
     view_audio: 音声を見る

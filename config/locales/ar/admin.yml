@@ -22,6 +22,7 @@ ar:
     admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
     admins: المسؤولون
     advanced: متقدم
+    agile: رشيق
     ai_artifact_result_generation_admin_job_failed: لا يمكن إنشاء الأداة "%{artifact_name}" للمستخدم "%{user_email}"
     ai_artifact_result_stale: قد تكون النتيجة قديمة لأن تبعيات أداة الذكاء الاصطناعي قد تغيرت منذ إنشاء النتيجة الأخيرة. ضع في اعتبارك إعادة إنشاء الأداة لإنشاء أحدث التبعيات.
     ai_artifacts: قطع الذكاء الاصطناعي
@@ -137,6 +138,7 @@ ar:
     assessments_not_mhs: يجب أن تكون جميع التقييمات من نوع MHS
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم
+    assessor_form: نموذج المقيم
     assessor_workshops: مركز التقييم
     assessors: المقيمون
     assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
@@ -144,6 +146,7 @@ ar:
     assistant_validation_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
+    auto_moderated_factor_info: يخضع هذا التقييم للمراجعة التلقائية ولا يمكن تغييره
     auto_placeholder: السيارات
     availability: التوفر
     available_languages: التقرير متوفر باللغات
@@ -221,6 +224,7 @@ ar:
     cancel: إلغاء
     cancellation_and_rescheduling_disabled: تم تعطيل الإلغاء وإعادة الجدولة
     captcha: التحقق من كابتشا
+    case_study: دراسات الحالة
     casual: غير رسمي
     cell_save_msg: يتم حفظ التغييرات الصحيحة تلقائيًا بمجرد مغادرة الخلية بعد التعديل.
     characters: شخصيات
@@ -230,6 +234,8 @@ ar:
     client_admins: مسؤولو العملاء
     clients: عقود العملاء
     code_required: الكود مطلوب
+    common: تقييم TTE
+    common_assessment: تقييم TTE
     communication_center: مركز الاتصالات
     communications: الاتصالات
     completed: اكمال
@@ -248,6 +254,7 @@ ar:
     create_client: إنشاء عميل
     create_indicator: إنشاء مؤشر
     current_job_role: الوظيفة الحالية
+    custom_upload: تحميل مخصص
     dashboard: لوحة القيادة
     dashboards: لوحات التحكم
     data_reports: تقارير البيانات
@@ -285,6 +292,8 @@ ar:
     dimension_translations_export_scheduled: تصدير الترجمات المجدولة للبعد %{name}.
     dimensions: الأبعاد
     disable_proctoring: تعطيل المراقبة
+    disallow_lead_assessor_moderation: منع المراقبة من قِبل المقيم الرئيسي
+    disallow_lead_assessor_moderation_info: سيتم حساب النتيجة تلقائيًا استنادًا إلى جميع نماذج التقييم التي تم تقديمها، ولا يمكن للمقيم الرئيسي تغييرها من شاشة المراجعة
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     download_bulk_asset_download_example_csv: تنزيل مثال CSV.
@@ -315,6 +324,7 @@ ar:
     enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
     enter_description: أدخل الوصف
     enter_name: أدخل الاسم
+    enter_question_id: أدخل رقم السؤال
     error: خطأ
     estimated_tokens: الرموز (تقديرية)
     evaluation_status: حالة التقييم
@@ -381,6 +391,8 @@ ar:
     idp_appearance_title: العنوان
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_templates: قوالب IDP
+    iiht: IIHT
+    iiht_assessment: تقييم IIHT
     import_ai_artifacts: استيراد القطع الأثرية الذكاء الاصطناعي
     import_csv_assessment_group_error: 'الصف %{index}: تمت دعوة المستخدم الذي يحمل عنوان البريد الإلكتروني %{email} بالفعل إلى "%{workshopInviteName}"'
     import_csv_error: 'الصف %{index}: مستخدم لديه بريد إلكتروني %{email} غير موجود في هذه الحملة'
@@ -406,9 +418,11 @@ ar:
     import_users: استيراد المستخدمين
     internal: داخلي
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
+    invalid_question_ids: 'لم يتم العثور على معرّفات الأسئلة التالية في هذا الاختبار: %{ids}'
     job_roles: الأدوار الوظيفية
     keywords: الكلمات المفتاحية
     keywords_placeholder: أدخل الكلمات الرئيسية مفصولة بفواصل.
+    lead_assessor_form: نموذج المقيم الرئيسي
     learning_from_others: التعلم التعاوني [20]
     level: المستوى
     level_apply: تقدم بطلب
@@ -418,6 +432,8 @@ ar:
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
+    lighthouse_question: السؤال الرئيسي
+    lighthouse_question_id: رقم سؤال "لايت هاوس"
     linked_assessments: التقييمات المرتبطة
     low: منخفض
     maintenance: الصيانة
@@ -425,10 +441,14 @@ ar:
     maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     max_value: القيمة القصوى
+    mean: المتوسط
     media_files_label: الملفات
     media_library: مكتبة الوسائط
     media_library_page_title: مكتبة الوسائط - لوحة التحكم - Mercer Lighthouse
+    meeting: اجتماع
     messages: Messages
+    mettl: METTL
+    mettl_assessment: تقييم Mettl
     mhs: MHS
     mhs_assessment: تقييم MHS
     mhs_assessment_name: اسم تقييم MHS
@@ -437,6 +457,10 @@ ar:
     mhs_external_assessment_id: رقم تقييم Mhs
     mhs_report_id: رقم تقرير MHS
     mhs_session_id: معرف جلسة Mhs
+    microsite: موقع مصغر
+    microsite_assessment: تقييم الموقع المصغر
+    microsite_assessment_name: اسم تقييم الموقع المصغر
+    microsite_question_id: رقم سؤال الموقع المصغر
     min_value: القيمة الدنيا
     minimum_10_words: 10 كلمات على الأقل
     minimum_download_speed: الحد الأدنى لسرعة التنزيل (بالميجابت في الثانية)
@@ -445,12 +469,14 @@ ar:
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
     model_answer: نموذج الإجابة
     model_answer_placeholder: أدخل الإجابة النموذجية لتقييم الذكاء الاصطناعي.
+    must_be_a_valid_url: عنوان URL غير صالح. يرجى تحديد عنوان URL الكامل مع تضمين بروتوكول http أو https فيه
     name: الاسم
     name_max_length: لا يمكن أن يتجاوز الاسم %{length} حرفًا
     name_required: الاسم مطلوب
     new_folder: مجلد جديد
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
+    no_question_mappings: لا توجد خرائط أسئلة متاحة
     no_status: لا يوجد حالة
     norm_editor_numeric_value_error: يُسمح فقط بالقيم الرقمية (أعداد صحيحة أو أعداد عشرية).
     norms: المعايير
@@ -466,10 +492,13 @@ ar:
     on_the_job: في العمل [70]
     only_editable_on_create: هذا الخيار قابل للتعديل فقط أثناء الإنشاء.
     options: الخيارات
+    organisational: رشيق
     original_text: النص الأصلي
     overall: بشكل عام
     overall_score: النتيجة الإجمالية
     participants: المشاركون
+    pearson: بيرسون
+    pearson_assessment: تقييم بيرسون
     permissions:
       aiArtifacts:
         export: تصدير
@@ -800,6 +829,8 @@ ar:
       projectSettings:
         assessments: التقييمات
         design: التصميم
+        external_logout_redirect_enabled: تمكين إعادة التوجيه الخارجي عند تسجيل الخروج
+        external_logout_url: رابط تسجيل الخروج الخارجي
         feature_flags: علامات الميزة
         idp: IDP
         integrations: التكاملات
@@ -913,6 +944,7 @@ ar:
     project_settings: إعدادات المشروع
     projects: المشاريع
     prompt: موجه
+    psychometric: القياس النفسي
     question_center: مركز الأسئلة
     question_center_page_title: مركز الأسئلة - لوحة التحكم - Mercer Lighthouse
     question_editor_change_type: تغيير النوع
@@ -921,6 +953,7 @@ ar:
     question_editor_enable_transcription: تمكين النص المكتوب
     question_editor_preview_question: معاينة السؤال
     question_editor_validation_type: نوع التحقق من الصحة
+    question_mapping: تحديد الأسئلة
     question_randomization: ترتيب الأسئلة عشوائياً
     question_type_audio_response: الرد الصوتي
     question_type_constant_sum: المجموع الثابت
@@ -1037,6 +1070,8 @@ ar:
       subject_full_name_cont: اسم المادة
       user_email_cont: البريد الإلكتروني للمستخدم
       user_full_name_cont: اسم المستخدم
+    saville: سافيل
+    saville_assessment: تقييم سافيل
     scheduling: الجدولة
     score: النتيجة
     score_approval_not_allowed_to_approve: لا يجوز لك الموافقة على هذه النتيجة.
@@ -1072,6 +1107,7 @@ ar:
     select_end_time: حدد وقت الانتهاء
     select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
     select_level: اختر المستوى
+    select_question: البحث عن سؤال بالاسم أو الرقم التعريفي
     select_start_time: حدد وقت البدء
     selective_proctoring: المراقبة الانتقائية
     send_email: إرسال بريد إلكتروني
@@ -1084,14 +1120,19 @@ ar:
     show_submenu: عرض القائمة الفرعية
     show_translated: عرض المترجم
     siem: SIEM
+    simulation: محاكاة
+    simulation_assessment: تقييم المحاكاة
     skill_aliases: Skill Aliases
     skills: المهارات
     skills_taxonomy: تصنيف المهارات
+    skillvue: سكيلفيو
+    skillvue_assessment: تقييم Skillvue
     skip_assessment_level_checks: تخطي فحوصات نظام مستويات التقييم
     slot_name: اسم الماكينة
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
     specialty_questions: أسئلة متخصصة
+    standard_deviation: الانحراف المعياري
     standard_questions: الأسئلة المعتادة
     start: ابدأ
     start_time: وقت البدء
@@ -1152,6 +1193,8 @@ ar:
     x_axis_interval_label: فاصل المحور السيني
     y_axis_interval_label: فاصل المحور Y
     year: البلد
+    yoodli: يودلي
     yoodli_activity_id: معرف نشاط يودلي
+    yoodli_assessment: تقييم يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
     yoodli_external_assessment_id: معرف تقييم يودلي

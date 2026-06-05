@@ -1100,36 +1100,9 @@ zh-Hant:
       title: 評估細節
     edit: 編輯
     fields:
-      category:
-        agile: AGILE
-        assessor_form: 評估員表格
-        case_study: 案例研究
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: 首席評估員表格
-        meeting: 會議
-        mettl: 濕度
-        organisational: 組織調查
-        pearson: 培生
-        psychometric: 心理測量
-        saville: 薩維爾
-        simulation: 模擬
-        skillvue: Skillvue
-        threesixty: 360 活動
-        yoodli: 尤德利
       status:
         finished: 完成
         in_progress: 進行中
-      type:
-        common: TTE 評估
-        hogan: Hogan
-        iiht: IIHT 評估
-        mettl: Mettl 評估
-        pearson: 培生評估
-        saville: 薩維爾評估
-        simulation: 模擬評估
-        skillvue: Skillvue 評估
-        yoodli: Yoodli 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -1206,16 +1179,11 @@ zh-Hant:
         failure: 此瀏覽器不支援視訊錄影，請使用 Chrome 或 Firefox 進行視訊錄影
         success: 請允許使用攝影機和麥克風錄製音訊和視訊
         unsupported: 此瀏覽器不支援視訊錄影，請使用下列任何一種瀏覽器、
-      recording_duration_label: 最長錄影時間
-      recording_stop_label: 錄製會在
       requesting_permission: 請求許可...
       response_recorded: 記錄的回應
       save: 節省
-      saved:
-        label: 儲存的視訊
       seek: 尋找
       start_recording: 開始錄影
-      stop_recording: 停止錄影
       tracker:
         backward: 您太靠近螢幕了，請往後移一點
         forward: 您離螢幕太遠，請再靠近一點
@@ -1377,15 +1345,12 @@ zh-Hant:
     all_activities_are_completed: 所有活動現已完成。
     all_activities_are_completed_multiple: 此活動的所有活動現已完成，請前往儀表板，檢查是否有指派其他活動。
     already_joined: 您已加入此活動
-    begin: 開始您的任務
-    begin_btn_msg_before_prework: 開始計時競賽前，您必須完成下列任務
     begin_campaign_msg: 在接受評估前開始活動
     campaigns: 活動
     closed_campaign_message: 此活動已結束，您無法在此活動中進行任何評估。
     code_usage_limit_reached: 程式碼使用量已達上限，請聯絡管理員
     complete_prev: 完成所有先前的評估
     complete_tasks: 請在採取此行動前完成下列任務。
-    continue: 繼續您的工作
     dashboard_instructions: 您可能被指派了多個需要完成的活動，請務必檢查所有活動是否都已完成。
     dashboard_menu:
       campaign: 活動
@@ -1485,6 +1450,9 @@ zh-Hant:
       external_user_id: Skillvue 候選人 ID
       id: 活動評估 ID
       locales: 地點
+      microsite_error_message: 错误信息
+      microsite_participant_id: 微网站参与者ID
+      microsite_registration_status: 注册状态
       norm: 標準
       norm_id: 標準 ID
       pearson_norm_id: 皮爾遜規範ID
@@ -1759,10 +1727,8 @@ zh-Hant:
       permissions: 網路攝影機與音訊權限
       title: 在開始評估之前，您的系統需要進行一些檢查。
     video_check:
-      description: 按一下「開始錄音」，然後用您自己的聲音朗讀以下段落時錄音
       random_phrases:
         one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
-      title: 我們需要確保您的系統可以錄製視訊
   common:
     actions:
       add: 新增
@@ -1843,6 +1809,7 @@ zh-Hant:
       json:
         answer: 回答 JSON
         external_result: 外部結果 JSON
+        microsite_raw_response: 微网站 原始反馈
         scoring: 評分 JSON
       key: 鑰匙
       last_name: 姓氏
@@ -3274,13 +3241,6 @@ zh-Hant:
     fields:
       provider:
         custom_upload: 自訂上傳
-        hogan: Hogan
-        internal: 內部
-        mettl: 濕度
-        pearson: 培生
-        saville: 薩維爾
-        skillvue: Skillvue
-        yoodli: 尤德利
     form:
       load_from_mettl: 從 Mettl 載入
       load_from_pearson: 從 Pearson 載入

@@ -7,6 +7,7 @@ class CampaignAssessmentGroup < ApplicationRecord
   has_many :communications, dependent: :destroy
   has_many :workshops
   belongs_to :campaign
+  include Tenantable
 
   before_create :set_position
 

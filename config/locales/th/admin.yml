@@ -22,6 +22,7 @@ th:
     admin_updated_successfully: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
     admins: ผู้ดูแลระบบ
     advanced: ขั้นสูง
+    agile: ว่องไว
     ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
     ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
@@ -137,6 +138,7 @@ th:
     assessments_not_mhs: การประเมินทั้งหมดต้องเป็นประเภท MHS
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
+    assessor_form: แบบฟอร์มผู้ประเมิน
     assessor_workshops: ศูนย์ประเมินผล
     assessors: ผู้ประเมิน
     assistant_toolbar_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
@@ -144,6 +146,7 @@ th:
     assistant_validation_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
+    auto_moderated_factor_info: คะแนนนี้ได้รับการตรวจสอบโดยอัตโนมัติและไม่สามารถเปลี่ยนแปลงได้
     auto_placeholder: ออโต้
     availability: กำหนดการ
     available_languages: รายงานมีให้บริการในภาษาต่างๆ
@@ -221,6 +224,7 @@ th:
     cancel: ยกเลิก
     cancellation_and_rescheduling_disabled: การยกเลิกและการเลื่อนกำหนดการถูกปิดใช้งาน
     captcha: การยืนยันตัวตนด้วย Captcha
+    case_study: กรณีศึกษา
     casual: ลำลอง
     cell_save_msg: การเปลี่ยนแปลงที่ถูกต้องจะถูกบันทึกโดยอัตโนมัติเมื่อคุณออกจากเซลล์หลังจากแก้ไข
     characters: ตัวอักษร
@@ -230,6 +234,8 @@ th:
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
     clients: บัญชีลูกค้า
     code_required: ต้องใช้รหัส
+    common: การประเมิน TTE
+    common_assessment: การประเมิน TTE
     communication_center: ศูนย์สื่อสาร
     communications: การสื่อสาร
     completed: เสร็จ สมบูรณ์
@@ -248,6 +254,7 @@ th:
     create_client: สร้างไคลเอ็นต์
     create_indicator: สร้างตัวชี้วัด
     current_job_role: บทบาทงานปัจจุบัน
+    custom_upload: อัปโหลดแบบกําหนดเอง
     dashboard: แดชบอร์ด
     dashboards: แด ชบอร์ด
     data_reports: รายงานข้อมูล
@@ -285,6 +292,8 @@ th:
     dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
     disable_proctoring: ปิดการใช้งานการตรวจสอบ
+    disallow_lead_assessor_moderation: ไม่อนุญาตให้ผู้ประเมินหลักเป็นผู้กลั่นกรอง
+    disallow_lead_assessor_moderation_info: คะแนนจะถูกคำนวณโดยอัตโนมัติตามการส่งแบบฟอร์มของผู้ประเมินทั้งหมด และผู้ประเมินหลักไม่สามารถเปลี่ยนแปลงคะแนนจากหน้าจอการตรวจสอบได้
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
@@ -315,6 +324,7 @@ th:
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
     enter_description: กรอกคำอธิบาย
     enter_name: กรุณากรอกชื่อ
+    enter_question_id: ป้อนรหัสคำถาม
     error: ข้อผิดพลาด
     estimated_tokens: โทเค็น (ประมาณการ)
     evaluation_status: สถานะการประเมิน
@@ -381,6 +391,8 @@ th:
     idp_appearance_title: ชื่อเรื่อง
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
     idp_templates: เทมเพลต IDP
+    iiht: ไอเอชที
+    iiht_assessment: การประเมิน IIHT
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
     import_csv_assessment_group_error: 'แถว%{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญแล้วสำหรับ ''%{workshopInviteName}'''
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
@@ -406,9 +418,11 @@ th:
     import_users: นําเข้าผู้ใช้
     internal: ภายใน
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
+    invalid_question_ids: 'รหัสคำถามไม่พบในการประเมินนี้: %{ids}'
     job_roles: บทบาทงาน
     keywords: คำสำคัญ
     keywords_placeholder: กรุณากรอกคำค้นหาโดยคั่นด้วยเครื่องหมายจุลภาค
+    lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
     learning_from_others: การเรียนรู้ร่วมกัน [20]
     level: ระดับ
     level_apply: สมัคร
@@ -418,6 +432,8 @@ th:
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
+    lighthouse_question: คำถามสำคัญ
+    lighthouse_question_id: รหัสคำถาม Lighthouse
     linked_assessments: การประเมินที่เชื่อมโยง
     low: ต่ำ
     maintenance: การบำรุงรักษา
@@ -425,10 +441,14 @@ th:
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
     max_value: ค่าสูงสุด
+    mean: ค่าเฉลี่ย
     media_files_label: ไฟล์
     media_library: คลังสื่อ
     media_library_page_title: ห้องสมุดสื่อ - แดชบอร์ด - Mercer Lighthouse
+    meeting: การประชุม
     messages: ข้อความ
+    mettl: เมทเทล
+    mettl_assessment: การประเมิน Mettl
     mhs: MHS
     mhs_assessment: การประเมินผล MHS
     mhs_assessment_name: ชื่อการประเมิน MHS
@@ -437,6 +457,10 @@ th:
     mhs_external_assessment_id: รหัสการประเมิน Mhs
     mhs_report_id: รหัสรายงาน MHS
     mhs_session_id: รหัสเซสชันของนักศึกษา
+    microsite: ไมโครไซต์
+    microsite_assessment: การประเมินไมโครไซต์
+    microsite_assessment_name: การประเมินไมโครไซต์ ชื่อ
+    microsite_question_id: รหัสคำถามไมโครไซต์
     min_value: ค่าต่ำสุด
     minimum_10_words: อย่างน้อย 10 คำ
     minimum_download_speed: ความเร็วในการดาวน์โหลดขั้นต่ำ (ใน Mbps)
@@ -445,12 +469,14 @@ th:
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
     model_answer: คำตอบตัวอย่าง
     model_answer_placeholder: กรุณากรอกคำตอบตัวอย่างสำหรับการให้คะแนนโดย AI
+    must_be_a_valid_url: URL ไม่ถูกต้อง กรุณาระบุ URL ที่สมบูรณ์พร้อมโปรโตคอล http หรือ https
     name: ชื่อ
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
     name_required: ต้องระบุชื่อ
     new_folder: โฟลเดอร์ใหม่
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
+    no_question_mappings: ไม่มีการจับคู่คำถามพร้อมใช้งาน
     no_status: ไม่มีสถานะ
     norm_editor_numeric_value_error: อนุญาตเฉพาะค่าตัวเลขเท่านั้น (จำนวนเต็มหรือทศนิยม)
     norms: ค่ามาตรฐาน
@@ -466,10 +492,13 @@ th:
     on_the_job: ในการทํางาน [70]
     only_editable_on_create: ตัวเลือกนี้สามารถแก้ไขได้เฉพาะในขณะสร้างเท่านั้น
     options: ตัวเลือก
+    organisational: ว่องไว
     original_text: ข้อความต้นฉบับ
     overall: โดยรวม
     overall_score: คะแนนรวม
     participants: ผู้เข้าร่วม
+    pearson: เพียร์สัน
+    pearson_assessment: การประเมินเพียร์สัน
     permissions:
       aiArtifacts:
         export: ส่งออก
@@ -800,6 +829,8 @@ th:
       projectSettings:
         assessments: การประเมิน
         design: ออกแบบ
+        external_logout_redirect_enabled: เปิดใช้งานการออกจากระบบด้วยการเปลี่ยนเส้นทางภายนอก
+        external_logout_url: URL สำหรับออกจากระบบภายนอก
         feature_flags: แฟล็กคุณลักษณะ
         idp: IDP
         integrations: การบูรณาการ
@@ -913,6 +944,7 @@ th:
     project_settings: การตั้งค่าโครงการ
     projects: โครงการ
     prompt: คำสั่ง
+    psychometric: ไซโครเมตริก
     question_center: ศูนย์คําถาม
     question_center_page_title: ศูนย์คำถาม - แผงควบคุม - Mercer Lighthouse
     question_editor_change_type: เปลี่ยนประเภท
@@ -921,6 +953,7 @@ th:
     question_editor_enable_transcription: เปิดใช้งานการถอดเสียง
     question_editor_preview_question: คำถามตัวอย่าง
     question_editor_validation_type: ประเภทการตรวจสอบความถูกต้อง
+    question_mapping: การจับคู่คำถาม
     question_randomization: การสุ่มคำถาม
     question_type_audio_response: การตอบสนองด้วยเสียง
     question_type_constant_sum: ผลรวมคงที่
@@ -1037,6 +1070,8 @@ th:
       subject_full_name_cont: ชื่อเรื่อง
       user_email_cont: อีเมลผู้ใช้
       user_full_name_cont: ชื่อผู้ใช้
+    saville: ซาวิลล์
+    saville_assessment: การประเมิน Saville
     scheduling: กำหนดการ
     score: คะแนน
     score_approval_not_allowed_to_approve: คุณไม่ได้รับอนุญาตให้อนุมัติคะแนนนี้
@@ -1072,6 +1107,7 @@ th:
     select_end_time: เลือกเวลาสิ้นสุด
     select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
     select_level: เลือกระดับ
+    select_question: ค้นหาคำถามโดยชื่อหรือรหัส
     select_start_time: เลือกเวลาเริ่มต้น
     selective_proctoring: การคุมสอบแบบเลือกสรร
     send_email: ส่งอีเมล
@@ -1084,14 +1120,19 @@ th:
     show_submenu: แสดงเมนูย่อย
     show_translated: แสดงคำแปล
     siem: SIEM
+    simulation: การลอกเลียนแบบ
+    simulation_assessment: การประเมินการจําลอง
     skill_aliases: นามแฝงทักษะ
     skills: ทักษะ
     skills_taxonomy: อนุกรมวิธานทักษะ
+    skillvue: สกิลวิว
+    skillvue_assessment: การประเมิน Skillvue
     skip_assessment_level_checks: ข้ามการตรวจสอบระดับการประเมิน
     slot_name: ชื่อสล็อต
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
     specialty_questions: คำถามเฉพาะทาง
+    standard_deviation: ค่าเบี่ยงเบนมาตรฐาน
     standard_questions: คำถามมาตรฐาน
     start: เริ่มต้น
     start_time: เวลาเริ่มต้น
@@ -1152,6 +1193,8 @@ th:
     x_axis_interval_label: แกน X ช่วง
     y_axis_interval_label: แกน Y ช่วง
     year: ประเทศ
+    yoodli: ยุดลี
     yoodli_activity_id: รหัสกิจกรรม Yoodli
+    yoodli_assessment: การประเมิน Yoodli
     yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli
     yoodli_external_assessment_id: รหัสการประเมิน Yoodli

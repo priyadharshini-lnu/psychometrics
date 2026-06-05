@@ -2363,6 +2363,7 @@ zh-Hant:
         add: 整合
         back: 回到整合
         load_mettl_catalog: 負載測量評估目錄
+        load_microsite_catalog: 加载微网站评估目录
         load_skillvue_catalog: 載入 Skillvue 評估目錄
       columns:
         active: 活躍
@@ -2381,6 +2382,7 @@ zh-Hant:
         webhookUrls: Webhook URL
       integrations: 整合
       load_mettl_success: 載入評估工作已成功掛起
+      load_microsite_success: "“加载微网站评估”任务已成功加入队列"
       load_skillvue_success: 載入技能評估工作已成功掛起
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ zh-Hant:
           servers:
             mettl_eu: 歐洲
             mettl_india: 印度
+        microsite:
+          apiKey: API密钥
+          apiKeyRequired: 需要 API 密钥
         skillvue:
           apiKey: API 金鑰
           apiKeyRequired: 需要 API 金鑰
@@ -2414,6 +2419,7 @@ zh-Hant:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: 专题网站
         skillvue: Skillvue
         yoodli: 尤德利
       validations:
@@ -2422,6 +2428,8 @@ zh-Hant:
           tenant_id_present: 租戶 ID 已存在於其他專案中
         mettl:
           public_key_present: 公開金鑰已存在於其他專案中
+        microsite:
+          api_key_present: 该 API 密钥已在其他项目中存在
         skillvue:
           api_key_present: API 金鑰已存在於其他專案中
       view_all_schedules: 檢視所有 Mettl 時刻表
@@ -2990,6 +2998,7 @@ zh-Hant:
               assessment_started: 評估開始
               assessment_timeout: 評估超時
               campaign_results_available: 提供活動結果
+              campaign_user_assessment_summary: 活动用户评估摘要
               campaign_user_status: 活動使用者狀態
               report_available: 提供報告
               results_available: 可用結果

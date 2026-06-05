@@ -22,6 +22,7 @@ de:
     admin_updated_successfully: Admin '%{name}' wurde erfolgreich aktualisiert
     admins: Admins
     advanced: Erweitert
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Das Artefakt „%{artifact_name}“ kann für den Benutzer „%{user_email}“ nicht generiert werden.
     ai_artifact_result_stale: Das Ergebnis kann veraltet sein, da sich die Abhängigkeiten des KI-Artefakts seit der letzten Ergebnisgenerierung geändert haben. Erwägen Sie, das Artefakt neu zu generieren, um es mit den neuesten Abhängigkeiten zu erstellen.
     ai_artifacts: KI-Artefakte
@@ -137,6 +138,7 @@ de:
     assessments_not_mhs: Alle Bewertungen müssen vom Typ MHS sein.
     assessments_reports: Beurteilungen und Berichte
     assessor_dashboard: Assessor Dashboard
+    assessor_form: Beisitzer-Formular
     assessor_workshops: Assessment Center
     assessors: Beisitzer
     assistant_toolbar_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
@@ -144,6 +146,7 @@ de:
     assistant_validation_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
     audit_logs: Audit-Protokolle
     audit_reports: Audit-Berichte
+    auto_moderated_factor_info: Diese Bewertung wird automatisch geprüft und kann nicht geändert werden
     auto_placeholder: Auto
     availability: Verfügbarkeit
     available_languages: Bericht in Sprachen verfügbar
@@ -221,6 +224,7 @@ de:
     cancel: Abbrechen
     cancellation_and_rescheduling_disabled: Stornierung und Umbuchung sind deaktiviert.
     captcha: Captcha-Überprüfung
+    case_study: Fallstudien
     casual: Lässig
     cell_save_msg: Gültige Änderungen werden automatisch gespeichert, sobald Sie die Zelle nach der Bearbeitung verlassen.
     characters: Zeichen
@@ -230,6 +234,8 @@ de:
     client_admins: Client-Admins
     clients: Kunden-Mietverhältnisse
     code_required: Code ist erforderlich
+    common: TTE-Bewertung
+    common_assessment: TTE-Bewertung
     communication_center: Kommunikationszentrum
     communications: Kommunikation
     completed: Abgeschlossen
@@ -248,6 +254,7 @@ de:
     create_client: Client erstellen
     create_indicator: Indikator erstellen
     current_job_role: Aktuelle berufliche Position
+    custom_upload: Benutzerdefinierter Upload
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Datenberichte
@@ -285,6 +292,8 @@ de:
     dimension_translations_export_scheduled: Export der Übersetzungen für die Dimension „%{name}“ ist geplant.
     dimensions: Abmessungen
     disable_proctoring: Prüfungsaufsicht deaktivieren
+    disallow_lead_assessor_moderation: Moderation durch den leitenden Gutachter unterbinden
+    disallow_lead_assessor_moderation_info: Die Punktzahl wird automatisch auf Grundlage aller eingereichten Bewertungsbögen berechnet, und der leitende Bewerter kann sie im Moderationsbildschirm nicht ändern.
     done: Fertig
     done_tooltip: Für diesen Benutzer kann keine weitere Bewertung eingereicht werden, da die Bewertung als von %{marked_by}
     download_bulk_asset_download_example_csv: Beispiel-CSV herunterladen.
@@ -315,6 +324,7 @@ de:
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
     enter_description: Beschreibung eingeben
     enter_name: Name eingeben
+    enter_question_id: Frage-ID eingeben
     error: Fehler
     estimated_tokens: Token (geschätzt)
     evaluation_status: Bewertungsstatus
@@ -381,6 +391,8 @@ de:
     idp_appearance_title: Titel
     idp_plan_reset_success: Der Plan wurde erfolgreich zurückgesetzt
     idp_templates: IDP-Vorlagen
+    iiht: IIHT
+    iiht_assessment: IIHT-Bewertung
     import_ai_artifacts: KI-Artefakte importieren
     import_csv_assessment_group_error: 'Zeile %{index}: Benutzer mit der E-Mail-Adresse %{email} wurde bereits zu „%{workshopInviteName}” eingeladen.'
     import_csv_error: 'Reihe %{index}: Nutzer mit E-Mail-%{email} ist nicht in dieser Kampagne'
@@ -406,9 +418,11 @@ de:
     import_users: Benutzer importieren
     internal: Intern
     invalid_csv_header: CSV-Datei enthält ungültige Header.
+    invalid_question_ids: 'In dieser Bewertung nicht gefundene Fragen-IDs: %{ids}'
     job_roles: Berufsrollen
     keywords: Schlüsselwörter
     keywords_placeholder: Geben Sie die Suchbegriffe durch Kommas getrennt ein.
+    lead_assessor_form: Formular für Hauptgutachter
     learning_from_others: Kollaboratives Lernen [20]
     level: Stufe
     level_apply: Bewerben
@@ -418,6 +432,8 @@ de:
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
     licenses: Lizenzen
+    lighthouse_question: Leuchtturm-Frage
+    lighthouse_question_id: Lighthouse-Frage-ID
     linked_assessments: Verknüpfte Bewertungen
     low: Niedrig
     maintenance: Wartung
@@ -425,10 +441,14 @@ de:
     maintenance_settings_description: Systemwartungsfenster und -einstellungen verwalten
     manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
     max_value: Maximalwert
+    mean: Mittelwert
     media_files_label: Dateien
     media_library: Medienbibliothek
     media_library_page_title: Medienbibliothek – Dashboard – Mercer Lighthouse
+    meeting: Treffen
     messages: Nachrichten
+    mettl: METTL
+    mettl_assessment: Mettl Assessment
     mhs: MHS
     mhs_assessment: MHS-Bewertung
     mhs_assessment_name: MHS-Bewertung Name
@@ -437,6 +457,10 @@ de:
     mhs_external_assessment_id: Mhs-Bewertungs-ID
     mhs_report_id: MHS-Bericht-ID
     mhs_session_id: Mhs-Sitzungs-ID
+    microsite: Microsite
+    microsite_assessment: Bewertung der Microsite
+    microsite_assessment_name: Name der Microsite-Bewertung
+    microsite_question_id: Microsite-Frage-ID
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     minimum_download_speed: Mindest-Download-Geschwindigkeit (in Mbit/s)
@@ -445,12 +469,14 @@ de:
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
     model_answer: Musterlösung
     model_answer_placeholder: Geben Sie die Musterantwort für die KI-Bewertung ein.
+    must_be_a_valid_url: Ungültige URL. Geben Sie die vollständige URL mit dem Protokoll „http“ oder „https“ an.
     name: Name
     name_max_length: Der Name darf nicht länger als %{length} Zeichen sein.
     name_required: Name ist erforderlich
     new_folder: Neuer Ordner
     no_file_selected: Keine Datei ausgewählt
     no_notifications: Keine Benachrichtigungen
+    no_question_mappings: Es sind keine Fragenzuordnungen verfügbar
     no_status: Kein Status
     norm_editor_numeric_value_error: Es sind nur numerische Werte zulässig (ganze Zahlen oder Dezimalzahlen).
     norms: Normen
@@ -466,10 +492,13 @@ de:
     on_the_job: Im Dienst [70]
     only_editable_on_create: Diese Option kann nur während der Erstellung bearbeitet werden.
     options: Optionen
+    organisational: AGILE
     original_text: Originaltext
     overall: Insgesamt
     overall_score: Gesamtpunktzahl
     participants: Teilnehmer
+    pearson: Pearson
+    pearson_assessment: Pearson-Bewertung
     permissions:
       aiArtifacts:
         export: Exportieren
@@ -800,6 +829,8 @@ de:
       projectSettings:
         assessments: Beurteilungen
         design: Gestaltung
+        external_logout_redirect_enabled: Externe Weiterleitung beim Abmelden aktivieren
+        external_logout_url: Externe Abmelde-URL
         feature_flags: Feature-Flags
         idp: IDP
         integrations: Integrationen
@@ -913,6 +944,7 @@ de:
     project_settings: Projekt-Einstellungen
     projects: Projekte
     prompt: Aufforderung
+    psychometric: Psychometrische Daten
     question_center: Fragen-Center
     question_center_page_title: Fragen-Center – Dashboard – Mercer Lighthouse
     question_editor_change_type: Typ ändern
@@ -921,6 +953,7 @@ de:
     question_editor_enable_transcription: Transkription aktivieren
     question_editor_preview_question: Vorschau-Frage
     question_editor_validation_type: Validierungsart
+    question_mapping: Fragenabgleich
     question_randomization: Zufällige Reihenfolge der Fragen
     question_type_audio_response: Audioantwort
     question_type_constant_sum: Konstante Summe
@@ -1037,6 +1070,8 @@ de:
       subject_full_name_cont: Name des Fachs
       user_email_cont: E-Mail-Adresse des Benutzers
       user_full_name_cont: Benutzername
+    saville: Saville
+    saville_assessment: Saville-Bewertung
     scheduling: Terminplanung
     score: Punktzahl
     score_approval_not_allowed_to_approve: Sie dürfen diese Bewertung nicht genehmigen.
@@ -1072,6 +1107,7 @@ de:
     select_end_time: Endzeit auswählen
     select_language_to_translate: Bitte Sprache für die Übersetzung auswählen
     select_level: Stufe auswählen
+    select_question: Frage nach Name oder ID suchen
     select_start_time: Startzeit auswählen
     selective_proctoring: Selektive Prüfungsaufsicht
     send_email: E-Mail senden
@@ -1084,14 +1120,19 @@ de:
     show_submenu: Untermenü anzeigen
     show_translated: Übersetzt anzeigen
     siem: SIEM
+    simulation: Simulation
+    simulation_assessment: Simulations-Bewertung
     skill_aliases: Alias-Fähigkeiten
     skills: Fertigkeiten
     skills_taxonomy: Fähigkeiten-Taxonomie
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue-Bewertung
     skip_assessment_level_checks: Prüfungen auf Bewertungsebene überspringen
     slot_name: Slot-Name
     sms_histories: SMS-Geschichten
     sms_invites: SMS-Einladungen
     specialty_questions: Fachfragen
+    standard_deviation: Standardabweichung
     standard_questions: Standardfragen
     start: Start
     start_time: Startzeit
@@ -1152,6 +1193,8 @@ de:
     x_axis_interval_label: X-Achsen-Intervall
     y_axis_interval_label: Y-Achsen-Intervall
     year: Land
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Aktivitäts-ID
+    yoodli_assessment: Yoodli-Bewertung
     yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
     yoodli_external_assessment_id: Yoodli Bewertungs-ID

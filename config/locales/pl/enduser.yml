@@ -44,6 +44,7 @@ pl:
     camera_check_abruptly_ended: Kamera została nagle wyłączona. Proszę włączyć kamerę i ponownie przeprowadzić kontrolę.
     camera_check_description: Sprawdź, czy kamera i mikrofon działają prawidłowo podczas nagrywania
     camera_check_passed: Sprawdzenie obrazu i dźwięku zakończyło się powodzeniem
+    camera_check_record_instruction: Kliknij przycisk „Nagraj” i przeczytaj na głos poniższy fragment
     camera_test_step: 'Krok: Test obrazu i dźwięku'
     campaign: Kampania
     campaign_check_status: 'Status: %{status}'
@@ -52,6 +53,7 @@ pl:
     check_video_recording: Proszę sprawdzić nagranie wideo i dźwięku, odtwarzając je.
     checking_browser_compatibility: Sprawdzam zgodność przeglądarek...
     checking_latency: Sprawdzanie opóźnienia...
+    complete_prework_message: Aby rozpocząć, wykonaj wszystkie zadania przygotowawcze.
     could_not_reach_servers: Nie udało się połączyć z naszymi serwerami w celu sprawdzenia prędkości sieci. Sprawdź połączenie internetowe i spróbuj ponownie.
     day: dzień
     day_plural: dni
@@ -61,6 +63,7 @@ pl:
     download: Pobierz
     download_pdf: Pobierz PDF
     download_speed_below_minimum: Prędkość pobierania %{download_speed} jest niższa od minimalnej wymaganej prędkości pobierania wynoszącej %{minimum_download_speed} Mb/s
+    dummy_message: Jestem gotowy. To jest nagranie testowe, które ma na celu sprawdzenie, czy moja kamera i mikrofon działają prawidłowo.
     environment_setup: Konfiguracja środowiska
     error_uploading_audio: Błąd podczas przesyłania pliku audio
     error_uploading_audio_detail: Wystąpił błąd podczas przesyłania pliku audio
@@ -92,6 +95,7 @@ pl:
     internet_speed_optimal: Twoja prędkość połączenia jest optymalna
     internet_speed_slow: Prędkość Internetu jest niższa niż wymagana do przeprowadzenia kampanii
     less_than_five_minutes: Niecałe 5 minut
+    lets_start: Zaczynamy!
     lighthouse_assistant: Asystent latarni morskiej
     localstorage_fix_description_first: Upewnij się, że nie korzystasz z trybu prywatnego ani incognito, ponieważ w tych trybach funkcja localStorage jest często wyłączona.
     localstorage_fix_title: W Twojej przeglądarce nie włączono funkcji lokalnego przechowywania danych
@@ -107,6 +111,7 @@ pl:
     media_recorder_api_support: Obsługa interfejsu API MediaRecorder
     microphone_access_blocked: Dostęp do mikrofonu został zablokowany przez przeglądarkę. Sprawdź uprawnienia przeglądarki.
     microphone_check_passed: Test mikrofonu zakończył się powodzeniem
+    microsite_assessment_external: Ocenę tę należy wypełnić na platformie zewnętrznej.
     min_word_limit: Musi mieć co najmniej %{min} słów
     minimum_speed_requirements: W ramach tej promocji wymagana jest minimalna prędkość pobierania wynosząca %{minimum_download_speed} Mb/s oraz minimalna prędkość wysyłania wynosząca %{minimum_upload_speed} Mb/s.
     minute: minuta
@@ -124,16 +129,24 @@ pl:
     network_test_step: Etap testowania sieci
     no_audio_detected: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
     pass: Przejdź dalej
+    pause: Pauza
     pending: W toku
     personal_readiness: Gotowość osobista
     plan_text: Zaplanuj cały czas trwania. Po rozpoczęciu egzaminu przerwy mogą nie być dozwolone, w zależności od rodzaju egzaminu.
+    play: Zagraj
     please_check_your_internet_connection: Sprawdź połączenie internetowe i spróbuj ponownie.
+    preparing_preview: Przygotowywanie podglądu...
+    prework: Przygotowanie
+    prework_not_completed_message: Przed rozpoczęciem kampanii prosimy o wykonanie wszystkich zadań przygotowawczych.
     proctored: Pod nadzorem
     proctored_assessment_misconfigured_msg: Ten test odbywa się pod nadzorem, ale brakuje w nim odpowiednich ustawień dotyczących czasu. Proszę skontaktować się z administratorem.
     profile: Profil
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}
     reason_for_idp_plan_rejection: Powód odrzucenia
+    record: Rejestr
+    recording_progress_bar: Pasek postępu nagrywania
+    recording_time_remaining: "%{remainingSeconds} pozostało sekund"
     redirect_to_external_assessment: Zostaniesz przekierowany na stronę testu. Jeśli chcesz rozpocząć test, kliknij „Kontynuuj”.
     reject_idp_plan: Plan Odrzucenia
     request_retry_message: Jesteś offline. Twoje odpowiedzi nie mogły zostać zapisane, ale zostaną zapisane automatycznie po powrocie do sieci. Prosimy nie odświeżać ani nie zamykać strony.
@@ -145,13 +158,15 @@ pl:
     results: Wynik
     safari_proctoring_description: Wygląda na to, że korzystasz z przeglądarki Safari, która może mieć pewne ograniczenia dotyczące funkcji monitorowania dostępnych w tej kampanii. Aby zapewnić sobie najlepsze wrażenia, zalecamy korzystanie z przeglądarek Chrome, Edge lub Firefox.
     safari_proctoring_title: Wykryto przeglądarkę Safari
+    select_audio_device: Wybierz urządzenie audio
+    select_video_device: Wybierz urządzenie wideo
     selected_count: Wybrane
     skill_type: Typ umiejętności
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.
     start_campaign_message_timed: To jest kampania na czas, kliknij przycisk '%{buttonText}', aby rozpocząć aktywności.
-    start_campaign_message_timed_proctored: To jest kampania z nadzorem czasowym i nadzorowana, prosimy kliknąć przycisk '%{buttonText}', aby rozpocząć aktywności.
     start_readiness_check: Rozpocznij kontrolę gotowości
     start_system_check: Rozpocznij sprawdzanie systemu
+    stop: Zatrzymaj się
     subinstruction_audio: Działający mikrofon
     subinstruction_eight: Zarezerwuj sobie czas, w którym nic nie będzie Ci przeszkadzać, aby przeprowadzić pełną ocenę
     subinstruction_five: Czy chcesz udostępniać swój ekran przez cały czas trwania sesji?
@@ -239,6 +254,9 @@ pl:
     video_check_fix_second: Przejdź do ustawień przeglądarki i zezwól tej witrynie na dostęp do kamery
     video_check_fix_sixth: Uruchom ponownie przeglądarkę i spróbuj jeszcze raz
     video_check_fix_third: Zamknij inne aplikacje korzystające z kamery (Zoom, Teams itp.)
+    video_overlay_label: Wybierz mikrofon i kamerę, kliknij przycisk „Nagrywaj”, a po jego naciśnięciu przeczytaj poniższą wiadomość
+    video_overlay_message: Wybierz mikrofon i kamerę, kliknij „Nagraj”, a następnie przeczytaj na głos zdanie wyświetlone na dole ekranu.
+    video_recorder_label: Rejestrator wideo
     view_details: Zobacz szczegóły
     webgl_api_fix_description_first: Upewnij się, że Twoja przeglądarka obsługuje WebGL i że funkcja ta jest włączona w ustawieniach
     webgl_api_fix_description_second: Zaktualizuj sterowniki graficzne do najnowszej wersji

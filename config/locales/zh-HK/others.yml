@@ -1100,36 +1100,9 @@ zh-HK:
       title: 評估詳情
     edit: 編輯
     fields:
-      category:
-        agile: 敏捷
-        assessor_form: 評估員表格
-        case_study: 案例研究
-        hogan: 霍根
-        iiht: IIHT
-        lead_assessor_form: 首席評估員表格
-        meeting: 會
-        mettl: 梅特爾
-        organisational: 組織調查
-        pearson: 皮爾森
-        psychometric: 心理測量學
-        saville: 薩維爾
-        simulation: 模擬
-        skillvue: Skillvue
-        threesixty: 360 戰役
-        yoodli: 尤德利
       status:
         finished: 已
         in_progress: 進行中
-      type:
-        common: TTE 評量
-        hogan: 霍根
-        iiht: IIHT 評量
-        mettl: Mettl 評估
-        pearson: 皮爾森評估
-        saville: 薩維爾評估
-        simulation: 模擬評估
-        skillvue: Skillvue 評估
-        yoodli: Yoodli 評估
     flow:
       end_assessment_modal:
         custom_message: 自訂評估結束訊息
@@ -1211,16 +1184,11 @@ zh-HK:
         failure: 此瀏覽器不支援錄影。請使用 Chrome 或 Firefox 錄影
         success: 請允許使用相機和咪高峰錄音及錄影
         unsupported: 此瀏覽器不支援錄影。請使用以下任一瀏覽器，
-      recording_duration_label: 最長錄影時間
-      recording_stop_label: 錄製會在
       requesting_permission: 請求許可...
       response_recorded: 記錄的回應
       save: 儲存
-      saved:
-        label: 已儲存
       seek: 尋
       start_recording: 開始錄影
-      stop_recording: 停止錄影
       tracker:
         backward: 您距離螢幕太近。請後退一點
         forward: 您距離螢幕太遠。請靠近一點
@@ -1382,15 +1350,12 @@ zh-HK:
     all_activities_are_completed: 所有活動現已完成。
     all_activities_are_completed_multiple: 此活動的所有市場推廣已完成。請前往管理台，查看您是否獲分配其他活動。
     already_joined: 你已經加入這個競選活動了
-    begin: 開始您的任務
-    begin_btn_msg_before_prework: 開始計時競賽前，您必須完成下列任務
     begin_campaign_msg: 在接受評估前開始活動
     campaigns: 市場推廣
     closed_campaign_message: 此活動已結束。您無法參加此活動的任何評估。
     code_usage_limit_reached: 程式碼使用限制已達，請聯絡管理員
     complete_prev: 完成所有先前的評估
     complete_tasks: 請在採取此行動前完成下列任務。
-    continue: 繼續您的任務
     dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
     dashboard_menu:
       campaign: 市場推廣
@@ -1499,6 +1464,9 @@ zh-HK:
       external_user_id: Skillvue 候選人 ID
       id: 戰役評估識別碼
       locales: 地點
+      microsite_error_message: 错误信息
+      microsite_participant_id: 微网站参与者ID
+      microsite_registration_status: 注册状态
       norm: 模範
       norm_id: 範式識別
       pearson_norm_id: Pearson 標準識別碼
@@ -1773,10 +1741,8 @@ zh-HK:
       permissions: 網路攝影機與音訊權限
       title: 在開始此評估之前，您的系統需要進行一些檢查。
     video_check:
-      description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
       random_phrases:
         one: 我準備好了。這是一段測試錄像，用來確認我的影片和麥克風運作正常。
-      title: 我們需要確保您的系統可以錄影
   common:
     actions:
       add: 添加
@@ -1857,6 +1823,7 @@ zh-HK:
       json:
         answer: 回答 JSON
         external_result: 外部結果 JSON
+        microsite_raw_response: 微网站原始响应
         scoring: JSON評分
       key: 鑰匙
       last_name: 姓氏
@@ -3315,13 +3282,6 @@ zh-HK:
     fields:
       provider:
         custom_upload: 自訂上傳
-        hogan: 霍根
-        internal: 國內的
-        mettl: 梅特爾
-        pearson: 皮爾森
-        saville: 薩維爾
-        skillvue: 技能
-        yoodli: 尤德利
     form:
       load_from_mettl: 來自Mettl的貨物
       load_from_pearson: 來自皮爾森的貨物

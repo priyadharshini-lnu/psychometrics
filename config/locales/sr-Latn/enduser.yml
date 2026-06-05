@@ -44,6 +44,7 @@ sr-Latn:
     camera_check_abruptly_ended: Камера је изненада искључена. Молимо вас да укључите камеру и поново покренете проверу.
     camera_check_description: Проверите да ли ваша камера и микрофон исправно раде за снимање.
     camera_check_passed: Провера видео и аудио записа успешно прошла
+    camera_check_record_instruction: Кликните на "Сними" и наглас прочитајте следећи пасус.
     camera_test_step: Корак за тест видео и аудио
     campaign: Kampanja
     campaign_check_status: 'Статус: %{status}'
@@ -52,6 +53,7 @@ sr-Latn:
     check_video_recording: Molimo vas da reprodukcijom proverite svoj video i audio snimak.
     checking_browser_compatibility: Провера компатибилности прегледача...
     checking_latency: Провера латенције...
+    complete_prework_message: Завршите све припремне задатке да бисте могли да започнете.
     could_not_reach_servers: Није могуће да се повежемо са нашим серверима како бисмо проверили брзину мреже. Молимо вас да проверите вашу интернет везу и покушате поново.
     day: дан
     day_plural: дани
@@ -61,6 +63,7 @@ sr-Latn:
     download: Преузми
     download_pdf: Preuzmite PDF
     download_speed_below_minimum: Брзина преузимања %{download_speed} је испод минималне потребне брзине преузимања од %{minimum_download_speed} Mbps.
+    dummy_message: Ја сам спреман. Ово је пробни снимак да потврдим да мој видео и микрофон исправно раде.
     environment_setup: Подешавање окружења
     error_uploading_audio: Грешка при отпремању аудио записа
     error_uploading_audio_detail: Дошло је до грешке при отпремању вашег аудио записа.
@@ -92,6 +95,7 @@ sr-Latn:
     internet_speed_optimal: Ваша брзина везе је оптимална
     internet_speed_slow: Интернет веза је спорија него што је потребно за кампању.
     less_than_five_minutes: Мање од 5 минута
+    lets_start: Хајде да почнемо!
     lighthouse_assistant: Svetionik Pomoćnik
     localstorage_fix_description_first: Уверите се да нисте у приватном/инкогнито режиму, јер је localStorage често онемогућен у тим режимима.
     localstorage_fix_title: Локално складиште није омогућено у вашем прегледачу
@@ -107,6 +111,7 @@ sr-Latn:
     media_recorder_api_support: Подршка за MediaRecorder API
     microphone_access_blocked: Приступ микрофону је одбијен или блокиран од стране вашег прегледача. Молимо проверите дозволе у вашем прегледачу.
     microphone_check_passed: Провера микрофона успешно прошла
+    microsite_assessment_external: Ова процена мора да се заврши на спољној платформи.
     min_word_limit: Mora biti najmanje %{min} reči
     minimum_speed_requirements: Минимална брзина преузимања од %{minimum_download_speed} Mbps и минимална брзина отпремања од %{minimum_upload_speed} Mbps су потребне за ову кампању.
     minute: минут
@@ -124,16 +129,24 @@ sr-Latn:
     network_test_step: Корак мрежног теста
     no_audio_detected: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     pass: Проћи
+    pause: Пауза
     pending: Учешће
     personal_readiness: Лична спремност
     plan_text: Планирајте за цео трајање. Када се започне, паузе можда неће бити дозвољене у зависности од врсте процене.
+    play: Пуни
     please_check_your_internet_connection: Молимо вас да проверите везу са интернетом и покушате поново.
+    preparing_preview: Припрема прегледа...
+    prework: Припремна вежба
+    prework_not_completed_message: Молимо вас да завршите све припремне задатке пре покретања кампање.
     proctored: Под надзором
     proctored_assessment_misconfigured_msg: Ова процена се надгледа, али недостаје неопходна конфигурација времена. Молимо контактирајте свог администратора.
     profile: Profil
     profile_details: Detalji
     question_counter: Питање %{current} од %{total}
     reason_for_idp_plan_rejection: Razlog za odbijanje
+    record: Запиши
+    recording_progress_bar: Шипка напретка за снимање
+    recording_time_remaining: "%{remainingSeconds} преосталих секунди"
     redirect_to_external_assessment: Бићете преусмерени на сајт за процену. Молимо кликните на "Настави" ако желите да започнете процену.
     reject_idp_plan: Odbaci plan
     request_retry_message: Vi ste offline. Vaši odgovori se ne mogu sačuvati, ali će biti automatski sačuvani kada se vratite na mrežu. Molimo vas da ne osvežavate ili zatvarate stranicu.
@@ -145,13 +158,15 @@ sr-Latn:
     results: Резултат
     safari_proctoring_description: Изгледа да користите прегледач Safari, који може да има нека ограничења у погледу активних функција праћења ове кампање. За најбоље искуство, препоручујемо коришћење прегледача Chrome, Edge или Firefox.
     safari_proctoring_title: Сафари прегледач откривен
+    select_audio_device: Изаберите аудио уређај
+    select_video_device: Изаберите видео уређај
     selected_count: Izabrano
     skill_type: Tip veštine
     start_campaign_message_proctored: Ovo je kampanja pod nadzorom, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_campaign_message_timed: Ovo je vremenska kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
-    start_campaign_message_timed_proctored: Ovo je vremenska i nadzorovana kampanja, kliknite na dugme "%{buttonText}" da biste započeli aktivnosti.
     start_readiness_check: Покрените проверу спремности
     start_system_check: Покрени проверу система
+    stop: Стоп
     subinstruction_audio: Радни микрофон
     subinstruction_eight: Одвојте непрекидан временски период за потпуну процену.
     subinstruction_five: Спремни да делите свој екран током целе сесије
@@ -239,6 +254,9 @@ sr-Latn:
     video_check_fix_second: Идите у подешавања прегледача и омогућите приступ камери за ову веб-страницу.
     video_check_fix_sixth: Поново покрените прегледач и покушајте поново.
     video_check_fix_third: Затворите друге апликације које користе камеру (Zoom, Teams итд.)
+    video_overlay_label: Изаберите микрофон и камеру, кликните на "Сними", а затим прочитајте следећу поруку чим кликнете на дугме "Сними".
+    video_overlay_message: Изаберите микрофон и камеру, кликните на "Сними", а затим наглас прочитајте реченицу која се појављује на дну.
+    video_recorder_label: Видео снимач
     view_details: Прикажи детаље
     webgl_api_fix_description_first: Уверите се да ваш прегледач подржава WebGL и да је он омогућен у подешавањима.
     webgl_api_fix_description_second: Ажурирајте графичке драјвере на најновију верзију.

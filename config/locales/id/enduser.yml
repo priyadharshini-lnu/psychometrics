@@ -44,6 +44,7 @@ id:
     camera_check_abruptly_ended: Kamera tiba-tiba dimatikan. Silakan nyalakan kamera Anda dan jalankan kembali pemeriksaan tersebut.
     camera_check_description: Pastikan kamera dan mikrofon Anda berfungsi dengan baik untuk merekam
     camera_check_passed: Pemeriksaan video dan audio telah berhasil dilalui
+    camera_check_record_instruction: Klik "Rekam" dan bacalah paragraf berikut dengan lantang
     camera_test_step: Langkah Pengujian Video dan Audio
     campaign: Kampanye
     campaign_check_status: 'Status: %{status}'
@@ -52,6 +53,7 @@ id:
     check_video_recording: Silakan periksa video dan audio Anda dengan memutarnya kembali.
     checking_browser_compatibility: Memeriksa kompatibilitas browser...
     checking_latency: Memeriksa latensi...
+    complete_prework_message: Selesaikan semua tugas persiapan untuk memulai.
     could_not_reach_servers: Tidak dapat terhubung ke server kami untuk memeriksa kecepatan jaringan. Silakan periksa koneksi internet Anda dan coba lagi.
     day: hari
     day_plural: hari
@@ -61,6 +63,7 @@ id:
     download: Unduh
     download_pdf: Unduh PDF
     download_speed_below_minimum: Kecepatan unduh %{download_speed} lebih rendah dari kecepatan unduh minimum yang disyaratkan sebesar %{minimum_download_speed} Mbps
+    dummy_message: Saya sudah siap. Ini adalah rekaman uji coba untuk memastikan bahwa kamera dan mikrofon saya berfungsi dengan baik.
     environment_setup: Pengaturan Lingkungan
     error_uploading_audio: Terjadi kesalahan saat mengunggah audio
     error_uploading_audio_detail: Terjadi kesalahan saat mengunggah audio Anda
@@ -92,6 +95,7 @@ id:
     internet_speed_optimal: Kecepatan koneksi Anda optimal
     internet_speed_slow: Kecepatan internet lebih lambat dari yang dibutuhkan untuk kampanye ini
     less_than_five_minutes: Kurang dari 5 menit
+    lets_start: Ayo mulai!
     lighthouse_assistant: Asisten Mercusuar
     localstorage_fix_description_first: Pastikan Anda tidak berada dalam mode privat/inkognito, karena localStorage sering kali dinonaktifkan dalam mode-mode tersebut.
     localstorage_fix_title: Penyimpanan Lokal tidak diaktifkan di browser Anda
@@ -107,6 +111,7 @@ id:
     media_recorder_api_support: Dukungan API MediaRecorder
     microphone_access_blocked: Akses mikrofon ditolak atau diblokir oleh browser Anda. Silakan periksa izin browser Anda.
     microphone_check_passed: Uji mikrofon berhasil
+    microsite_assessment_external: Penilaian ini harus diselesaikan di platform eksternal.
     min_word_limit: Minimal %{min} kata
     minimum_speed_requirements: Kecepatan unduh minimum sebesar %{minimum_download_speed} Mbps dan kecepatan unggah minimum sebesar %{minimum_upload_speed} Mbps diperlukan untuk kampanye ini.
     minute: menit
@@ -124,16 +129,24 @@ id:
     network_test_step: Langkah Pengujian Jaringan
     no_audio_detected: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda sudah terhubung dan berfungsi dengan baik.
     pass: Lewati
+    pause: Jeda
     pending: Sedang diproses
     personal_readiness: Kesiapan Pribadi
     plan_text: Rencanakan untuk seluruh durasi. Setelah dimulai, istirahat mungkin tidak diperbolehkan, tergantung pada jenis penilaian.
+    play: Mainkan
     please_check_your_internet_connection: Silakan periksa koneksi internet Anda dan coba lagi.
+    preparing_preview: Mempersiapkan pratinjau...
+    prework: Tugas Pra-Kuliah
+    prework_not_completed_message: Harap selesaikan semua tugas persiapan sebelum memulai kampanye.
     proctored: Diawasi
     proctored_assessment_misconfigured_msg: Penilaian ini diawasi, namun pengaturan waktunya belum lengkap; silakan hubungi administrator Anda.
     profile: Profil
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
     reason_for_idp_plan_rejection: Alasan Penolakan
+    record: Daftar
+    recording_progress_bar: Bilah Kemajuan Perekaman
+    recording_time_remaining: "%{remainingSeconds} detik tersisa"
     redirect_to_external_assessment: Anda akan dialihkan ke situs penilaian. Silakan klik "Lanjutkan" jika Anda ingin memulai penilaian.
     reject_idp_plan: Tolak Paket
     request_retry_message: Anda offline. Jawaban Anda tidak dapat disimpan tetapi akan disimpan secara otomatis setelah Anda kembali online. Tolong jangan menyegarkan atau menutup halaman.
@@ -145,13 +158,15 @@ id:
     results: Hasil
     safari_proctoring_description: Sepertinya Anda menggunakan peramban Safari, yang mungkin memiliki beberapa batasan terkait fitur pelacakan yang diaktifkan untuk kampanye ini. Untuk pengalaman terbaik, kami menyarankan Anda menggunakan peramban Chrome, Edge atau Firefox.
     safari_proctoring_title: Browser Safari Terdeteksi
+    select_audio_device: Pilih Perangkat Audio
+    select_video_device: Pilih Perangkat Video
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
-    start_campaign_message_timed_proctored: Ini adalah kampanye berjangka waktu dan diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_readiness_check: Mulai Pemeriksaan Kesiapan
     start_system_check: Mulai Pemeriksaan Sistem
+    stop: Berhenti
     subinstruction_audio: Mikrofon berfungsi
     subinstruction_eight: Sisihkan waktu yang tidak terganggu untuk penilaian menyeluruh
     subinstruction_five: Siap untuk membagikan layar Anda selama sesi berlangsung
@@ -239,6 +254,9 @@ id:
     video_check_fix_second: Buka pengaturan browser dan aktifkan akses kamera untuk situs ini
     video_check_fix_sixth: Mulai ulang browser Anda dan coba lagi
     video_check_fix_third: Tutup aplikasi lain yang menggunakan kamera (Zoom, Teams, dll.)
+    video_overlay_label: Pilih mikrofon dan kamera Anda, klik Rekam, lalu bacalah pesan berikut setelah Anda menekan tombol Rekam
+    video_overlay_message: Pilih mikrofon dan kamera Anda, klik "Rekam", lalu bacalah dengan lantang kalimat yang muncul di bagian bawah.
+    video_recorder_label: Perekam Video
     view_details: Lihat Detail
     webgl_api_fix_description_first: Pastikan browser Anda mendukung WebGL dan fitur tersebut telah diaktifkan di pengaturan
     webgl_api_fix_description_second: Perbarui driver grafis Anda ke versi terbaru

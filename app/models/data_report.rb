@@ -8,6 +8,8 @@ class DataReport < ApplicationRecord
   belongs_to :owner, class_name: 'Client'
   belongs_to :last_updated_by, class_name: 'User'
 
+  include Tenantable
+
   before_save :update_last_updated_by
 
   has_many :data_report_jobs, dependent: :destroy

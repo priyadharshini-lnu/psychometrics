@@ -25,6 +25,8 @@ module Administration
           required(:disallow_password_login).filled(:bool?)
           required(:session_inactivity_timeout_in_seconds).maybe(:int?)
           required(:enable_recaptcha).maybe(:bool?)
+          required(:external_logout_redirect_enabled).maybe(:bool?)
+          required(:external_logout_url).maybe(:str?)
         end
       end
     end

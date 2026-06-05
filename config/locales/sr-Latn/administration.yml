@@ -2363,6 +2363,7 @@ sr-Latn:
         add: Integracije
         back: Nazad na integracije
         load_mettl_catalog: Pokreni katalog procene Mettl
+        load_microsite_catalog: Учитај каталог процене микросајта
         load_skillvue_catalog: Pokreni katalog procene Skillvue
       columns:
         active: Aktivno
@@ -2381,6 +2382,7 @@ sr-Latn:
         webhookUrls: Webhook URL-ovi
       integrations: Integracije
       load_mettl_success: Pokretanje Mettl procene  je uspešno uvršteno u red
+      load_microsite_success: Посао за процену микросајтова је успешно стављен у ред.
       load_skillvue_success: Pokretanje Skillvue procene  je uspešno uvršteno u red
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ sr-Latn:
           servers:
             mettl_eu: Evropa
             mettl_india: Indija
+        microsite:
+          apiKey: АПИ кључ
+          apiKeyRequired: API кључ је потребан
         skillvue:
           apiKey: API ključ
           apiKeyRequired: API ključ je potreban
@@ -2414,6 +2419,7 @@ sr-Latn:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Микросајт
         skillvue: Skillvue
         yoodli: Joodli
       validations:
@@ -2422,6 +2428,8 @@ sr-Latn:
           tenant_id_present: ID zakupca je već prisutan u drugom projektu
         mettl:
           public_key_present: Javni ključ je već prisutan u drugom projektu
+        microsite:
+          api_key_present: API кључ је већ присутан у другом пројекту.
         skillvue:
           api_key_present: API ključ je već prisutan u drugom projektu
       view_all_schedules: Pogledaj sve Mettl rasporede
@@ -2990,6 +2998,7 @@ sr-Latn:
               assessment_started: Procena je počela
               assessment_timeout: Vremensko ograničenje procene
               campaign_results_available: Dostupni su rezultati kampanje
+              campaign_user_assessment_summary: Резиме процене корисника кампање
               campaign_user_status: Status korisnika kampanje
               report_available: Izveštaj dostupan
               results_available: Rezultati su dostupni

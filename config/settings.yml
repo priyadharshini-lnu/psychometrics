@@ -41,6 +41,8 @@ iiht:
   base_api_url: <%= ENV.fetch('IIHT_BASE_API_URL', nil) %>
 skillvue:
   base_api_url: <%= ENV.fetch('SKILLVUE_BASE_API_URL', nil) %>
+microsite:
+  base_api_url: <%= ENV.fetch('MICROSITE_BASE_API_URL', nil) %>
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
@@ -1070,6 +1072,16 @@ providers:
         name: MTE KWICLO Guide
         possible_languages:
           - en
+      - id: mte-defense-trial
+        name: MTE Defense Trial
+        possible_languages:
+          - en
+          - ar
+      - id: mte-defense-shape
+        name: MTE Defense Shape
+        possible_languages:
+          - en
+          - ar
   pearson:
     v2_assessments:
       - id: prd:bmct-ii:c916dfd8-d922-4fe3-b08f-6fead3c787c4

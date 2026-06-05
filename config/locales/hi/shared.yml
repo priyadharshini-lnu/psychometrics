@@ -22,9 +22,11 @@ hi:
     assessors_list: मूल्यांकनकर्ताओं की सूची
     asset_not_present: संपत्ति मौजूद नहीं है
     audio: ऑडियो
+    audio_devices: ऑडियो उपकरण
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
     back: वापस
     basic: मूलभूत
+    camera: कैमरा
     camera_preview: कैमरा पूर्वावलोकन यहाँ दिखाई देगा
     campaign: अभियान
     campaign_id: अभियान आईडी
@@ -59,6 +61,7 @@ hi:
     desktop_or_laptop_recommended: डेस्कटॉप या लैपटॉप अनुशंसित
     desktop_or_laptop_required: डेस्कटॉप या लैपटॉप आवश्यक है
     disabled: अक्षम
+    discard: फेंको
     download: डाउनलोड
     download_audio: ऑडियो डाउनलोड करें
     download_transcription: प्रतिलिपि डाउनलोड करें
@@ -85,6 +88,7 @@ hi:
     internet_disconnected_message: फिर से जुड़ने की कोशिश कर रहा हूँ। कृपया अपना इंटरनेट कनेक्शन जांचें।
     last_name: आखिरी नाम
     learning_on_the_job_label: काम करते हुए सीखना
+    lets_start: चलो शुरू करते हैं!
     loading: लोड हो रहा है...
     login: लॉगिन
     maintenance_in_hours: "%{hours} घंटे"
@@ -99,6 +103,7 @@ hi:
     media_preview: मीडिया पूर्वावलोकन
     media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
     media_responses: मीडिया की प्रतिक्रियाएँ
+    microphones: माइक्रोफोन
     mobile_proctoring_disabled_instructions: इस मूल्यांकन को जारी रखने के लिए डेस्कटॉप या लैपटॉप आवश्यक है। कृपया गतिविधि पूरी करने के लिए कंप्यूटर पर स्विच करें।
     mobile_proctoring_enabled_instructions: बेहतर अनुभव के लिए, यदि आपके पास डेस्कटॉप या लैपटॉप उपलब्ध है तो कृपया उसका उपयोग करें। यदि आवश्यक हो तो आप अपने मोबाइल डिवाइस पर जारी रख सकते हैं।
     modified_by: द्वारा संशोधित
@@ -116,7 +121,9 @@ hi:
     ok: ठीक है
     options: विकल्प
     owner: मालिक
+    pause: रुकें
     pending: लंबित
+    play: बजाएँ
     policy_version: नीति संस्करण
     policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
     positive: सकारात्मक
@@ -130,6 +137,7 @@ hi:
     question_id: प्रश्न आईडी
     question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
     rec: पुनर्नवीनीकरण योग्य ऊर्जा स्रोत
+    record: रिकॉर्ड
     recorded: रिकॉर्ड किया गया
     recording: रिकॉर्डिंग
     recording_consent_notice: इस बैठक सत्र को रिकॉर्ड किया जाएगा। इस बैठक में आपकी भागीदारी रिकॉर्ड किए जाने की आपकी सहमति मानी जाएगी।
@@ -146,16 +154,21 @@ hi:
     saving_video: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
     scoring_details: स्कोरिंग विवरण
     search: खोजें
+    select_camera: एक कैमरा चुनें
+    select_microphone: एक माइक्रोफ़ोन चुनें
     send_email: ईमेल भेजें
     show_more: और दिखाएँ
     something_wrong: कुछ गलत हो गया। अपने व्यवस्थापक से संपर्क करें।
+    speakers: वक्ता
     status: स्थिति
     status_unknown: स्थिति अज्ञात
+    stop: रुकें
     subject: विषय
     submit: सबमिट करें
     submit_and_finish_proctoring: प्रॉक्टरिंग जमा करें और पूरा करें
     suspended: निलंबित
     switch_to_laptop_or_desktop: लैपटॉप या डेस्कटॉप पर स्विच करें
+    system_check_uploading: अपलोडिंग
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ hi:
     update_failed: अपडेट विफल हो गया
     updated_at: पर अद्यतन किया गया
     updated_successfully: सफलतापूर्वक अद्यतन किया गया
+    user_report_pdf_url_not_generated: पीडीएफ डाउनलोड लिंक उत्पन्न नहीं हो सका।
     video: वीडियो
     view: देखें
     view_audio: ऑडियो देखें

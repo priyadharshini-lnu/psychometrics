@@ -44,6 +44,7 @@ nl:
     camera_check_abruptly_ended: De camera is plotseling uitgeschakeld. Schakel je camera in en voer de controle opnieuw uit.
     camera_check_description: Controleer of je camera en microfoon goed werken voor de opname
     camera_check_passed: De video- en audiotest is succesvol doorlopen
+    camera_check_record_instruction: Klik op 'Opnemen' en lees de volgende tekst hardop voor
     camera_test_step: Stap voor het testen van video en audio
     campaign: Campagne
     campaign_check_status: 'Status: %{status}'
@@ -52,6 +53,7 @@ nl:
     check_video_recording: Controleer uw video en audio door de opname af te spelen.
     checking_browser_compatibility: Browsercompatibiliteit wordt gecontroleerd...
     checking_latency: Latentie wordt gecontroleerd...
+    complete_prework_message: Voer eerst alle voorbereidende opdrachten uit om te kunnen beginnen.
     could_not_reach_servers: Onze servers konden niet worden bereikt om de netwerksnelheid te controleren. Controleer je internetverbinding en probeer het opnieuw.
     day: dag
     day_plural: dagen
@@ -61,6 +63,7 @@ nl:
     download: Downloaden
     download_pdf: Download PDF
     download_speed_below_minimum: De downloadsnelheid %{download_speed} ligt onder de vereiste minimale downloadsnelheid van %{minimum_download_speed} Mbps
+    dummy_message: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn camera en microfoon goed werken.
     environment_setup: Omgeving instellen
     error_uploading_audio: Fout bij het uploaden van audio
     error_uploading_audio_detail: Er is een fout opgetreden bij het uploaden van je audio
@@ -92,6 +95,7 @@ nl:
     internet_speed_optimal: Uw verbindingssnelheid is optimaal
     internet_speed_slow: De internetsnelheid is lager dan voor de campagne vereist
     less_than_five_minutes: Minder dan 5 minuten
+    lets_start: Laten we beginnen!
     lighthouse_assistant: Vuurtorenassistent
     localstorage_fix_description_first: Zorg ervoor dat je niet in de privémodus of incognitomodus zit, aangezien localStorage in deze modi vaak is uitgeschakeld.
     localstorage_fix_title: Lokale opslag is niet ingeschakeld in uw browser
@@ -107,6 +111,7 @@ nl:
     media_recorder_api_support: Ondersteuning voor de MediaRecorder-API
     microphone_access_blocked: De toegang tot de microfoon is door uw browser geweigerd of geblokkeerd. Controleer de machtigingen in uw browser.
     microphone_check_passed: De microfooncheck is geslaagd
+    microsite_assessment_external: Deze beoordeling moet op een extern platform worden ingevuld.
     min_word_limit: Moet minstens %{min} woorden bevatten
     minimum_speed_requirements: Voor deze actie is een minimale downloadsnelheid van %{minimum_download_speed} Mbps en een minimale uploadsnelheid van %{minimum_upload_speed} Mbps vereist.
     minute: minuut
@@ -124,16 +129,24 @@ nl:
     network_test_step: Stap voor het testen van het netwerk
     no_audio_detected: Er wordt geen geluid gedetecteerd. Controleer of je microfoon is aangesloten en goed werkt.
     pass: Sla over
+    pause: Pauze
     pending: In behandeling
     personal_readiness: Persoonlijke voorbereiding
     plan_text: Plan voor de volledige duur. Als je eenmaal bent begonnen, zijn pauzes mogelijk niet toegestaan, afhankelijk van het type toets.
+    play: Spelen
     please_check_your_internet_connection: Controleer uw internetverbinding en probeer het nog eens.
+    preparing_preview: Voorbeeld wordt geladen...
+    prework: Voorbereiding
+    prework_not_completed_message: Voer alle voorbereidende taken uit voordat u met de campagne begint.
     proctored: Onder toezicht
     proctored_assessment_misconfigured_msg: Deze toets wordt onder toezicht afgenomen, maar de vereiste tijdsinstelling ontbreekt. Neem contact op met uw beheerder.
     profile: Profiel
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
     reason_for_idp_plan_rejection: Reden voor afwijzing
+    record: Registreer
+    recording_progress_bar: Voortgangsbalk voor opname
+    recording_time_remaining: "%{remainingSeconds} resterende seconden"
     redirect_to_external_assessment: U wordt doorgestuurd naar de testpagina. Klik op ‘Doorgaan’ als u de test wilt starten.
     reject_idp_plan: Plan afwijzen
     request_retry_message: Je bent offline. Je antwoorden konden niet worden opgeslagen, maar worden automatisch opgeslagen zodra je weer online bent. Vers of sluit de pagina alstublieft niet.
@@ -145,13 +158,15 @@ nl:
     results: Resultaat
     safari_proctoring_description: Het lijkt erop dat u de Safari-browser gebruikt, die mogelijk enkele beperkingen kent wat betreft de geactiveerde trackingfuncties voor deze campagne. Voor de beste ervaring raden wij u aan om Chrome, Edge of Firefox te gebruiken.
     safari_proctoring_title: Safari-browser gedetecteerd
+    select_audio_device: Selecteer audioapparaat
+    select_video_device: Selecteer videoapparaat
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
-    start_campaign_message_timed_proctored: Dit is een getimede en toezichthoudende campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_readiness_check: Start de gereedheidscontrole
     start_system_check: Systeemcontrole starten
+    stop: Stop
     subinstruction_audio: Werkende microfoon
     subinstruction_eight: Reserveer voldoende aaneengesloten tijd voor de volledige beoordeling
     subinstruction_five: Klaar om je scherm gedurende de hele sessie te delen
@@ -239,6 +254,9 @@ nl:
     video_check_fix_second: Ga naar de browserinstellingen en schakel cameratoegang voor deze website in
     video_check_fix_sixth: Start je browser opnieuw op en probeer het nog eens
     video_check_fix_third: Sluit andere programma’s die de camera gebruiken (Zoom, Teams, enz.)
+    video_overlay_label: Kies je microfoon en camera, klik op ‘Opnemen’ en lees het volgende bericht voor zodra je op de opnameknop hebt gedrukt
+    video_overlay_message: Kies je microfoon en camera, klik op ‘Opnemen’ en lees vervolgens de zin die onderaan verschijnt hardop voor.
+    video_recorder_label: Videorecorder
     view_details: Bekijk details
     webgl_api_fix_description_first: Zorg ervoor dat je browser WebGL ondersteunt en dat deze functie in de instellingen is ingeschakeld
     webgl_api_fix_description_second: Werk je grafische stuurprogramma’s bij naar de nieuwste versie

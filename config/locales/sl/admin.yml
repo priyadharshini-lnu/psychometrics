@@ -22,6 +22,7 @@ sl:
     admin_updated_successfully: Skrbnik '%{name}' je bil uspešno posodobljen
     admins: Skrbniki
     advanced: Napredno
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
     ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
@@ -137,6 +138,7 @@ sl:
     assessments_not_mhs: Vse ocene morajo biti tipa MHS.
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca
+    assessor_form: Obrazec ocenjevalca
     assessor_workshops: Ocenjevalni center
     assessors: Ocenjevalcev
     assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
@@ -144,6 +146,7 @@ sl:
     assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
+    auto_moderated_factor_info: Ta ocena je avtomatsko potrjena in je ni mogoče spremeniti
     auto_placeholder: Avto
     availability: Razpoložljivost
     available_languages: Poročilo je na voljo v jezikih
@@ -221,6 +224,7 @@ sl:
     cancel: Prekliči
     cancellation_and_rescheduling_disabled: Preklic in sprememba termina sta onemogočena.
     captcha: Preverjanje s Captcha
+    case_study: Študija primera
     casual: Površno
     cell_save_msg: Veljavne spremembe se samodejno shranijo, ko po urejanju zapustite celico.
     characters: znaki
@@ -230,6 +234,8 @@ sl:
     client_admins: Skrbniki odjemalcev
     clients: Spletno okolje naročnika
     code_required: Potrebna je koda
+    common: Ocena TTE
+    common_assessment: Ocena TTE
     communication_center: Komunikacijsko središče
     communications: Komunikacije
     completed: Dokončan
@@ -248,6 +254,7 @@ sl:
     create_client: Ustvari odjemalca
     create_indicator: Ustvari indikator
     current_job_role: Trenutna delovna vloga
+    custom_upload: Nalaganje po meri
     dashboard: Nadzorna plošča
     dashboards: Namizij
     data_reports: Poročila o podatkih
@@ -285,6 +292,8 @@ sl:
     dimension_translations_export_scheduled: Izvoz prevodov, načrtovan za dimenzijo »%{name}«.
     dimensions: Dimenzije
     disable_proctoring: Onemogoči nadzor
+    disallow_lead_assessor_moderation: Onemogoči moderiranje glavnega ocenjevalca
+    disallow_lead_assessor_moderation_info: Ocena se bo samodejno izračunala na podlagi vseh predloženih obrazcev ocenjevalcev, glavni ocenjevalec pa je ne more spremeniti na zaslonu za pregled.
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     download_bulk_asset_download_example_csv: Prenesi primer CSV.
@@ -315,6 +324,7 @@ sl:
     enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
     enter_description: Vnesite opis
     enter_name: Vnesite ime
+    enter_question_id: Vnesite ID vprašanja
     error: Napaka
     estimated_tokens: žetoni (ocena)
     evaluation_status: Status ocenjevanja
@@ -381,6 +391,8 @@ sl:
     idp_appearance_title: Naslov
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
     idp_templates: Predloge IDP
+    iiht: IIHT
+    iiht_assessment: Ocena IIHT
     import_ai_artifacts: Uvoz AI artefaktov
     import_csv_assessment_group_error: "%{index} vrstica: uporabnik z e-poštnim naslovom %{email} je že povabljen v skupino „%{workshopInviteName}“."
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
@@ -406,9 +418,11 @@ sl:
     import_users: Uvoz uporabnikov
     internal: Notranji
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
+    invalid_question_ids: 'ID-ji vprašanj, ki jih v tej oceni ni: %{ids}'
     job_roles: Delovna mesta
     keywords: Ključne besede
     keywords_placeholder: Vnesite ključne besede, ločene z vejicami.
+    lead_assessor_form: Obrazec glavni ocenjevalec
     learning_from_others: Sodelovalno učenje [20]
     level: Raven
     level_apply: Prijavi se
@@ -418,6 +432,8 @@ sl:
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
+    lighthouse_question: Ključno vprašanje
+    lighthouse_question_id: ID vprašanja Lighthouse
     linked_assessments: Povezane ocene
     low: Nizka
     maintenance: Vzdrževanje
@@ -425,10 +441,14 @@ sl:
     maintenance_settings_description: Upravljanje časovnih okvirjev in nastavitev za vzdrževanje sistema
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
     max_value: Največja vrednost
+    mean: Povprečje
     media_files_label: Datoteke
     media_library: Medijska knjižnica
     media_library_page_title: Medijska knjižnica – Nadzorna plošča – Mercer Lighthouse
+    meeting: Srečanje
     messages: Sporočila
+    mettl: METTL
+    mettl_assessment: Ocena Mettl
     mhs: MHS
     mhs_assessment: Ocena MHS
     mhs_assessment_name: Ime ocene MHS
@@ -437,6 +457,10 @@ sl:
     mhs_external_assessment_id: Mhs ocena ID
     mhs_report_id: ID poročila MHS
     mhs_session_id: Mhs ID seje
+    microsite: Mikrospletna stran
+    microsite_assessment: Ocena mikrospletne strani
+    microsite_assessment_name: Ime ocene mikrospletne strani
+    microsite_question_id: ID vprašanja na mikrospletni strani
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
     minimum_download_speed: Najmanjša hitrost prenosa (v Mbps)
@@ -445,12 +469,14 @@ sl:
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
     model_answer: Vzorec odgovora
     model_answer_placeholder: Vnesite vzorčni odgovor za ocenjevanje AI.
+    must_be_a_valid_url: Neveljaven URL. Vnesite popoln URL z vključenim protokolom http ali https
     name: Ime
     name_max_length: Ime ne sme biti daljše od %{length} znakov.
     name_required: Ime je potrebno
     new_folder: Nova mapa
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
+    no_question_mappings: Na voljo ni nobenih preslikav vprašanj
     no_status: Brez statusa
     norm_editor_numeric_value_error: Dovoljene so le številčne vrednosti (cela števila ali decimalna števila).
     norms: Norme
@@ -466,10 +492,13 @@ sl:
     on_the_job: Na delovnem mestu [70]
     only_editable_on_create: Ta možnost je urejljiva samo med ustvarjanjem.
     options: Možnosti
+    organisational: AGILE
     original_text: Izvirno besedilo
     overall: Na splošno
     overall_score: Skupna ocena
     participants: Udeleženci
+    pearson: Pearson
+    pearson_assessment: Pearsonova ocena
     permissions:
       aiArtifacts:
         export: Izvoz
@@ -800,6 +829,8 @@ sl:
       projectSettings:
         assessments: Ocenjevanja
         design: Dizajn
+        external_logout_redirect_enabled: Omogoči zunanje preusmerjanje ob odjavi
+        external_logout_url: Zunanji URL za odjavo
         feature_flags: Zastavice funkcij
         idp: IDP
         integrations: Integracije
@@ -913,6 +944,7 @@ sl:
     project_settings: Nastavitve projekta
     projects: Projekti
     prompt: Spodbuda
+    psychometric: Psihometrični
     question_center: Središče za vprašanja
     question_center_page_title: Center za vprašanja – Nadzorna plošča – Mercer Lighthouse
     question_editor_change_type: Spremeni vrsto
@@ -921,6 +953,7 @@ sl:
     question_editor_enable_transcription: Omogoči prepis
     question_editor_preview_question: Predogled vprašanja
     question_editor_validation_type: Vrsta validacije
+    question_mapping: Zemljevid vprašanj
     question_randomization: Naključno razvrščanje vprašanj
     question_type_audio_response: Zvočni odziv
     question_type_constant_sum: Nespremenljiva vsota
@@ -1037,6 +1070,8 @@ sl:
       subject_full_name_cont: Ime predmeta
       user_email_cont: E-poštni naslov uporabnika
       user_full_name_cont: Uporabniško ime
+    saville: Saville
+    saville_assessment: Ocena Saville
     scheduling: Razporejanje
     score: Rezultat
     score_approval_not_allowed_to_approve: Te ocene ne smete odobriti.
@@ -1072,6 +1107,7 @@ sl:
     select_end_time: Izberite čas zaključka
     select_language_to_translate: Izberite jezik za prevajanje
     select_level: Izberite raven
+    select_question: Iskanje vprašanja po imenu ali ID-ju
     select_start_time: Izberite čas začetka
     selective_proctoring: Selektivno nadzorovanje
     send_email: Pošlji e-pošto
@@ -1084,14 +1120,19 @@ sl:
     show_submenu: Pokaži podmeni
     show_translated: Pokaži prevedeno
     siem: SIEM
+    simulation: Simulacija
+    simulation_assessment: Ocena Simulation
     skill_aliases: Vzdevki spretnosti
     skills: Spretnosti
     skills_taxonomy: Taksonomija spretnosti
+    skillvue: Skillvue
+    skillvue_assessment: Ocena Skillvue
     skip_assessment_level_checks: Preskoči preverjanje sistema na ravni ocenjevanja
     slot_name: Ime reže
     sms_histories: Zgodovina sporočil SMS
     sms_invites: SMS vabila
     specialty_questions: Posebna vprašanja
+    standard_deviation: Standardni odmik
     standard_questions: Standardna vprašanja
     start: začetek
     start_time: Začetek
@@ -1152,6 +1193,8 @@ sl:
     x_axis_interval_label: Interval osi X
     y_axis_interval_label: Interval osi Y
     year: Država
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Yoodlijeva ocena
     yoodli_email_id: E-poštni ID kandidata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID

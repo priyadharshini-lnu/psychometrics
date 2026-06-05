@@ -22,9 +22,11 @@ id:
     assessors_list: Daftar Penilai
     asset_not_present: Aset tidak tersedia
     audio: Audio
+    audio_devices: Perangkat Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
     back: Kembali
     basic: Dasar
+    camera: Kamera
     camera_preview: Pratinjau kamera akan muncul di sini
     campaign: Kampanye
     campaign_id: ID Kampanye
@@ -59,6 +61,7 @@ id:
     desktop_or_laptop_recommended: Desktop atau Laptop yang Direkomendasikan
     desktop_or_laptop_required: Diperlukan komputer desktop atau laptop.
     disabled: Cacat
+    discard: Buang
     download: Unduh
     download_audio: Unduh Audio
     download_transcription: Unduh Transkrip
@@ -85,6 +88,7 @@ id:
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     last_name: Nama belakang
     learning_on_the_job_label: Belajar di Tempat Kerja
+    lets_start: Ayo mulai!
     loading: Muat...
     login: Masuk
     maintenance_in_hours: "%{hours} jam"
@@ -99,6 +103,7 @@ id:
     media_preview: Pratinjau Media
     media_question_transcriptions: Transkrip Pertanyaan Media
     media_responses: Tanggapan Media
+    microphones: Mikrofon
     mobile_proctoring_disabled_instructions: Penilaian ini memerlukan komputer desktop atau laptop untuk dilanjutkan. Silakan beralih ke komputer untuk menyelesaikan aktivitas ini.
     mobile_proctoring_enabled_instructions: Untuk pengalaman terbaik, silakan beralih ke komputer desktop atau laptop jika Anda memiliki yang tersedia. Anda dapat melanjutkan menggunakan perangkat seluler jika diperlukan.
     modified_by: Dimodifikasi oleh
@@ -116,7 +121,9 @@ id:
     ok: Ok
     options: Pilihan
     owner: Pemilik
+    pause: Jeda
     pending: Menunggu
+    play: Mainkan
     policy_version: Versi Kebijakan
     policy_version_format: Hanya bilangan bulat yang diperbolehkan.
     positive: Positif
@@ -130,6 +137,7 @@ id:
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
     rec: REC
+    record: Rekor
     recorded: direkam
     recording: Rekaman
     recording_consent_notice: Sesi rapat ini akan direkam. Partisipasi Anda dalam pertemuan ini merupakan persetujuan Anda untuk direkam.
@@ -146,16 +154,21 @@ id:
     saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
     scoring_details: Rincian Skor
     search: Pencarian
+    select_camera: Pilih Kamera
+    select_microphone: Pilih Mikrofon
     send_email: Kirim email
     show_more: Tampilkan Lebih Banyak
     something_wrong: Ada yang tidak beres. Hubungi administrator Anda.
+    speakers: Pembicara
     status: Status
     status_unknown: Status Tidak Diketahui
+    stop: Berhenti
     subject: Subjek
     submit: Kirim
     submit_and_finish_proctoring: Kirim dan Selesaikan Pengawasan
     suspended: Ditangguhkan
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
+    system_check_uploading: Mengunggah
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ id:
     update_failed: Pembaruan gagal
     updated_at: Diperbarui pada
     updated_successfully: Pembaruan berhasil
+    user_report_pdf_url_not_generated: Tautan unduhan PDF tidak dapat dibuat
     video: Video
     view: Lihat
     view_audio: Lihat Audio

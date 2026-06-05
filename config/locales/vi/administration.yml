@@ -2363,6 +2363,7 @@ vi:
         add: Tích hợp
         back: Quay lại tích hợp
         load_mettl_catalog: Tải danh mục đánh giá Mettl
+        load_microsite_catalog: Tải danh mục đánh giá microsite
         load_skillvue_catalog: Tải danh mục đánh giá Skillvue
       columns:
         active: Hoạt động
@@ -2381,6 +2382,7 @@ vi:
         webhookUrls: URL Webhook
       integrations: Tích hợp
       load_mettl_success: Tải công việc đánh giá mettl được xếp hàng thành công
+      load_microsite_success: Công việc đánh giá microsite đã được xếp vào hàng đợi thành công
       load_skillvue_success: Tải công việc đánh giá skillvue được xếp hàng thành công
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ vi:
           servers:
             mettl_eu: Châu Âu
             mettl_india: Ấn Độ
+        microsite:
+          apiKey: Khóa API
+          apiKeyRequired: Cần có khóa API
         skillvue:
           apiKey: Khóa API
           apiKeyRequired: Khóa API là bắt buộc
@@ -2414,6 +2419,7 @@ vi:
         hogan: HOGAN
         iiht: IIHT
         mettl: METTL
+        microsite: Trang web chuyên biệt
         skillvue: Kỹ năng
         yoodli: Yoodli
       validations:
@@ -2422,6 +2428,8 @@ vi:
           tenant_id_present: ID người thuê đã có trong dự án khác
         mettl:
           public_key_present: Khóa công khai đã có trong dự án khác
+        microsite:
+          api_key_present: Khóa API đã tồn tại trong dự án khác
         skillvue:
           api_key_present: Khóa API đã có trong dự án khác
       view_all_schedules: Xem tất cả lịch trình Mettl
@@ -2990,6 +2998,7 @@ vi:
               assessment_started: Đánh giá bắt đầu
               assessment_timeout: Thời gian chờ đánh giá
               campaign_results_available: Kết quả chiến dịch có sẵn
+              campaign_user_assessment_summary: Tóm tắt đánh giá người dùng chiến dịch
               campaign_user_status: Trạng thái người dùng chiến dịch
               report_available: Báo cáo có sẵn
               results_available: Kết quả có sẵn

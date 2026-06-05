@@ -44,6 +44,7 @@ ru:
     camera_check_abruptly_ended: Камера была внезапно отключена. Пожалуйста, включите камеру и повторите проверку.
     camera_check_description: Убедитесь, что ваша камера и микрофон работают исправно для записи
     camera_check_passed: Проверка видео и аудио прошла успешно
+    camera_check_record_instruction: Нажмите «Запись» и прочитайте вслух следующий отрывок
     camera_test_step: Этап проверки видео и аудио
     campaign: Кампания
     campaign_check_status: 'Статус: %{status}'
@@ -52,6 +53,7 @@ ru:
     check_video_recording: Пожалуйста, проверьте видео и аудио, воспроизведя запись.
     checking_browser_compatibility: Проверка совместимости браузеров...
     checking_latency: Проверка задержки...
+    complete_prework_message: Для начала выполните все подготовительные задания.
     could_not_reach_servers: Не удалось подключиться к нашим серверам для проверки скорости сети. Проверьте подключение к Интернету и повторите попытку.
     day: день
     day_plural: дней
@@ -61,6 +63,7 @@ ru:
     download: Скачать
     download_pdf: Скачать PDF
     download_speed_below_minimum: Скорость загрузки %{download_speed} ниже минимальной требуемой скорости загрузки, равной %{minimum_download_speed} Мбит/с
+    dummy_message: Я готов. Это пробная запись, чтобы проверить, исправно ли работают моя камера и микрофон.
     environment_setup: Настройка среды
     error_uploading_audio: Ошибка при загрузке аудиофайла
     error_uploading_audio_detail: Произошла ошибка при загрузке аудиофайла
@@ -92,6 +95,7 @@ ru:
     internet_speed_optimal: Скорость вашего подключения оптимальна
     internet_speed_slow: Скорость интернета ниже, чем требуется для проведения кампании
     less_than_five_minutes: Менее 5 минут
+    lets_start: Начнём!
     lighthouse_assistant: Помощник маяка
     localstorage_fix_description_first: Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах localStorage часто отключено.
     localstorage_fix_title: В вашем браузере не включено локальное хранилище
@@ -107,6 +111,7 @@ ru:
     media_recorder_api_support: Поддержка API MediaRecorder
     microphone_access_blocked: Ваш браузер запретил или заблокировал доступ к микрофону. Проверьте настройки прав доступа в браузере.
     microphone_check_passed: Проверка микрофона прошла успешно
+    microsite_assessment_external: Эта оценка должна быть выполнена на внешней платформе.
     min_word_limit: Должно быть не менее %{min} слов
     minimum_speed_requirements: Для участия в этой акции требуется минимальная скорость загрузки %{minimum_download_speed} Мбит/с и минимальная скорость отправки %{minimum_upload_speed} Мбит/с.
     minute: минута
@@ -124,16 +129,24 @@ ru:
     network_test_step: Этап тестирования сети
     no_audio_detected: Звук не обнаружен. Проверьте, подключен ли микрофон и работает ли он исправно.
     pass: Пропустить
+    pause: Пауза
     pending: В процессе рассмотрения
     personal_readiness: Личная готовность
     plan_text: Планируйте время на весь период. После начала тестирования перерывы могут быть запрещены в зависимости от типа тестирования.
+    play: Играть
     please_check_your_internet_connection: Проверьте подключение к Интернету и попробуйте ещё раз.
+    preparing_preview: Подготовка предварительного просмотра...
+    prework: Подготовительная работа
+    prework_not_completed_message: Перед запуском кампании выполните все подготовительные задания.
     proctored: Под наблюдением
     proctored_assessment_misconfigured_msg: Данная оценка проводится под наблюдением, однако в ней отсутствуют необходимые настройки по времени. Пожалуйста, обратитесь к администратору.
     profile: Профиль
     profile_details: Подробности
     question_counter: Вопрос %{current} из %{total}
     reason_for_idp_plan_rejection: Причина отказа
+    record: Журнал
+    recording_progress_bar: Индикатор хода записи
+    recording_time_remaining: "%{remainingSeconds} оставшихся секунд"
     redirect_to_external_assessment: Вы будете перенаправлены на сайт тестирования. Нажмите «Продолжить», если хотите приступить к тестированию.
     reject_idp_plan: Отклонить план
     request_retry_message: Вы не подключены к Интернету. Ваши ответы не могут быть сохранены, но будут сохранены автоматически, как только вы снова подключитесь к Интернету. Пожалуйста, не обновляйте и не закрывайте страницу.
@@ -145,13 +158,15 @@ ru:
     results: Результат
     safari_proctoring_description: Похоже, вы используете браузер Safari, который может иметь некоторые ограничения в отношении функций отслеживания, активированных в рамках этой кампании. Для оптимальной работы мы рекомендуем использовать браузеры Chrome, Edge или Firefox.
     safari_proctoring_title: Обнаружен браузер Safari
+    select_audio_device: Выбрать аудиоустройство
+    select_video_device: Выбрать видеоустройство
     selected_count: "%{count} выбранный"
     skill_type: Тип навыка
     start_campaign_message_proctored: Это контролируемая кампания, пожалуйста, нажмите кнопку «%{buttonText}» (Начать), чтобы приступить к выполнению заданий.
     start_campaign_message_timed: Это ограниченная по времени кампания, пожалуйста, нажмите кнопку «%{buttonText}», чтобы начать участие в мероприятиях.
-    start_campaign_message_timed_proctored: Это кампания с ограниченным временем и под наблюдением, пожалуйста, нажмите кнопку «%{buttonText}» (Начать кампанию), чтобы приступить к действиям.
     start_readiness_check: Начать проверку готовности
     start_system_check: Запустить проверку системы
+    stop: Стоп
     subinstruction_audio: Рабочий микрофон
     subinstruction_eight: Выделите достаточно времени для проведения полной оценки
     subinstruction_five: Готовы ли вы открыть доступ к своему экрану на время сеанса?
@@ -239,6 +254,9 @@ ru:
     video_check_fix_second: Перейдите в настройки браузера и разрешите этому сайту доступ к камере
     video_check_fix_sixth: Перезапустите браузер и попробуйте ещё раз
     video_check_fix_third: Закройте другие приложения, использующие камеру (Zoom, Teams и т. д.)
+    video_overlay_label: Выберите микрофон и камеру, нажмите «Запись», а затем, после нажатия кнопки «Запись», прочитайте следующее сообщение
+    video_overlay_message: Выберите микрофон и камеру, нажмите «Запись», а затем прочитайте вслух предложение, отображающееся внизу экрана.
+    video_recorder_label: Видеомагнитофон
     view_details: Посмотреть подробности
     webgl_api_fix_description_first: Убедитесь, что ваш браузер поддерживает WebGL и что эта функция включена в настройках
     webgl_api_fix_description_second: Обновите драйверы графической карты до последней версии

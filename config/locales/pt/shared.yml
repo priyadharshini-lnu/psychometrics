@@ -22,9 +22,11 @@ pt:
     assessors_list: Lista de avaliadores
     asset_not_present: Ativo não presente
     audio: Áudio
+    audio_devices: Dispositivos de áudio
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
     back: Voltar
     basic: Básico
+    camera: Câmara
     camera_preview: A pré-visualização da câmara aparecerá aqui
     campaign: Campanha
     campaign_id: ID de campanha
@@ -59,6 +61,7 @@ pt:
     desktop_or_laptop_recommended: Recomendado para computador desktop ou laptop
     desktop_or_laptop_required: É necessário um computador desktop ou laptop
     disabled: Desativado
+    discard: Ignorar
     download: Baixar
     download_audio: Baixar áudio
     download_transcription: Baixar transcrição
@@ -85,6 +88,7 @@ pt:
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
     last_name: Apelido
     learning_on_the_job_label: Aprendendo no Trabalho
+    lets_start: Vamos começar!
     loading: Carregando...
     login: Iniciar sessão
     maintenance_in_hours: "%{hours} horas"
@@ -99,6 +103,7 @@ pt:
     media_preview: Prévia para a mídia
     media_question_transcriptions: Transcrições de perguntas da mídia
     media_responses: Respostas da mídia
+    microphones: Microfones
     mobile_proctoring_disabled_instructions: Esta avaliação requer um computador desktop ou laptop para continuar. Por favor, mude para um computador para concluir a atividade.
     mobile_proctoring_enabled_instructions: Para uma melhor experiência, mude para um computador desktop ou laptop, se tiver um disponível. Você pode continuar no seu dispositivo móvel, se necessário.
     modified_by: Modificado por
@@ -116,7 +121,9 @@ pt:
     ok: OK
     options: Opções
     owner: Proprietário
+    pause: Pausa
     pending: Pendente
+    play: Jogar
     policy_version: Versão da política
     policy_version_format: Apenas números inteiros são permitidos
     positive: Positivo
@@ -130,6 +137,7 @@ pt:
     question_id: ID da pergunta
     question_transcription_disabled: A transcrição está desativada para esta pergunta.
     rec: REC
+    record: Registo
     recorded: Gravado
     recording: Gravação
     recording_consent_notice: Esta sessão de reunião será gravada. Sua participação nesta reunião constitui seu consentimento para ser gravado.
@@ -146,16 +154,21 @@ pt:
     saving_video: Salvando vídeo... Por favor, não feche nem atualize o navegador
     scoring_details: Detalhes da pontuação
     search: Pesquisar
+    select_camera: Selecione uma câmara
+    select_microphone: Selecione um microfone
     send_email: Enviar e-mail
     show_more: Mostrar Mais
     something_wrong: Algo correu mal. Contacte o seu administrador.
+    speakers: Oradores
     status: Status
     status_unknown: Status Desconhecido
+    stop: Pare
     subject: Assunto
     submit: Enviar
     submit_and_finish_proctoring: Enviar e concluir a supervisão
     suspended: Suspenso
     switch_to_laptop_or_desktop: Mudar para laptop ou desktop
+    system_check_uploading: A carregar
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ pt:
     update_failed: Falha na atualização
     updated_at: Atualizado em
     updated_successfully: Atualizado com sucesso
+    user_report_pdf_url_not_generated: Não foi possível gerar o link para descarregar o PDF
     video: Vídeo
     view: Ver
     view_audio: Ver áudio

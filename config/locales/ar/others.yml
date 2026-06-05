@@ -1022,6 +1022,7 @@ ar:
       pending_tasks:
         one: لديك مهمة واحدة متبقية
         other: لديك %{count} مهام متبقية
+        two: لديك مهمتان متبقيتان
       re_evaluate: انقر هنا لإعادة التقييم
       reevaluate: إعادة التقييم
       remove:
@@ -1100,36 +1101,9 @@ ar:
       title: تفاصيل التقييم
     edit: حرر
     fields:
-      category:
-        agile: رشيق
-        assessor_form: نموذج المقيم
-        case_study: دراسات الحالة
-        hogan: هوجان
-        iiht: IIHT
-        lead_assessor_form: نموذج المقيم الرئيسي
-        meeting: اجتماع
-        mettl: ميتل
-        organisational: استطلاعات المؤسسة
-        pearson: بيرسون
-        psychometric: القياس النفسي
-        saville: سافيل
-        simulation: محاكاة
-        skillvue: سكيلفيو
-        threesixty: حملة 360
-        yoodli: يودلي
       status:
         finished: منته
         in_progress: قيد التنفيذ
-      type:
-        common: تقييم TTE
-        hogan: هوجان
-        iiht: تقييم IIHT
-        mettl: تقييم Mettl
-        pearson: تقييم بيرسون
-        saville: تقييم سافيل
-        simulation: تقييم المحاكاة
-        skillvue: تقييم Skillvue
-        yoodli: تقييم يودلي
     flow:
       end_assessment_modal:
         custom_message: نهاية مخصصة لرسالة التقييم
@@ -1209,16 +1183,11 @@ ar:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
         unsupported: هذا المتصفح لا يدعم تسجيل الفيديو. يرجى استخدام أي من المتصفحات التالية ،
-      recording_duration_label: الحد الأقصى لمدة التسجيل
-      recording_stop_label: سيتوقف التسجيل
       requesting_permission: جارٍ طلب الإذن...
       response_recorded: تم تسجيل الرد
       save: حفظ
-      saved:
-        label: تم الحفظ
       seek: نشد
       start_recording: ابدأ التسجيل
-      stop_recording: توقف عن التسجيل
       tracker:
         backward: أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً
         forward: أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً
@@ -1380,15 +1349,12 @@ ar:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
     already_joined: لقد انضممت بالفعل إلى هذه الحملة
-    begin: ابدأ مهامك
-    begin_btn_msg_before_prework: يجب عليك إكمال المهام التالية قبل بدء الحملة الموقوتة
     begin_campaign_msg: بدء الحملة قبل إجراء التقييمات
     campaigns: الحملات
     closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
     code_usage_limit_reached: تم الوصول إلى حد استخدام الكود ، يرجى الاتصال بالمسؤول
     complete_prev: " أكمل جميع التقييمات السابقة"
     complete_tasks: يرجى إكمال المهام أدناه قبل اتخاذ هذا الإجراء.
-    continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الأنشطة التي عليك إنجازها، يرجى التأكد من إكمالها جميعاً ضمن الفترة الزمنية المحددة لها.
     dashboard_menu:
       campaign: الحملة
@@ -1497,6 +1463,9 @@ ar:
       external_user_id: هوية المرشح سكيلفيو
       id: معرف تقييم الحملة
       locales: لغات
+      microsite_error_message: رسالة خطأ
+      microsite_participant_id: رقم تعريف المشارك في الموقع المصغر
+      microsite_registration_status: حالة التسجيل
       norm: القاعده
       norm_id: معرف القاعدة
       pearson_norm_id: معرف بيرسون نورم
@@ -1771,10 +1740,8 @@ ar:
       permissions: أذونات كاميرا الويب والصوت
       title: قبل بدأ هذا التقييم، يحتاج النظام الخاص بك إلى الخضوع لبعض الفحوصات
     video_check:
-      description: انقر على "بدء التسجيل" وسجل نفسك أثناء قراءة المقطع التالي بصوتك
       random_phrases:
         one: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الفيديو والميكروفون يعملان بشكل صحيح.
-      title: " نحن بحاجة إلى التأكد من أن النظام الخاص بك يمكنه تسجيل الفيديو"
   common:
     actions:
       add: إضافة
@@ -1855,6 +1822,7 @@ ar:
       json:
         answer: إجابة JSON
         external_result: النتيجة الخارجية JSON
+        microsite_raw_response: الموقع المصغر "Raw Response"
         scoring: تسجيل JSON
       key: مفتاح
       last_name: اسم العائلة
@@ -3313,13 +3281,6 @@ ar:
     fields:
       provider:
         custom_upload: تحميل مخصص
-        hogan: هوجان
-        internal: داخلي
-        mettl: ميتل
-        pearson: بيرسون
-        saville: سافيل
-        skillvue: سكيلفيو
-        yoodli: يودلي
     form:
       load_from_mettl: تحميل من Mettl
       load_from_pearson: تحميل من بيرسون
@@ -4289,6 +4250,7 @@ ar:
     title:
       one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
       other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
+      two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك
     user_self_skill_rating_disabled: تم تعطيل التصنيف الذاتي لهذا القالب
     word_count: 'عدد الكلمات '
     word_range: يجب ألا تقل إجابتك عن %{min} ولا تزيد عن %{max} من الكلمات.

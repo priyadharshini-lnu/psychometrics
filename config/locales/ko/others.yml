@@ -1100,36 +1100,9 @@ ko:
       title: 평가 세부 정보
     edit: 편집
     fields:
-      category:
-        agile: AGILE
-        assessor_form: 평가자 양식
-        case_study: 사례 연구
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: 리드 평가자 양식
-        meeting: 회의
-        mettl: Mettl
-        organisational: 조직 설문 조사
-        pearson: Pearson
-        psychometric: 사이코메트릭
-        saville: Saville
-        simulation: 시뮬레이션
-        skillvue: 스킬뷰
-        threesixty: 360 캠페인
-        yoodli: 유들리
       status:
         finished: 완료
         in_progress: 진행 중
-      type:
-        common: TTE 평가
-        hogan: Hogan
-        iiht: IIHT 평가
-        mettl: Mettl 평가
-        pearson: 피어슨 평가
-        saville: 새빌 평가
-        simulation: 시뮬레이션 평가
-        skillvue: Skillvue 평가
-        yoodli: 유들리 평가
     flow:
       end_assessment_modal:
         custom_message: 사용자 지정 평가 종료 메시지
@@ -1206,16 +1179,11 @@ ko:
         failure: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 동영상 녹화를 위해서는 Chrome 또는 Firefox를 사용하세요
         success: 성공
         unsupported: 이 브라우저는 동영상 녹화를 지원하지 않습니다. 다음 브라우저 중 하나를 사용하세요,
-      recording_duration_label: 최대 녹화 시간
-      recording_stop_label: 녹화가 다음에서 중지됩니다
       requesting_permission: 권한 요청 중...
       response_recorded: 응답 기록
       save: 저장
-      saved:
-        label: 동영상 저장
       seek: Seek
       start_recording: 녹화 시작
-      stop_recording: 녹화 중지
       tracker:
         backward: 화면에 너무 가까이 있습니다. 조금 뒤로 이동하세요
         forward: 화면에서 너무 멀리 떨어져 있습니다. 조금 더 가까이 오세요
@@ -1377,15 +1345,12 @@ ko:
     all_activities_are_completed: 이제 모든 활동이 완료되었습니다.
     all_activities_are_completed_multiple: 이제 이 캠페인의 모든 활동이 완료되었습니다. 대시보드로 이동하여 할당된 다른 활동이 있는지 확인하세요.
     already_joined: 이미 이 캠페인에 참여하셨습니다
-    begin: 작업 시작
-    begin_btn_msg_before_prework: 시간 제한 캠페인을 시작하기 전에 아래 작업을 완료해야 합니다
     begin_campaign_msg: 평가를 받기 전에 캠페인 시작
     campaigns: 캠페인
     closed_campaign_message: 이 캠페인은 종료되었습니다. 이 캠페인에서는 어떠한 평가도 받을 수 없습니다.
     code_usage_limit_reached: 코드 사용 한도에 도달했습니다. 관리자에게 문의하세요
     complete_prev: 이전의 모든 평가 완료
     complete_tasks: 이 조치를 취하기 전에 아래 작업을 완료하세요.
-    continue: 계속하기
     dashboard_instructions: 완료해야 하는 활동이 여러 개 할당되었을 수 있습니다. 모든 캠페인에서 할당된 활동이 모두 완료되었는지 확인하세요.
     dashboard_menu:
       campaign: 캠페인
@@ -1485,6 +1450,9 @@ ko:
       external_user_id: 스킬뷰 응시자 ID
       id: 캠페인 평가 ID
       locales: 로캘
+      microsite_error_message: 오류 메시지
+      microsite_participant_id: 마이크로사이트 참가자 ID
+      microsite_registration_status: 등록 상태
       norm: 표준
       norm_id: 표준 ID
       pearson_norm_id: Pearson Norm ID
@@ -1759,10 +1727,8 @@ ko:
       permissions: 웹캠 및 오디오 권한
       title: 이 평가를 시작하기 전에 시스템을 몇 가지 점검해야 합니다.
     video_check:
-      description: 설명
       random_phrases:
         one: 준비됐습니다. 이 녹화는 제 비디오와 마이크가 제대로 작동하는지 확인하기 위한 테스트 녹화입니다.
-      title: 시스템이 동영상을 녹화할 수 있는지 확인해야 합니다
   common:
     actions:
       add: 추가
@@ -1843,6 +1809,7 @@ ko:
       json:
         answer: 응답 JSON
         external_result: 외부 결과 JSON
+        microsite_raw_response: '마이크로사이트: 생생한 반응'
         scoring: JSON 채점
       key: 키
       last_name: 성
@@ -3280,13 +3247,6 @@ ko:
     fields:
       provider:
         custom_upload: 사용자 지정 업로드
-        hogan: Hogan
-        internal: 내부
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: 스킬뷰
-        yoodli: 유들리
     form:
       load_from_mettl: Mettl에서 로드
       load_from_pearson: 피어슨에서 로드

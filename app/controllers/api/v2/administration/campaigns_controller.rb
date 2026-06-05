@@ -17,6 +17,12 @@ module Api
 
     private
 
+    def resource
+      @resource ||= Api::Administration::CampaignPolicy::Scope.new(
+        current_user, Campaign
+      ).resolve.find(params[:campaign_id])
+    end
+
     # This is needed for member routes that use :id instead of :campaign_id
     def load_campaign
       scope = Api::Administration::CampaignPolicy::Scope.new(

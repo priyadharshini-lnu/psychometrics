@@ -1,9 +1,12 @@
 import { useRef, useState, useCallback } from 'react'
 
+const SILENCE_THRESHOLD = 4 // consecutive silent checks before warning (~3.2s at 800ms interval)
+
 export const useAudioLevelMonitoring = () => {
   const audioContextRef = useRef<AudioContext | null>(null)
   const analyserRef = useRef<AnalyserNode | null>(null)
   const audioCheckIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const silentCountRef = useRef<number>(0)
 
   const [showAudioWarning, setShowAudioWarning] = useState<boolean>(false)
 
@@ -17,6 +20,9 @@ export const useAudioLevelMonitoring = () => {
       audioContextRef.current.close()
       audioContextRef.current = null
     }
+
+    silentCountRef.current = 0
+    setShowAudioWarning(false)
 
     try {
       const audioContext = new AudioContext()
@@ -38,9 +44,13 @@ export const useAudioLevelMonitoring = () => {
         const average = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength
 
         if (average > 15) {
+          silentCountRef.current = 0
           setShowAudioWarning(false)
         } else {
-          setShowAudioWarning(true)
+          silentCountRef.current += 1
+          if (silentCountRef.current >= SILENCE_THRESHOLD) {
+            setShowAudioWarning(true)
+          }
         }
       }, 800)
     } catch (error) {

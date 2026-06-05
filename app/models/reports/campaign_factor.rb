@@ -8,6 +8,10 @@ module Reports
 
     belongs_to :report
 
+    include Tenantable
+
+    tenant_source :report
+
     has_many :translations, as: :translateable, dependent: :destroy
 
     validates :report, presence: true

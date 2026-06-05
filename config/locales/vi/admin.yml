@@ -22,6 +22,7 @@ vi:
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
     admins: Quản trị viên
     advanced: Nâng cao
+    agile: NHANH NHẸN
     ai_artifact_result_generation_admin_job_failed: Không thể tạo đối tượng '%{artifact_name}' cho người dùng '%{user_email}'
     ai_artifact_result_stale: Kết quả có thể đã lỗi thời vì các phụ thuộc của mô hình AI đã thay đổi kể từ lần tạo kết quả gần nhất. Hãy xem xét việc tạo lại mô hình để sử dụng các phụ thuộc mới nhất.
     ai_artifacts: Đồ tạo tác AI
@@ -137,6 +138,7 @@ vi:
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên
+    assessor_form: Biểu mẫu đánh giá viên
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
@@ -144,6 +146,7 @@ vi:
     assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
+    auto_moderated_factor_info: Điểm số này được điều chỉnh tự động và không thể thay đổi
     auto_placeholder: Tự động
     availability: Sẵn sàng
     available_languages: Báo cáo có sẵn bằng ngôn ngữ
@@ -221,6 +224,7 @@ vi:
     cancel: Hủy
     cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
     captcha: Xác minh Captcha
+    case_study: Nghiên cứu điển hình
     casual: Thường ngày
     cell_save_msg: Các thay đổi hợp lệ sẽ được lưu tự động ngay khi bạn rời khỏi ô sau khi chỉnh sửa.
     characters: nhân vật
@@ -230,6 +234,8 @@ vi:
     client_admins: Quản trị viên khách hàng
     clients: Thuê khách hàng
     code_required: Mã là bắt buộc
+    common: Đánh giá TTE
+    common_assessment: Đánh giá TTE
     communication_center: Trung tâm truyền thông
     communications: Truyền thông
     completed: Hoàn thành
@@ -248,6 +254,7 @@ vi:
     create_client: Tạo khách hàng
     create_indicator: Tạo chỉ báo
     current_job_role: Vị trí công việc hiện tại
+    custom_upload: Tải lên tùy chỉnh
     dashboard: Bảng điều khiển
     dashboards: Dashboards
     data_reports: Báo cáo dữ liệu
@@ -285,6 +292,8 @@ vi:
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
     disable_proctoring: Tắt tính năng giám sát
+    disallow_lead_assessor_moderation: Không cho phép Trưởng ban đánh giá thực hiện việc kiểm duyệt
+    disallow_lead_assessor_moderation_info: Điểm số sẽ được tính tự động dựa trên tất cả các biểu mẫu do người đánh giá gửi lên và người đánh giá chính không thể thay đổi điểm số này từ màn hình kiểm duyệt
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
@@ -315,6 +324,7 @@ vi:
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
     enter_description: Nhập mô tả
     enter_name: Nhập tên
+    enter_question_id: Nhập ID câu hỏi
     error: Lỗi
     estimated_tokens: token (ước tính)
     evaluation_status: Trạng thái đánh giá
@@ -381,6 +391,8 @@ vi:
     idp_appearance_title: Tiêu đề
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
     idp_templates: Mẫu IDP
+    iiht: IIHT
+    iiht_assessment: Đánh giá IIHT
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
@@ -406,9 +418,11 @@ vi:
     import_users: Nhập người dùng
     internal: Nội bộ
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    invalid_question_ids: 'Không tìm thấy các mã câu hỏi sau trong bài kiểm tra này: %{ids}'
     job_roles: Vai trò công việc
     keywords: Từ khóa
     keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
+    lead_assessor_form: Phiếu đánh giá của Trưởng nhóm đánh giá
     learning_from_others: Học tập hợp tác [20]
     level: Cấp độ
     level_apply: Đăng ký
@@ -418,6 +432,8 @@ vi:
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     licenses: Giấy phép
+    lighthouse_question: Câu hỏi về ngọn hải đăng
+    lighthouse_question_id: Mã câu hỏi Lighthouse
     linked_assessments: Các bài đánh giá liên quan
     low: Thấp
     maintenance: Bảo trì
@@ -425,10 +441,14 @@ vi:
     maintenance_settings_description: Quản lý các khung thời gian bảo trì hệ thống và cài đặt
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
     max_value: Giá trị tối đa
+    mean: Trung bình
     media_files_label: Tệp
     media_library: Thư viện phương tiện
     media_library_page_title: Thư viện phương tiện - Bảng điều khiển - Mercer Lighthouse
+    meeting: Hội nghị
     messages: Thư
+    mettl: METTL
+    mettl_assessment: Đánh giá Mettl
     mhs: Trường Trung học MHS
     mhs_assessment: Đánh giá MHS
     mhs_assessment_name: Tên đánh giá MHS
@@ -437,6 +457,10 @@ vi:
     mhs_external_assessment_id: Mã đánh giá MHS
     mhs_report_id: Mã báo cáo MHS
     mhs_session_id: ID phiên làm việc MHS
+    microsite: Trang web chuyên biệt
+    microsite_assessment: Đánh giá trang web chuyên biệt
+    microsite_assessment_name: Tên đánh giá trang web chuyên biệt
+    microsite_question_id: Mã câu hỏi trên trang microsite
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
@@ -445,12 +469,14 @@ vi:
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
     model_answer: Câu trả lời mẫu
     model_answer_placeholder: Nhập câu trả lời mẫu để đánh giá bằng AI.
+    must_be_a_valid_url: URL không hợp lệ. Vui lòng nhập URL đầy đủ kèm theo giao thức http hoặc https
     name: Tên
     name_max_length: Tên không được vượt quá %{length} ký tự.
     name_required: Tên là bắt buộc
     new_folder: Thư mục mới
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
+    no_question_mappings: Không có bản đồ câu hỏi nào có sẵn
     no_status: Không có trạng thái
     norm_editor_numeric_value_error: Chỉ cho phép các giá trị số (số nguyên hoặc số thập phân).
     norms: Tiêu chuẩn
@@ -466,10 +492,13 @@ vi:
     on_the_job: Trong công việc [70]
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
+    organisational: NHANH NHẸN
     original_text: Văn bản gốc
     overall: Tổng thể
     overall_score: Điểm tổng cộng
     participants: Tham gia
+    pearson: Pearson
+    pearson_assessment: Đánh giá Pearson
     permissions:
       aiArtifacts:
         export: Xuất khẩu
@@ -800,6 +829,8 @@ vi:
       projectSettings:
         assessments: Đánh giá
         design: Thiết kế
+        external_logout_redirect_enabled: Bật tính năng đăng xuất qua chuyển hướng bên ngoài
+        external_logout_url: URL đăng xuất bên ngoài
         feature_flags: Cờ tính năng
         idp: IDP
         integrations: Tích hợp
@@ -913,6 +944,7 @@ vi:
     project_settings: Cài đặt dự án
     projects: Dự án
     prompt: Gợi ý
+    psychometric: Tâm lý học
     question_center: Trung tâm câu hỏi
     question_center_page_title: Trung tâm câu hỏi - Bảng điều khiển - Mercer Lighthouse
     question_editor_change_type: Thay đổi loại
@@ -921,6 +953,7 @@ vi:
     question_editor_enable_transcription: Bật tính năng chép lời
     question_editor_preview_question: Câu hỏi xem trước
     question_editor_validation_type: Loại xác thực
+    question_mapping: Lập bản đồ câu hỏi
     question_randomization: Xáo trộn câu hỏi
     question_type_audio_response: Phản hồi bằng âm thanh
     question_type_constant_sum: Tổng không đổi
@@ -1037,6 +1070,8 @@ vi:
       subject_full_name_cont: Tên môn học
       user_email_cont: Email người dùng
       user_full_name_cont: Tên người dùng
+    saville: Saville
+    saville_assessment: Đánh giá Saville
     scheduling: Lập kế hoạch
     score: Điểm
     score_approval_not_allowed_to_approve: Bạn không được phép phê duyệt điểm số này.
@@ -1072,6 +1107,7 @@ vi:
     select_end_time: Chọn Thời gian kết thúc
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ
+    select_question: Tìm kiếm câu hỏi theo tên hoặc ID
     select_start_time: Chọn Thời gian bắt đầu
     selective_proctoring: Giám sát có chọn lọc
     send_email: Gửi email
@@ -1084,14 +1120,19 @@ vi:
     show_submenu: Hiển thị menu phụ
     show_translated: Hiển thị bản dịch
     siem: SIEM
+    simulation: Mô phỏng
+    simulation_assessment: Đánh giá mô phỏng
     skill_aliases: Bí danh kỹ năng
     skills: Kỹ năng
     skills_taxonomy: Phân loại kỹ năng
+    skillvue: Kỹ năng
+    skillvue_assessment: Đánh giá Skillvue
     skip_assessment_level_checks: Bỏ qua các bước kiểm tra hệ thống theo cấp độ đánh giá
     slot_name: Tên vị trí
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
     specialty_questions: Các câu hỏi chuyên sâu
+    standard_deviation: Độ lệch chuẩn
     standard_questions: Các câu hỏi thường gặp
     start: bắt đầu
     start_time: Thời gian bắt đầu
@@ -1152,6 +1193,8 @@ vi:
     x_axis_interval_label: Khoảng cách trục X
     y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
+    yoodli: Yoodli
     yoodli_activity_id: ID hoạt động Yoodli
+    yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli

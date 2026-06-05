@@ -1100,36 +1100,9 @@ ro:
       title: Detalii de evaluare
     edit: Editați
     fields:
-      category:
-        agile: AGIL
-        assessor_form: Formular evaluator
-        case_study: Studii de caz
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formular de evaluator principal
-        meeting: Ședință
-        mettl: Mettl
-        organisational: Sondaje organizaționale
-        pearson: Pearson
-        psychometric: Psihometrice
-        saville: Saville
-        simulation: Simulare
-        skillvue: Skillvue
-        threesixty: Campania 360
-        yoodli: Yoodli
       status:
         finished: Complet
         in_progress: În curs de desfășurare
-      type:
-        common: Evaluarea TTE
-        hogan: Hogan
-        iiht: Evaluarea IIHT
-        mettl: Evaluarea Mettl
-        pearson: Evaluarea Pearson
-        saville: Evaluarea Saville
-        simulation: Evaluarea simulării
-        skillvue: Evaluarea Skillvue
-        yoodli: Evaluarea Yoodli
     flow:
       end_assessment_modal:
         custom_message: Mesaj personalizat de sfârșit de evaluare
@@ -1206,16 +1179,11 @@ ro:
         failure: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați Chrome sau Firefox pentru înregistrarea video
         success: Vă rugăm să permiteți utilizarea camerei și a microfonului pentru înregistrarea audio și video
         unsupported: Acest browser nu acceptă înregistrarea video. Vă rugăm să utilizați oricare dintre următoarele browsere,
-      recording_duration_label: Durata maximă de înregistrare
-      recording_stop_label: Înregistrarea se va opri în
       requesting_permission: Solicitarea permisiunii...
       response_recorded: Răspuns înregistrat
       save: Salvați
-      saved:
-        label: Video salvat
       seek: Căuta
       start_recording: Începeți înregistrarea
-      stop_recording: Opriți înregistrarea
       tracker:
         backward: Sunteți prea aproape de ecran. Vă rugăm să vă îndepărtați puțin
         forward: Sunteți prea departe de ecran. Vă rugăm să vă apropiați puțin
@@ -1377,15 +1345,12 @@ ro:
     all_activities_are_completed: Toate activitățile sunt acum finalizate.
     all_activities_are_completed_multiple: Toate activitățile pentru această campanie sunt acum finalizate. Vă rugăm să mergeți la tabloul de bord și să verificați dacă mai aveți alte activități alocate.
     already_joined: Te-ai alăturat deja acestei campanii
-    begin: Începeți sarcinile
-    begin_btn_msg_before_prework: Trebuie să îndepliniți următoarele sarcini înainte de a începe campania cronometrată
     begin_campaign_msg: Începeți campania înainte de a lua evaluări
     campaigns: Campanii
     closed_campaign_message: Această campanie este închisă. Nu puteți efectua nicio evaluare în cadrul acestei campanii.
     code_usage_limit_reached: Limita de utilizare a codului a fost atinsă, vă rugăm să contactați administratorul
     complete_prev: Completați toate evaluările anterioare
     complete_tasks: Vă rugăm să completați sarcinile de mai jos înainte de a lua această măsură.
-    continue: Continuați-vă sarcinile
     dashboard_instructions: Este posibil să vă fi fost atribuite mai multe activități pe care trebuie să le finalizați. Vă rugăm să verificați dacă toate activitățile atribuite au fost finalizate în toate campaniile.
     dashboard_menu:
       campaign: Campanie
@@ -1485,6 +1450,9 @@ ro:
       external_user_id: ID candidat Skillvue
       id: ID de evaluare a campaniei
       locales: Localizări
+      microsite_error_message: Mesaj de eroare
+      microsite_participant_id: ID participant microsite
+      microsite_registration_status: Starea înregistrării
       norm: Normă
       norm_id: ID normă
       pearson_norm_id: Pearson Norm ID
@@ -1759,10 +1727,8 @@ ro:
       permissions: Permisiuni pentru webcam și audio
       title: Înainte de a începe această evaluare, sistemul dvs. trebuie să fie supus unor verificări.
     video_check:
-      description: Faceți clic pe Start Recording și înregistrați-vă în timp ce citiți pasajul de mai jos cu propria voce
       random_phrases:
         one: Sunt gata. Aceasta este o înregistrare de test pentru a confirma dacă microfonul și camera mea funcționează corect.
-      title: Trebuie să ne asigurăm că sistemul dvs. poate înregistra înregistrarea video
   common:
     actions:
       add: Adăugați
@@ -1843,6 +1809,7 @@ ro:
       json:
         answer: Răspuns JSON
         external_result: Rezultat extern JSON
+        microsite_raw_response: Microsite „Raw Response”
         scoring: Scor JSON
       key: Cheie
       last_name: Nume de familie
@@ -3301,13 +3268,6 @@ ro:
     fields:
       provider:
         custom_upload: Încărcare personalizată
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Încărcare de la Mettl
       load_from_pearson: Încărcare de la Pearson

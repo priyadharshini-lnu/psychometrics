@@ -2363,6 +2363,7 @@ zh-HK:
         add: 集成
         back: 返回集成
         load_mettl_catalog: 加载Mettl评估目录
+        load_microsite_catalog: 加载微网站评估目录
         load_skillvue_catalog: 加载Skillvue评估目录
       columns:
         active: 活动
@@ -2381,6 +2382,7 @@ zh-HK:
         webhookUrls: Webhook URL
       integrations: 集成
       load_mettl_success: 加载mettl评估任务已成功加入队列
+      load_microsite_success: "“加载微网站评估”任务已成功加入队列"
       load_skillvue_success: 加载skillvue评估任务已成功加入队列
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ zh-HK:
           servers:
             mettl_eu: 欧洲
             mettl_india: 印度
+        microsite:
+          apiKey: API密钥
+          apiKeyRequired: 需要 API 密钥
         skillvue:
           apiKey: API密钥
           apiKeyRequired: 需要API密钥
@@ -2414,6 +2419,7 @@ zh-HK:
         hogan: 霍根
         iiht: IIHT
         mettl: METTL
+        microsite: 专题网站
         skillvue: 技能视界
         yoodli: 优迪
       validations:
@@ -2422,6 +2428,8 @@ zh-HK:
           tenant_id_present: 租户ID已在其他项目中存在
         mettl:
           public_key_present: 公钥已在其他项目中存在
+        microsite:
+          api_key_present: 该 API 密钥已在其他项目中存在
         skillvue:
           api_key_present: API密钥已在其他项目中存在
       view_all_schedules: 查看所有Mettl日程安排
@@ -2990,6 +2998,7 @@ zh-HK:
               assessment_started: 评估开始
               assessment_timeout: 评估超时
               campaign_results_available: 活动结果现已公布
+              campaign_user_assessment_summary: 活动用户评估摘要
               campaign_user_status: 活动用户状态
               report_available: 报告已发布
               results_available: 结果已出

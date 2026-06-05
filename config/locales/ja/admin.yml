@@ -22,6 +22,7 @@ ja:
     admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
     admins: 管理者
     advanced: 上級
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
     ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
@@ -137,6 +138,7 @@ ja:
     assessments_not_mhs: すべての評価はMHSタイプでなければならない
     assessments_reports: アセスメント＆レポート
     assessor_dashboard: 査定者ダッシュボード
+    assessor_form: アセッサフォーム
     assessor_workshops: アセスメント・センター
     assessors: アセッサ
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
@@ -144,6 +146,7 @@ ja:
     assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
     audit_logs: 監査ログ
     audit_reports: 監査報告書
+    auto_moderated_factor_info: このスコアは自動で調整されており、変更することはできません
     auto_placeholder: 自動車
     availability: 空室状況
     available_languages: 報告書は言語で提供可能
@@ -221,6 +224,7 @@ ja:
     cancel: キャンセル
     cancellation_and_rescheduling_disabled: キャンセルおよび日程変更は無効です
     captcha: キャプチャ認証
+    case_study: ケーススタディ
     casual: カジュアル
     cell_save_msg: 編集後にセルからカーソルを移動させると、有効な変更は自動的に保存されます。
     characters: 文字
@@ -230,6 +234,8 @@ ja:
     client_admins: クライアント管理者
     clients: 顧客契約
     code_required: コードが必要です
+    common: TTEアセスメント
+    common_assessment: TTEアセスメント
     communication_center: コミュニケーション・センター
     communications: コミュニケーション
     completed: 完了
@@ -248,6 +254,7 @@ ja:
     create_client: クライアント作成
     create_indicator: インジケーターを作成する
     current_job_role: 現在の職務内容
+    custom_upload: カスタムアップロード
     dashboard: ダッシュボード
     dashboards: ダッシュボード
     data_reports: データレポート
@@ -285,6 +292,8 @@ ja:
     dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
     disable_proctoring: 監督機能を無効にする
+    disallow_lead_assessor_moderation: 主任審査員の審査を無効にする
+    disallow_lead_assessor_moderation_info: スコアは、すべての評価者フォームの提出内容に基づいて自動的に算出され、主任評価者はモデレーション画面からこれを変更することはできません。
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
@@ -315,6 +324,7 @@ ja:
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
     enter_description: 説明を入力してください
     enter_name: 名前を入力してください
+    enter_question_id: 質問IDを入力してください
     error: エラー
     estimated_tokens: トークン（推定）
     evaluation_status: 評価状況
@@ -381,6 +391,8 @@ ja:
     idp_appearance_title: タイトル
     idp_plan_reset_success: 計画は正常にリセットされました
     idp_templates: IDPテンプレート
+    iiht: IIHT
+    iiht_assessment: IIHTアセスメント
     import_ai_artifacts: AIアーティファクトのインポート
     import_csv_assessment_group_error: "%{index} 行: メールアドレス %{email} のユーザーは既に '%{workshopInviteName}' に招待済みです"
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
@@ -406,9 +418,11 @@ ja:
     import_users: インポートユーザー
     internal: 内部
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
+    invalid_question_ids: この評価には以下の質問IDが含まれていません：%{ids}
     job_roles: 仕事の役割
     keywords: キーワード
     keywords_placeholder: キーワードをコンマで区切って入力してください。
+    lead_assessor_form: 主任査定者フォーム
     learning_from_others: 協働学習 [20]
     level: レベル
     level_apply: 適用する
@@ -418,6 +432,8 @@ ja:
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
+    lighthouse_question: 灯台に関する質問
+    lighthouse_question_id: Lighthouse 質問ID
     linked_assessments: 関連する評価
     low: 低
     maintenance: 保守
@@ -425,10 +441,14 @@ ja:
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     max_value: 最大値
+    mean: 平均
     media_files_label: ファイル
     media_library: メディアライブラリ
     media_library_page_title: メディアライブラリ - ダッシュボード - マーサー・ライトハウス
+    meeting: ミーティング
     messages: メッセージ
+    mettl: メトTL
+    mettl_assessment: Mettl 評価
     mhs: MHS
     mhs_assessment: MHS評価
     mhs_assessment_name: MHS 評価名
@@ -437,6 +457,10 @@ ja:
     mhs_external_assessment_id: Mhs 評価ID
     mhs_report_id: MHSレポートID
     mhs_session_id: Mhs セッション ID
+    microsite: マイクロサイト
+    microsite_assessment: マイクロサイトの評価
+    microsite_assessment_name: マイクロサイト評価名
+    microsite_question_id: マイクロサイトの質問ID
     min_value: 最小値
     minimum_10_words: 最低10語
     minimum_download_speed: 最低ダウンロード速度（Mbps）
@@ -445,12 +469,14 @@ ja:
     missing_min_max_values: 最小値と最大値が必要です。
     model_answer: 模範解答
     model_answer_placeholder: AI採点用の模範解答を入力してください。
+    must_be_a_valid_url: URLが無効です。http または https プロトコルを含む完全な URL を指定してください
     name: 名前
     name_max_length: 名前は%{length}文字を超えてはいけません
     name_required: 名前が必要です
     new_folder: 新しいフォルダ
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
+    no_question_mappings: 利用可能なマッピングはありません
     no_status: ステータスなし
     norm_editor_numeric_value_error: 数値のみ入力可能です（整数または小数）。
     norms: 規範
@@ -466,10 +492,13 @@ ja:
     on_the_job: オン・ザ・ジョブ [70]
     only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
+    organisational: AGILE
     original_text: 原文
     overall: 全体的に
     overall_score: 総合スコア
     participants: 参加者
+    pearson: ピアソン
+    pearson_assessment: ピアソン・アセスメント
     permissions:
       aiArtifacts:
         export: 輸出
@@ -800,6 +829,8 @@ ja:
       projectSettings:
         assessments: アセスメント
         design: デザイン
+        external_logout_redirect_enabled: 外部リダイレクトによるログアウトを有効にする
+        external_logout_url: 外部ログアウトURL
         feature_flags: 機能フラグ
         idp: アイディーピー
         integrations: 統合
@@ -913,6 +944,7 @@ ja:
     project_settings: プロジェクト設定
     projects: プロジェクト
     prompt: プロンプト
+    psychometric: サイコメトリック
     question_center: 質問センター
     question_center_page_title: 質問センター - ダッシュボード - マーサー・ライトハウス
     question_editor_change_type: タイプを変更
@@ -921,6 +953,7 @@ ja:
     question_editor_enable_transcription: 文字起こしを有効にする
     question_editor_preview_question: プレビューの質問
     question_editor_validation_type: 検証タイプ
+    question_mapping: 質問マッピング
     question_randomization: 問題のランダム化
     question_type_audio_response: 音声応答
     question_type_constant_sum: 定和
@@ -1037,6 +1070,8 @@ ja:
       subject_full_name_cont: 科目名
       user_email_cont: ユーザーのメールアドレス
       user_full_name_cont: ユーザー名
+    saville: サヴィル
+    saville_assessment: サヴィル査定
     scheduling: スケジューリング
     score: スコア
     score_approval_not_allowed_to_approve: このスコアを承認することはできません。
@@ -1072,6 +1107,7 @@ ja:
     select_end_time: 終了時間を選択
     select_language_to_translate: 翻訳する言語を選択してください
     select_level: レベルを選択
+    select_question: 名前またはIDで質問を検索
     select_start_time: 開始時間を選択
     selective_proctoring: 選択的監督
     send_email: 電子メールを送信する
@@ -1084,14 +1120,19 @@ ja:
     show_submenu: サブメニューを表示する
     show_translated: 翻訳を表示
     siem: シーイーエム
+    simulation: シミュレーション
+    simulation_assessment: シミュレーション評価
     skill_aliases: スキルの別名
     skills: スキル
     skills_taxonomy: スキル分類法
+    skillvue: スキルビュー
+    skillvue_assessment: Skillvue評価
     skip_assessment_level_checks: 評価レベルに基づくシステムチェックをスキップする
     slot_name: スロット名
     sms_histories: SMSヒストリー
     sms_invites: SMS招待
     specialty_questions: 専門的な質問
+    standard_deviation: 標準偏差
     standard_questions: よくある質問
     start: 開始
     start_time: 開始時刻
@@ -1152,6 +1193,8 @@ ja:
     x_axis_interval_label: X軸間隔
     y_axis_interval_label: Y軸間隔
     year: 国名
+    yoodli: ユードリ
     yoodli_activity_id: YoodliアクティビティID
+    yoodli_assessment: ユードリ評価
     yoodli_email_id: ユードリ候補者メールアドレス
     yoodli_external_assessment_id: Yoodli評価ID

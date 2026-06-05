@@ -6,4 +6,7 @@ class WorkshopManager < ApplicationRecord
 
   belongs_to :workshop
   belongs_to :user
+  include Tenantable
+
+  tenant_source :workshop
 end

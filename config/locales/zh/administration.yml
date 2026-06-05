@@ -2363,6 +2363,7 @@ zh:
         add: 集成
         back: 返回集成
         load_mettl_catalog: 载荷测量评估目录
+        load_microsite_catalog: 加载微网站评估目录
         load_skillvue_catalog: 加载 Skillvue 评估目录
       columns:
         active: 活跃
@@ -2381,6 +2382,7 @@ zh:
         webhookUrls: Webhook URL
       integrations: 集成
       load_mettl_success: 负载计量评估工作已成功排队
+      load_microsite_success: "“加载微网站评估”任务已成功加入队列"
       load_skillvue_success: 加载技能评估工作已成功排队
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ zh:
           servers:
             mettl_eu: 欧洲
             mettl_india: 印度
+        microsite:
+          apiKey: API密钥
+          apiKeyRequired: 需要 API 密钥
         skillvue:
           apiKey: API 密钥
           apiKeyRequired: 需要 API 密钥
@@ -2414,6 +2419,7 @@ zh:
         hogan: 霍根
         iiht: IIHT
         mettl: METTL
+        microsite: 专题网站
         skillvue: Skillvue
         yoodli: 尤德利
       validations:
@@ -2422,6 +2428,8 @@ zh:
           tenant_id_present: 租户 ID 已存在于其他项目中
         mettl:
           public_key_present: 公钥已存在于其他项目中
+        microsite:
+          api_key_present: 该 API 密钥已在其他项目中存在
         skillvue:
           api_key_present: API 密钥已存在于其他项目中
       view_all_schedules: 查看所有梅特尔航班时刻表
@@ -2990,6 +2998,7 @@ zh:
               assessment_started: 评估开始
               assessment_timeout: 评估超时
               campaign_results_available: 活动结果已公布
+              campaign_user_assessment_summary: 活动用户评估摘要
               campaign_user_status: 活动用户状态
               report_available: 现有报告
               results_available: 已有结果

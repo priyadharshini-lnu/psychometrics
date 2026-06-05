@@ -80,7 +80,9 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
     }))
   }
 
-  const uploadAllFiles = (occupationId: string) => {
+  const uploadAllFiles = (occupationId?: string): void => {
+    if (!occupationId) return
+
     const fd = new FormData()
 
     // Map of field names to their FormData field names
@@ -91,20 +93,20 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
       keyCareerTracksImage: 'key_career_tracks_image',
     }
 
-    const hasFiles = Object.entries(fileStates).some(([fieldName, fileState]) => {
+    let hasFiles = false
+
+    Object.entries(fileStates).forEach(([fieldName, fileState]) => {
       const formDataField = fieldMapping[fieldName as keyof FileStates]
 
       if (fileState.file) {
         fd.append(formDataField, fileState.file)
-        return true
+        hasFiles = true
       }
 
       if (fileState.removed) {
         fd.append(`purge_${formDataField}`, 'true')
-        return true
+        hasFiles = true
       }
-
-      return false
     })
 
     if (hasFiles) {
@@ -112,14 +114,15 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
     }
   }
 
-  const createOccupation = (data: Occupation) => resource.createResource(data).then((occupation) => {
-    uploadAllFiles(occupation.id)
-  })
+  const createOccupation = (data: Occupation) => resource.createResource(data)
+    .then((createdOccupation) => {
+      uploadAllFiles(createdOccupation.id)
+    })
 
-  const updateOccupation = (data: Occupation) => {
-    uploadAllFiles(occupation?.id as string)
-    return resource.updateResource(data)
-  }
+  const updateOccupation = (data: Occupation) => resource.updateResource(data)
+    .then(() => {
+      uploadAllFiles(occupation?.id)
+    })
 
   return (
     <ResourceFormModal

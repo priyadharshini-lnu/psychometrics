@@ -27,6 +27,25 @@ describe SecuritySettings::Form do
       expect(form.errors[:session_inactivity_timeout_in_seconds]).to eq(['Duration should be minimum 60 minutes'])
     end
 
+    it 'validates fails when external_logout_redirect_enabled is true and external_logout_url is blank' do
+      form = described_class.new(attributes.merge(external_logout_redirect_enabled: true, external_logout_url: nil))
+
+      expect(form.valid?).to eq(false)
+      expect(form.errors[:external_logout_url]).to include('can\'t be blank')
+    end
+
+    it 'passes validation when external_logout_redirect_enabled is true and external_logout_url is provided' do
+      form = described_class.new(attributes.merge(external_logout_redirect_enabled: true, external_logout_url: 'https://example.com/logout'))
+
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'passes validation when external_logout_redirect_enabled is false and external_logout_url is blank' do
+      form = described_class.new(attributes.merge(external_logout_redirect_enabled: false, external_logout_url: nil))
+
+      expect(form.valid?).to eq(true)
+    end
+
     it 'passes all validation' do
       form = described_class.new(attributes)
 

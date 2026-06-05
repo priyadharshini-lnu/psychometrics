@@ -19,6 +19,8 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
+  include Tenantable
+
   belongs_to :campaign_user, primary_key: :user_id, foreign_key: :evaluator_id, class_name: 'CampaignUser'
 
   has_one :saville_user_assessment, dependent: :destroy
@@ -27,6 +29,7 @@ class UserAssessment < ApplicationRecord
   has_one :mettl_user_assessment, dependent: :destroy
   has_one :simulation_user_assessment, dependent: :destroy
   has_one :skillvue_user_assessment, dependent: :destroy
+  has_one :microsite_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
   has_one :client, through: :project
   has_one :meeting_room, as: :meetable, dependent: :destroy
@@ -57,7 +60,7 @@ class UserAssessment < ApplicationRecord
   enum :meeting_type, { not_available: 0, internal: 1, custom: 2 }, prefix: :meeting
 
   delegate :saville?, :iiht?, :pearson?, :mettl?, :simulation?, :hogan?, :skillvue?, :yoodli?,
-           :mhs?, :assessor_form?,
+           :mhs?, :microsite?, :assessor_form?,
            :has_ai_questions?,
            :external?, :external_settings, :combined_hogan_assessment?, to: :assessment
   delegate :workshop_activity?, :workshop_activity, :workshop_activity_duration,
@@ -124,6 +127,7 @@ class UserAssessment < ApplicationRecord
   }
 
   before_save :set_default_relationship
+  after_create :backfill_users_result_tenant_id
   after_destroy :reset_user_report_approval_status
 
   after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
@@ -145,7 +149,11 @@ class UserAssessment < ApplicationRecord
 
   after_commit :publish_assessment_timeout_webhook, if: -> { status_previously_changed? && timed_out? }
 
+  after_commit :publish_campaign_user_assessment_summary_webhook,
+               if: -> { status_previously_changed? }, on: %i[update]
+
   after_create_commit -> { publish_assessment_assigned_webhook }
+  after_create_commit :trigger_microsite_registration, if: -> { assessment&.microsite? }
   after_commit :send_workshop_invite_email, if: :should_send_workshop_invite_email?, on: %i[update]
   after_commit -> { finish_proctoring_session },
                if: proc { status_previously_changed? && deemed_completed? }, on: %i[update]
@@ -498,12 +506,20 @@ class UserAssessment < ApplicationRecord
     UserAssessments::Webhook.new(self).publish_assessment_assigned
   end
 
+  def publish_campaign_user_assessment_summary_webhook
+    UserAssessments::Webhook.new(self).publish_campaign_user_assessment_summary
+  end
+
   def publish_assessment_started_webhook
     UserAssessments::Webhook.new(self).publish_assessment_started
   end
 
   def publish_assessment_timeout_webhook
     UserAssessments::Webhook.new(self).publish_assessment_timeout
+  end
+
+  def trigger_microsite_registration
+    Microsite::RegisterParticipantJob.perform_later(id)
   end
 
   def should_send_workshop_invite_email?
@@ -553,6 +569,12 @@ class UserAssessment < ApplicationRecord
 
   def calculated_expiry_date
     assessment.extra['timer']&.seconds&.from_now
+  end
+
+  def backfill_users_result_tenant_id
+    return if users_result.blank? || users_result.tenant_id.present? || tenant_id.blank?
+
+    users_result.update_column(:tenant_id, tenant_id)
   end
 
   def data_controller_consent_given?(user)

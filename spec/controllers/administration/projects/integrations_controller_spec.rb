@@ -60,7 +60,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'hogan_integration_details' => nil,
           'mettl_integration_details' => nil,
           'skillvue_integration_details' => nil,
-          'yoodli_integration_details' => nil
+          'yoodli_integration_details' => nil,
+          'microsite_integration_details' => nil
         }
 
         expect(response.status).to eq(200)
@@ -104,7 +105,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'iiht_integration_details' => nil,
           'mettl_integration_details' => nil,
           'skillvue_integration_details' => nil,
-          'yoodli_integration_details' => nil
+          'yoodli_integration_details' => nil,
+          'microsite_integration_details' => nil
         }
 
         expect(response.status).to eq(200)
@@ -159,7 +161,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'hogan_integration_details' => nil,
           'iiht_integration_details' => nil,
           'mettl_integration_details' => nil,
-          'yoodli_integration_details' => nil
+          'yoodli_integration_details' => nil,
+          'microsite_integration_details' => nil
         }
 
         expect(response.status).to eq(200)
@@ -232,7 +235,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         'hogan_integration_details' => nil,
         'iiht_integration_details' => nil,
         'mettl_integration_details' => nil,
-        'skillvue_integration_details' => nil
+        'skillvue_integration_details' => nil,
+        'microsite_integration_details' => nil
       }
 
       expect(response.status).to eq(200)
@@ -300,7 +304,8 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'hogan_integration_details' => nil,
           'iiht_integration_details' => nil,
           'skillvue_integration_details' => nil,
-          'yoodli_integration_details' => nil
+          'yoodli_integration_details' => nil,
+          'microsite_integration_details' => nil
         }
 
         expect(response.status).to eq(200)

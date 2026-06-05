@@ -1100,36 +1100,9 @@ bg:
       title: Подробности за оценката
     edit: Редактирам
     fields:
-      category:
-        agile: ПОДВИЖЕН
-        assessor_form: Формуляр за оценител
-        case_study: Казуси
-        hogan: Хоган
-        iiht: ИИХТ
-        lead_assessor_form: Формуляр за водещ оценител
-        meeting: Събрание
-        mettl: Метл
-        organisational: Организационни проучвания
-        pearson: Пиърсън
-        psychometric: Психометрични
-        saville: Савил
-        simulation: Симулация
-        skillvue: Skillvue
-        threesixty: Кампания 360
-        yoodli: Юдли
       status:
         finished: Завършен
         in_progress: В процес на изпълнение
-      type:
-        common: Оценка на TTE
-        hogan: Хоган
-        iiht: Оценка на IIHT
-        mettl: Оценка на Mettl
-        pearson: Оценка на Пиърсън
-        saville: Оценка на Saville
-        simulation: Оценка на симулацията
-        skillvue: Оценка на Skillvue
-        yoodli: Оценка на Yoodli
     flow:
       end_assessment_modal:
         custom_message: Персонализирано съобщение за края на оценяването
@@ -1206,16 +1179,11 @@ bg:
         failure: Този браузър не поддържа видеозапис. Моля, използвайте Chrome или Firefox за видеозапис
         success: Моля, разрешете използването на камера и микрофон за запис на аудио и видео
         unsupported: Този браузър не поддържа видеозапис. Моля, използвайте някой от следните браузъри,
-      recording_duration_label: Максимална продължителност на записа
-      recording_stop_label: Записът ще спре след
       requesting_permission: Искане на разрешение...
       response_recorded: Отговорът е записан
       save: Запазете
-      saved:
-        label: Видеото е записано
       seek: Търся
       start_recording: Стартирайте записа
-      stop_recording: Спрете записа
       tracker:
         backward: Прекалено близо сте до екрана. Моля, отдръпнете се малко
         forward: Твърде далеч сте от екрана. Моля, приближете се малко
@@ -1377,15 +1345,12 @@ bg:
     all_activities_are_completed: Всички дейности вече са завършени.
     all_activities_are_completed_multiple: Всички дейности за тази кампания вече са завършени. Моля, преминете към Информационното табло и проверете дали имате възложени други дейности.
     already_joined: Вече се присъединихте към тази кампания
-    begin: Започнете изпълнението на задачите си
-    begin_btn_msg_before_prework: Преди да стартирате кампанията за време, трябва да изпълните следните задачи
     begin_campaign_msg: Стартирайте кампанията преди да започнете оценките
     campaigns: Кампании
     closed_campaign_message: Тази кампания е затворена. Не можете да направите оценка в рамките на тази кампания.
     code_usage_limit_reached: Достигнат лимит за използване на кода, моля, свържете се с администратора
     complete_prev: Извършете всички предишни оценки
     complete_tasks: Моля, изпълнете задачите по-долу, преди да предприемете това действие.
-    continue: Продължете изпълнението на задачите си
     dashboard_instructions: Възможно е да са Ви възложени няколко дейности, които трябва да изпълните. Моля, не забравяйте да проверите дали всички възложени дейности са изпълнени във всички кампании.
     dashboard_menu:
       campaign: Кампания
@@ -1485,6 +1450,9 @@ bg:
       external_user_id: Skillvue ID на кандидата
       id: ИД на теста на кампанията
       locales: Локали
+      microsite_error_message: Съобщение за грешка
+      microsite_participant_id: Идентификационен номер на участника в микросайта
+      microsite_registration_status: Статус на регистрацията
       norm: Норма
       norm_id: Идентификационен номер на нормата
       pearson_norm_id: Pearson Norm ID
@@ -1759,10 +1727,8 @@ bg:
       permissions: Разрешения за уеб камера и аудио
       title: Преди да започнете тази оценка, системата Ви трябва да премине през някои проверки.
     video_check:
-      description: Кликнете върху Започнете запис и запишете себе си, докато четете долния пасаж със собствения си глас
       random_phrases:
         one: Готов съм. Това е тестов запис, за да се потвърди, че видеото и микрофонът ми работят правилно.
-      title: Трябва да сме сигурни, че Вашата система може да записва видеото
   common:
     actions:
       add: Добавете
@@ -1843,6 +1809,7 @@ bg:
       json:
         answer: Отговор JSON
         external_result: Външен резултат JSON
+        microsite_raw_response: Микросайт „Raw Response“
         scoring: Оценяване на JSON
       key: Ключ
       last_name: Презиме
@@ -3301,13 +3268,6 @@ bg:
     fields:
       provider:
         custom_upload: Персонализирано качване
-        hogan: Хоган
-        internal: Вътрешния
-        mettl: Метл
-        pearson: Пиърсън
-        saville: Савил
-        skillvue: Skillvue
-        yoodli: Юдли
     form:
       load_from_mettl: Натоварване от Mettl
       load_from_pearson: Зареждане от Pearson

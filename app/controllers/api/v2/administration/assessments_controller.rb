@@ -19,7 +19,8 @@ module Api
       'simulation' => Api::V2::Assessment::SimulationContract,
       'skillvue' => Api::V2::Assessment::SkillvueContract,
       'yoodli' => Api::V2::Assessment::YoodliContract,
-      'mhs' => Api::V2::Assessment::MhsContract
+      'mhs' => Api::V2::Assessment::MhsContract,
+      'microsite' => Api::V2::Assessment::MicrositeContract
     }.freeze
 
     def create_contract_based_on_assessment_type

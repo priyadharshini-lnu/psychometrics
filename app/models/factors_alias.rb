@@ -5,6 +5,10 @@ class FactorsAlias < ApplicationRecord
 
   belongs_to :factor
   belongs_to :report
+
+  include Tenantable
+
+  tenant_source :report, :factor
   validates :name, presence: true
 
   before_validation :set_default_name, on: :create

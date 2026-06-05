@@ -12,6 +12,8 @@ module Threesixty
             foreign_key: :user_id, primary_key: :user_id,
             class_name: 'Threesixty::Subject'
 
+    include Tenantable
+
     def participant(subject_id)
       participants.find_by(subject_id: subject_id)
     end

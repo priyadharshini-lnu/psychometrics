@@ -151,6 +151,8 @@ module Campaigns
           create_yoodli_assessment(user_assessment, existing_result)
         elsif assessment.mhs?
           create_mhs_assessment(user_assessment, existing_result, campaign_assessment)
+        elsif assessment.microsite?
+          create_microsite_assessment(user_assessment, existing_result)
         end
       end
 
@@ -205,6 +207,14 @@ module Campaigns
           url: existing_skillvue_user_assessment&.url,
           email: existing_skillvue_user_assessment&.email,
           external_user_id: existing_skillvue_user_assessment&.external_user_id
+        )
+      end
+
+      def create_microsite_assessment(user_assessment, existing_result)
+        existing_microsite_user_assessment = existing_result&.microsite_user_assessment
+        user_assessment.create_microsite_user_assessment(
+          participant_id: existing_microsite_user_assessment&.participant_id,
+          url: existing_microsite_user_assessment&.url
         )
       end
 

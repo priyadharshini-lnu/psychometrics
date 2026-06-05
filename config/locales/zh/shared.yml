@@ -22,9 +22,11 @@ zh:
     assessors_list: 评估员名单
     asset_not_present: 资产不存在
     audio: 音频
+    audio_devices: 音频设备
     authentication_failed: 身份验证失败。请再试一次。
     back: 返回
     basic: 基本
+    camera: 相机
     camera_preview: 此处将显示相机预览
     campaign: 活动
     campaign_id: 竞选标识
@@ -59,6 +61,7 @@ zh:
     desktop_or_laptop_recommended: 推荐使用台式机或笔记本电脑
     desktop_or_laptop_required: 需要台式机或笔记本电脑
     disabled: 已禁用
+    discard: 取消
     download: 下载
     download_audio: 下载音频
     download_transcription: 下载转录文本
@@ -85,6 +88,7 @@ zh:
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
     last_name: 姓
     learning_on_the_job_label: 边学边学
+    lets_start: 开始吧！
     loading: 正在加载...
     login: 登录
     maintenance_in_hours: "%{hours} 小时"
@@ -99,6 +103,7 @@ zh:
     media_preview: 媒体预览
     media_question_transcriptions: 媒体提问实录
     media_responses: 媒体反应
+    microphones: 麦克风
     mobile_proctoring_disabled_instructions: 本次评估需要使用台式机或笔记本电脑才能继续。请切换至计算机以完成此项活动。
     mobile_proctoring_enabled_instructions: 为获得最佳体验，请切换至台式机或笔记本电脑（如有可用）。如需继续，您也可使用移动设备。
     modified_by: 修改
@@ -116,7 +121,9 @@ zh:
     ok: 确定
     options: 选项
     owner: 所有者
+    pause: 暂停
     pending: 待定
+    play: 播放
     policy_version: 政策版本
     policy_version_format: 仅允许整数
     positive: 积极
@@ -130,6 +137,7 @@ zh:
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: 录制
+    record: 记录
     recorded: 录制
     recording: 录音
     recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
@@ -146,16 +154,21 @@ zh:
     saving_video: 正在保存视频......请不要关闭或刷新浏览器
     scoring_details: 计分详情
     search: 搜索
+    select_camera: 选择相机
+    select_microphone: 选择麦克风
     send_email: 发送电子邮件
     show_more: 显示更多
     something_wrong: 出错了，请联系管理员。
+    speakers: 演讲嘉宾
     status: 状态
     status_unknown: 状态不明
+    stop: 停止
     subject: 主题
     submit: 提交
     submit_and_finish_proctoring: 提交并结束监考
     suspended: 暂停
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
+    system_check_uploading: 正在上传
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ zh:
     update_failed: 更新失败
     updated_at: 更新于
     updated_successfully: 更新成功
+    user_report_pdf_url_not_generated: 无法生成 PDF 下载链接
     video: 视频
     view: 查看
     view_audio: 查看音频

@@ -14,6 +14,10 @@ class Factor < ApplicationRecord
   belongs_to :dimension, touch: true
   belongs_to :skill, optional: true
 
+  include Tenantable
+
+  tenant_source :dimension
+
   has_many :factors_sub_factors, dependent: :destroy
   has_many :parent_factor_sub_factors, foreign_key: :sub_factor_id, class_name: 'FactorsSubFactor'
   has_many :sub_factors, through: :factors_sub_factors

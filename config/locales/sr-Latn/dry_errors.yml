@@ -52,6 +52,7 @@ sr-Latn:
         content_required: Sadržaj je potreban za uputstva
         tag_or_skill_required: Molimo vas da izaberete oznaku ili veštinu kada je izabrana opcija "Izabrano".
       invalid_name: samo abeceda, broj, razmaci, crtica i tačka su dozvoljeni kao važeći karakter
+      invalid_question_ids: 'ИД питања нису пронађени у овој процени: %{ids}'
       invalid_value: nevažeća izjava '%{value}' na broju linije %{row}
       job_roles:
         unique_within_job_group: Posao sa istim imenom već postoji.
@@ -88,6 +89,7 @@ sr-Latn:
         unique_mappings: Mapiranje sa istom veštinom i ulogom posla već postoji.
       uniq: Ova Mettl procena je već prisutna u sistemu. ID ove procene je %{id}
       uniq?: treba da bude jedinstven
+      uniq_microsite: Ова процена микросајта је већ присутна у систему. ИД ове процене је %{id}
       uniq_simulation: Ova procena simulacije je već prisutna u sistemu. ID ove procene je %{id}
       uniq_skillvue: Ova procena Skillvue je već prisutna u sistemu. ID ove procene je %{id}
       uniq_yoodli: Ova Ioodli procena je već prisutna u sistemu. ID ove procene je %{id}

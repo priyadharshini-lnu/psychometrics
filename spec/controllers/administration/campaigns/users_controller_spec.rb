@@ -245,6 +245,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'skillvue_user_assessment_details' => nil,
       'yoodli_user_assessment_details' => nil,
       'mhs_user_assessment_details' => nil,
+      'microsite_user_assessment_details' => nil,
       'hogan_user_assessment_details' => nil,
       'users_result_id' => user_assessment.users_result_id
     })

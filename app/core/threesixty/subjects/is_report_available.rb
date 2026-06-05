@@ -24,7 +24,7 @@ module Threesixty
           subject_evaluator_counters
         )
 
-        if REPORT_AVAILABLE_STATUSES.include?(status)
+        if REPORT_AVAILABLE_STATUSES.include?(status) || subject.evaluation_status_completed?
           broadcast :ok, { available: true, status_message: nil }
         else
           message_result = Threesixty::Subjects::GetReportStatusMessage.call!(

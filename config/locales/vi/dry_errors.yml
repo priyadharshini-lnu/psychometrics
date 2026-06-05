@@ -52,6 +52,7 @@ vi:
         content_required: Nội dung là bắt buộc để được hướng dẫn
         tag_or_skill_required: Vui lòng chọn thẻ hoặc kỹ năng khi tùy chọn "Đã chọn".
       invalid_name: Chỉ bảng chữ cái, số, dấu cách, dấu gạch ngang và dấu chấm mới được phép làm ký tự hợp lệ
+      invalid_question_ids: 'Không tìm thấy các mã câu hỏi sau trong bài kiểm tra này: %{ids}'
       invalid_value: Câu lệnh '%{value}' không hợp lệ trên số dòng %{row}
       job_roles:
         unique_within_job_group: Vị trí công việc có tên tương tự đã tồn tại.
@@ -88,6 +89,7 @@ vi:
         unique_mappings: Một bản đồ chức năng với cùng kỹ năng và vai trò công việc đã tồn tại.
       uniq: Đánh giá Mettl này đã có trong hệ thống. ID của đánh giá này là %{id}
       uniq?: phải là duy nhất
+      uniq_microsite: Bài đánh giá Microsite này đã có sẵn trong hệ thống. Mã ID của bài đánh giá này là %{id}
       uniq_simulation: Đánh giá mô phỏng này đã có trong hệ thống. ID của đánh giá này là %{id}
       uniq_skillvue: Đánh giá Skillvue này đã có sẵn trong hệ thống. Mã định danh của đánh giá này là %{id}
       uniq_yoodli: Đánh giá Yoodli này đã có trong hệ thống. ID của đánh giá này là %{id}

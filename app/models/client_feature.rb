@@ -4,6 +4,8 @@ class ClientFeature < ApplicationRecord
   belongs_to :client
   include ApplicationConfigurationLoggable
 
+  include Tenantable
+
   validates :client, presence: true
 
   after_update :update_project_feature

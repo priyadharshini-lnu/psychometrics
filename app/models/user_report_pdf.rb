@@ -4,6 +4,9 @@ class UserReportPdf < ApplicationRecord
   include ActiveStorageAttachable
 
   belongs_to :user_report
+  include Tenantable
+
+  tenant_source :user_report
 
   has_one_attachment :pdf_file,
                      service: Settings.storage.private_storage_service,

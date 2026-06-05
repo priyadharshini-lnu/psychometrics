@@ -50,6 +50,8 @@ class Communication < ApplicationRecord
   has_many :workshops, through: :project_campaign
   has_many :workshop_subjects, through: :project_campaign
 
+  include Tenantable
+
   enum :recipients, { all: 0, selected: 1, new_users: 2, new_assignment: 3 }, suffix: true
   enum :kind, {
     invitation: 0, reminder: 1, completion: 2, other: 3,

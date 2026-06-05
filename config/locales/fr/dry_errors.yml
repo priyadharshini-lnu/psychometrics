@@ -52,6 +52,7 @@ fr:
         content_required: Le contenu est requis pour les instructions
         tag_or_skill_required: Veuillez sélectionner une étiquette ou une compétence lorsque l’option « Sélectionné » est sélectionnée.
       invalid_name: seuls l'alphabet, les chiffres, les espaces, les tirets et les points sont autorisés comme caractères valides
+      invalid_question_ids: 'Références de questions introuvables dans cette évaluation : %{ids}'
       invalid_value: déclaration invalide '%{value}' sur la ligne numéro %{row}
       job_roles:
         unique_within_job_group: Un rôle d'emploi portant le même nom existe déjà.
@@ -88,6 +89,7 @@ fr:
         unique_mappings: Il existe déjà une correspondance avec les mêmes compétences et la même fonction.
       uniq: Cette évaluation Mettl est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
       uniq?: doit être unique
+      uniq_microsite: Cette évaluation du microsite est déjà enregistrée dans le système. Son identifiant est %{id}
       uniq_simulation: Cette évaluation de simulation est déjà présente dans le système. L'identifiant de cette évaluation est %{id}
       uniq_skillvue: Cette évaluation Skillvue est déjà présente dans le système. L'ID de cette évaluation est %{id}
       uniq_yoodli: Cette évaluation Yoodli est déjà présente dans le système. L’identifiant de cette évaluation est %{id}

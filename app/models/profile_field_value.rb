@@ -4,6 +4,10 @@ class ProfileFieldValue < ApplicationRecord
   belongs_to :profile_field
   belongs_to :user_profile
 
+  include Tenantable
+
+  tenant_source :profile_field
+
   def value=(val)
     if val.is_a?(Numeric)
       self.numeric_value = val

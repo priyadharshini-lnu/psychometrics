@@ -42,8 +42,9 @@ en-US:
     camera_access_blocked: Camera access was denied or blocked by your browser. Please check your browser permissions.
     camera_check: Camera and Microphone Test
     camera_check_abruptly_ended: Camera was turned off abruptly. Please enable your camera and re-run the check.
-    camera_check_description: Verify your camera and microphone are working properly for recording
+    camera_check_description: Verify your camera and microphone work properly, then play back your recording to confirm.
     camera_check_passed: Video and Audio check passed successfully
+    camera_check_record_instruction: Click Record and read the following passage aloud
     camera_test_step: Video and Audio Test Step
     campaign: Campaign
     campaign_check_status: 'Status: %{status}'
@@ -52,6 +53,7 @@ en-US:
     check_video_recording: Please check your video recording by playing it back.
     checking_browser_compatibility: Checking browser compatibility...
     checking_latency: Checking latency...
+    complete_prework_message: Complete all prework tasks to begin.
     could_not_reach_servers: Could not reach our servers to check network speed. Please check your internet connection and try again.
     day: day
     day_plural: days
@@ -61,6 +63,7 @@ en-US:
     download: Download
     download_pdf: Download PDF
     download_speed_below_minimum: Download speed %{download_speed} is below the minimum required download speed of %{minimum_download_speed} Mbps
+    dummy_message: I am ready. This is a test recording to confirm that my video and microphone are working properly.
     environment_setup: Environment Setup
     error_uploading_audio: Error uploading audio
     error_uploading_audio_detail: There was an error uploading your audio
@@ -92,6 +95,7 @@ en-US:
     internet_speed_optimal: Your connection speed is optimal
     internet_speed_slow: Internet speed is slower than required for the campaign
     less_than_five_minutes: Less than 5 minutes
+    lets_start: Let's start!
     lighthouse_assistant: Your Development Guide
     localstorage_fix_description_first: Ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
     localstorage_fix_title: Local Storage is not enabled in your browser
@@ -107,6 +111,7 @@ en-US:
     media_recorder_api_support: MediaRecorder API Support
     microphone_access_blocked: Microphone access was denied or blocked by your browser. Please check your browser permissions.
     microphone_check_passed: Microphone check passed successfully
+    microsite_assessment_external: This assessment must be completed on an external platform.
     min_word_limit: Must be at least %{min} words
     minimum_speed_requirements: Minimum Download Speed of %{minimum_download_speed} Mbps and Minimum Upload Speed of %{minimum_upload_speed} Mbps required for this campaign.
     minute: minute
@@ -124,16 +129,24 @@ en-US:
     network_test_step: Network Test Step
     no_audio_detected: No audio detected. Please check if your microphone is connected and working properly.
     pass: Pass
+    pause: Pause
     pending: Pending
     personal_readiness: Personal Readiness
     plan_text: Plan for the full duration. Once started, breaks may not be allowed depending on the assessment type.
+    play: Play
     please_check_your_internet_connection: Please check your internet connection and try again.
+    preparing_preview: Preparing preview...
+    prework: Prework
+    prework_not_completed_message: Please complete all prework tasks before starting the campaign.
     proctored: Proctored
     proctored_assessment_misconfigured_msg: This assessment is proctored but is missing the necessary time configuration, please contact your administrator.
     profile: Profile
     profile_details: Details
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
+    record: سجل
+    recording_progress_bar: Recording Progress Bar
+    recording_time_remaining: "%{remainingSeconds} seconds remaining"
     redirect_to_external_assessment: You will be redirected to the assessment site. Please click continue if you want to start the assessment.
     reject_idp_plan: Reject Plan
     request_retry_message: You are offline. Your answers could not be saved but will be saved automatically once you are back online. Please do not refresh or close the page.
@@ -145,13 +158,15 @@ en-US:
     results: Result
     safari_proctoring_description: You are using the Safari browser, which may have certain limitations regarding the proctoring features enabled for this campaign. For the best experience, we recommend using Chrome, Edge or Firefox
     safari_proctoring_title: Safari Browser Detected
+    select_audio_device: Select Audio Device
+    select_video_device: Select Video Device
     selected_count: Selected
     skill_type: Skill Type
     start_campaign_message_proctored: This is a proctored campaign, please click '%{buttonText}' button to start the activities.
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
-    start_campaign_message_timed_proctored: This is a timed and proctored campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
     start_system_check: Start System Check
+    stop: Stop
     subinstruction_audio: Working microphone
     subinstruction_eight: Set aside uninterrupted time for the full assessment
     subinstruction_five: Ready to share your screen throughout the session
@@ -239,6 +254,9 @@ en-US:
     video_check_fix_second: Go to browser settings and enable camera access for this site
     video_check_fix_sixth: Restart your browser and try again
     video_check_fix_third: Close other applications using the camera (Zoom, Teams, etc.)
+    video_overlay_label: Select your microphone and camera, click Record,then read the following message once you hit Record button
+    video_overlay_message: Select your microphone and camera, click Record, then read aloud the sentence appearing at the bottom.
+    video_recorder_label: Video Recorder
     view_details: View Details
     webgl_api_fix_description_first: Ensure that your browser supports WebGL and that it is enabled in the settings
     webgl_api_fix_description_second: Update your graphics drivers to the latest version

@@ -25,6 +25,7 @@ module Api
               optional(:assessment_id).maybe(:string)
               optional(:norm_id).maybe(:string)
               optional(:schedule_config).maybe(:string)
+              optional(:question_mappings).maybe(:string)
             end
             optional(:tag_list).maybe(:array).each(:string)
           end

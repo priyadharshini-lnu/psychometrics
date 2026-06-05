@@ -22,9 +22,11 @@ sr-Latn:
     assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
     audio: Аудио
+    audio_devices: Аудио уређаји
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     back: Назад
     basic: Osnovne
+    camera: Камера
     camera_preview: Pregled kamere će se pojaviti ovde
     campaign: Кампања
     campaign_id: ID kampanje
@@ -59,6 +61,7 @@ sr-Latn:
     desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
     desktop_or_laptop_required: Потребан десктоп или лаптоп
     disabled: Онеспособљен
+    discard: Баци
     download: Преузми
     download_audio: Преузми аудио
     download_transcription: Преузми транскрипт
@@ -85,6 +88,7 @@ sr-Latn:
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Prezime
     learning_on_the_job_label: Učenje na poslu
+    lets_start: Хајде да почнемо!
     loading: Учитавање...
     login: Prijava
     maintenance_in_hours: "%{hours} сати"
@@ -99,6 +103,7 @@ sr-Latn:
     media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    microphones: Микрофони
     mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
     mobile_proctoring_enabled_instructions: За најбоље искуство, пређите на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
     modified_by: Modifikovan od strane
@@ -116,7 +121,9 @@ sr-Latn:
     ok: Ok
     options: Опције
     owner: Власник
+    pause: Пауза
     pending: Учешће
+    play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
     positive: Позитивно
@@ -130,6 +137,7 @@ sr-Latn:
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: REC
+    record: Запис
     recorded: snimljeno
     recording: snimanje
     recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
@@ -146,16 +154,21 @@ sr-Latn:
     saving_video: Čuvanje video zapisa ... Molimo vas da ne zatvarate ili osvežavate pretraživač
     scoring_details: Детаљи бодовања
     search: Pretraži
+    select_camera: Изаберите камеру
+    select_microphone: Изаберите микрофон
     send_email: Pošalji imejl
     show_more: Prikaži još
     something_wrong: Nešto je pošlo naopako. Obratite se svom administratoru.
+    speakers: Говорници
     status: Статус
     status_unknown: Status Nepoznat
+    stop: Стоп
     subject: Предмет
     submit: Пошаљи
     submit_and_finish_proctoring: Поднесите и завршите надгледање
     suspended: Сuspended
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
+    system_check_uploading: Постављање
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ sr-Latn:
     update_failed: Ажурирање није успело
     updated_at: Ажурирано у
     updated_successfully: Успешно ажурирано
+    user_report_pdf_url_not_generated: Није могуће генерисати везу за преузимање PDF-а
     video: Видео
     view: Приказ
     view_audio: Погледај аудио

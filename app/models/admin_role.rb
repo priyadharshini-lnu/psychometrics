@@ -8,6 +8,8 @@ class AdminRole < ApplicationRecord
   has_many :memberships_admin_roles, dependent: :destroy
   has_many :memberships, through: :memberships_admin_roles
 
+  include Tenantable
+
   def user_role_specific_permissions(membership)
     role = membership.role
     if role == 'campaign_admin' && membership.campaign.threesixty?

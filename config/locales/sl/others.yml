@@ -1100,36 +1100,9 @@ sl:
       title: Podrobnosti ocenjevanja
     edit: Uredi
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Obrazec ocenjevalca
-        case_study: Študije primerov
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Obrazec vodilnega ocenjevalca
-        meeting: Srečanje
-        mettl: Mettl
-        organisational: Ankete organizacij
-        pearson: Pearson
-        psychometric: Psihometrični
-        saville: Saville
-        simulation: Simulacija
-        skillvue: Skillvue
-        threesixty: 360-stopinjska kampanja
-        yoodli: Yoodli
       status:
         finished: Končal
         in_progress: V teku
-      type:
-        common: Ocena TTE
-        hogan: Hogan
-        iiht: Ocena IIHT
-        mettl: Mettl ocenjevanje
-        pearson: Pearsonova ocena
-        saville: Ocena Saville
-        simulation: Simulacijska ocena
-        skillvue: Ocena spretnosti
-        yoodli: Yoodlijeva ocena
     flow:
       end_assessment_modal:
         custom_message: Sporočilo o koncu ocenjevanja po meri
@@ -1206,16 +1179,11 @@ sl:
         failure: Vaš brskalnik ne omogoča snemanja videa. Priporočamo uporabo brskalnika Chrome ali Firefox
         success: Prosimo dovolite uporabo kamere in mikrofona za snemanje
         unsupported: 'Ta brskalnik ne podpira snemanja videoposnetkov. Uporabite katerega koli od naslednjih brskalnikov:'
-      recording_duration_label: Najdaljši dovoljen čas snemanja
-      recording_stop_label: Snemanje se bo ustavilo v
       requesting_permission: Prošnja za dovoljenje...
       response_recorded: Odgovor je zabeležen
       save: Shrani
-      saved:
-        label: Posnetek je shranjen
       seek: Iskati
       start_recording: Začetek snemanja
-      stop_recording: Konec snemanja
       tracker:
         backward: Nahajate se preblizu zaslona. Prosimo, pomaknite se nekoliko nazaj
         forward: Ste preveč oddaljeni od zaslona. Prosimo, pomaknite se nekoliko bližje
@@ -1377,15 +1345,12 @@ sl:
     all_activities_are_completed: Vse naloge so zdaj zaključene.
     all_activities_are_completed_multiple: Zaključili ste vse naloge v tej kampanji. Na nadzorni plošči preverite, ali vas čakajo še kakšne druge naloge.
     already_joined: Tej kampanji ste se že pridružili
-    begin: Začnite z reševanjem nalog
-    begin_btn_msg_before_prework: Pred začetkom časovno omejene kampanje morate rešiti naslednje naloge
     begin_campaign_msg: Za začetek ocenjevanja morate najprej zagnati kampanjo
     campaigns: Kampanje
     closed_campaign_message: Ta kampanja je zaključena. V okviru te kampanje ne morete več opravljati nobenega ocenjevanja.
     code_usage_limit_reached: Dosežena omejitev uporabe kode, se obrnite na skrbnika
     complete_prev: Pred nadaljevanjem zaključite vsa predhodna ocenjevanja
     complete_tasks: Pred tem dejanjem dokončajte spodnje naloge.
-    continue: Nadaljujte z nalogami
     dashboard_instructions: Morda imate dodeljenih več nalog, ki jih morate opraviti. Prosimo, preverite, ali ste zaključili vse dodeljene naloge v različnih kampanjah.
     dashboard_menu:
       campaign: Kampanja
@@ -1494,6 +1459,9 @@ sl:
       external_user_id: ID kandidata za Skillvue
       id: ID kampanje
       locales: Lokalizacije
+      microsite_error_message: Napaka
+      microsite_participant_id: ID udeleženca na mikrospletni strani
+      microsite_registration_status: Stanje registracije
       norm: Norma
       norm_id: ID norma
       pearson_norm_id: Pearsonova normativna izkaznica
@@ -1768,10 +1736,8 @@ sl:
       permissions: Dovoljenja za kamero in zvok
       title: Pred začetkom ocenjevanja moramo preveriti, če vaš sistem brezhibno deluje.
     video_check:
-      description: Kliknite »Začni snemanje« in se posnemite med branjem spodnjega besedila
       random_phrases:
         one: Sem pripravljen. To je testni posnetek za potrditev, ali moj mikrofon in kamera delujeta pravilno.
-      title: Preveriti moramo, ali vaš sistem omogoča snemanje videov
   common:
     actions:
       add: Dodaj
@@ -1852,6 +1818,7 @@ sl:
       json:
         answer: Odgovori JSON
         external_result: JSON zunanjega rezultata
+        microsite_raw_response: Mikrospletna stran Raw Response
         scoring: Točkovanje JSON
       key: Ključ
       last_name: Priimek
@@ -3310,13 +3277,6 @@ sl:
     fields:
       provider:
         custom_upload: Nalaganje po meri
-        hogan: Hogan
-        internal: Notranji
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Nalaganje od Mettl
       load_from_pearson: Nalaganje od Pearsona

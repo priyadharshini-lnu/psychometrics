@@ -86,7 +86,6 @@ describe EndUser::UserAssessmentsController, type: :controller do
     end
 
     it 'allows request when lang parameter is valid' do
-      allow_any_instance_of(ActionView::Base).to receive(:vite_javascript_tag).and_return('')
       get :pass, params: { id: user_assessment.id, lang: 'ar' }
 
       expect(response).to have_http_status(:success)

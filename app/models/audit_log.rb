@@ -15,6 +15,10 @@ class AuditLog < ApplicationRecord
 
   has_many :active_record_audits, foreign_key: 'request_uuid', primary_key: 'request_uuid'
 
+  include Tenantable
+
+  tenant_source :client, :user
+
   validates :action, presence: true
 
   enum :outcome, { failed: 0, successful: 1 }

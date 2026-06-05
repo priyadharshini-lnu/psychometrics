@@ -13,6 +13,9 @@ class SheetColumn < ApplicationRecord
   ADVANCE_TYPES = %w[html markdown].freeze
 
   belongs_to :sheet
+  include Tenantable
+
+  tenant_source :sheet
   has_many :sheet_row_data, dependent: :destroy
   has_many :campaign_ai_artifact_dependencies, class_name: 'AI::CampaignArtifactDependency',
             foreign_key: 'dependency_id', dependent: :destroy

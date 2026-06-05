@@ -39,6 +39,8 @@ module EndUser
         required(:meeting_link).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
         required(:evaluation_session_id).maybe(:str?)
+        optional(:caching_enabled).maybe(:bool?)
+        optional(:schema_validation_error).maybe(:str?)
       end
     end
   end

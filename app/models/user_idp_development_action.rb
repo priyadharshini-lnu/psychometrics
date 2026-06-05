@@ -8,6 +8,10 @@ class UserIdpDevelopmentAction < ApplicationRecord
   belongs_to :user_idp_plan
   belongs_to :development_action
   belongs_to :user_idp_skill, optional: true
+  include Tenantable
+
+  tenant_source :user_idp_plan
+
   has_one :skill, through: :user_idp_skill
   has_one :user, through: :user_idp_plan
   has_many :communication_email_resources, as: :resource

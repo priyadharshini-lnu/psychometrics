@@ -1100,36 +1100,9 @@ de:
       title: Bewertung Details
     edit: Bearbeiten
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Beisitzer-Formular
-        case_study: Fallstudien
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formular für Hauptgutachter
-        meeting: Treffen
-        mettl: Mettl
-        organisational: Org-Erhebungen
-        pearson: Pearson
-        psychometric: Psychometrische Daten
-        saville: Saville
-        simulation: Simulation
-        skillvue: Skillvue
-        threesixty: 360-Kampagne
-        yoodli: Yoodli
       status:
         finished: Fertige
         in_progress: In Arbeit
-      type:
-        common: TTE-Bewertung
-        hogan: Hogan
-        iiht: IIHT-Bewertung
-        mettl: Mettl Bewertung
-        pearson: Pearson-Bewertung
-        saville: Saville-Bewertung
-        simulation: Simulation Bewertung
-        skillvue: Skillvue-Bewertung
-        yoodli: Yoodli-Bewertung
     flow:
       end_assessment_modal:
         custom_message: Benutzerdefinierte Meldung zum Ende der Bewertung
@@ -1211,16 +1184,11 @@ de:
         failure: Dieser Browser unterstützt keine Videoaufzeichnung. Bitte verwenden Sie Chrome oder Firefox für Videoaufzeichnungen
         success: Bitte erlauben Sie die Verwendung von Kamera und Mikrofon für Audio- und Videoaufnahmen
         unsupported: Dieser Browser unterstützt keine Videoaufzeichnung, bitte verwenden Sie einen der folgenden Browser,
-      recording_duration_label: Maximale Dauer der Aufzeichnung
-      recording_stop_label: Die Aufnahme stoppt in
       requesting_permission: Bitte um Erlaubnis...
       response_recorded: Aufgezeichnete Antwort
       save: speich
-      saved:
-        label: Video gerettet
       seek: Suchen Sie
       start_recording: Aufnahme starten
-      stop_recording: Aufnahme stoppen
       tracker:
         backward: Sie sind zu nah am Bildschirm, bitte gehen Sie ein Stück zurück
         forward: Sie sind zu weit vom Bildschirm entfernt, bitte gehen Sie etwas näher ran
@@ -1382,15 +1350,12 @@ de:
     all_activities_are_completed: Alle Aktivitäten sind abgeschlossen.
     all_activities_are_completed_multiple: Alle Aktivitäten für diese Kampagne sind abgeschlossen. Bitte gehen Sie zum Dashboard und überprüfen Sie, ob Ihnen weitere Aktivitäten zugewiesen wurden.
     already_joined: Sie sind bereits Mitglied dieser Kampagne
-    begin: Beginnen Sie mit Ihren Aufgaben.
-    begin_btn_msg_before_prework: Bevor Sie die zeitlich begrenzte Kampagne starten, müssen Sie die folgenden Aufgaben erledigen
     begin_campaign_msg: Starten Sie die Kampagne, bevor Sie Bewertungen vornehmen
     campaigns: Events
     closed_campaign_message: Diese Kampagne ist geschlossen. Sie können keine Bewertungen mehr innerhalb dieser Kampagne durchführen.
     code_usage_limit_reached: Code-Nutzungslimit erreicht, bitte kontaktieren Sie den Administrator
     complete_prev: Schließen Sie alle vorherigen Bewertungen ab.
     complete_tasks: Bitte erledigen Sie die folgenden Aufgaben, bevor Sie diese Maßnahme ergreifen.
-    continue: Fahren Sie mit Ihren Aufgaben fort.
     dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
     dashboard_menu:
       campaign: Event
@@ -1499,6 +1464,9 @@ de:
       external_user_id: Skillvue-Kandidaten-ID
       id: ID der Kampagnenbewertung
       locales: Lokalitäten
+      microsite_error_message: Fehlermeldung
+      microsite_participant_id: Teilnehmer-ID der Microsite
+      microsite_registration_status: Registrierungsstatus
       norm: Norm
       norm_id: Norm-ID
       pearson_norm_id: Pearson-Norm-ID
@@ -1773,10 +1741,8 @@ de:
       permissions: Webcam &amp; Audio Berechtigungen
       title: Bevor Sie mit dieser Bewertung beginnen, muss Ihr System einigen Prüfungen unterzogen werden.
     video_check:
-      description: Klicken Sie auf Aufnahme starten und nehmen Sie sich selbst auf, während Sie den folgenden Text mit Ihrer eigenen Stimme lesen
       random_phrases:
         one: Ich bin bereit. Dies ist eine Testaufnahme, um zu bestätigen, dass meine Kamera und mein Mikrofon einwandfrei funktionieren.
-      title: Wir müssen sicherstellen, dass Ihr System das Video aufzeichnen kann
   common:
     actions:
       add: Hinzufügen
@@ -1857,6 +1823,7 @@ de:
       json:
         answer: Antwort JSON
         external_result: Externes Ergebnis JSON
+        microsite_raw_response: Microsite „Raw Response“
         scoring: Bewertung von JSON
       key: Schlüssel
       last_name: Nachname
@@ -3288,13 +3255,6 @@ de:
     fields:
       provider:
         custom_upload: Benutzerdefinierter Upload
-        hogan: Hogan
-        internal: Intern
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Belastung aus Mettl
       load_from_pearson: Laden von Pearson

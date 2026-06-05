@@ -52,6 +52,7 @@ nl:
         content_required: Inhoud is vereist voor instructies
         tag_or_skill_required: Selecteer een tag of vaardigheid wanneer de optie "Geselecteerd" wordt gekozen.
       invalid_name: alleen alfabet, cijfer, spaties, streepje en punt zijn toegestaan als geldig teken
+      invalid_question_ids: 'Vraag-ID’s die niet in deze toets voorkomen: %{ids}'
       invalid_value: ongeldige instructie '%{value}' op regelnummer %{row}
       job_roles:
         unique_within_job_group: Er bestaat al een functierol met dezelfde naam.
@@ -88,6 +89,7 @@ nl:
         unique_mappings: Er bestaat al een mapping met dezelfde vaardigheid en functie.
       uniq: Deze Mettl beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq?: moet uniek zijn
+      uniq_microsite: Deze microsite-toets is al in het systeem opgenomen. Het ID van deze toets is %{id}
       uniq_simulation: Deze Simulatie beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq_skillvue: Deze Skillvue beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}
       uniq_yoodli: Deze Yoodli-beoordeling is al aanwezig in het systeem. ID van deze beoordeling is %{id}

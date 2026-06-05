@@ -9,6 +9,8 @@ class Workshop < ApplicationRecord
 
   belongs_to :campaign
   belongs_to :campaign_assessment_group
+  include Tenantable
+
   has_one :project, through: :campaign
   has_and_belongs_to_many :workshop_invites, dependent: :destroy
   has_many :workshop_invite_logs

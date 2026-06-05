@@ -20,5 +20,14 @@ FactoryBot.define do
         }
       end
     end
+
+    trait :microsite do
+      name { 'microsite' }
+      config do
+        {
+          api_key: Base64.encode64(Encryptor.encrypt('test-api-key'))
+        }
+      end
+    end
   end
 end

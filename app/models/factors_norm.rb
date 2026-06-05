@@ -6,6 +6,10 @@ class FactorsNorm < ApplicationRecord
   belongs_to :factor
   belongs_to :norm, touch: true
 
+  include Tenantable
+
+  tenant_source :norm, :factor
+
   after_initialize :init
   #
   # Disables single column inheritance

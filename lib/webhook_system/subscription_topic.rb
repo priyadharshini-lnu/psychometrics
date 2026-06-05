@@ -7,5 +7,8 @@ module WebhookSystem
     validates :name, presence: true
 
     belongs_to :subscription, class_name: 'WebhookSystem::Subscription'
+    include Tenantable
+
+    tenant_source :subscription
   end
 end

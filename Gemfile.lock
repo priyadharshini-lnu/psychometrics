@@ -357,7 +357,7 @@ GEM
     cronex (0.15.0)
       tzinfo
       unicode (>= 0.4.4.5)
-    css_parser (1.21.1)
+    css_parser (2.1.0)
       addressable
     csv (3.3.5)
     csv-safe (3.3.1)
@@ -391,7 +391,7 @@ GEM
       unicode_plot (>= 0.0.4, < 1.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (5.0.3)
+    devise (5.0.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 7.0)
@@ -692,7 +692,8 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lumberjack (1.4.0)
-    mail (2.8.1)
+    mail (2.9.0)
+      logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -736,7 +737,7 @@ GEM
     neighbor (0.6.0)
       activerecord (>= 7.1)
     nenv (0.3.0)
-    net-imap (0.5.9)
+    net-imap (0.6.4)
       date
       net-protocol
     net-pop (0.1.2)
@@ -745,13 +746,15 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
+    newrelic_rpm (10.5.0)
+      logger
     nio4r (2.7.4)
     nkf (0.2.0)
-    nokogiri (1.19.2-arm64-darwin)
+    nokogiri (1.19.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.2-x86_64-darwin)
+    nokogiri (1.19.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.19.2-x86_64-linux-gnu)
+    nokogiri (1.19.3-x86_64-linux-gnu)
       racc (~> 1.4)
     nori (2.7.1)
       bigdecimal
@@ -1092,7 +1095,7 @@ GEM
       logger
       rack (>= 2.2.4, < 3.3)
       redis-client (>= 0.23.0, < 1)
-    sidekiq-cron (2.3.1)
+    sidekiq-cron (2.4.0)
       cronex (>= 0.13.0)
       fugit (~> 1.8, >= 1.11.1)
       globalid (>= 1.0.1)
@@ -1178,7 +1181,7 @@ GEM
     tilt (2.0.11)
     timecop (0.9.10)
     timeliness (0.5.3)
-    timeout (0.4.3)
+    timeout (0.6.1)
     tins (1.39.1)
       bigdecimal
       sync
@@ -1322,7 +1325,7 @@ DEPENDENCIES
   deep_cloneable (~> 3.2)
   deepl-rb
   derailed_benchmarks (~> 1.7.0)
-  devise (~> 5.0.3)
+  devise (~> 5.0.4)
   devise-i18n (~> 1.9.2)
   devise-passwordless (~> 1.0.1)
   devise-security (~> 0.18.0)
@@ -1374,6 +1377,8 @@ DEPENDENCIES
   mobility (~> 1.2.9)
   mustache (~> 1.1.1)
   neighbor
+  net-imap (~> 0.6.4)
+  newrelic_rpm (~> 10.5)
   nkf
   oauth2 (~> 2.0)
   oci (~> 2.22.0)
@@ -1433,7 +1438,7 @@ DEPENDENCIES
   shortener (~> 1.0.1)
   shoulda-matchers (~> 6.0)
   sidekiq (~> 7.3.10)
-  sidekiq-cron (~> 2.3.1)
+  sidekiq-cron (~> 2.4.0)
   sidekiq-throttled (~> 1.5.2)
   sidekiq_alive (~> 2.5.0)
   simple_form (= 5.1.0)

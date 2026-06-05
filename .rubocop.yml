@@ -5,6 +5,7 @@ require:
   - ./lib/custom_rubocops/avoid_direct_use_of_mail_method.rb
   - ./lib/custom_rubocops/avoid_using_memoization_in_serializers.rb
   - ./lib/custom_rubocops/avoid_active_record_in_migrations.rb
+  - ./lib/custom_rubocops/create_table_migration_requires_tenant_id.rb
 AllCops:
   NewCops: enable
   Exclude:
@@ -47,6 +48,12 @@ AvoidUsingMemoizationInSerializers:
     - app/serializers/**/*
 AvoidActiveRecordInMigrations:
   Enabled: true
+
+CustomRubocops/CreateTableMigrationRequiresTenantId:
+  Enabled: true
+  EnforcedFromMigration: '20260408120000'
+  Include:
+    - db/migrate/**/*
 
 ##
 ## Layout

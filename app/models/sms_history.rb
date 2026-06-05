@@ -5,6 +5,9 @@ class SmsHistory < ApplicationRecord
 
   belongs_to :sms_invite
   belongs_to :sms_record
+  include Tenantable
+
+  tenant_source :sms_record
 
   scope :filterable_fields, lambda { |query|
                               where(

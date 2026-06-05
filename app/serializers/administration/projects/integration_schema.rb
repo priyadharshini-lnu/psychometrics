@@ -29,6 +29,10 @@ module Administration
           optional(:yoodli_integration_details).maybe do
             hash(Administration::Projects::Integrations::YoodliIntegrationSchema.schema(_, _))
           end
+
+          optional(:microsite_integration_details).maybe do
+            hash(Administration::Projects::Integrations::MicrositeIntegrationSchema.schema(_, _))
+          end
         end
       end
     end

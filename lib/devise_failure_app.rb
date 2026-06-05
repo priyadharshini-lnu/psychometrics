@@ -13,7 +13,9 @@ class DeviseFailureApp < Devise::FailureApp
 
     project = GetProjectBySubdomain.call!(request.subdomain)
 
-    return new_saml_user_session_path if project&.saml_login_allowed?
+    if project&.saml_login_allowed?
+      return new_saml_user_session_path(return_url: attempted_path)
+    end
 
     super
   end

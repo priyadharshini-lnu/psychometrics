@@ -30,7 +30,7 @@ describe DeviseFailureApp do
       expect(result).to eq('http://example.com/users/sign_in')
     end
 
-    it 'if force_saml params is true and saml is enabled it returns new_saml_user_session_path' do
+    it 'if force_saml params is true and saml is enabled it returns new_saml_user_session_path with return_url' do
       failure_app = DeviseFailureApp.new
       request = build_request(subdomain: 'sub1', params: { force_saml: 'true' })
       allow(failure_app).to receive(:request).and_return(request)
@@ -39,7 +39,7 @@ describe DeviseFailureApp do
       project.saml_setting.update(enabled: true, verified: true)
       result = failure_app.redirect_url
 
-      expect(result).to eq(new_saml_user_session_path)
+      expect(result).to eq(new_saml_user_session_path(return_url: 'users/sign_in'))
     end
   end
 

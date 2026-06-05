@@ -5,4 +5,7 @@ class CommunicationsAssessment < ApplicationRecord
 
   belongs_to :communication
   belongs_to :assessment
+  include Tenantable
+
+  tenant_source :communication
 end

@@ -1,15 +1,15 @@
 import React, { FC, useState } from 'react'
 import {
   Avatar, Row, Col, Space, theme, App,
-  Tag, Alert, Tooltip,
-  Typography,
+  Tag, Alert, Tooltip, Typography,
 } from 'antd'
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useDeviceDetection } from '~/hooks/useDeviceDetection'
 import {
   CountdownTimer, DetailsCard,
 } from '~/glint'
-import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { InfoCircleOutlined, InfoCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { secondsToDayHoursAndMinutes, SECONDS_IN_HOUR } from '~/utils/time'
 import dayjs from '~/utils/dayjs'
@@ -17,6 +17,7 @@ import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAss
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
+import { SafeHTML } from '~/components/SafeHTML'
 import { MeetingInfo } from './MeetingInfo'
 import { shortify } from '~/utils/string'
 import {
@@ -33,7 +34,6 @@ import {
 
 import styles from './styles.less'
 import { useIsProctored } from '~/hooks/useProctoringState'
-import SafeHTML from '~/components/SafeHTML/SafeHTML'
 
 const { I18n } = window
 const { useToken } = theme
@@ -46,6 +46,7 @@ interface Props {
   prevCompleted: boolean
   workshopBooked?: boolean
   workshopAttended?: boolean
+  allPreworkIsComplete?: boolean
 }
 
 const connector = connect(
@@ -65,20 +66,29 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 type CommonComponentProps = PropsFromRedux & Props
 
+const isCampaignSystemCheckValid = (
+  lastSuccessfulCheckAt: number,
+  systemCheckValidity: number,
+) => {
+  const campaignSystemCheckExpiryTime = lastSuccessfulCheckAt + systemCheckValidity
+  return campaignSystemCheckExpiryTime > (Date.now() / 1000)
+}
+
 const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   userAssessment,
   view,
   disabled,
   prevCompleted,
   campaignNotStarted,
+  allPreworkIsComplete,
   workshopBooked,
   workshopAttended,
   campaign,
   campaign: {
-    campaignUser, isTimedCampaign, fixedTimed, campaignTime,
+    campaignUser, isTimedCampaign, fixedTimed, campaignTime, lastSuccessfulCheckAt,
     campaignOptions: {
-      proctoringEnabledOnWorkshopActivity,
-      selectiveProctoringEnabled,
+      proctoringEnabledOnWorkshopActivity, integrationType, enableMobileProctoring,
+      selectiveProctoringEnabled, proctoringEnabled, systemCheckEnabled, systemCheckValidity,
     },
   },
 }) => {
@@ -86,7 +96,8 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const {
     status, assessmentIconUrl, assessmentName, completionPercent, completionReason, id,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
-    requireScheduling, assessmentCategory, isTimed: timedAssessment,
+    requireScheduling, assessmentCategory, isTimed: timedAssessment, type: assessmentType,
+    prework,
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
@@ -99,6 +110,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const navigate = useNavigate()
   const { message, modal } = App.useApp()
   const dispatch = useDispatch()
+  const { isMobileDevice } = useDeviceDetection()
   const isWorkshopActivity = userAssessment.workshopActivity
   const titleId = `assessment-card-title-${userAssessment.id}`
   const hasStartedCampaign = !!campaignUser.startedAt && campaignUser.status !== 'not_started'
@@ -112,6 +124,11 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const assessementLevelPrococtoringEnabled = selectiveProctoringEnabled && userAssessment.proctoringEnabled
   const assessmentNeedsProctoring = assessementLevelPrococtoringEnabled && !isProctored
   const isAssessmentProctoringMisconfigured = assessmentNeedsProctoring && !timedAssessment
+  const isMicrositeAssessment = assessmentType === 'microsite'
+  const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
+  const campaignNeedsProctoring = isWorkshopActivity
+    ? (proctoringEnabled && proctoringEnabledOnWorkshopActivity && !isProctored)
+    : (campaignLevelProctoringEnabled && !isProctored)
 
   const canBeginCampaign = !campaignClosedForUser && !hasStartedCampaign
     && fixedTimed && !isCampaignInterrupted
@@ -119,7 +136,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const canContinueCampaign = (isCampaignInterrupted || hasNoExpiryDateForTimedCampaign)
     && !campaignClosedForUser && !campaignUserTimedOut && fixedTimed
 
-  let disableActionButton = disabled || isAssessmentProctoringMisconfigured
+  let disableActionButton = disabled || isAssessmentProctoringMisconfigured || isMicrositeAssessment
   if (isWorkshopActivity) {
     disableActionButton ||= disabled || !withinActivityScheduleTime || !workshopBooked || !workshopAttended
   } else if (requireScheduling || scheduleTime) {
@@ -132,6 +149,12 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   }
   if (campaignNotStarted) {
     actionDisabledText = I18n.t('campaign.begin_campaign_msg')
+  }
+  if (!allPreworkIsComplete) {
+    actionDisabledText = I18n.t('enduser.complete_prework_message')
+  }
+  if (isMicrositeAssessment) {
+    actionDisabledText = I18n.t('enduser.microsite_assessment_external')
   }
 
   const buttonTextData = {
@@ -146,8 +169,21 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     ? `/campaign_users/${campaignUser.id}/begin_campaign`
     : `/campaign_users/${campaignUser.id}/continue_campaign`
 
+  const {
+    makeAsyncRequest,
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
+    url: asyncUrl,
+    data: { id: campaignUser.id, continue_without_proctoring: !campaignNeedsProctoring },
+    responseType: AsyncRequestResponseTR,
+  })
+
   const campaignStartInstruction = () => {
-    const messages = [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })]
+    const messages = isTimedCampaign && campaignTime
+      ? [I18n.t('campaign.instruction_modal.campaign_start_instruction', { minutes: campaignTime })] : []
+    if (campaignNeedsProctoring) {
+      messages.push(I18n.t('campaign.instruction_modal.common_proctoring_instructions'))
+      integrationType === 'ldb' && messages.push(I18n.t('campaign.instruction_modal.lockdown_browser_instruction'))
+    }
 
     messages.push(I18n.t('campaign.instruction_modal.campaign_start_final_instructions'))
 
@@ -155,14 +191,6 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
       messages.map(message => <Typography.Paragraph><SafeHTML html={message} /></Typography.Paragraph>)
     )
   }
-
-  const {
-    makeAsyncRequest,
-  } = useAsyncRequestResponse<AsyncRequestResponse>({
-    url: asyncUrl,
-    data: { id: campaignUser.id, continue_without_proctoring: true },
-    responseType: AsyncRequestResponseTR,
-  })
 
 
   const navigateToAssessment = () => {
@@ -173,9 +201,15 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const startCampaignActivities = async (shouldNavigate = true) => {
     try {
       const { responseData } = await makeAsyncRequest()
-      dispatch(setCampaignUser(responseData))
-      if (shouldNavigate) {
-        navigateToAssessment()
+      const { examusSessionUrl } = responseData
+
+      if (campaignLevelProctoringEnabled && examusSessionUrl) {
+        window.location.href = examusSessionUrl
+      } else {
+        dispatch(setCampaignUser(responseData))
+        if (shouldNavigate) {
+          navigateToAssessment()
+        }
       }
     } catch (error) {
       message.error(error)
@@ -183,18 +217,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     }
   }
 
-
-  const handleStartCampaignActivities = () => {
-    const needToBeginOrContinueCampaign = canBeginCampaign || canContinueCampaign
-    if (
-      (proctoringEnabledOnWorkshopActivity && isProctored)
-      || (!isWorkshopActivity)
-      || (!needToBeginOrContinueCampaign)
-    ) {
-      return navigateToAssessment()
-    }
-    if (!fixedTimed) { return startCampaignActivities() }
-
+  const showCampaignStartModal = () => {
     modal.info({
       icon: false,
       title: null,
@@ -202,10 +225,60 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
       okText: I18n.t('common.actions.start'),
       closable: true,
       width: 600,
-      onOk () {
-        startCampaignActivities()
+      async onOk () {
+        if (campaignNeedsProctoring || canBeginCampaign || canContinueCampaign) {
+          await startCampaignActivities(true)
+        }
       },
     })
+  }
+
+  const handleStartCampaignActivities = () => {
+    if (systemCheckEnabled
+      && !isCampaignSystemCheckValid(lastSuccessfulCheckAt, systemCheckValidity)) {
+      navigate(`/campaign_system_check/${campaign.id}/welcome`)
+      return
+    }
+    const needToBeginOrContinueCampaign = (canBeginCampaign || canContinueCampaign) && !prework
+    if (
+      (isWorkshopActivity && proctoringEnabledOnWorkshopActivity && isProctored)
+      || (!needToBeginOrContinueCampaign && (!campaignNeedsProctoring || prework))
+    ) {
+      return navigateToAssessment()
+    }
+    if (isMobileDevice && proctoringEnabled) {
+      if (enableMobileProctoring) {
+        modal.confirm({
+          icon: <InfoCircleFilled style={{ color: token.colorInfo }} />,
+          title: I18n.t('shared.desktop_or_laptop_recommended'),
+          content: (
+            <Typography.Paragraph>
+              <SafeHTML html={I18n.t('shared.mobile_proctoring_enabled_instructions')} />
+            </Typography.Paragraph>
+          ),
+          closable: true,
+          width: 600,
+          okText: I18n.t('common.actions.continue'),
+          cancelText: I18n.t('shared.switch_to_laptop_or_desktop'),
+          cancelButtonProps: { color: 'primary', variant: 'outlined' },
+          onOk: () => showCampaignStartModal(),
+        })
+      } else {
+        modal.info({
+          icon: false,
+          title: I18n.t('shared.desktop_or_laptop_required'),
+          content: (
+            <Typography.Paragraph>
+              <SafeHTML html={I18n.t('shared.mobile_proctoring_disabled_instructions')} />
+            </Typography.Paragraph>
+          ),
+          closable: true,
+          width: 600,
+        })
+      }
+    } else {
+      showCampaignStartModal()
+    }
 
     return null
   }
@@ -236,6 +309,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
         <Space>
           <TruncatedTitle id={titleId} title={assessmentName} />
           {assessementLevelPrococtoringEnabled && <Tag color="volcano">{I18n.t('enduser.proctored')}</Tag>}
+          {prework && <Tag color="blue">{I18n.t('enduser.prework')}</Tag>}
         </Space>
       </Col>
     </Row>
@@ -272,27 +346,31 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
         titleHeadingLevel={2}
         progressPercentage={assessmentCategory === 'meeting' ? undefined : completionPercent || 0}
         progressLabelAria={I18n.t('frontend.aria.task_progress_label')}
-        buttonText={assessmentCategory === 'meeting' ? null : buttonTextData[status]}
+        buttonText={assessmentCategory === 'meeting' || isMicrositeAssessment ? null : buttonTextData[status]}
         buttonId={`assessment-card-btn-${userAssessment.id}`}
         actionDisabled={disableActionButton}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}
         onButtonClick={handleStartCampaignActivities}
         subtitle={subtitleElement}
-        description={isAssessmentProctoringMisconfigured && (
+        description={(isAssessmentProctoringMisconfigured || isMicrositeAssessment) && (
           <Alert
             className="ta-s"
             title={(
               <Space>
-                {I18n.t('enduser.assessment_misconfigured')}
-                <Tooltip
-                  title={I18n.t('enduser.proctored_assessment_misconfigured_msg')}
-                >
-                  <span><InfoCircleOutlined /></span>
-                </Tooltip>
+                {isMicrositeAssessment
+                  ? I18n.t('enduser.microsite_assessment_external')
+                  : I18n.t('enduser.assessment_misconfigured')}
+                {!isMicrositeAssessment && (
+                  <Tooltip
+                    title={I18n.t('enduser.proctored_assessment_misconfigured_msg')}
+                  >
+                    <span><InfoCircleOutlined /></span>
+                  </Tooltip>
+                )}
               </Space>
           )}
-            type="warning"
+            type={isMicrositeAssessment ? 'info' : 'warning'}
             showIcon
           />
         )}

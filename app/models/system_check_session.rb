@@ -2,6 +2,9 @@
 
 class SystemCheckSession < ApplicationRecord
   belongs_to :user
+  include Tenantable
+
+  tenant_source :user
   has_many :system_check_records, dependent: :destroy
 
   validates :user_id, presence: true

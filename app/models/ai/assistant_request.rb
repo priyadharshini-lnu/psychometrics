@@ -24,6 +24,10 @@ class AI::AssistantRequest < ApplicationRecord
              foreign_key: 'ai_assistant_tool_call_id',
              optional: true
 
+  include Tenantable
+
+  tenant_source :ai_assistant_chat
+
   has_many :tool_calls,
            class_name: 'AI::AssistantToolCall',
            foreign_key: 'ai_assistant_request_id',

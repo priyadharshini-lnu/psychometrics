@@ -6,6 +6,7 @@ import { MettlFields } from './MettlFields'
 import { SkillvueFields } from './SkillvueFields'
 import { YoodliFields } from './YoodliFields'
 import { MhsFields } from './MhsFields'
+import { MicrositeFields } from './MicrositeFields'
 
 export const ExternalReportFields = {
   hogan: HoganFields,
@@ -15,4 +16,5 @@ export const ExternalReportFields = {
   skillvue: SkillvueFields,
   yoodli: YoodliFields,
   mhs: MhsFields,
+  microsite: MicrositeFields,
 }

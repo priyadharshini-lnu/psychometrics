@@ -52,6 +52,7 @@ cs:
         content_required: Pro pokyny je vyžadován obsah
         tag_or_skill_required: Vyberte prosím buď štítek nebo dovednost, když je vybrána možnost "Vybráno".
       invalid_name: jako platné znaky jsou povoleny pouze abeceda, číslo, mezera, pomlčka a tečka
+      invalid_question_ids: 'ID otázek, které se v tomto testu nevyskytují: %{ids}'
       invalid_value: neplatný příkaz '%{value}' na řádku číslo %{row}
       job_roles:
         unique_within_job_group: Pracovní role se stejným názvem již existuje.
@@ -88,6 +89,7 @@ cs:
         unique_mappings: Mapování se stejnou dovedností a pracovní rolí již existuje.
       uniq: Toto posouzení Mettl je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq?: by měly být jedinečné
+      uniq_microsite: Toto hodnocení mikrostránky je již v systému uloženo. ID tohoto hodnocení je %{id}
       uniq_simulation: Toto posouzení simulace je již v systému přítomno. ID tohoto posouzení je %{id}
       uniq_skillvue: Toto hodnocení dovedností je již v systému obsaženo. ID tohoto hodnocení je %{id}
       uniq_yoodli: Toto hodnocení Yoodli je již v systému přítomno. ID tohoto hodnocení je %{id}

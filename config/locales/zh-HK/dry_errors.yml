@@ -52,6 +52,7 @@ zh-HK:
         content_required: 說明需要內容
         tag_or_skill_required: 选择“已选择”选项时，请选择标签或技能。
       invalid_name: 只允許使用字母、數字、空格、破折號和點作為有效字符
+      invalid_question_ids: 未在此评估中找到以下试题编号：%{ids}
       invalid_value: 第 %{row} 行號上的陳述式 '%{value}' 無效
       job_roles:
         unique_within_job_group: 已有相同名稱的職位角色存在。
@@ -88,6 +89,7 @@ zh-HK:
         unique_mappings: 具有相同技能和工作角色的映射已經存在。
       uniq: 此 Mettl 評估已存在於系統中。此評定的 ID 為 %{id}
       uniq?: 應該是獨一無二的
+      uniq_microsite: 该微网站评估已存在于系统中。该评估的ID为 %{id}
       uniq_simulation: 此模擬評估已存在於系統中。此評定的 ID 為 %{id}
       uniq_skillvue: 此 Skillvue 評估已存在於系統中。此評估的 ID 為 %{id}
       uniq_yoodli: 這個 Yoodli 評估已經存在於系統中。此評定的 ID 為 %{id}

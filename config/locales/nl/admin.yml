@@ -22,6 +22,7 @@ nl:
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     admins: Admins
     advanced: Geavanceerd
+    agile: AGIEL
     ai_artifact_result_generation_admin_job_failed: Het artefact '%{artifact_name}' kan niet worden gegenereerd voor gebruiker '%{user_email}'.
     ai_artifact_result_stale: Het resultaat kan verouderd zijn, aangezien de afhankelijkheden van het AI-artefact zijn gewijzigd sinds het laatste resultaat werd gegenereerd. Overweeg het artefact opnieuw te genereren met de nieuwste afhankelijkheden.
     ai_artifacts: AI-artefacten
@@ -137,6 +138,7 @@ nl:
     assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars
+    assessor_form: Beoordelaarsformulier
     assessor_workshops: Beoordelingscentrum
     assessors: Taxateurs
     assistant_toolbar_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
@@ -144,6 +146,7 @@ nl:
     assistant_validation_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
     audit_logs: Controlelogboeken
     audit_reports: Controleverslagen
+    auto_moderated_factor_info: Deze score wordt automatisch gemodereerd en kan niet worden gewijzigd
     auto_placeholder: Auto
     availability: Beschikbaarheid
     available_languages: Rapport beschikbaar in talen
@@ -221,6 +224,7 @@ nl:
     cancel: Annuleren
     cancellation_and_rescheduling_disabled: Annuleren en verzetten is uitgeschakeld
     captcha: Captcha-verificatie
+    case_study: Casestudies
     casual: Casual
     cell_save_msg: Geldige wijzigingen worden automatisch opgeslagen zodra u de cel na het bewerken verlaat.
     characters: tekens
@@ -230,6 +234,8 @@ nl:
     client_admins: Klanten-admins
     clients: Huurcontracten voor klanten
     code_required: Code is vereist
+    common: TTE-beoordeling
+    common_assessment: TTE-beoordeling
     communication_center: Communicatiecentrum
     communications: Communicatie
     completed: Volbracht
@@ -248,6 +254,7 @@ nl:
     create_client: Klant maken
     create_indicator: Indicator aanmaken
     current_job_role: Huidige functie
+    custom_upload: Aangepast uploaden
     dashboard: Dashboard
     dashboards: Dashboards
     data_reports: Gegevensrapporten
@@ -285,6 +292,8 @@ nl:
     dimension_translations_export_scheduled: De vertalingen voor de dimensie '%{name}' staan gepland om te worden geëxporteerd.
     dimensions: Afmetingen
     disable_proctoring: Toezicht uitschakelen
+    disallow_lead_assessor_moderation: Moderatie door hoofdbeoordelaar uitschakelen
+    disallow_lead_assessor_moderation_info: De score wordt automatisch berekend op basis van alle ingediende beoordelingsformulieren en de hoofdbeoordelaar kan deze niet wijzigen via het moderatiescherm
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
     download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
@@ -315,6 +324,7 @@ nl:
     enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
     enter_description: Beschrijving invoeren
     enter_name: Naam invoeren
+    enter_question_id: Voer het vraag-ID in
     error: Fout
     estimated_tokens: tokens (geschat)
     evaluation_status: Evaluatiestatus
@@ -381,6 +391,8 @@ nl:
     idp_appearance_title: Titel
     idp_plan_reset_success: Het plan is succesvol gereset.
     idp_templates: IDP-sjablonen
+    iiht: IIHT
+    iiht_assessment: IIHT-beoordeling
     import_ai_artifacts: AI-artefacten importeren
     import_csv_assessment_group_error: "%{index} van de rij: gebruiker met e-mailadres %{email} is al uitgenodigd voor '%{workshopInviteName}'."
     import_csv_error: 'Rij %{index}: gebruiker met e-mailadres %{email} niet in deze campagne zit'
@@ -406,9 +418,11 @@ nl:
     import_users: Importgebruikers
     internal: Intern
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
+    invalid_question_ids: 'Vraag-ID’s die niet in deze toets voorkomen: %{ids}'
     job_roles: Functierollen
     keywords: Sleutelwoorden
     keywords_placeholder: Voer trefwoorden in, gescheiden door komma's.
+    lead_assessor_form: Formulier hoofdbeoordelaar
     learning_from_others: Samenwerkend leren [20]
     level: Niveau
     level_apply: Toepassen
@@ -418,6 +432,8 @@ nl:
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     licenses: Licenties
+    lighthouse_question: Vraag over de vuurtoren
+    lighthouse_question_id: Vraag-ID van Lighthouse
     linked_assessments: Gekoppelde beoordelingen
     low: Laag
     maintenance: Onderhoud
@@ -425,10 +441,14 @@ nl:
     maintenance_settings_description: Beheer onderhoudsvensters en instellingen van het systeem
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
     max_value: Maximale waarde
+    mean: Gemiddelde
     media_files_label: Bestanden
     media_library: Mediabibliotheek
     media_library_page_title: Mediabibliotheek - Dashboard - Mercer Lighthouse
+    meeting: Vergadering
     messages: Berichten
+    mettl: METTL
+    mettl_assessment: Mettl Beoordeling
     mhs: MHS
     mhs_assessment: MHS-beoordeling
     mhs_assessment_name: MHS-beoordeling Naam
@@ -437,6 +457,10 @@ nl:
     mhs_external_assessment_id: Mhs-beoordelings-ID
     mhs_report_id: MHS-rapport-ID
     mhs_session_id: Mhs-sessie-ID
+    microsite: Microsite
+    microsite_assessment: Beoordeling van de microsite
+    microsite_assessment_name: Naam van de microsite-evaluatie
+    microsite_question_id: Vraag-ID microsite
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
     minimum_download_speed: Minimale downloadsnelheid (in Mbps)
@@ -445,12 +469,14 @@ nl:
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
     model_answer: Modelantwoord
     model_answer_placeholder: Voer het modelantwoord in voor AI-scoring.
+    must_be_a_valid_url: Ongeldige URL. Voer de volledige URL in, inclusief het http- of https-protocol
     name: Naam
     name_max_length: De naam mag niet langer zijn dan %{length} tekens.
     name_required: Naam is vereist
     new_folder: Nieuwe map
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
+    no_question_mappings: Er zijn geen toewijzingen beschikbaar
     no_status: Geen status
     norm_editor_numeric_value_error: Alleen numerieke waarden zijn toegestaan (gehele getallen of getallen met decimalen).
     norms: Normen
@@ -466,10 +492,13 @@ nl:
     on_the_job: Op het Werk [70]
     only_editable_on_create: Deze optie kan alleen tijdens het aanmaken worden bewerkt.
     options: Opties
+    organisational: AGIEL
     original_text: Oorspronkelijke tekst
     overall: Totaal
     overall_score: Totale score
     participants: Deelnemers
+    pearson: Pearson
+    pearson_assessment: Pearson Beoordeling
     permissions:
       aiArtifacts:
         export: Exporteren
@@ -800,6 +829,8 @@ nl:
       projectSettings:
         assessments: Beoordeling
         design: Ontwerp
+        external_logout_redirect_enabled: Externe omleiding bij uitloggen inschakelen
+        external_logout_url: Externe uitlog-URL
         feature_flags: Functie vlaggen
         idp: IDP
         integrations: Integraties
@@ -913,6 +944,7 @@ nl:
     project_settings: Projectinstellingen
     projects: Projecten
     prompt: Prompt
+    psychometric: Psychometrisch
     question_center: Vragencentrum
     question_center_page_title: Vraagcentrum - Dashboard - Mercer Lighthouse
     question_editor_change_type: Type wijzigen
@@ -921,6 +953,7 @@ nl:
     question_editor_enable_transcription: Transcriptie inschakelen
     question_editor_preview_question: Voorbeeldvraag
     question_editor_validation_type: Type validatie
+    question_mapping: Vraagoverzicht
     question_randomization: Willekeurige toewijzing van vragen
     question_type_audio_response: Audio-reactie
     question_type_constant_sum: Constante som
@@ -1037,6 +1070,8 @@ nl:
       subject_full_name_cont: Onderwerpnaam
       user_email_cont: E-mailadres van de gebruiker
       user_full_name_cont: Gebruikersnaam
+    saville: Saville
+    saville_assessment: Beoordeling Saville
     scheduling: Planning
     score: Score
     score_approval_not_allowed_to_approve: Je mag deze score niet goedkeuren.
@@ -1072,6 +1107,7 @@ nl:
     select_end_time: Eindtijd selecteren
     select_language_to_translate: Selecteer de taal die u wilt vertalen
     select_level: Selecteer niveau
+    select_question: Zoek op naam of ID
     select_start_time: Starttijd selecteren
     selective_proctoring: Selectief toezicht
     send_email: Stuur e-mail
@@ -1084,14 +1120,19 @@ nl:
     show_submenu: Submenu weergeven
     show_translated: Vertaling weergeven
     siem: SIEM
+    simulation: Simulatie
+    simulation_assessment: Simulatie Assessment
     skill_aliases: Vaardigheden aliassen
     skills: Vaardigheden
     skills_taxonomy: Taxonomie van vaardigheden
+    skillvue: Skillvue
+    skillvue_assessment: Skillvue Assessment
     skip_assessment_level_checks: Controles op beoordelingsniveau overslaan
     slot_name: Slot Name
     sms_histories: SMS-geschiedenis
     sms_invites: SMS Uitnodigingen
     specialty_questions: Specifieke vragen
+    standard_deviation: Standaardafwijking
     standard_questions: Standaardvragen
     start: begin
     start_time: Starttijd
@@ -1152,6 +1193,8 @@ nl:
     x_axis_interval_label: X-as interval
     y_axis_interval_label: Y-as interval
     year: Land
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activiteits-ID
+    yoodli_assessment: Yoodli-beoordeling
     yoodli_email_id: Yoodli Kandidaat E-mailadres
     yoodli_external_assessment_id: Yoodli Assessment ID

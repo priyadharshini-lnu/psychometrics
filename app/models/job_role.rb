@@ -7,6 +7,7 @@ class JobRole < ApplicationRecord
 
   belongs_to :project, class_name: 'Client', optional: true
   belongs_to :job_group, optional: true
+  include Tenantable
 
   has_many :skills_job_roles
   has_many :skills, through: :skills_job_roles

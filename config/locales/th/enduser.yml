@@ -44,6 +44,7 @@ th:
     camera_check_abruptly_ended: กล้องถูกปิดอย่างกะทันหัน กรุณาเปิดกล้องของคุณและทำการตรวจสอบใหม่อีกครั้ง
     camera_check_description: ตรวจสอบให้แน่ใจว่ากล้องและไมโครโฟนของคุณทำงานได้อย่างถูกต้องสำหรับการบันทึก
     camera_check_passed: การตรวจสอบวิดีโอและเสียงผ่านเรียบร้อยแล้ว
+    camera_check_record_instruction: คลิกบันทึก และอ่านข้อความต่อไปนี้ให้ดัง
     camera_test_step: ขั้นตอนการทดสอบวิดีโอและเสียง
     campaign: รณรงค์
     campaign_check_status: 'สถานะ: %{status}'
@@ -52,6 +53,7 @@ th:
     check_video_recording: กรุณาตรวจสอบวิดีโอและเสียงของคุณโดยการเล่นย้อนกลับ
     checking_browser_compatibility: กำลังตรวจสอบความเข้ากันได้ของเบราว์เซอร์...
     checking_latency: กำลังตรวจสอบความหน่วง...
+    complete_prework_message: กรุณาทำภารกิจเตรียมงานทั้งหมดให้เสร็จสมบูรณ์เพื่อเริ่มต้น
     could_not_reach_servers: ไม่สามารถติดต่อเซิร์ฟเวอร์ของเราเพื่อตรวจสอบความเร็วเครือข่ายได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองใหม่อีกครั้ง
     day: วัน
     day_plural: วัน
@@ -61,6 +63,7 @@ th:
     download: ดาวน์โหลด
     download_pdf: ดาวน์โหลดไฟล์ PDF
     download_speed_below_minimum: ความเร็วในการดาวน์โหลด %{download_speed} ต่ำกว่าความเร็วในการดาวน์โหลดขั้นต่ำที่ต้องการ %{minimum_download_speed} Mbps
+    dummy_message: ฉันพร้อมแล้ว นี่คือการบันทึกเสียงทดสอบเพื่อยืนยันว่าวิดีโอและไมโครโฟนของฉันทำงานอย่างถูกต้อง
     environment_setup: การตั้งค่าสภาพแวดล้อม
     error_uploading_audio: เกิดข้อผิดพลาดในการอัปโหลดเสียง
     error_uploading_audio_detail: เกิดข้อผิดพลาดในการอัปโหลดไฟล์เสียงของคุณ
@@ -92,6 +95,7 @@ th:
     internet_speed_optimal: ความเร็วในการเชื่อมต่อของคุณอยู่ในระดับที่เหมาะสม
     internet_speed_slow: ความเร็วอินเทอร์เน็ตช้ากว่าที่ต้องการสำหรับแคมเปญ
     less_than_five_minutes: น้อยกว่า 5 นาที
+    lets_start: มาเริ่มกันเลย!
     lighthouse_assistant: ผู้ช่วยประภาคาร
     localstorage_fix_description_first: โปรดตรวจสอบว่าคุณไม่ได้อยู่ในโหมดส่วนตัว/ไม่ระบุตัวตน เนื่องจาก localStorage มักถูกปิดใช้งานในโหมดเหล่านี้
     localstorage_fix_title: การเก็บข้อมูลในเครื่องไม่ได้รับการเปิดใช้งานในเบราว์เซอร์ของคุณ
@@ -107,6 +111,7 @@ th:
     media_recorder_api_support: การสนับสนุน API ของ MediaRecorder
     microphone_access_blocked: ไมโครโฟนถูกปฏิเสธหรือบล็อกโดยเบราว์เซอร์ของคุณ กรุณาตรวจสอบสิทธิ์การเข้าถึงของเบราว์เซอร์ของคุณ
     microphone_check_passed: การตรวจสอบไมโครโฟนผ่านเรียบร้อยแล้ว
+    microsite_assessment_external: การประเมินนี้ต้องทำบนแพลตฟอร์มภายนอก
     min_word_limit: ต้องมีอย่างน้อย %{min} คำ
     minimum_speed_requirements: ความเร็วในการดาวน์โหลดขั้นต่ำ %{minimum_download_speed} Mbps และความเร็วในการอัปโหลดขั้นต่ำ %{minimum_upload_speed} Mbps ที่จำเป็นสำหรับแคมเปญนี้
     minute: นาที
@@ -124,16 +129,24 @@ th:
     network_test_step: ขั้นตอนการทดสอบเครือข่าย
     no_audio_detected: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
     pass: ผ่าน
+    pause: หยุดชั่วคราว
     pending: รอดำเนินการ
     personal_readiness: ความพร้อมส่วนบุคคล
     plan_text: วางแผนสำหรับระยะเวลาทั้งหมด เมื่อเริ่มต้นแล้ว อาจไม่อนุญาตให้หยุดพัก ขึ้นอยู่กับประเภทของการประเมิน
+    play: เล่น
     please_check_your_internet_connection: กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง
+    preparing_preview: กำลังเตรียมตัวอย่าง...
+    prework: งานเตรียมก่อนเรียน
+    prework_not_completed_message: กรุณาทำภารกิจเตรียมความพร้อมทั้งหมดให้เสร็จก่อนเริ่มแคมเปญ
     proctored: การสอบที่มีผู้คุมสอบ
     proctored_assessment_misconfigured_msg: การประเมินนี้มีการควบคุมดูแล แต่ไม่มีการกำหนดเวลาที่จำเป็น กรุณาติดต่อผู้ดูแลระบบของคุณ
     profile: โปรไฟล์
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
+    record: ลงทะเบียน
+    recording_progress_bar: แถบแสดงความคืบหน้า
+    recording_time_remaining: "%{remainingSeconds} วินาทีที่เหลือ"
     redirect_to_external_assessment: คุณจะถูกนำไปยังเว็บไซต์การประเมิน กรุณาคลิกต่อไปหากคุณต้องการเริ่มการประเมิน
     reject_idp_plan: ปฏิเสธแผน
     request_retry_message: คุณออฟไลน์อยู่ ไม่สามารถบันทึกคําตอบของคุณได้ แต่จะถูกบันทึกโดยอัตโนมัติเมื่อคุณกลับมาออนไลน์อีกครั้ง โปรดอย่ารีเฟรชหรือปิดหน้า
@@ -145,13 +158,15 @@ th:
     results: ผลลัพธ์
     safari_proctoring_description: ดูเหมือนว่าคุณกำลังใช้ Safari ซึ่งอาจมีข้อจำกัดบางประการเกี่ยวกับคุณสมบัติการตรวจสอบที่เปิดใช้งานสำหรับแคมเปญนี้ เพื่อให้ได้รับประสบการณ์ที่ดีที่สุด เราขอแนะนำให้ใช้ Chrome, Edge หรือ Firefox
     safari_proctoring_title: ตรวจพบเบราว์เซอร์ Safari
+    select_audio_device: เลือกอุปกรณ์เสียง
+    select_video_device: เลือกอุปกรณ์วิดีโอ
     selected_count: เลือก
     skill_type: ประเภททักษะ
     start_campaign_message_proctored: นี่คือแคมเปญที่มีผู้คุมสอบ โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_campaign_message_timed: นี่เป็นแคมเปญแบบกําหนดเวลา โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
-    start_campaign_message_timed_proctored: นี่คือแคมเปญแบบกําหนดเวลาและควบคุม โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_readiness_check: เริ่มการตรวจสอบความพร้อม
     start_system_check: เริ่มการตรวจสอบระบบ
+    stop: หยุด
     subinstruction_audio: ไมโครโฟนที่ใช้งานได้
     subinstruction_eight: จัดสรรเวลาที่ไม่มีการรบกวนสำหรับการประเมินอย่างเต็มรูปแบบ
     subinstruction_five: พร้อมที่จะแชร์หน้าจอของคุณตลอดการประชุม
@@ -239,6 +254,9 @@ th:
     video_check_fix_second: ไปที่การตั้งค่าเบราว์เซอร์และเปิดใช้งานการเข้าถึงกล้องสำหรับเว็บไซต์นี้
     video_check_fix_sixth: รีสตาร์ทเบราว์เซอร์ของคุณแล้วลองอีกครั้ง
     video_check_fix_third: ปิดแอปพลิเคชันอื่นที่ใช้กล้อง (Zoom, Teams, ฯลฯ)
+    video_overlay_label: เลือกไมโครโฟนและกล้องของคุณ คลิกบันทึก จากนั้นอ่านข้อความต่อไปนี้เมื่อคุณกดปุ่มบันทึก
+    video_overlay_message: เลือกไมโครโฟนและกล้องของคุณ คลิกบันทึก จากนั้นอ่านประโยคที่ปรากฏที่ด้านล่างออกเสียงดังๆ
+    video_recorder_label: เครื่องบันทึกวิดีโอ
     view_details: ดูรายละเอียด
     webgl_api_fix_description_first: ตรวจสอบให้แน่ใจว่าเบราว์เซอร์ของคุณรองรับ WebGL และเปิดใช้งานแล้วในตั้งค่า
     webgl_api_fix_description_second: อัปเดตไดรเวอร์กราฟิกของคุณเป็นเวอร์ชันล่าสุด

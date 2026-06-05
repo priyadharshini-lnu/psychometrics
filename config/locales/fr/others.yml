@@ -1100,36 +1100,9 @@ fr:
       title: Détails de l'évaluation
     edit: Editer
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Formulaire de l'évaluateur
-        case_study: Études de cas
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Formulaire de l'évaluateur principal
-        meeting: Réunion
-        mettl: Mettl
-        organisational: Enquêtes de l'Org
-        pearson: Pearson
-        psychometric: Psychométrie
-        saville: Saville
-        simulation: Simulation
-        skillvue: Skillvue
-        threesixty: campagne 360
-        yoodli: Yoodli
       status:
         finished: Fini
         in_progress: En cours
-      type:
-        common: Évaluation TTE
-        hogan: Hogan
-        iiht: Évaluation de l'IIHT
-        mettl: Évaluation Mettl
-        pearson: Évaluation de Pearson
-        saville: Évaluation de Saville
-        simulation: Évaluation de la simulation
-        skillvue: Évaluation de Skillvue
-        yoodli: Évaluation Yoodli
     flow:
       end_assessment_modal:
         custom_message: Message personnalisé de fin d'évaluation
@@ -1206,16 +1179,11 @@ fr:
         failure: Ce navigateur ne prend pas en charge l'enregistrement vidéo. Veuillez utiliser Chrome ou Firefox pour l'enregistrement vidéo
         success: Veuillez autoriser l'utilisation d'un appareil photo et d'un microphone pour l'enregistrement audio et vidéo
         unsupported: Ce navigateur ne prend pas en charge l'enregistrement vidéo. Veuillez utiliser l'un des navigateurs suivants,
-      recording_duration_label: Durée maximale de l'enregistrement
-      recording_stop_label: L'enregistrement s'arrête dans
       requesting_permission: Demande d'autorisation...
       response_recorded: Réponse enregistrée
       save: Économiser
-      saved:
-        label: Vidéo sauvée
       seek: Chercher
       start_recording: Démarrer l'enregistrement
-      stop_recording: Arrêter l'enregistrement
       tracker:
         backward: Vous êtes trop près de l'écran, reculez un peu
         forward: Vous êtes trop loin de l'écran, rapprochez-vous un peu
@@ -1377,15 +1345,12 @@ fr:
     all_activities_are_completed: Toutes les activités sont maintenant terminées.
     all_activities_are_completed_multiple: Toutes les activités de cette campagne sont maintenant terminées. Veuillez vous rendre sur le tableau de bord et vérifier si d'autres activités vous ont été assignées.
     already_joined: Vous avez déjà participé à cette campagne
-    begin: Commencez vos tâches
-    begin_btn_msg_before_prework: Vous devez accomplir les tâches suivantes avant de commencer la campagne chronométrée
     begin_campaign_msg: Lancer la campagne avant de procéder aux évaluations
     campaigns: Campagnes
     closed_campaign_message: Cette campagne est fermée. Vous ne pouvez pas effectuer d'évaluation dans le cadre de cette campagne.
     code_usage_limit_reached: Limite d'utilisation du code atteinte, veuillez contacter l'administrateur
     complete_prev: Compléter toutes les évaluations précédentes
     complete_tasks: Veuillez effectuer les tâches ci-dessous avant de prendre cette mesure.
-    continue: Poursuivre vos tâches
     dashboard_instructions: Il se peut que plusieurs activités vous aient été attribuées. Veuillez vérifier que toutes les activités attribuées ont bien été complétées dans l’ensemble des campagnes
     dashboard_menu:
       campaign: Campagne
@@ -1485,6 +1450,9 @@ fr:
       external_user_id: Skillvue Candidat ID
       id: ID d'évaluation de la campagne
       locales: Localités
+      microsite_error_message: Message d'erreur
+      microsite_participant_id: Identifiant du participant au microsite
+      microsite_registration_status: Statut d'inscription
       norm: Norme
       norm_id: ID de la norme
       pearson_norm_id: Pearson Norm ID
@@ -1759,10 +1727,8 @@ fr:
       permissions: Autorisations pour la webcam et l'audio
       title: Avant de commencer cette évaluation, votre système doit subir quelques vérifications.
     video_check:
-      description: Cliquez sur Démarrer l'enregistrement et enregistrez-vous en lisant le passage ci-dessous de votre propre voix
       random_phrases:
         one: Je suis prêt. Ceci est un enregistrement test pour confirmer que ma vidéo et mon microphone fonctionnent correctement.
-      title: Nous devons nous assurer que votre système peut enregistrer la vidéo
   common:
     actions:
       add: Ajouter
@@ -1843,6 +1809,7 @@ fr:
       json:
         answer: Réponse JSON
         external_result: Résultat externe JSON
+        microsite_raw_response: Microsite Raw Response
         scoring: Notation JSON
       key: Clé
       last_name: Nom de famille
@@ -3274,13 +3241,6 @@ fr:
     fields:
       provider:
         custom_upload: Chargement personnalisé
-        hogan: Hogan
-        internal: Interne
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Chargement de Mettl
       load_from_pearson: Chargement de Pearson

@@ -9,6 +9,7 @@ export interface UserAssessment {
   completionReason: string | null
   url: string
   status: string
+  type: string
   needConfirm: boolean
   assessmentExtra: AssessmentExtra
   selectedLocale: string

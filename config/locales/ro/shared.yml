@@ -22,9 +22,11 @@ ro:
     assessors_list: Lista evaluatorilor
     asset_not_present: Activul nu este prezent
     audio: Audio
+    audio_devices: Dispozitive audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     back: Înapoi
     basic: Bază
+    camera: Cameră foto
     camera_preview: Previzualizarea camerei va apărea aici
     campaign: Campanie
     campaign_id: ID-ul campaniei
@@ -59,6 +61,7 @@ ro:
     desktop_or_laptop_recommended: Recomandat pentru desktop sau laptop
     desktop_or_laptop_required: Este necesar un computer desktop sau laptop
     disabled: Persoane cu dizabilități
+    discard: Ignoră
     download: Descărcare
     download_audio: Descărcați fișierul audio
     download_transcription: Descărcați transcrierea
@@ -85,6 +88,7 @@ ro:
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     last_name: Numele de familie
     learning_on_the_job_label: Învățarea la locul de muncă
+    lets_start: Să începem!
     loading: Se încarcă...
     login: Autentificare
     maintenance_in_hours: "%{hours} ore"
@@ -99,6 +103,7 @@ ro:
     media_preview: Previzualizare media
     media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     media_responses: Răspunsurile mass-media
+    microphones: Microfoane
     mobile_proctoring_disabled_instructions: Pentru a continua această evaluare, aveți nevoie de un computer desktop sau laptop. Vă rugăm să treceți la un computer pentru a finaliza activitatea.
     mobile_proctoring_enabled_instructions: Pentru o experiență optimă, vă rugăm să utilizați un computer desktop sau laptop, dacă aveți unul la dispoziție. Puteți continua pe dispozitivul mobil, dacă este necesar.
     modified_by: Modificat de
@@ -116,7 +121,9 @@ ro:
     ok: Bine
     options: Opțiuni
     owner: Proprietar
+    pause: Pauză
     pending: În așteptare
+    play: Joacă
     policy_version: Versiunea politicii
     policy_version_format: Sunt permise numai numere întregi
     positive: Pozitiv
@@ -130,6 +137,7 @@ ro:
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
     rec: REC
+    record: Înregistrare
     recorded: înregistrat
     recording: Înregistrare
     recording_consent_notice: Această ședință va fi înregistrată. Participarea ta la această întâlnire constituie consimțământul tău de a fi înregistrat.
@@ -146,16 +154,21 @@ ro:
     saving_video: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     scoring_details: Detalii privind punctajul
     search: Căutare
+    select_camera: Alege o cameră
+    select_microphone: Alegeți un microfon
     send_email: Trimite e-mail
     show_more: Afișează mai mult
     something_wrong: Ceva nu a mers bine. Contactați administratorul.
+    speakers: Vorbitori
     status: Stare
     status_unknown: Stare necunoscută
+    stop: Oprește-te
     subject: Subiect
     submit: Trimite
     submit_and_finish_proctoring: Trimite și finalizează supravegherea
     suspended: Suspendat
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop
+    system_check_uploading: Încărcare
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ ro:
     update_failed: Actualizarea a eșuat
     updated_at: Actualizat la
     updated_successfully: Actualizat cu succes
+    user_report_pdf_url_not_generated: Nu s-a putut genera linkul de descărcare a fișierului PDF
     video: Video
     view: Vizualizare
     view_audio: Vizualizați audio

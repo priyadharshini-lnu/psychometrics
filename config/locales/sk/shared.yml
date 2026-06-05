@@ -22,9 +22,11 @@ sk:
     assessors_list: Zoznam hodnotiteľov
     asset_not_present: Aktívum nie je prítomné
     audio: Audio
+    audio_devices: Zvukové zariadenia
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
     back: Späť
     basic: Základný
+    camera: Fotoaparát
     camera_preview: Tu sa zobrazí náhľad fotoaparátu
     campaign: Kampaň
     campaign_id: Identifikácia kampane
@@ -59,6 +61,7 @@ sk:
     desktop_or_laptop_recommended: Odporúča sa stolný počítač alebo notebook
     desktop_or_laptop_required: Požadovaný stolný počítač alebo notebook
     disabled: Znevýhodnení
+    discard: Zrušiť
     download: Stiahnuť
     download_audio: Stiahnuť zvuk
     download_transcription: Stiahnuť prepis
@@ -85,6 +88,7 @@ sk:
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
     last_name: Priezvisko
     learning_on_the_job_label: Učenie sa priamo v práci
+    lets_start: Tak poďme na to!
     loading: Načítava sa...
     login: Prihlásenie
     maintenance_in_hours: "%{hours} hodiny"
@@ -99,6 +103,7 @@ sk:
     media_preview: Prehľad médií
     media_question_transcriptions: Prepisy otázok médií
     media_responses: Reakcie médií
+    microphones: Mikrofóny
     mobile_proctoring_disabled_instructions: Na pokračovanie v tomto hodnotení je potrebný stolný počítač alebo notebook. Prejdite na počítač, aby ste mohli aktivitu dokončiť.
     mobile_proctoring_enabled_instructions: Pre najlepší zážitok prejdite na stolný počítač alebo notebook, ak máte k dispozícii. V prípade potreby môžete pokračovať na mobilnom zariadení.
     modified_by: Upravené
@@ -116,7 +121,9 @@ sk:
     ok: Ok
     options: Možnosti
     owner: Majiteľ
+    pause: Pauza
     pending: Čaká na vybavenie
+    play: Hrať
     policy_version: Verzia politiky
     policy_version_format: Povolené sú iba celé čísla
     positive: Pozitívne
@@ -130,6 +137,7 @@ sk:
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     rec: REC
+    record: Záznam
     recorded: Nahrané
     recording: Nahrávanie
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
@@ -146,16 +154,21 @@ sk:
     saving_video: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
     scoring_details: Podrobnosti o bodovaní
     search: Vyhľadávanie
+    select_camera: Vyberte kameru
+    select_microphone: Vyberte mikrofón
     send_email: Odoslať e-mail
     show_more: Zobraziť viac
     something_wrong: Niečo sa pokazilo. Obráťte sa na správcu.
+    speakers: Prednášajúci
     status: Stav
     status_unknown: Stav neznámy
+    stop: Zastav
     subject: Predmet
     submit: Odoslať
     submit_and_finish_proctoring: Odoslať a ukončiť dohľad
     suspended: Pozastavené
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
+    system_check_uploading: Nahrávanie
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ sk:
     update_failed: Aktualizácia sa nepodarila
     updated_at: Aktualizované dňa
     updated_successfully: Úspešne aktualizované
+    user_report_pdf_url_not_generated: Odkaz na stiahnutie súboru PDF sa nepodarilo vygenerovať
     video: Video
     view: Zobraziť
     view_audio: Zobraziť zvuk

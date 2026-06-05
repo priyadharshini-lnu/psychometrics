@@ -6,6 +6,7 @@ class CampaignOptions < ApplicationRecord
   extend Mobility
 
   belongs_to :campaign
+  include Tenantable
 
   translates :instructions, :description
 

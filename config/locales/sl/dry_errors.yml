@@ -52,6 +52,7 @@ sl:
         content_required: Vsebina je potrebna za navodila
         tag_or_skill_required: Prosimo, izberite oznako ali spretnost, ko izberete možnost »Izbrano«.
       invalid_name: Kot veljavni znak so dovoljeni samo abeceda, številka, presledki, pomišljaj in pika
+      invalid_question_ids: 'ID-ji vprašanj, ki jih v tej oceni ni: %{ids}'
       invalid_value: Neveljavna izjava »%{value}« v vrstici številka %{row}
       job_roles:
         unique_within_job_group: Delovna vloga s tem imenom že obstaja.
@@ -88,6 +89,7 @@ sl:
         unique_mappings: Veščina je že povezana s to delovno vlogo.
       uniq: Ta ocena Mettl je že prisotna v sistemu. ID te ocene je %{id}
       uniq?: mora biti edinstven
+      uniq_microsite: Ta ocena mikrospletne strani je že shranjena v sistemu. ID te ocene je %{id}
       uniq_simulation: Ta simulacijska ocena je že prisotna v sistemu. ID te ocene je %{id}
       uniq_skillvue: 'To ocenjevanje Skillvue je že v sistemu. ID ocenjevanja: %{id}'
       uniq_yoodli: Ta ocena Yoodli je že prisotna v sistemu. ID te ocene je %{id}

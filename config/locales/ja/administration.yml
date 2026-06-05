@@ -2363,6 +2363,7 @@ ja:
         add: 統合
         back: 統合に戻る
         load_mettl_catalog: ロードメーター・アセスメント・カタログ
+        load_microsite_catalog: マイクロサイト評価カタログを読み込む
         load_skillvue_catalog: スキルビューアセスメントカタログを読み込む
       columns:
         active: アクティブ
@@ -2381,6 +2382,7 @@ ja:
         webhookUrls: ウェブフックURL
       integrations: 統合
       load_mettl_success: ロードメトル評価ジョブが正常にキューイングされました。
+      load_microsite_success: マイクロサイトの評価ジョブのキューへの登録に成功しました
       load_skillvue_success: ロードスキルビュー評価ジョブが正常にキューイングされました。
       modal:
         hogan:
@@ -2403,6 +2405,9 @@ ja:
           servers:
             mettl_eu: ヨーロッパ
             mettl_india: インド
+        microsite:
+          apiKey: APIキー
+          apiKeyRequired: APIキーが必要です
         skillvue:
           apiKey: APIキー
           apiKeyRequired: APIキーが必要です。
@@ -2414,6 +2419,7 @@ ja:
         hogan: ホーガン
         iiht: IIHT
         mettl: メトTL
+        microsite: マイクロサイト
         skillvue: スキルビュー
         yoodli: ユードリ
       validations:
@@ -2422,6 +2428,8 @@ ja:
           tenant_id_present: テナントIDがすでに他のプロジェクトに存在する
         mettl:
           public_key_present: 公開鍵はすでに他のプロジェクトに存在する
+        microsite:
+          api_key_present: APIキーは他のプロジェクトにすでに存在しています
         skillvue:
           api_key_present: APIキーがすでに他のプロジェクトに存在する
       view_all_schedules: すべてのMettlのスケジュールを見る
@@ -2990,6 +2998,7 @@ ja:
               assessment_started: アセスメント開始
               assessment_timeout: 評価タイムアウト
               campaign_results_available: キャンペーン結果発表
+              campaign_user_assessment_summary: キャンペーンユーザー評価の概要
               campaign_user_status: キャンペーン・ユーザーのステータス
               report_available: 報告書あり
               results_available: 結果あり

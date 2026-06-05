@@ -18,7 +18,8 @@ class Webhook < WebhookSystem::Subscription
     workshop_attendance_status: WebhookEvents::WorkshopAttendanceStatus,
     campaign_results_available: WebhookEvents::CampaignResultsAvailable,
     campaign_user_status: WebhookEvents::CampaignUserStatus,
-    assessment_raw_response: WebhookEvents::AssessmentRawResponse
+    assessment_raw_response: WebhookEvents::AssessmentRawResponse,
+    campaign_user_assessment_summary: WebhookEvents::CampaignUserAssessmentSummary
   }.freeze
 
   USER_REPORT_EVENTS = {
@@ -32,6 +33,7 @@ class Webhook < WebhookSystem::Subscription
   ].freeze
 
   belongs_to :project
+  include Tenantable
 
   after_update :clear_assessment_ids_if_needed
 

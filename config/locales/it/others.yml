@@ -1100,36 +1100,9 @@ it:
       title: Dettagli sulla valutazione
     edit: Modifica
     fields:
-      category:
-        agile: AGILE
-        assessor_form: Modulo per il valutatore
-        case_study: Casi di studio
-        hogan: Hogan
-        iiht: IIHT
-        lead_assessor_form: Modulo per il valutatore responsabile
-        meeting: Riunione
-        mettl: Mettl
-        organisational: Indagini sull'organizzazione
-        pearson: Pearson
-        psychometric: Psicometrico
-        saville: Saville
-        simulation: Simulazione
-        skillvue: Skillvue
-        threesixty: campagna 360
-        yoodli: Yoodli
       status:
         finished: Finito
         in_progress: In corso
-      type:
-        common: Valutazione TTE
-        hogan: Hogan
-        iiht: Valutazione IIHT
-        mettl: Valutazione Mettl
-        pearson: Valutazione Pearson
-        saville: Valutazione Saville
-        simulation: Valutazione della simulazione
-        skillvue: Valutazione Skillvue
-        yoodli: Valutazione Yoodli
     flow:
       end_assessment_modal:
         custom_message: Messaggio di fine valutazione personalizzato
@@ -1206,16 +1179,11 @@ it:
         failure: Questo browser non supporta la registrazione video. Utilizzare Chrome o Firefox per la registrazione video
         success: Consentire l'uso della fotocamera e del microfono per registrare audio e video
         unsupported: Questo browser non supporta la registrazione video. Utilizzare uno dei seguenti browser,
-      recording_duration_label: Durata massima della registrazione
-      recording_stop_label: La registrazione si interromperà in
       requesting_permission: Richiesta di autorizzazione...
       response_recorded: Risposta registrata
       save: Salva
-      saved:
-        label: Video salvato
       seek: Cercare
       start_recording: Avviare la registrazione
-      stop_recording: Interrompere la registrazione
       tracker:
         backward: Sei troppo vicino allo schermo, spostati un po' indietro
         forward: Sei troppo lontano dallo schermo. Avvicinati un po' di più
@@ -1377,15 +1345,12 @@ it:
     all_activities_are_completed: Tutte le attività sono state completate.
     all_activities_are_completed_multiple: Tutte le attività per questa campagna sono state completate. Procedere alla Dashboard e verificare se sono state assegnate altre attività.
     already_joined: Hai già aderito a questa campagna
-    begin: Iniziare le attività
-    begin_btn_msg_before_prework: Prima di iniziare la campagna a tempo, è necessario completare le seguenti attività
     begin_campaign_msg: Avviare la campagna prima di effettuare le valutazioni
     campaigns: Campagne
     closed_campaign_message: Questa campagna è chiusa. Non è possibile eseguire alcuna valutazione all'interno di questa campagna.
     code_usage_limit_reached: Limite di utilizzo del codice raggiunto, contattare l'amministratore
     complete_prev: Completare tutte le valutazioni precedenti
     complete_tasks: Prima di intraprendere questa azione, completare le operazioni indicate di seguito.
-    continue: Continuare a svolgere i propri compiti
     dashboard_instructions: È possibile che ti siano state assegnate più attività. Ti invitiamo a verificare che tutte le attività assegnate siano state completate in tutte le Campagne.
     dashboard_menu:
       campaign: Campagne
@@ -1485,6 +1450,9 @@ it:
       external_user_id: ID candidato Skillvue
       id: ID di valutazione della campagna
       locales: Località
+      microsite_error_message: Messaggio di errore
+      microsite_participant_id: ID partecipante al microsito
+      microsite_registration_status: Stato della registrazione
       norm: Norma
       norm_id: ID norma
       pearson_norm_id: ID norma di Pearson
@@ -1759,10 +1727,8 @@ it:
       permissions: Autorizzazioni webcam e audio
       title: Prima di iniziare questa valutazione, il sistema deve essere sottoposto ad alcuni controlli.
     video_check:
-      description: Cliccate su Avvia registrazione e registrate voi stessi mentre leggete il brano sottostante con la vostra voce
       random_phrases:
         one: Sono pronto. Questa è una registrazione di prova per assicurarmi che il mio video e il mio microfono funzionino correttamente.
-      title: Dobbiamo assicurarci che il vostro sistema sia in grado di registrare il video
   common:
     actions:
       add: Aggiungi
@@ -1843,6 +1809,7 @@ it:
       json:
         answer: Risposta JSON
         external_result: Risultato esterno JSON
+        microsite_raw_response: Microsito Raw Response
         scoring: Punteggio JSON
       key: Chiave
       last_name: Cognome
@@ -3274,13 +3241,6 @@ it:
     fields:
       provider:
         custom_upload: Caricamento personalizzato
-        hogan: Hogan
-        internal: Interno
-        mettl: Mettl
-        pearson: Pearson
-        saville: Saville
-        skillvue: Skillvue
-        yoodli: Yoodli
     form:
       load_from_mettl: Carico da Mettl
       load_from_pearson: Carico da Pearson

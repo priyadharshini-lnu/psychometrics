@@ -6,6 +6,7 @@ class Threesixty::InstructionTemplate < ApplicationRecord
   extend Mobility
 
   belongs_to :threesixty_campaign, class_name: 'Threesixty::Campaign'
+  include Tenantable
 
   translates :content
 

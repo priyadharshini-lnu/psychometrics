@@ -22,9 +22,11 @@ sl:
     assessors_list: Seznam ocenjevalcev
     asset_not_present: Sredstvo ni prisotno
     audio: Avdio
+    audio_devices: Avdio naprave
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     back: Nazaj
     basic: Osnoven
+    camera: Kamera
     camera_preview: Predogled kamere bo prikazan tukaj
     campaign: Kampanja
     campaign_id: ID kampanje
@@ -59,6 +61,7 @@ sl:
     desktop_or_laptop_recommended: Priporočljiv namizni ali prenosni računalnik
     desktop_or_laptop_required: Potreben namizni ali prenosni računalnik
     disabled: Invalidi
+    discard: Zavrzi
     download: Prenesi
     download_audio: Prenesi avdio
     download_transcription: Prenesi transkripcijo
@@ -85,6 +88,7 @@ sl:
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     last_name: Priimek
     learning_on_the_job_label: Učenje na delovnem mestu
+    lets_start: Začnimo!
     loading: Nalaganje...
     login: Prijava
     maintenance_in_hours: "%{hours} ure"
@@ -99,6 +103,7 @@ sl:
     media_preview: Predogled za medije
     media_question_transcriptions: Prepisi vprašanj medijev
     media_responses: Odzivi medijev
+    microphones: Mikrofoni
     mobile_proctoring_disabled_instructions: Za nadaljevanje te ocene potrebujete namizni ali prenosni računalnik. Preklopite na računalnik, da dokončate dejavnost.
     mobile_proctoring_enabled_instructions: Za najboljšo izkušnjo preklopite na namizni ali prenosni računalnik, če ga imate na voljo. Po potrebi lahko nadaljujete na mobilni napravi.
     modified_by: Spremenil
@@ -116,7 +121,9 @@ sl:
     ok: Ok
     options: Možnosti
     owner: Lastnik
+    pause: Premor
     pending: V obravnavi
+    play: Igraj
     policy_version: Različica politike
     policy_version_format: Dovoljena so samo cela števila.
     positive: Pozitivno
@@ -130,6 +137,7 @@ sl:
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
     rec: REC
+    record: Zapis
     recorded: Posneto
     recording: Snemanje
     recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.
@@ -146,16 +154,21 @@ sl:
     saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
     scoring_details: Podrobnosti o točkovanju
     search: Iskanje
+    select_camera: Izberite kamero
+    select_microphone: Izberite mikrofon
     send_email: Pošlji e-pošto
     show_more: Pokaži več
     something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
+    speakers: Govorniki
     status: Status
     status_unknown: Status neznan
+    stop: Stop
     subject: Predmet
     submit: Pošlji
     submit_and_finish_proctoring: Pošlji in zaključi nadzor
     suspended: Začasno prekinjeno
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
+    system_check_uploading: Nalaganje
     table:
       entries:
         selected:
@@ -180,6 +193,7 @@ sl:
     update_failed: Posodobitev ni uspela
     updated_at: Posodobljeno dne
     updated_successfully: Posodobljeno uspešno
+    user_report_pdf_url_not_generated: Povezave za prenos datoteke PDF ni bilo mogoče ustvariti
     video: Video
     view: Pogled
     view_audio: Poglej avdio

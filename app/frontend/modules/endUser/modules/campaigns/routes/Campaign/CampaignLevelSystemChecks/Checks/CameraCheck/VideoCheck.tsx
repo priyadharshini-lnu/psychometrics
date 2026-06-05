@@ -1,20 +1,31 @@
 import React, {
-  useReducer, useRef, useEffect, useState,
+  useReducer,
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
 } from 'react'
 import {
-  Button, Flex, Space, Alert,
+  Button, Flex,
 } from 'antd'
 import axios from 'axios'
 import { connect, ConnectedProps } from 'react-redux'
 import SparkMD5 from 'spark-md5'
-import cs from 'classnames'
+import { AnimatePresence, motion } from 'motion/react'
 import {
-  StopOutlined, VideoCameraOutlined, RightOutlined, RedoOutlined,
+  RightOutlined,
+  RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import VideoPlayer from '~/components/MediaRecorder/components/VideoPlayer'
-import { CheckList } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/CheckList'
+import { DirectionalBackArrowIcon } from '~/glint'
+import VideoRecorder from '~/components/MediaRecorder/components/VideoRecorder'
+import FloatingControlBar from '~/components/MediaRecorder/components/FloatingControlBar'
+import PlaybackControlBar from '~/components/MediaRecorder/components/PlaybackControlBar'
+import CountdownOverlay from '~/components/MediaRecorder/components/CountdownOverlay'
 import reducer, {
-  initialState, updateAccess, updateUploading, updateSpeechTestText,
+  initialState,
+  updateAccess,
+  updateUploading,
+  updateSpeechTestText,
 } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/VideoCheck/reducer'
 import { CheckListStatus } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/interfaces'
 import { useReactMediaRecorder } from '~/components/MediaRecorder/components/MediaRecorder'
@@ -26,34 +37,46 @@ import {
 import styles from './styles.less'
 import { CHECK_STATUS } from '../../common'
 import { getRandomVideoTestPhrase } from '../../../../CheckingWizard/services/service'
+import { CheckList } from '../../../../CheckingWizard/CheckList'
 
 const { I18n } = window
 
 export const MAX_DURATION = 30
 
-const connector = connect(({ checkingWizard }: RootState) => ({
-  preSignedUrl: checkingWizard.preSignedUrl,
-  transcribeSupportedLocales: checkingWizard.transcribeSupportedLocales,
-}), {
-})
+const connector = connect(
+  ({ checkingWizard }: RootState) => ({
+    preSignedUrl: checkingWizard.preSignedUrl,
+    transcribeSupportedLocales: checkingWizard.transcribeSupportedLocales,
+  }),
+  {},
+)
 
-type PropsFromRedux = ConnectedProps<typeof connector>
+type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & {
-  nextStep: () => void
-  directUploadURL?: string
-  postRecordingCallbackURL?: string
-  setCheckStatus: (status: CHECK_STATUS.passed | CHECK_STATUS.failed | CHECK_STATUS.pending) => void
-  setIsDeviceRequestGranted: (granted: boolean) => void
-  onCheckAbruptlyEnded: () => void
-}
+  nextStep: () => void;
+  onPrev: () => void;
+  directUploadURL?: string;
+  postRecordingCallbackURL?: string;
+  setCheckStatus: (
+    status: CHECK_STATUS.passed | CHECK_STATUS.failed | CHECK_STATUS.pending,
+  ) => void;
+  setIsDeviceRequestGranted: (granted: boolean) => void;
+  onCheckAbruptlyEnded: () => void;
+};
 
 interface DeviceDetails {
-  videoDevices : MediaDeviceInfo[];
-  audioDevices : MediaDeviceInfo[];
+  videoDevices: MediaDeviceInfo[];
+  audioDevices: MediaDeviceInfo[];
+  audioOutputDevices: MediaDeviceInfo[];
 }
 
 const VideoCheckComponent: React.FC<Props> = ({
-  nextStep, setCheckStatus, directUploadURL = '', postRecordingCallbackURL = '', setIsDeviceRequestGranted,
+  nextStep,
+  onPrev,
+  setCheckStatus,
+  directUploadURL = '',
+  postRecordingCallbackURL = '',
+  setIsDeviceRequestGranted,
   onCheckAbruptlyEnded,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -62,46 +85,55 @@ const VideoCheckComponent: React.FC<Props> = ({
   const analyserRef = useRef<AnalyserNode | null>(null)
   const audioCheckIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const audioDetectedRef = useRef<boolean>(false)
+  const stoppedSectionRef = useRef<HTMLDivElement | null>(null)
 
   const partIndexRef = useRef<number>(0)
-  const uploadedPartsRef = useRef<{ part_number: number, etag: string }[]>([])
+  const uploadedPartsRef = useRef<{ part_number: number; etag: string }[]>([])
   const uploadIdRef = useRef<string>('')
   const assetKeyRef = useRef<string>('')
   const urlsRef = useRef<string[]>([])
   const fileSizeRef = useRef<number>(0)
 
-
   const [state, dispatch] = useReducer(reducer, initialState)
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [visualizing, setVisualizing] = useState<boolean>(false)
-  const [devices, setDevices] = useState<DeviceDetails>({ videoDevices: [], audioDevices: [] })
+  const [devices, setDevices] = useState<DeviceDetails>({
+    videoDevices: [],
+    audioDevices: [],
+    audioOutputDevices: [],
+  })
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
+  const [isCountingDown, setIsCountingDown] = useState<boolean>(false)
+  const [remainingSeconds, setRemainingSeconds] = useState<number>(MAX_DURATION)
+  const [videoReady, setVideoReady] = useState<boolean>(false)
 
-  const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
-    setVisualizing(false)
-    dispatch(updateUploading(CheckListStatus.InProgress))
-    if (stream) {
-      stream.getTracks().forEach(track => track.stop())
-    }
-    cleanupAudioMonitoring({
-      audioContextRef,
-      analyserRef,
-      audioCheckIntervalRef,
-      audioDetectedRef,
-    })
-    setVideoBlob(completeBlob)
 
-    uploadPart(lastBlob).then(() => {
-      completeUpload(completeBlob)
-    })
-  }, [stream])
+  const onStop = React.useCallback(
+    (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
+      setVisualizing(false)
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop())
+      }
+      cleanupAudioMonitoring({
+        audioContextRef,
+        analyserRef,
+        audioCheckIntervalRef,
+        audioDetectedRef,
+      })
+      dispatch(updateUploading(CheckListStatus.InProgress))
+      setVideoBlob(completeBlob)
+      uploadPart(lastBlob).then(() => {
+        completeUpload(completeBlob)
+      })
+    },
+    [stream],
+  )
 
-  const isAccessDone = state.access === CheckListStatus.Done
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
 
-  const uploadPart = async (blob:Blob) => {
+  const uploadPart = async (blob: Blob) => {
     const url = urlsRef.current[partIndexRef.current]
     const partNumber = partIndexRef.current + 1
 
@@ -131,7 +163,6 @@ const VideoCheckComponent: React.FC<Props> = ({
     }
   }
 
-
   const calculateMD5Checksum = async (blob: Blob): Promise<string> => new Promise((resolve, reject) => {
     const fileReader = new FileReader()
     const spark = new SparkMD5.ArrayBuffer()
@@ -150,7 +181,9 @@ const VideoCheckComponent: React.FC<Props> = ({
   })
 
   const completeUpload = async (completeBlob: Blob) => {
-    const sortedParts = uploadedPartsRef.current.sort((a, b) => a.part_number - b.part_number)
+    const sortedParts = uploadedPartsRef.current.sort(
+      (a, b) => a.part_number - b.part_number,
+    )
     try {
       const checksum = await calculateMD5Checksum(completeBlob)
 
@@ -249,20 +282,46 @@ const VideoCheckComponent: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    if ((mediaBlobUrl) && videoRef.current) {
-      videoRef.current.srcObject = null
-      videoRef.current.src = mediaBlobUrl
-      videoRef.current.currentTime = 0
-      videoRef.current.load()
+    if (!mediaBlobUrl || !videoRef.current) return
+
+    setVideoReady(false)
+    videoRef.current.srcObject = null
+    videoRef.current.src = mediaBlobUrl
+    videoRef.current.currentTime = 0
+    videoRef.current.load()
+
+    const video = videoRef.current
+    const onCanPlay = () => {
+      setVideoReady(true)
+      video.removeEventListener('canplay', onCanPlay)
     }
+    video.addEventListener('canplay', onCanPlay)
+    return () => video.removeEventListener('canplay', onCanPlay)
   }, [mediaBlobUrl])
 
   useEffect(() => {
     const random = getRandomVideoTestPhrase()
     dispatch(updateSpeechTestText(random))
     requestAccess()
-  }, [directUploadURL, postRecordingCallbackURL, selectedVideoDevice, selectedAudioDevice])
+  }, [
+    directUploadURL,
+    postRecordingCallbackURL,
+    selectedVideoDevice,
+    selectedAudioDevice,
+  ])
 
+  useEffect(() => {
+    if (status !== 'stopped') return
+    const element = stoppedSectionRef.current
+    if (!element) return
+
+    setTimeout(() => {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      })
+    }, 400)
+  }, [status])
 
   const videoUpload = async () => {
     if (!videoBlob) {
@@ -271,13 +330,15 @@ const VideoCheckComponent: React.FC<Props> = ({
       return
     }
     dispatch(updateUploading(CheckListStatus.InProgress))
-    completeUpload(videoBlob).then(() => {
-      setCheckStatus(CHECK_STATUS.passed)
-      dispatch(updateUploading(CheckListStatus.Done))
-    }).catch(() => {
-      setCheckStatus(CHECK_STATUS.failed)
-      dispatch(updateUploading(CheckListStatus.Failed))
-    })
+    completeUpload(videoBlob)
+      .then(() => {
+        setCheckStatus(CHECK_STATUS.passed)
+        dispatch(updateUploading(CheckListStatus.Done))
+      })
+      .catch(() => {
+        setCheckStatus(CHECK_STATUS.failed)
+        dispatch(updateUploading(CheckListStatus.Failed))
+      })
   }
 
   const handleStopRecording = React.useCallback(async (): Promise<void> => {
@@ -296,43 +357,64 @@ const VideoCheckComponent: React.FC<Props> = ({
         mediaStreamRef.current.getTracks().forEach(track => track.stop())
         mediaStreamRef.current = null
       }
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0
+      }
     } catch (e) {
       setCheckStatus(CHECK_STATUS.failed)
       dispatch(updateAccess(CheckListStatus.Failed))
     }
   }, [stopRecording])
 
-  const renderActionButton = () => {
-    if (status === 'recording') {
-      return (
-        <Flex vertical align="center" gap={8} justify="end">
-          <Button onClick={handleStopRecording} type="primary" danger icon={<StopOutlined />}>
-            {I18n.t('enduser.system_check_stop_recording')}
-          </Button>
-        </Flex>
-      )
-    }
+  const handleStartWithCountdown = useCallback(() => {
+    setIsCountingDown(true)
+  }, [])
 
-    return (
-      <Button
-        onClick={() => {
-          startRecording()
-          setVisualizing(true)
-        }}
-        type="primary"
-        icon={<VideoCameraOutlined />}
-      >
-        {I18n.t('enduser.system_check_start_recording')}
-      </Button>
-    )
-  }
+  const handleCountdownComplete = useCallback(() => {
+    setIsCountingDown(false)
+    setRemainingSeconds(MAX_DURATION)
+    startRecording()
+    setVisualizing(true)
+  }, [startRecording])
+
+  // Countdown timer for recording duration
+  const recordingStartedRef = useRef<boolean>(false)
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (status === 'recording') {
+      if (!recordingStartedRef.current) {
+        setRemainingSeconds(MAX_DURATION)
+        recordingStartedRef.current = true
+      }
+      interval = setInterval(() => {
+        setRemainingSeconds((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval)
+            handleStopRecording()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    } else {
+      recordingStartedRef.current = false
+    }
+    return () => clearInterval(interval)
+  }, [status, handleStopRecording])
 
   useEffect(() => {
     const getDevices = async () => {
       const deviceList = await navigator.mediaDevices.enumerateDevices()
-      const videoDevices = deviceList.filter(device => device.kind === 'videoinput')
-      const audioDevices = deviceList.filter(device => device.kind === 'audioinput')
-      setDevices({ videoDevices, audioDevices })
+      const videoDevices = deviceList.filter(
+        device => device.kind === 'videoinput',
+      )
+      const audioDevices = deviceList.filter(
+        device => device.kind === 'audioinput',
+      )
+      const audioOutputDevices = deviceList.filter(
+        device => device.kind === 'audiooutput',
+      )
+      setDevices({ videoDevices, audioDevices, audioOutputDevices })
       if (videoDevices.length > 0 && !selectedVideoDevice) {
         setSelectedVideoDevice(videoDevices[0].deviceId)
       }
@@ -343,16 +425,11 @@ const VideoCheckComponent: React.FC<Props> = ({
     getDevices()
   }, [selectedVideoDevice, selectedAudioDevice])
 
-  const Controls:React.FC = () => (
-    <Flex className="m-16" gap={8}>
-      {!mediaBlobUrl && renderActionButton()}
-    </Flex>
-  )
-
   const rerun = async () => {
     setCheckStatus(CHECK_STATUS.pending)
     clearBlobUrl()
     setVideoBlob(null)
+    setVideoReady(false)
     dispatch(updateUploading(CheckListStatus.Pending))
 
     // Reset upload refs
@@ -386,6 +463,17 @@ const VideoCheckComponent: React.FC<Props> = ({
     setVisualizing(true)
   }
 
+  const hasRecordedVideo = status === 'stopped' && !!mediaBlobUrl
+  const isLoading = hasRecordedVideo && !videoReady
+  const isPlaybackReady = hasRecordedVideo && videoReady
+
+  // Determine which bar to show
+  let barKey = 'idle'
+  if (status === 'recording') barKey = 'recording'
+  else if (isLoading) barKey = 'loading'
+  else if (isPlaybackReady) barKey = 'playback'
+
+
   const handleChangeVideoDevice = (deviceId: string) => {
     setSelectedVideoDevice(deviceId)
   }
@@ -394,50 +482,15 @@ const VideoCheckComponent: React.FC<Props> = ({
     setSelectedAudioDevice(deviceId)
   }
 
-  const renderProgressAndChecklist = () => (
-    <div className="mt-0" style={{ alignSelf: 'stretch' }}>
-      <CheckList
-        className="mt14"
-        dataSource={[
-          { name: I18n.t('enduser.system_check_access'), status: state.access },
-          { name: I18n.t('enduser.system_check_uploading'), status: state.uploading },
-        ]}
-      />
-    </div>
-  )
+  const isCheckPassed = state.uploading === CheckListStatus.Done
+  const isCheckStopped = status === 'stopped'
 
-  const renderButtons = () => {
-    if (state.uploading !== CheckListStatus.Failed) {
-      return (
-        <Space className="mt-8">
-          {isAccessDone && (
-            <Button
-              className={styles.continueButton}
-              onClick={rerun}
-              icon={<RedoOutlined />}
-              disabled={isUploadingInProgress}
-            >
-              {I18n.t('enduser.system_check_retake')}
-            </Button>
-          )}
-          <Button
-            size="middle"
-            type="primary"
-            className={styles.continueButton}
-            onClick={nextStep}
-            disabled={isUploadingInProgress}
-          >
-            {I18n.t('enduser.system_check_proceed')}
-            <RightOutlined />
-          </Button>
-        </Space>
-      )
-    }
+  const renderActionButtons = () => {
+    if (!isCheckStopped) return null
+
     if (state.uploading === CheckListStatus.Failed) {
       return (
         <Button
-          type="primary"
-          className="mt-8"
           onClick={videoUpload}
           icon={<RedoOutlined />}
           loading={isUploadingInProgress}
@@ -446,65 +499,138 @@ const VideoCheckComponent: React.FC<Props> = ({
         </Button>
       )
     }
-    return (
-      <Button
-        type="primary"
-        className="mt-8"
-        onClick={rerun}
-        icon={<RedoOutlined />}
-      >
-        {I18n.t('enduser.system_check_run_again')}
-      </Button>
-    )
+
+    if (status === 'stopped' && isCheckPassed) {
+      return (
+        <>
+          <Button
+            onClick={rerun}
+            icon={<RedoOutlined />}
+            disabled={isUploadingInProgress}
+          >
+            {I18n.t('enduser.system_check_retake')}
+          </Button>
+          <Button
+            type="primary"
+            onClick={nextStep}
+            disabled={!isCheckPassed}
+          >
+            {I18n.t('enduser.system_check_proceed')}
+            <RightOutlined />
+          </Button>
+        </>
+
+      )
+    }
+
+    return null
   }
 
+  const renderProgressAndChecklist = () => (
+    <CheckList
+      className="w-100"
+      dataSource={[
+        { name: I18n.t('enduser.system_check_access'), status: state.access },
+        { name: I18n.t('enduser.system_check_uploading'), status: state.uploading },
+      ]}
+    />
+  )
+
   return (
-    <Flex align="center" vertical gap={4}>
-      <h3>{I18n.t('checking_wizard.video_check.title')}</h3>
-      <p className="ta-c">{I18n.t('enduser.video_check_description')}</p>
-      <section style={{ minHeight: '60px' }}>
-        {
-         ['idle', 'recording'].includes(status)
-        && (
-
-          <h3 className={cs(styles.testMessage, 'ta-c', 'mt-0')}>
-            &#8220;
-            {state.speechTestText}
-            &#8221;
-          </h3>
-
-        )
-      }
-      </section>
+    <Flex align="center" vertical gap={8}>
       <Flex className={styles['video-player-parent']}>
-
-        <VideoPlayer
+        <VideoRecorder
           videoRef={videoRef}
           mediaUrl={mediaBlobUrl}
           permissionGranted={state.access === CheckListStatus.Done}
           status={status}
-          showCountdownTimer
-          duration={MAX_DURATION}
-          onFinish={handleStopRecording}
           onPlay={handleVideoPlay}
           visualizing={visualizing}
           stream={mediaStreamRef.current}
-          videoDevices={devices.videoDevices}
-          audioDevices={devices.audioDevices}
-          onChangeVideoDevice={handleChangeVideoDevice}
-          onChangeAudioDevice={handleChangeAudioDevice}
+          renderControlBar={(stream: MediaStream) => (
+            stream
+              ? (
+                <>
+                  {isCountingDown && (
+                    <CountdownOverlay onComplete={handleCountdownComplete} />
+                  )}
+                  <AnimatePresence mode="wait">
+                    {barKey === 'loading' && (
+                      <motion.div
+                        key="loading"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className={styles.loadingBar}
+                      >
+                        <span className={styles.loadingSpinner} />
+                        {I18n.t('enduser.preparing_preview')}
+                      </motion.div>
+                    )}
+                    {(barKey === 'idle' || barKey === 'recording') && (
+                      <motion.div
+                        key="controls"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <FloatingControlBar
+                          status={status}
+                          isRecording={status === 'recording'}
+                          hasMedia={!!mediaBlobUrl}
+                          onStartRecording={handleStartWithCountdown}
+                          onStopRecording={handleStopRecording}
+                          onDiscard={rerun}
+                          remainingSeconds={remainingSeconds}
+                          maxDuration={MAX_DURATION}
+                          stream={stream}
+                          audioDevices={devices.audioDevices}
+                          onChangeAudioDevice={handleChangeAudioDevice}
+                          onChangeVideoDevice={handleChangeVideoDevice}
+                          videoDevices={devices.videoDevices}
+                          selectedVideoDeviceId={selectedVideoDevice}
+                          selectedAudioDeviceId={selectedAudioDevice}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
+              ) : (
+                <>
+                  {barKey === 'playback' && (
+                    <motion.div
+                      key="playback"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <PlaybackControlBar videoRef={videoRef} />
+                    </motion.div>
+                  )}
+                </>
+              )
+          )}
+          maxRecordingDuration={status === 'recording' ? MAX_DURATION : undefined}
         />
       </Flex>
 
-      <Controls />
       {
         status === 'stopped' && (
-          <>
-            <Alert style={{ width: '100%' }} title={I18n.t('enduser.check_video_recording')} type="info" />
+          <Flex className="w-100">
             {renderProgressAndChecklist()}
-            {renderButtons()}
-          </>
+          </Flex>
         )}
+      <Flex ref={stoppedSectionRef} className="mb-2 w-100" justify="space-between">
+        <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
+          {I18n.t('enduser.back')}
+        </Button>
+        <Flex justify="end" wrap gap={12}>
+          {renderActionButtons()}
+        </Flex>
+      </Flex>
     </Flex>
   )
 }

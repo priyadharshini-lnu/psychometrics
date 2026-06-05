@@ -22,6 +22,7 @@ bg:
     admin_updated_successfully: Администраторът '%{name}' е актуализиран успешно
     admins: Администратори
     advanced: Разширени
+    agile: ПОДВИЖЕН
     ai_artifact_result_generation_admin_job_failed: Артефактът „%{artifact_name}” не може да бъде генериран за потребителя „%{user_email}”.
     ai_artifact_result_stale: Резултатът може да е неактуален, тъй като зависимостите на AI артефакта са се променили от момента на генериране на последния резултат. Обмислете да генерирате артефакта отново, за да използвате най-новите зависимости.
     ai_artifacts: Артефакти с изкуствен интелект
@@ -137,6 +138,7 @@ bg:
     assessments_not_mhs: Всички оценки трябва да бъдат от тип MHS.
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя
+    assessor_form: Формуляр за оценител
     assessor_workshops: Център за оценяване
     assessors: Оценители
     assistant_toolbar_failed: Не успях да генерирам валиден резултат след многократни опити
@@ -144,6 +146,7 @@ bg:
     assistant_validation_failed: Не успях да генерирам валиден резултат след многократни опити
     audit_logs: Регистрационни файлове за одит
     audit_reports: Одиторски доклади
+    auto_moderated_factor_info: Тази оценка се определя автоматично и не може да бъде променена
     auto_placeholder: Авто
     availability: Наличност
     available_languages: Докладът е наличен на езици
@@ -221,6 +224,7 @@ bg:
     cancel: Отмени
     cancellation_and_rescheduling_disabled: Отмяната и пренасрочването са деактивирани
     captcha: Проверка чрез Captcha
+    case_study: Казуси
     casual: Неформален
     cell_save_msg: Валидните промени се запазват автоматично, веднага щом излезете от клетката след редактиране.
     characters: герои
@@ -230,6 +234,8 @@ bg:
     client_admins: Администратори на клиенти
     clients: Наеми на клиенти
     code_required: Изисква се код
+    common: Оценка на TTE
+    common_assessment: Оценка на TTE
     communication_center: Комуникационен център
     communications: Комуникации
     completed: Завършен
@@ -248,6 +254,7 @@ bg:
     create_client: Създайте клиент
     create_indicator: Създаване на индикатор
     current_job_role: Текуща длъжност
+    custom_upload: Персонализирано качване
     dashboard: Таблото
     dashboards: Табла
     data_reports: Отчети за данни
@@ -285,6 +292,8 @@ bg:
     dimension_translations_export_scheduled: Запланирани преводи за износ за измерение „%{name}“.
     dimensions: Размери
     disable_proctoring: Деактивиране на наблюдението
+    disallow_lead_assessor_moderation: Да не се разрешава модерация от страна на главния оценител
+    disallow_lead_assessor_moderation_info: Оценката ще се изчислява автоматично въз основа на подадените формуляри от оценителите, а главният оценител няма да може да я променя от екрана за модерация
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
     download_bulk_asset_download_example_csv: Изтеглете пример за CSV.
@@ -315,6 +324,7 @@ bg:
     enhance_with_ai_requires_ai_assistants: За да използвате функцията „Подобрение с AI“, трябва да активирате функцията „AI асистенти“.
     enter_description: Въведете описание
     enter_name: Въведете име
+    enter_question_id: Въведете идентификационния номер на въпроса
     error: Грешка
     estimated_tokens: жетони (оценка)
     evaluation_status: Статус на оценката
@@ -381,6 +391,8 @@ bg:
     idp_appearance_title: Заглавие
     idp_plan_reset_success: Планът беше успешно рестартиран
     idp_templates: Шаблони за индивидуален план за развитие
+    iiht: ИИХТ
+    iiht_assessment: Оценка на IIHT
     import_ai_artifacts: Импортиране на AI артефакти
     import_csv_assessment_group_error: 'Ред „%{index}“: потребителят с имейл адрес %{email} вече е поканен в „%{workshopInviteName}“.'
     import_csv_error: 'Ред %{index}: потребител с имейл %{email} не участва в тази кампания'
@@ -406,9 +418,11 @@ bg:
     import_users: Импортиране на потребители
     internal: Вътрешен
     invalid_csv_header: CSV файлът съдържа невалидни заглавия.
+    invalid_question_ids: 'Идентификатори на въпроси, които не се срещат в тази оценка: %{ids}'
     job_roles: Работни роли
     keywords: Ключови думи
     keywords_placeholder: Въведете ключови думи, разделени със запетаи.
+    lead_assessor_form: Формуляр за водещ оценител
     learning_from_others: Съвместно обучение [20]
     level: Ниво
     level_apply: Кандидатствай
@@ -418,6 +432,8 @@ bg:
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
     licenses: Лицензи
+    lighthouse_question: Въпрос за фара
+    lighthouse_question_id: Идентификационен номер на въпроса за „Lighthouse“
     linked_assessments: Свързани оценки
     low: Ниска
     maintenance: Поддръжка
@@ -425,10 +441,14 @@ bg:
     maintenance_settings_description: Управление на прозорците и настройките за поддръжка на системата
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
     max_value: Максимална стойност
+    mean: Средна стойност
     media_files_label: Файлове
     media_library: Медийна библиотека
     media_library_page_title: Медийна библиотека – Табло за управление – Mercer Lighthouse
+    meeting: Събрание
     messages: Съобщения
+    mettl: МЕТТЛ
+    mettl_assessment: Оценка на Mettl
     mhs: MHS
     mhs_assessment: Оценка на MHS
     mhs_assessment_name: Име на оценката на MHS
@@ -437,6 +457,10 @@ bg:
     mhs_external_assessment_id: МХС Оценка ID
     mhs_report_id: Идентификационен номер на доклада на MHS
     mhs_session_id: Mhs сесиен идентификатор
+    microsite: Микросайт
+    microsite_assessment: Оценка на микросайта
+    microsite_assessment_name: Наименование на оценката на микросайта
+    microsite_question_id: Идентификационен номер на въпроса в микросайта
     min_value: Минимална стойност
     minimum_10_words: Минимум 10 думи
     minimum_download_speed: Минимална скорост на изтегляне (в Mbps)
@@ -445,12 +469,14 @@ bg:
     missing_min_max_values: Минималните и максималните стойности са задължителни.
     model_answer: Модел на отговор
     model_answer_placeholder: Въведете моделния отговор за AI оценяване.
+    must_be_a_valid_url: Невалиден URL адрес. Посочете пълния URL адрес, включващ протокола http или https
     name: Име
     name_max_length: Името не може да надвишава %{length} символа
     name_required: Задължително е име
     new_folder: Нова папка
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
+    no_question_mappings: Няма налични съответствия на въпросите
     no_status: Без статус
     norm_editor_numeric_value_error: Допускат се само числови стойности (цели числа или числа с десетични знаци).
     norms: Норми
@@ -466,10 +492,13 @@ bg:
     on_the_job: На работа [70]
     only_editable_on_create: Тази опция може да се редактира само по време на създаването.
     options: Опции
+    organisational: ПОДВИЖЕН
     original_text: Оригинален текст
     overall: Общо
     overall_score: Общ резултат
     participants: Участниците
+    pearson: Пиърсън
+    pearson_assessment: Оценка на Пиърсън
     permissions:
       aiArtifacts:
         export: Износ
@@ -800,6 +829,8 @@ bg:
       projectSettings:
         assessments: Оценки
         design: Проектирам
+        external_logout_redirect_enabled: Активиране на външно пренасочване при излизане
+        external_logout_url: URL за излизане от системата
         feature_flags: Флагове на функциите
         idp: Индивидуален план за развитие
         integrations: Интеграции
@@ -913,6 +944,7 @@ bg:
     project_settings: Настройки на проекта
     projects: Проекти
     prompt: Подсказка
+    psychometric: Психометрични
     question_center: Център за въпроси
     question_center_page_title: Център за въпроси – Табло – Mercer Lighthouse
     question_editor_change_type: Промени типа
@@ -921,6 +953,7 @@ bg:
     question_editor_enable_transcription: Активиране на транскрипцията
     question_editor_preview_question: Въпрос за преглед
     question_editor_validation_type: Тип валидиране
+    question_mapping: Картографиране на въпросите
     question_randomization: Разпределение на въпросите по случаен принцип
     question_type_audio_response: Аудио отговор
     question_type_constant_sum: Постоянна сума
@@ -1037,6 +1070,8 @@ bg:
       subject_full_name_cont: Наименование на предмета
       user_email_cont: Имейл на потребителя
       user_full_name_cont: Потребителско име
+    saville: Савил
+    saville_assessment: Оценка на Saville
     scheduling: Планиране
     score: Резултат
     score_approval_not_allowed_to_approve: Не е позволено да одобрявате този резултат.
@@ -1072,6 +1107,7 @@ bg:
     select_end_time: Изберете час на приключване
     select_language_to_translate: Моля, изберете език за превод
     select_level: Изберете ниво
+    select_question: Търсене на въпрос по име или идентификационен номер
     select_start_time: Изберете начален час
     selective_proctoring: Селективно наблюдение
     send_email: Изпрати имейл
@@ -1084,14 +1120,19 @@ bg:
     show_submenu: Покажи подменюто
     show_translated: Покажи преведеното
     siem: SIEM
+    simulation: Симулация
+    simulation_assessment: Оценка на симулацията
     skill_aliases: Псевдоними на уменията
     skills: Умения
     skills_taxonomy: Таксономия на уменията
+    skillvue: Skillvue
+    skillvue_assessment: Оценка на Skillvue
     skip_assessment_level_checks: Пропусни проверките на системата на ниво оценка
     slot_name: Име на слот
     sms_histories: История на SMS
     sms_invites: SMS покани
     specialty_questions: Специфични въпроси
+    standard_deviation: Стандартно отклонение
     standard_questions: Стандартни въпроси
     start: начало
     start_time: Начален час
@@ -1152,6 +1193,8 @@ bg:
     x_axis_interval_label: Интервал по ос Х
     y_axis_interval_label: Интервал на Y-ос
     year: Държава
+    yoodli: Юдли
     yoodli_activity_id: Yoodli ID на активността
+    yoodli_assessment: Оценка на Yoodli
     yoodli_email_id: Имейл ID на кандидата Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
