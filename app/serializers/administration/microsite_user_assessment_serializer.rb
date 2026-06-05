@@ -2,7 +2,7 @@
 
 module Administration
   class MicrositeUserAssessmentSerializer < Panko::Serializer
-    attributes :participant_id, :registration_status, :error_message, :raw_response
+    attributes :participant_id, :registration_status, :error_message, :raw_response, :assessment_url
 
     def participant_id
       object&.participant_id
@@ -18,6 +18,10 @@ module Administration
 
     def raw_response
       object&.answers
+    end
+
+    def assessment_url
+      object&.url
     end
   end
 end

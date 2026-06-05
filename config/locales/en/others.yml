@@ -1462,6 +1462,7 @@ en:
       external_user_id: Skillvue Candidate ID
       id: Campaign Assessment ID
       locales: Locales
+      microsite_assessment_url: Microsite Assessment URL
       microsite_error_message: Error Message
       microsite_participant_id: Microsite Participant ID
       microsite_registration_status: Registration Status
