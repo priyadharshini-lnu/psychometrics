@@ -3,7 +3,7 @@
 class Api::V2::Administration::WorkshopRecordingResource < JSONAPI::Resource
   model_name 'MeetingRecording'
 
-  attributes :id, :status, :external_id, :recording_date, :recording_url, :assessors, :participants,
+  attributes :status, :external_id, :recording_date, :recording_url, :assessors, :participants,
              :transcription_url, :transcription_text
 
   def recording_url

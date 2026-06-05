@@ -7,7 +7,7 @@ module Api
         attributes :skill_type, :level, :level_definition, :project_id, :skill_id, :proficiency_type
 
         has_one :project, class_name: 'Client'
-        belongs_to :skill
+        has_one :skill
 
         ransack_filters %i[proficiency_type_in skill_type_in skill_name_in level_in filterable_fields project_id_eq
                            include_global global]

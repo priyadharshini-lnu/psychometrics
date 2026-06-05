@@ -3,7 +3,7 @@
 class Api::V2::Administration::Dimensions::InnovationStyles::InnovationStylesFactorResource < Api::V2::Administration::BaseResource
   model_name 'InnovationStylesFactor'
 
-  attributes :id, :factor_id, :factor_name, :predicate, :value, :position, :weight, :created_at, :updated_at
+  attributes :factor_id, :factor_name, :predicate, :value, :position, :weight, :created_at, :updated_at
 
   ransack_filters %i[filterable_fields search_query]
 
