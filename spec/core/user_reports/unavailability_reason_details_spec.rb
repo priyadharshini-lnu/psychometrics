@@ -173,6 +173,42 @@ describe UserReports::UnavailabilityReasonDetails do
       end
     end
 
+    context 'when approval is pending qc' do
+      before do
+        allow(user_report).to receive_messages(
+          has_approval_workflow?: true,
+          approved?: false,
+          approval_status: :pending_qc
+        )
+      end
+
+      it 'returns pending_approval reason with pending qc message' do
+        expect(result).to include(
+          reason_code: 'pending_approval',
+          reason_message: 'Pending QC report approval',
+          approval_status: 'Pending QC'
+        )
+      end
+    end
+
+    context 'when approval is qc completed' do
+      before do
+        allow(user_report).to receive_messages(
+          has_approval_workflow?: true,
+          approved?: false,
+          approval_status: :qc_completed
+        )
+      end
+
+      it 'returns pending_approval reason with final approval message' do
+        expect(result).to include(
+          reason_code: 'pending_approval',
+          reason_message: 'Pending final report approval',
+          approval_status: 'QC completed'
+        )
+      end
+    end
+
     context 'when campaign scoring is pending' do
       let(:report) { instance_double(Report, campaign_factors: [double], campaign_ai_artifacts: []) }
 

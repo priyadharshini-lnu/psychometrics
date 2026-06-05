@@ -6,6 +6,8 @@ module UserReports
     REPORT_GENERATION_FAILED_REASON_MESSAGE = 'Report generation failed'
     NO_REPORT_MODULE_REASON_MESSAGE = 'No report module found for this report'
     PENDING_APPROVAL_REASON_TEMPLATE = "Approval status is '%<status>s'"
+    PENDING_QC_APPROVAL_REASON_MESSAGE = 'Pending QC report approval'
+    QC_COMPLETED_APPROVAL_REASON_MESSAGE = 'Pending final report approval'
     CAMPAIGN_SCORING_PENDING_REASON_MESSAGE = 'Campaign scores are not finalized for this user'
     CAMPAIGN_ARTIFACT_RESULTS_PENDING_REASON_MESSAGE =
       'Campaign artifact results are not finalized for this user'
@@ -95,9 +97,20 @@ module UserReports
       {
         available: false,
         reason_code: 'pending_approval',
-        reason_message: format(PENDING_APPROVAL_REASON_TEMPLATE, status: approval_status),
+        reason_message: pending_approval_reason_message,
         approval_status: approval_status
       }
+    end
+
+    def pending_approval_reason_message
+      case user_report.approval_status.to_s
+        when 'pending_qc'
+          PENDING_QC_APPROVAL_REASON_MESSAGE
+        when 'qc_completed'
+          QC_COMPLETED_APPROVAL_REASON_MESSAGE
+        else
+          format(PENDING_APPROVAL_REASON_TEMPLATE, status: formatted_approval_status)
+      end
     end
 
     def campaign_scoring_pending_reason
@@ -200,7 +213,14 @@ module UserReports
     end
 
     def formatted_approval_status
-      user_report.approval_status.to_s.titleize
+      case user_report.approval_status.to_s
+        when 'pending_qc'
+          'Pending QC'
+        when 'qc_completed'
+          'QC completed'
+        else
+          user_report.approval_status.to_s.titleize
+      end
     end
 
     def unknown_reason
