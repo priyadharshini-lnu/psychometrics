@@ -80,8 +80,8 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
     }))
   }
 
-  const uploadAllFiles = (occupationId?: string): void => {
-    if (!occupationId) return
+  const uploadAllFiles = (occupationId?: string): Promise<Occupation | void> => {
+    if (!occupationId) return Promise.resolve()
 
     const fd = new FormData()
 
@@ -109,9 +109,10 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
       }
     })
 
-    if (hasFiles) {
-      dispatch(uploadFiles(dimensionId as string, occupationId, fd))
-    }
+    if (!hasFiles) return Promise.resolve()
+
+    return dispatch(uploadFiles(dimensionId as string, occupationId, fd))
+      .then(() => resource.fetchSingle({ id: occupationId }))
   }
 
   const createOccupation = (data: Occupation) => resource.createResource(data)
@@ -141,6 +142,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
           <Form.Item
             name="name"
             label={I18n.t('common.column.name')}
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
