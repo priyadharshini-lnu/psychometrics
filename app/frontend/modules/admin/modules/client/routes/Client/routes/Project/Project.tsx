@@ -93,6 +93,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/taxonomy')) {
       return ['taxonomy']
     }
+    if (pathname.includes('/licenses')) {
+      return ['licenses']
+    }
     return undefined
   }
 
@@ -131,6 +134,8 @@ const Project: FC<Props> = ({
         return I18n.t('administration.idp.idp')
       case 'taxonomy':
         return I18n.t('administration.taxonomy.title')
+      case 'licenses':
+        return I18n.t('admin.project_licenses')
       default:
         return ''
     }
