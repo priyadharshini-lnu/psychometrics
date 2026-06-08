@@ -106,6 +106,8 @@ export default interface UserAssessment {
     normalizeFactorScores: boolean
     updateContentVariation: boolean
     updateSimulationTimeExtension: boolean
+    toggleRequireScheduling: boolean
+    togglePrework: boolean
     markComplete: boolean
     updateMhsConfidenceInterval: boolean;
     updateMhsLeadershipBar: boolean;

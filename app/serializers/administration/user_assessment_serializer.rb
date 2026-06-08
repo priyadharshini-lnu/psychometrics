@@ -114,6 +114,8 @@ module Administration
           'update_mettl_schedule',
           'update_content_variation',
           'update_simulation_time_extension',
+          'toggle_require_scheduling',
+          'toggle_prework',
           'rescore_response',
           'rescore_ai_response',
           %w[remove destroy],
