@@ -102,6 +102,7 @@ en:
     last_name: Last Name
     last_updated: Last Updated
     learning_on_the_job_label: Learning on the Job
+    lets_start: Let's start!
     linked_activities: Linked Activities
     linked_assessment: Linked Assessment
     loading: Loading...
@@ -140,7 +141,9 @@ en:
     ok: Ok
     options: Options
     owner: Owner
+    pause: Pause
     pending: Pending
+    play: Play
     policy_version: Policy Version
     policy_version_format: Only whole numbers are allowed
     positive: Positive
@@ -155,6 +158,7 @@ en:
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
     rec: REC
+    record: Record
     recorded: recorded
     recording: recording
     recording_consent_notice: This meeting session will be recorded. Your participation in this meeting constitutes your consent to be recorded.
@@ -186,11 +190,13 @@ en:
     start_date: Start Date
     status: Status
     status_unknown: Status Unknown
+    stop: Stop
     subject: Subject
     submit: Submit
     submit_and_finish_proctoring: Submit and Finish Proctoring
     suspended: Suspended
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
+    system_check_uploading: Uploading
     table:
       entries:
         selected:

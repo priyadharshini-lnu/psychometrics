@@ -755,6 +755,8 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
+    newrelic_rpm (10.5.0)
+      logger
     nio4r (2.7.4)
     nkf (0.2.0)
     nokogiri (1.19.3-arm64-darwin)
@@ -1387,6 +1389,7 @@ DEPENDENCIES
   mustache (~> 1.1.1)
   neighbor
   net-imap (~> 0.6.4)
+  newrelic_rpm (~> 10.5)
   nkf
   oauth2 (~> 2.0)
   oci (~> 2.22.0)

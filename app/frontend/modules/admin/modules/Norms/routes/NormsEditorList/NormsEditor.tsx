@@ -303,12 +303,12 @@ const NormsEditorComponent = ({ saveNorm }: PropsFromRedux) => {
       responseType: NormEditorTR,
     }).then((response: unknown) => {
       setEditorData(camelizeKeys(response as NormEditor) as NormEditor)
-      setIsLoading(false)
     })
   }
 
   useEffect(() => {
     setData(tableData as Record<string, string | number>[])
+    setIsLoading(false)
   }, [tableData])
 
   useEffect(() => {

@@ -59,7 +59,8 @@ module CampaignFactors
         :campaign_factor_group_id,
         :min_value,
         :max_value,
-        :is_na_allowed
+        :is_na_allowed,
+        :disallow_lead_assessor_moderation
       )
     end
   end

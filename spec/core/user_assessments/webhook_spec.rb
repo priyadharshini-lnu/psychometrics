@@ -34,8 +34,8 @@ RSpec.describe UserAssessments::Webhook do
           campaign: campaign,
           subject: subject,
           assessments: contain_exactly(
-            { id: user_assessment.id, name: 'Thriving Index', status: 'Not Started' },
-            { id: second_user_assessment.id, name: 'Agile', status: 'Completed' }
+            { id: user_assessment.id, name: 'Thriving Index', status: 'not_started' },
+            { id: second_user_assessment.id, name: 'Agile', status: 'completed' }
           )
         ),
         record: user_assessment
@@ -58,10 +58,10 @@ RSpec.describe UserAssessments::Webhook do
       described_class.new(user_assessment).publish_campaign_user_assessment_summary
     end
 
-    it 'uses human-readable status labels' do
+    it 'uses status enum values in payload' do
       expect(WebhookSubscriptions::Publish).to receive(:call) do |_, _, data, **|
         statuses = data[:assessments].pluck(:status)
-        expect(statuses).to all(match(/\A[A-Z][a-z]*/))
+        expect(statuses).to all(match(/\A[a-z_]+\z/))
       end
 
       described_class.new(user_assessment).publish_campaign_user_assessment_summary

@@ -17,7 +17,7 @@ module Api
             if @user.has_permission?(:campaign_factors, :manage, campaign_id: campaign_id)
               scope.joins(:assessments).where(
                 assessments: { id: assessment_ids }
-              )
+              ).distinct
             else
               scope.none
             end

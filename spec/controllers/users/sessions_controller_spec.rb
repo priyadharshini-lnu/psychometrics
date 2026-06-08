@@ -30,7 +30,7 @@ RSpec.describe Users::SessionsController, type: :controller do
 
     context 'when SAML signout is not available but external logout redirect is enabled' do
       before do
-        controller.session[:sso] = true
+        request.cookies[:sso_session] = 'true'
         security_setting.update(external_logout_redirect_enabled: true, external_logout_url: 'https://example.com/logout')
         controller.instance_variable_set(:@current_project, project)
       end
@@ -65,7 +65,7 @@ RSpec.describe Users::SessionsController, type: :controller do
   describe '#external_logout_available?' do
     context 'when SSO session exists and external_logout_redirect_enabled is true' do
       before do
-        controller.session[:sso] = true
+        request.cookies[:sso_session] = 'true'
         security_setting.update(external_logout_redirect_enabled: true)
         controller.instance_variable_set(:@current_project, project)
       end
@@ -88,7 +88,7 @@ RSpec.describe Users::SessionsController, type: :controller do
 
     context 'when external_logout_redirect_enabled is false' do
       before do
-        controller.session[:sso] = true
+        request.cookies[:sso_session] = 'true'
         security_setting.update(external_logout_redirect_enabled: false)
         controller.instance_variable_set(:@current_project, project)
       end
@@ -136,7 +136,7 @@ RSpec.describe Users::SessionsController, type: :controller do
   describe '#after_sign_out_path_for' do
     context 'when external logout redirect is available' do
       before do
-        controller.session[:sso] = true
+        request.cookies[:sso_session] = 'true'
         security_setting.update(external_logout_redirect_enabled: true, external_logout_url: 'https://example.com/logout')
         controller.instance_variable_set(:@current_project, project)
       end
@@ -170,7 +170,7 @@ RSpec.describe Users::SessionsController, type: :controller do
 
   describe '#compute_after_signout_path' do
     before do
-      controller.session[:sso] = true
+      request.cookies[:sso_session] = 'true'
       security_setting.update(external_logout_redirect_enabled: true, external_logout_url: 'https://example.com/logout')
       controller.instance_variable_set(:@current_project, project)
     end
@@ -197,16 +197,14 @@ RSpec.describe Users::SessionsController, type: :controller do
 
       it 'redirects to external logout URL' do
         # Set session before the destroy action
-        request.session[:sso] = true
-
+        request.cookies[:sso_session] = 'true'
         delete :destroy
 
         expect(response).to redirect_to('https://example.com/logout')
       end
 
       it 'audits the sign out' do
-        request.session[:sso] = true
-
+        request.cookies[:sso_session] = 'true'
         expect(controller).to receive(:audit!).with(
           :sign_out, user,
           user: user,

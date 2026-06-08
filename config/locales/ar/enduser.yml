@@ -144,6 +144,7 @@ ar:
     profile_details: تفاصيل
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
+    record: سجل
     recording_progress_bar: شريط تقدم التسجيل
     recording_time_remaining: "%{remainingSeconds} الثواني المتبقية"
     redirect_to_external_assessment: سيتم توجيهك إلى موقع الاختبار. يرجى النقر على "متابعة" إذا كنت ترغب في بدء الاختبار.

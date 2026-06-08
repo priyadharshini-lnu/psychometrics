@@ -3,7 +3,6 @@ import React, {
 } from 'react'
 import {
   Button, Flex, Alert,
-  Typography, Spin,
 } from 'antd'
 import axios from 'axios'
 import { connect, ConnectedProps } from 'react-redux'
@@ -34,6 +33,7 @@ import styles from './styles.less'
 import { CHECK_STATUS } from '../../common'
 import { getRandomVideoTestPhrase } from '../../../../CheckingWizard/services/service'
 import { useFaceDetection } from './useFaceDetection'
+import { CheckList } from '../../../../CheckingWizard/CheckList'
 
 const { I18n } = window
 
@@ -79,6 +79,7 @@ const VideoCheckComponent: React.FC<Props> = ({
   const analyserRef = useRef<AnalyserNode | null>(null)
   const audioCheckIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const audioDetectedRef = useRef<boolean>(false)
+  const stoppedSectionRef = useRef<HTMLDivElement | null>(null)
 
   const partIndexRef = useRef<number>(0)
   const uploadedPartsRef = useRef<{ part_number: number; etag: string }[]>([])
@@ -360,6 +361,19 @@ const VideoCheckComponent: React.FC<Props> = ({
     selectedAudioDevice,
   ])
 
+  useEffect(() => {
+    if (status !== 'stopped') return
+    const element = stoppedSectionRef.current
+    if (!element) return
+
+    setTimeout(() => {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      })
+    }, 400)
+  }, [status])
+
   const videoUpload = async () => {
     if (!videoBlob) {
       dispatch(updateUploading(CheckListStatus.Failed))
@@ -567,16 +581,7 @@ const VideoCheckComponent: React.FC<Props> = ({
       )
     }
 
-    if (state.uploading === CheckListStatus.InProgress) {
-      return (
-        <Flex align="center" gap={8}>
-          <Typography.Text>{I18n.t('enduser.system_check_uploading')}</Typography.Text>
-          <Spin size="small" />
-        </Flex>
-      )
-    }
-
-    if (isCheckPassed) {
+    if (status === 'stopped' && isCheckPassed) {
       return (
         <>
           <Button
@@ -600,6 +605,16 @@ const VideoCheckComponent: React.FC<Props> = ({
 
     return null
   }
+
+  const renderProgressAndChecklist = () => (
+    <CheckList
+      className="w-100"
+      dataSource={[
+        { name: I18n.t('enduser.system_check_access'), status: state.access },
+        { name: I18n.t('enduser.system_check_uploading'), status: state.uploading },
+      ]}
+    />
+  )
 
   return (
     <Flex align="center" vertical gap={8}>
@@ -690,7 +705,13 @@ const VideoCheckComponent: React.FC<Props> = ({
         />
       )}
 
-      <Flex style={{ width: '100%' }} className="mb-2" justify="space-between">
+      {
+        status === 'stopped' && (
+          <Flex className="w-100">
+            {renderProgressAndChecklist()}
+          </Flex>
+        )}
+      <Flex ref={stoppedSectionRef} className="mb-2 w-100" justify="space-between">
         <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
           {I18n.t('enduser.back')}
         </Button>

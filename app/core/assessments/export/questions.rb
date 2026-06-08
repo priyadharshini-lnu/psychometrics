@@ -124,7 +124,9 @@ module Assessments
       def extract_factor_scoring(question)
         return nil unless SCORING_ALLOWED_QUESTION_TYPES.include?(question.type)
 
-        question.factors_scorings.map do |scoring|
+        question.factors_scorings.filter_map do |scoring|
+          next unless scoring.factor
+
           factor_name = scoring.factor.name
           values = scoring.props.map { |p| p['value'] }.join(',')
           "#{factor_name}: #{values}"

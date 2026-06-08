@@ -102,6 +102,7 @@ es-ES:
     last_name: Apellido(s)
     last_updated: Última actualización
     learning_on_the_job_label: Aprendizaje sobre el terreno
+    lets_start: "¡Empecemos!"
     linked_activities: Actividades vinculadas
     linked_assessment: Evaluación vinculada
     loading: Cargando...
@@ -140,7 +141,9 @@ es-ES:
     ok: De acuerdo
     options: Opciones
     owner: Propietario
+    pause: Pausa
     pending: Pendiente
+    play: Jugar
     policy_version: Versión de la política
     policy_version_format: Solo se permiten números enteros.
     positive: Positivo
@@ -155,6 +158,7 @@ es-ES:
     question_id: ID de la pregunta
     question_transcription_disabled: La transcripción está desactivada para esta pregunta.
     rec: REC
+    record: Récord
     recorded: Grabado
     recording: Grabación
     recording_consent_notice: Esta sesión de reunión será grabada. Tu participación en esta reunión constituye tu consentimiento para ser grabado.
@@ -186,11 +190,13 @@ es-ES:
     start_date: Fecha de inicio
     status: Estado
     status_unknown: Estado desconocido
+    stop: Alto
     subject: Asunto
     submit: Enviar
     submit_and_finish_proctoring: Enviar y finalizar la supervisión
     suspended: Suspendido
     switch_to_laptop_or_desktop: Cambiar a ordenador portátil o de sobremesa
+    system_check_uploading: Cargando
     table:
       entries:
         selected:

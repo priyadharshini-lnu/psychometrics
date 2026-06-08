@@ -144,6 +144,7 @@ hr:
     profile_details: Detalji
     question_counter: Pitanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog odbijanja
+    record: Zabilježite
     recording_progress_bar: Traka napretka snimanja
     recording_time_remaining: "%{remainingSeconds} Preostaje sekundi"
     redirect_to_external_assessment: Bit ćete preusmjereni na stranicu za procjenu. Kliknite Nastavi ako želite započeti procjenu.
