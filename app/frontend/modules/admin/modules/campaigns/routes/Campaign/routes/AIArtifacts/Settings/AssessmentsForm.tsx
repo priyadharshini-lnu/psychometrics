@@ -244,7 +244,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
                   isLoading={isLoadingAllAssessments('fetch')}
                 />
           )}
-              title={I18n.t('administration.ai_artifacts.form.add_assessment')}
+              title={I18n.t('admin.form_add_assessment')}
               placement="bottomRight"
               trigger="click"
               open={open}
@@ -254,7 +254,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
                 type="primary"
                 icon={<PlusOutlined />}
               >
-                {I18n.t('common.actions.add')}
+                {I18n.t('shared.add')}
               </Button>
             </Popover>
         ) : null}
@@ -273,14 +273,14 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
                 rules={[
                   {
                     required: true,
-                    message: I18n.t('administration.ai_artifacts.form.assessment_required'),
+                    message: I18n.t('admin.form_assessment_required'),
                   },
                 ]}
                 style={{ marginBottom: 16 }}
                 initialValue={assessmentId}
               >
                 <Select
-                  placeholder={I18n.t('administration.ai_artifacts.form.select_assessment')}
+                  placeholder={I18n.t('admin.form_select_assessment')}
                   allowClear
                   showSearch
                   onChange={value => handleAssessmentChange(item.id, value)}
@@ -306,7 +306,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
                 rules={[
                   {
                     required: true,
-                    message: I18n.t('administration.ai_artifacts.form.questions_required'),
+                    message: I18n.t('admin.form_questions_required'),
                   },
                 ]}
                 style={{ marginBottom: 0 }}
@@ -314,7 +314,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
               >
                 <Select
                   mode="multiple"
-                  placeholder={I18n.t('administration.ai_artifacts.form.select_questions')}
+                  placeholder={I18n.t('admin.form_select_questions')}
                   allowClear
                   showSearch
                   style={{ width: '100%' }}
@@ -345,7 +345,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
       {!isLoading && selectedAssessments.size === 0 ? (
         <Flex justify="center">
           <Typography.Text>
-            {I18n.t('administration.ai_artifacts.form.no_assessment_selected')}
+            {I18n.t('admin.form_no_assessment_selected')}
           </Typography.Text>
         </Flex>
       ) : null}

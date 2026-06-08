@@ -93,7 +93,7 @@ export const useSavedFilter = (
     : [{
       label: <Empty
         image={Empty.PRESENTED_IMAGE_SIMPLE}
-        description={I18n.t('administration.report_approval.saving_filters.no_saved_filters')}
+        description={I18n.t('admin.report_approval_saving_filters_no_saved_filters')}
       />,
       key: '1',
     }]
@@ -258,11 +258,11 @@ export const useSavedFilter = (
                 onClick={() => updateFilter(selectedFilterId, 'updateFilter', { filter_params: selectedFilters },
                   'filter_updated').then(() => fetchFilters(resourceType).then(setSavedFilters))}
               >
-                {I18n.t('administration.report_approval.saving_filters.actions.save_filter')}
+                {I18n.t('shared.save')}
               </Button>
             )}
             <Button onClick={() => setIsNewFilterSave(true)} icon={<PlusOutlined />}>
-              {I18n.t('administration.report_approval.saving_filters.actions.save_new_filter')}
+              {I18n.t('admin.report_approval_saving_filters_actions_save_new_filter')}
             </Button>
             {selectedFilterId && (
               <Button
@@ -272,11 +272,11 @@ export const useSavedFilter = (
                   fetchFilters(resourceType).then(setSavedFilters)
                 })}
               >
-                {I18n.t('administration.report_approval.saving_filters.actions.delete_filter')}
+                {I18n.t('admin.report_approval_saving_filters_actions_delete_filter')}
               </Button>
             )}
             <Button onClick={handleClearFilters}>
-              {I18n.t('administration.report_approval.saving_filters.actions.clear_filters')}
+              {I18n.t('admin.report_approval_saving_filters_actions_clear_filters')}
             </Button>
           </>
         )}

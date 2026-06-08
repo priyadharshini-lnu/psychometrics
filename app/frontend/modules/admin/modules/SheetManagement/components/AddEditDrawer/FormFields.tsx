@@ -91,7 +91,7 @@ export const EmailField: FC<EmailFieldProps> = ({
           {
             required: true,
             message: I18n.t(
-              'administration.sheets.drawers.add_edit.validations.required_email',
+              'admin.sheets_drawers_add_edit_validations_required_email',
             ),
           },
         ]}
@@ -106,7 +106,7 @@ export const EmailField: FC<EmailFieldProps> = ({
   return (
     <Row className="mb-8">
       <Col span={24}>
-        <label>Email</label>
+        <label>{I18n.t('shared.email')}</label>
       </Col>
       <Col span={24} className="mt-2">
         {email}

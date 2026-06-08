@@ -31,15 +31,15 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
   const menuItems: MenuItem[] = [{
     key: '/participants/subjects',
-    label: I18n.t('administration.participants.tabs.subjects'),
+    label: I18n.t('admin.participants_tabs_subjects'),
   }]
   campaignPermissions.viewAssessors && menuItems.push({
     key: '/participants/assessors',
-    label: I18n.t('administration.participants.tabs.assessors'),
+    label: I18n.t('admin.participants_tabs_assessors'),
   })
   campaignPermissions.viewSmsInvites && menuItems.push({
     key: '/participants/sms/invites',
-    label: I18n.t('administration.participants.tabs.sms_contacts'),
+    label: I18n.t('admin.participants_tabs_sms_contacts'),
   })
 
   return (

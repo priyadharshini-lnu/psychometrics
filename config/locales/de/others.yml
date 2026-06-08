@@ -1662,7 +1662,6 @@ de:
     details:
       additional_time: Zusätzliche Zeit
       assessment_center: Assessment Center
-      assessment_center_invites: Assessment Center Einladungen
       completed_at: Abgeschlossen am
       completion_status: Status der Fertigstellung
       hogan_id: Hogan ID
@@ -1692,11 +1691,6 @@ de:
     modals:
       remove: Sind Sie sicher, dass Sie den Benutzer mit der E-Mail-Adresse '%{email}' aus dieser Kampagne entfernen möchten?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Assessor Beurteilungen
-      other_assessments: Andere Beurteilungen
-      other_assessor_assessments: Andere Assessor-Bewertungen
-      other_reports: Andere Berichte
     card:
       duration: Dauer
       starts_in: 'Beginnt in:'
@@ -1767,23 +1761,19 @@ de:
       insert: Einfügen
       'no': Nein
       ok: OK
-      publish: veröffentlichen.
       reject: Ablehnen
       remove: Entfernen
       reset: Rücksetzen
       resolve: Beschließen
       restore: Wiederherstellen
       return_to_home: Zurück zur Startseite
-      run: Ausführen
       save: sparen
       schedule: Zeitplan
       search: Suchen
-      send: Schicken
       sign_in: Anmelden
       start: Starten
       submit: Einreichen
       unarchive: Dearchivieren
-      unpublish: Unveröffentlicht
       unresolve: Unresolve
       update: Aktualisieren
       upload: Hochladen
@@ -1796,20 +1786,14 @@ de:
     column:
       action: Aktion
       active: Aktiv
-      ai_assistant: KI-Assistent
-      allow_multiple_responses: Mehrere Antworten zulassen
       approval_notification_list: Benutzerliste für Genehmigungsbenachrichtigungen
       approvers_list: Liste der Genehmiger
-      assessment: Bewertung
       assessment_name: Bewertung Name
       assessments: Beurteilungen
-      assessor: Assessor
       category: Kategorie
       client: Kunde
-      code: Code
       created_at: Erstellt am
       created_by: Erstellt von
-      created_date: Erstellt am
       default_language: Standardsprache
       description: Beschreibung
       details: Einzelheiten
@@ -1827,11 +1811,8 @@ de:
         scoring: Bewertung von JSON
       key: Schlüssel
       last_name: Nachname
-      linked_activities: Verknüpfte Aktivitäten
       linked_assessment: Verknüpfte Bewertung
-      meeting_link: Sitzung Link
       modified_by: Geändert von
-      modified_date: Geändertes Datum
       name: Name
       owner: Eigentümer
       package_id: Paket-ID
@@ -1847,7 +1828,6 @@ de:
       scheduling: Terminplanung
       skills: Fertigkeiten
       status: Status
-      tags: Tags
       timing: Timing
       token: Token
       type: Typ
@@ -1859,15 +1839,12 @@ de:
     messages:
       leave_message: Sind Sie sicher, dass Sie diese Seite verlassen wollen? Alle ungespeicherten Antworten, die Sie haben, werden verloren gehen.
     model:
-      admins: Admins
       assessment: Bewertung
       assessments: Beurteilungen
       campaigns: Kampagnen
       completion_statuses: Status der Fertigstellung
-      datasheet: Datenblatt
       report: Bericht
       reports: Berichte
-      sms_contact: SMS-Kontakt
       threesixty_campaign: Threesixty-Kampagne punktet
     status:
       completed: Abgeschlossen
@@ -2957,9 +2934,7 @@ de:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktiv
     campaign_name: Name der Kampagne
-    inactive: Inaktiv
     status_updated_at: Letzte Statusaktualisierung
     status_updated_by: Zuletzt aktualisiert von
     subject_email: 'Betreff: E-Mail'
@@ -3963,7 +3938,6 @@ de:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktiv
     allow_multiple_respones: Erlauben Sie Benutzern, mehrere Antworten zu übermitteln
     png: PNG
     regenerate_link: Link regenerieren

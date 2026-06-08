@@ -140,7 +140,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="report_approval_settings"
       resource={reportApprovalSettingsFormData}
-      readableResourceName={I18n.t('administration.report_approval.report_approval_settings')}
+      readableResourceName={I18n.t('admin.report_approval_settings')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -180,7 +180,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
             className="mb24"
             items={[{
               key: '1',
-              label: I18n.t('administration.campaigns.assessment_reports.report_approval.settings'),
+              label: I18n.t('admin.report_approval_settings'),
               forceRender: true,
               children: (
                 <Space orientation="vertical" size="middle">
@@ -193,7 +193,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch disabled={form.getFieldValue('approverUserIds')?.length > 0} />
                     </Form.Item>
                     <div className="weight-600">
-                      {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_not_required')}
+                      {I18n.t('admin.report_approval_approvers_not_required')}
                     </div>
                   </Space>
                   {!form.getFieldValue('approversNotRequired') && (
@@ -207,7 +207,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                           <Switch />
                         </Form.Item>
                         <div className="weight-600">
-                          {I18n.t('administration.campaigns.assessment_reports.report_approval.approvers_can_edit')}
+                          {I18n.t('admin.report_approval_approvers_can_edit')}
                         </div>
                       </Space>
                     </>
@@ -221,7 +221,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch disabled={form.getFieldValue('approvalNotificationUserIds')?.length > 0} />
                     </Form.Item>
                     <div className="weight-600">
-                      {I18n.t('administration.campaigns.assessment_reports.report_approval.do_not_send_notifications')}
+                      {I18n.t('admin.report_approval_do_not_send_notifications')}
                     </div>
                   </Space>
                   <Space align="center">
@@ -233,7 +233,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch />
                     </Form.Item>
                     <div className="weight-600">
-                      {I18n.t('administration.campaigns.assessment_reports.report_approval.allow_qc_bulk_submit')}
+                      {I18n.t('admin.report_approval_allow_qc_bulk_submit')}
                     </div>
                   </Space>
                   <Space align="center">
@@ -245,7 +245,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Switch />
                     </Form.Item>
                     <div className="weight-600">
-                      {I18n.t('administration.campaigns.assessment_reports.report_approval.allow_bulk_approve')}
+                      {I18n.t('admin.report_approval_allow_bulk_approve')}
                     </div>
                   </Space>
 
@@ -259,7 +259,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                         <Switch />
                       </Form.Item>
                       <div className="weight-600">
-                        {I18n.t('administration.campaigns.assessment_reports.report_approval.send_digest_emails')}
+                        {I18n.t('admin.report_approval_send_digest_emails')}
                       </div>
                     </Space>
                   )}
@@ -267,21 +267,19 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                     <Form.Item
                       name="digestDeliveryMode"
                       label={I18n.t(
-                        'administration.campaigns.assessment_reports.report_approval.digest_delivery_mode.form_label',
+                        'admin.digest_delivery_mode.form_label',
                       )}
                       rules={[{ required: sendDigestEmails }]}
                     >
                       <Select>
                         <Option value="immediate">
                           {I18n.t(
-                            'administration.campaigns.assessment_reports'
-                                              + '.report_approval.digest_delivery_mode.immediate',
+                            'admin.digest_delivery_mode.immediate',
                           )}
                         </Option>
                         <Option value="scheduled">
                           {I18n.t(
-                            'administration.campaigns.assessment_reports'
-                                              + '.report_approval.digest_delivery_mode.scheduled',
+                            'admin.digest_delivery_mode.scheduled',
                           )}
                         </Option>
                       </Select>
@@ -293,24 +291,24 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       <Form.Item
                         name="digestFrequency"
                         label={I18n.t(
-                          'administration.campaigns.assessment_reports.report_approval.digest_frequency.form_label',
+                          'admin.digest_frequency.form_label',
                         )}
                         rules={[{ required: sendDigestEmails }]}
                       >
                         <Select>
                           <Option value="daily">
                             {I18n.t(
-                              'administration.campaigns.assessment_reports.report_approval.digest_frequency.daily',
+                              'admin.digest_frequency.daily',
                             )}
                           </Option>
                           <Option value="weekly">
                             {I18n.t(
-                              'administration.campaigns.assessment_reports.report_approval.digest_frequency.weekly',
+                              'admin.digest_frequency.weekly',
                             )}
                           </Option>
                           <Option value="weekdays">
                             {I18n.t(
-                              'administration.campaigns.assessment_reports.report_approval.digest_frequency.weekdays',
+                              'admin.digest_frequency.weekdays',
                             )}
                           </Option>
                         </Select>
@@ -319,7 +317,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                         <Form.Item
                           name="digestWeekdays"
                           label={I18n.t(
-                            'administration.campaigns.assessment_reports.report_approval.digest_weekdays.form_label',
+                            'admin.digest_weekdays.form_label',
                           )}
                           rules={[{
                             required: sendDigestEmails
@@ -332,37 +330,37 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                           >
                             <Option value={0}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.sunday',
+                                'admin.digest_weekdays.sunday',
                               )}
                             </Option>
                             <Option value={1}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.monday',
+                                'admin.digest_weekdays.monday',
                               )}
                             </Option>
                             <Option value={2}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.tuesday',
+                                'admin.digest_weekdays.tuesday',
                               )}
                             </Option>
                             <Option value={3}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.wednesday',
+                                'admin.digest_weekdays.wednesday',
                               )}
                             </Option>
                             <Option value={4}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.thursday',
+                                'admin.digest_weekdays.thursday',
                               )}
                             </Option>
                             <Option value={5}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.friday',
+                                'admin.digest_weekdays.friday',
                               )}
                             </Option>
                             <Option value={6}>
                               {I18n.t(
-                                'administration.campaigns.assessment_reports.report_approval.digest_weekdays.saturday',
+                                'admin.digest_weekdays.saturday',
                               )}
                             </Option>
                           </Select>
@@ -370,14 +368,14 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
                       )}
                       <Form.Item
                         name="digestTime"
-                        label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_time')}
+                        label={I18n.t('admin.report_approval_digest_time')}
                         rules={[{ required: sendDigestEmails }]}
                       >
                         <TimePicker format="hh:mm A" use12Hours minuteStep={15} />
                       </Form.Item>
                       <Form.Item
                         name="digestTimezone"
-                        label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_timezone')}
+                        label={I18n.t('admin.report_approval_digest_timezone')}
                         rules={[{
                           required: sendDigestEmails && digestDeliveryMode === 'scheduled',
                         }]}
@@ -393,7 +391,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
 
           <Form.Item
             name="qcUserIds"
-            label={I18n.t('administration.campaigns.assessment_reports.report_approval.qc_users')}
+            label={I18n.t('admin.report_approval_qc_users')}
             rules={[{ required: true }]}
           >
             <Select
@@ -416,7 +414,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           {!form.getFieldValue('approversNotRequired') && (
             <Form.Item
               name="approverUserIds"
-              label={I18n.t('administration.campaigns.assessment_reports.report_approval.approvers')}
+              label={I18n.t('admin.report_approval_approvers')}
               rules={[{ required: true }]}
             >
               <Select
@@ -441,7 +439,7 @@ export const ReportApprovalFormModal: React.FC<Props> = ({
           {!form.getFieldValue('doNotSendNotifications') && (
             <Form.Item
               name="approvalNotificationUserIds"
-              label={I18n.t('administration.campaigns.assessment_reports.report_approval.approval_notification_users')}
+              label={I18n.t('admin.report_approval_notification_users')}
               rules={[{ required: true }]}
             >
               <Select

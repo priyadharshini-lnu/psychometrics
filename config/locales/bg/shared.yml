@@ -18,6 +18,7 @@ bg:
     assessment_id: Идентификационен номер на оценката
     assessment_list: Списък за оценка
     assessment_name: Наименование на оценката
+    assessor: Оценител
     assessor_approved: Одобрен от оценителя
     assessors_list: Списък на оценителите
     asset_not_present: Активът не е наличен
@@ -26,15 +27,18 @@ bg:
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
     back: Назад
     basic: Основен
+    bulk_download: Групово изтегляне
     camera: Камера
     camera_preview: Прегледът на камерата ще се появи тук
     campaign: Кампания
     campaign_id: Идентификация на кампанията
     cancel: Отменете
+    category: Категория
     change_password: Промяна на паролата
     clear_filters: Изчистете филтрите
     client: Клиент
     close: Затвори
+    code: Код
     collaborative_learning: Съвместно обучение
     completed: Завършено
     configurations: Конфигурации
@@ -43,11 +47,13 @@ bg:
     controller: Контролер
     cookie_notice: Уведомление за бисквитките
     cookies_statement: Декларация за бисквитките
+    copied: Копирано в клипборда
     copied_successfully: Копирането приключи успешно
     copied_to_clipboard: Копирано в клипборда
     copy: Копиране
     create: Създай
     created_at: Създаден в
+    created_by: Създаден от
     created_date: Дата на създаване
     created_successfully: Създадено успешно
     custom_acknowledgment_text: Персонализиран текст за потвърждение
@@ -55,11 +61,14 @@ bg:
     custom_consent_text: Персонализиран текст за съгласие
     custom_consent_text_required: Необходим е персонализиран текст за съгласие за ролята на контролера на данни
     data_role: Роля на данните
+    datasheet: Лист с данни
     decline: Упадък
+    default: По подразбиране
     delete: Изтрий
     description: Описание
     desktop_or_laptop_recommended: Препоръчва се настолен или преносим компютър
     desktop_or_laptop_required: Необходим настолен или преносим компютър
+    dimension: Размер
     disabled: С увреждания
     discard: Изтрий
     download: Изтегляне
@@ -69,6 +78,7 @@ bg:
     edit: Редактирайте
     edited: Нов
     email: Имейл
+    end_date: Крайна дата
     ending_proctoring_session_msg: Завършваме сесията за наблюдение. <p>Моля, изчакайте, докато запишем отговорите ви и ви пренасочим обратно към началната страница.</p>
     error: Грешка
     export: Износ
@@ -83,11 +93,17 @@ bg:
     generating: Генериране
     group_question_max_validation_error: Всяка група може да съдържа най-много {{max}} елемент(и).
     group_question_min_validation_error: Всяка група трябва да съдържа поне {{min}} елемент(и).
+    icon: Икона
     id: Идентификация
     idp_ai_assistant_disclaimer: Асистент за IDP в Lighthouse AI може да допуска грешки. Моля, бъдете внимателни, когато използвате отговорите.
+    import: Импортирам
+    inactive: Неактивен
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     last_name: Фамилия
+    last_updated: Последна актуализация
     learning_on_the_job_label: Учене на работа
+    linked_activities: Свързани дейности
+    linked_assessment: Свързано оценяване
     loading: Зареждане...
     login: Вход
     maintenance_in_hours: "%{hours} часа"
@@ -97,11 +113,13 @@ bg:
     maintenance_time_remaining: Оставащо време
     maintenance_upcoming_description: Ще извършваме планова поддръжка на %{date} за приблизително %{duration}, за да подобрим вашето преживяване. По време на тази поддръжка няма да можете да имате достъп до задачите си или да ги изпълнявате. Благодарим ви за търпението.
     maintenance_upcoming_title: Предстояща поддръжка
+    manage: Управление
     manage_cookies: Управление на бисквитките
     media_id: Идентификационен номер на медията
     media_preview: Предварителна преглед за медиите
     media_question_transcriptions: Транскрипции на въпроси от медиите
     media_responses: Отговори на медиите
+    meeting_link: Връзка към срещата
     microphones: Микрофони
     mobile_proctoring_disabled_instructions: За да продължите с тази оценка, е необходим настолен или преносим компютър. Моля, превключете на компютър, за да завършите дейността.
     mobile_proctoring_enabled_instructions: За най-добро преживяване, моля, превключете на настолен или преносим компютър, ако имате такъв на разположение. При необходимост можете да продължите на мобилното си устройство.
@@ -115,7 +133,9 @@ bg:
     new: Нов
     next: Следваща
     no_audio_warning: Не е открит звук. Моля, проверете дали микрофонът ви е свързан и работи правилно.
+    no_data_found: Няма намерени данни
     no_results_found: Няма намерени резултати
+    none: Никой
     not_requested: Все още не е поискано
     ok: Добре
     options: Опции
@@ -130,6 +150,7 @@ bg:
     proctoring_maintenance_active: Proctoring е в процес на поддръжка от %{start_time} до %{end_time}. Моля, опитайте отново след края на поддръжката.
     proctoring_maintenance_upcoming: Прокторинга ще бъде в процес на поддръжка от %{start_time} до %{end_time}.
     project: Проект
+    publish: Публикувайте
     question: Въпрос
     question_id: Идентификационен номер на въпроса
     question_transcription_disabled: Транскрипцията е деактивирана за този въпрос.
@@ -142,20 +163,27 @@ bg:
     remove: Премахнете
     removed: Отстранени
     replace: Замени
+    required: изисква се
+    reset: Проучване
     reset_password: Възстановете на паролата
     response_text: Текст на отговора
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
+    run: Бягам
     save: Запазете
     saving_video: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
+    schedule_time: Време по график
     scoring_details: Подробности за точковата система
     search: Търсете
     select_camera: Изберете камера
+    select_language: Изберете език
     select_microphone: Изберете микрофон
+    send: Изпратете
     send_email: Изпрати имейл
     show_more: Покажи повече
     something_wrong: Нещо се обърка. Свържете се с администратора си.
     speakers: Лектори
+    start_date: Начална дата
     status: Статус
     status_unknown: Статус неизвестен
     subject: Тема
@@ -172,6 +200,7 @@ bg:
           one: 'Общо: 1'
           other: 'Общо: {{count}}'
           zero: 'Общо: 0'
+    tags: Етикети
     terms_conditions_privacy: Декларация за поверителност
     tools: Инструменти
     transcription: Транскрипция
@@ -183,10 +212,12 @@ bg:
     try_again: Опитайте отново
     tte_terms_and_condition: Условия и поверителност
     type: Вид
+    unpublish: Отмяна на публикацията
     update: Актуализирайте
     update_failed: Актуализацията се провали
     updated_at: Актуализирано на
     updated_successfully: Актуализирано успешно
+    upload: Качвам
     user_report_pdf_url_not_generated: Не е възможно да се генерира линк за изтегляне на PDF
     video: Видео
     view: Преглед

@@ -19,13 +19,13 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
 
   const handleRemoveCampaignTemplate = (campaignTemplate: CampaignTemplate) => {
     modal.confirm({
-      title: I18n.t('administration.campaign_templates.remove_confirm.title'),
-      content: I18n.t('administration.campaign_templates.remove_confirm.content', { name: campaignTemplate.name }),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
+      title: I18n.t('admin.campaign_templates_remove_confirm_title'),
+      content: I18n.t('admin.campaign_templates_remove_confirm_content', { name: campaignTemplate.name }),
+      okText: I18n.t('shared.confirm'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         resource.removeResource(campaignTemplate.id).then(() => {
-          message.success(I18n.t('administration.campaign_templates.remove_confirm.success',
+          message.success(I18n.t('admin.campaign_templates_remove_confirm_success',
             { name: campaignTemplate.name }))
         })
       },
@@ -35,20 +35,20 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
   return (
     <Resource.Table pagination>
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('common.column.id')}
+        title={I18n.t('shared.id')}
         id="id"
         sorter
         width={100}
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('common.column.name')}
+        title={I18n.t('shared.name')}
         id="name"
         render={campaignTemplate => <Typography.Text copyable>{campaignTemplate.name}</Typography.Text>}
         width={400}
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('administration.campaign_templates.column.assessment')}
+        title={I18n.t('admin.campaign_templates_column_assessment')}
         id="assessment.name"
         render={campaignTemplate => (campaignTemplate.assessment?.id ? (
           <Typography.Link
@@ -63,7 +63,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('administration.campaign_templates.column.report')}
+        title={I18n.t('admin.campaign_templates_column_report')}
         id="report.name"
         render={campaignTemplate => (campaignTemplate.report?.id ? (
           <Typography.Link
@@ -78,7 +78,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('administration.campaign_templates.column.campaign')}
+        title={I18n.t('admin.campaign_templates_column_campaign')}
         id="campaign.name"
         render={campaignTemplate => (campaignTemplate.campaign?.id ? (
           <Typography.Link
@@ -94,7 +94,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('administration.campaign_templates.column.owner')}
+        title={I18n.t('admin.campaign_templates_column_owner')}
         id="owner.name"
         render={campaignTemplate => (campaignTemplate.owner?.id ? (
           <Typography.Link
@@ -109,19 +109,19 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('common.column.updated_at')}
+        title={I18n.t('shared.updated_at')}
         id="updated_at"
         width={300}
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('common.column.created_at')}
+        title={I18n.t('shared.created_at')}
         id="created_at"
         width={300}
         sorter
       />
       <Resource.Column<CampaignTemplate>
-        title={I18n.t('common.column.action')}
+        title={I18n.t('shared.action')}
         id="action"
         render={(_, campaignTemplate) => (
           <Dropdown
@@ -163,7 +163,7 @@ const getActionsMenuProps = ({ campaignTemplate, openModal, removeCampaignTempla
           onClick={() => openModal(campaignTemplate)}
           className="ps-0"
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     campaignTemplate && {
@@ -174,7 +174,7 @@ const getActionsMenuProps = ({ campaignTemplate, openModal, removeCampaignTempla
           onClick={() => removeCampaignTemplate(campaignTemplate)}
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>),
     },
   ].filter(m => m) as MenuItem[]

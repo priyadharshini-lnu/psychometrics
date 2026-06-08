@@ -1648,7 +1648,6 @@ it:
     details:
       additional_time: Tempo supplementare
       assessment_center: Centro di valutazione
-      assessment_center_invites: Inviti all'Assessment Center
       completed_at: Completati
       completion_status: Stato di completamento
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ it:
     modals:
       remove: Si è sicuri di voler rimuovere l'utente con email '%{email}' da questa campagna?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Valutatore Assessment
-      other_assessments: Altre valutazioni
-      other_assessor_assessments: Altre Assessment dell'Assessore
-      other_reports: Altri rapporti
     card:
       duration: Durata
       starts_in: 'Inizia in:'
@@ -1753,23 +1747,19 @@ it:
       insert: Inserire
       'no': 'No'
       ok: OK
-      publish: Pubblicare
       reject: Rigettare
       remove: Rimuovere
       reset: Reset
       resolve: Risolvere
       restore: Ripristino
       return_to_home: Torna alla Home
-      run: Correre
       save: Salva
       schedule: Programma
       search: Cerca
-      send: Inviare
       sign_in: Accedi
       start: Inizio
       submit: Invia
       unarchive: Disarchivio
-      unpublish: Non pubblicare
       unresolve: Non risolvere
       update: Aggiorna
       upload: Caricare
@@ -1782,20 +1772,14 @@ it:
     column:
       action: Azioni
       active: Attivi
-      ai_assistant: Assistente AI
-      allow_multiple_responses: Consentire risposte multiple
       approval_notification_list: Elenco degli utenti della notifica di approvazione
       approvers_list: Elenco degli approvatori
-      assessment: Valutazione
       assessment_name: Nome dell’assessment
       assessments: Assessment
-      assessor: Valutatore
       category: Categoria
       client: Cliente
-      code: Codice
       created_at: Creato il
       created_by: Creato da
-      created_date: Data di creazione
       default_language: Lingua predefinita
       description: Descrizione
       details: Dettagli
@@ -1813,11 +1797,8 @@ it:
         scoring: Punteggio JSON
       key: Chiave
       last_name: Cognome
-      linked_activities: Campagne collegate
       linked_assessment: Valutazione collegata
-      meeting_link: Collegamento alla riunione
       modified_by: Modificato da
-      modified_date: Data di modifica
       name: Nome
       owner: Proprietario
       package_id: ID pacchetto
@@ -1833,7 +1814,6 @@ it:
       scheduling: Programmazione
       skills: Competenze
       status: Stato
-      tags: Tag
       timing: Tempistica
       token: Gettone
       type: Tipo
@@ -1845,15 +1825,12 @@ it:
     messages:
       leave_message: È sicuro di voler lasciare questa pagina? Tutte le risposte non salvate andranno perse.
     model:
-      admins: Amministratori
       assessment: Valutazione
       assessments: Assessment
       campaigns: Campagne
       completion_statuses: Stati di completamento
-      datasheet: Scheda tecnica
       report: Rapporto
       reports: Report
-      sms_contact: Contatto SMS
       threesixty_campaign: Punteggi della campagna Threesixty
     status:
       completed: Completati
@@ -2943,9 +2920,7 @@ it:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Attivi
     campaign_name: Nome della campagna
-    inactive: Inattivo
     status_updated_at: Ultimo aggiornamento di stato
     status_updated_by: Ultimo aggiornamento da
     subject_email: Oggetto e-mail
@@ -3949,7 +3924,6 @@ it:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Attivi
     allow_multiple_respones: Consentire agli utenti di inviare risposte multiple
     png: PNG
     regenerate_link: Link rigenerato

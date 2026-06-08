@@ -26,7 +26,7 @@ export const Tools: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.scoring.subject_list.tools')}</span>
+        <span>{I18n.t('shared.tools')}</span>
         <DownOutlined />
       </Button>
       )}
@@ -39,14 +39,14 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.export) {
     menuItems.push({
       key: 'export',
-      label: I18n.t('administration.scoring.subject_list.export'),
+      label: I18n.t('admin.scoring_subject_list_export'),
     })
   }
 
   if (permissions?.import) {
     menuItems.push({
       key: 'import_external_scores',
-      label: I18n.t('administration.scoring.subject_list.import_external_scores'),
+      label: I18n.t('admin.scoring_subject_list_import_external_scores'),
     })
   }
 

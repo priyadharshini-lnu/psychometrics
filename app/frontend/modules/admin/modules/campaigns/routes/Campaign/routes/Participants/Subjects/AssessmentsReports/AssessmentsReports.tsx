@@ -55,7 +55,7 @@ const AssessmentsReports: React.FC<Props> = ({
     <div>
       <Row justify="space-between">
         <Col span={4} className="pls">
-          <h3>{I18n.t('common.model.reports')}</h3>
+          <h3>{I18n.t('admin.reports')}</h3>
         </Col>
         <div>
           <div className={styles.newReportButton}>
@@ -74,7 +74,7 @@ const AssessmentsReports: React.FC<Props> = ({
                   disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
                   loading={bulkDownloadInProgress}
                 >
-                  <span>{I18n.t('user_reports.actions.download')}</span>
+                  <span>{I18n.t('shared.download')}</span>
                 </Button>
               )}
               {user.permissions.regenerateReport && (
@@ -90,7 +90,7 @@ const AssessmentsReports: React.FC<Props> = ({
                   disabled={_.isEmpty(selectedIds) || regenerateInProgress}
                   loading={_.isEmpty(selectedIds) ? false : regenerateInProgress}
                 >
-                  <span>{I18n.t('user_reports.actions.generate')}</span>
+                  <span>{I18n.t('shared.generate')}</span>
                 </Button>
               )}
               {user.permissions.addReport && (
@@ -113,13 +113,13 @@ const AssessmentsReports: React.FC<Props> = ({
       <div>
         <ReportList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('common.model.assessments')}</h3>
+        <h3>{I18n.t('admin.assessments')}</h3>
         <AssessmentList />
         <div className={styles.tableDivider} />
         {proctoringSessions.length !== 0 && (
           <>
             <div className={styles.tableDivider} />
-            <h3>{I18n.t('administration.proctoring_sessions.resource_name')}</h3>
+            <h3>{I18n.t('admin.proctoring_sessions_resource_name')}</h3>
             <ProctoringSessionList proctoringSessions={proctoringSessions} />
           </>
         )}

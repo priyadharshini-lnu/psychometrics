@@ -23,11 +23,11 @@ const connecter = connect(
 
 export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser }) => {
   const tabItems = [
-    { label: I18n.t('administration.settings.tabs.admin_roles'), key: 'roles', children: <AdminRoles /> },
+    { label: I18n.t('admin.settings_tabs_admin_roles'), key: 'roles', children: <AdminRoles /> },
     ...(
       isSuperAdmin(currentUser)
         ? [
-          { label: I18n.t('administration.smtp_settings.smtp'), key: 'smtp', children: <Smtp /> },
+          { label: I18n.t('admin.smtp_settings_smtp'), key: 'smtp', children: <Smtp /> },
           {
             label: I18n.t('admin.sso_settings_tab'),
             key: 'sso_settings',
@@ -36,18 +36,18 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
         ]
         : []
     ),
-    { label: I18n.t('administration.settings.tabs.siem'), key: 'siem', children: <Siem /> },
-    { label: I18n.t('administration.settings.tabs.skill_aliases'), key: 'skill_aliases', children: <SkillAliases /> },
+    { label: I18n.t('admin.settings_tabs_siem'), key: 'siem', children: <Siem /> },
+    { label: I18n.t('admin.settings_tabs_skill_aliases'), key: 'skill_aliases', children: <SkillAliases /> },
     ...(
       isSuperAdmin(currentUser)
         ? [
           {
-            label: I18n.t('administration.project_tabs.privacy'),
+            label: I18n.t('admin.project_tabs_privacy'),
             key: 'privacy_settings',
             children: <PrivacySettings />,
           },
           {
-            label: I18n.t('administration.settings.tabs.feature_flags'),
+            label: I18n.t('admin.settings_tabs_feature_flags'),
             key: 'features',
             children: <Features />,
           },

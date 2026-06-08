@@ -27,7 +27,7 @@ export default function ResetCampaignModal ({
     >
       { isSuperAdmin(currentUser) && (
         <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>
-          {I18n.t('administration.threesixty_campaigns.reset_campaign_confirmation.mark_licenses_as_deactivated')}
+          {I18n.t('admin.mark_licenses_as_deactivated')}
         </Checkbox>
       )
       }

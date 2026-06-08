@@ -19,7 +19,7 @@ type Props = OwnProps
 export const ProctoringSessionList: React.FC<Props> = ({ proctoringSessions }) => (
   <Table className="mtm" rowKey="id" dataSource={proctoringSessions} pagination={false}>
     <Column
-      title={I18n.t('administration.proctoring_sessions.columns.session_id')}
+      title={I18n.t('admin.proctoring_sessions_columns_session_id')}
       key="sessionId"
       render={({ sessionId }) => (
         <Tooltip placement="top" title={sessionId}>
@@ -62,35 +62,35 @@ export const ProctoringSessionList: React.FC<Props> = ({ proctoringSessions }) =
       )}
     />
     <Column
-      title={I18n.t('administration.proctoring_sessions.columns.conclusion')}
+      title={I18n.t('admin.proctoring_sessions_columns_conclusion')}
       dataIndex="conclusion"
       key="conclusion"
     />
     <Column
-      title={I18n.t('administration.proctoring_sessions.columns.score')}
+      title={I18n.t('admin.proctoring_sessions_columns_score')}
       dataIndex="score"
       key="score"
     />
     <Column
-      title={I18n.t('administration.proctoring_sessions.columns.comment')}
+      title={I18n.t('admin.proctoring_sessions_columns_comment')}
       dataIndex="comment"
       key="comment"
     />
     <Column<ProctoringSession>
-      title={I18n.t('administration.proctoring_sessions.columns.links')}
+      title={I18n.t('admin.proctoring_sessions_columns_links')}
       key="links"
       render={(_, { archiveUrl, reportUrl }) => (
         <Space orientation="vertical">
           {archiveUrl
             && (
               <a href={archiveUrl} target="_blank" rel="noreferrer">
-                {I18n.t('administration.proctoring_sessions.links.review')}
+                {I18n.t('admin.proctoring_sessions_links_review')}
               </a>
             )}
           {reportUrl
             && (
               <a href={reportUrl} target="_blank" rel="noreferrer">
-                {I18n.t('administration.proctoring_sessions.links.report')}
+                {I18n.t('admin.proctoring_sessions_links_report')}
               </a>
             )}
         </Space>

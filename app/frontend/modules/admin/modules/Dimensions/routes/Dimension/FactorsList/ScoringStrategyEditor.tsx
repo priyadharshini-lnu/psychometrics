@@ -18,8 +18,8 @@ const INDICATOR_SUPPORTED_STRATEGIES = [
 
 const CustomFormula = () => (
   <Form.Item
-    label={I18n.t('administration.factors.form.scoring_strategies.custom_formula')}
-    name="customFormula"
+    label={I18n.t('admin.factors_form_scoring_strategies_custom_formula')}
+    name="custom_formula"
     className="mtm"
   >
     <LuaEditor />
@@ -68,7 +68,7 @@ export const SubfactorNormScoreCheckbox = ({ strategy }) => {
       valuePropName="checked"
     >
       <Checkbox>
-        {I18n.t('administration.factors.form.use_sub_factor_norm_score')}
+        {I18n.t('admin.factors_form_use_sub_factor_norm_score')}
       </Checkbox>
     </Form.Item>
   )

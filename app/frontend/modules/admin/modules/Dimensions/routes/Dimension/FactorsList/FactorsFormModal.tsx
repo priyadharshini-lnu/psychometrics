@@ -142,7 +142,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
     <ResourceFormModal
       resourceName="factors"
       resource={factor}
-      readableResourceName={I18n.t('administration.factors.index.title')}
+      readableResourceName={I18n.t('admin.factors_index_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -164,7 +164,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.dimensions.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input />
@@ -173,14 +173,14 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
           <Form.Item
             name="code"
             rules={[{ required: true }]}
-            label={I18n.t('administration.scoring.code')}
+            label={I18n.t('shared.code')}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
             name="description"
-            label={I18n.t('administration.scoring.description')}
+            label={I18n.t('shared.description')}
           >
             <Input />
           </Form.Item>
@@ -189,10 +189,10 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
             name="scoringStrategy"
             label={(
               <span>
-                <span className="mr4">{I18n.t('administration.factors.index.scoring_strategy')}</span>
+                <span className="mr4">{I18n.t('admin.factors_index_scoring_strategy')}</span>
                 <Tooltip
                   title={
-                    <SafeHTML html={I18n.t('administration.factors.form.scoring_strategies_tip')} />
+                    <SafeHTML html={I18n.t('admin.factors_form_scoring_strategies_tip')} />
                   }
                 >
                   <span><QuestionCircleOutlined /></span>
@@ -204,7 +204,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
             <Select>
               {SCORING_STRATEGIES.map(strategy => (
                 <Select.Option value={strategy}>
-                  {I18n.t(`administration.factors.index.scoring_strategies.${strategy}`)}
+                  {I18n.t(`admin.${strategy}`)}
                 </Select.Option>
               ))}
             </Select>
@@ -266,12 +266,12 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
           <ScoringStrategyEditor strategy={scoringStrategy} form={form} childrenFactorType={childrenFactorType} />
           <Form.Item
             name="precision"
-            label={I18n.t('administration.factors.index.precision')}
+            label={I18n.t('admin.factors_index_precision')}
           >
             <InputNumber min={0} max={6} />
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.factors.index.icon')}
+            label={I18n.t('admin.factors_index_icon')}
           >
             <Space orientation="vertical">
               {(factor?.iconUrl) && !removeIcon && (
@@ -282,7 +282,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
                     icon={<DeleteOutlined />}
                     onClick={() => setRemoveIcon(true)}
                   >
-                    {I18n.t('common.actions.delete')}
+                    {I18n.t('shared.delete')}
                   </Button>
                 </Space>
               )}

@@ -96,7 +96,7 @@ export function Weightages () {
         data: payload,
       },
     }).then(() => {
-      message.success(I18n.t('administration.scoring.weightages.successful_update'))
+      message.success(I18n.t('admin.scoring_weightages_successful_update'))
     })
   }
 
@@ -109,20 +109,20 @@ export function Weightages () {
       <PageHeader
         className={styles.pageHeader}
         onBack={() => navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/scoring/settings`)}
-        title={<Space>{I18n.t('administration.scoring.weightages.weightages')}</Space>}
+        title={<Space>{I18n.t('admin.scoring_weightages_weightages')}</Space>}
       />
       <Form form={form} onFinish={handleSubmit}>
         <Table columns={columns} dataSource={dataSource} pagination={false} scroll={{ x: 'max-content' }} />
         <Form.Item>
           <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
             <Button onClick={handleReset}>
-              {I18n.t('administration.common.reset')}
+              {I18n.t('shared.reset')}
             </Button>
             <Button
               type="primary"
               htmlType="submit"
             >
-              {I18n.t('administration.common.save')}
+              {I18n.t('shared.save')}
             </Button>
           </Flex>
         </Form.Item>
@@ -179,7 +179,7 @@ const createDataSource = (
 const createColumns = (factors: FactorsMap): ColumnProps<DataType>[] => {
   const baseColumns: ColumnProps<DataType>[] = [
     {
-      title: I18n.t('administration.scoring.weightages.assessorForms'),
+      title: I18n.t('admin.scoring_weightages_assessorForms'),
       dataIndex: 'assessmentName',
       key: 'assessmentName',
       fixed: 'left',

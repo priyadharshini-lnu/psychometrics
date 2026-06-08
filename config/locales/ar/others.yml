@@ -1660,7 +1660,6 @@ ar:
     details:
       additional_time: وقت إضافي
       assessment_center: مركز التقييم
-      assessment_center_invites: مركز التقييم يدعو
       completed_at: تم الانتهاء في
       completion_status: حالة الإنجاز
       hogan_id: هوجان معرف
@@ -1690,11 +1689,6 @@ ar:
     modals:
       remove: هل أنت متأكد من أنك تريد إزالة مستخدم يحمل رسالة إلكترونية "%{email}" من هذه الحملة؟
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: تقييمات المقيم
-      other_assessments: تقييمات أخرى
-      other_assessor_assessments: تقييمات المقيمين الأخرى
-      other_reports: تقارير أخرى
     card:
       duration: المدة الزمنية
       starts_in: 'يبدأ في:'
@@ -1765,23 +1759,19 @@ ar:
       insert: أدخل
       'no': لا
       ok: موافق
-      publish: النشر
       reject: رفض
       remove: إزالة
       reset: إعادة
       resolve: حل
       restore: استرجاع
       return_to_home: العودة إلى المنزل
-      run: ركض
       save: حفظ
       schedule: جدول
       search: بحث
-      send: إرسال
       sign_in: تسجيل الدخول
       start: ابدأ
       submit: إرسال
       unarchive: أخرج من الأرشيف
-      unpublish: إلغاء النشر
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل
@@ -1794,20 +1784,14 @@ ar:
     column:
       action: نشاط
       active: نشط
-      ai_assistant: مساعد الذكاء الاصطناعي
-      allow_multiple_responses: السماح بردود متعددة
       approval_notification_list: قائمة مستخدمي إشعار الموافقة
       approvers_list: قائمة الموافقين
-      assessment: تقييم
       assessment_name: اسم التقييم
       assessments: تقييمات
-      assessor: مقيم
       category: فئة
       client: عميل
-      code: الرمز
       created_at: تم إنشاؤها في
       created_by: تم إنشاؤه بواسطة
-      created_date: تاريخ الإنشاء
       default_language: اللغة الافتراضية
       description: وصف
       details: التفاصيل
@@ -1825,11 +1809,8 @@ ar:
         scoring: تسجيل JSON
       key: مفتاح
       last_name: اسم العائلة
-      linked_activities: الأنشطة المرتبطة
       linked_assessment: التقييم المرتبط
-      meeting_link: رابط الاجتماع
       modified_by: تم التعديل بواسطة
-      modified_date: تاريخ التعديل
       name: اسم
       owner: مالك
       package_id: معرف الحزمة
@@ -1845,7 +1826,6 @@ ar:
       scheduling: جدوله
       skills: المهارات
       status: حالة
-      tags: العلامات
       timing: توقيت
       token: رمز مميز
       type: نوع
@@ -1857,15 +1837,12 @@ ar:
     messages:
       leave_message: هل أنت متأكد من أنك تريد مغادرة هذه الصفحة؟ ستفقد أي إجابات غير محفوظة لديك.
     model:
-      admins: المسؤولون
       assessment: تقييم
       assessments: التقييمات
       campaigns: الحملات
       completion_statuses: حالات الإنجاز
-      datasheet: ورقة البيانات
       report: تقرير
       reports: التقييم
-      sms_contact: الاتصال بالرسائل النصية القصيرة
       threesixty_campaign: درجات حملة Threesixty
     status:
       completed: اكمال
@@ -2982,9 +2959,7 @@ ar:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: نشط
     campaign_name: اسم الحملة
-    inactive: كسلان
     status_updated_at: آخر تحديث للحالة
     status_updated_by: آخر تحديث بواسطة
     subject_email: البريد الإلكتروني للموضوع
@@ -3988,7 +3963,6 @@ ar:
       with_time_zone: "%d %b %Y %I:%M %p %:Z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: نشط
     allow_multiple_respones: السماح للمستخدمين بإرسال ردود متعددة
     png: بابوا غينيا الجديدة
     regenerate_link: إعادة إنشاء الرابط

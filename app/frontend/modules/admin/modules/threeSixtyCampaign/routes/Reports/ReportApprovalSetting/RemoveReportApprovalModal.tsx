@@ -18,7 +18,7 @@ export const RemoveReportApprovalSettingModal:FC<Props> = ({
   const { message } = App.useApp()
   const handleOnConfirm = () => removeResource(id).then(() => {
     message.success(
-      I18n.t('administration.campaigns.assessment_reports.report_approval.remove_modal_success', { reportId }),
+      I18n.t('admin.report_approval_remove_modal_success', { reportId }),
     )
     close()
   }).catch((error) => {
@@ -28,8 +28,8 @@ export const RemoveReportApprovalSettingModal:FC<Props> = ({
   return (
     <ConfirmationModal
       open
-      title={I18n.t('administration.campaigns.assessment_reports.report_approval.modal_title')}
-      message={I18n.t('administration.campaigns.assessment_reports.report_approval.remove_modal_text', { reportId })}
+      title={I18n.t('admin.report_approval_modal_title')}
+      message={I18n.t('admin.report_approval_remove_modal_text', { reportId })}
       onConfirm={handleOnConfirm}
       close={close}
     />

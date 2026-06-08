@@ -65,8 +65,8 @@ export const GroupCard = React.forwardRef(
         addFactor(group.id)
       } else {
         modal.error({
-          title: I18n.t('administration.scoring.action_prohibited'),
-          content: <p className="">{I18n.t('administration.scoring.desc', { n: FACTORS_LIMIT })}</p>,
+          title: I18n.t('admin.scoring_action_prohibited'),
+          content: <p className="">{I18n.t('admin.scoring_desc', { n: FACTORS_LIMIT })}</p>,
           footer: (_, { OkBtn }) => (
             <OkBtn />
           ),
@@ -117,7 +117,7 @@ export const GroupCard = React.forwardRef(
                 onClick={handleAddFactor}
                 type="link"
               >
-                {I18n.t('administration.scoring.add_factor')}
+                {I18n.t('admin.scoring_add_factor')}
               </Button>
             ) : null}
           </Space>

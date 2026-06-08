@@ -26,7 +26,7 @@ export const ActionsDropdown: React.FC<Props> = ({
   const btn = (
     <Button>
       <ToolOutlined />
-      <span>{I18n.t('administration.scoring.subject_list.actions')}</span>
+      <span>{I18n.t('shared.actions')}</span>
       <DownOutlined />
     </Button>
   )
@@ -52,7 +52,7 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.resendInvite) {
     menuItems.push({
       key: 'resend_invite',
-      label: I18n.t('administration.invited_subject.resend_invite.title'),
+      label: I18n.t('admin.resend_invite_title'),
     })
   }
   const handleMenuClick = ({ key }) => {

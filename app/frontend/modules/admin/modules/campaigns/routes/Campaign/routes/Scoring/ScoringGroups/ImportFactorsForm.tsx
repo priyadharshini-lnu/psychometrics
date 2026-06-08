@@ -24,11 +24,11 @@ export const ImportFactorsForm: React.FC<Props> = ({
   return (
     <Modal
       width={650}
-      title={I18n.t('administration.scoring.import.factors')}
+      title={I18n.t('admin.scoring_import_factors')}
       open={open}
       onCancel={close}
       footer={[
-        <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,
+        <Button key="back" onClick={close}>{I18n.t('shared.cancel')}</Button>,
         <Button
           key="submit"
           onClick={() => {
@@ -37,14 +37,14 @@ export const ImportFactorsForm: React.FC<Props> = ({
             data.append('file', file)
             importFactors(campaignId, data)
               .then(() => {
-                message.info(I18n.t('administration.scoring.factors_imported_successfully'))
+                message.info(I18n.t('admin.scoring_factors_imported_successfully'))
                 close()
               })
               .catch(setErrors)
           }}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('campaign_assessment.modals.import_raw.upload')}
+          {I18n.t('shared.upload')}
         </Button>,
       ]}
     >

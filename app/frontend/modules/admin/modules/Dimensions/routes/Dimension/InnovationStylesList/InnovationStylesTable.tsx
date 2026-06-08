@@ -21,14 +21,14 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
     <>
       <Resource.Table pagination>
         <Resource.Column<InnovationStyles>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={innovation => innovation.id}
           width={100}
         />
         <Resource.Column<InnovationStyles>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           sorter
           render={innovation => (
@@ -39,7 +39,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<InnovationStyles>
-          title={I18n.t('administration.innovation_styles.list.position')}
+          title={I18n.t('admin.innovation_styles_list_position')}
           id="position"
           sorter
           render={innovation => (
@@ -48,7 +48,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<InnovationStyles>
-          title={I18n.t('common.column.created_at')}
+          title={I18n.t('shared.created_at')}
           id="created_at"
           dataIndex="createdAt"
           render={createdAt => (
@@ -57,7 +57,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<InnovationStyles>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.last_updated')}
           id="updated_at"
           dataIndex="updatedAt"
           render={updatedAt => (
@@ -66,7 +66,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<InnovationStyles>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, innovation) => (
             <Dropdown
@@ -100,7 +100,7 @@ const getActionsMenuProps = ({ innovation, openModal }: DropDownProps): MenuProp
           onClick={() => openModal('InnovationStylesFormModal', { innovation })}
           className="ps-0"
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     innovation && {
@@ -111,7 +111,7 @@ const getActionsMenuProps = ({ innovation, openModal }: DropDownProps): MenuProp
           onClick={() => openModal('RemoveInnovationStylesModal', { innovation })}
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>),
     },
   ].filter(m => m) as ItemType[]

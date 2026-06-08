@@ -79,7 +79,7 @@ export const Registration: React.FC<{}> = () => {
         >
           <Form.Item
             name="requireMobileNumber"
-            label={I18n.t('administration.projects.registration_settings.require_mobile_number')}
+            label={I18n.t('admin.projects_registration_settings_require_mobile_number')}
             valuePropName="checked"
           >
             <Checkbox
@@ -89,7 +89,7 @@ export const Registration: React.FC<{}> = () => {
           </Form.Item>
           <Form.Item
             name="hideSignup"
-            label={I18n.t('administration.projects.registration_settings.hide_signup')}
+            label={I18n.t('admin.projects_registration_settings_hide_signup')}
             valuePropName="checked"
           >
             <Checkbox
@@ -99,7 +99,7 @@ export const Registration: React.FC<{}> = () => {
           </Form.Item>
           <Row className="mt-4">
             <Button type="primary" htmlType="submit" className="mb-16" loading={isSaving}>
-              {I18n.t('administration.save')}
+              {I18n.t('shared.save')}
             </Button>
           </Row>
         </Form>

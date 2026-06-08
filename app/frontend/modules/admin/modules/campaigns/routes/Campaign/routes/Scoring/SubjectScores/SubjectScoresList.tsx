@@ -212,7 +212,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
         responseType: t.literal('ok'),
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
-          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_finalized') }))
+          { readableResourceName: I18n.t('admin.scoring_subject_list_bulk_mark_finalized') }))
       })
     } else if (action === 'mark_not_finalized') {
       collectionAction({
@@ -226,7 +226,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
         responseType: t.literal('ok'),
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
-          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized') }))
+          { readableResourceName: I18n.t('admin.scoring_subject_list_bulk_mark_not_finalized') }))
       })
     } else if (action === 'rescore') {
       collectionAction({
@@ -236,7 +236,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
         responseType: {},
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
-          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_rescore') }))
+          { readableResourceName: I18n.t('admin.scoring_subject_list_bulk_rescore') }))
       })
     }
   }
@@ -304,7 +304,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
                 filters: params.filters,
               },
               responseType: t.literal('ok'),
-            }).then(() => { message.success(I18n.t('administration.scoring.subject_list.export_success')) })}
+            }).then(() => { message.success(I18n.t('admin.scoring_subject_list_export_success')) })}
             open={openExportScoringsModal}
             close={() => setopenExportScoringsModal(false)}
           />
@@ -354,7 +354,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
               selectionAllowed: CampaignFactorValuesData.length !== meta.recordCount,
               hasSelectInAllPages: isAllSelected,
               onSelectionChange: onAllSelect,
-              label: I18n.t('administration.scoring.select_all', { n: meta.recordCount ?? 0 }),
+              label: I18n.t('admin.scoring_select_all', { n: meta.recordCount ?? 0 }),
             }}
             selectedCount={
               (isAllSelected && meta.recordCount) ? (meta.recordCount - excludedKeys.length) : selectedKeys.length
@@ -410,7 +410,7 @@ function createSortedTableColumns (
 
   const staticBeforeColumns: ColumnsType<DataType> = [
     {
-      title: I18n.t('administration.scoring.id'),
+      title: I18n.t('shared.id'),
       dataIndex: 'id',
       key: 'id',
       width: 80,
@@ -419,7 +419,7 @@ function createSortedTableColumns (
       sortOrder: getSortOrder('id'),
     },
     {
-      title: I18n.t('administration.scoring.active'),
+      title: I18n.t('admin.scoring_active'),
       dataIndex: 'active',
       key: 'campaign_users_active',
       width: 80,
@@ -431,7 +431,7 @@ function createSortedTableColumns (
       filteredValue: (getFilteredValue('campaign_users_active_in') || [true]),
     },
     {
-      title: I18n.t('administration.scoring.subject'),
+      title: I18n.t('admin.scoring_subject'),
       dataIndex: 'email',
       key: 'email',
       className: styles.columnBorderEnd,
@@ -444,7 +444,7 @@ function createSortedTableColumns (
 
   const staticAfterColumns: ColumnsType<DataType> = [
     {
-      title: I18n.t('administration.scoring.subject_list.calculated_date'),
+      title: I18n.t('admin.scoring_subject_list_calculated_date'),
       dataIndex: 'campaignScoresCalculatedDate',
       key: 'campaignScoresCalculatedDate',
       className: styles.columnBorderStart,
@@ -459,7 +459,7 @@ function createSortedTableColumns (
       width: 200,
     },
     {
-      title: I18n.t('administration.scoring.subject_list.finalized_date'),
+      title: I18n.t('admin.scoring_subject_list_finalized_date'),
       dataIndex: 'campaignScoresFinalizedDate',
       key: 'campaignScoresFinalizedDate',
       sorter: true,
@@ -473,7 +473,7 @@ function createSortedTableColumns (
       width: 200,
     },
     {
-      title: I18n.t('administration.scoring.subject_list.finalized'),
+      title: I18n.t('admin.scoring_subject_list_finalized'),
       dataIndex: 'campaignScoresFinalized',
       key: 'campaignScoresFinalized',
       sorter: true,
@@ -494,7 +494,7 @@ function createSortedTableColumns (
             )
           })
           return (
-            <Popover content={content} title={I18n.t('administration.scoring.subject_list.calculation_errors')}>
+            <Popover content={content} title={I18n.t('admin.scoring_subject_list_calculation_errors')}>
               <span><WarningFilled className={styles.warning} /></span>
             </Popover>
           )
@@ -504,7 +504,7 @@ function createSortedTableColumns (
       width: 200,
     },
     {
-      title: I18n.t('administration.scoring.subject_list.actions'),
+      title: I18n.t('shared.actions'),
       key: 'actions',
       fixed: 'right',
       width: 100,
@@ -527,7 +527,7 @@ function createSortedTableColumns (
 
   if (stackRankColumn !== null) {
     sortedGroupColumns.push({
-      title: I18n.t('administration.scoring.subject_list.rank'),
+      title: I18n.t('admin.scoring_subject_list_rank'),
       dataIndex: 'stackRank',
       key: 'stackRank',
       sorter: true,
@@ -568,36 +568,36 @@ const processData = (
 const actionDetails = (action: string, subject: DataType) => {
   if (action === 'mark_finalized') {
     return {
-      title: I18n.t('administration.scoring.subject_list.mark_finalized'),
-      content: I18n.t('administration.scoring.subject_list.mark_finalized_confirm', { email: subject.email }),
+      title: I18n.t('admin.scoring_subject_list_mark_finalized'),
+      content: I18n.t('admin.scoring_subject_list_mark_finalized_confirm', { email: subject.email }),
     }
   } if (action === 'mark_not_finalized') {
     return {
-      title: I18n.t('administration.scoring.subject_list.mark_not_finalized'),
-      content: I18n.t('administration.scoring.subject_list.mark_not_finalized_confirm', { email: subject.email }),
+      title: I18n.t('admin.scoring_subject_list_mark_not_finalized'),
+      content: I18n.t('admin.scoring_subject_list_mark_not_finalized_confirm', { email: subject.email }),
     }
   }
   return {
-    title: I18n.t('administration.scoring.subject_list.rescore'),
-    content: I18n.t('administration.scoring.subject_list.rescore_confirm', { email: subject.email }),
+    title: I18n.t('admin.scoring_subject_list_rescore'),
+    content: I18n.t('admin.scoring_subject_list_rescore_confirm', { email: subject.email }),
   }
 }
 
 const bulkActionDetails = (action: string) => {
   if (action === 'mark_finalized') {
     return {
-      title: I18n.t('administration.scoring.subject_list.bulk_mark_finalized'),
-      content: I18n.t('administration.scoring.subject_list.bulk_mark_finalized_confirm'),
+      title: I18n.t('admin.scoring_subject_list_bulk_mark_finalized'),
+      content: I18n.t('admin.scoring_subject_list_bulk_mark_finalized_confirm'),
     }
   } if (action === 'mark_not_finalized') {
     return {
-      title: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized'),
-      content: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized_confirm'),
+      title: I18n.t('admin.scoring_subject_list_bulk_mark_not_finalized'),
+      content: I18n.t('admin.scoring_subject_list_bulk_mark_not_finalized_confirm'),
     }
   }
   return {
-    title: I18n.t('administration.scoring.subject_list.bulk_rescore'),
-    content: I18n.t('administration.scoring.subject_list.bulk_rescore_confirm'),
+    title: I18n.t('admin.scoring_subject_list_bulk_rescore'),
+    content: I18n.t('admin.scoring_subject_list_bulk_rescore_confirm'),
   }
 }
 

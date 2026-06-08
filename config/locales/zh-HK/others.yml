@@ -1662,7 +1662,6 @@ zh-HK:
     details:
       additional_time: 額外時間
       assessment_center: 評估中心
-      assessment_center_invites: 評估中心邀請
       completed_at: 完成於
       completion_status: 完工狀況
       hogan_id: Hogan ID
@@ -1692,11 +1691,6 @@ zh-HK:
     modals:
       remove: 你確定要把帶有電子郵件「%{email}」的使用者從這個活動中移除嗎？
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 評估員評量
-      other_assessments: 其他評估
-      other_assessor_assessments: 其他評估員評量
-      other_reports: 其他報導
     card:
       duration: 時間長度
       starts_in: 開始於
@@ -1767,23 +1761,19 @@ zh-HK:
       insert: 插入
       'no': 不
       ok: 好
-      publish: 發表
       reject: 抗
       remove: 刪除
       reset: 重設
       resolve: 解決
       restore: 恢復
       return_to_home: 歸鄉
-      run: 跑
       save: 儲存
       schedule: 程
       search: 搜尋
-      send: 發送
       sign_in: 登入
       start: 開始
       submit: 提交
       unarchive: 取消存檔
-      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上載
@@ -1796,20 +1786,14 @@ zh-HK:
     column:
       action: 操作
       active: 現役
-      ai_assistant: AI助手
-      allow_multiple_responses: 允許多重回應
       approval_notification_list: 核准通知使用者名單
       approvers_list: 審核者名單
-      assessment: 評價
       assessment_name: 評估名稱
       assessments: 評價
-      assessor: 顧問
       category: 類別
       client: 顧客
-      code: 代碼
       created_at: 建立時間
       created_by: 創作人
-      created_date: 創建日期
       default_language: 預設語言
       description: 說明
       details: 詳
@@ -1827,11 +1811,8 @@ zh-HK:
         scoring: JSON評分
       key: 鑰匙
       last_name: 姓氏
-      linked_activities: 相關活動
       linked_assessment: 連結評量
-      meeting_link: 會議連結
       modified_by: 修改者
-      modified_date: 修改日期
       name: 名稱
       owner: 業主
       package_id: 包裝 ID
@@ -1847,7 +1828,6 @@ zh-HK:
       scheduling: 排程
       skills: 技能
       status: 狀態
-      tags: 標籤
       timing: 時間點
       token: 記號
       type: 型
@@ -1859,15 +1839,12 @@ zh-HK:
     messages:
       leave_message: 你確定要離開這個頁面嗎？你未儲存的答案都會遺失。
     model:
-      admins: 管理員
       assessment: 評價
       assessments: 評估
       campaigns: 市場推廣
       completion_statuses: 完工狀態
-      datasheet: 規格表
       report: 報
       reports: 報告
-      sms_contact: 簡訊聯絡
       threesixty_campaign: 三百六十戰役比分
     status:
       completed: 成
@@ -2984,9 +2961,7 @@ zh-HK:
   languages_localized:
     sl: 斯洛文什奇納
   license_usage:
-    active: 活动
     campaign_name: 活动名称
-    inactive: 非活动状态
     status_updated_at: 最后状态更新
     status_updated_by: 最后由...更新
     subject_email: 邮件主题
@@ -3987,7 +3962,6 @@ zh-HK:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 現役
     allow_multiple_respones: 允許使用者提交多份回應
     png: 巴布亞新幾內亞
     regenerate_link: 再生連結

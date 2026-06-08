@@ -102,7 +102,7 @@ const AIGeneratedDevelopmentActionsModal = ({
       title={(
         <>
           <span className="font-normal">
-            {I18n.t('administration.idp.development_actions.create_development_actions_with_ai')}
+            {I18n.t('admin.idp_development_actions_create_development_actions_with_ai')}
           </span>
           <span className="font-bold">
             {` ${skill?.name}`}

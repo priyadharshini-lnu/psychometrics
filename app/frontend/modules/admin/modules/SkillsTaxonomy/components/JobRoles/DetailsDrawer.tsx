@@ -105,12 +105,10 @@ const DetailsDrawerComponent: FC<Props> = ({
 
   const deleteMapping = (record) => {
     modal.confirm({
-      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
-      content: I18n.t('administration.job_role.are_you_sure_to_remove'),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
-      cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
-      ),
+      title: I18n.t('shared.delete'),
+      content: I18n.t('admin.job_role_are_you_sure_to_remove'),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         removeResource(record.id).then(() => {
           message.success('Success')
@@ -175,7 +173,7 @@ const DetailsDrawerComponent: FC<Props> = ({
 
   return (
     <Drawer
-      title={I18n.t('administration.job_role.job_role_details')}
+      title={I18n.t('admin.job_role_job_role_details')}
       onClose={close}
       placement="right"
       maskClosable
@@ -192,7 +190,7 @@ const DetailsDrawerComponent: FC<Props> = ({
           column={1}
         >
           <Descriptions.Item
-            label={I18n.t('common.column.id')}
+            label={I18n.t('shared.id')}
             key="description"
             className="va-t w-30"
             labelStyle={{ width: '30%' }}
@@ -201,7 +199,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             {jobRole?.id}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('common.column.name')}
+            label={I18n.t('shared.name')}
             key="description"
             className="va-t w-30"
             labelStyle={{ width: '30%' }}
@@ -210,7 +208,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             {jobRole?.name}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('common.column.code')}
+            label={I18n.t('shared.code')}
             key="description"
             className="va-t w-30"
             labelStyle={{ width: '30%' }}
@@ -219,7 +217,7 @@ const DetailsDrawerComponent: FC<Props> = ({
             {jobRole?.code}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('common.column.description')}
+            label={I18n.t('shared.description')}
             key="description"
             className="va-t w-30"
             labelStyle={{ width: '30%' }}
@@ -228,12 +226,12 @@ const DetailsDrawerComponent: FC<Props> = ({
             {jobRole?.description}
           </Descriptions.Item>
         </Descriptions>
-        <Typography.Title level={5}>{I18n.t('administration.skills.title')}</Typography.Title>
+        <Typography.Title level={5}>{I18n.t('admin.skills_title')}</Typography.Title>
         <Skeleton loading={isMappingsLoading('fetch')} active>
           <ResourceForm
             resourceName="mapping"
             resource={(editMapping) ? transformValues(editMapping) : undefined}
-            readableResourceName={I18n.t('administration.job_role_skill_mapping.form.title')}
+            readableResourceName={I18n.t('admin.job_role_skill_mapping_form_title')}
             showSuccessMessages
             storeManager={{ form }}
             scrollToFirstError
@@ -250,7 +248,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                 dataSource={mappings}
                 columns={[
                   {
-                    title: I18n.t('administration.job_role.column.skill_name'),
+                    title: I18n.t('admin.job_role_column_skill_name'),
                     key: 'skillName',
                     dataIndex: 'skill.name',
                     width: '50%',
@@ -279,7 +277,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                     ),
                   },
                   {
-                    title: I18n.t('administration.job_role_skill_mapping.column.expected_proficiency_level'),
+                    title: I18n.t('admin.job_role_skill_mapping_column_expected_proficiency_level'),
                     key: 'expectedProficiencyLevel',
                     dataIndex: 'expectedProficiencyLevel',
                     width: '100%',
@@ -293,7 +291,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                             style={{ width: '100%' }}
                           >
                             <Select.Option key="not-applicable" value={null}>
-                              {I18n.t('common.text.na')}
+                              {I18n.t('shared.na_text')}
                             </Select.Option>
                             {
                               getAllowedProfLevelsForSkill(skills, editMapping?.skillId || selectedSkill).map(item => (
@@ -308,7 +306,7 @@ const DetailsDrawerComponent: FC<Props> = ({
                         <Typography.Text>
                           {(mapping?.expectedProficiencyLevel == null
                             || !mapping?.allowedProficiencyLevels?.[mapping?.expectedProficiencyLevel])
-                            ? I18n.t('common.text.na')
+                            ? I18n.t('shared.na_text')
                             : mapping?.allowedProficiencyLevels?.[mapping?.expectedProficiencyLevel]
                           }
                         </Typography.Text>

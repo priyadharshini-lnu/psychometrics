@@ -473,7 +473,7 @@ const ScoringGroupsComponent = (props: Props) => {
 
   const handleRemoveGroup = (groupId: string) => {
     removeCampaignFactorGroup(groupId).then(() => {
-      message.success(I18n.t('administration.scoring.factor_group_removed_successfully'))
+      message.success(I18n.t('admin.scoring_factor_group_removed_successfully'))
       fetchFactorGroups({ apiConfig: { fields: { campaign_factor_groups: ['id', 'name', 'position'] } } }).then(
         ({ data }) => {
           setFactorGroupsLocalState([...data])
@@ -484,8 +484,8 @@ const ScoringGroupsComponent = (props: Props) => {
 
   const handleConfirmRemoveFactorGroup = (group: CampaignFactorGroup) => {
     modal.confirm({
-      title: I18n.t('administration.scoring.remove_factor_group_confirmation_title'),
-      content: I18n.t('administration.scoring.remove_factor_group_confirmation_content', { group_name: group.name }),
+      title: I18n.t('admin.scoring_remove_factor_group_confirmation_title'),
+      content: I18n.t('admin.scoring_remove_factor_group_confirmation_content', { group_name: group.name }),
       onOk: () => handleRemoveGroup(group.id),
     })
   }
@@ -512,7 +512,7 @@ const ScoringGroupsComponent = (props: Props) => {
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.success(I18n.t('administration.scoring.factors_exported_successfully'))
+      message.success(I18n.t('admin.scoring_factors_exported_successfully'))
     })
   }
 
@@ -567,8 +567,8 @@ const ScoringGroupsComponent = (props: Props) => {
       <div className="justify-center items-center flex" style={{ height: '100vh' }}>
         <div>
           <div className="ta-c">
-            <p>{I18n.t('administration.scoring.scoring_description')}</p>
-            <Button onClick={initializeGroup} type="primary">{I18n.t('administration.scoring.get_started')}</Button>
+            <p>{I18n.t('admin.scoring_scoring_description')}</p>
+            <Button onClick={initializeGroup} type="primary">{I18n.t('admin.scoring_get_started')}</Button>
           </div>
         </div>
       </div>
@@ -584,14 +584,14 @@ const ScoringGroupsComponent = (props: Props) => {
       >
         <Col>
           <Typography.Title level={3}>
-            {I18n.t('administration.scoring.scoring')}
+            {I18n.t('admin.scoring_scoring')}
           </Typography.Title>
         </Col>
         <Col>
           <Space>
             {campaignPermissions.manageCampaignScoring ? <ToolsDropdown onClick={handleToolsDropdown} /> : null}
             <Tooltip title={campaignPermissions.manageCampaignScoring ? ''
-              : I18n.t('administration.campaigns.users.no_permission_message')}
+              : I18n.t('admin.campaigns_users_no_permission_message')}
             >
               <Button
                 type="primary"
@@ -599,7 +599,7 @@ const ScoringGroupsComponent = (props: Props) => {
                 onClick={() => setAddGroup(true)}
               >
                 <PlusOutlined />
-                {I18n.t('administration.scoring.add_group')}
+                {I18n.t('admin.scoring_add_group')}
               </Button>
             </Tooltip>
           </Space>
@@ -608,7 +608,7 @@ const ScoringGroupsComponent = (props: Props) => {
       {sortedGroups.length === 0
         ? (
           <Empty
-            description={I18n.t('administration.scoring.no_groups')}
+            description={I18n.t('admin.scoring_no_groups')}
             image={Empty.PRESENTED_IMAGE_SIMPLE}
           />
         ) : null}
@@ -730,7 +730,7 @@ const ScoringGroupsComponent = (props: Props) => {
         factorData={modifiedFactors[currentFactor?.id as string] ?? currentFactor}
         editFactor={handleEditFactor}
         title={openAddEditFactor.mode === 'edit'
-          ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
+          ? I18n.t('admin.scoring_edit_factor') : I18n.t('admin.scoring_add_factor')}
         totalFactors={campaignFactorsLocalState}
         groupName={sortedGroups}
         handleFactorSelect={handleFactorSelect}

@@ -195,7 +195,7 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
         className={styles.footer}
       >
         <Button onClick={onCancel}>
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>
         <Button
           type="primary"
@@ -207,7 +207,7 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
               : false
           }
         >
-          {I18n.t('administration.save')}
+          {I18n.t('shared.save')}
         </Button>
       </div>
     </div>

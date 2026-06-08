@@ -30,7 +30,7 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
     <>
       <Resource.Table pagination>
         <Resource.Column<ReflectionQuestion>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={skill => (
@@ -40,7 +40,7 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
           fixed="left"
         />
         <Resource.Column<ReflectionQuestion>
-          title={I18n.t('administration.reflection_questions.question')}
+          title={I18n.t('admin.reflection_questions_question')}
           id="question"
           render={item => <Typography.Text copyable>{item.question}</Typography.Text>}
           sorter
@@ -48,25 +48,25 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
           fixed="left"
         />
         <Resource.Column<ReflectionQuestion>
-          title={I18n.t('administration.reflection_questions.form.min_words')}
+          title={I18n.t('admin.reflection_questions_form_min_words')}
           id="min_words"
           width={100}
           sorter
         />
         <Resource.Column<ReflectionQuestion>
-          title={I18n.t('administration.reflection_questions.form.max_words')}
+          title={I18n.t('admin.reflection_questions_form_max_words')}
           id="max_words"
           width={100}
           sorter
         />
         <Resource.Column<ReflectionQuestion>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.updated_at')}
           id="updated_at"
           width={200}
           sorter
         />
         <Resource.Column<ReflectionQuestion>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, reflectionQuestion) => (
             <Dropdown
@@ -80,8 +80,8 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
       </Resource.Table>
       <ConfirmationModal
         open={!!confirmationId}
-        title={I18n.t('common.actions.delete')}
-        message={I18n.t('administration.reflection_questions.delete_confirmation')}
+        title={I18n.t('shared.delete')}
+        message={I18n.t('admin.reflection_questions_delete_confirmation')}
         onConfirm={handleDelete}
         onCancel={(e) => {
           e.stopPropagation()
@@ -114,7 +114,7 @@ const Dropdown: React.FC<DropDownProps> = ({ reflectionQuestion, openModal, setC
                 }}
                 className="ps-0"
               >
-                {I18n.t('common.actions.edit')}
+                {I18n.t('shared.edit')}
               </Button>),
           },
           reflectionQuestion.allowDelete && reflectionQuestion.meta.permissions.remove && {
@@ -127,7 +127,7 @@ const Dropdown: React.FC<DropDownProps> = ({ reflectionQuestion, openModal, setC
                 }}
                 className="ps-0"
               >
-                {I18n.t('common.actions.delete')}
+                {I18n.t('shared.delete')}
               </Button>),
           },
         ].filter(m => m) as MenuItem[],

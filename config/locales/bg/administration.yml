@@ -2,17 +2,6 @@
 bg:
   administration:
     actions: Действия
-    active_record_audits:
-      action: Действие
-      audit_id: Идентификационен номер на одита
-      auditable_id: Идентификационен номер на записа
-      auditable_type: Тип запис
-      audited_changes: Одитирани промени
-      new_diff:
-        parse_error: Неуспешно анализиране на JSON с нови промени
-      old_diff:
-        parse_error: Неуспешно анализиране на JSON със стари промени
-      title: Одитирани промени
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ bg:
           design: Проектирам
           or: Или
     administrators:
-      drawers:
-        edit:
-          first_name_required: Собственото име е задължително
-          last_name_required: Фамилията е задължителнa
-        view:
-          first_name: Собствено име
-          last_name: Фамилия
-          title:
-            campaign_admin: Администратор на кампанията
-            client_admin: Администратор на клиента
-            project_admin: Администратор на проекта
       list:
         actions:
-          api_keys: API ключове
-          edit: Редактирам
-          export_admins_with_permissions: Експортиране на администраторски роли и разрешения
-          export_success: Задачата за експортиране на администратор беше планирана успешно. Моля, проверете известието си за статус.
-          login: Вход
           spoof:
             login_successful: Влизането е успешно.
-          user_report_events: Отчет на регистрационни файлове за одобрение
-        columns:
-          email: Имейл
-      modals:
-        delete:
-          cancelText: Отмени
-          okText: Добре
-          title: Потвърждавам
-    ai_artifacts:
-      artifact_results: Резултати от артефакти
-      code: Код
-      export:
-        success_msg: Експортиране на AI артефакти в процес. Моля, проверете статуса в известията.
-      export_ai_artifacts: Експортни AI артефакти
-      form:
-        add_assessment: Добавяне на оценяване
-        ai_assistant: AI асистент
-        assessments: Оценки
-        campaign_factors: Фактори на кампанията
-        configuration: Конфигурация
-        datasheet: Лист с данни
-        datasheet_columns: Колони на листа с данни
-        include_all_datasheet_columns: Включване на всички колони на листа с данни
-        no_assessment_selected: Все още не са добавени оценки. Щракнете върху "Добавяне", за да започнете.
-        questions_required: Трябва да се избере поне един въпрос
-        select_ai_assistant: Изберете AI Assistant
-        select_assessment: Изберете оценяване
-        select_campaign_factors: Изберете фактори на кампанията
-        select_datasheet_columns: Изберете колони на лист с данни
-        select_questions: Изберете въпроси
-        title: AI артефакт
-      generate: Пораждам
-      generate_result_info_message: Резултатите се генерират, моля, опреснете страницата, за да видите актуализираните резултати.
-      generated_at_time: Генерирано в %{time}
-      generated_value: Генерирана стойност
-      id: Документ за самоличност
-      import:
-        download_example_csv: Изтеглете пример за CSV
-        info_msg: Каченият файл е поставен на опашка за импорт. Моля, проверете статуса в известията.
-      import_action:
-        title: Артефакти от AI за Import Campaign
-      import_ai_artifacts: Импортиране на AI артефакти
-      key: Ключ
-      name: Име
-      parsed_dependencies:
-        help: Анализирани зависимости за потребителя, използвани от AI Assistant за генериране на резултати от артефакти
-        title: Анализирани зависимости
-        view: Преглед на анализирани зависимости
-      playground: Площадка
-      playground_info: Тествайте артефакта си с примерни данни, за да прегледате генерираните резултати.
-      playground_placeholder: Въведете тестови данни
-      raw: СУРОВИ
-      tabs:
-        results: Резултати
-        settings: Настройки
-      test_generate: Генериране на тест
-      unsaved_changes: Налице са незапазени промени, помислете за изпращане на формуляр, за да генерирате актуализиран отговор от Playground.
-      used_tokens:
-        input_tokens: Входни токени
-        output_tokens: Изходни токени
-        title: Използване на токени
     ai_assistants:
-      actions:
-        create: Създаване на AI Assistant
-        edit: Редактиране на AI Assistant
-        playground: Площадка
-      ai_assistants: ИИ асистенти
-      ai_assistants_playground: ИИ асистент детска площадка
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ bg:
             no_datasheet_data: Няма налични данни в листа с данни за потребителски %{email}
             user_not_found_in_datasheet: Потребителят не е намерен в информационния лист на кампанията
       campaign_ai_artifacts: Артефакти с изкуствен интелект на кампанията
-      column:
-        provider: Доставчик
-      created_successfully: AI Assistant е създаден успешно.
       errors:
         cannot_delete_in_use: Не може да се изтрие AI Assistant '%{name}', защото се използва.
         development_actions_assistance_not_enabled: Генерирането на действия за развитие, задвижвано от ИИ, не е налично. Моля, свържете се с администратора.
         one_click_idp_assistance_not_enabled: Помощ за IDP, задвижвана от AI, не е налична с текущия ви план. Моля, свържете се с администратора.
         platform_assistant_already_exists: На платформата е разрешен само 1 асистент от тип %{type}.
-      form:
-        add_output_schema_key: Добавяне на ключ на изходната схема
-        dependencies: Зависимости
-        description: Описание
-        enter_description: Въведете описание
-        enter_schema_key: Въвеждане на ключ на схемата
-        key: Ключ
-        name: Име
-        output_schema_keys: Ключове на изходната схема
-        provider: Доставчик
-        remove_output_schema_key: Премахване на ключа на изходната схема
-        schema_key_description_required: Изисква се описание на ключа на схемата
-        schema_key_required: Изисква се ключ на схемата
-        schema_key_type: Тип на ключа
-        schema_key_unique: Ключовете на схемата трябва да са уникални
-        system_prompt: Системна подкана
-        type: Тип
-        user_prompt: Потребителска подкана
-      revisions:
-        load: Зареждане във формата
-        name: Име
-        system_prompt: Система Propmpt
-        title: Ревизии на AI Assistant
-        user_prompt: Подкана за потребителя
-        version: Версия
       selector:
         choose_artifact: Изберете AI артефакт
         choose_schema_key: Изберете ключ на схемата
         no_assistants_found: Няма намерени AI асистенти
         placeholder: Изберете AI Assistant
-      updated_successfully: AI Assistant е актуализиран успешно.
     any: " -Всякакъв- "
     api:
       campaigns:
@@ -185,10 +62,6 @@ bg:
       users:
         form:
           campaign_ids_not_existing: Не всички идентификатори на кампаниите съществуват
-    api_keys:
-      form:
-        description: Описание
-        title: Ключ за приложно-програмен интерфейс
     assessment_builder:
       form:
         display_label: Въведете етикета на дисплея
@@ -196,106 +69,9 @@ bg:
         value: Стойност
         value_required: Изисква се стойност
     assessment_center:
-      cancel_confirmation:
-        message: Сигурни ли сте, че искате да отхвърлите напредъка на формуляра?
-        title: Отхвърляне на напредъка на формуляра
-      current: Текущ
       invite:
-        add_invite: Добавяне на покана
-        assessment_center: Център за оценяване
-        back: Назад
-        basic_info:
-          allow_preferred_language: Разрешаване на предпочитан език
-          assessment_centers: Центрове за оценяване
-          assessment_centers_hint: Пример за заявка за търсене "10 август 2023 г., 20:06 ч."
-          assessment_centers_placeholder: Изберете центрове за оценяване
-          description: Издайте покани на кандидати, като избирате множество центрове за оценяване. След това кандидатите ще изберат един център от наличните.
-          neurodiversity: Включете въпроса за невроразнообразието
-          preferred_language: Разрешени езици
-          required_error: Не може да бъде празен
-          title: Основна информация
-        center_group: Група Център за оценяване
-        confirm_message: Сигурни ли сте, че искате да изтриете поканата?
-        confirm_message_with_title: Сигурни ли сте, че искате да премахнете поканата със заглавие "%{invite_title}"?
-        confirm_title: Потвърждавам
         exceeded_subjects_count: Кампанията има %{users} теми. Можете да добавяте само %{count} теми на покана
-        id: Идентификатор
-        invites: Покани
-        name: Име
-        name_placeholder: Въведете име на поканата
-        next: Следващ
-        not_selected: Не е избрано
-        requests: Заявки
-        save: Запазване и изпращане
-        send_invites:
-          add: Добавям
-          add_description: Можете да преведете заглавието и описанието на поканата на няколко езика
-          add_language: Добавяне на език
-          description: Описание
-          input_label: Добавяне на допълнителен език
-          input_placeholder: Изберете допълнителен език
-          invitation_title: Заглавие на поканата
-          title: Покана (%{lang})
-        steps:
-          add_subjects: Добавяне на теми
-          basic_info: Основна информация
-          has_errors: съдържа грешки
-          send_invitation: Изпрати покана
-        subjects:
-          cancel: Отмени
-          count: "%{count} Теми"
-          csv_error: 'Ред%{index}: потребител с имейл %{email} не е в тази кампания'
-          csv_imported: "%{count} импортирани теми"
-          description: Можете да добавяте теми поотделно, като търсите или групово качвате csv файл.
-          download: Свалям
-          file_example: Реферирайте към примерен файл, за да качите информация за тмите.
-          import_from_campaign: Добавете всичко от кампанията
-          import_title: Импортиране на теми
-          import_users: Импортиране на потребители
-          search_user: Търсене на теми
-          title: Теми
-          upload: Качвам
-          upload_csv: Качване на CSV файл
         subjects_count_added: Успешно добавени теми
-        success:
-          continue: Продължавам
-          message: Задачата за изпращане на поканите е поставена на опашка; потребителите ще ги получат скоро.
-        success_message: Поканата беше премахната успешно.
-        success_message_with_title: Поканата със заглавие "%{invite_title}" беше премахната успешно.
-        title: Заглавие
-        workshop:
-          title: Центрове за оценяване
-        workshop_list:
-          add: Добавям
-          name: Име
-          remove_confirm:
-            content: Сигурни ли сте, че искате да премахнете Центъра за оценяване с име "%{name}"?
-            success: Центърът за оценка беше премахнат успешно.
-            title: Потвърждавам
-      invite_request:
-        accept: Приемам
-        reason: Причина
-        reject: Отхвърлям
-        remove_confirm:
-          content: Сигурни ли сте, че искате %{action} %{status} от %{subjectName}?
-          success: "%{status} от %{subjectName} беше %{action} успешно."
-          title: "%{action} %{status}"
-        status: Статус
-        subject_name: Име на темата
-        workshop_time: Време за семинар
-      past: Минало
-      steps:
-        basic_information: Основна информация
-        facilitators: Фасилитатори
-        invite_options: Опции за покана
-        invite_subjects: Теми на поканата
-        send_invitations: Изпращане на покани
-      success:
-        call_send_invitation: Искате ли да изпратите поканите?
-        ok: Да
-        skip: Пропусни засега
-        title: Центрове за оценяване са създадени
-      upcoming: Предстоящи
     assessment_question_import:
       errors:
         doesnt_have_header: "'%{sub_header}' няма заглавие"
@@ -311,11 +87,7 @@ bg:
       successfully_scheduled: Импортирането на въпроси беше планирано успешно.
     assessments:
       assessment: Оценка
-      assessment_report: Оценки
       copy:
-        copy: копирам
-        copy_assessment: Копиране на оценка
-        name: Име
         successfully: Оценката "%{name}" беше копирана успешно.
       create:
         successfully: Оценката "%{name}" е създадена успешно.
@@ -398,93 +170,10 @@ bg:
       update:
         successfully: Оценяването %{name} е актуализирано успешно.
     assessor:
-      add_subject_modal:
-        assessment: Оценяване
-        mark_as_lead_assessor: Маркирайте като водещ оценител за горната тема
-        subject: Тема
-        subject_placeholder: Тема на търсене.
-        title: Добавяне на тема
-      assessments:
-        actions:
-          add_subject: Добавяне на тема
-          rescore: Преоценка
-          reset: Нулиране на оценката
-          reset_progress: Нулиране на напредъка
-        bulk_delete_confirmation: Сигурни ли сте, че искате да изтриете избраните записи?
-        bulk_delete_successful: Оценяванията на оценителя бяха изтрити успешно
-        reset_confirmation: Сигурни ли сте, че искате да нулирате оценката за темата с имейл "%{subjectEmail}"?
-        reset_progress_confirmation: Сигурни ли сте, че искате да нулирате напредъка на темата с имейл "%{subjectEmail}"?
-        reset_progress_successfully: Нулирането на напредъка за темата с имейл "%{subjectEmail}" беше успешно.
-        reset_successfully: Нулирането на оценката за темата с имейл "%{subjectEmail}" беше успешно.
-        subject_email: Тема на Имейл
-        subject_name: Име на темата
-      completed_at: Завършено в
-      count: "%{count} Оценители"
-      create_assessor: Добавяне на оценител
-      evaluations: Оценки
       mailer:
         subject: Нови теми са добавени за Вашата оценка
-      modals:
-        create_assessor:
-          add: Добавям
-          cancel: Отменям
-          form:
-            add: Добавям
-            add_lead_assessor: Добавям като водещ оценител
-            add_lead_assessor_hint: Моля, първо добавете формуляр за водещ оценител
-            assessments: Оценявания
-            assessor: Оценител
-            assessor_placeholder: Търсене на оценител...
-            lead_assessment: Водещо оценяване
-            subject: Тема
-            subject_placeholder: Търся тема...
-          sheet:
-            assessments: Оценявания
-            assessments_placeholder: Избирам
-            assessor_email: Имейл на оценителя
-            assessor_first_name: Име на оценителя
-            assessor_last_name: Фамилно име на оценителя
-            subject_email: Имейл на темата
-          title: Добавяне на оценител
-        import:
-          body: Вижте функционалността за експортиране, за да извлечете шаблон, който може да се използва за импортиране тук.
-          title: Оценители на вноса
       moderate_score:
-        assessor_evaluations: Оценки на оценителя
-        main_report: Основен доклад
-        no_completed_assessments: Все още няма завършени оценявания
         no_results: Няма отговори на въпроси
-        other_reports: Други доклади
-        overall_scoring: Общо оценяване
-        recordings: Записи
-        refresh: Опреснявам
-        reports: Доклади
-        reports_count: "%{count} Доклади"
-      overview: Преглед
-      remove_confirmation: Сигурни ли сте, че искате да премахнете оценителя с имейл %{email} от тази кампания?
-      statuses:
-        completed: Завършен
-        not_completed: Не е завършен
-      toolbar:
-        export: Експортирам оценители
-        import: Импортирам оценители
-        tools: Инструменти
-    assessor_assessment:
-      add: Добавям
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: Изберете оценяване
-      name: Оценяване на оценителя
-    assessor_campaigns:
-      statuses:
-        completed: Завършен
-        in_progress: В процес на изпълнение
-        not_started: Не е започнат
-    assessor_subjects:
-      statuses:
-        completed: Завършен
-        in_progress: В процес на изпълнение
-        not_started: Не е започнат
     assigns:
       create:
         successfully: Ново възлагане за оценяване беше създадено успешно
@@ -501,42 +190,6 @@ bg:
       edit:
         header: Редактиране на възлагането на отчет
     attention: Внимание
-    audit_log:
-      action: Действие
-      audit_logs: Одиторски записи
-      campaign: Кампания
-      client: Клиент
-      client_ip: ИП адрес на клиента
-      collapse_filters: Свиване на филтри
-      dashboard: Табло
-      date_presets:
-        last_30_days: Последните 30 дни
-        last_7_days: Последните 7 дни
-        last_month: Миналия месец
-        last_week: Миналата седмица
-        today: Днес
-        yesterday: Вчера
-      date_range: Период от време
-      expand_filters: Разширяване на филтрите
-      failure_reason: Причина за повреда
-      interface: Интерфейс
-      log_date: Дата на записа
-      outcome: Резултат
-      payload: Товароподемност
-      project: Проект
-      record_id: Идентификатор на записа
-      request_id: Идентификатор на заявката
-      reset: Нулиране
-      search: Търсене
-      search_campaign: Търсене по кампания
-      search_client: Търсене по клиент
-      search_project: Търсене по проект
-      search_record: Търсене по идентификатор на запис
-      search_user: Търсене по потребител
-      title: Информация за одиторския запис
-      type: Тип запис
-      user: Потребител
-      user_agent: Потребителски агент
     back: Назад
     block_settings:
       modal:
@@ -749,20 +402,7 @@ bg:
           missing_user_reports: 'Липсващи потребителски доклади за имейли: %{emails}'
           no_file_found_in_extracted_zip: Не е намерен файл в извлечения ZIP файл
           user_report_not_found: 'Не е намерен потребителски доклад за имейл: %{email}'
-      bulk_download:
-        data_range_error: Моля, изберете диапазон от дати
-        modal:
-          subtitle: Изберете диапазон от дати и след това изберете необходимия език за всеки отчет
-      generate:
-        modal:
-          subtitle: Изберете необходимия език за всеки отчет
     campaign_templates:
-      campaign_templates: Шаблони за кампании
-      column:
-        assessment: Оценка
-        campaign: Кампания
-        owner: Собственик
-        report: Доклад
       copy:
         successfully: Наемането на Клиент %{name} беше копирано успешно.
       create:
@@ -773,16 +413,6 @@ bg:
         header: Редактиране на клиента
       errors:
         owner_invalid: Собственикът на шаблона трябва да е същият като собствениците на оценяването, отчета и величината
-      form:
-        assessment: Оценяване
-        assessment_placeholder: Изберете оценяване
-        name: Име
-        name_placeholder: Въведете име
-        owner: Собственик
-        owner_placeholder: Изберете собственик
-        report: доклад
-        report_placeholder: Изберете отчет
-        title: Шаблон за кампания
       image_fields:
         remove: Премахвам
       index:
@@ -797,10 +427,6 @@ bg:
         updated_at: Дата на актуализиране
       new:
         header: Нов клиент
-      remove_confirm:
-        content: Сигурни ли сте, че искате да премахнете шаблона на кампанията "%{name}"?
-        success: Шаблонът за кампания '%{name}'' беше успешно премахнат.
-        title: Премахване на шаблон за кампания
       resource:
         confirmations:
           delete:
@@ -816,7 +442,6 @@ bg:
       update:
         successfully: Наемът на клиент %{name} беше актуализиран успешно.
     campaigns:
-      actions: Управлявам
       assessment_reports:
         report_approval:
           allow_bulk_approve: Разрешаване на групово одобрение
@@ -866,148 +491,6 @@ bg:
       assessors:
         spoof:
           successfully: Вие влязохте успешно като %{name}
-      convert_to_template: Преобразуване в шаблон
-      copy: Копирам
-      delete: Изтривам
-      edit: Редактирам
-      extend_time_success_message: Таймерът на кампанията е удължен до %{minutes} минути
-      filters:
-        active: Активен
-        all: Всички
-        archived: Архивирани
-        closed: Затворен
-        inactive: Неактивен
-        status: Статус
-      form:
-        active_notice: Състоянието на кампанията автоматично ще се промени на затворен на избраната крайна дата
-        campaign: Кампания
-        copy_factors: Фактори за копиране
-        inactive_notice: Състоянието на кампанията автоматично ще се промени на активно на избраната начална дата
-        name: Име
-        practice_campaign: Тренировъчна кампания
-        status: Статус
-      listing:
-        assessments: Оценявания
-        id: Идентификатор
-        name: Име
-        reports: Доклади
-        status: Статус
-        template: Шаблон
-        type: Вид
-      menus:
-        add_common_campaign: Добавяне на обща кампания
-        add_multi_rater_campaign: Добавяне на мултирейтингова кампания
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: Шаблон за кампания
-            factors: Фактори
-          base_settings:
-            active: Активен
-            archive: Архив
-            assessment: Оценяване
-            category: Категория
-            closed: Затворен
-            default_assessment_language: Език по подразбиране на оценката
-            default_report_language: Език по подразбиране на доклада
-            empty: Празен
-            inactive: Неактивен
-            name: Име
-            normal: Нормален
-            previous: Предишен
-            select_assessment_language: Избор на език за оценяване
-            select_report_language: Избор на език на отчета
-            skill_rater: Оценяване на уменията
-            standard: Стандартен
-            status: Статус
-            type: Тип
-          close:
-            content: Сигурни ли сте, че искате да затворите създаването на мултирейтингова кампания? Всяка незапазена работа по персонализиране ще бъде загубена. Моля, потвърдете решението си.
-            title: Затворете създаването на мултирейтингова кампания?
-          instructions_creation:
-            empty: 'Празно: Започнете с празна анкета и я персонализирайте според Вашите специфични нужди.'
-            previous: 'Предишна: Изберете предишно оценяване като отправна точка и направете промени.'
-            standard: 'Стандартно: Използвайте предварително проектиран шаблон с често използвани въпроси и индикатори.'
-            sub_title: Моля, изберете типа кампания, която искате да създадете.
-            title: Добре дошли в създаването на мултирейтингова кампания!
-          instructions_customization:
-            sub_title: Изберете шаблона и факторите, които да бъдат включени в оценяването.
-            title: Персонализирайте оценяването си!
-          no_factors:
-            description: Моля, опитайте с други ключови думи за търсене.
-            title: Не са намерени фактори
-          questions:
-            select_all: Изберете всички
-            title: Въпроси и индикатори
-          search_factors:
-            description: Моля, въведете поне 3 знака, за да намерите факторите, които търсите.
-            title: Започнете търсенето си
-          success: Успешно е създадена мултирейтингова кампания.
-          success_job: Работата за създаване на мултирейтингова кампания беше успешно планирана.
-      options:
-        description:
-          name: Описание
-          save: Запазване на описанието
-          save_success: Описанието е запазено успешно
-        enable_video_call_recording: Активиране на запис на видеоразговори
-        fixed_time: Фиксирано време
-        instructions:
-          actions:
-            saved: Инструкциите са запазени успешно
-          enable: Активиране на инструкции
-          save: Запазване на инструкции
-        prework_required: Не разрешавайте резервация в Центъра за оценяване, ако предварителната работа не е завършена
-        prework_required_for_invite: Изпращайте имейл с покана само когато предварителната работа е завършена
-        proctoring:
-          enable: Активиране на наблюдение
-          identification: Идентификация
-          identifications:
-            face: Лице
-            face_and_passport: Лице и паспорт
-            passport: Паспорт
-          integration_type: Интеграция
-          integration_types:
-            iframe: IFrame
-            ldb: Браузър за заключване
-          proctoring_types:
-            offline: Офлайн
-            online: Онлайн
-          rule_types:
-            allow_absence_in_frame: Разрешаване на отсъствие в кадъра
-            allow_to_use_books: Разрешаване на използването на резервации
-            allow_to_use_calculator: Разрешаване на използването на калкулатор
-            allow_to_use_excel: Разрешаване на използването на Excel
-            allow_to_use_human_assistant: Разрешаване на асистент човек
-            allow_to_use_messengers: Разрешаване на използването на месинджъри
-            allow_to_use_paper: Разрешаване на използването на хартия
-            allow_to_use_websites: Разрешаване на използването на уебсайтове
-            allow_voices: Разрешаване на гласове
-            allow_wrong_gaze_direction: Разрешаване на грешна посока на погледа
-          rules: Правила
-          trial: Процес за наблюдение
-          type: Вид
-        show_watermark: Показване на воден знак
-        watermark_content: Съдържание на воден знак
-        watermark_info: Ако не добавите никакво съдържание, имейлът на потребителя по подразбиране ще се показва като воден знак. Можете да използвате някой от следните текстове -<br> {{id}} - Идентификатор на участника </br> {{first_name}} - Собствено име на участника <br> {{last_name}} - Фамилно име на участника </br> {{email}} - Имейл на участника
-      pdf_password: PDF парола
-      types:
-        common: Обикновен
-        threesixty: Мултирейтингов
-      users:
-        add_user: Добавяне на потребител
-        completion_status: Статус на завършване
-        created_by: Създаден от
-        email: Имейл
-        filters:
-          all: Всички
-          anonymous: Анонимен
-          identified: Идентифицирани
-        id: Идентификатор
-        is_active: Активен
-        name: Име
-        no_permission_message: Нямате разрешение за промяна
-        title: Потребители
-        updated_by: Актуализирано от
       validations:
         dates:
           end: трябва да е след началната дата
@@ -1016,28 +499,6 @@ bg:
         invalid_campaign_factor_codes: 'Следните factor_codes на кампанията са невалидни: %{codes}'
         missing_headers: Липсващи заглавки
         missing_users: 'Следните имейли не съществуват: %{emails}'
-      import:
-        example_csv: Изтегляне на пример csv
-        success_msg: Импортирането е качено успешно
-      modal:
-        title: Импортиране на резултати от външни кампании
-    client_features:
-      client_features: Характеристики на клиента
-      form:
-        ai_assistants: AI асистенти
-        ai_assistants_disabled_by_client: AI Assistants е деактивиран от клиента
-        ai_assisted_idp: Подпомагано от AI IDP
-        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP изисква функцията AI Assistants да бъде активирана
-        ai_content_analysis: Анализ на съдържанието с изкуствен интелект
-        ai_content_analysis_disabled_by_client: Анализът на съдържанието с изкуствен интелект е деактивиран от клиента
-        ai_translation: Преводи с изкуствен интелект
-        ai_translation_disabled_by_client: AI Translations е деактивирана от клиента
-        global_skills: Глобални умения
-        global_skills_disabled_by_client: Global Skills е деактивиран от клиента
-        idp: IDP
-        idp_disabled_by_client: IDP е деактивиран от клиента
-        sms_notification: SMS известяване
-        sms_notification_disabled_by_client: SMS известяването е деактивирано от клиента
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1049,7 +510,6 @@ bg:
         archived: Архивирани
         disable: Архив
         enable: Разархивиране
-      clients: Клиенти
       copy:
         successfully: Клиентският наемател '%{name}' беше копиран успешно.
       create:
@@ -1069,392 +529,17 @@ bg:
       new:
         header: Нов клиент
       projects:
-        actions:
-          archive: Архив
-          unarchive: Разархивиране
-        archive:
-          content: Сигурни ли сте, че искате да архивирате '%{project_name}'?
-          success: Проектът '%{project_name}' е архивиран успешно.
-          title: Архив на проекта
-        assign_assessments:
-          add_assessment: Добавяне на оценяване
-          assessments: Оценки
-        assign_reports:
-          add_report: Добавяне на отчет
-        campaigns:
-          archive:
-            successfully: Кампанията "%{name}" беше архивирана успешно.
-          copy:
-            error: Кампанията "%{name}" не е копирана.
-            successfully: Кампанията "%{name}" беше копирана успешно.
-          create:
-            successfully: Кампанията '%{name}' е създадена успешно.
-          destroy:
-            successfully: Кампанията "%{name}" беше изтрита успешно.
-          edit:
-            header: Редактиране на кампанията
-          export:
-            assessments: Оценки
-            assigned_user: Присвоени потребители
-            completed_user: Завършени потребители
-            created_at: Дата на създаване
-            header:
-              actions: Действия
-              actual_usage: Действителна употреба
-              assessments: Оценки
-              campaigns: Кампании
-              name: Име
-              reports: Доклади
-              sub_campaigns: Подкампании
-              tests_allocated: Разпределени тестове
-              users: Потребители
-            id: Ид
-            name: Име на кампанията
-            reports: Доклади
-            updated_at: Дата на актуализиране
-          index:
-            export: Износ
-            new: Добавям
-            title: Кампании
-          list:
-            assessments: Оценки
-            assigned_user: Присвоени потребители
-            completed_user: Завършени потребители
-            created_at: Дата на създаване
-            header:
-              actions: Действия
-              actual_usage: Действителна употреба
-              assessments: Оценки
-              campaigns: Кампании
-              name: Име
-              reports: Доклади
-              sub_campaigns: Подкампании
-              tests_allocated: Разпределени тестове
-              users: Потребители
-            id: Ид
-            name: Име на кампанията
-            reports: Доклади
-            updated_at: Дата на актуализиране
-          new:
-            header: Нова кампания
-          resource:
-            sub_campaign:
-              create: Създаване на нова подкампания
-            tooltips:
-              copy: Копиране на кампанията
-              create_report: Добави нов отчет
-              create_user: Добавяне на нов потребител
-              delete: Изтриване на кампания
-              edit: Редактиране на кампанията
-              export: Износ
-          sidebar:
-            archive: Архивна кампания
-            copy: Копиране на кампанията
-            destroy: Изтриване на кампанията
-            disable: Забраните
-            edit: Редактиране на кампанията
-            enable: Разрешите
-            new: Нова кампания
-            title: Опции на кампанията
-            view_licenses: Преглед на лицензи
-          sub_campaigns:
-            archive:
-              successfully: Подкампанията %{name} беше архивирана успешно.
-            copy:
-              error: Подкампанията %{name} не е копирана.
-              successfully: Подкампанията %{name} беше копирана успешно.
-            create:
-              successfully: Подкампанията %{name} е създадена успешно.
-            destroy:
-              successfully: Подкампанията %{name} беше изтрита успешно.
-            edit:
-              header: Редактиране на подкампания
-            export:
-              assessments: Оценки
-              assigned_user: Присвоени потребители
-              completed_user: Завършени потребители
-              created_at: Дата на създаване
-              header:
-                actions: Действия
-                actual_usage: Действителна употреба
-                archive_status: Състояние на архива
-                name: Име
-                sub_campaign: Подкампании
-                tests_allocated: Разпределени тестове
-                users: Потребители
-              id: Ид
-              name: Име на подкампанията
-              reports: Доклади
-              updated_at: Дата на актуализиране
-            header:
-              actions: Действия
-            index:
-              export: Износ
-              new: Добавям
-              title: Подкампании
-            list:
-              assessments: Оценки
-              assigned_user: Присвоени потребители
-              completed_user: Завършени потребители
-              created_at: Дата на създаване
-              header:
-                actions: Действия
-                actual_usage: Действителна употреба
-                archive_status: Състояние на архива
-                name: Име
-                sub_campaign: Подкампании
-                tests_allocated: Разпределени тестове
-                users: Потребители
-              id: Ид
-              name: Име на подкампанията
-              reports: Доклади
-              updated_at: Дата на актуализиране
-            new:
-              header: Нова подкампания
-            resource:
-              tooltips:
-                copy: Копиране на подкампанията
-                create_report: Добавяне на нов отчет
-                create_user: Добавяне на нов потребител
-                delete: Изтриване на подкампания
-                edit: Редактиране на подкампания
-            sidebar:
-              archive: Архив на подкампанията
-              copy: Копиране на подкампанията
-              destroy: Изтриване на подкампания
-              disable: Забраните
-              edit: Редактиране на подкампания
-              enable: Разрешите
-              new: Нова подкампания
-              title: Опции на подкампанията
-              view_licenses: Преглед на лицензи
-            toggle_status:
-              successfully: Подкампанията %{name} е актуализирана успешно.
-            update:
-              successfully: Подкампанията %{name} е актуализирана успешно.
-          toggle_status:
-            successfully: Кампанията %{name} е актуализирана успешно.
-          update:
-            successfully: Кампанията %{name} е актуализирана успешно.
-        copy:
-          error: Проектът %{name} не е копиран.
-          successfully: Проектът %{name} беше копиран успешно.
-        create:
-          successfully: Проектът %{name} е създаден успешно.
-        destroy:
-          successfully: Проектът %{name} беше изтрит успешно.
-        edit:
-          header: Редактиране на проекта
-        export:
-          2fa_enabled: 2FA активиран
-          actual_usage: Действителна употреба
-          admin: Администратор на клиента
-          applicable_level: Приложимо ниво
-          archive_status: Статус
-          assessments: Оценки
-          assigned_user: Присвоени потребители
-          completed_user: Завършени потребители
-          created_at: Дата на създаване
-          id: Ид
-          name: Име на проекта
-          number: Номер
-          project_admin: Администратори на проекти
-          reports: Доклади
-          tests_allocated: Разпределени тестове
-          tte_admin: Ръководител на проекта на TTE
-          updated_at: Дата на промяна
-          url: URL адрес
-          users_count: Брой потребители
-        form:
-          2fa: 2-факторно удостоверяване
-          2fa_enable: Активиране на 2-факторно удостоверяване
-          applicable_levels:
-            campaign: Крайно ниво на кампанията
-            project: Крайно ниво на проекта
-            sub_campaign: Крайно ниво на подкампанията
-          data_privacy: Поверителност на данните
-          enable_live_chat: Активиране на чат на живо
-          enable_privacy_links: Активиране на връзката за поверителност
-          live_chat_token: Токен за чат на живо
-          optional: Факултативен
-          other_settings: Други настройки
-          privacy_link: Връзка за поверителност
-          privacy_text: Текст за поверителност
-          project_number: Номер на проекта
-          webhook: Уеб кукичка
-          webhook_auth_enabled: Активиране на удостоверяване на Webhook
-          webhook_password: Парола
-          webhook_username: Потребителско име
-        header:
-          actions: Действия
-        index:
-          export: Износ
-          new: Добавям
-          title: Проекти
-          tooltips:
-            create: Създавам
-            export: Износ
-        list:
-          2fa_enabled: 2FA активиран
-          actual_usage: Действителна употреба
-          admin: Администратор на клиента
-          applicable_level: Приложимо ниво
-          archive_status: Статус
-          assessments: Оценки
-          assigned_user: Присвоени потребители
-          completed_user: Завършени потребители
-          created_at: Дата на създаване
-          id: Ид
-          name: Име на проекта
-          number: Номер
-          project_admin: Администратори на проекти
-          reports: Доклади
-          tests_allocated: Разпределени тестове
-          tte_admin: Ръководител на проекта на TTE
-          updated_at: Дата на промяна
-          url: URL адрес
-          users_count: Брой потребители
-        new:
-          header: Нов проект
-        resource:
-          add_assessment: Добавяне на оценяване
-          add_report: Добавяне на отчет
-          assessments: Оценки
-          tooltips:
-            copy: Копиране на проекта
-            create_admin: Създаване на администратор на проект
-            create_report: Добави нов отчет
-            create_user: Добавяне на нов потребител
-            delete: Изтриване на проект
-            edit: Редактиране на проекта
-        sidebar:
-          admins: Администратори на проекти
-          archive: Архив на проекта
-          copy: Копиране на проекта
-          design: Редактиране на дизайна
-          destroy: Изтриване на проект
-          disable: Забраните
-          edit: Редактиране на проекта
-          enable: Разрешите
-          new: Нов проект
-          title: Опции на проекта
-          view_licenses: Преглед на лицензи
-        status:
-          active: Активен
-          archived: Архивирани
         threesixty_campaigns:
-          base:
-            active: Активен
-            archived: Архивирани
-            disable: Архив
-            enable: Разархивиране
-          completion_statuses:
-            approved: Одобрен
-            completed: Завършен
-            denied: Отказан
-            in_progress: В процес на изпълнение
-            not_started: Не е започнато
-          copy:
-            error: Клиентският наемател '%{name}' не е копиран.
-            successfully: Клиентският наемател '%{name}' беше копиран успешно.
-          create:
-            successfully: Клиентският наемател '%{name}' беше създаден успешно.
-          designs:
-            form:
-              no_background: Все още няма предистория
-              no_logo: Все още няма лого
           destroy:
             error: Не мога да изтрия '%{name}', защото съществуват някои зависими асоциации на субекти или оценители.
-            successfully: Клиент Наемане '%{name}' беше изтрит успешно.
-          edit:
-            header: Кампания "Редактиране на 360"
-          export:
-            admin: Администратор на клиенти
-            assessment: Асемент
-            client_admins: Администратори на клиенти
-            created_at: Създаден в
-            id: Ид
-            name: Име
-            report: Доклад
-            report_bundle: Пакет от отчети
-            status: Статус
           index:
-            export: Износ
-            new: Добавете 360 кампания
             title: 360 кампании
-          license:
-            header: "%{name} - Редактиране на лиценза"
-          licenses:
-            update:
-              duplicate_licenses: Имате дублирани лицензи
-              successfully: Лицензите бяха актуализирани успешно
-          list:
-            admin: Администратор на клиенти
-            assessment: Асемент
-            client_admins: Администратори на клиенти
-            created_at: Създаден в
-            id: Ид
-            name: Име
-            report: Доклад
-            report_bundle: Пакет от отчети
-            status: Статус
-            updated_at: Дата на актуализиране
-          new:
-            header: Нова 360 кампания
           resource:
             confirmations:
               delete:
                 body: "<p>Сигурни ли сте, че искате да изтриете?</p> <p>Това действие не може да бъде отменено. Това ще изтрие окончателно <strong>кампанията %{name}</strong> , подкампаниите и всички асоциации.</p> <p>Моля, въведете <strong>%{name}</strong> за потвърждение.</p>"
                 title: Изтриване <strong>на %{name}</strong>?
-              disable:
-                body:
-                  '0': "<p>Сигурни ли сте, че искате да архивирате?</p> <p>Всички кампании, подкампании и потребители също ще бъдат архивирани</p>"
-                  '1': "<p>Сигурни ли сте, че искате да архивирате?</p> <p>Всички подкампании и потребители също ще бъдат архивирани</p>"
-                  '2': "<p>Сигурни ли сте, че искате да архивирате?</p> <p>Всички потребители също ще бъдат архивирани</p>"
-                  '3': "<p>Сигурни ли сте, че искате да архивирате?</p> <p>Всички потребители също ще бъдат архивирани</p>"
-                title: Архив <strong>%{name}</strong> ?
-              enable:
-                body:
-                  '0': "<p>Сигурни ли сте, че искате да деархивирате?</p>"
-                  '1': "<p>Сигурни ли сте, че искате да деархивирате?</p>"
-                  '2': "<p>Сигурни ли сте, че искате да деархивирате?</p>"
-                  '3': "<p>Сигурни ли сте, че искате да деархивирате?</p>"
-                title: Разархивиране <strong>%{name}</strong> ?
-            export_results: Експортиране на резултати
-            raw_results: Сурови резултати
-            tooltips:
-              campaigns:
-                delete: Изтриване на кампания
-              copy: Копиране на клиента
-              create_admin: Създайте клиентски администратор
-              delete: Изтриване на клиента
-              disable: Деактивиране на клиента
-              edit: Редактиране на клиента
-              enable: Активиране на клиент
-          statistics:
-            index:
-              all_assessments: Всички оценки
-              assessment_type: Вид на оценката
-              title: Статистика
-          toggle_status:
-            successfully: Клиентът Tenancy %{name} беше актуализиран успешно.
-          update:
-            successfully: Клиентът Tenancy %{name} беше актуализиран успешно.
-          url: URL адрес
-        toggle_status:
-          successfully: Проектът %{name} беше актуализиран успешно.
-        unarchive:
-          content: Сигурни ли сте, че искате да деархивирате '%{project_name}'?
-          success: Проектът '%{project_name}'' беше успешно деархивиран.
-          title: Проект "Разархивиране"
-        update:
-          successfully: Проектът %{name} беше актуализиран успешно.
       registration_codes:
-        actions:
-          add_code: Добавяне на код
-        column:
-          code: Код
-          usage_stats: Статистика на използването
         errors:
           count_invalid: не може да бъде по-малко от used_count = %{use_count}
           criteria: може да съдържа само буквено-цифрови знаци, тире (-) и долна черта (_)
@@ -1462,13 +547,6 @@ bg:
           incorrect_domain: Неправилен формат на домейна.
           invalid_end_date: трябва да е по-голямо от началната дата
           license_issue: Няма достатъчно лицензи.
-        form:
-          active: Активен
-          code: Код
-          end_date: Крайна дата
-          name: Име
-          start_date: Начална дата
-          total_count: Общ брой
       resource:
         confirmations:
           delete:
@@ -1484,25 +562,9 @@ bg:
         successfully: Клиентът Tenancy %{name} беше актуализиран успешно.
     close: Затварям
     common:
-      add: Добавям
-      back: Гръб
-      cancel: Отмени
-      code: Код
-      disabled: Диасблеиран
-      download_sample_file: Изтеглете примерен файл
       enabled: Разрешено
-      import:
-        failure_msg: Грешка при импортиране на файл.
-      instructions: Инструкции
       loading: Зареждане...
-      minute: минута
-      name: Име
-      next: Следващ
-      reset: Проучване
       save: Спасявам
-      select_all: Изберете всички
-      type: Тип
-      unselect_all: Премахване на избора на всички
     communication_settings: Настройки
     communications:
       create:
@@ -1677,74 +739,13 @@ bg:
       input_duration:
         placeholder: Въведете като "1d 2h 3m"
     create: Създавам
-    dashboard:
-      capacity_name: Име на капацитета
-      choose_file_format: Изберете файлов формат
-      dashboard_types:
-        oracle_analytics: Oracle Analytics
-        powerbi: PowerBi
-      dashboards: Табла
-      export_dashboard_to_file: Експортиране на табло за управление във файл
-      export_job_failure: Неуспешно стартиране на експорта
-      export_job_success: Започна задачата за експортиране. Ще бъдете уведомени, когато приключи.
-      get_started: Първи стъпки
-      initialize_msg: Инициализиране на табло за управление за тази кампания
-      loading_failed: Зареждането на таблото е неуспешно.
-      only_export_current_tab: Експортирайте само текущия раздел
-      pdf: PDF
-      pptx: PPTX
-      preview:
-        embed_token_error_description: Моля, проверете дали наборът от данни и идентификационният номер на отчета в настройките е правилен.
-        embed_token_error_title: Не може да се генерира токен за вграждане.
-      settings:
-        capacity_id: Идентификационен номер на капацитета
-        details: Подробности
-        refresh: Опреснявам
-        workspace_id: Идентификатор на работното пространство
-      tabs:
-        accesssheet: Формуляр за достъп
-        accesssheet_setting: Настройки на листа за достъп
-        dashboard: Таблото
-        settings: Настройки
-    dashboard_form:
-      fields:
-        dataset_id: Идентификационен номер на набора от данни
-        enabled: Разрешено
-        image: Изображение
-        project_path: Път на проекта
-        refresh_interval: Интервал на опресняване (минути)
-        report_id: Идентификационен номер на доклада
-        visual_header_visibility: Визуална видимост на заглавката
-      image_upload_failed: Качването на изображение е неуспешно.
-      none: Никой
-      refresh_success: Обновяване на набора от данни, планирано успешно.
-      visual_header_visibility_options:
-        hide_all: Скрий всичко
-        keep_original: Запазете оригинала
-        show_all: Покажи всички
-    data_exports_modal:
-      title: Изберете период от време
     data_reports:
-      columns:
-        created_at: Създаден в
-        created_by: Създаден от
-        last_updated_by: Последна актуализация от
-        name: Име
-        owner: Собственик
-        password: Парола
-        status: Статус
-        udpated_at: Последна актуализация на
-      configuration: Конфигурация
       errors:
         factor_code_or_field_name_required: factor_code или field_name е задължително
         factor_not_found: не е открита в обхвата на оценката
         inclusion: 'невалиден тип, валидни типове: %{values}'
         not_found: Не е намерен
         not_owned: не е собственост на клиента
-      form:
-        name: Отчет за данни
-      messages:
-        runed: Отчетът с данни беше планиран за успешно изпълнение
       validations:
         project_and_campaigns_not_allowed: project_ids и campaign_ids не трябва да се уточняват заедно
         project_not_related_to_client: "%{project_id} не принадлежи на клиента"
@@ -1752,11 +753,6 @@ bg:
         sections_required: секции са задължителни
     datasheet:
       threesixty_warning: Не можете да качвате графи с данни за отчет 360 от тук. За 360 отчета се зареждат графи с данни от кампанията, с която е свързан този отчет
-    dates:
-      completed: Завършено в
-      end: Крайна дата
-      start: Начална дата
-      started: Започна от
     development_action_import:
       errors:
         blank_field: 'Ред %{row}: %{field} не може да бъде празен'
@@ -1793,49 +789,11 @@ bg:
         successfully: Действието за разработка "%{name}" е създадено успешно.
       destroy:
         successfully: Действието за разработка "%{name}" беше изтрито успешно.
-      development_action_types:
-        course: Курс
-        default: По подразбиране
-      duration:
-        max_length: Не може да бъде по-дълъг от 1 година
-        min_length: Не може да бъде по-малко от 1 минута
       edit:
         header: Редактиране на действието за разработка
       export:
         details: Подробности за файла
-        failure_msg: Грешка при експортиране на преводи
-        success_msg: Текущи действия за развитие на износа. Моля, проверете статуса в известията.
         translation_details: Подробности
-      export_development_action_translations: Преводи за действие за развитие
-      export_development_actions: Действия за развитие
-      form:
-        available_languages: Налични езици
-        client_placeholder: Изберете клиент
-        course_image: Изображение на курса
-        course_link: Връзка към курса
-        description: Описание
-        development_action_type: Вид действие за развитие
-        duration: Времетраене
-        end_date: Крайна дата
-        learning_style: Стил на учене
-        name: Име
-        project_placeholder: Изберете проект
-        skills: Умения
-        skills_placeholder: Изберете умения
-        start_date: Начална дата
-        title: Действия за развитие
-        upload: Качвам
-      global: Действия за глобално развитие ли е?
-      heading: Действия за развитие
-      import:
-        download_example_csv: Изтегляне на пример csv
-        failure_msg: Грешка при импортиране на файл.
-        info_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-      import_action:
-        development_actions_title: Действия за развитие на вноса
-        development_actions_translations_title: Импортиране на дейности за разработка Преводи
-      import_development_actions: Действия за развитие
-      import_development_actions_translations: Дейности за развитие Преводи
       learning_styles:
         cannot_be_blank: Не може да бъде празно
         invalid: Трябва да е един от on_the_job, structured_learning, learning_from_others
@@ -1869,32 +827,11 @@ bg:
       form:
         enable_innovation_styles: Активиране на иновационни стилове
         enable_occupations: Активиране на професии
-        name: Име
-        title: Размери
       import_factors:
         import: Внос
         sample_file: Примерен файл
         successfully: Задача за импортиране на фактори, планирана за величина %{name}.
         title: Фактори за внос
-      import_modal:
-        after: След
-        before: Преди
-        cancel: Отмени
-        change_log_input: Регистър на промените
-        continue: Продължавам
-        error: Грешка
-        error_occurred: Възникнала е грешка
-        errors:
-          file_error: Моля, изберете JSON файл, преди да продължите.
-          processing_error: Грешка при обработката на файла
-        field: Поле
-        import: Внос
-        import_dimension: Величина за импортиране
-        import_scheduled: Планиран внос
-        operation: Операция
-        owner_input_validation: Моля, изберете собственик
-        owner_select: Изберете собственик
-        select_json: Изберете JSON файл
       import_translations:
         error: Грешка при импортиране на преводи за величина %{name}.
         successfully: Импортиране на преводи, планирани за величина %{name}.
@@ -1918,7 +855,6 @@ bg:
         confirmations:
           delete:
             body: "<p>Сигурни ли сте, че искате да изтриете това измерение?</p>\n"
-            message: Въведете името на измерението, посочено по-долу, в текстовото поле, за да потвърдите
             title: Изтриване <strong>на измерение</strong> ?
           toggle_status:
             body: "<p>Сигурни ли сте, че искате %{status} това измерение?</p>\n"
@@ -1946,9 +882,6 @@ bg:
       update:
         successfully: Величината %{name} е актуализирана успешно
     disable: Забраните
-    document_titles:
-      project_assessors: Оценители | %{project}
-      project_participants: Участници | %{project}
     enable: Разрешите
     errors:
       csv_file_required: Файлът трябва да е CSV файл
@@ -1969,21 +902,6 @@ bg:
       edit:
         header: Редактиране на името на фактора
       form:
-        components:
-          ExternalList:
-            add: Добавям
-            table:
-              actions: Действия
-              jsonpath: JSON път
-              type: Вид
-              types:
-                norm_score: Нормиран резултат
-                percentage: Процент
-                percentile: Процентил резултат
-                score: Резултат
-                zscore: Z резултат
-            title: JSON пътища за резултати
-        predicate: Предикат
         scoring_strategies:
           custom_formula: Персонализирана формула
           external_score: Външен резултат
@@ -1995,15 +913,9 @@ bg:
           sub_factors_average: Среднопретеглена стойност на факторите
           sub_factors_conditional_average: Условна среднопретеглена стойност на факторите
           sub_factors_sum: Претеглена сума от фактори
-        scoring_strategies_tip: "<strong>Въпроси (средно):</strong> Това е като текущия метод за оценяване, когато има въпроси, свързани с фактор.<br /> <br /><strong>Въпроси (SUM):</strong> Това е като въпроси (средно), но с помощта на SUM<br /> <br /><strong>Въпроси за други фактори (средно):</strong> Това е като сегашния метод за оценяване, когато има подфактори за даден фактор, единствената промяна е добавянето на теглото.<br /> <br /><strong>Въпроси за други фактори (СУМ):</strong> Това е като други фактори (средно), но с помощта на SUM<br /> <br /><strong>Претеглена сума от фактори:</strong> Тук се добавят резултатите от избраните други фактори по техните тегла."
-        scoring_strategy: Стратегия за оценяване
-        search_factors: Фактори за търсене
-        use_sub_factor_norm_score: Нормен резултат на факторите на използване
-        value: Стойност
       index:
         icon: Икона
         new: Добавям
-        precision: Прецизност
         scoring_strategies:
           custom_formula: Персонализирана формула
           external_score: Външен резултат
@@ -2061,10 +973,6 @@ bg:
         successfully: Факторът беше актуализиран успешно.
       update:
         successfully: "%{name} коефициент е актуализиран успешно"
-    genders:
-      female: Жена
-      male: Мъжки
-      not_set: Не е зададено
     grants:
       common:
         view: Изглед
@@ -2074,100 +982,19 @@ bg:
           accesssheet_manage: Управление на формуляр за достъп
           accesssheet_settings: Настройки на листа за достъп
           accesssheet_view: Изглед на формуляр за достъп
-    header:
-      logout:
-        content: Натиснете Cancel, ако искате да продължите да работите. Натиснете OK, за да излезете от текущия потребител.
-        title: Сигурен ли си, че искаш да излезеш?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: Нов отговор не може да бъде добавен за hogan оценяване %{assessment_name}, тъй като това оценяване вече е зададено и стартирано от потребител %{email}. Можете да създадете нов акаунт в hogan за този потребител и това ще позволи на потребителя да премине отново теста.
           short_error_message: Нов отговор не може да бъде добавен за hogan оценяване %{assessment_name}, тъй като това оценяване вече е присвоено и стартирано от потребител %{email}
     idp:
-      actions:
-        remove_confirm: Въведете текущото име на шаблона, дадено по-долу, в текстовото поле, за да премахнете шаблона
-        success: "%{idpName} беше премахнат успешно."
-      add_idp_template: Добавяне на шаблон за IDP
-      ai_assistant: AI асистент
-      ai_assisted_idp_enabled: Подпомагана от AI IDP
-      ai_enabled: Активиран AI
-      ai_settings: Настройки на AI
-      all: Цял
-      appearance: Външен вид
-      appearance_hint: За да промените външния вид, моля, първо запазете шаблона IDP, за да активирате тези настройки.
-      appearance_success: Настройките на външния вид са запазени успешно
-      background_image: Фоново изображение
-      behavioral_skills: Поведенчески умения
-      client_skills: Умения на клиента
-      delete_skill: Сигурни ли сте, че искате да изтриете това умение? Изтриването ще премахне и всички свързани действия за развитие.
-      delete_skill_msg: Сигурен ли си, че искаш да изтриеш това умение? Изтриването ще премахне и всички свързани действия по разработка.
-      details_updated: Детайлите на IDP са актуализирани успешно
       development_actions:
-        add_from_library: Добавяне от библиотеката
-        completion: Завършване
-        create_development_actions_with_ai: Създавайте действия за развитие с AI за
-        create_from_ai: Създавайте от AI
-        create_my_own: Създай свой собствен
-        custom: Обичай
-        date_range: Начална дата - Крайна дата
-        edit_plan_to_add_development_actions: Редактиране на плана и добавяне на действия за разработка.
         errors:
           invalid_learning_style: '"%{learning_style}" не е валиден стил на учене. Валидните опции са: %{valid_styles}'
           learning_style_blank: Стилът на учене не може да бъде празен
-        generate_by_ai: Генериране от AI
-        generate_more: Генерирайте повече
-        heading: Умения/Действия за развитие
-        manage_skills: Управление на уменията
-        no_development_actions: Нямате действия за развитие
-      document_ai_assistant: AI асистент за анализ на документи
-      edit_template: Редактиране на шаблон за IDP
-      enter_tag_or_skills_error: Изберете поне един етикет или умение
-      enter_template_description: Описание
-      enter_template_description_error: Задължително е описание на шаблона.
-      enter_template_name: Име
-      enter_template_name_error: Задължително е име на шаблона
       errors:
-        cannot_update_progress_plan_completed: Не може да се актуализира напредъкът, тъй като планът за ИДП е завършен
         skills_required_on_publishing: Моля, изберете умения, преди да публикувате шаблон.
         update: Актуализацията не е разрешена, тъй като шаблонът за IDP вече е свързан с потребителски IDP план. Промените във външния вид са запазени.
-      fields:
-        approval_date: Дата на одобрение
-        assigned_data: Присвоени данни
-        assigned_date: Присвоена дата
-        completion_date: Дата на завършване
-        current_job_role: Текуща длъжност
-        division: Делене
-        name: Име
-        publish_date: Дата на публикуване
-        review_date: Дата на преглед
-        target_job_role: Целева длъжност
-      fields_label: Полета
-      global_skills: Глобални умения
-      idp: IDP
-      idp_template: Добавяне на шаблон за IDP
-      interview_questions: Въпроси за интервю
-      interview_questions_updated: Въпросите за интервю са актуализирани успешно.
-      intro_message: Въвеждащо съобщение
-      intro_message_hint: За да промените уводното съобщение, моля, първо запазете шаблона за IDP, за да активирате тези настройки.
-      intro_message_success: Въвеждащото съобщение е запазено успешно
-      locales: Локали
-      logo_image: Изображение на логото
-      logo_type:
-        both: Лога на Мърсър и Клиент
-        client_only: Само лого на клиента
-        mercer_only: Само логото на Mercer
-        none: Без лога
-      logo_type_label: Тип лого
-      no_interview_questions_selected: Няма избрани въпроси за интервю
-      no_reflection_questions_selected: Не са избрани въпроси за размисъл
-      none: Никой
-      one_click_idp_enabled: Разрешен IDP с едно кликване
-      reference_locale: Референтна езикова променлива
-      reflection_questions: Въпроси за размисъл
-      reflection_questions_hint: За да промените въпросите за размисъл, моля, първо запазете шаблона за IDP, за да активирате тези настройки.
-      reflection_questions_updated: Въпросите за размисъл се актуализират успешно.
-      remove: Махам
-      remove_skill: Премахване на умение
       revert_skill_to_public:
         errors:
           skill_already_public: Уменията вече са публични
@@ -2175,47 +1002,11 @@ bg:
         success:
           base_message: Умението "%{skill_name}" вече е видимо за вашия мениджър
           with_approval: "%{base_message} и вашият план за вътрешно разселени лица е представен за одобрение"
-      select_by_tags: Изберете по етикети
-      select_interview_question: Започнете да пишете, за да търсите и изберете въпрос
-      select_reflection_question: Започнете да въвеждате, за да търсите и изберете въпрос
-      select_skill_gap_report: Изберете отчет за пропуските в уменията
-      select_specific_skills: Изберете конкретни умения
-      selected: Избран
-      self_rating: Активиране на самооценка
-      show_reflections: Показване на размисли
-      skill_gap_report: Доклад за пропуските в уменията
-      skill_gap_report_ai_assistant: Асистент за анализ на отчети за пропуски в умения
-      skill_source_preference: Източник на умения
-      skill_sources:
-        from_ai: От общите познания за AI
-        from_template: От шаблони и съпоставяния
-      skills: Умения
       skills_privacy_messages:
         made_private: Умението "%{skill_name}" е маркирано като лично и ще бъде скрито от вашия мениджър
         made_public: Умението "%{skill_name}" вече е видимо за вашия мениджър
         skill_not_found: Умението не е намерено
         unauthorized: Неупълномощено е да променя това умение
-      skills_updated: Успешно актуализиране на уменията в IDP
-      status:
-        draft: Проект
-        published: Публикувано на
-      status_updated: Статусът на IDP е актуализиран успешно
-      subtitle_text: Текст на субтитрите
-      tab:
-        development_actions: Действия за развитие
-        interview_questions: Въпроси за интервю
-        reflection_questions: Въпроси за размисъл
-        settings: Настройки
-        templates: Шаблони
-      technical_skills: Технически умения
-      template_details: Подробности за шаблона
-      title_text: Текст на заглавието
-      update_interview_questions: Актуализирайте въпросите за интервю
-      update_reflection_questions: Актуализиране на въпроси за размисъл
-    idp_setting:
-      manager_approves_idp: Мениджърът одобрява IDP
-      manager_can_edit_idp: Мениджърът може да редактира IDP
-      require_all_development_actions_complete: Изискване за завършване на всички действия за разработка
     import: Внос
     imports:
       assessments:
@@ -2285,10 +1076,6 @@ bg:
         successfully: Потребителите бяха успешно импортирани
       new:
         header: Импортиране на потребители
-    individual_invite:
-      tabs:
-        assessment_center: Център за оценяване
-        invitation_status: Статус на поканата
     innovation_styles:
       create:
         successfully: Иновационният стил %{name} е създаден успешно.
@@ -2297,7 +1084,6 @@ bg:
       edit:
         header: Редактиране на иновационен стил
       form:
-        full_description: Пълно описание
         no_icon: Няма икона
       index:
         new: Добавям
@@ -2359,69 +1145,13 @@ bg:
       toggle_status:
         successfully: Факторът беше актуализиран успешно.
     integrations:
-      actions:
-        add: Интеграции
-        back: Обратно към Интеграции
-        load_mettl_catalog: Заредете каталога за оценка на mettl
-        load_microsite_catalog: Зареждане на каталога за оценка на микросайтове
-        load_skillvue_catalog: Заредете каталога за оценка на Skillvue
-      columns:
-        active: Активен
-        details: Подробности
-        name: Име на интеграцията
-      details:
-        client_id: Client ID
-        deployment_id: ID на разполагане
-        platform_access_token_url: URL адрес на Token за достъп до платформата
-        platform_authentication_request_url: URL адрес за заявка за удостоверяване на платформата
-        platform_host_name: Име на хост на платформата
-        platform_id: Идентификатор на платформата
-        platform_public_keyset_url: URL адрес на публичен набор от ключове на платформата
-        provider: Име на доставчика
-        webhookUrl: URL адрес на уеб кукичката
-        webhookUrls: URL адреси на уеб кукички
-      integrations: Интеграции
       load_mettl_success: Задачата за зареждане на оценявания на mettl е успешно поставена на опашка
       load_microsite_success: Задачата за оценка на микросайтовете е добавена успешно в опашката
       load_skillvue_success: Задачата за зареждане на оценки на skillvue е успешно поставена на опашка
       modal:
-        hogan:
-          provider: Доставчик
-          providers:
-            mercer: Мърсър
-            phoenix: Феникс
-        iiht:
-          password: Парола
-          tenancy_name: Наименование на наема
-          tenant_id: ИД на клиент
-          user: Потребител
-        mettl:
-          apiBaseUrl: Крайна точка на API
-          apiBaseUrlRequired: Необходима е крайна точка на API.
-          privateKey: Частен ключ
-          privateKeyRequired: Изисква се частен ключ.
-          publicKey: Публичен ключ
-          publicKeyRequired: Изисква се публичен ключ.
-          servers:
-            mettl_eu: Европа
-            mettl_india: Индия
         microsite:
           apiKey: API ключ
           apiKeyRequired: Необходим е API ключ
-        skillvue:
-          apiKey: API ключ
-          apiKeyRequired: Изисква се API ключ
-        yoodli:
-          keyset_url: URL адрес на ключовия набор
-          launch_url: URL за стартиране
-          login_url: URL за вход
-      names:
-        hogan: ХОГАН
-        iiht: ИИХТ
-        mettl: МЕТТЛ
-        microsite: Микросайт
-        skillvue: Skillvue
-        yoodli: Юдли
       validations:
         iiht:
           tenancy_name_present: Името на наемателя вече присъства в друг проект
@@ -2432,26 +1162,10 @@ bg:
           api_key_present: API ключът вече съществува в друг проект
         skillvue:
           api_key_present: API ключът вече присъства в друг проект
-      view_all_schedules: Вижте всички графици на Mettl
     interview_questions:
-      delete_confirmation: Сигурни ли сте, че искате да изтриете този въпрос за интервю?
-      description: Описание
       export:
-        action: Въпроси за интервю за експортиране
         details: Подробности за файла
-        failure_msg: Грешка при експортиране на файл.
-        success_msg: Експортиране на въпроси за интервю в ход. Моля, проверете състоянието в известията.
-      form:
-        description: Описание
-        mandatory: Задължителен
-        question: Въпрос
-        question_type: Тип въпрос
-        question_type_audio: Аудио
-        question_type_video: Видео
-        time_limit: Срок (сек)
-        title: Въпрос за интервю
       import:
-        action: Импортиране на въпроси за интервю
         errors:
           invalid_required_column_format: Невалиден задължителен формат на стойността на колоната %{row}
           invalid_required_type_format: Невалиден формат на стойността на колоната QuestionType %{row}
@@ -2459,64 +1173,6 @@ bg:
           missing_description: Липсващо описание съдържание %{row}
           missing_question: Липсващо съдържание на въпроса %{row}
           save_failed: Запазването е неуспешно %{message}
-        failure_msg: Грешка при импортиране на файл.
-        success_msg: Импортиране на въпроси за интервю в ход. Моля, проверете състоянието в известията.
-      question: Въпрос
-    invited_subject:
-      add_btn: Добавяне на тема
-      assessment_center: 'Център за оценяване:'
-      booked_at: 'Резервирано на:'
-      column:
-        invitation_status: Статус на поканата
-        participant: Участник
-        scheduling_details: Подробности за планирането
-      remove_confirm:
-        content: Сигурни ли сте, че искате да премахнете темата с имейл '%{subjectEmail}'?
-        success: Темата с имейл '%{subjectEmail}'' беше успешно премахната.
-        title: Премахване на темата
-      resend_invite:
-        content: Изпратете отново покана за избраните теми. Сигурни ли сте, че искате да продължите?
-        success: Поканите успешно се възмущават.
-        title: Повторно изпращане на покана
-      statuses:
-        accepted: Приети
-        cancelled: Отменени
-        late_cancelled: Късно отменен
-        late_rescheduled: Късно пренасрочени
-        pending: Очакване
-        requested_cancellation: Заявено анулиране
-        requested_cancellation_rejected: Отхвърлянето е отхвърлено
-        requested_rescheduling: Заявено разсрочване
-        requested_rescheduling_rejected: Отхвърлено разсрочване
-        rescheduled: Пренасрочен
-        scheduled: Планирано
-      subject: Предмет
-    job_role:
-      are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?
-      column:
-        job_group: Работна група
-        skill_name: Име на умението
-      export:
-        failure_msg: Грешка при експортиране на преводи
-        success_msg: Текущи действия за развитие на износа.
-      form:
-        code: Код
-        description: Описание
-        job_group: Работна група
-        name: Име
-        title: Длъжностна роля
-      import:
-        download_example_csv: Изтегляне на пример csv
-        success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-      import_action:
-        translations: Импортиране на преводи на работни роли
-      job_role_details: Подробности за ролята на работата
-      translations: Преводи на длъжностни роли
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: Очаквано ниво на владеене
-      form:
-        title: Картографиране на работни места за умения
     job_roles:
       export:
         translations:
@@ -2582,18 +1238,11 @@ bg:
     meta_title: Административен панел
     navigation:
       approvals: Одобрения
-      audit_logs: Регистрационни файлове за одит
-      availability: Наличност
       configuration: Конфигурация
       content: Доволен
-      dashboard: Таблото
       factors: Фактори
       innovation_styles: Иновационни стилове
-      logout: Изход
       occupations: Професии
-      registration_codes: Регистрационни кодове
-      skills_taxonomy: Таксономия на уменията
-      users: Потребители
     no_data_found: Няма намерени данни
     norms:
       copy:
@@ -2609,13 +1258,6 @@ bg:
         factors: Фактори
         inplace_title: Въведете стойност
         title: Редактор на Norm
-      export:
-        success_msg: Поръчката за експортиране на Norm е планирана успешно. Моля, проверете статуса в известията.
-      import:
-        download_example_csv: Изтегляне на пример csv
-        select_file_validation: Моля, изберете собственик и файл, преди да изпратите.
-        success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-        title: Внос на норми
       index:
         import: Внос
         new: Добавям
@@ -2631,10 +1273,6 @@ bg:
         updated_by: Актуализирано от
       new:
         header: Нова норма
-      norms: Норми
-      remove:
-        confirm: Въведете името на нормата, дадено по-долу, в текстовото поле, за да потвърдите
-        warning: Сигурни ли сте, че искате да изтриете нормата "%{name}"
       resource:
         confirmations:
           delete:
@@ -2650,10 +1288,6 @@ bg:
           copy: Норма за копиране
           delete: Изтриване на норма
           edit: Преименуване на Норма
-      score_types:
-        five_scale: Пет скали
-        norm_type: Тип норма
-        percentage: Процент
       sidebar:
         copy: Норма за копиране
         destroy: Изтриване на норма
@@ -2661,7 +1295,6 @@ bg:
         editor: Редактор на Norm
         export: Норма за износ
         title: Опции на Норма
-      title: Норма
       toggle_status:
         successfully: Норма беше актуализирана успешно.
       update:
@@ -2677,12 +1310,8 @@ bg:
       edit:
         header: Редактиране на професия
       form:
-        alternative_icon: Алтернативна икона
-        color: Цвят
         hint:
           key_career_tracks: '"+" - списък, "*" - удебелен. Пример: + *Биология* - малко описание...'
-        indicative_roles_image: Илюстративна картинка на роли
-        key_career_tracks_image: Изображение на основните кариерни пътеки
         no_icon: Няма икона
       index:
         new: Добавям
@@ -2744,49 +1373,15 @@ bg:
         successfully: Факторът беше актуализиран успешно.
       update:
         successfully: Фактор %{name} е актуализиран успешно.
-    participants:
-      tabs:
-        assessors: Оценители
-        sms_contacts: SMS контакти
-        subjects: Теми
     piped_text_modal:
-      assessment_center: Център за оценяване
       assessment_id: Идентификационен номер на оценяването
       campaign_id: Идентификационен номер на кампанията
       campaign_link: Връзка към кампанията
-      campaign_name: Име на кампанията
-      campaigns: Кампании
-      description: Описание
-      duration: Продължителност
-      end_time: Краен час
-      insight_page_link: Връзка към страницата с прозрения
-      insight_page_url: URL адрес на страницата Insight
-      invite_title: Заглавие
-      invites: Покани
       join_link: Присъединете се към връзката
       magic_link: Вълшебна връзка
       magic_url: Магически URL адрес
-      platform_url_links: Платформа Url и връзки
       profile_custom_field: Персонализирано поле за профил
-      project_name: Име на проекта
-      projects: Проекти
-      report_name: Име на отчета
-      start_time: Начален час
       text: Текст
-      title: Добавяне на тръбопроводен текст
-      user_reports: Доклади на потребителите
-      users: Потребители
-    proctoring_sessions:
-      columns:
-        comment: Коментирам
-        conclusion: Извод
-        links: Връзки
-        score: Резултат
-        session_id: Идентификатор на сесията
-      links:
-        report: Доклад
-        review: Преглед
-      resource_name: Сесии за прокторинг
     products:
       copy:
         error: Грешка
@@ -2799,9 +1394,6 @@ bg:
         create:
           invalid_format: Дефиницията на нивото трябва да бъде масив от дефиниции.
           level_definition_must_match_level: трябва да съдържа точно %{expected} нива, но са дадени %{actual}
-          level_description_must_exist: Описанието на нивото не може да е празно
-          level_name_must_exist: Името на нивото не може да бъде празно
-          must_be_unique: Трябва да е уникално
           proficiency_level_exists: Ниво на владеене с това умение и проект вече съществува
           proficiency_level_exists_for_default: Вече има ниво на владеене на езика по подразбиране
           proficiency_level_exists_for_type: Вече съществува ниво на владеене за този тип.
@@ -2809,24 +1401,9 @@ bg:
           skill_must_exist: Умението трябва да присъства за proficiency_type "by_skill"
       export:
         details: Подробности
-        failure_msg: Грешка при експортиране на нива на владеене
-        success_msg: Изнасяне на действия за развитие в ход
         translations:
           details: Преводи на ниво на владеене
-      fields:
-        level: Ниво
-        level_description: Описание на нивото
-        level_name: Име на ниво
-        proficiency_translations: Преводи за професионализъм
-        proficiency_type: Тип владеене
-        skill: Умение
-        skill_name: Име на умението
-        skill_type: Тип умение
-        title: Владеене
       import:
-        actions:
-          proficiency: Умения за импортиране
-          translations: Импортиране на преводи за умения
         errors:
           by_skill_exists_id_missing: 'Ред %{row_number}: Вече съществува ниво на владеене на уменията "%{name}". Моля, посочете идентификатора, за да го актуализирате.'
           by_skill_missing: 'Ред %{row_number}: Проектът и умението трябва да присъстват за тип ''by_skill'''
@@ -2839,11 +1416,7 @@ bg:
           invalid_skill_type: 'Ред %{row_number}: Невалиден тип умение "%{skill_type}". Валидните типове са: %{valid_types}'
           missing_columns: 'Липсват задължителни колони: %{fields}'
           skill_not_found: 'Ред %{row_number}: Невалидно или липсващо умение'
-        job_queued: Заданието за импортиране на нива на владеене е поставено на опашка
       translations:
-        export:
-          failure_msg: Грешка при експортиране на преводи
-          success_msg: Текущи действия за развитие на износа.
         import:
           errors:
             invalid_csv_format: 'Невалиден CSV формат: %{message}'
@@ -2853,14 +1426,6 @@ bg:
             missing_required_columns: 'Липсват задължителни колони: %{columns}'
             row_id_blank: 'Ред %{row}: ИД не може да бъде празен'
             save_failed: 'Грешка при обработката Идентификатор на умението %{id}: %{message}'
-      type:
-        by_skill: По умения
-        by_skill_type: По тип умения
-        default: По подразбиране
-    profile:
-      change_password: Промяна на паролата
-      details: Подробности
-      profile: Профил
     profiles:
       edit:
         success: Профилът беше актуализиран успешно.
@@ -2868,331 +1433,21 @@ bg:
       update:
         edit:
           success: Профилът беше актуализиран успешно.
-    project:
-      tools:
-        workshop_status_export: Износ на статус на сервиза
-        workshop_status_export_success: Износът на състоянието на работилницата беше планиран успешно.
-    project_features:
-      project_features: Характеристики на проекта
-    project_participants:
-      cancel: Отмени
-      column_actions: Действия
-      column_campaigns: Кампании
-      column_createdAt: Създаден в
-      column_created_at: Създаден в
-      column_email: Имейл
-      column_id: Ид
-      column_name: Име
-      delete: Изтривам
-      edit: Редактирам
-      edit_participant: Редактиране на участник
-      filter_campaigns: Няма кампании
-      form_first_name: Собствено име
-      form_last_name: Презиме
-      reset_password: Нулиране на паролата
-      save: Спасявам
-      search_user: Търсене на потребител
-      send_email: Изпрати имейл
-    project_tabs:
-      assessments:
-        column:
-          name: Име
-          normalize_factor_scores: Нормализиране на факторните резултати
-          user_result_validity_in_days: Валидност на резултата
-        delete:
-          content: Сигурни ли сте, че искате да изтриете оценяването "%{name}"?
-          success: Оценката "%{name}" беше изтрита успешно.
-          title: Изтриване на оценяване
-        form:
-          assessment: Оценка
-          assessment_placeholder: Изберете оценяване
-          assessment_required: Изисква се оценка
-          normalize_factor_scores: Нормализиране на факторните резултати
-          user_result_validity_in_days: Валидност на резултата в дни
-        title: Оценки
-      design: Проектирам
-      general: Основни
-      privacy: Поверителност
-      profile: Профил
-      registration: Регистрация
-      webhooks:
-        actions:
-          delete:
-            key: изтривам
-            label: Изтривам
-          edit:
-            key: редактирам
-            label: Редактирам
-          send_test:
-            key: send_test
-            label: Изпрати тест
-        form:
-          acceptable_rate_limit:
-            label: Допустим лимит на заявките
-            request_per: заявки за
-          active:
-            label: Активен
-            name: активен
-          assessments:
-            help_text: Този избор засяга само събитието „Оценка на необработения отговор“.
-            label: Оценки
-            placeholder: Изберете оценки
-            required: Трябва да бъде избрана поне една оценка за събитието „Оценка на необработени отговори“.
-          auth_type:
-            api_key:
-              label: API ключ
-              name: api_key
-              value: api_key_auth
-            api_key_header:
-              format_error: Допускат се само букви, цифри, долни черти и тирета
-              label: Заглавка на API ключ
-              name: apiKeyHeader
-            basic:
-              label: Основен
-              value: basic_auth
-            label: Тип удостоверяване
-            name: auth_type
-            no_auth:
-              label: Никой
-              value: no_auth
-            oauth:
-              label: ОАут
-              value: oauth
-          client_credentials:
-            label: Идентификационни данни за клиенти
-            value: client_credentials
-          client_id:
-            label: ИД на клиента
-            name: oauth_client_id
-            required: Изисква се клиентски идентификатор
-          client_secret:
-            label: Тайната на клиента
-            name: oauth_client_secret
-            required: Изисква се клиентска тайна
-          description:
-            label: Описание
-            name: описание
-          grant_type:
-            label: Вид на безвъзмездна помощ
-            name: oauth_grant_type
-          include_locales:
-            label: Включете преводи
-            name: include_locales
-          oauth_scope:
-            label: Обхват
-            name: oauth_scope
-            required: Необходим е обхват
-          password:
-            label: Парола
-            name: парола
-          token_url:
-            label: URL адрес на токен
-            name: oauth_token_url
-            required: Изисква се URL адрес на маркера
-          topics:
-            label: Събития
-            list:
-              assessment_assigned: Възложена оценка
-              assessment_completed: Оценката е завършена
-              assessment_raw_response: Оценка на необработения отговор
-              assessment_started: Оценката започна
-              assessment_timeout: Време за изчакване на оценяването
-              campaign_results_available: Налични резултати от кампанията
-              campaign_user_assessment_summary: Обобщение на оценката на потребителите на кампанията
-              campaign_user_status: Състояние на потребителя на кампанията
-              report_available: Наличен отчет
-              results_available: Налични резултати
-              scheduling_cancelled: Графикът е отменен
-              scheduling_invited: Покана за планиране
-              scheduling_rescheduled: Планирането е пренасрочено
-              scheduling_scheduled: Планиране на графика
-              workshop_attendance_status: Статус на присъствието на семинара
-          url:
-            label: URL адрес
-            name: URL адрес
-          username:
-            label: Потребителско име
-            name: потребителско име
-        remove_webhook:
-          content: Изтриване на %{description}?
-          title: Изтривам
-        title: Уеб кукички
-    project_users:
-      cancel: Отмени
-      change_password: Промяна на паролата
-      column_actions: Действия
-      column_campaigns: Кампании
-      column_created_at: Създаден в
-      column_email: Имейл
-      column_id: Ид
-      column_name: Име
-      confirm_delete: Да, изтриване
-      confirm_send: Да, изпратете
-      delete: Изтривам
-      delete_error: Не може да се изтрие оценителят '%{name}'. Моля, свържете се с вашия администратор.
-      delete_success: Оценителят '%{name}' беше изтрит успешно.
-      edit: Редактирам
-      edit_assessor: Редактиране на оценителя
-      filter_campaigns: Без кампании
-      form_first_name: Собствено име
-      form_last_name: Презиме
-      modal_delete_content: Сигурни ли сте, че искате да изтриете оценителя "%{name}"?
-      modal_delete_title: Изтриване на оценителя
-      modal_reset_email_content: Сигурни ли сте, че искате да изпратите връзка за нулиране на паролата до '%{email}'?
-      model_reset_email: Нулиране на паролата на оценителя
-      no_edit_permission: Нямате разрешение да редактирате оценителя '%{name}'
-      reset_mail_error: Не може да се изпрати връзка за нулиране на паролата до '%{email}'. Моля, свържете се с вашия администратор.
-      reset_mail_success: Връзката за нулиране на паролата е успешно изпратена до '%{email}'
-      save: Спасявам
-      search_accessor: Аксесоари за търсене
-      send_email: Изпрати имейл
     projects:
-      addProject: Добавяне на проект
-      assessment_settings:
-        search: Оценяване на търсенето
       clients:
         confirmations:
           detach_from_project:
             body: Тяло
             title: Заглавие
-      columns:
-        project_number: Номер на проекта
-      design_settings:
-        alt_text_invalid: Alt Text съдържа неподдържани знаци.
-        alt_text_logo: Alt-текст на логото
-        alt_text_logo_required: Задължително е лого на алтернативен текст
-        alt_text_long: Надвишава максималното ограничение от 100 знака.
-        background_color: Цвят на фона
-        background_label: Фон
-        background_overlay_label: Наслагване на фона
-        background_size: Размер на фона
-        background_size_contain: Съдържам
-        background_size_cover: Капак
-        bg_upload: Качвам
-        client_logo_label: Лого на клиента
-        contrast_ratio_warning: 'Забележка: Използването на този основен цвят може да наруши изискването за контрастно съотношение за четливост на текста.'
-        contrast_ratio_warning_lighter_color: 'Забележка: Използването на този цвят %{name} може да наруши изискването за контрастно съотношение за четливост на текста. Опитайте да използвате по-тъмен цвят.'
-        copy_text: Текст
-        dashed_button: Прекъснат
-        default_button: По подразбиране
-        error_color: Цвят на грешката
-        hover_options:
-          danger_item: Опасен елемент
-          first_menu_item: Първи елемент от менюто
-        hover_text: Повисете над мен
-        info_color: Информационен цвят
-        link_text: Връзка
-        logo_upload: Качвам
-        position_auto: Авто
-        position_label: Позиция на полето за вход
-        position_left: Ляво
-        position_right: Дясно
-        primary_button: Първичен
-        primary_color: Основен цвят
-        reset: Проучване
-        sec_logo_label: Вторично лого
-        sec_logo_upload: Качвам
-        secondary_logo_alt_text: Вторично лого Alt-текст
-        secondary_logo_alt_text_required: Изисква се вторично лого на алтернативен текст
-        submenu_options:
-          option_one: Вариант 1
-          option_title: Позиция 1
-          option_two: Вариант 2
-        success_color: Цвят на успеха
-        success_update: Настройките за дизайн са запазени успешно
-        tab_text_one: Меню
-        tab_text_two: Подменю
-        text_danger: Текст(опасност)
-        text_success: Текст (успех)
-        text_warning: Текст(предупреждение)
-        warning_color: Предупредителен цвят
-      form:
-        name: Име
-        project_number: Номер на проекта
-        subdomain: Поддомейн
-        title: Проект
-      general_settings:
-        live_chat: Активиране на чат на живо
-        locales_label: Локали
-        name_label: Име
-        project_number_label: Номер на проекта
-        save_changes: Запазване на промените
-        sub_domain_label: Поддомейн
-      mettl_schedule_records:
-        actions:
-          edit: Редактирам
-        add: Добавяне на график
-        assessment_id: Идентификационен номер на оценяването
-        assessment_name: Име на оценяването
-        candidate_authorization: Разрешаване на упълномощаване на кандидати
-        candidate_screen_capture: Активиране на заснемане на екрана на кандидата
-        count: Брой толеранси при сърфиране
-        created_at: Създаден в
-        schedule_id: ID на графика
-        schedule_name: Име на графика
-        search: Търсене
-        secure_browser_enabled: Активиране на защитен браузър
-        settings: Настройки
-        show_remaining_counts: Активиране на показване на оставащия брой
-        visual_proctoring_enabled: Активиране на визуално прокторинг
-        web_proctoring_enabled: Активиране на уеб прокторинг
       privacy_settings:
-        disable_dp: Не позволявайте по-нататъшно обработване на данни
-        dp_consent: Разрешаване на съгласие за обработка на данни
-        dp_consent_custom: Персонализиране на съгласието за обработка на данни
-        dp_consent_version: Версия на политиката
         errors:
           cannot_disable_while_campaign_enabled: Не можете да забраните записването на видеоразговори, защото то е разрешено за една или повече кампании в този проект
           min_retention: Не може да бъде по-малко от 1 ден
-          policy_version_format: Допускат се само цели числа
-          required: Изисква
-        mask_identity_for_examus: Данни за маски за Examus Proctoring
-        mask_identity_for_hogan: Данни за маски за Хоган
-        mask_identity_for_iiht: Данни за маски за IIHT
-        mask_identity_for_mettl: Данни за маски за METTL
-        mask_identity_for_mhs: Маскиране на данни за MHS
-        mask_identity_for_pearson: Данни за маски за Pearson
-        mask_identity_for_saville: Данни за маски за Saville
-        mask_identity_for_skillvue: Данни за маска за Skillvue
-        mask_identity_for_yoodli: Данни за маски за Yoodli
-        privacy_link: Активиране на връзката за поверителност
-        privacy_link_label: Връзка за поверителност
-        privacy_link_placeholder: Въведете връзка за поверителност
-        privacy_text: Текст за поверителност
-        privacy_text_placeholder: Въведете текст за поверителност
-        video_call_recording: Разрешаване на запис на видеоразговори
-        video_call_recording_expiry_duration: Период на съхранение на записите на видеоразговори (в дни)
-        video_call_recording_scope: Активиране на запис на видео за всички нови кампании
-      profile_settings:
-        form_fields:
-          enabled: Разрешено
-          half_size: Половин размер
-          locked: Заключен
-          name: Име
-          remove: Махам
-          required: Изисква
-          sort: Сорт
-        month: Месец
-        never: Никога
-        update_in: Уведомяване за актуализация на профила в
-        year: Година
-      registration_settings:
-        hide_signup: Скриване на опцията за регистрация
-        require_mobile_number: Изискване на мобилен номер
       users:
         confirmations:
           detach_from_project:
             body: Тяло
             title: Заглавие
-      webhook_settings:
-        add: Добавяне на уеб кукичка
-        column_active: Активен
-        column_created_date: Дата на създаване
-        column_description: Описание
-        column_manage: Управлявам
-        column_updated_date: Дата на промяна
-        column_url: URL адрес
-        search: Търсене в Webhoook
     questions:
       copy:
         successfully: Въпросът "%{name}" беше копиран успешно.
@@ -3217,72 +1472,15 @@ bg:
       toggle_status:
         successfully: Актуализирано успешно.
     reflection_questions:
-      delete_confirmation: Сигурни ли сте, че искате да изтриете този въпрос за размисъл?
       export:
-        action: Експортиране на въпроси за размисъл
         details: Подробности за файла
-        failure_msg: Грешка при експортиране на файл.
-        success_msg: Експортиране на въпроси за размисъл в ход. Моля, проверете статуса в известията.
-      form:
-        mandatory: Задължителен
-        max_words: Максимален брой думи
-        min_words: Минимум думи
-        question: Въпрос
-        title: Въпрос за размисъл
       import:
-        action: Импортиране на въпроси за размисъл
         errors:
           invalid_max_words_column_format: Невалиден формат на стойността на колоната за максимален брой думи %{row}
           invalid_min_words_column_format: Невалиден формат на стойността на колоната за минимални думи %{row}
           invalid_required_column_format: Невалиден Задължителен формат на стойността на колоната %{row}
           missing_eng_question: Липсва съдържание на въпроса на английски език %{row}
           save_failed: Запазване на неуспешно %{message}
-        failure_msg: Грешка при импортиране на файл.
-        success_msg: Импортиране на въпроси за размисъл в ход. Моля, проверете статуса в известията.
-      question: Въпрос
-    report_approval:
-      approval_statuses:
-        approved: Одобрен
-        change_requested: Искана промяна
-        not_ready: Не е готов
-        pending_qc: В очакване на QC
-        qc_completed: Завършена QC
-        qc_in_progress: QC в процес на изпълнение
-      bulk_approve_success: "%{sent_for_approval} изпратен за одобрение. %{approved} отчети са одобрени. %{ignored} отчети изискват ръчно одобрение поради промени/коментари на КК."
-      columns:
-        actions: Действия
-        approval_status: Статус на одобрение
-        approved_by: Одобрен от
-        assessed_by: Оценено от
-        campaign_name: Име на кампанията
-        qc_by: QC от
-        report_name: Име на отчета
-        subject_email: Тема на имейла
-        user_email: Потребителски имейл
-        user_name: Потребителско име
-      dashboard: Таблото
-      download: Свалям
-      report_approval_settings: Настройки за одобряване на отчети
-      report_approvals: Докладване на одобрения
-      review: Преглед
-      saving_filters:
-        actions:
-          clear_filters: Изчистете филтрите
-          delete_filter: Изтриване на филтъра
-          save_filter: Спасявам
-          save_new_filter: Запазване като нов филтър
-          saved_filters: Запазени филтри
-        delete_saved_filters: Филтърът е изтрит
-        edit_filter_name: Запазване на името на филтъра
-        error_while_deleting: Грешка при изтриване
-        error_while_editing: Грешка при редактиране
-        error_while_fetching: Нещо се обърка, опитайте отново
-        error_while_saving: Грешка при запазване на филтъра
-        filter_updated: Филтърът е актуализиран
-        no_saved_filters: Няма запазени филтри
-        save_filter: Филтърът е запазен
-        set_favorite: Филтърът е зададен като предпочитан
-      submit_or_approve_all: Подаване или одобрение на всички
     report_builder:
       campaign_factors:
         add_field: Добавяне на поле
@@ -3417,22 +1615,6 @@ bg:
         title: Опции на Report Bundle
       update:
         successfully: Пакетът за отчети %{name} е актуализиран успешно.
-    report_review:
-      abort_qc: Прекъсване на QC
-      approve: Одобрявам
-      approve_changes: Одобряване на промените
-      edit: Редактирам
-      remove_approval: Премахване на одобрението
-      request_changes: Заявка за промени
-      review: Преглед
-      send_for_approve: Изпрати за одобрение
-      statuses:
-        approved: Одобрен
-        change_requested: Искани промени
-        not_ready: Не е готов
-        pending_qc: Изчакване на КК
-        qc_completed: Завършен QC
-        qc_in_progress: QC в процес на обучение
     report_settings:
       data_source_types:
         assessment: Оценка
@@ -3456,9 +1638,6 @@ bg:
         title: Фактори на кампанията за групово качване
         upload_success: Качено успешно
       copy:
-        copy: копирам
-        copy_report: Копиране на отчета
-        name: Име
         successfully: Докладът "%{name}" е копиран успешно.
       create:
         successfully: Отчетът "%{name}" е създаден успешно.
@@ -3466,15 +1645,6 @@ bg:
         successfully: Докладът "%{name}" е изтрит успешно.
       edit:
         header: Редактиране на името на отчета
-      edit_default_language:
-        agreement: Да, разбирам последиците от промяната на езика по подразбиране.
-        title: Редактиране на езика по подразбиране
-        tooltip: Редактиране на езика по подразбиране
-        warning:
-          description_li_1: Промяната на езика по подразбиране от RTL на LTR език или обратно ще се отрази на оформлението.
-          description_li_2: Ако промените езика по подразбиране, ще трябва да преработите преводите на отчетите.
-          description_li_3: Изтеглете копие на преводите на доклади, преди да направите тази промяна.
-          title: Моля, прочетете внимателно инструкциите
       modals:
         remap_assessment:
           new_assessment_name: Ново име на оценяване
@@ -3484,10 +1654,6 @@ bg:
       new:
         header: Изберете отчет
       preview:
-        comments: Коментари
-        hide_resolved: Скриване на решението
-        history: История
-        info_to_select_module: Изберете текстов модул за коментар
         title: Преглед
       regenerate:
         successfully: Докладът е успешно изпратен за регенерация
@@ -3517,422 +1683,17 @@ bg:
         successfully: Докладът беше актуализиран успешно.
       update:
         successfully: Докладът %{name} е актуализиран успешно.
-    reports_language_selection_modal:
-      download: Изтегляне на доклад
-      generate: Генериране на доклад
     resource:
       remove_confirm:
         message: Сигурни ли сте, че искате да премахнете този ресурс?
         title: Премахване на ресурс
-    saml_settings:
-      after_signout_url: TURL адрес след излизане
-      cert: Сертификат
-      config_details:
-        acs_url: URL адрес на потребителската услуга на твърдение
-        copied: Копирано %{element}
-        issuer: Идентификационен номер на предприятието/емитент
-        title: Конфигуриране на Idp със следната информация
-      email_pipetext: Имейл текст
-      enabled: Разрешено
-      entity_id: ИД на предприятието/емитент
-      name_identifier_format: Идентификатор на името
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Настройка на SAML
-      save: Запазване на настройката
-      sso_service_url: URL адрес на услугата на SSO
-      successfully_saved_msg: Настройката SAML е запазена успешно.
     save: Спасявам
-    scheduling:
-      add_activity: Добавяне на активност
-      add_assessment_center: Добавяне на център за оценяване
-      add_assessor_form:
-        assessment: Оценка
-        assessor: Оценител
-        schedule_time: Време по график
-      add_subject: Добавяне на тема
-      assessment_center_form:
-        add_more: Добави още
-        allow_late_cancellation_and_scheduling: Разрешаване на късно анулиране и планиране
-        assessment_center_group: Група Център за оценяване
-        assessment_center_group_placeholder: Изберете група "Център за оценяване"
-        assessor_ids_label: Оценители
-        back: Гръб
-        basic_info_panel:
-          description: Моля, въведете информацията за графика по-долу. Можете също така да изберете няколко дати, за да създадете множество центрове за оценяване.
-          title: Основна информация
-        cancellation_lead_time_label: Време за анулиране
-        copy_hint: Копира горната конфигурация за места, мениджъри на центрове, оценители и срещи и ресурси в следните центрове за оценяване. След копирането можете да направите допълнителни промени в отделните центрове за оценяване, преди да продължите.
-        copy_to_all: Копиране в други центрове за оценяване
-        create: Създавам
-        dates_label: Дати
-        disable_cancellation_and_rescheduling: Деактивиране на анулирането и препланирането
-        duration_label: Времетраене
-        duration_max_error: Не може да бъде по-дълъг от 16 часа
-        duration_min_error: Не може да бъде по-малко от 15 минути
-        duration_placeholder: Например 4 часа 30 минути
-        manager_ids_label: Мениджъри на центрове
-        meeting_link: Връзка към срещата
-        meetings_and_resources: Срещи и ресурси
-        name_label: Име
-        next: Следващ
-        required_error: Изисква
-        resources_panel:
-          description: Добавете връзките към всички ресурси, до които бихте искали фасилитаторите да имат достъп.
-          resource_name_placeholder: Име на ресурса
-          resource_url_placeholder: Връзка към ресурса
-          title: Ресурси
-          validation_error: Въведете име и URL адрес или премахнете ресурса
-        scheduling_lead_time_label: Време за планиране
-        seats_label: Места
-        time_label: Час
-        timezone_label: Часова зона
-        url_label: URL адрес
-        video_call_type:
-          custom: Обичай
-          internal: Вътрешния
-          none: Никой
-        video_call_type_label: Добавяне на видео разговор
-      attendance_status:
-        column_name: Статус на присъствие
-        dropped_out: Отпаднал
-        late: Късно
-        no_show: Не се явява
-        no_status: Няма статус
-        on_time: Навреме
-      attended:
-        attended: Присъстваха
-        not_attended: Не присъства
-      campaign_participants: Участници в кампанията
-      columns:
-        activity: Активност
-        assessment_center_date_and_time: Дата и час на центъра за оценяване
-        assessor: Оценител
-        assessors: Оценители
-        attendance: Присъствие
-        attended: Присъстваха
-        booked_at: Резервирано на
-        campaign_assessment_group: Група Център за оценяване
-        campaign_name: Име на кампанията
-        duration: Времетраене
-        link_to_view_recordings: Връзка за преглед на записи
-        managers: Мениджъри
-        meeting_link: Връзка към срещата
-        name: Име
-        participants: Участниците
-        prework: Предварителна работа
-        recording_date: Дата на запис
-        resource_link: Връзка
-        resource_name: Име
-        schedule_time: Време по график
-        scheduling_status: Състояние на планиране
-        seats: Места
-        serial_no: Сериен номер
-        start_time: Дата и час
-        subject: Предмет
-        title: Заглавие
-        view_recording: Преглед на записа
-      errors:
-        assessor_already_assigned: Оценител, който вече е назначен за тази оценка. Моля, изберете друг оценител или оценител.
-        date_required: Моля, изберете дата
-        invalid_url: Невалиден формат на URL адреса
-        meeting_link_https: Връзката към срещата трябва да започва с "https://"
-      id: Документ за самоличност
-      info:
-        allowed: Позволено
-        assessors: Оценители
-        booked: Резервирани места
-        campaign_assessment_group: Група Център за оценяване
-        cancellation_lead_time: Време за анулиране
-        cancellation_tooltip: Потребителят ще може да анулира резервацията до %{date}
-        date: Дата и час
-        duration: Времетраене
-        join_meeting: Присъединете се към стая
-        late_cancellation_and_scheduling: Късно анулиране и планиране
-        link: Връзка към срещата
-        managers: Мениджъри на центрове
-        none: Никой
-        not_allowed: Не се допуска
-        recording_enabled: Записът е разрешен
-        remaining: Оставащи места
-        scheduling_lead_time: Време за планиране на изпълнение
-        scheduling_tooltip: Потребителят ще може да резервира слот до %{date}
-        search_placehoder: Търсене по идентификатор, имейл или име
-        timezone: Часова зона
-        total_seats: Общо места
-      resources:
-        confirm_message: Сигурни ли сте, че искате да изтриете ресурса '%{resource_name}'?
-        confirm_title: Изисква се потвърждение
-        create: Създаване на ресурс
-        invalid_url: Невалиден URL адрес. Посочете пълния URL адрес с http или https протокол в него.
-        resource: Ресурс
-        successful_remove: Ресурсът на центъра за оценяване %{resource_name} беше изтрит успешно.
-      schedule_assessments: Планиране на оценявания
-      scheduling_statuses:
-        cancelled: Отменени
-        late_cancelled: Късно Анулиран
-        late_rescheduled: Късно пренасрочено
-        rescheduled: Пренасрочен
-        scheduled: Планирано
-      search_participant: Участници в кампанията в мрежата за търсене
-      status:
-        completed: Завършен
-        dropped_out: Отпаднал
-        in_progress: В процес на изпълнение
-        late: Късно
-        no_show: Не се явява
-        not_started: Не е започнато
-      status_change_modal:
-        content: След като затворите центъра за оценяване, участниците няма да могат да участват в никакви дейности на центъра.
-        title: Промяна на състоянието на центъра за оценяване
-      subjects:
-        activities: Дейности
-        add_assessor_form: Добави формуляр за оценител
-        assessments: Оценки
-        assessor_forms: Формуляри за оценител
-        confirm_message: Сигурни ли сте, че искате да отмените участието на субекта с имейл "%{subject_email}"?<br />След като бъде отбелязан като анулиран, този субект няма да може да участва в центъра за оценяване.
-        confirm_title: Изисква се потвърждение
-        edit_assessor_form: Редактиране на формуляра за оценител
-        form_title: Планиране на оценявания
-        language: Език
-        language_not_selected: Не е избрано
-        mark_cancel: Марк Отказ
-        mark_cancel_success: Отменено участие на тема с имейл %{subject_email}.
-        meeting_link_custom: Обичай
-        meeting_link_internal: Вътрешния
-        meeting_link_none: Никой
-        meeting_link_title: Връзка към срещата
-        no_change: Без промяна
-        override_existing: Заместване на съществуващи графици за обекти
-        preworks: Предварителна работа
-        re_enroll: Презаписване
-        re_enroll_confirm_message: Сигурни ли сте, че искате да запишете отново темата с имейл '%{subject_email}'?
-        re_enroll_success: Отново регистриран субект с имейл %{subject_email}.
-        schedule: Разписание
-        unschedule: Непланирано
-      tabs:
-        activities: Дейности
-        assessment_center: Център за оценяване
-        invites: Кани
-        recordings: Записи
-        resources: Ресурси
-        subjects: Теми
     scoring:
-      action_prohibited: Забранени действия
-      active: Активен
-      actual_average: Действителна средна стойност
-      add_factor: Добавяне на фактор
-      add_group: Добавяне на група
-      assessment: Оценка
-      assessment_scoring_type: Тип оценяване
-      average: Среден
-      campaign_scoring_variables: Променливи за оценка на кампанията
-      code: Код
-      desc: Надвишили сте максималния лимит от %{n} фактори на кампанията. Не могат да се добавят допълнителни фактори. Моля, прегледайте и управлявайте съществуващите си фактори, преди да продължите.
-      description: Описание
-      dimension: Измерение
-      edit_factor: Коефициент на редактиране
       export:
         details: Оценка на кампанията
         factors: Фактори на експортната кампания
-      factor: Фактор
-      factor_group_removed_successfully: Групата Campaign Factor беше премахната успешно
-      factor_removal_confirmation: Въведете името на фактора, дадено по-долу, в текстовото поле, за да потвърдите
-      factor_removed_successfully: Факторът на кампанията беше премахнат успешно
-      factors_exported_successfully: Задачата за експортни фактори беше планирана успешно
-      factors_imported_successfully: Задачата за импортиране на фактори на кампанията беше планирана успешно
-      final: Заключителен
-      final_score_updated_successfully: Крайният резултат беше актуализиран успешно
-      formula: Формула
-      get_started: Първи стъпки
-      id: Ид
-      import:
-        factors: Импортиране на фактори на кампанията
-      innovation_style_removal_confirmation: Въведете името на стила за иновации, посочено по-долу, в текстовото поле, за да потвърдите
-      name: Име
-      no_groups: Няма налични групи
-      occupation_removal_confirmation: Въведете посоченото по-долу наименование на професията в текстовото поле, за да потвърдите
-      output_type: Тип изход
-      pattern_error: Допускат се само буквено-цифрови знаци, интервали и тирета.
-      profile:
-        years: Години
-      public: Общественост
-      ranked: Класират
-      remove_all_campaign_factors:
-        confirmation: Въведете текущото име на кампанията, дадено по-долу, в текстовото поле, за да потвърдите
-        error: Неуспешно премахване на факторите на кампанията
-        success: Факторите на кампанията са премахнати успешно
-        title: Премахване на фактори на кампанията
-        warning: Вие сте на път да изтриете всички фактори на кампанията и всички свързани резултати за потребителите. Сигурни ли сте, че искате да извършите това действие?
-      remove_factor_group_confirmation_content: Сигурни ли сте, че искате да премахнете факторната група "%{group_name}"?
-      remove_factor_group_confirmation_title: Премахване на факторна група
-      required_error: Не може да бъде празен
-      save: Спасявам
-      save_all: Запазване на всички
-      score_range: Диапазон на резултатите
-      score_types:
-        norm_score: Нормен резултат
-        percentage: Процент
-        percentile: Процентил
-        score: Резултат
-        zscore: Z резултат
-      scoring: Точкуване
-      scoring_description: Оценяването на кампаниите дава възможност за отчитане на тестовете
-      select_all: Изберете всички %{n} теми
-      select_assessment_first: Първо изберете оценяване
-      select_factor: Изберете фактор
-      show_weightages: Показване на тежести
-      subject: Предмет
-      subject_list:
-        actions: Действия
-        bulk_mark_finalized: Насипната маркировка е финализирана
-        bulk_mark_finalized_confirm: Финализиращият резултат за избраните потребители ще генерира отчета, който използва фактора на кампанията за потребителите. Сигурни ли сте, че искате да продължите?
-        bulk_mark_not_finalized: Груповата марка не е финализирана
-        bulk_mark_not_finalized_confirm: Премахването на finalize от избраните потребители ще премахне генерирания отчет, който използва фактора на кампанията за потребителите. Сигурни ли сте, че искате да продължите?
-        bulk_rescore: Групово преоценяване
-        bulk_rescore_confirm: Оценяване на избраните потребители. Сигурни ли сте, че искате да продължите?
-        calculated_date: Изчислена дата
-        calculation_errors: Грешки в изчислението
-        export: Експортиране на точки
-        export_success: Задачата за експортиране на резултати беше планирана успешно
-        finalized: Завършен
-        finalized_date: Финализирана дата
-        import_external_scores: Импортиране на външни оценки
-        mark_finalized: Марката е финализирана
-        mark_finalized_confirm: Финализиращата оценка за потребителя "%{email}" ще генерира отчета, който използва фактора на кампанията за потребителя. Сигурни ли сте, че искате да продължите?
-        mark_not_finalized: Марката не е финализирана
-        mark_not_finalized_confirm: Премахването на finalize от потребителя "%{email}" ще премахне генерирания отчет, който използва фактора на кампанията за потребителя. Сигурни ли сте, че искате да продължите?
-        push_webhook: Бутане на уеб куки
-        rank: Ранк
-        rescore: Преоценка
-        rescore_confirm: Повторно оценяване на потребителя '%{email}'. Сигурни ли сте, че искате да продължите?
-        tools: Инструменти
-      tabs:
-        settings: Настройки
-        subject_scores: Резултати по предмета
-      type: Вид
-      variables: Променливи
-      weightages:
-        assessorForms: Формуляри за оценител
-        successful_update: Теглата бяха актуализирани успешно
-        tools: Инструменти
-        weightages: Тежести
-      weighted_average: Среднопретеглената
-    scoring_approval:
-      approve_all: Одобри всички
-      bulk_approve_success: "%{approved} одобрени резултати."
-      review: Преглед
-      score_approvals: Одобрения на AI оценки
     search: Търсене
-    security_setting:
-      180_days: 180 дни
-      30_days: 30 дни
-      365_days: 365 дни
-      90_days: 90 дни
-      attempts_to_lock: Опити за заключване
-      auto_unlock_time: Време за автоматично отключване
-      disable_password_reuse: Деактивиране на повторното използване на парола
-      disallow_password_login: Забранете влизането с парола
-      enable_login_with_magic_link: Активиране на вход с магическа връзка
-      enable_recaptcha: Активиране на reCAPTCHA
-      enforce_password_policy: Налагане на правила за пароли при следващо влизане
-      enforce_strong: Налагане на надеждна парола
-      expiration: Изтичане на паролата
-      lock_account: Заключване на акаунта
-      magic_link_expiry_duration: Продължителност на изтичане на магическата връзка
-      min_length: Минимална дължина на паролата
-      never: Никога
-      restrict_sequences: Ограничаване на последователни и повтарящи се знаци
-      security: Настройки за сигурност
-      send_unlock_email: Изпращане на имейл за отключване
-      session_timeout_duration: Продължителност на времето за изчакване на сесията
-      tfa_enabled: Разрешаване на двуфакторно удостоверяване
-    security_settings:
-      security_setting: Настройка за сигурност
-    settings:
-      admin_roles:
-        confirm_message: Сигурни ли сте, че искате да изтриете ролята на администратор "%{role_name}"?
-      siem:
-        description: Описание
-        destination_type: Тип дестинация
-        destination_types:
-          s3: С3
-          s3_compatible: Съвместим с S3
-        enabled: Разрешено
-        readable_resource_name: Настройки на SIEM
-        s3_access_key_id: ИД на ключа за достъп
-        s3_bucket_folder: Папка с кофа S3
-        s3_bucket_name: S3 Име на кофата
-        s3_endpoint: Крайна точка на S3
-        s3_region: Регион S3
-        s3_secret_access_key: Таен ключ за достъп
-        send_test_log: Изпращане на тестов дневник
-        send_test_log_error_message: Тестовият дневник не е изпратен във вашата кофа, проверете настройките си
-        send_test_log_success_message: Тестовият дневник е изпратен успешно във вашата кофа
-      skill_aliases:
-        alias: Псевдоним
-        confirm_message: Сигурни ли сте, че искате да изтриете псевдонима на умението '%{skill_alias}'?
-        create: Добавяне на псевдоним на умението
-        select_skill: Изберете умение
-        skill: Умение
-        skill_alias: Псевдоним на умението
-        successful_remove: Псевдонимът на умението "%{skill_alias}" беше изтрит успешно.
-      tabs:
-        admin_roles: Администраторски роли
-        feature_flags: Флагове за функции
-        siem: SIEM
-        skill_aliases: Псевдоними на уменията
-    sheets:
-      column:
-        add_column: Добавяне на колона
-        not_allowed_for_dashboard_use: За да се използва колона в таблото, тя трябва да е по-малка от 64 знака
-        reorder: Пренареждане
-        save_order: Запазване на поръчката
-      drawers:
-        add_edit:
-          cancelText: Отмени
-          markdown:
-            preview: Преглед
-            title: Намаление
-          save: Спасявам
-          saving: Спестяване
-          success_message_add: Добавен е нов запис
-          success_message_edit: Записът е актуализиран
-          title_add: Добавяне на запис на лист
-          title_edit: Редактиране на запис на ред на листа
-          validations:
-            required_email: Моля, въведете имейл
-        view:
-          campaign_title: Запис на ниво кампания
-          edit_button: Редактирам
-          project_title: Запис на ниво проект
-          title: Подробности за записа на ред на листа
-      list:
-        header:
-          add_record: Добавяне на запис
-          search_record: Търсене на записи
-      modals:
-        delete_records:
-          cancelText: Отмени
-          content: Сигурни ли сте, че искате да изтриете избраните {{count}} записи?
-          okText: Да, изтриване
-          successMessage: "{{count}} записите бяха изтрити успешно."
-          title: Изтриване на {{count}} записи
-        remove_columns:
-          cancelText: Отмени
-          content: Изтриването на колона ({{columns}}) ще премахне данните в тази колона за всички редове
-          okText: Да, изтриване
-          successMessage: "{{count}} записите са изтрити"
-          title: Изтриване на колони
-      tabs:
-        rows: Редове
-        settings: Настройки
     skills:
-      applicable_proficiency_levels: Приложими нива на владеене
-      columns:
-        skill_group: Група умения
-        skill_type: Тип умение
       errors:
         import:
           missing_fields_data: 'Ред %{line_number}: Липсват задължителни полета: %{fields}'
@@ -3946,28 +1707,11 @@ bg:
           query_too_short: се изисква и трябва да бъде-дълга от 3 знака;
       export:
         details: Подробности
-        failure_msg: Грешка при експортиране на преводи
-        success_msg: Текущи действия за развитие на износа.
         translations:
           details: Преводи на умения
       form:
         client_placeholder: Изберете клиент
-        description: Описание
-        name: Име
         project_placeholder: Изберете проект
-        skill_group: Група умения
-        skill_type: Тип умение
-        title: Умение
-      import:
-        download_example_csv: Изтегляне на пример csv
-        info_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-        success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-      import_action:
-        skills_title: Импортиране на умения
-        skills_translations_title: Импортиране на преводи на умения
-      skill_details: Подробности за уменията
-      skill_translations: Преводи на умения
-      title: Умения
       translations:
         import:
           errors:
@@ -3975,147 +1719,13 @@ bg:
             missing_columns: 'Липсват задължителни колони: %{columns}'
             save_failed: 'Грешка при обработката Идентификатор на умението %{id}: %{message}'
             skill_not_found: Умение с идентификатор %{id} не е намерено
-      vector:
-        generate_embedding: Генериране на вграждане
-        generate_embedding_failure_msg: Не успях да поставя задачата за генериране на умения за вграждане. Моля, опитайте отново.
-        generate_embedding_success_msg: Задачата за генериране на вграждане на умения е успешно поставена в опашка. Моля, проверете статуса в известията.
-        label: Vector DB
-    sms_histories:
-      columns:
-        first_name: Собствено име
-        last_name: Презиме
-        mobile_no: Мобилен не
-        price: Цена
-        segment_length: Дължина на сегмента
-        sent_at: Изпратено на
-      drawer:
-        title: Подробности за SMS
-      history: История
-      statuses:
-        accepted: Приети
-        delivered: Доставени
-        failed: Не успя
-        queued: Опашката
-        scheduled: Планирано
-        sent: Изпратени
-        undelivered: Недоставен
     sms_invites:
-      actions:
-        add: Добавяне на SMS контакт
-      columns:
-        created_at: Създаден в
-        created_by: Създаден от
-        email: Имейл
-        first_name: Собствено име
-        last_name: Презиме
-        mobile_no: Мобилен не
-      contacts: Контакти
-      form_modal:
-        first_name: Собствено име
-        last_name: Презиме
-        locale: Място
-        mobile_no: Мобилен не
-        title: Покана за SMS
-      import:
-        download_example_csv: Изтегляне на примерен CSV файл
-        success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-        title: Импортиране на SMS покани
       messages:
-        delete_confirm_text: Сигурни ли сте, че искате да премахнете SMS покана с мобилен номер %{mobile_no}?
-        delete_success: SMS поканата беше изтрита успешно
         failed_to_sent_invite: Неуспешно изпращане на покана до мобилен телефон няма %{mobile_no}
-      send_sms:
-        fields:
-          link_expiry: Изтичане на връзката
-          locale: Място
-          message: Съобщение
-          statuses: Състояния
-          users: Потребители
-        modal:
-          btn_name: Изпращане на SMS
-          title: Изпращане на SMS
-        pipetext_details: "{{{first_name}}} - Собствено име на получателя<br />{{{last_name}}} - Фамилно име на получателя<br />{{{invite_url}}} - Връзка за регистрация"
-        segment_length_msg: Приблизителният брой сегменти за това съобщение е %{segment_length}.
-        segment_length_range_msg: Приблизителният брой сегменти за това съобщение е между %{min_segment_length} и %{max_segment_length}.
-      statuses:
-        all: Цял
-        failed: Не успя
-        invited: Поканени
-        not_invited: Не е поканен
-        registered: Регистрирани
-      tools:
-        export: Експортиране на SMS контакти
-        import: Импортиране на SMS контакти
-        send_sms: Изпращане на SMS
-    sms_records:
-      columns:
-        id: Ид
-        message: Съобщение
     smtp_settings:
-      authentication: Удостоверяване
-      authentication_type: Тип удостоверяване
-      authentication_types:
-        cram_md5: Натъпкване MD5
-        login: Вход
-        plain: Равнина
-      enabled: Разрешено
-      encryption: Шифроване
-      encryption_types:
-        none: Никой
-        ssl: SSL
-        tls: TLS
       errors:
         authentication_failed: Потребителското име или паролата са неправилни
         host_unreachable: Не може да се свърже с хоста. Хостът, портът или криптирането са неправилни
-      from_email: От имейл
-      from_name: От име
-      host: Домакин
-      password: Парола
-      port: Порт
-      send_test_email: Изпратете тестов имейл
-      smtp: SMTP
-      test_email_modal:
-        input_hint: Настройката ви за имейл няма да се запази, докато тестовият имейл не бъде изпратен успешно.
-        input_placeholder: Тестов имейл идентификатор
-        title: Тестов имейл идентификатор
-      test_modal:
-        success_message: Тестов имейл, изпратен до %{email_id}.
-        title: Тествайте настройката на SMTP
-      update_success_msg: SMTP настройката беше актуализирана успешно.
-      use_sender_verification: Използване на потвърждаване на подателя
-      user_name: Потребителско име
-    stats:
-      assessments:
-        active: Активен
-        columns:
-          assessment_name: Име на оценяването
-          completed: Завършен
-          id: Документ за самоличност
-          in_progress: В процес на изпълнение
-          ineligible: Негоден
-          interrupted: Прекъсва
-          not_started: Не е започнато
-          timed_out: Време за изчакване
-        count: Брой
-        inactive: Неактивен
-        percentage: Процент
-        title: Оценки
-      top_metrics:
-        completed: Завършен
-        in_progress: В процес на изпълнение
-        interrupted: Прекъсва
-        not_started: Не е започнат
-        timed_out: Време за изчакване
-        users: Потребители
-      users:
-        date_presets:
-          last_30_days: Последните 30 дни
-          last_7_days: Последните 7 дни
-          last_month: Миналия месец
-          last_week: Миналата седмица
-          today: Днес
-          yesterday: Вчера
-        y_title: Брой потребители
     sub_factors:
       destroy:
         successfully: Подфакторът %{name} беше изтрит успешно.
@@ -4225,18 +1835,7 @@ bg:
           one: 'Общо: 1'
           other: 'Общо : {{count}}'
           zero: 'Общо : 0'
-      more_actions: Още действия
     taxonomy:
-      import:
-        description: Качете Excel файл, за да импортирате или актуализирате таксономията на вашите умения. Това ще добави нови умения, длъжности и нива на компетентност.
-        download_example_file: Изтеглете примерен файл
-        drag_text: Кликнете или плъзнете файла в тази област, за да го качите
-        error_title: Импортът се провали
-        file_hint: Поддържа файлове с разширения .xls и .xlsx
-        import_button: Импортна таксономия
-        success_msg: Каченият файл е поставен на опашка за импортиране. Моля, проверете статуса в известията.
-      import_action:
-        taxonomy: Таксономия на вноса
       title: Таксономия
     templates:
       blocks:
@@ -4329,187 +1928,9 @@ bg:
       convert_action:
         already_a_template: Вече има шаблон
         has_user_data: Преди да конвертирате кампанията в шаблон, моля, нулирайте я ръчно, като кликнете върху "Нулиране на всички участници" от падащото меню "Инструменти".
-      convert_template_modal:
-        cancel: Отмяна на
-        confirm: Потвърдете
-        convert:
-          success: Шаблонът е успешно конвертиран
-        convert_option: Конвертиране на тази кампания в шаблон
-        copy:
-          success: Задачата за създаване на шаблона на кампанията е планирана успешно, моля, проверете известията си за състоянието.
-        copy_option: Създаване на нов шаблон от тази кампания
-        description: Изберете как искате да създадете шаблон от тази кампания.
-        failed: Създаването на шаблона е неуспешно.
-        title: Преобразуване в шаблон
-      email_templates:
-        approve_nomination:
-          description: Това съобщение се изпраща на мениджър, когато номинация, направена от пряк подчинен, трябва да бъде одобрена
-          name: Одобряване на номинацията
-        approve_report:
-          description: Това съобщение се изпраща до мениджъра на субекта, за да го уведоми, че отчетът на субекта е готов за одобрение
-          name: Одобряване на отчет
-        categories:
-          approvals: Одобрения
-          invitations: Покани
-          reminders: Напомняния
-          report_ready: Докладът е готов
-        consolidated: Консолидиран
-        custom_message:
-          description: Това съобщение може да бъде изпратено на всеки, който участва в оценяването
-          name: Персонализирано съобщение
-        days_repeated: дни, повтарящи се
-        evaluator_invite:
-          description: Това съобщение ще бъде изпратено до всички участници, които са оценители
-          name: Покана за оценител
-        evaluator_reminder:
-          description: Това съобщение ще бъде изпратено, за да напомни на оценителите да завършат чакащите оценки
-          name: Напомняне за оценителя
-          rule_description: Задаване на правила за автоматично планиране, когато е планирана покана
-          rule_name: Правила за напомняне на оценителя
-        from: От
-        manager_report_ready:
-          description: Това съобщение се изпраща до мениджъра на субекта, след като отчетът на субекта е готов
-          name: Готов за отчет на мениджъра
-        nomination_denied:
-          description: Това съобщение се изпраща до субектите, когато номинацията е отказана
-          name: Номинацията е отказана
-        reply_to_email: Отговор на имейл
-        request_approval:
-          description: Това съобщение се изпраща на мениджърите, когато субект поиска одобрение
-          name: Поискайте одобрение
-        save: Запазете
-        schedule: График
-        schedule_email: Насрочете имейл
-        schedule_email_title: Имейл за планиране
-        schedule_time: Време по график
-        send_test_email: Изпратете тестов имейл
-        subject: Предмет
-        subject_invite:
-          description: Това съобщение ще бъде изпратено, за да покани участниците да участват в оценяването
-          name: Покана по темата
-        subject_reminder:
-          description: Съобщение, изпратено до всеки участник, за да му напомни да участва в оценяването
-          name: Напомняне по темата
-          rule_description: Задаване на правила за автоматично планиране, когато е планирана покана
-          rule_name: Правила за напомняне по теми
-        subject_report_ready:
-          description: Това съобщение се изпраща до субекта, след като докладът му е готов
-          name: Готов за доклад по темата
-        times: Пъти
-      instruction_templates:
-        evaluate_others:
-          description: Това съобщение ще се показва, когато участниците оценяват други хора от портала
-          name: Оценявайте другите
-        evaluate_self:
-          description: Това съобщение ще бъде показано на субектите, когато започнат своята самооценка
-          name: Оценител Аз
-        evaluation_help:
-          description: Помощен текст, показан на картата за оценка на таблото на потребителя
-          name: Помощ за оценка
-        evaluator_welcome:
-          description: Това съобщение ще замени "Приветственото съобщение" и ще бъде показано на участниците, които в момента участват само като оценители.
-          name: Приветстване на оценителя
-        invite_evaluators:
-          description: Това съобщение ще бъде показано на субектите, когато започнат да номинират оценители
-          name: Поканете оценители
-        nomination_help:
-          description: Помощен текст, показан в картата за номинация на таблото за управление на потребителя
-          name: Помощ за номинация
-        report_help:
-          description: Помощен текст, показан в бележника на таблото за управление на потребителя
-          name: Помощ за Reports
-        welcome_message:
-          description: Това съобщение ще се покаже на субектите, когато влязат, за да започнат оценяването или да прегледат списъка си със задачи
-          name: Приветствено съобщение
-      mail_history:
-        actions: Действия
-        date: Дата
-        download_details: Изтегляне на подробности
-        emails_sent: Изпратени имейли
-        recipient: Получател
-        status: Статус
-        subject: Тема
-      manage:
-        assessment: Оценка
-        dimension: Размери
-        manage_relationships: Управлявайте взаимоотношенията...
-        report: Доклад
-        title: Управлявам
-      menu:
-        actions: Действия
-        datasheet:
-          title: Лист с данни
-        messages:
-          allow_subjects_to_send_reminders: Позволете на субектите да изпращат напомняния на оценителите
-          automatically_send_invites: Автоматично изпращане на покани до нови оценители
-          title: Съобщения
-        participants:
-          columns:
-            action: Действие
-            email: Имейл
-            evaluations_completed: Завършени оценки
-            evaluations_received: Получени оценки
-            is_subject: Е предмет
-            name: Име
-          evaluators:
-            add_evaluators: Добавяне на оценители
-            import_evaluators: Внос на оценители
-            title: Оценители
-          managers:
-            title: Мениджъри
-          options:
-            evaluator_options: Опции за оценител
-            global: Глобални опции
-            manager_options: Опции за мениджър
-            subject_options: Възможности за избор на тема
-            title: Опции
-          subjects:
-            add_subjects: Добавяне на теми
-            current_job_role: Текуща длъжност
-            email: Имейл
-            first_name: Собствено име
-            import_subjects: Теми за внос
-            last_name: Презиме
-            locale: Място
-            target_job_role: Целева роля
-            title: Субекти
-          title: Участниците
-        report:
-          menu:
-            report_approval:
-              title: Настройки за одобрение на отчет
-            report_options:
-              title: Опции за отчет
-          title: Доклад
-      messages:
-        email_messages: Имейл съобщения
-        factor_benchmark_scores_updated: Резултатите от Factor Benchmark се актуализират успешно
-        instruction_messages: Инструкции за съобщения
-        mail_history: История на пощата
-        options: Опции
       reports:
-        add_conditions: Добавяне на условия
-        administrator_approves_reports: Администраторът одобрява докладите
-        allow_manager_to_view_individual_responses: Позволете на мениджъра да преглежда индивидуални отговори
-        disable_report_download: Деактивиране на изтеглянето на доклади
-        edit_email: Редактиране на имейл
-        email_manager_when_report_is_ready_for_approval: Изпращане на имейл до мениджъра, когато отчетът е готов за одобрение
-        email_subject_when_report_becomes_available: Тема на имейл, когато докладът стане достъпен
-        email_subjects_manager_when_available: Изпратете имейл на мениджъра на обекта, когато докладът стане достъпен
-        make_report_available_to_subject_when: 'Предоставете доклада на субекта, когато:'
-        manager_approves_reports: Мениджърът одобрява докладите
-        manager_can_access_subject_reports: Мениджърът има достъп до отчетите на субектите
-        manager_cannot_access_subject_reports: Мениджърът не може да види отчета, докато не бъдат изпълнени изискванията
-        report_access: Достъп до доклад
-        report_approval: Одобряване на доклада
-        report_availability: Наличност на доклада
         show:
           title: Тематичен доклад
-        subject_can_access_reports: Субектът може да получи достъп до своите доклади
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: Маркиране на лицензите като деактивирани
-    time_zone: Часова зона
-    tools: Инструменти
     translations:
       assessments:
         new:
@@ -4527,14 +1948,6 @@ bg:
         successfully: Потребителят %{name} е създаден успешно.
       destroy:
         successfully: Потребителят %{name} беше изтрит успешно.
-      list:
-        email: Имейл
-      modals:
-        download_idp_reports:
-          error: Неуспешно планиране на задачата за групово изтегляне на IDP Reports е неуспешна.
-          include_reflective_questions: Включете въпроси за размисъл
-          success: Задачата за групово изтегляне на IDP Reports е планирана успешно.
-          title: Групово изтегляне на отчети за IDP
       new:
         header: Нов потребител
       reset_password:
@@ -4568,24 +1981,15 @@ bg:
         successfully: Потребител %{name} е актуализиран успешно.
       toggle_status:
         successfully: Потребител %{name} е актуализиран успешно.
-      toolbar:
-        title: Инструменти
       update:
         successfully: Потребител %{name} е актуализиран успешно.
       user: Потребител
     webhook:
       connection_failure: Не може да се свърже с URL адреса на уеб куката. Моля, проверете дали URL адресът на уеб кукичката е правилен.
-      delete_success: Настройките на уеб кукичката бяха изтрити успешно
       request_failure: Заявката е неуспешна с код на състоянието %{http_status_code}.
     workshop:
-      actions:
-        remove_workshop: Работилницата е премахната успешно
       errors:
         remove_workshop_failure: Работилницата, която се опитвате да изтриете, има планирани теми. Можете да изтриете семинара, като маркирате всички теми като отменени
-      statuses:
-        closed: Затворен
-        open: Отворя
     workshop_subjects:
       errors:
         update_assessor_for_failure: Подробности за срещата не могат да бъдат добавени, тъй като няма свързана дейност по темата.
-    years: Години

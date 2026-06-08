@@ -13,7 +13,7 @@ export default function ManagerSection ({
   })
 
   return (
-    <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.manager_options')}>
+    <OptionSection label={I18n.t('admin.options_manager_options')}>
       <ExpandableOption
         label={I18n.t('threesixty.options.manager.can_view_nominations')}
         {...parametersForSwitch('canViewNominations')}

@@ -61,7 +61,7 @@ const ExternalReportPreview: FC<Props> = ({
             }}
             crumbs={[{
               link: () => '/admin',
-              label: () => I18n.t('administration.clients.clients'),
+              label: () => I18n.t('admin.clients'),
             }, {
               link: state => `/admin/clients/${state.client.id}/projects`,
               label: state => state.client.name,
@@ -86,7 +86,7 @@ const ExternalReportPreview: FC<Props> = ({
             ghost={false}
             title={(
               <Space>
-                <span>{I18n.t('user_reports.preview_report')}</span>
+                <span>{I18n.t('admin.preview_report')}</span>
                 {!pdfLoadingComplete && <Spin />}
               </Space>
             )}
@@ -98,7 +98,7 @@ const ExternalReportPreview: FC<Props> = ({
             )}
             extra={userReport.canDownloadReport ? [
               <Button href={userReport.pdfUrl} target="_blank" icon={<DownloadOutlined />}>
-                {I18n.t('common.text.download')}
+                {I18n.t('shared.download')}
               </Button>,
             ] : []}
           >

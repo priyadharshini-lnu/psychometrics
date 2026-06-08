@@ -17,7 +17,7 @@ export const ChangeStatusModal: React.FC<Props> = ({ workshop, memberAction, clo
     resource={workshop}
     resourceName="workshop"
     readableResourceName="Workshop"
-    title={I18n.t('administration.scheduling.status_change_modal.title')}
+    title={I18n.t('admin.scheduling_status_change_modal_title')}
     showSuccessMessages
     close={close}
     scrollToFirstError
@@ -32,11 +32,11 @@ export const ChangeStatusModal: React.FC<Props> = ({ workshop, memberAction, clo
   >
     {() => (
       <>
-        {I18n.t('administration.scheduling.status_change_modal.content')}
+        {I18n.t('admin.scheduling_status_change_modal_content')}
         <Form.Item name="status">
           <Radio.Group>
-            <Radio value="open">{I18n.t('administration.workshop.statuses.open')}</Radio>
-            <Radio value="closed">{I18n.t('administration.workshop.statuses.closed')}</Radio>
+            <Radio value="open">{I18n.t('admin.workshop_statuses_open')}</Radio>
+            <Radio value="closed">{I18n.t('admin.workshop_statuses_closed')}</Radio>
           </Radio.Group>
         </Form.Item>
       </>

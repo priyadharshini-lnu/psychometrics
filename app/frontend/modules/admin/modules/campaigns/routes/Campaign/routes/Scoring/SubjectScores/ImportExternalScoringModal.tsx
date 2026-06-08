@@ -39,7 +39,7 @@ const ImportExternalScoringModalComponent: React.FC<Props> = ({
 
     importExternalCampaignScores(campaignId, data)
       .then(() => {
-        message.info(I18n.t('administration.campaigns_external_scores_import.import.success_msg'))
+        message.info(I18n.t('admin.import_success_msg'))
         close()
         form.resetFields()
       }).catch(setErrors).finally(() => {
@@ -56,7 +56,7 @@ const ImportExternalScoringModalComponent: React.FC<Props> = ({
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.campaigns_external_scores_import.modal.title')}
+      title={I18n.t('admin.campaigns_external_scores_import_modal_title')}
       open={open}
       onCancel={handleModalCancel}
       footer={[
@@ -93,7 +93,7 @@ const ImportExternalScoringModalComponent: React.FC<Props> = ({
             rel="noopener noreferrer"
           >
             <CloudDownloadOutlined />
-            <span className="mls">{I18n.t('administration.campaigns_external_scores_import.import.example_csv')}</span>
+            <span className="mls">{I18n.t('admin.download_example_csv')}</span>
           </a>
         </div>
         <Form name="basic" form={form}>

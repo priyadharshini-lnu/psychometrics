@@ -99,27 +99,27 @@ const TimeseriesComponent: React.FC<Props> = ({
               value={range}
               ranges={
                 {
-                  [I18n.t('administration.stats.users.date_presets.today')]: [
+                  [I18n.t('admin.stats_users_date_presets_today')]: [
                     dayjs().tz(timezone).startOf('day') as unknown as dayjs.Dayjs,
                     dayjs().tz(timezone).endOf('day') as unknown as dayjs.Dayjs,
                   ],
-                  [I18n.t('administration.stats.users.date_presets.yesterday')]: [
+                  [I18n.t('admin.stats_users_date_presets_yesterday')]: [
                     dayjs().tz(timezone).subtract(1, 'day').startOf('day') as unknown as dayjs.Dayjs,
                     dayjs().tz(timezone).subtract(1, 'day').endOf('day') as unknown as dayjs.Dayjs,
                   ],
-                  [I18n.t('administration.stats.users.date_presets.last_week')]: [
+                  [I18n.t('admin.stats_users_date_presets_last_week')]: [
                     dayjs().tz(timezone).subtract(1, 'week').startOf('week') as unknown as dayjs.Dayjs,
                     dayjs().tz(timezone).subtract(1, 'week').endOf('week') as unknown as dayjs.Dayjs,
                   ],
-                  [I18n.t('administration.stats.users.date_presets.last_month')]: [
+                  [I18n.t('admin.stats_users_date_presets_last_month')]: [
                     dayjs().tz(timezone).subtract(1, 'month').startOf('month') as unknown as dayjs.Dayjs,
                     dayjs().tz(timezone).subtract(1, 'month').endOf('month') as unknown as dayjs.Dayjs,
                   ],
-                  [I18n.t('administration.stats.users.date_presets.last_7_days')]: [
+                  [I18n.t('admin.stats_users_date_presets_last_7_days')]: [
                     dayjs().tz(timezone).subtract(7, 'd') as unknown as dayjs.Dayjs,
                     dayjs().tz(timezone) as unknown as dayjs.Dayjs,
                   ],
-                  [I18n.t('administration.stats.users.date_presets.last_30_days')]: [
+                  [I18n.t('admin.stats_users_date_presets_last_30_days')]: [
                     dayjs().tz(timezone).subtract(30, 'd') as unknown as dayjs.Dayjs,
                     dayjs().tz(timezone) as unknown as dayjs.Dayjs,
                   ],

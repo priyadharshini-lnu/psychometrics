@@ -19,7 +19,7 @@ export const ToolsDropdown: React.FC<ToolsDropdownProps> = ({ onClick }) => (
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.scoring.weightages.tools')}</span>
+        <span>{I18n.t('shared.tools')}</span>
         <DownOutlined />
       </Button>
     )}
@@ -32,23 +32,23 @@ const getMenuProps = (onClick): MenuProps => {
   const menuItems:MenuItem[] = [
     {
       key: 'weightages',
-      label: <Link to="weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,
+      label: <Link to="weightages">{I18n.t('admin.scoring_weightages_weightages')}</Link>,
     },
     {
       key: 'variables',
-      label: I18n.t('administration.scoring.variables'),
+      label: I18n.t('admin.scoring_variables'),
     },
     {
       key: 'export_factors',
-      label: I18n.t('administration.scoring.export.factors'),
+      label: I18n.t('admin.scoring_export_factors'),
     },
     {
       key: 'import_factors',
-      label: I18n.t('administration.scoring.import.factors'),
+      label: I18n.t('admin.scoring_import_factors'),
     },
     {
       key: 'remove_all_campaign_factors',
-      label: I18n.t('administration.scoring.remove_all_campaign_factors.title'),
+      label: I18n.t('admin.scoring_remove_all_campaign_factors_title'),
     },
   ]
   return ({ items: menuItems, onClick })

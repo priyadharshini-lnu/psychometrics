@@ -49,7 +49,7 @@ export default function GlobalSection ({
   })
 
   return (
-    <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.global')}>
+    <OptionSection label={I18n.t('admin.options_global')}>
       <ExpandableOption
         label={I18n.t('threesixty.options.global.cannot_re_edit')}
         {...parametersForSwitch('canNotEditEvaluation')}
@@ -59,7 +59,7 @@ export default function GlobalSection ({
         {...parametersForSwitch('disableAllEvaluations')}
       />
       <ExpandableOption
-        label={I18n.t('administration.campaigns.options.show_watermark')}
+        label={I18n.t('admin.show_watermark')}
         {...parametersForSwitch('showWatermark')}
       />
       {
@@ -69,7 +69,7 @@ export default function GlobalSection ({
               <MaskedInput
                 className="mbl"
                 masked
-                placeholder={I18n.t('administration.campaigns.options.watermark_content')}
+                placeholder={I18n.t('admin.watermark_content')}
                 value={watermarkContent}
                 onBlur={() => updateParticipantOptions([OBJECT_KEY, 'watermarkContent'], watermarkContent)}
                 onChange={e => setWatermarkContent(e.target.value)}
@@ -79,7 +79,7 @@ export default function GlobalSection ({
               <Tooltip
                 title={(
                   <SafeHTML
-                    html={I18n.lookup('administration.campaigns.options.watermark_info')}
+                    html={I18n.lookup('admin.watermark_info')}
                   />
                 )}
               >
@@ -106,7 +106,7 @@ export default function GlobalSection ({
               <Col offset={1}>
                 <InputDuration
                   masked
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                  placeholder={I18n.t('admin.components_input_duration_placeholder')}
                   {...parametersForSystemCheckValidity}
                 />
               </Col>

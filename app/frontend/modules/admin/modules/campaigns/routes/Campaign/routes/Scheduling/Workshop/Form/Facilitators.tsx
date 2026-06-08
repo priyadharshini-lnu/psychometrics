@@ -205,15 +205,15 @@ export const Facilitators: React.FC<Props> = ({
           {
             onCancel && (
               <Button onClick={handleCancel} disabled={createWorkshopInProgress}>
-                {I18n.t('common.actions.cancel')}
+                {I18n.t('shared.cancel')}
               </Button>
             )
           }
           <Button onClick={onPrevious} disabled={disableCreate || createWorkshopInProgress}>
-            {I18n.t('administration.scheduling.assessment_center_form.back')}
+            {I18n.t('shared.back')}
           </Button>
           <Button loading={createWorkshopInProgress} type="primary" onClick={handleSubmit} disabled={disableCreate}>
-            {I18n.t('administration.scheduling.assessment_center_form.create')}
+            {I18n.t('shared.create')}
           </Button>
         </Space>
       </div>
@@ -259,15 +259,15 @@ const FacilitatorsForm = ({
       additionalDetailsLabelStyle={{ color: '#808080' }}
       additionalDetails={[
         {
-          label: I18n.t('administration.scheduling.assessment_center_form.timezone_label'),
+          label: I18n.t('admin.timezone_label'),
           value: basicInfoData.timezone,
         },
         {
-          label: I18n.t('administration.scheduling.assessment_center_form.duration_label'),
+          label: I18n.t('admin.duration_label'),
           value: secondsToDayHoursAndMinutes(basicInfoData.duration),
         },
         {
-          label: I18n.t('administration.scheduling.assessment_center_form.time_label'),
+          label: I18n.t('admin.time_label'),
           value: formatWorkshopDate(startDateTime),
         },
       ]}
@@ -277,7 +277,7 @@ const FacilitatorsForm = ({
             <Collapse.Panel
               header={(
                 <Title level={5}>
-                  {I18n.t('administration.scheduling.assessment_center_form.meetings_and_resources')}
+                  {I18n.t('admin.meetings_and_resources')}
                 </Title>
                   )}
               key="1"
@@ -293,10 +293,10 @@ const FacilitatorsForm = ({
           {basicInfoData.dates.length > 1 && field.name === 0 && (
             <div className="mt-4">
               <Button onClick={() => copyToAll(field.name)}>
-                {I18n.t('administration.scheduling.assessment_center_form.copy_to_all')}
+                {I18n.t('admin.copy_to_all')}
               </Button>
               <div className={styles.hint}>
-                {I18n.t('administration.scheduling.assessment_center_form.copy_hint')}
+                {I18n.t('admin.copy_hint')}
               </div>
             </div>
           )}
@@ -306,7 +306,7 @@ const FacilitatorsForm = ({
       <Row gutter={16}>
         <Col xs={24} sm={20}>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
+            label={I18n.t('shared.name')}
             name={[field.name, 'name']}
             rules={[{ required: true }]}
           >
@@ -315,7 +315,7 @@ const FacilitatorsForm = ({
         </Col>
         <Col xs={24} sm={4}>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
+            label={I18n.t('admin.seats_label')}
             name={[field.name, 'total_seats']}
             rules={[
               {
@@ -331,7 +331,7 @@ const FacilitatorsForm = ({
       </Row>
       <Form.Item
         name={[field.name, 'center_manager_ids']}
-        label={I18n.t('administration.scheduling.assessment_center_form.manager_ids_label')}
+        label={I18n.t('admin.manager_ids_label')}
         help={managerError ? managerError.title : undefined}
         validateStatus={managerError ? 'error' : undefined}
         status={managerError ? 'error' : undefined}
@@ -349,7 +349,7 @@ const FacilitatorsForm = ({
       </Form.Item>
       <Form.Item
         name={[field.name, 'assessor_ids']}
-        label={I18n.t('administration.scheduling.assessment_center_form.assessor_ids_label')}
+        label={I18n.t('admin.assessor_ids_label')}
         help={assessorError ? assessorError.title : undefined}
         validateStatus={assessorError ? 'error' : undefined}
         status={assessorError ? 'error' : undefined}

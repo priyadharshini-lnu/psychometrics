@@ -18,6 +18,7 @@ sr-Latn:
     assessment_id: Идентификација процене
     assessment_list: Списак за процену
     assessment_name: Назив процене
+    assessor: Procenjivač
     assessor_approved: Оцењивач одобрио
     assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
@@ -26,15 +27,18 @@ sr-Latn:
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     back: Назад
     basic: Osnovne
+    bulk_download: Zbirno preuzimanje
     camera: Камера
     camera_preview: Pregled kamere će se pojaviti ovde
     campaign: Кампања
     campaign_id: ID kampanje
     cancel: Otkaži
+    category: Kategorija
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
     client: Клијент
     close: Затвори
+    code: Šifra
     collaborative_learning: Kolaborativno učenje
     completed: Завршено
     configurations: Конфигурације
@@ -43,11 +47,13 @@ sr-Latn:
     controller: Контролер
     cookie_notice: Обавештење о колачићима
     cookies_statement: Изјава о колачићима
+    copied: Kopirano u ostavu
     copied_successfully: Успешно копирано
     copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
     create: Креирај
     created_at: Kreiran u
+    created_by: Kreirao/la
     created_date: Datum kreiranja
     created_successfully: Успешно креирано
     custom_acknowledgment_text: Прилагођени текст захвалнице
@@ -55,11 +61,14 @@ sr-Latn:
     custom_consent_text: Прилагођени текст сагласности
     custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
     data_role: Улога података
+    datasheet: Lista podataka
     decline: Pretraživanje
+    default: Ponuđeno
     delete: Избриши
     description: Opis
     desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
     desktop_or_laptop_required: Потребан десктоп или лаптоп
+    dimension: Dimenzija
     disabled: Онеспособљен
     discard: Баци
     download: Преузми
@@ -69,6 +78,7 @@ sr-Latn:
     edit: Uredi
     edited: Novi
     email: Imejl
+    end_date: Datum završetka
     ending_proctoring_session_msg: Завршавамо сесију надгледања. Молимо сачекајте док сачуvamo ваше одговоре и преусмеримо вас на почетну страницу.
     error: Грешка
     export: Izvoz
@@ -83,11 +93,17 @@ sr-Latn:
     generating: Генерисање
     group_question_max_validation_error: Svaka grupa može da sadrži najviše {{max}} stavke.
     group_question_min_validation_error: Svaka grupa treba da sadrži najmanje {{min}} stavke.
+    icon: Ikonu
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent može da pravi greške. Molimo vas da budete oprezni dok koristite odgovore.
+    import: Uvoz
+    inactive: Neaktivni
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Prezime
+    last_updated: Poslednje izmene
     learning_on_the_job_label: Učenje na poslu
+    linked_activities: Povezane aktivnosti
+    linked_assessment: Povezana procena
     loading: Учитавање...
     login: Prijava
     maintenance_in_hours: "%{hours} сати"
@@ -97,11 +113,13 @@ sr-Latn:
     maintenance_time_remaining: Preostalo vreme
     maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
     maintenance_upcoming_title: Предстојеће одржавање
+    manage: Podesi
     manage_cookies: Управљај колачићима
     media_id: ИД медија
     media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    meeting_link: Link za sastanak
     microphones: Микрофони
     mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
     mobile_proctoring_enabled_instructions: За најбоље искуство, пређите на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
@@ -115,7 +133,9 @@ sr-Latn:
     new: Novi
     next: Следеће
     no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
+    no_data_found: Nema pronađenih podataka
     no_results_found: Није пронађено ниједно резултат
+    none: Niko
     not_requested: Још није затражено
     ok: Ok
     options: Опције
@@ -130,6 +150,7 @@ sr-Latn:
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     project: Пројекат
+    publish: Objavi
     question: Питање
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
@@ -142,20 +163,27 @@ sr-Latn:
     remove: Ukloni
     removed: Uklonjeno
     replace: Замени
+    required: Potrebno
+    reset: Poništi
     reset_password: Poništi lozinku
     response_text: Текст одговора
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
+    run: Trčati
     save: Sačuvaj
     saving_video: Čuvanje video zapisa ... Molimo vas da ne zatvarate ili osvežavate pretraživač
+    schedule_time: Vreme rasporeda
     scoring_details: Детаљи бодовања
     search: Pretraži
     select_camera: Изаберите камеру
+    select_language: Izaberi jezik
     select_microphone: Изаберите микрофон
+    send: Pošalji
     send_email: Pošalji imejl
     show_more: Prikaži još
     something_wrong: Nešto je pošlo naopako. Obratite se svom administratoru.
     speakers: Говорници
+    start_date: Datum početka
     status: Статус
     status_unknown: Status Nepoznat
     subject: Предмет
@@ -172,6 +200,7 @@ sr-Latn:
           one: 'Укупно: 1'
           other: 'Укупно : {{count}}'
           zero: 'Укупно : 0'
+    tags: Oznake
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alatke
     transcription: Транскрипција
@@ -183,10 +212,12 @@ sr-Latn:
     try_again: Покушај поново
     tte_terms_and_condition: Uslovi i privatnost
     type: Tip
+    unpublish: Poništi objavu
     update: Ažuriraj
     update_failed: Ажурирање није успело
     updated_at: Ажурирано у
     updated_successfully: Успешно ажурирано
+    upload: Otpremanje
     user_report_pdf_url_not_generated: Није могуће генерисати везу за преузимање PDF-а
     video: Видео
     view: Приказ

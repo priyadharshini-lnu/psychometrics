@@ -49,16 +49,16 @@ const WorkshopList: React.FC = () => {
 
   return (
     <>
-      <h3>{I18n.t('campaign_users.details.assessment_center_invites')}</h3>
+      <h3>{I18n.t('campaign_users.details.invites')}</h3>
       <Resource config={config} name="workshop_invited_subjects">
         <Resource.Table pagination>
           <Resource.Column<Response>
-            title={I18n.t('common.column.id')}
+            title={I18n.t('shared.id')}
             id="id"
             width="3%"
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.columns.title')}
+            title={I18n.t('admin.scheduling_columns_title')}
             id="name"
             width="20%"
             render={(_, { workshopInvite }) => (
@@ -71,11 +71,11 @@ const WorkshopList: React.FC = () => {
             )}
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.assessment_center.invite_request.status')}
+            title={I18n.t('shared.status')}
             id="status"
             render={(_, workshopInvitedSubject) => (
               <Tag color={STATUSES_TO_COLOR[workshopInvitedSubject.status]}>
-                {I18n.t(`administration.invited_subject.statuses.${workshopInvitedSubject.status}`)}
+                {I18n.t(`admin.statuses_${workshopInvitedSubject.status}`)}
               </Tag>
             )}
           />

@@ -1648,7 +1648,6 @@ zh-Hant:
     details:
       additional_time: 額外時間
       assessment_center: 評估中心
-      assessment_center_invites: 評估中心邀請
       completed_at: 完成於
       completion_status: 完成狀態
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ zh-Hant:
     modals:
       remove: 您確定要從這個廣告系列中移除電子郵件為 '%{email}' 的使用者嗎？
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 評稅員評稅
-      other_assessments: 其他評估
-      other_assessor_assessments: 其他評估員評估
-      other_reports: 其他報告
     card:
       duration: 時間長度
       starts_in: 開始於
@@ -1753,23 +1747,19 @@ zh-Hant:
       insert: 插入
       'no': 不
       ok: OK
-      publish: 發表
       reject: 拒絕
       remove: 移除
       reset: 重設
       resolve: 決心
       restore: 還原
       return_to_home: 返回首頁
-      run: 運行
       save: 節省
       schedule: 時間表
       search: 搜尋
-      send: 發送
       sign_in: 登錄
       start: 開始
       submit: 提交
       unarchive: 未歸檔
-      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上傳
@@ -1782,20 +1772,14 @@ zh-Hant:
     column:
       action: 行動
       active: 活躍
-      ai_assistant: AI助手
-      allow_multiple_responses: 允許多重回應
       approval_notification_list: 批准通知使用者清單
       approvers_list: 批准人清單
-      assessment: 評估
       assessment_name: 評估名稱
       assessments: 評估
-      assessor: 評稅員
       category: 類別
       client: 客戶
-      code: 代碼
       created_at: 建立於
       created_by: 建立者
-      created_date: 建立日期
       default_language: 預設語言
       description: 說明
       details: 詳細資訊
@@ -1813,11 +1797,8 @@ zh-Hant:
         scoring: 評分 JSON
       key: 鑰匙
       last_name: 姓氏
-      linked_activities: 連結活動
       linked_assessment: 連結評估
-      meeting_link: 會議連結
       modified_by: 修改者
-      modified_date: 修改日期
       name: 名稱
       owner: 業主
       package_id: 包裝 ID
@@ -1833,7 +1814,6 @@ zh-Hant:
       scheduling: 排程
       skills: 技術
       status: 狀態
-      tags: 標籤
       timing: 時間
       token: 代幣
       type: 類型
@@ -1845,15 +1825,12 @@ zh-Hant:
     messages:
       leave_message: 您確定要離開此頁面嗎？ 任何未儲存的答案都會遺失。
     model:
-      admins: 管理員
       assessment: 評估
       assessments: 評估
       campaigns: 活動
       completion_statuses: 完成狀態
-      datasheet: 資料表
       report: 報告
       reports: 報告
-      sms_contact: 簡訊聯絡
       threesixty_campaign: Threesixty 活動得分
     status:
       completed: 已完成
@@ -2943,9 +2920,7 @@ zh-Hant:
   languages_localized:
     sl: 斯洛文什奇納
   license_usage:
-    active: 活躍
     campaign_name: 活動名稱
-    inactive: 閒置
     status_updated_at: 最後狀態更新
     status_updated_by: 最後更新
     subject_email: 主題電子郵件
@@ -3949,7 +3924,6 @@ zh-Hant:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 活躍
     allow_multiple_respones: 允許使用者提交多個回覆
     png: PNG
     regenerate_link: 再生連結

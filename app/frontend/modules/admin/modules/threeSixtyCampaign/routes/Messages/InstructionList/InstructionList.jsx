@@ -127,7 +127,7 @@ export default function InstructionList ({
           onClick={saveTemplate}
         >
           <SaveOutlined />
-          {I18n.t('administration.threesixty_campaigns.email_templates.save')}
+          {I18n.t('admin.save')}
         </Button>
       </Col>
     </Row>

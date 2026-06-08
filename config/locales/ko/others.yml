@@ -1648,7 +1648,6 @@ ko:
     details:
       additional_time: 추가 시간
       assessment_center: 평가 센터
-      assessment_center_invites: 평가 센터 초대
       completed_at: 완료 시점
       completion_status: 완료 상태
       hogan_id: 호건 아이디
@@ -1678,11 +1677,6 @@ ko:
     modals:
       remove: 이메일 '%{email}'을 사용하는 사용자를 이 캠페인에서 제거하시겠습니까?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 평가자 평가
-      other_assessments: 기타 평가
-      other_assessor_assessments: 기타 평가자 평가
-      other_reports: 기타 보고서
     card:
       duration: 기간
       starts_in: '시작됩니다:'
@@ -1753,23 +1747,19 @@ ko:
       insert: 삽입
       'no': 아니요
       ok: 확인
-      publish: 게시
       reject: 거절하다
       remove: 제거
       reset: 초기화
       resolve: 해결
       restore: 복원
       return_to_home: 집으로 돌아가기
-      run: 실행
       save: 저장
       schedule: 일정
       search: 검색
-      send: 보내기
       sign_in: 서명하세요
       start: 시작
       submit: 전송
       unarchive: 보관 해제
-      unpublish: 게시 취소
       unresolve: 해결 취소
       update: 업데이트
       upload: 업로드
@@ -1782,20 +1772,14 @@ ko:
     column:
       action: 액션
       active: 활성
-      ai_assistant: AI 어시스턴트
-      allow_multiple_responses: 여러 개의 응답 허용
       approval_notification_list: 승인 알림 사용자 목록
       approvers_list: 승인자 목록
-      assessment: 평가
       assessment_name: 평가 이름
       assessments: 평가
-      assessor: 평가자
       category: 카테고리
       client: 클라이언트
-      code: 코드
       created_at: 만든 곳
       created_by: 만든 사람
-      created_date: 생성 날짜
       default_language: 기본 언어
       description: 설명
       details: 세부 정보
@@ -1813,11 +1797,8 @@ ko:
         scoring: JSON 채점
       key: 키
       last_name: 성
-      linked_activities: 연계 활동
       linked_assessment: 연계 평가
-      meeting_link: 미팅 링크
       modified_by: 수정자
-      modified_date: 수정된 날짜
       name: 이름
       owner: 소유자
       package_id: 패키지 ID
@@ -1833,7 +1814,6 @@ ko:
       scheduling: 일정 예약
       skills: 기술
       status: 상태
-      tags: 태그
       timing: 타이밍
       token: 토큰
       type: 유형
@@ -1845,15 +1825,12 @@ ko:
     messages:
       leave_message: 이 페이지를 나가시겠습니까? 저장하지 않은 답변은 모두 손실됩니다.
     model:
-      admins: 관리자
       assessment: 평가
       assessments: 평가
       campaigns: 캠페인
       completion_statuses: 완료 상태
-      datasheet: 데이터시트
       report: 신고
       reports: 보고서
-      sms_contact: SMS 연락처
       threesixty_campaign: 쓰리식스티 캠페인 점수
     status:
       completed: 완료
@@ -2949,9 +2926,7 @@ ko:
   languages_localized:
     sl: 슬로벤슈치나
   license_usage:
-    active: 활성
     campaign_name: 캠페인 이름
-    inactive: 비활성
     status_updated_at: 마지막 상태 업데이트
     status_updated_by: 마지막 업데이트 날짜
     subject_email: 제목 이메일
@@ -3955,7 +3930,6 @@ ko:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 활성
     allow_multiple_respones: 사용자가 여러 개의 응답을 제출할 수 있도록 허용
     png: PNG
     regenerate_link: 링크 다시 생성

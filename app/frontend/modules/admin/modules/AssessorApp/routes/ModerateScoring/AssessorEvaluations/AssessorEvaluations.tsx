@@ -33,7 +33,7 @@ export const AssessorEvaluations: FC<Props> = ({
 
   return (
     <div className={styles.sidebar}>
-      {header(I18n.t('administration.assessor.moderate_score.assessor_evaluations'))}
+      {header(I18n.t('admin.assessor_evaluations'))}
       <div className={styles.evaluations}>
         {assessorAssessments.length > 0
           ? (
@@ -45,7 +45,7 @@ export const AssessorEvaluations: FC<Props> = ({
               ))}
             </Tabs>
           ) : (
-            <Alert type="warning" message={I18n.t('administration.assessor.moderate_score.no_completed_assessments')} />
+            <Alert type="warning" message={I18n.t('admin.no_completed_assessments')} />
           )}
       </div>
     </div>

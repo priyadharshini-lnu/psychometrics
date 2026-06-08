@@ -1652,7 +1652,6 @@ pl:
     details:
       additional_time: Dodatkowy czas
       assessment_center: Centrum oceny zintegrowanej
-      assessment_center_invites: Zaproszenia do Assessment Center
       completed_at: Ukończono o
       completion_status: Status ukończenia
       hogan_id: Identyfikator Hogana
@@ -1682,11 +1681,6 @@ pl:
     modals:
       remove: Czy na pewno chcesz usunąć użytkownika z adresem e-mail "%{email}" z tej kampanii?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Oceny asesora
-      other_assessments: Inne oceny
-      other_assessor_assessments: Inne oceny oceniającego
-      other_reports: Inne raporty
     card:
       duration: Trwanie
       starts_in: 'Rozpoczyna się w:'
@@ -1757,23 +1751,19 @@ pl:
       insert: Wstawiać
       'no': Nie
       ok: OK
-      publish: Publikować
       reject: Odrzucać
       remove: Usuń
       reset: Resetuj
       resolve: Rozwiąż
       restore: Przywróć
       return_to_home: Powrót do domu
-      run: Biegać
       save: Zapisz
       schedule: Harmonogram
       search: Szukaj
-      send: Wyślij
       sign_in: Rejestrowanie
       start: Start
       submit: Prześlij
       unarchive: Unarchive
-      unpublish: Nie publikować
       unresolve: Nierozwiązany
       update: Odarchiwizuj
       upload: Prześlij
@@ -1786,20 +1776,14 @@ pl:
     column:
       action: Działanie
       active: Aktywny
-      ai_assistant: Asystent AI
-      allow_multiple_responses: Zezwalaj na wielokrotne odpowiedzi
       approval_notification_list: Lista użytkowników powiadomień o zatwierdzeniu
       approvers_list: Lista osób zatwierdzających
-      assessment: Ocena
       assessment_name: Nazwa oceny
       assessments: Oceny
-      assessor: Asesor
       category: Kategoria
       client: Klient
-      code: Kod
       created_at: Utworzono w
       created_by: Utworzony przez
-      created_date: Data utworzenia
       default_language: Język domyślny
       description: Opis
       details: Szczegóły
@@ -1817,11 +1801,8 @@ pl:
         scoring: Ocenianie kodu JSON
       key: Klucz
       last_name: Nazwisko
-      linked_activities: Powiązane działania
       linked_assessment: Powiązana ocena
-      meeting_link: Link do spotkania
       modified_by: Zmodyfikowane przez
-      modified_date: Data modyfikacji
       name: Nazwa
       owner: Właściciel
       package_id: Identyfikator pakietu
@@ -1837,7 +1818,6 @@ pl:
       scheduling: Planowania
       skills: Umiejętności
       status: Status
-      tags: Tagi
       timing: Czas
       token: Żeton
       type: Typ
@@ -1849,15 +1829,12 @@ pl:
     messages:
       leave_message: Czy na pewno chcesz opuścić tę stronę? Wszelkie niezapisane odpowiedzi, które posiadasz, zostaną utracone.
     model:
-      admins: Administratorzy
       assessment: Ocena
       assessments: Oceny
       campaigns: Kampanie
       completion_statuses: Statusy ukończenia
-      datasheet: Arkusz danych
       report: Sprawozdanie
       reports: Raporty
-      sms_contact: Kontakt SMS
       threesixty_campaign: Wyniki kampanii Threesixty
     status:
       completed: Zakończone
@@ -2974,9 +2951,7 @@ pl:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktywny
     campaign_name: Nazwa kampanii
-    inactive: Nieaktywny
     status_updated_at: Ostatnia aktualizacja statusu
     status_updated_by: Ostatnio zaktualizowane przez
     subject_email: Temat wiadomości e-mail
@@ -3980,7 +3955,6 @@ pl:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktywny
     allow_multiple_respones: Zezwalaj użytkownikom na przesyłanie wielu odpowiedzi
     png: Plik PNG
     regenerate_link: Regeneruj link

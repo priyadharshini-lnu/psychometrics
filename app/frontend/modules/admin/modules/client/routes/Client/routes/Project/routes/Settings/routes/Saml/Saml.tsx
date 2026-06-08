@@ -42,7 +42,7 @@ const SamlComponent: React.FC<Props> = ({
   const nameIdentifierFormat = Form.useWatch('nameIdentifierFormat', form)
 
   const handleSuccessfullSave = () => {
-    message.success(I18n.t('administration.saml_settings.successfully_saved_msg'), 6)
+    message.success(I18n.t('admin.saml_settings_successfully_saved_msg'), 6)
   }
 
   const samlSettingData = samlSetting.emailPipetext ? samlSetting
@@ -69,7 +69,7 @@ const SamlComponent: React.FC<Props> = ({
           resourceBaseUrl={`/administration/projects/${projectId}/saml_settings`}
           resource={samlSetting.id ? samlSettingData : undefined}
           storeManager={{ form }}
-          readableResourceName={I18n.t('administration.saml_settings.saml_setting')}
+          readableResourceName={I18n.t('admin.saml_settings')}
           onSuccessfulSubmission={handleSuccessfullSave}
           formProps={{
             layout: 'horizontal',
@@ -85,7 +85,7 @@ const SamlComponent: React.FC<Props> = ({
             <>
               <Form.Item
                 name="enabled"
-                label={I18n.t('administration.saml_settings.enabled')}
+                label={I18n.t('admin.saml_settings_enabled')}
                 valuePropName="checked"
               >
                 <Switch />
@@ -108,7 +108,7 @@ const SamlComponent: React.FC<Props> = ({
 
               <Form.Item
                 name="entityId"
-                label={I18n.t('administration.saml_settings.entity_id')}
+                label={I18n.t('admin.saml_settings_entity_id')}
                 required
               >
                 <Input />
@@ -116,7 +116,7 @@ const SamlComponent: React.FC<Props> = ({
 
               <Form.Item
                 name="ssoServiceUrl"
-                label={I18n.t('administration.saml_settings.sso_service_url')}
+                label={I18n.t('admin.saml_settings_sso_service_url')}
                 required
               >
                 <Input />
@@ -126,7 +126,7 @@ const SamlComponent: React.FC<Props> = ({
                 name="cert"
                 label={(
                   <Space size={4}>
-                    <span>{I18n.t('administration.saml_settings.cert')}</span>
+                    <span>{I18n.t('admin.saml_settings_cert')}</span>
                     {certificateExpiry && (
                       <Tooltip
                         title={I18n.t('admin.sso_settings_metadata_certificate_expiry', { date: certificateExpiry })}
@@ -145,7 +145,7 @@ const SamlComponent: React.FC<Props> = ({
 
               <Form.Item
                 name="afterSignoutUrl"
-                label={I18n.t('administration.saml_settings.after_signout_url')}
+                label={I18n.t('admin.saml_settings_after_signout_url')}
               >
                 <Input />
               </Form.Item>
@@ -153,14 +153,14 @@ const SamlComponent: React.FC<Props> = ({
               <Form.Item
                 name="nameIdentifierFormat"
                 initialValue="email"
-                label={I18n.t('administration.saml_settings.name_identifier_format')}
+                label={I18n.t('admin.saml_settings_name_identifier_format')}
               >
                 <Select
                   className="mb8 width150px"
                 >
                   {['email', 'persistent'].map(idFormat => (
                     <Select.Option key={idFormat} value={idFormat}>
-                      {I18n.t(`administration.saml_settings.name_identifier_formats.${idFormat}`)}
+                      {I18n.t(`admin.saml_settings_name_identifier_formats_${idFormat}`)}
                     </Select.Option>
                   ))}
                 </Select>
@@ -170,7 +170,7 @@ const SamlComponent: React.FC<Props> = ({
                 && (
                   <Form.Item
                     name="emailPipetext"
-                    label={I18n.t('administration.saml_settings.email_pipetext')}
+                    label={I18n.t('admin.saml_settings_email_pipetext')}
                     rules={[{ required: true }]}
                   >
                     <Input />
@@ -182,7 +182,7 @@ const SamlComponent: React.FC<Props> = ({
                 htmlType="submit"
                 loading={isSaving}
               >
-                {I18n.t('administration.saml_settings.save')}
+                {I18n.t('admin.saml_settings_save')}
               </Button>
             </>
           )}

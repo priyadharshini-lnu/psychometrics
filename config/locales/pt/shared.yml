@@ -18,6 +18,7 @@ pt:
     assessment_id: ID da avaliação
     assessment_list: Lista de Avaliação
     assessment_name: Nome da avaliação
+    assessor: Assessor
     assessor_approved: Aprovado pelo avaliador
     assessors_list: Lista de avaliadores
     asset_not_present: Ativo não presente
@@ -26,15 +27,18 @@ pt:
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
     back: Voltar
     basic: Básico
+    bulk_download: Transferência em massa
     camera: Câmara
     camera_preview: A pré-visualização da câmara aparecerá aqui
     campaign: Campanha
     campaign_id: ID de campanha
     cancel: Cancelar
+    category: Categoria
     change_password: Alterar a palavra-passe
     clear_filters: Limpar filtros
     client: Cliente
     close: Fechar
+    code: Código
     collaborative_learning: Aprendizagem Colaborativa
     completed: Concluído
     configurations: Configurações
@@ -43,11 +47,13 @@ pt:
     controller: Controlador
     cookie_notice: Aviso sobre cookies
     cookies_statement: Declaração sobre cookies
+    copied: Copiado para a área de transferência
     copied_successfully: Copiado com sucesso
     copied_to_clipboard: Copiado para a área de transferência
     copy: Copiar
     create: Criar
     created_at: Criado em
+    created_by: Criado por
     created_date: Data de criação
     created_successfully: Criado com sucesso
     custom_acknowledgment_text: Texto de agradecimento personalizado
@@ -55,11 +61,14 @@ pt:
     custom_consent_text: Texto de consentimento personalizado
     custom_consent_text_required: É necessário um texto de consentimento personalizado para a função de dados do controlador
     data_role: Função dos dados
+    datasheet: Ficha de dados
     decline: Declínio
+    default: Padrão
     delete: Apagar
     description: Descrição
     desktop_or_laptop_recommended: Recomendado para computador desktop ou laptop
     desktop_or_laptop_required: É necessário um computador desktop ou laptop
+    dimension: Dimensão
     disabled: Desativado
     discard: Ignorar
     download: Baixar
@@ -69,6 +78,7 @@ pt:
     edit: Editar
     edited: Novo
     email: E-mail
+    end_date: Data final
     ending_proctoring_session_msg: Estamos a encerrar a sessão de supervisão. <p>Por favor, aguarde enquanto guardamos as suas respostas e o redirecionamos para a página inicial.</p>
     error: Erro
     export: Exportação
@@ -83,11 +93,17 @@ pt:
     generating: Gerando
     group_question_max_validation_error: Cada grupo pode conter no máximo {{max}} itens.
     group_question_min_validation_error: Cada grupo precisa conter pelo menos {{min}} item(s).
+    icon: Ícone
     id: ID
     idp_ai_assistant_disclaimer: O assistente IDP da IA do Farol pode cometer erros. Por favor, tenha cuidado ao usar as respostas.
+    import: Importação
+    inactive: Inativo
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
     last_name: Apelido
+    last_updated: Última atualização
     learning_on_the_job_label: Aprendendo no Trabalho
+    linked_activities: Actividades conexas
+    linked_assessment: Avaliação associada
     loading: Carregando...
     login: Iniciar sessão
     maintenance_in_hours: "%{hours} horas"
@@ -97,11 +113,13 @@ pt:
     maintenance_time_remaining: Tempo restante
     maintenance_upcoming_description: Realizaremos uma manutenção programada no site %{date} por aproximadamente %{duration} para melhorar sua experiência. Durante esse período, você não poderá acessar ou concluir nenhuma tarefa atribuída. Agradecemos sua paciência.
     maintenance_upcoming_title: Manutenção prevista
+    manage: Gerenciar
     manage_cookies: Gerir cookies
     media_id: ID da mídia
     media_preview: Prévia para a mídia
     media_question_transcriptions: Transcrições de perguntas da mídia
     media_responses: Respostas da mídia
+    meeting_link: Ligação da reunião
     microphones: Microfones
     mobile_proctoring_disabled_instructions: Esta avaliação requer um computador desktop ou laptop para continuar. Por favor, mude para um computador para concluir a atividade.
     mobile_proctoring_enabled_instructions: Para uma melhor experiência, mude para um computador desktop ou laptop, se tiver um disponível. Você pode continuar no seu dispositivo móvel, se necessário.
@@ -115,7 +133,9 @@ pt:
     new: Novo
     next: Próximo
     no_audio_warning: Não foi detectado áudio. Verifique se o microfone está conectado e funcionando corretamente.
+    no_data_found: Não foram encontrados dados
     no_results_found: Não foram encontrados resultados
+    none: Nenhum
     not_requested: Ainda não solicitado
     ok: OK
     options: Opções
@@ -130,6 +150,7 @@ pt:
     proctoring_maintenance_active: A supervisão está atualmente em manutenção, de %{start_time} para %{end_time}. Por favor, tente novamente após o período de manutenção.
     proctoring_maintenance_upcoming: A supervisão estará em manutenção de %{start_time} para %{end_time}.
     project: Projeto
+    publish: Publicar
     question: Pergunta
     question_id: ID da pergunta
     question_transcription_disabled: A transcrição está desativada para esta pergunta.
@@ -142,20 +163,27 @@ pt:
     remove: Remover
     removed: Removido
     replace: Substituir
+    required: necessário
+    reset: Reiniciar
     reset_password: Redefinir a palavra-passe
     response_text: Texto de resposta
     rte_paste_content_exceeds_char_limit: O texto excede o limite de caracteres {{maxCharacterLimit}} e não pode ser colado.
     rte_paste_content_exceeds_word_limit: O texto excede o limite de palavras {{maxWordLimit}} e não pode ser colado.
+    run: Correr
     save: Salvar
     saving_video: Salvando vídeo... Por favor, não feche nem atualize o navegador
+    schedule_time: Horário
     scoring_details: Detalhes da pontuação
     search: Pesquisar
     select_camera: Selecione uma câmara
+    select_language: Selecionar idioma
     select_microphone: Selecione um microfone
+    send: Enviar
     send_email: Enviar e-mail
     show_more: Mostrar Mais
     something_wrong: Algo correu mal. Contacte o seu administrador.
     speakers: Oradores
+    start_date: Data de início
     status: Status
     status_unknown: Status Desconhecido
     subject: Assunto
@@ -172,6 +200,7 @@ pt:
           one: 'Total: 1'
           other: 'Total: {{count}}'
           zero: 'Total : 0'
+    tags: Etiquetas
     terms_conditions_privacy: Declaração de privacidade
     tools: Ferramentas
     transcription: Transcrição
@@ -183,10 +212,12 @@ pt:
     try_again: Tente novamente
     tte_terms_and_condition: Termos e privacidade
     type: Tipo
+    unpublish: Cancelar a publicação
     update: Atualizar
     update_failed: Falha na atualização
     updated_at: Atualizado em
     updated_successfully: Atualizado com sucesso
+    upload: Carregar
     user_report_pdf_url_not_generated: Não foi possível gerar o link para descarregar o PDF
     video: Vídeo
     view: Ver

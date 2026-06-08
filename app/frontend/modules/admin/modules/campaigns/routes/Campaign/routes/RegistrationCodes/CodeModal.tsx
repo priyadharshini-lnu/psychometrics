@@ -47,45 +47,45 @@ const CodeFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.clients.registration_codes.form.name')}
+            label={I18n.t('admin.form_name')}
             rules={[{ required: true }]}
           >
             <Input name="registraion_code_name" />
           </Form.Item>
           <Form.Item
             name="code"
-            label={I18n.t('administration.clients.registration_codes.form.code')}
+            label={I18n.t('admin.form_code')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="totalCount"
-            label={I18n.t('administration.clients.registration_codes.form.total_count')}
+            label={I18n.t('admin.form_total_count')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="startDate"
-            label={I18n.t('administration.clients.registration_codes.form.start_date')}
+            label={I18n.t('admin.form_start_date')}
             rules={[{ required: true }]}
           >
             <DatePicker showTime format="YYYY-MM-DD HH:mm" className={styles.datepicker} />
           </Form.Item>
           <Form.Item
             name="endDate"
-            label={I18n.t('administration.clients.registration_codes.form.end_date')}
+            label={I18n.t('admin.form_end_date')}
             rules={[{ required: true }]}
           >
             <DatePicker showTime format="YYYY-MM-DD HH:mm" className={styles.datepicker} />
           </Form.Item>
           <Form.Item
             name="disabled"
-            label={I18n.t('administration.clients.registration_codes.form.active')}
+            label={I18n.t('admin.form_active')}
             valuePropName="checked"
           >
-            <Checkbox>{I18n.t('administration.clients.registration_codes.form.active')}</Checkbox>
+            <Checkbox>{I18n.t('admin.form_active')}</Checkbox>
           </Form.Item>
           <Form.Item
             name="restrictedDomains"

@@ -18,6 +18,7 @@ pl:
     assessment_id: Numer identyfikacyjny oceny
     assessment_list: Lista ocen
     assessment_name: Nazwa oceny
+    assessor: Asesor
     assessor_approved: Oceniony przez rzeczoznawcę
     assessors_list: Lista oceniających
     asset_not_present: Brak zasobów
@@ -26,15 +27,18 @@ pl:
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
     back: Powrót
     basic: Podstawowy
+    bulk_download: Pobieranie zbiorcze
     camera: Aparat
     camera_preview: Podgląd kamery pojawi się tutaj
     campaign: Kampania
     campaign_id: Identyfikacja kampanii
     cancel: Anuluj
+    category: Kategoria
     change_password: Zmień hasło
     clear_filters: Wyczyść filtry
     client: Klient
     close: Zamknij
+    code: Kod
     collaborative_learning: Uczenie się zespołowe
     completed: Ukończone
     configurations: Konfiguracje
@@ -43,11 +47,13 @@ pl:
     controller: Kontroler
     cookie_notice: Informacja o plikach cookie
     cookies_statement: Oświadczenie dotyczące plików cookie
+    copied: Skopiowano do schowka
     copied_successfully: Skopiowano pomyślnie
     copied_to_clipboard: Skopiowano do schowka
     copy: Kopiuj
     create: Utwórz
     created_at: Utworzono w
+    created_by: Utworzony przez
     created_date: Data utworzenia
     created_successfully: Utworzono pomyślnie
     custom_acknowledgment_text: Niestandardowy tekst podziękowania
@@ -55,11 +61,14 @@ pl:
     custom_consent_text: Tekst zgody niestandardowej
     custom_consent_text_required: Wymagany jest niestandardowy tekst zgody dla roli administratora danych.
     data_role: Rola danych
+    datasheet: Arkusz danych
     decline: Upadek
+    default: Domyślne
     delete: Usuń
     description: Opis
     desktop_or_laptop_recommended: Zalecany komputer stacjonarny lub laptop
     desktop_or_laptop_required: Wymagany komputer stacjonarny lub laptop
+    dimension: Wymiar
     disabled: Niepełnosprawni
     discard: Odrzuć
     download: Pobierz
@@ -69,6 +78,7 @@ pl:
     edit: Edytuj
     edited: Nowy
     email: E-mail
+    end_date: Data zakończenia
     ending_proctoring_session_msg: Kończymy sesję nadzorowaną. <p>Proszę poczekać, aż zapiszemy Twoje odpowiedzi i przekierujemy Cię z powrotem na stronę główną.</p>
     error: Błąd
     export: Eksport
@@ -83,11 +93,17 @@ pl:
     generating: Generowanie
     group_question_max_validation_error: Każda grupa może zawierać co najwyżej {{max}} elementów.
     group_question_min_validation_error: Każda grupa musi zawierać co najmniej {{min}} elementów.
+    icon: Ikona
     id: ID
     idp_ai_assistant_disclaimer: Asystent IDP AI w Lighthouse może popełniać błędy. Proszę, bądźcie ostrożni podczas korzystania z odpowiedzi.
+    import: Import
+    inactive: Nieaktywny
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
     last_name: Nazwisko
+    last_updated: Ostatnia aktualizacja
     learning_on_the_job_label: Nauka w pracy
+    linked_activities: Powiązane działania
+    linked_assessment: Powiązana ocena
     loading: Ładowanie...
     login: Logowanie
     maintenance_in_hours: "%{hours} godziny"
@@ -97,11 +113,13 @@ pl:
     maintenance_time_remaining: Pozostały czas
     maintenance_upcoming_description: W celu poprawy jakości usług serwis %{date} będzie poddany planowej konserwacji przez około %{duration}. W tym czasie nie będzie można uzyskać dostępu do serwisu ani wykonać żadnych przypisanych zadań. Dziękujemy za cierpliwość.
     maintenance_upcoming_title: Nadchodząca konserwacja
+    manage: Zarządzanie
     manage_cookies: Zarządzaj plikami cookie
     media_id: Identyfikator mediów
     media_preview: Zapowiedź medialna
     media_question_transcriptions: Transkrypcje pytań mediów
     media_responses: Reakcje mediów
+    meeting_link: Link do spotkania
     microphones: Mikrofony
     mobile_proctoring_disabled_instructions: Aby kontynuować tę ocenę, potrzebny jest komputer stacjonarny lub laptop. Przejdź do komputera, aby zakończyć zadanie.
     mobile_proctoring_enabled_instructions: Aby uzyskać najlepsze wrażenia, przejdź na komputer stacjonarny lub laptop, jeśli masz taki dostępny. W razie potrzeby możesz kontynuować korzystanie z urządzenia mobilnego.
@@ -115,7 +133,9 @@ pl:
     new: Nowy
     next: Dalej
     no_audio_warning: Nie wykryto dźwięku. Sprawdź, czy mikrofon jest podłączony i działa prawidłowo.
+    no_data_found: Nie znaleziono danych
     no_results_found: Nie znaleziono żadnych wyników
+    none: Żaden
     not_requested: Jeszcze nie zgłoszone
     ok: Ok
     options: Opcje
@@ -130,6 +150,7 @@ pl:
     proctoring_maintenance_active: Serwis Proctoring jest obecnie w trakcie konserwacji i nie jest dostępny pod adresem %{start_time} oraz %{end_time}. Prosimy spróbować ponownie po zakończeniu konserwacji.
     proctoring_maintenance_upcoming: Serwis Proctoring będzie poddany konserwacji od godziny %{start_time} do godziny %{end_time}.
     project: Projekt
+    publish: Publikować
     question: Pytanie
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
@@ -142,20 +163,27 @@ pl:
     remove: Usuń
     removed: Usunięte
     replace: Zastąp
+    required: wymagany
+    reset: Resetować
     reset_password: Zresetuj hasło
     response_text: Tekst odpowiedzi
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
+    run: Biegać
     save: Zapisz
     saving_video: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
+    schedule_time: Zaplanuj czas
     scoring_details: Szczegóły punktacji
     search: Szukaj
     select_camera: Wybierz aparat
+    select_language: Wybierz język
     select_microphone: Wybierz mikrofon
+    send: Wyślij
     send_email: Wyślij wiadomość e-mail
     show_more: Pokaż więcej
     something_wrong: Coś poszło nie tak. Skontaktuj się z administratorem.
     speakers: Prelegenci
+    start_date: Data rozpoczęcia
     status: Status
     status_unknown: Status nieznany
     subject: Temat
@@ -172,6 +200,7 @@ pl:
           one: 'Razem: 1'
           other: 'Razem: {{count}}'
           zero: 'Razem: 0'
+    tags: Tagi
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
     tools: Narzędzia
     transcription: Transkrypcja
@@ -183,10 +212,12 @@ pl:
     try_again: Spróbuj ponownie
     tte_terms_and_condition: Warunki i prywatność
     type: Typ
+    unpublish: Nie publikować
     update: Odarchiwizuj
     update_failed: Aktualizacja nie powiodła się
     updated_at: Zaktualizowano
     updated_successfully: Aktualizacja zakończona sukcesem
+    upload: Przesyłać
     user_report_pdf_url_not_generated: Nie udało się wygenerować linku do pobrania pliku PDF
     video: Wideo
     view: Widok

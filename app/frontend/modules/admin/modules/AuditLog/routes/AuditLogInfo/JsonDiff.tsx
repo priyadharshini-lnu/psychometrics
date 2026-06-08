@@ -39,14 +39,14 @@ const JsonDiff: React.FC<JsonDiffProps> = ({ oldChanges, newChanges }) => {
   try {
     jsonOld = JSON.parse(jsonOldInput)
   } catch (e) {
-    error = `${I18n.t('administration.active_record_audits.old_diff.parse_error')}: ${e?.message ?? JSON.stringify(e)}`
+    error = `${I18n.t('admin.active_record_audits_old_diff_parse_error')}: ${e?.message ?? JSON.stringify(e)}`
   }
 
   let jsonNew = null
   try {
     jsonNew = JSON.parse(jsonNewInput)
   } catch (e) {
-    error = `${I18n.t('administration.active_record_audits.new_diff.parse_error')}: ${e?.message ?? JSON.stringify(e)}`
+    error = `${I18n.t('admin.active_record_audits_new_diff_parse_error')}: ${e?.message ?? JSON.stringify(e)}`
   }
 
   return (

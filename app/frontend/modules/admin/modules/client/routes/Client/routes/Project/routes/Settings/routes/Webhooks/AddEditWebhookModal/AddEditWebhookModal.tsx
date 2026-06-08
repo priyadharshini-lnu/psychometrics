@@ -125,22 +125,22 @@ export const AddEditWebhookModal: React.FC<Props> = ({
         {() => (
           <>
             <Form.Item
-              name={I18n.t('administration.project_tabs.webhooks.form.description.name')}
-              label={I18n.t('administration.project_tabs.webhooks.form.description.label')}
+              name={I18n.t('admin.description_name')}
+              label={I18n.t('shared.description')}
               rules={[{ required: true }]}
             >
               <Input name="webhook_description" />
             </Form.Item>
             <Form.Item
-              name={I18n.t('administration.project_tabs.webhooks.form.url.name')}
-              label={I18n.t('administration.project_tabs.webhooks.form.url.label')}
+              name={I18n.t('admin.url_name')}
+              label={I18n.t('admin.url_label')}
               rules={[{ required: true }]}
             >
               <Input name="webhook_url" />
             </Form.Item>
 
             <Typography.Paragraph strong>
-              {I18n.t('administration.project_tabs.webhooks.form.acceptable_rate_limit.label')}
+              {I18n.t('admin.acceptable_rate_limit_label')}
             </Typography.Paragraph>
             <Space align="baseline">
               <Form.Item
@@ -152,24 +152,24 @@ export const AddEditWebhookModal: React.FC<Props> = ({
               </Form.Item>
               <Form.Item
                 name="rateLimitPeriod"
-                label={I18n.t('administration.project_tabs.webhooks.form.acceptable_rate_limit.request_per')}
+                label={I18n.t('admin.acceptable_rate_limit_request_per')}
                 labelAlign="left"
                 layout="horizontal"
                 colon={false}
               >
                 <InputNumber />
               </Form.Item>
-              <Typography.Text strong>{I18n.t('administration.common.minute')}</Typography.Text>
+              <Typography.Text strong>{I18n.t('admin.common_minute')}</Typography.Text>
             </Space>
 
             <Form.Item
               name="topics"
-              label={I18n.t('administration.project_tabs.webhooks.form.topics.label')}
+              label={I18n.t('admin.topics_label')}
             >
               <Checkbox.Group className={styles.topics_grid}>
                 {_.map(topics, topic => (
                   <Checkbox value={topic} className={styles.topics_checkbox}>
-                    {I18n.t(`administration.project_tabs.webhooks.form.topics.list.${topic}`)}
+                    {I18n.t(`admin.topics_list_${topic}`)}
                   </Checkbox>
                 ))}
               </Checkbox.Group>
@@ -178,102 +178,102 @@ export const AddEditWebhookModal: React.FC<Props> = ({
             {selectedTopics.includes('assessment_raw_response') && (
               <Form.Item
                 name="assessmentIds"
-                label={I18n.t('administration.project_tabs.webhooks.form.assessments.label')}
+                label={I18n.t('admin.assessments_label')}
                 rules={[{
                   required: true,
-                  message: I18n.t('administration.project_tabs.webhooks.form.assessments.required'),
+                  message: I18n.t('admin.assessments_required'),
                 }]}
-                extra={I18n.t('administration.project_tabs.webhooks.form.assessments.help_text')}
+                extra={I18n.t('admin.assessments_help_text')}
               >
                 <Select
                   mode="multiple"
                   showSearch={{ filterOption: false, onSearch: handleAssessmentSearch }}
-                  placeholder={I18n.t('administration.project_tabs.webhooks.form.assessments.placeholder')}
+                  placeholder={I18n.t('admin.assessments_placeholder')}
                   options={assessmentOptions}
                 />
               </Form.Item>
             )}
 
             <Form.Item
-              name={I18n.t('administration.project_tabs.webhooks.form.active.name')}
-              label={I18n.t('administration.project_tabs.webhooks.form.active.label')}
+              name={I18n.t('admin.active_name')}
+              label={I18n.t('admin.active_label')}
               valuePropName="checked"
               initialValue={webhook?.active || true}
             >
               <Switch />
             </Form.Item>
             <Form.Item
-              name={I18n.t('administration.project_tabs.webhooks.form.include_locales.name')}
-              label={I18n.t('administration.project_tabs.webhooks.form.include_locales.label')}
+              name={I18n.t('admin.include_locales_name')}
+              label={I18n.t('admin.include_locales_label')}
               valuePropName="checked"
               initialValue={webhook?.includeLocales || false}
             >
               <Switch />
             </Form.Item>
             <Form.Item
-              name={I18n.t('administration.project_tabs.webhooks.form.auth_type.name')}
-              label={I18n.t('administration.project_tabs.webhooks.form.auth_type.label')}
+              name={I18n.t('admin.auth_type_name')}
+              label={I18n.t('admin.auth_type_label')}
               initialValue={authType}
             >
               <Radio.Group onChange={handleAuthTypeChange}>
                 <Radio
                   value={
-                    I18n.t('administration.project_tabs.webhooks.form.auth_type.no_auth.value')
+                    I18n.t('admin.auth_type_no_auth_value')
                   }
                 >
-                  {I18n.t('administration.project_tabs.webhooks.form.auth_type.no_auth.label')}
+                  {I18n.t('admin.auth_type_no_auth_label')}
                 </Radio>
                 <Radio
                   value={
-                    I18n.t('administration.project_tabs.webhooks.form.auth_type.basic.value')
+                    I18n.t('admin.auth_type_basic_value')
                   }
                 >
-                  {I18n.t('administration.project_tabs.webhooks.form.auth_type.basic.label')}
+                  {I18n.t('admin.auth_type_basic_label')}
                 </Radio>
                 <Radio
                   value={
-                    I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.value')
+                    I18n.t('admin.auth_type_api_key_value')
                   }
                 >
-                  {I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.label')}
+                  {I18n.t('admin.auth_type_api_key_label')}
                 </Radio>
                 <Radio
                   value={
-                    I18n.t('administration.project_tabs.webhooks.form.auth_type.oauth.value')
+                    I18n.t('admin.auth_type_oauth_value')
                   }
                 >
-                  {I18n.t('administration.project_tabs.webhooks.form.auth_type.oauth.label')}
+                  {I18n.t('admin.auth_type_oauth_label')}
                 </Radio>
               </Radio.Group>
             </Form.Item>
 
-            {authType === I18n.t('administration.project_tabs.webhooks.form.auth_type.basic.value') && (
+            {authType === I18n.t('admin.auth_type_basic_value') && (
               <>
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.username.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.username.label')}
+                  name={I18n.t('admin.username_name')}
+                  label={I18n.t('admin.username_label')}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.password.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.password.label')}
+                  name={I18n.t('admin.password_name')}
+                  label={I18n.t('admin.password_label')}
                 >
                   <Input.Password />
                 </Form.Item>
               </>
             )}
 
-            {authType === I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.value') && (
+            {authType === I18n.t('admin.auth_type_api_key_value') && (
               <>
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key_header.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key_header.label')}
+                  name={I18n.t('admin.auth_type_api_key_header_name')}
+                  label={I18n.t('admin.auth_type_api_key_header_label')}
                   rules={[
                     {
                       pattern: /^[a-zA-Z0-9_-]+$/,
                       message: I18n.t(
-                        'administration.project_tabs.webhooks.form.auth_type.api_key_header.format_error',
+                        'admin.auth_type_api_key_header_format_error',
                       ),
                     },
                   ]}
@@ -281,53 +281,53 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                   <Input placeholder="X-API-KEY" />
                 </Form.Item>
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.auth_type.api_key.label')}
+                  name={I18n.t('admin.auth_type_api_key_name')}
+                  label={I18n.t('admin.auth_type_api_key_label')}
                 >
                   <Input.Password />
                 </Form.Item>
               </>
             )}
 
-            {authType === I18n.t('administration.project_tabs.webhooks.form.auth_type.oauth.value') && (
+            {authType === I18n.t('admin.auth_type_oauth_value') && (
               <>
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.grant_type.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.grant_type.label')}
-                  initialValue={I18n.t('administration.project_tabs.webhooks.form.client_credentials.value')}
+                  name={I18n.t('admin.grant_type_name')}
+                  label={I18n.t('admin.grant_type_label')}
+                  initialValue={I18n.t('admin.client_credentials_value')}
                   rules={[{ required: true }]}
                 >
                   <Select
                     placeholder="Select grant type"
-                    defaultValue={I18n.t('administration.project_tabs.webhooks.form.client_credentials.label')}
+                    defaultValue={I18n.t('admin.client_credentials_label')}
                   >
                     <Select.Option
-                      value={I18n.t('administration.project_tabs.webhooks.form.client_credentials.value')}
+                      value={I18n.t('admin.client_credentials_value')}
                     >
                       {I18n.t(
-                        'administration.project_tabs.webhooks.form.client_credentials.label',
+                        'admin.client_credentials_label',
                       )}
                     </Select.Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.token_url.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.token_url.label')}
+                  name={I18n.t('admin.token_url_name')}
+                  label={I18n.t('admin.token_url_label')}
                   initialValue={webhook?.oauthTokenUrl}
                   rules={[{
                     required: true,
-                    message: I18n.t('administration.project_tabs.webhooks.form.token_url.required'),
+                    message: I18n.t('admin.token_url_required'),
                   }]}
                 >
                   <Input />
                 </Form.Item>
                 {!webhook || isEditingClientId ? (
                   <Form.Item
-                    name={I18n.t('administration.project_tabs.webhooks.form.client_id.name')}
-                    label={I18n.t('administration.project_tabs.webhooks.form.client_id.label')}
+                    name={I18n.t('admin.client_id_name')}
+                    label={I18n.t('admin.client_id_label')}
                     rules={[{
                       required: true,
-                      message: I18n.t('administration.project_tabs.webhooks.form.client_id.required'),
+                      message: I18n.t('admin.client_id_required'),
                     }]}
                   >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -347,7 +347,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                   </Form.Item>
                 ) : (
                   <Form.Item
-                    label={I18n.t('administration.project_tabs.webhooks.form.client_id.label')}
+                    label={I18n.t('admin.client_id_label')}
                   >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <Input
@@ -366,11 +366,11 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                 )}
                 {!webhook || isEditingClientSecret ? (
                   <Form.Item
-                    name={I18n.t('administration.project_tabs.webhooks.form.client_secret.name')}
-                    label={I18n.t('administration.project_tabs.webhooks.form.client_secret.label')}
+                    name={I18n.t('admin.client_secret_name')}
+                    label={I18n.t('admin.client_secret_label')}
                     rules={[{
                       required: true,
-                      message: I18n.t('administration.project_tabs.webhooks.form.client_secret.required'),
+                      message: I18n.t('admin.client_secret_required'),
                     }]}
                   >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -390,7 +390,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                   </Form.Item>
                 ) : (
                   <Form.Item
-                    label={I18n.t('administration.project_tabs.webhooks.form.client_secret.label')}
+                    label={I18n.t('admin.client_secret_label')}
                   >
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                       <Input
@@ -408,12 +408,12 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                   </Form.Item>
                 )}
                 <Form.Item
-                  name={I18n.t('administration.project_tabs.webhooks.form.oauth_scope.name')}
-                  label={I18n.t('administration.project_tabs.webhooks.form.oauth_scope.label')}
+                  name={I18n.t('admin.oauth_scope_name')}
+                  label={I18n.t('admin.oauth_scope_label')}
                   initialValue={webhook?.oauthScope}
                   rules={[{
                     required: true,
-                    message: I18n.t('administration.project_tabs.webhooks.form.oauth_scope.required'),
+                    message: I18n.t('admin.oauth_scope_required'),
                   }]}
                 >
                   <Input />

@@ -35,27 +35,27 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
     >
       <Form.Item
         style={{ flex: 1 }}
-        label={I18n.t('administration.ai_assistants.form.key')}
+        label={I18n.t('admin.key')}
         {...restField}
         name={[name, 'key']}
         rules={[{
           required: true,
-          message: I18n.t('administration.ai_assistants.form.schema_key_required'),
+          message: I18n.t('admin.schema_key_required'),
         },
         {
           pattern: /^[a-z][a-z0-9_]*$/,
-          message: I18n.t('admin.ai_artifacts_output_schema_key_constraint'),
+          message: I18n.t('admin.output_schema_key_constraint'),
         },
         ]}
       >
         <Input
-          placeholder={I18n.t('administration.ai_assistants.form.enter_schema_key')}
+          placeholder={I18n.t('admin.enter_schema_key')}
         />
 
       </Form.Item>
       <Form.Item
         style={{ flex: 0.5 }}
-        label={I18n.t('administration.ai_assistants.form.schema_key_type')}
+        label={I18n.t('admin.schema_key_type')}
         {...restField}
         name={[name, 'keyType']}
       >
@@ -67,23 +67,23 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
       </Form.Item>
       <Form.Item
         style={{ flex: 1 }}
-        label={I18n.t('administration.ai_assistants.form.description')}
+        label={I18n.t('shared.description')}
         {...restField}
         name={[name, 'description']}
         rules={[{
           required: true,
-          message: I18n.t('administration.ai_assistants.form.schema_key_description_required'),
+          message: I18n.t('admin.schema_key_description_required'),
         }]}
       >
         <Input.TextArea
           rows={1}
-          placeholder={I18n.t('administration.ai_assistants.form.enter_description')}
+          placeholder={I18n.t('admin.enter_description')}
         />
       </Form.Item>
-      <Tooltip title={I18n.t('administration.ai_assistants.form.remove_output_schema_key')}>
+      <Tooltip title={I18n.t('admin.remove_output_schema_key')}>
         <Button
           className="mt-4"
-          aria-label={I18n.t('administration.ai_assistants.form.remove_output_schema_key')}
+          aria-label={I18n.t('admin.remove_output_schema_key')}
           style={{ alignSelf: 'center' }}
           size="middle"
           onClick={() => {

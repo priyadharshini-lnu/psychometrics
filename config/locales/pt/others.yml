@@ -1660,7 +1660,6 @@ pt:
     details:
       additional_time: Tempo adicional
       assessment_center: Centro de avaliação
-      assessment_center_invites: Convites para o Centro de Avaliação
       completed_at: Concluído em
       completion_status: Estado de conclusão
       hogan_id: Hogan ID
@@ -1690,11 +1689,6 @@ pt:
     modals:
       remove: Tem a certeza de que pretende remover o utilizador com o e-mail "%{email}" desta campanha?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Avaliador Avaliações
-      other_assessments: Outras avaliações
-      other_assessor_assessments: Outros Assessores Avaliações
-      other_reports: Outros relatórios
     card:
       duration: Duração
       starts_in: 'Começa em:'
@@ -1765,23 +1759,19 @@ pt:
       insert: Inserir
       'no': Não
       ok: OK
-      publish: Publicar
       reject: Rejeitar
       remove: Remover
       reset: Repor
       resolve: Resolver
       restore: Restaurar
       return_to_home: Voltar a página inicial
-      run: Correr
       save: Salvar
       schedule: Horário
       search: Pesquisar
-      send: Enviar
       sign_in: Iniciar sessão
       start: Iniciar
       submit: Enviar
       unarchive: Desarquivar
-      unpublish: Cancelar a publicação
       unresolve: Reabrir
       update: Atualizar
       upload: Carregar
@@ -1794,20 +1784,14 @@ pt:
     column:
       action: Ação
       active: Ativo
-      ai_assistant: Assistente de IA
-      allow_multiple_responses: Permitir respostas múltiplas
       approval_notification_list: Lista de utilizadores de notificações de aprovação
       approvers_list: Lista de aprovadores
-      assessment: Avaliação
       assessment_name: Nome da avaliação
       assessments: Avaliações
-      assessor: Assessor
       category: Categoria
       client: Cliente
-      code: Código
       created_at: Criado em
       created_by: Criado por
-      created_date: Data de criação
       default_language: Língua por defeito
       description: Descrição
       details: Detalhes
@@ -1825,11 +1809,8 @@ pt:
         scoring: Pontuação JSON
       key: Chave
       last_name: Apelido
-      linked_activities: Actividades conexas
       linked_assessment: Avaliação associada
-      meeting_link: Ligação da reunião
       modified_by: Modificado por
-      modified_date: Data de modificação
       name: Nome
       owner: Proprietário
       package_id: Identificação do pacote
@@ -1845,7 +1826,6 @@ pt:
       scheduling: Programação
       skills: Competências
       status: Estado
-      tags: Etiquetas
       timing: Calendário
       token: Ficha
       type: Tipo
@@ -1857,15 +1837,12 @@ pt:
     messages:
       leave_message: Tem a certeza de que pretende sair desta página? Quaisquer respostas não guardadas que tenha serão perdidas.
     model:
-      admins: Administradores
       assessment: Avaliação
       assessments: Avaliações
       campaigns: Campanhas
       completion_statuses: Estado de conclusão
-      datasheet: Ficha de dados
       report: Relatório
       reports: Relatórios
-      sms_contact: Contacto SMS
       threesixty_campaign: Pontuações da campanha Threesixty
     status:
       completed: Concluído
@@ -2955,9 +2932,7 @@ pt:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Ativo
     campaign_name: Nome da campanha
-    inactive: Inativo
     status_updated_at: Última atualização do estado
     status_updated_by: Última atualização por
     subject_email: 'Assunto: correio eletrónico'
@@ -3961,7 +3936,6 @@ pt:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Ativo
     allow_multiple_respones: Permitir que os utilizadores enviem várias respostas
     png: PNG
     regenerate_link: Regenerar ligação

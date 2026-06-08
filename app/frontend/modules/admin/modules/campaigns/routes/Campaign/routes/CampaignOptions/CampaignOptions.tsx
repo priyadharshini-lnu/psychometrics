@@ -79,9 +79,9 @@ const CampaignOptions: React.FC<Props> = ({
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
-  const identifications = I18n.t('administration.campaigns.options.proctoring.identifications')
-  const integrationTypes = I18n.t('administration.campaigns.options.proctoring.integration_types')
-  const proctoringTypes = I18n.t('administration.campaigns.options.proctoring.proctoring_types')
+  const identifications = I18n.t('admin.proctoring_identifications')
+  const integrationTypes = I18n.t('admin.proctoring_integration_types')
+  const proctoringTypes = I18n.t('admin.proctoring_types')
 
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
@@ -265,7 +265,7 @@ const CampaignOptions: React.FC<Props> = ({
             <Col span={24}>
               <Row>
                 <Col span={2}>
-                  <label>{I18n.t('administration.time_zone')}</label>
+                  <label>{I18n.t('admin.time_zone')}</label>
                 </Col>
                 <Col span={8}>
                   <TimeZoneSelect
@@ -278,7 +278,7 @@ const CampaignOptions: React.FC<Props> = ({
         </div>
 
         <Option
-          label={I18n.t('administration.campaigns.options.fixed_time')}
+          label={I18n.t('admin.fixed_time')}
           {...parametersForFixedTimeField()}
         />
 
@@ -290,12 +290,12 @@ const CampaignOptions: React.FC<Props> = ({
                   <Col span={5} offset={2}>
                     <InputDuration
                       masked
-                      placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                      placeholder={I18n.t('admin.components_input_duration_placeholder')}
                       {...parametersForFixedTimeDuration}
                     />
                   </Col>
                   <Col>
-                    <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
+                    <Tooltip title={I18n.t('admin.components_input_duration_placeholder')}>
                       <span><QuestionCircleOutlined className="ms-4" /></span>
                     </Tooltip>
                   </Col>
@@ -306,7 +306,7 @@ const CampaignOptions: React.FC<Props> = ({
         </div>
         <div style={{ display: features.proctoring ? 'block' : 'none' }}>
           <Option
-            label={I18n.t('administration.campaigns.options.proctoring.enable')}
+            label={I18n.t('admin.proctoring_enable')}
             {...parametersForEnableProctoring('proctoringEnabled')}
           />
           {options.proctoringEnabled && (
@@ -376,13 +376,13 @@ const CampaignOptions: React.FC<Props> = ({
 
               <div>
                 <Option
-                  label={I18n.t('administration.campaigns.options.proctoring.trial')}
+                  label={I18n.t('admin.proctoring_trial')}
                   {...parametersForField('proctoringTrial')}
                 />
                 <div className="mbl">
                   <Row>
                     <Col span={2}>
-                      <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
+                      <label>{I18n.t('admin.proctoring_rules')}</label>
                     </Col>
                     <Col span={22}>
                       {Object.keys(options.rules || {}).map(
@@ -390,7 +390,7 @@ const CampaignOptions: React.FC<Props> = ({
                           <Option
                             key={key}
                             label={
-                              I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)
+                              I18n.t(`admin.proctoring_rule_types.${snakeCase(key)}`)
                             }
                             {...parametersForRules(key)}
                           />
@@ -407,7 +407,7 @@ const CampaignOptions: React.FC<Props> = ({
                       <Row>
                         <Col span={2}>
                           <label>
-                            {I18n.t('administration.campaigns.options.proctoring.identification')}
+                            {I18n.t('admin.proctoring_identification')}
                           </label>
                         </Col>
                         <Col span={22}>
@@ -429,7 +429,7 @@ const CampaignOptions: React.FC<Props> = ({
                       <Row>
                         <Col span={2}>
                           <label>
-                            {I18n.t('administration.campaigns.options.proctoring.integration_type')}
+                            {I18n.t('admin.proctoring_integration_type')}
                           </label>
                         </Col>
                         <Col span={22}>
@@ -449,7 +449,7 @@ const CampaignOptions: React.FC<Props> = ({
                           <Row>
                             <Col span={2}>
                               <label>
-                                {I18n.t('administration.campaigns.options.proctoring.type')}
+                                {I18n.t('admin.proctoring_type')}
                               </label>
                             </Col>
                             <Col span={22}>
@@ -490,7 +490,7 @@ const CampaignOptions: React.FC<Props> = ({
                 <Col offset={1}>
                   <InputDuration
                     masked
-                    placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                    placeholder={I18n.t('admin.components_input_duration_placeholder')}
                     {...parametersForSystemCheckValidity}
                   />
                 </Col>
@@ -647,25 +647,25 @@ const CampaignOptions: React.FC<Props> = ({
         </div>
 
         <Option
-          label={I18n.t('administration.campaigns.options.prework_required')}
+          label={I18n.t('admin.prework_required')}
           {...parametersForWorkshopBookingRequiresPreworkCompletionField()}
         />
         <Option
-          label={I18n.t('administration.campaigns.options.prework_required_for_invite')}
+          label={I18n.t('admin.prework_required_for_invite')}
           {...parametersForWorkshopInviteRequiresPreworkCompletionField()}
         />
 
         {!features?.disable_meeting_recording && (
           options.allowVideoCallRecording && (
             <Option
-              label={I18n.t('administration.campaigns.options.enable_video_call_recording')}
+              label={I18n.t('admin.enable_video_call_recording')}
               {...parametersForField('enableVideoCallRecording')}
             />
           )
         )}
 
         <Option
-          label={I18n.t('administration.campaigns.options.show_watermark')}
+          label={I18n.t('admin.show_watermark')}
           {...parametersForShowWatermark()}
         />
 
@@ -680,7 +680,7 @@ const CampaignOptions: React.FC<Props> = ({
                     backdrop: 5002,
                   }}
                   className="mbl"
-                  placeholder={I18n.t('administration.campaigns.options.watermark_content')}
+                  placeholder={I18n.t('admin.watermark_content')}
                   {...parametersWatermarkContent}
                 />
               </Col>
@@ -688,7 +688,7 @@ const CampaignOptions: React.FC<Props> = ({
                 <Tooltip
                   title={(
                     <SafeHTML
-                      html={I18n.lookup('administration.campaigns.options.watermark_info')}
+                      html={I18n.lookup('admin.watermark_info')}
                     />
                   )}
                 >
@@ -702,14 +702,14 @@ const CampaignOptions: React.FC<Props> = ({
         }
 
         <Option
-          label={I18n.t('administration.campaigns.options.instructions.enable')}
+          label={I18n.t('admin.instructions_enable')}
           {...parametersForField('instructionsEnabled')}
         />
 
         {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
 
         <div className="mb-8 mt-8">
-          <h4>{I18n.t('administration.campaigns.options.description.name')}</h4>
+          <h4>{I18n.t('shared.description')}</h4>
           <Description projectId={parsedProjectId} campaignId={parsedCampaignId} />
         </div>
       </Section>

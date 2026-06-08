@@ -117,7 +117,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
     <>
       <Form.Item
         name="ownerId"
-        label={I18n.t('common.column.owner')}
+        label={I18n.t('shared.owner')}
         initialValue={assessment?.owner?.id || null}
       >
         <Select
@@ -149,14 +149,14 @@ const BaseFormFieldsComp: React.FC<Props> = ({
           <>
             <Form.Item
               name="name"
-              label={I18n.t('common.column.name')}
+              label={I18n.t('shared.name')}
               rules={[{ required: true }]}
             >
               <Input name="assessment_name" />
             </Form.Item>
             <Form.Item
               name="description"
-              label={I18n.t('common.column.description')}
+              label={I18n.t('shared.description')}
             >
               <TextArea />
             </Form.Item>
@@ -169,7 +169,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
       <Form.Item
         name="category"
         className={cs({ hidden: isCategoryHidden() })}
-        label={I18n.t('common.column.category')}
+        label={I18n.t('shared.category')}
         rules={[{ required: true }]}
       >
         <Select>
@@ -185,7 +185,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
       {category === 'assessor_form' && (
         <Form.Item
           name="linkedAssessmentId"
-          label={I18n.t('common.column.linked_assessment')}
+          label={I18n.t('shared.linked_assessment')}
         >
           <Select
             showSearch={{
@@ -212,7 +212,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
       )}
       <Form.Item
         name="dimensionId"
-        label={I18n.t('common.column.dimension')}
+        label={I18n.t('shared.dimension')}
         rules={[{ required: true }]}
       >
         <Select
@@ -246,12 +246,12 @@ const BaseFormFieldsComp: React.FC<Props> = ({
       )}
       <Form.Item
         name="tagList"
-        label={I18n.t('common.column.tags')}
+        label={I18n.t('shared.tags')}
       >
         <Select
           mode="tags"
           style={{ width: '100%' }}
-          placeholder={I18n.t('common.column.tags')}
+          placeholder={I18n.t('shared.tags')}
           showSearch={{
             filterOption: false,
             onSearch: (value) => {

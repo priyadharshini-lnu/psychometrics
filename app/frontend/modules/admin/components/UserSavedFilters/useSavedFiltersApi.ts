@@ -23,7 +23,7 @@ export const useUserSavedFiltersApi = () => {
       const filters = humps.decamelizeKeys(data as UserSavedFilter[] || {})
       return filters
     } catch (err) {
-      message.error(I18n.t('administration.report_approval.saving_filters.error_while_fetching'))
+      message.error(I18n.t('admin.report_approval_saving_filters_error_while_fetching'))
     }
   }
 
@@ -34,11 +34,11 @@ export const useUserSavedFiltersApi = () => {
         action: '',
         body: requestBody,
       })
-      message.success(I18n.t('administration.report_approval.saving_filters.save_filter'))
+      message.success(I18n.t('admin.report_approval_saving_filters_save_filter'))
       return data
     } catch (error) {
       const errorMessage = error?.name?.title
-      || I18n.t('administration.report_approval.saving_filters.error_while_saving')
+      || I18n.t('admin.report_approval_saving_filters_error_while_saving')
       message.error(errorMessage)
       throw error
     }
@@ -51,9 +51,9 @@ export const useUserSavedFiltersApi = () => {
         action: `${id}`,
         body,
       })
-      message.success(I18n.t(`administration.report_approval.saving_filters.${translateKey}`))
+      message.success(I18n.t(`admin.report_approval_saving_filters_${translateKey}`))
     } catch (error) {
-      message.error(I18n.t('administration.report_approval.saving_filters.error_while_editing'))
+      message.error(I18n.t('admin.report_approval_saving_filters_error_while_editing'))
       throw error
     }
   }
@@ -64,9 +64,9 @@ export const useUserSavedFiltersApi = () => {
         method: 'delete',
         action: `${id}`,
       })
-      message.success(I18n.t('administration.report_approval.saving_filters.delete_saved_filters'))
+      message.success(I18n.t('admin.report_approval_saving_filters_delete_saved_filters'))
     } catch (error) {
-      message.error(I18n.t('administration.report_approval.saving_filters.error_while_deleting'))
+      message.error(I18n.t('admin.report_approval_saving_filters_error_while_deleting'))
     }
   }
 

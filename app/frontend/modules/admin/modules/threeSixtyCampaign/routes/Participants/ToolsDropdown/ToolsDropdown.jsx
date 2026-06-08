@@ -87,13 +87,13 @@ const getCustomMenuProps = ({
     {
       type: 'group',
       key: 'export',
-      label: I18n.t('common.actions.export'),
+      label: I18n.t('shared.export'),
       children: exportGroupItems,
     },
     importGroupItems.length && {
       type: 'group',
       key: 'import',
-      label: I18n.t('common.actions.import'),
+      label: I18n.t('shared.import'),
       children: importGroupItems,
     },
     { type: 'divider' },
@@ -178,8 +178,8 @@ export default function ToolsDropdown ({
       centered: true,
       width: 650,
       content: I18n.t('campaign_assessment.modals.rescore.content'),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         try {
           await rescoreAssessment(campaignId)
@@ -204,8 +204,8 @@ export default function ToolsDropdown ({
         centered: true,
         width: 650,
         content: I18n.t('campaign_assessment.modals.regenerate.content'),
-        okText: I18n.t('common.text.ok'),
-        cancelText: I18n.t('common.text.cancel'),
+        okText: I18n.t('shared.ok'),
+        cancelText: I18n.t('shared.cancel'),
         onOk: async () => {
           try {
             await regenerateReports(
@@ -280,8 +280,8 @@ export default function ToolsDropdown ({
       centered: true,
       width: 650,
       content: I18n.t('campaign_assessment.modals.bulk_update_evaluation.content', { status }),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
+      okText: I18n.t('shared.confirm'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         try {
           await markAsDone(campaignId, status_key, isAllSelected, selectedKeys, excludedKeys)
@@ -324,17 +324,17 @@ export default function ToolsDropdown ({
   const handleToggleCaching = (campaignId, cachingEnabled) => {
     const toggle_type = cachingEnabled ? 'enable_caching' : 'disable_caching'
     modal.confirm({
-      title: I18n.t(`admin.campaign_assessment_modals_${toggle_type}_title`),
+      title: I18n.t(`admin.${toggle_type}_title`),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t(`admin.campaign_assessment_modals_${toggle_type}_content`),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      content: I18n.t(`admin.${toggle_type}_content`),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         try {
           await toggleCaching(campaignId, cachingEnabled)
-          message.success(I18n.t(`admin.campaign_assessment_modals_${toggle_type}_successfully`))
+          message.success(I18n.t(`admin.${toggle_type}_successfully`))
           dispatch(updateCampaignAssessmentDetails({ cachingEnabled }))
         } catch (error) {
           message.error(error, 5)
@@ -376,7 +376,7 @@ export default function ToolsDropdown ({
       innerElement={(
         <Button>
           <ToolOutlined />
-          <span>{title || I18n.t('administration.tools')}</span>
+          <span>{title || I18n.t('admin.tools')}</span>
           <DownOutlined />
         </Button>
       )}

@@ -1648,7 +1648,6 @@ fr:
     details:
       additional_time: Délai supplémentaire
       assessment_center: Centre d'évaluation
-      assessment_center_invites: Invitations au centre d'évaluation
       completed_at: Terminé le
       completion_status: État d'avancement
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ fr:
     modals:
       remove: Êtes-vous sûr de vouloir supprimer de cette campagne l'utilisateur dont l'adresse électronique est "%{email}" ?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Évaluateur Évaluations
-      other_assessments: Autres évaluations
-      other_assessor_assessments: Autres évaluations de l'Assesseur
-      other_reports: Autres rapports
     card:
       duration: Durée
       starts_in: 'Commence en :'
@@ -1753,23 +1747,19 @@ fr:
       insert: Insérer
       'no': Non
       ok: OK
-      publish: Publier
       reject: Rejeter
       remove: Retirer
       reset: Remise à zéro
       resolve: Résoudre
       restore: Restaurer
       return_to_home: Retour à l’accueil
-      run: Exécuter
       save: Économiser
       schedule: Calendrier
       search: Recherche
-      send: Envoyer
       sign_in: Connexion
       start: Démarrage
       submit: Soumettre
       unarchive: Désarchiver
-      unpublish: Dépublier
       unresolve: Non résolu
       update: Mettre à jour
       upload: Télécharger
@@ -1782,20 +1772,14 @@ fr:
     column:
       action: Action
       active: Actif
-      ai_assistant: Assistant IA
-      allow_multiple_responses: Permettre des réponses multiples
       approval_notification_list: Liste des utilisateurs de la notification d'approbation
       approvers_list: Liste des approbateurs
-      assessment: L'évaluation
       assessment_name: Nom de l'évaluation
       assessments: Évaluations
-      assessor: Assesseur
       category: Catégorie
       client: Client
-      code: Code
       created_at: Créé à
       created_by: Créé par
-      created_date: Date de création
       default_language: Langue par défaut
       description: Description
       details: Détails
@@ -1813,11 +1797,8 @@ fr:
         scoring: Notation JSON
       key: Clé
       last_name: Nom de famille
-      linked_activities: Activités liées
       linked_assessment: Évaluation liée
-      meeting_link: Lien vers la réunion
       modified_by: Modifié par
-      modified_date: Date de modification
       name: Nom
       owner: Propriétaire
       package_id: ID du paquet
@@ -1833,7 +1814,6 @@ fr:
       scheduling: Programmation
       skills: Compétences
       status: Statut
-      tags: Tags
       timing: Calendrier
       token: Jeton
       type: Type
@@ -1845,15 +1825,12 @@ fr:
     messages:
       leave_message: Vous êtes sûr de vouloir quitter cette page ? Toutes les réponses non sauvegardées que vous avez seront perdues.
     model:
-      admins: Administrateurs
       assessment: L'évaluation
       assessments: Évaluations
       campaigns: Campagnes
       completion_statuses: Statuts d'achèvement
-      datasheet: Fiche technique
       report: Rapport
       reports: Rapports
-      sms_contact: Contact SMS
       threesixty_campaign: Scores de la campagne Threesixty
     status:
       completed: Terminé
@@ -2943,9 +2920,7 @@ fr:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Actif
     campaign_name: Nom de la campagne
-    inactive: Inactif
     status_updated_at: Dernière mise à jour du statut
     status_updated_by: Dernière mise à jour par
     subject_email: Objet du courrier électronique
@@ -3949,7 +3924,6 @@ fr:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Actif
     allow_multiple_respones: Permettre aux utilisateurs de soumettre plusieurs réponses
     png: PNG
     regenerate_link: Lien de régénération

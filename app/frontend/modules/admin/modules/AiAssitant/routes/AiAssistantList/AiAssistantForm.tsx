@@ -79,14 +79,14 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           ...removedKeys,
         ],
       }).then(() => {
-        message.success(I18n.t('administration.ai_assistants.updated_successfully'))
+        message.success(I18n.t('admin.updated_successfully'))
         navigate('/admin/ai_assistants')
       }).finally(() => setIsLoading(false))
       return
     }
 
     resource.createResource(data).then(() => {
-      message.success(I18n.t('administration.ai_assistants.created_successfully'))
+      message.success(I18n.t('admin.created_successfully'))
       navigate('/admin/ai_assistants')
     }).catch((error) => {
       if (error?.assistantType) {
@@ -99,8 +99,8 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     form.validateFields().then(() => {
       if (providerChanged) {
         modal.confirm({
-          title: I18n.t('admin.ai_assistants_provider_change_confirm_title'),
-          content: I18n.t('admin.ai_assistants_provider_previously_used_warning', {
+          title: I18n.t('admin.provider_change_confirm_title'),
+          content: I18n.t('admin.provider_previously_used_warning', {
             from: originalProvider?.name ?? aiAssistant?.modelId,
             to: selectedProvider?.name ?? selectedModelId,
           }),
@@ -112,7 +112,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     }).catch((error) => {
       if (error
         && error.errorFields.find(field => field.name.includes('assistantOutputSchemaKeysAttributesValidator'))) {
-        setListError(I18n.t('administration.ai_assistants.form.schema_key_unique'))
+        setListError(I18n.t('admin.schema_key_unique'))
       } else {
         setListError('')
       }
@@ -135,7 +135,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
     if (assistantOutputSchemaKeys.filter(key => key !== undefined).length > 1) {
       const keysSet = new Set(assistantOutputSchemaKeys.map(item => item.key))
       if (keysSet.size < assistantOutputSchemaKeys.length) {
-        return Promise.reject(new Error(I18n.t('administration.ai_assistants.form.schema_key_unique')))
+        return Promise.reject(new Error(I18n.t('admin.schema_key_unique')))
       }
     }
     return Promise.resolve()
@@ -165,14 +165,14 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
         >
           <Form.Item
             name="name"
-            label={I18n.t('administration.ai_assistants.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="description"
-            label={I18n.t('administration.ai_assistants.form.description')}
+            label={I18n.t('shared.description')}
             rules={[{ required: true }]}
           >
             <Input.TextArea rows={4} />
@@ -181,7 +181,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             name="modelId"
             label={(
               <Row align="middle" gutter={8}>
-                <Col>{I18n.t('administration.ai_assistants.form.provider')}</Col>
+                <Col>{I18n.t('admin.provider')}</Col>
                 {selectedProvider && (
                   <Col>
                     <Popover
@@ -235,8 +235,8 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           </Form.Item>
           <Form.Item
             name="assistantType"
-            label={I18n.t('administration.ai_assistants.form.type')}
-            tooltip={aiAssistant?.inUse ? I18n.t('admin.ai_assistants_type_locked_tooltip') : undefined}
+            label={I18n.t('shared.type')}
+            tooltip={aiAssistant?.inUse ? I18n.t('admin.type_locked_tooltip') : undefined}
           >
             <Select disabled={aiAssistant?.inUse}>
               {Object.values(ASSISTANT_TYPES).map(type => (
@@ -260,12 +260,12 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             label={(
               <Row align="middle" gutter={16}>
                 <Col>
-                  {I18n.t('administration.ai_assistants.form.system_prompt')}
+                  {I18n.t('admin.system_prompt')}
                 </Col>
                 <Col>
                   {
                     allowAdvancedPrompting && (
-                      <Tooltip title={I18n.t('admin.ai_assistants_advanced_mode_tooltip')}>
+                      <Tooltip title={I18n.t('admin.advanced_mode_tooltip')}>
                         <Switch
                           size="small"
                           checked={isAdvancedPrompt}
@@ -293,7 +293,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           {assistantType !== ASSISTANT_TYPES.writing_assistant.id && (
             <Form.Item
               name="userPrompt"
-              label={I18n.t('administration.ai_assistants.form.user_prompt')}
+              label={I18n.t('admin.user_prompt')}
               rules={[{ required: true }]}
             >
               <Input.TextArea rows={6} />
@@ -303,7 +303,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
             <>
               <Form.Item
                 name="dependencies"
-                label={I18n.t('administration.ai_assistants.form.dependencies')}
+                label={I18n.t('admin.dependencies')}
                 rules={[{ required: assistantType === ASSISTANT_TYPES.content_writer.id }]}
               >
                 <Select
@@ -320,7 +320,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               {assistantType === ASSISTANT_TYPES.content_writer.id && (
                 <>
                   <Typography.Title style={{ fontSize: '1.167rem' }}>
-                    {I18n.t('administration.ai_assistants.form.output_schema_keys')}
+                    {I18n.t('admin.output_schema_keys')}
                   </Typography.Title>
                   <div style={{
                     border: '1px solid #d9d9d9',
@@ -348,7 +348,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
                                 onClick={() => add()}
                                 icon={<PlusOutlined />}
                               >
-                                {I18n.t('administration.ai_assistants.form.add_output_schema_key')}
+                                {I18n.t('admin.add_output_schema_key')}
                               </Button>
                             </Col>
                           </Row>
@@ -380,7 +380,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
           {aiAssistant?.id && (
             <Flex vertical>
               <Typography.Title level={4}>
-                {I18n.t('administration.ai_assistants.revisions.title')}
+                {I18n.t('admin.revisions_title')}
               </Typography.Title>
               <AiAssistantRevisions aiAssistantId={aiAssistant?.id} onSelect={applyRevisionValues} />
             </Flex>

@@ -95,7 +95,7 @@ export const AddSubjectsComponent: FC<Props> = ({
         if (response.meta.errors) {
           setCSVErrors(response.meta.errors)
         } else {
-          message.success(I18n.t('administration.assessment_center.invite.subjects.csv_imported',
+          message.success(I18n.t('admin.invite_subjects_csv_imported',
             { count: response.data.length }))
         }
         showUploadModal(false)
@@ -114,11 +114,11 @@ export const AddSubjectsComponent: FC<Props> = ({
       }
     },
     items: [{
-      label: I18n.t('administration.assessment_center.invite.subjects.upload_csv'),
+      label: I18n.t('admin.invite_subjects_upload_csv'),
       key: 'upload_csv',
     },
     {
-      label: I18n.t('administration.assessment_center.invite.subjects.import_from_campaign'),
+      label: I18n.t('admin.invite_subjects_import_from_campaign'),
       key: 'import_all',
     }],
   }
@@ -132,25 +132,25 @@ export const AddSubjectsComponent: FC<Props> = ({
       <Modal
         closable={false}
         open={uploadModal}
-        title={I18n.t('administration.assessment_center.invite.subjects.import_title')}
+        title={I18n.t('admin.invite_subjects_import_title')}
         footer={[
           <Button type="primary" disabled={uploadInProgress} onClick={() => upload()}>
-            {I18n.t('administration.assessment_center.invite.subjects.upload')}
+            {I18n.t('shared.upload')}
           </Button>,
           <Button onClick={() => showUploadModal(false)}>
-            {I18n.t('administration.assessment_center.invite.subjects.cancel')}
+            {I18n.t('shared.cancel')}
           </Button>,
         ]}
       >
         <Space orientation="vertical">
           <div>
             <Space>
-              {I18n.t('administration.assessment_center.invite.subjects.file_example')}
+              {I18n.t('admin.invite_subjects_file_example')}
               <a
                 href="/example_csv/workshop_subject_import.csv"
                 target="_blank"
               >
-                {I18n.t('administration.assessment_center.invite.subjects.download')}
+                {I18n.t('shared.download')}
               </a>
             </Space>
           </div>
@@ -158,13 +158,13 @@ export const AddSubjectsComponent: FC<Props> = ({
         </Space>
       </Modal>
       <Panel
-        title={I18n.t('administration.assessment_center.invite.subjects.title')}
-        description={I18n.t('administration.assessment_center.invite.subjects.description')}
+        title={I18n.t('admin.invite_subjects_title')}
+        description={I18n.t('admin.invite_subjects_description')}
       >
         <Row className={styles.controls} justify="space-between">
           <Col>
             <Space>
-              {I18n.t('administration.assessment_center.invite.subjects.count', { count: subjects.length })}
+              {I18n.t('admin.invite_subjects_count', { count: subjects.length })}
             </Space>
           </Col>
           <Col>
@@ -187,7 +187,7 @@ export const AddSubjectsComponent: FC<Props> = ({
                 placeholder={(
                   <Space>
                     <SearchOutlined />
-                    {I18n.t('administration.assessment_center.invite.subjects.search_user')}
+                    {I18n.t('admin.invite_subjects_search_user')}
                   </Space>
                 )}
                 onSelect={selectUser}
@@ -206,7 +206,7 @@ export const AddSubjectsComponent: FC<Props> = ({
               <Dropdown menu={importMenu}>
                 <Button type="primary">
                   <CloudDownloadOutlined />
-                  {I18n.t('administration.assessment_center.invite.subjects.import_users')}
+                  {I18n.t('admin.invite_subjects_import_users')}
                   <DownOutlined />
                 </Button>
               </Dropdown>
@@ -236,7 +236,7 @@ export const AddSubjectsComponent: FC<Props> = ({
               <Alert
                 message="Errors"
                 description={csvErrors.map(
-                  error => <div>{I18n.t('administration.assessment_center.invite.subjects.csv_error', error)}</div>,
+                  error => <div>{I18n.t('admin.invite_subjects_csv_error', error)}</div>,
                 )}
                 type="error"
               />
@@ -280,13 +280,13 @@ export const AddSubjectsComponent: FC<Props> = ({
           {
             onCancel && (
               <Button onClick={handleCancel}>
-                {I18n.t('common.actions.cancel')}
+                {I18n.t('shared.cancel')}
               </Button>
             )
           }
-          {prev ? <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button> : null}
+          {prev ? <Button onClick={prev}>{I18n.t('shared.back')}</Button> : null}
           <Button type="primary" onClick={next}>
-            {I18n.t('administration.assessment_center.invite.next')}
+            {I18n.t('shared.next')}
           </Button>
         </Space>
       </div>

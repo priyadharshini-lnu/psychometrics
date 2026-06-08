@@ -17,7 +17,7 @@ const OverrideScore = ({
         {meta.userName}
       </Typography.Text>
       {' '}
-      {I18n.t('admin.ai_scoring_appoval_change_score')}
+      {I18n.t('admin.change_score')}
       {': '}
       <Typography.Text strong>
         <Space>
@@ -28,7 +28,7 @@ const OverrideScore = ({
     {meta.reason && (
       <>
         <Typography.Text strong>
-          {I18n.t('admin.ai_scoring_appoval_change_reason')}
+          {I18n.t('admin.change_reason')}
         </Typography.Text>
         <Typography.Text>
           {meta.reason}
@@ -45,7 +45,7 @@ const DiscardScore = ({ meta }) => (
         {meta.userName}
       </Typography.Text>
       {' '}
-      {I18n.t('admin.ai_scoring_appoval_discarded_changes')}
+      {I18n.t('admin.discarded_changes')}
     </Typography.Text>
   </Flex>
 )
@@ -65,7 +65,7 @@ export const ChangeLog = ({ logs, factor }) => {
 
   return (
     <Flex orientation="vertical" gap={8} style={{ marginTop: 16 }}>
-      <Typography.Text>{I18n.t('admin.ai_scoring_appoval_change_score_log')}</Typography.Text>
+      <Typography.Text>{I18n.t('admin.change_score_log')}</Typography.Text>
       <Flex orientation="vertical" gap={8}>
         {logs.map((log) => {
           const Log = TYPES[log.meta.changeEvent]

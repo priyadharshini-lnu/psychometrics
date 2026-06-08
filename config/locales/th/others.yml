@@ -1645,7 +1645,6 @@ th:
     details:
       additional_time: เวลาเพิ่มเติม
       assessment_center: ศูนย์ประเมินผล
-      assessment_center_invites: คําเชิญของศูนย์ประเมิน
       completed_at: เสร็จสิ้น
       completion_status: สถานะการเสร็จสมบูรณ์
       hogan_id: รหัส Hogan
@@ -1675,11 +1674,6 @@ th:
     modals:
       remove: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้ที่มีอีเมล '%{email}' ออกจากแคมเปญนี้?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: การประเมินผู้ประเมิน
-      other_assessments: การประเมินอื่นๆ
-      other_assessor_assessments: การประเมินผู้ประเมินอื่น ๆ
-      other_reports: รายงานอื่นๆ
     card:
       duration: ระยะเวลา
       starts_in: 'เริ่มต้นใน:'
@@ -1750,23 +1744,19 @@ th:
       insert: สอด
       'no': ไม่ใช่
       ok: ตกลง, ได้
-      publish: เผยแพร่
       reject: ปฏิเสธ
       remove: เอาออก
       reset: รีเซ็ต
       resolve: แก้ปัญหา
       restore: คืนค่า
       return_to_home: กลับหน้าแรก
-      run: วิ่ง
       save: บันทึก
       schedule: ตาราง
       search: ค้นหา
-      send: ส่ง
       sign_in: เข้าสู่ระบบ
       start: เริ่ม
       submit: ส่ง
       unarchive: ยกเลิกเก็บถาวร
-      unpublish: เผยแพร่
       unresolve: ยังไม่ได้แก้ไข
       update: อัปเดต
       upload: อัพโหลด
@@ -1779,20 +1769,14 @@ th:
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
-      ai_assistant: ผู้ช่วย AI
-      allow_multiple_responses: อนุญาตการตอบกลับหลายรายการ
       approval_notification_list: รายชื่อผู้ใช้การแจ้งเตือนการอนุมัติ
       approvers_list: รายชื่อผู้อนุมัติ
-      assessment: การประเมิน
       assessment_name: ชื่อการประเมิน
       assessments: การประเมิน
-      assessor: ผู้ประเมิน
       category: หมวดหมู่
       client: ลูกค้า
-      code: โค้ด
       created_at: สร้างเมื่อ
       created_by: สร้างโดย
-      created_date: วันที่สร้าง
       default_language: ภาษาเริ่มต้น
       description: คำอธิบาย
       details: รายละเอียด
@@ -1810,11 +1794,8 @@ th:
         scoring: การให้คะแนน JSON
       key: กุญแจ
       last_name: นามสกุล
-      linked_activities: กิจกรรมที่เชื่อมโยง
       linked_assessment: การประเมินแบบเชื่อมโยง
-      meeting_link: ลิงค์การประชุม
       modified_by: แก้ไขโดย
-      modified_date: วันที่แก้ไข
       name: ชื่อ
       owner: เจ้าของ
       package_id: รหัสแพ็กเกจ
@@ -1830,7 +1811,6 @@ th:
       scheduling: กำหนดการ
       skills: ทักษะ
       status: สถานะ
-      tags: แท็ก
       timing: เวลา
       token: สัญลักษณ์
       type: ประเภท
@@ -1842,15 +1822,12 @@ th:
     messages:
       leave_message: คุณแน่ใจหรือไม่ว่าต้องการออกจากหน้านี้? คําตอบที่ยังไม่ได้บันทึกที่คุณมีจะสูญหายไป
     model:
-      admins: ผู้ดูแลระบบ
       assessment: การประเมิน
       assessments: การประเมิน
       campaigns: แคมเปญ
       completion_statuses: สถานะการเสร็จสมบูรณ์
-      datasheet: เอกสารข้อมูล
       report: รายงาน
       reports: รายงาน
-      sms_contact: ติดต่อ SMS
       threesixty_campaign: คะแนนแคมเปญ Threesixty
     status:
       completed: เสร็จสมบูรณ์
@@ -2967,9 +2944,7 @@ th:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: เปิดใช้งาน
     campaign_name: ชื่อแคมเปญ
-    inactive: เกียจคร้าน
     status_updated_at: การอัปเดตสถานะล่าสุด
     status_updated_by: อัพเดทล่าสุดโดย
     subject_email: อีเมลเรื่อง
@@ -3973,7 +3948,6 @@ th:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%B %Y, %l:%M %p %:z"
   universal_links:
-    active: เปิดใช้งาน
     allow_multiple_respones: อนุญาตให้ผู้ใช้ส่งคําตอบหลายรายการ
     png: ภาพ PNG
     regenerate_link: สร้างลิงค์ใหม่

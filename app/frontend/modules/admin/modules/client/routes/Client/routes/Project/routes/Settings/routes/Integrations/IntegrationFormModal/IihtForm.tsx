@@ -39,7 +39,7 @@ export const IihtForm: React.FC<OwnProps> = ({ integration }) => {
     <>
       <Form.Item
         name="tenantId"
-        label={I18n.t('administration.integrations.modal.iiht.tenant_id')}
+        label={I18n.t('admin.iiht_tenant_id')}
         rules={[{ required: true }]}
       >
         <Input />
@@ -47,7 +47,7 @@ export const IihtForm: React.FC<OwnProps> = ({ integration }) => {
 
       <Form.Item
         name="tenancyName"
-        label={I18n.t('administration.integrations.modal.iiht.tenancy_name')}
+        label={I18n.t('admin.iiht_tenancy_name')}
         rules={[{ required: true }]}
       >
         <Input />
@@ -55,7 +55,7 @@ export const IihtForm: React.FC<OwnProps> = ({ integration }) => {
 
       <Form.Item
         name="user"
-        label={I18n.t('administration.integrations.modal.iiht.user')}
+        label={I18n.t('admin.iiht_user')}
         rules={[{ required: true }]}
       >
         <Input autoComplete="off" />
@@ -63,7 +63,7 @@ export const IihtForm: React.FC<OwnProps> = ({ integration }) => {
 
       <Form.Item
         name="password"
-        label={I18n.t('administration.integrations.modal.iiht.password')}
+        label={I18n.t('admin.iiht_password')}
         rules={[{ required: integration === undefined }]}
       >
         <Input.Password autoComplete="off" />

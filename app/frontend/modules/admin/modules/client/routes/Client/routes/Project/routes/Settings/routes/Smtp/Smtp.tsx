@@ -101,7 +101,7 @@ const SmtpComponent: React.FC<Props> = ({
     }
 
     return saveSettings(parsedProjectId, smtpSetting.id, values).then(() => {
-      message.success(I18n.t('administration.smtp_settings.update_success_msg'))
+      message.success(I18n.t('admin.smtp_settings_update_success_msg'))
     }).finally(() => setSubmitFormFor(SubmitFormType.None))
   }
 
@@ -136,7 +136,7 @@ const SmtpComponent: React.FC<Props> = ({
             <>
               <Form.Item
                 name="enabled"
-                label={I18n.t('administration.smtp_settings.enabled')}
+                label={I18n.t('admin.smtp_settings_enabled')}
                 valuePropName="checked"
               >
                 <Switch />
@@ -144,21 +144,21 @@ const SmtpComponent: React.FC<Props> = ({
 
               <Form.Item
                 name="fromName"
-                label={I18n.t('administration.smtp_settings.from_name')}
+                label={I18n.t('admin.smtp_settings_from_name')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="fromEmail"
-                label={I18n.t('administration.smtp_settings.from_email')}
+                label={I18n.t('admin.smtp_settings_from_email')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="useSenderVerification"
-                label={I18n.t('administration.smtp_settings.use_sender_verification')}
+                label={I18n.t('admin.smtp_settings_use_sender_verification')}
                 valuePropName="checked"
               >
                 <Switch />
@@ -179,7 +179,7 @@ const SmtpComponent: React.FC<Props> = ({
                   loading={submitFormFor === SubmitFormType.Validation && isValidating}
                   onClick={() => { setSubmitFormFor(SubmitFormType.Validation) }}
                 >
-                  {I18n.t('administration.smtp_settings.send_test_email')}
+                  {I18n.t('admin.smtp_settings_send_test_email')}
                 </Button>
               </Space>
             </>
@@ -195,32 +195,32 @@ const SMTPAuthSettings = ({ form }) => (
   <>
     <Form.Item
       name="host"
-      label={I18n.t('administration.smtp_settings.host')}
+      label={I18n.t('admin.smtp_settings_host')}
     >
       <Input />
     </Form.Item>
 
     <Form.Item
       name="encryption"
-      label={I18n.t('administration.smtp_settings.encryption')}
+      label={I18n.t('admin.smtp_settings_encryption')}
     >
       <Radio.Group>
-        <Radio value="none">{I18n.t('administration.smtp_settings.encryption_types.none')}</Radio>
-        <Radio value="ssl">{I18n.t('administration.smtp_settings.encryption_types.ssl')}</Radio>
-        <Radio value="tls">{I18n.t('administration.smtp_settings.encryption_types.tls')}</Radio>
+        <Radio value="none">{I18n.t('admin.smtp_settings_encryption_types_none')}</Radio>
+        <Radio value="ssl">{I18n.t('admin.smtp_settings_encryption_types_ssl')}</Radio>
+        <Radio value="tls">{I18n.t('admin.smtp_settings_encryption_types_tls')}</Radio>
       </Radio.Group>
     </Form.Item>
 
     <Form.Item
       name="port"
-      label={I18n.t('administration.smtp_settings.port')}
+      label={I18n.t('admin.smtp_settings_port')}
     >
       <Input />
     </Form.Item>
 
     <Form.Item
       name="authentication"
-      label={I18n.t('administration.smtp_settings.authentication')}
+      label={I18n.t('admin.smtp_settings_authentication')}
       valuePropName="checked"
     >
       <Switch />
@@ -231,31 +231,31 @@ const SMTPAuthSettings = ({ form }) => (
         <>
           <Form.Item
             name="authenticationType"
-            label={I18n.t('administration.smtp_settings.authentication_type')}
+            label={I18n.t('admin.smtp_settings_authentication_type')}
           >
             <Radio.Group>
               <Radio value="plain">
-                {I18n.t('administration.smtp_settings.authentication_types.plain')}
+                {I18n.t('admin.smtp_settings_authentication_types_plain')}
               </Radio>
               <Radio value="login">
-                {I18n.t('administration.smtp_settings.authentication_types.login')}
+                {I18n.t('admin.smtp_settings_authentication_types_login')}
               </Radio>
               <Radio value="cram_md5">
-                {I18n.t('administration.smtp_settings.authentication_types.cram_md5')}
+                {I18n.t('admin.smtp_settings_authentication_types_cram_md5')}
               </Radio>
             </Radio.Group>
           </Form.Item>
 
           <Form.Item
             name="userName"
-            label={I18n.t('administration.smtp_settings.user_name')}
+            label={I18n.t('admin.smtp_settings_user_name')}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
             name="password"
-            label={I18n.t('administration.smtp_settings.password')}
+            label={I18n.t('admin.smtp_settings_password')}
           >
             <Input.Password />
           </Form.Item>

@@ -40,18 +40,18 @@ const SkillAliasesList: React.FC<Props> = ({ openModal }) => {
         pagination
       >
         <Resource.Column<SkillAlias>
-          title={I18n.t('administration.settings.skill_aliases.alias')}
+          title={I18n.t('admin.settings_skill_aliases_alias')}
           id="name"
           width={300}
         />
         <Resource.Column<SkillAlias>
-          title={I18n.t('administration.settings.skill_aliases.skill')}
+          title={I18n.t('admin.settings_skill_aliases_skill')}
           id="skill"
           render={({ skill }) => skill.name}
           width={300}
         />
         <Resource.Column<SkillAlias>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="actions"
           key="actions"
           render={skillAlias => (
@@ -86,7 +86,7 @@ const ResourceFilter = ({ openModal }) => {
           onClick={() => openModal('SkillAliasForm')}
         >
           <PlusOutlined />
-          {I18n.t('administration.settings.skill_aliases.create')}
+          {I18n.t('admin.settings_skill_aliases_create')}
         </Button>
       )}
     </Resource.Filter>
@@ -106,22 +106,20 @@ const getActionsMenuProps = ({
 
   const handleRemove = () => {
     modal.confirm({
-      title: I18n.t('administration.administrators.modals.delete.title'),
+      title: I18n.t('shared.confirm'),
       content: I18n.t(
-        'administration.settings.skill_aliases.confirm_message',
+        'admin.settings_skill_aliases_confirm_message',
         { skill_alias: skillAlias.name },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
-      cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
-      ),
+      okText: I18n.t('shared.delete'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         await resource.removeResource(skillAlias.id).then(() => {
           message.success(
-            I18n.t('administration.settings.skill_aliases.successful_remove', { skill_alias: skillAlias.name }),
+            I18n.t('admin.settings_skill_aliases_successful_remove', { skill_alias: skillAlias.name }),
           )
         }).catch(() => {
-          message.error(I18n.t('common.errors.something_wrong'))
+          message.error(I18n.t('shared.something_wrong'))
         })
       },
     })
@@ -138,7 +136,7 @@ const getActionsMenuProps = ({
         }
         className="ps-0"
       >
-        {I18n.t('common.actions.edit')}
+        {I18n.t('shared.edit')}
       </Button>),
   })
   resource.meta.permissions?.remove && menuItems.push({
@@ -150,7 +148,7 @@ const getActionsMenuProps = ({
           onClick={handleRemove}
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>
       </>
     ),

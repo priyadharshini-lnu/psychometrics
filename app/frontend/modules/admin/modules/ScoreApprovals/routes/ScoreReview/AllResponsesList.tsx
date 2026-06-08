@@ -66,7 +66,7 @@ const AllResponsesList: React.FC<AllResponsesListProps> = ({
         </Typography.Text>
         {get(subjectForm.result, 'completed_at') && (
           <Typography.Text type="secondary">
-            {I18n.t('administration.assessor.completed_at')}
+            {I18n.t('admin.assessor_completed_at')}
             {': '}
             <strong>{dayjs(subjectForm.result.completed_at).format('DD MMM YYYY')}</strong>
           </Typography.Text>

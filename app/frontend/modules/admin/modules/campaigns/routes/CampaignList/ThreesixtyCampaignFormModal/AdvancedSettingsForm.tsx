@@ -316,12 +316,12 @@ const AdvancedSettingsForm = ({
       <Flex vertical style={{ maxWidth: '600px' }} justify="center" align="center">
         <Typography.Title level={2} style={{ margin: 0 }}>
           {I18n.t(
-            'administration.campaigns.modals.create_threesixity.instructions_customization.title',
+            'admin.threesixity_instructions_customization_title',
           )}
         </Typography.Title>
         <Typography.Title level={5} style={{ margin: 0 }}>
           {I18n.t(
-            'administration.campaigns.modals.create_threesixity.instructions_customization.sub_title',
+            'admin.threesixity_instructions_customization_sub_title',
           )}
         </Typography.Title>
       </Flex>
@@ -350,10 +350,10 @@ const AdvancedSettingsForm = ({
         >
           <SearchOutlined style={{ fontSize: 24 }} />
           <Typography.Title level={5} style={{ margin: 0 }}>
-            {I18n.t('administration.campaigns.modals.create_threesixity.search_factors.title')}
+            {I18n.t('admin.threesixity_search_factors_title')}
           </Typography.Title>
           <Typography.Paragraph style={{ margin: 0, textAlign: 'center' }} type="secondary">
-            {I18n.t('administration.campaigns.modals.create_threesixity.search_factors.description')}
+            {I18n.t('admin.threesixity_search_factors_description')}
           </Typography.Paragraph>
         </Flex>
       ) : null
@@ -367,10 +367,10 @@ const AdvancedSettingsForm = ({
         >
           <ContainerOutlined style={{ fontSize: 24 }} />
           <Typography.Title level={5} style={{ margin: 0 }}>
-            {I18n.t('administration.campaigns.modals.create_threesixity.no_factors.title')}
+            {I18n.t('admin.threesixity_no_factors_title')}
           </Typography.Title>
           <Typography.Paragraph style={{ margin: 0, textAlign: 'center' }} type="secondary">
-            {I18n.t('administration.campaigns.modals.create_threesixity.no_factors.description')}
+            {I18n.t('admin.threesixity_no_factors_description')}
           </Typography.Paragraph>
         </Flex>
       ) : null
@@ -390,7 +390,7 @@ const AdvancedSettingsForm = ({
           <Flex gap={8} vertical className="w-100 p-8" style={{ maxWidth: 360, overflow: 'auto' }}>
             <Form.Item
               name="campaign_template_id"
-              label={I18n.t('administration.campaigns.modals.create_threesixity.advance_settings.campaign_template')}
+              label={I18n.t('admin.threesixity_advance_settings_campaign_template')}
               rules={[{ required: true }]}
             >
               <Select
@@ -405,7 +405,7 @@ const AdvancedSettingsForm = ({
             {showFactorsSelect && (
               <Form.Item
                 name="factors"
-                label={I18n.t('administration.campaigns.modals.create_threesixity.advance_settings.factors')}
+                label={I18n.t('admin.threesixity_advance_settings_factors')}
               >
                 <Select
                   showSearch={{ filterOption: false, onSearch: handleSearch }}
@@ -431,8 +431,8 @@ const AdvancedSettingsForm = ({
                     <span className={styles.treeLabel}>{node.title}</span>
                     <a className={styles.treelink} onClick={() => handleFactorSelectAll(checked, node)}>
                       {checked
-                        ? I18n.t('administration.common.select_all')
-                        : I18n.t('administration.common.unselect_all')}
+                        ? I18n.t('admin.common_select_all')
+                        : I18n.t('admin.common_unselect_all')}
                     </a>
                   </Space>
                 ) : node.title)
@@ -456,10 +456,10 @@ const AdvancedSettingsForm = ({
         </Flex>
         <Flex className={`w-100 p-8 ${styles.borderTop}`} gap={8} justify="flex-end">
           <Button key="back" onClick={onBack} disabled={isSubmitting}>
-            {I18n.t('administration.common.back')}
+            {I18n.t('shared.back')}
           </Button>
           <Button key="cancel" onClick={onClose} disabled={isSubmitting}>
-            {I18n.t('administration.common.cancel')}
+            {I18n.t('shared.cancel')}
           </Button>
           <Button
             key="submit"
@@ -468,7 +468,7 @@ const AdvancedSettingsForm = ({
             loading={isSubmitting}
             disabled={isSubmitting}
           >
-            {I18n.t('administration.common.save')}
+            {I18n.t('shared.save')}
           </Button>
         </Flex>
       </Flex>

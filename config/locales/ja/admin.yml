@@ -2,15 +2,41 @@
 ja:
   admin:
     accept_na_values: N/A値を受け入れる
+    acceptable_rate_limit_label: リクエストの上限
+    acceptable_rate_limit_request_per: リクエスト数
     actions: アクション
+    actions_add_code: コードを追加
+    actions_archive: アーカイブ
+    actions_playground: 遊び場
+    actions_unarchive: アーカイブを解除
+    active: アクティブ
+    active_label: アクティブ
+    active_name: アクティブ
+    active_record_audits_audit_id: 監査ID
+    active_record_audits_auditable_id: レコードID
+    active_record_audits_auditable_type: レコードの種類
+    active_record_audits_audited_changes: 監査による変更
+    active_record_audits_new_diff_parse_error: 新しい変更を含むJSONの解析に失敗しました。
+    active_record_audits_old_diff_parse_error: 古い変更を含むJSONの解析に失敗しました。
+    active_record_audits_title: 監査による変更
+    activity: アクティビティ
     add_admin: 管理者を追加する
     add_admin_role: 管理者ロールの追加
+    add_btn: 件名の追加
     add_campaign_admin: キャンペーン管理者の追加
     add_client_admin: クライアント管理者の追加
+    add_conditions: 条件追加
+    add_evaluators: 評価者の追加
     add_indicator: インジケーターを追加
+    add_lead_assessor: リード・アセッサとして追加
+    add_lead_assessor_hint: 最初にリード・アセッサーのフォームを追加してください。
+    add_more: 追加
     add_new_folder: 新しいフォルダを追加
+    add_output_schema_key: 出力スキーマ・キーの追加
     add_project: プロジェクトの追加
     add_project_admin: プロジェクト管理者の追加
+    add_report: レポートを追加
+    add_subjects: 主題の追加
     add_threesixty_campaign_admin: キャンペーン管理者の追加
     add_word_count: 単語数を追加
     admin_approval_required: "%{user}のレポートはダウンロード前に管理者の承認が必要です"
@@ -20,24 +46,15 @@ ja:
     admin_role_deleted: 管理者ロール '%{role_name}' は正常に削除されました。
     admin_roles: 管理者の役割
     admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
+    administrator_approves_reports: 管理者が報告書を承認
+    administrators_list_columns_email: Eメール
     admins: 管理者
     advanced: 上級
+    advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
     agile: AGILE
     ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
     ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
-    ai_artifacts_finalized_at: 確定日
-    ai_artifacts_generate_result_confirm: ユーザー「%{email}」のアーティファクト結果を生成すると、このAIアーティファクトに依存している既存のレポートが削除されます。本当に続行しますか？
-    ai_artifacts_generate_results: 結果を生成する
-    ai_artifacts_mark_finalized: マーク完了
-    ai_artifacts_mark_finalized_bulk_confirm: 選択したすべてのユーザーについてアーティファクトの結果を確定すると、AIアーティファクトを使用したレポートが生成されます。本当に続行しますか？
-    ai_artifacts_mark_finalized_confirm: ユーザー「%{email}」のアーティファクト結果を確定すると、そのユーザー向けのAIアーティファクトを使用したレポートが生成されます。本当に続行しますか？
-    ai_artifacts_mark_not_finalized: マークは確定していません
-    ai_artifacts_mark_not_finalized_bulk_confirm: 選択したすべてのユーザーから「finalize」を削除すると、AIアーティファクトを使用した生成済みレポートが削除されます。本当に続行しますか？
-    ai_artifacts_mark_not_finalized_confirm: ユーザー「%{email}」から「finalize」を削除すると、そのユーザー向けにAIアーティファクトを使用して生成されたレポートが削除されます。本当に続行しますか？
-    ai_artifacts_output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
-    ai_artifacts_results_export: 結果をエクスポート
-    ai_artifacts_results_export_job_scheduled: AIアーティファクト結果のエクスポートジョブが正常にスケジュールされました
     ai_assistant: AIアシスタント
     ai_assistant_model_id_label: モデルID
     ai_assistant_model_label: モデル
@@ -46,21 +63,14 @@ ja:
     ai_assistant_required: AIアシスタントが必要です
     ai_assistant_select_dependencies: 依存関係を選択
     ai_assistants: AIアシスタント
-    ai_assistants_advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
-    ai_assistants_campaign_id_placeholder: キャンペーンIDの登場です
-    ai_assistants_cannot_change_type_when_in_use: AIアシスタント「%{name}」は現在使用中のため、タイプを変更できません。
-    ai_assistants_no_rendered_output: レンダリング出力は利用できません
-    ai_assistants_provider_change_confirm_title: プロバイダーを変更しますか？
-    ai_assistants_provider_previously_used_warning: このアシスタントは以前、「%{from}」を使用して結果を生成していました。「%{to}」に変更すると、今後の生成リクエストにおけるアシスタントの動作が変わる可能性があります。
-    ai_assistants_render_button: レンダーテンプレート
-    ai_assistants_rendered_prompt: レンダリングプロンプト
-    ai_assistants_template_and_campaign_required: テンプレートとキャンペーンIDの両方をご提供ください
-    ai_assistants_template_render_failed: テンプレートのレンダリングに失敗しました
-    ai_assistants_test_render: テストレンダリング
-    ai_assistants_test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
-    ai_assistants_type_locked_tooltip: このアシスタントは現在使用中であり、そのタイプを変更することはできません。
+    ai_assistants_disabled_by_client: AI アシスタントはクライアントによって無効になっています
+    ai_assistants_playground: AIアシスタント・プレイグラウンド
+    ai_assisted_idp: AI支援IDP
     ai_assisted_idp_disabled_by_client: クライアントによりAI支援型IDPが無効化されています
     ai_assisted_idp_feature_disabled: このプロジェクトではAI支援IDP機能は無効化されています。
+    ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
+    ai_content_analysis: AIコンテンツ分析
+    ai_content_analysis_disabled_by_client: AIコンテンツ分析はクライアントによって無効化されています
     ai_idp_assistant_configure_dependencies: AI依存関係の設定
     ai_idp_assistant_configure_dependencies_description: IDP AIアシスタントがコンテキストとしてアクセスできる依存関係データを設定します。これは、アシスタントが依存関係を受け入れるように設定されている場合にのみ適用されます。
     ai_idp_assistant_dependencies_updated: 依存関係が正常に更新されました
@@ -69,28 +79,7 @@ ja:
     ai_score_approval_no_answer: この質問に対する回答は提供されていません
     ai_score_approval_no_transcription: この質問の文字起こしは利用できません
     ai_scored: AIが得点した
-    ai_scoring_appoval_approve_all_questions: すべての質問を承認する
-    ai_scoring_appoval_approve_question: 質問を承認する
-    ai_scoring_appoval_back: スコアをリセット
-    ai_scoring_appoval_change_reason: 変更理由
-    ai_scoring_appoval_change_score: 変更されたスコア
-    ai_scoring_appoval_change_score_log: 変更スコアログ
-    ai_scoring_appoval_discard_all_questions: すべての質問をリセット
-    ai_scoring_appoval_discard_all_questions_description: すべての問題のスコアをリセットし、上書き設定をすべて解除します。この操作は元に戻せません。本当に実行しますか？
-    ai_scoring_appoval_discard_all_questions_title: すべての問題の得点をリセットしますか？
-    ai_scoring_appoval_discard_question: 質問のスコアをリセットする
-    ai_scoring_appoval_discard_question_confirm_description: この操作により、この問題の全スコアがリセットされ、上書き設定が解除されます。本当に実行しますか？
-    ai_scoring_appoval_discard_question_confirm_title: 質問のスコアをリセットしますか？
-    ai_scoring_appoval_discarded_changes: 破棄された変更
-    ai_scoring_appoval_evidence_from_transcript: 記録からの証拠
-    ai_scoring_appoval_new_score: 新スコア
     ai_scoring_appoval_next: 次の質問
-    ai_scoring_appoval_rationale: 根拠
-    ai_scoring_appoval_reason_for_changes: 変更の理由
-    ai_scoring_appoval_reset_score: スコアをリセット
-    ai_scoring_appoval_reset_score_description: スコアは元のAI値に戻されます。
-    ai_scoring_appoval_responses: AI応答
-    ai_scoring_appoval_score_not_applicable: スコアは適用されません
     ai_scoring_approval: AIスコアリング承認
     ai_scoring_approval_digest_mailer_access_link_intro: 以下のリンクから採点承認画面にアクセスできます：
     ai_scoring_approval_digest_mailer_approved_body_intro: 以下の採点が承認されました。
@@ -114,59 +103,156 @@ ja:
     ai_scoring_refresh_score_confirm_title: AIスコアを更新しますか？
     ai_scoring_rescore_queued: AIによる再採点が処理待ちの状態です。しばらくしてからページを更新してください。
     ai_translation: AI翻訳
+    ai_translation_disabled_by_client: クライアントによりAI翻訳が無効化されています
     all_corner_rounded: すべての角が丸みを帯びている
     allow_ai_rescoring: AIによる再採点を許可する
     allow_continue_with_warning_system_check: システムチェックに失敗した場合でも、警告を表示した上で操作を続行できるようにする
+    allow_late_cancellation_and_scheduling: レイト・キャンセルとスケジューリング
+    allow_manager_to_view_individual_responses: マネージャーが個々の回答を閲覧できるようにする
+    allow_multiple_responses: 複数の回答を許可する
+    allow_subjects_to_send_reminders: 被験者が評価者にリマインダーを送信できるようにする
+    alt_text_invalid: Altテキストにサポートされていない文字が含まれています。
+    alt_text_logo: ロゴ・アルトテキスト
+    alt_text_logo_required: Alt-Textロゴは必須
+    alt_text_long: 最大文字数の100文字を超える。
     api_keys: APIキー
+    api_keys_form_title: APIキー
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
+    approve_all_questions: すべての質問を承認する
+    approve_nomination_description: このメッセージは、直属の部下による指名を承認する必要がある場合に、マネージャーに送信されます。
+    approve_nomination_name: 指名の承認
+    approve_question: 質問を承認する
+    approve_report_description: このメッセージは、被験者のマネージャーが被験者のレポートを承認する準備ができたことを通知するために送信されます。
+    approve_report_name: レポートを承認
+    archive: アーカイブ
+    archive_content: 本当に'%{project_name}'をアーカイブしますか？
+    archive_success: プロジェクト '%{project_name}' は正常にアーカイブされました。
+    archive_title: アーカイブ・プロジェクト
+    artifact_results: アーティファクトの結果
     assessment: 評価
-    assessment_center_activity: アクティビティ
-    assessment_center_assessor: 査定員
-    assessment_center_attendance: 出席状況
-    assessment_center_attendance_status: 出席状況
-    assessment_center_campaigns_tab: キャンペーン
-    assessment_center_date_and_time: 日時
-    assessment_center_join_room: ルームに参加する
-    assessment_center_meeting_link: 会議のリンク
-    assessment_center_participants_tab: 参加者
-    assessment_center_prework: 事前準備
-    assessment_center_schedule_time: スケジュールを設定する
-    assessment_center_scheduling_status: スケジュール状況
-    assessment_center_search_participants: 参加者を検索...
+    assessment_center: アセスメントセンター
+    assessment_center_group: アセスメント・センター・グループ
+    assessment_center_group_placeholder: セレクト・アセスメント・センター・グループ
+    assessment_ids: 評価ID
+    assessment_placeholder: 評価の選択
     assessment_question_not_supported: この質問タイプは現在サポートされていません。
+    assessment_required: 査定が必要
     assessments: アセスメント
+    assessments_assessment_report: アセスメント
+    assessments_copy: コピー
+    assessments_copy_assessment: コピー査定
+    assessments_help_text: この選択は評価の生の応答イベントにのみ影響します。
+    assessments_label: アセスメント
     assessments_not_mhs: すべての評価はMHSタイプでなければならない
+    assessments_placeholder: 評価を選択
     assessments_reports: アセスメント＆レポート
+    assessments_required: 評価生データ応答イベントには、少なくとも1つの評価を選択する必要があります。
+    assessor: アセッサ
+    assessor_add_subject_modal_assessment: アセスメント
+    assessor_add_subject_modal_mark_as_lead_assessor: 上記科目の主査としてマーク
+    assessor_add_subject_modal_subject: 課題
+    assessor_add_subject_modal_subject_placeholder: 検索対象...
+    assessor_add_subject_modal_title: 件名の追加
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: 評価を選択する
+    assessor_assessment_name: アセッサーの評価
+    assessor_assessments: アセッサーの評価
+    assessor_assessments_actions_add_subject: 件名の追加
+    assessor_assessments_actions_rescore: リスコア
+    assessor_assessments_actions_reset: リセット評価
+    assessor_assessments_actions_reset_progress: 進行状況のリセット
+    assessor_assessments_bulk_delete_confirmation: 本当に選択したレコードを削除したいのですか？
+    assessor_assessments_bulk_delete_successful: 評価者の評価が正常に削除されました
+    assessor_assessments_reset_confirmation: メール「%{subjectEmail}」で件名の評価をリセットしますか？
+    assessor_assessments_reset_progress_confirmation: メール「%{subjectEmail}」で件名の進行状況をリセットしますか？
+    assessor_assessments_reset_progress_successfully: 電子メール "%{subjectEmail}" を持つサブジェクトのリセットの進行に成功しました。
+    assessor_assessments_reset_successfully: 電子メール "%{subjectEmail}" による件名のリセット評価に成功しました。
+    assessor_assessments_subject_email: 件名電子メール
+    assessor_assessments_subject_name: 件名
+    assessor_campaigns_statuses_completed: 完了済み
+    assessor_campaigns_statuses_in_progress: 進行中
+    assessor_campaigns_statuses_not_started: 未着手
+    assessor_completed_at: 完成
+    assessor_count: アセッサ
+    assessor_create_assessor: アセッサーの追加
     assessor_dashboard: 査定者ダッシュボード
+    assessor_email: 査定者のEメール
+    assessor_evaluations: アセッサー評価
+    assessor_first_name: アセッサー名
     assessor_form: アセッサフォーム
+    assessor_ids_label: アセッサ
+    assessor_last_name: 査定者の姓
+    assessor_modals_create_assessor_title: アセッサーの追加
+    assessor_modals_import_body: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
+    assessor_modals_import_title: インポートアセッサー
+    assessor_overview: 概要
+    assessor_placeholder: アセッサーの検索...
+    assessor_remove_confirmation: このキャンペーンから電子メール%{email}を持つ査定者を本当に削除しますか?
+    assessor_statuses_completed: 完了済み
+    assessor_statuses_not_completed: 未完了
+    assessor_subjects_statuses_completed: 完了済み
+    assessor_subjects_statuses_in_progress: 進行中
+    assessor_subjects_statuses_not_started: 未着手
+    assessor_toolbar_export: 輸出アセッサ
+    assessor_toolbar_import: インポートアセッサー
     assessor_workshops: アセスメント・センター
     assessors: アセッサ
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
     assistant_toolbar_not_a_valid_operation: "%{operation} という操作は不明です。"
     assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
+    attendance: 出席状況
+    attendance_status: 出席状況
+    audit_log_title: 監査ログ情報
+    audit_log_type: レコードの種類
     audit_logs: 監査ログ
     audit_reports: 監査報告書
+    auth_type_api_key_header_format_error: アルファベット、数字、アンダースコア、ハイフンのみが使用可能です。
+    auth_type_api_key_header_label: APIキー・ヘッダ
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: APIキー
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: ベーシック
+    auth_type_basic_value: 基本認証
+    auth_type_label: 認証タイプ
+    auth_type_name: auth_type
+    auth_type_no_auth_label: なし
+    auth_type_no_auth_value: no_auth
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: このスコアは自動で調整されており、変更することはできません
     auto_placeholder: 自動車
+    automatically_send_invites: 新しい評価者に自動的に招待状を送る
     availability: 空室状況
-    available_languages: 報告書は言語で提供可能
+    available_languages: 利用可能な言語
     average: 平均
+    back: スコアをリセット
     back_to_main: メインメニュー
+    background_color: 背景色
+    background_label: 背景
+    background_overlay_label: 背景オーバーレイ
+    background_size: 背景サイズ
+    background_size_contain: コンテイン
+    background_size_cover: カバー
+    basic_info_panel_description: 複数の日程を選択して、複数の評価センターを作成することもできます。
+    basic_info_panel_title: 基本情報
     block_editor_add_question: 質問を追加
     block_editor_question_randomization: 問題のランダム化
     block_options: ブロックのオプション
     block_settings: ブロックの設定
     blocks_new_button: 新しいブロック
     blocks_title: ブロック
+    booked_at: で予約：
+    breadcrumbs_norms_editor: ノーム・エディター
     bulk_assets_modal_choose_csv: CSVファイルを選択
     bulk_assets_modal_choose_zip: ZIPファイルを選択
     bulk_assets_modal_not_csv_file_error: CSVアップロードではCSVファイルのみが許可されています。有効なCSVファイルをアップロードしてください。
     bulk_assets_modal_subtitle: "<b>1つのCSVファイル</b>（ヘッダー：user_email, file_name）と、<b>1つのZIPファイル</b>（CSVのファイル名と一致するPDFファイルを含む）をアップロードしてください。ZIPファイルは%{max_file_size}MB未満である必要があります。"
     bulk_assets_modal_title: CSVファイルとZIPファイルをアップロード
     bulk_upload_ai_artifacts: 大量アップロードAIアーティファクト
+    campaign: キャンペーン
+    campaign_admin: キャンペーン管理者
     campaign_ai_artifact_updated_successfully: キャンペーンAIアーティファクトが正常に更新されました
     campaign_ai_artifacts_instruction_templating_tooltip: Liquidテンプレート構文と利用可能な変数を用いたプロンプトテンプレート機能により、高度な指示を使用できます。詳細については、ドキュメントを参照してください。
-    campaign_ai_artifacts_results_export_details: キャンペーンAIアーティファクトが生成した結果
     campaign_assessment_actions_disable_caching: 評価キャッシュを無効にする
     campaign_assessment_actions_enable_caching: 評価キャッシュの有効化
     campaign_assessment_column_caching_enabled: 評価キャッシュ有効
@@ -199,67 +285,220 @@ ja:
     campaign_assessment_modals_enable_caching_successfully: この評価のためにキャッシュが有効化されています。
     campaign_assessment_modals_enable_caching_title: 評価キャッシュを有効にする?
     campaign_factors: キャンペーン要因
+    campaign_id_placeholder: キャンペーンIDの登場です
     campaign_name: キャンペーン名
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: 外部レポートID
-          language_id: 言語ID
-          norm: 基準
-          norm_id: 基準ID
-          suitability_id: 適合性ID
-        labels:
-          assessment_ids: 評価ID
-          available_languages: 利用可能な言語
-          campaign_report_id: キャンペーンレポートID
-          check_details: 詳細を確認する
-          default_language: 既定の言語
-          external_settings: 外部設定
-          provider: プロバイダー
-          report_pdf_status: レポートのPDFステータス
-          user_report_id: ユーザーレポートID
+    campaign_report_generate_modal_subtitle: 各レポートに必要な言語を選択
+    campaign_report_id: キャンペーンレポートID
+    campaign_results_export_details: キャンペーンAIアーティファクトが生成した結果
     campaign_templates: キャンペーンテンプレート
+    campaign_templates_campaign_templates: キャンペーンテンプレート
+    campaign_templates_column_assessment: アセスメント
+    campaign_templates_column_campaign: キャンペーン
+    campaign_templates_column_owner: オーナー
+    campaign_templates_column_report: レポート
+    campaign_templates_form_assessment: アセスメント
+    campaign_templates_form_assessment_placeholder: 評価を選択する
+    campaign_templates_form_name_placeholder: 名前を入力
+    campaign_templates_form_owner: オーナー
+    campaign_templates_form_owner_placeholder: オーナーの選択
+    campaign_templates_form_report: レポート
+    campaign_templates_form_report_placeholder: レポートを選択する
+    campaign_templates_form_title: キャンペーンテンプレート
+    campaign_templates_remove_confirm_content: キャンペーン・テンプレート '%{name}' を本当に削除しますか？
+    campaign_templates_remove_confirm_success: キャンペーン・テンプレート '%{name}' は正常に削除されました。
+    campaign_templates_remove_confirm_title: キャンペーンテンプレートの削除
     campaign_user_job_roles_cannot_be_same: 対象となる職務は現在の職務とは異なるものでなければならない
     campaigns: キャンペーン
+    campaigns_convert_to_template: テンプレートに変換
+    campaigns_extend_time_success_message: キャンペーン・タイマーを%{minutes}分に延長
+    campaigns_external_scores_import_modal_title: 外部キャンペーンスコアのインポート
+    campaigns_filters_active: アクティブ
+    campaigns_filters_all: すべて
+    campaigns_filters_archived: アーカイブ
+    campaigns_filters_closed: クローズド
+    campaigns_filters_inactive: 活動休止中
+    campaigns_filters_status: ステータス
+    campaigns_form_active_notice: キャンペーンステータスは、選択した終了日にクローズに自動的に変更されます
+    campaigns_form_campaign: キャンペーン
+    campaigns_form_copy_factors: コピー係数
+    campaigns_form_inactive_notice: キャンペーンのステータスは、選択した開始日に自動的にアクティブに変更されます
+    campaigns_form_practice_campaign: 練習キャンペーン
+    campaigns_listing_assessments: アセスメント
+    campaigns_listing_reports: レポート
+    campaigns_listing_template: テンプレート
+    campaigns_menus_add_common_campaign: 共通キャンペーンの追加
+    campaigns_menus_add_multi_rater_campaign: マルチ評価者キャンペーンを追加
+    campaigns_pdf_password: PDFパスワード
+    campaigns_tab: キャンペーン
+    campaigns_types_common: 共通
+    campaigns_types_threesixty: マルチ・レイター
+    campaigns_users_add_user: ユーザー追加
+    campaigns_users_completion_status: 完成状況
+    campaigns_users_created_by: 作成者
+    campaigns_users_filters_all: すべて
+    campaigns_users_filters_anonymous: 匿名
+    campaigns_users_filters_identified: 特定
+    campaigns_users_is_active: アクティブ
+    campaigns_users_no_permission_message: を変更する権限がありません。
+    campaigns_users_title: ユーザー
+    campaigns_users_updated_by: 更新者
     cancel: キャンセル
+    cancel_confirmation_message: 本当にフォームの進行状況を破棄しますか？
+    cancel_confirmation_title: 廃棄フォームの進捗状況
     cancellation_and_rescheduling_disabled: キャンセルおよび日程変更は無効です
+    cancellation_lead_time_label: キャンセルのリードタイム
+    cannot_change_type_when_in_use: AIアシスタント「%{name}」は現在使用中のため、タイプを変更できません。
     captcha: キャプチャ認証
     case_study: ケーススタディ
     casual: カジュアル
+    categories_approvals: 承認
+    categories_invitations: 招待状
+    categories_reminders: 注意事項
+    categories_report_ready: レポート準備
+    category: カテゴリー
     cell_save_msg: 編集後にセルからカーソルを移動させると、有効な変更は自動的に保存されます。
+    change_reason: 変更理由
+    change_score: 変更されたスコア
+    change_score_log: 変更スコアログ
     characters: 文字
     chat_instructions_success: チャットの指示が正常に保存されました
+    check_details: 詳細を確認する
     children_factor_type: 児童要因タイプ
     client: クライアント・テナンシー
+    client_admin: クライアント管理者
     client_admins: クライアント管理者
+    client_credentials_label: クライアント資格情報
+    client_credentials_value: client_credentials
+    client_features: クライアントの特徴
+    client_id_label: クライアントID
+    client_id_name: oauth_client_id
+    client_id_required: クライアントIDは必須です
+    client_ip: クライアントIp
+    client_logo_label: クライアントロゴ
+    client_secret_label: クライアントシークレット
+    client_secret_name: oauth_client_secret
+    client_secret_required: クライアントシークレットが必要です
     clients: 顧客契約
+    closed: クローズド
     code_required: コードが必要です
+    collapse_filters: 折りたたみフィルター
+    column_code: コード
+    column_invitation_status: 招待状況
+    column_participant: 参加者
+    column_provider: プロバイダー
+    column_scheduling_details: スケジュール詳細
+    column_usage_stats: 使用統計
     common: TTEアセスメント
     common_assessment: TTEアセスメント
+    common_disabled: ディアスブル
+    common_download_sample_file: サンプルファイルのダウンロード
+    common_enabled: 有効
+    common_import_failure_msg: ファイルのインポート中にエラーが発生しました。
+    common_minute: 微細
+    common_select_all: すべて選択
+    common_type: タイプ
+    common_unselect_all: すべて選択解除
     communication_center: コミュニケーション・センター
     communications: コミュニケーション
+    communications_form_insert_piped_text: パイプ付きテキストの挿入
     completed: 完了
     completed_tooltip: すべての評価者が評価を提出しました
+    components_input_duration_placeholder: 1d 2h 3m」と入力する。
     concise: 簡潔
+    confidence_interval: 信頼区間
+    confidence_interval_update_success: 信頼区間が正常に更新されました
     configure_model_answer_title: 模範解答とキーワードを設定する
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     confirmation_required: 確認が必要です
     confirmation_required_details: "「%{resource}」の「%{resource_name}」を削除してもよろしいですか？"
+    consolidated: 連結
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: コピーされました
     copied_url_success: URLがクリップボードに正常にコピーされました
     copy_ai_artifacts: AI生成のアートワークをコピー
+    copy_hint: 上記のシート、センターマネージャー、アセッサー、ミーティングおよびリソースの設定を次のアセスメントセンターにコピーします。 コピー後、次に進む前に個々のアセスメントセンターに対してさらに変更を加えることができます。
     copy_image_url: 画像のURLをコピー
+    copy_text: テキスト
+    copy_to_all: 他のアセスメント・センターへのコピー
     copy_url: URLをコピー
     country: 国名
+    course: コース
+    create_ai_assistants: AIアシスタントを作る
     create_client: クライアント作成
     create_indicator: インジケーターを作成する
-    current_job_role: 現在の職務内容
+    create_level_description_must_exist: レベルの説明を空白にすることはできません
+    create_level_name_must_exist: レベル名は空白にできない
+    create_must_be_unique: ユニークでなければならない
+    created_successfully: AIアシスタントが正常に作成されました。
+    current: 現在
+    current_job_role: 現在の職務
+    custom_formula: カスタム・フォーミュラ
+    custom_message_description: このメッセージは、アセスメントに参加するすべての人に送ることができます。
+    custom_message_name: カスタムメッセージ
     custom_upload: カスタムアップロード
     dashboard: ダッシュボード
+    dashboard_capacity_name: 容量名
+    dashboard_choose_file_format: ファイル形式の選択
+    dashboard_dashboard_types_oracle_analytics: オラクル・アナリティクス
+    dashboard_dashboard_types_powerbi: パワービー
+    dashboard_dashboards: ダッシュボード
+    dashboard_export_dashboard_to_file: ダッシュボードをファイルにエクスポート
+    dashboard_export_job_failure: エクスポートの開始に失敗しました
+    dashboard_export_job_success: エクスポート作業を開始しました。完了すると通知されます。
+    dashboard_form_image_upload_failed: 画像のアップロードに失敗しました。
+    dashboard_form_none: なし
+    dashboard_form_refresh_success: データセットの更新が正常にスケジュールされました。
+    dashboard_get_started: スタート
+    dashboard_initialize_msg: このキャンペーンのダッシュボードを初期化する
+    dashboard_loading_failed: ダッシュボードの読み込みに失敗しました。
+    dashboard_only_export_current_tab: 現在のタブのみエクスポート
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: 設定のデータセットとレポートIDが正しいか確認してください。
+    dashboard_preview_embed_token_error_title: Embed トークンを生成できません。
+    dashboard_settings_capacity_id: 容量ID
+    dashboard_settings_details: 詳細
+    dashboard_settings_refresh: リフレッシュ
+    dashboard_settings_workspace_id: ワークスペースID
+    dashboard_tabs_accesssheet: アクセスシート
+    dashboard_tabs_accesssheet_setting: アクセスシートの設定
+    dashboard_tabs_settings: 設定
     dashboards: ダッシュボード
+    dashed_button: 破線
+    data_exports_modal_title: 日付範囲を選択
+    data_range_error: 日付を選択してください
     data_reports: データレポート
+    data_reports_columns_created_at: 作成日時：
+    data_reports_columns_created_by: 作成者
+    data_reports_columns_last_updated_by: 最終更新者
+    data_reports_columns_password: パスワード
+    data_reports_columns_udpated_at: 最終更新日
+    data_reports_configuration: 構成
+    data_reports_form_name: データレポート
+    data_reports_messages_runed: データレポートが正常にスケジュール実行されました。
+    dataset_id: データセットID
     datasheet: データシート
+    date_and_time: 日時
+    date_presets_last_30_days: 過去30日間
+    date_presets_last_7_days: 直近7日間
+    date_presets_last_month: 先月
+    date_presets_last_week: 先週
+    date_presets_today: 今日
+    date_presets_yesterday: 昨日
+    date_range: 日付範囲
+    dates_completed: 完成
+    dates_end: 終了日
+    dates_label: 日程
+    dates_start: 開始日
+    dates_started: で開始
+    days_repeated: 日間、繰り返し
     declined: 減少
+    default: デフォルト
+    default_assessment_language: 評価のデフォルト言語
+    default_button: デフォルト
+    default_language: デフォルト言語
+    default_report_language: 報告書のデフォルト言語
     define_max_score_text: "%{maxScore}（最高得点）のスコアを定義する"
     define_min_score_text: "%{minScore}（最低スコア）のスコアを定義する"
     define_optional_score_range_text: スコアを定義する %{minScore} から %{maxScore} (オプション)
@@ -267,10 +506,40 @@ ja:
     definition: 定義
     delete_ok_text: はい、削除してください
     denied: 拒否
+    dependencies: 依存関係
     description: 説明
+    description_name: 説明
+    description_save: 詳細を保存
+    description_save_success: 説明が正常に保存された
     descriptive_text: 説明文
     development_actions: 開発アクション
+    development_actions_duration_max_length: 1年を超えることはできません
+    development_actions_duration_min_length: 1分未満にすることはできません
+    development_actions_export_development_action_translations: プロジェクトに基づく開発行為翻訳
+    development_actions_export_development_actions: 開発アクション
+    development_actions_export_failure_msg: 翻訳のエクスポート時のエラー
+    development_actions_export_success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
+    development_actions_form_available_languages: 利用可能な言語
+    development_actions_form_client_placeholder: クライアントの選択
+    development_actions_form_course_image: コースイメージ
+    development_actions_form_course_link: コースリンク
+    development_actions_form_development_action_type: 開発アクションのタイプ
+    development_actions_form_duration: 期間
+    development_actions_form_learning_style: 学習スタイル
+    development_actions_form_project_placeholder: プロジェクトを選択する
+    development_actions_form_skills: スキル
+    development_actions_form_skills_placeholder: スキルを選択する
     development_actions_form_tags: タグ
+    development_actions_form_title: 開発アクション
+    development_actions_global: グローバル開発はアクションか？
+    development_actions_heading: 開発アクション
+    development_actions_import_action_development_actions_title: インポート開発アクション
+    development_actions_import_action_development_actions_translations_title: インポート 開発 アクション 翻訳
+    development_actions_import_development_actions: 開発アクション
+    development_actions_import_development_actions_translations: 開発アクション 翻訳
+    development_actions_import_download_example_csv: サンプル規範CSV
+    development_actions_import_failure_msg: ファイルのインポート中にエラーが発生しました。
+    development_actions_import_info_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
     digest_delivery_mode:
       form_label: ダイジェスト配信モード
       immediate: 即時 - 一括送信があるたびに送信する
@@ -291,16 +560,68 @@ ja:
       wednesday: 水曜日
     dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
+    dimensions_destroy_successfully: ディメンション %{name} は正常に削除されました。
+    dimensions_export_json_successfully: ディメンジョン %{name} に対してスケジュールされた JSON をエクスポートしています。
+    dimensions_form_enable_innovation_styles: イノベーションのスタイルを可能にする
+    dimensions_form_enable_occupations: 職業を可能にする
+    dimensions_form_title: 寸法
+    dimensions_import_factors_sample_file: サンプルファイル
+    dimensions_import_factors_title: 輸入要因
+    dimensions_import_modal_after: その後
+    dimensions_import_modal_before: 前
+    dimensions_import_modal_change_log_input: 変更履歴
+    dimensions_import_modal_error: エラー
+    dimensions_import_modal_error_occurred: エラーが発生しました
+    dimensions_import_modal_errors_file_error: 続行する前にJSONファイルを選択してください。
+    dimensions_import_modal_errors_processing_error: エラー処理ファイル
+    dimensions_import_modal_field: フィールド
+    dimensions_import_modal_import_dimension: 輸入寸法
+    dimensions_import_modal_import_scheduled: インポート予定
+    dimensions_import_modal_operation: オペレーション
+    dimensions_import_modal_owner_input_validation: オーナーを選択してください
+    dimensions_import_modal_owner_select: オーナーの選択
+    dimensions_import_modal_select_json: JSONファイルを選択
+    dimensions_index_title: 寸法
+    dimensions_resource_confirmations_delete_body: "<p>本当にこのディメンションを削除しますか？</p>\n"
+    dimensions_resource_confirmations_delete_message: 確認のため、以下の次元名をテキストボックスに入力してください
+    dimensions_resource_tooltips_export_json: 他のプラットフォームでインポートするためにJSONをエクスポートする
+    dimensions_translations_export: すべてをエクスポート
+    dimensions_translations_header: 因子の翻訳
+    disable_caching_content: この評価でキャッシュを無効にするつもりですか?
+    disable_caching_successfully: この評価ではキャッシュは無効化されています。
+    disable_caching_title: 評価キャッシュを無効にする?
+    disable_cancellation_and_rescheduling: キャンセルと再スケジューリングを無効にする
+    disable_dp: さらなるデータ処理を許可しない
     disable_proctoring: 監督機能を無効にする
+    disable_report_download: レポートのダウンロードを無効にする
     disallow_lead_assessor_moderation: 主任審査員の審査を無効にする
     disallow_lead_assessor_moderation_info: スコアは、すべての評価者フォームの提出内容に基づいて自動的に算出され、主任評価者はモデレーション画面からこれを変更することはできません。
+    discard_all_questions: すべての質問をリセット
+    discard_all_questions_description: すべての問題のスコアをリセットし、上書き設定をすべて解除します。この操作は元に戻せません。本当に実行しますか？
+    discard_all_questions_title: すべての問題の得点をリセットしますか？
+    discard_question: 質問のスコアをリセットする
+    discard_question_confirm_description: この操作により、この問題の全スコアがリセットされ、上書き設定が解除されます。本当に実行しますか？
+    discard_question_confirm_title: 質問のスコアをリセットしますか？
+    discarded_changes: 破棄された変更
+    document_titles_project_assessors: アセッサ｜%{project}。
+    document_titles_project_participants: 参加者｜%{project}。
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
     download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
+    download_example_csv: サンプル規範CSV
+    dp_consent: データ処理同意の有効化
+    dp_consent_custom: データ処理同意のカスタマイズ
+    dp_consent_version: 政策バージョン
     duration: 期間
+    duration_label: 期間
+    duration_max_error: 16時間を超えてはならない
+    duration_min_error: 15分以内
     duration_must_be_positive: 期間は正の数でなければなりません
+    duration_placeholder: 例：4時間30分
+    edit_ai_assistants: AIアシスタントを編集する
     edit_campaign_admin: キャンペーン管理者の編集
     edit_client_admin: クライアント管理者の編集
+    edit_email: Eメールを編集する
     edit_folder: フォルダを編集
     edit_indicator: 編集インジケーター
     edit_job_roles: 職務内容の編集
@@ -309,14 +630,23 @@ ja:
     edit_permission_denied: 管理者の「%{name}」を編集する権限はありません
     edit_project_admin: プロジェクト管理者の編集
     edit_threesixty_campaign_admin: キャンペーン管理者の編集
+    email_manager_when_report_is_ready_for_approval: レポートの承認準備が完了したら、マネージャーにEメールを送信
+    email_messages: Eメールメッセージ
+    email_subject_when_report_becomes_available: レポートが入手可能になったら、件名に電子メールを送信
+    email_subjects_manager_when_available: レポートが入手可能になり次第、対象者のマネージャーにメールする
     empty: 空
     empty_csv_file: CSVファイルにはデータが含まれていません。
+    enable_caching_content: この評価でキャッシュを有効にしたいと本当に思っていますか?
+    enable_caching_successfully: この評価のためにキャッシュが有効化されています。
+    enable_caching_title: 評価キャッシュを有効にする?
     enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
     enable_maintenance: メンテナンスを有効にする
     enable_mobile_proctoring: モバイル試験監督を有効にする
     enable_system_check: システムチェックを有効にする
     enable_transcription: 文字起こしを有効にする
     enable_transcription_msg: 動画/音声応答問題でAIスコアリングを使用するには、文字起こし機能を有効にしてください。
+    enable_video_call_recording: ビデオ通話録音を有効にする
+    enabled: 有効
     end: 終わり
     end_time: 終末
     end_time_must_be_after_start_time: 終了時刻は開始時刻より後でなければならない
@@ -325,19 +655,75 @@ ja:
     enter_description: 説明を入力してください
     enter_name: 名前を入力してください
     enter_question_id: 質問IDを入力してください
+    enter_schema_key: スキーマ・キーを入力
     error: エラー
+    error_color: エラーカラー
+    errors_csv_file_required: ファイルはCSVファイルでなければならない
+    errors_error_msg: ページを更新し、それでも問題が解決しない場合は、管理者に連絡してください。
+    errors_min_retention: 1日未満にすることはできません
+    errors_policy_version_format: 整数のみ使用可
+    errors_required: 必須
     estimated_tokens: トークン（推定）
+    evaluate_others_description: このメッセージは、参加者がポータル内から他の参加者を評価する際に表示されます。
+    evaluate_others_name: 他者を評価する
+    evaluate_self_description: このメッセージは、被験者が自己評価を開始する際に表示される。
+    evaluate_self_name: 評価者
+    evaluation_help_description: ユーザー・ダッシュボードの評価カードに表示されるヘルプ・テキスト
+    evaluation_help_name: 評価のヘルプ
     evaluation_status: 評価状況
     evaluation_status_not_done: 選ばれた1つ以上の被験者の評価状況は「完了」ではありません。選ばれたすべてのユーザーが評価を完了しているか、完了したとマークしてください。
+    evaluations_completed: 完了した評価
+    evaluations_received: 受けた評価
+    evaluator_invite_description: このメッセージは、評価者であるすべての参加者に送信されます。
+    evaluator_invite_name: 評価者招待
+    evaluator_reminder_description: このメッセージは、評価者に保留中の評価を完了するよう促すために送信されます。
+    evaluator_reminder_name: 評価者リマインダー
+    evaluator_reminder_rule_description: 招待がスケジュールされたときに自動的にスケジューリングするルールを指定する
+    evaluator_reminder_rule_name: 評価者リマインダー・ルール
+    evaluator_welcome_description: このメッセージは「ウェルカムメッセージ」を上書きし、現在評価者として参加している参加者のみに表示されます。
+    evaluator_welcome_name: 評価者歓迎
+    evaluators_title: 評価者
+    evidence_from_transcript: 記録からの証拠
+    expand_filters: フィルタの拡大
     export_admin_roles_permissions: 管理者の役割と権限のエクスポート
+    export_admins_with_permissions: 管理者の役割と権限のエクスポート
+    export_ai_artifacts: AIアーティファクトのエクスポート
     export_campaigns_queued: エクスポート処理がキューに登録されました。ダウンロードリンクについては、通知をご確認ください。
     export_compact_completion_status: コンパクト
     export_completion_status: 輸出完了状況
     export_completion_statuses_scheduled: 完了ステータスのエクスポートジョブが正常にスケジュールされました
     export_detailed_completion_status: 詳細
+    export_failure_msg: 熟練度レベルのエクスポート時のエラー
+    export_success: 管理者エクスポートジョブは正常にスケジュールされました。 ステータスについては通知を確認してください。
+    export_success_msg: 進行中の開発アクションのエクスポート
+    export_with_inactive_users: 非アクティブユーザーを含むエクスポート
+    external_report_id: 外部レポートID
+    external_score: 外部スコア
+    external_settings: 外部設定
+    factor_benchmark_scores_updated: ファクター・ベンチマーク・スコアの更新に成功
     factor_feedback: 要因フィードバック
     factor_selection: 因子の選択
     factors: 要因
+    factors_form_components_ExternalList_table_jsonpath: JSONパス
+    factors_form_components_ExternalList_table_types_norm_score: 標準スコア
+    factors_form_components_ExternalList_table_types_percentage: パーセント
+    factors_form_components_ExternalList_table_types_percentile: パーセンタイル・スコア
+    factors_form_components_ExternalList_table_types_score: スコア
+    factors_form_components_ExternalList_table_types_zscore: Zスコア
+    factors_form_components_ExternalList_title: スコアのJSONパス
+    factors_form_predicate: 述語
+    factors_form_scoring_strategies_custom_formula: カスタム・フォーミュラ
+    factors_form_scoring_strategies_tip: "<strong>質問 (平均):</strong>これは、ある要素に関連する質問がある場合の現在の採点方法のようなものです。 <br /> <br /><strong>質問 (合計):</strong>これは質問 (平均) のようなものですが、合計を使用します。 <br /> <br /><strong>他のファクターの質問（平均）</strong>：これは、ファクターにサブファクターがある場合の現在の採点方法と同じです。 <br /> <br /><strong>その他の要因の質問(合計):</strong>これはその他の要因(平均)と同じですが、合計を使用します。 <br /> <br /><strong>加重合計(Weighted Sum of Factors)：</strong>選択された他要素の得点に加重を乗じたものが加算される。"
+    factors_form_scoring_strategy: 得点戦略
+    factors_form_search_factors: 検索要素
+    factors_form_use_sub_factor_norm_score: 因子規範スコアを使用
+    factors_form_value: 価値
+    factors_index_precision: 精度
+    factors_index_scoring_strategy: 得点戦略
+    factors_index_sub_factors: サブファクター
+    factors_index_title: 要因
+    factors_resource_confirmations_delete_body: "<p>本当にこのファクターを削除しますか？</p>\n"
+    failure_reason: 故障理由
     feature_ai_assistants_description: AI搭載アシスタントを有効化し、ユーザー体験を向上させる
     feature_ai_assisted_idp_description: AIを活用して個人開発計画の提案を支援する
     feature_ai_content_analysis_description: 評価のためのAIを活用したコンテンツ分析を有効にする
@@ -351,21 +737,87 @@ ja:
     feature_global_skills_description: グローバルスキルライブラリにアクセスして評価を実施する
     feature_idp_description: 参加者のための個人開発計画を有効にする
     feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
+    fields_level: レベル
+    fields_level_description: レベル説明
+    fields_level_name: レベル名
+    fields_proficiency_translations: 翻訳能力
+    fields_proficiency_type: 熟練度タイプ
+    fields_skill: スキル
+    fields_skill_name: スキル名
+    fields_skill_type: スキルタイプ
     file_size_must_be_less_than_mb: ファイル {{name}} は、最大サイズ {{max_size_mb}} MB を超えています
     file_upload_failed: "{{name}} のアップロードに失敗しました"
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
     final_score_empty_msg: 合計金額は空欄にできません。
+    finalized_at: 確定日
+    first_name_required: 姓は必須
     fix_grammar: 文法修正
+    fixed_time: 固定時間
+    form_active: アクティブ
+    form_add_assessment: 評価の追加
+    form_ai_assistant: AIアシスタント
+    form_assessment_required: 査定が必要
+    form_assessments: アセスメント
+    form_campaign_factors: キャンペーン要因
+    form_code: コード
+    form_configuration: 構成
+    form_datasheet: データシート
+    form_datasheet_columns: データシートの列
+    form_end_date: 終了日
+    form_include_all_datasheet_columns: すべてのデータシート列を含める
+    form_name: 名称
+    form_no_assessment_selected: 評価はまだ追加されていません。「追加」をクリックして開始します。
+    form_questions_required: 少なくとも 1 つの質問を選択する必要があります
+    form_select_ai_assistant: AIアシスタントを選択
+    form_select_assessment: 評価の選択
+    form_select_campaign_factors: キャンペーンファクターの選択
+    form_select_datasheet_columns: データシートの列の選択
+    form_select_questions: 質問を選択
+    form_start_date: 開始日
+    form_title: AIアーティファクト
+    form_total_count: 総カウント数
     formal: 正式
-    from: 差出人
+    from: より
+    genders_female: 女性
+    genders_male: 男性
+    genders_not_set: 未設定
+    generate: 生成する
+    generate_result_confirm: ユーザー「%{email}」のアーティファクト結果を生成すると、このAIアーティファクトに依存している既存のレポートが削除されます。本当に続行しますか？
+    generate_result_info_message: 結果が生成されていますので、ページを更新して更新された結果を確認してください。
+    generate_results: 結果を生成する
     generate_transcription: 文字起こしを生成する
+    generated_at_time: "%{time}で生成"
+    generated_value: 生成された価値
+    global_skills: グローバル・スキル
+    global_skills_disabled_by_client: グローバルスキルがクライアントによって無効になっている
+    grant_type_label: 助成金の種類
+    grant_type_name: oauth_grant_type
     graphic: グラフィック
     graphic_slider: グラフィックスライダー
+    header_logout_content: 作業を続けたい場合はキャンセルを押してください。現在のユーザーをログアウトするにはOKを押してください。
+    header_logout_title: 本当にログアウトしたいですか?
+    hide_all: すべて隠す
     hide_middle_scores: 中間スコアを非表示にする
     high: 高い
     hogan: ホーガン
     hogan_assessment: ホーガン・アセスメント
+    hogan_provider: プロバイダー
+    hogan_providers_mercer: マーサー
+    hogan_providers_phoenix: フェニックス
+    hover_options_danger_item: 危険アイテム
+    hover_options_first_menu_item: 第1メニュー
+    hover_text: ホバー・ミー
+    idp: アイディーピー
+    idp_actions_remove_confirm: テンプレートを削除するには、以下のテキストボックスに現在のテンプレート名を入力してください。
+    idp_actions_success: "%{idpName}は正常に削除されました。"
+    idp_add_idp_template: IDPテンプレートの追加
+    idp_ai_assistant: AIアシスタント
+    idp_ai_assisted_idp_enabled: AIアシストIDP対応
+    idp_ai_enabled: AI対応
+    idp_ai_settings: AI設定
+    idp_all: すべて
+    idp_appearance: 外観
     idp_appearance_body: 本文
     idp_appearance_color: 色
     idp_appearance_cover: 表紙
@@ -376,6 +828,7 @@ ja:
     idp_appearance_guideline_position_second: 2ページ目（表紙の次）
     idp_appearance_guideline_position_second_last: 最後から2ページ目（最終ページの前）
     idp_appearance_guidelines: ガイドライン
+    idp_appearance_hint: 外観を変更するには、まずIDPテンプレートを保存して、これらの設定を有効にしてください。
     idp_appearance_idp_skills: IDPのスキル
     idp_appearance_last: 最後
     idp_appearance_per_page_font_settings: ページごとのフォント設定
@@ -388,20 +841,134 @@ ja:
     idp_appearance_show_guidelines: ガイドラインページを表示
     idp_appearance_size: サイズ
     idp_appearance_subtitle: 字幕
+    idp_appearance_success: アピアランス設定の保存に成功
     idp_appearance_title: タイトル
+    idp_background_image: 背景画像
+    idp_behavioral_skills: 行動スキル
+    idp_client_skills: クライアント・スキル
+    idp_delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
+    idp_delete_skill_msg: 本当にこのスキルを削除したいですか?削除すると関連する開発アクションもすべて削除されます。
+    idp_details_updated: IDP詳細の更新に成功
+    idp_development_actions_add_from_library: ライブラリから追加
+    idp_development_actions_completion: 完成
+    idp_development_actions_create_development_actions_with_ai: AI for を使用した開発アクションの作成
+    idp_development_actions_create_from_ai: AIから作成
+    idp_development_actions_create_my_own: マイ・オウン作成
+    idp_development_actions_custom: カスタム
+    idp_development_actions_date_range: 開始日 - 終了日
+    idp_development_actions_edit_plan_to_add_development_actions: 計画を編集し、開発アクションを追加します。
+    idp_development_actions_errors_learning_style_blank: 学習スタイルを空白にすることはできません
+    idp_development_actions_generate_by_ai: AIによる生成
+    idp_development_actions_generate_more: さらに増やす
+    idp_development_actions_heading: 開発アクション
+    idp_development_actions_manage_skills: スキルの管理
+    idp_development_actions_no_development_actions: 開発行為なし
+    idp_disabled_by_client: IDP はクライアントによって無効になっています
+    idp_document_ai_assistant: ドキュメント分析AIアシスタント
+    idp_edit_template: IDPテンプレートの編集
+    idp_enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択する
+    idp_enter_template_description_error: テンプレートの説明が必要です。
+    idp_enter_template_name_error: テンプレート名は必須
+    idp_errors_cannot_update_progress_plan_completed: IDP計画が完了したため、進捗状況を更新できない
+    idp_errors_skills_required_on_publishing: テンプレートを公開する前にスキルを選択してください。
+    idp_errors_update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
+    idp_fields_approval_date: 承認日
+    idp_fields_assigned_data: 割り当てデータ
+    idp_fields_assigned_date: 割り当て日
+    idp_fields_completion_date: 完了日
+    idp_fields_current_job_role: 現在の職務
+    idp_fields_division: 部門
+    idp_fields_label: フィールド
+    idp_fields_name: 名称
+    idp_fields_publish_date: 公開日
+    idp_fields_review_date: レビュー日
+    idp_fields_target_job_role: ターゲット職種
+    idp_global_skills: グローバル・スキル
+    idp_idp: アイディーピー
+    idp_idp_template: IDPテンプレートの追加
+    idp_interview_questions: 面接の質問
+    idp_interview_questions_updated: 面接の質問が正常に更新されました。
+    idp_intro_message: 導入メッセージ
+    idp_intro_message_hint: 紹介メッセージを変更するには、まず IDP テンプレートを保存してこれらの設定を有効にしてください。
+    idp_intro_message_success: 紹介メッセージが正常に保存されました
+    idp_locales: ロケール
+    idp_logo_image: ロゴイメージ
+    idp_logo_type_both: マーサーとクライアントのロゴ
+    idp_logo_type_client_only: クライアントのロゴのみ
+    idp_logo_type_label: ロゴタイプ
+    idp_logo_type_mercer_only: マーサーのロゴのみ
+    idp_logo_type_none: ロゴなし
+    idp_no_interview_questions_selected: 面接の質問は選択されていません
+    idp_no_reflection_questions_selected: 選択された振り返りの質問はありません
+    idp_none: なし
+    idp_one_click_idp_enabled: ワンクリックIDP有効
     idp_plan_reset_success: 計画は正常にリセットされました
+    idp_reference_locale: 参照ロケール
+    idp_reflection_questions: 振り返りの質問
+    idp_reflection_questions_hint: 振り返りの質問を変更するには、まず IDP テンプレートを保存して、これらの設定を有効にしてください。
+    idp_reflection_questions_updated: リフレクション・クエスチョンが正常に更新されました。
+    idp_remove_skill: スキルの削除
+    idp_revert_skill_to_public_errors_skill_already_public: スキルは既に公開されています
+    idp_revert_skill_to_public_errors_skill_not_found: スキルが見つかりません
+    idp_revert_skill_to_public_success_base_message: スキル「%{skill_name}」がマネージャーに表示されるようになりました
+    idp_select_by_tags: タグで選ぶ
+    idp_select_interview_question: 入力を開始して質問を検索して選択します
+    idp_select_reflection_question: 入力を開始して質問を検索して選択します
+    idp_select_skill_gap_report: スキル・ギャップ・レポートを選択
+    idp_select_specific_skills: 特定のスキルを選択する
+    idp_selected: 厳選された
+    idp_self_rating: 自己評価を有効にする
+    idp_setting_manager_approves_idp: マネージャーがIDPを承認
+    idp_setting_manager_can_edit_idp: マネージャーはIDPを編集できる
+    idp_setting_require_all_development_actions_complete: すべての開発行為の完了を要求する
+    idp_show_reflections: ショー・リフレクションズ
+    idp_skill_gap_report: スキル・ギャップ・レポート
+    idp_skill_gap_report_ai_assistant: スキルギャップレポート分析アシスタント
+    idp_skill_source_preference: スキルソース
+    idp_skill_sources_from_ai: 一般的なAI知識から
+    idp_skill_sources_from_template: テンプレートとマッピングから
+    idp_skills: スキル
+    idp_skills_privacy_messages_made_private: スキル「%{skill_name}」は非公開としてマークされており、マネージャーには非表示になります
+    idp_skills_privacy_messages_made_public: スキル「%{skill_name}」がマネージャーに表示されるようになりました
+    idp_skills_privacy_messages_skill_not_found: スキルが見つかりません
+    idp_skills_privacy_messages_unauthorized: このスキルを変更する権限がありません
+    idp_skills_updated: IDPスキルの更新に成功
+    idp_status_draft: ドラフト
+    idp_status_published: 出版
+    idp_status_updated: IDPステータスの更新に成功
+    idp_subtitle_text: 字幕テキスト
+    idp_tab_development_actions: 開発アクション
+    idp_tab_interview_questions: 面接の質問
+    idp_tab_reflection_questions: 振り返りの質問
+    idp_tab_settings: 設定
+    idp_tab_templates: テンプレート
+    idp_technical_skills: テクニカル・スキル
+    idp_template_details: テンプレート詳細
     idp_templates: IDPテンプレート
+    idp_title_text: タイトルテキスト
+    idp_update_interview_questions: 面接の質問を更新する
+    idp_update_reflection_questions: アップデートに関する質問
     iiht: IIHT
     iiht_assessment: IIHTアセスメント
+    iiht_password: パスワード
+    iiht_tenancy_name: テナント名
+    iiht_tenant_id: テナントID
+    iiht_user: ユーザー
+    image: 画像
+    import_action_title: キャンペーンAIアーティファクトのインポート
+    import_actions_proficiency: 輸入能力
+    import_actions_translations: 輸入技能翻訳
     import_ai_artifacts: AIアーティファクトのインポート
     import_csv_assessment_group_error: "%{index} 行: メールアドレス %{email} のユーザーは既に '%{workshopInviteName}' に招待済みです"
     import_csv_error: "%{index}行:メールアドレス%{email}のユーザーはこのキャンペーンに参加していません"
     import_csv_parsing_error: CSV解析エラー:%{message}
     import_description: CSVファイルからユーザーをインポートします。各行にはメールアドレスが必要です。
+    import_download_example_csv: サンプル規範CSV
     import_download_sample: CSV サンプルをダウンロードしてください
     import_error: インポートは失敗しました。もう一度お試しください。
     import_error_saving_data: "%{email}のエラーデータ保存:%{message}"
     import_errors_title: インポートエラー
+    import_evaluators: インポート・エバリュエーター
     import_external_scoring_action: インポート外部スコアリング
     import_external_scoring_body: エクスポート機能を参照して、ここでインポートできるテンプレートを抽出してください。
     import_external_scoring_data_description: 指定された評価およびキャンペーンのための外部スコアリングデータのインポート
@@ -409,20 +976,168 @@ ja:
     import_external_scoring_success_msg: インポートは正常にアップロードされました
     import_external_scoring_upload: アップロード
     import_file_required: アップロードするCSVファイルを選択してください。
+    import_info_msg: アップロードされたファイルはインポート待ちに入っています。通知の状況を確認してください。
+    import_job_queued: 技能レベルのインポートジョブがキューに入れられました。
     import_queued_success: 被験者のインポートジョブは無事にスケジュールされました。状況については通知をご確認ください。
     import_sample_file_label: 'サンプルファイル:'
     import_scenario_id_mismatch: "%{email}のシナリオID不一致:期待された%{expected_id}ですが、CSVには異なるシナリオIDが含まれています"
+    import_subjects: 輸入対象
+    import_success_msg: インポートは正常にアップロードされました。
     import_successfully_saved: 目標%{goals_count} %{email}のために外部結果を正常に保存しました
     import_title: CSVから主題をインポートする
     import_upload: アップロード
     import_users: インポートユーザー
+    inactive: 活動休止中
+    include_locales_label: 翻訳を含む
+    include_locales_name: インクルード・ローカル
+    index_title: プロジェクト
+    individual_invite_tabs_assessment_center: アセスメント・センター
+    individual_invite_tabs_invitation_status: 招待状況
+    info_color: インフォ・カラー
+    innovation_styles_form_full_description: 詳細
+    innovation_styles_index_title: イノベーションのスタイル
+    innovation_styles_list_position: ポジション
+    innovation_styles_resource_confirmations_delete_body: "<p>本当にこの革新的なスタイルを削除したいのですか？</p>\n"
+    instruction_messages: 指導メッセージ
+    instructions_actions_saved: 指示は正常に保存された
+    instructions_enable: 指示を有効にする
+    instructions_save: 保存方法
+    integrations_actions_add: 統合
+    integrations_actions_back: 統合に戻る
+    integrations_actions_load_mettl_catalog: ロードメーター・アセスメント・カタログ
+    integrations_actions_load_microsite_catalog: マイクロサイト評価カタログを読み込む
+    integrations_actions_load_skillvue_catalog: スキルビューアセスメントカタログを読み込む
+    integrations_columns_active: アクティブ
+    integrations_columns_details: 詳細
+    integrations_columns_name: 統合名
+    integrations_details_client_id: クライアントID
+    integrations_details_deployment_id: デプロイメントID
+    integrations_details_platform_access_token_url: プラットフォームアクセストークンURL
+    integrations_details_platform_authentication_request_url: プラットフォーム認証リクエストURL
+    integrations_details_platform_host_name: プラットフォームホスト名
+    integrations_details_platform_id: プラットフォームID
+    integrations_details_platform_public_keyset_url: プラットフォーム公開キーセットURL
+    integrations_details_provider: プロバイダー名
+    integrations_details_webhookUrl: ウェブフックURL
+    integrations_details_webhookUrls: ウェブフックURL
+    integrations_integrations: 統合
+    integrations_load_mettl_success: ロードメトル評価ジョブが正常にキューイングされました。
+    integrations_load_microsite_success: マイクロサイトの評価ジョブのキューへの登録に成功しました
+    integrations_load_skillvue_success: ロードスキルビュー評価ジョブが正常にキューイングされました。
+    integrations_names_hogan: ホーガン
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: メトル
+    integrations_names_skillvue: スキルビュー
+    integrations_names_yoodli: ユードリ
+    integrations_view_all_schedules: すべてのMettlのスケジュールを見る
+    interface: インターフェース
     internal: 内部
+    interview_questions_delete_confirmation: この面接の質問を削除してもよろしいですか?
+    interview_questions_export_action: 輸出面接の質問
+    interview_questions_export_failure_msg: ファイルのエクスポート中にエラーが発生しました。
+    interview_questions_export_success_msg: 面接の質問のエクスポートが進行中です。通知で状況をご確認ください。
+    interview_questions_form_mandatory: 必須
+    interview_questions_form_question: 質問
+    interview_questions_form_question_type: 質問の種類
+    interview_questions_form_question_type_audio: オーディオ
+    interview_questions_form_question_type_video: ビデオ
+    interview_questions_form_time_limit: 制限時間(秒)
+    interview_questions_form_title: インタビューの質問
+    interview_questions_import_action: 面接の質問をインポートする
+    interview_questions_import_failure_msg: ファイルのインポート中にエラーが発生しました。
+    interview_questions_import_success_msg: 面接の質問のインポートが進行中です。通知で状況をご確認ください。
+    interview_questions_question: 質問
+    invalid_confidence_interval: confidence_interval は 0 または 1 でなければなりません
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
+    invalid_leadership_bar: leadership_bar は 0 または 1 でなければなりません
+    invalid_norm_option: Norm Option は 0 から 3 の間でなければなりません
     invalid_question_ids: この評価には以下の質問IDが含まれていません：%{ids}
+    invite_add_invite: 招待を追加する
+    invite_assessment_center: アセスメント・センター
+    invite_basic_info_allow_preferred_language: 優先言語を許可する
+    invite_basic_info_assessment_centers: アセスメント・センター
+    invite_basic_info_assessment_centers_hint: 検索クエリー例「2023年8月10日午後8時6分
+    invite_basic_info_assessment_centers_placeholder: セレクト・アセスメント・センター
+    invite_basic_info_description: 複数の評価センターを選択して受験者に招待状を発行し、受験者はその中から1つのセンターを選択します。
+    invite_basic_info_neurodiversity: ニューロダイバーシティに関する質問を含む
+    invite_basic_info_preferred_language: 使用可能言語
+    invite_basic_info_required_error: 空っぽにはできない
+    invite_basic_info_title: 基本情報
+    invite_center_group: アセスメント・センター・グループ
+    invite_confirm_message: 招待状を本当に削除しますか？
+    invite_confirm_message_with_title: タイトル「%{invite_title}」の招待を本当に削除しますか？
+    invite_evaluators_description: このメッセージは、被験者が評価者の指名を開始する際に表示されます。
+    invite_evaluators_name: 評価者を招待する
+    invite_invites: 招待
+    invite_name_placeholder: 招待名を入力
+    invite_not_selected: 落選
+    invite_request_accept: 同意する
+    invite_request_reason: 理由
+    invite_request_reject: リジェクト
+    invite_request_remove_confirm_content: 本当に %{subjectName} から %{action} %{status} したいのですか？
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: 件名
+    invite_request_workshop_time: ワークショップの時間
+    invite_requests: リクエスト
+    invite_save: 保存して送信
+    invite_send_invites_add_description: 招待のタイトルと説明を多言語で翻訳できます。
+    invite_send_invites_add_language: 言語の追加
+    invite_send_invites_input_label: 言語の追加
+    invite_send_invites_input_placeholder: 追加言語の選択
+    invite_send_invites_invitation_title: 招待タイトル
+    invite_send_invites_title: 招待 (%{lang})
+    invite_steps_add_subjects: 主題の追加
+    invite_steps_basic_info: 基本情報
+    invite_steps_has_errors: エラーを含む
+    invite_steps_send_invitation: 招待状を送る
+    invite_subjects_count: 対象
+    invite_subjects_csv_imported: "%{count} 件の科目をインポートしました"
+    invite_subjects_description: 被写体を個別に検索して追加することも、csvファイルを一括アップロードすることもできます。
+    invite_subjects_download: ダウンロード
+    invite_subjects_file_example: サブジェクト情報をアップロードするためのサンプルファイルを参照してください。
+    invite_subjects_import_from_campaign: キャンペーンからすべてを追加
+    invite_subjects_import_title: 輸入対象
+    invite_subjects_import_users: インポートユーザー
+    invite_subjects_search_user: 検索対象
+    invite_subjects_title: 対象
+    invite_subjects_upload_csv: CSVアップロード
+    invite_success_message: 招待は正常に削除されました。
+    invite_success_message_with_title: タイトル '%{invite_title}' の招待は正常に削除されました。
+    invite_title: タイトル
+    invite_workshop_list_remove_confirm_content: 名前 '%{name}' を持つアセスメント・センターを本当に削除しますか?
+    invite_workshop_list_remove_confirm_success: アセスメントセンターは正常に削除されました。
+    invite_workshop_list_remove_confirm_title: 確認
+    invite_workshop_title: アセスメント・センター
+    is_subject: 対象
+    job_role_are_you_sure_to_remove: 本当に外していいのか？
+    job_role_column_job_group: 職務グループ
+    job_role_column_skill_name: スキル名
+    job_role_export_failure_msg: 翻訳のエクスポート時のエラー
+    job_role_export_success_msg: 進行中の開発アクションをエクスポートする。
+    job_role_form_code: コード
+    job_role_form_description: 説明
+    job_role_form_job_group: 職務グループ
+    job_role_form_name: 名称
+    job_role_form_title: 仕事の役割
+    job_role_import_action_translations: 役割の翻訳をインポートする
+    job_role_import_download_example_csv: サンプル規範CSV
+    job_role_import_success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
+    job_role_job_role_details: 職務内容
+    job_role_skill_mapping_column_expected_proficiency_level: 期待される能力レベル
+    job_role_skill_mapping_form_title: スキル・ジョブ・マッピング
+    job_role_translations: 職務の翻訳
     job_roles: 仕事の役割
+    join_room: ルームに参加する
+    keep_original: オリジナルを保つ
+    key: キー
     keywords: キーワード
     keywords_placeholder: キーワードをコンマで区切って入力してください。
+    language_id: 言語ID
+    last_name_required: 姓は必須
+    lead_assessment: 鉛アセスメント
     lead_assessor_form: 主任査定者フォーム
+    leadership_bar: リーダーシップバー
+    leadership_bar_update_success: リーダーシップバーの更新に成功しました
     learning_from_others: 協働学習 [20]
     level: レベル
     level_apply: 適用する
@@ -434,21 +1149,62 @@ ja:
     licenses: ライセンス
     lighthouse_question: 灯台に関する質問
     lighthouse_question_id: Lighthouse 質問ID
+    link_text: リンク
     linked_assessments: 関連する評価
+    locale: ロケール
+    log_date: ログ日付
+    login: ログイン
     low: 低
+    mail_history: メール履歴
+    main_report: 主要レポート
     maintenance: 保守
     maintenance_settings: メンテナンス設定
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
+    make_report_available_to_subject_when: 対象者に報告書を提出する：
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
+    manager_approves_reports: マネージャーが報告書を承認
+    manager_can_access_subject_reports: 管理者は対象レポートにアクセスできる
+    manager_cannot_access_subject_reports: マネージャーは要件を満たすまでレポートを見ることができない
+    manager_ids_label: センターマネージャー
+    manager_report_ready_description: このメッセージは、対象者のレポートが作成されると、対象者のマネージャーに送信される。
+    manager_report_ready_name: マネージャー・レポート準備完了
+    managers_title: マネージャー
+    mark_finalized: マーク完了
+    mark_finalized_bulk_confirm: 選択したすべてのユーザーについてアーティファクトの結果を確定すると、AIアーティファクトを使用したレポートが生成されます。本当に続行しますか？
+    mark_finalized_confirm: ユーザー「%{email}」のアーティファクト結果を確定すると、そのユーザー向けのAIアーティファクトを使用したレポートが生成されます。本当に続行しますか？
+    mark_licenses_as_deactivated: ライセンスを無効にする
+    mark_not_finalized: マークは確定していません
+    mark_not_finalized_bulk_confirm: 選択したすべてのユーザーから「finalize」を削除すると、AIアーティファクトを使用した生成済みレポートが削除されます。本当に続行しますか？
+    mark_not_finalized_confirm: ユーザー「%{email}」から「finalize」を削除すると、そのユーザー向けにAIアーティファクトを使用して生成されたレポートが削除されます。本当に続行しますか？
+    mask_identity_for_examus: エグザムス・プロテクターのマスクデータ
+    mask_identity_for_hogan: ホーガンのマスクデータ
+    mask_identity_for_iiht: IIHTのマスクデータ
+    mask_identity_for_mettl: METTLのマスクデータ
+    mask_identity_for_mhs: MHS用マスクデータ
+    mask_identity_for_pearson: ピアソンのマスクデータ
+    mask_identity_for_saville: サヴィルのマスクデータ
+    mask_identity_for_skillvue: スキルビューのマスクデータ
+    mask_identity_for_yoodli: Yoodliのマスクデータ
     max_value: 最大値
     mean: 平均
     media_files_label: ファイル
     media_library: メディアライブラリ
     media_library_page_title: メディアライブラリ - ダッシュボード - マーサー・ライトハウス
     meeting: ミーティング
+    meeting_link: ミーティングリンク
+    meetings_and_resources: ミーティング＆リソース
     messages: メッセージ
+    meta_title: 管理パネル
     mettl: メトTL
+    mettl_apiBaseUrl: APIエンドポイント
+    mettl_apiBaseUrlRequired: APIエンドポイントが必要です。
     mettl_assessment: Mettl 評価
+    mettl_privateKey: プライベート・キー
+    mettl_privateKeyRequired: 秘密鍵が必要です。
+    mettl_publicKey: 公開鍵
+    mettl_publicKeyRequired: 公開鍵が必要です。
+    mettl_servers_mettl_eu: ヨーロッパ
+    mettl_servers_mettl_india: インド
     mhs: MHS
     mhs_assessment: MHS評価
     mhs_assessment_name: MHS 評価名
@@ -467,19 +1223,69 @@ ja:
     minimum_system_check_validity: キャンペーンの「システムチェックの有効期間」は、最低でも15分である必要があります
     minimum_upload_speed: 最低アップロード速度（Mbps）
     missing_min_max_values: 最小値と最大値が必要です。
+    modal_convert_option: このキャンペーンをテンプレートに変換する
+    modal_convert_success: テンプレートの変換に成功
+    modal_copy_option: このキャンペーンから新しいテンプレートを作成する
+    modal_copy_success: キャンペーンテンプレート作成ジョブは正常にスケジュールされました。
+    modal_description: このキャンペーンからテンプレートを作成する方法を選択します。
+    modal_failed: テンプレートの作成に失敗しました。
+    modal_subtitle: 日付範囲を選択し、各レポートに必要な言語を選択します。
+    modal_title: テンプレートに変換
     model_answer: 模範解答
     model_answer_placeholder: AI採点用の模範解答を入力してください。
     must_be_a_valid_url: URLが無効です。http または https プロトコルを含む完全な URL を指定してください
     name: 名前
     name_max_length: 名前は%{length}文字を超えてはいけません
     name_required: 名前が必要です
+    navigation_audit_logs: 監査ログ
+    navigation_factors: 要因
+    navigation_innovation_styles: イノベーションのスタイル
+    navigation_logout: ログアウト
+    navigation_occupations: 職業
+    navigation_registration_codes: 登録コード
+    navigation_skills_taxonomy: スキル分類法
+    navigation_users: ユーザー
     new_folder: 新しいフォルダ
+    new_score: 新スコア
+    no_assessments_found: 監査ID
+    no_completed_assessments: 完了した査定はまだない
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
     no_question_mappings: 利用可能なマッピングはありません
+    no_rendered_output: レンダリング出力は利用できません
     no_status: ステータスなし
+    nomination_denied_description: このメッセージは、指名が拒否されたときに被験者に送信される。
+    nomination_denied_name: 指名拒否
+    nomination_help_description: ユーザー・ダッシュボードの指名カードに表示されるヘルプ・テキスト
+    nomination_help_name: 推薦のヘルプ
+    norm: ノーム
     norm_editor_numeric_value_error: 数値のみ入力可能です（整数または小数）。
+    norm_id: ノームID
+    norm_option: 標準オプション
+    norm_option_form_select: 標準オプションを選択
+    norm_option_update_success: 標準オプションの更新に成功しました
+    norm_region: ノーム地域
+    norm_region_form_select: 標準地域を選択
+    norm_region_update_success: Norm Region の更新に成功しました
+    normal: ノーマル
+    normalize_factor_scores: 因子スコアを正規化する
     norms: 規範
+    norms_copy_successfully: ノーム "%{name}" は正常にコピーされました。
+    norms_export_success_msg: Normのエクスポートジョブは正常にスケジュールされました。 通知でステータスを確認してください。
+    norms_import_download_example_csv: サンプル規範CSV
+    norms_import_select_file_validation: 送信する前に、オーナーとファイルを選択してください。
+    norms_import_success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
+    norms_import_title: 規範の輸入
+    norms_index_import: 輸入
+    norms_remove_confirm: テキストボックスに以下のノルム名を入力して確認する。
+    norms_remove_warning: 本当にノルム"%{name}"を削除したいのですか？
+    norms_score_types_five_scale: 5段階評価
+    norms_score_types_norm_type: ノーマルタイプ
+    norms_score_types_percentage: パーセント
+    norms_sidebar_copy: コピー規範
+    norms_sidebar_editor: ノーム・エディター
+    norms_sidebar_export: 輸出規範
+    norms_title: ノーム
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
     notes: 備考
@@ -488,15 +1294,50 @@ ja:
     notification_bell_icon_alt_text: 通知ベルのアイコン
     notifications: お知らせ
     number: 番号
+    oauth_scope_label: スコープ
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: 範囲が必要です
     occupations: 職業
+    occupations_factors_list_condition: コンディション
+    occupations_factors_list_position: ポジション
+    occupations_factors_list_weight: 重量
+    occupations_form_alternative_icon: 別のアイコン
+    occupations_form_color: 色
+    occupations_form_indicative_roles_image: 役割のイメージ図
+    occupations_form_key_career_tracks_image: 主なキャリアパス（画像）
+    occupations_index_title: 職業
+    occupations_resource_confirmations_delete_body: "<p>本当にこの職業を削除しますか？</p>\n"
     on_the_job: オン・ザ・ジョブ [70]
     only_editable_on_create: このオプションは作成時のみ編集可能です。
     options: オプション
+    options_evaluator_options: 評価者オプション
+    options_global: グローバル・オプション
+    options_manager_options: マネージャーオプション
+    options_subject_options: 対象オプション
+    options_title: オプション
     organisational: AGILE
     original_text: 原文
+    other_assessments: その他の評価
+    other_assessor_assessments: その他の査定
+    other_reports: その他のレポート
+    outcome: 成果
+    output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
+    output_schema_keys: 出力スキーマ・キー
     overall: 全体的に
     overall_score: 総合スコア
+    overall_scoring: 総合得点
+    parsed_dependencies_help: 成果物結果の生成に AI アシスタントによって使用されるユーザーの解析された依存関係
+    parsed_dependencies_title: 解析された依存関係
+    parsed_dependencies_view: 解析された依存関係の表示
     participants: 参加者
+    participants_tab: 参加者
+    participants_tabs_assessors: アセッサ
+    participants_tabs_sms_contacts: SMSコンタクト
+    participants_tabs_subjects: 対象
+    password_label: パスワード
+    password_name: パスワード
+    past: 過去
+    payload: ペイロード
     pearson: ピアソン
     pearson_assessment: ピアソン・アセスメント
     permissions:
@@ -694,7 +1535,7 @@ ja:
           view: 表示
         messages:
           email: 電子メール
-          instructions: 使用方法
+          instructions: 監査ID
           options: オプション
           title: メッセージ
         norms:
@@ -809,7 +1650,7 @@ ja:
         view: 表示
       messages:
         email: 電子メール
-        instructions: 使用方法
+        instructions: 監査ID
         options: オプション
         title: メッセージ
       norms:
@@ -925,25 +1766,196 @@ ja:
         view_recordings: 録画の表示
     permissions_360_campaigns: 360キャンペーンに特化したパーミッション
     piped_text: パイプ付きテキスト
+    piped_text_modal_assessment_center: アセスメント・センター
+    piped_text_modal_campaign_link: キャンペーンリンク
+    piped_text_modal_campaign_name: キャンペーン名
+    piped_text_modal_campaigns: キャンペーン
+    piped_text_modal_duration: 期間
+    piped_text_modal_end_time: 終了時間
+    piped_text_modal_insight_page_link: インサイトページリンク
+    piped_text_modal_insight_page_url: インサイトページURL
+    piped_text_modal_invite_title: タイトル
+    piped_text_modal_invites: 招待
+    piped_text_modal_magic_link: マジックリンク
+    piped_text_modal_magic_url: マジックURL
+    piped_text_modal_platform_url_links: プラットフォームのURLとリンク
+    piped_text_modal_project_name: プロジェクト名
+    piped_text_modal_projects: プロジェクト
+    piped_text_modal_report_name: レポート名
+    piped_text_modal_start_time: 開始時間
+    piped_text_modal_title: パイピング・テキストを追加する
+    piped_text_modal_user_reports: ユーザーレポート
+    piped_text_modal_users: ユーザー
+    playground: 遊び場
+    playground_info: サンプルデータを使用して成果物をテストし、生成された結果をプレビューします。
+    playground_placeholder: テストデータの入力
+    position_auto: オート
+    position_label: ログインボックスの位置
+    position_left: 左
+    position_right: 右
     precision: 精密
+    preview_report: レポートのプレビュー
+    previous: 前へ
+    prework: 事前準備
+    prework_required: 事前工事が完了していない場合は、センター予約を許可しないこと。
+    prework_required_for_invite: プレワーク完了時のみ招待メールを送信
+    primary_button: プライマリー
+    primary_color: 原色
     privacy: プライバシー
+    privacy_link: プライバシー・リンクを有効にする
+    privacy_link_label: プライバシーリンク
+    privacy_link_placeholder: プライバシーリンク
+    privacy_text: プライバシーテキスト
+    privacy_text_placeholder: プライバシーテキストを入力
     proctoring: 試験監督
+    proctoring_enable: 試験監督を可能にする
     proctoring_errors_timed_only: 選択的監督機能は、時間制限のある評価においてのみ有効にできます。
     proctoring_fixed_time_required: "「固定時間」を有効にして、このオプションを選択してください"
+    proctoring_identification: 識別
+    proctoring_identifications:
+      face: 顔
+      face_and_passport: 顔とパスポート
+      passport: パスポート
+    proctoring_integration_type: 統合
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: ロックダウンブラウザ
     proctoring_mode_all: すべての評価で監督機能を有効にする
     proctoring_mode_all_except_ac: アセスメントセンターを除くすべての評価において、監督機能を有効にする
+    proctoring_rule_types_allow_absence_in_frame: フレーム内の欠席を認める
+    proctoring_rule_types_allow_to_use_books: 書籍の使用を許可する
+    proctoring_rule_types_allow_to_use_calculator: 電卓の使用を許可する
+    proctoring_rule_types_allow_to_use_excel: エクセルの使用を許可する
+    proctoring_rule_types_allow_to_use_human_assistant: 人間のアシスタントの使用を許可する
+    proctoring_rule_types_allow_to_use_messengers: メッセンジャーの使用を許可する
+    proctoring_rule_types_allow_to_use_paper: 紙の使用を許可する
+    proctoring_rule_types_allow_to_use_websites: ウェブサイトの利用許可
+    proctoring_rule_types_allow_voices: 声を許可する
+    proctoring_rule_types_allow_wrong_gaze_direction: 間違った視線方向を許可する
+    proctoring_rules: ルール
+    proctoring_sessions_columns_comment: コメント
+    proctoring_sessions_columns_completed_at: 完成
+    proctoring_sessions_columns_conclusion: 結論
+    proctoring_sessions_columns_links: リンク
+    proctoring_sessions_columns_score: スコア
+    proctoring_sessions_columns_session_id: セッションID
+    proctoring_sessions_columns_started_at: で開始
+    proctoring_sessions_links_report: レポート
+    proctoring_sessions_links_review: レビュー
+    proctoring_sessions_resource_name: 試験監督セッション
     proctoring_settings: 試験監督の設定
+    proctoring_trial: 試験監督
+    proctoring_type: タイプ
+    proctoring_types:
+      offline: オフライン
+      online: オンライン
     professional: プロフェッショナル
     proficiency: 習熟度
     proficiency_level: APIキー
     proficiency_levels: 熟練度レベル
+    proficiency_levels_fields_title: 熟練度
+    profile: プロフィール
+    profile_change_password: パスワードを変更
     profile_details: プロフィール詳細
+    project: プロジェクト
+    project_admin: プロジェクト管理者
     project_admins: プロジェクト管理者
+    project_features: プロジェクトの特徴
     project_manager: プロジェクトマネージャー
     project_number: プロジェクト番号
+    project_participants_column_campaigns: キャンペーン
+    project_participants_column_createdAt: 作成日時：
+    project_participants_column_created_at: 作成日時：
+    project_participants_edit_participant: 編集参加者
+    project_participants_filter_campaigns: キャンペーンなし
+    project_participants_search_user: 検索ユーザー
+    project_participants_send_email: 電子メールを送信する
+    project_path: プロジェクト・パス
     project_settings: プロジェクト設定
+    project_tabs_assessments_column_normalize_factor_scores: 因子スコアを正規化する
+    project_tabs_assessments_column_user_result_validity_in_days: 結果の妥当性
+    project_tabs_assessments_delete_content: 本当に評価 '%{name}' を削除しますか？
+    project_tabs_assessments_delete_success: アセスメント '%{name}' は正常に削除されました。
+    project_tabs_assessments_delete_title: 評価の削除
+    project_tabs_assessments_title: アセスメント
+    project_tabs_design: デザイン
+    project_tabs_general: 一般
+    project_tabs_privacy: プライバシー
+    project_tabs_profile: プロフィール
+    project_tabs_registration: 参加登録
+    project_tabs_webhooks_actions_delete_key: 削除
+    project_tabs_webhooks_actions_edit_key: 編集
+    project_tabs_webhooks_actions_send_test_key: 送信テスト
+    project_tabs_webhooks_actions_send_test_label: 送信テスト
+    project_tabs_webhooks_remove_webhook_content: "%{description}を削除しますか?"
+    project_tabs_webhooks_title: ウェブフック
+    project_tools_workshop_status_export: ワークショップ状況エクスポート
+    project_tools_workshop_status_export_success: ワークショップのステータス エクスポートは正常にスケジュールされました。
+    project_users_change_password: パスワードを変更
+    project_users_column_campaigns: キャンペーン
+    project_users_column_created_at: 作成日時：
+    project_users_confirm_delete: はい、削除
+    project_users_confirm_send: はい。
+    project_users_delete_error: 評価者 '%{name}' を削除できませんでした。 管理者に連絡してください。
+    project_users_delete_success: 査定者 '%{name}' は正常に削除されました。
+    project_users_edit_assessor: 編集アセッサ
+    project_users_filter_campaigns: キャンペーンなし
+    project_users_modal_delete_content: 本当にアセッサー '%{name}' を削除しますか?
+    project_users_modal_delete_title: アセッサーの削除
+    project_users_modal_reset_email_content: パスワードリセットリンクを'%{email}'に送信しますか？
+    project_users_model_reset_email: 査定者のパスワードをリセットする
+    project_users_no_edit_permission: 評価者 '%{name}' を編集する権限がありません。
+    project_users_reset_mail_error: パスワードリセットリンクを '%{email}' に送信できませんでした。 管理者に連絡してください。
+    project_users_reset_mail_success: パスワード再設定リンクが '%{email}' に送信されました。
+    project_users_search_accessor: 検索アクセサ
+    project_users_send_email: 電子メールを送信する
     projects: プロジェクト
+    projects_addProject: プロジェクトの追加
+    projects_assessment_settings_search: 検索評価
+    projects_columns_project_number: プロジェクト番号
+    projects_form_project_number: プロジェクト番号
+    projects_form_subdomain: サブドメイン
+    projects_form_title: プロジェクト
+    projects_general_settings_live_chat: ライブチャットを有効にする
+    projects_general_settings_locales_label: ロケール
+    projects_general_settings_project_number_label: プロジェクト番号
+    projects_general_settings_save_changes: 変更を保存する
+    projects_general_settings_sub_domain_label: サブドメイン
+    projects_mettl_schedule_records_add: スケジュール追加
+    projects_mettl_schedule_records_assessment_id: アセスメントID
+    projects_mettl_schedule_records_assessment_name: 評価名
+    projects_mettl_schedule_records_candidate_authorization: 候補者認証を有効にする
+    projects_mettl_schedule_records_candidate_screen_capture: 候補者の画面キャプチャを有効にする
+    projects_mettl_schedule_records_count: 閲覧許容回数
+    projects_mettl_schedule_records_created_at: 作成日時：
+    projects_mettl_schedule_records_schedule_id: スケジュールID
+    projects_mettl_schedule_records_schedule_name: スケジュール名
+    projects_mettl_schedule_records_secure_browser_enabled: セキュアブラウザを有効にする
+    projects_mettl_schedule_records_settings: 設定
+    projects_mettl_schedule_records_show_remaining_counts: 残り回数の表示を有効にする
+    projects_mettl_schedule_records_visual_proctoring_enabled: ビジュアル・プロクターを有効にする
+    projects_mettl_schedule_records_web_proctoring_enabled: ウェブ・プロテクターを有効にする
+    projects_profile_settings_form_fields_enabled: 有効
+    projects_profile_settings_form_fields_half_size: ハーフサイズ
+    projects_profile_settings_form_fields_locked: ロック
+    projects_profile_settings_form_fields_sort: ソート
+    projects_profile_settings_month: 月
+    projects_profile_settings_never: 決して
+    projects_profile_settings_update_in: プロフィール更新の通知
+    projects_profile_settings_year: 年
+    projects_registration_settings_hide_signup: 登録オプションを隠す
+    projects_registration_settings_require_mobile_number: 携帯電話番号が必要
+    projects_webhook_settings_add: ウェブフックの追加
+    projects_webhook_settings_column_active: アクティブ
+    projects_webhook_settings_column_created_date: 作成日
+    projects_webhook_settings_column_description: 説明
+    projects_webhook_settings_column_updated_date: 変更日
+    projects_webhook_settings_column_url: URL
+    projects_webhook_settings_search: ウェブフックを検索
     prompt: プロンプト
+    provider: プロバイダー
+    provider_change_confirm_title: プロバイダーを変更しますか？
+    provider_previously_used_warning: このアシスタントは以前、「%{from}」を使用して結果を生成していました。「%{to}」に変更すると、今後の生成リクエストにおけるアシスタントの動作が変わる可能性があります。
     psychometric: サイコメトリック
     question_center: 質問センター
     question_center_page_title: 質問センター - ダッシュボード - マーサー・ライトハウス
@@ -971,10 +1983,32 @@ ja:
     question_type_video_response: 動画での回答
     questions: 質問
     questions_new_button: 新しい質問
+    questions_percentage: 質問（合計／最大合計）
+    questions_sum: 質問（合計）
     questions_title: 質問
     questions_type: 種類
     range_min_max: 範囲 %{min} - %{max}
+    rationale: 根拠
+    raw: 生
+    reason_for_changes: 変更の理由
+    record_id: レコードID
+    recordings: 録音
     reflection_questions: 振り返りの質問
+    reflection_questions_delete_confirmation: この「振り返り問題」を削除してもよろしいですか？
+    reflection_questions_export_action: 輸出に関する質問
+    reflection_questions_export_failure_msg: ファイルのエクスポート中にエラーが発生しました。
+    reflection_questions_export_success_msg: 振り返り問題のエクスポートが進行中です。通知で状況を確認してください。
+    reflection_questions_form_mandatory: 必須
+    reflection_questions_form_max_words: 最大文字数
+    reflection_questions_form_min_words: 最小文字数
+    reflection_questions_form_question: 質問
+    reflection_questions_form_title: リフレクション・クエスチョン
+    reflection_questions_import_action: 輸入に関する質問
+    reflection_questions_import_failure_msg: ファイルのインポート中にエラーが発生しました。
+    reflection_questions_import_success_msg: リフレクション問題のインポートが進行中です。通知で状況を確認してください。
+    reflection_questions_question: 質問
+    refresh: リフレッシュ
+    refresh_interval: リフレッシュ間隔（分）
     regenerate_transcriptions_action: 文字起こしを再生成する
     regenerate_transcriptions_confirm_content: この評価の文字起こしを再生成してもよろしいですか？これにより、未完了の文字起こしがすべて再処理されます。
     regenerate_transcriptions_confirm_title: 文字起こしを再生成する
@@ -982,28 +2016,155 @@ ja:
     registration_codes: 登録コード
     registration_settings: 登録設定
     remove_children_to_change_type: すべての子要素を削除して型を変更する
+    remove_confirm_content: メール '%{subjectEmail}' の件名を本当に削除しますか？
+    remove_confirm_success: 電子メール '%{subjectEmail}' を含む件名が正常に削除されました。
+    remove_confirm_title: 課題を削除する
     remove_confirmation: このアイテムを削除してもよろしいですか？
+    remove_output_schema_key: 出力スキーマ・キーの削除
     remove_successfully: メディアアイテムが正常に削除されました。
+    render_button: レンダーテンプレート
+    rendered_prompt: レンダリングプロンプト
+    reply_to_email: メール返信
+    report_access: レポート アクセス
     report_alias_save_confirmation: Report Builderおよびエイリアスでの変更をすべて保存するには、「保存」ボタンをクリックしてください。ページが再読み込みされ、変更が正常に反映されます。
+    report_approval: 報告書の承認
+    report_approval_allow_bulk_approve: 一括承認
+    report_approval_allow_qc_bulk_submit: QC一括送信を許可する
+    report_approval_approval_statuses_approved: 承認済み
+    report_approval_approval_statuses_change_requested: 変更要求
+    report_approval_approval_statuses_not_ready: 準備不足
+    report_approval_approval_statuses_pending_qc: QC申請中
+    report_approval_approval_statuses_qc_completed: QC完了
+    report_approval_approval_statuses_qc_in_progress: 進行中のQC
+    report_approval_approvers: 承認者
+    report_approval_approvers_can_edit: 承認者は編集できる
+    report_approval_approvers_not_required: 承認者 不要
+    report_approval_bulk_approve_success: "%{sent_for_approval}は承認のために送信されました。 %{approved}レポートは承認されました。 %{ignored}レポートはQCの変更/コメントにより手動承認が必要です。"
+    report_approval_columns_approval_status: 承認状況
+    report_approval_columns_approved_by: 承認者
+    report_approval_columns_assessed_by: 評価者
+    report_approval_columns_campaign_name: キャンペーン名
+    report_approval_columns_qc_by: QC By
+    report_approval_columns_report_name: レポート名
+    report_approval_columns_subject_email: 件名電子メール
+    report_approval_columns_user_email: ユーザーEメール
+    report_approval_columns_user_name: ユーザー名
+    report_approval_digest_delivery_mode_form_label: ダイジェスト配信モード
+    report_approval_digest_frequency_daily: 日毎
+    report_approval_digest_frequency_form_label: ダイジェスト周波数
+    report_approval_digest_frequency_weekdays: 平日
+    report_approval_digest_frequency_weekly: ウィークリー
+    report_approval_digest_time: ダイジェスト時間
+    report_approval_digest_timezone: ダイジェスト タイムゾーン
+    report_approval_digest_weekdays_form_label: ダイジェスト 平日
+    report_approval_digest_weekdays_friday: 金曜日
+    report_approval_digest_weekdays_monday: 月曜日
+    report_approval_digest_weekdays_saturday: 土曜日
+    report_approval_digest_weekdays_sunday: 日曜日
+    report_approval_digest_weekdays_thursday: 木曜日
+    report_approval_digest_weekdays_tuesday: 火曜日
+    report_approval_digest_weekdays_wednesday: 水曜日
+    report_approval_do_not_send_notifications: 通知を送信しない
+    report_approval_modal_title: レポート承認設定
+    report_approval_notification_users: 承認通知ユーザー
+    report_approval_qc_users: QCユーザー
+    report_approval_remove_modal_success: 'レポート ID: %{reportId} の承認設定が正常に削除されました。 '
+    report_approval_remove_modal_text: 'レポートID: %{reportId}のこの設定を本当に削除しますか?'
+    report_approval_report: レポート
+    report_approval_review: レビュー
+    report_approval_saving_filters_actions_clear_filters: クリアフィルター
+    report_approval_saving_filters_actions_delete_filter: フィルターの削除
+    report_approval_saving_filters_actions_save_new_filter: 新しいフィルターとして保存
+    report_approval_saving_filters_actions_saved_filters: 保存されたフィルター
+    report_approval_saving_filters_delete_saved_filters: フィルター削除
+    report_approval_saving_filters_edit_filter_name: 保存されたフィルター名
+    report_approval_saving_filters_error_while_deleting: 削除中のエラー
+    report_approval_saving_filters_error_while_editing: 編集中のエラー
+    report_approval_saving_filters_error_while_fetching: 何かが間違っている。
+    report_approval_saving_filters_error_while_saving: フィルター保存時のエラー
+    report_approval_saving_filters_filter_updated: フィルター更新
+    report_approval_saving_filters_no_saved_filters: 保存されたフィルターはありません
+    report_approval_saving_filters_save_filter: 保存されたフィルター
+    report_approval_saving_filters_set_favorite: フィルターがお気に入りに設定されている
+    report_approval_send_digest_emails: ダイジェストメールの送信
+    report_approval_settings: レポート承認設定
+    report_approval_submit_or_approve_all: すべてを提出または承認する
     report_approvals: レポートの承認
+    report_availability: 報告書入手可能性
     report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
     report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
     report_denied: "%{user}の報告は却下されました"
+    report_help_description: ユーザー・ダッシュボードのレポート・カードにヘルプ・テキストを表示
+    report_help_name: レポートのヘルプ
+    report_id: 報告書ID
     report_name: レポート名
     report_no_evaluations: "%{user}の報告書は入手できず、評価は受け取っていません。"
     report_not_generated: "%{user}のレポートは可用性条件を満たしていますが、まだ生成されていません。まずレポートを作成してください。"
     report_on_hold: "%{user}のレポートは現在保留中です"
+    report_pdf_status: レポートのPDFステータス
+    report_review_abort_qc: QCを中止する
+    report_review_approve: 承認
+    report_review_approve_changes: 変更を承認する
+    report_review_edit: 編集
+    report_review_remove_approval: 承認の削除
+    report_review_request_changes: 変更要求
+    report_review_review: レビュー
+    report_review_send_for_approve: 承認のための送信
+    report_review_statuses_approved: 承認済み
+    report_review_statuses_change_requested: 変更要求
+    report_review_statuses_not_ready: 準備不足
+    report_review_statuses_pending_qc: QC申請中
+    report_review_statuses_qc_completed: QC完了
+    report_review_statuses_qc_in_progress: 進行中のQC
     report_status: 報告状況
     reports: レポート
+    reports_copy_copy: コピー
+    reports_copy_copy_report: コピーレポート
+    reports_count: レポート
+    reports_edit_default_language_agreement: はい、デフォルトの言語が変わることの意味は理解しています。
+    reports_edit_default_language_title: デフォルト言語の編集
+    reports_edit_default_language_tooltip: デフォルト言語の編集
+    reports_edit_default_language_warning_description_li_1: デフォルトの言語をRTL言語からLTR言語に、またはその逆に変更すると、レイアウトに影響します。
+    reports_edit_default_language_warning_description_li_2: デフォルトの言語を変更すると、レポートの翻訳をやり直す必要があります。
+    reports_edit_default_language_warning_description_li_3: この変更を行う前に、レポートの翻訳をダウンロードしてください。
+    reports_edit_default_language_warning_title: 説明書をよくお読みください
+    reports_language_selection_modal_download: レポートダウンロード
+    reports_language_selection_modal_generate: レポート作成
     reports_limit_exceeded: 一括ダウンロードはレポートファイル1000件に制限されています。多くの言語を選択している場合は、その範囲を減らしてください。
     reports_not_found: 報告は見つかりませんでした。ダウンロード前にレポートを作成してください。
+    reports_preview_comments: コメント
+    reports_preview_hide_resolved: 非表示 解決済み
+    reports_preview_history: 歴史
+    reports_preview_info_to_select_module: コメントするテキストモジュールを選択する
+    request_approval_description: このメッセージは、被験者が承認を要求したときに管理者に送信されます。
+    request_approval_name: 承認リクエスト
+    request_id: リクエストID
+    required_error: 必須
     rescore_responses_content: これにより、この科目の回答の得点が再計算されます。「AIによる採点」を有効にすると、AI採点対象問題の回答をAIを用いて再評価します。
+    resend_invite_content: 選択した件名に招待を再送信します。続行してもよろしいですか?
+    resend_invite_success: 招待状の再送信に成功しました。
+    resend_invite_title: 招待を再送信
     reset_idp_plan: リセットプラン
     reset_idp_plan_confirmation: 本当に計画をリセットしたいの?
     reset_idp_plan_title: リセットプラン
+    reset_score: スコアをリセット
+    reset_score_description: スコアは元のAI値に戻されます。
+    resources_panel_description: ファシリテーターにアクセスさせたいリソースへのリンクを追加してください。
+    resources_panel_resource_name_placeholder: リソース名
+    resources_panel_resource_url_placeholder: リソースリンク
+    resources_panel_title: リソース
+    resources_panel_validation_error: 名前とURLの両方を入力するか、リソースを削除する
     response_meta: レスポンス・メタ
+    responses: AI応答
     result: 結果
     results: 結果
+    results_export: 結果をエクスポート
+    results_export_job_scheduled: AIアーティファクト結果のエクスポートジョブが正常にスケジュールされました
+    revisions_load: フォームにロード
+    revisions_system_prompt: システム仕様
+    revisions_title: AIアシスタントの改訂
+    revisions_user_prompt: ユーザープロンプト
+    revisions_version: バージョン
     role: 役割
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
@@ -1054,6 +2215,23 @@ ja:
     saml_service_provider_updated_date: 更新日
     saml_service_providers: サービスプロバイダー
     saml_settings: SAML設定
+    saml_settings_after_signout_url: サインアウト後のURL
+    saml_settings_cert: 証明書
+    saml_settings_config_details_acs_url: アサーション・コンシューマー・サービスURL
+    saml_settings_config_details_copied: コピーされた %{element}
+    saml_settings_config_details_issuer: エンティティID/発行者
+    saml_settings_config_details_title: 以下の情報でIdpを設定する。
+    saml_settings_email_pipetext: Pipetextにメールする
+    saml_settings_enabled: 有効
+    saml_settings_enforced: SAML の実施
+    saml_settings_entity_id: エンティティID/発行者
+    saml_settings_name_identifier_format: 名前識別子
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent。
+    saml_settings_saml: サムル
+    saml_settings_save: 設定の保存
+    saml_settings_sso_service_url: SSOサービスURL
+    saml_settings_successfully_saved_msg: SAML 設定が正常に保存されました。
     save: 保存
     save_assessment_for_scoring_management: 採点を開始する前に評価を保存してください。
     save_block: ブロックを保存
@@ -1072,7 +2250,136 @@ ja:
       user_full_name_cont: ユーザー名
     saville: サヴィル
     saville_assessment: サヴィル査定
+    schedule: スケジュール
+    schedule_email: スケジュールメール
+    schedule_email_title: スケジュールメール
+    schedule_time: スケジュールを設定する
     scheduling: スケジューリング
+    scheduling_add_activity: アクティビティの追加
+    scheduling_add_assessment_center: アセスメントセンターの追加
+    scheduling_add_assessor_form_assessment: アセスメント
+    scheduling_add_assessor_form_assessor: アセッサ
+    scheduling_add_assessor_form_schedule_time: スケジュール時間
+    scheduling_add_subject: 件名の追加
+    scheduling_attendance_status_column_name: 出席状況
+    scheduling_attendance_status_dropped_out: 落選
+    scheduling_attendance_status_late: 遅い
+    scheduling_attendance_status_no_show: ノーショー
+    scheduling_attendance_status_no_status: ステータスなし
+    scheduling_attendance_status_on_time: オンタイム
+    scheduling_attended_attended: 出席
+    scheduling_attended_not_attended: 不参加
+    scheduling_campaign_participants: キャンペーン参加者
+    scheduling_columns_activity: 活動
+    scheduling_columns_assessment_center_date_and_time: アセスメントセンターの日時
+    scheduling_columns_assessor: アセッサ
+    scheduling_columns_assessors: アセッサ
+    scheduling_columns_attendance: 出席
+    scheduling_columns_attended: 出席
+    scheduling_columns_booked_at: 予約済み
+    scheduling_columns_campaign_assessment_group: アセスメント・センター・グループ
+    scheduling_columns_campaign_name: キャンペーン名
+    scheduling_columns_duration: 期間
+    scheduling_columns_link_to_view_recordings: 録画を表示するためのリンク
+    scheduling_columns_managers: マネージャー
+    scheduling_columns_meeting_link: ミーティングリンク
+    scheduling_columns_participants: 参加者
+    scheduling_columns_prework: プレワーク
+    scheduling_columns_recording_date: 録音日
+    scheduling_columns_resource_link: リンク
+    scheduling_columns_schedule_time: スケジュール時間
+    scheduling_columns_scheduling_status: スケジューリング状況
+    scheduling_columns_seats: 座席
+    scheduling_columns_serial_no: シリアル番号
+    scheduling_columns_start_time: 日時
+    scheduling_columns_subject: 課題
+    scheduling_columns_title: タイトル
+    scheduling_columns_view_recording: 録画の表示
+    scheduling_errors_assessor_already_assigned: 別の評価または評価者を選択してください。
+    scheduling_errors_date_required: 日付を選択してください
+    scheduling_errors_invalid_url: 無効なURL形式
+    scheduling_errors_meeting_link_https: ミーティングのリンクは "https://"で始まること
+    scheduling_info_allowed: 可
+    scheduling_info_assessors: アセッサ
+    scheduling_info_booked: 予約席
+    scheduling_info_campaign_assessment_group: アセスメント・センター・グループ
+    scheduling_info_cancellation_lead_time: キャンセル・リードタイム
+    scheduling_info_cancellation_tooltip: ユーザーは%{date}まで予約をキャンセルできる。
+    scheduling_info_date: 日時
+    scheduling_info_duration: 期間
+    scheduling_info_join_meeting: ジョイン・ルーム
+    scheduling_info_late_cancellation_and_scheduling: レイト・キャンセルとスケジューリング
+    scheduling_info_link: ミーティングリンク
+    scheduling_info_managers: センターマネージャー
+    scheduling_info_none: なし
+    scheduling_info_not_allowed: 不可
+    scheduling_info_recording_enabled: 録音が有効
+    scheduling_info_remaining: 残席
+    scheduling_info_scheduling_lead_time: リードタイムのスケジューリング
+    scheduling_info_scheduling_tooltip: ユーザは%{date}までのスロットを予約できる。
+    scheduling_info_search_placehoder: ID、Eメール、名前で検索
+    scheduling_info_timezone: タイムゾーン
+    scheduling_info_total_seats: 総座席数
+    scheduling_lead_time_label: スケジューリングのリードタイム
+    scheduling_resources_confirm_message: リソース '%{resource_name}' を本当に削除しますか?
+    scheduling_resources_confirm_title: 確認が必要です
+    scheduling_resources_create: リソースの作成
+    scheduling_resources_invalid_url: 無効なURLです。 httpまたはhttpsプロトコルを含む完全なURLを指定してください。
+    scheduling_resources_resource: リソース
+    scheduling_resources_successful_remove: アセスメント・センター・リソース %{resource_name} は正常に削除されました。
+    scheduling_schedule_assessments: 査定スケジュール
+    scheduling_scheduling_statuses_cancelled: キャンセル
+    scheduling_scheduling_statuses_late_cancelled: レイト・キャンセル
+    scheduling_scheduling_statuses_late_rescheduled: レイト・リスケジュール
+    scheduling_scheduling_statuses_rescheduled: 予定変更
+    scheduling_scheduling_statuses_scheduled: 予定
+    scheduling_search_participant: キャンペーン参加者の検索
+    scheduling_status: スケジュール状況
+    scheduling_status_change_modal_content: 評価センターを閉鎖すると、参加者はセンターの活動に参加できなくなります。
+    scheduling_status_change_modal_title: 評価センターのステータスを変更する
+    scheduling_status_completed: 完了済み
+    scheduling_status_dropped_out: 落選
+    scheduling_status_in_progress: 進行中
+    scheduling_status_late: 遅い
+    scheduling_status_no_show: ノーショー
+    scheduling_status_not_started: 未着手
+    scheduling_subjects_activities: 活動内容
+    scheduling_subjects_add_assessor_form: アセッサーの追加フォーム
+    scheduling_subjects_assessments: アセスメント
+    scheduling_subjects_assessor_forms: 査定フォーム
+    scheduling_subjects_confirm_message: |
+      'メール「%{subject_email}」を持つ対象者の参加をキャンセルしてもよろしいですか?
+      <br />
+      キャンセルとマークされると、この被験者はアセスメントセンターに参加できなくなります。'
+    scheduling_subjects_confirm_title: 確認が必要です
+    scheduling_subjects_edit_assessor_form: アセッサーのフォームを編集する
+    scheduling_subjects_form_title: 査定スケジュール
+    scheduling_subjects_language: 言語
+    scheduling_subjects_language_not_selected: 落選
+    scheduling_subjects_mark_cancel: マーク・キャンセル
+    scheduling_subjects_mark_cancel_success: 電子メール %{subject_email} による件名の参加をキャンセルしました。
+    scheduling_subjects_meeting_link_custom: カスタム
+    scheduling_subjects_meeting_link_internal: 内部
+    scheduling_subjects_meeting_link_none: なし
+    scheduling_subjects_meeting_link_title: ミーティングリンク
+    scheduling_subjects_no_change: 変更なし
+    scheduling_subjects_override_existing: 既存のスケジュールを上書きする
+    scheduling_subjects_preworks: プレワーク
+    scheduling_subjects_re_enroll: 再登録
+    scheduling_subjects_re_enroll_confirm_message: 件名を「%{subject_email} 」に変更しますか？
+    scheduling_subjects_re_enroll_success: 電子メールでの再登録対象%{subject_email}.
+    scheduling_subjects_schedule: スケジュール
+    scheduling_subjects_unschedule: スケジュール解除
+    scheduling_tabs_activities: 活動内容
+    scheduling_tabs_assessment_center: アセスメント・センター
+    scheduling_tabs_invites: 招待
+    scheduling_tabs_recordings: 録音
+    scheduling_tabs_resources: リソース
+    scheduling_tabs_subjects: 対象
+    schema_key_description_required: スキーマキーの説明は必須
+    schema_key_required: スキーマ・キーが必要
+    schema_key_type: キータイプ
+    schema_key_unique: スキーマ・キーは一意でなければならない
     score: スコア
     score_approval_not_allowed_to_approve: このスコアを承認することはできません。
     score_approval_not_allowed_to_discard: このスコアを破棄することはできません。
@@ -1081,75 +2388,493 @@ ja:
     score_max: スコア・マックス
     score_min: スコア最小値
     score_must_be_in_between_min_and_max: スコアは%{min}と%{max}の間でなければなりません。
+    score_not_applicable: スコアは適用されません
     score_range_info: スコア範囲：%{min} - %{max}
     score_with_ai: AIで得点する
     scores_finalized: スコアは確定しており、変更することはできません
     scoring: 採点
+    scoring_action_prohibited: 禁止行為
+    scoring_active: アクティブ
+    scoring_actual_average: 実績平均
+    scoring_add_factor: ファクター追加
+    scoring_add_group: グループ追加
     scoring_approval_add_settings: 設定を追加
     scoring_approval_allow_bulk_approve: 一括承認を許可する
     scoring_approval_allow_bulk_approve_scores: 一括承認スコアを許可する
     scoring_approval_allow_one_level_approve: 1段階承認を許可する
+    scoring_approval_approve_all: すべて承認する
     scoring_approval_approver_users: 承認者ユーザー
     scoring_approval_approvers: 承認者
     scoring_approval_assessment: 評価
     scoring_approval_assessor_users: 査定者ユーザー
+    scoring_approval_bulk_approve_success: "%{approved} スコア承認済み。"
     scoring_approval_do_not_send_notifications: 通知を送信しない
     scoring_approval_modal_title: スコア承認設定
     scoring_approval_notification_users: 承認通知の受信者
     scoring_approval_remove_modal_success: '評価ID: %{assessmentId} の承認設定が正常に削除されました'
     scoring_approval_remove_modal_text: '評価ID: %{assessmentId} の設定を削除してもよろしいですか？'
+    scoring_approval_review: レビュー
+    scoring_approval_score_approvals: AIスコアリング承認
+    scoring_assessment: アセスメント
+    scoring_assessment_scoring_type: アセスメント採点タイプ
+    scoring_average: 平均
+    scoring_campaign_scoring_variables: キャンペーン・スコアリング変数
+    scoring_desc: キャンペーン要因が %{n} 個の上限を超えました。 要因を追加することはできません。 先に進む前に既存の要因を確認し、管理してください。
+    scoring_dimension: 寸法
+    scoring_edit_factor: 編集係数
+    scoring_export_factors: 輸出キャンペーンの要因
+    scoring_factor: ファクター
+    scoring_factor_group_removed_successfully: キャンペーンファクターグループは正常に削除されました
+    scoring_factor_removal_confirmation: 以下のテキストボックスにファクター名を入力して確認する。
+    scoring_factor_removed_successfully: キャンペーン・ファクターの削除に成功
+    scoring_factors_exported_successfully: エクスポートキャンペーン要因のジョブが正常にスケジュールされました
+    scoring_factors_imported_successfully: インポートキャンペーン要因のジョブが正常にスケジュールされました
+    scoring_final: 決勝
+    scoring_final_score_updated_successfully: 最終スコアの更新に成功
+    scoring_formula: フォーミュラ
+    scoring_get_started: スタート
+    scoring_import_factors: インポート・キャンペーン要因
+    scoring_innovation_style_removal_confirmation: 確認のため、以下のテキストボックスに「イノベーション・スタイル」の名前を入力してください
+    scoring_no_groups: グループなし
+    scoring_occupation_removal_confirmation: 確認のため、以下の職業名をテキストボックスに入力してください
+    scoring_output_type: 出力タイプ
+    scoring_pattern_error: 使用できる文字は英数字、スペース、ダッシュのみです。
+    scoring_profile_years: 年
+    scoring_public: 公共
+    scoring_ranked: 順位
+    scoring_remove_all_campaign_factors_confirmation: 以下のテキストボックスに現在のキャンペーン名を入力して確認する。
+    scoring_remove_all_campaign_factors_error: キャンペーン要因の削除に失敗
+    scoring_remove_all_campaign_factors_success: キャンペーン要因の削除に成功
+    scoring_remove_all_campaign_factors_title: キャンペーン要因を取り除く
+    scoring_remove_all_campaign_factors_warning: すべてのキャンペーンファクターと、関連するすべてのユーザーのスコアを削除しようとしています。 このアクションを実行してもよろしいですか？
+    scoring_remove_factor_group_confirmation_content: 本当に要因グループ '%{group_name}' を削除しますか?
+    scoring_remove_factor_group_confirmation_title: 因子グループを取り除く
+    scoring_required_error: 空っぽにはできない
+    scoring_save_all: すべて保存
+    scoring_score_range: 得点範囲
+    scoring_score_types_norm_score: ノーム・スコア
+    scoring_score_types_percentage: パーセント
+    scoring_score_types_percentile: パーセンタイル
+    scoring_score_types_score: スコア
+    scoring_score_types_zscore: Zスコア
+    scoring_scoring: 採点
+    scoring_scoring_description: キャンペーン・スコアリングにより、評価を横断したレポーティングが可能
+    scoring_select_all: すべての %{n} 個の被験者を選択する
+    scoring_select_assessment_first: アセスメント・ファーストを選択
+    scoring_select_factor: ファクター選択
+    scoring_show_weightages: 体重表示
+    scoring_subject: 課題
+    scoring_subject_list_bulk_mark_finalized: 一括マークが決定
+    scoring_subject_list_bulk_mark_finalized_confirm: 選択したユーザーのスコアを確定すると、そのユーザーのキャンペーンファクターを使用したレポートが作成されます。 このまま進んでよろしいですか？
+    scoring_subject_list_bulk_mark_not_finalized: バルクマーク未定
+    scoring_subject_list_bulk_mark_not_finalized_confirm: 選択したユーザーからfinalizeを削除すると、そのユーザーのキャンペーンファクターを使用して生成されたレポートが削除されます。 先に進んでよろしいですか？
+    scoring_subject_list_bulk_rescore: バルク・リスコア
+    scoring_subject_list_bulk_rescore_confirm: 選択したユーザーを再スコアします。 このまま進んでよろしいですか？
+    scoring_subject_list_calculated_date: 計算日
+    scoring_subject_list_calculation_errors: 計算エラー
+    scoring_subject_list_export: 輸出採点
+    scoring_subject_list_export_success: エクスポートスコアのジョブは正常にスケジュールされました。
+    scoring_subject_list_finalized: 最終決定
+    scoring_subject_list_finalized_date: 最終決定日
+    scoring_subject_list_import_external_scores: 外部スコアリングのインポート
+    scoring_subject_list_mark_finalized: マーク確定
+    scoring_subject_list_mark_finalized_confirm: ユーザー「%{email}」のスコアを確定すると、そのユーザーのキャンペーンファクターを使用したレポートが生成されます。 このまま進めてよろしいですか？
+    scoring_subject_list_mark_not_finalized: マーク未定
+    scoring_subject_list_mark_not_finalized_confirm: ユーザ'%{email}'からfinalizeを削除すると、そのユーザのキャンペーンファクタを使用して生成されたレポートが削除されます。 先に進んでよろしいですか？
+    scoring_subject_list_push_webhook: プッシュ・ウェブフック
+    scoring_subject_list_rank: ランク
+    scoring_subject_list_rescore: リスコア
+    scoring_subject_list_rescore_confirm: ユーザー'%{email}'を再スコアしてください。 本当に続行しますか？
     scoring_supported_only_for_ai_questions: 現在選択されている要素について、AI対応問題でのみ採点が許可されます。
+    scoring_tabs_settings: 設定
+    scoring_tabs_subject_scores: 課題スコア
     scoring_value_info: スコアは%{min}から%{max}の間でなければなりません。
     scoring_value_out_of_range_err_msg: "%{factor_name} のスコアは、%{min} と %{max} の間でなければなりません。"
+    scoring_variables: 変数
+    scoring_weightages_assessorForms: 査定フォーム
+    scoring_weightages_successful_update: ウェイトが正常に更新された
+    scoring_weightages_weightages: ウエイト
+    scoring_weighted_average: 加重平均
     search_admins: 管理者を検索
+    search_campaign: キャンペーンで検索
+    search_client: クライアントで検索
     search_job_role: 職種を検索
+    search_participants: 参加者を検索...
+    search_project: プロジェクトで検索
+    search_record: レコードIDで検索
+    search_user: ユーザーで検索
+    seats_label: 座席
+    sec_logo_label: セカンダリーロゴ
+    secondary_logo_alt_text: セカンダリーロゴ Alt-Text
+    secondary_logo_alt_text_required: セカンダリーAlt-Textロゴは必須
+    security_setting_180_days: 180日
+    security_setting_30_days: 30日
+    security_setting_365_days: 365日
+    security_setting_90_days: 90日
+    security_setting_attempts_to_lock: ロックの試み
+    security_setting_auto_unlock_time: 自動ロック解除時間
+    security_setting_disable_password_reuse: パスワードの再利用を無効にする
+    security_setting_disallow_password_login: パスワードによるログインを許可しない
+    security_setting_enable_login_with_magic_link: マジックリンクによるログインを有効にする
+    security_setting_enable_recaptcha: reCAPTCHAを有効にする
+    security_setting_enforce_password_policy: 次回サインイン時にパスワードポリシーを強制する
+    security_setting_enforce_strong: 強力なパスワードの強制
+    security_setting_expiration: パスワードの有効期限
+    security_setting_lock_account: アカウントロック
+    security_setting_magic_link_expiry_duration: マジックリンクの有効期限
+    security_setting_min_length: 最小パスワード長
+    security_setting_never: 決して
+    security_setting_restrict_sequences: 連続した繰り返し文字を制限する
+    security_setting_security: セキュリティ設定
+    security_setting_send_unlock_email: ロック解除メールを送信する
+    security_setting_session_timeout_duration: セッションタイムアウト時間
+    security_setting_tfa_enabled: 二要素認証を有効にする
+    security_settings_security_setting: セキュリティ設定
     select_admin_role: 管理者ロールの選択
+    select_assessment_language: 評価言語の選択
     select_end_time: 終了時間を選択
     select_language_to_translate: 翻訳する言語を選択してください
     select_level: レベルを選択
     select_question: 名前またはIDで質問を検索
+    select_report_language: レポート言語の選択
     select_start_time: 開始時間を選択
     selective_proctoring: 選択的監督
     send_email: 電子メールを送信する
+    send_test_email: テストメールの送信
     set_min_max_scores_warning: この要素のAIスコアリングを設定するには、最低点と最高点を設定してください。
     settings: 設定
+    settings_admin_roles_confirm_message: 本当に管理者ロール '%{role_name}' を削除しますか?
     settings_saved_successfully: 設定が正常に保存されました
+    settings_siem_destination_type: デスティネーション・タイプ
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: S3対応
+    settings_siem_enabled: 有効
+    settings_siem_readable_resource_name: SIEMの設定
+    settings_siem_s3_access_key_id: アクセスキーID
+    settings_siem_s3_bucket_folder: S3バケットフォルダー
+    settings_siem_s3_bucket_name: S3バケット名
+    settings_siem_s3_endpoint: S3エンドポイント
+    settings_siem_s3_region: S3リージョン
+    settings_siem_s3_secret_access_key: シークレット・アクセス・キー
+    settings_siem_send_test_log: テストログの送信
+    settings_siem_send_test_log_error_message: テストログがバケットに送信されていません。
+    settings_siem_send_test_log_success_message: テストログがバケットに送信されました。
+    settings_skill_aliases_alias: 別名
+    settings_skill_aliases_confirm_message: スキルエイリアス '%{skill_alias}' を本当に削除しますか?
+    settings_skill_aliases_create: スキルエイリアスの追加
+    settings_skill_aliases_select_skill: スキル選択
+    settings_skill_aliases_skill: スキル
+    settings_skill_aliases_skill_alias: スキルエイリアス
+    settings_skill_aliases_successful_remove: スキル・エイリアス '%{skill_alias}' は正常に削除されました。
+    settings_tabs_admin_roles: 管理者の役割
+    settings_tabs_feature_flags: フィーチャー・フラッグ
+    settings_tabs_siem: シーイーエム
+    settings_tabs_skill_aliases: スキルの別名
+    sheets_column_add_column: コラムの追加
+    sheets_column_not_allowed_for_dashboard_use: ダッシュボードで使用するカラムは64文字以下でなければなりません。
+    sheets_column_reorder: 再注文
+    sheets_column_save_order: 注文を保存する
+    sheets_drawers_add_edit_cancelText: キャンセル
+    sheets_drawers_add_edit_markdown_preview: プレビュー
+    sheets_drawers_add_edit_markdown_title: マークダウン
+    sheets_drawers_add_edit_save: 保存
+    sheets_drawers_add_edit_saving: 節約
+    sheets_drawers_add_edit_success_message_add: 新記録追加
+    sheets_drawers_add_edit_success_message_edit: 記録更新
+    sheets_drawers_add_edit_title_add: シートレコードの追加
+    sheets_drawers_add_edit_title_edit: シート行レコードの編集
+    sheets_drawers_add_edit_validations_required_email: 電子メールを入力してください
+    sheets_drawers_view_campaign_title: キャンペーンレベルの記録
+    sheets_drawers_view_project_title: プロジェクトレベルの記録
+    sheets_drawers_view_title: シート行の記録詳細
+    sheets_list_header_add_record: レコードの追加
+    sheets_list_header_search_record: レコード検索
+    sheets_modals_delete_records_cancelText: キャンセル
+    sheets_modals_delete_records_content: 選択した{{count}}レコードを本当に削除しますか？
+    sheets_modals_delete_records_okText: はい、削除
+    sheets_modals_delete_records_successMessage: "{count}}レコードは正常に削除されました。"
+    sheets_modals_delete_records_title: count}}レコードを削除する
+    sheets_modals_remove_columns_cancelText: キャンセル
+    sheets_modals_remove_columns_content: 列 ({{columns}}) を削除すると、すべての行でその列のデータが削除されます。
+    sheets_modals_remove_columns_okText: はい、削除
+    sheets_modals_remove_columns_successMessage: "{count}}レコードが削除された"
+    sheets_modals_remove_columns_title: 列の削除
+    sheets_tabs_rows: 列
+    sheets_tabs_settings: 設定
+    show_all: すべて表示
     show_all_assessment_responses: すべての評価回答を表示
     show_middle_scores: "%{count}のスコアをさらに表示（任意）..."
     show_original: 原文を表示
     show_submenu: サブメニューを表示する
     show_translated: 翻訳を表示
+    show_watermark: 透かしを表示する
+    sidebar_title: プロジェクトのオプション
     siem: シーイーエム
     simulation: シミュレーション
     simulation_assessment: シミュレーション評価
     skill_aliases: スキルの別名
+    skill_rater: 技能評価者
     skills: スキル
+    skills_applicable_proficiency_levels: 該当する能力レベル
+    skills_columns_skill_group: スキルグループ
+    skills_columns_skill_type: スキルタイプ
+    skills_export_failure_msg: 翻訳のエクスポート時のエラー
+    skills_export_success_msg: 進行中の開発アクションをエクスポートする。
+    skills_form_skill_group: スキルグループ
+    skills_form_skill_type: スキルタイプ
+    skills_form_title: スキル
+    skills_import_action_skills_title: インポート・スキル
+    skills_import_action_skills_translations_title: 輸入技能翻訳
+    skills_import_download_example_csv: サンプル規範CSV
+    skills_import_info_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
+    skills_import_success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
+    skills_skill_details: スキル詳細
+    skills_skill_translations: 技能翻訳
     skills_taxonomy: スキル分類法
+    skills_title: スキル
+    skills_vector_generate_embedding: 埋め込み生成
+    skills_vector_generate_embedding_failure_msg: スキル埋め込み生成ジョブのキューに入れませんでした。もう一度お試しください。
+    skills_vector_generate_embedding_success_msg: スキル埋め込み生成ジョブは成功裏にキューに入りました。通知の状況を確認してください。
+    skills_vector_label: ベクトルDB
     skillvue: スキルビュー
+    skillvue_apiKey: APIキー
+    skillvue_apiKeyRequired: APIキーが必要です。
     skillvue_assessment: Skillvue評価
     skip_assessment_level_checks: 評価レベルに基づくシステムチェックをスキップする
     slot_name: スロット名
+    sms_contact: SMSコンタクト
     sms_histories: SMSヒストリー
+    sms_histories_columns_mobile_no: 携帯番号
+    sms_histories_columns_price: 価格
+    sms_histories_columns_segment_length: セグメントの長さ
+    sms_histories_columns_sent_at: 送信先
+    sms_histories_drawer_title: SMS詳細
+    sms_histories_history: 歴史
+    sms_histories_statuses_accepted: 受諾
+    sms_histories_statuses_delivered: 配信
+    sms_histories_statuses_failed: 失敗
+    sms_histories_statuses_queued: キュー入り
+    sms_histories_statuses_scheduled: 予定
+    sms_histories_statuses_sent: 送信済み
+    sms_histories_statuses_undelivered: 未配信
     sms_invites: SMS招待
+    sms_invites_actions_add: SMSコンタクトの追加
+    sms_invites_columns_created_at: 作成日時：
+    sms_invites_columns_created_by: 作成者
+    sms_invites_columns_mobile_no: 携帯番号
+    sms_invites_contacts: 連絡先
+    sms_invites_form_modal_locale: ロケール
+    sms_invites_form_modal_mobile_no: 携帯番号
+    sms_invites_form_modal_title: 招待メール
+    sms_invites_import_download_example_csv: サンプル規範CSV
+    sms_invites_import_success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
+    sms_invites_import_title: SMS招待インポート
+    sms_invites_messages_delete_confirm_text: 携帯電話番号%{mobile_no}のSMS招待を本当に削除しますか？
+    sms_invites_messages_delete_success: SMS招待は正常に削除されました
+    sms_invites_send_sms_fields_link_expiry: リンク有効期限
+    sms_invites_send_sms_fields_locale: ロケール
+    sms_invites_send_sms_fields_message: メッセージ
+    sms_invites_send_sms_fields_statuses: ステータス
+    sms_invites_send_sms_fields_users: ユーザー
+    sms_invites_send_sms_modal_btn_name: SMS送信
+    sms_invites_send_sms_modal_title: SMS送信
+    sms_invites_send_sms_pipetext_details: |
+      "{{first_name}} - 受取人の姓
+      <br />
+      {{last_name}} - 受信者の姓
+      <br />
+      {{invite_url}} - 登録リンク"
+    sms_invites_send_sms_segment_length_msg: このメッセージの推定セグメント数は %{segment_length} です。
+    sms_invites_send_sms_segment_length_range_msg: このメッセージの推定セグメント数は %{min_segment_length} から %{max_segment_length} の間です。
+    sms_invites_statuses_all: すべて
+    sms_invites_statuses_failed: 失敗
+    sms_invites_statuses_invited: 招待
+    sms_invites_statuses_not_invited: 招待されていない
+    sms_invites_statuses_registered: 登録済み
+    sms_invites_tools_export: SMSの連絡先をエクスポート
+    sms_invites_tools_import: SMSコンタクトのインポート
+    sms_invites_tools_send_sms: SMS送信
+    sms_notification: SMS通知
+    sms_notification_disabled_by_client: SMS 通知はクライアントによって無効になっています
+    sms_records_columns_message: メッセージ
+    smtp_settings: SMTP設定
+    smtp_settings_authentication: 認証
+    smtp_settings_authentication_type: 認証タイプ
+    smtp_settings_authentication_types_cram_md5: クラムmd5
+    smtp_settings_authentication_types_login: ログイン
+    smtp_settings_authentication_types_plain: プレーン
+    smtp_settings_enabled: 有効
+    smtp_settings_encryption: 暗号化
+    smtp_settings_encryption_types_none: なし
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: Eメールより
+    smtp_settings_from_name: 名前から
+    smtp_settings_host: ホスト
+    smtp_settings_password: パスワード
+    smtp_settings_port: ポート
+    smtp_settings_send_test_email: テストメールの送信
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: テストメールが正常に送信されるまで、メール設定は保存されません。
+    smtp_settings_test_email_modal_input_placeholder: テストメールアドレス
+    smtp_settings_test_email_modal_title: テストメールアドレス
+    smtp_settings_test_modal_success_message: テストメールが %{email_id} に送信されました。
+    smtp_settings_test_modal_title: SMTP設定のテスト
+    smtp_settings_update_success_msg: SMTP設定が正常に更新されました。
+    smtp_settings_use_sender_verification: 送信者確認を使用する
+    smtp_settings_user_name: ユーザー名
     specialty_questions: 専門的な質問
+    standard: スタンダード
     standard_deviation: 標準偏差
     standard_questions: よくある質問
     start: 開始
     start_time: 開始時刻
     static_content: 静的コンテンツ
     stats: 統計
+    stats_assessments_active: アクティブ
+    stats_assessments_columns_assessment_name: 評価名
+    stats_assessments_columns_completed: 完了済み
+    stats_assessments_columns_in_progress: 進行中
+    stats_assessments_columns_ineligible: 不適格
+    stats_assessments_columns_interrupted: 中断
+    stats_assessments_columns_not_started: 未着手
+    stats_assessments_columns_timed_out: タイムアウト
+    stats_assessments_count: カウント
+    stats_assessments_inactive: 活動休止中
+    stats_assessments_percentage: パーセント
+    stats_assessments_title: アセスメント
+    stats_top_metrics_completed: 完了済み
+    stats_top_metrics_in_progress: 進行中
+    stats_top_metrics_interrupted: 中断
+    stats_top_metrics_not_started: 未着手
+    stats_top_metrics_timed_out: タイムアウト
+    stats_top_metrics_users: ユーザー
+    stats_users_date_presets_last_30_days: 過去30日間
+    stats_users_date_presets_last_7_days: 直近7日間
+    stats_users_date_presets_last_month: 先月
+    stats_users_date_presets_last_week: 先週
+    stats_users_date_presets_today: 今日
+    stats_users_date_presets_yesterday: 昨日
+    stats_users_y_title: ユーザー数
+    status_active: アクティブ
+    status_archived: アーカイブ
     status_details: 状況詳細
+    statuses_accepted: 受諾
+    statuses_cancelled: キャンセル
+    statuses_late_cancelled: レイト・キャンセル
+    statuses_late_rescheduled: レイト・リスケジュール
+    statuses_pending: 申請中
+    statuses_requested_cancellation: キャンセルのお申し出
+    statuses_requested_cancellation_rejected: キャンセル拒否
+    statuses_requested_rescheduling: リスケジュールのリクエスト
+    statuses_requested_rescheduling_rejected: リスケジュール却下
+    statuses_rescheduled: 予定変更
+    statuses_scheduled: 予定
+    steps_basic_information: 基本情報
+    steps_facilitators: ファシリテーター
+    steps_invite_options: 招待オプション
+    steps_invite_subjects: 被験者を招待する
+    steps_send_invitations: 招待状を送る
     structured_learning: 正式な学習 [10]
+    sub_factor_questions: その他の要因に関する質問（平均）
+    sub_factor_questions_sum: その他の要因に関する質問（SUM）
+    sub_factors_average: 要因の加重平均
+    sub_factors_conditional_average: 要因の条件付き加重平均
+    sub_factors_sum: 要因の加重和
     subdomain: サブドメイン
+    subject: 課題
+    subject_can_access_reports: 対象者はレポートにアクセスできる
+    subject_email: 対象者のEメール
+    subject_invite_description: このメッセージは、被験者を評価に参加させるために送信される。
+    subject_invite_name: 件名 招待
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
-    target_job_role: 対象職務
+    subject_placeholder: 検索テーマ...
+    subject_reminder_description: アセスメントへの参加を促すメッセージを各参加者に送信
+    subject_reminder_name: 件名 リマインダー
+    subject_reminder_rule_description: 招待がスケジュールされたときに自動的にスケジューリングするルールを指定する
+    subject_reminder_rule_name: 主題に関する注意事項
+    subject_report_ready_description: このメッセージは、レポートの準備が整うと、対象者に送信されます。
+    subject_report_ready_name: 課題レポート作成
+    subjects_title: 対象
+    submenu_options_option_one: オプション1
+    submenu_options_option_title: 項目 1
+    submenu_options_option_two: オプション2
+    success_call_send_invitation: 招待状を送りますか？
+    success_color: サクセス・カラー
+    success_ok: はい
+    success_skip: とりあえずスキップ
+    success_title: アセスメントセンター設置
+    success_update: デザイン設定が正常に保存されました
+    suitability_id: 適合性ID
+    system_prompt: システムプロンプト
+    tab_text_one: メニュー
+    tab_text_two: サブメニュー
+    table_more_actions: より多くの行動
+    tabs_results: 結果
+    tabs_settings: 設定
+    target_job_role: ターゲット職種
+    taxonomy_import_action_taxonomy: スキル分類法のインポート
+    taxonomy_import_description: Excelファイルをアップロードして、スキル分類体系をインポートまたは更新してください。これにより、新しいスキル、職務役割、習熟度レベルが追加されます。
+    taxonomy_import_download_example_file: 例題ファイルのダウンロード
+    taxonomy_import_drag_text: ファイルをこの領域にクリックまたはドラッグしてアップロードしてください
+    taxonomy_import_error_title: インポートに失敗しました
+    taxonomy_import_file_hint: ".xls および .xlsx ファイルをサポートします"
+    taxonomy_import_import_button: 輸入分類
+    taxonomy_import_success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
+    taxonomy_title: スキル分類法
+    template_and_campaign_required: テンプレートとキャンペーンIDの両方をご提供ください
+    template_render_failed: テンプレートのレンダリングに失敗しました
+    test_generate: テスト生成
+    test_render: テストレンダリング
+    test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
+    text_danger: テキスト（危険）
+    text_success: テキスト（成功）
+    text_warning: テキスト(警告)
     this_field_is_required: この項目は必須です
+    threesixity_advance_settings_campaign_template: キャンペーンテンプレート
+    threesixity_advance_settings_factors: 要因
+    threesixity_close_content: Multi Rater Campaign Creatorを終了してもよろしいですか？ 保存されていないカスタマイズ作業は失われます。 決定を確認してください。
+    threesixity_close_title: マルチ・レイター・キャンペーン・クリエーターを閉じる
+    threesixity_instructions_creation_sub_title: キャンペーンの種類を選択してください。
+    threesixity_instructions_creation_title: マルチレイターキャンペーンクリエーターへようこそ！
+    threesixity_instructions_customization_sub_title: テンプレートと評価に含める要素を選択します。
+    threesixity_instructions_customization_title: 評価をカスタマイズする
+    threesixity_no_factors_description: 他の検索キーワードをお試しください。
+    threesixity_no_factors_title: 要因が見つからない
+    threesixity_questions_select_all: すべて選択
+    threesixity_questions_title: 質問と指標
+    threesixity_search_factors_description: お探しの要素を検索するには、3文字以上を入力してください。
+    threesixity_search_factors_title: 検索を開始する
+    threesixity_success: マルチ評価者キャンペーンが正常に作成されました。
+    threesixity_success_job: マルチレイターキャンペーン作成ジョブが正常にスケジュールされました。
     threesixty: 360キャンペーン
+    threesixty_campaigns_mail_history_date: 日付
+    threesixty_campaigns_mail_history_download_details: ダウンロード詳細
+    threesixty_campaigns_mail_history_emails_sent: 送信メール
+    threesixty_campaigns_mail_history_recipient: 受取人
+    threesixty_campaigns_mail_history_subject: 課題
+    threesixty_campaigns_manage_assessment: アセスメント
+    threesixty_campaigns_manage_dimension: 寸法
+    threesixty_campaigns_manage_manage_relationships: 人間関係の管理...
+    threesixty_campaigns_manage_report: レポート
+    threesixty_campaigns_menu_datasheet_title: データシート
+    threesixty_campaigns_menu_messages_title: メッセージ
+    threesixty_campaigns_menu_participants_title: 参加者
+    threesixty_campaigns_menu_report_menu_report_approval_title: レポート承認設定
+    threesixty_campaigns_menu_report_menu_report_options_title: レポートオプション
+    threesixty_campaigns_menu_report_title: レポート
+    time_label: 時間
+    time_zone: タイムゾーン
     timed_label: 公開日時：%{time_text}
     timelines: タイムライン
+    times: 回
     timezone: タイムゾーン
+    timezone_label: タイムゾーン
     timing: タイミング
     to: 宛てに
+    token_url_label: トークンURL
+    token_url_name: oauth_token_url
+    token_url_required: トークン URL は必須です
     tone: トーン
     toolbar_ai_insight: AIインサイト
     toolbar_ai_suggestion: AI提案
@@ -1158,6 +2883,20 @@ ja:
     toolbar_text_replaced: テキストが置換されました！
     toolbar_what_changed_and_why: 何が変わったのか、そしてその理由
     tools: ツール
+    topics_label: イベント
+    topics_list_assessment_assigned: 評価
+    topics_list_assessment_completed: アセスメント完了
+    topics_list_assessment_raw_response: 評価 生の回答
+    topics_list_assessment_started: アセスメント開始
+    topics_list_assessment_timeout: 評価タイムアウト
+    topics_list_campaign_results_available: キャンペーン結果発表
+    topics_list_campaign_user_status: キャンペーン・ユーザーのステータス
+    topics_list_report_available: 報告書あり
+    topics_list_results_available: 結果あり
+    topics_list_scheduling_cancelled: スケジューリング中止
+    topics_list_scheduling_invited: 招待されたスケジューリング
+    topics_list_scheduling_rescheduled: スケジュール変更
+    topics_list_scheduling_scheduled: スケジューリング予定
     transcription_record_not_found: 転写記録が見つかりません
     transcription_schedule_failed: 文字起こしジョブのスケジュール設定に失敗しました
     transcription_scheduled: 文字起こし作業がスケジュールされました。モーダルを閉じて通知ステータスをご確認ください。
@@ -1170,31 +2909,82 @@ ja:
     translation_assistant_not_configured: 翻訳アシスタントが設定されていません
     translations:
       title: 翻訳
+    translations_export_failure_msg: 翻訳のエクスポート時のエラー
+    translations_export_success_msg: 進行中の開発アクションをエクスポートする。
+    tte: TTE
+    type_by_skill: スキル別
+    type_by_skill_type: スキルタイプ別
+    type_default: デフォルト
+    type_locked_tooltip: このアシスタントは現在使用中であり、そのタイプを変更することはできません。
+    unarchive_content: 本当に'%{project_name}'をアン・アーカイブしますか？
+    unarchive_success: プロジェクト '%{project_name}' は正常にアーカイブ解除されました。
+    unarchive_title: アナーカイブ・プロジェクト
+    unsaved_changes: 未保存の変更が存在する場合は、フォームを送信して Playground から更新された応答を生成することを検討してください。
+    upcoming: 今後の予定
     update_success: "%{readableResourceName}が正常に更新されました"
+    updated_successfully: AIアシスタントは正常に更新されました。
     upload: アップロード
     upload_media: メディアをアップロード
     upload_required: アップロードするファイルを少なくとも1つ追加してください
     upload_success: アップロード成功
+    url_label: URL
+    url_name: URL
+    used_tokens_input_tokens: 入力トークン
+    used_tokens_output_tokens: 出力トークン
+    used_tokens_title: トークンの使用
+    user: ユーザー
+    user_agent: ユーザーエージェント
+    user_prompt: ユーザープロンプト
     user_report_events: ユーザーレポートイベント
+    user_report_id: ユーザーレポートID
+    user_result_validity_in_days: 結果の有効期間（日
+    username_label: ユーザー名
+    username_name: ユーザー名
     users: ユーザー
+    users_modals_download_idp_reports_error: IDP レポートの一括ダウンロード・ジョブのスケジュールに失敗しました。
+    users_modals_download_idp_reports_include_reflective_questions: 反省的な質問を含む
+    users_modals_download_idp_reports_success: IDP レポートの一括ダウンロード・ジョブが正常にスケジュールされました。
+    users_modals_download_idp_reports_title: IDP レポートの一括ダウンロード
+    users_user: ユーザー
     validation_error: すべての必須項目にご記入ください
     validity: 有効期間
     very_high: 非常に高い
     very_low: 極めて低い
+    video_call_recording: ビデオ通話の録音を許可する
+    video_call_recording_expiry_duration: ビデオ通話録画の保存期間（単位：日）
+    video_call_recording_scope: すべての新規キャンペーンでビデオ録画を有効にする
+    video_call_type_custom: カスタム
+    video_call_type_internal: 内部
+    video_call_type_label: ビデオ通話の追加
+    video_call_type_none: なし
     view_licenses: ライセンスを見る
+    visual_header_visibility: ビジュアルヘッダーの可視性
     wait_for_upload_completion: すべてのファイルのアップロードが完了するまでお待ちください
     waiting: 待つこと
+    warning_color: 警告色
+    watermark_content: ウォーターマークコンテンツ
+    watermark_info: 内容を追加しない場合、デフォルトではユーザーのEメールがウォーターマークとして表示されます。 pipetext -<br/> {{id}} - 参加者ID </br>{{first_name}} - 参加者のファーストネーム。 </br>{{last_name}} - 参加者の姓 </br>{{email}} - 参加者のメールアドレス
+    webhook_delete_success: Webhookの設定が正常に削除されました
     weight: 重量
+    welcome_message_description: このメッセージは、被験者がログインして評価を開始するとき、またはタスクリストを表示するときに表示されます。
+    welcome_message_name: ウェルカムメッセージ
     what_to_look_for: 何に注目すべきか
     what_to_look_for_placeholder: この要素を示す行動、行為、または結果の証拠
     words: 言葉
+    workshop_actions_remove_workshop: ワークショップの撤去に成功
+    workshop_statuses_closed: クローズド
+    workshop_statuses_open: オープン
     workshops: ワークショップ
     writing_assistant_not_configured: ライティングアシスタントが設定されていません
     x_axis_interval_label: X軸間隔
     y_axis_interval_label: Y軸間隔
     year: 国名
+    years: 年
     yoodli: ユードリ
     yoodli_activity_id: YoodliアクティビティID
     yoodli_assessment: ユードリ評価
     yoodli_email_id: ユードリ候補者メールアドレス
     yoodli_external_assessment_id: Yoodli評価ID
+    yoodli_keyset_url: キーセットURL
+    yoodli_launch_url: ローンチURL
+    yoodli_login_url: ログインURL

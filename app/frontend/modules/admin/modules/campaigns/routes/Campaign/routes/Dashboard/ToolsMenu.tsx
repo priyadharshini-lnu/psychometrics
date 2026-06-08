@@ -40,7 +40,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
         {
           key: 'export-file',
           icon: <FilePdfOutlined />,
-          label: I18n.t('administration.dashboard.export_dashboard_to_file'),
+          label: I18n.t('admin.dashboard_export_dashboard_to_file'),
           onClick: handleFileExport,
           disabled: isExporting,
         },
@@ -70,10 +70,10 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
         onlyCurrentTab,
         currentPageName,
       ))
-      message.success(I18n.t('administration.dashboard.export_job_success'))
+      message.success(I18n.t('admin.dashboard_export_job_success'))
     } catch (error) {
       console.error('Failed to start export:', error)
-      message.error(I18n.t('administration.dashboard.export_job_failure'))
+      message.error(I18n.t('admin.dashboard_export_job_failure'))
     } finally {
       setIsExporting(false)
     }
@@ -93,7 +93,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
         </Button>
       </Dropdown>
       <Modal
-        title={I18n.t('administration.dashboard.export_dashboard_to_file')}
+        title={I18n.t('admin.dashboard_export_dashboard_to_file')}
         open={isModalVisible}
         onOk={handleExportConfirm}
         onCancel={() => setIsModalVisible(false)}
@@ -103,7 +103,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
       >
         <div style={{ marginBottom: 16 }}>
           <label style={{ display: 'block', marginBottom: 4 }}>
-            {I18n.t('administration.dashboard.choose_file_format')}
+            {I18n.t('admin.dashboard_choose_file_format')}
           </label>
           <Select
             value={exportFormat}
@@ -111,10 +111,10 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
             style={{ width: '100%' }}
           >
             <Option key="PDF" value="PDF">
-              {I18n.t('administration.dashboard.pdf')}
+              {I18n.t('admin.dashboard_pdf')}
             </Option>
             <Option key="PPTX" value="PPTX">
-              {I18n.t('administration.dashboard.pptx')}
+              {I18n.t('admin.dashboard_pptx')}
             </Option>
           </Select>
         </div>
@@ -122,7 +122,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
         <div>
           <label style={{ display: 'block', marginBottom: 4 }}>
             <input type="checkbox" style={{ marginRight: 8 }} onChange={e => setOnlyCurrentTab(e.target.checked)} />
-            {I18n.t('administration.dashboard.only_export_current_tab')}
+            {I18n.t('admin.dashboard_only_export_current_tab')}
           </label>
         </div>
       </Modal>

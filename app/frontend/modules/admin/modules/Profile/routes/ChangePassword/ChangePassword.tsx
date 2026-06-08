@@ -49,15 +49,15 @@ const ChangePassword: React.FC = () => {
         crumbs={[
           {
             link: () => '/admin/profile',
-            label: () => I18n.t('administration.profile.profile'),
+            label: () => I18n.t('admin.profile'),
           },
           {
-            label: () => I18n.t('administration.profile.change_password'),
+            label: () => I18n.t('admin.profile_change_password'),
           },
         ]}
       />
       <Layout.Content className={styles.pageContent}>
-        <Typography.Title level={3}>{I18n.t('change_password_page.title')}</Typography.Title>
+        <Typography.Title level={3}>{I18n.t('admin.profile_change_password')}</Typography.Title>
         <Row gutter={32} align="middle">
           <Col xs={24} lg={12} xl={6}>
             <Image src={illustration} preview={false} />
@@ -124,7 +124,7 @@ const ChangePassword: React.FC = () => {
                         }
                       }}
                     >
-                      {I18n.t('profile.update')}
+                      {I18n.t('shared.update')}
                       <DirectionalArrowIcon className={styles.buttonIcon} />
                     </Button>
                   </Space>

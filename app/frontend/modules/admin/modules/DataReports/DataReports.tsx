@@ -50,34 +50,34 @@ export const DataReports: React.FC<{}> = () => {
     <Resource.Table pagination>
       <Resource.Column<DataReport>
         id="id"
-        title={I18n.t('common.column.id')}
+        title={I18n.t('shared.id')}
         sorter
         width={150}
       />
       <Resource.Column<DataReport>
         id="name"
-        title={I18n.t('common.column.name')}
+        title={I18n.t('shared.name')}
         dataIndex="name"
         key="campaign_name"
         width={300}
       />
       <Resource.Column<DataReport>
         id="owner"
-        title={I18n.t('administration.data_reports.columns.owner')}
+        title={I18n.t('shared.owner')}
         dataIndex={['owner', 'name']}
         key="report_name"
         width={300}
       />
       <Resource.Column<DataReport>
         id="user_email"
-        title={I18n.t('administration.data_reports.columns.last_updated_by')}
+        title={I18n.t('admin.data_reports_columns_last_updated_by')}
         dataIndex={['lastUpdatedBy', 'email']}
         key="user_email"
         minWidth={200}
       />
       <Resource.Column<DataReport>
         id="lastUpdateBy"
-        title={I18n.t('administration.data_reports.columns.udpated_at')}
+        title={I18n.t('admin.data_reports_columns_udpated_at')}
         dataIndex={['updatedAt']}
         render={text => formatedDate(text)}
         key="lastUpdateBy"
@@ -85,11 +85,11 @@ export const DataReports: React.FC<{}> = () => {
       />
       <Resource.Column<DataReport>
         id="actions"
-        title={I18n.t('administration.report_approval.columns.actions')}
+        title={I18n.t('shared.actions')}
         key="link"
         render={(_, resource) => (
           <Button type="primary" icon={<EditOutlined />} onClick={() => edit(resource)}>
-            {(I18n.t('common.actions.edit'))}
+            {(I18n.t('shared.edit'))}
           </Button>
         )}
         fixed="right"

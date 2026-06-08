@@ -50,12 +50,12 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
         <ResourceFilter openModal={openModal} workshopId={id} />
         <Resource.Table pagination>
           <Resource.Column<WorkshopResource>
-            title={I18n.t('administration.scheduling.columns.resource_name')}
+            title={I18n.t('shared.name')}
             id="name"
             width="40%"
           />
           <Resource.Column<WorkshopResource>
-            title={I18n.t('administration.scheduling.columns.resource_link')}
+            title={I18n.t('admin.scheduling_columns_resource_link')}
             id="url"
             width="40%"
             render={({ url }) => (
@@ -71,7 +71,7 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
             )}
           />
           <Resource.Column<WorkshopResource>
-            title={I18n.t('common.column.action')}
+            title={I18n.t('shared.action')}
             id="actions"
             key="actions"
             width={100}
@@ -109,7 +109,7 @@ const ResourceFilter = ({
           onClick={() => openModal('WorkshopResourceForm', { workshopId })}
         >
           <PlusOutlined />
-          {I18n.t('administration.scheduling.resources.create')}
+          {I18n.t('admin.scheduling_resources_create')}
         </Button>
       )}
     </Resource.Filter>
@@ -128,7 +128,7 @@ const getActionsMenuProps = ({
 
   const handleOnConfirm = () => resource.removeResource(workshopResource.id).then(() => {
     message.success(
-      I18n.t('administration.scheduling.resources.successful_remove', { resource_name: workshopResource?.name }),
+      I18n.t('admin.scheduling_resources_successful_remove', { resource_name: workshopResource?.name }),
     )
   }).catch(() => {
     message.error(I18n.t('common.errors.something_wrong'))
@@ -145,7 +145,7 @@ const getActionsMenuProps = ({
         }
         className="ps-0"
       >
-        {I18n.t('common.actions.edit')}
+        {I18n.t('shared.edit')}
       </Button>),
   })
   resource.meta.permissions?.remove && menuItems.push({
@@ -156,9 +156,9 @@ const getActionsMenuProps = ({
           type="link"
           onClick={
           () => openModal('ConfirmationModal', {
-            title: I18n.t('administration.scheduling.resources.confirm_title'),
+            title: I18n.t('admin.scheduling_resources_confirm_title'),
             message: I18n.t(
-              'administration.scheduling.resources.confirm_message', { resource_name: workshopResource?.name },
+              'admin.scheduling_resources_confirm_message', { resource_name: workshopResource?.name },
             ),
             open: true,
             onConfirm: handleOnConfirm,
@@ -166,7 +166,7 @@ const getActionsMenuProps = ({
         }
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>
       </>
     ),

@@ -22,7 +22,7 @@ export const ToolsDropdown: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.tools')}</span>
+        <span>{I18n.t('admin.tools')}</span>
         <DownOutlined />
       </Button>
       )}
@@ -40,14 +40,14 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.import) {
     importMenuItems.push({
       key: 'import_development_actions',
-      label: I18n.t('administration.development_actions.import_development_actions'),
+      label: I18n.t('admin.development_actions_import_development_actions'),
     })
   }
 
   if (permissions?.importTranslations) {
     importMenuItems.push({
       key: 'import_translations',
-      label: I18n.t('administration.development_actions.import_development_actions_translations'),
+      label: I18n.t('admin.development_actions_import_development_actions_translations'),
     })
   }
 
@@ -56,7 +56,7 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.export && params.projectId) {
     exportMenuItems.push({
       key: 'export_development_action',
-      label: I18n.t('administration.development_actions.export_development_actions'),
+      label: I18n.t('admin.development_actions_export_development_actions'),
     })
   }
 
@@ -64,21 +64,21 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.exportTranslations && params.projectId) {
     exportMenuItems.push({
       key: 'export_development_action_translations',
-      label: I18n.t('administration.development_actions.export_development_action_translations'),
+      label: I18n.t('admin.development_actions_export_development_action_translations'),
     })
   }
 
   if (permissions?.exportGlobal && !params.projectId) {
     exportMenuItems.push({
       key: 'export_global_development_actions',
-      label: I18n.t('administration.development_actions.export_development_actions'),
+      label: I18n.t('admin.development_actions_export_development_actions'),
     })
   }
 
   if (permissions?.exportGlobalTranslations && !params.projectId) {
     exportMenuItems.push({
       key: 'export_global_development_actions_translations',
-      label: I18n.t('administration.development_actions.export_development_action_translations'),
+      label: I18n.t('admin.development_actions_export_development_action_translations'),
     })
   }
 
@@ -86,7 +86,7 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     menuItems.push({
       type: 'group',
       key: 'import_group',
-      label: I18n.t('common.actions.import'),
+      label: I18n.t('shared.import'),
       children: importMenuItems,
     })
   }
@@ -95,7 +95,7 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     menuItems.push({
       type: 'group',
       key: 'export_group',
-      label: I18n.t('common.actions.export'),
+      label: I18n.t('shared.export'),
       children: exportMenuItems,
     })
   }

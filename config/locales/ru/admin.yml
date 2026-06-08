@@ -2,15 +2,41 @@
 ru:
   admin:
     accept_na_values: Принять значения N/A
+    acceptable_rate_limit_label: Допустимый лимит запросов
+    acceptable_rate_limit_request_per: запросов за
     actions: Действия
+    actions_add_code: Добавить код
+    actions_archive: Архив
+    actions_playground: Игровая площадка
+    actions_unarchive: Разархивировать
+    active: Активный
+    active_label: Активный
+    active_name: Активный
+    active_record_audits_audit_id: Идентификатор аудита
+    active_record_audits_auditable_id: Идентификатор записи
+    active_record_audits_auditable_type: Тип записи
+    active_record_audits_audited_changes: Проверенные изменения
+    active_record_audits_new_diff_parse_error: Не удалось проанализировать JSON с новыми изменениями
+    active_record_audits_old_diff_parse_error: Не удалось проанализировать JSON со старыми изменениями
+    active_record_audits_title: Проверенные изменения
+    activity: Деятельность
     add_admin: Добавить администратора
     add_admin_role: Добавить роль администратора
+    add_btn: Добавить тему
     add_campaign_admin: Добавить администратора кампании
     add_client_admin: Добавить администратора клиента
+    add_conditions: Добавить условия
+    add_evaluators: Добавить оценщиков
     add_indicator: Добавить индикатор
+    add_lead_assessor: Добавить в качестве ведущего оценщика
+    add_lead_assessor_hint: Пожалуйста, сначала добавьте форму ведущего оценщика.
+    add_more: Добавить еще
     add_new_folder: Добавить новую папку
+    add_output_schema_key: Добавить ключ схемы вывода
     add_project: Добавить проект
     add_project_admin: Добавить администратора проекта
+    add_report: Добавить отчет
+    add_subjects: Добавить предметы
     add_threesixty_campaign_admin: Добавить администратора кампании
     add_word_count: Добавить подсчет слов
     admin_approval_required: Отчет для %{user} требует утверждения администратора перед загрузкой
@@ -20,24 +46,15 @@ ru:
     admin_role_deleted: Роль администратора «%{role_name}» была успешно удалена.
     admin_roles: Роли администратора
     admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
+    administrator_approves_reports: Администратор утверждает отчеты
+    administrators_list_columns_email: Электронная почта
     admins: Администраторы
     advanced: Для опытных пользователей
+    advanced_mode_tooltip: Используйте расширенный режим для быстрого создания шаблонов с помощью шаблона Liquid с доступными переменными. Более подробную информацию см. в документации.
     agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Артефакт «%{artifact_name}» не может быть сгенерирован для пользователя «%{user_email}».
     ai_artifact_result_stale: Результат может быть устаревшим, поскольку зависимости артефакта ИИ изменились с момента генерации последнего результата. Рассмотрите возможность повторной генерации артефакта с использованием последних зависимостей.
     ai_artifacts: Артефакты искусственного интеллекта
-    ai_artifacts_finalized_at: Утверждено
-    ai_artifacts_generate_result_confirm: Создание результатов артефакта для пользователя «%{email}» приведет к удалению существующего отчета, который зависит от этого артефакта ИИ. Вы действительно хотите продолжить?
-    ai_artifacts_generate_results: Генерировать результаты
-    ai_artifacts_mark_finalized: Марк завершил работу
-    ai_artifacts_mark_finalized_bulk_confirm: При завершении обработки результатов для всех выбранных пользователей будут сгенерированы отчеты, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
-    ai_artifacts_mark_finalized_confirm: Окончательная обработка результатов по артефакту для пользователя «%{email}» приведет к созданию отчета, в котором будет использован артефакт искусственного интеллекта для этого пользователя. Вы действительно хотите продолжить?
-    ai_artifacts_mark_not_finalized: Отметка не утверждена
-    ai_artifacts_mark_not_finalized_bulk_confirm: Удаление статуса «Завершено» у всех выбранных пользователей приведет к удалению сгенерированных отчетов, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
-    ai_artifacts_mark_not_finalized_confirm: Удаление статуса «Завершено» у пользователя «%{email}» приведет к удалению сгенерированного отчета, в котором используется артефакт ИИ для этого пользователя. Вы действительно хотите продолжить?
-    ai_artifacts_output_schema_key_constraint: Ключ должен начинаться с строчной буквы и может содержать только строчные буквы, цифры и символы подчеркивания.
-    ai_artifacts_results_export: Экспорт результатов
-    ai_artifacts_results_export_job_scheduled: Задание экспорта результатов AI Artifacts было успешно запланировано.
     ai_assistant: AI-помощник
     ai_assistant_model_id_label: Идентификатор модели
     ai_assistant_model_label: Модель
@@ -46,21 +63,14 @@ ru:
     ai_assistant_required: Требуется помощник с искусственным интеллектом
     ai_assistant_select_dependencies: Выбрать зависимости
     ai_assistants: ИИ-помощники
-    ai_assistants_advanced_mode_tooltip: Используйте расширенный режим для быстрого создания шаблонов с помощью шаблона Liquid с доступными переменными. Более подробную информацию см. в документации.
-    ai_assistants_campaign_id_placeholder: Введите идентификатор кампании
-    ai_assistants_cannot_change_type_when_in_use: Невозможно изменить тип ИИ-помощника «%{name}», так как он в данный момент используется.
-    ai_assistants_no_rendered_output: Нет доступного рендеринга
-    ai_assistants_provider_change_confirm_title: Сменить поставщика?
-    ai_assistants_provider_previously_used_warning: Ранее этот помощник генерировал результаты с использованием «%{from}». Переход на «%{to}» может повлиять на поведение помощника при последующих запросах на генерацию.
-    ai_assistants_render_button: Шаблон рендеринга
-    ai_assistants_rendered_prompt: Отображаемый подсказка
-    ai_assistants_template_and_campaign_required: Пожалуйста, укажите идентификатор шаблона и кампании.
-    ai_assistants_template_render_failed: Не удалось отобразить шаблон
-    ai_assistants_test_render: Тестовый рендер
-    ai_assistants_test_render_tooltip: Протестируйте свой шаблон подсказки с помощью данных кампании, чтобы проверить, что будет отправлено помощнику ИИ.
-    ai_assistants_type_locked_tooltip: Этот помощник в настоящее время используется, и его тип нельзя изменить.
+    ai_assistants_disabled_by_client: AI Assistants отключен клиентом
+    ai_assistants_playground: Игровая площадка AI Assistant
+    ai_assisted_idp: ИИ-поддерживаемая IDP
     ai_assisted_idp_disabled_by_client: AI Assisted IDP отключен клиентом
     ai_assisted_idp_feature_disabled: Функция AI Assisted IDP была отключена для этого проекта.
+    ai_assisted_idp_requires_ai_assistants: Для использования AI Assisted IDP необходимо включить функцию AI Assistants.
+    ai_content_analysis: Анализ контента с помощью искусственного интеллекта
+    ai_content_analysis_disabled_by_client: Анализ контента с помощью искусственного интеллекта отключен клиентом
     ai_idp_assistant_configure_dependencies: Настройка зависимостей ИИ
     ai_idp_assistant_configure_dependencies_description: Настройте, к каким данным зависимостей может получить доступ IDP AI Assistant в качестве контекста. Это применимо только в том случае, если помощник настроен на прием зависимостей.
     ai_idp_assistant_dependencies_updated: Зависимости обновлены успешно
@@ -69,28 +79,7 @@ ru:
     ai_score_approval_no_answer: Ответ на этот вопрос не предоставлен.
     ai_score_approval_no_transcription: Транскрипция для этого вопроса недоступна.
     ai_scored: AI набрал
-    ai_scoring_appoval_approve_all_questions: Утвердить все вопросы
-    ai_scoring_appoval_approve_question: Утвердить вопрос
-    ai_scoring_appoval_back: Сбросить счет
-    ai_scoring_appoval_change_reason: Причина изменения
-    ai_scoring_appoval_change_score: измененный счет
-    ai_scoring_appoval_change_score_log: Журнал изменений
-    ai_scoring_appoval_discard_all_questions: Сбросить все вопросы
-    ai_scoring_appoval_discard_all_questions_description: Это приведет к сбросу всех оценок по всем вопросам и удалению всех переопределений. Это действие нельзя отменить. Вы уверены?
-    ai_scoring_appoval_discard_all_questions_title: Сбросить все оценки вопросов?
-    ai_scoring_appoval_discard_question: Сбросить оценки вопросов
-    ai_scoring_appoval_discard_question_confirm_description: Это приведет к сбросу всех оценок по этому вопросу и удалению всех переопределений. Вы уверены?
-    ai_scoring_appoval_discard_question_confirm_title: Сбросить оценки вопросов?
-    ai_scoring_appoval_discarded_changes: отклоненные изменения
-    ai_scoring_appoval_evidence_from_transcript: Доказательства из стенограммы
-    ai_scoring_appoval_new_score: Новый счет
     ai_scoring_appoval_next: Следующий вопрос
-    ai_scoring_appoval_rationale: Обоснование
-    ai_scoring_appoval_reason_for_changes: Причина изменений
-    ai_scoring_appoval_reset_score: Сбросить счет
-    ai_scoring_appoval_reset_score_description: Оценка будет возвращена к исходному значению ИИ.
-    ai_scoring_appoval_responses: Ответы ИИ
-    ai_scoring_appoval_score_not_applicable: Оценка не применима
     ai_scoring_approval: Утверждение оценки ИИ
     ai_scoring_approval_digest_mailer_access_link_intro: 'Вы можете перейти к утверждениям оценок по следующей ссылке:'
     ai_scoring_approval_digest_mailer_approved_body_intro: Утверждены следующие результаты.
@@ -113,60 +102,157 @@ ru:
     ai_scoring_refresh_score_confirm_description: Это приведет к повторному расчету оценки с помощью ИИ для данного теста с использованием последней конфигурации. Вы уверены?
     ai_scoring_refresh_score_confirm_title: Обновить оценки ИИ?
     ai_scoring_rescore_queued: Запрос на пересчёт результатов с помощью ИИ поставлен в очередь. Пожалуйста, обновите страницу через несколько секунд.
-    ai_translation: Перевод с помощью искусственного интеллекта
+    ai_translation: AI Переводы
+    ai_translation_disabled_by_client: AI Translations отключено клиентом
     all_corner_rounded: Все углы закруглены
     allow_ai_rescoring: Разрешить переоценку ИИ
     allow_continue_with_warning_system_check: Разрешить пользователям продолжить работу с отображением предупреждений в случае сбоя проверки системы
+    allow_late_cancellation_and_scheduling: Разрешить позднюю отмену и планирование
+    allow_manager_to_view_individual_responses: Разрешить менеджеру просматривать индивидуальные ответы
+    allow_multiple_responses: Разрешить несколько ответов
+    allow_subjects_to_send_reminders: Разрешить испытуемым отправлять напоминания оценщикам
+    alt_text_invalid: Альтернативный текст содержит неподдерживаемые символы.
+    alt_text_logo: Альтернативный текст логотипа
+    alt_text_logo_required: Требуется альтернативный текст логотипа
+    alt_text_long: Превышает максимальный лимит в 100 символов.
     api_keys: API-ключи
+    api_keys_form_title: ключ API
     apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
+    approve_all_questions: Утвердить все вопросы
+    approve_nomination_description: Это сообщение отправляется руководителю, когда необходимо утвердить кандидатуру, выдвинутую непосредственным подчиненным.
+    approve_nomination_name: Утвердить кандидатуру
+    approve_question: Утвердить вопрос
+    approve_report_description: Это сообщение отправляется менеджеру субъекта, чтобы уведомить его о том, что отчет по субъекту готов к утверждению.
+    approve_report_name: Утвердить отчет
+    archive: Архив
+    archive_content: Вы уверены, что хотите архивировать «%{project_name}»?
+    archive_success: Проект «%{project_name}» был успешно заархивирован.
+    archive_title: Архивный проект
+    artifact_results: Результаты поиска артефактов
     assessment: Оценка
-    assessment_center_activity: Деятельность
-    assessment_center_assessor: Эксперт
-    assessment_center_attendance: Посещаемость
-    assessment_center_attendance_status: Статус посещаемости
-    assessment_center_campaigns_tab: Кампании
-    assessment_center_date_and_time: Дата и время
-    assessment_center_join_room: Войти в чат
-    assessment_center_meeting_link: Ссылка на встречу
-    assessment_center_participants_tab: Участники
-    assessment_center_prework: Подготовительная работа
-    assessment_center_schedule_time: Запланировать время
-    assessment_center_scheduling_status: Статус планирования
-    assessment_center_search_participants: Поиск участников...
+    assessment_center: 'Центр оценки:'
+    assessment_center_group: Группа оценочного центра
+    assessment_center_group_placeholder: Выберите группу оценочного центра
+    assessment_ids: Идентификаторы оценки
+    assessment_placeholder: Выбрать оценку
     assessment_question_not_supported: Этот тип вопроса в настоящее время не поддерживается.
+    assessment_required: Требуется оценка
     assessments: Оценки
+    assessments_assessment_report: Оценки
+    assessments_copy: Копировать
+    assessments_copy_assessment: Оценка копирования
+    assessments_help_text: Этот выбор влияет только на событие «Необработанный ответ оценки».
+    assessments_label: Оценки
     assessments_not_mhs: Все оценки должны быть типа MHS.
+    assessments_placeholder: Выбрать оценки
     assessments_reports: Оценки и отчеты
+    assessments_required: Для события «Необработанный ответ оценки» необходимо выбрать как минимум одну оценку.
+    assessor: оценщик
+    assessor_add_subject_modal_assessment: Оценка
+    assessor_add_subject_modal_mark_as_lead_assessor: Пометить в качестве ведущего оценщика по вышеуказанному предмету
+    assessor_add_subject_modal_subject: Тема
+    assessor_add_subject_modal_subject_placeholder: Поиск по теме...
+    assessor_add_subject_modal_title: Добавить тему
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Выберите оценку
+    assessor_assessment_name: Оценка оценщика
+    assessor_assessments: Оценки оценщиков
+    assessor_assessments_actions_add_subject: Добавить тему
+    assessor_assessments_actions_rescore: Пересчет
+    assessor_assessments_actions_reset: Сбросить оценку
+    assessor_assessments_actions_reset_progress: Сбросить прогресс
+    assessor_assessments_bulk_delete_confirmation: Вы уверены, что хотите удалить выбранные записи?
+    assessor_assessments_bulk_delete_successful: Оценки оценщиков были успешно удалены.
+    assessor_assessments_reset_confirmation: Вы уверены, что хотите сбросить оценку для предмета с адресом электронной почты «%{subjectEmail}»?
+    assessor_assessments_reset_progress_confirmation: Вы уверены, что хотите сбросить прогресс для предмета с адресом электронной почты «%{subjectEmail}»?
+    assessor_assessments_reset_progress_successfully: Сброс прогресса для субъекта с адресом электронной почты «%{subjectEmail}» выполнен успешно.
+    assessor_assessments_reset_successfully: Сброс оценки для предмета с адресом электронной почты «%{subjectEmail}» выполнен успешно.
+    assessor_assessments_subject_email: Тема письма
+    assessor_assessments_subject_name: Название предмета
+    assessor_campaigns_statuses_completed: Завершено
+    assessor_campaigns_statuses_in_progress: В процессе
+    assessor_campaigns_statuses_not_started: Не начато
+    assessor_completed_at: Завершено в
+    assessor_count: Оценщики
+    assessor_create_assessor: Добавить оценщика
     assessor_dashboard: Панель инструментов оценщика
+    assessor_email: Электронная почта оценщика
+    assessor_evaluations: Оценки экспертов
+    assessor_first_name: Имя оценщика
     assessor_form: Форма оценщика
+    assessor_ids_label: Оценщики
+    assessor_last_name: Фамилия оценщика
+    assessor_modals_create_assessor_title: Добавить оценщика
+    assessor_modals_import_body: Обратитесь к функции «Экспорт», чтобы извлечь шаблон, который можно использовать для импорта здесь.
+    assessor_modals_import_title: Эксперты по импорту
+    assessor_overview: Обзор
+    assessor_placeholder: Поиск оценщика...
+    assessor_remove_confirmation: Вы уверены, что хотите удалить оценщика с адресом электронной почты %{email} из этой кампании?
+    assessor_statuses_completed: Завершено
+    assessor_statuses_not_completed: Не завершено
+    assessor_subjects_statuses_completed: Завершено
+    assessor_subjects_statuses_in_progress: В процессе
+    assessor_subjects_statuses_not_started: Не начато
+    assessor_toolbar_export: Эксперты по экспорту
+    assessor_toolbar_import: Эксперты по импорту
     assessor_workshops: Центр оценки
     assessors: Оценщики
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
     assistant_toolbar_not_a_valid_operation: Неизвестная операция %{operation}.
     assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
+    attendance: Посещаемость
+    attendance_status: Статус посещаемости
+    audit_log_title: Информация журнала аудита
+    audit_log_type: Тип записи
     audit_logs: Журналы аудита
     audit_reports: Аудиторские отчеты
+    auth_type_api_key_header_format_error: Допускаются только буквы, цифры, подчеркивания и дефисы.
+    auth_type_api_key_header_label: Заголовок API-ключа
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: ключ API
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: Базовый
+    auth_type_basic_value: базовая_аутентификация
+    auth_type_label: Тип аутентификации
+    auth_type_name: тип авторизации
+    auth_type_no_auth_label: Нет
+    auth_type_no_auth_value: без_аутентификации
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Эта оценка проходит автоматическую модерацию и не может быть изменена
     auto_placeholder: Авто
+    automatically_send_invites: Автоматически отправлять приглашения новым оценщикам
     availability: Доступность
-    available_languages: Отчет доступен на следующих языках
+    available_languages: Доступные языки
     average: Среднее
+    back: Сбросить счет
     back_to_main: Главное меню
+    background_color: Цвет фона
+    background_label: Предпосылки
+    background_overlay_label: Фоновая накладка
+    background_size: Размер фона
+    background_size_contain: Содержи
+    background_size_cover: Обложка
+    basic_info_panel_description: Введите информацию о расписании ниже. Вы также можете выбрать несколько дат, чтобы создать несколько центров оценки.
+    basic_info_panel_title: Основная информация
     block_editor_add_question: Добавить вопрос
     block_editor_question_randomization: Рандомизация вопросов
     block_options: Параметры блока
     block_settings: Настройки блока
     blocks_new_button: Новый блок
     blocks_title: Блоки
+    booked_at: 'Забронировано в:'
+    breadcrumbs_norms_editor: Редактор норм
     bulk_assets_modal_choose_csv: Выбрать файл CSV
     bulk_assets_modal_choose_zip: Выбрать ZIP-файл
     bulk_assets_modal_not_csv_file_error: Для загрузки CSV допускаются только файлы CSV. Загрузите действительный файл CSV.
     bulk_assets_modal_subtitle: 'Пожалуйста, загрузите <b>один файл CSV</b> (с заголовками: user_email, file_name) и <b>один файл ZIP</b> (содержащий файлы PDF, соответствующие именам файлов из csv). Размер файла Zip не должен превышать %{max_file_size} МБ.'
     bulk_assets_modal_title: Загрузить файлы CSV и ZIP
     bulk_upload_ai_artifacts: Массовая загрузка артефактов искусственного интеллекта
+    campaign: Кампания
+    campaign_admin: Администратор кампании
     campaign_ai_artifact_updated_successfully: Артефакты искусственного интеллекта кампании успешно обновлены
     campaign_ai_artifacts_instruction_templating_tooltip: Вы можете использовать расширенные команды с помощью шаблонов командной строки, опирающихся на синтаксис шаблонов Liquid и доступные переменные. Более подробную информацию см. в документации.
-    campaign_ai_artifacts_results_export_details: Результаты, полученные с помощью искусственного интеллекта кампании
     campaign_assessment_actions_disable_caching: Отключить кэширование оценок
     campaign_assessment_actions_enable_caching: Включить кэширование оценок
     campaign_assessment_column_caching_enabled: Кэширование оценок включено
@@ -199,67 +285,220 @@ ru:
     campaign_assessment_modals_enable_caching_successfully: Для этой оценки включено кэширование.
     campaign_assessment_modals_enable_caching_title: Включить кэширование оценок?
     campaign_factors: Факторы кампании
+    campaign_id_placeholder: Введите идентификатор кампании
     campaign_name: Название кампании
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: Идентификатор внешнего отчета
-          language_id: Идентификатор языка
-          norm: Норм
-          norm_id: Идентификатор нормы
-          suitability_id: Идентификатор соответствия
-        labels:
-          assessment_ids: Идентификаторы оценки
-          available_languages: Доступные языки
-          campaign_report_id: Идентификатор отчета о кампании
-          check_details: Просмотреть подробности
-          default_language: Язык по умолчанию
-          external_settings: Внешние настройки
-          provider: Поставщик
-          report_pdf_status: Отчет о состоянии в формате PDF
-          user_report_id: Идентификатор отчета пользователя
+    campaign_report_generate_modal_subtitle: Выберите нужный язык для каждого отчета
+    campaign_report_id: Идентификатор отчета о кампании
+    campaign_results_export_details: Результаты, полученные с помощью искусственного интеллекта кампании
     campaign_templates: Шаблоны кампаний
+    campaign_templates_campaign_templates: Шаблоны кампаний
+    campaign_templates_column_assessment: Оценка
+    campaign_templates_column_campaign: Кампания
+    campaign_templates_column_owner: Владелец
+    campaign_templates_column_report: Отчет
+    campaign_templates_form_assessment: Оценка
+    campaign_templates_form_assessment_placeholder: Выберите оценку
+    campaign_templates_form_name_placeholder: Введите имя
+    campaign_templates_form_owner: Владелец
+    campaign_templates_form_owner_placeholder: Выберите владельца
+    campaign_templates_form_report: Отчет
+    campaign_templates_form_report_placeholder: Выберите отчет
+    campaign_templates_form_title: Шаблон кампании
+    campaign_templates_remove_confirm_content: Вы уверены, что хотите удалить шаблон кампании «%{name}»?
+    campaign_templates_remove_confirm_success: Шаблон кампании «%{name}» был успешно удален.
+    campaign_templates_remove_confirm_title: Удалить шаблон кампании
     campaign_user_job_roles_cannot_be_same: Целевая должность должна отличаться от текущей должности.
     campaigns: Кампании
+    campaigns_convert_to_template: Преобразовать в шаблон
+    campaigns_extend_time_success_message: Время проведения кампании продлено до %{minutes} минут
+    campaigns_external_scores_import_modal_title: Импорт внешних оценок кампании
+    campaigns_filters_active: Активный
+    campaigns_filters_all: Все
+    campaigns_filters_archived: Архив
+    campaigns_filters_closed: Закрыто
+    campaigns_filters_inactive: Неактивный
+    campaigns_filters_status: Статус
+    campaigns_form_active_notice: Статус кампании автоматически изменится на «закрыта» в выбранную дату и время окончания.
+    campaigns_form_campaign: Кампания
+    campaigns_form_copy_factors: Копировать факторы
+    campaigns_form_inactive_notice: Статус кампании автоматически изменится на активный в выбранную дату и время начала.
+    campaigns_form_practice_campaign: Практическая кампания
+    campaigns_listing_assessments: Оценки
+    campaigns_listing_reports: Отчеты
+    campaigns_listing_template: Шаблон
+    campaigns_menus_add_common_campaign: Добавить общую кампанию
+    campaigns_menus_add_multi_rater_campaign: Добавить кампанию с несколькими оценщиками
+    campaigns_pdf_password: Пароль PDF
+    campaigns_tab: Кампании
+    campaigns_types_common: Общее
+    campaigns_types_threesixty: Мультирейтер
+    campaigns_users_add_user: Добавить пользователя
+    campaigns_users_completion_status: Статус завершения
+    campaigns_users_created_by: Создано
+    campaigns_users_filters_all: Все
+    campaigns_users_filters_anonymous: Анонимный
+    campaigns_users_filters_identified: Идентифицированный
+    campaigns_users_is_active: Активный
+    campaigns_users_no_permission_message: У вас нет разрешения на изменение
+    campaigns_users_title: Пользователи
+    campaigns_users_updated_by: Обновлено
     cancel: Отменить
+    cancel_confirmation_message: Вы уверены, что хотите отменить прогресс формы?
+    cancel_confirmation_title: Отмена прогресса формы
     cancellation_and_rescheduling_disabled: Отмена и перенос заказа отключены
+    cancellation_lead_time_label: Срок отмены
+    cannot_change_type_when_in_use: Невозможно изменить тип ИИ-помощника «%{name}», так как он в данный момент используется.
     captcha: Проверка по капче
     case_study: Примеры из практики
     casual: Повседневный
+    categories_approvals: Утверждения
+    categories_invitations: Приглашения
+    categories_reminders: Напоминания
+    categories_report_ready: Отчет готов
+    category: Категория
     cell_save_msg: Допустимые изменения сохраняются автоматически, как только вы выходите из ячейки после редактирования.
+    change_reason: Причина изменения
+    change_score: измененный счет
+    change_score_log: Журнал изменений
     characters: символы
     chat_instructions_success: Инструкции по использованию чата успешно сохранены
+    check_details: Просмотреть подробности
     children_factor_type: Тип фактора «Дети»
     client: Клиент
+    client_admin: Администратор клиента
     client_admins: Администраторы клиентов
+    client_credentials_label: Учетные данные клиента
+    client_credentials_value: клиентские_учетные_данные
+    client_features: Особенности клиента
+    client_id_label: Идентификатор клиента
+    client_id_name: oauth_client_id
+    client_id_required: Требуется идентификатор клиента
+    client_ip: IP-адрес клиента
+    client_logo_label: Логотип клиента
+    client_secret_label: Секретный ключ клиента
+    client_secret_name: oauth_client_secret
+    client_secret_required: Требуется секретный ключ клиента
     clients: Клиенты
+    closed: Закрыто
     code_required: Требуется код
+    collapse_filters: Свернуть фильтры
+    column_code: Код
+    column_invitation_status: Статус приглашения
+    column_participant: Участник
+    column_provider: Провайдер
+    column_scheduling_details: Детали расписания
+    column_usage_stats: Статистика использования
     common: Оценка TTE
     common_assessment: Оценка TTE
+    common_disabled: Диасблед
+    common_download_sample_file: Скачать файл-образец
+    common_enabled: Включено
+    common_import_failure_msg: Ошибка при импорте файла.
+    common_minute: минута
+    common_select_all: Выбрать все
+    common_type: Тип
+    common_unselect_all: Отменить выбор всего
     communication_center: Коммуникационный центр
     communications: Коммуникации
+    communications_form_insert_piped_text: Вставить текст из конвейера
     completed: Завершено
     completed_tooltip: Все эксперты представили свои оценки.
+    components_input_duration_placeholder: Введите как «1 дн. 2 ч. 3 мин.».
     concise: Лаконичный
+    confidence_interval: Доверительный интервал
+    confidence_interval_update_success: Доверительный интервал обновлен успешно
     configure_model_answer_title: Настройте образец ответа и ключевые слова
     confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
     confirmation_required: Требуется подтверждение
     confirmation_required_details: Вы действительно хотите удалить файл «%{resource_name}» из папки «%{resource}»?
+    consolidated: Консолидированный
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: Скопировано
     copied_url_success: URL успешно скопирован в буфер обмена
     copy_ai_artifacts: Копировать артефакты искусственного интеллекта
+    copy_hint: Копирует вышеуказанную конфигурацию «Места», «Менеджеры центра», «Оценщики» и «Встречи и ресурсы» в следующие центры оценки. После копирования вы можете внести дополнительные изменения в отдельные центры оценки, прежде чем продолжить.
     copy_image_url: Скопировать URL изображения
+    copy_text: Текст
+    copy_to_all: Копировать в другие центры оценки
     copy_url: Скопировать URL
     country: Страна
+    course: Курс
+    create_ai_assistants: Создать AI-помощника
     create_client: Создать клиента
     create_indicator: Создать индикатор
+    create_level_description_must_exist: Описание уровня не может быть пустым
+    create_level_name_must_exist: Название уровня не может быть пустым
+    create_must_be_unique: Должно быть уникальным
+    created_successfully: AI Assistant был успешно создан.
+    current: Текущий
     current_job_role: Текущая должность
+    custom_formula: Индивидуальная формула
+    custom_message_description: Это сообщение может быть отправлено любому участнику оценки.
+    custom_message_name: Пользовательское сообщение
     custom_upload: Пользовательская загрузка
     dashboard: Панель управления
+    dashboard_capacity_name: Название мощности
+    dashboard_choose_file_format: Выберите формат файла
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
+    dashboard_dashboard_types_powerbi: PowerBi
+    dashboard_dashboards: Панели инструментов
+    dashboard_export_dashboard_to_file: Экспорт панели инструментов в файл
+    dashboard_export_job_failure: Не удалось начать экспорт
+    dashboard_export_job_success: Запуск экспорта. Вы получите уведомление по завершении.
+    dashboard_form_image_upload_failed: Не удалось загрузить изображение.
+    dashboard_form_none: Нет
+    dashboard_form_refresh_success: Обновление набора данных запланировано успешно.
+    dashboard_get_started: Начать
+    dashboard_initialize_msg: Инициализировать панель управления для этой кампании
+    dashboard_loading_failed: Не удалось загрузить панель инструментов.
+    dashboard_only_export_current_tab: Экспорт только текущей вкладки
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: Пожалуйста, проверьте, верны ли настройки набора данных и идентификатора отчета.
+    dashboard_preview_embed_token_error_title: Не удается сгенерировать токен Embed.
+    dashboard_settings_capacity_id: Идентификатор емкости
+    dashboard_settings_details: Подробности
+    dashboard_settings_refresh: Обновить
+    dashboard_settings_workspace_id: Идентификатор рабочего пространства
+    dashboard_tabs_accesssheet: Лист доступа
+    dashboard_tabs_accesssheet_setting: Настройки листа доступа
+    dashboard_tabs_settings: Настройки
     dashboards: Панели инструментов
+    dashed_button: Пунктирная линия
+    data_exports_modal_title: Выберите диапазон дат
+    data_range_error: Выберите диапазон дат
     data_reports: Отчеты по данным
+    data_reports_columns_created_at: Создано в
+    data_reports_columns_created_by: Создано
+    data_reports_columns_last_updated_by: Последнее обновление
+    data_reports_columns_password: Пароль
+    data_reports_columns_udpated_at: Последнее обновление
+    data_reports_configuration: Конфигурация
+    data_reports_form_name: Отчет о данных
+    data_reports_messages_runed: Отчет по данным был успешно запланирован для запуска.
+    dataset_id: Идентификатор набора данных
     datasheet: Технические характеристики
+    date_and_time: Дата и время
+    date_presets_last_30_days: Последние 30 дней
+    date_presets_last_7_days: Последние 7 дней
+    date_presets_last_month: Прошлый месяц
+    date_presets_last_week: Прошлая неделя
+    date_presets_today: Сегодня
+    date_presets_yesterday: Вчера
+    date_range: Диапазон дат
+    dates_completed: Завершено в
+    dates_end: Дата окончания
+    dates_label: Даты
+    dates_start: Дата начала
+    dates_started: Начало
+    days_repeated: дни, повторяющиеся
     declined: Отклонено
+    default: По умолчанию
+    default_assessment_language: Язык оценки по умолчанию
+    default_button: По умолчанию
+    default_language: Язык по умолчанию
+    default_report_language: Сообщить о языке по умолчанию
     define_max_score_text: Определите оценку «%{maxScore}» (максимальная оценка)
     define_min_score_text: Определите оценку «%{minScore}» (минимальная оценка)
     define_optional_score_range_text: Определите оценки %{minScore} до %{maxScore} (необязательно)
@@ -267,10 +506,40 @@ ru:
     definition: Определение
     delete_ok_text: Да, удалить
     denied: Отклонено
+    dependencies: Зависимости
     description: Описание
+    description_name: Описание
+    description_save: Сохранить описание
+    description_save_success: Описание успешно сохранено
     descriptive_text: Описательный текст
     development_actions: Действия по развитию
+    development_actions_duration_max_length: Не может превышать 1 год
+    development_actions_duration_min_length: Не может быть менее 1 минуты
+    development_actions_export_development_action_translations: Разработка Действия Переводы
+    development_actions_export_development_actions: Действия по развитию
+    development_actions_export_failure_msg: Ошибка при экспорте переводов
+    development_actions_export_success_msg: Экспорт действий по развитию в процессе. Пожалуйста, проверьте статус в уведомлениях.
+    development_actions_form_available_languages: Доступные языки
+    development_actions_form_client_placeholder: Выберите клиента
+    development_actions_form_course_image: Изображение курса
+    development_actions_form_course_link: Ссылка на курс
+    development_actions_form_development_action_type: Тип мер по развитию
+    development_actions_form_duration: Продолжительность
+    development_actions_form_learning_style: Стиль обучения
+    development_actions_form_project_placeholder: Выберите проект
+    development_actions_form_skills: Навыки
+    development_actions_form_skills_placeholder: Выберите навыки
     development_actions_form_tags: Теги
+    development_actions_form_title: Действия по развитию
+    development_actions_global: Является ли глобальное развитие действием?
+    development_actions_heading: Действия по развитию
+    development_actions_import_action_development_actions_title: Действия по развитию импорта
+    development_actions_import_action_development_actions_translations_title: Импорт действий по развитию Переводы
+    development_actions_import_development_actions: Действия по развитию
+    development_actions_import_development_actions_translations: Действия по развитию Переводы
+    development_actions_import_download_example_csv: Скачать пример csv
+    development_actions_import_failure_msg: Ошибка при импорте файла.
+    development_actions_import_info_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
     digest_delivery_mode:
       form_label: Режим доставки дайджеста
       immediate: Немедленно — отправлять при каждой массовой отправке
@@ -291,16 +560,67 @@ ru:
       wednesday: среда
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
+    dimensions_destroy_successfully: Размер «%{name}» удален успешно.
+    dimensions_export_json_successfully: Экспорт JSON запланирован для измерения «%{name}».
+    dimensions_form_enable_innovation_styles: Включить стили инноваций
+    dimensions_form_enable_occupations: Включить профессии
+    dimensions_form_title: Размеры
+    dimensions_import_factors_sample_file: Пример файла
+    dimensions_import_factors_title: Факторы импорта
+    dimensions_import_modal_after: После
+    dimensions_import_modal_before: До
+    dimensions_import_modal_change_log_input: Журнал изменений
+    dimensions_import_modal_error: Ошибка
+    dimensions_import_modal_error_occurred: Произошла ошибка
+    dimensions_import_modal_errors_file_error: Перед продолжением выберите файл JSON.
+    dimensions_import_modal_errors_processing_error: Ошибка при обработке файла
+    dimensions_import_modal_field: Поле
+    dimensions_import_modal_import_dimension: Импорт измерения
+    dimensions_import_modal_import_scheduled: Импорт запланирован
+    dimensions_import_modal_operation: Операция
+    dimensions_import_modal_owner_input_validation: Пожалуйста, выберите владельца
+    dimensions_import_modal_owner_select: Выберите владельца
+    dimensions_import_modal_select_json: Выберите файл JSON
+    dimensions_index_title: Размеры
+    dimensions_resource_confirmations_delete_message: Введите в текстовое поле название измерения, указанное ниже, для подтверждения
+    dimensions_resource_tooltips_export_json: Экспорт JSON для импорта на другую платформу
+    dimensions_translations_export: Экспорт всего
+    dimensions_translations_header: Факторные переводы
+    disable_caching_content: Вы уверены, что хотите отключить кэширование для этой оценки?
+    disable_caching_successfully: Кэширование отключено для этой оценки.
+    disable_caching_title: Отключить кэширование оценок?
+    disable_cancellation_and_rescheduling: Отключить отмену и перенос
+    disable_dp: Не разрешать дальнейшую обработку данных
     disable_proctoring: Отключить наблюдение
+    disable_report_download: Отключить загрузку отчетов
     disallow_lead_assessor_moderation: Запретить модерацию ведущего эксперта
     disallow_lead_assessor_moderation_info: Оценка будет рассчитываться автоматически на основе всех отправленных форм оценщиков, и ведущий оценщик не сможет изменить её на экране модерации
+    discard_all_questions: Сбросить все вопросы
+    discard_all_questions_description: Это приведет к сбросу всех оценок по всем вопросам и удалению всех переопределений. Это действие нельзя отменить. Вы уверены?
+    discard_all_questions_title: Сбросить все оценки вопросов?
+    discard_question: Сбросить оценки вопросов
+    discard_question_confirm_description: Это приведет к сбросу всех оценок по этому вопросу и удалению всех переопределений. Вы уверены?
+    discard_question_confirm_title: Сбросить оценки вопросов?
+    discarded_changes: отклоненные изменения
+    document_titles_project_assessors: Оценщики | %{project}
+    document_titles_project_participants: Участники | %{project}
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
     download_bulk_asset_download_example_csv: Скачать пример CSV.
+    download_example_csv: Скачать пример csv
+    dp_consent: Разрешить обработку данных
+    dp_consent_custom: Настройка согласия на обработку данных
+    dp_consent_version: Версия политики
     duration: Продолжительность
+    duration_label: Продолжительность
+    duration_max_error: Не может превышать 16 часов
+    duration_min_error: Не может быть менее 15 минут
     duration_must_be_positive: Продолжительность должна быть положительной
+    duration_placeholder: Например, 4 часа 30 минут
+    edit_ai_assistants: Редактировать AI-помощник
     edit_campaign_admin: Редактировать кампанию Администратор
     edit_client_admin: Редактировать клиентский админ
+    edit_email: Редактировать электронную почту
     edit_folder: Изменить папку
     edit_indicator: Редактировать индикатор
     edit_job_roles: Редактировать должностные обязанности
@@ -309,14 +629,23 @@ ru:
     edit_permission_denied: У вас нет прав на редактирование администратора «%{name}»
     edit_project_admin: Редактировать проект Администратор
     edit_threesixty_campaign_admin: Редактировать кампанию Администратор
+    email_manager_when_report_is_ready_for_approval: Управление электронной почтой, когда отчет готов к утверждению
+    email_messages: Электронные сообщения
+    email_subject_when_report_becomes_available: Тема письма, когда отчет будет доступен
+    email_subjects_manager_when_available: Уведомить руководителя по электронной почте, когда отчет будет готов
     empty: Пусто
     empty_csv_file: CSV-файл не содержит никаких данных.
+    enable_caching_content: Вы уверены, что хотите включить кэширование для этой оценки?
+    enable_caching_successfully: Для этой оценки включено кэширование.
+    enable_caching_title: Включить кэширование оценок?
     enable_enhance_with_ai_client_level: Пожалуйста, включите функцию «Улучшение с помощью ИИ» на уровне клиента.
     enable_maintenance: Включить обслуживание
     enable_mobile_proctoring: Включить мобильный контроль
     enable_system_check: Включить проверку системы
     enable_transcription: Включить транскрипцию
     enable_transcription_msg: Включите транскрипцию, чтобы использовать оценку ИИ для вопросов с видео/аудио ответами.
+    enable_video_call_recording: Включить запись видеозвонков
+    enabled: Включено
     end: конец
     end_time: Конец времени
     end_time_must_be_after_start_time: Время окончания должно быть позже времени начала
@@ -325,19 +654,74 @@ ru:
     enter_description: Введите описание
     enter_name: Введите имя
     enter_question_id: Введите идентификатор вопроса
+    enter_schema_key: Введите ключ схемы
     error: Ошибка
+    error_color: Цвет ошибки
+    errors_csv_file_required: Файл должен быть файлом CSV.
+    errors_error_msg: Что-то пошло не так. Обновите страницу и, если проблема не исчезнет, обратитесь к администратору.
+    errors_min_retention: Не может быть менее 1 дня
+    errors_policy_version_format: Допускаются только целые числа
+    errors_required: требуемый
     estimated_tokens: жетоны (оценочно)
+    evaluate_others_description: Это сообщение будет отображаться, когда участники будут оценивать других изнутри портала.
+    evaluate_others_name: Оценивайте других
+    evaluate_self_description: Это сообщение будет отображаться участникам, когда они начнут самооценку.
+    evaluate_self_name: Оценщик «Я»
+    evaluation_help_description: Справка, отображаемая на карте оценки на панели управления пользователя
+    evaluation_help_name: Помощь в оценке
     evaluation_status: Статус оценки
     evaluation_status_not_done: Статус оценки для одного или нескольких выбранных предметов не является «Выполнено». Убедитесь, что все выбранные пользователи завершили оценки, или пометьте их как выполненные.
+    evaluations_completed: Завершенные оценки
+    evaluations_received: Полученные оценки
+    evaluator_invite_description: Это сообщение будет отправлено всем участникам, которые являются оценщиками.
+    evaluator_invite_name: Приглашение оценщика
+    evaluator_reminder_description: Это сообщение будет отправлено, чтобы напомнить экспертам о необходимости завершить незавершенные оценки.
+    evaluator_reminder_name: Напоминание для оценщика
+    evaluator_reminder_rule_description: Укажите правила для автоматического планирования при планировании приглашения
+    evaluator_reminder_rule_name: Правила напоминания для оценщиков
+    evaluator_welcome_description: Это сообщение заменит «Приветственное сообщение» и будет отображаться участникам, которые в данный момент участвуют только в качестве оценщиков.
+    evaluator_welcome_name: Приветствие оценщика
+    evaluators_title: Оценщики
+    evidence_from_transcript: Доказательства из стенограммы
+    expand_filters: Развернуть фильтры
     export_admin_roles_permissions: Экспорт ролей и разрешений администратора
+    export_admins_with_permissions: Экспорт ролей и разрешений администратора
+    export_ai_artifacts: Экспорт артефактов искусственного интеллекта
     export_campaigns_queued: Задания на экспорт помещены в очередь. Проверьте свои уведомления, чтобы найти ссылки для скачивания.
     export_compact_completion_status: Компактный
     export_completion_status: Статус завершения экспорта
     export_completion_statuses_scheduled: Задание экспорта статусов завершения успешно запланировано
     export_detailed_completion_status: Подробно
+    export_failure_msg: Ошибка при экспорте уровней владения языком
+    export_success: Задание экспорта администратора было успешно запланировано. Пожалуйста, проверьте уведомление о статусе.
+    export_success_msg: Экспорт текущих действий по развитию
+    export_with_inactive_users: Экспорт с неактивными пользователями
+    external_report_id: Идентификатор внешнего отчета
+    external_score: Внешний балл
+    external_settings: Внешние настройки
+    factor_benchmark_scores_updated: Оценки факторов успешно обновлены
     factor_feedback: Обратная связь по факторам
     factor_selection: Выбор факторов
     factors: Факторы
+    factors_form_components_ExternalList_table_jsonpath: JSON Path
+    factors_form_components_ExternalList_table_types_norm_score: Нормированный балл
+    factors_form_components_ExternalList_table_types_percentage: Процент
+    factors_form_components_ExternalList_table_types_percentile: Процентный балл
+    factors_form_components_ExternalList_table_types_score: Счет
+    factors_form_components_ExternalList_table_types_zscore: Z-показатель
+    factors_form_components_ExternalList_title: JSON-пути для оценок
+    factors_form_predicate: предикат
+    factors_form_scoring_strategies_custom_formula: Индивидуальная формула
+    factors_form_scoring_strategy: Стратегия подсчета очков
+    factors_form_search_factors: Факторы поиска
+    factors_form_use_sub_factor_norm_score: Использовать нормативный балл факторов
+    factors_form_value: Ценность
+    factors_index_precision: Точность
+    factors_index_scoring_strategy: Стратегия подсчета очков
+    factors_index_sub_factors: Подфакторы
+    factors_index_title: Факторы
+    factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    failure_reason: Причина сбоя
     feature_ai_assistants_description: Включите помощников на базе искусственного интеллекта для улучшения пользовательского опыта
     feature_ai_assisted_idp_description: Используйте ИИ для помощи в составлении рекомендаций по индивидуальному плану развития
     feature_ai_content_analysis_description: Включить анализ контента на основе искусственного интеллекта для оценок
@@ -351,21 +735,87 @@ ru:
     feature_global_skills_description: Доступ к глобальной библиотеке навыков для оценки
     feature_idp_description: Включить индивидуальное планирование развития для участников
     feature_sms_notification_description: Включить SMS-уведомления о приглашениях и напоминаниях о кампаниях
+    fields_level: Уровень
+    fields_level_description: Описание уровня
+    fields_level_name: Название уровня
+    fields_proficiency_translations: Профессиональные переводы
+    fields_proficiency_type: Тип владения
+    fields_skill: Навык
+    fields_skill_name: Название навыка
+    fields_skill_type: Тип навыка
     file_size_must_be_less_than_mb: Файл {{name}} превышает максимальный размер в {{max_size_mb}} МБ
     file_upload_failed: Не удалось загрузить {{name}}
     fill_empty_score_msg: Заполните все окончательные результаты перед сохранением.
     final_score_empty_err_msg: Итоговый счет «%{factor_name}» не может быть пустым.
     final_score_empty_msg: Итоговый счет не может быть пустым.
+    finalized_at: Утверждено
+    first_name_required: Имя обязательно
     fix_grammar: Исправить грамматику
+    fixed_time: Фиксированное время
+    form_active: Активный
+    form_add_assessment: Добавить оценку
+    form_ai_assistant: AI-помощник
+    form_assessment_required: Требуется оценка
+    form_assessments: Оценки
+    form_campaign_factors: Факторы кампании
+    form_code: Код
+    form_configuration: Конфигурация
+    form_datasheet: Технические характеристики
+    form_datasheet_columns: Столбцы таблицы данных
+    form_end_date: Дата окончания
+    form_include_all_datasheet_columns: Включить все столбцы таблицы данных
+    form_name: Имя
+    form_no_assessment_selected: Оценок еще нет. Нажмите «Добавить», чтобы начать.
+    form_questions_required: Необходимо выбрать хотя бы один вопрос
+    form_select_ai_assistant: Выбрать AI-помощника
+    form_select_assessment: Выбрать оценку
+    form_select_campaign_factors: Выберите факторы кампании
+    form_select_datasheet_columns: Выбрать столбцы таблицы данных
+    form_select_questions: Выберите вопросы
+    form_start_date: Дата начала
+    form_title: Искусственный интеллект
+    form_total_count: Общее количество
     formal: Формальный
-    from: От
+    from: Из
+    genders_female: Женский
+    genders_male: Мужчина
+    genders_not_set: Не установлено
+    generate: Генерировать
+    generate_result_confirm: Создание результатов артефакта для пользователя «%{email}» приведет к удалению существующего отчета, который зависит от этого артефакта ИИ. Вы действительно хотите продолжить?
+    generate_result_info_message: Результаты обрабатываются, пожалуйста, обновите страницу, чтобы увидеть обновленные результаты.
+    generate_results: Генерировать результаты
     generate_transcription: Создать транскрипцию
+    generated_at_time: Создано на сайте %{time}
+    generated_value: Созданная стоимость
+    global_skills: Глобальные навыки
+    global_skills_disabled_by_client: Global Skills отключен клиентом
+    grant_type_label: Тип гранта
+    grant_type_name: oauth_grant_type
     graphic: Графика
     graphic_slider: Графический слайдер
+    header_logout_content: Нажмите «Отмена», если хотите продолжить работу. Нажмите «ОК», чтобы выйти из системы под текущим именем пользователя.
+    header_logout_title: Вы уверены, что хотите выйти из системы?
+    hide_all: Скрыть все
     hide_middle_scores: Скрыть средние оценки
     high: Высокий
     hogan: Хоган
     hogan_assessment: Оценка Хогана
+    hogan_provider: Провайдер
+    hogan_providers_mercer: Мерсер
+    hogan_providers_phoenix: Феникс
+    hover_options_danger_item: Опасный предмет
+    hover_options_first_menu_item: 1-й пункт меню
+    hover_text: Наведи курсор
+    idp: ВПЛ
+    idp_actions_remove_confirm: Введите текущее название шаблона, указанное ниже, в текстовое поле, чтобы удалить шаблон.
+    idp_actions_success: "%{idpName} был удален успешно."
+    idp_add_idp_template: Добавить шаблон IDP
+    idp_ai_assistant: AI-помощник
+    idp_ai_assisted_idp_enabled: С поддержкой AI IDP
+    idp_ai_enabled: С поддержкой искусственного интеллекта
+    idp_ai_settings: Настройки ИИ
+    idp_all: Все
+    idp_appearance: Внешний вид
     idp_appearance_body: Текст
     idp_appearance_color: Цвет
     idp_appearance_cover: Обложка
@@ -376,6 +826,7 @@ ru:
     idp_appearance_guideline_position_second: Вторая страница (после обложки)
     idp_appearance_guideline_position_second_last: Предпоследняя страница (перед последней)
     idp_appearance_guidelines: Рекомендации
+    idp_appearance_hint: Чтобы изменить внешний вид, сначала сохраните шаблон IDP, чтобы активировать эти настройки.
     idp_appearance_idp_skills: Навыки внутренне перемещенных лиц
     idp_appearance_last: Последний
     idp_appearance_per_page_font_settings: Настройки шрифта для каждой страницы
@@ -388,20 +839,136 @@ ru:
     idp_appearance_show_guidelines: Показать страницу с рекомендациями
     idp_appearance_size: Размер
     idp_appearance_subtitle: Подзаголовок
+    idp_appearance_success: Настройки внешнего вида успешно сохранены
     idp_appearance_title: Название
+    idp_background_image: Фоновое изображение
+    idp_behavioral_skills: Поведенческие навыки
+    idp_client_skills: Навыки работы с клиентами
+    idp_delete_skill: Вы уверены, что хотите удалить этот навык? При удалении будут также удалены все связанные с ним действия по развитию.
+    idp_delete_skill_msg: Вы уверены, что хотите удалить этот навык? При удалении будут также удалены все связанные с ним действия по развитию.
+    idp_details_updated: Данные IDP успешно обновлены
+    idp_development_actions_add_from_library: Добавить из библиотеки
+    idp_development_actions_completion: Завершение
+    idp_development_actions_create_development_actions_with_ai: Создавайте действия по развитию с помощью ИИ для
+    idp_development_actions_create_from_ai: Создать с помощью ИИ
+    idp_development_actions_create_my_own: Создать свой собственный
+    idp_development_actions_custom: Пользовательский
+    idp_development_actions_date_range: Дата начала - Дата окончания
+    idp_development_actions_edit_plan_to_add_development_actions: Измените план, чтобы добавить действия по разработке.
+    idp_development_actions_errors_invalid_learning_style: "'%{learning_style}' is not a valid learning style. Valid options are: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: Стиль обучения не может быть пустым
+    idp_development_actions_generate_by_ai: Создано с помощью ИИ
+    idp_development_actions_generate_more: Генерировать больше
+    idp_development_actions_heading: Навыки/Действия по развитию
+    idp_development_actions_manage_skills: Управление навыками
+    idp_development_actions_no_development_actions: У вас нет действий по развитию
+    idp_disabled_by_client: IDP отключен клиентом
+    idp_document_ai_assistant: Помощник по анализу документов с искусственным интеллектом
+    idp_edit_template: Редактировать шаблон IDP
+    idp_enter_tag_or_skills_error: Выберите хотя бы один тег или навык
+    idp_enter_template_description_error: Требуется описание шаблона.
+    idp_enter_template_name_error: Требуется название шаблона
+    idp_errors_cannot_update_progress_plan_completed: Невозможно обновить прогресс, поскольку план IDP завершен.
+    idp_errors_skills_required_on_publishing: Перед публикацией шаблона выберите навыки.
+    idp_errors_update: Обновление не разрешено, поскольку шаблон IDP уже связан с планом IDP пользователя.
+    idp_fields_approval_date: Дата утверждения
+    idp_fields_assigned_data: Назначенные данные
+    idp_fields_assigned_date: Дата назначения
+    idp_fields_completion_date: Дата завершения
+    idp_fields_current_job_role: Текущая должность
+    idp_fields_division: Разделение
+    idp_fields_label: Поля
+    idp_fields_name: Имя
+    idp_fields_publish_date: Дата публикации
+    idp_fields_review_date: Дата проверки
+    idp_fields_target_job_role: Целевая должность
+    idp_global_skills: Глобальные навыки
+    idp_idp: ВПЛ
+    idp_idp_template: Добавить шаблон IDP
+    idp_interview_questions: Вопросы для собеседования
+    idp_interview_questions_updated: Вопросы для собеседования успешно обновлены.
+    idp_intro_message: Вступительное сообщение
+    idp_intro_message_hint: Чтобы изменить вступительное сообщение, сначала сохраните шаблон IDP, чтобы активировать эти настройки.
+    idp_intro_message_success: Вступительное сообщение успешно сохранено
+    idp_locales: Локаль
+    idp_logo_image: Изображение логотипа
+    idp_logo_type_both: Логотипы Mercer и клиента
+    idp_logo_type_client_only: Только логотип клиента
+    idp_logo_type_label: Тип логотипа
+    idp_logo_type_mercer_only: Только логотип Mercer
+    idp_logo_type_none: Без логотипов
+    idp_no_interview_questions_selected: Не выбраны вопросы для собеседования
+    idp_no_reflection_questions_selected: Нет вопросов для размышления
+    idp_none: Нет
+    idp_one_click_idp_enabled: Включение IDP одним щелчком мыши
     idp_plan_reset_success: План был успешно сброшен
+    idp_reference_locale: Справочная локаль
+    idp_reflection_questions: Вопросы для размышления
+    idp_reflection_questions_hint: Чтобы изменить вопросы для размышления, сначала сохраните шаблон IDP, чтобы активировать эти настройки.
+    idp_reflection_questions_updated: Вопросы для размышления успешно обновлены.
+    idp_remove_skill: Удалить навык
+    idp_revert_skill_to_public_errors_skill_already_public: Навык уже публичный
+    idp_revert_skill_to_public_errors_skill_not_found: Навык не найден
+    idp_revert_skill_to_public_success_base_message: Навык «%{skill_name}» теперь виден вашему менеджеру.
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} and your IDP plan has been submitted for approval"
+    idp_select_by_tags: Выбрать по тегам
+    idp_select_interview_question: Начните вводить текст для поиска и выберите вопрос
+    idp_select_reflection_question: Начните вводить текст для поиска и выберите вопрос
+    idp_select_skill_gap_report: Выбрать отчет о пробелах в навыках
+    idp_select_specific_skills: Выберите конкретные навыки
+    idp_selected: Выбранные
+    idp_self_rating: Включить самооценку
+    idp_setting_manager_approves_idp: Менеджер утверждает IDP
+    idp_setting_manager_can_edit_idp: Менеджер может редактировать IDP
+    idp_setting_require_all_development_actions_complete: Требовать завершения всех действий по разработке
+    idp_show_reflections: Показать отражения
+    idp_skill_gap_report: Отчет о дефиците квалифицированных кадров
+    idp_skill_gap_report_ai_assistant: Ассистент по анализу отчетов о дефиците квалифицированных кадров
+    idp_skill_source_preference: Источник навыков
+    idp_skill_sources_from_ai: Из общих знаний об ИИ
+    idp_skill_sources_from_template: Из шаблона и сопоставлений
+    idp_skills: Навыки
+    idp_skills_privacy_messages_made_private: Навык «%{skill_name}» был помечен как частный и будет скрыт от вашего менеджера.
+    idp_skills_privacy_messages_made_public: Навык «%{skill_name}» теперь виден вашему менеджеру.
+    idp_skills_privacy_messages_skill_not_found: Навык не найден
+    idp_skills_privacy_messages_unauthorized: Не имеете права изменять этот навык
+    idp_skills_updated: Навыки IDP успешно обновлены
+    idp_status_draft: Проект
+    idp_status_published: Опубликовано
+    idp_status_updated: Статус IDP обновлен успешно
+    idp_subtitle_text: Текст субтитров
+    idp_tab_development_actions: Действия по развитию
+    idp_tab_interview_questions: Вопросы для собеседования
+    idp_tab_reflection_questions: Вопросы для размышления
+    idp_tab_settings: Настройки
+    idp_tab_templates: Шаблоны
+    idp_technical_skills: Технические навыки
+    idp_template_details: Детали шаблона
     idp_templates: Шаблоны IDP
+    idp_title_text: Текст заголовка
+    idp_update_interview_questions: Обновление вопросов для собеседования
+    idp_update_reflection_questions: Обновление вопросов для размышления
     iiht: IIHT
     iiht_assessment: Оценка IIHT
+    iiht_password: Пароль
+    iiht_tenancy_name: Название аренды
+    iiht_tenant_id: Идентификационный номер арендатора
+    iiht_user: Пользователь
+    image: Изображение
+    import_action_title: Импорт артефактов искусственного интеллекта кампании
+    import_actions_proficiency: Импорт Профессионализм
+    import_actions_translations: Импорт профессиональных переводов
     import_ai_artifacts: Импорт артефактов искусственного интеллекта
     import_csv_assessment_group_error: 'Строка %{index}: пользователь с адресом электронной почты %{email} уже приглашен в «%{workshopInviteName}».'
     import_csv_error: "%{index}: пользователь с адресом электронной почты %{email} не участвует в этой кампании"
     import_csv_parsing_error: 'Ошибка разбора CSV: %{message}'
     import_description: Импорт пользователей из файла CSV. Каждая строка должна содержать адрес электронной почты.
+    import_download_example_csv: Скачать пример csv
     import_download_sample: Скачать пример CSV
     import_error: Импорт не удался. Повторите попытку.
     import_error_saving_data: 'Ошибка при сохранении данных для %{email}: %{message}'
     import_errors_title: Ошибки импорта
+    import_evaluators: Эксперты по импорту
     import_external_scoring_action: Импорт внешней оценки
     import_external_scoring_body: Обратитесь к функции «Экспорт», чтобы извлечь шаблон, который можно использовать для импорта здесь.
     import_external_scoring_data_description: Импорт внешних данных оценки для указанной оценки и кампании
@@ -409,20 +976,171 @@ ru:
     import_external_scoring_success_msg: Импорт был успешно загружен
     import_external_scoring_upload: Загрузить
     import_file_required: Выберите CSV-файл для загрузки.
+    import_info_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    import_job_queued: Задание импорта уровней владения языком поставлено в очередь
     import_queued_success: Задание по импорту предметов было успешно запланировано. Пожалуйста, проверьте уведомление о статусе.
     import_sample_file_label: 'Пример файла:'
     import_scenario_id_mismatch: 'Несоответствие идентификатора сценария для %{email}: ожидалось %{expected_id} , но CSV содержит другие идентификаторы сценария.'
+    import_subjects: Импорт предметов
+    import_success_msg: Импорт был успешно загружен
     import_successfully_saved: Успешно сохранены внешние результаты для %{email} с целями %{goals_count}
     import_title: Импорт предметов из CSV
     import_upload: Загрузить
     import_users: Импорт пользователей
+    inactive: Неактивный
+    include_locales_label: Включить переводы
+    include_locales_name: include_locales
+    index_title: Проекты
+    individual_invite_tabs_assessment_center: Центр оценки
+    individual_invite_tabs_invitation_status: Статус приглашения
+    info_color: Информация Цвет
+    innovation_styles_form_full_description: Полное описание
+    innovation_styles_index_title: Стили инноваций
+    innovation_styles_list_position: Позиция
+    innovation_styles_resource_confirmations_delete_body: "<p>Are you sure you want to delete this innovation style?</p>\n"
+    instruction_messages: Инструкции
+    instructions: Instructions
+    instructions_actions_saved: Инструкции успешно сохранены
+    instructions_enable: Инструкции по включению
+    instructions_save: Сохранить инструкции
+    integrations_actions_add: Интеграции
+    integrations_actions_back: Вернуться к интеграциям
+    integrations_actions_load_mettl_catalog: Загрузить каталог оценок Mettl
+    integrations_actions_load_microsite_catalog: Загрузить каталог оценки микросайтов
+    integrations_actions_load_skillvue_catalog: Загрузить каталог оценок Skillvue
+    integrations_columns_active: Активный
+    integrations_columns_details: Подробности
+    integrations_columns_name: Название интеграции
+    integrations_details_client_id: Идентификатор клиента
+    integrations_details_deployment_id: Идентификатор развертывания
+    integrations_details_platform_access_token_url: URL-адрес токена доступа к платформе
+    integrations_details_platform_authentication_request_url: URL-адрес запроса аутентификации платформы
+    integrations_details_platform_host_name: Имя хоста платформы
+    integrations_details_platform_id: Идентификатор платформы
+    integrations_details_platform_public_keyset_url: URL публичного набора ключей платформы
+    integrations_details_provider: Название провайдера
+    integrations_details_webhookUrl: URL веб-хука
+    integrations_details_webhookUrls: URL-адреса веб-хуков
+    integrations_integrations: Интеграции
+    integrations_load_mettl_success: Задание по оценке mettl успешно добавлено в очередь
+    integrations_load_microsite_success: Задание по оценке микросайтов успешно добавлено в очередь
+    integrations_load_skillvue_success: Задание по загрузке оценок Skillvue успешно добавлено в очередь
+    integrations_names_hogan: Хоган
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: Меттл
+    integrations_names_skillvue: Skillvue
+    integrations_names_yoodli: Yoodli
+    integrations_view_all_schedules: Просмотреть все расписания Mettl
+    interface: Интерфейс
     internal: Внутренний
+    interview_questions_delete_confirmation: Вы уверены, что хотите удалить этот вопрос интервью?
+    interview_questions_export_action: Вопросы для собеседования по экспорту
+    interview_questions_export_failure_msg: Ошибка при экспорте файла.
+    interview_questions_export_success_msg: Экспорт вопросов для собеседования в процессе. Пожалуйста, проверьте статус в уведомлениях.
+    interview_questions_form_mandatory: Обязательный
+    interview_questions_form_question: Вопрос
+    interview_questions_form_question_type: Тип вопроса
+    interview_questions_form_question_type_audio: Аудио
+    interview_questions_form_question_type_video: Видео
+    interview_questions_form_time_limit: Временной лимит (сек.)
+    interview_questions_form_title: Вопрос для собеседования
+    interview_questions_import_action: Импорт вопросов для собеседования
+    interview_questions_import_failure_msg: Ошибка при импорте файла.
+    interview_questions_import_success_msg: Импорт вопросов для собеседования в процессе. Пожалуйста, проверьте статус в уведомлениях.
+    interview_questions_question: Вопрос
+    invalid_confidence_interval: confidence_interval должен быть равен 0 или 1
     invalid_csv_header: CSV-файл содержит недействительные заголовки.
+    invalid_leadership_bar: leadership_bar должен быть равен 0 или 1
+    invalid_norm_option: Параметр Norm должен быть в диапазоне от 0 до 3.
     invalid_question_ids: 'Идентификаторы вопросов, отсутствующие в данном тесте: %{ids}'
+    invite_add_invite: Добавить приглашение
+    invite_assessment_center: Центр оценки
+    invite_basic_info_allow_preferred_language: Разрешить предпочтительный язык
+    invite_basic_info_assessment_centers: Центры оценки
+    invite_basic_info_assessment_centers_hint: Пример поискового запроса «10 августа 2023 года, 20:06»
+    invite_basic_info_assessment_centers_placeholder: Выберите центры оценки
+    invite_basic_info_description: Выдайте приглашения кандидатам, выбрав несколько центров оценки. Затем кандидаты выберут один центр из доступных.
+    invite_basic_info_neurodiversity: Включить вопрос о нейроразнообразии
+    invite_basic_info_preferred_language: Разрешенные языки
+    invite_basic_info_required_error: Не может быть пустым
+    invite_basic_info_title: Основная информация
+    invite_center_group: Группа оценочного центра
+    invite_confirm_message: Вы уверены, что хотите удалить приглашение?
+    invite_confirm_message_with_title: Вы уверены, что хотите удалить приглашение с названием «%{invite_title}»?
+    invite_evaluators_description: Это сообщение будет отображаться субъектам, когда они начнут выдвигать кандидатов в оценщики.
+    invite_evaluators_name: Пригласить оценщиков
+    invite_invites: Приглашает
+    invite_name_placeholder: Введите имя приглашения
+    invite_not_selected: Не выбрано
+    invite_request_accept: Принять
+    invite_request_reason: Причина
+    invite_request_reject: Отклонить
+    invite_request_remove_confirm_content: Вы уверены, что хотите удалить %{status} из %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} from %{subjectName} was %{action} successfully."
+    invite_request_remove_confirm_title: "%{категория}"
+    invite_request_subject_name: Название предмета
+    invite_request_workshop_time: Время проведения семинара
+    invite_requests: Запросы
+    invite_save: Сохранить и отправить
+    invite_send_invites_add_description: Вы можете перевести название и описание приглашения на несколько языков.
+    invite_send_invites_add_language: Добавить язык
+    invite_send_invites_input_label: Добавить дополнительный язык
+    invite_send_invites_input_placeholder: Выберите дополнительный язык
+    invite_send_invites_invitation_title: Название приглашения
+    invite_send_invites_title: Приглашение (%{lang})
+    invite_steps_add_subjects: Добавить предметы
+    invite_steps_basic_info: Основная информация
+    invite_steps_has_errors: содержит ошибки
+    invite_steps_send_invitation: Отправить приглашение
+    invite_subjects_count: Предметы
+    invite_subjects_csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
+    invite_subjects_csv_imported: "%{count} импортированные предметы"
+    invite_subjects_description: Вы можете добавлять предметы по отдельности, выполнив поиск, или загрузить файл CSV.
+    invite_subjects_download: Скачать
+    invite_subjects_file_example: См. файл с примером для загрузки информации о предметах.
+    invite_subjects_import_from_campaign: Добавить все из кампании
+    invite_subjects_import_title: Импорт предметов
+    invite_subjects_import_users: Импорт пользователей
+    invite_subjects_search_user: Поиск предметов
+    invite_subjects_title: Предметы
+    invite_subjects_upload_csv: Загрузить CSV
+    invite_success_message: Приглашение удалено успешно.
+    invite_success_message_with_title: Приглашение с названием «%{invite_title}» было успешно удалено.
+    invite_title: Название
+    invite_workshop_list_remove_confirm_content: Вы уверены, что хотите удалить Центр оценки с именем «%{name}»?
+    invite_workshop_list_remove_confirm_success: Центр оценки был удален успешно.
+    invite_workshop_list_remove_confirm_title: Подтвердить
+    invite_workshop_title: Центры оценки
+    is_subject: Является предметом
+    job_role_are_you_sure_to_remove: Вы уверены, что хотите удалить?
+    job_role_column_job_group: Группа должностей
+    job_role_column_skill_name: Название навыка
+    job_role_export_failure_msg: Ошибка при экспорте переводов
+    job_role_export_success_msg: Экспорт текущих действий по развитию.
+    job_role_form_code: Код
+    job_role_form_description: Описание
+    job_role_form_job_group: Группа должностей
+    job_role_form_name: Имя
+    job_role_form_title: Должностные обязанности
+    job_role_import_action_translations: Импорт переводов должностных инструкций
+    job_role_import_download_example_csv: Скачать пример csv
+    job_role_import_success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    job_role_job_role_details: Подробная информация о должности
+    job_role_skill_mapping_column_expected_proficiency_level: Ожидаемый уровень владения языком
+    job_role_skill_mapping_form_title: Сопоставление навыков и профессий
+    job_role_translations: Перевод должностных инструкций
     job_roles: Должностные обязанности
+    join_room: Войти в чат
+    keep_original: Сохранить оригинал
+    key: Ключ
     keywords: Ключевые слова
     keywords_placeholder: Введите ключевые слова, разделенные запятыми.
+    language_id: Идентификатор языка
+    last_name_required: Фамилия обязательна
+    lead_assessment: Оценка свинца
     lead_assessor_form: Форма ведущего оценщика
+    leadership_bar: Лидерство Бар
+    leadership_bar_update_success: Панель лидерства обновлена успешно
     learning_from_others: Совместное обучение [20]
     level: Уровень
     level_apply: Применить
@@ -434,21 +1152,61 @@ ru:
     licenses: Лицензии
     lighthouse_question: Основной вопрос
     lighthouse_question_id: Идентификатор вопроса Lighthouse
+    link_text: Ссылка
     linked_assessments: Связанные оценки
+    locale: Локаль
+    log_date: Дата регистрации
+    login: Вход
     low: Низкий
+    mail_history: История почты
+    main_report: Основной отчет
     maintenance: Техническое обслуживание
     maintenance_settings: Настройки обслуживания
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
+    manager_approves_reports: Менеджер утверждает отчеты
+    manager_can_access_subject_reports: Менеджер может получить доступ к отчетам по предмету
+    manager_cannot_access_subject_reports: Менеджер не может просматривать отчет, пока не будут выполнены требования.
+    manager_ids_label: Менеджеры центра
+    manager_report_ready_description: Это сообщение отправляется менеджеру субъекта, как только отчет субъекта будет готов.
+    manager_report_ready_name: Отчет менеджера готов
+    managers_title: Менеджеры
+    mark_finalized: Марк завершил работу
+    mark_finalized_bulk_confirm: При завершении обработки результатов для всех выбранных пользователей будут сгенерированы отчеты, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
+    mark_finalized_confirm: Окончательная обработка результатов по артефакту для пользователя «%{email}» приведет к созданию отчета, в котором будет использован артефакт искусственного интеллекта для этого пользователя. Вы действительно хотите продолжить?
+    mark_licenses_as_deactivated: Пометить лицензии как деактивированные
+    mark_not_finalized: Отметка не утверждена
+    mark_not_finalized_bulk_confirm: Удаление статуса «Завершено» у всех выбранных пользователей приведет к удалению сгенерированных отчетов, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
+    mark_not_finalized_confirm: Удаление статуса «Завершено» у пользователя «%{email}» приведет к удалению сгенерированного отчета, в котором используется артефакт ИИ для этого пользователя. Вы действительно хотите продолжить?
+    mask_identity_for_examus: Данные маски для Examus Proctoring
+    mask_identity_for_hogan: Данные маски для Hogan
+    mask_identity_for_iiht: Данные маски для IIHT
+    mask_identity_for_mettl: Данные маски для METTL
+    mask_identity_for_mhs: Данные маски для MHS
+    mask_identity_for_pearson: Данные маски для Пирсона
+    mask_identity_for_saville: Данные маски для Saville
+    mask_identity_for_skillvue: Данные маски для Skillvue
+    mask_identity_for_yoodli: Данные маски для Yoodli
     max_value: Максимальное значение
     mean: Среднее
     media_files_label: Файлы
     media_library: Медиатека
     media_library_page_title: Медиатека — Панель управления — Mercer Lighthouse
     meeting: Встреча
+    meeting_link: Ссылка на встречу
+    meetings_and_resources: Встречи и ресурсы
     messages: Сообщения
+    meta_title: Панель управления
     mettl: METTL
+    mettl_apiBaseUrl: Конечная точка API
+    mettl_apiBaseUrlRequired: Требуется конечная точка API.
     mettl_assessment: Оценка Mettl
+    mettl_privateKey: Частный ключ
+    mettl_privateKeyRequired: Требуется закрытый ключ.
+    mettl_publicKey: Открытый ключ
+    mettl_publicKeyRequired: Требуется открытый ключ.
+    mettl_servers_mettl_eu: Европа
+    mettl_servers_mettl_india: Индия
     mhs: MHS
     mhs_assessment: Оценка MHS
     mhs_assessment_name: Название оценки MHS
@@ -467,19 +1225,69 @@ ru:
     minimum_system_check_validity: Минимальный уровень кампании. Срок действия проверки системы должен составлять 15 минут
     minimum_upload_speed: Минимальная скорость загрузки (в Мбит/с)
     missing_min_max_values: Требуются минимальные и максимальные значения.
+    modal_convert_option: Превратить эту кампанию в шаблон
+    modal_convert_success: Шаблон успешно преобразован
+    modal_copy_option: Создать новый шаблон на основе этой кампании
+    modal_copy_success: Задание по созданию шаблона кампании было успешно запланировано. Пожалуйста, проверьте свои уведомления, чтобы узнать о статусе.
+    modal_description: Выберите, как вы хотите создать шаблон из этой кампании.
+    modal_failed: Создание шаблона не удалось.
+    modal_subtitle: Выберите диапазон дат, а затем выберите необходимый язык для каждого отчета.
+    modal_title: Преобразовать в шаблон
     model_answer: Типовой ответ
     model_answer_placeholder: Введите образец ответа для оценки искусственным интеллектом.
     must_be_a_valid_url: Неверный URL-адрес. Укажите полный URL-адрес с протоколом http или https
     name: Имя
     name_max_length: Имя не может превышать %{length} символов
     name_required: Имя обязательно
+    navigation_audit_logs: Журналы аудита
+    navigation_factors: Факторы
+    navigation_innovation_styles: Стили инноваций
+    navigation_logout: Выход из системы
+    navigation_occupations: Профессии
+    navigation_registration_codes: Регистрационные коды
+    navigation_skills_taxonomy: Таксономия навыков
+    navigation_users: Пользователи
     new_folder: Новая папка
+    new_score: Новый счет
+    no_assessments_found: Идентификатор аудита
+    no_completed_assessments: Пока нет завершенных оценок
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
     no_question_mappings: Сопоставления вопросов отсутствуют
+    no_rendered_output: Нет доступного рендеринга
     no_status: Без статуса
+    nomination_denied_description: Это сообщение отправляется субъектам, когда номинация отклонена.
+    nomination_denied_name: Номинация отклонена
+    nomination_help_description: Справка, отображаемая на карточке номинации на панели управления пользователя
+    nomination_help_name: Помощь в номинации
+    norm: Норма
     norm_editor_numeric_value_error: Допускаются только числовые значения (целые числа или числа с десятичной запятой).
+    norm_id: Идентификатор нормы
+    norm_option: Нормальный вариант
+    norm_option_form_select: Выберите опцию «Норма»
+    norm_option_update_success: Опция Norm успешно обновлена
+    norm_region: Норма Регион
+    norm_region_form_select: Выберите регион Норм
+    norm_region_update_success: Регион Норм успешно обновлен
+    normal: Нормальный
+    normalize_factor_scores: Нормализация факторных оценок
     norms: Нормы
+    norms_copy_successfully: Норма «%{name}» была успешно скопирована.
+    norms_export_success_msg: Задание экспорта норм успешно запланировано. Проверьте статус в уведомлениях.
+    norms_import_download_example_csv: Скачать пример csv
+    norms_import_select_file_validation: Перед отправкой выберите владельца и файл.
+    norms_import_success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    norms_import_title: Импорт норм
+    norms_index_import: Импорт
+    norms_remove_confirm: Введите название нормы, указанное ниже, в текстовое поле для подтверждения
+    norms_remove_warning: Вы уверены, что хотите удалить норму «%{name}»?
+    norms_score_types_five_scale: Пятибалльная шкала
+    norms_score_types_norm_type: Тип нормы
+    norms_score_types_percentage: Процент
+    norms_sidebar_copy: Копировать норму
+    norms_sidebar_editor: Редактор норм
+    norms_sidebar_export: Экспортная норма
+    norms_title: Норма
     not_completed: Не завершено
     not_completed_tooltip: "%{completed} оценщики назначены, но только %{submitted} завершили оценки"
     notes: Примечания
@@ -488,15 +1296,49 @@ ru:
     notification_bell_icon_alt_text: Значок уведомления
     notifications: Уведомления
     number: Номер
+    oauth_scope_label: Объем
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: Требуется объем
     occupations: Профессии
+    occupations_factors_list_condition: Состояние
+    occupations_factors_list_position: Позиция
+    occupations_factors_list_weight: Вес
+    occupations_form_alternative_icon: Альтернативная иконка
+    occupations_form_color: Цвет
+    occupations_form_indicative_roles_image: Иллюстрация типичных ролей
+    occupations_form_key_career_tracks_image: Изображение основных направлений карьерного роста
+    occupations_index_title: Профессии
     on_the_job: На работе [70]
     only_editable_on_create: Этот параметр можно изменить только во время создания.
     options: Варианты
+    options_evaluator_options: Параметры оценщика
+    options_global: Глобальные параметры
+    options_manager_options: Параметры менеджера
+    options_subject_options: Предметные опции
+    options_title: Варианты
     organisational: AGILE
     original_text: Оригинальный текст
+    other_assessments: Другие оценки
+    other_assessor_assessments: Другие оценки оценщиков
+    other_reports: Другие отчеты
+    outcome: Результат
+    output_schema_key_constraint: Ключ должен начинаться с строчной буквы и может содержать только строчные буквы, цифры и символы подчеркивания.
+    output_schema_keys: Ключи схемы вывода
     overall: В целом
     overall_score: Общий балл
+    overall_scoring: Общий балл
+    parsed_dependencies_help: Анализированные зависимости для пользователя, используемые ИИ-помощником для генерации результатов артефакта
+    parsed_dependencies_title: Анализируемые зависимости
+    parsed_dependencies_view: Просмотр проанализированных зависимостей
     participants: Участники
+    participants_tab: Участники
+    participants_tabs_assessors: Оценщики
+    participants_tabs_sms_contacts: SMS-контакты
+    participants_tabs_subjects: Предметы
+    password_label: Пароль
+    password_name: Пароль
+    past: Прошлое
+    payload: Полезная нагрузка
     pearson: Пирсон
     pearson_assessment: Оценка Пирсона
     permissions:
@@ -694,7 +1536,7 @@ ru:
           view: Просмотр
         messages:
           email: Электронная почта
-          instructions: Инструкции
+          instructions: Идентификатор аудита
           options: Варианты
           title: Сообщения
         norms:
@@ -809,7 +1651,7 @@ ru:
         view: Просмотр
       messages:
         email: Электронная почта
-        instructions: Инструкции
+        instructions: Идентификатор аудита
         options: Варианты
         title: Сообщения
       norms:
@@ -925,25 +1767,197 @@ ru:
         view_recordings: Просмотр записей
     permissions_360_campaigns: Разрешения, специфичные для кампаний 360
     piped_text: Текст в трубе
+    piped_text_modal_assessment_center: Центр оценки
+    piped_text_modal_campaign_link: Ссылка на кампанию
+    piped_text_modal_campaign_name: Название кампании
+    piped_text_modal_campaigns: Кампании
+    piped_text_modal_duration: Продолжительность
+    piped_text_modal_end_time: Время окончания
+    piped_text_modal_insight_page_link: Ссылка на страницу «Insight»
+    piped_text_modal_insight_page_url: URL страницы с аналитической информацией
+    piped_text_modal_invite_title: Название
+    piped_text_modal_invites: Приглашает
+    piped_text_modal_magic_link: Магическая ссылка
+    piped_text_modal_magic_url: Магический URL
+    piped_text_modal_platform_url_links: URL-адрес платформы и ссылки
+    piped_text_modal_project_name: Название проекта
+    piped_text_modal_projects: Проекты
+    piped_text_modal_report_name: Название отчета
+    piped_text_modal_start_time: Время начала
+    piped_text_modal_title: Добавить текст в трубе
+    piped_text_modal_user_reports: Отчеты пользователей
+    piped_text_modal_users: Пользователи
+    playground: Игровая площадка
+    playground_info: Протестируйте свой артефакт с помощью примеров данных, чтобы предварительно просмотреть сгенерированные результаты.
+    playground_placeholder: Введите тестовые данные
+    position_auto: Авто
+    position_label: Положение окна входа в систему
+    position_left: слева
+    position_right: Право
     precision: Точность
+    preview_report: Предварительный отчет
+    previous: Предыдущий
+    prework: Подготовительная работа
+    prework_required: Не разрешать бронирование центра, если предварительные работы не завершены
+    prework_required_for_invite: Отправлять приглашение по электронной почте только после завершения предварительной работы
+    primary_button: Первичный
+    primary_color: Основной цвет
     privacy: Конфиденциальность
+    privacy_link: Включить ссылку конфиденциальности
+    privacy_link_label: Ссылка на политику конфиденциальности
+    privacy_link_placeholder: Введите ссылку на политику конфиденциальности
+    privacy_text: Текст о конфиденциальности
+    privacy_text_placeholder: Введите текст о конфиденциальности
     proctoring: Прокторинг
+    proctoring_allow_on_assessment_center: Allow proctoring on assessment center
+    proctoring_enable: Включить контроль
     proctoring_errors_timed_only: Функция выборочного наблюдения за экзаменом может быть включена только для тестов с ограничением по времени.
     proctoring_fixed_time_required: Включите параметр «Фиксированное время», чтобы выбрать эту опцию
+    proctoring_identification: Идентификация
+    proctoring_identifications:
+      face: Лицо
+      face_and_passport: Лицо и паспорт
+      passport: Паспорт
+    proctoring_integration_type: Интеграция
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: Браузер с блокировкой
     proctoring_mode_all: Включить наблюдение за всеми тестами
     proctoring_mode_all_except_ac: Включить наблюдение за всеми тестами, за исключением тестов в центре оценки
+    proctoring_rule_types_allow_absence_in_frame: Разрешить отсутствие в кадре
+    proctoring_rule_types_allow_to_use_books: Разрешить использование книг
+    proctoring_rule_types_allow_to_use_calculator: Разрешить использование калькулятора
+    proctoring_rule_types_allow_to_use_excel: Разрешить использование Excel
+    proctoring_rule_types_allow_to_use_human_assistant: Разрешить использование помощника-человека
+    proctoring_rule_types_allow_to_use_messengers: Разрешить использование мессенджеров
+    proctoring_rule_types_allow_to_use_paper: Разрешить использование бумаги
+    proctoring_rule_types_allow_to_use_websites: Разрешить использование веб-сайтов
+    proctoring_rule_types_allow_voices: Разрешить голоса
+    proctoring_rule_types_allow_wrong_gaze_direction: Разрешить неправильное направление взгляда
+    proctoring_rules: Правила
+    proctoring_sessions_columns_comment: Комментарий
+    proctoring_sessions_columns_completed_at: Завершено в
+    proctoring_sessions_columns_conclusion: Заключение
+    proctoring_sessions_columns_links: Ссылки
+    proctoring_sessions_columns_score: Счет
+    proctoring_sessions_columns_session_id: Идентификатор сеанса
+    proctoring_sessions_columns_started_at: Начало
+    proctoring_sessions_links_report: Отчет
+    proctoring_sessions_links_review: Обзор
+    proctoring_sessions_resource_name: Сессии прокторинга
     proctoring_settings: Настройки контроля
+    proctoring_trial: Проба просмотра
+    proctoring_type: Тип
+    proctoring_types:
+      offline: В автономном режиме
+      online: Онлайн
     professional: Профессиональный
     proficiency: Профессионализм
     proficiency_level: Уровень владения языком
     proficiency_levels: Уровни владения языком
+    proficiency_levels_fields_title: Профессионализм
+    profile: Профиль
+    profile_change_password: Изменить пароль
     profile_details: Детали профиля
+    project: Проект
+    project_admin: Администратор проекта
     project_admins: Администраторы проекта
+    project_features: Особенности проекта
     project_manager: Руководитель проекта
     project_number: Номер проекта
+    project_participants_column_campaigns: Кампании
+    project_participants_column_createdAt: Создано в
+    project_participants_column_created_at: Создано в
+    project_participants_edit_participant: Редактировать участника
+    project_participants_filter_campaigns: Нет кампаний
+    project_participants_search_user: Поиск пользователя
+    project_participants_send_email: Отправить электронное письмо
+    project_path: Путь проекта
     project_settings: Настройки проекта
+    project_tabs_assessments_column_normalize_factor_scores: Нормализация факторных оценок
+    project_tabs_assessments_column_user_result_validity_in_days: Достоверность результатов
+    project_tabs_assessments_delete_content: Вы уверены, что хотите удалить оценку «%{name}»?
+    project_tabs_assessments_delete_success: Оценка «%{name}» была успешно удалена.
+    project_tabs_assessments_delete_title: Удалить оценку
+    project_tabs_assessments_title: Оценки
+    project_tabs_design: Дизайн
+    project_tabs_general: Общее
+    project_tabs_privacy: Конфиденциальность
+    project_tabs_profile: Профиль
+    project_tabs_registration: Регистрация
+    project_tabs_webhooks_actions_delete_key: Удалить
+    project_tabs_webhooks_actions_edit_key: Редактировать
+    project_tabs_webhooks_actions_send_test_key: send_test
+    project_tabs_webhooks_actions_send_test_label: Отправить тест
+    project_tabs_webhooks_remove_webhook_content: Удалить «%{description}»?
+    project_tabs_webhooks_title: Веб-хуки
+    project_tools_workshop_status_export: Экспорт статуса мастерской
+    project_tools_workshop_status_export_success: Экспорт статуса мастерской был успешно запланирован.
+    project_users_change_password: Изменить пароль
+    project_users_column_campaigns: Кампании
+    project_users_column_created_at: Создано в
+    project_users_confirm_delete: Да, удалить
+    project_users_confirm_send: Да, отправить
+    project_users_delete_error: Не удалось удалить оценщика «%{name}». Обратитесь к администратору.
+    project_users_delete_success: Оценщик «%{name}» был успешно удален.
+    project_users_edit_assessor: Редактировать оценщика
+    project_users_filter_campaigns: Без кампаний
+    project_users_modal_delete_content: Вы уверены, что хотите удалить оценщика «%{name}»?
+    project_users_modal_delete_title: Удалить оценщика
+    project_users_modal_reset_email_content: Вы уверены, что хотите отправить ссылку для сброса пароля на адрес «%{email}»?
+    project_users_model_reset_email: Сбросить пароль оценщика
+    project_users_no_edit_permission: У вас нет прав на редактирование оценщика «%{name}».
+    project_users_reset_mail_error: Не удалось отправить ссылку для сброса пароля на адрес «%{email}». Обратитесь к администратору.
+    project_users_reset_mail_success: Ссылка для сброса пароля успешно отправлена на адрес '%{email}'
+    project_users_search_accessor: Поиск аксессоров
+    project_users_send_email: Отправить электронное письмо
     projects: Проекты
+    projects_addProject: Добавить проект
+    projects_assessment_settings_search: Оценка поиска
+    projects_columns_project_number: Номер проекта
+    projects_form_project_number: Номер проекта
+    projects_form_subdomain: Субдомен
+    projects_form_title: Проект
+    projects_general_settings_live_chat: Включить онлайн-чат
+    projects_general_settings_locales_label: Локаль
+    projects_general_settings_project_number_label: Номер проекта
+    projects_general_settings_save_changes: Сохранить изменения
+    projects_general_settings_sub_domain_label: Субдомен
+    projects_mettl_schedule_records_add: Добавить расписание
+    projects_mettl_schedule_records_assessment_id: Идентификатор оценки
+    projects_mettl_schedule_records_assessment_name: Название оценки
+    projects_mettl_schedule_records_candidate_authorization: Включить авторизацию кандидатов
+    projects_mettl_schedule_records_candidate_screen_capture: Включить захват экрана кандидата
+    projects_mettl_schedule_records_count: Просмотр количества толерантности
+    projects_mettl_schedule_records_created_at: Создано в
+    projects_mettl_schedule_records_schedule_id: Идентификатор расписания
+    projects_mettl_schedule_records_schedule_name: Название расписания
+    projects_mettl_schedule_records_secure_browser_enabled: Включить безопасный браузер
+    projects_mettl_schedule_records_settings: Настройки
+    projects_mettl_schedule_records_show_remaining_counts: Включить отображение оставшегося количества
+    projects_mettl_schedule_records_visual_proctoring_enabled: Включить визуальный контроль
+    projects_mettl_schedule_records_web_proctoring_enabled: Включить веб-контроль
+    projects_profile_settings_form_fields_enabled: Включено
+    projects_profile_settings_form_fields_half_size: Половина размера
+    projects_profile_settings_form_fields_locked: Заблокировано
+    projects_profile_settings_form_fields_sort: Сортировать
+    projects_profile_settings_month: Месяц
+    projects_profile_settings_never: Никогда
+    projects_profile_settings_update_in: Уведомлять об обновлении профиля в
+    projects_profile_settings_year: Год
+    projects_registration_settings_hide_signup: Скрыть опцию регистрации
+    projects_registration_settings_require_mobile_number: Требовать номер мобильного телефона
+    projects_webhook_settings_add: Добавить веб-хук
+    projects_webhook_settings_column_active: Активный
+    projects_webhook_settings_column_created_date: Дата создания
+    projects_webhook_settings_column_description: Описание
+    projects_webhook_settings_column_updated_date: Дата изменения
+    projects_webhook_settings_column_url: URL
+    projects_webhook_settings_search: Поиск Webhook
     prompt: Подсказка
+    provider: Провайдер
+    provider_change_confirm_title: Сменить поставщика?
+    provider_previously_used_warning: Ранее этот помощник генерировал результаты с использованием «%{from}». Переход на «%{to}» может повлиять на поведение помощника при последующих запросах на генерацию.
     psychometric: Психометрический
     question_center: Центр вопросов
     question_center_page_title: Центр вопросов — Панель управления — Mercer Lighthouse
@@ -971,10 +1985,32 @@ ru:
     question_type_video_response: Видеоответ
     questions: Вопросы
     questions_new_button: Новый вопрос
+    questions_percentage: Вопросы (СУММА / МАКС. всего)
+    questions_sum: Вопросы (SUM)
     questions_title: Вопрос
     questions_type: Тип
     range_min_max: ДИАПАЗОН%{min} - %{max}
+    rationale: Обоснование
+    raw: RAW
+    reason_for_changes: Причина изменений
+    record_id: Идентификатор записи
+    recordings: Записи
     reflection_questions: Вопросы для размышления
+    reflection_questions_delete_confirmation: Вы уверены, что хотите удалить этот вопрос для размышления?
+    reflection_questions_export_action: Вопросы для размышления об экспорте
+    reflection_questions_export_failure_msg: Ошибка при экспорте файла.
+    reflection_questions_export_success_msg: Экспорт вопросов для размышления в процессе. Пожалуйста, проверьте статус в уведомлениях.
+    reflection_questions_form_mandatory: Обязательный
+    reflection_questions_form_max_words: Максимальное количество слов
+    reflection_questions_form_min_words: Минимальное количество слов
+    reflection_questions_form_question: Вопрос
+    reflection_questions_form_title: Вопрос для размышления
+    reflection_questions_import_action: Вопросы для размышления об импорте
+    reflection_questions_import_failure_msg: Ошибка при импорте файла.
+    reflection_questions_import_success_msg: Импорт вопросов для размышления в процессе. Пожалуйста, проверьте статус в уведомлениях.
+    reflection_questions_question: Вопрос
+    refresh: Обновить
+    refresh_interval: Интервал обновления (минуты)
     regenerate_transcriptions_action: Восстановить транскрипции
     regenerate_transcriptions_confirm_content: Вы уверены, что хотите пересчитать оценки по данной работе? При этом будут пересчитаны все незавершенные оценки.
     regenerate_transcriptions_confirm_title: Восстановить транскрипции
@@ -982,28 +2018,151 @@ ru:
     registration_codes: Регистрационные коды
     registration_settings: Настройки регистрации
     remove_children_to_change_type: Удалить всех детей, чтобы изменить тип
+    remove_confirm_content: Вы уверены, что хотите удалить тему с адресом электронной почты «%{subjectEmail}»?
+    remove_confirm_success: Тема с электронным адресом «%{subjectEmail}» была успешно удалена.
+    remove_confirm_title: Удалить тему
     remove_confirmation: Вы уверены, что хотите удалить этот элемент?
+    remove_output_schema_key: Удалить ключ схемы вывода
     remove_successfully: Медиафайл удален успешно.
+    render_button: Шаблон рендеринга
+    rendered_prompt: Отображаемый подсказка
+    reply_to_email: Ответить на электронное письмо
+    report_access: Доступ к отчетам
     report_alias_save_confirmation: Если вы хотите сохранить ВСЕ изменения в Report Builder и в разделе «Псевдонимы», нажмите кнопку «СОХРАНИТЬ». Страница перезагрузится, и ваши изменения будут успешно применены.
+    report_approval: Утверждение отчета
+    report_approval_allow_bulk_approve: Разрешить массовое утверждение
+    report_approval_allow_qc_bulk_submit: Разрешить массовую отправку QC
+    report_approval_approval_statuses_approved: Утверждено
+    report_approval_approval_statuses_change_requested: Запрос на изменение
+    report_approval_approval_statuses_not_ready: Не готов
+    report_approval_approval_statuses_pending_qc: Ожидание контроля качества
+    report_approval_approval_statuses_qc_completed: Контроль качества завершен
+    report_approval_approval_statuses_qc_in_progress: Контроль качества в процессе
+    report_approval_approvers: Утверждающие лица
+    report_approval_approvers_can_edit: Утверждающие лица могут редактировать
+    report_approval_approvers_not_required: Утверждающие лица не требуются
+    report_approval_columns_approval_status: Статус утверждения
+    report_approval_columns_approved_by: Утверждено
+    report_approval_columns_assessed_by: Оценка
+    report_approval_columns_campaign_name: Название кампании
+    report_approval_columns_qc_by: QC By
+    report_approval_columns_report_name: Название отчета
+    report_approval_columns_subject_email: Тема письма
+    report_approval_columns_user_email: Электронная почта пользователя
+    report_approval_columns_user_name: Имя пользователя
+    report_approval_digest_frequency_daily: Ежедневно
+    report_approval_digest_frequency_weekdays: Будние дни
+    report_approval_digest_frequency_weekly: Еженедельно
+    report_approval_digest_time: Время переваривания
+    report_approval_digest_timezone: Дайджест Часовой пояс
+    report_approval_digest_weekdays_friday: пятница
+    report_approval_digest_weekdays_monday: понедельник
+    report_approval_digest_weekdays_saturday: суббота
+    report_approval_digest_weekdays_sunday: воскресенье
+    report_approval_digest_weekdays_thursday: четверг
+    report_approval_digest_weekdays_tuesday: вторник
+    report_approval_digest_weekdays_wednesday: среда
+    report_approval_do_not_send_notifications: Не отправлять электронные письма пользователям [QC, утверждающие лица и уведомления об утверждении]
+    report_approval_modal_title: Настройки утверждения отчетов
+    report_approval_notification_users: Уведомление об утверждении Пользователи
+    report_approval_qc_users: Пользователи QC
+    report_approval_remove_modal_success: 'Настройка утверждения для идентификатора отчета: %{reportId} была успешно удалена.'
+    report_approval_remove_modal_text: 'Вы уверены, что хотите удалить эту настройку для идентификатора отчета: %{reportId}?'
+    report_approval_report: Отчет
+    report_approval_review: Обзор
+    report_approval_saving_filters_actions_clear_filters: Очистить фильтры
+    report_approval_saving_filters_actions_delete_filter: Удалить фильтр
+    report_approval_saving_filters_actions_save_new_filter: Сохранить как новый фильтр
+    report_approval_saving_filters_actions_saved_filters: Сохраненные фильтры
+    report_approval_saving_filters_delete_saved_filters: Фильтр удален
+    report_approval_saving_filters_edit_filter_name: Имя фильтра сохранено
+    report_approval_saving_filters_error_while_deleting: Ошибка при удалении
+    report_approval_saving_filters_error_while_editing: Ошибка при редактировании
+    report_approval_saving_filters_error_while_fetching: Что-то пошло не так, попробуйте еще раз
+    report_approval_saving_filters_error_while_saving: Ошибка при сохранении фильтра
+    report_approval_saving_filters_filter_updated: Фильтр обновлен
+    report_approval_saving_filters_no_saved_filters: Нет сохраненных фильтров
+    report_approval_saving_filters_save_filter: Фильтр сохранен
+    report_approval_saving_filters_set_favorite: Фильтр добавлен в избранное
+    report_approval_send_digest_emails: Отправлять дайджест по электронной почте
+    report_approval_settings: Настройки утверждения отчетов
+    report_approval_submit_or_approve_all: Отправить или утвердить все
     report_approvals: Утверждение отчетов
+    report_availability: Доступность отчета
     report_condition_not_met: Требуется оценка %{required} %{relationship}, но имеется только %{actual}
     report_conditions_not_met_detailed: Отчет для %{user} не соответствует условиям доступности. %{conditions}
     report_denied: Отчет по делу «%{user}» был отклонен
+    report_help_description: Справка, отображаемая в отчете на панели управления пользователя
+    report_help_name: Отчеты помогают
+    report_id: Идентификатор отчета
     report_name: Название отчета
     report_no_evaluations: Отчет по программе «%{user}» недоступен — оценки не поступали.
     report_not_generated: Отчет «%{user}» соответствует условиям доступности, но еще не сгенерирован. Сначала сгенерируйте отчет.
     report_on_hold: Отчет по программе «%{user}» в настоящее время приостановлен.
+    report_pdf_status: Отчет о состоянии в формате PDF
+    report_review_abort_qc: Прервать контроль качества
+    report_review_approve: Утвердить
+    report_review_approve_changes: Утвердить изменения
+    report_review_edit: Редактировать
+    report_review_remove_approval: Удалить одобрение
+    report_review_request_changes: Запросить изменения
+    report_review_review: Обзор
+    report_review_send_for_approve: Отправить на утверждение
+    report_review_statuses_approved: Утверждено
+    report_review_statuses_change_requested: Запрошенные изменения
+    report_review_statuses_not_ready: Не готов
+    report_review_statuses_pending_qc: Ожидание контроля качества
+    report_review_statuses_qc_completed: Контроль качества завершен
+    report_review_statuses_qc_in_progress: Контроль качества в процессе
     report_status: Состояние отчета
     reports: Отчеты
+    reports_copy_copy: Копировать
+    reports_copy_copy_report: Копировать отчет
+    reports_count: Отчеты
+    reports_edit_default_language_agreement: Да, я понимаю последствия изменения языка по умолчанию.
+    reports_edit_default_language_title: Изменить язык по умолчанию
+    reports_edit_default_language_tooltip: Изменить язык по умолчанию
+    reports_edit_default_language_warning_description_li_1: Изменение языка по умолчанию с RTL на LTR или наоборот повлияет на макет.
+    reports_edit_default_language_warning_description_li_2: При изменении языка по умолчанию вам придется переделать переводы отчетов.
+    reports_edit_default_language_warning_description_li_3: Перед внесением этого изменения загрузите копию переводов отчета.
+    reports_edit_default_language_warning_title: Внимательно прочтите инструкции
+    reports_language_selection_modal_download: Скачать отчет
+    reports_language_selection_modal_generate: Создание отчета
     reports_limit_exceeded: Массовая загрузка ограничена 1000 файлами отчетов. Если вы выбрали много языков, пожалуйста, уменьшите их количество.
     reports_not_found: Отчеты не найдены. Пожалуйста, сгенерируйте отчеты перед загрузкой.
+    reports_preview_comments: Комментарии
+    reports_preview_hide_resolved: Скрыть решенные
+    reports_preview_history: История
+    reports_preview_info_to_select_module: Выберите текстовый модуль для комментирования
+    request_approval_description: Это сообщение отправляется менеджерам, когда субъект запрашивает одобрение.
+    request_approval_name: Запросить одобрение
+    request_id: Идентификатор запроса
+    required_error: требуемый
     rescore_responses_content: Это приведет к пересчету баллов за ответы по данному предмету. Включите функцию «Разрешить пересчет баллов с помощью ИИ», чтобы переоценить ответы с помощью ИИ для вопросов с оценкой с помощью ИИ.
+    resend_invite_content: Повторно отправить приглашение выбранным участникам. Вы уверены, что хотите продолжить?
+    resend_invite_success: Приглашения успешно отправлены повторно.
+    resend_invite_title: Повторно отправить приглашение
     reset_idp_plan: Сбросить план
     reset_idp_plan_confirmation: Вы уверены, что хотите сбросить план?
     reset_idp_plan_title: Сбросить план
+    reset_score: Сбросить счет
+    reset_score_description: Оценка будет возвращена к исходному значению ИИ.
+    resources_panel_description: Добавьте ссылки на любые ресурсы, к которым вы хотите предоставить доступ фасилитаторам.
+    resources_panel_resource_name_placeholder: Название ресурса
+    resources_panel_resource_url_placeholder: Ссылка на ресурс
+    resources_panel_title: Ресурсы
+    resources_panel_validation_error: Введите имя и URL или удалите ресурс
     response_meta: Ответ Мета
+    responses: Ответы ИИ
     result: Результат
     results: Результаты
+    results_export: Экспорт результатов
+    results_export_job_scheduled: Задание экспорта результатов AI Artifacts было успешно запланировано.
+    revisions_load: Загрузить в форму
+    revisions_system_prompt: Система Propmpt
+    revisions_title: Изменения в AI Assistant
+    revisions_user_prompt: Подсказка пользователю
+    revisions_version: Версия
     role: Роль
     saml_idp_certificate_available: Доступно (щелкните, чтобы скопировать)
     saml_idp_certificate_label: Сертификат
@@ -1054,6 +2213,23 @@ ru:
     saml_service_provider_updated_date: Дата обновления
     saml_service_providers: Поставщики услуг
     saml_settings: Настройки SAML
+    saml_settings_after_signout_url: После выхода URL
+    saml_settings_cert: Сертификат
+    saml_settings_config_details_acs_url: URL службы утверждения потребителя
+    saml_settings_config_details_copied: Копировано с %{element}
+    saml_settings_config_details_issuer: Идентификатор субъекта/эмитента
+    saml_settings_config_details_title: Настройте Idp с помощью следующей информации
+    saml_settings_email_pipetext: Электронная почта Pipetext
+    saml_settings_enabled: Включено
+    saml_settings_enforced: Применять SAML
+    saml_settings_entity_id: Идентификатор субъекта/эмитента
+    saml_settings_name_identifier_format: Идентификатор имени
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    saml_settings_saml: SAML
+    saml_settings_save: Сохранить настройки
+    saml_settings_sso_service_url: URL службы SSO
+    saml_settings_successfully_saved_msg: Настройки SAML успешно сохранены.
     save: Сохранить
     save_assessment_for_scoring_management: Сохраните оценку, прежде чем приступать к подсчету баллов.
     save_block: Сохранить блок
@@ -1072,7 +2248,132 @@ ru:
       user_full_name_cont: Имя пользователя
     saville: Сэвилл
     saville_assessment: Оценка Saville
+    schedule: Расписание
+    schedule_email: Расписание Электронная почта
+    schedule_email_title: Расписание Электронная почта
+    schedule_time: Запланировать время
     scheduling: Планирование
+    scheduling_add_activity: Добавить активность
+    scheduling_add_assessment_center: Добавить центр оценки
+    scheduling_add_assessor_form_assessment: Оценка
+    scheduling_add_assessor_form_assessor: оценщик
+    scheduling_add_assessor_form_schedule_time: Расписание времени
+    scheduling_add_subject: Добавить тему
+    scheduling_attendance_status_column_name: Статус посещаемости
+    scheduling_attendance_status_dropped_out: Бросил учебу
+    scheduling_attendance_status_late: Поздно
+    scheduling_attendance_status_no_show: Не явился
+    scheduling_attendance_status_no_status: Без статуса
+    scheduling_attendance_status_on_time: В срок
+    scheduling_attended_attended: Присутствовал
+    scheduling_attended_not_attended: Не присутствовал
+    scheduling_campaign_participants: Участники кампании
+    scheduling_columns_activity: Деятельность
+    scheduling_columns_assessment_center_date_and_time: Дата и время проведения оценки в центре оценки
+    scheduling_columns_assessor: оценщик
+    scheduling_columns_assessors: Оценщики
+    scheduling_columns_attendance: Посещаемость
+    scheduling_columns_attended: Присутствовал
+    scheduling_columns_booked_at: Забронировано в
+    scheduling_columns_campaign_assessment_group: Группа оценочного центра
+    scheduling_columns_campaign_name: Название кампании
+    scheduling_columns_duration: Продолжительность
+    scheduling_columns_link_to_view_recordings: Ссылка для просмотра записей
+    scheduling_columns_managers: Менеджеры
+    scheduling_columns_meeting_link: Ссылка на встречу
+    scheduling_columns_participants: Участники
+    scheduling_columns_prework: Предварительная работа
+    scheduling_columns_recording_date: Дата записи
+    scheduling_columns_resource_link: Ссылка
+    scheduling_columns_schedule_time: Расписание времени
+    scheduling_columns_scheduling_status: Статус планирования
+    scheduling_columns_seats: Сиденья
+    scheduling_columns_serial_no: Серийный номер
+    scheduling_columns_start_time: Дата и время
+    scheduling_columns_subject: Тема
+    scheduling_columns_title: Название
+    scheduling_columns_view_recording: Просмотреть запись
+    scheduling_errors_assessor_already_assigned: Оценщик уже назначен для этой оценки. Выберите другую оценку или другого оценщика.
+    scheduling_errors_date_required: Пожалуйста, выберите дату
+    scheduling_errors_invalid_url: Неверный формат URL-адреса
+    scheduling_errors_meeting_link_https: Ссылка для участия в совещании должна начинаться с «https://»
+    scheduling_info_allowed: Разрешено
+    scheduling_info_assessors: Оценщики
+    scheduling_info_booked: Забронированные места
+    scheduling_info_campaign_assessment_group: Группа оценочного центра
+    scheduling_info_cancellation_lead_time: Срок отмены
+    scheduling_info_cancellation_tooltip: Пользователь может отменить бронирование до %{date}
+    scheduling_info_date: Дата и время
+    scheduling_info_duration: Продолжительность
+    scheduling_info_join_meeting: Присоединиться к комнате
+    scheduling_info_late_cancellation_and_scheduling: Поздний отказ и изменение графика
+    scheduling_info_link: Ссылка на встречу
+    scheduling_info_managers: Менеджеры центра
+    scheduling_info_none: Нет
+    scheduling_info_not_allowed: Не разрешено
+    scheduling_info_recording_enabled: Запись включена
+    scheduling_info_remaining: Оставшиеся места
+    scheduling_info_scheduling_lead_time: Время выполнения заказа
+    scheduling_info_scheduling_tooltip: Пользователь сможет забронировать место до %{date}
+    scheduling_info_search_placehoder: Поиск по идентификатору, электронной почте или имени
+    scheduling_info_timezone: Часовой пояс
+    scheduling_info_total_seats: Общее количество мест
+    scheduling_lead_time_label: Время выполнения для планирования
+    scheduling_resources_confirm_message: Вы уверены, что хотите удалить ресурс «%{resource_name}»?
+    scheduling_resources_confirm_title: Требуется подтверждение
+    scheduling_resources_create: Создать ресурс
+    scheduling_resources_invalid_url: Неверный URL. Укажите полный URL с протоколом http или https.
+    scheduling_resources_resource: Ресурс
+    scheduling_resources_successful_remove: Ресурс «Центр оценки» %{resource_name} был успешно удален.
+    scheduling_schedule_assessments: График оценок
+    scheduling_scheduling_statuses_cancelled: Отменено
+    scheduling_scheduling_statuses_late_cancelled: Позднее отменен
+    scheduling_scheduling_statuses_late_rescheduled: Позднее перенесено
+    scheduling_scheduling_statuses_rescheduled: Перенесенный
+    scheduling_scheduling_statuses_scheduled: Запланированный
+    scheduling_search_participant: Участники поисковой кампании
+    scheduling_status: Статус планирования
+    scheduling_status_change_modal_content: После закрытия центра оценки участники не смогут участвовать в каких-либо мероприятиях центра.
+    scheduling_status_change_modal_title: Изменить статус центра оценки
+    scheduling_status_completed: Завершено
+    scheduling_status_dropped_out: Бросил учебу
+    scheduling_status_in_progress: В процессе
+    scheduling_status_late: Поздно
+    scheduling_status_no_show: Не явился
+    scheduling_status_not_started: Не начато
+    scheduling_subjects_activities: Деятельность
+    scheduling_subjects_add_assessor_form: Добавить форму оценщика
+    scheduling_subjects_assessments: Оценки
+    scheduling_subjects_assessor_forms: Формы оценщика
+    scheduling_subjects_confirm_title: Требуется подтверждение
+    scheduling_subjects_edit_assessor_form: Редактировать форму оценщика
+    scheduling_subjects_form_title: График оценок
+    scheduling_subjects_language: Язык
+    scheduling_subjects_language_not_selected: Не выбрано
+    scheduling_subjects_mark_cancel: Отменить
+    scheduling_subjects_mark_cancel_success: Отменено участие субъекта с адресом электронной почты %{subject_email}.
+    scheduling_subjects_meeting_link_custom: Пользовательский
+    scheduling_subjects_meeting_link_internal: Внутренний
+    scheduling_subjects_meeting_link_none: Нет
+    scheduling_subjects_meeting_link_title: Ссылка на встречу
+    scheduling_subjects_no_change: Без изменений
+    scheduling_subjects_override_existing: Переопределить существующие расписания для предметов
+    scheduling_subjects_preworks: Предварительная работа
+    scheduling_subjects_re_enroll: Повторная регистрация
+    scheduling_subjects_re_enroll_confirm_message: Вы уверены, что хотите повторно зарегистрировать предмет с адресом электронной почты «%{subject_email}»?
+    scheduling_subjects_re_enroll_success: Повторно зарегистрированный субъект с адресом электронной почты %{subject_email}.
+    scheduling_subjects_schedule: Расписание
+    scheduling_subjects_unschedule: Незапланированный
+    scheduling_tabs_activities: Деятельность
+    scheduling_tabs_assessment_center: Центр оценки
+    scheduling_tabs_invites: Приглашает
+    scheduling_tabs_recordings: Записи
+    scheduling_tabs_resources: Ресурсы
+    scheduling_tabs_subjects: Предметы
+    schema_key_description_required: Описание ключа схемы является обязательным
+    schema_key_required: Требуется ключ схемы
+    schema_key_type: Тип клавиши
+    schema_key_unique: Ключи схемы должны быть уникальными
     score: Счет
     score_approval_not_allowed_to_approve: Вы не имеете права утверждать эту оценку.
     score_approval_not_allowed_to_discard: Вы не имеете права отбрасывать этот результат.
@@ -1081,75 +2382,490 @@ ru:
     score_max: Максимальный балл
     score_min: Минимальный балл
     score_must_be_in_between_min_and_max: Оценка должна быть в диапазоне от %{min} до %{max}.
+    score_not_applicable: Оценка не применима
     score_range_info: 'Диапазон баллов: %{min} - %{max}'
     score_with_ai: Очки с помощью ИИ
     scores_finalized: Оценки окончательные и не подлежат изменению
     scoring: Оценка
+    scoring_action_prohibited: Запрещенные действия
+    scoring_active: Активный
+    scoring_actual_average: Фактическое среднее значение
+    scoring_add_factor: Добавить фактор
+    scoring_add_group: Добавить группу
     scoring_approval_add_settings: Добавить настройки
     scoring_approval_allow_bulk_approve: Разрешить массовое утверждение
     scoring_approval_allow_bulk_approve_scores: Разрешить массовое утверждение оценок
     scoring_approval_allow_one_level_approve: Разрешить утверждение на одном уровне
+    scoring_approval_approve_all: Утвердить все
     scoring_approval_approver_users: Пользователи-утвердители
     scoring_approval_approvers: Утверждающие лица
     scoring_approval_assessment: Оценка
     scoring_approval_assessor_users: Пользователи-оценщики
+    scoring_approval_bulk_approve_success: "%{approved} одобренные результаты."
     scoring_approval_do_not_send_notifications: Не отправлять уведомления
     scoring_approval_modal_title: Настройки утверждения оценки
     scoring_approval_notification_users: Пользователи, получающие уведомления об одобрении
     scoring_approval_remove_modal_success: 'Настройка утверждения для идентификатора оценки: %{assessmentId} была успешно удалена.'
     scoring_approval_remove_modal_text: 'Вы уверены, что хотите удалить эту настройку для идентификатора оценки: %{assessmentId}?'
+    scoring_approval_review: Обзор
+    scoring_approval_score_approvals: Утверждение оценок ИИ
+    scoring_assessment: Оценка
+    scoring_assessment_scoring_type: Тип оценки
+    scoring_average: Среднее
+    scoring_campaign_scoring_variables: Переменные оценки кампании
+    scoring_desc: Вы превысили максимальный лимит факторов кампании %{n}. Дополнительные факторы не могут быть добавлены. Пожалуйста, просмотрите и управляйте существующими факторами, прежде чем продолжить.
+    scoring_dimension: Размер
+    scoring_edit_factor: Коэффициент редактирования
+    scoring_export_factors: Факторы экспортной кампании
+    scoring_factor: Фактор
+    scoring_factor_group_removed_successfully: Группа «Фактор кампании» удалена успешно
+    scoring_factor_removal_confirmation: Введите название фактора, указанное ниже, в текстовое поле для подтверждения
+    scoring_factor_removed_successfully: Фактор кампании был удален успешно
+    scoring_factors_exported_successfully: Задание экспорта факторов кампании было успешно запланировано
+    scoring_factors_imported_successfully: Задание импорта факторов кампании было успешно запланировано.
+    scoring_final: Финальный
+    scoring_final_score_updated_successfully: Окончательный счет был успешно обновлен
+    scoring_formula: Формула
+    scoring_get_started: Начать
+    scoring_import_factors: Импорт факторов кампании
+    scoring_innovation_style_removal_confirmation: Введите название стиля инновации, указанное ниже, в текстовое поле для подтверждения
+    scoring_no_groups: Групп нет
+    scoring_occupation_removal_confirmation: Введите название профессии, указанное ниже, в текстовое поле для подтверждения
+    scoring_output_type: Тип вывода
+    scoring_pattern_error: Допускаются только буквенно-цифровые символы, пробелы и тире.
+    scoring_profile_years: Годы
+    scoring_public: Общественный
+    scoring_ranked: Рейтинг
+    scoring_remove_all_campaign_factors_confirmation: Введите название текущей кампании, указанное ниже, в текстовое поле для подтверждения.
+    scoring_remove_all_campaign_factors_error: Факторы кампании удаляют неудачные
+    scoring_remove_all_campaign_factors_success: Факторы кампании удалены успешно
+    scoring_remove_all_campaign_factors_title: Удалить факторы кампании
+    scoring_remove_all_campaign_factors_warning: Вы собираетесь удалить все факторы кампании и все связанные с ними оценки пользователей. Вы уверены, что хотите выполнить это действие?
+    scoring_remove_factor_group_confirmation_content: Вы уверены, что хотите удалить группу факторов «%{group_name}»?
+    scoring_remove_factor_group_confirmation_title: Удалить группу факторов
+    scoring_required_error: Не может быть пустым
+    scoring_save_all: Сохранить все
+    scoring_score_range: Диапазон баллов
+    scoring_score_types_norm_score: Нормативный балл
+    scoring_score_types_percentage: Процент
+    scoring_score_types_percentile: Процентиль
+    scoring_score_types_score: Счет
+    scoring_score_types_zscore: Z-показатель
+    scoring_scoring: Оценка
+    scoring_scoring_description: Оценка кампании позволяет создавать отчеты по всем оценкам.
+    scoring_select_all: Выбрать все предметы «%{n}»
+    scoring_select_assessment_first: Выберите сначала оценку
+    scoring_select_factor: Выбрать фактор
+    scoring_show_weightages: Показать веса
+    scoring_subject: Тема
+    scoring_subject_list_bulk_mark_finalized: Окончательная массовая отметка
+    scoring_subject_list_bulk_mark_finalized_confirm: Окончательная оценка для выбранных пользователей сгенерирует отчет, в котором используется коэффициент кампании для пользователей. Вы уверены, что хотите продолжить?
+    scoring_subject_list_bulk_mark_not_finalized: Массовая отметка не завершена
+    scoring_subject_list_bulk_mark_not_finalized_confirm: Удаление финализации из выбранных пользователей приведет к удалению сгенерированного отчета, в котором используется коэффициент кампании для пользователей. Вы уверены, что хотите продолжить?
+    scoring_subject_list_bulk_rescore: Массовое пересчитывание баллов
+    scoring_subject_list_bulk_rescore_confirm: Переоценка выбранных пользователей. Вы уверены, что хотите продолжить?
+    scoring_subject_list_calculated_date: Рассчитанная дата
+    scoring_subject_list_calculation_errors: Ошибки расчета
+    scoring_subject_list_export: Экспорт оценок
+    scoring_subject_list_export_success: Задание экспорта результатов было успешно запланировано
+    scoring_subject_list_finalized: Завершено
+    scoring_subject_list_finalized_date: Дата завершения
+    scoring_subject_list_import_external_scores: Импорт внешних оценок
+    scoring_subject_list_mark_finalized: Марк Окончательный
+    scoring_subject_list_mark_finalized_confirm: Окончательный балл для пользователя «%{email}» сгенерирует отчет, в котором используется коэффициент кампании для данного пользователя. Вы уверены, что хотите продолжить?
+    scoring_subject_list_mark_not_finalized: Отметка «Не окончательная»
+    scoring_subject_list_mark_not_finalized_confirm: Удаление финализации из пользователя «%{email}» приведет к удалению сгенерированного отчета, в котором используется коэффициент кампании для пользователя. Вы уверены, что хотите продолжить?
+    scoring_subject_list_push_webhook: Push-веб-хуки
+    scoring_subject_list_rank: Ранг
+    scoring_subject_list_rescore: Пересчет
+    scoring_subject_list_rescore_confirm: Пересчет баллов пользователя «%{email}». Вы уверены, что хотите продолжить?
     scoring_supported_only_for_ai_questions: Оценка допускается только по вопросам с включенным ИИ для выбранного в данный момент фактора.
+    scoring_tabs_settings: Настройки
+    scoring_tabs_subject_scores: Оценки по предметам
     scoring_value_info: Оценка должна быть в диапазоне от %{min} до %{max}.
     scoring_value_out_of_range_err_msg: Оценка для «%{factor_name}» должна быть в диапазоне от %{min} до %{max}.
+    scoring_variables: Переменные
+    scoring_weightages_assessorForms: Формы оценщика
+    scoring_weightages_successful_update: Весовые коэффициенты были успешно обновлены.
+    scoring_weightages_weightages: Весовые коэффициенты
+    scoring_weighted_average: Средневзвешенное
     search_admins: Администраторы поиска
+    search_campaign: Поиск по кампании
+    search_client: Поиск по клиенту
     search_job_role: Поиск вакансии
+    search_participants: Поиск участников...
+    search_project: Поиск по проекту
+    search_record: Поиск по идентификатору записи
+    search_user: Поиск по пользователю
+    seats_label: Сиденья
+    sec_logo_label: Вторичный логотип
+    secondary_logo_alt_text: Вторичный логотип Alt-Text
+    secondary_logo_alt_text_required: Требуется дополнительный альтернативный текст логотипа
+    security_setting_180_days: 180 дней
+    security_setting_30_days: 30 дней
+    security_setting_365_days: 365 дней
+    security_setting_90_days: 90 дней
+    security_setting_attempts_to_lock: Попытки блокировки
+    security_setting_auto_unlock_time: Время автоматической разблокировки
+    security_setting_disable_password_reuse: Отключить повторное использование пароля
+    security_setting_disallow_password_login: Запретить вход по паролю
+    security_setting_enable_login_with_magic_link: Включить вход с помощью магической ссылки
+    security_setting_enable_recaptcha: Включить reCAPTCHA
+    security_setting_enforce_password_policy: Принудительно применять политику паролей при следующем входе в систему
+    security_setting_enforce_strong: Принудительное использование надежных паролей
+    security_setting_expiration: Истечение срока действия пароля
+    security_setting_lock_account: Блокировка учетной записи
+    security_setting_magic_link_expiry_duration: Срок действия магической ссылки
+    security_setting_min_length: Минимальная длина пароля
+    security_setting_never: Никогда
+    security_setting_restrict_sequences: Ограничить последовательные и повторяющиеся символы
+    security_setting_security: Настройки безопасности
+    security_setting_send_unlock_email: Отправить письмо для разблокировки
+    security_setting_session_timeout_duration: Продолжительность таймаута сеанса
+    security_setting_tfa_enabled: Включить двухфакторную аутентификацию
+    security_settings_security_setting: Настройка безопасности
     select_admin_role: Выберите роль администратора
+    select_assessment_language: Выберите язык оценки
     select_end_time: Выберите время окончания
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень
     select_question: Поиск вопроса по названию или идентификатору
+    select_report_language: Выберите язык отчета
     select_start_time: Выберите время начала
     selective_proctoring: Выборочный контроль
     send_email: Отправить электронное письмо
+    send_test_email: Отправить тестовое письмо
     set_min_max_scores_warning: Установите минимальный и максимальный баллы для этого фактора, чтобы настроить оценку ИИ.
     settings: Настройки
+    settings_admin_roles_confirm_message: Вы уверены, что хотите удалить роль администратора «%{role_name}»?
     settings_saved_successfully: Настройки успешно сохранены
+    settings_siem_destination_type: Тип направления
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: Совместимость с S3
+    settings_siem_enabled: Включено
+    settings_siem_readable_resource_name: Настройки SIEM
+    settings_siem_s3_access_key_id: Идентификатор доступа
+    settings_siem_s3_bucket_folder: Папка S3 Bucket
+    settings_siem_s3_bucket_name: Имя корзины S3
+    settings_siem_s3_endpoint: Конечная точка S3
+    settings_siem_s3_region: Регион S3
+    settings_siem_s3_secret_access_key: Секретный ключ доступа
+    settings_siem_send_test_log: Отправить журнал тестирования
+    settings_siem_send_test_log_error_message: Журнал тестирования не был отправлен в ваш букет, проверьте настройки.
+    settings_siem_send_test_log_success_message: Журнал тестирования успешно отправлен в ваш букет
+    settings_skill_aliases_alias: Псевдоним
+    settings_skill_aliases_confirm_message: Вы уверены, что хотите удалить псевдоним навыка «%{skill_alias}»?
+    settings_skill_aliases_create: Добавить псевдоним навыка
+    settings_skill_aliases_select_skill: Выбрать навык
+    settings_skill_aliases_skill: Навык
+    settings_skill_aliases_skill_alias: Псевдоним навыка
+    settings_skill_aliases_successful_remove: Псевдоним навыка «%{skill_alias}» был успешно удален.
+    settings_tabs_admin_roles: Роли администратора
+    settings_tabs_feature_flags: Флаги функций
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: Псевдонимы навыков
+    sheets_column_add_column: Добавить столбец
+    sheets_column_not_allowed_for_dashboard_use: Для использования в панели инструментов столбец должен содержать менее 64 символов.
+    sheets_column_reorder: Переупорядочить
+    sheets_column_save_order: Сохранить заказ
+    sheets_drawers_add_edit_cancelText: Отменить
+    sheets_drawers_add_edit_markdown_preview: Предварительный просмотр
+    sheets_drawers_add_edit_markdown_title: Скидка
+    sheets_drawers_add_edit_save: Сохранить
+    sheets_drawers_add_edit_saving: Сохранение
+    sheets_drawers_add_edit_success_message_add: Добавлен новый рекорд
+    sheets_drawers_add_edit_success_message_edit: Запись обновлена
+    sheets_drawers_add_edit_title_add: Добавить запись листа
+    sheets_drawers_add_edit_title_edit: Редактировать запись строки листа
+    sheets_drawers_add_edit_validations_required_email: Введите адрес электронной почты
+    sheets_drawers_view_campaign_title: Запись на уровне кампании
+    sheets_drawers_view_project_title: Запись на уровне проекта
+    sheets_drawers_view_title: Детали записи ряда листа
+    sheets_list_header_add_record: Добавить запись
+    sheets_list_header_search_record: Поиск записей
+    sheets_modals_delete_records_cancelText: Отменить
+    sheets_modals_delete_records_content: Вы уверены, что хотите удалить выбранные {{count}} записи?
+    sheets_modals_delete_records_okText: Да, удалить
+    sheets_modals_delete_records_successMessage: "{{count}} записей было успешно удалено."
+    sheets_modals_delete_records_title: Удалить {{count}} записей
+    sheets_modals_remove_columns_cancelText: Отменить
+    sheets_modals_remove_columns_content: Удаление столбца ({{columns}}) приведет к удалению данных в этом столбце для всех строк.
+    sheets_modals_remove_columns_okText: Да, удалить
+    sheets_modals_remove_columns_successMessage: "{{count}} записей удалено"
+    sheets_modals_remove_columns_title: Удалить столбцы
+    sheets_tabs_rows: Ряды
+    sheets_tabs_settings: Настройки
+    show_all: Показать все
     show_all_assessment_responses: Показать все ответы на оценку
     show_middle_scores: Показать больше результатов для «%{count}» (необязательно)...
     show_original: Показать оригинал
     show_submenu: Показать подменю
     show_translated: Показать перевод
+    show_watermark: Показать водяной знак
+    sidebar_title: Варианты проекта
     siem: SIEM
     simulation: Моделирование
     simulation_assessment: Оценка моделирования
     skill_aliases: Псевдонимы навыков
+    skill_rater: Оценщик навыков
     skills: Навыки
+    skills_applicable_proficiency_levels: Применимые уровни владения языком
+    skills_columns_skill_group: Группа навыков
+    skills_columns_skill_type: Тип навыка
+    skills_export_failure_msg: Ошибка при экспорте переводов
+    skills_export_success_msg: Экспорт текущих действий по развитию.
+    skills_form_skill_group: Группа навыков
+    skills_form_skill_type: Тип навыка
+    skills_form_title: Навык
+    skills_import_action_skills_title: Импорт навыков
+    skills_import_action_skills_translations_title: Импорт навыков Переводы
+    skills_import_download_example_csv: Скачать пример csv
+    skills_import_info_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    skills_import_success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    skills_skill_details: Подробная информация о навыке
+    skills_skill_translations: Навыки Переводы
     skills_taxonomy: Таксономия навыков
+    skills_title: Навыки
+    skills_vector_generate_embedding: Создать вставку
+    skills_vector_generate_embedding_failure_msg: Не удалось поставить в очередь задание по генерации встраивания навыков. Повторите попытку.
+    skills_vector_generate_embedding_success_msg: Задание по генерации встраивания навыков успешно добавлено в очередь. Пожалуйста, проверьте статус в уведомлениях.
+    skills_vector_label: Векторная база данных
     skillvue: Skillvue
+    skillvue_apiKey: ключ API
+    skillvue_apiKeyRequired: Требуется ключ API
     skillvue_assessment: Оценка Skillvue
     skip_assessment_level_checks: Пропустить проверки системы на уровне оценки
     slot_name: Название слота
+    sms_contact: SMS-контакт
     sms_histories: История SMS-сообщений
+    sms_histories_columns_mobile_no: Номер мобильного телефона
+    sms_histories_columns_price: Цена
+    sms_histories_columns_segment_length: Длина сегмента
+    sms_histories_columns_sent_at: Отправлено
+    sms_histories_drawer_title: Детали SMS
+    sms_histories_history: История
+    sms_histories_statuses_accepted: Принято
+    sms_histories_statuses_delivered: Доставлено
+    sms_histories_statuses_failed: Неудача
+    sms_histories_statuses_queued: В очереди
+    sms_histories_statuses_scheduled: Запланированный
+    sms_histories_statuses_sent: Отправлено
+    sms_histories_statuses_undelivered: Недоставлено
     sms_invites: SMS-приглашения
+    sms_invites_actions_add: Добавить SMS-контакт
+    sms_invites_columns_created_at: Создано в
+    sms_invites_columns_created_by: Создано
+    sms_invites_columns_mobile_no: Номер мобильного телефона
+    sms_invites_contacts: Контакты
+    sms_invites_form_modal_locale: Локаль
+    sms_invites_form_modal_mobile_no: Номер мобильного телефона
+    sms_invites_form_modal_title: Приглашение по SMS
+    sms_invites_import_download_example_csv: Скачать пример csv
+    sms_invites_import_success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    sms_invites_import_title: Импорт SMS-приглашений
+    sms_invites_messages_delete_confirm_text: Вы уверены, что хотите удалить SMS Invite с номером мобильного телефона%{mobile_no}
+    sms_invites_messages_delete_success: SMS-приглашение удалено успешно
+    sms_invites_send_sms_fields_link_expiry: Срок действия ссылки
+    sms_invites_send_sms_fields_locale: Локаль
+    sms_invites_send_sms_fields_message: Сообщение
+    sms_invites_send_sms_fields_statuses: Статусы
+    sms_invites_send_sms_fields_users: Пользователи
+    sms_invites_send_sms_modal_btn_name: Отправить SMS
+    sms_invites_send_sms_modal_title: Отправить SMS
+    sms_invites_send_sms_segment_length_msg: Предполагаемое количество сегментов для этого сообщения составляет %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: Предполагаемое количество сегментов для этого сообщения составляет от %{min_segment_length} до %{max_segment_length}.
+    sms_invites_statuses_all: Все
+    sms_invites_statuses_failed: Неудача
+    sms_invites_statuses_invited: Приглашенный
+    sms_invites_statuses_not_invited: Не приглашен
+    sms_invites_statuses_registered: Зарегистрированный
+    sms_invites_tools_export: Экспорт SMS-контактов
+    sms_invites_tools_import: Импорт SMS-контактов
+    sms_invites_tools_send_sms: Отправить SMS
+    sms_notification: SMS-уведомление
+    sms_notification_disabled_by_client: SMS-уведомления отключены клиентом
+    sms_records_columns_message: Сообщение
+    smtp_settings: Настройки SMTP
+    smtp_settings_authentication: Аутентификация
+    smtp_settings_authentication_type: Тип аутентификации
+    smtp_settings_authentication_types_cram_md5: cram md5
+    smtp_settings_authentication_types_login: Вход
+    smtp_settings_authentication_types_plain: Простой
+    smtp_settings_enabled: Включено
+    smtp_settings_encryption: Шифрование
+    smtp_settings_encryption_types_none: Нет
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: Из электронного письма
+    smtp_settings_from_name: От имени
+    smtp_settings_host: Хост
+    smtp_settings_password: Пароль
+    smtp_settings_port: Порт
+    smtp_settings_send_test_email: Отправить тестовое письмо
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: Настройки электронной почты не будут сохранены до тех пор, пока тестовое письмо не будет успешно отправлено.
+    smtp_settings_test_email_modal_input_placeholder: Тестовый адрес электронной почты
+    smtp_settings_test_email_modal_title: Тестовый адрес электронной почты
+    smtp_settings_test_modal_success_message: Тестовое письмо отправлено на адрес %{email_id}.
+    smtp_settings_test_modal_title: Проверить настройки SMTP
+    smtp_settings_update_success_msg: Настройки SMTP были успешно обновлены.
+    smtp_settings_use_sender_verification: Используйте проверку отправителя
+    smtp_settings_user_name: Имя пользователя
     specialty_questions: Специальные вопросы
+    standard: Стандартный
     standard_deviation: Стандартное отклонение
     standard_questions: Стандартные вопросы
     start: начало
     start_time: Время начала
     static_content: Статический контент
     stats: Статистика
+    stats_assessments_active: Активный
+    stats_assessments_columns_assessment_name: Название оценки
+    stats_assessments_columns_completed: Завершено
+    stats_assessments_columns_in_progress: В процессе
+    stats_assessments_columns_ineligible: Неприемлемый
+    stats_assessments_columns_interrupted: Прервано
+    stats_assessments_columns_not_started: Не начато
+    stats_assessments_columns_timed_out: Время истекло
+    stats_assessments_count: Граф
+    stats_assessments_inactive: Неактивный
+    stats_assessments_percentage: Процент
+    stats_assessments_title: Оценки
+    stats_top_metrics_completed: Завершено
+    stats_top_metrics_in_progress: В процессе
+    stats_top_metrics_interrupted: Прервано
+    stats_top_metrics_not_started: Не начато
+    stats_top_metrics_timed_out: Время истекло
+    stats_top_metrics_users: Пользователи
+    stats_users_date_presets_last_30_days: Последние 30 дней
+    stats_users_date_presets_last_7_days: Последние 7 дней
+    stats_users_date_presets_last_month: Прошлый месяц
+    stats_users_date_presets_last_week: Прошлая неделя
+    stats_users_date_presets_today: Сегодня
+    stats_users_date_presets_yesterday: Вчера
+    stats_users_y_title: Количество пользователей
+    status_active: Активный
+    status_archived: Архив
     status_details: Детали статуса
+    statuses_accepted: Принято
+    statuses_cancelled: Отменено
+    statuses_late_cancelled: Позднее отменен
+    statuses_late_rescheduled: Позднее перенесено
+    statuses_pending: В ожидании
+    statuses_requested_cancellation: Запрошенная отмена
+    statuses_requested_cancellation_rejected: Отмена отклонена
+    statuses_requested_rescheduling: Запрос на перенос сроков
+    statuses_requested_rescheduling_rejected: Перенос отклонен
+    statuses_rescheduled: Перенесенный
+    statuses_scheduled: Запланированный
+    steps_basic_information: Основная информация
+    steps_facilitators: Фасилитаторы
+    steps_invite_options: Параметры приглашения
+    steps_invite_subjects: Пригласить участников
+    steps_send_invitations: Отправить приглашения
     structured_learning: Формальное обучение [10]
+    sub_factor_questions: Вопросы о других факторах (в среднем)
+    sub_factor_questions_sum: Вопросы о других факторах (СУМ)
+    sub_factors_average: Средневзвешенное значение факторов
+    sub_factors_conditional_average: Условная взвешенная средняя факторов
+    sub_factors_sum: Взвешенная сумма факторов
     subdomain: Субдомен
+    subject: Тема
+    subject_can_access_reports: Субъект может получить доступ к своим отчетам
+    subject_email: Электронная почта субъекта
+    subject_invite_description: Это сообщение будет отправлено для приглашения участников к участию в оценке.
+    subject_invite_name: Тема приглашения
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
+    subject_placeholder: Поиск по теме...
+    subject_reminder_description: Сообщение, отправленное каждому участнику, чтобы напомнить им об участии в оценке
+    subject_reminder_name: Напоминание о предмете
+    subject_reminder_rule_description: Укажите правила для автоматического планирования при планировании приглашения
+    subject_reminder_rule_name: Правила напоминаний по темам
+    subject_report_ready_description: Это сообщение отправляется субъекту, как только его отчет готов.
+    subject_report_ready_name: Тема отчета Готов
+    subjects_title: Предметы
+    submenu_options_option_one: Вариант 1
+    submenu_options_option_title: Пункт 1
+    submenu_options_option_two: Вариант 2
+    success_call_send_invitation: Вы хотите отправить приглашения?
+    success_color: Цвет успеха
+    success_ok: Да
+    success_skip: Пропустить на данный момент
+    success_title: Созданы центры оценки
+    success_update: Настройки дизайна были успешно сохранены
+    suitability_id: Идентификатор соответствия
+    system_prompt: Системный запрос
+    tab_text_one: Меню
+    tab_text_two: подменю
+    table_more_actions: Дополнительные действия
+    tabs_results: Результаты
+    tabs_settings: Настройки
     target_job_role: Целевая должность
+    taxonomy_import_action_taxonomy: Импорт таксономии навыков
+    taxonomy_import_description: Загрузите файл Excel, чтобы импортировать или обновить свою таксономию навыков. Это добавит новые навыки, должностные роли и уровни квалификации.
+    taxonomy_import_download_example_file: Скачать файл с примером
+    taxonomy_import_drag_text: Щелкните или перетащите файл в эту область, чтобы загрузить его.
+    taxonomy_import_error_title: Импорт не удался
+    taxonomy_import_file_hint: Поддерживает файлы .xls и .xlsx
+    taxonomy_import_import_button: Импорт таксономии
+    taxonomy_import_success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
+    taxonomy_title: Таксономия навыков
+    template_and_campaign_required: Пожалуйста, укажите идентификатор шаблона и кампании.
+    template_render_failed: Не удалось отобразить шаблон
+    test_generate: Тест Создать
+    test_render: Тестовый рендер
+    test_render_tooltip: Протестируйте свой шаблон подсказки с помощью данных кампании, чтобы проверить, что будет отправлено помощнику ИИ.
+    text_danger: Текст (опасность)
+    text_success: Текст (успех)
+    text_warning: Текст (предупреждение)
     this_field_is_required: Это поле является обязательным для заполнения
+    threesixity_advance_settings_campaign_template: Шаблон кампании
+    threesixity_advance_settings_factors: Факторы
+    threesixity_close_content: Вы уверены, что хотите закрыть Multi Rater Campaign Creator? Все несохраненные настройки будут утеряны. Пожалуйста, подтвердите свое решение.
+    threesixity_close_title: Закрыть Multi Rater Campaign Creator?
+    threesixity_instructions_creation_empty: 'Empty: Start with a blank survey and customize it according to your specific needs.'
+    threesixity_instructions_creation_previous: 'Previous: Select a previous assessment as a starting point and make modifications.'
+    threesixity_instructions_creation_standard: 'Standard: Use a pre-designed template with commonly used questions & indicators.'
+    threesixity_instructions_creation_sub_title: Выберите тип кампании, которую вы хотите создать.
+    threesixity_instructions_creation_title: Добро пожаловать в Multi Rater Campaign Creator!
+    threesixity_instructions_customization_sub_title: Выберите шаблон и факторы, которые будут включены в оценку.
+    threesixity_instructions_customization_title: Настройте свою оценку!
+    threesixity_no_factors_description: Попробуйте другие ключевые слова для поиска.
+    threesixity_no_factors_title: Факторы не найдены
+    threesixity_questions_select_all: Выбрать все
+    threesixity_questions_title: Вопросы и индикаторы
+    threesixity_search_factors_description: Введите не менее 3 символов, чтобы найти нужные вам факторы.
+    threesixity_search_factors_title: Начните поиск
+    threesixity_success: Кампания Multi Rater была успешно создана.
+    threesixity_success_job: Задание по созданию кампании Multi Rater было успешно запланировано.
     threesixty: Кампания «360»
+    threesixty_campaigns_mail_history_date: Дата
+    threesixty_campaigns_mail_history_download_details: Скачать подробную информацию
+    threesixty_campaigns_mail_history_emails_sent: Отправленные электронные письма
+    threesixty_campaigns_mail_history_recipient: Получатель
+    threesixty_campaigns_mail_history_subject: Тема
+    threesixty_campaigns_manage_assessment: Оценка
+    threesixty_campaigns_manage_dimension: Размеры
+    threesixty_campaigns_manage_manage_relationships: Управление отношениями...
+    threesixty_campaigns_manage_report: Отчет
+    threesixty_campaigns_menu_datasheet_title: Технические характеристики
+    threesixty_campaigns_menu_messages_title: Сообщения
+    threesixty_campaigns_menu_participants_title: Участники
+    threesixty_campaigns_menu_report_menu_report_approval_title: Настройки утверждения отчетов
+    threesixty_campaigns_menu_report_menu_report_options_title: Параметры отчета
+    threesixty_campaigns_menu_report_title: Отчет
+    time_label: Время
+    time_zone: Часовой пояс
     timed_label: 'Ссылка: %{time_text}'
     timelines: Хронология
+    times: раз
     timezone: Часовой пояс
+    timezone_label: Часовой пояс
     timing: График
     to: К
+    token_url_label: URL токена
+    token_url_name: oauth_token_url
+    token_url_required: Требуется URL-адрес токена
     tone: Тон
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: Предложение ИИ
@@ -1158,6 +2874,20 @@ ru:
     toolbar_text_replaced: Текст заменен!
     toolbar_what_changed_and_why: Что изменилось и почему
     tools: Инструменты
+    topics_label: События
+    topics_list_assessment_assigned: Назначенная оценка
+    topics_list_assessment_completed: Оценка завершена
+    topics_list_assessment_raw_response: Оценка необработанных ответов
+    topics_list_assessment_started: Начало оценки
+    topics_list_assessment_timeout: Таймаут оценки
+    topics_list_campaign_results_available: Результаты кампании доступны
+    topics_list_campaign_user_status: Статус пользователя кампании
+    topics_list_report_available: Отчет доступен
+    topics_list_results_available: Результаты доступны
+    topics_list_scheduling_cancelled: Расписание отменено
+    topics_list_scheduling_invited: Планирование приглашенных
+    topics_list_scheduling_rescheduled: Перенос графика
+    topics_list_scheduling_scheduled: Планирование Запланировано
     transcription_record_not_found: Запись транскрипции не найдена
     transcription_schedule_failed: Не удалось запланировать задание транскрипции
     transcription_scheduled: Задание транскрипции запланировано. Закройте модальное окно и проверьте статус уведомления.
@@ -1170,31 +2900,82 @@ ru:
     translation_assistant_not_configured: Помощник перевода не настроен
     translations:
       title: Переводы
+    translations_export_failure_msg: Ошибка при экспорте переводов
+    translations_export_success_msg: Экспорт текущих действий по развитию.
+    tte: TTE
+    type_by_skill: По навыкам
+    type_by_skill_type: По типу навыков
+    type_default: По умолчанию
+    type_locked_tooltip: Этот помощник в настоящее время используется, и его тип нельзя изменить.
+    unarchive_content: Вы уверены, что хотите удалить из архива «%{project_name}»?
+    unarchive_success: Проект «%{project_name}» был успешно разархивирован.
+    unarchive_title: Разархивировать проект
+    unsaved_changes: Несохраненные изменения присутствуют, рассмотрите возможность отправки формы для получения обновленного ответа от Playground.
+    upcoming: Предстоящие
     update_success: "%{readableResourceName} был успешно обновлен"
+    updated_successfully: AI Assistant был успешно обновлен.
     upload: Загрузить
     upload_media: Загрузить медиафайлы
     upload_required: Пожалуйста, добавьте хотя бы один файл для загрузки
     upload_success: Загрузка успешно завершена
+    url_label: URL
+    url_name: URL
+    used_tokens_input_tokens: Входные токены
+    used_tokens_output_tokens: Выходные токены
+    used_tokens_title: Использование токенов
+    user: Пользователь
+    user_agent: Пользовательский агент
+    user_prompt: Подсказка пользователю
     user_report_events: Сообщения пользователей о событиях
+    user_report_id: Идентификатор отчета пользователя
+    user_result_validity_in_days: Срок действия результата в днях
+    username_label: Имя пользователя
+    username_name: Имя пользователя
     users: Пользователи
+    users_modals_download_idp_reports_error: Не удалось запланировать задание массовой загрузки отчетов IDP.
+    users_modals_download_idp_reports_include_reflective_questions: Включите вопросы для размышления
+    users_modals_download_idp_reports_success: Задание массовой загрузки отчетов IDP было успешно запланировано.
+    users_modals_download_idp_reports_title: Массовая загрузка отчетов IDP
+    users_user: Пользователь
     validation_error: Пожалуйста, заполните все обязательные поля
     validity: Срок действия
     very_high: Очень высокий
     very_low: Очень низкий
+    video_call_recording: Разрешить запись видеозвонков
+    video_call_recording_expiry_duration: Срок хранения записей видеозвонков (в днях)
+    video_call_recording_scope: Включить запись видео для всех новых кампаний
+    video_call_type_custom: Пользовательский
+    video_call_type_internal: Внутренний
+    video_call_type_label: Добавить видеозвонок
+    video_call_type_none: Нет
     view_licenses: Просмотр лицензий
+    visual_header_visibility: Визуальная видимость заголовка
     wait_for_upload_completion: Пожалуйста, подождите, пока все файлы не будут загружены
     waiting: Ожидание
+    warning_color: Цвет предупреждения
+    watermark_content: Водяной знак Содержание
+    watermark_info: Если вы не добавите никакого контента, по умолчанию в качестве водяного знака будет отображаться адрес электронной почты пользователя. Вы можете использовать любой из следующих пипетекстов -<br/> {{id}} - Идентификатор участника </br> {{first_name}} - Имя участника </br> {{last_name}} - Фамилия участника </br> {{email}} - Адрес электронной почты участника
+    webhook_delete_success: Настройки веб-хука были успешно удалены
     weight: Вес
+    welcome_message_description: Это сообщение будет отображаться участникам, когда они войдут в систему, чтобы начать оценку или просмотреть свой список задач.
+    welcome_message_name: Приветственное сообщение
     what_to_look_for: На что обратить внимание
     what_to_look_for_placeholder: Свидетельства поведения, действий или результатов, демонстрирующих этот фактор
     words: Слова
+    workshop_actions_remove_workshop: Семинар удален успешно
+    workshop_statuses_closed: Закрыто
+    workshop_statuses_open: Открыть
     workshops: Семинары
     writing_assistant_not_configured: Помощник по написанию не настроен
     x_axis_interval_label: Интервал по оси X
     y_axis_interval_label: Интервал по оси Y
     year: Год
+    years: Годы
     yoodli: Yoodli
     yoodli_activity_id: Идентификатор активности Yoodli
     yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli
+    yoodli_keyset_url: URL набора клавиш
+    yoodli_launch_url: URL запуска
+    yoodli_login_url: URL для входа

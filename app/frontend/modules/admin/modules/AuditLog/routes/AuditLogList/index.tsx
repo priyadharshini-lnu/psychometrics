@@ -134,11 +134,11 @@ const AuditLogList: React.FC<Props> = (
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.audit_log.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
             link: () => '/admin/audit_logs',
-            label: () => I18n.t('administration.audit_log.audit_logs'),
+            label: () => I18n.t('admin.audit_logs'),
           },
         ]}
       />
@@ -147,14 +147,14 @@ const AuditLogList: React.FC<Props> = (
         <Form form={form} layout="vertical" onFinish={handleSearch} className="ms-5 me-5">
           <Row gutter={[16, 16]} justify="start">
             <Col xs={24} sm={12} md={8} lg={6}>
-              <Form.Item name="recordId" label={I18n.t('administration.audit_log.record_id')}>
-                <Input placeholder={I18n.t('administration.audit_log.search_record')} />
+              <Form.Item name="recordId" label={I18n.t('admin.record_id')}>
+                <Input placeholder={I18n.t('admin.search_record')} />
               </Form.Item>
             </Col>
             <Col xs={24} sm={12} md={8} lg={6}>
-              <Form.Item name="recordType" label={I18n.t('administration.audit_log.type')}>
+              <Form.Item name="recordType" label={I18n.t('admin.audit_log_type')}>
                 <Select
-                  placeholder={I18n.t('administration.audit_log.type')}
+                  placeholder={I18n.t('admin.audit_log_type')}
                   showSearch
                   allowClear
                 >
@@ -168,7 +168,7 @@ const AuditLogList: React.FC<Props> = (
             <Col xs={24} sm={12} md={8} lg={6}>
               <Form.Item
                 name="dateRange"
-                label={I18n.t('administration.audit_log.date_range')}
+                label={I18n.t('admin.date_range')}
                 initialValue={initialRange}
               >
                 <DatePicker.RangePicker
@@ -176,27 +176,27 @@ const AuditLogList: React.FC<Props> = (
                   disabledDate={disabledDate}
                   allowClear={false}
                   ranges={{
-                    [I18n.t('administration.audit_log.date_presets.today')]: [
+                    [I18n.t('admin.date_presets_today')]: [
                       dayjs().startOf('day'),
                       dayjs().endOf('day'),
                     ],
-                    [I18n.t('administration.audit_log.date_presets.yesterday')]: [
+                    [I18n.t('admin.date_presets_yesterday')]: [
                       dayjs().subtract(1, 'day').startOf('day'),
                       dayjs().subtract(1, 'day').endOf('day'),
                     ],
-                    [I18n.t('administration.audit_log.date_presets.last_week')]: [
+                    [I18n.t('admin.date_presets_last_week')]: [
                       dayjs().subtract(1, 'week').startOf('week'),
                       dayjs().subtract(1, 'week').endOf('week'),
                     ],
-                    [I18n.t('administration.audit_log.date_presets.last_month')]: [
+                    [I18n.t('admin.date_presets_last_month')]: [
                       dayjs().subtract(1, 'month').startOf('month'),
                       dayjs().subtract(1, 'month').endOf('month'),
                     ],
-                    [I18n.t('administration.audit_log.date_presets.last_7_days')]: [
+                    [I18n.t('admin.date_presets_last_7_days')]: [
                       dayjs().subtract(7, 'd'),
                       dayjs(),
                     ],
-                    [I18n.t('administration.audit_log.date_presets.last_30_days')]: [
+                    [I18n.t('admin.date_presets_last_30_days')]: [
                       dayjs().subtract(30, 'd'),
                       dayjs(),
                     ],
@@ -207,9 +207,9 @@ const AuditLogList: React.FC<Props> = (
             {isExpanded && (
               <>
                 <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="action" label={I18n.t('administration.audit_log.action')}>
+                  <Form.Item name="action" label={I18n.t('shared.action')}>
                     <Select
-                      placeholder={I18n.t('administration.audit_log.action')}
+                      placeholder={I18n.t('shared.action')}
                       showSearch
                       allowClear
                     >
@@ -220,23 +220,23 @@ const AuditLogList: React.FC<Props> = (
                   </Form.Item>
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="user" label={I18n.t('administration.audit_log.search_user')}>
-                    <Input placeholder={I18n.t('administration.audit_log.search_user')} />
+                  <Form.Item name="user" label={I18n.t('admin.search_user')}>
+                    <Input placeholder={I18n.t('admin.search_user')} />
                   </Form.Item>
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="client" label={I18n.t('administration.audit_log.search_client')}>
-                    <Input placeholder={I18n.t('administration.audit_log.search_client')} />
+                  <Form.Item name="client" label={I18n.t('admin.search_client')}>
+                    <Input placeholder={I18n.t('admin.search_client')} />
                   </Form.Item>
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="project" label={I18n.t('administration.audit_log.search_project')}>
-                    <Input placeholder={I18n.t('administration.audit_log.search_project')} />
+                  <Form.Item name="project" label={I18n.t('admin.search_project')}>
+                    <Input placeholder={I18n.t('admin.search_project')} />
                   </Form.Item>
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="campaign" label={I18n.t('administration.audit_log.search_campaign')}>
-                    <Input placeholder={I18n.t('administration.audit_log.search_campaign')} />
+                  <Form.Item name="campaign" label={I18n.t('admin.search_campaign')}>
+                    <Input placeholder={I18n.t('admin.search_campaign')} />
                   </Form.Item>
                 </Col>
               </>
@@ -246,8 +246,8 @@ const AuditLogList: React.FC<Props> = (
                 <Space>
                   <Button onClick={() => setIsExpanded(!isExpanded)}>
                     {isExpanded
-                      ? I18n.t('administration.audit_log.collapse_filters')
-                      : I18n.t('administration.audit_log.expand_filters')
+                      ? I18n.t('admin.collapse_filters')
+                      : I18n.t('admin.expand_filters')
                     }
                   </Button>
                   <Button
@@ -255,9 +255,9 @@ const AuditLogList: React.FC<Props> = (
                     htmlType="submit"
                     icon={<SearchOutlined />}
                   >
-                    {I18n.t('administration.audit_log.search')}
+                    {I18n.t('shared.search')}
                   </Button>
-                  <Button onClick={handleReset}>{I18n.t('administration.audit_log.reset')}</Button>
+                  <Button onClick={handleReset}>{I18n.t('shared.reset')}</Button>
                 </Space>
               </Form.Item>
             </Col>
@@ -268,7 +268,7 @@ const AuditLogList: React.FC<Props> = (
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('administration.navigation.audit_logs')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('admin.audit_logs')}`}</span>
         </Col>
       </Row>
       <Row>
@@ -286,24 +286,24 @@ const AuditLogList: React.FC<Props> = (
             scroll={{ x: 'auto' }}
           >
             <Column
-              title={I18n.t('administration.audit_log.record_id')}
+              title={I18n.t('admin.record_id')}
               key="recordId"
               dataIndex="recordId"
             />
             <Column
-              title={I18n.t('administration.audit_log.type')}
+              title={I18n.t('admin.audit_log_type')}
               key="recordType"
               dataIndex="recordType"
             />
             <Column
-              title={I18n.t('administration.audit_log.action')}
+              title={I18n.t('shared.action')}
               key="action"
               render={({ id, action }) => (
                 <Link to={`${settings.urlPrefix}/${id}`}>{action}</Link>
               )}
             />
             <Column
-              title={I18n.t('administration.audit_log.log_date')}
+              title={I18n.t('admin.log_date')}
               dataIndex="createdAt"
               key="createdAt"
               render={createdAt => (
@@ -311,7 +311,7 @@ const AuditLogList: React.FC<Props> = (
               )}
             />
             <Column
-              title={I18n.t('administration.audit_log.user')}
+              title={I18n.t('admin.user')}
               key="user"
               render={({ user, userId }) => {
                 if (!userId) return null
@@ -320,7 +320,7 @@ const AuditLogList: React.FC<Props> = (
               }}
             />
             <Column
-              title={I18n.t('administration.audit_log.client')}
+              title={I18n.t('admin.client')}
               key="client"
               render={({ client, clientId }) => (
                 client
@@ -329,7 +329,7 @@ const AuditLogList: React.FC<Props> = (
               )}
             />
             <Column
-              title={I18n.t('administration.audit_log.project')}
+              title={I18n.t('admin.project')}
               key="project"
               render={({ project, projectId }) => (
                 project
@@ -338,7 +338,7 @@ const AuditLogList: React.FC<Props> = (
               )}
             />
             <Column
-              title={I18n.t('administration.audit_log.campaign')}
+              title={I18n.t('admin.campaign')}
               key="campaign"
               render={({
                 project, campaignId, campaign,

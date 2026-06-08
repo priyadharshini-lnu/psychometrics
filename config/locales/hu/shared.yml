@@ -18,6 +18,7 @@ hu:
     assessment_id: Értékelés azonosítója
     assessment_list: Értékelési lista
     assessment_name: Értékelés neve
+    assessor: Adófelügyelő
     assessor_approved: Értékelő által jóváhagyva
     assessors_list: Értékelők listája
     asset_not_present: Az eszköz nincs jelen
@@ -26,15 +27,18 @@ hu:
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
     back: Vissza
     basic: Alapvető
+    bulk_download: Tömeges letöltés
     camera: Fényképezőgép
     camera_preview: A kamera előnézet itt jelenik meg
     campaign: Kampány
     campaign_id: Kampányazonosító
     cancel: Törölje
+    category: Kategória
     change_password: Jelszó módosítása
     clear_filters: Szűrők törlése
     client: Ügyfél
     close: Bezárás
+    code: Kód
     collaborative_learning: Együttműködő tanulás
     completed: Befejezett
     configurations: Konfigurációk
@@ -43,11 +47,13 @@ hu:
     controller: Vezérlő
     cookie_notice: Sütikre vonatkozó tájékoztató
     cookies_statement: Sütikre vonatkozó nyilatkozat
+    copied: Vágólapra másolva
     copied_successfully: A másolás sikeresen megtörtént
     copied_to_clipboard: Másolva a vágólapra
     copy: Másolás
     create: Létrehozás
     created_at: Létrehozva
+    created_by: 'Készítette:'
     created_date: Létrehozás dátuma
     created_successfully: Létrehozás sikeresen megtörtént
     custom_acknowledgment_text: Egyéni köszönőüzenet
@@ -55,11 +61,14 @@ hu:
     custom_consent_text: Egyéni hozzájárulási szöveg
     custom_consent_text_required: Az adatkezelő adatkezelői szerepköréhez egyéni hozzájárulási szöveg szükséges.
     data_role: Adat szerep
+    datasheet: Adatlap
     decline: Hanyatlás
+    default: Alapértelmezett
     delete: Törlés
     description: Leírás
     desktop_or_laptop_recommended: Asztali vagy laptop számítógép ajánlott
     desktop_or_laptop_required: Asztali vagy laptop számítógép szükséges
+    dimension: Méret
     disabled: Fogyatékkal élők
     discard: Elvetés
     download: Letöltés
@@ -69,6 +78,7 @@ hu:
     edit: Szerkesztés
     edited: Új
     email: E-mail
+    end_date: Befejezés dátuma
     ending_proctoring_session_msg: A vizsgafelügyeleti munkamenet véget ér. <p>Kérjük, várjon, amíg elmentjük a válaszait, és visszatereljük a kezdőlapra.</p>
     error: Hiba
     export: Kivitel
@@ -83,11 +93,17 @@ hu:
     generating: Generálás
     group_question_max_validation_error: Minden csoport legfeljebb {{max}} tételt tartalmazhat.
     group_question_min_validation_error: Minden csoportnak legalább {{min}} tételt kell tartalmaznia.
+    icon: Ikon
     id: ID
     idp_ai_assistant_disclaimer: A Lighthouse AI IDP asszisztense hibázhat. Kérlek, légy óvatos a válaszok használatakor.
+    import: Importál
+    inactive: Inaktív
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
     last_name: Vezetéknév
+    last_updated: Utolsó frissítés
     learning_on_the_job_label: Tanulás munka közben
+    linked_activities: Összekapcsolt tevékenységek
+    linked_assessment: Kapcsolt értékelés
     loading: Betöltés...
     login: Bejelentkezés
     maintenance_in_hours: "%{hours} órák"
@@ -97,11 +113,13 @@ hu:
     maintenance_time_remaining: Maradék idő
     maintenance_upcoming_description: A %{date} webhelyen körülbelül %{duration} időtartamra tervezett karbantartási munkálatokat végzünk, hogy javítsuk az Ön felhasználói élményét. Ez idő alatt nem fog tudni hozzáférni a hozzárendelt feladatokhoz, és azokat nem fogja tudni elvégezni. Türelmét köszönjük.
     maintenance_upcoming_title: Közelgő karbantartás
+    manage: Kezelje a  címet
     manage_cookies: A cookie-k kezelése
     media_id: Média azonosító
     media_preview: Média előzetes
     media_question_transcriptions: Média kérdések átirata
     media_responses: Média reakciók
+    meeting_link: Értekezlet linkje
     microphones: Mikrofonok
     mobile_proctoring_disabled_instructions: A felmérés folytatásához asztali vagy hordozható számítógépre van szükség. Kérjük, váltson számítógépre a feladat befejezéséhez.
     mobile_proctoring_enabled_instructions: A legjobb élmény érdekében kérjük, váltson át asztali vagy hordozható számítógépre, ha rendelkezik ilyennel. Szükség esetén folytathatja a mobil eszközén is.
@@ -115,7 +133,9 @@ hu:
     new: Új
     next: Következő
     no_audio_warning: Nincs hangjelzés. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
+    no_data_found: Nem található adat
     no_results_found: Nincs találat
+    none: Egyik sem
     not_requested: Még nem kért
     ok: Oké
     options: Beállítások
@@ -130,6 +150,7 @@ hu:
     proctoring_maintenance_active: A vizsgafelügyelet jelenleg karbantartás alatt áll az %{start_time} és az %{end_time} oldalakon. Kérjük, próbálkozzon újra a karbantartási időszak után.
     proctoring_maintenance_upcoming: A vizsgafelügyelet karbantartás alatt áll az %{start_time} és az %{end_time} között.
     project: Projekt
+    publish: Közzététel
     question: Kérdés
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
@@ -142,20 +163,27 @@ hu:
     remove: Távolítsa el a
     removed: Eltávolított
     replace: Cserélje ki
+    required: szükséges
+    reset: Átszed
     reset_password: Jelszó visszaállítása
     response_text: Válasz szöveg
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
+    run: Fut
     save: Mentés
     saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
+    schedule_time: Ütemezési idő
     scoring_details: Pontszámok részletei
     search: Keresés
     select_camera: Válasszon kamerát
+    select_language: Nyelv kiválasztása
     select_microphone: Válasszon mikrofont
+    send: Küldje el a
     send_email: E-mail küldése
     show_more: Több
     something_wrong: Valami elromlott. Forduljon a rendszergazdához.
     speakers: Előadók
+    start_date: Kezdő dátum
     status: Állapot
     status_unknown: Állapot ismeretlen
     subject: Tárgy
@@ -172,6 +200,7 @@ hu:
           one: 'Összesen: 1'
           other: 'Összesen: {{count}}'
           zero: 'Összesen: 0'
+    tags: Címkék
     terms_conditions_privacy: Adatvédelmi nyilatkozat
     tools: Eszközök
     transcription: Átírás
@@ -183,10 +212,12 @@ hu:
     try_again: Próbáld újra
     tte_terms_and_condition: Feltételek és adatvédelem
     type: Típus
+    unpublish: Unpublish
     update: Frissítés
     update_failed: A frissítés sikertelen volt
     updated_at: 'Frissítve:'
     updated_successfully: Sikeresen frissítve
+    upload: Feltölt
     user_report_pdf_url_not_generated: A PDF-letöltési link nem állítható elő
     video: Videó
     view: Megtekintés

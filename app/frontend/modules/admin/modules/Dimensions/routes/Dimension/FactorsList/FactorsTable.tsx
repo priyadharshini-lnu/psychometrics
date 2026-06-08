@@ -40,20 +40,20 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
     <>
       <Resource.Table pagination>
         <Resource.Column<Factor>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={factor => factor.id}
           width={100}
         />
         <Resource.Column<Factor>
-          title={I18n.t('common.column.active')}
+          title={I18n.t('shared.active')}
           id="active"
           render={factor => <ActiveSwitch factor={factor} />}
           width={10}
         />
         <Resource.Column<Factor>
-          title={I18n.t('common.column.icon')}
+          title={I18n.t('shared.icon')}
           id="icon"
           render={factor => (
             <ResourceAvatar
@@ -64,7 +64,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
           width={70}
         />
         <Resource.Column<Factor>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           sorter
           width={200}
@@ -110,14 +110,14 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
           width={140}
         />
         <Resource.Column<Factor>
-          title={I18n.t('administration.factors.index.scoring_strategy')}
+          title={I18n.t('admin.factors_index_scoring_strategy')}
           id="scoring_strategy"
           sorter
-          render={factor => I18n.t(`administration.factors.index.scoring_strategies.${factor.scoringStrategy}`)}
+          render={factor => I18n.t(`admin.${factor.scoringStrategy}`)}
           width={100}
         />
         <Resource.Column<Factor>
-          title={I18n.t('administration.factors.index.sub_factors')}
+          title={I18n.t('admin.factors_index_sub_factors')}
           width={60}
           id="sub_factors"
           render={factor => (
@@ -127,7 +127,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
           )}
         />
         <Resource.Column<Factor>
-          title={I18n.t('common.column.created_at')}
+          title={I18n.t('shared.created_at')}
           id="created_at"
           dataIndex="createdAt"
           sorter
@@ -138,7 +138,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
           width={100}
         />
         <Resource.Column<Factor>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.updated_at')}
           id="updated_at"
           dataIndex="updatedAt"
           sorter
@@ -149,7 +149,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
           width={100}
         />
         <Resource.Column<Factor>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, factor) => (
             <Dropdown
@@ -170,7 +170,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
         footer={(
           <Space style={{ float: 'right' }}>
             <Button onClick={() => setQuestionsDrawerOpen(false)}>
-              {I18n.t('common.actions.cancel')}
+              {I18n.t('shared.cancel')}
             </Button>
           </Space>
         )}
@@ -251,7 +251,7 @@ const getActionsMenuProps = ({
           onClick={() => openModal('FactorsFormModal', { factor })}
           className="ps-0"
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     factor && {
@@ -262,7 +262,7 @@ const getActionsMenuProps = ({
           onClick={() => openModal('RemoveFactorModal', { factor })}
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>),
     },
     canCopy && {
@@ -273,7 +273,7 @@ const getActionsMenuProps = ({
           onClick={copyFactor}
           className="ps-0"
         >
-          {I18n.t('common.actions.copy')}
+          {I18n.t('shared.copy')}
         </Button>),
     },
   ].filter(m => m) as ItemType[]

@@ -119,7 +119,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
                    {notAllowedForDashboardUse && (
                      <Tooltip
                        placement="top"
-                       title={I18n.t('administration.sheets.column.not_allowed_for_dashboard_use')}
+                       title={I18n.t('admin.sheets_column_not_allowed_for_dashboard_use')}
                      >
                        <span><InfoCircleOutlined /></span>
                      </Tooltip>
@@ -178,8 +178,8 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
           <Col>
             <Button type="primary" danger={sort} onClick={() => updateOrder()}>
               {sort
-                ? I18n.t('administration.sheets.column.save_order')
-                : I18n.t('administration.sheets.column.reorder')}
+                ? I18n.t('admin.sheets_column_save_order')
+                : I18n.t('admin.sheets_column_reorder')}
             </Button>
           </Col>
         )}
@@ -200,7 +200,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
                 onClick={() => setDrawer(true)}
               >
                 <PlusOutlined />
-                {I18n.t('administration.sheets.column.add_column')}
+                {I18n.t('admin.sheets_column_add_column')}
               </Button>
             )}
           </Space>

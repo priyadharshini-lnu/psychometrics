@@ -32,7 +32,7 @@ export const AddSubjectForm:React.FC<Props> = ({ close }) => {
   return (
     <ResourceFormModal
       resourceName="workshop_subjects"
-      readableResourceName={I18n.t('administration.invited_subject.subject')}
+      readableResourceName={I18n.t('admin.subject')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -45,7 +45,7 @@ export const AddSubjectForm:React.FC<Props> = ({ close }) => {
         <>
           <Form.Item
             name="userId"
-            label={I18n.t('administration.scheduling.campaign_participants')}
+            label={I18n.t('admin.scheduling_campaign_participants')}
             rules={[{ required: true }]}
           >
             <Select
@@ -58,7 +58,7 @@ export const AddSubjectForm:React.FC<Props> = ({ close }) => {
               placeholder={(
                 <Space>
                   <SearchOutlined />
-                  {I18n.t('administration.scheduling.search_participant')}
+                  {I18n.t('admin.scheduling_search_participant')}
                 </Space>
               )}
               notFoundContent={isUsersLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}

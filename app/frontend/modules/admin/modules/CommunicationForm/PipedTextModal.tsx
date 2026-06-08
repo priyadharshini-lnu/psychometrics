@@ -87,11 +87,11 @@ export const PipedTextModal: React.FC<Props> = ({
       <Modal
         width={900}
         open={open}
-        title={I18n.t('administration.piped_text_modal.title')}
+        title={I18n.t('admin.piped_text_modal_title')}
         onCancel={handleClose}
         footer={[
           <Button key="back" onClick={handleClose}>
-            {I18n.t('common.actions.cancel')}
+            {I18n.t('shared.cancel')}
           </Button>,
         ]}
         zIndex={10000}

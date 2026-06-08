@@ -19,7 +19,7 @@ export const APIKeysFormModal: React.FC<Props> = ({ close, apiKey }) => {
     <ResourceFormModal
       resourceName="api_key"
       resource={apiKey}
-      readableResourceName={I18n.t('administration.api_keys.form.title')}
+      readableResourceName={I18n.t('admin.api_keys_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -31,7 +31,7 @@ export const APIKeysFormModal: React.FC<Props> = ({ close, apiKey }) => {
         <>
           <Form.Item
             name="description"
-            label={I18n.t('administration.api_keys.form.description')}
+            label={I18n.t('shared.description')}
           >
             <Input />
           </Form.Item>

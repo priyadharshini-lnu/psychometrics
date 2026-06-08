@@ -1648,7 +1648,6 @@ hu:
     details:
       additional_time: További idő
       assessment_center: Assessment Center
-      assessment_center_invites: Értékelőközpont-meghívók
       completed_at: 'Befejezve:'
       completion_status: Teljesítési állapotok
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ hu:
     modals:
       remove: Biztosan el akarod távolítani a(z) "%{email}" e-mail címmel rendelkező felhasználót ebből a kampányból?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Értékelő értékelések
-      other_assessments: Egyéb értékelések
-      other_assessor_assessments: Egyéb értékelő értékelések
-      other_reports: Egyéb jelentések
     card:
       duration: Időtartam
       starts_in: 'Kezdődik:'
@@ -1753,23 +1747,19 @@ hu:
       insert: Beilleszt
       'no': Nem
       ok: OKÉ
-      publish: Közzététel
       reject: Elutasít
       remove: Távolítsa el a
       reset: Reset
       resolve: Feloldás
       restore: Visszaállítás
       return_to_home: Vissza a kezdőlapra
-      run: Fut
       save: Mentés
       schedule: Menetrend
       search: Keresés
-      send: Küldje el a
       sign_in: Bejelentkezés
       start: Indítsa el a  oldalt
       submit: Előterjeszt
       unarchive: Unarchive
-      unpublish: Unpublish
       unresolve: Megoldhatatlan
       update: Frissítés
       upload: Feltöltés
@@ -1782,20 +1772,14 @@ hu:
     column:
       action: Akció
       active: Aktív
-      ai_assistant: AI asszisztens
-      allow_multiple_responses: Több válasz engedélyezése
       approval_notification_list: Jóváhagyási értesítés felhasználóinak listája
       approvers_list: Jóváhagyók listája
-      assessment: Értékelés
       assessment_name: Értékelés neve
       assessments: Értékelések
-      assessor: Adófelügyelő
       category: Kategória
       client: Ügyfél
-      code: 'Kód:'
       created_at: Létrehozva
       created_by: 'Készítette:'
-      created_date: Létrehozás dátuma
       default_language: Alapértelmezett nyelv
       description: Leírás
       details: Részletek
@@ -1813,11 +1797,8 @@ hu:
         scoring: JSON-pontozás
       key: Kulcs
       last_name: Vezetéknév
-      linked_activities: Összekapcsolt tevékenységek
       linked_assessment: Kapcsolt értékelés
-      meeting_link: Értekezlet linkje
       modified_by: Módosította
-      modified_date: Módosítás dátuma
       name: Név
       owner: Tulajdonos
       package_id: Csomag azonosítója
@@ -1833,7 +1814,6 @@ hu:
       scheduling: Ütemezési
       skills: Készségek
       status: Állapot
-      tags: Címkék
       timing: Időzítés
       token: Token
       type: Típus
@@ -1845,15 +1825,12 @@ hu:
     messages:
       leave_message: Biztosan el akarja hagyni ezt az oldalt? Minden nem mentett válaszod elveszne.
     model:
-      admins: Adminisztrátorok
       assessment: Értékelés
       assessments: Értékelések
       campaigns: Kampányok
       completion_statuses: Teljesítési állapotok
-      datasheet: Adatlap
       report: Jelentés
       reports: Jelentések
-      sms_contact: SMS kapcsolat
       threesixty_campaign: Threesixty kampány pontszámok
     status:
       completed: Befejezett
@@ -2957,9 +2934,7 @@ hu:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktív
     campaign_name: Kampány neve
-    inactive: Inaktív
     status_updated_at: Utolsó állapotfrissítés
     status_updated_by: 'Utoljára frissítette:'
     subject_email: Tárgy e-mail
@@ -3963,7 +3938,6 @@ hu:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktív
     allow_multiple_respones: Több válasz beküldésének engedélyezése a felhasználók számára
     png: PNG
     regenerate_link: Hivatkozás újragenerálása

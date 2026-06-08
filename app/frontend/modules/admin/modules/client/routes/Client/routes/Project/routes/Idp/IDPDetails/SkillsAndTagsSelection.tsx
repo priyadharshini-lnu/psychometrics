@@ -84,7 +84,7 @@ const SkillsAndTagsSelection = ({
     if (tags.length === 0 && skillsSelected.length === 0) {
       form.setFields([{
         name: `${settingPrefix}SkillsAndTags`,
-        errors: [I18n.t('administration.idp.enter_tag_or_skills_error')],
+        errors: [I18n.t('admin.idp_enter_tag_or_skills_error')],
       }])
       return Promise.reject()
     }
@@ -98,13 +98,13 @@ const SkillsAndTagsSelection = ({
   return (
     <div key={type} className="mb8">
       <Form.Item
-        label={I18n.t(`administration.idp.${type.toLowerCase()}_skills`)}
+        label={I18n.t(`admin.idp_${type.toLowerCase()}_skills`)}
         name={nameSkillsOption}
       >
         <Radio.Group>
-          <Radio value={SkillsOption.NONE}>{I18n.t('administration.idp.none')}</Radio>
-          <Radio value={SkillsOption.ALL}>{I18n.t('administration.idp.all')}</Radio>
-          <Radio value={SkillsOption.SELECTED}>{I18n.t('administration.idp.selected')}</Radio>
+          <Radio value={SkillsOption.NONE}>{I18n.t('admin.idp_none')}</Radio>
+          <Radio value={SkillsOption.ALL}>{I18n.t('admin.idp_all')}</Radio>
+          <Radio value={SkillsOption.SELECTED}>{I18n.t('admin.idp_selected')}</Radio>
         </Radio.Group>
       </Form.Item>
 
@@ -116,14 +116,14 @@ const SkillsAndTagsSelection = ({
           dependencies={[`${settingPrefix}Tags`, `${settingPrefix}Skills`]}
         >
           <Form.Item
-            label={I18n.t('administration.idp.select_by_tags')}
+            label={I18n.t('admin.idp_select_by_tags')}
             name={`${settingPrefix}Tags`}
             rules={[{ validator: checkTagAndSkillsSelected }]}
           >
             <Select
               mode="multiple"
               style={{ width: '100%' }}
-              placeholder={I18n.t('administration.idp.select_by_tags')}
+              placeholder={I18n.t('admin.idp_select_by_tags')}
               showSearch={{
                 filterOption: false,
                 onSearch: (query) => {
@@ -141,7 +141,7 @@ const SkillsAndTagsSelection = ({
             </Select>
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.idp.select_specific_skills')}
+            label={I18n.t('admin.idp_select_specific_skills')}
             name={`${settingPrefix}Skills`}
             rules={[{ validator: checkTagAndSkillsSelected }]}
             style={{ marginBottom: '4px' }}
@@ -149,7 +149,7 @@ const SkillsAndTagsSelection = ({
             <Select
               mode="multiple"
               style={{ width: '100%' }}
-              placeholder={I18n.t('administration.idp.select_specific_skills')}
+              placeholder={I18n.t('admin.idp_select_specific_skills')}
               showSearch={{
                 filterOption: false,
                 onSearch: (query) => {

@@ -36,19 +36,19 @@ export const RemoveCampaignFactorsModal: React.FC<Props> = ({
         fetchAndUpdateFactors()
         fetchAndUpdateFactorGroups()
         close()
-        message.success(I18n.t('administration.scoring.remove_all_campaign_factors.success'))
+        message.success(I18n.t('admin.scoring_remove_all_campaign_factors_success'))
       })
       .catch(() => {
         close()
-        message.error(I18n.t('administration.scoring.remove_all_campaign_factors.error'))
+        message.error(I18n.t('admin.scoring_remove_all_campaign_factors_error'))
       })
   }
 
   return (
     <AnswerableConfirmationModal
       requiredAnswer={campaignName}
-      warningMessage={I18n.t('administration.scoring.remove_all_campaign_factors.warning')}
-      confirmationMessage={I18n.t('administration.scoring.remove_all_campaign_factors.confirmation')}
+      warningMessage={I18n.t('admin.scoring_remove_all_campaign_factors_warning')}
+      confirmationMessage={I18n.t('admin.scoring_remove_all_campaign_factors_confirmation')}
       onConfirm={handleOnConfirm}
       onCancel={close}
       alertType="error"

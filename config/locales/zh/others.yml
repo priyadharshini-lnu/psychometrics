@@ -465,11 +465,9 @@ zh:
         active: 活跃
         categories:
           '360': 360 运动
-          agile: AGILE
           assessor_form: 评估员表格
           case_study: 案例研究
           hogan: 霍根
-          iiht: IIHT
           lead_assessor_form: 主任评估员表格
           meeting: 会议
           mettl: 梅特尔
@@ -547,7 +545,6 @@ zh:
           other: 其他
           partner: 合作伙伴
           retail: 零售
-          tte: TTE
         updated_at: 修改日期
         year: 客户年度
       communication:
@@ -601,7 +598,6 @@ zh:
         types:
           common: 常见问题
           proctoring: 监考
-          threesixty: Threesixty
         unlimited: 无限制
         used_number: 二手许可证编号
       membership:
@@ -726,14 +722,12 @@ zh:
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
-          agile: AGILE
           assessor: 评估员
           assessor_form: 评估员表格
           campaign_admin: 活动管理
           case_study: 案例研究
           client_admin: 客户管理
           hogan: 霍根
-          iiht: IIHT
           manager: 经理
           meeting: 会议
           member: 用户
@@ -745,7 +739,6 @@ zh:
           saville: 萨维尔
           super_admin: 超级管理员
           superadmin: 超级管理员
-          threesixty: Threesixty
         types:
           anonymous: 匿名用户
           identified: 确定的用户
@@ -1074,7 +1067,6 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
-        yoodli_scenario_id: Yoodli Scenario ID
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1202,7 +1194,6 @@ zh:
       assessment_center: 评估中心
       assessment_center_invites: 评估中心邀请
       assessments_and_reports: 评估与报告
-      idp: IDP
       manage: 管理
       recordings: 录音
       report_approval: 报告审批设置
@@ -1330,12 +1321,7 @@ zh:
   browsers:
     chrome: 谷歌浏览器
     download:
-      chrome: https://www.google.com/chrome/
-      edge: https://www.microsoft.com/en-us/edge
-      firefox: https://www.mozilla.org/en-US/firefox/new/
       instruction: 下载
-      safari: https://www.apple.com/safari/
-    edge: Microsoft Edge
     firefox: 火狐浏览器
     safari: 苹果 Safari
     support:
@@ -1658,7 +1644,6 @@ zh:
     details:
       additional_time: 额外时间
       assessment_center: 评估中心
-      assessment_center_invites: 评估中心邀请函
       completed_at: 完成于
       completion_status: 完成情况
       hogan_id: 霍根 ID
@@ -1688,11 +1673,6 @@ zh:
     modals:
       remove: 您确定要从该广告系列中删除电子邮件名称为"%{email}"的用户吗？
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 评估员 评估
-      other_assessments: 其他摊款
-      other_assessor_assessments: 其他摊款
-      other_reports: 其他报告
     card:
       duration: 持续时间
       starts_in: 开始于
@@ -1763,23 +1743,19 @@ zh:
       insert: 插入
       'no': 不
       ok: 好的
-      publish: 出版
       reject: 拒绝
       remove: 移除
       reset: 重置
       resolve: 解决
       restore: 恢复
       return_to_home: 返回首页
-      run: 运行
       save: 保存
       schedule: 时间安排
       search: 搜索
-      send: 发送
       sign_in: 登录
       start: 开始
       submit: 提交
       unarchive: 取消存档
-      unpublish: 取消出版
       unresolve: 取消解决
       update: 更新
       upload: 上传
@@ -1792,20 +1768,14 @@ zh:
     column:
       action: 操作
       active: 活跃
-      ai_assistant: AI助手
-      allow_multiple_responses: 允许多个回复
       approval_notification_list: 批准通知用户列表
       approvers_list: 批准人名单
-      assessment: 评估
       assessment_name: 评估名称
       assessments: 评估
-      assessor: 评估员
       category: 类别
       client: 客户
-      code: 代码
       created_at: 创建时间
       created_by: 创建者
-      created_date: 创建日期
       default_language: 默认语言
       description: 说明
       details: 详细信息
@@ -1815,7 +1785,6 @@ zh:
       first_name: 姓名
       icon: 图标
       icon_color: 图标颜色
-      id: ID
       json:
         answer: 回答 JSON
         external_result: 外部结果 JSON
@@ -1823,11 +1792,8 @@ zh:
         scoring: 评分 JSON
       key: 钥匙
       last_name: 姓氏
-      linked_activities: 相关活动
       linked_assessment: 关联评估
-      meeting_link: 会议链接
       modified_by: 修改
-      modified_date: 修改日期
       name: 名称
       owner: 业主
       package_id: 包装 ID
@@ -1843,7 +1809,6 @@ zh:
       scheduling: 日程安排
       skills: 技能
       status: 状态
-      tags: 标签
       timing: 时间安排
       token: 代币
       type: 类型
@@ -1855,15 +1820,12 @@ zh:
     messages:
       leave_message: 您确定要离开此页面吗？ 您未保存的任何答案都将丢失。
     model:
-      admins: 管理员
       assessment: 评估
       assessments: 评估
       campaigns: 项目
       completion_statuses: 完成状态
-      datasheet: 数据表
       report: 报告
       reports: 报告
-      sms_contact: 短信联系
       threesixty_campaign: Threesixty 运动得分
     status:
       completed: 已完成
@@ -1934,7 +1896,6 @@ zh:
       shared:
         links:
           about: 关于
-          app_name: "© 2016 AppName"
           contact_us: 联系我们
           privacy: 隐私权
     confirmations:
@@ -2226,8 +2187,6 @@ zh:
         complete_preworks: 完成所有前期工作
         please_visit: 请访问
         requirements_message: 只有完成以下要求后，您才能进行预订
-        requirements_plural: s
-        requirements_singular: ''
         to_complete_requirements: 完成这些要求。
       assessment_center_group_name: 评估中心
       booking_failed_msg: 预约名额失败：%{error}
@@ -2638,7 +2597,6 @@ zh:
         other: 删除的开发作
     initial_steps:
       add_skill_group_description: 选择你希望进一步发展的技能，作为你发展计划的一部分。
-      add_skill_group_title: "%{category}"
       add_skills: 添加
       add_skills_step: 添加技能
       back: 返回
@@ -2891,7 +2849,6 @@ zh:
     ca: 加泰罗尼亚语
     cn: 中文
     cs: 捷克语
-    cy: Cymraeg
     da: 丹麦语
     de: 德语
     el: 希腊文
@@ -2953,9 +2910,7 @@ zh:
   languages_localized:
     sl: 斯洛文什奇纳
   license_usage:
-    active: 活跃
     campaign_name: 活动名称
-    inactive: 不活动
     status_updated_at: 最新状态更新
     status_updated_by: 最后更新
     subject_email: 主题电子邮件
@@ -2979,9 +2934,7 @@ zh:
     type: 类型
     types:
       common: 常见问题
-      idp: IDP
       proctoring: 监考
-      threesixty: Threesixty
     used_number: 二手许可证
     used_out_of: 完成于 %{used}中 %{total}。
   lti:
@@ -3214,7 +3167,6 @@ zh:
           barBorderRadius: 条形边框半径
           barWeight: 杆重量
           dataFormat: 数据格式
-          graphOption3D: 3D
           graphOptionStandard: 标准
           graphSubType: 图表子类型
           graphTypeHorizontal: 横向
@@ -3436,7 +3388,6 @@ zh:
           other: 其他
           partner: 合作伙伴
           retail: 零售
-          tte: TTE
         updated_at: 修改日期
         year: 客户年度
       membership:
@@ -3474,7 +3425,6 @@ zh:
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
-          agile: AGILE
           case_study: 案例研究
           client_admin: 客户管理
           hogan: 霍根
@@ -3487,7 +3437,6 @@ zh:
           saville: 萨维尔
           super_admin: 超级管理员
           superadmin: 超级管理员
-          threesixty: Threesixty
         types:
           anonymous: 匿名用户
           identified: 确定的用户
@@ -3496,7 +3445,6 @@ zh:
         active: 活跃
         categories:
           '360': 360 运动
-          agile: AGILE
           assessor_form: 评估员表格
           case_study: 案例研究
           hogan: 霍根
@@ -3560,7 +3508,6 @@ zh:
           other: 其他
           partner: 合作伙伴
           retail: 零售
-          tte: TTE
         updated_at: 修改日期
         year: 客户年度
       communication:
@@ -3593,7 +3540,6 @@ zh:
         type: 许可证
         types:
           common: 常见问题
-          threesixty: Threesixty
         unlimited: 无限制
         used_number: 二手许可证编号
       memebrship:
@@ -3683,7 +3629,6 @@ zh:
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
-          agile: AGILE
           case_study: 案例研究
           client_admin: 客户管理
           hogan: 霍根
@@ -3696,7 +3641,6 @@ zh:
           saville: 萨维尔
           super_admin: 超级管理员
           superadmin: 超级管理员
-          threesixty: Threesixty
         types:
           anonymous: 匿名用户
           identified: 确定的用户
@@ -3717,7 +3661,6 @@ zh:
         role: 角色
         updated_at: 修改日期
     required:
-      mark: "*"
       text: 所需
     'yes': 是
   subjects:
@@ -3942,30 +3885,14 @@ zh:
     privacy_notice: 隐私声明
   time:
     formats:
-      date: "%d/%m/%y"
       datetimepicker_client: 日/月/年 hh:mm A
-      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
-      datetimepicker_server: "%d/%m/%Y %I:%M %p"
-      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
       datetimepicker_without_time_client: 年/月/日
-      datetimepicker_without_time_server: "%d/%m/%Y"
-      devise:
-        mailer:
-          invitation_instructions:
-            accept_until_format: "%B %d, %Y %I:%M %p"
-      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
-      short: "%d %b %Y / %H:%M"
-      short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 活跃
     allow_multiple_respones: 允许用户提交多个回复
     png: 巴新
     regenerate_link: 再生链接
     successfully_generated: 成功生成
     successfully_updated: 更新成功
-    svg: SVG
   user:
     datasheet:
       attribute: 属性

@@ -40,7 +40,7 @@ export const MhsLeadershipBar: FC<Props> = ({
 
     updateMhsLeadershipBar(campaignId, assessment.id, payload)
       .then(() => {
-        message.success(I18n.t('admin.campaign_assessment_mhs_leadership_bar_update_success'))
+        message.success(I18n.t('admin.leadership_bar_update_success'))
       })
       .catch(() => {
         setLeadershipBar(!checked)
@@ -64,7 +64,7 @@ export const MhsLeadershipBar: FC<Props> = ({
             label: { width: '40%' },
             content: { width: '60%' },
           }}
-          label={I18n.t('admin.campaign_assessment_mhs_leadership_bar')}
+          label={I18n.t('admin.leadership_bar')}
         >
           <Switch
             checked={leadershipBar}

@@ -105,7 +105,7 @@ export const BulkSchedule: React.FC<Props> = ({
   }
 
   return (
-    <Drawer width="60%" title={I18n.t('administration.scheduling.subjects.form_title')} open={open} onClose={onClose}>
+    <Drawer width="60%" title={I18n.t('admin.scheduling_subjects_form_title')} open={open} onClose={onClose}>
       <Avatar.Group
         size="large"
         max={{
@@ -117,7 +117,7 @@ export const BulkSchedule: React.FC<Props> = ({
       <div>
         {data.length}
         {' '}
-        {I18n.t('administration.scheduling.subjects.assessments')}
+        {I18n.t('admin.scheduling_subjects_assessments')}
       </div>
       <Table dataSource={data}>
         <Table.Column title="ID" dataIndex="assessmentId" />
@@ -135,9 +135,9 @@ export const BulkSchedule: React.FC<Props> = ({
                 defaultValue="no_change"
                 onChange={e => changeAction(assessment, e.target.value)}
               >
-                <Radio value="no_change">{I18n.t('administration.scheduling.subjects.no_change')}</Radio>
-                <Radio value="schedule">{I18n.t('administration.scheduling.subjects.schedule')}</Radio>
-                <Radio value="unschedule">{I18n.t('administration.scheduling.subjects.unschedule')}</Radio>
+                <Radio value="no_change">{I18n.t('admin.scheduling_subjects_no_change')}</Radio>
+                <Radio value="schedule">{I18n.t('admin.scheduling_subjects_schedule')}</Radio>
+                <Radio value="unschedule">{I18n.t('admin.scheduling_subjects_unschedule')}</Radio>
               </Radio.Group>
               { assessment.action === 'schedule' && (
                 <TimePicker
@@ -152,7 +152,7 @@ export const BulkSchedule: React.FC<Props> = ({
       </Table>
       <Space>
         <Checkbox checked={overrideExists} onChange={() => setOverrideExists(!overrideExists)}>
-          {I18n.t('administration.scheduling.subjects.override_existing')}
+          {I18n.t('admin.scheduling_subjects_override_existing')}
         </Checkbox>
       </Space>
       <Row justify="end">

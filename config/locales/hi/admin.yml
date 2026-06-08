@@ -2,15 +2,41 @@
 hi:
   admin:
     accept_na_values: N/A मान स्वीकार करें
+    acceptable_rate_limit_label: स्वीकार्य अनुरोध सीमा
+    acceptable_rate_limit_request_per: प्रति अनुरोध
     actions: क्रियाएँ
+    actions_add_code: कोड जोड़ें
+    actions_archive: संग्रह
+    actions_playground: खेल का मैदान
+    actions_unarchive: अनआर्काइव
+    active: सक्रिय
+    active_label: सक्रिय
+    active_name: सक्रिय
+    active_record_audits_audit_id: ऑडिट आईडी
+    active_record_audits_auditable_id: रिकॉर्ड आईडी
+    active_record_audits_auditable_type: रिकॉर्ड का प्रकार
+    active_record_audits_audited_changes: ऑडिट किए गए परिवर्तन
+    active_record_audits_new_diff_parse_error: नई परिवर्तनों के साथ JSON पार्स करने में असफल
+    active_record_audits_old_diff_parse_error: पुराने परिवर्तनों के साथ JSON पार्स करने में विफल
+    active_record_audits_title: ऑडिट किए गए परिवर्तन
+    activity: गतिविधि
     add_admin: प्रशासक जोड़ें
     add_admin_role: प्रशासक भूमिका जोड़ें
+    add_btn: विषय जोड़ें
     add_campaign_admin: अभियान प्रशासक जोड़ें
     add_client_admin: क्लाइंट एडमिन जोड़ें
+    add_conditions: शर्तें जोड़ें
+    add_evaluators: मूल्यांकनकर्ताओं को जोड़ें
     add_indicator: सूचक जोड़ें
+    add_lead_assessor: मुख्य मूल्यांकनकर्ता के रूप में जोड़ें
+    add_lead_assessor_hint: कृपया पहले लीड असेसर फॉर्म जोड़ें।
+    add_more: और जोड़ें
     add_new_folder: नया फ़ोल्डर जोड़ें
+    add_output_schema_key: आउटपुट स्कीमा कुंजी जोड़ें
     add_project: परियोजना जोड़ें
     add_project_admin: परियोजना प्रशासक जोड़ें
+    add_report: रिपोर्ट जोड़ें
+    add_subjects: विषय जोड़ें
     add_threesixty_campaign_admin: अभियान प्रशासक जोड़ें
     add_word_count: शब्द गणना जोड़ें
     admin_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले व्यवस्थापक की मंजूरी आवश्यक है।"
@@ -20,24 +46,15 @@ hi:
     admin_role_deleted: प्रशासनिक भूमिका '%{role_name}' सफलतापूर्वक हटा दी गई।
     admin_roles: प्रशासन भूमिकाएँ
     admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
+    administrator_approves_reports: प्रशासक रिपोर्टों को अनुमोदित करता है।
+    administrators_list_columns_email: ईमेल
     admins: प्रशासक
     advanced: उन्नत
+    advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
     agile: चपल
     ai_artifact_result_generation_admin_job_failed: उपयोगकर्ता '%{user_email}' के लिए कलाकृति '%{artifact_name}' उत्पन्न नहीं की जा सकती।
     ai_artifact_result_stale: परिणाम पुराना हो सकता है क्योंकि एआई आर्टिफैक्ट की निर्भरताएँ अंतिम परिणाम उत्पन्न होने के बाद बदल गई हैं। नवीनतम निर्भरताओं के साथ आर्टिफैक्ट को पुनः उत्पन्न करने पर विचार करें।
     ai_artifacts: एआई कलाकृतियाँ
-    ai_artifacts_finalized_at: पर अंतिम रूप दिया गया
-    ai_artifacts_generate_result_confirm: उपयोगकर्ता '%{email}' के लिए आर्टिफैक्ट परिणाम उत्पन्न करने से इस AI आर्टिफैक्ट पर निर्भर मौजूदा रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
-    ai_artifacts_generate_results: परिणाम उत्पन्न करें
-    ai_artifacts_mark_finalized: मार्क अंतिम रूप दिया गया
-    ai_artifacts_mark_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं के लिए आर्टिफैक्ट परिणामों को अंतिम रूप देने पर वे रिपोर्टें उत्पन्न होंगी जिनमें एआई आर्टिफैक्ट्स का उपयोग होता है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
-    ai_artifacts_mark_finalized_confirm: उपयोगकर्ता '%{email}' के लिए आर्टिफैक्ट परिणामों को अंतिम रूप देने पर उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करने वाली रिपोर्ट तैयार हो जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
-    ai_artifacts_mark_not_finalized: चिह्न अंतिम नहीं
-    ai_artifacts_mark_not_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं से फाइनलाइज़ हटाने पर वे उत्पन्न रिपोर्टें हटा दी जाएँगी जो एआई आर्टिफैक्ट्स का उपयोग करती हैं। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
-    ai_artifacts_mark_not_finalized_confirm: उपयोगकर्ता '%{email}' से finalize हटाने से उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करके तैयार की गई रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
-    ai_artifacts_output_schema_key_constraint: की एक छोटे अक्षर से शुरू होनी चाहिए और इसमें केवल छोटे अक्षर, अंक और अंडरस्कोर हो सकते हैं।
-    ai_artifacts_results_export: निर्यात परिणाम
-    ai_artifacts_results_export_job_scheduled: AI आर्टिफैक्ट्स परिणाम निर्यात जॉब सफलतापूर्वक निर्धारित किया गया था।
     ai_assistant: एआई सहायक
     ai_assistant_model_id_label: मॉडल आईडी
     ai_assistant_model_label: मॉडल
@@ -46,21 +63,14 @@ hi:
     ai_assistant_required: एआई सहायक आवश्यक है
     ai_assistant_select_dependencies: निर्भरताएँ चुनें
     ai_assistants: एआई सहायक
-    ai_assistants_advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
-    ai_assistants_campaign_id_placeholder: अभियान आईडी दर्ज करें
-    ai_assistants_cannot_change_type_when_in_use: AI सहायक '%{name}' का प्रकार नहीं बदला जा सकता क्योंकि यह वर्तमान में उपयोग में है।
-    ai_assistants_no_rendered_output: कोई रेंडर आउटपुट उपलब्ध नहीं है
-    ai_assistants_provider_change_confirm_title: प्रदाता बदलें?
-    ai_assistants_provider_previously_used_warning: इस सहायक ने पहले "%{from}" के साथ परिणाम उत्पन्न किए हैं। "%{to}" में बदलने से भविष्य की जेनरेशन अनुरोधों के लिए सहायक का व्यवहार बदल सकता है।
-    ai_assistants_render_button: रेंडर टेम्पलेट
-    ai_assistants_rendered_prompt: प्रस्तुत अनुरोध
-    ai_assistants_template_and_campaign_required: कृपया टेम्पलेट और अभियान दोनों आईडी प्रदान करें।
-    ai_assistants_template_render_failed: टेम्पलेट रेंडर करने में असफल
-    ai_assistants_test_render: परीक्षण रेंडर
-    ai_assistants_test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
-    ai_assistants_type_locked_tooltip: यह सहायक वर्तमान में उपयोग में है और इसके प्रकार को बदला नहीं जा सकता।
+    ai_assistants_disabled_by_client: एआई सहायक ग्राहक द्वारा अक्षम कर दिए गए हैं।
+    ai_assistants_playground: एआई सहायक खेलमैदान
+    ai_assisted_idp: एआई-सहायित आईडीपी
     ai_assisted_idp_disabled_by_client: क्लाइंट द्वारा एआई-सहायित आईडीपी अक्षम कर दिया गया है।
     ai_assisted_idp_feature_disabled: इस परियोजना के लिए AI-सहायक IDP सुविधा अक्षम कर दी गई है।
+    ai_assisted_idp_requires_ai_assistants: एआई-सहायक आईडीपी के लिए एआई सहायक सुविधा सक्षम होना आवश्यक है।
+    ai_content_analysis: एआई सामग्री विश्लेषण
+    ai_content_analysis_disabled_by_client: क्लाइंट द्वारा एआई सामग्री विश्लेषण अक्षम कर दिया गया है।
     ai_idp_assistant_configure_dependencies: एआई निर्भरताओं को कॉन्फ़िगर करें
     ai_idp_assistant_configure_dependencies_description: IDP AI असिस्टेंट संदर्भ के रूप में कौन सा निर्भरता डेटा एक्सेस कर सकता है, उसे कॉन्फ़िगर करें। यह केवल तभी लागू होता है जब असिस्टेंट निर्भरताओं को स्वीकार करने के लिए कॉन्फ़िगर किया गया हो।
     ai_idp_assistant_dependencies_updated: निर्भरताएँ सफलतापूर्वक अद्यतन हो गईं
@@ -69,28 +79,7 @@ hi:
     ai_score_approval_no_answer: इस प्रश्न का उत्तर प्रदान नहीं किया गया है।
     ai_score_approval_no_transcription: इस प्रश्न के लिए प्रतिलेखन उपलब्ध नहीं है।
     ai_scored: एआई ने स्कोर किया
-    ai_scoring_appoval_approve_all_questions: सभी प्रश्नों को अनुमोदित करें
-    ai_scoring_appoval_approve_question: प्रश्न अनुमोदित करें
-    ai_scoring_appoval_back: स्कोर रीसेट करें
-    ai_scoring_appoval_change_reason: कारण बदलें
-    ai_scoring_appoval_change_score: बदला हुआ स्कोर
-    ai_scoring_appoval_change_score_log: स्कोर लॉग बदलें
-    ai_scoring_appoval_discard_all_questions: सभी प्रश्नों को रीसेट करें
-    ai_scoring_appoval_discard_all_questions_description: यह सभी प्रश्नों के सभी स्कोर रीसेट कर देगा और किसी भी ओवरराइड को हटा देगा। यह कार्रवाई वापस नहीं ली जा सकती। क्या आप सुनिश्चित हैं?
-    ai_scoring_appoval_discard_all_questions_title: सभी प्रश्नों के स्कोर रीसेट करें?
-    ai_scoring_appoval_discard_question: प्रश्न स्कोर रीसेट करें
-    ai_scoring_appoval_discard_question_confirm_description: यह इस प्रश्न के सभी स्कोर रीसेट कर देगा और किसी भी ओवरराइड को हटा देगा। क्या आप सुनिश्चित हैं?
-    ai_scoring_appoval_discard_question_confirm_title: प्रश्न स्कोर रीसेट करें?
-    ai_scoring_appoval_discarded_changes: त्यागी गई परिवर्तन
-    ai_scoring_appoval_evidence_from_transcript: प्रतिलेख से साक्ष्य
-    ai_scoring_appoval_new_score: नया स्कोर
     ai_scoring_appoval_next: अगला प्रश्न
-    ai_scoring_appoval_rationale: तर्कसंगतता
-    ai_scoring_appoval_reason_for_changes: बदलाव का कारण
-    ai_scoring_appoval_reset_score: स्कोर रीसेट करें
-    ai_scoring_appoval_reset_score_description: स्कोर मूल AI मान पर वापस कर दिया जाएगा।
-    ai_scoring_appoval_responses: एआई प्रतिक्रियाएँ
-    ai_scoring_appoval_score_not_applicable: स्कोर लागू नहीं
     ai_scoring_approval: एआई स्कोरिंग अनुमोदन
     ai_scoring_approval_digest_mailer_access_link_intro: 'आप निम्नलिखित लिंक के माध्यम से स्कोरिंग अनुमोदनों तक पहुँच सकते हैं:'
     ai_scoring_approval_digest_mailer_approved_body_intro: निम्नलिखित स्कोरिंग्स को अनुमोदित किया गया है।
@@ -114,59 +103,156 @@ hi:
     ai_scoring_refresh_score_confirm_title: AI स्कोर रिफ्रेश करें?
     ai_scoring_rescore_queued: एआई पुनः स्कोरिंग कतार में है। कृपया कुछ क्षणों बाद पुनः ताज़ा करें।
     ai_translation: एआई अनुवाद
+    ai_translation_disabled_by_client: AI अनुवाद ग्राहक द्वारा अक्षम कर दिए गए हैं।
     all_corner_rounded: सभी कोने गोल
     allow_ai_rescoring: एआई पुनः स्कोरिंग की अनुमति दें
     allow_continue_with_warning_system_check: सिस्टम जाँच विफल होने पर चेतावनियों के साथ जारी रखने की अनुमति दें
+    allow_late_cancellation_and_scheduling: देर से रद्दीकरण और शेड्यूलिंग की अनुमति दें
+    allow_manager_to_view_individual_responses: प्रबंधक को व्यक्तिगत प्रतिक्रियाएँ देखने की अनुमति दें
+    allow_multiple_responses: कई प्रतिक्रियाओं की अनुमति दें
+    allow_subjects_to_send_reminders: विषयों को मूल्यांकनकर्ताओं को अनुस्मारक भेजने की अनुमति दें
+    alt_text_invalid: वैकल्पिक पाठ में असमर्थित वर्ण हैं।
+    alt_text_logo: लोगो वैकल्पिक पाठ
+    alt_text_logo_required: वैकल्पिक पाठ लोगो आवश्यक है।
+    alt_text_long: 100 अक्षरों की अधिकतम सीमा से अधिक है।
     api_keys: एपीआई कुंजी
+    api_keys_form_title: एपीआई कुंजी
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
+    approve_all_questions: सभी प्रश्नों को अनुमोदित करें
+    approve_nomination_description: यह संदेश एक प्रबंधक को तब भेजा जाता है जब किसी प्रत्यक्ष अधीनस्थ द्वारा की गई नामांकन को अनुमोदित करने की आवश्यकता होती है।
+    approve_nomination_name: नामांकन अनुमोदित करें
+    approve_question: प्रश्न अनुमोदित करें
+    approve_report_description: यह संदेश विषय के प्रबंधक को भेजा जाता है ताकि उन्हें सूचित किया जा सके कि विषय की रिपोर्ट अनुमोदन के लिए तैयार है।
+    approve_report_name: रिपोर्ट को अनुमोदित करें
+    archive: संग्रह
+    archive_content: क्या आप '%{project_name}' को संग्रहीत करना चाहते हैं?
+    archive_success: परियोजना '%{project_name}' को सफलतापूर्वक संग्रहीत किया गया।
+    archive_title: आर्काइव प्रोजेक्ट
+    artifact_results: आर्टिफैक्ट परिणाम
     assessment: मूल्यांकन
-    assessment_center_activity: गतिविधि
-    assessment_center_assessor: मूल्यांकनकर्ता
-    assessment_center_attendance: उपस्थिति
-    assessment_center_attendance_status: उपस्थिति की स्थिति
-    assessment_center_campaigns_tab: अभियान
-    assessment_center_date_and_time: दिनांक और समय
-    assessment_center_join_room: कमरे में शामिल हों
-    assessment_center_meeting_link: मीटिंग लिंक
-    assessment_center_participants_tab: प्रतिभागी
-    assessment_center_prework: पूर्व तैयारी
-    assessment_center_schedule_time: समय निर्धारित करें
-    assessment_center_scheduling_status: अनुसूचीकरण की स्थिति
-    assessment_center_search_participants: प्रतिभागियों को खोजें...
+    assessment_center: 'मूल्यांकन केंद्र:'
+    assessment_center_group: मूल्यांकन केंद्र समूह
+    assessment_center_group_placeholder: मूल्यांकन केंद्र समूह चुनें
+    assessment_ids: मूल्यांकन आईडी
+    assessment_placeholder: मूल्यांकन चुनें
     assessment_question_not_supported: यह प्रश्न प्रकार वर्तमान में समर्थित नहीं है।
+    assessment_required: मूल्यांकन आवश्यक है
     assessments: मूल्यांकन
+    assessments_assessment_report: मूल्यांकन
+    assessments_copy: प्रतिलिपि
+    assessments_copy_assessment: मूल्यांकन की प्रतिलिपि
+    assessments_help_text: यह चयन केवल मूल्यांकन कच्चा प्रतिक्रिया घटना को प्रभावित करता है।
+    assessments_label: मूल्यांकन
     assessments_not_mhs: सभी मूल्यांकन एमएचएस प्रकार के होने चाहिए।
+    assessments_placeholder: चयनित आकलन
     assessments_reports: मूल्यांकन एवं रिपोर्टें
+    assessments_required: मूल्यांकन कच्चे प्रतिक्रिया कार्यक्रम के लिए कम से कम एक मूल्यांकन का चयन करना अनिवार्य है।
+    assessor: मूल्यांकनकर्ता
+    assessor_add_subject_modal_assessment: मूल्यांकन
+    assessor_add_subject_modal_mark_as_lead_assessor: उपरोक्त विषय के लिए प्रमुख मूल्यांकनकर्ता के रूप में चिह्नित करें।
+    assessor_add_subject_modal_subject: विषय
+    assessor_add_subject_modal_subject_placeholder: विषय खोजें..
+    assessor_add_subject_modal_title: विषय जोड़ें
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: एक मूल्यांकन चुनें
+    assessor_assessment_name: मूल्यांकनकर्ता मूल्यांकन
+    assessor_assessments: मूल्यांकनकर्ता मूल्यांकन
+    assessor_assessments_actions_add_subject: विषय जोड़ें
+    assessor_assessments_actions_rescore: पुनः स्कोर
+    assessor_assessments_actions_reset: मूल्यांकन रीसेट
+    assessor_assessments_actions_reset_progress: प्रगति रीसेट करें
+    assessor_assessments_bulk_delete_confirmation: क्या आप सुनिश्चित हैं कि आप चयनित रिकॉर्ड्स को हटाना चाहते हैं?
+    assessor_assessments_bulk_delete_successful: मूल्यांकनकर्ता के मूल्यांकन सफलतापूर्वक हटा दिए गए।
+    assessor_assessments_reset_confirmation: क्या आप "%{subjectEmail}" ईमेल वाले विषय के लिए मूल्यांकन रीसेट करना चाहते हैं?
+    assessor_assessments_reset_progress_confirmation: क्या आप सुनिश्चित हैं कि आप "%{subjectEmail}" ईमेल वाले विषय के लिए प्रगति रीसेट करना चाहते हैं?
+    assessor_assessments_reset_progress_successfully: ईमेल "%{subjectEmail}" के साथ विषय के लिए प्रगति रीसेट सफल रही।
+    assessor_assessments_reset_successfully: ईमेल "%{subjectEmail}" वाले विषय के लिए मूल्यांकन रीसेट सफल रहा।
+    assessor_assessments_subject_email: विषय ईमेल
+    assessor_assessments_subject_name: विषय का नाम
+    assessor_campaigns_statuses_completed: पूर्ण
+    assessor_campaigns_statuses_in_progress: प्रगति में
+    assessor_campaigns_statuses_not_started: शुरू नहीं हुआ
+    assessor_completed_at: पर पूरा किया गया
+    assessor_count: मूल्यांकनकर्ता
+    assessor_create_assessor: मूल्यांकनकर्ता जोड़ें
     assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
+    assessor_email: मूल्यांकनकर्ता का ईमेल
+    assessor_evaluations: मूल्यांकनकर्ता मूल्यांकन
+    assessor_first_name: आकलनकर्ता का पहला नाम
     assessor_form: मूल्यांकनकर्ता प्रपत्र
+    assessor_ids_label: मूल्यांकनकर्ता
+    assessor_last_name: मूल्यांकनकर्ता का अंतिम नाम
+    assessor_modals_create_assessor_title: मूल्यांकनकर्ता जोड़ें
+    assessor_modals_import_body: यहाँ आयात करने के लिए उपयोग किए जाने वाले टेम्पलेट को निकालने हेतु निर्यात कार्यक्षमता देखें।
+    assessor_modals_import_title: आयात मूल्यांकनकर्ता
+    assessor_overview: अवलोकन
+    assessor_placeholder: आकलनकर्ता खोजें...
+    assessor_remove_confirmation: क्या आप सुनिश्चित हैं कि आप इस अभियान से %{email} ईमेल वाले आकलनकर्ता को हटाना चाहते हैं?
+    assessor_statuses_completed: पूर्ण
+    assessor_statuses_not_completed: पूर्ण नहीं
+    assessor_subjects_statuses_completed: पूर्ण
+    assessor_subjects_statuses_in_progress: प्रगति में
+    assessor_subjects_statuses_not_started: शुरू नहीं हुआ
+    assessor_toolbar_export: निर्यात आकलनकर्ता
+    assessor_toolbar_import: आयात मूल्यांकनकर्ता
     assessor_workshops: मूल्यांकन केंद्र
     assessors: मूल्यांकनकर्ता
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
     assistant_toolbar_not_a_valid_operation: अज्ञात ऑपरेशन %{operation}।
     assistant_validation_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
+    attendance: उपस्थिति
+    attendance_status: उपस्थिति की स्थिति
+    audit_log_title: ऑडिट लॉग जानकारी
+    audit_log_type: रिकॉर्ड का प्रकार
     audit_logs: ऑडिट लॉग्स
     audit_reports: लेखा परीक्षा रिपोर्टें
+    auth_type_api_key_header_format_error: केवल अक्षर, अंक, अंडरस्कोर और हाइफ़न की अनुमति है।
+    auth_type_api_key_header_label: एपीआई कुंजी हेडर
+    auth_type_api_key_header_name: एपीआई कुंजी हेडर
+    auth_type_api_key_label: एपीआई कुंजी
+    auth_type_api_key_name: एपीआई कुंजी
+    auth_type_api_key_value: एपीआई कुंजी प्रमाणीकरण
+    auth_type_basic_label: मूलभूत
+    auth_type_basic_value: मूल प्रमाणीकरण
+    auth_type_label: लेख का प्रकार
+    auth_type_name: प्रामाणिकता प्रकार
+    auth_type_no_auth_label: कोई नहीं
+    auth_type_no_auth_value: प्रमाणीकरण नहीं
+    auth_type_oauth_label: ओएथ
+    auth_type_oauth_value: ओएथ
     auto_moderated_factor_info: यह स्कोर स्वचालित रूप से मॉडरेट किया जाता है और इसे बदला नहीं जा सकता।
     auto_placeholder: स्वचालित
+    automatically_send_invites: नए मूल्यांकनकर्ताओं को स्वचालित रूप से निमंत्रण भेजें
     availability: उपलब्धता
-    available_languages: रिपोर्ट भाषाओं में उपलब्ध है
+    available_languages: उपलब्ध भाषाएँ
     average: औसत
+    back: स्कोर रीसेट करें
     back_to_main: मुख्य मेनू
+    background_color: पृष्ठभूमि का रंग
+    background_label: पृष्ठभूमि
+    background_overlay_label: पृष्ठभूमि ओवरले
+    background_size: पृष्ठभूमि आकार
+    background_size_contain: नियंत्रित करना
+    background_size_cover: आवरण
+    basic_info_panel_description: कृपया नीचे अनुसूची की जानकारी दर्ज करें। आप कई तिथियाँ चुनकर कई मूल्यांकन केंद्र भी बना सकते हैं।
+    basic_info_panel_title: मूलभूत जानकारी
     block_editor_add_question: प्रश्न जोड़ें
     block_editor_question_randomization: प्रश्न यादृच्छिकीकरण
     block_options: ब्लॉक विकल्प
     block_settings: ब्लॉक सेटिंग्स
     blocks_new_button: नया ब्लॉक
     blocks_title: ब्लॉक
+    booked_at: 'बुक किया गया:'
+    breadcrumbs_norms_editor: नॉर्म संपादक
     bulk_assets_modal_choose_csv: CSV फ़ाइल चुनें
     bulk_assets_modal_choose_zip: ज़िप फ़ाइल चुनें
     bulk_assets_modal_not_csv_file_error: CSV अपलोड के लिए केवल CSV फ़ाइलें ही अनुमत हैं। कृपया एक मान्य CSV फ़ाइल अपलोड करें।
     bulk_assets_modal_subtitle: 'कृपया <b>एक CSV फ़ाइल</b> (हेडर: user_email, file_name) और <b>एक ZIP फ़ाइल</b> (जिसमें CSV में दिए गए फ़ाइल नामों से मेल खाने वाली PDF फ़ाइलें हों) अपलोड करें। ZIP फ़ाइल का आकार %{max_file_size} MB से कम होना चाहिए।'
     bulk_assets_modal_title: CSV और ZIP फ़ाइलें अपलोड करें
     bulk_upload_ai_artifacts: बल्क अपलोड एआई आर्टिफैक्ट्स
+    campaign: अभियान
+    campaign_admin: अभियान प्रशासक
     campaign_ai_artifact_updated_successfully: अभियान एआई कलाकृतियाँ सफलतापूर्वक अद्यतन की गईं
     campaign_ai_artifacts_instruction_templating_tooltip: आप लिक्विड टेम्पलेट सिंटैक्स और उपलब्ध वेरिएबल्स के साथ प्रॉम्प्ट टेम्पलेटिंग का उपयोग करके उन्नत निर्देश दे सकते हैं। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
-    campaign_ai_artifacts_results_export_details: अभियान एआई कलाकृतियों ने परिणाम उत्पन्न किए
     campaign_assessment_actions_disable_caching: मूल्यांकन कैशिंग अक्षम करें
     campaign_assessment_actions_enable_caching: मूल्यांकन कैशिंग सक्षम करें
     campaign_assessment_column_caching_enabled: मूल्यांकन कैशिंग सक्षम
@@ -199,67 +285,220 @@ hi:
     campaign_assessment_modals_enable_caching_successfully: इस मूल्यांकन के लिए कैशिंग सक्षम कर दी गई है।
     campaign_assessment_modals_enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
     campaign_factors: अभियान कारक
+    campaign_id_placeholder: अभियान आईडी दर्ज करें
     campaign_name: अभियान का नाम
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: बाहरी रिपोर्ट आईडी
-          language_id: भाषा आईडी
-          norm: नॉर्म
-          norm_id: नॉर्म आईडी
-          suitability_id: उपयुक्तता आईडी
-        labels:
-          assessment_ids: मूल्यांकन आईडी
-          available_languages: उपलब्ध भाषाएँ
-          campaign_report_id: अभियान रिपोर्ट आईडी
-          check_details: विवरण देखें
-          default_language: डिफ़ॉल्ट भाषा
-          external_settings: बाहरी सेटिंग्स
-          provider: प्रदाता
-          report_pdf_status: रिपोर्ट पीडीएफ स्थिति
-          user_report_id: उपयोगकर्ता रिपोर्ट आईडी
+    campaign_report_generate_modal_subtitle: प्रत्येक रिपोर्ट के लिए आवश्यक भाषा चुनें
+    campaign_report_id: अभियान रिपोर्ट आईडी
+    campaign_results_export_details: अभियान एआई कलाकृतियों ने परिणाम उत्पन्न किए
     campaign_templates: अभियान टेम्पलेट्स
+    campaign_templates_campaign_templates: अभियान टेम्पलेट्स
+    campaign_templates_column_assessment: मूल्यांकन
+    campaign_templates_column_campaign: अभियान
+    campaign_templates_column_owner: मालिक
+    campaign_templates_column_report: रिपोर्ट
+    campaign_templates_form_assessment: मूल्यांकन
+    campaign_templates_form_assessment_placeholder: एक मूल्यांकन चुनें
+    campaign_templates_form_name_placeholder: नाम दर्ज करें
+    campaign_templates_form_owner: मालिक
+    campaign_templates_form_owner_placeholder: एक मालिक चुनें
+    campaign_templates_form_report: रिपोर्ट
+    campaign_templates_form_report_placeholder: एक रिपोर्ट चुनें
+    campaign_templates_form_title: अभियान टेम्पलेट
+    campaign_templates_remove_confirm_content: क्या आप '%{name}' अभियान टेम्पलेट को हटाना चाहते हैं?
+    campaign_templates_remove_confirm_success: अभियान टेम्पलेट '%{name}' को सफलतापूर्वक हटा दिया गया।
+    campaign_templates_remove_confirm_title: अभियान टेम्पलेट हटाएँ
     campaign_user_job_roles_cannot_be_same: लक्षित नौकरी की भूमिका वर्तमान नौकरी की भूमिका से भिन्न होनी चाहिए।
     campaigns: अभियान
+    campaigns_convert_to_template: टेम्पलेट में बदलें
+    campaigns_extend_time_success_message: अभियान टाइमर %{minutes} मिनट तक बढ़ाया गया।
+    campaigns_external_scores_import_modal_title: बाहरी अभियान स्कोर आयात करें
+    campaigns_filters_active: सक्रिय
+    campaigns_filters_all: सभी
+    campaigns_filters_archived: संचित
+    campaigns_filters_closed: बंद
+    campaigns_filters_inactive: निष्क्रिय
+    campaigns_filters_status: स्थिति
+    campaigns_form_active_notice: चयनित समाप्ति तिथि और समय पर अभियान की स्थिति स्वचालित रूप से बंद में बदल जाएगी।
+    campaigns_form_campaign: अभियान
+    campaigns_form_copy_factors: प्रतिलिपि कारक
+    campaigns_form_inactive_notice: चयनित प्रारंभ तिथि और समय पर अभियान की स्थिति स्वचालित रूप से सक्रिय हो जाएगी।
+    campaigns_form_practice_campaign: अभियान का अभ्यास
+    campaigns_listing_assessments: मूल्यांकन
+    campaigns_listing_reports: रिपोर्टें
+    campaigns_listing_template: नमूना
+    campaigns_menus_add_common_campaign: सामान्य अभियान जोड़ें
+    campaigns_menus_add_multi_rater_campaign: मल्टी रेटर अभियान जोड़ें
+    campaigns_pdf_password: पीडीएफ पासवर्ड
+    campaigns_tab: अभियान
+    campaigns_types_common: सामान्य
+    campaigns_types_threesixty: बहु मूल्यांकनकर्ता
+    campaigns_users_add_user: उपयोगकर्ता जोड़ें
+    campaigns_users_completion_status: पूर्णता की स्थिति
+    campaigns_users_created_by: द्वारा निर्मित
+    campaigns_users_filters_all: सभी
+    campaigns_users_filters_anonymous: गुमनाम
+    campaigns_users_filters_identified: पहचाना गया
+    campaigns_users_is_active: सक्रिय
+    campaigns_users_no_permission_message: आपके पास संशोधित करने की अनुमति नहीं है।
+    campaigns_users_title: उपयोगकर्ता
+    campaigns_users_updated_by: द्वारा अद्यतन
     cancel: रद्द करें
+    cancel_confirmation_message: क्या आप निश्चित हैं कि आप फॉर्म की प्रगति को हटाना चाहते हैं?
+    cancel_confirmation_title: प्रगति फ़ॉर्म को त्यागें
     cancellation_and_rescheduling_disabled: रद्दीकरण और पुनःनिर्धारण अक्षम है।
+    cancellation_lead_time_label: रद्दीकरण के लिए अग्रिम समय
+    cannot_change_type_when_in_use: AI सहायक '%{name}' का प्रकार नहीं बदला जा सकता क्योंकि यह वर्तमान में उपयोग में है।
     captcha: कैप्चा सत्यापन
     case_study: केस स्टडीज़
     casual: आकस्मिक
+    categories_approvals: अनुमोदन
+    categories_invitations: आमंत्रण
+    categories_reminders: स्मरणपत्र
+    categories_report_ready: रिपोर्ट तैयार
+    category: श्रेणी
     cell_save_msg: संपादन के बाद सेल से बाहर निकलते ही मान्य परिवर्तन स्वचालित रूप से सहेजे जाते हैं।
+    change_reason: कारण बदलें
+    change_score: बदला हुआ स्कोर
+    change_score_log: स्कोर लॉग बदलें
     characters: चरित्र
     chat_instructions_success: चैट निर्देश सफलतापूर्वक सहेजे गए।
+    check_details: विवरण देखें
     children_factor_type: बच्चों का फैक्टर प्रकार
     client: ग्राहक
+    client_admin: क्लाइंट एडमिन
     client_admins: क्लाइंट एडमिन
+    client_credentials_label: क्लाइंट क्रेडेंशियल्स
+    client_credentials_value: क्लाइंट प्रमाण-पत्र
+    client_features: ग्राहक सुविधाएँ
+    client_id_label: क्लाइंट आईडी
+    client_id_name: ओएथ_क्लाइंट_आईडी
+    client_id_required: क्लाइंट आईडी आवश्यक है।
+    client_ip: क्लाइंट आईपी
+    client_logo_label: क्लाइंट लोगो
+    client_secret_label: ग्राहक रहस्य
+    client_secret_name: ओएथ_क्लाइंट_सीक्रेट
+    client_secret_required: क्लाइंट सीक्रेट आवश्यक है
     clients: ग्राहक
+    closed: बंद
     code_required: कोड आवश्यक है
+    collapse_filters: फ़िल्टर बंद करें
+    column_code: कोड
+    column_invitation_status: आमंत्रण स्थिति
+    column_participant: प्रतिभागी
+    column_provider: प्रदाता
+    column_scheduling_details: अनुसूचीकरण विवरण
+    column_usage_stats: उपयोग आँकड़े
     common: टीटीई मूल्यांकन
     common_assessment: टीटीई मूल्यांकन
+    common_disabled: अक्षम
+    common_download_sample_file: नमूना फ़ाइल डाउनलोड करें
+    common_enabled: सक्षम
+    common_import_failure_msg: फ़ाइल आयात करते समय त्रुटि।
+    common_minute: एक मिनट
+    common_select_all: सभी चुनें
+    common_type: प्रकार
+    common_unselect_all: सभी को असलेक्ट करें
     communication_center: संचार केंद्र
     communications: संचार
+    communications_form_insert_piped_text: पाइप्ड टेक्स्ट डालें
     completed: पूर्ण
     completed_tooltip: सभी मूल्यांकनकर्ताओं ने मूल्यांकन जमा कर दिया है।
+    components_input_duration_placeholder: 1d 2h 3m के रूप में दर्ज करें
     concise: संक्षिप्त
+    confidence_interval: विश्वास अंतराल
+    confidence_interval_update_success: विश्वास अंतराल सफलतापूर्वक अद्यतन किया गया
     configure_model_answer_title: मॉडल उत्तर और कीवर्ड्स कॉन्फ़िगर करें
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
     confirmation_required: पुष्टि आवश्यक है
     confirmation_required_details: क्या आप सुनिश्चित हैं कि आप "%{resource}" "%{resource_name}" को हटाना चाहते हैं?
+    consolidated: समेकित
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: नकल किया गया
     copied_url_success: यूआरएल क्लिपबोर्ड पर सफलतापूर्वक कॉपी हो गया।
     copy_ai_artifacts: एआई कलाकृतियों की प्रतिलिपि बनाएँ
+    copy_hint: उपरोक्त सीटें, केंद्र प्रबंधक, मूल्यांकनकर्ता और बैठकें एवं संसाधन कॉन्फ़िगरेशन को निम्नलिखित मूल्यांकन केंद्रों में कॉपी करता है। कॉपी करने के बाद, आगे बढ़ने से पहले आप प्रत्येक मूल्यांकन केंद्र में और बदलाव कर सकते हैं।
     copy_image_url: छवि का URL कॉपी करें
+    copy_text: पाठ
+    copy_to_all: अन्य मूल्यांकन केंद्रों को प्रतिलिपि भेजें
     copy_url: यूआरएल कॉपी करें
     country: देश
+    course: पाठ्यक्रम
+    create_ai_assistants: एआई सहायक बनाएँ
     create_client: ग्राहक बनाएँ
     create_indicator: सूचक बनाएँ
+    create_level_description_must_exist: स्तर का विवरण खाली नहीं हो सकता।
+    create_level_name_must_exist: स्तर का नाम खाली नहीं हो सकता
+    create_must_be_unique: अद्वितीय होना चाहिए
+    created_successfully: एआई असिस्टेंट सफलतापूर्वक बनाया गया।
+    current: वर्तमान
     current_job_role: वर्तमान नौकरी की भूमिका
+    custom_formula: अनुकूलित सूत्र
+    custom_message_description: यह संदेश मूल्यांकन में भाग लेने वाले किसी भी व्यक्ति को भेजा जा सकता है।
+    custom_message_name: अनुकूलित संदेश
     custom_upload: कस्टम अपलोड
     dashboard: डैशबोर्ड
+    dashboard_capacity_name: क्षमता का नाम
+    dashboard_choose_file_format: फ़ाइल प्रारूप चुनें
+    dashboard_dashboard_types_oracle_analytics: ओरेकल एनालिटिक्स
+    dashboard_dashboard_types_powerbi: पावरबाई
+    dashboard_dashboards: डैशबोर्ड
+    dashboard_export_dashboard_to_file: फ़ाइल में डैशबोर्ड निर्यात करें
+    dashboard_export_job_failure: निर्यात शुरू करने में असफल
+    dashboard_export_job_success: निर्यात कार्य शुरू हो गया है। पूरा होने पर आपको सूचित कर दिया जाएगा।
+    dashboard_form_image_upload_failed: छवि अपलोड विफल हो गया।
+    dashboard_form_none: कोई नहीं
+    dashboard_form_refresh_success: डेटासेट का रिफ्रेश सफलतापूर्वक निर्धारित हो गया।
+    dashboard_get_started: शुरू करें
+    dashboard_initialize_msg: इस अभियान के लिए एक डैशबोर्ड प्रारंभ करें
+    dashboard_loading_failed: डैशबोर्ड लोड करने में विफलता।
+    dashboard_only_export_current_tab: केवल वर्तमान टैब निर्यात करें
+    dashboard_pdf: पीडीएफ
+    dashboard_pptx: पीपीटीएक्स
+    dashboard_preview_embed_token_error_description: कृपया जांचें कि सेटिंग्स में डेटासेट और रिपोर्ट आईडी सही हैं।
+    dashboard_preview_embed_token_error_title: एम्बेड टोकन उत्पन्न करने में असमर्थ।
+    dashboard_settings_capacity_id: क्षमता आईडी
+    dashboard_settings_details: विवरण
+    dashboard_settings_refresh: ताज़ा करें
+    dashboard_settings_workspace_id: कार्यक्षेत्र आईडी
+    dashboard_tabs_accesssheet: एक्सेसशीट
+    dashboard_tabs_accesssheet_setting: एक्सेसशीट सेटिंग्स
+    dashboard_tabs_settings: सेटिंग्स
     dashboards: डैशबोर्ड
+    dashed_button: डैश किया हुआ
+    data_exports_modal_title: दिनांक सीमा चुनें
+    data_range_error: कृपया दिनांक सीमा चुनें
     data_reports: डेटा रिपोर्टें
+    data_reports_columns_created_at: पर बनाया गया
+    data_reports_columns_created_by: द्वारा निर्मित
+    data_reports_columns_last_updated_by: द्वारा अंतिम बार अपडेट किया गया
+    data_reports_columns_password: पासवर्ड
+    data_reports_columns_udpated_at: 'अंतिम अपडेट:'
+    data_reports_configuration: संरचना
+    data_reports_form_name: डेटा रिपोर्ट
+    data_reports_messages_runed: डेटा रिपोर्ट को सफलतापूर्वक चलाने के लिए अनुसूचित किया गया।
+    dataset_id: डेटासेट आईडी
     datasheet: डेटाशीट
+    date_and_time: दिनांक और समय
+    date_presets_last_30_days: पिछले 30 दिन
+    date_presets_last_7_days: पिछले 7 दिन
+    date_presets_last_month: पिछला महीना
+    date_presets_last_week: पिछला सप्ताह
+    date_presets_today: आज
+    date_presets_yesterday: कल
+    date_range: दिनांक सीमा
+    dates_completed: पर पूरा किया गया
+    dates_end: अंतिम तिथि
+    dates_label: तिथियाँ
+    dates_start: शुरुआत की तारीख
+    dates_started: शुरू किया
+    days_repeated: दिन, दोहराया गया
     declined: अस्वीकृत
+    default: डिफ़ॉल्ट
+    default_assessment_language: मूल्यांकन की पूर्वनिर्धारित भाषा
+    default_button: डिफ़ॉल्ट
+    default_language: डिफ़ॉल्ट भाषा
+    default_report_language: डिफ़ॉल्ट भाषा रिपोर्ट करें
     define_max_score_text: "%{maxScore} का स्कोर परिभाषित करें (अधिकतम स्कोर)"
     define_min_score_text: "%{minScore} का स्कोर परिभाषित करें (न्यूनतम स्कोर)"
     define_optional_score_range_text: स्कोर परिभाषित करें %{minScore} से %{maxScore} तक (वैकल्पिक)
@@ -267,10 +506,40 @@ hi:
     definition: परिभाषा
     delete_ok_text: हाँ, हटाएँ
     denied: अस्वीकृत
+    dependencies: निर्भरताएँ
     description: विवरण
+    description_name: विवरण
+    description_save: विवरण सहेजें
+    description_save_success: विवरण सफलतापूर्वक सहेजा गया
     descriptive_text: वर्णनात्मक पाठ
     development_actions: विकास कार्यवाही
+    development_actions_duration_max_length: 1 वर्ष से अधिक नहीं हो सकता
+    development_actions_duration_min_length: 1 मिनट से कम नहीं हो सकता
+    development_actions_export_development_action_translations: विकास कार्रवाई अनुवाद
+    development_actions_export_development_actions: विकास कार्यवाही
+    development_actions_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
+    development_actions_export_success_msg: प्रगति में विकास क्रियाकलापों का निर्यात हो रहा है। कृपया सूचनाओं में स्थिति देखें।
+    development_actions_form_available_languages: उपलब्ध भाषाएँ
+    development_actions_form_client_placeholder: एक क्लाइंट चुनें
+    development_actions_form_course_image: कोर्स छवि
+    development_actions_form_course_link: कोर्स लिंक
+    development_actions_form_development_action_type: विकास कार्रवाई का प्रकार
+    development_actions_form_duration: अवधि
+    development_actions_form_learning_style: सीखने की शैली
+    development_actions_form_project_placeholder: एक परियोजना चुनें
+    development_actions_form_skills: कौशल
+    development_actions_form_skills_placeholder: कौशल चुनें
     development_actions_form_tags: टैग
+    development_actions_form_title: विकास कार्य
+    development_actions_global: क्या वैश्विक विकास कार्रवाई है?
+    development_actions_heading: विकास कार्यवाही
+    development_actions_import_action_development_actions_title: आयात विकास क्रियाएँ
+    development_actions_import_action_development_actions_translations_title: विकास कार्रवाइयों के अनुवाद आयात करें
+    development_actions_import_development_actions: विकास कार्यवाही
+    development_actions_import_development_actions_translations: विकास कार्यों के अनुवाद
+    development_actions_import_download_example_csv: उदाहरण सीएसवी डाउनलोड करें
+    development_actions_import_failure_msg: फ़ाइल आयात करते समय त्रुटि।
+    development_actions_import_info_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
     digest_delivery_mode:
       form_label: डाइजेस्ट वितरण मोड
       immediate: तत्काल - जब भी थोक प्रस्तुति हो, भेजें
@@ -291,16 +560,67 @@ hi:
       wednesday: बुधवार
     dimension_translations_export_scheduled: "%{name} आयाम के लिए निर्धारित अनुवाद निर्यात करें।"
     dimensions: आयाम
+    dimensions_destroy_successfully: आयाम %{name} सफलतापूर्वक हटा दिया गया।
+    dimensions_export_json_successfully: आयाम %{name} के लिए JSON निर्यात निर्धारित है।
+    dimensions_form_enable_innovation_styles: नवाचार शैलियों को सक्षम करें
+    dimensions_form_enable_occupations: व्यवसाय सक्षम करें
+    dimensions_form_title: आयाम
+    dimensions_import_factors_sample_file: नमूना फ़ाइल
+    dimensions_import_factors_title: आयातक कारक
+    dimensions_import_modal_after: के बाद
+    dimensions_import_modal_before: पहले
+    dimensions_import_modal_change_log_input: परिवर्तन सूची
+    dimensions_import_modal_error: त्रुटि
+    dimensions_import_modal_error_occurred: एक त्रुटि हुई
+    dimensions_import_modal_errors_file_error: कृपया जारी रखने से पहले एक JSON फ़ाइल चुनें।
+    dimensions_import_modal_errors_processing_error: फ़ाइल संसाधित करने में त्रुटि
+    dimensions_import_modal_field: क्षेत्र
+    dimensions_import_modal_import_dimension: आयाम आयात करें
+    dimensions_import_modal_import_scheduled: आयात निर्धारित
+    dimensions_import_modal_operation: संचालन
+    dimensions_import_modal_owner_input_validation: कृपया एक मालिक चुनें
+    dimensions_import_modal_owner_select: एक मालिक चुनें
+    dimensions_import_modal_select_json: JSON फ़ाइल चुनें
+    dimensions_index_title: आयाम
+    dimensions_resource_confirmations_delete_message: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए आयाम का नाम दर्ज करें।
+    dimensions_resource_tooltips_export_json: अन्य प्लेटफ़ॉर्म में आयात करने के लिए JSON निर्यात करें
+    dimensions_translations_export: सभी निर्यात करें
+    dimensions_translations_header: कारक अनुवाद
+    disable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग अक्षम करना चाहते हैं?
+    disable_caching_successfully: इस मूल्यांकन के लिए कैशिंग अक्षम कर दी गई है।
+    disable_caching_title: मूल्यांकन कैशिंग अक्षम करें?
+    disable_cancellation_and_rescheduling: रद्दीकरण और पुनःनिर्धारण अक्षम करें
+    disable_dp: आगे डेटा प्रसंस्करण की अनुमति न दें
     disable_proctoring: प्रॉक्टरिंग अक्षम करें
+    disable_report_download: रिपोर्ट डाउनलोड अक्षम करें
     disallow_lead_assessor_moderation: लीड आकलनकर्ता की मध्यस्थता निषेध करें
     disallow_lead_assessor_moderation_info: स्कोर सभी आकलनकर्ता फॉर्म जमा होने पर स्वचालित रूप से गणना किया जाएगा और मुख्य आकलनकर्ता इसे मॉडरेशन स्क्रीन से नहीं बदल सकता।
+    discard_all_questions: सभी प्रश्नों को रीसेट करें
+    discard_all_questions_description: यह सभी प्रश्नों के सभी स्कोर रीसेट कर देगा और किसी भी ओवरराइड को हटा देगा। यह कार्रवाई वापस नहीं ली जा सकती। क्या आप सुनिश्चित हैं?
+    discard_all_questions_title: सभी प्रश्नों के स्कोर रीसेट करें?
+    discard_question: प्रश्न स्कोर रीसेट करें
+    discard_question_confirm_description: यह इस प्रश्न के सभी स्कोर रीसेट कर देगा और किसी भी ओवरराइड को हटा देगा। क्या आप सुनिश्चित हैं?
+    discard_question_confirm_title: प्रश्न स्कोर रीसेट करें?
+    discarded_changes: त्यागी गई परिवर्तन
+    document_titles_project_assessors: मूल्यांकनकर्ता | %{project}
+    document_titles_project_participants: प्रतिभागी | %{project}
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
     download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
+    download_example_csv: उदाहरण सीएसवी डाउनलोड करें
+    dp_consent: डेटा प्रसंस्करण सहमति सक्षम करें
+    dp_consent_custom: डेटा प्रसंस्करण की सहमति अनुकूलित करें
+    dp_consent_version: नीति संस्करण
     duration: अवधि
+    duration_label: अवधि
+    duration_max_error: 16 घंटे से अधिक नहीं हो सकता
+    duration_min_error: 15 मिनट से कम नहीं हो सकता
     duration_must_be_positive: अवधि सकारात्मक होनी चाहिए।
+    duration_placeholder: उदा. 4 घंटे 30 मिनट
+    edit_ai_assistants: एआई सहायक संपादित करें
     edit_campaign_admin: अभियान प्रशासक संपादित करें
     edit_client_admin: क्लाइंट एडमिन संपादित करें
+    edit_email: ईमेल संपादित करें
     edit_folder: फ़ोल्डर संपादित करें
     edit_indicator: संकेतक संपादित करें
     edit_job_roles: नौकरी भूमिकाएँ संपादित करें
@@ -309,14 +629,23 @@ hi:
     edit_permission_denied: आपके पास एडमिन '%{name}' को संपादित करने की अनुमति नहीं है।
     edit_project_admin: परियोजना प्रशासक संपादित करें
     edit_threesixty_campaign_admin: अभियान प्रशासक संपादित करें
+    email_manager_when_report_is_ready_for_approval: जब रिपोर्ट अनुमोदन के लिए तैयार हो, तो प्रबंधक को ईमेल करें।
+    email_messages: ईमेल संदेश
+    email_subject_when_report_becomes_available: रिपोर्ट उपलब्ध होने पर ईमेल का विषय
+    email_subjects_manager_when_available: जब रिपोर्ट उपलब्ध हो जाए तो ईमेल विषय के प्रबंधक को भेजें।
     empty: खाली
     empty_csv_file: CSV फ़ाइल में कोई डेटा नहीं है।
+    enable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग सक्षम करना चाहते हैं?
+    enable_caching_successfully: इस मूल्यांकन के लिए कैशिंग सक्षम कर दी गई है।
+    enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
     enable_enhance_with_ai_client_level: कृपया क्लाइंट स्तर पर एआई के साथ एनहेंस सुविधा सक्षम करें।
     enable_maintenance: रखरखाव सक्षम करें
     enable_mobile_proctoring: मोबाइल प्रॉक्टरिंग सक्षम करें
     enable_system_check: सिस्टम जाँच सक्षम करें
     enable_transcription: प्रतिलेखन सक्षम करें
     enable_transcription_msg: वीडियो/ऑडियो प्रतिक्रिया प्रश्नों पर एआई स्कोरिंग का उपयोग करने के लिए ट्रांसक्रिप्शन सक्षम करें।
+    enable_video_call_recording: वीडियो कॉल रिकॉर्डिंग सक्षम करें
+    enabled: सक्षम
     end: अंत
     end_time: अंत समय
     end_time_must_be_after_start_time: अंतिम समय प्रारंभ समय के बाद होना चाहिए।
@@ -325,19 +654,74 @@ hi:
     enter_description: विवरण दर्ज करें
     enter_name: नाम दर्ज करें
     enter_question_id: प्रश्न आईडी दर्ज करें
+    enter_schema_key: स्कीमा कुंजी दर्ज करें
     error: त्रुटि
+    error_color: त्रुटि का रंग
+    errors_csv_file_required: फ़ाइल CSV फ़ाइल होनी चाहिए।
+    errors_error_msg: कुछ गलत हो गया। कृपया पेज रिफ्रेश करें और यदि समस्या अभी भी बनी रहती है तो अपने व्यवस्थापक से संपर्क करें।
+    errors_min_retention: 1 दिन से कम नहीं हो सकता
+    errors_policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
+    errors_required: आवश्यक
     estimated_tokens: टोकन (अनुमानित)
+    evaluate_others_description: यह संदेश तब प्रदर्शित होगा जब प्रतिभागी पोर्टल के भीतर दूसरों का मूल्यांकन कर रहे होंगे।
+    evaluate_others_name: दूसरों का मूल्यांकन करें
+    evaluate_self_description: यह संदेश प्रतिभागियों को तब प्रदर्शित किया जाएगा जब वे अपना आत्म-मूल्यांकन शुरू करेंगे।
+    evaluate_self_name: मूल्यांकनकर्ता स्वयं
+    evaluation_help_description: उपयोगकर्ता के डैशबोर्ड पर मूल्यांकन कार्ड पर प्रदर्शित सहायता पाठ
+    evaluation_help_name: मूल्यांकन सहायता
     evaluation_status: मूल्यांकन स्थिति
     evaluation_status_not_done: एक या अधिक चयनित विषयों के लिए मूल्यांकन की स्थिति 'Done' नहीं है। कृपया सुनिश्चित करें कि सभी चयनित उपयोगकर्ताओं ने मूल्यांकन पूरे कर लिए हैं या उन्हें 'Done' के रूप में चिह्नित कर दें।
+    evaluations_completed: मूल्यांकन पूरे हुए
+    evaluations_received: प्राप्त मूल्यांकन
+    evaluator_invite_description: यह संदेश सभी मूल्यांकनकर्ताओं को भेजा जाएगा।
+    evaluator_invite_name: मूल्यांकनकर्ता निमंत्रण
+    evaluator_reminder_description: यह संदेश मूल्यांकनकर्ताओं को लंबित मूल्यांकन पूरे करने की याद दिलाने के लिए भेजा जाएगा।
+    evaluator_reminder_name: मूल्यांकनकर्ता अनुस्मारक
+    evaluator_reminder_rule_description: जब कोई निमंत्रण निर्धारित किया जाता है, तब स्वचालित रूप से अनुसूचीकरण के लिए नियम निर्दिष्ट करें।
+    evaluator_reminder_rule_name: मूल्यांकनकर्ता अनुस्मारक नियम
+    evaluator_welcome_description: यह संदेश "स्वागत संदेश" को ओवरराइड कर देगा और केवल मूल्यांकनकर्ता के रूप में भाग ले रहे प्रतिभागियों को प्रदर्शित किया जाएगा।
+    evaluator_welcome_name: मूल्यांकनकर्ता स्वागत है
+    evaluators_title: मूल्यांकनकर्ता
+    evidence_from_transcript: प्रतिलेख से साक्ष्य
+    expand_filters: फ़िल्टर विस्तार करें
     export_admin_roles_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+    export_admins_with_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
+    export_ai_artifacts: एआई कलाकृतियों का निर्यात करें
     export_campaigns_queued: निर्यात नौकरियाँ कतार में हैं। डाउनलोड लिंक के लिए अपनी सूचनाओं की जाँच करें।
     export_compact_completion_status: संक्षिप्त
     export_completion_status: निर्यात पूर्णता स्थिति
     export_completion_statuses_scheduled: पूर्णता स्थितिओं का एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया
     export_detailed_completion_status: विस्तृत
+    export_failure_msg: प्रवीणता स्तरों को निर्यात करते समय त्रुटि
+    export_success: प्रशासन निर्यात कार्य सफलतापूर्वक निर्धारित हो गया है। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
+    export_success_msg: प्रगति में विकास क्रियाओं का निर्यात
+    export_with_inactive_users: निष्क्रिय उपयोगकर्ताओं के साथ निर्यात करें
+    external_report_id: बाहरी रिपोर्ट आईडी
+    external_score: बाहरी स्कोर
+    external_settings: बाहरी सेटिंग्स
+    factor_benchmark_scores_updated: फैक्टर बेंचमार्क स्कोर सफलतापूर्वक अपडेट किए गए
     factor_feedback: कारक प्रतिक्रिया
     factor_selection: कारक चयन
     factors: तत्व
+    factors_form_components_ExternalList_table_jsonpath: जेएसओएन पाथ
+    factors_form_components_ExternalList_table_types_norm_score: मानकीकृत स्कोर
+    factors_form_components_ExternalList_table_types_percentage: प्रतिशत
+    factors_form_components_ExternalList_table_types_percentile: प्रतिशतक स्कोर
+    factors_form_components_ExternalList_table_types_score: स्कोर
+    factors_form_components_ExternalList_table_types_zscore: Z स्कोर
+    factors_form_components_ExternalList_title: स्कोर के लिए JSON पथ
+    factors_form_predicate: क्रियापद
+    factors_form_scoring_strategies_custom_formula: अनुकूलित सूत्र
+    factors_form_scoring_strategy: स्कोरिंग रणनीति
+    factors_form_search_factors: खोज कारक
+    factors_form_use_sub_factor_norm_score: कारक मानक स्कोर का उपयोग करें
+    factors_form_value: मूल्य
+    factors_index_precision: सूक्ष्मता
+    factors_index_scoring_strategy: स्कोरिंग रणनीति
+    factors_index_sub_factors: उप कारक
+    factors_index_title: तत्व
+    factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    failure_reason: विफलता का कारण
     feature_ai_assistants_description: बेहतर उपयोगकर्ता अनुभव के लिए एआई-संचालित सहायकों को सक्षम करें।
     feature_ai_assisted_idp_description: व्यक्तिगत विकास योजना सिफारिशों में सहायता के लिए एआई का उपयोग करें
     feature_ai_content_analysis_description: मूल्यांकन के लिए एआई-संचालित सामग्री विश्लेषण सक्षम करें
@@ -351,21 +735,87 @@ hi:
     feature_global_skills_description: मूल्यांकन के लिए वैश्विक कौशल लाइब्रेरी तक पहुँचें
     feature_idp_description: प्रतिभागियों के लिए व्यक्तिगत विकास योजना सक्षम करें
     feature_sms_notification_description: अभियान के निमंत्रणों और अनुस्मारकों के लिए एसएमएस सूचनाएं सक्षम करें
+    fields_level: स्तर
+    fields_level_description: स्तर का विवरण
+    fields_level_name: स्तर का नाम
+    fields_proficiency_translations: प्रवीणता अनुवाद
+    fields_proficiency_type: प्रवीणता प्रकार
+    fields_skill: कौशल
+    fields_skill_name: कौशल का नाम
+    fields_skill_type: कौशल का प्रकार
     file_size_must_be_less_than_mb: फ़ाइल {{name}} का आकार {{max_size_mb}} एमबी की अधिकतम सीमा से अधिक है।
     file_upload_failed: "{{name}} अपलोड करने में असफल रहा"
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
     final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
     final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
+    finalized_at: पर अंतिम रूप दिया गया
+    first_name_required: पहला नाम अनिवार्य है।
     fix_grammar: व्याकरण ठीक करें
+    fixed_time: निश्चित समय
+    form_active: सक्रिय
+    form_add_assessment: मूल्यांकन जोड़ें
+    form_ai_assistant: एआई सहायक
+    form_assessment_required: मूल्यांकन आवश्यक है
+    form_assessments: मूल्यांकन
+    form_campaign_factors: अभियान कारक
+    form_code: कोड
+    form_configuration: संरचना
+    form_datasheet: डेटाशीट
+    form_datasheet_columns: डेटाशीट स्तंभ
+    form_end_date: अंतिम तिथि
+    form_include_all_datasheet_columns: सभी डेटाशीट स्तंभ शामिल करें
+    form_name: नाम
+    form_no_assessment_selected: अभी तक कोई आकलन नहीं जोड़ा गया है। शुरू करने के लिए "Add" पर क्लिक करें।
+    form_questions_required: कम से कम एक प्रश्न चुनना अनिवार्य है।
+    form_select_ai_assistant: AI सहायक चुनें
+    form_select_assessment: मूल्यांकन चुनें
+    form_select_campaign_factors: चुनाव अभियान के कारक चुनें
+    form_select_datasheet_columns: डेटाशीट स्तंभ चुनें
+    form_select_questions: चुनिंदा प्रश्न
+    form_start_date: शुरुआत की तारीख
+    form_title: एआई कलाकृति
+    form_total_count: कुल संख्या
     formal: औपचारिक
     from: से
+    genders_female: स्त्री
+    genders_male: पुरुष
+    genders_not_set: सेट नहीं किया गया
+    generate: उत्पन्न करें
+    generate_result_confirm: उपयोगकर्ता '%{email}' के लिए आर्टिफैक्ट परिणाम उत्पन्न करने से इस AI आर्टिफैक्ट पर निर्भर मौजूदा रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    generate_result_info_message: परिणाम तैयार हो रहे हैं, कृपया अपडेटेड परिणाम देखने के लिए पेज रिफ्रेश करें।
+    generate_results: परिणाम उत्पन्न करें
     generate_transcription: प्रतिलेखन उत्पन्न करें
+    generated_at_time: "%{time} पर उत्पन्न"
+    generated_value: उत्पन्न मूल्य
+    global_skills: वैश्विक कौशल
+    global_skills_disabled_by_client: ग्लोबल स्किल्स क्लाइंट द्वारा अक्षम किया गया है।
+    grant_type_label: अनुदान का प्रकार
+    grant_type_name: ओएथ_ग्रांट_टाइप
     graphic: चित्रात्मक
     graphic_slider: ग्राफिक स्लाइडर
+    header_logout_content: यदि आप काम जारी रखना चाहते हैं तो रद्द दबाएँ। वर्तमान उपयोगकर्ता से लॉगआउट करने के लिए ठीक दबाएँ।
+    header_logout_title: क्या आप वास्तव में लॉगआउट करना चाहते हैं?
+    hide_all: सब छुपाएँ
     hide_middle_scores: मध्य स्कोर छिपाएँ
     high: उच्च
     hogan: होगन
     hogan_assessment: होगन मूल्यांकन
+    hogan_provider: प्रदाता
+    hogan_providers_mercer: मर्सर
+    hogan_providers_phoenix: फीनिक्स
+    hover_options_danger_item: खतरनाक वस्तु
+    hover_options_first_menu_item: पहला मेनू आइटम
+    hover_text: मुझ पर होवर करो
+    idp: आईडीपी
+    idp_actions_remove_confirm: टेम्प्लेट हटाने के लिए नीचे टेक्स्ट बॉक्स में वर्तमान टेम्प्लेट का नाम दर्ज करें।
+    idp_actions_success: "%{idpName} सफलतापूर्वक हटा दिया गया।"
+    idp_add_idp_template: IDP टेम्पलेट जोड़ें
+    idp_ai_assistant: एआई सहायक
+    idp_ai_assisted_idp_enabled: एआई-सहायित आईडीपी सक्षम
+    idp_ai_enabled: एआई सक्षम
+    idp_ai_settings: एआई सेटिंग्स
+    idp_all: सभी
+    idp_appearance: दृश्यमानता
     idp_appearance_body: शरीर
     idp_appearance_color: रंग
     idp_appearance_cover: आवरण
@@ -376,6 +826,7 @@ hi:
     idp_appearance_guideline_position_second: दूसरा पृष्ठ (कवर के बाद)
     idp_appearance_guideline_position_second_last: अंतिम से दूसरा पृष्ठ (अंतिम से पहले)
     idp_appearance_guidelines: दिशानिर्देश
+    idp_appearance_hint: दिखावट बदलने के लिए, कृपया इन सेटिंग्स को सक्षम करने हेतु पहले IDP टेम्पलेट को सहेजें।
     idp_appearance_idp_skills: आईडीपी कौशल
     idp_appearance_last: अंतिम
     idp_appearance_per_page_font_settings: प्रति-पृष्ठ फ़ॉन्ट सेटिंग्स
@@ -388,20 +839,136 @@ hi:
     idp_appearance_show_guidelines: दिशानिर्देश पृष्ठ दिखाएँ
     idp_appearance_size: आकार
     idp_appearance_subtitle: उपशीर्षक
+    idp_appearance_success: दिखाई सेटिंग्स सफलतापूर्वक सहेजी गईं
     idp_appearance_title: शीर्षक
+    idp_background_image: पृष्ठभूमि छवि
+    idp_behavioral_skills: व्यवहारिक कौशल
+    idp_client_skills: ग्राहक कौशल
+    idp_delete_skill: क्या आप निश्चित हैं कि आप इस कौशल को हटाना चाहते हैं? इसे हटाने से संबंधित सभी विकास क्रियाएँ भी हटा दी जाएँगी।
+    idp_delete_skill_msg: क्या आप निश्चित हैं कि आप इस कौशल को हटाना चाहते हैं? इसे हटाने से संबंधित सभी विकास क्रियाएँ भी हटा दी जाएँगी।
+    idp_details_updated: आईडीपी विवरण सफलतापूर्वक अपडेट किया गया
+    idp_development_actions_add_from_library: पुस्तकालय से जोड़ें
+    idp_development_actions_completion: पूर्णता
+    idp_development_actions_create_development_actions_with_ai: AI के लिए विकास क्रियाएँ बनाएँ
+    idp_development_actions_create_from_ai: एआई से बनाएँ
+    idp_development_actions_create_my_own: अपना खुद का बनाएँ
+    idp_development_actions_custom: अनुकूलित
+    idp_development_actions_date_range: शुरुआत की तारीख - समाप्ति की तारीख
+    idp_development_actions_edit_plan_to_add_development_actions: विकास कार्य जोड़ने के लिए योजना संपादित करें।
+    idp_development_actions_errors_invalid_learning_style: "'%{learning_style}' is not a valid learning style. Valid options are: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: सीखने की शैली खाली नहीं हो सकती
+    idp_development_actions_generate_by_ai: एआई द्वारा उत्पन्न
+    idp_development_actions_generate_more: और उत्पन्न करें
+    idp_development_actions_heading: कौशल/विकास कार्यवाही
+    idp_development_actions_manage_skills: कौशल प्रबंधित करें
+    idp_development_actions_no_development_actions: आपके पास कोई विकास कार्य नहीं हैं।
+    idp_disabled_by_client: IDP क्लाइंट द्वारा अक्षम किया गया है।
+    idp_document_ai_assistant: दस्तावेज़ विश्लेषण एआई सहायक
+    idp_edit_template: IDP टेम्पलेट संपादित करें
+    idp_enter_tag_or_skills_error: कम से कम एक टैग या कौशल चुनें।
+    idp_enter_template_description_error: टेम्पलेट विवरण आवश्यक है।
+    idp_enter_template_name_error: टेम्पलेट का नाम अनिवार्य है।
+    idp_errors_cannot_update_progress_plan_completed: प्रगति अपडेट नहीं की जा सकती क्योंकि IDP योजना पूरी हो चुकी है।
+    idp_errors_skills_required_on_publishing: कृपया टेम्पलेट प्रकाशित करने से पहले कौशल चुनें।
+    idp_errors_update: अपडेट की अनुमति नहीं है क्योंकि IDP टेम्पलेट पहले से ही एक उपयोगकर्ता IDP योजना से जुड़ा हुआ है।
+    idp_fields_approval_date: अनुमोदन तिथि
+    idp_fields_assigned_data: नियुक्त डेटा
+    idp_fields_assigned_date: नियुक्त तिथि
+    idp_fields_completion_date: पूर्णता तिथि
+    idp_fields_current_job_role: वर्तमान नौकरी की भूमिका
+    idp_fields_division: विभाग
+    idp_fields_label: क्षेत्र
+    idp_fields_name: नाम
+    idp_fields_publish_date: प्रकाशन तिथि
+    idp_fields_review_date: समीक्षा तिथि
+    idp_fields_target_job_role: लक्षित नौकरी की भूमिका
+    idp_global_skills: वैश्विक कौशल
+    idp_idp: आईडीपी
+    idp_idp_template: IDP टेम्पलेट जोड़ें
+    idp_interview_questions: साक्षात्कार प्रश्न
+    idp_interview_questions_updated: साक्षात्कार प्रश्न सफलतापूर्वक अपडेट किए गए।
+    idp_intro_message: परिचय संदेश
+    idp_intro_message_hint: प्रारंभिक संदेश को संशोधित करने के लिए, कृपया इन सेटिंग्स को सक्षम करने हेतु पहले IDP टेम्पलेट को सहेजें।
+    idp_intro_message_success: परिचय संदेश सफलतापूर्वक सहेजा गया
+    idp_locales: स्थानीय क्षेत्र
+    idp_logo_image: लोगो छवि
+    idp_logo_type_both: मर्सर और क्लाइंट लोगो
+    idp_logo_type_client_only: केवल क्लाइंट का लोगो
+    idp_logo_type_label: लोगो का प्रकार
+    idp_logo_type_mercer_only: केवल मर्सर लोगो
+    idp_logo_type_none: लोगो के बिना
+    idp_no_interview_questions_selected: चयनित कोई साक्षात्कार प्रश्न नहीं
+    idp_no_reflection_questions_selected: कोई प्रतिबिंब प्रश्न चयनित नहीं
+    idp_none: कोई नहीं
+    idp_one_click_idp_enabled: एक क्लिक आईडीपी सक्षम
     idp_plan_reset_success: योजना सफलतापूर्वक रीसेट हो गई है।
+    idp_reference_locale: संदर्भ स्थल
+    idp_reflection_questions: चिंतन प्रश्न
+    idp_reflection_questions_hint: प्रतिबिंब प्रश्नों को संशोधित करने के लिए, कृपया इन सेटिंग्स को सक्षम करने हेतु पहले IDP टेम्पलेट को सहेजें।
+    idp_reflection_questions_updated: प्रतिबिंब प्रश्न सफलतापूर्वक अपडेट किए गए।
+    idp_remove_skill: कौशल हटाएँ
+    idp_revert_skill_to_public_errors_skill_already_public: कौशल पहले से ही सार्वजनिक है।
+    idp_revert_skill_to_public_errors_skill_not_found: कौशल नहीं मिला
+    idp_revert_skill_to_public_success_base_message: कौशल '%{skill_name}' अब आपके प्रबंधक को दिखाई दे रहा है।
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} and your IDP plan has been submitted for approval"
+    idp_select_by_tags: टैग द्वारा चुनें
+    idp_select_interview_question: खोजने के लिए टाइप करना शुरू करें और प्रश्न चुनें।
+    idp_select_reflection_question: खोजने के लिए टाइप करना शुरू करें और प्रश्न चुनें।
+    idp_select_skill_gap_report: कौशल अंतर रिपोर्ट चुनें
+    idp_select_specific_skills: विशिष्ट कौशल चुनें
+    idp_selected: चयनित
+    idp_self_rating: स्व-मूल्यांकन सक्षम करें
+    idp_setting_manager_approves_idp: प्रबंधक आईडीपी को मंजूरी देता है
+    idp_setting_manager_can_edit_idp: प्रबंधक आईडीपी संपादित कर सकता है।
+    idp_setting_require_all_development_actions_complete: सभी विकास कार्यों को पूरा करना आवश्यक है।
+    idp_show_reflections: प्रतिबिंब दिखाएँ
+    idp_skill_gap_report: कौशल अंतराल रिपोर्ट
+    idp_skill_gap_report_ai_assistant: कौशल अंतराल रिपोर्ट विश्लेषण सहायक
+    idp_skill_source_preference: कौशल स्रोत
+    idp_skill_sources_from_ai: सामान्य एआई ज्ञान से
+    idp_skill_sources_from_template: टेम्पलेट और मैपिंग्स से
+    idp_skills: कौशल
+    idp_skills_privacy_messages_made_private: कौशल '%{skill_name}' को निजी के रूप में चिह्नित किया गया है और यह आपके प्रबंधक से छिपा रहेगा।
+    idp_skills_privacy_messages_made_public: कौशल '%{skill_name}' अब आपके प्रबंधक को दिखाई दे रहा है।
+    idp_skills_privacy_messages_skill_not_found: कौशल नहीं मिला
+    idp_skills_privacy_messages_unauthorized: इस कौशल को संशोधित करने की अनुमति नहीं है
+    idp_skills_updated: IDP कौशल सफलतापूर्वक अपडेट हो गए
+    idp_status_draft: मसौदा
+    idp_status_published: प्रकाशित
+    idp_status_updated: आईडीपी स्थिति सफलतापूर्वक अपडेट हो गई
+    idp_subtitle_text: उपशीर्षक पाठ
+    idp_tab_development_actions: विकास कार्यवाही
+    idp_tab_interview_questions: साक्षात्कार प्रश्न
+    idp_tab_reflection_questions: चिंतन प्रश्न
+    idp_tab_settings: सेटिंग्स
+    idp_tab_templates: टेम्पलेट्स
+    idp_technical_skills: तकनीकी कौशल
+    idp_template_details: टेम्पलेट विवरण
     idp_templates: आईडीपी टेम्पलेट्स
+    idp_title_text: शीर्षक पाठ
+    idp_update_interview_questions: साक्षात्कार के प्रश्नों को अपडेट करें
+    idp_update_reflection_questions: पुनर्विचार प्रश्न अपडेट करें
     iiht: आईआईएचटी
     iiht_assessment: आईआईएचटी मूल्यांकन
+    iiht_password: पासवर्ड
+    iiht_tenancy_name: किरायेदारी का नाम
+    iiht_tenant_id: किरायेदार आईडी
+    iiht_user: उपयोगकर्ता
+    image: छवि
+    import_action_title: अभियान अभियान एआई कलाकृतियाँ आयात करें
+    import_actions_proficiency: आयात दक्षता
+    import_actions_translations: प्रोफ़िशिएंसी अनुवाद आयात करें
     import_ai_artifacts: AI कलाकृतियों को आयात करें
     import_csv_assessment_group_error: "%{index} पंक्ति: %{email} ईमेल वाले उपयोगकर्ता को पहले ही '%{workshopInviteName}' में आमंत्रित किया जा चुका है।"
     import_csv_error: "%{index} पंक्ति: ईमेल %{email} वाला उपयोगकर्ता इस अभियान में नहीं है।"
     import_csv_parsing_error: 'CSV पार्सिंग त्रुटि: %{message}'
     import_description: CSV फ़ाइल से उपयोगकर्ताओं को आयात करें। प्रत्येक पंक्ति में एक ईमेल पता होना चाहिए।
+    import_download_example_csv: उदाहरण सीएसवी डाउनलोड करें
     import_download_sample: उदाहरण CSV डाउनलोड करें
     import_error: आयात विफल हो गया। कृपया फिर से प्रयास करें।
     import_error_saving_data: "%{email} के लिए डेटा सहेजने में त्रुटि: %{message}"
     import_errors_title: आयात त्रुटियाँ
+    import_evaluators: आयात मूल्यांकनकर्ता
     import_external_scoring_action: बाहरी स्कोरिंग आयात करें
     import_external_scoring_body: यहाँ आयात करने के लिए उपयोग किए जाने वाले टेम्पलेट को निकालने हेतु निर्यात कार्यक्षमता देखें।
     import_external_scoring_data_description: निर्दिष्ट मूल्यांकन और अभियान के लिए बाहरी स्कोरिंग डेटा आयात करना
@@ -409,20 +976,171 @@ hi:
     import_external_scoring_success_msg: आयात सफलतापूर्वक अपलोड हो गया।
     import_external_scoring_upload: अपलोड
     import_file_required: कृपया अपलोड करने के लिए एक CSV फ़ाइल चुनें।
+    import_info_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    import_job_queued: प्रोफिशिएंसी स्तर आयात जॉब कतारबद्ध कर दिया गया है।
     import_queued_success: विषयों का आयात कार्य सफलतापूर्वक निर्धारित किया गया। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
     import_sample_file_label: 'नमूना फ़ाइल:'
     import_scenario_id_mismatch: "%{email} के लिए परिदृश्य आईडी असंगति: अपेक्षित %{expected_id}, लेकिन CSV में अलग परिदृश्य आईडी हैं।"
+    import_subjects: विषय आयात करें
+    import_success_msg: आयात सफलतापूर्वक अपलोड हो गया।
     import_successfully_saved: "%{email} के लिए %{goals_count} लक्ष्यों के साथ बाहरी परिणाम सफलतापूर्वक सहेजे गए।"
     import_title: CSV से विषय आयात करें
     import_upload: अपलोड
     import_users: उपयोगकर्ताओं को आयात करें
+    inactive: निष्क्रिय
+    include_locales_label: अनुवाद शामिल करें
+    include_locales_name: लोकलाइज़ेशन शामिल करें
+    index_title: परियोजनाएँ
+    individual_invite_tabs_assessment_center: मूल्यांकन केंद्र
+    individual_invite_tabs_invitation_status: आमंत्रण स्थिति
+    info_color: जानकारी का रंग
+    innovation_styles_form_full_description: पूर्ण विवरण
+    innovation_styles_index_title: नवाचार शैलियाँ
+    innovation_styles_list_position: पद
+    innovation_styles_resource_confirmations_delete_body: "<p>Are you sure you want to delete this innovation style?</p>\n"
+    instruction_messages: निर्देश संदेश
+    instructions: Instructions
+    instructions_actions_saved: निर्देश सफलतापूर्वक सहेजे गए
+    instructions_enable: निर्देश सक्षम करें
+    instructions_save: निर्देश सहेजें
+    integrations_actions_add: एकीकरण
+    integrations_actions_back: एकीकरण पर वापस
+    integrations_actions_load_mettl_catalog: Mettl मूल्यांकन कैटलॉग लोड करें
+    integrations_actions_load_microsite_catalog: माइक्रोसाइट मूल्यांकन कैटलॉग लोड करें
+    integrations_actions_load_skillvue_catalog: स्किलव्यू मूल्यांकन सूची लोड करें
+    integrations_columns_active: सक्रिय
+    integrations_columns_details: विवरण
+    integrations_columns_name: एकीकरण नाम
+    integrations_details_client_id: क्लाइंट आईडी
+    integrations_details_deployment_id: तैनाती आईडी
+    integrations_details_platform_access_token_url: प्लेटफ़ॉर्म एक्सेस टोकन यूआरएल
+    integrations_details_platform_authentication_request_url: प्लेटफ़ॉर्म प्रमाणीकरण अनुरोध यूआरएल
+    integrations_details_platform_host_name: प्लेटफ़ॉर्म होस्ट नाम
+    integrations_details_platform_id: प्लेटफ़ॉर्म आईडी
+    integrations_details_platform_public_keyset_url: प्लेटफ़ॉर्म सार्वजनिक कुंजी सेट URL
+    integrations_details_provider: प्रदाता का नाम
+    integrations_details_webhookUrl: वेबहुक यूआरएल
+    integrations_details_webhookUrls: वेबहुक यूआरएल
+    integrations_integrations: एकीकरण
+    integrations_load_mettl_success: लोड मेटल असेसमेंट्स जॉब सफलतापूर्वक कतारबद्ध हो गया है।
+    integrations_load_microsite_success: माइक्रोसाइट मूल्यांकन कार्य सफलतापूर्वक कतारबद्ध हो गया है।
+    integrations_load_skillvue_success: स्किलव्यू मूल्यांकन कार्य सफलतापूर्वक कतारबद्ध हो गया है।
+    integrations_names_hogan: होगन
+    integrations_names_iiht: आईआईएचटी
+    integrations_names_mettl: मेटल
+    integrations_names_skillvue: स्किलव्यू
+    integrations_names_yoodli: यूडली
+    integrations_view_all_schedules: सभी Mettl शेड्यूल देखें
+    interface: अंतरफलक
     internal: आंतरिक
+    interview_questions_delete_confirmation: क्या आप इस साक्षात्कार प्रश्न को हटाना चाहते हैं?
+    interview_questions_export_action: निर्यात साक्षात्कार प्रश्न
+    interview_questions_export_failure_msg: फ़ाइल निर्यात करते समय त्रुटि।
+    interview_questions_export_success_msg: साक्षात्कार प्रश्न निर्यात करने की प्रक्रिया चल रही है। कृपया सूचनाओं में स्थिति देखें।
+    interview_questions_form_mandatory: अनिवार्य
+    interview_questions_form_question: प्रश्न
+    interview_questions_form_question_type: प्रश्न का प्रकार
+    interview_questions_form_question_type_audio: ऑडियो
+    interview_questions_form_question_type_video: वीडियो
+    interview_questions_form_time_limit: समय सीमा (सेकंड)
+    interview_questions_form_title: साक्षात्कार प्रश्न
+    interview_questions_import_action: साक्षात्कार प्रश्न आयात करें
+    interview_questions_import_failure_msg: फ़ाइल आयात करते समय त्रुटि।
+    interview_questions_import_success_msg: साक्षात्कार प्रश्न आयात हो रहे हैं। कृपया सूचनाओं में स्थिति देखें।
+    interview_questions_question: प्रश्न
+    invalid_confidence_interval: confidence_interval 0 या 1 होना चाहिए।
     invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
+    invalid_leadership_bar: leadership_bar 0 या 1 होना चाहिए
+    invalid_norm_option: नॉर्म विकल्प 0 और 3 के बीच होना चाहिए।
     invalid_question_ids: 'इस मूल्यांकन में प्रश्न आईडी नहीं मिले: %{ids}'
+    invite_add_invite: नमंत्रण जोड़ें
+    invite_assessment_center: मूल्यांकन केंद्र
+    invite_basic_info_allow_preferred_language: पसंदीदा भाषा की अनुमति दें
+    invite_basic_info_assessment_centers: मूल्यांकन केंद्र
+    invite_basic_info_assessment_centers_hint: खोज क्वेरी का उदाहरण '10 अगस्त 2023, रात 8:06'
+    invite_basic_info_assessment_centers_placeholder: मूल्यांकन केंद्र चुनें
+    invite_basic_info_description: कई मूल्यांकन केंद्रों का चयन करके उम्मीदवारों को निमंत्रण भेजें। उम्मीदवार फिर उपलब्ध केंद्रों में से एक केंद्र चुनेंगे।
+    invite_basic_info_neurodiversity: न्यूरोडाइवर्सिटी प्रश्न शामिल करें
+    invite_basic_info_preferred_language: अनुमत भाषाएँ
+    invite_basic_info_required_error: खाली नहीं हो सकता
+    invite_basic_info_title: मूलभूत जानकारी
+    invite_center_group: मूल्यांकन केंद्र समूह
+    invite_confirm_message: क्या आप सुनिश्चित हैं कि आप निमंत्रण हटाना चाहते हैं?
+    invite_confirm_message_with_title: क्या आप '%{invite_title}' शीर्षक वाले निमंत्रण को हटाना चाहते हैं?
+    invite_evaluators_description: यह संदेश विषयों को तब प्रदर्शित किया जाएगा जब वे मूल्यांकनकर्ताओं का नामांकन शुरू करेंगे।
+    invite_evaluators_name: मूल्यांकनकर्ताओं को आमंत्रित करें
+    invite_invites: आमंत्रण
+    invite_name_placeholder: आमंत्रण का नाम दर्ज करें
+    invite_not_selected: चयनित नहीं
+    invite_request_accept: स्वीकार करें
+    invite_request_reason: कारण
+    invite_request_reject: अस्वीकार करें
+    invite_request_remove_confirm_content: क्या आप सुनिश्चित हैं कि आप %{subjectName} से %{action}%{status} करना चाहते हैं?
+    invite_request_remove_confirm_success: "%{status} from %{subjectName} was %{action} successfully."
+    invite_request_remove_confirm_title: श्रेणी
+    invite_request_subject_name: विषय का नाम
+    invite_request_workshop_time: कार्यशाला का समय
+    invite_requests: अनुरोध
+    invite_save: सहेजें और भेजें
+    invite_send_invites_add_description: आप निमंत्रण का शीर्षक और विवरण कई भाषाओं में अनुवाद कर सकते हैं।
+    invite_send_invites_add_language: भाषा जोड़ें
+    invite_send_invites_input_label: अतिरिक्त भाषा जोड़ें
+    invite_send_invites_input_placeholder: अतिरिक्त भाषा चुनें
+    invite_send_invites_invitation_title: आमंत्रण शीर्षक
+    invite_send_invites_title: आमंत्रण (%{lang})
+    invite_steps_add_subjects: विषय जोड़ें
+    invite_steps_basic_info: मूल जानकारी
+    invite_steps_has_errors: त्रुटियाँ हैं
+    invite_steps_send_invitation: निमंत्रण भेजें
+    invite_subjects_count: विषय
+    invite_subjects_csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
+    invite_subjects_csv_imported: "%{count} आयातित विषय"
+    invite_subjects_description: आप विषयों को खोजकर एक-एक करके जोड़ सकते हैं या CSV फ़ाइल को थोक में अपलोड कर सकते हैं।
+    invite_subjects_download: डाउनलोड
+    invite_subjects_file_example: विषय-वस्तु की जानकारी अपलोड करने के लिए उदाहरण फ़ाइल देखें।
+    invite_subjects_import_from_campaign: अभियान से सभी जोड़ें
+    invite_subjects_import_title: विषय आयात करें
+    invite_subjects_import_users: उपयोगकर्ताओं को आयात करें
+    invite_subjects_search_user: विषयों की खोज
+    invite_subjects_title: विषय
+    invite_subjects_upload_csv: CSV अपलोड करें
+    invite_success_message: आमंत्रण सफलतापूर्वक हटा दिया गया।
+    invite_success_message_with_title: शीर्षक '%{invite_title}' वाला निमंत्रण सफलतापूर्वक हटा दिया गया।
+    invite_title: शीर्षक
+    invite_workshop_list_remove_confirm_content: क्या आप '%{name}' नामक मूल्यांकन केंद्र को हटाना चाहते हैं?
+    invite_workshop_list_remove_confirm_success: मूल्यांकन केंद्र को सफलतापूर्वक हटा दिया गया।
+    invite_workshop_list_remove_confirm_title: पुष्टि करें
+    invite_workshop_title: मूल्यांकन केंद्र
+    is_subject: क्या विषय है
+    job_role_are_you_sure_to_remove: क्या आप हटाने के लिए निश्चित हैं?
+    job_role_column_job_group: नौकरी समूह
+    job_role_column_skill_name: कौशल का नाम
+    job_role_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
+    job_role_export_success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
+    job_role_form_code: कोड
+    job_role_form_description: विवरण
+    job_role_form_job_group: नौकरी समूह
+    job_role_form_name: नाम
+    job_role_form_title: भूमिका
+    job_role_import_action_translations: नौकरी भूमिका अनुवाद आयात करें
+    job_role_import_download_example_csv: उदाहरण सीएसवी डाउनलोड करें
+    job_role_import_success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    job_role_job_role_details: भूमिका विवरण
+    job_role_skill_mapping_column_expected_proficiency_level: अपेक्षित प्रवीणता स्तर
+    job_role_skill_mapping_form_title: कौशल नौकरी मिलान
+    job_role_translations: नौकरी भूमिका अनुवाद
     job_roles: भूमिकाएँ
+    join_room: कमरे में शामिल हों
+    keep_original: मूल रखें
+    key: मुख्य
     keywords: मुख्य शब्द
     keywords_placeholder: अल्पविरामों से अलग किए गए कीवर्ड दर्ज करें।
+    language_id: भाषा आईडी
+    last_name_required: अंतिम नाम अनिवार्य है
+    lead_assessment: लीड मूल्यांकन
     lead_assessor_form: प्रमुख मूल्यांकनकर्ता प्रपत्र
+    leadership_bar: नेतृत्व बार
+    leadership_bar_update_success: लीडरशिप बार सफलतापूर्वक अपडेट हो गया।
     learning_from_others: सहयोगात्मक अधिगम [20]
     level: स्तर
     level_apply: लागू करें
@@ -434,21 +1152,61 @@ hi:
     licenses: लाइसेंस
     lighthouse_question: लाइटहाउस प्रश्न
     lighthouse_question_id: लाइटहाउस प्रश्न आईडी
+    link_text: लिंक
     linked_assessments: लिंक्ड आकलन
+    locale: स्थान
+    log_date: प्रवेश तिथि
+    login: लॉगिन
     low: कम
+    mail_history: मेल इतिहास
+    main_report: मुख्य रिपोर्ट
     maintenance: रखरखाव
     maintenance_settings: रखरखाव सेटिंग्स
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
+    manager_approves_reports: प्रबंधक रिपोर्टों को मंजूरी देता है
+    manager_can_access_subject_reports: प्रबंधक विषय रिपोर्टों तक पहुँच सकता है।
+    manager_cannot_access_subject_reports: जब तक आवश्यकताएँ पूरी नहीं हो जातीं, प्रबंधक रिपोर्ट नहीं देख सकता।
+    manager_ids_label: केंद्र प्रबंधक
+    manager_report_ready_description: एक विषय की रिपोर्ट तैयार होने पर यह संदेश उसके प्रबंधक को भेजा जाता है।
+    manager_report_ready_name: प्रबंधक रिपोर्ट तैयार
+    managers_title: प्रबंधक
+    mark_finalized: मार्क अंतिम रूप दिया गया
+    mark_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं के लिए आर्टिफैक्ट परिणामों को अंतिम रूप देने पर वे रिपोर्टें उत्पन्न होंगी जिनमें एआई आर्टिफैक्ट्स का उपयोग होता है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    mark_finalized_confirm: उपयोगकर्ता '%{email}' के लिए आर्टिफैक्ट परिणामों को अंतिम रूप देने पर उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करने वाली रिपोर्ट तैयार हो जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    mark_licenses_as_deactivated: मार्क लाइसेंसों को निष्क्रिय के रूप में चिह्नित करता है
+    mark_not_finalized: चिह्न अंतिम नहीं
+    mark_not_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं से फाइनलाइज़ हटाने पर वे उत्पन्न रिपोर्टें हटा दी जाएँगी जो एआई आर्टिफैक्ट्स का उपयोग करती हैं। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    mark_not_finalized_confirm: उपयोगकर्ता '%{email}' से finalize हटाने से उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करके तैयार की गई रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    mask_identity_for_examus: एग्ज़ामस प्रॉक्टरिंग के लिए मास्क डेटा
+    mask_identity_for_hogan: होगन के लिए मास्क डेटा
+    mask_identity_for_iiht: आईआईएचटी के लिए मास्क डेटा
+    mask_identity_for_mettl: METTL के लिए मास्क डेटा
+    mask_identity_for_mhs: MHS के लिए मास्क डेटा
+    mask_identity_for_pearson: पियर्सन के लिए मास्क डेटा
+    mask_identity_for_saville: सैविल के लिए मास्क डेटा
+    mask_identity_for_skillvue: स्किलव्यू के लिए मास्क डेटा
+    mask_identity_for_yoodli: यूडल के लिए मास्क डेटा
     max_value: अधिकतम मान
     mean: औसत
     media_files_label: फ़ाइलें
     media_library: मीडिया पुस्तकालय
     media_library_page_title: मीडिया लाइब्रेरी - डैशबोर्ड - मर्सर लाइटहाउस
     meeting: बैठक
+    meeting_link: मीटिंग लिंक
+    meetings_and_resources: बैठकें और संसाधन
     messages: संदेश
+    meta_title: प्रशासन पैनल
     mettl: मेट्टल
+    mettl_apiBaseUrl: एपीआई एंडपॉइंट
+    mettl_apiBaseUrlRequired: एपीआई एंडपॉइंट आवश्यक है।
     mettl_assessment: मेटल असेसमेंट
+    mettl_privateKey: निजी कुंजी
+    mettl_privateKeyRequired: निजी कुंजी आवश्यक है।
+    mettl_publicKey: सार्वजनिक कुंजी
+    mettl_publicKeyRequired: सार्वजनिक कुंजी आवश्यक है।
+    mettl_servers_mettl_eu: यूरोप
+    mettl_servers_mettl_india: भारत
     mhs: एमएचएस
     mhs_assessment: एमएचएस मूल्यांकन
     mhs_assessment_name: एमएचएस मूल्यांकन नाम
@@ -467,19 +1225,69 @@ hi:
     minimum_system_check_validity: न्यूनतम अभियान स्तर पर सिस्टम जाँच की वैधता 15 मिनट होनी चाहिए।
     minimum_upload_speed: न्यूनतम अपलोड गति (एमबीपीएस में)
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
+    modal_convert_option: इस अभियान को एक टेम्पलेट में बदलें।
+    modal_convert_success: टेम्पलेट सफलतापूर्वक परिवर्तित हो गया।
+    modal_copy_option: इस अभियान से एक नया टेम्पलेट बनाएँ
+    modal_copy_success: अभियान टेम्पलेट निर्माण का कार्य सफलतापूर्वक निर्धारित हो गया है, कृपया स्थिति के लिए अपनी सूचनाएं जांचें।
+    modal_description: इस अभियान से टेम्पलेट बनाने का तरीका चुनें।
+    modal_failed: टेम्पलेट निर्माण विफल हो गया।
+    modal_subtitle: दिनांक सीमा चुनें और फिर प्रत्येक रिपोर्ट के लिए आवश्यक भाषा चुनें।
+    modal_title: टेम्पलेट में बदलें
     model_answer: आदर्श उत्तर
     model_answer_placeholder: AI स्कोरिंग के लिए मॉडल उत्तर दर्ज करें।
     must_be_a_valid_url: अमान्य URL। इसमें http या https प्रोटोकॉल के साथ पूरा URL निर्दिष्ट करें।
     name: नाम
     name_max_length: नाम %{length} वर्णों से अधिक नहीं हो सकता।
     name_required: नाम आवश्यक है
+    navigation_audit_logs: ऑडिट लॉग्स
+    navigation_factors: तत्व
+    navigation_innovation_styles: नवाचार शैलियाँ
+    navigation_logout: लॉगआउट
+    navigation_occupations: व्यवसाय
+    navigation_registration_codes: पंजीकरण कोड
+    navigation_skills_taxonomy: कौशल वर्गीकरण
+    navigation_users: उपयोगकर्ता
     new_folder: नया फ़ोल्डर
+    new_score: नया स्कोर
+    no_assessments_found: ऑडिट आईडी
+    no_completed_assessments: अभी तक कोई पूर्ण मूल्यांकन नहीं हुए हैं।
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
     no_question_mappings: प्रश्न मैपिंग उपलब्ध नहीं हैं
+    no_rendered_output: कोई रेंडर आउटपुट उपलब्ध नहीं है
     no_status: कोई स्थिति नहीं
+    nomination_denied_description: नामांकन अस्वीकार होने पर यह संदेश विषयों को भेजा जाता है।
+    nomination_denied_name: नामांकन अस्वीकृत
+    nomination_help_description: उपयोगकर्ता के डैशबोर्ड पर नामांकन कार्ड पर प्रदर्शित सहायता पाठ
+    nomination_help_name: नामांकन सहायता
+    norm: नॉर्म
     norm_editor_numeric_value_error: केवल संख्यात्मक मान ही अनुमत हैं (पूर्णांक या दशमलव)।
+    norm_id: नॉर्म आईडी
+    norm_option: नॉर्म विकल्प
+    norm_option_form_select: नॉर्म विकल्प चुनें
+    norm_option_update_success: नॉर्म विकल्प सफलतापूर्वक अपडेट किया गया
+    norm_region: नॉर्म क्षेत्र
+    norm_region_form_select: नॉर्म क्षेत्र चुनें
+    norm_region_update_success: नॉर्म क्षेत्र सफलतापूर्वक अपडेट किया गया
+    normal: सामान्य
+    normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
     norms: मानदंड
+    norms_copy_successfully: नॉर्म "%{name}" को सफलतापूर्वक कॉपी किया गया।
+    norms_export_success_msg: नॉर्म एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित हो गया है। कृपया सूचनाओं में स्थिति देखें।
+    norms_import_download_example_csv: उदाहरण सीएसवी डाउनलोड करें
+    norms_import_select_file_validation: कृपया सबमिट करने से पहले एक मालिक और एक फ़ाइल चुनें।
+    norms_import_success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    norms_import_title: मानदंड आयात
+    norms_index_import: आयात
+    norms_remove_confirm: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए नियम का नाम दर्ज करें।
+    norms_remove_warning: क्या आप वास्तव में सामान्य "%{name}" को हटाना चाहते हैं?
+    norms_score_types_five_scale: पाँच स्केल
+    norms_score_types_norm_type: नॉर्म प्रकार
+    norms_score_types_percentage: प्रतिशत
+    norms_sidebar_copy: नॉर्म की प्रतिलिपि
+    norms_sidebar_editor: नॉर्म संपादक
+    norms_sidebar_export: निर्यात मानक
+    norms_title: नॉर्म
     not_completed: पूर्ण नहीं
     not_completed_tooltip: "%{completed} मूल्यांकनकर्ता नियुक्त कर दिए गए हैं, लेकिन केवल %{submitted} ने ही मूल्यांकन पूरे किए हैं।"
     notes: टिप्पणियाँ
@@ -488,15 +1296,49 @@ hi:
     notification_bell_icon_alt_text: सूचना घंटी आइकन
     notifications: सूचनाएं
     number: संख्या
+    oauth_scope_label: दायरा
+    oauth_scope_name: ओथ_स्कोप
+    oauth_scope_required: दायरा आवश्यक है
     occupations: व्यवसाय
+    occupations_factors_list_condition: स्थिति
+    occupations_factors_list_position: पद
+    occupations_factors_list_weight: वजन
+    occupations_form_alternative_icon: वैकल्पिक आइकन
+    occupations_form_color: रंग
+    occupations_form_indicative_roles_image: संकेतात्मक भूमिकाओं की छवि
+    occupations_form_key_career_tracks_image: मुख्य करियर मार्गों की छवि
+    occupations_index_title: व्यवसाय
     on_the_job: काम पर [70]
     only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
+    options_evaluator_options: मूल्यांकनकर्ता विकल्प
+    options_global: वैश्विक विकल्प
+    options_manager_options: प्रबंधक विकल्प
+    options_subject_options: विषय विकल्प
+    options_title: विकल्प
     organisational: चपल
     original_text: मूल पाठ
+    other_assessments: अन्य आकलन
+    other_assessor_assessments: अन्य आकलनकर्ता के आकलन
+    other_reports: अन्य रिपोर्टें
+    outcome: परिणाम
+    output_schema_key_constraint: की एक छोटे अक्षर से शुरू होनी चाहिए और इसमें केवल छोटे अक्षर, अंक और अंडरस्कोर हो सकते हैं।
+    output_schema_keys: आउटपुट स्कीमा कुंजियाँ
     overall: कुल मिलाकर
     overall_score: कुल स्कोर
+    overall_scoring: कुल स्कोरिंग
+    parsed_dependencies_help: आर्टिफैक्ट परिणामों के निर्माण के लिए AI सहायक द्वारा उपयोग किए गए उपयोगकर्ता की पार्स की गई निर्भरताएँ
+    parsed_dependencies_title: विश्लेषित निर्भरताएँ
+    parsed_dependencies_view: पार्स की गई निर्भरताएँ देखें
     participants: प्रतिभागी
+    participants_tab: प्रतिभागी
+    participants_tabs_assessors: मूल्यांकनकर्ता
+    participants_tabs_sms_contacts: एसएमएस संपर्क
+    participants_tabs_subjects: विषय
+    password_label: पासवर्ड
+    password_name: पासवर्ड
+    past: बीता हुआ समय
+    payload: पेलोड
     pearson: पियर्सन
     pearson_assessment: पियर्सन मूल्यांकन
     permissions:
@@ -694,7 +1536,7 @@ hi:
           view: देखें
         messages:
           email: ईमेल
-          instructions: निर्देश
+          instructions: ऑडिट आईडी
           options: विकल्प
           title: संदेश
         norms:
@@ -809,7 +1651,7 @@ hi:
         view: देखें
       messages:
         email: ईमेल
-        instructions: निर्देश
+        instructions: ऑडिट आईडी
         options: विकल्प
         title: संदेश
       norms:
@@ -925,25 +1767,197 @@ hi:
         view_recordings: रिकॉर्डिंग देखें
     permissions_360_campaigns: 360 अभियानों के लिए विशिष्ट अनुमतियाँ
     piped_text: पाइप्ड टेक्स्ट
+    piped_text_modal_assessment_center: मूल्यांकन केंद्र
+    piped_text_modal_campaign_link: अभियान लिंक
+    piped_text_modal_campaign_name: अभियान का नाम
+    piped_text_modal_campaigns: अभियान
+    piped_text_modal_duration: अवधि
+    piped_text_modal_end_time: अंत समय
+    piped_text_modal_insight_page_link: अंतर्दृष्टि पृष्ठ लिंक
+    piped_text_modal_insight_page_url: अंतर्दृष्टि पृष्ठ URL
+    piped_text_modal_invite_title: शीर्षक
+    piped_text_modal_invites: आमंत्रण
+    piped_text_modal_magic_link: मैजिक लिंक
+    piped_text_modal_magic_url: मैजिक यूआरएल
+    piped_text_modal_platform_url_links: प्लेटफ़ॉर्म यूआरएल और लिंक
+    piped_text_modal_project_name: परियोजना का नाम
+    piped_text_modal_projects: परियोजनाएँ
+    piped_text_modal_report_name: रिपोर्ट का नाम
+    piped_text_modal_start_time: शुरुआत का समय
+    piped_text_modal_title: पाइप्ड टेक्स्ट जोड़ें
+    piped_text_modal_user_reports: उपयोगकर्ता रिपोर्टें
+    piped_text_modal_users: उपयोगकर्ता
+    playground: खेल का मैदान
+    playground_info: उत्पन्न परिणामों का पूर्वावलोकन करने के लिए अपने आर्टिफैक्ट को नमूना डेटा के साथ परीक्षण करें।
+    playground_placeholder: परीक्षण डेटा दर्ज करें
+    position_auto: स्वचालित
+    position_label: लॉगिन बॉक्स की स्थिति
+    position_left: बायाँ
+    position_right: सही
     precision: सूक्ष्मता
+    preview_report: पूर्वावलोकन रिपोर्ट
+    previous: पिछला
+    prework: पूर्व तैयारी
+    prework_required: यदि पूर्व कार्य पूरे नहीं हुए हैं तो केंद्र बुकिंग की अनुमति न दें।
+    prework_required_for_invite: केवल तब निमंत्रण ईमेल भेजें जब प्री-वर्क पूरा हो गया हो।
+    primary_button: प्राथमिक
+    primary_color: प्राथमिक रंग
     privacy: गोपनीयता
+    privacy_link: गोपनीयता लिंक सक्षम करें
+    privacy_link_label: गोपनीयता लिंक
+    privacy_link_placeholder: गोपनीयता लिंक दर्ज करें
+    privacy_text: गोपनीयता पाठ
+    privacy_text_placeholder: गोपनीयता पाठ दर्ज करें
     proctoring: निगरानी
+    proctoring_allow_on_assessment_center: Allow proctoring on assessment center
+    proctoring_enable: प्रॉक्टरिंग सक्षम करें
     proctoring_errors_timed_only: चयनात्मक निगरानी केवल समयबद्ध मूल्यांकनों के लिए ही सक्षम की जा सकती है।
     proctoring_fixed_time_required: इस विकल्प को चुनने के लिए फिक्स्ड टाइम सक्षम करें।
+    proctoring_identification: पहचान
+    proctoring_identifications:
+      face: चेहरा
+      face_and_passport: चेहरा और पासपोर्ट
+      passport: पासपोर्ट
+    proctoring_integration_type: एकीकरण
+    proctoring_integration_types:
+      iframe: आईफ्रेम
+      ldb: लॉकडाउन ब्राउज़र
     proctoring_mode_all: सभी मूल्यांकनों पर निगरानी सक्षम करें
     proctoring_mode_all_except_ac: मूल्यांकन केंद्र को छोड़कर सभी मूल्यांकनों पर निगरानी सक्षम करें।
+    proctoring_rule_types_allow_absence_in_frame: फ़्रेम में अनुपस्थिति की अनुमति दें
+    proctoring_rule_types_allow_to_use_books: पुस्तकों का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_to_use_calculator: कैलकुलेटर का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_to_use_excel: एक्सेल का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_to_use_human_assistant: मानव सहायक का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_to_use_messengers: मैसेंजर का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_to_use_paper: पेपर का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_to_use_websites: वेबसाइटों का उपयोग करने की अनुमति दें
+    proctoring_rule_types_allow_voices: आवाज़ों को अनुमति दें
+    proctoring_rule_types_allow_wrong_gaze_direction: गलत दृष्टि दिशा की अनुमति दें
+    proctoring_rules: नियम
+    proctoring_sessions_columns_comment: टिप्पणी
+    proctoring_sessions_columns_completed_at: पर पूरा किया गया
+    proctoring_sessions_columns_conclusion: निष्कर्ष
+    proctoring_sessions_columns_links: लिंक
+    proctoring_sessions_columns_score: स्कोर
+    proctoring_sessions_columns_session_id: सत्र आईडी
+    proctoring_sessions_columns_started_at: शुरू किया
+    proctoring_sessions_links_report: रिपोर्ट
+    proctoring_sessions_links_review: समीक्षा
+    proctoring_sessions_resource_name: प्रॉक्टरिंग सत्र
     proctoring_settings: प्रॉक्टरिंग सेटिंग्स
+    proctoring_trial: प्रॉक्टोरिंग परीक्षण
+    proctoring_type: प्रकार
+    proctoring_types:
+      offline: ऑफ़लाइन
+      online: ऑनलाइन
     professional: पेशेवर
     proficiency: निपुणता
     proficiency_level: प्रवीणता स्तर
     proficiency_levels: प्रवीणता स्तर
+    proficiency_levels_fields_title: निपुणता
+    profile: प्रोफ़ाइल
+    profile_change_password: पासवर्ड बदलें
     profile_details: प्रोफ़ाइल विवरण
+    project: परियोजना
+    project_admin: परियोजना प्रशासक
     project_admins: परियोजना प्रशासक
+    project_features: परियोजना की विशेषताएँ
     project_manager: परियोजना प्रबंधक
     project_number: परियोजना संख्या
+    project_participants_column_campaigns: अभियान
+    project_participants_column_createdAt: पर बनाया गया
+    project_participants_column_created_at: पर बनाया गया
+    project_participants_edit_participant: प्रतिभागी संपादित करें
+    project_participants_filter_campaigns: कोई अभियान नहीं
+    project_participants_search_user: उपयोगकर्ता खोजें
+    project_participants_send_email: ईमेल भेजें
+    project_path: परियोजना पथ
     project_settings: परियोजना सेटिंग्स
+    project_tabs_assessments_column_normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
+    project_tabs_assessments_column_user_result_validity_in_days: परिणाम वैधता
+    project_tabs_assessments_delete_content: क्या आप '%{name}' मूल्यांकन को हटाना चाहते हैं?
+    project_tabs_assessments_delete_success: मूल्यांकन '%{name}' सफलतापूर्वक हटा दिया गया।
+    project_tabs_assessments_delete_title: मूल्यांकन हटाएँ
+    project_tabs_assessments_title: मूल्यांकन
+    project_tabs_design: डिज़ाइन
+    project_tabs_general: सामान्य
+    project_tabs_privacy: गोपनीयता
+    project_tabs_profile: प्रोफ़ाइल
+    project_tabs_registration: पंजीकरण
+    project_tabs_webhooks_actions_delete_key: मिटायें
+    project_tabs_webhooks_actions_edit_key: संपादित करें
+    project_tabs_webhooks_actions_send_test_key: परीक्षण भेजें
+    project_tabs_webhooks_actions_send_test_label: परीक्षण भेजें
+    project_tabs_webhooks_remove_webhook_content: "%{description} हटाएँ?"
+    project_tabs_webhooks_title: वेबहूक्स
+    project_tools_workshop_status_export: कार्यशाला स्थिति निर्यात
+    project_tools_workshop_status_export_success: कार्यशाला स्थिति निर्यात सफलतापूर्वक निर्धारित किया गया।
+    project_users_change_password: पासवर्ड बदलें
+    project_users_column_campaigns: अभियान
+    project_users_column_created_at: पर बनाया गया
+    project_users_confirm_delete: हाँ, हटाएँ
+    project_users_confirm_send: हाँ, भेजें
+    project_users_delete_error: मूल्यांकनकर्ता '%{name}' को हटाया नहीं जा सका। कृपया अपने व्यवस्थापक से संपर्क करें।
+    project_users_delete_success: मूल्यांकनकर्ता '%{name}' को सफलतापूर्वक हटा दिया गया।
+    project_users_edit_assessor: मूल्यांकनकर्ता संपादित करें
+    project_users_filter_campaigns: बिना अभियानों के
+    project_users_modal_delete_content: क्या आप आकलनकर्ता '%{name}' को हटाना चाहते हैं?
+    project_users_modal_delete_title: मूल्यांकनकर्ता हटाएँ
+    project_users_modal_reset_email_content: क्या आप सुनिश्चित हैं कि आप '%{email}' पर पासवर्ड रीसेट लिंक भेजना चाहते हैं?
+    project_users_model_reset_email: मूल्यांकनकर्ता का पासवर्ड रीसेट करें
+    project_users_no_edit_permission: आपके पास आकलनकर्ता '%{name}' को संपादित करने की अनुमति नहीं है।
+    project_users_reset_mail_error: "'%{email}' पर पासवर्ड रीसेट लिंक नहीं भेजा जा सका। कृपया अपने व्यवस्थापक से संपर्क करें।"
+    project_users_reset_mail_success: पासवर्ड रीसेट लिंक सफलतापूर्वक '%{email}' पर भेजा गया।
+    project_users_search_accessor: एक्सेसर खोजें
+    project_users_send_email: ईमेल भेजें
     projects: परियोजनाएँ
+    projects_addProject: परियोजना जोड़ें
+    projects_assessment_settings_search: मूल्यांकन खोजें
+    projects_columns_project_number: परियोजना संख्या
+    projects_form_project_number: परियोजना संख्या
+    projects_form_subdomain: उप-डोमेन
+    projects_form_title: परियोजना
+    projects_general_settings_live_chat: लाइव चैट सक्षम करें
+    projects_general_settings_locales_label: स्थानीय क्षेत्र
+    projects_general_settings_project_number_label: परियोजना संख्या
+    projects_general_settings_save_changes: बदलाव सहेजें
+    projects_general_settings_sub_domain_label: उप डोमेन
+    projects_mettl_schedule_records_add: अनुसूची जोड़ें
+    projects_mettl_schedule_records_assessment_id: मूल्यांकन आईडी
+    projects_mettl_schedule_records_assessment_name: मूल्यांकन का नाम
+    projects_mettl_schedule_records_candidate_authorization: उम्मीदवार प्राधिकरण सक्षम करें
+    projects_mettl_schedule_records_candidate_screen_capture: उम्मीदवार स्क्रीन कैप्चर सक्षम करें
+    projects_mettl_schedule_records_count: ब्राउज़िंग सहिष्णुता गणना
+    projects_mettl_schedule_records_created_at: पर बनाया गया
+    projects_mettl_schedule_records_schedule_id: अनुसूची आईडी
+    projects_mettl_schedule_records_schedule_name: अनुसूची का नाम
+    projects_mettl_schedule_records_secure_browser_enabled: सुरक्षित ब्राउज़र सक्षम करें
+    projects_mettl_schedule_records_settings: सेटिंग्स
+    projects_mettl_schedule_records_show_remaining_counts: शेष संख्या दिखाने की सुविधा सक्षम करें
+    projects_mettl_schedule_records_visual_proctoring_enabled: दृश्य निगरानी सक्षम करें
+    projects_mettl_schedule_records_web_proctoring_enabled: वेब प्रॉक्टरिंग सक्षम करें
+    projects_profile_settings_form_fields_enabled: सक्षम
+    projects_profile_settings_form_fields_half_size: आधा आकार
+    projects_profile_settings_form_fields_locked: ताला लगा
+    projects_profile_settings_form_fields_sort: क्रमबद्ध करें
+    projects_profile_settings_month: महीना
+    projects_profile_settings_never: कभी नहीं
+    projects_profile_settings_update_in: में प्रोफ़ाइल अपडेट की सूचना दें
+    projects_profile_settings_year: वर्ष
+    projects_registration_settings_hide_signup: साइन अप विकल्प छिपाएँ
+    projects_registration_settings_require_mobile_number: मोबाइल नंबर आवश्यक है
+    projects_webhook_settings_add: वेबहुक जोड़ें
+    projects_webhook_settings_column_active: सक्रिय
+    projects_webhook_settings_column_created_date: निर्मित तिथि
+    projects_webhook_settings_column_description: विवरण
+    projects_webhook_settings_column_updated_date: संशोधित तिथि
+    projects_webhook_settings_column_url: यूआरएल
+    projects_webhook_settings_search: वेबहूक खोजें
     prompt: तुरंत
+    provider: प्रदाता
+    provider_change_confirm_title: प्रदाता बदलें?
+    provider_previously_used_warning: इस सहायक ने पहले "%{from}" के साथ परिणाम उत्पन्न किए हैं। "%{to}" में बदलने से भविष्य की जेनरेशन अनुरोधों के लिए सहायक का व्यवहार बदल सकता है।
     psychometric: मनोमापी
     question_center: प्रश्न केंद्र
     question_center_page_title: प्रश्न केंद्र - डैशबोर्ड - मर्सर लाइटहाउस
@@ -971,10 +1985,32 @@ hi:
     question_type_video_response: वीडियो प्रतिक्रिया
     questions: प्रश्न
     questions_new_button: नया प्रश्न
+    questions_percentage: प्रश्न (कुल योग / अधिकतम कुल)
+    questions_sum: प्रश्न (योग)
     questions_title: प्रश्न
     questions_type: प्रकार
     range_min_max: दायरा %{min} - %{max}
+    rationale: तर्कसंगतता
+    raw: कच्चा
+    reason_for_changes: बदलाव का कारण
+    record_id: रिकॉर्ड आईडी
+    recordings: रिकॉर्डिंग्स
     reflection_questions: चिंतन प्रश्न
+    reflection_questions_delete_confirmation: क्या आप इस प्रतिबिंब प्रश्न को हटाना चाहते हैं?
+    reflection_questions_export_action: निर्यात प्रतिबिंब प्रश्न
+    reflection_questions_export_failure_msg: फ़ाइल निर्यात करते समय त्रुटि।
+    reflection_questions_export_success_msg: प्रतिकृति प्रश्न निर्यात करना प्रगति पर है। कृपया सूचनाओं में स्थिति देखें।
+    reflection_questions_form_mandatory: अनिवार्य
+    reflection_questions_form_max_words: अधिकतम शब्द
+    reflection_questions_form_min_words: न्यूनतम शब्द
+    reflection_questions_form_question: प्रश्न
+    reflection_questions_form_title: चिंतन प्रश्न
+    reflection_questions_import_action: प्रतिबिंब प्रश्न आयात करें
+    reflection_questions_import_failure_msg: फ़ाइल आयात करते समय त्रुटि।
+    reflection_questions_import_success_msg: प्रतिबिंब प्रश्न आयात करना प्रगति पर है। कृपया सूचनाओं में स्थिति देखें।
+    reflection_questions_question: प्रश्न
+    refresh: ताज़ा करें
+    refresh_interval: ताज़ाकरण अंतराल (मिनट)
     regenerate_transcriptions_action: प्रतिलिपियाँ पुनः उत्पन्न करें
     regenerate_transcriptions_confirm_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए ट्रांसक्रिप्शन पुनः उत्पन्न करना चाहते हैं? यह सभी अधूरे ट्रांसक्रिप्शन को पुनः संसाधित करेगा।
     regenerate_transcriptions_confirm_title: प्रतिलिपियाँ पुनः उत्पन्न करें
@@ -982,28 +2018,151 @@ hi:
     registration_codes: पंजीकरण कोड
     registration_settings: पंजीकरण सेटिंग्स
     remove_children_to_change_type: प्रकार बदलने के लिए सभी बच्चों को हटाएँ।
+    remove_confirm_content: क्या आप '%{subjectEmail}' ईमेल वाले विषय को हटाना चाहते हैं?
+    remove_confirm_success: ईमेल '%{subjectEmail}' वाला विषय सफलतापूर्वक हटा दिया गया।
+    remove_confirm_title: विषय हटाएँ
     remove_confirmation: क्या आप इस आइटम को हटाना चाहते हैं?
+    remove_output_schema_key: आउटपुट स्कीमा कुंजी हटाएँ
     remove_successfully: मीडिया आइटम सफलतापूर्वक हटा दिया गया।
+    render_button: रेंडर टेम्पलेट
+    rendered_prompt: प्रस्तुत अनुरोध
+    reply_to_email: ईमेल का जवाब दें
+    report_access: रिपोर्ट पहुँच
     report_alias_save_confirmation: यदि आप Report Builder और Aliases में सभी परिवर्तन सहेजना चाहते हैं, तो कृपया 'SAVE' बटन पर क्लिक करें। पृष्ठ पुनः लोड हो जाएगा और आपके परिवर्तन सफलतापूर्वक लागू हो जाएंगे।
+    report_approval: रिपोर्ट अनुमोदन
+    report_approval_allow_bulk_approve: थोक अनुमोदन की अनुमति दें
+    report_approval_allow_qc_bulk_submit: QC थोक जमा की अनुमति दें
+    report_approval_approval_statuses_approved: स्वीकृत
+    report_approval_approval_statuses_change_requested: बदलाव का अनुरोध
+    report_approval_approval_statuses_not_ready: तैयार नहीं
+    report_approval_approval_statuses_pending_qc: QC लंबित
+    report_approval_approval_statuses_qc_completed: QC पूरा
+    report_approval_approval_statuses_qc_in_progress: गुणवत्ता नियंत्रण प्रगति पर
+    report_approval_approvers: अनुमोदक
+    report_approval_approvers_can_edit: अनुमोदक संपादित कर सकते हैं
+    report_approval_approvers_not_required: अनुमोदक आवश्यक नहीं
+    report_approval_columns_approval_status: अनुमोदन स्थिति
+    report_approval_columns_approved_by: द्वारा अनुमोदित
+    report_approval_columns_assessed_by: द्वारा आकलित
+    report_approval_columns_campaign_name: अभियान का नाम
+    report_approval_columns_qc_by: द्वारा QC
+    report_approval_columns_report_name: रिपोर्ट का नाम
+    report_approval_columns_subject_email: विषय ईमेल
+    report_approval_columns_user_email: उपयोगकर्ता ईमेल
+    report_approval_columns_user_name: उपयोगकर्ता नाम
+    report_approval_digest_frequency_daily: दैनिक
+    report_approval_digest_frequency_weekdays: सप्ताह के दिन
+    report_approval_digest_frequency_weekly: साप्ताहिक
+    report_approval_digest_time: पचाने का समय
+    report_approval_digest_timezone: समय क्षेत्र पचें
+    report_approval_digest_weekdays_friday: शुक्रवार
+    report_approval_digest_weekdays_monday: सोमवार
+    report_approval_digest_weekdays_saturday: शनिवार
+    report_approval_digest_weekdays_sunday: रविवार
+    report_approval_digest_weekdays_thursday: गुरुवार
+    report_approval_digest_weekdays_tuesday: मंगलवार
+    report_approval_digest_weekdays_wednesday: बुधवार
+    report_approval_do_not_send_notifications: उपयोगकर्ताओं को ईमेल न भेजें [QC, Approvers और Approval notification]
+    report_approval_modal_title: रिपोर्ट अनुमोदन सेटिंग्स
+    report_approval_notification_users: अनुमोदन सूचना उपयोगकर्ता
+    report_approval_qc_users: क्यूसी उपयोगकर्ता
+    report_approval_remove_modal_success: 'रिपोर्ट आईडी के लिए अनुमोदन सेटिंग: %{reportId} सफलतापूर्वक हटा दिया गया'
+    report_approval_remove_modal_text: 'क्या आप रिपोर्ट आईडी: %{reportId} के लिए इस सेटिंग को हटाना चाहते हैं?'
+    report_approval_report: रिपोर्ट
+    report_approval_review: समीक्षा
+    report_approval_saving_filters_actions_clear_filters: फ़िल्टर साफ़ करें
+    report_approval_saving_filters_actions_delete_filter: फ़िल्टर हटाएँ
+    report_approval_saving_filters_actions_save_new_filter: नए फ़िल्टर के रूप में सहेजें
+    report_approval_saving_filters_actions_saved_filters: सहेजे गए फ़िल्टर
+    report_approval_saving_filters_delete_saved_filters: मिटाये गए फ़िल्टर
+    report_approval_saving_filters_edit_filter_name: फ़िल्टर का नाम सहेजा गया
+    report_approval_saving_filters_error_while_deleting: मिटाने के दौरान त्रुटि
+    report_approval_saving_filters_error_while_editing: संपादन के दौरान त्रुटि
+    report_approval_saving_filters_error_while_fetching: कुछ गलत हो गया, फिर से प्रयास करें।
+    report_approval_saving_filters_error_while_saving: फ़िल्टर सहेजते समय त्रुटि
+    report_approval_saving_filters_filter_updated: फ़िल्टर अपडेट किया गया
+    report_approval_saving_filters_no_saved_filters: कोई सहेजे गए फ़िल्टर नहीं हैं।
+    report_approval_saving_filters_save_filter: सहेजा गया फ़िल्टर
+    report_approval_saving_filters_set_favorite: फ़िल्टर को पसंदीदा के रूप में सेट किया गया है।
+    report_approval_send_digest_emails: सारांश ईमेल भेजें
+    report_approval_settings: रिपोर्ट अनुमोदन सेटिंग्स
+    report_approval_submit_or_approve_all: सभी जमा करें या अनुमोदित करें
     report_approvals: रिपोर्ट अनुमोदन
+    report_availability: उपलब्धता रिपोर्ट
     report_condition_not_met: "%{required}%{relationship} मूल्यांकन(ओं) की आवश्यकता है, लेकिन केवल %{actual} है।"
     report_conditions_not_met_detailed: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा नहीं करता। %{conditions}"
     report_denied: "%{user} के लिए रिपोर्ट अस्वीकार कर दी गई है।"
+    report_help_description: उपयोगकर्ता के डैशबोर्ड पर रिपोर्ट कार्ड पर प्रदर्शित सहायता पाठ
+    report_help_name: रिपोर्ट्स मदद करती हैं
+    report_id: रिपोर्ट आईडी
     report_name: रिपोर्ट का नाम
     report_no_evaluations: "%{user} के लिए रिपोर्ट उपलब्ध नहीं है - कोई मूल्यांकन प्राप्त नहीं हुए हैं।"
     report_not_generated: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा करती है लेकिन अभी तक उत्पन्न नहीं की गई है। कृपया पहले रिपोर्ट उत्पन्न करें।"
     report_on_hold: "%{user} के लिए रिपोर्ट वर्तमान में रोक दी गई है।"
+    report_pdf_status: रिपोर्ट पीडीएफ स्थिति
+    report_review_abort_qc: QC रद्द करें
+    report_review_approve: अनुमोदित करें
+    report_review_approve_changes: बदलावों को अनुमोदित करें
+    report_review_edit: संपादित करें
+    report_review_remove_approval: अनुमोदन हटाएँ
+    report_review_request_changes: बदलाव का अनुरोध करें
+    report_review_review: समीक्षा
+    report_review_send_for_approve: मंज़ूरी के लिए भेजें
+    report_review_statuses_approved: स्वीकृत
+    report_review_statuses_change_requested: मांगी गई परिवर्तन
+    report_review_statuses_not_ready: तैयार नहीं
+    report_review_statuses_pending_qc: QC लंबित
+    report_review_statuses_qc_completed: QC पूरा
+    report_review_statuses_qc_in_progress: गुणवत्ता नियंत्रण प्रगति पर
     report_status: रिपोर्ट की स्थिति
     reports: रिपोर्टें
+    reports_copy_copy: प्रतिलिपि
+    reports_copy_copy_report: रिपोर्ट कॉपी करें
+    reports_count: रिपोर्टें
+    reports_edit_default_language_agreement: हाँ, मैं डिफ़ॉल्ट भाषा परिवर्तन के निहितार्थों को समझता हूँ।
+    reports_edit_default_language_title: डिफ़ॉल्ट भाषा संपादित करें
+    reports_edit_default_language_tooltip: डिफ़ॉल्ट भाषा संपादित करें
+    reports_edit_default_language_warning_description_li_1: डिफ़ॉल्ट भाषा को RTL से LTR में या इसके विपरीत बदलने से लेआउट प्रभावित होगा।
+    reports_edit_default_language_warning_description_li_2: यदि आप डिफ़ॉल्ट भाषा बदलते हैं तो आपको रिपोर्ट अनुवादों पर फिर से काम करना होगा।
+    reports_edit_default_language_warning_description_li_3: इस परिवर्तन को करने से पहले रिपोर्ट अनुवादों की एक प्रति डाउनलोड करें।
+    reports_edit_default_language_warning_title: कृपया निर्देशों को ध्यानपूर्वक पढ़ें।
+    reports_language_selection_modal_download: रिपोर्ट डाउनलोड
+    reports_language_selection_modal_generate: रिपोर्ट उत्पन्न करें
     reports_limit_exceeded: थोक डाउनलोड 1000 रिपोर्ट फ़ाइलों तक सीमित है। यदि आपने कई भाषाएँ चुनी हैं, तो कृपया उन्हें कम करें।
     reports_not_found: कोई रिपोर्ट नहीं मिली। कृपया डाउनलोड करने से पहले रिपोर्टें उत्पन्न करें।
+    reports_preview_comments: टिप्पणियाँ
+    reports_preview_hide_resolved: समाधानित छिपाएँ
+    reports_preview_history: इतिहास
+    reports_preview_info_to_select_module: टिप्पणी करने के लिए एक टेक्स्ट मॉड्यूल चुनें
+    request_approval_description: यह संदेश प्रबंधकों को तब भेजा जाता है जब कोई विषय अनुमोदन का अनुरोध करता है।
+    request_approval_name: अनुमोदन का अनुरोध करें
+    request_id: अनुरोध आईडी
+    required_error: आवश्यक
     rescore_responses_content: यह इस विषय की प्रतिक्रियाओं के लिए स्कोर फिर से गणना करेगा। स्कोर के साथ AI प्रश्नों के लिए प्रतिक्रियाओं का पुनर्मूल्यांकन करने हेतु 'AI पुनःस्कोरिंग की अनुमति दें' सक्षम करें।
+    resend_invite_content: चयनित प्राप्तकर्ताओं को निमंत्रण फिर से भेजें। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    resend_invite_success: निवेश आमंत्रण सफलतापूर्वक पुनः भेजे गए।
+    resend_invite_title: आमंत्रण फिर से भेजें
     reset_idp_plan: पुनर्स्थापना योजना
     reset_idp_plan_confirmation: क्या आप योजना को रीसेट करना चाहते हैं?
     reset_idp_plan_title: पुनर्स्थापना योजना
+    reset_score: स्कोर रीसेट करें
+    reset_score_description: स्कोर मूल AI मान पर वापस कर दिया जाएगा।
+    resources_panel_description: वे संसाधन जिनकी लिंक आप चाहेंगे कि सुविधाकर्ताओं के पास हो, उन्हें जोड़ें।
+    resources_panel_resource_name_placeholder: संसाधन का नाम
+    resources_panel_resource_url_placeholder: संसाधन लिंक
+    resources_panel_title: संसाधन
+    resources_panel_validation_error: नाम और URL दोनों दर्ज करें या संसाधन हटाएँ
     response_meta: प्रतिक्रिया मेटा
+    responses: एआई प्रतिक्रियाएँ
     result: परिणाम
     results: परिणाम
+    results_export: निर्यात परिणाम
+    results_export_job_scheduled: AI आर्टिफैक्ट्स परिणाम निर्यात जॉब सफलतापूर्वक निर्धारित किया गया था।
+    revisions_load: आकार में लोड करें
+    revisions_system_prompt: सिस्टम प्रॉम्प्ट
+    revisions_title: एआई सहायक के संशोधन
+    revisions_user_prompt: उपयोगकर्ता संकेत
+    revisions_version: संस्करण
     role: भूमिका
     saml_idp_certificate_available: उपलब्ध (नकल करने के लिए क्लिक करें)
     saml_idp_certificate_label: प्रमाणपत्र
@@ -1054,6 +2213,23 @@ hi:
     saml_service_provider_updated_date: अद्यतन तिथि
     saml_service_providers: सेवा प्रदाता
     saml_settings: SAML सेटिंग्स
+    saml_settings_after_signout_url: साइनआउट यूआरएल के बाद
+    saml_settings_cert: प्रमाणपत्र
+    saml_settings_config_details_acs_url: दावा उपभोक्ता सेवा यूआरएल
+    saml_settings_config_details_copied: "%{element} से कॉपी किया गया"
+    saml_settings_config_details_issuer: इकाई आईडी/जारीकर्ता
+    saml_settings_config_details_title: निम्नलिखित जानकारी के साथ Idp कॉन्फ़िगर करें
+    saml_settings_email_pipetext: ईमेल पिपेटटेक्स्ट
+    saml_settings_enabled: सक्षम
+    saml_settings_enforced: SAML लागू करें
+    saml_settings_entity_id: इकाई आईडी/जारीकर्ता
+    saml_settings_name_identifier_format: नाम पहचानकर्ता
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: स्थायी
+    saml_settings_saml: एसएएमएल
+    saml_settings_save: सेटिंग सहेजें
+    saml_settings_sso_service_url: एसएसओ सेवा यूआरएल
+    saml_settings_successfully_saved_msg: SAML सेटिंग सफलतापूर्वक सहेजी गई।
     save: बचाएँ
     save_assessment_for_scoring_management: स्कोरिंग शुरू करने से पहले मूल्यांकन सहेजें।
     save_block: ब्लॉक सहेजें
@@ -1072,7 +2248,136 @@ hi:
       user_full_name_cont: उपयोगकर्ता नाम
     saville: सैविल
     saville_assessment: सैविल मूल्यांकन
+    schedule: समय-सारणी
+    schedule_email: ईमेल अनुसूची करें
+    schedule_email_title: ईमेल अनुसूची करें
+    schedule_time: समय निर्धारित करें
     scheduling: अनुसूचीकरण
+    scheduling_add_activity: गतिविधि जोड़ें
+    scheduling_add_assessment_center: मूल्यांकन केंद्र जोड़ें
+    scheduling_add_assessor_form_assessment: मूल्यांकन
+    scheduling_add_assessor_form_assessor: मूल्यांकनकर्ता
+    scheduling_add_assessor_form_schedule_time: समय निर्धारित करें
+    scheduling_add_subject: विषय जोड़ें
+    scheduling_attendance_status_column_name: उपस्थिति की स्थिति
+    scheduling_attendance_status_dropped_out: छोड़ दिया
+    scheduling_attendance_status_late: देर से
+    scheduling_attendance_status_no_show: नहीं आया
+    scheduling_attendance_status_no_status: कोई स्थिति नहीं
+    scheduling_attendance_status_on_time: समय पर
+    scheduling_attended_attended: उपस्थित
+    scheduling_attended_not_attended: उपस्थित नहीं
+    scheduling_campaign_participants: अभियान प्रतिभागी
+    scheduling_columns_activity: गतिविधि
+    scheduling_columns_assessment_center_date_and_time: मूल्यांकन केंद्र की तिथि और समय
+    scheduling_columns_assessor: मूल्यांकनकर्ता
+    scheduling_columns_assessors: मूल्यांकनकर्ता
+    scheduling_columns_attendance: उपस्थिति
+    scheduling_columns_attended: उपस्थित
+    scheduling_columns_booked_at: के पास बुक
+    scheduling_columns_campaign_assessment_group: मूल्यांकन केंद्र समूह
+    scheduling_columns_campaign_name: अभियान का नाम
+    scheduling_columns_duration: अवधि
+    scheduling_columns_link_to_view_recordings: रिकॉर्डिंग देखने का लिंक
+    scheduling_columns_managers: प्रबंधक
+    scheduling_columns_meeting_link: मीटिंग लिंक
+    scheduling_columns_participants: प्रतिभागी
+    scheduling_columns_prework: पूर्व तैयारी
+    scheduling_columns_recording_date: रिकॉर्डिंग की तारीख
+    scheduling_columns_resource_link: लिंक
+    scheduling_columns_schedule_time: समय निर्धारित करें
+    scheduling_columns_scheduling_status: अनुसूचीकरण की स्थिति
+    scheduling_columns_seats: सीटें
+    scheduling_columns_serial_no: क्रम संख्या
+    scheduling_columns_start_time: दिनांक और समय
+    scheduling_columns_subject: विषय
+    scheduling_columns_title: शीर्षक
+    scheduling_columns_view_recording: रिकॉर्डिंग देखें
+    scheduling_errors_assessor_already_assigned: इस मूल्यांकन के लिए आकलनकर्ता पहले से ही नियुक्त है। कृपया कोई अन्य मूल्यांकन या आकलनकर्ता चुनें।
+    scheduling_errors_date_required: कृपया एक तारीख चुनें
+    scheduling_errors_invalid_url: अमान्य यूआरएल प्रारूप
+    scheduling_errors_meeting_link_https: मीटिंग लिंक "https://" से शुरू होना चाहिए।
+    scheduling_info_allowed: अनुमत
+    scheduling_info_assessors: मूल्यांकनकर्ता
+    scheduling_info_booked: सीटें बुक
+    scheduling_info_campaign_assessment_group: मूल्यांकन केंद्र समूह
+    scheduling_info_cancellation_lead_time: रद्दीकरण अग्रिम समय
+    scheduling_info_cancellation_tooltip: उपयोगकर्ता %{date} तक बुकिंग रद्द कर सकेगा।
+    scheduling_info_date: दिनांक और समय
+    scheduling_info_duration: अवधि
+    scheduling_info_join_meeting: कमरे में शामिल हों
+    scheduling_info_late_cancellation_and_scheduling: देर से रद्दीकरण और समय-निर्धारण
+    scheduling_info_link: मीटिंग लिंक
+    scheduling_info_managers: केंद्र प्रबंधक
+    scheduling_info_none: कोई नहीं
+    scheduling_info_not_allowed: अनुमति नहीं है
+    scheduling_info_recording_enabled: रिकॉर्डिंग सक्षम
+    scheduling_info_remaining: शेष सीटें
+    scheduling_info_scheduling_lead_time: अनुसूचीकरण अग्रिम समय
+    scheduling_info_scheduling_tooltip: उपयोगकर्ता %{date} तक एक स्लॉट बुक कर सकेगा।
+    scheduling_info_search_placehoder: आईडी, ईमेल या नाम से खोजें
+    scheduling_info_timezone: समय क्षेत्र
+    scheduling_info_total_seats: कुल सीटें
+    scheduling_lead_time_label: अनुसूचीकरण के लिए अग्रिम समय
+    scheduling_resources_confirm_message: क्या आप '%{resource_name}' संसाधन को हटाना चाहते हैं?
+    scheduling_resources_confirm_title: पुष्टि आवश्यक है
+    scheduling_resources_create: संसाधन बनाएँ
+    scheduling_resources_invalid_url: अमान्य URL। इसमें http या https प्रोटोकॉल के साथ पूरा URL निर्दिष्ट करें।
+    scheduling_resources_resource: संसाधन
+    scheduling_resources_successful_remove: मूल्यांकन केंद्र संसाधन %{resource_name} को सफलतापूर्वक हटा दिया गया।
+    scheduling_schedule_assessments: मूल्यांकन अनुसूची करें
+    scheduling_scheduling_statuses_cancelled: रद्द
+    scheduling_scheduling_statuses_late_cancelled: देर से रद्द
+    scheduling_scheduling_statuses_late_rescheduled: देर से पुनर्निर्धारित
+    scheduling_scheduling_statuses_rescheduled: पुनर्निर्धारित
+    scheduling_scheduling_statuses_scheduled: निर्धारित
+    scheduling_search_participant: अभियान प्रतिभागियों को खोजें
+    scheduling_status: अनुसूचीकरण की स्थिति
+    scheduling_status_change_modal_content: एक बार जब आप मूल्यांकन केंद्र बंद कर देंगे, तो प्रतिभागी किसी भी केंद्र गतिविधि में भाग नहीं ले पाएंगे।
+    scheduling_status_change_modal_title: मूल्यांकन केंद्र की स्थिति बदलें
+    scheduling_status_completed: पूर्ण
+    scheduling_status_dropped_out: छोड़ दिया
+    scheduling_status_in_progress: प्रगति में
+    scheduling_status_late: देर से
+    scheduling_status_no_show: नहीं आया
+    scheduling_status_not_started: शुरू नहीं हुआ
+    scheduling_subjects_activities: गतिविधियाँ
+    scheduling_subjects_add_assessor_form: मूल्यांकनकर्ता फॉर्म जोड़ें
+    scheduling_subjects_assessments: मूल्यांकन
+    scheduling_subjects_assessor_forms: मूल्यांकनकर्ता प्रपत्र
+    scheduling_subjects_confirm_message: |
+      क्या आप '%{subject_email}' ईमेल वाले विषय की भागीदारी रद्द करना चाहते हैं?
+      <br />
+      एक बार रद्द कर दिए जाने पर, यह विषय मूल्यांकन केंद्र में भाग नहीं ले पाएगा।
+    scheduling_subjects_confirm_title: पुष्टि आवश्यक है
+    scheduling_subjects_edit_assessor_form: मूल्यांकनकर्ता फ़ॉर्म संपादित करें
+    scheduling_subjects_form_title: मूल्यांकन अनुसूची करें
+    scheduling_subjects_language: भाषा
+    scheduling_subjects_language_not_selected: चयनित नहीं
+    scheduling_subjects_mark_cancel: मार्क रद्द करें
+    scheduling_subjects_mark_cancel_success: "%{subject_email} ईमेल वाले विषय की भागीदारी रद्द कर दी गई।"
+    scheduling_subjects_meeting_link_custom: अनुकूलित
+    scheduling_subjects_meeting_link_internal: आंतरिक
+    scheduling_subjects_meeting_link_none: कोई नहीं
+    scheduling_subjects_meeting_link_title: मीटिंग लिंक
+    scheduling_subjects_no_change: कोई बदलाव नहीं
+    scheduling_subjects_override_existing: विषयों के लिए मौजूदा अनुसूचियों को ओवरराइड करें
+    scheduling_subjects_preworks: पूर्व तैयारी
+    scheduling_subjects_re_enroll: पुनः नामांकन
+    scheduling_subjects_re_enroll_confirm_message: क्या आप सुनिश्चित हैं कि आप विषय को '%{subject_email}' ईमेल के साथ पुनः नामांकित करना चाहते हैं?
+    scheduling_subjects_re_enroll_success: ईमेल %{subject_email} के साथ पुनः नामांकित विषय।
+    scheduling_subjects_schedule: समय-सारणी
+    scheduling_subjects_unschedule: अनशेड्यूल
+    scheduling_tabs_activities: गतिविधियाँ
+    scheduling_tabs_assessment_center: मूल्यांकन केंद्र
+    scheduling_tabs_invites: आमंत्रण
+    scheduling_tabs_recordings: रिकॉर्डिंग्स
+    scheduling_tabs_resources: संसाधन
+    scheduling_tabs_subjects: विषय
+    schema_key_description_required: स्कीमा कुंजी विवरण आवश्यक है।
+    schema_key_required: स्कीमा कुंजी आवश्यक है
+    schema_key_type: कुंजी का प्रकार
+    schema_key_unique: स्कीमा कुंजियाँ अद्वितीय होनी चाहिए।
     score: स्कोर
     score_approval_not_allowed_to_approve: आपको इस स्कोर को मंजूरी देने की अनुमति नहीं है।
     score_approval_not_allowed_to_discard: आपको इस स्कोर को त्यागने की अनुमति नहीं है।
@@ -1081,75 +2386,490 @@ hi:
     score_max: अधिकतम स्कोर
     score_min: न्यूनतम स्कोर
     score_must_be_in_between_min_and_max: स्कोर %{min} और %{max} के बीच होना चाहिए।
+    score_not_applicable: स्कोर लागू नहीं
     score_range_info: 'स्कोर सीमा: %{min} - %{max}'
     score_with_ai: एआई के साथ स्कोर करें
     scores_finalized: स्कोर अंतिम हैं और बदले नहीं जा सकते।
     scoring: स्कोरिंग
+    scoring_action_prohibited: कार्रवाई निषिद्ध
+    scoring_active: सक्रिय
+    scoring_actual_average: वास्तविक औसत
+    scoring_add_factor: जोड़ें कारक
+    scoring_add_group: समूह जोड़ें
     scoring_approval_add_settings: सेटिंग्स जोड़ें
     scoring_approval_allow_bulk_approve: थोक अनुमोदन की अनुमति दें
     scoring_approval_allow_bulk_approve_scores: बल्क में स्कोर स्वीकृत करने की अनुमति दें
     scoring_approval_allow_one_level_approve: एक स्तर की अनुमति दें
+    scoring_approval_approve_all: सभी को अनुमोदित करें
     scoring_approval_approver_users: अनुमोदक उपयोगकर्ता
     scoring_approval_approvers: अनुमोदक
     scoring_approval_assessment: मूल्यांकन
     scoring_approval_assessor_users: मूल्यांकनकर्ता उपयोगकर्ता
+    scoring_approval_bulk_approve_success: "%{approved} स्कोर स्वीकृत।"
     scoring_approval_do_not_send_notifications: सूचनाएँ न भेजें
     scoring_approval_modal_title: स्कोरिंग अनुमोदन सेटिंग्स
     scoring_approval_notification_users: अनुमोदन अधिसूचना उपयोगकर्ता
     scoring_approval_remove_modal_success: 'मूल्यांकन आईडी के लिए अनुमोदन सेटिंग: %{assessmentId} सफलतापूर्वक हटा दी गई'
     scoring_approval_remove_modal_text: 'क्या आप सुनिश्चित हैं कि आप मूल्यांकन आईडी: %{assessmentId} के लिए इस सेटिंग को हटाना चाहते हैं?'
+    scoring_approval_review: समीक्षा
+    scoring_approval_score_approvals: एआई स्कोरिंग अनुमोदन
+    scoring_assessment: मूल्यांकन
+    scoring_assessment_scoring_type: मूल्यांकन स्कोरिंग प्रकार
+    scoring_average: औसत
+    scoring_campaign_scoring_variables: अभियान स्कोरिंग चर
+    scoring_desc: आपने %{n} अभियान कारकों की अधिकतम सीमा पार कर ली है। अतिरिक्त कारक नहीं जोड़े जा सकते। कृपया आगे बढ़ने से पहले अपने मौजूदा कारकों की समीक्षा करें और उनका प्रबंधन करें।
+    scoring_dimension: आयाम
+    scoring_edit_factor: संपादन कारक
+    scoring_export_factors: निर्यात अभियान कारक
+    scoring_factor: कारक
+    scoring_factor_group_removed_successfully: Campaign Factor समूह को सफलतापूर्वक हटा दिया गया।
+    scoring_factor_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए फैक्टर का नाम दर्ज करें।
+    scoring_factor_removed_successfully: Campaign Factor सफलतापूर्वक हटा दिया गया
+    scoring_factors_exported_successfully: एक्सपोर्ट अभियान कारक का कार्य सफलतापूर्वक निर्धारित किया गया था
+    scoring_factors_imported_successfully: अभियान कारक आयात का कार्य सफलतापूर्वक निर्धारित किया गया।
+    scoring_final: अंतिम
+    scoring_final_score_updated_successfully: अंतिम स्कोर सफलतापूर्वक अपडेट हो गया।
+    scoring_formula: सूत्र
+    scoring_get_started: शुरू करें
+    scoring_import_factors: अभियान कारक आयात करें
+    scoring_innovation_style_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में नवाचार शैली का नाम दर्ज करें।
+    scoring_no_groups: कोई समूह उपस्थित नहीं है
+    scoring_occupation_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में व्यवसाय का नाम दर्ज करें।
+    scoring_output_type: आउटपुट प्रकार
+    scoring_pattern_error: केवल अल्फान्यूमेरिक वर्ण, रिक्त स्थान और डैश की अनुमति है।
+    scoring_profile_years: वर्ष
+    scoring_public: सार्वजनिक
+    scoring_ranked: रैंक किया गया
+    scoring_remove_all_campaign_factors_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में वर्तमान अभियान का नाम दर्ज करें।
+    scoring_remove_all_campaign_factors_error: अभियान कारक असफल हटाते हैं
+    scoring_remove_all_campaign_factors_success: अभियान कारक सफलतापूर्वक हटा दिए गए
+    scoring_remove_all_campaign_factors_title: अभियान के कारक हटाएँ
+    scoring_remove_all_campaign_factors_warning: आप सभी कैंपेन फैक्टर और उपयोगकर्ताओं के सभी संबंधित स्कोर हटाने वाले हैं। क्या आप इस कार्रवाई को करने के लिए निश्चित हैं?
+    scoring_remove_factor_group_confirmation_content: क्या आप निश्चित हैं कि आप कारक समूह '%{group_name}' को हटाना चाहते हैं?
+    scoring_remove_factor_group_confirmation_title: कारक समूह हटाएँ
+    scoring_required_error: खाली नहीं हो सकता
+    scoring_save_all: सभी सहेजें
+    scoring_score_range: अंक सीमा
+    scoring_score_types_norm_score: मानक स्कोर
+    scoring_score_types_percentage: प्रतिशत
+    scoring_score_types_percentile: प्रतिशतक
+    scoring_score_types_score: स्कोर
+    scoring_score_types_zscore: Z स्कोर
+    scoring_scoring: स्कोरिंग
+    scoring_scoring_description: अभियान स्कोरिंग विभिन्न मूल्यांकनों में रिपोर्टिंग की अनुमति देता है।
+    scoring_select_all: सभी %{n} विषय चुनें
+    scoring_select_assessment_first: पहले मूल्यांकन चुनें
+    scoring_select_factor: कारक चुनें
+    scoring_show_weightages: वज़न दिखाएँ
+    scoring_subject: विषय
+    scoring_subject_list_bulk_mark_finalized: थोक चिह्न अंतिम रूप दिया गया
+    scoring_subject_list_bulk_mark_finalized_confirm: चयनित उपयोगकर्ताओं के लिए स्कोर अंतिम रूप से निर्धारित करने पर वह रिपोर्ट तैयार होगी जो उपयोगकर्ताओं के लिए अभियान कारक का उपयोग करती है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    scoring_subject_list_bulk_mark_not_finalized: थोक चिह्न अंतिम नहीं है
+    scoring_subject_list_bulk_mark_not_finalized_confirm: चयनित उपयोगकर्ताओं से फाइनलाइज़ हटाने से वह उत्पन्न रिपोर्ट हटा दी जाएगी जो उपयोगकर्ताओं के लिए अभियान कारक का उपयोग करती है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    scoring_subject_list_bulk_rescore: थोक पुनः स्कोर
+    scoring_subject_list_bulk_rescore_confirm: चयनित उपयोगकर्ताओं का पुनः स्कोरिंग किया जा रहा है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    scoring_subject_list_calculated_date: गणना की गई तिथि
+    scoring_subject_list_calculation_errors: गणना त्रुटियाँ
+    scoring_subject_list_export: निर्यात स्कोरिंग्स
+    scoring_subject_list_export_success: एक्सपोर्ट स्कोर्स जॉब सफलतापूर्वक निर्धारित किया गया था
+    scoring_subject_list_finalized: अंतिम रूप दिया गया
+    scoring_subject_list_finalized_date: अंतिम तिथि
+    scoring_subject_list_import_external_scores: बाहरी स्कोरिंग आयात करें
+    scoring_subject_list_mark_finalized: मार्क अंतिम रूप दिया गया
+    scoring_subject_list_mark_finalized_confirm: उपयोगकर्ता '%{email}' के लिए स्कोर अंतिम रूप देने पर वह रिपोर्ट तैयार होगी जो उपयोगकर्ता के लिए अभियान कारक का उपयोग करती है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
+    scoring_subject_list_mark_not_finalized: चिह्न अंतिम नहीं
+    scoring_subject_list_mark_not_finalized_confirm: उपयोगकर्ता '%{email}' से finalize हटाने से उस उपयोगकर्ता के लिए अभियान कारक का उपयोग करने वाली उत्पन्न रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    scoring_subject_list_push_webhook: पुश वेबहुक्स
+    scoring_subject_list_rank: रैंक
+    scoring_subject_list_rescore: पुनः स्कोर
+    scoring_subject_list_rescore_confirm: उपयोगकर्ता '%{email}' का पुनः स्कोरिंग किया जा रहा है। क्या आप सुनिश्चित हैं कि आप जारी रखना चाहते हैं?
     scoring_supported_only_for_ai_questions: स्कोरिंग केवल वर्तमान में चयनित कारक के लिए एआई-सक्षम प्रश्नों पर ही अनुमत है।
+    scoring_tabs_settings: सेटिंग्स
+    scoring_tabs_subject_scores: विषय स्कोर
     scoring_value_info: स्कोर %{min} और %{max} के बीच होना चाहिए।
     scoring_value_out_of_range_err_msg: "%{factor_name} के लिए स्कोर %{min} और %{max} के बीच होना चाहिए।"
+    scoring_variables: चर
+    scoring_weightages_assessorForms: मूल्यांकनकर्ता प्रपत्र
+    scoring_weightages_successful_update: वज़न सफलतापूर्वक अपडेट किए गए
+    scoring_weightages_weightages: भार
+    scoring_weighted_average: भारित औसत
     search_admins: प्रशासकों को खोजें
+    search_campaign: अभियान द्वारा खोजें
+    search_client: ग्राहक के अनुसार खोजें
     search_job_role: नौकरी की भूमिका खोजें
+    search_participants: प्रतिभागियों को खोजें...
+    search_project: परियोजना द्वारा खोजें
+    search_record: रिकॉर्ड आईडी द्वारा खोजें
+    search_user: उपयोगकर्ता द्वारा खोजें
+    seats_label: सीटें
+    sec_logo_label: द्वितीयक लोगो
+    secondary_logo_alt_text: द्वितीयक लोगो वैकल्पिक पाठ
+    secondary_logo_alt_text_required: द्वितीयक वैकल्पिक-टेक्स्ट लोगो आवश्यक है।
+    security_setting_180_days: १८० दिन
+    security_setting_30_days: 30 दिन
+    security_setting_365_days: 365 दिन
+    security_setting_90_days: 90 दिन
+    security_setting_attempts_to_lock: ताला लगाने के प्रयास
+    security_setting_auto_unlock_time: स्वचालित अनलॉक समय
+    security_setting_disable_password_reuse: 'पासवर्ड के पुन: उपयोग को अक्षम करें'
+    security_setting_disallow_password_login: पासवर्ड लॉगिन की अनुमति न दें
+    security_setting_enable_login_with_magic_link: मैजिक लिंक से लॉगिन सक्षम करें
+    security_setting_enable_recaptcha: reCAPTCHA सक्षम करें
+    security_setting_enforce_password_policy: अगली साइन-इन पर पासवर्ड नीति लागू करें
+    security_setting_enforce_strong: मजबूत पासवर्ड लागू करें
+    security_setting_expiration: पासवर्ड समाप्ति
+    security_setting_lock_account: खाता लॉक करें
+    security_setting_magic_link_expiry_duration: मैजिक लिंक समाप्ति अवधि
+    security_setting_min_length: न्यूनतम पासवर्ड लंबाई
+    security_setting_never: कभी नहीं
+    security_setting_restrict_sequences: क्रमिक और दोहराए जाने वाले अक्षरों को प्रतिबंधित करें
+    security_setting_security: सुरक्षा सेटिंग्स
+    security_setting_send_unlock_email: अनलॉक ईमेल भेजें
+    security_setting_session_timeout_duration: सत्र समाप्ति अवधि
+    security_setting_tfa_enabled: दो-चरणीय प्रमाणीकरण सक्षम करें
+    security_settings_security_setting: सुरक्षा सेटिंग
     select_admin_role: प्रशासक भूमिका चुनें
+    select_assessment_language: मूल्यांकन भाषा चुनें
     select_end_time: अंत का समय चुनें
     select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
     select_level: स्तर चुनें
     select_question: नाम या आईडी से प्रश्न खोजें
+    select_report_language: रिपोर्ट की भाषा चुनें
     select_start_time: आरंभ समय चुनें
     selective_proctoring: चयनात्मक निगरानी
     send_email: ईमेल भेजें
+    send_test_email: परीक्षण ईमेल भेजें
     set_min_max_scores_warning: कृपया एआई स्कोरिंग को कॉन्फ़िगर करने के लिए इस कारक के लिए न्यूनतम और अधिकतम स्कोर सेट करें।
     settings: सेटिंग्स
+    settings_admin_roles_confirm_message: क्या आप '%{role_name}' नामक एडमिन भूमिका को हटाना चाहते हैं?
     settings_saved_successfully: सेटिंग्स सफलतापूर्वक सहेजी गईं
+    settings_siem_destination_type: गंतव्य का प्रकार
+    settings_siem_destination_types_s3: एस3
+    settings_siem_destination_types_s3_compatible: S3 संगत
+    settings_siem_enabled: सक्षम
+    settings_siem_readable_resource_name: एसआईईएम सेटिंग्स
+    settings_siem_s3_access_key_id: एक्सेस की आईडी
+    settings_siem_s3_bucket_folder: S3 बकेट फ़ोल्डर
+    settings_siem_s3_bucket_name: S3 बकेट नाम
+    settings_siem_s3_endpoint: S3 एंडपॉइंट
+    settings_siem_s3_region: S3 क्षेत्र
+    settings_siem_s3_secret_access_key: गोपनीय पहुँच कुंजी
+    settings_siem_send_test_log: परीक्षण लॉग भेजें
+    settings_siem_send_test_log_error_message: टेस्ट लॉग आपके बकेट में नहीं भेजा गया है, अपनी सेटिंग्स जांचें।
+    settings_siem_send_test_log_success_message: टेस्ट लॉग सफलतापूर्वक आपके बकेट में भेज दिया गया है।
+    settings_skill_aliases_alias: उपनाम
+    settings_skill_aliases_confirm_message: क्या आप '%{skill_alias}' नामक कौशल उपनाम को हटाना चाहते हैं?
+    settings_skill_aliases_create: कौशल उपनाम जोड़ें
+    settings_skill_aliases_select_skill: कौशल चुनें
+    settings_skill_aliases_skill: कौशल
+    settings_skill_aliases_skill_alias: कौशल उपनाम
+    settings_skill_aliases_successful_remove: कौशल '%{skill_alias}' को सफलतापूर्वक हटा दिया गया।
+    settings_tabs_admin_roles: प्रशासन भूमिकाएँ
+    settings_tabs_feature_flags: फ़ीचर फ़्लैग्स
+    settings_tabs_siem: एसआईईएम
+    settings_tabs_skill_aliases: कौशल उपनाम
+    sheets_column_add_column: कॉलम जोड़ें
+    sheets_column_not_allowed_for_dashboard_use: डैशबोर्ड में उपयोग किए जाने वाले कॉलम की लंबाई 64 वर्णों से कम होनी चाहिए।
+    sheets_column_reorder: दोबारा ऑर्डर करें
+    sheets_column_save_order: ऑर्डर सहेजें
+    sheets_drawers_add_edit_cancelText: रद्द करें
+    sheets_drawers_add_edit_markdown_preview: पूर्वावलोकन
+    sheets_drawers_add_edit_markdown_title: मार्कडाउन
+    sheets_drawers_add_edit_save: बचाएँ
+    sheets_drawers_add_edit_saving: बचत
+    sheets_drawers_add_edit_success_message_add: नया रिकॉर्ड जोड़ा गया
+    sheets_drawers_add_edit_success_message_edit: रिकॉर्ड अपडेट किया गया
+    sheets_drawers_add_edit_title_add: शीट रिकॉर्ड जोड़ें
+    sheets_drawers_add_edit_title_edit: शीट पंक्ति रिकॉर्ड संपादित करें
+    sheets_drawers_add_edit_validations_required_email: कृपया ईमेल दर्ज करें
+    sheets_drawers_view_campaign_title: अभियान स्तर का रिकॉर्ड
+    sheets_drawers_view_project_title: परियोजना स्तर का रिकॉर्ड
+    sheets_drawers_view_title: शीट रो रिकॉर्ड विवरण
+    sheets_list_header_add_record: रिकॉर्ड जोड़ें
+    sheets_list_header_search_record: रिकॉर्ड खोजें
+    sheets_modals_delete_records_cancelText: रद्द करें
+    sheets_modals_delete_records_content: क्या आप सुनिश्चित हैं कि आप चयनित {{count}} रिकॉर्ड्स को हटाना चाहते हैं?
+    sheets_modals_delete_records_okText: हाँ, हटाएँ
+    sheets_modals_delete_records_successMessage: "{{count}} रिकॉर्ड सफलतापूर्वक हटा दिए गए।"
+    sheets_modals_delete_records_title: "{{count}} रिकॉर्ड हटाएँ"
+    sheets_modals_remove_columns_cancelText: रद्द करें
+    sheets_modals_remove_columns_content: एक कॉलम ({{columns}}) को हटाने से सभी पंक्तियों के लिए इस कॉलम का डेटा हटा दिया जाएगा।
+    sheets_modals_remove_columns_okText: हाँ, हटाएँ
+    sheets_modals_remove_columns_successMessage: "{{count}} रिकॉर्ड हटाए गए"
+    sheets_modals_remove_columns_title: स्तंभ हटाएँ
+    sheets_tabs_rows: कतारें
+    sheets_tabs_settings: सेटिंग्स
+    show_all: सभी दिखाएँ
     show_all_assessment_responses: सभी मूल्यांकन प्रतिक्रियाएँ दिखाएँ
     show_middle_scores: "%{count} को और स्कोर दिखाएँ (वैकल्पिक)..."
     show_original: मूल दिखाएँ
     show_submenu: उप मेनू दिखाएँ
     show_translated: अनुवादित दिखाएँ
+    show_watermark: वाटरमार्क दिखाएँ
+    sidebar_title: परियोजना के विकल्प
     siem: एसआईईएम
     simulation: अनुकरण
     simulation_assessment: अनुकरण मूल्यांकन
     skill_aliases: कौशल उपनाम
+    skill_rater: कौशल मूल्यांकनकर्ता
     skills: कौशल
+    skills_applicable_proficiency_levels: लागू दक्षता स्तर
+    skills_columns_skill_group: कौशल समूह
+    skills_columns_skill_type: कौशल का प्रकार
+    skills_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
+    skills_export_success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
+    skills_form_skill_group: कौशल समूह
+    skills_form_skill_type: कौशल का प्रकार
+    skills_form_title: कौशल
+    skills_import_action_skills_title: कौशल आयात करें
+    skills_import_action_skills_translations_title: कौशल अनुवाद आयात करें
+    skills_import_download_example_csv: उदाहरण सीएसवी डाउनलोड करें
+    skills_import_info_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    skills_import_success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    skills_skill_details: कौशल विवरण
+    skills_skill_translations: कौशल अनुवाद
     skills_taxonomy: कौशल वर्गीकरण
+    skills_title: कौशल
+    skills_vector_generate_embedding: एम्बेडिंग उत्पन्न करें
+    skills_vector_generate_embedding_failure_msg: कौशल एम्बेडिंग जनरेशन जॉब को कतारबद्ध करने में विफल। कृपया फिर से प्रयास करें।
+    skills_vector_generate_embedding_success_msg: स्किल एम्बेडिंग जनरेशन जॉब सफलतापूर्वक कतारबद्ध हो गया है। कृपया सूचनाओं में स्थिति देखें।
+    skills_vector_label: वेक्टर डेटाबेस
     skillvue: स्किलव्यू
+    skillvue_apiKey: एपीआई कुंजी
+    skillvue_apiKeyRequired: एपीआई कुंजी आवश्यक है
     skillvue_assessment: स्किलव्यू मूल्यांकन
     skip_assessment_level_checks: मूल्यांकन-स्तर प्रणाली जाँचों को छोड़ें
     slot_name: स्लॉट का नाम
+    sms_contact: एसएमएस संपर्क
     sms_histories: एसएमएस इतिहास
+    sms_histories_columns_mobile_no: मोबाइल नंबर
+    sms_histories_columns_price: कीमत
+    sms_histories_columns_segment_length: खंड की लंबाई
+    sms_histories_columns_sent_at: भेजा गया
+    sms_histories_drawer_title: एसएमएस विवरण
+    sms_histories_history: इतिहास
+    sms_histories_statuses_accepted: स्वीकार्य
+    sms_histories_statuses_delivered: पहुँचा दिया गया
+    sms_histories_statuses_failed: असफल
+    sms_histories_statuses_queued: कतार में
+    sms_histories_statuses_scheduled: निर्धारित
+    sms_histories_statuses_sent: भेजा गया
+    sms_histories_statuses_undelivered: अनपहुँचा
     sms_invites: एसएमएस निमंत्रण
+    sms_invites_actions_add: एसएमएस संपर्क जोड़ें
+    sms_invites_columns_created_at: पर बनाया गया
+    sms_invites_columns_created_by: द्वारा निर्मित
+    sms_invites_columns_mobile_no: मोबाइल नंबर
+    sms_invites_contacts: संपर्क
+    sms_invites_form_modal_locale: स्थान
+    sms_invites_form_modal_mobile_no: मोबाइल नंबर
+    sms_invites_form_modal_title: एसएमएस निमंत्रण
+    sms_invites_import_download_example_csv: उदाहरण सीएसवी डाउनलोड करें
+    sms_invites_import_success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    sms_invites_import_title: एसएमएस निमंत्रण आयात
+    sms_invites_messages_delete_confirm_text: क्या आप सुनिश्चित हैं कि आप मोबाइल नंबर %{mobile_no} से एसएमएस निमंत्रण हटाना चाहते हैं?
+    sms_invites_messages_delete_success: एसएमएस निमंत्रण सफलतापूर्वक हटा दिया गया।
+    sms_invites_send_sms_fields_link_expiry: लिंक समाप्ति
+    sms_invites_send_sms_fields_locale: स्थान
+    sms_invites_send_sms_fields_message: संदेश
+    sms_invites_send_sms_fields_statuses: स्थितियाँ
+    sms_invites_send_sms_fields_users: उपयोगकर्ता
+    sms_invites_send_sms_modal_btn_name: एसएमएस भेजें
+    sms_invites_send_sms_modal_title: एसएमएस भेजें
+    sms_invites_send_sms_segment_length_msg: इस संदेश के लिए अनुमानित सेगमेंटों की संख्या %{segment_length} है।
+    sms_invites_send_sms_segment_length_range_msg: इस संदेश के लिए अनुमानित सेगमेंटों की संख्या %{min_segment_length} और %{max_segment_length} के बीच है।
+    sms_invites_statuses_all: सभी
+    sms_invites_statuses_failed: असफल
+    sms_invites_statuses_invited: आमंत्रित
+    sms_invites_statuses_not_invited: आमंत्रित नहीं किया गया
+    sms_invites_statuses_registered: पंजीकृत
+    sms_invites_tools_export: एसएमएस संपर्कों का निर्यात करें
+    sms_invites_tools_import: एसएमएस संपर्क आयात करें
+    sms_invites_tools_send_sms: एसएमएस भेजें
+    sms_notification: एसएमएस सूचना
+    sms_notification_disabled_by_client: एसएमएस सूचना क्लाइंट द्वारा अक्षम की गई है।
+    sms_records_columns_message: संदेश
+    smtp_settings: एसएमटीपी सेटिंग्स
+    smtp_settings_authentication: प्रमाणीकरण
+    smtp_settings_authentication_type: प्रमाणीकरण प्रकार
+    smtp_settings_authentication_types_cram_md5: क्रैम एमडी5
+    smtp_settings_authentication_types_login: लॉगिन
+    smtp_settings_authentication_types_plain: सादा
+    smtp_settings_enabled: सक्षम
+    smtp_settings_encryption: एन्क्रिप्शन
+    smtp_settings_encryption_types_none: कोई नहीं
+    smtp_settings_encryption_types_ssl: एसएसएल
+    smtp_settings_encryption_types_tls: टीएलएस
+    smtp_settings_from_email: ईमेल से
+    smtp_settings_from_name: नाम से
+    smtp_settings_host: मेज़बान
+    smtp_settings_password: पासवर्ड
+    smtp_settings_port: बंदरगाह
+    smtp_settings_send_test_email: परीक्षण ईमेल भेजें
+    smtp_settings_smtp: एसएमटीपी
+    smtp_settings_test_email_modal_input_hint: जब तक परीक्षण ईमेल सफलतापूर्वक भेजा नहीं जाता, आपकी ईमेल सेटिंग सहेजी नहीं जाएगी।
+    smtp_settings_test_email_modal_input_placeholder: परीक्षण ईमेल आईडी
+    smtp_settings_test_email_modal_title: परीक्षण ईमेल आईडी
+    smtp_settings_test_modal_success_message: "%{email_id} पर ईमेल परीक्षण भेजा गया।"
+    smtp_settings_test_modal_title: एसएमटीपी सेटिंग का परीक्षण करें
+    smtp_settings_update_success_msg: SMTP सेटिंग सफलतापूर्वक अपडेट हो गई।
+    smtp_settings_use_sender_verification: प्रेषक सत्यापन का उपयोग करें
+    smtp_settings_user_name: उपयोगकर्ता नाम
     specialty_questions: विशेष प्रश्न
+    standard: मानक
     standard_deviation: मानक विचलन
     standard_questions: मानक प्रश्न
     start: शुरू करें
     start_time: शुरुआत का समय
     static_content: स्थिर सामग्री
     stats: आँकड़े
+    stats_assessments_active: सक्रिय
+    stats_assessments_columns_assessment_name: मूल्यांकन का नाम
+    stats_assessments_columns_completed: पूर्ण
+    stats_assessments_columns_in_progress: प्रगति में
+    stats_assessments_columns_ineligible: अयोग्य
+    stats_assessments_columns_interrupted: बाधित
+    stats_assessments_columns_not_started: शुरू नहीं हुआ
+    stats_assessments_columns_timed_out: समय समाप्त
+    stats_assessments_count: गिनती
+    stats_assessments_inactive: निष्क्रिय
+    stats_assessments_percentage: प्रतिशत
+    stats_assessments_title: मूल्यांकन
+    stats_top_metrics_completed: पूर्ण
+    stats_top_metrics_in_progress: प्रगति में
+    stats_top_metrics_interrupted: बाधित
+    stats_top_metrics_not_started: शुरू नहीं हुआ
+    stats_top_metrics_timed_out: समय समाप्त
+    stats_top_metrics_users: उपयोगकर्ता
+    stats_users_date_presets_last_30_days: पिछले 30 दिन
+    stats_users_date_presets_last_7_days: पिछले 7 दिन
+    stats_users_date_presets_last_month: पिछला महीना
+    stats_users_date_presets_last_week: पिछला सप्ताह
+    stats_users_date_presets_today: आज
+    stats_users_date_presets_yesterday: कल
+    stats_users_y_title: उपयोगकर्ताओं की संख्या
+    status_active: सक्रिय
+    status_archived: संचित
     status_details: स्थिति विवरण
+    statuses_accepted: स्वीकार्य
+    statuses_cancelled: रद्द
+    statuses_late_cancelled: देर से रद्द
+    statuses_late_rescheduled: देर से पुनर्निर्धारित
+    statuses_pending: लंबित
+    statuses_requested_cancellation: रद्दीकरण का अनुरोध
+    statuses_requested_cancellation_rejected: रद्दीकरण अस्वीकार कर दिया गया
+    statuses_requested_rescheduling: अनुरोधित पुनर्निर्धारण
+    statuses_requested_rescheduling_rejected: पुनः निर्धारित करने का अनुरोध अस्वीकार कर दिया गया
+    statuses_rescheduled: पुनर्निर्धारित
+    statuses_scheduled: निर्धारित
+    steps_basic_information: मूलभूत जानकारी
+    steps_facilitators: सहायक
+    steps_invite_options: आमंत्रण विकल्प
+    steps_invite_subjects: विषयों को आमंत्रित करें
+    steps_send_invitations: निमंत्रण भेजें
     structured_learning: औपचारिक अधिगम [10]
+    sub_factor_questions: अन्य कारकों के प्रश्न (औसत)
+    sub_factor_questions_sum: अन्य कारकों के प्रश्न (योग)
+    sub_factors_average: तत्त्वों का भारित औसत
+    sub_factors_conditional_average: कारकों का सशर्त भारित औसत
+    sub_factors_sum: गुणकों का भारित योग
     subdomain: उप-डोमेन
+    subject: विषय
+    subject_can_access_reports: विषय अपनी रिपोर्टों तक पहुँच सकता है।
+    subject_email: विषय का ईमेल
+    subject_invite_description: यह संदेश विषयों को मूल्यांकन में भाग लेने के लिए आमंत्रित करने हेतु भेजा जाएगा।
+    subject_invite_name: 'विषय: निमंत्रण'
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
+    subject_placeholder: विषय खोजें...
+    subject_reminder_description: प्रत्येक प्रतिभागी को मूल्यांकन में भाग लेने की याद दिलाने के लिए संदेश भेजा गया।
+    subject_reminder_name: 'विषय: अनुस्मारक'
+    subject_reminder_rule_description: जब कोई निमंत्रण निर्धारित किया जाता है, तब स्वचालित रूप से अनुसूचीकरण के लिए नियम निर्दिष्ट करें।
+    subject_reminder_rule_name: विषय अनुस्मारक नियम
+    subject_report_ready_description: यह संदेश किसी विषय को तब भेजा जाता है जब उनकी रिपोर्ट तैयार हो जाती है।
+    subject_report_ready_name: विषय रिपोर्ट तैयार
+    subjects_title: विषय
+    submenu_options_option_one: विकल्प 1
+    submenu_options_option_title: आइटम 1
+    submenu_options_option_two: विकल्प 2
+    success_call_send_invitation: क्या आप निमंत्रण भेजना चाहेंगे?
+    success_color: सफलता का रंग
+    success_ok: हाँ
+    success_skip: अभी छोड़ें
+    success_title: मूल्यांकन केंद्र बनाए गए
+    success_update: डिज़ाइन सेटिंग्स सफलतापूर्वक सहेजी गईं
+    suitability_id: उपयुक्तता आईडी
+    system_prompt: प्रणाली संकेत
+    tab_text_one: मेनू
+    tab_text_two: उपमेनू
+    table_more_actions: अधिक क्रियाएँ
+    tabs_results: परिणाम
+    tabs_settings: सेटिंग्स
     target_job_role: लक्षित नौकरी की भूमिका
+    taxonomy_import_action_taxonomy: कौशल वर्गीकरण आयात करें
+    taxonomy_import_description: अपनी स्किल्स टैक्सोनॉमी को इम्पोर्ट या अपडेट करने के लिए एक एक्सेल फ़ाइल अपलोड करें। इससे नए कौशल, नौकरी की भूमिकाएँ और प्रवीणता स्तर जुड़ेंगे।
+    taxonomy_import_download_example_file: उदाहरण फ़ाइल डाउनलोड करें
+    taxonomy_import_drag_text: अपलोड करने के लिए इस क्षेत्र में फ़ाइल पर क्लिक करें या उसे ड्रैग करें।
+    taxonomy_import_error_title: आयात विफल
+    taxonomy_import_file_hint: ".xls और .xlsx फ़ाइलों का समर्थन करता है"
+    taxonomy_import_import_button: टैक्सोनॉमी आयात करें
+    taxonomy_import_success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
+    taxonomy_title: कौशल वर्गीकरण
+    template_and_campaign_required: कृपया टेम्पलेट और अभियान दोनों आईडी प्रदान करें।
+    template_render_failed: टेम्पलेट रेंडर करने में असफल
+    test_generate: परीक्षण उत्पन्न करें
+    test_render: परीक्षण रेंडर
+    test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
+    text_danger: पाठ (खतरा)
+    text_success: टेक्स्ट (सफलता)
+    text_warning: टेक्स्ट (चेतावनी)
     this_field_is_required: यह फ़ील्ड अनिवार्य है
+    threesixity_advance_settings_campaign_template: अभियान टेम्पलेट
+    threesixity_advance_settings_factors: तत्व
+    threesixity_close_content: क्या आप वास्तव में मल्टी रेटर कैंपेन क्रिएटर बंद करना चाहते हैं? कोई भी बिना सहेजी गई अनुकूलन कार्य खो जाएगा। कृपया अपना निर्णय पुष्टि करें।
+    threesixity_close_title: मल्टी रेटर अभियान निर्माता बंद करें?
+    threesixity_instructions_creation_empty: 'Empty: Start with a blank survey and customize it according to your specific needs.'
+    threesixity_instructions_creation_previous: 'Previous: Select a previous assessment as a starting point and make modifications.'
+    threesixity_instructions_creation_standard: 'Standard: Use a pre-designed template with commonly used questions & indicators.'
+    threesixity_instructions_creation_sub_title: कृपया वह अभियान प्रकार चुनें जिसे आप बनाना चाहते हैं।
+    threesixity_instructions_creation_title: मल्टी रेटर कैंपेन क्रिएटर में आपका स्वागत है!
+    threesixity_instructions_customization_sub_title: मूल्यांकन में शामिल किए जाने वाले टेम्पलेट और कारकों का चयन करें।
+    threesixity_instructions_customization_title: अपने मूल्यांकन को अनुकूलित करें!
+    threesixity_no_factors_description: कृपया कुछ अन्य खोज कीवर्ड आज़माएँ।
+    threesixity_no_factors_title: कोई कारक नहीं मिला
+    threesixity_questions_select_all: सभी चुनें
+    threesixity_questions_title: प्रश्न और संकेतक
+    threesixity_search_factors_description: कृपया आप जिन कारकों की तलाश कर रहे हैं उन्हें खोजने के लिए कम से कम 3 अक्षर दर्ज करें।
+    threesixity_search_factors_title: अपनी खोज शुरू करें
+    threesixity_success: मल्टी रेटर अभियान सफलतापूर्वक बनाया गया।
+    threesixity_success_job: मल्टी रेटर अभियान निर्माण का कार्य सफलतापूर्वक अनुसूचित किया गया।
     threesixty: 360 अभियान
+    threesixty_campaigns_mail_history_date: दिनांक
+    threesixty_campaigns_mail_history_download_details: डाउनलोड विवरण
+    threesixty_campaigns_mail_history_emails_sent: भेजे गए ईमेल
+    threesixty_campaigns_mail_history_recipient: प्राप्तकर्ता
+    threesixty_campaigns_mail_history_subject: विषय
+    threesixty_campaigns_manage_assessment: मूल्यांकन
+    threesixty_campaigns_manage_dimension: आयाम
+    threesixty_campaigns_manage_manage_relationships: रिश्तों का प्रबंधन करें...
+    threesixty_campaigns_manage_report: रिपोर्ट
+    threesixty_campaigns_menu_datasheet_title: डेटाशीट
+    threesixty_campaigns_menu_messages_title: संदेश
+    threesixty_campaigns_menu_participants_title: प्रतिभागी
+    threesixty_campaigns_menu_report_menu_report_approval_title: रिपोर्ट अनुमोदन सेटिंग्स
+    threesixty_campaigns_menu_report_menu_report_options_title: रिपोर्ट विकल्प
+    threesixty_campaigns_menu_report_title: रिपोर्ट
+    time_label: समय
+    time_zone: समय क्षेत्र
     timed_label: 'समयबद्ध: %{time_text}'
     timelines: समयरेखाएँ
+    times: बार
     timezone: समय क्षेत्र
+    timezone_label: समय क्षेत्र
     timing: समय
     to: के लिए
+    token_url_label: टोकन यूआरएल
+    token_url_name: ओएथ_टोकन_यूआरएल
+    token_url_required: टोकन URL आवश्यक है।
     tone: स्वर
     toolbar_ai_insight: एआई अंतर्दृष्टि
     toolbar_ai_suggestion: एआई सुझाव
@@ -1158,6 +2878,20 @@ hi:
     toolbar_text_replaced: टेक्स्ट बदल दिया गया!
     toolbar_what_changed_and_why: क्या बदला और क्यों
     tools: उपकरण
+    topics_label: कार्यक्रम
+    topics_list_assessment_assigned: मूल्यांकन सौंपा गया
+    topics_list_assessment_completed: मूल्यांकन पूरा हुआ
+    topics_list_assessment_raw_response: मूल्यांकन कच्चा उत्तर
+    topics_list_assessment_started: मूल्यांकन शुरू
+    topics_list_assessment_timeout: मूल्यांकन टाइमआउट
+    topics_list_campaign_results_available: अभियान के परिणाम उपलब्ध हैं
+    topics_list_campaign_user_status: अभियान उपयोगकर्ता स्थिति
+    topics_list_report_available: रिपोर्ट उपलब्ध
+    topics_list_results_available: परिणाम उपलब्ध
+    topics_list_scheduling_cancelled: अनुसूचीकरण रद्द
+    topics_list_scheduling_invited: आमंत्रित शेड्यूलिंग
+    topics_list_scheduling_rescheduled: अनुसूचीकरण पुनर्निर्धारित
+    topics_list_scheduling_scheduled: निर्धारित अनुसूचीकरण
     transcription_record_not_found: प्रतिलेखन रिकॉर्ड नहीं मिला
     transcription_schedule_failed: ट्रांसक्रिप्शन जॉब शेड्यूल करने में विफल
     transcription_scheduled: ट्रांसक्रिप्शन का काम निर्धारित कर दिया गया है। कृपया मोडल बंद करें और सूचना की स्थिति जांचें।
@@ -1170,31 +2904,82 @@ hi:
     translation_assistant_not_configured: अनुवाद सहायक कॉन्फ़िगर नहीं किया गया है
     translations:
       title: अनुवाद
+    translations_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
+    translations_export_success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
+    tte: टीटीई
+    type_by_skill: कौशल द्वारा
+    type_by_skill_type: कौशल प्रकार के अनुसार
+    type_default: डिफ़ॉल्ट
+    type_locked_tooltip: यह सहायक वर्तमान में उपयोग में है और इसके प्रकार को बदला नहीं जा सकता।
+    unarchive_content: क्या आप '%{project_name}' को अनआर्काइव करना चाहते हैं?
+    unarchive_success: परियोजना '%{project_name}' को सफलतापूर्वक अनआर्काइव किया गया।
+    unarchive_title: परियोजना को अनआर्काइव करें
+    unsaved_changes: अनसहेजीकृत परिवर्तन मौजूद हैं, प्लेग्राउंड से अद्यतन प्रतिक्रिया उत्पन्न करने के लिए फॉर्म सबमिट करने पर विचार करें।
+    upcoming: आने वाला
     update_success: "%{readableResourceName} सफलतापूर्वक अपडेट किया गया"
+    updated_successfully: एआई असिस्टेंट सफलतापूर्वक अपडेट हो गया।
     upload: अपलोड
     upload_media: मीडिया अपलोड करें
     upload_required: कृपया अपलोड करने के लिए कम से कम एक फ़ाइल जोड़ें।
     upload_success: सफलतापूर्वक अपलोड किया गया
+    url_label: यूआरएल
+    url_name: यूआरएल
+    used_tokens_input_tokens: इनपुट टोकन
+    used_tokens_output_tokens: आउटपुट टोकन
+    used_tokens_title: टोकन उपयोग
+    user: उपयोगकर्ता
+    user_agent: उपयोगकर्ता एजेंट
+    user_prompt: उपयोगकर्ता संकेत
     user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ
+    user_report_id: उपयोगकर्ता रिपोर्ट आईडी
+    user_result_validity_in_days: दिनों में परिणाम वैधता
+    username_label: उपयोगकर्ता नाम
+    username_name: उपयोगकर्ता नाम
     users: उपयोगकर्ता
+    users_modals_download_idp_reports_error: बल्क डाउनलोड IDP रिपोर्ट्स जॉब शेड्यूल करने में असफल रहा।
+    users_modals_download_idp_reports_include_reflective_questions: प्रतिबिंबित प्रश्न शामिल करें
+    users_modals_download_idp_reports_success: IDP रिपोर्ट्स को थोक डाउनलोड करने का कार्य सफलतापूर्वक निर्धारित किया गया।
+    users_modals_download_idp_reports_title: IDP रिपोर्ट्स थोक में डाउनलोड करें
+    users_user: उपयोगकर्ता
     validation_error: कृपया सभी आवश्यक फ़ील्ड भरें।
     validity: वैधता
     very_high: बहुत अधिक
     very_low: बहुत कम
+    video_call_recording: वीडियो कॉल रिकॉर्डिंग की अनुमति दें
+    video_call_recording_expiry_duration: वीडियो कॉल रिकॉर्डिंग्स के लिए प्रतिधारण अवधि (दिनों में)
+    video_call_recording_scope: सभी नए अभियानों के लिए वीडियो रिकॉर्डिंग सक्षम करें
+    video_call_type_custom: अनुकूलित
+    video_call_type_internal: आंतरिक
+    video_call_type_label: वीडियो कॉल जोड़ें
+    video_call_type_none: कोई नहीं
     view_licenses: लाइसेंस देखें
+    visual_header_visibility: दृश्य शीर्षक दृश्यता
     wait_for_upload_completion: कृपया सभी फ़ाइलों के अपलोड होने तक प्रतीक्षा करें।
     waiting: इंतज़ार
+    warning_color: चेतावनी रंग
+    watermark_content: वाटरमार्क सामग्री
+    watermark_info: यदि आप कोई सामग्री नहीं जोड़ते हैं, तो डिफ़ॉल्ट रूप से उपयोगकर्ता का ईमेल वॉटरमार्क के रूप में दिखाई देगा। आप निम्नलिखित pipetext में से कोई भी उपयोग कर सकते हैं -<br/> {{id}} - प्रतिभागी आईडी </br> {{first_name}} - प्रतिभागी का पहला नाम </br> {{last_name}} - प्रतिभागी का अंतिम नाम </br> {{email}} - प्रतिभागी का ईमेल
+    webhook_delete_success: वेबहुक सेटिंग्स सफलतापूर्वक हटा दी गईं
     weight: वजन
+    welcome_message_description: यह संदेश प्रतिभागियों को तब दिखाया जाएगा जब वे मूल्यांकन शुरू करने या अपनी कार्य सूची देखने के लिए लॉग इन करेंगे।
+    welcome_message_name: स्वागत संदेश
     what_to_look_for: क्या देखें
     what_to_look_for_placeholder: व्यवहारों, क्रियाओं या परिणामों के प्रमाण जो इस कारक को प्रदर्शित करते हैं।
     words: शब्द
+    workshop_actions_remove_workshop: कार्यशाला सफलतापूर्वक हटा दी गई
+    workshop_statuses_closed: बंद
+    workshop_statuses_open: खोलें
     workshops: कार्यशालाएँ
     writing_assistant_not_configured: राइटिंग असिस्टेंट कॉन्फ़िगर नहीं किया गया है
     x_axis_interval_label: एक्स-अक्ष अंतराल
     y_axis_interval_label: वाई-अक्ष अंतराल
     year: वर्ष
+    years: वर्ष
     yoodli: यूडली
     yoodli_activity_id: यूडल एक्टिविटी आईडी
     yoodli_assessment: यूडली मूल्यांकन
     yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
     yoodli_external_assessment_id: यूडली मूल्यांकन आईडी
+    yoodli_keyset_url: कीसेट यूआरएल
+    yoodli_launch_url: लॉन्च यूआरएल
+    yoodli_login_url: लॉगिन यूआरएल

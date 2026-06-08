@@ -1660,7 +1660,6 @@ cs:
     details:
       additional_time: Další čas
       assessment_center: Hodnotící centrum
-      assessment_center_invites: Pozvánky do hodnotícího centra
       completed_at: Konec
       completion_status: Stav dokončení
       hogan_id: Hogan ID
@@ -1690,11 +1689,6 @@ cs:
     modals:
       remove: Jste si jisti, že chcete z této kampaně odstranit uživatele s e-mailem '%{email}'?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Hodnocení hodnotitele
-      other_assessments: Další hodnocení
-      other_assessor_assessments: Ostatní hodnocení Assessor Assessments
-      other_reports: Další zprávy
     card:
       duration: Doba trvání
       starts_in: 'Začíná za:'
@@ -1765,23 +1759,19 @@ cs:
       insert: Vložte
       'no': Ne
       ok: OK
-      publish: Zveřejnit
       reject: Odmítat
       remove: Odstranit
       reset: Obnovit
       resolve: Vyřešit
       restore: Obnovit
       return_to_home: Návrat na domovskou stránku
-      run: Spustit
       save: Uložit
       schedule: Plán
       search: Hledat
-      send: Odeslat
       sign_in: Přihlásit se
       start: Spustit
       submit: Odeslat
       unarchive: Odebrat z archivu
-      unpublish: Zrušení publikování
       unresolve: Označit jako nevyřešené
       update: Aktualizovat
       upload: Nahrát
@@ -1794,20 +1784,14 @@ cs:
     column:
       action: Akce
       active: Aktivní
-      ai_assistant: Asistent AI
-      allow_multiple_responses: Povolit více odpovědí
       approval_notification_list: Seznam uživatelů oznámení o schválení
       approvers_list: Seznam schvalovatelů
-      assessment: Hodnocení
       assessment_name: Název hodnocení
       assessments: Hodnocení
-      assessor: Posuzovatel
       category: Kategorie
       client: Klient
-      code: Kód
       created_at: Vytvořeno v
       created_by: Vytvořil
-      created_date: Datum vytvoření
       default_language: Výchozí jazyk
       description: Popis
       details: Podrobnosti na
@@ -1825,11 +1809,8 @@ cs:
         scoring: Bodování JSON
       key: Klíč
       last_name: Příjmení
-      linked_activities: Související činnosti
       linked_assessment: Související hodnocení
-      meeting_link: Odkaz na setkání
       modified_by: Upraveno podle
-      modified_date: Datum úpravy
       name: Název
       owner: Majitel
       package_id: ID balíčku
@@ -1845,7 +1826,6 @@ cs:
       scheduling: Plánování
       skills: Dovednosti
       status: Stav
-      tags: Štítky
       timing: Časování
       token: Token
       type: Typ
@@ -1857,15 +1837,12 @@ cs:
     messages:
       leave_message: Opravdu chcete opustit tuto stránku? Všechny neuložené odpovědi budou ztraceny.
     model:
-      admins: Administrátoři
       assessment: Hodnocení
       assessments: Hodnocení
       campaigns: Kampaně
       completion_statuses: Statuty dokončení
-      datasheet: Datový list
       report: Nahlásit
       reports: Zprávy
-      sms_contact: SMS kontakt
       threesixty_campaign: Výsledky kampaně Threesixty
     status:
       completed: Dokončeno
@@ -2955,9 +2932,7 @@ cs:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktivní
     campaign_name: Název kampaně
-    inactive: Neaktivní
     status_updated_at: Poslední aktualizace stavu
     status_updated_by: Naposledy aktualizoval
     subject_email: Předmět e-mailu
@@ -3961,7 +3936,6 @@ cs:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktivní
     allow_multiple_respones: Umožnit uživatelům odeslat více odpovědí
     png: PNG
     regenerate_link: Regenerovat odkaz

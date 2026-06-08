@@ -115,7 +115,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="campaign_templates"
       resource={campaignTemplate}
-      readableResourceName={I18n.t('administration.campaign_templates.form.title')}
+      readableResourceName={I18n.t('admin.campaign_templates_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -130,7 +130,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.campaign_templates.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{
               required: true,
               transform: value => value.trim(),
@@ -138,20 +138,20 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Input
               placeholder={
-                I18n.t('administration.campaign_templates.form.name_placeholder')
+                I18n.t('admin.campaign_templates_form_name_placeholder')
               }
             />
           </Form.Item>
           <Form.Item
             name="assessmentId"
-            label={I18n.t('administration.campaign_templates.form.assessment')}
+            label={I18n.t('admin.campaign_templates_form_assessment')}
             rules={[{ required: true }]}
           >
             <Select
               disabled={disabled}
               showSearch={{ filterOption: false, onSearch: searchAvailableAssessments }}
               placeholder={
-                I18n.t('administration.campaign_templates.form.assessment_placeholder')
+                I18n.t('admin.campaign_templates_form_assessment_placeholder')
               }
               notFoundContent={assessmentsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
@@ -167,14 +167,14 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="reportId"
-            label={I18n.t('administration.campaign_templates.form.report')}
+            label={I18n.t('admin.campaign_templates_form_report')}
             rules={[{ required: true }]}
           >
             <Select
               disabled={disabled}
               showSearch={{ filterOption: false, onSearch: searchAvailableReports }}
               placeholder={
-                I18n.t('administration.campaign_templates.form.report_placeholder')
+                I18n.t('admin.campaign_templates_form_report_placeholder')
               }
               notFoundContent={reportsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
@@ -190,14 +190,14 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="ownerId"
-            label={I18n.t('administration.campaign_templates.form.owner')}
+            label={I18n.t('admin.campaign_templates_form_owner')}
             initialValue={ownerId}
           >
             <Select
               disabled={disabled}
               showSearch={{ filterOption: false, onSearch: searchAvailableOwners }}
               placeholder={
-                I18n.t('administration.campaign_templates.form.owner_placeholder')
+                I18n.t('admin.campaign_templates_form_owner_placeholder')
               }
               notFoundContent={ownersLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >

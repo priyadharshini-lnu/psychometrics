@@ -133,7 +133,7 @@ const IDPDetailsForm = ({
 
       try {
         await update({ id: idp.id, ...payload })
-        message.success(I18n.t('administration.idp.details_updated'))
+        message.success(I18n.t('admin.idp_details_updated'))
       } catch (e) {
         if (e?.base?.[0]) {
           message.error(e?.base?.[0]?.title)
@@ -237,31 +237,31 @@ const IDPDetailsForm = ({
         )}
         <Row gutter={[16, 16]}>
           <Col xs={24} md={12}>
-            <Card title={I18n.t('administration.idp.template_details')}>
+            <Card title={I18n.t('admin.idp_template_details')}>
               <Form.Item
                 name="name"
-                label={I18n.t('administration.idp.enter_template_name')}
-                rules={[{ required: true, message: I18n.t('administration.idp.enter_template_name_error') }]}
+                label={I18n.t('shared.name')}
+                rules={[{ required: true, message: I18n.t('admin.idp_enter_template_name_error') }]}
               >
-                <Input placeholder={I18n.t('administration.idp.enter_template_name')} />
+                <Input placeholder={I18n.t('shared.name')} />
               </Form.Item>
 
               <Form.Item
                 name="description"
-                label={I18n.t('administration.idp.enter_template_description')}
-                rules={[{ required: true, message: I18n.t('administration.idp.enter_template_description_error') }]}
+                label={I18n.t('shared.description')}
+                rules={[{ required: true, message: I18n.t('admin.idp_enter_template_description_error') }]}
               >
-                <Input placeholder={I18n.t('administration.idp.enter_template_description')} />
+                <Input placeholder={I18n.t('shared.description')} />
               </Form.Item>
 
               <Form.Item
                 name="reportId"
-                label={I18n.t('administration.idp.skill_gap_report')}
+                label={I18n.t('admin.idp_skill_gap_report')}
               >
                 <Select
                   showSearch={{ filterOption: false, onSearch: debouncedFetchReports }}
                   notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
-                  placeholder={I18n.t('administration.idp.select_skill_gap_report')}
+                  placeholder={I18n.t('admin.idp_select_skill_gap_report')}
                 >
                   {reports.map(({ id, name }) => (
                     <Select.Option key={id} value={id}>{name}</Select.Option>
@@ -270,13 +270,13 @@ const IDPDetailsForm = ({
               </Form.Item>
 
 
-              <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
+              <Form.Item name="selfRatingEnabled" label={I18n.t('admin.idp_self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
               {(idp.aiEnabled || aiAssistedIdpFeatureEnabled) && (
                 <Form.Item
                   name="aiEnabled"
-                  label={I18n.t('administration.idp.ai_enabled')}
+                  label={I18n.t('admin.idp_ai_enabled')}
                   valuePropName="checked"
                 >
                   <Switch disabled={!aiAssistedIdpFeatureEnabled} />
@@ -286,11 +286,11 @@ const IDPDetailsForm = ({
           </Col>
           {aiEnabled && (
             <Col xs={24} md={12}>
-              <Card title={I18n.t('administration.idp.ai_settings')}>
+              <Card title={I18n.t('admin.idp_ai_settings')}>
                 {/* uncomment this when AI Assisted IDP is ready
                 <Form.Item
                   name="aiAssistedIdpEnabled"
-                  label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
+                  label={I18n.t('admin.idp_ai_assisted_idp_enabled')}
                   valuePropName="checked"
                 >
                   <Switch />
@@ -298,7 +298,7 @@ const IDPDetailsForm = ({
 
                 <Form.Item
                   name="oneClickIdpEnabled"
-                  label={I18n.t('administration.idp.one_click_idp_enabled')}
+                  label={I18n.t('admin.idp_one_click_idp_enabled')}
                   valuePropName="checked"
                 >
                   <Switch disabled={!aiAssistedIdpFeatureEnabled} />
@@ -308,7 +308,7 @@ const IDPDetailsForm = ({
                   <>
                     <Form.Item
                       name="oneClickAiAssistantId"
-                      label={I18n.t('administration.idp.ai_assistant')}
+                      label={I18n.t('admin.idp_ai_assistant')}
                       rules={[{ required: true, message: I18n.t('admin.ai_assistant_required') }]}
                     >
                       <Select
@@ -335,7 +335,7 @@ const IDPDetailsForm = ({
 
                     <Form.Item
                       name="documentAnalysisAiAssistantId"
-                      label={I18n.t('administration.idp.document_ai_assistant')}
+                      label={I18n.t('admin.idp_document_ai_assistant')}
                     >
                       <Select
                         disabled={!aiAssistedIdpFeatureEnabled}
@@ -360,7 +360,7 @@ const IDPDetailsForm = ({
                     </Form.Item>
                     <Form.Item
                       name="skillGapReportAnalysisAiAssistantId"
-                      label={I18n.t('administration.idp.skill_gap_report_ai_assistant')}
+                      label={I18n.t('admin.idp_skill_gap_report_ai_assistant')}
                     >
                       <Select
                         disabled={!aiAssistedIdpFeatureEnabled}
@@ -387,10 +387,10 @@ const IDPDetailsForm = ({
 
                 )}
                 {/* commented till AI Skill generation implemented
-                  <Form.Item name="skillSourcePreference" label={I18n.t('administration.idp.skill_source_preference')}>
+                  <Form.Item name="skillSourcePreference" label={I18n.t('admin.idp_skill_source_preference')}>
                   <Radio.Group>
-                    <Radio value="from_template">{I18n.t('administration.idp.skill_sources.from_template')}</Radio>
-                    <Radio value="from_ai">{I18n.t('administration.idp.skill_sources.from_ai')}</Radio>
+                    <Radio value="from_template">{I18n.t('admin.idp_skill_sources_from_template')}</Radio>
+                    <Radio value="from_ai">{I18n.t('admin.idp_skill_sources_from_ai')}</Radio>
                   </Radio.Group>
                 </Form.Item> */}
               </Card>
@@ -404,7 +404,7 @@ const IDPDetailsForm = ({
           onClick={handleSubmit}
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>
       </Space>
     </Form>

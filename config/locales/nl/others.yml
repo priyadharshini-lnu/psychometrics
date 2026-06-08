@@ -1648,7 +1648,6 @@ nl:
     details:
       additional_time: Extra tijd
       assessment_center: Beoordelingscentrum
-      assessment_center_invites: Uitnodigingen voor beoordelingscentrum
       completed_at: Voltooid Op
       completion_status: Voltooiingsstatus
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ nl:
     modals:
       remove: Weet je zeker dat je gebruiker met e-mailadres '%{email}' wilt verwijderen uit deze campagne?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Assessor Assessments
-      other_assessments: Andere beoordelingen
-      other_assessor_assessments: Andere taxateur taxaties
-      other_reports: Andere rapporten
     card:
       duration: Duur
       starts_in: 'Begint in:'
@@ -1753,23 +1747,19 @@ nl:
       insert: Invoegen
       'no': Nee
       ok: OK
-      publish: Publiceer
       reject: Verwerpen
       remove: Verwijder
       reset: Reset
       resolve: Oplossen
       restore: Herstel
       return_to_home: Terug naar Home
-      run: Ren
       save: Sla
       schedule: Schema
       search: Zoek op
-      send: Stuur
       sign_in: Aanmelden
       start: Start
       submit: Opslaan
       unarchive: Unarchive
-      unpublish: Verwijder
       unresolve: Niet oplossen
       update: Update
       upload: Uploaden
@@ -1782,20 +1772,14 @@ nl:
     column:
       action: Actie
       active: Actief
-      ai_assistant: AI-assistent
-      allow_multiple_responses: Meerdere reacties toestaan
       approval_notification_list: Gebruikerslijst voor goedkeuringsmeldingen
       approvers_list: Lijst met goedkeurders
-      assessment: Beoordeling
       assessment_name: Naam beoordeling
       assessments: Beoordeling
-      assessor: Assessor
       category: Categorie
       client: Klant
-      code: Code
       created_at: Gemaakt op
       created_by: Gemaakt door
-      created_date: Datum aangemaakt
       default_language: Standaard Taal
       description: Beschrijving
       details: Details
@@ -1813,11 +1797,8 @@ nl:
         scoring: JSON scoren
       key: Sleutel
       last_name: Achternaam
-      linked_activities: Gekoppelde activiteiten
       linked_assessment: Gekoppelde beoordeling
-      meeting_link: Bijeenkomst Link
       modified_by: Gewijzigd door
-      modified_date: Gewijzigde datum
       name: Naam
       owner: Eigenaar
       package_id: Pakket-id
@@ -1833,7 +1814,6 @@ nl:
       scheduling: Planning
       skills: Vaardigheden
       status: Status
-      tags: Tags
       timing: Timing
       token: Penning
       type: Type
@@ -1845,15 +1825,12 @@ nl:
     messages:
       leave_message: Weet je zeker dat je deze pagina wilt verlaten? Alle niet-opgeslagen antwoorden die je hebt zullen verloren gaan.
     model:
-      admins: Admins
       assessment: Beoordeling
       assessments: Beoordeling
       campaigns: Campagnes
       completion_statuses: Afrondingsstatussen
-      datasheet: Gegevensblad
       report: Rapporteer
       reports: Rapporten
-      sms_contact: SMS contact
       threesixty_campaign: Threesixty Campagne Scores
     status:
       completed: Voltooid
@@ -2943,9 +2920,7 @@ nl:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Actief
     campaign_name: Naam campagne
-    inactive: Inactief
     status_updated_at: Laatste statusupdate
     status_updated_by: Laatst bijgewerkt door
     subject_email: Onderwerp e-mail
@@ -3949,7 +3924,6 @@ nl:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Actief
     allow_multiple_respones: Gebruikers toestaan om meerdere reacties in te dienen
     png: PNG
     regenerate_link: Regenereren Link

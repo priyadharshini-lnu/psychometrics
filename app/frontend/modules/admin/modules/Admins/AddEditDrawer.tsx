@@ -417,7 +417,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     {
                       required: true,
                       message: I18n.t(
-                        'administration.administrators.drawers.edit.first_name_required',
+                        'admin.first_name_required',
                       ),
                     },
                   ]}
@@ -431,7 +431,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     {
                       required: true,
                       message: I18n.t(
-                        'administration.administrators.drawers.edit.last_name_required',
+                        'admin.last_name_required',
                       ),
                     },
                   ]}

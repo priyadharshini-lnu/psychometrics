@@ -52,7 +52,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
       <ResourceFormModal
         resourceName="project_assessments"
         resource={projectAssessment}
-        readableResourceName={I18n.t('administration.project_tabs.assessments.form.assessment')}
+        readableResourceName={I18n.t('admin.assessment')}
         showSuccessMessages
         close={close}
         scrollToFirstError
@@ -66,14 +66,14 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
           <>
             <Form.Item
               name="assessmentId"
-              label={I18n.t('administration.project_tabs.assessments.form.assessment')}
+              label={I18n.t('admin.assessment')}
               rules={[{
                 required: true,
-                message: I18n.t('administration.project_tabs.assessments.form.assessment_required'),
+                message: I18n.t('admin.assessment_required'),
               }]}
             >
               <Select
-                placeholder={I18n.t('administration.project_tabs.assessments.form.assessment_placeholder')}
+                placeholder={I18n.t('admin.assessment_placeholder')}
                 showSearch={{
                   filterOption: false,
                   onSearch: (value) => {
@@ -110,7 +110,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
             {selectedAssessmentType !== 'hogan' && (
               <Form.Item
                 name="userResultValidityInDays"
-                label={I18n.t('administration.project_tabs.assessments.form.user_result_validity_in_days')}
+                label={I18n.t('admin.user_result_validity_in_days')}
                 normalize={value => (value ? parseInt(value, 10) : null)}
               >
                 <Input type="number" defaultValue={projectAssessment?.userResultValidityInDays || ''} />
@@ -118,7 +118,7 @@ export const AddEditAssessmentModal: React.FC<Props> = ({
             )}
             <Form.Item
               name="normalizeFactorScores"
-              label={I18n.t('administration.project_tabs.assessments.form.normalize_factor_scores')}
+              label={I18n.t('admin.normalize_factor_scores')}
               valuePropName="checked"
               initialValue={projectAssessment?.normalizeFactorScores || false}
             >

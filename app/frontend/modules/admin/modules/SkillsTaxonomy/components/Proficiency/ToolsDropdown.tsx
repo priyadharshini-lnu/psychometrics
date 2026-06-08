@@ -20,7 +20,7 @@ export const ToolsDropdown: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.tools')}</span>
+        <span>{I18n.t('admin.tools')}</span>
         <DownOutlined />
       </Button>
       )}
@@ -34,36 +34,36 @@ const getMenuProps = ({ onClick }: Props): MenuProps => {
   const importMenuItems:MenuItem[] = [
     {
       key: 'import_proficiency',
-      label: I18n.t('administration.proficiency_levels.fields.title'),
+      label: I18n.t('admin.proficiency_levels_fields_title'),
     },
     {
       key: 'import_translations',
-      label: I18n.t('administration.proficiency_levels.fields.proficiency_translations'),
+      label: I18n.t('admin.fields_proficiency_translations'),
     },
   ]
 
   const exportMenuItems:MenuItem[] = [
     {
       key: 'export_proficiency',
-      label: I18n.t('administration.proficiency_levels.fields.title'),
+      label: I18n.t('admin.proficiency_levels_fields_title'),
     },
     {
       key: 'export_translations',
-      label: I18n.t('administration.proficiency_levels.fields.proficiency_translations'),
+      label: I18n.t('admin.fields_proficiency_translations'),
     },
   ]
 
   menuItems.push({
     type: 'group',
     key: 'import_group',
-    label: I18n.t('common.actions.import'),
+    label: I18n.t('shared.import'),
     children: importMenuItems,
   })
 
   menuItems.push({
     type: 'group',
     key: 'export_group',
-    label: I18n.t('common.actions.export'),
+    label: I18n.t('shared.export'),
     children: exportMenuItems,
   })
 

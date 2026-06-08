@@ -252,7 +252,7 @@ export const Features: React.FC = () => {
     }
 
     if (!clientFeatures.aiAssistants || !aiAssistants) {
-      return I18n.t('administration.client_features.form.ai_assisted_idp_requires_ai_assistants')
+      return I18n.t('admin.ai_assisted_idp_requires_ai_assistants')
     }
 
     return undefined
@@ -279,7 +279,7 @@ export const Features: React.FC = () => {
       ) : (
         <ResourceForm
           resourceName="project_features"
-          readableResourceName={I18n.t('administration.project_features.project_features')}
+          readableResourceName={I18n.t('admin.project_features')}
           resource={features}
           storeManager={{ form }}
           request={{ updateResource }}
@@ -303,10 +303,10 @@ export const Features: React.FC = () => {
                 >
                   <FeatureToggle
                     name="aiAssistants"
-                    label={I18n.t('administration.client_features.form.ai_assistants')}
+                    label={I18n.t('admin.ai_assistants')}
                     tooltip={I18n.t('admin.feature_ai_assistants_description')}
                     help={!clientFeatures.aiAssistants
-                      ? I18n.t('administration.client_features.form.ai_assistants_disabled_by_client')
+                      ? I18n.t('admin.ai_assistants_disabled_by_client')
                       : undefined}
                     disabled={!clientFeatures.aiAssistants}
                   />
@@ -319,7 +319,7 @@ export const Features: React.FC = () => {
                   >
                     <FeatureToggle
                       name="aiAssistedIdp"
-                      label={I18n.t('administration.client_features.form.ai_assisted_idp')}
+                      label={I18n.t('admin.ai_assisted_idp')}
                       tooltip={I18n.t('admin.feature_ai_assisted_idp_description')}
                       help={aiAssistedIdpDisabledReason}
                       disabled={!clientFeatures.aiAssistedIdp || !clientFeatures.aiAssistants || !aiAssistants}
@@ -333,19 +333,19 @@ export const Features: React.FC = () => {
                     />
                     <FeatureToggle
                       name="aiTranslation"
-                      label={I18n.t('administration.client_features.form.ai_translation')}
+                      label={I18n.t('admin.ai_translation')}
                       tooltip={I18n.t('admin.feature_ai_translation_description')}
                       help={!clientFeatures.aiTranslation
-                        ? I18n.t('administration.client_features.form.ai_translation_disabled_by_client')
+                        ? I18n.t('admin.ai_translation_disabled_by_client')
                         : undefined}
                       disabled={!clientFeatures.aiTranslation}
                     />
                     <FeatureToggle
                       name="aiContentAnalysis"
-                      label={I18n.t('administration.client_features.form.ai_content_analysis')}
+                      label={I18n.t('admin.ai_content_analysis')}
                       tooltip={I18n.t('admin.feature_ai_content_analysis_description')}
                       help={!clientFeatures.aiContentAnalysis
-                        ? I18n.t('administration.client_features.form.ai_content_analysis_disabled_by_client')
+                        ? I18n.t('admin.ai_content_analysis_disabled_by_client')
                         : undefined}
                       disabled={!clientFeatures.aiContentAnalysis}
                       isLast
@@ -361,10 +361,10 @@ export const Features: React.FC = () => {
                 >
                   <FeatureToggle
                     name="smsNotification"
-                    label={I18n.t('administration.client_features.form.sms_notification')}
+                    label={I18n.t('admin.sms_notification')}
                     tooltip={I18n.t('admin.feature_sms_notification_description')}
                     help={!clientFeatures.smsNotification
-                      ? I18n.t('administration.client_features.form.sms_notification_disabled_by_client')
+                      ? I18n.t('admin.sms_notification_disabled_by_client')
                       : undefined}
                     disabled={!clientFeatures.smsNotification}
                     isLast
@@ -377,19 +377,19 @@ export const Features: React.FC = () => {
                 >
                   <FeatureToggle
                     name="idp"
-                    label={I18n.t('administration.client_features.form.idp')}
+                    label={I18n.t('admin.idp')}
                     tooltip={I18n.t('admin.feature_idp_description')}
                     help={!clientFeatures.idp
-                      ? I18n.t('administration.client_features.form.idp_disabled_by_client')
+                      ? I18n.t('admin.idp_disabled_by_client')
                       : undefined}
                     disabled={!clientFeatures.idp}
                   />
                   <FeatureToggle
                     name="globalSkills"
-                    label={I18n.t('administration.client_features.form.global_skills')}
+                    label={I18n.t('admin.global_skills')}
                     tooltip={I18n.t('admin.feature_global_skills_description')}
                     help={!clientFeatures.globalSkills
-                      ? I18n.t('administration.client_features.form.global_skills_disabled_by_client')
+                      ? I18n.t('admin.global_skills_disabled_by_client')
                       : undefined}
                     disabled={!clientFeatures.globalSkills}
                     isLast
@@ -404,7 +404,7 @@ export const Features: React.FC = () => {
                   size="large"
                   loading={isLoading(`update@${featuresData[0]?.id}`)}
                 >
-                  {I18n.t('common.actions.update')}
+                  {I18n.t('shared.update')}
                 </Button>
               </Col>
             </Row>

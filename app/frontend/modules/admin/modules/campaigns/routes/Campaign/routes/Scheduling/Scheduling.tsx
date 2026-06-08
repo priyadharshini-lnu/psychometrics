@@ -29,11 +29,11 @@ const SchedulingComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const menuItems = () => ([
     campaignPermissions.viewWorkshops ? {
       key: '/scheduling/assessment_center',
-      label: I18n.t('administration.scheduling.tabs.assessment_center'),
+      label: I18n.t('admin.scheduling_tabs_assessment_center'),
     } : null,
     campaignPermissions.viewWorkshopInvites ? {
       key: '/scheduling/invites',
-      label: I18n.t('administration.scheduling.tabs.invites'),
+      label: I18n.t('admin.scheduling_tabs_invites'),
     } : null,
   ]).filter(Boolean)
 

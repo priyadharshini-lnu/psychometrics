@@ -35,13 +35,13 @@ const PDFPasswordModalComponent: React.FC<Props> = ({
     fetchPdfPassword(projectId, campaignId).then(({ response: { pdfPassword } }) => {
       setPdfPassword(pdfPassword)
     }).catch(() => {
-      message.error(I18n.t('administration.errors.error_msg'))
+      message.error(I18n.t('admin.errors_error_msg'))
       close()
     })
   }, [])
 
   return (
-    <Modal title={I18n.t('administration.campaigns.pdf_password')} open onCancel={close}>
+    <Modal title={I18n.t('admin.campaigns_pdf_password')} open onCancel={close}>
       <Spin spinning={isPasswordLoading} />
       {pdfPassword && (
         <Typography.Text copyable>

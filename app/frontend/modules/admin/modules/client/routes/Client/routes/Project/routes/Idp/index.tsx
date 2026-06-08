@@ -34,27 +34,27 @@ const IdpComponent: FC<PropsFromRedux> = ({ currentUser }) => {
 
   currentUser.permissions.accessIdpTemplates && menuItems.push({
     key: '/templates',
-    label: I18n.t('administration.idp.tab.templates'),
+    label: I18n.t('admin.idp_tab_templates'),
   })
 
   currentUser.permissions.manageIdpProjectSettings && menuItems.push({
     key: '/settings',
-    label: I18n.t('administration.idp.tab.settings'),
+    label: I18n.t('admin.idp_tab_settings'),
   })
 
   currentUser.permissions.accessProjectDevelopmentActions && menuItems.push({
     key: '/development_actions',
-    label: I18n.t('administration.idp.tab.development_actions'),
+    label: I18n.t('admin.idp_tab_development_actions'),
   })
 
   currentUser.permissions.accessReflectionQuestions && menuItems.push({
     key: '/reflection_questions',
-    label: I18n.t('administration.idp.tab.reflection_questions'),
+    label: I18n.t('admin.idp_tab_reflection_questions'),
   })
 
   currentUser.permissions.accessInterviewQuestions && menuItems.push({
     key: '/interview_questions',
-    label: I18n.t('administration.idp.tab.interview_questions'),
+    label: I18n.t('admin.idp_tab_interview_questions'),
   })
 
   const getFallbackRoute = () => {

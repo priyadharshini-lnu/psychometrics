@@ -50,29 +50,29 @@ export const MettlForm: React.FC<OwnProps> = ({ integration }) => {
     <>
       <Form.Item
         name="apiBaseUrl"
-        label={I18n.t('administration.integrations.modal.mettl.apiBaseUrl')}
-        rules={[{ required: true, message: I18n.t('administration.integrations.modal.mettl.apiBaseUrlRequired') }]}
+        label={I18n.t('admin.mettl_apiBaseUrl')}
+        rules={[{ required: true, message: I18n.t('admin.mettl_apiBaseUrlRequired') }]}
       >
         <Select className="w-100">
           {serverOptions.map(option => (
             <Option key={option.name} value={option.url}>
-              {`${I18n.t(`administration.integrations.modal.mettl.servers.${option.name}`)} (${option.url})`}
+              {`${I18n.t(`admin.mettl_servers_${option.name}`)} (${option.url})`}
             </Option>
           ))}
         </Select>
       </Form.Item>
       <Form.Item
         name="publicKey"
-        label={I18n.t('administration.integrations.modal.mettl.publicKey')}
-        rules={[{ required: true, message: I18n.t('administration.integrations.modal.mettl.publicKeyRequired') }]}
+        label={I18n.t('admin.mettl_publicKey')}
+        rules={[{ required: true, message: I18n.t('admin.mettl_publicKeyRequired') }]}
       >
         <Input />
       </Form.Item>
       {isEditingPrivateKey ? (
         <Form.Item
           name="privateKey"
-          label={I18n.t('administration.integrations.modal.mettl.privateKey')}
-          rules={[{ required: true, message: I18n.t('administration.integrations.modal.mettl.privateKeyRequired') }]}
+          label={I18n.t('admin.mettl_privateKey')}
+          rules={[{ required: true, message: I18n.t('admin.mettl_privateKeyRequired') }]}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Input.Password
@@ -93,8 +93,8 @@ export const MettlForm: React.FC<OwnProps> = ({ integration }) => {
         </Form.Item>
       ) : (
         <Form.Item
-          label={I18n.t('administration.integrations.modal.mettl.privateKey')}
-          rules={[{ required: true, message: I18n.t('administration.integrations.modal.mettl.privateKeyRequired') }]}
+          label={I18n.t('admin.mettl_privateKey')}
+          rules={[{ required: true, message: I18n.t('admin.mettl_privateKeyRequired') }]}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
 

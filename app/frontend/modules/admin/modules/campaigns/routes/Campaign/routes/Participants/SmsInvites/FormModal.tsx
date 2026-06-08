@@ -32,7 +32,7 @@ const FormModalComponent: React.FC<Props> = ({
 }) => (
   <ResourceFormModal
     resourceName="smsInvites"
-    title={I18n.t('administration.sms_invites.form_modal.title')}
+    title={I18n.t('admin.sms_invites_form_modal_title')}
     requestScope="campaigns"
     resourceBaseUrl={`/administration/new_campaigns/${campaignId}/sms_invites`}
     resource={smsInvite}
@@ -43,19 +43,19 @@ const FormModalComponent: React.FC<Props> = ({
   >
     {() => (
       <>
-        <Form.Item name="firstName" required label={I18n.t('administration.sms_invites.form_modal.first_name')}>
+        <Form.Item name="firstName" required label={I18n.t('shared.first_name')}>
           <Input name="sms_invite_firstname" />
         </Form.Item>
 
-        <Form.Item name="lastName" required label={I18n.t('administration.sms_invites.form_modal.last_name')}>
+        <Form.Item name="lastName" required label={I18n.t('shared.last_name')}>
           <Input name="sms_invite_lastname" />
         </Form.Item>
 
-        <Form.Item name="mobileNo" required label={I18n.t('administration.sms_invites.form_modal.mobile_no')}>
+        <Form.Item name="mobileNo" required label={I18n.t('admin.sms_invites_form_modal_mobile_no')}>
           <Input name="sms_invite_mobile" />
         </Form.Item>
 
-        <Form.Item name="locale" label={I18n.t('administration.sms_invites.form_modal.locale')} initialValue="en">
+        <Form.Item name="locale" label={I18n.t('admin.sms_invites_form_modal_locale')} initialValue="en">
           <Select>
             {availableLocales.map(locale => (
               <Select.Option key={locale} value={locale}>

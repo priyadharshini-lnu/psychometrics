@@ -37,7 +37,7 @@ export const TaxonomyImport: React.FC = () => {
     uploadFileAction(action, data)
       .then(() => {
         setFile(null)
-        message.info(I18n.t('administration.taxonomy.import.success_msg'))
+        message.info(I18n.t('admin.taxonomy_import_success_msg'))
       })
       .catch((error) => {
         setErrors(error)
@@ -60,7 +60,7 @@ export const TaxonomyImport: React.FC = () => {
     <Flex vertical className={styles.container}>
       {errors.length > 0 && (
         <Alert
-          message={I18n.t('administration.taxonomy.import.error_title')}
+          message={I18n.t('admin.taxonomy_import_error_title')}
           description={errors.map((e, i) => <div key={i}>{e}</div>)}
           type="error"
           showIcon
@@ -70,9 +70,9 @@ export const TaxonomyImport: React.FC = () => {
         />
       )}
 
-      <Card title={I18n.t('administration.taxonomy.import_action.taxonomy')}>
+      <Card title={I18n.t('admin.taxonomy_import_action_taxonomy')}>
         <Text type="secondary" className="mb-16">
-          {I18n.t('administration.taxonomy.import.description')}
+          {I18n.t('admin.taxonomy_import_description')}
         </Text>
 
         <Space orientation="vertical" size="middle" className={styles.spaceFullWidth}>
@@ -80,7 +80,7 @@ export const TaxonomyImport: React.FC = () => {
             href="/example_csv/import_taxonomy_sample_file.xlsx"
             target="_blank"
           >
-            {I18n.t('administration.taxonomy.import.download_example_file')}
+            {I18n.t('admin.taxonomy_import_download_example_file')}
           </Link>
 
           <Upload.Dragger
@@ -97,12 +97,12 @@ export const TaxonomyImport: React.FC = () => {
             <UploadOutlined className={styles.uploadIcon} />
             <div className="mt-4">
               <Text>
-                {I18n.t('administration.taxonomy.import.drag_text')}
+                {I18n.t('admin.taxonomy_import_drag_text')}
               </Text>
             </div>
             <div>
               <Text type="secondary">
-                {I18n.t('administration.taxonomy.import.file_hint')}
+                {I18n.t('admin.taxonomy_import_file_hint')}
               </Text>
             </div>
           </Upload.Dragger>
@@ -114,7 +114,7 @@ export const TaxonomyImport: React.FC = () => {
             onClick={handleUpload}
             icon={loading ? <LoadingOutlined /> : <CheckOutlined />}
           >
-            {I18n.t('administration.taxonomy.import.import_button')}
+            {I18n.t('admin.taxonomy_import_import_button')}
           </Button>
         </Space>
       </Card>

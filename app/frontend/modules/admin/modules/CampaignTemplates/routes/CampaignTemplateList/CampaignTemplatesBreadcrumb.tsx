@@ -11,7 +11,7 @@ export const CampaignTemplatesBreadcrumb: React.FC = () => (
         label: () => I18n.t('users.dashboard'),
       },
       {
-        label: () => I18n.t('administration.campaign_templates.campaign_templates'),
+        label: () => I18n.t('admin.campaign_templates_campaign_templates'),
       },
     ]}
   />

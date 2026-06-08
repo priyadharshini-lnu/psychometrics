@@ -52,11 +52,11 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
 
   permissions.manageProjectGeneralSettings && menuItems.push({
     key: '/general',
-    label: I18n.t('administration.project_tabs.general'),
+    label: I18n.t('admin.project_tabs_general'),
   })
   permissions.manageProjectSmtpSettings && menuItems.push({
     key: '/smtp',
-    label: I18n.t('administration.smtp_settings.smtp'),
+    label: I18n.t('admin.smtp_settings_smtp'),
   })
   permissions.manageProjectSamlSetting && menuItems.push({
     key: '/saml',
@@ -64,39 +64,39 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
   })
   permissions.manageProjectIntegrations && menuItems.push({
     key: '/integrations',
-    label: I18n.t('administration.integrations.integrations'),
+    label: I18n.t('admin.integrations_integrations'),
   })
   permissions.manageProjectSecuritySettings && menuItems.push({
     key: '/security',
-    label: I18n.t('administration.security_setting.security'),
+    label: I18n.t('admin.security_setting_security'),
   })
   permissions.manageDesignSettings && menuItems.push({
     key: '/design',
-    label: I18n.t('administration.project_tabs.design'),
+    label: I18n.t('admin.project_tabs_design'),
   })
   permissions.manageProfileSettings && menuItems.push({
     key: '/profile',
-    label: I18n.t('administration.project_tabs.profile'),
+    label: I18n.t('admin.project_tabs_profile'),
   })
   permissions.manageProfileSettings && menuItems.push({
     key: '/registration',
-    label: I18n.t('administration.project_tabs.registration'),
+    label: I18n.t('admin.project_tabs_registration'),
   })
   permissions.manageProjectWebhooks && menuItems.push({
     key: '/webhooks',
-    label: I18n.t('administration.project_tabs.webhooks.title'),
+    label: I18n.t('admin.project_tabs_webhooks_title'),
   })
   permissions.manageProjectPrivacySetting && menuItems.push({
     key: '/privacy',
-    label: I18n.t('administration.project_tabs.privacy'),
+    label: I18n.t('admin.project_tabs_privacy'),
   })
   permissions.manageProjectAssessments && menuItems.push({
     key: '/assessments',
-    label: I18n.t('administration.project_tabs.assessments.title'),
+    label: I18n.t('admin.project_tabs_assessments_title'),
   })
   permissions.manageProjectFeatureFlags && menuItems.push({
     key: '/features',
-    label: I18n.t('administration.settings.tabs.feature_flags'),
+    label: I18n.t('admin.settings_tabs_feature_flags'),
   })
 
   return (

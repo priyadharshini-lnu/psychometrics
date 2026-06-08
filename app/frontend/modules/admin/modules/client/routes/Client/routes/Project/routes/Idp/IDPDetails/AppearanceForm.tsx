@@ -112,7 +112,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
         background: null, clientLogo: null, removeBackground: null, removeClientLogo: null,
       })
     }
-    message.success(I18n.t('administration.idp.appearance_success'))
+    message.success(I18n.t('admin.idp_appearance_success'))
     await fetch()
     setLoading(false)
   }
@@ -176,13 +176,13 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
       <Space orientation="vertical" className="w-100">
         <Row gutter={[16, 16]}>
           <Col xs={24} md={12}>
-            <Card title={I18n.t('administration.idp.template_details')}>
-              <Form.Item name="logoType" label={I18n.t('administration.idp.logo_type_label')}>
+            <Card title={I18n.t('admin.idp_template_details')}>
+              <Form.Item name="logoType" label={I18n.t('admin.idp_logo_type_label')}>
                 <Radio.Group>
                   <Flex vertical>
                     {_.map(LOGO_TYPE, (type, key) => (
                       <Radio key={key} value={type}>
-                        {I18n.t(`administration.idp.logo_type.${key}`)}
+                        {I18n.t(`admin.idp_logo_type_${key}`)}
                       </Radio>
                     ))}
                   </Flex>
@@ -191,7 +191,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
               <Card className="p-4" styles={{ body: { padding: 0 } }}>
                 <Form.Item
                   name="background"
-                  label={I18n.t('administration.idp.background_image')}
+                  label={I18n.t('admin.idp_background_image')}
                 >
                   <Upload
                     listType="picture"
@@ -202,7 +202,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   >
                     <Space orientation="vertical" className="mb-4">
                       <Button icon={<UploadOutlined />}>
-                        {I18n.t('administration.projects.design_settings.logo_upload')}
+                        {I18n.t('shared.upload')}
                       </Button>
                       {idp?.background && <Image className="mt-4" height={100} src={idp?.background} />}
                     </Space>
@@ -215,7 +215,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                     noStyle
                   >
                     <Checkbox disabled={!idp?.background}>
-                      {I18n.t('administration.idp.remove')}
+                      {I18n.t('shared.remove')}
                     </Checkbox>
                   </Form.Item>
                 )}
@@ -223,7 +223,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
               <Card className="p-4" styles={{ body: { padding: 0 } }}>
                 <Form.Item
                   name="clientLogo"
-                  label={I18n.t('administration.idp.logo_image')}
+                  label={I18n.t('admin.idp_logo_image')}
                 >
                   <Upload
                     listType="picture"
@@ -234,7 +234,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   >
                     <Space orientation="vertical" className="mb-4">
                       <Button icon={<UploadOutlined />}>
-                        {I18n.t('administration.projects.design_settings.logo_upload')}
+                        {I18n.t('shared.upload')}
                       </Button>
                       {idp?.clientLogo && <Image className="mt-4" height={100} src={idp?.clientLogo} />}
                     </Space>
@@ -247,7 +247,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                     noStyle
                   >
                     <Checkbox disabled={!idp?.clientLogo}>
-                      {I18n.t('administration.idp.remove')}
+                      {I18n.t('shared.remove')}
                     </Checkbox>
                   </Form.Item>
                 )}
@@ -274,20 +274,20 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
                   useLoading={false}
                 />
               </Flex>
-              <Form.Item label={I18n.t('administration.idp.title_text')}>
+              <Form.Item label={I18n.t('admin.idp_title_text')}>
                 <Input onChange={changeTitle} value={translations[lang]?.titleText || ''} />
               </Form.Item>
-              <Form.Item label={I18n.t('administration.idp.subtitle_text')}>
+              <Form.Item label={I18n.t('admin.idp_subtitle_text')}>
                 <Input onChange={changeSubtitle} value={translations[lang]?.subtitleText || ''} />
               </Form.Item>
 
-              <Form.Item name="fields" label={I18n.t('administration.idp.fields_label')}>
+              <Form.Item name="fields" label={I18n.t('admin.idp_fields_label')}>
                 <Checkbox.Group>
                   <Row>
                     {FIELDS.map(field => (
                       <Col xs={12} key={field}>
                         <Checkbox value={field}>
-                          {I18n.t(`administration.idp.fields.${field}`)}
+                          {I18n.t(`admin.idp_fields_${field}`)}
                         </Checkbox>
                       </Col>
                     ))}
@@ -296,7 +296,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
               </Form.Item>
               <Form.Item name="showReflections" valuePropName="checked">
                 <Checkbox>
-                  {I18n.t('administration.idp.show_reflections')}
+                  {I18n.t('admin.idp_show_reflections')}
                 </Checkbox>
               </Form.Item>
 
@@ -335,7 +335,7 @@ export const AppearanceForm: FC<AppearanceFormProps> = ({ idp, fetch }) => {
           onClick={submit}
           loading={loading}
         >
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>
       </div>
     </Form>

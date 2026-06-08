@@ -64,23 +64,23 @@ export const DataReportJobs: React.FC<{}> = () => {
         sortOrder={getSortOrder('id')}
       />
       <Resource.Column<DataReportJob>
-        title={I18n.t('administration.data_reports.columns.created_at')}
+        title={I18n.t('admin.data_reports_columns_created_at')}
         dataIndex="createdAt"
         render={text => formatedDate(text)}
         id="created_at"
       />
       <Resource.Column<DataReportJob>
-        title={I18n.t('administration.data_reports.columns.created_by')}
+        title={I18n.t('admin.data_reports_columns_created_by')}
         dataIndex={['createdBy', 'email']}
         id="created_at"
       />
       <Resource.Column<DataReportJob>
-        title={I18n.t('administration.data_reports.columns.status')}
+        title={I18n.t('shared.status')}
         dataIndex={['status']}
         id="status"
       />
       <Resource.Column<DataReportJob>
-        title={I18n.t('administration.data_reports.columns.password')}
+        title={I18n.t('admin.data_reports_columns_password')}
         dataIndex={['password']}
         id="password"
         width={350}
@@ -107,7 +107,7 @@ export const DataReportJobs: React.FC<{}> = () => {
         }}
       />
       <Resource.Column<DataReportJob>
-        title={I18n.t('administration.report_approval.columns.actions')}
+        title={I18n.t('shared.actions')}
         id="link"
         width={200}
         render={(_, { status, file }) => (
@@ -118,7 +118,7 @@ export const DataReportJobs: React.FC<{}> = () => {
             disabled={status !== 'completed' || !file}
             icon={<DownloadOutlined />}
           >
-            {(I18n.t('common.text.download'))}
+            {(I18n.t('shared.download'))}
           </Button>
         )}
       />

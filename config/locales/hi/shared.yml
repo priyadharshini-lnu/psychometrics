@@ -18,6 +18,7 @@ hi:
     assessment_id: मूल्यांकन आईडी
     assessment_list: मूल्यांकन सूची
     assessment_name: मूल्यांकन का नाम
+    assessor: मूल्यांकनकर्ता
     assessor_approved: मूल्यांकनकर्ता अनुमोदित
     assessors_list: मूल्यांकनकर्ताओं की सूची
     asset_not_present: संपत्ति मौजूद नहीं है
@@ -26,15 +27,18 @@ hi:
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
     back: वापस
     basic: मूलभूत
+    bulk_download: थोक डाउनलोड
     camera: कैमरा
     camera_preview: कैमरा पूर्वावलोकन यहाँ दिखाई देगा
     campaign: अभियान
     campaign_id: अभियान आईडी
     cancel: रद्द करें
+    category: श्रेणी
     change_password: पासवर्ड बदलें
     clear_filters: फ़िल्टर साफ़ करें
     client: ग्राहक
     close: बंद करें
+    code: कोड
     collaborative_learning: सहयोगात्मक अधिगम
     completed: पूर्ण
     configurations: संरचनाएँ
@@ -43,11 +47,13 @@ hi:
     controller: नियंत्रक
     cookie_notice: कुकी सूचना
     cookies_statement: कुकीज़ कथन
+    copied: क्लिपबोर्ड पर कॉपी हो गया
     copied_successfully: सफलतापूर्वक कॉपी किया गया
     copied_to_clipboard: क्लिपबोर्ड पर कॉपी हो गया
     copy: प्रतिलिपि
     create: बनाएँ
     created_at: पर बनाया गया
+    created_by: द्वारा निर्मित
     created_date: निर्मित तिथि
     created_successfully: सफलतापूर्वक बनाया गया
     custom_acknowledgment_text: अनुकूलित आभार पाठ
@@ -55,11 +61,14 @@ hi:
     custom_consent_text: अनुकूलित सहमति पाठ
     custom_consent_text_required: कंट्रोलर डेटा भूमिका के लिए अनुकूलित सहमति पाठ आवश्यक है।
     data_role: डेटा भूमिका
+    datasheet: डेटाशीट
     decline: पतन
+    default: डिफ़ॉल्ट
     delete: मिटायें
     description: विवरण
     desktop_or_laptop_recommended: डेस्कटॉप या लैपटॉप अनुशंसित
     desktop_or_laptop_required: डेस्कटॉप या लैपटॉप आवश्यक है
+    dimension: आयाम
     disabled: अक्षम
     discard: फेंको
     download: डाउनलोड
@@ -69,6 +78,7 @@ hi:
     edit: संपादित करें
     edited: संपादित
     email: ईमेल
+    end_date: अंतिम तिथि
     ending_proctoring_session_msg: हम निगरानी सत्र समाप्त कर रहे हैं। कृपया प्रतीक्षा करें, जब तक हम आपके उत्तरों को सहेज रहे हैं और आपको होम पेज पर वापस रीडायरेक्ट कर रहे हैं।
     error: त्रुटि
     export: निर्यात
@@ -83,11 +93,17 @@ hi:
     generating: उत्पादित कर रहा है
     group_question_max_validation_error: प्रत्येक समूह में अधिकतम {{max}} आइटम हो सकते हैं।
     group_question_min_validation_error: प्रत्येक समूह में कम से कम {{min}} आइटम होने चाहिए।
+    icon: चिह्न
     id: आईडी
     idp_ai_assistant_disclaimer: लाइटहाउस AI IDP असिस्टेंट त्रुटियाँ कर सकता है। कृपया प्रतिक्रियाओं का उपयोग करते समय सावधान रहें।
+    import: आयात
+    inactive: निष्क्रिय
     internet_disconnected_message: फिर से जुड़ने की कोशिश कर रहा हूँ। कृपया अपना इंटरनेट कनेक्शन जांचें।
     last_name: आखिरी नाम
+    last_updated: अंतिम अपडेट
     learning_on_the_job_label: काम करते हुए सीखना
+    linked_activities: संबंधित गतिविधियाँ
+    linked_assessment: संलग्न मूल्यांकन
     loading: लोड हो रहा है...
     login: लॉगिन
     maintenance_in_hours: "%{hours} घंटे"
@@ -97,11 +113,13 @@ hi:
     maintenance_time_remaining: शेष समय
     maintenance_upcoming_description: हम आपके अनुभव को बेहतर बनाने के लिए %{date} पर लगभग %{duration} तक निर्धारित रखरखाव करेंगे। इस दौरान आप किसी भी सौंपे गए कार्य तक पहुँच या उन्हें पूरा नहीं कर पाएँगे। हम आपके धैर्य की सराहना करते हैं।
     maintenance_upcoming_title: आगामी रखरखाव
+    manage: प्रबंध करें
     manage_cookies: कुकीज़ प्रबंधित करें
     media_id: मीडिया आईडी
     media_preview: मीडिया पूर्वावलोकन
     media_question_transcriptions: मीडिया प्रश्न प्रतिलेखन
     media_responses: मीडिया की प्रतिक्रियाएँ
+    meeting_link: मीटिंग लिंक
     microphones: माइक्रोफोन
     mobile_proctoring_disabled_instructions: इस मूल्यांकन को जारी रखने के लिए डेस्कटॉप या लैपटॉप आवश्यक है। कृपया गतिविधि पूरी करने के लिए कंप्यूटर पर स्विच करें।
     mobile_proctoring_enabled_instructions: बेहतर अनुभव के लिए, यदि आपके पास डेस्कटॉप या लैपटॉप उपलब्ध है तो कृपया उसका उपयोग करें। यदि आवश्यक हो तो आप अपने मोबाइल डिवाइस पर जारी रख सकते हैं।
@@ -115,7 +133,9 @@ hi:
     new: नया
     next: अगला
     no_audio_warning: ऑडियो का पता नहीं चल रहा है। कृपया जांचें कि आपका माइक्रोफ़ोन जुड़ा हुआ है और ठीक से काम कर रहा है।
+    no_data_found: कोई डेटा नहीं मिला
     no_results_found: कोई परिणाम नहीं मिला
+    none: कोई नहीं
     not_requested: अभी तक अनुरोध नहीं किया गया
     ok: ठीक है
     options: विकल्प
@@ -130,6 +150,7 @@ hi:
     proctoring_maintenance_active: प्रॉक्टरिंग वर्तमान में %{start_time} से %{end_time} पर रखरखाव के अधीन है। कृपया रखरखाव विंडो के बाद फिर से प्रयास करें।
     proctoring_maintenance_upcoming: "%{start_time} से %{end_time} तक रखरखाव के तहत प्रॉक्टरिंग होगी।"
     project: परियोजना
+    publish: प्रकाशित करें
     question: प्रश्न
     question_id: प्रश्न आईडी
     question_transcription_disabled: इस प्रश्न के लिए प्रतिलेखन अक्षम है।
@@ -142,20 +163,27 @@ hi:
     remove: हटाएँ
     removed: हटाया गया
     replace: बदलें
+    required: आवश्यक
+    reset: पुनः आरंभ करें
     reset_password: पासवर्ड रीसेट करें
     response_text: प्रतिक्रिया पाठ
     rte_paste_content_exceeds_char_limit: टेक्स्ट {{maxCharacterLimit}} की वर्ण सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     rte_paste_content_exceeds_word_limit: टेक्स्ट {{maxWordLimit}} शब्दों की सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
+    run: दौड़ो
     save: बचाएँ
     saving_video: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
+    schedule_time: समय निर्धारित करें
     scoring_details: स्कोरिंग विवरण
     search: खोजें
     select_camera: एक कैमरा चुनें
+    select_language: भाषा चुनें
     select_microphone: एक माइक्रोफ़ोन चुनें
+    send: भेजें
     send_email: ईमेल भेजें
     show_more: और दिखाएँ
     something_wrong: कुछ गलत हो गया। अपने व्यवस्थापक से संपर्क करें।
     speakers: वक्ता
+    start_date: शुरुआत की तारीख
     status: स्थिति
     status_unknown: स्थिति अज्ञात
     subject: विषय
@@ -172,6 +200,7 @@ hi:
           one: 'कुल : 1'
           other: 'कुल : {{count}}'
           zero: 'कुल : 0'
+    tags: टैग
     terms_conditions_privacy: गोपनीयता कथन
     tools: उपकरण
     transcription: प्रतिलिपि
@@ -183,10 +212,12 @@ hi:
     try_again: फिर से कोशिश करें
     tte_terms_and_condition: शर्तें और गोपनीयता
     type: प्रकार
+    unpublish: अप्रकाशित करें
     update: अपडेट
     update_failed: अपडेट विफल हो गया
     updated_at: पर अद्यतन किया गया
     updated_successfully: सफलतापूर्वक अद्यतन किया गया
+    upload: अपलोड
     user_report_pdf_url_not_generated: पीडीएफ डाउनलोड लिंक उत्पन्न नहीं हो सका।
     video: वीडियो
     view: देखें

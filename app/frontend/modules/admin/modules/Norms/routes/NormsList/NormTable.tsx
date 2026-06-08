@@ -66,7 +66,7 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
       />
       <Resource.Table pagination>
         <Resource.Column<Norm>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           sortOrder={getSortOrder('id')}
@@ -75,19 +75,19 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
         />
         <Resource.Column<Norm>
           id="disabled"
-          title={I18n.t('common.column.active')}
+          title={I18n.t('shared.active')}
           render={norm => <ActiveSwitch norm={norm} updateResource={updateResource} />}
           width={100}
         />
         <Resource.Column<Norm>
-          title={`${I18n.t('common.column.name')}`}
+          title={`${I18n.t('shared.name')}`}
           id="name"
           width={300}
           render={item => item?.name}
           sorter
         />
         <Resource.Column<Norm>
-          title={I18n.t('common.column.dimension')}
+          title={I18n.t('shared.dimension')}
           width={300}
           id="dimension.name"
           render={(_, { dimension }) => dimension?.id && (
@@ -96,14 +96,14 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
           sorter
         />
         <Resource.Column<Norm>
-          title={`${I18n.t('administration.campaigns.users.updated_by')}`}
+          title={`${I18n.t('admin.campaigns_users_updated_by')}`}
           id="updated_by.name"
           render={(_, { updatedBy }) => updatedBy?.name}
           width={200}
           sorter
         />
         <Resource.Column<Norm>
-          title={`${I18n.t('common.column.owner')}`}
+          title={`${I18n.t('shared.owner')}`}
           id="owner.name"
           width={200}
           sorter
@@ -112,21 +112,21 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
           )}
         />
         <Resource.Column<Norm>
-          title={`${I18n.t('common.column.created_at')}`}
+          title={`${I18n.t('shared.created_at')}`}
           id="createdAt"
           width={150}
           sorter
           render={(_, { createdAt }) => createdAt}
         />
         <Resource.Column<Norm>
-          title={`${I18n.t('common.column.updated_at')}`}
+          title={`${I18n.t('shared.last_updated')}`}
           id="updatedAt"
           sorter
           width={150}
           render={(_, { updatedAt }) => updatedAt}
         />
         <Resource.Column<Norm>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={norm => (
             <ConditionalDropdown
@@ -176,7 +176,7 @@ const getActionMenuProps = ({
     method: 'post',
     responseType: t.literal('ok'),
   }).then(() => {
-    message.success(I18n.t('administration.norms.export.success_msg'))
+    message.success(I18n.t('admin.norms_export_success_msg'))
   })
 
   const menuItems = [
@@ -184,13 +184,13 @@ const getActionMenuProps = ({
     permissions.delete && { key: 'remove', label: I18n.t('common.actions.remove') },
     permissions.copy && { key: 'copy', label: I18n.t('common.actions.copy') },
     permissions.export && normType === 'five_scale' && {
-      key: 'export_norm', label: I18n.t('administration.norms.sidebar.export'),
+      key: 'export_norm', label: I18n.t('admin.norms_sidebar_export'),
     },
     permissions.editor && {
       key: 'norm_editor',
       label: (
         <a href={getNormEditorUrl(norm.id, features)}>
-          {I18n.t('administration.norms.sidebar.editor')}
+          {I18n.t('admin.norms_sidebar_editor')}
         </a>
       ),
     },

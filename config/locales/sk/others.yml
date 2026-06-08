@@ -1648,7 +1648,6 @@ sk:
     details:
       additional_time: Dodatočný čas
       assessment_center: Hodnotiace centrum
-      assessment_center_invites: Pozvánky do hodnotiaceho centra
       completed_at: Dokončené v
       completion_status: Stav dokončenia
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ sk:
     modals:
       remove: Naozaj chcete z tejto kampane odstrániť používateľa s e-mailom %{email}?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Hodnotenia hodnotiteľov
-      other_assessments: Iné hodnotenia
-      other_assessor_assessments: Ďalšie hodnotenia hodnotiteľov
-      other_reports: Ďalšie správy
     card:
       duration: Trvanie
       starts_in: 'Začína sa v:'
@@ -1753,23 +1747,19 @@ sk:
       insert: Vložiť
       'no': Nie
       ok: OK
-      publish: Publikovať
       reject: Odmietnuť
       remove: Odstránenie stránky
       reset: Obnovenie
       resolve: Vyriešiť
       restore: Obnovenie
       return_to_home: Návrat domov
-      run: Bežať
       save: Uložiť
       schedule: Rozvrh
       search: Vyhľadávanie
-      send: Odoslať
       sign_in: Zaregistrovať sa
       start: Štart
       submit: Predložiť
       unarchive: Zrušiť archiváciu
-      unpublish: Zrušenie zverejnenia
       unresolve: Neriešené
       update: Aktualizácia
       upload: Nahrať
@@ -1782,20 +1772,14 @@ sk:
     column:
       action: Akcia
       active: Aktívny
-      ai_assistant: Asistent AI
-      allow_multiple_responses: Povolenie viacerých odpovedí
       approval_notification_list: Zoznam používateľov upozornení na schválenie
       approvers_list: Zoznam schvaľovateľov
-      assessment: Hodnotenie
       assessment_name: Názov hodnotenia
       assessments: Hodnotenia
-      assessor: Hodnotiteľ
       category: Kategória
       client: Klient
-      code: Kód
       created_at: Vytvorené v
       created_by: Vytvoril
-      created_date: Dátum vytvorenia
       default_language: Predvolený jazyk
       description: Popis
       details: Detaily
@@ -1813,11 +1797,8 @@ sk:
         scoring: Bodovanie JSON
       key: Kľúč
       last_name: Priezvisko
-      linked_activities: Prepojené aktivity
       linked_assessment: Prepojené hodnotenie
-      meeting_link: Prepojenie na stretnutie
       modified_by: Upravené
-      modified_date: Dátum úpravy
       name: Meno
       owner: Vlastník
       package_id: ID balíka
@@ -1833,7 +1814,6 @@ sk:
       scheduling: Plánovanie
       skills: Zručnosti
       status: Stav
-      tags: Tagy
       timing: Načasovanie
       token: Token
       type: Typ
@@ -1845,15 +1825,12 @@ sk:
     messages:
       leave_message: Naozaj chcete opustiť túto stránku? Všetky neuložené odpovede, ktoré máte, sa stratia.
     model:
-      admins: Správcovia
       assessment: Hodnotenie
       assessments: Hodnotenia
       campaigns: Kampane
       completion_statuses: Stavy dokončenia
-      datasheet: Dátový hárok
       report: Správa
       reports: Správy
-      sms_contact: SMS kontakt
       threesixty_campaign: Trišesťdesiat výsledkov kampane
     status:
       completed: Dokončený
@@ -2970,9 +2947,7 @@ sk:
   languages_localized:
     sl: Slovensko
   license_usage:
-    active: Aktívny
     campaign_name: Názov kampane
-    inactive: Neaktívny
     status_updated_at: Posledná aktualizácia stavu
     status_updated_by: Naposledy aktualizované používateľom
     subject_email: Predmetný e-mail
@@ -3976,7 +3951,6 @@ sk:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktívny
     allow_multiple_respones: Povolenie používateľom odosielať viacero odpovedí
     png: PNG
     regenerate_link: Obnoviť prepojenie

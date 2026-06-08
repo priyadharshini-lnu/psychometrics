@@ -298,8 +298,8 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
           user_id: userId,
         },
       },
-    ).then(() => {
-      message.success(I18n.t('administration.scoring.final_score_updated_successfully'))
+    ).catch(() => {}).then(() => {
+      message.success(I18n.t('admin.scoring_final_score_updated_successfully'))
       if (onSave) {
         onSave()
         setDisabled(true)
@@ -307,9 +307,10 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     }).catch((errors) => {
       const errorMessage = errors?.base?.[0]?.title || I18n.t('shared.something_wrong')
       message.error(errorMessage)
-    }).finally(() => {
-      setDisabledSave(false)
     })
+      .finally(() => {
+        setDisabledSave(false)
+      })
   }
 
   const handleReset = () => {
@@ -337,8 +338,8 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
 
   const averageRow = {
     assessors: factorWeightagesData.length > 0
-      ? `${I18n.t('administration.scoring.actual_average')}`
-      : `${I18n.t('administration.scoring.average')}`,
+      ? `${I18n.t('admin.scoring_actual_average')}`
+      : `${I18n.t('admin.scoring_average')}`,
     scores: averageScores,
     key: 'average',
   }
@@ -346,14 +347,14 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   const weightedAverageRow = {
     assessors: (
       <Flex vertical justify="flex-start">
-        <span>{I18n.t('administration.scoring.weighted_average')}</span>
+        <span>{I18n.t('admin.scoring_weighted_average')}</span>
         <Button
           type="link"
           onClick={showModal}
           style={{ width: 'unset', display: 'flex', padding: 'unset' }
            }
         >
-          {I18n.t('administration.scoring.show_weightages')}
+          {I18n.t('admin.scoring_show_weightages')}
         </Button>
       </Flex>
     ),
@@ -362,7 +363,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   }
 
   const scoreRange = {
-    assessors: `${I18n.t('administration.scoring.score_range')}`,
+    assessors: `${I18n.t('admin.scoring_score_range')}`,
     key: 'scoreRange',
     scores: columnsData.reduce((acc, factor) => {
       const { high, low } = highLowScores[factor.factorId]
@@ -373,7 +374,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
 
 
   const finalRow = useMemo(() => ({
-    assessors: `${I18n.t('administration.scoring.final')}`,
+    assessors: `${I18n.t('admin.scoring_final')}`,
     key: 'final',
     scores: columnsData.reduce((acc, factor) => ({
       ...acc,
@@ -505,7 +506,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   return (
     <>
       <div className={styles.container}>
-        <h3 className={styles.header}>{I18n.t('administration.scoring.scoring')}</h3>
+        <h3 className={styles.header}>{I18n.t('admin.scoring_scoring')}</h3>
         {isFactorsLoading('fetch')
         && isFinalScoreLoading('fetch')
         && isScoresLoading('fetch')
@@ -528,20 +529,20 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
             {scoresFinalized && I18n.t('admin.scores_finalized')}
           </Typography.Text>
           <Button onClick={handleReset} disabled={disabled || scoresFinalized}>
-            {I18n.t('administration.common.reset')}
+            {I18n.t('shared.reset')}
           </Button>
           <Button
             type="primary"
             disabled={disabled || disabledSave || scoresFinalized}
             onClick={handleSave}
           >
-            {I18n.t('administration.common.save')}
+            {I18n.t('shared.save')}
           </Button>
         </Flex>
       </div>
       <Modal
         open={open}
-        title={I18n.t('administration.scoring.weightages.weightages')}
+        title={I18n.t('admin.scoring_weightages_weightages')}
         onCancel={handleCancel}
         footer={<></>}
         width={1200}

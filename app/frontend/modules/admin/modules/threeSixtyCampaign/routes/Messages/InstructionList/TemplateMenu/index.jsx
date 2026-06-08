@@ -14,7 +14,7 @@ export default function TemplateMenu ({ instructionTemplates, selectedId }) {
       mode="inline"
       items={_.map(instructionTemplates, instructionTemplate => ({
         key: instructionTemplate.id,
-        label: I18n.t(`administration.threesixty_campaigns.instruction_templates.${instructionTemplate.name}.name`),
+        label: I18n.t(`admin.${instructionTemplate.name}_name`),
       }))}
     />
   )

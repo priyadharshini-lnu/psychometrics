@@ -81,7 +81,7 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="campaignAssessorAssessments"
-      readableResourceName={I18n.t('administration.assessor_assessment.name')}
+      readableResourceName={I18n.t('admin.assessor_assessment_name')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -92,12 +92,12 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="assessmentId"
-            label={I18n.t('administration.assessor_assessment.name')}
+            label={I18n.t('admin.assessor_assessment_name')}
           >
             <Select
               showSearch={{ filterOption: false, onSearch: searchAvailableAssessments }}
               placeholder={
-                I18n.t('administration.assessor_assessment.modals.add_assessor_assessment.assessment_placeholder')
+                I18n.t('admin.assessor_assessment_modals_add_assessor_assessment_assessment_placeholder')
               }
               notFoundContent={assessmentsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
@@ -111,7 +111,7 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
 
           <Form.Item
             name="campaignAssessmentGroupId"
-            label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+            label={I18n.t('admin.assessment_center_group')}
           >
             <Select
               placeholder={

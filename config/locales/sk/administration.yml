@@ -2,17 +2,6 @@
 sk:
   administration:
     actions: Akcie
-    active_record_audits:
-      action: Akcia
-      audit_id: ID auditu
-      auditable_id: ID záznamu
-      auditable_type: Typ záznamu
-      audited_changes: Auditované zmeny
-      new_diff:
-        parse_error: Nepodarilo sa analyzovať JSON s novými zmenami
-      old_diff:
-        parse_error: Nepodarilo sa analyzovať JSON so starými zmenami
-      title: Auditované zmeny
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ sk:
           design: Dizajn
           or: Alebo
     administrators:
-      drawers:
-        edit:
-          first_name_required: Krstné meno je povinné
-          last_name_required: Prízvisko je povinné
-        view:
-          first_name: Krstné meno
-          last_name: Priezvisko
-          title:
-            campaign_admin: Správca kampane
-            client_admin: Správca klienta
-            project_admin: Správca projektu
       list:
         actions:
-          api_keys: Kľúče API
-          edit: Editovať
-          export_admins_with_permissions: Export rolí správcu a povolení
-          export_success: Úloha exportu správcu bola úspešne naplánovaná. Skontrolujte stav svojho oznámenia.
-          login: Prihlásenie
           spoof:
             login_successful: Prihlásenie bolo úspešné.
-          user_report_events: Protokoly schválenia hlásenia
-        columns:
-          email: E-mail
-      modals:
-        delete:
-          cancelText: Zrušiť
-          okText: Ok
-          title: Potvrdiť
-    ai_artifacts:
-      artifact_results: Výsledky artefaktov
-      code: Kód
-      export:
-        success_msg: Prebieha export AI artefaktov. Prosím, skontrolujte stav v notifikáciách.
-      export_ai_artifacts: Exportné AI artefakty
-      form:
-        add_assessment: Pridanie hodnotenia
-        ai_assistant: Asistent AI
-        assessments: Hodnotenia
-        campaign_factors: Faktory kampane
-        configuration: Konfigurácia
-        datasheet: Dátový hárok
-        datasheet_columns: Stĺpce údajového hárka
-        include_all_datasheet_columns: Zahrnúť všetky stĺpce údajového hárka
-        no_assessment_selected: Zatiaľ neboli pridané žiadne hodnotenia. Začnite kliknutím na "Pridať".
-        questions_required: Musí byť vybraná aspoň jedna otázka
-        select_ai_assistant: Vyberte Asistenta AI
-        select_assessment: Vyberte položku Hodnotenie
-        select_campaign_factors: Vyberte faktory kampane
-        select_datasheet_columns: Výber stĺpcov údajového hárka
-        select_questions: Vyberte otázky
-        title: Artefakt AI
-      generate: Generovať
-      generate_result_info_message: Výsledky sa generujú, obnovte stránku, aby ste videli aktualizované výsledky.
-      generated_at_time: Generované v %{time}
-      generated_value: Vytvorená hodnota
-      id: ID
-      import:
-        download_example_csv: Stiahnite si príklad CSV
-        info_msg: Nahraný súbor bol zaradený do fronty na import. Prosím, skontrolujte stav v notifikáciách.
-      import_action:
-        title: AI artefakty importnej kampane
-      import_ai_artifacts: Import AI artefaktov
-      key: Kľúč
-      name: Meno
-      parsed_dependencies:
-        help: Analyzované závislosti pre používateľa, ktoré používa AI Assistant na generovanie výsledkov artefaktov
-        title: Analyzované závislosti
-        view: Zobrazenie analyzovaných závislostí
-      playground: Ihrisko
-      playground_info: Otestujte artefakt pomocou vzorových údajov a zobrazte ukážku vygenerovaných výsledkov.
-      playground_placeholder: Zadanie testovacích údajov
-      raw: SUROVÝ
-      tabs:
-        results: Výsledky
-        settings: Nastavenia
-      test_generate: Testovanie generovania
-      unsaved_changes: Neuložené zmeny sú prítomné, zvážte odoslanie formulára na vygenerovanie aktualizovanej odpovede z Playground.
-      used_tokens:
-        input_tokens: Vstupné tokeny
-        output_tokens: Výstupné tokeny
-        title: Použitie tokenov
     ai_assistants:
-      actions:
-        create: Vytvorenie asistenta AI
-        edit: Upraviť AI Assistant
-        playground: Ihrisko
-      ai_assistants: Asistenti AI
-      ai_assistants_playground: Ihrisko AI Assistant
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ sk:
             no_datasheet_data: Nie sú k dispozícii žiadne údaje z údajového listu pre používateľa %{email}
             user_not_found_in_datasheet: Používateľ sa nenašiel v údajovom hárku kampane
       campaign_ai_artifacts: Artefakty AI kampane
-      column:
-        provider: Poskytovateľ
-      created_successfully: AI Assistant bol úspešne vytvorený.
       errors:
         cannot_delete_in_use: Nie je možné odstrániť AI Assistant "%{name}", pretože sa používa.
         development_actions_assistance_not_enabled: Generovanie vývojových akcií poháňaných umelou inteligenciou nie je k dispozícii. Obráťte sa na správcu.
         one_click_idp_assistance_not_enabled: Pomoc IDP s umelou inteligenciou nie je k dispozícii s vaším aktuálnym plánom. Obráťte sa na správcu.
         platform_assistant_already_exists: Na platforme je povolený iba 1 asistent typu %{type}.
-      form:
-        add_output_schema_key: Pridanie kľúča výstupnej schémy
-        dependencies: Závislosti
-        description: Popis
-        enter_description: Zadajte popis
-        enter_schema_key: Zadajte kľúč schémy
-        key: Kľúč
-        name: Meno
-        output_schema_keys: Kľúče výstupnej schémy
-        provider: Poskytovateľ
-        remove_output_schema_key: Odstránenie kľúča výstupnej schémy
-        schema_key_description_required: Vyžaduje sa popis kľúča schémy
-        schema_key_required: Vyžaduje sa kľúč schémy
-        schema_key_type: Typ kľúča
-        schema_key_unique: Kľúče schémy by mali byť jedinečné
-        system_prompt: Systémová výzva
-        type: Typ
-        user_prompt: Výzva používateľa
-      revisions:
-        load: Načítať do formulára
-        name: Meno
-        system_prompt: Systémový propmpt
-        title: Revízie AI Assistant
-        user_prompt: Výzva používateľa
-        version: Verzia
       selector:
         choose_artifact: Výber artefaktu AI
         choose_schema_key: Výber kľúča schémy
         no_assistants_found: Nenašli sa žiadni asistenti AI
         placeholder: Vyberte Asistenta AI
-      updated_successfully: AI Assistant bol úspešne aktualizovaný.
     any: " -Akýkoľvek- "
     api:
       campaigns:
@@ -185,10 +62,6 @@ sk:
       users:
         form:
           campaign_ids_not_existing: Nie všetky identifikátory kampaní existujú
-    api_keys:
-      form:
-        description: Popis
-        title: Kľúč API
     assessment_builder:
       form:
         display_label: Zadajte štítok displeja
@@ -196,106 +69,9 @@ sk:
         value: Hodnota
         value_required: Hodnota je povinná
     assessment_center:
-      cancel_confirmation:
-        message: Naozaj chcete zahodiť postup formulára?
-        title: Postup vyradenia formulára
-      current: Súčasný
       invite:
-        add_invite: Pridať pozvánku
-        assessment_center: Hodnotiace centrum
-        back: Chrbát
-        basic_info:
-          allow_preferred_language: Povoliť preferovaný jazyk
-          assessment_centers: Hodnotiace centrá
-          assessment_centers_hint: Príklad vyhľadávacieho dotazu "10. augusta 2023, 20:06"
-          assessment_centers_placeholder: Vyberte hodnotiace centrá
-          description: Pozvánky pre uchádzačov výberom viacerých hodnotiacich centier. Kandidáti si potom vyberú jedno centrum z tých, ktoré sú k dispozícii.
-          neurodiversity: Zahrňte otázku neurodiverzity
-          preferred_language: Povolené jazyky
-          required_error: Nemôže byť prázdny
-          title: Základné informácie
-        center_group: Skupina hodnotiacich centier
-        confirm_message: Naozaj chcete odstrániť pozvánku?
-        confirm_message_with_title: Naozaj chcete odstrániť pozvánku s názvom %{invite_title}?
-        confirm_title: Potvrdiť
         exceeded_subjects_count: Kampaň má %{users} predmetov. Na pozvánku môžete pridať iba %{count} predmetov
-        id: ID
-        invites: Vyzýva
-        name: Meno
-        name_placeholder: Zadajte meno pozvánky
-        next: Budúci
-        not_selected: Nie je vybraté
-        requests: Žiadosti
-        save: Uložiť a odoslať
-        send_invites:
-          add: Sčítať
-          add_description: Názov a popis pozvánky môžete preložiť do viacerých jazykov
-          add_language: Pridať jazyk
-          description: Popis
-          input_label: Pridať ďalší jazyk
-          input_placeholder: Vyberte ďalší jazyk
-          invitation_title: Názov pozvánky
-          title: Pozvánka (%{lang})
-        steps:
-          add_subjects: Pridanie predmetov
-          basic_info: Základné informácie
-          has_errors: obsahuje chyby
-          send_invitation: Odoslať pozvánku
-        subjects:
-          cancel: Zrušiť
-          count: "%{count} Predmety"
-          csv_error: 'Riadok%{index}: používateľ s e-mailom %{email} nie je v tejto kampani'
-          csv_imported: "%{count} importovaných subjektov"
-          description: Predmety môžete pridať jednotlivo vyhľadaním alebo hromadným nahratím súboru CSV.
-          download: Stiahnuť
-          file_example: Odkazujte na príklad súboru a nahrajte informácie o príspevkoch.
-          import_from_campaign: Pridať všetko z kampane
-          import_title: Importovať predmety
-          import_users: Importovať používateľov
-          search_user: Hľadať predmety
-          title: Predmety
-          upload: Nahrať
-          upload_csv: Nahrajte CSV
         subjects_count_added: Úspešne pridané subjekty
-        success:
-          continue: Pokračovať
-          message: Úloha odosielania pozvánok bola zaradená do frontu; Používatelia ich čoskoro dostanú.
-        success_message: Pozvánka bola úspešne odstránená.
-        success_message_with_title: Pozvánka s názvom "%{invite_title}" bola úspešne odstránená.
-        title: Titul
-        workshop:
-          title: Hodnotiace centrá
-        workshop_list:
-          add: Sčítať
-          name: Meno
-          remove_confirm:
-            content: Naozaj chcete odstrániť Assessment Center s názvom %{name}?
-            success: Assessment Center bolo úspešne odstránené.
-            title: Potvrdiť
-      invite_request:
-        accept: Prijať
-        reason: Dôvod
-        reject: Odmietnuť
-        remove_confirm:
-          content: Naozaj chcete %{action} %{status} z %{subjectName}?
-          success: "%{status} z %{subjectName} bol %{action} úspešne."
-          title: "%{action} %{status}"
-        status: Stav
-        subject_name: Názov subjektu
-        workshop_time: Čas workshopu
-      past: Minulosť
-      steps:
-        basic_information: Základné informácie
-        facilitators: Sprostredkovateľov
-        invite_options: Možnosti pozvánky
-        invite_subjects: Pozvať subjekty
-        send_invitations: Posielanie pozvánok
-      success:
-        call_send_invitation: Chcete poslať pozvánky?
-        ok: Áno
-        skip: Zatiaľ preskočiť
-        title: Vytvorené hodnotiace centrá
-      upcoming: Nadchádzajúci
     assessment_question_import:
       errors:
         doesnt_have_header: "'%{sub_header}' nemá hlavičku"
@@ -311,11 +87,7 @@ sk:
       successfully_scheduled: Import otázok bol úspešne naplánovaný.
     assessments:
       assessment: Hodnotenie
-      assessment_report: Hodnotenia
       copy:
-        copy: kopírovať
-        copy_assessment: Posúdenie kópie
-        name: Meno
         successfully: Hodnotenie "%{name}" bolo úspešne skopírované.
       create:
         successfully: Hodnotenie "%{name}" bolo úspešne vytvorené.
@@ -398,93 +170,10 @@ sk:
       update:
         successfully: Hodnotenie %{name} bolo úspešne aktualizované.
     assessor:
-      add_subject_modal:
-        assessment: Hodnotenie
-        mark_as_lead_assessor: Označiť ako hlavného hodnotiteľa pre vyššie uvedený predmet
-        subject: Predmet
-        subject_placeholder: Predmet hľadania..
-        title: Pridanie predmetu
-      assessments:
-        actions:
-          add_subject: Pridať predmet
-          rescore: Opätovné skóre
-          reset: Resetovať vyhodnotenie
-          reset_progress: Obnoviť priebeh
-        bulk_delete_confirmation: Naozaj chcete vymazať vybrané záznamy?
-        bulk_delete_successful: Hodnotenia hodnotiteľov boli úspešne vymazané
-        reset_confirmation: Naozaj chcete resetovať hodnotenie predmetu pomocou e-mailu "%{subjectEmail}"?
-        reset_progress_confirmation: Naozaj chcete obnoviť priebeh pre predmet pomocou e-mailu "%{subjectEmail}"?
-        reset_progress_successfully: Obnovenie priebehu predmetu pomocou e-mailu "%{subjectEmail}" bolo úspešné.
-        reset_successfully: Resetovanie vyhodnotenia predmetu pomocou e-mailu "%{subjectEmail}" bolo úspešné.
-        subject_email: Predmetný e-mail
-        subject_name: Názov subjektu
-      completed_at: Dokončené v
-      count: "%{count} Hodnotitelia"
-      create_assessor: Pridať hodnotiteľa
-      evaluations: Hodnotenia
       mailer:
         subject: Nové predmety pridané na vaše hodnotenie
-      modals:
-        create_assessor:
-          add: Sčítať
-          cancel: Zrušiť
-          form:
-            add: Sčítať
-            add_lead_assessor: Pridať ako hlavného hodnotiteľa
-            add_lead_assessor_hint: Najprv pridajte formulár hlavného hodnotiteľa
-            assessments: Hodnotenia
-            assessor: Hodnotiteľ
-            assessor_placeholder: Vyhľadávanie hodnotiteľa...
-            lead_assessment: Hodnotenie potenciálnych zákazníkov
-            subject: Predmet
-            subject_placeholder: Hľadať predmet...
-          sheet:
-            assessments: Hodnotenia
-            assessments_placeholder: Vybrať
-            assessor_email: E-mail hodnotiteľa
-            assessor_first_name: Krstné meno hodnotiteľa
-            assessor_last_name: Priezvisko hodnotiteľa
-            subject_email: E-mail subjektu
-          title: Pridať hodnotiteľa
-        import:
-          body: Pozrite si funkciu Export a extrahujte šablónu, ktorú je možné použiť na import.
-          title: Hodnotitelia dovozu
       moderate_score:
-        assessor_evaluations: Hodnotenia hodnotiteľov
-        main_report: Hlavná správa
-        no_completed_assessments: Zatiaľ nie sú dokončené hodnotenia
         no_results: Neexistujú žiadne zodpovedané otázky
-        other_reports: Ďalšie správy
-        overall_scoring: Celkové skóre
-        recordings: Nahrávky
-        refresh: Občerstviť
-        reports: Správy
-        reports_count: "%{count} Prehľady"
-      overview: Prehľad
-      remove_confirmation: Naozaj chcete z tejto kampane odstrániť hodnotiteľa s e-mailom %{email}?
-      statuses:
-        completed: Dokončený
-        not_completed: Nedokončené
-      toolbar:
-        export: Hodnotitelia vývozu
-        import: Hodnotitelia dovozu
-        tools: Náradie
-    assessor_assessment:
-      add: Sčítať
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: Vyberte hodnotenie
-      name: Hodnotenie hodnotiteľa
-    assessor_campaigns:
-      statuses:
-        completed: Dokončený
-        in_progress: Prebieha
-        not_started: Nezačalo sa
-    assessor_subjects:
-      statuses:
-        completed: Dokončený
-        in_progress: Prebieha
-        not_started: Nezačalo sa
     assigns:
       create:
         successfully: Nové priradenie k hodnoteniu bolo úspešne vytvorené
@@ -501,42 +190,6 @@ sk:
       edit:
         header: Úprava priradenia zostavy
     attention: Pozornosť
-    audit_log:
-      action: Akcia
-      audit_logs: Protokoly auditu
-      campaign: Kampaň
-      client: Klient
-      client_ip: IP adresa klienta
-      collapse_filters: Zbaliť filtre
-      dashboard: Tabuľu
-      date_presets:
-        last_30_days: Posledných 30 dní
-        last_7_days: Posledných 7 dní
-        last_month: Minulý mesiac
-        last_week: Minulý týždeň
-        today: Dnes
-        yesterday: Včera
-      date_range: Rozsah dátumov
-      expand_filters: Rozbaliť filtre
-      failure_reason: Dôvod zlyhania
-      interface: Rozhranie
-      log_date: Dátum záznamu
-      outcome: Výsledok
-      payload: Payload
-      project: Projekt
-      record_id: ID záznamu
-      request_id: ID žiadosti
-      reset: Vynulovanie
-      search: Hľadať
-      search_campaign: Vyhľadávanie podľa kampane
-      search_client: Vyhľadávanie podľa klienta
-      search_project: Vyhľadávanie podľa projektu
-      search_record: Vyhľadávanie podľa ID záznamu
-      search_user: Vyhľadávanie podľa používateľa
-      title: Informácie denníka auditu
-      type: Typ záznamu
-      user: Užívateľ
-      user_agent: Používateľský agent
     back: Chrbát
     block_settings:
       modal:
@@ -749,20 +402,7 @@ sk:
           missing_user_reports: 'Chýbajúce správy používateľov pre e-maily: %{emails}'
           no_file_found_in_extracted_zip: V extrahovanom súbore ZIP nebol nájdený žiadny súbor.
           user_report_not_found: 'Správa používateľa nebola nájdená pre e-mail: %{email}'
-      bulk_download:
-        data_range_error: Prosím, vyberte rozsah dátumov
-        modal:
-          subtitle: Vyberte rozsah dátumov a potom vyberte požadovaný jazyk pre každú správu
-      generate:
-        modal:
-          subtitle: Vyberte požadovaný jazyk pre každú správu
     campaign_templates:
-      campaign_templates: Šablóny kampaní
-      column:
-        assessment: Hodnotenie
-        campaign: Kampaň
-        owner: Vlastník
-        report: Správa
       copy:
         successfully: Klient Tenancy %{name} bol úspešne skopírovaný.
       create:
@@ -773,16 +413,6 @@ sk:
         header: Upraviť klienta
       errors:
         owner_invalid: Vlastník šablóny musí byť rovnaký ako vlastníci hodnotenia, zostavy a dimenzie
-      form:
-        assessment: Hodnotenie
-        assessment_placeholder: Výber hodnotenia
-        name: Meno
-        name_placeholder: Zadajte názov
-        owner: Vlastník
-        owner_placeholder: Vyberte vlastníka
-        report: správa
-        report_placeholder: Výber zostavy
-        title: Šablóna kampane
       image_fields:
         remove: Odstrániť
       index:
@@ -797,10 +427,6 @@ sk:
         updated_at: Dátum aktualizácie
       new:
         header: Nový klient
-      remove_confirm:
-        content: Naozaj chcete odstrániť šablónu kampane %{name}?
-        success: Campaingová šablóna '%{name}'' bola úspešne odstránená.
-        title: Odstránenie šablóny kampane
       resource:
         confirmations:
           delete:
@@ -816,7 +442,6 @@ sk:
       update:
         successfully: Klientsky nájom %{name} bol úspešne aktualizovaný.
     campaigns:
-      actions: Ovládať
       assessment_reports:
         report_approval:
           allow_bulk_approve: Povoliť hromadné schvaľovanie
@@ -866,148 +491,6 @@ sk:
       assessors:
         spoof:
           successfully: Úspešne ste sa prihlásili ako %{name}
-      convert_to_template: Konvertovať do šablóny
-      copy: Kopírovať
-      delete: Odstrániť
-      edit: Editovať
-      extend_time_success_message: Časovač kampane predĺžený na %{minutes} minút
-      filters:
-        active: Aktívny
-        all: Všetko
-        archived: Archivované
-        closed: Zatvorený
-        inactive: Neaktívny
-        status: Stav
-      form:
-        active_notice: Stav kampane sa automaticky zmení na uzavretý v deň vybraného konca dátumu
-        campaign: Kampaň
-        copy_factors: Kopírovacie faktory
-        inactive_notice: Stav kampane sa automaticky zmení na aktívny k zvolenému dátumu začiatku
-        name: Meno
-        practice_campaign: Cvičná kampaň
-        status: Stav
-      listing:
-        assessments: Hodnotenia
-        id: ID
-        name: Meno
-        reports: Správy
-        status: Stav
-        template: Šablóna
-        type: Typ
-      menus:
-        add_common_campaign: Pridať spoločnú kampaň
-        add_multi_rater_campaign: Pridanie kampane s viacerými hodnotiteľmi
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: Šablóna kampane
-            factors: Faktory
-          base_settings:
-            active: Aktívny
-            archive: Archív
-            assessment: Hodnotenie
-            category: Kategória
-            closed: Zatvorený
-            default_assessment_language: Predvolený jazyk hodnotenia
-            default_report_language: Predvolený jazyk správy
-            empty: Prázdny
-            inactive: Neaktívny
-            name: Meno
-            normal: Normálne
-            previous: Predchádzajúci
-            select_assessment_language: Výber jazyka hodnotenia
-            select_report_language: Výber jazyka správy
-            skill_rater: Hodnotiteľ zručností
-            standard: Štandard
-            status: Stav
-            type: Typ
-          close:
-            content: Naozaj chcete zavrieť Tvorcu kampaní Multi Rater? Akákoľvek neuložená práca na prispôsobení sa stratí. Potvrďte svoje rozhodnutie.
-            title: Zavrieť tvorcu kampane s viacerými hodnotiteľmi?
-          instructions_creation:
-            empty: 'Prázdne: Začnite prázdnym prieskumom a prispôsobte si ho podľa svojich konkrétnych potrieb.'
-            previous: 'Predchádzajúce: Ako východiskový bod vyberte predchádzajúce hodnotenie a vykonajte úpravy.'
-            standard: 'Štandardné: Použite vopred navrhnutú šablónu s bežne používanými otázkami a indikátormi.'
-            sub_title: Vyberte typ kampane, ktorú chcete vytvoriť.
-            title: Vitajte v tvorcovi kampaní Multi Rater!
-          instructions_customization:
-            sub_title: Vyberte šablónu a faktory, ktoré sa majú zahrnúť do hodnotenia.
-            title: Prispôsobte si svoje hodnotenie!
-          no_factors:
-            description: Vyskúšajte iné kľúčové slová vyhľadávania.
-            title: Nenašli sa žiadne faktory
-          questions:
-            select_all: Vybrať všetko
-            title: Otázky a ukazovatele
-          search_factors:
-            description: Zadajte aspoň 3 znaky, aby ste našli faktory, ktoré hľadáte.
-            title: Začnite hľadať
-          success: Kampaň Multi Rater bola úspešne vytvorená.
-          success_job: Úloha na vytvorenie kampane Multi Rater bola úspešne naplánovaná.
-      options:
-        description:
-          name: Popis
-          save: Uložiť popis
-          save_success: Popis úspešne uložený
-        enable_video_call_recording: Povolenie nahrávania videohovorov
-        fixed_time: Pevný čas
-        instructions:
-          actions:
-            saved: Pokyny boli úspešne uložené
-          enable: Povolenie pokynov
-          save: Uložiť pokyny
-        prework_required: Nepovoliť rezerváciu centra, ak nie sú dokončené prípravné práce
-        prework_required_for_invite: E-mail s pozvánkou môžete odoslať len po dokončení prípravy
-        proctoring:
-          enable: Povoliť proctoring
-          identification: Identifikácia
-          identifications:
-            face: Tvár
-            face_and_passport: Tvár a pas
-            passport: Pas
-          integration_type: Integrácia
-          integration_types:
-            iframe: IFrame
-            ldb: Prehliadač uzamknutia
-          proctoring_types:
-            offline: Offline
-            online: Online
-          rule_types:
-            allow_absence_in_frame: Povoliť absense v zábere
-            allow_to_use_books: Povoliť používanie kníh
-            allow_to_use_calculator: Povoliť použitie kalkulačky
-            allow_to_use_excel: Povoliť používanie Excelu
-            allow_to_use_human_assistant: Povoliť použitie ľudského asistenta
-            allow_to_use_messengers: Povoliť používanie messengerov
-            allow_to_use_paper: Povoliť použitie papiera
-            allow_to_use_websites: Povoliť používanie webových stránok
-            allow_voices: Povoliť hlasy
-            allow_wrong_gaze_direction: Umožniť nesprávny smer pohľadu
-          rules: Pravidlá
-          trial: Skúšobná verzia
-          type: Typ
-        show_watermark: Zobraziť vodoznak
-        watermark_content: Obsah vodoznaku
-        watermark_info: Ak nepridáte žiadny obsah, predvolene sa ako vodoznak zobrazí e-mail používateľa. Môžete použiť ktorýkoľvek z nasledujúcich textov -<br> {{id}} – ID účastníka </br> {{first_name}} – krstné meno účastníka <br> {{last_name}} – priezvisko účastníka </br> {{email}} – e-mail účastníka
-      pdf_password: Heslo PDF
-      types:
-        common: Bežný
-        threesixty: Viacnásobný hodnotiteľ
-      users:
-        add_user: Pridať používateľa
-        completion_status: Stav dokončenia
-        created_by: Vytvoril
-        email: E-mail
-        filters:
-          all: Všetko
-          anonymous: Anonymný
-          identified: Identifikované
-        id: ID
-        is_active: Aktívny
-        name: Meno
-        no_permission_message: Nemáte povolenie na úpravu
-        title: Používateľov
-        updated_by: Aktualizované používateľom
       validations:
         dates:
           end: musí byť po dátume začiatku
@@ -1016,28 +499,6 @@ sk:
         invalid_campaign_factor_codes: 'Nasledujúce factor_codes kampane sú neplatné: %{codes}'
         missing_headers: Chýbajúce hlavičky
         missing_users: 'Nasledujúce e-maily neexistujú: %{emails}'
-      import:
-        example_csv: Stiahnuť Príklad csv
-        success_msg: Import bol úspešne nahraný
-      modal:
-        title: Import skóre externých kampaní
-    client_features:
-      client_features: Funkcie klienta
-      form:
-        ai_assistants: Asistenti AI
-        ai_assistants_disabled_by_client: AI Assistants je zakázaný klientom
-        ai_assisted_idp: IDP s pomocou AI
-        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP vyžaduje povolenie funkcie AI Assistants
-        ai_content_analysis: Analýza obsahu umelej inteligencie
-        ai_content_analysis_disabled_by_client: Analýza obsahu AI je deaktivovaná klientom
-        ai_translation: Preklady pomocou umelej inteligencie
-        ai_translation_disabled_by_client: Preklady AI sú klientom zakázané
-        global_skills: Globálne zručnosti
-        global_skills_disabled_by_client: Globálne zručnosti sú zakázané klientom
-        idp: IDP
-        idp_disabled_by_client: IDP je zakázaný klientom
-        sms_notification: SMS upozornenie
-        sms_notification_disabled_by_client: SMS notifikácia je zakázaná klientom
     clients:
       api_keys:
         init_breadcrumbs:
@@ -1049,7 +510,6 @@ sk:
         archived: Archivované
         disable: Archív
         enable: Zrušiť archiváciu
-      clients: Klientov
       copy:
         successfully: Klientsky nájom "%{name}" bol úspešne skopírovaný.
       create:
@@ -1069,392 +529,17 @@ sk:
       new:
         header: Nový klient
       projects:
-        actions:
-          archive: Archív
-          unarchive: Zrušiť archiváciu
-        archive:
-          content: Naozaj chcete archivovať '%{project_name}'?
-          success: Projekt "%{project_name}" bol úspešne archivovaný.
-          title: Archívny projekt
-        assign_assessments:
-          add_assessment: Pridanie hodnotenia
-          assessments: Hodnotenia
-        assign_reports:
-          add_report: Pridať správu
-        campaigns:
-          archive:
-            successfully: Kampaň %{name} bola úspešne archivovaná.
-          copy:
-            error: Kampaň '%{name}' nebola skopírovaná.
-            successfully: Kampaň %{name} bola úspešne skopírovaná.
-          create:
-            successfully: Kampaň %{name} bola úspešne vytvorená.
-          destroy:
-            successfully: Kampaň %{name} bola úspešne odstránená.
-          edit:
-            header: Upraviť kampaň
-          export:
-            assessments: Hodnotenia
-            assigned_user: Priradení používatelia
-            completed_user: Dokončení používatelia
-            created_at: Dátum vytvorenia
-            header:
-              actions: Akcie
-              actual_usage: Skutočné využitie
-              assessments: Hodnotenia
-              campaigns: Kampane
-              name: Meno
-              reports: Správy
-              sub_campaigns: Čiastkové kampane
-              tests_allocated: Pridelené testy
-              users: Používateľov
-            id: ID
-            name: Názov kampane
-            reports: Správy
-            updated_at: Dátum aktualizácie
-          index:
-            export: Vývoz
-            new: Sčítať
-            title: Kampane
-          list:
-            assessments: Hodnotenia
-            assigned_user: Priradení používatelia
-            completed_user: Dokončení používatelia
-            created_at: Dátum vytvorenia
-            header:
-              actions: Akcie
-              actual_usage: Skutočné využitie
-              assessments: Hodnotenia
-              campaigns: Kampane
-              name: Meno
-              reports: Správy
-              sub_campaigns: Čiastkové kampane
-              tests_allocated: Pridelené testy
-              users: Používateľov
-            id: ID
-            name: Názov kampane
-            reports: Správy
-            updated_at: Dátum aktualizácie
-          new:
-            header: Nová kampaň
-          resource:
-            sub_campaign:
-              create: Vytvorenie novej čiastkovej kampane
-            tooltips:
-              copy: Kopírovanie kampane
-              create_report: Pridať nový prehľad
-              create_user: Pridať nového používateľa
-              delete: Odstrániť kampaň
-              edit: Upraviť kampaň
-              export: Vývoz
-          sidebar:
-            archive: Archívna kampaň
-            copy: Kopírovať kampaň
-            destroy: Odstránenie kampane
-            disable: Vypnúť
-            edit: Úprava kampane
-            enable: Zapnúť
-            new: Nová kampaň
-            title: Možnosti kampane
-            view_licenses: Zobraziť licencie
-          sub_campaigns:
-            archive:
-              successfully: Podkampaň %{name} bola úspešne archivovaná.
-            copy:
-              error: Podkampaň %{name} nebola skopírovaná.
-              successfully: Podkampaň %{name} bola úspešne skopírovaná.
-            create:
-              successfully: Podkampaň %{name} bola úspešne vytvorená.
-            destroy:
-              successfully: Podkampaň %{name} bola úspešne odstránená.
-            edit:
-              header: Upraviť čiastkovú kampaň
-            export:
-              assessments: Hodnotenia
-              assigned_user: Priradení používatelia
-              completed_user: Dokončení používatelia
-              created_at: Dátum vytvorenia
-              header:
-                actions: Akcie
-                actual_usage: Skutočné využitie
-                archive_status: Stav archívu
-                name: Meno
-                sub_campaign: Čiastkové kampane
-                tests_allocated: Pridelené testy
-                users: Používateľov
-              id: ID
-              name: Názov podkampane
-              reports: Správy
-              updated_at: Dátum aktualizácie
-            header:
-              actions: Akcie
-            index:
-              export: Vývoz
-              new: Sčítať
-              title: Vedľajšie kampane
-            list:
-              assessments: Hodnotenia
-              assigned_user: Priradení používatelia
-              completed_user: Dokončení používatelia
-              created_at: Dátum vytvorenia
-              header:
-                actions: Akcie
-                actual_usage: Skutočné využitie
-                archive_status: Stav archívu
-                name: Meno
-                sub_campaign: Čiastkové kampane
-                tests_allocated: Pridelené testy
-                users: Používateľov
-              id: ID
-              name: Názov podkampane
-              reports: Správy
-              updated_at: Dátum aktualizácie
-            new:
-              header: Nová čiastková kampaň
-            resource:
-              tooltips:
-                copy: Kopírovať vedľajšiu kampaň
-                create_report: Pridať novú správu
-                create_user: Pridať nového používateľa
-                delete: Odstrániť vedľajšiu kampaň
-                edit: Upraviť vedľajšiu kampaň
-            sidebar:
-              archive: Archívna čiastková kampaň
-              copy: Kopírovať čiastkovú kampaň
-              destroy: Odstrániť čiastkovú kampaň
-              disable: Vypnúť
-              edit: Upraviť čiastkovú kampaň
-              enable: Zapnúť
-              new: Nová čiastková kampaň
-              title: Možnosti čiastkovej kampane
-              view_licenses: Zobraziť licencie
-            toggle_status:
-              successfully: Podkampaň %{name} bola úspešne aktualizovaná.
-            update:
-              successfully: Podkampaň %{name} bola úspešne aktualizovaná.
-          toggle_status:
-            successfully: Kampaň %{name} bola úspešne aktualizovaná.
-          update:
-            successfully: Kampaň %{name} bola úspešne aktualizovaná.
-        copy:
-          error: Projekt %{name} nebol skopírovaný.
-          successfully: Projekt %{name} bol úspešne skopírovaný.
-        create:
-          successfully: Projekt %{name} bol úspešne vytvorený.
-        destroy:
-          successfully: Projekt %{name} bol úspešne odstránený.
-        edit:
-          header: Upraviť projekt
-        export:
-          2fa_enabled: Povolené 2FA
-          actual_usage: Skutočné využitie
-          admin: Správca klienta
-          applicable_level: Uplatniteľná úroveň
-          archive_status: Stav
-          assessments: Hodnotenia
-          assigned_user: Priradení používatelia
-          completed_user: Dokončení používatelia
-          created_at: Dátum vytvorenia
-          id: ID
-          name: Názov projektu
-          number: Číslo
-          project_admin: Správcovia projektov
-          reports: Správy
-          tests_allocated: Pridelené testy
-          tte_admin: Projektový manažér TTE
-          updated_at: Dátum úpravy
-          url: Adresa URL
-          users_count: Počet používateľov
-        form:
-          2fa: 2-faktorová autentifikácia
-          2fa_enable: Povoliť 2-faktorové overenie
-          applicable_levels:
-            campaign: Úroveň ukončenia kampane
-            project: Úroveň ukončenia projektu
-            sub_campaign: Úroveň konca čiastkovej kampane
-          data_privacy: Ochrana osobných údajov
-          enable_live_chat: Povoliť živý chat
-          enable_privacy_links: Povolenie prepojenia na ochranu osobných údajov
-          live_chat_token: Token živého chatu
-          optional: Voliteľný
-          other_settings: Ďalšie nastavenia
-          privacy_link: Prepojenie na ochranu osobných údajov
-          privacy_text: Text o ochrane osobných údajov
-          project_number: Číslo projektu
-          webhook: Webhook
-          webhook_auth_enabled: Povolenie overovania webhookom
-          webhook_password: Heslo
-          webhook_username: Používateľské meno
-        header:
-          actions: Akcie
-        index:
-          export: Vývoz
-          new: Sčítať
-          title: Projekty
-          tooltips:
-            create: Vytvoriť
-            export: Vývoz
-        list:
-          2fa_enabled: Povolené 2FA
-          actual_usage: Skutočné využitie
-          admin: Správca klienta
-          applicable_level: Uplatniteľná úroveň
-          archive_status: Stav
-          assessments: Hodnotenia
-          assigned_user: Priradení používatelia
-          completed_user: Dokončení používatelia
-          created_at: Dátum vytvorenia
-          id: ID
-          name: Názov projektu
-          number: Číslo
-          project_admin: Správcovia projektov
-          reports: Správy
-          tests_allocated: Pridelené testy
-          tte_admin: Projektový manažér TTE
-          updated_at: Dátum úpravy
-          url: Adresa URL
-          users_count: Počet používateľov
-        new:
-          header: Nový projekt
-        resource:
-          add_assessment: Pridanie hodnotenia
-          add_report: Pridať správu
-          assessments: Hodnotenia
-          tooltips:
-            copy: Kopírovať projekt
-            create_admin: Vytvorenie správcu projektu
-            create_report: Pridať nový prehľad
-            create_user: Pridať nového používateľa
-            delete: Odstrániť projekt
-            edit: Upraviť projekt
-        sidebar:
-          admins: Správcovia projektov
-          archive: Archívny projekt
-          copy: Kopírovať projekt
-          design: Upraviť dizajn
-          destroy: Odstrániť projekt
-          disable: Vypnúť
-          edit: Upraviť projekt
-          enable: Zapnúť
-          new: Nový projekt
-          title: Možnosti projektu
-          view_licenses: Zobraziť licencie
-        status:
-          active: Aktívny
-          archived: Archivované
         threesixty_campaigns:
-          base:
-            active: Aktívny
-            archived: Archivované
-            disable: Archív
-            enable: Zrušiť archiváciu
-          completion_statuses:
-            approved: Schválený
-            completed: Dokončený
-            denied: Odmietnutý
-            in_progress: Prebieha
-            not_started: Nezačalo sa
-          copy:
-            error: Klientsky nájom "%{name}" nebol skopírovaný.
-            successfully: Klientsky nájom "%{name}" bol úspešne skopírovaný.
-          create:
-            successfully: Klient Tenancy '%{name}' bol úspešne vytvorený.
-          designs:
-            form:
-              no_background: Zatiaľ žiadne pozadie
-              no_logo: Zatiaľ žiadne logo
           destroy:
             error: Nie je možné vymazať "%{name}", pretože existujú nejaké závislé asociácie subjektov alebo hodnotiteľov.
-            successfully: Klientsky nájom %{name} bol úspešne odstránený.
-          edit:
-            header: Kampaň Edit 360
-          export:
-            admin: Správca klienta
-            assessment: Hodnotenie
-            client_admins: Správcovia klientov
-            created_at: Vytvorené v
-            id: ID
-            name: Meno
-            report: Správa
-            report_bundle: Balík zostáv
-            status: Stav
           index:
-            export: Vývoz
-            new: Pridať 360° kampaň
             title: 360° kampane
-          license:
-            header: "%{name} - Upraviť licenciu"
-          licenses:
-            update:
-              duplicate_licenses: Máte duplicitné licencie
-              successfully: Licencie boli úspešne aktualizované
-          list:
-            admin: Správca klienta
-            assessment: Hodnotenie
-            client_admins: Správcovia klientov
-            created_at: Vytvorené v
-            id: ID
-            name: Meno
-            report: Správa
-            report_bundle: Balík zostáv
-            status: Stav
-            updated_at: Dátum aktualizácie
-          new:
-            header: Nová 360° kampaň
           resource:
             confirmations:
               delete:
                 body: "<p>Naozaj chcete odstrániť?</p> <p>Túto akciu nie je možné vrátiť späť. Tým sa natrvalo odstráni kampaň <strong>%{name}</strong> , čiastkové kampane a všetky asociácie.</p> <p>Potvrďte zadajte <strong>%{name}</strong> .</p>"
                 title: Zmazať <strong>%{name}</strong>?
-              disable:
-                body:
-                  '0': "<p>Naozaj chcete archivovať?</p> <p>Archivované budú aj všetky kampane, čiastkové kampane a používatelia</p>"
-                  '1': "<p>Naozaj chcete archivovať?</p> <p>Archivované budú aj všetky čiastkové kampane a používatelia</p>"
-                  '2': "<p>Naozaj chcete archivovať?</p> <p>Všetci používatelia budú tiež archivovaní</p>"
-                  '3': "<p>Naozaj chcete archivovať?</p> <p>Všetci používatelia budú tiež archivovaní</p>"
-                title: Archív <strong>%{name}</strong> ?
-              enable:
-                body:
-                  '0': "<p>Naozaj chcete zrušiť archiváciu?</p>"
-                  '1': "<p>Naozaj chcete zrušiť archiváciu?</p>"
-                  '2': "<p>Naozaj chcete zrušiť archiváciu?</p>"
-                  '3': "<p>Naozaj chcete zrušiť archiváciu?</p>"
-                title: Zrušiť archiváciu <strong>%{name}</strong> ?
-            export_results: Exportovať výsledky
-            raw_results: Hrubé výsledky
-            tooltips:
-              campaigns:
-                delete: Odstrániť kampaň
-              copy: Kopírovať klienta
-              create_admin: Vytvorenie správcu klienta
-              delete: Odstrániť klienta
-              disable: Zakázať klienta
-              edit: Upraviť klienta
-              enable: Povoliť klienta
-          statistics:
-            index:
-              all_assessments: Všetky hodnotenia
-              assessment_type: Typ hodnotenia
-              title: Štatistika
-          toggle_status:
-            successfully: Klientsky nájom %{name} bol úspešne aktualizovaný.
-          update:
-            successfully: Klientsky nájom %{name} bol úspešne aktualizovaný.
-          url: URL adresa
-        toggle_status:
-          successfully: Projekt %{name} bol úspešne aktualizovaný.
-        unarchive:
-          content: Naozaj chcete zrušiť archiváciu '%{project_name}'?
-          success: Projekt '%{project_name}'' bol úspešne zrušený.
-          title: Zrušiť archiváciu projektu
-        update:
-          successfully: Projekt %{name} bol úspešne aktualizovaný.
       registration_codes:
-        actions:
-          add_code: Pridať kód
-        column:
-          code: Kód
-          usage_stats: Štatistiky používania
         errors:
           count_invalid: nemôže byť menšia ako used_count = %{use_count}
           criteria: môže obsahovať iba alfanumerické znaky, spojovník (-) a podčiarkovník (_)
@@ -1462,13 +547,6 @@ sk:
           incorrect_domain: Nesprávny formát domény.
           invalid_end_date: musí byť dlhší ako dátum začiatku
           license_issue: Nedostatok licencií.
-        form:
-          active: Aktívne
-          code: Kód
-          end_date: Dátum ukončenia
-          name: Názov
-          start_date: Dátum začiatku
-          total_count: Celkový počet
       resource:
         confirmations:
           delete:
@@ -1484,25 +562,9 @@ sk:
         successfully: Klientsky nájom %{name} bol úspešne aktualizovaný.
     close: Zavrieť
     common:
-      add: Sčítať
-      back: Chrbát
-      cancel: Zrušiť
-      code: Kód
-      disabled: Diasbled
-      download_sample_file: Stiahnuť vzorový súbor
       enabled: Povolené
-      import:
-        failure_msg: Chyba pri importovaní súboru.
-      instructions: Inštrukcie
       loading: Nakladanie...
-      minute: minúta
-      name: Meno
-      next: Budúci
-      reset: Vynulovanie
       save: Zachrániť
-      select_all: Vybrať všetko
-      type: Typ
-      unselect_all: Zrušiť výber všetkých
     communication_settings: Nastavenia
     communications:
       create:
@@ -1677,74 +739,13 @@ sk:
       input_duration:
         placeholder: Zadajte ako "1d 2h 3m"
     create: Vytvoriť
-    dashboard:
-      capacity_name: Názov kapacity
-      choose_file_format: Výber formátu súboru
-      dashboard_types:
-        oracle_analytics: Oracle Analytics
-        powerbi: PowerBi
-      dashboards: Tabule
-      export_dashboard_to_file: Exportovať tabuľu do súboru
-      export_job_failure: Spustenie exportu sa nepodarilo
-      export_job_success: Spustila sa úloha exportu. Po dokončení budete upozornení.
-      get_started: Začať
-      initialize_msg: Inicializácia informačného panela pre túto kampaň
-      loading_failed: Načítanie tabule zlyhalo.
-      only_export_current_tab: Exportovať iba aktuálnu kartu
-      pdf: PDF
-      pptx: PPTX
-      preview:
-        embed_token_error_description: Skontrolujte, či je množina údajov a ID zostavy v nastaveniach správne.
-        embed_token_error_title: Nie je možné vygenerovať token Embed.
-      settings:
-        capacity_id: ID kapacity
-        details: Detaily
-        refresh: Občerstviť
-        workspace_id: ID pracovného priestoru
-      tabs:
-        accesssheet: Prístupový hárok
-        accesssheet_setting: Nastavenia prístupového hárka
-        dashboard: Tabuľu
-        settings: Nastavenia
-    dashboard_form:
-      fields:
-        dataset_id: ID množiny údajov
-        enabled: Povolené
-        image: Obraz
-        project_path: Cesta projektu
-        refresh_interval: Interval obnovenia (minúty)
-        report_id: ID zostavy
-        visual_header_visibility: Vizuálna viditeľnosť hlavičky
-      image_upload_failed: Nahrávanie obrázkov zlyhalo.
-      none: Žiadny
-      refresh_success: Obnovenie množiny údajov bolo úspešne naplánované.
-      visual_header_visibility_options:
-        hide_all: Skryť všetko
-        keep_original: Zachovať originál
-        show_all: Zobraziť všetko
-    data_exports_modal:
-      title: Vyberte obdobie
     data_reports:
-      columns:
-        created_at: Vytvorené v
-        created_by: Vytvoril
-        last_updated_by: Naposledy aktualizované používateľom
-        name: Meno
-        owner: Vlastník
-        password: Heslo
-        status: Stav
-        udpated_at: Posledná aktualizácia na
-      configuration: Konfigurácia
       errors:
         factor_code_or_field_name_required: factor_code alebo field_name je potrebné
         factor_not_found: nenájdené v rozsahu posúdenia
         inclusion: 'neplatný typ, platné typy: %{values}'
         not_found: Nenájdené
         not_owned: nie je vo vlastníctve klienta
-      form:
-        name: Správa o údajoch
-      messages:
-        runed: Spustenie dátovej zostavy bolo úspešne naplánované
       validations:
         project_and_campaigns_not_allowed: project_ids a campaign_ids by sa nemali špecifikovať spoločne
         project_not_related_to_client: "%{project_id} nepatrí klientovi"
@@ -1752,11 +753,6 @@ sk:
         sections_required: sekcie sú povinné
     datasheet:
       threesixty_warning: Odtiaľto nemôžete nahrať stĺpce údajového hárka pre zostavu 360. V prípade 360° prehľadu sa načítavajú stĺpce údajového hárka z kampane, s ktorou je tento prehľad prepojený
-    dates:
-      completed: Dokončené v
-      end: Dátum ukončenia
-      start: Dátum začiatku
-      started: Začalo o
     development_action_import:
       errors:
         blank_field: 'Riadok %{row}: %{field} nemôže byť prázdny'
@@ -1793,49 +789,11 @@ sk:
         successfully: Vývojová akcia "%{name}" bola úspešne vytvorená.
       destroy:
         successfully: Vývojová akcia "%{name}" bola úspešne odstránená.
-      development_action_types:
-        course: Priebeh
-        default: Predvolený
-      duration:
-        max_length: Nemôže byť staršie ako 1 rok
-        min_length: Nesmie byť kratšie ako 1 minúta
       edit:
         header: Upraviť vývojovú akciu
       export:
         details: Podrobnosti o súbore
-        failure_msg: Chyba pri exporte prekladov
-        success_msg: Export prebiehajúcich vývojových akcií. Skontrolujte stav v upozorneniach.
         translation_details: Detaily
-      export_development_action_translations: Preklady vývojových akcií
-      export_development_actions: Rozvojové akcie
-      form:
-        available_languages: Dostupné jazyky
-        client_placeholder: Vyberte klienta
-        course_image: Obrázok kurzu
-        course_link: Odkaz na kurz
-        description: Popis
-        development_action_type: Typ rozvojovej akcie
-        duration: Trvanie
-        end_date: Dátum ukončenia
-        learning_style: Štýl učenia
-        name: Meno
-        project_placeholder: Vyberte projekt
-        skills: Zručnosti
-        skills_placeholder: Vyberte zručnosti
-        start_date: Dátum začiatku
-        title: Rozvojová akcia
-        upload: Nahrať
-      global: Je globálna rozvojová akcia?
-      heading: Rozvojové akcie
-      import:
-        download_example_csv: Stiahnuť Príklad csv
-        failure_msg: Chyba pri importovaní súboru.
-        info_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-      import_action:
-        development_actions_title: Importujte vývojové akcie
-        development_actions_translations_title: Import prekladov vývojových akcií
-      import_development_actions: Rozvojové akcie
-      import_development_actions_translations: Preklady rozvojových akcií
       learning_styles:
         cannot_be_blank: Nemôže byť prázdny
         invalid: Musí to byť jeden z on_the_job, structured_learning, learning_from_others
@@ -1869,32 +827,11 @@ sk:
       form:
         enable_innovation_styles: Umožnite štýly inovácií
         enable_occupations: Povoliť povolania
-        name: Meno
-        title: Rozmery
       import_factors:
         import: Import
         sample_file: Vzorový súbor
         successfully: Úloha importu faktorov naplánovaná pre dimenziu %{name}.
         title: Faktory dovozu
-      import_modal:
-        after: Po stránke
-        before: Pred
-        cancel: Zrušiť
-        change_log_input: Denník zmien
-        continue: Pokračovať
-        error: Chyba
-        error_occurred: Vyskytla sa chyba
-        errors:
-          file_error: Pred pokračovaním vyberte súbor JSON.
-          processing_error: Súbor na spracovanie chýb
-        field: Pole
-        import: Import
-        import_dimension: Importovať dimenziu
-        import_scheduled: Naplánovaný import
-        operation: Operácia
-        owner_input_validation: Prosím, vyberte vlastníka
-        owner_select: Výber vlastníka
-        select_json: Vyberte súbor JSON
       import_translations:
         error: Chyba pri importe prekladov pre dimenziu %{name}.
         successfully: Importujte preklady naplánované pre dimenziu %{name}.
@@ -1918,7 +855,6 @@ sk:
         confirmations:
           delete:
             body: "<p>Naozaj chcete túto dimenziu odstrániť?</p>\n"
-            message: Do textového poľa zadajte nižšie uvedený názov rozmeru na potvrdenie
             title: Odstrániť <strong>dimenziu</strong> ?
           toggle_status:
             body: "<p>Naozaj chcete %{status} túto dimenziu?</p>\n"
@@ -1946,9 +882,6 @@ sk:
       update:
         successfully: Dimenzia %{name} bola úspešne aktualizovaná
     disable: Vypnúť
-    document_titles:
-      project_assessors: Hodnotitelia | %{project}
-      project_participants: Účastníci | %{project}
     enable: Zapnúť
     errors:
       csv_file_required: Súbor musí byť súbor CSV
@@ -1969,21 +902,6 @@ sk:
       edit:
         header: Upraviť názov faktora
       form:
-        components:
-          ExternalList:
-            add: Sčítať
-            table:
-              actions: Akcie
-              jsonpath: Cesta JSON
-              type: Typ
-              types:
-                norm_score: Normované skóre
-                percentage: Percento
-                percentile: Percentilové skóre
-                score: Skóre
-                zscore: Skóre Z
-            title: Cesty JSON pre skóre
-        predicate: Predikát
         scoring_strategies:
           custom_formula: Vlastný vzorec
           external_score: Externé skóre
@@ -1995,15 +913,9 @@ sk:
           sub_factors_average: Vážený priemer faktorov
           sub_factors_conditional_average: Podmienený vážený priemer faktorov
           sub_factors_sum: Vážený súčet faktorov
-        scoring_strategies_tip: "<strong>Otázky (priemer):</strong> Je to ako súčasná metóda hodnotenia, keď existujú otázky spojené s faktorom.<br /> <br /><strong>Otázky (SUM):</strong> Je to ako otázky (priemer), ale pomocou funkcie SUM<br /> <br /><strong>Otázky iných faktorov (priemer):</strong> Je to ako súčasná metóda hodnotenia, keď existujú čiastkové faktory pre faktor, jedinou zmenou je pridanie váhy.<br /> <br /><strong>Otázky iných faktorov (SUM):</strong> Je to ako iné faktory (priemer), ale pomocou funkcie SUM<br /> <br /><strong>Vážený súčet faktorov:</strong> Tu sa spočítajú skóre vybraných ďalších faktorov ich váhami."
-        scoring_strategy: Bodovacia stratégia
-        search_factors: Faktory vyhľadávania
-        use_sub_factor_norm_score: Skóre normy Faktory použitia
-        value: Hodnota
       index:
         icon: Ikona
         new: Sčítať
-        precision: Presnosť
         scoring_strategies:
           custom_formula: Vlastný vzorec
           external_score: Externé skóre
@@ -2061,10 +973,6 @@ sk:
         successfully: Faktor bol úspešne aktualizovaný.
       update:
         successfully: "%{name} faktor bol úspešne aktualizovaný"
-    genders:
-      female: Samica
-      male: Samec
-      not_set: Nie je nastavené
     grants:
       common:
         view: Pohľad
@@ -2074,100 +982,19 @@ sk:
           accesssheet_manage: Správa prístupového hárka
           accesssheet_settings: Nastavenia prístupového hárka
           accesssheet_view: Zobrazenie prístupovej hárky
-    header:
-      logout:
-        content: Stlačte Zrušiť, ak chcete pokračovať v práci. Stlačte Ok na odhlásenie aktuálneho používateľa.
-        title: Si si istý, že sa chceš odhlásiť?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: Novú odpoveď nie je možné pridať pre hogan hodnotenie %{assessment_name}, pretože toto hodnotenie je už priradené a spustené používateľom %{email}. Pre tohto používateľa môžete vytvoriť nový hogan účet, ktorý používateľovi umožní zopakovať hodnotenie.
           short_error_message: Novú odpoveď nie je možné pridať pre hogan hodnotenie %{assessment_name}, pretože toto hodnotenie je už priradené a spustené používateľom %{email}
     idp:
-      actions:
-        remove_confirm: Ak chcete šablónu odstrániť, zadajte aktuálny názov šablóny uvedený nižšie do textového poľa
-        success: "%{idpName} bol úspešne odstránený."
-      add_idp_template: Pridať šablónu IDP
-      ai_assistant: Asistent AI
-      ai_assisted_idp_enabled: IDP s asistenciou umelej inteligencie
-      ai_enabled: Aktivovaná umelá inteligencia
-      ai_settings: Nastavenia AI
-      all: Všetko
-      appearance: Vzhľad
-      appearance_hint: Ak chcete upraviť vzhľad, najskôr uložte šablónu IDP, aby ste povolili tieto nastavenia.
-      appearance_success: Nastavenia vzhľadu boli úspešne uložené
-      background_image: Obrázok na pozadí
-      behavioral_skills: Behaviorálne zručnosti
-      client_skills: Zručnosti klienta
-      delete_skill: Naozaj chcete odstrániť zručnosť, pretože sa tým odstránia aj všetky súvisiace vývojové akcie?
-      delete_skill_msg: Si si istý, že chceš túto zručnosť vymazať? Vymazaním sa odstránia aj všetky súvisiace vývojové akcie.
-      details_updated: IDP Podrobnosti úspešne aktualizované
       development_actions:
-        add_from_library: Pridanie z knižnice
-        completion: Dokončenie
-        create_development_actions_with_ai: Vytvárajte vývojové akcie pomocou AI pre
-        create_from_ai: Tvorba z umelej inteligencie
-        create_my_own: Vytvorte si vlastný
-        custom: Zvyk
-        date_range: Dátum začiatku - dátum ukončenia
-        edit_plan_to_add_development_actions: Upraviť plán a pridať vývojové akcie.
         errors:
           invalid_learning_style: '"%{learning_style}" nie je platný štýl učenia. Platné možnosti sú: %{valid_styles}'
           learning_style_blank: Štýl učenia nemôže byť prázdny
-        generate_by_ai: Generovanie pomocou AI
-        generate_more: Generovať viac
-        heading: Zručnosti/rozvojové akcie
-        manage_skills: Správa zručností
-        no_development_actions: Nemáte žiadne rozvojové akcie
-      document_ai_assistant: Asistent AI pre analýzu dokumentov
-      edit_template: Upraviť šablónu IDP
-      enter_tag_or_skills_error: Vyberte aspoň jednu značku alebo zručnosť
-      enter_template_description: Popis
-      enter_template_description_error: Vyžaduje sa popis šablóny.
-      enter_template_name: Meno
-      enter_template_name_error: Názov šablóny je povinný
       errors:
-        cannot_update_progress_plan_completed: Nemožno aktualizovať pokrok, pretože plán IDP bol dokončený
         skills_required_on_publishing: Pred zverejnením šablóny si vyberte zručnosti.
         update: Aktualizácia nie je povolená, pretože šablóna IDP je už priradená k plánu IDP používateľa. Zmeny vzhľadu boli uložené.
-      fields:
-        approval_date: Dátum schválenia
-        assigned_data: Priradené údaje
-        assigned_date: Pridelený dátum
-        completion_date: Dátum dokončenia
-        current_job_role: Súčasná pracovná pozícia
-        division: Delenie
-        name: Meno
-        publish_date: Dátum zverejnenia
-        review_date: Dátum revízie
-        target_job_role: Cieľová pracovná pozícia
-      fields_label: Polia
-      global_skills: Globálne zručnosti
-      idp: IDP
-      idp_template: Pridať šablónu IDP
-      interview_questions: Otázky na pohovore
-      interview_questions_updated: Otázky na pohovore boli úspešne aktualizované.
-      intro_message: Úvodná správa
-      intro_message_hint: Ak chcete upraviť úvodnú správu, najskôr uložte šablónu IDP, aby ste povolili tieto nastavenia.
-      intro_message_success: Úvodná správa bola úspešne uložená
-      locales: Locales
-      logo_image: Obrázok loga
-      logo_type:
-        both: Logá Mercer a Client
-        client_only: Len logo klienta
-        mercer_only: Iba logo Mercer
-        none: Bez loga
-      logo_type_label: Typ loga
-      no_interview_questions_selected: Nie sú vybrané žiadne otázky na pohovor
-      no_reflection_questions_selected: Nie sú vybraté žiadne otázky na reflexiu
-      none: Žiadny
-      one_click_idp_enabled: IDP povolený jedným kliknutím
-      reference_locale: Referenčné miestne prostredie
-      reflection_questions: Otázky na zamyslenie
-      reflection_questions_hint: Ak chcete upraviť otázky reflexie, najskôr uložte šablónu IDP, aby ste povolili tieto nastavenia.
-      reflection_questions_updated: Reflexné otázky boli úspešne aktualizované.
-      remove: Odstrániť
-      remove_skill: Odstrániť zručnosť
       revert_skill_to_public:
         errors:
           skill_already_public: Zručnosť je už verejná
@@ -2175,47 +1002,11 @@ sk:
         success:
           base_message: Zručnosť "%{skill_name}" je teraz viditeľná pre vášho manažéra
           with_approval: "%{base_message} a váš plán IDP bol predložený na schválenie"
-      select_by_tags: Vybrať podľa značiek
-      select_interview_question: Začnite písať a vyhľadajte a vyberte otázku
-      select_reflection_question: Začnite písať, aby ste hľadali a vybrali otázku
-      select_skill_gap_report: Vyberte správu o medzere v zručnostiach
-      select_specific_skills: Vyberte konkrétne zručnosti
-      selected: Vybraný
-      self_rating: Povoliť vlastné hodnotenie
-      show_reflections: Zobraziť odrazy
-      skill_gap_report: Správa o nedostatku zručností
-      skill_gap_report_ai_assistant: Asistent analýzy správ o medzerách v zručnostiach
-      skill_source_preference: Zdroj zručností
-      skill_sources:
-        from_ai: Zo všeobecných znalostí o umelej inteligencii
-        from_template: Zo šablóny a mapovania
-      skills: Zručnosti
       skills_privacy_messages:
         made_private: Zručnosť "%{skill_name}" bola označená ako súkromná a bude skrytá pred vaším manažérom
         made_public: Zručnosť "%{skill_name}" je teraz viditeľná pre vášho manažéra
         skill_not_found: Zručnosť sa nenašla
         unauthorized: Neoprávnené upraviť túto zručnosť
-      skills_updated: IDP Skills úspešne aktualizovaný
-      status:
-        draft: Návrh
-        published: Zverejnené na
-      status_updated: Stav IDP bol úspešne aktualizovaný
-      subtitle_text: Text titulkov
-      tab:
-        development_actions: Rozvojové akcie
-        interview_questions: Otázky na pohovore
-        reflection_questions: Otázky na zamyslenie
-        settings: Nastavenia
-        templates: Šablóny
-      technical_skills: Technické zručnosti
-      template_details: Podrobnosti o šablóne
-      title_text: Text názvu
-      update_interview_questions: Aktualizácia otázok na pohovore
-      update_reflection_questions: Otázka na reflexiu aktualizácie
-    idp_setting:
-      manager_approves_idp: Manažér schvaľuje IDP
-      manager_can_edit_idp: Manažér môže upravovať IDP
-      require_all_development_actions_complete: Vyžadovať dokončenie všetkých vývojových akcií
     import: Import
     imports:
       assessments:
@@ -2285,10 +1076,6 @@ sk:
         successfully: Používatelia boli úspešne importovaní
       new:
         header: Importovať používateľov
-    individual_invite:
-      tabs:
-        assessment_center: Hodnotiace centrum
-        invitation_status: Stav pozvania
     innovation_styles:
       create:
         successfully: Štýl inovácie %{name} bol úspešne vytvorený.
@@ -2297,7 +1084,6 @@ sk:
       edit:
         header: Upraviť štýl inovácie
       form:
-        full_description: Úplný popis
         no_icon: Žiadna ikona
       index:
         new: Sčítať
@@ -2359,69 +1145,13 @@ sk:
       toggle_status:
         successfully: Faktor bol úspešne aktualizovaný.
     integrations:
-      actions:
-        add: Integrácie
-        back: Späť na Integrácie
-        load_mettl_catalog: Katalóg hodnotenia zaťaženia Mettl
-        load_microsite_catalog: Načítať katalóg hodnotení mikrostránok
-        load_skillvue_catalog: Katalóg hodnotenia Load Skillvue
-      columns:
-        active: Aktívny
-        details: Detaily
-        name: Názov integrácie
-      details:
-        client_id: ID klienta
-        deployment_id: ID nasadenia
-        platform_access_token_url: URL prístupového tokenu platformy
-        platform_authentication_request_url: URL požiadavky na autentifikáciu platformy
-        platform_host_name: Názov hostiteľa platformy
-        platform_id: Identifikácia nástupišťa
-        platform_public_keyset_url: Platforma Public Keyset URL
-        provider: Názov poskytovateľa
-        webhookUrl: URL adresa webhooku
-        webhookUrls: URL adresy webhooku
-      integrations: Integrácie
       load_mettl_success: Načítanie úlohy mettl assessments je úspešne zaradené do frontu
       load_microsite_success: Úloha na vyhodnotenie mikrostránok bola úspešne zaradená do fronty
       load_skillvue_success: Úloha hodnotenia načítania zručností je úspešne zaradená do frontu
       modal:
-        hogan:
-          provider: Poskytovateľ
-          providers:
-            mercer: Mercer
-            phoenix: Fénix
-        iiht:
-          password: Heslo
-          tenancy_name: Názov nájmu
-          tenant_id: ID nájomníka
-          user: Užívateľ
-        mettl:
-          apiBaseUrl: Koncový bod rozhrania API
-          apiBaseUrlRequired: Vyžaduje sa koncový bod rozhrania API.
-          privateKey: Súkromný kľúč
-          privateKeyRequired: Vyžaduje sa súkromný kľúč.
-          publicKey: Verejný kľúč
-          publicKeyRequired: Vyžaduje sa verejný kľúč.
-          servers:
-            mettl_eu: Európa
-            mettl_india: India
         microsite:
           apiKey: Kľúč API
           apiKeyRequired: Je potrebný kľúč API
-        skillvue:
-          apiKey: Kľúč API
-          apiKeyRequired: Vyžaduje sa kľúč API
-        yoodli:
-          keyset_url: URL keysetu
-          launch_url: Launch URL
-          login_url: Prihlasovacia URL adresa
-      names:
-        hogan: HOGAN
-        iiht: IIHT
-        mettl: METTL
-        microsite: Mikrostránka
-        skillvue: Skillvue
-        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Nájomný názov je už prítomný v inom projekte
@@ -2432,26 +1162,10 @@ sk:
           api_key_present: Kľúč API už existuje v inom projekte
         skillvue:
           api_key_present: API kľúč je už prítomný v inom projekte
-      view_all_schedules: Zobraziť všetky cestovné poriadky Mettl
     interview_questions:
-      delete_confirmation: Naozaj chcete odstrániť túto otázku na pohovore?
-      description: Opis
       export:
-        action: Exportovať otázky na pohovor
         details: Podrobnosti o súbore
-        failure_msg: Chyba pri exporte súboru.
-        success_msg: Prebieha export otázok na pohovor. Skontrolujte stav v upozorneniach.
-      form:
-        description: Opis
-        mandatory: Povinný
-        question: Otázka
-        question_type: Typ otázky
-        question_type_audio: Zvukový
-        question_type_video: Video
-        time_limit: Časový limit (s)
-        title: Otázka na pohovore
       import:
-        action: Importovať otázky na pohovor
         errors:
           invalid_required_column_format: Neplatný Povinný formát hodnoty stĺpca %{row}
           invalid_required_type_format: Neplatný formát hodnoty stĺpca QuestionType %{row}
@@ -2459,64 +1173,6 @@ sk:
           missing_description: Chýbajúci popis obsahu %{row}
           missing_question: Obsah chýbajúcej otázky %{row}
           save_failed: Uloženie zlyhalo %{message}
-        failure_msg: Chyba pri importe súboru.
-        success_msg: Prebieha import otázok na pohovor. Skontrolujte stav v upozorneniach.
-      question: Otázka
-    invited_subject:
-      add_btn: Pridať predmet
-      assessment_center: 'Assessment centrum:'
-      booked_at: 'Rezervované na:'
-      column:
-        invitation_status: Stav pozvania
-        participant: Účastník
-        scheduling_details: Podrobnosti o plánovaní
-      remove_confirm:
-        content: Naozaj chcete odstrániť predmet s e-mailom "%{subjectEmail}"?
-        success: Predmet s e-mailom "%{subjectEmail}" bol úspešne odstránený.
-        title: Odstrániť predmet
-      resend_invite:
-        content: Znova odošlite pozvánku vybraným predmetom. Naozaj chcete pokračovať?
-        success: Pozvánky úspešne odoslané.
-        title: Znova odoslať pozvánku
-      statuses:
-        accepted: Akceptovaný
-        cancelled: Zrušené
-        late_cancelled: Neskoré zrušenie
-        late_rescheduled: Neskoré preloženie
-        pending: Nerozhodnutý
-        requested_cancellation: Požadované zrušenie
-        requested_cancellation_rejected: Zrušenie zamietnuté
-        requested_rescheduling: Požadovaná zmena termínu
-        requested_rescheduling_rejected: Zmena termínu odmietnutá
-        rescheduled: Preložený
-        scheduled: Plánované
-      subject: Predmet
-    job_role:
-      are_you_sure_to_remove: Určite ho chcete odstrániť?
-      column:
-        job_group: Pracovná skupina
-        skill_name: Názov zručnosti
-      export:
-        failure_msg: Chyba pri exporte prekladov
-        success_msg: Export prebiehajúcich vývojových akcií.
-      form:
-        code: Kód
-        description: Popis
-        job_group: Pracovná skupina
-        name: Meno
-        title: Pracovná pozícia
-      import:
-        download_example_csv: Stiahnuť Príklad csv
-        success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-      import_action:
-        translations: Import prekladov pracovných pozícií
-      job_role_details: Podrobnosti o pracovnej úlohe
-      translations: Preklady pracovných pozícií
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: Očakávaná úroveň odbornosti
-      form:
-        title: Mapovanie zručností
     job_roles:
       export:
         translations:
@@ -2582,18 +1238,11 @@ sk:
     meta_title: Panel správy
     navigation:
       approvals: Schválenia
-      audit_logs: Protokoly auditu
-      availability: Dostupnosť
       configuration: Konfigurácia
       content: Obsah
-      dashboard: Tabuľu
       factors: Faktory
       innovation_styles: Štýly inovácií
-      logout: Odhlásenie
       occupations: Povolania
-      registration_codes: Registračné kódy
-      skills_taxonomy: Taxonómia zručností
-      users: Používateľov
     no_data_found: Nenašli sa žiadne údaje
     norms:
       copy:
@@ -2609,13 +1258,6 @@ sk:
         factors: Faktory
         inplace_title: Zadajte hodnotu
         title: Editor noriem
-      export:
-        success_msg: Úloha exportu normy bola úspešne naplánovaná. Skontrolujte stav v upozorneniach.
-      import:
-        download_example_csv: Stiahnuť Príklad csv
-        select_file_validation: Pred odoslaním vyberte vlastníka a súbor.
-        success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-        title: Import noriem
       index:
         import: Import
         new: Sčítať
@@ -2631,10 +1273,6 @@ sk:
         updated_by: Aktualizované používateľom
       new:
         header: Nová norma
-      norms: Normy
-      remove:
-        confirm: Na potvrdenie zadajte názov normy uvedený nižšie do textového poľa
-        warning: Naozaj chcete zmazať normu "%{name}"
       resource:
         confirmations:
           delete:
@@ -2650,10 +1288,6 @@ sk:
           copy: Kopírovať normu
           delete: Odstrániť normu
           edit: Premenovať normu
-      score_types:
-        five_scale: Päť stupnic
-        norm_type: Typ normy
-        percentage: Percento
       sidebar:
         copy: Kopírovať normu
         destroy: Odstrániť normu
@@ -2661,7 +1295,6 @@ sk:
         editor: Editor noriem
         export: Exportná norma
         title: Možnosti normy
-      title: Norm
       toggle_status:
         successfully: Norm bol úspešne aktualizovaný.
       update:
@@ -2677,12 +1310,8 @@ sk:
       edit:
         header: Upraviť povolanie
       form:
-        alternative_icon: Alternatívna ikona
-        color: Farba
         hint:
           key_career_tracks: '"+" - zoznam, "*" - tučné. Príklad: + *Biológia* - nejaký popis...'
-        indicative_roles_image: Ilustračný obrázok rolí
-        key_career_tracks_image: Obrázok hlavných kariérnych dráh
         no_icon: Žiadna ikona
       index:
         new: Sčítať
@@ -2744,49 +1373,15 @@ sk:
         successfully: Faktor bol úspešne aktualizovaný.
       update:
         successfully: Faktor %{name} bol úspešne aktualizovaný.
-    participants:
-      tabs:
-        assessors: Hodnotiteľov
-        sms_contacts: SMS kontakty
-        subjects: Predmety
     piped_text_modal:
-      assessment_center: Hodnotiace centrum
       assessment_id: Identifikátor hodnotenia
       campaign_id: Identifikátor kampane
       campaign_link: Odkaz na kampaň
-      campaign_name: Názov kampane
-      campaigns: Kampane
-      description: Popis
-      duration: Trvanie
-      end_time: Čas ukončenia
-      insight_page_link: Prepojenie na stránku Prehľad
-      insight_page_url: URL adresa stránky prehľadu
-      invite_title: Názov
-      invites: Pozýva
       join_link: Pripojiť sa k odkazu
       magic_link: Čarovné spojenie
       magic_url: Magická URL adresa
-      platform_url_links: Url a odkazy na platformu
       profile_custom_field: Vlastné pole profilu
-      project_name: Názov projektu
-      projects: Projekty
-      report_name: Názov zostavy
-      start_time: Čas začiatku
       text: Text
-      title: Pridanie textu s kanálom
-      user_reports: Správy používateľov
-      users: Používatelia
-    proctoring_sessions:
-      columns:
-        comment: Komentár
-        conclusion: Záver
-        links: Odkazy
-        score: Skóre
-        session_id: ID relácie
-      links:
-        report: Správa
-        review: Revízia
-      resource_name: Proctoringové stretnutia
     products:
       copy:
         error: Chyba
@@ -2799,9 +1394,6 @@ sk:
         create:
           invalid_format: Definícia úrovne musí byť pole definícií.
           level_definition_must_match_level: musia obsahovať presne %{expected} úrovne, ale %{actual} boli uvedené
-          level_description_must_exist: Popis úrovne nemôže byť prázdny
-          level_name_must_exist: Názov úrovne nemôže byť prázdny
-          must_be_unique: Musí byť jedinečný
           proficiency_level_exists: Úroveň odbornosti s touto zručnosťou a projektom už existuje
           proficiency_level_exists_for_default: Úroveň spôsobilosti pre predvolené nastavenie už existuje
           proficiency_level_exists_for_type: Úroveň spôsobilosti pre tento typ už existuje
@@ -2809,24 +1401,9 @@ sk:
           skill_must_exist: Zručnosť musí byť prítomná pre proficiency_type "by_skill"
       export:
         details: Detaily
-        failure_msg: Chyba pri exporte úrovní odbornosti
-        success_msg: Export prebiehajúcich vývojových akcií
         translations:
           details: Preklady na úrovni odbornosti
-      fields:
-        level: Úroveň
-        level_description: Popis úrovne
-        level_name: Názov úrovne
-        proficiency_translations: Odborné preklady
-        proficiency_type: Typ odbornosti
-        skill: Schopnosť
-        skill_name: Názov zručnosti
-        skill_type: Typ zručnosti
-        title: Odbornej spôsobilosti
       import:
-        actions:
-          proficiency: Odbornosť importu
-          translations: Import prekladov odbornosti
         errors:
           by_skill_exists_id_missing: 'Riadok %{row_number}: Úroveň odbornosti pre zručnosti "%{name}" už existuje. Ak chcete aktualizovať, uveďte ID.'
           by_skill_missing: 'Riadok %{row_number}: Projekt a zručnosť musia byť prítomné pre typ "by_skill"'
@@ -2839,11 +1416,7 @@ sk:
           invalid_skill_type: 'Riadok %{row_number}: Neplatný typ zručnosti "%{skill_type}". Platné typy sú: %{valid_types}'
           missing_columns: 'Chýbajú povinné stĺpce: %{fields}'
           skill_not_found: 'Riadok %{row_number}: Neplatná alebo chýbajúca zručnosť'
-        job_queued: Úloha importu úrovní odbornosti bola zaradená do frontu
       translations:
-        export:
-          failure_msg: Chyba pri exporte prekladov
-          success_msg: Export prebiehajúcich vývojových akcií.
         import:
           errors:
             invalid_csv_format: 'Neplatný formát CSV: %{message}'
@@ -2853,14 +1426,6 @@ sk:
             missing_required_columns: 'Chýbajúce povinné stĺpce: %{columns}'
             row_id_blank: 'Riadok %{row}: ID nemôže byť prázdne'
             save_failed: 'Chyba pri spracovaní ID zručnosti %{id}: %{message}'
-      type:
-        by_skill: Podľa zručnosti
-        by_skill_type: Podľa typu zručnosti
-        default: Predvolené nastavenie
-    profile:
-      change_password: Zmeniť heslo
-      details: Detaily
-      profile: Profil
     profiles:
       edit:
         success: Profil bol úspešne aktualizovaný.
@@ -2868,331 +1433,21 @@ sk:
       update:
         edit:
           success: Profil bol úspešne aktualizovaný.
-    project:
-      tools:
-        workshop_status_export: Export stavu dielne
-        workshop_status_export_success: Export stavu workshopu bol úspešne naplánovaný.
-    project_features:
-      project_features: Funkcie projektu
-    project_participants:
-      cancel: Zrušiť
-      column_actions: Akcie
-      column_campaigns: Kampane
-      column_createdAt: Vytvorené v
-      column_created_at: Vytvorené v
-      column_email: E-mail
-      column_id: ID
-      column_name: Meno
-      delete: Odstrániť
-      edit: Editovať
-      edit_participant: Upraviť účastníka
-      filter_campaigns: Žiadne kampane
-      form_first_name: Krstné meno
-      form_last_name: Priezvisko
-      reset_password: Obnoviť heslo
-      save: Zachrániť
-      search_user: Vyhľadať používateľa
-      send_email: Odoslať e-mail
-    project_tabs:
-      assessments:
-        column:
-          name: Meno
-          normalize_factor_scores: Normalizujte skóre faktorov
-          user_result_validity_in_days: Platnosť výsledku
-        delete:
-          content: Naozaj chcete zmazať hodnotenie '%{name}'?
-          success: Hodnotenie %{name} bolo úspešne odstránené.
-          title: Odstrániť hodnotenie
-        form:
-          assessment: Hodnotenie
-          assessment_placeholder: Vyberte položku Hodnotenie
-          assessment_required: Vyžaduje sa posúdenie
-          normalize_factor_scores: Normalizujte skóre faktorov
-          user_result_validity_in_days: Platnosť výsledku v dňoch
-        title: Hodnotenia
-      design: Dizajn
-      general: Všeobecné
-      privacy: Súkromie
-      profile: Profil
-      registration: Registrácia
-      webhooks:
-        actions:
-          delete:
-            key: odstrániť
-            label: Odstrániť
-          edit:
-            key: editovať
-            label: Editovať
-          send_test:
-            key: send_test
-            label: Odoslať test
-        form:
-          acceptable_rate_limit:
-            label: Prijateľný limit požiadaviek
-            request_per: Žiadosti na
-          active:
-            label: Aktívny
-            name: aktívny
-          assessments:
-            help_text: Tento výber ovplyvňuje iba udalosť „Hodnotenie surových odpovedí“.
-            label: Hodnotenia
-            placeholder: Vyberte hodnotenia
-            required: Pre udalosť „Hodnotenie surových odpovedí“ je potrebné vybrať aspoň jedno hodnotenie.
-          auth_type:
-            api_key:
-              label: Kľúč API
-              name: api_key
-              value: api_key_auth
-            api_key_header:
-              format_error: Povolené sú iba písmená, číslice, podčiarkovníky a spojovníky
-              label: Hlavička kľúča API
-              name: apiKeyHeader
-            basic:
-              label: Základný
-              value: basic_auth
-            label: Typ autentifikácie
-            name: auth_type
-            no_auth:
-              label: Žiadny
-              value: no_auth
-            oauth:
-              label: OAuth
-              value: OAUTH
-          client_credentials:
-            label: Prihlasovacie údaje klienta
-            value: client_credentials
-          client_id:
-            label: ID klienta
-            name: oauth_client_id
-            required: Vyžaduje sa ID klienta
-          client_secret:
-            label: Tajný kľúč klienta
-            name: oauth_client_secret
-            required: Vyžaduje sa tajný kľúč klienta
-          description:
-            label: Popis
-            name: popis
-          grant_type:
-            label: Typ grantu
-            name: oauth_grant_type
-          include_locales:
-            label: Zahrnúť preklady
-            name: include_locales
-          oauth_scope:
-            label: Rozsah
-            name: oauth_scope
-            required: Rozsah je povinný
-          password:
-            label: Heslo
-            name: heslo
-          token_url:
-            label: URL adresa tokenu
-            name: oauth_token_url
-            required: Vyžaduje sa adresa URL tokenu
-          topics:
-            label: Udalosti
-            list:
-              assessment_assigned: Pridelené hodnotenie
-              assessment_completed: Hodnotenie ukončené
-              assessment_raw_response: Hodnotenie surových odpovedí
-              assessment_started: Začiatok hodnotenia
-              assessment_timeout: Časový limit hodnotenia
-              campaign_results_available: Dostupné výsledky kampane
-              campaign_user_assessment_summary: Súhrn hodnotenia používateľov kampane
-              campaign_user_status: Stav používateľa kampane
-              report_available: Správa k dispozícii
-              results_available: Dostupné výsledky
-              scheduling_cancelled: Plánovanie zrušené
-              scheduling_invited: Plánovanie pozvaných
-              scheduling_rescheduled: Plánovanie preložené
-              scheduling_scheduled: Plánovanie plánovania
-              workshop_attendance_status: Stav účasti na workshope
-          url:
-            label: URL adresa
-            name: Adresa URL
-          username:
-            label: Používateľské meno
-            name: používateľské meno
-        remove_webhook:
-          content: Zmazať %{description}?
-          title: Odstrániť
-        title: Webhooky
-    project_users:
-      cancel: Zrušiť
-      change_password: Zmeniť heslo
-      column_actions: Akcie
-      column_campaigns: Kampane
-      column_created_at: Vytvorené v
-      column_email: E-mail
-      column_id: ID
-      column_name: Meno
-      confirm_delete: Áno, odstrániť
-      confirm_send: Áno, odoslať
-      delete: Odstrániť
-      delete_error: Nepodarilo sa odstrániť hodnotiteľa '%{name}'. Kontaktujte svojho administrátora.
-      delete_success: Hodnotiteľ '%{name}' bol úspešne odstránený.
-      edit: Editovať
-      edit_assessor: Upraviť hodnotiteľa
-      filter_campaigns: Bez kampaní
-      form_first_name: Krstné meno
-      form_last_name: Priezvisko
-      modal_delete_content: Naozaj chcete zmazať hodnotiteľa '%{name}'?
-      modal_delete_title: Odstrániť hodnotiteľa
-      modal_reset_email_content: Naozaj chcete odoslať odkaz na obnovenie hesla na '%{email}'?
-      model_reset_email: Obnovte heslo hodnotiteľa
-      no_edit_permission: Nemáte povolenie na úpravu hodnotiteľa '%{name}'
-      reset_mail_error: Nepodarilo sa odoslať odkaz na obnovenie hesla na adresu %{email}. Kontaktujte svojho administrátora.
-      reset_mail_success: Odkaz na obnovenie hesla bol úspešne odoslaný na adresu %{email}
-      save: Zachrániť
-      search_accessor: Prístupové prvky vyhľadávania
-      send_email: Odoslať e-mail
     projects:
-      addProject: Pridať projekt
-      assessment_settings:
-        search: Hodnotenie vyhľadávania
       clients:
         confirmations:
           detach_from_project:
             body: Telo
             title: Titul
-      columns:
-        project_number: Číslo projektu
-      design_settings:
-        alt_text_invalid: Alternatívny text obsahuje nepodporované znaky.
-        alt_text_logo: Alt-text loga
-        alt_text_logo_required: Vyžaduje sa logo Alt-Text
-        alt_text_long: Prekračuje maximálny limit 100 znakov.
-        background_color: Farba pozadia
-        background_label: Pozadie
-        background_overlay_label: Prekrytie pozadia
-        background_size: Veľkosť pozadia
-        background_size_contain: Obsahovať
-        background_size_cover: Prikryť
-        bg_upload: Nahrať
-        client_logo_label: Logo klienta
-        contrast_ratio_warning: 'Poznámka: Použitie tejto primárnej farby môže porušiť požiadavku na kontrastný pomer pre čitateľnosť textu.'
-        contrast_ratio_warning_lighter_color: 'Poznámka: Použitie tejto farby %{name} môže porušiť požiadavku na kontrastný pomer pre čitateľnosť textu. Skúste použiť tmavšiu farbu.'
-        copy_text: Text
-        dashed_button: Čiarkované
-        default_button: Predvolené nastavenie
-        error_color: Farba chyby
-        hover_options:
-          danger_item: Nebezpečná položka
-          first_menu_item: 1. položka ponuky
-        hover_text: Hover me
-        info_color: Informačná farba
-        link_text: Odkaz
-        logo_upload: Nahrať
-        position_auto: Auto
-        position_label: Pozícia prihlasovacej schránky
-        position_left: Vľavo
-        position_right: Doprava
-        primary_button: Primárne
-        primary_color: Primárna farba
-        reset: Vynulovanie
-        sec_logo_label: Sekundárne logo
-        sec_logo_upload: Nahrať
-        secondary_logo_alt_text: Alternatívny text sekundárneho loga
-        secondary_logo_alt_text_required: Vyžaduje sa sekundárne logo Alt-Text
-        submenu_options:
-          option_one: Možnosť 1
-          option_title: Položka 1
-          option_two: Možnosť 2
-        success_color: Farba úspechu
-        success_update: Nastavenia návrhu boli úspešne uložené
-        tab_text_one: Ponuka
-        tab_text_two: Podmenu
-        text_danger: Text(nebezpečenstvo)
-        text_success: Text (úspech)
-        text_warning: Text(varovanie)
-        warning_color: Výstražná farba
-      form:
-        name: Názov
-        project_number: Číslo projektu
-        subdomain: Subdoména
-        title: Projekt
-      general_settings:
-        live_chat: Povoliť živý chat
-        locales_label: Locales
-        name_label: Meno
-        project_number_label: Číslo projektu
-        save_changes: Uložiť zmeny
-        sub_domain_label: Subdoména
-      mettl_schedule_records:
-        actions:
-          edit: Editovať
-        add: Pridať rozvrh
-        assessment_id: Identifikátor hodnotenia
-        assessment_name: Názov hodnotenia
-        candidate_authorization: Povoliť autorizáciu kandidátov
-        candidate_screen_capture: Povoliť snímanie obrazovky kandidáta
-        count: Počet tolerancií prehliadania
-        created_at: Vytvorené v
-        schedule_id: ID rozvrhu
-        schedule_name: Názov rozvrhu
-        search: Hľadať
-        secure_browser_enabled: Povoliť zabezpečený prehliadač
-        settings: Nastavenia
-        show_remaining_counts: Povoliť zobrazenie zostávajúceho počtu
-        visual_proctoring_enabled: Povolenie vizuálneho proctoringu
-        web_proctoring_enabled: Povoliť webový proctoring
       privacy_settings:
-        disable_dp: Nepovoliť ďalšie spracovanie údajov
-        dp_consent: Povoliť súhlas so spracovaním údajov
-        dp_consent_custom: Prispôsobiť súhlas so spracovaním údajov
-        dp_consent_version: Verzia pravidiel
         errors:
           cannot_disable_while_campaign_enabled: Nie je možné vypnúť nahrávanie videohovorov, pretože je povolené pre jednu alebo viacero kampaní v tomto projekte
           min_retention: Nesmie byť kratšia ako 1 deň
-          policy_version_format: Povolené sú iba celé čísla
-          required: Požadovaný
-        mask_identity_for_examus: Údaje masky pre Examus Proctoring
-        mask_identity_for_hogan: Údaje o maske pre Hogana
-        mask_identity_for_iiht: Údaje masky pre IIHT
-        mask_identity_for_mettl: Údaje masky pre METTL
-        mask_identity_for_mhs: Dáta masky pre MHS
-        mask_identity_for_pearson: Údaje o maske pre Pearson
-        mask_identity_for_saville: Údaje masky pre Saville
-        mask_identity_for_skillvue: Údaje masky pre Skillvue
-        mask_identity_for_yoodli: Údaje o maskách pre Yoodli
-        privacy_link: Povoliť prepojenie na ochranu osobných údajov
-        privacy_link_label: Prepojenie na ochranu osobných údajov
-        privacy_link_placeholder: Zadajte odkaz na ochranu súkromia
-        privacy_text: Text o ochrane osobných údajov
-        privacy_text_placeholder: Zadajte text ochrany osobných údajov
-        video_call_recording: Povolenie nahrávania videohovorov
-        video_call_recording_expiry_duration: Doba uchovávania záznamov videohovorov (v dňoch)
-        video_call_recording_scope: Povolenie nahrávania videa pre všetky nové kampane
-      profile_settings:
-        form_fields:
-          enabled: Povolené
-          half_size: Polovičná veľkosť
-          locked: Zamknutý
-          name: Meno
-          remove: Odstrániť
-          required: Požadovaný
-          sort: Triediť
-        month: Mesiac
-        never: Nikdy
-        update_in: Upozorniť na aktualizáciu profilu v
-        year: Rok
-      registration_settings:
-        hide_signup: Skryť možnosť registrácie
-        require_mobile_number: Vyžadovať mobilné číslo
       users:
         confirmations:
           detach_from_project:
             body: Telo
             title: Titul
-      webhook_settings:
-        add: Pridanie webhooku
-        column_active: Aktívny
-        column_created_date: Dátum vytvorenia
-        column_description: Popis
-        column_manage: Ovládať
-        column_updated_date: Dátum úpravy
-        column_url: Adresa URL
-        search: Hľadať Webhoook
     questions:
       copy:
         successfully: Otázka "%{name}" bola úspešne skopírovaná.
@@ -3217,72 +1472,15 @@ sk:
       toggle_status:
         successfully: Úspešne aktualizované.
     reflection_questions:
-      delete_confirmation: Naozaj chcete túto otázku na zamyslenie odstrániť?
       export:
-        action: Export otázok na reflexiu
         details: Podrobnosti o súbore
-        failure_msg: Chyba pri exporte súboru.
-        success_msg: Prebieha export otázok na zamyslenie. Skontrolujte stav v upozorneniach.
-      form:
-        mandatory: Povinný
-        max_words: Maximálny počet slov
-        min_words: Minimum slov
-        question: Otázka
-        title: Otázka na zamyslenie
       import:
-        action: Import otázok na reflexiu
         errors:
           invalid_max_words_column_format: Neplatný formát hodnoty stĺpca Maximálny počet slov %{row}
           invalid_min_words_column_format: Neplatný formát hodnoty stĺpca minimálnych slov %{row}
           invalid_required_column_format: Neplatný Povinný formát hodnoty stĺpca %{row}
           missing_eng_question: Chýbajúci obsah otázok v angličtine %{row}
           save_failed: Uloženie zlyhalo %{message}
-        failure_msg: Chyba pri importovaní súboru.
-        success_msg: Import prebiehajúcich otázok na zamyslenie. Skontrolujte stav v upozorneniach.
-      question: Otázka
-    report_approval:
-      approval_statuses:
-        approved: Schválené
-        change_requested: Požadovaná zmena
-        not_ready: Nie je pripravený
-        pending_qc: Čaká sa na QC
-        qc_completed: QC Ukončené
-        qc_in_progress: Kontrola kvality v procese
-      bulk_approve_success: "%{sent_for_approval} odoslané na schválenie. %{approved} hlásení schválených. %{ignored} správy vyžadujú manuálne schválenie kvôli zmenám/komentárom QC."
-      columns:
-        actions: Akcie
-        approval_status: Stav schválenia
-        approved_by: Schválené
-        assessed_by: Hodnotené podľa
-        campaign_name: Názov kampane
-        qc_by: QC podľa
-        report_name: Názov zostavy
-        subject_email: Predmet e-mailu
-        user_email: E-mail používateľa
-        user_name: Používateľské meno
-      dashboard: Tabuľu
-      download: Stiahnuť
-      report_approval_settings: Nastavenia schvaľovania správ
-      report_approvals: Schválenia správ
-      review: Revízia
-      saving_filters:
-        actions:
-          clear_filters: Vymazať filtre
-          delete_filter: Odstrániť filter
-          save_filter: Zachrániť
-          save_new_filter: Uložiť ako nový filter
-          saved_filters: Uložené filtre
-        delete_saved_filters: Filter odstránený
-        edit_filter_name: Názov filtra uložený
-        error_while_deleting: Chyba pri odstraňovaní
-        error_while_editing: Chyba pri úpravách
-        error_while_fetching: Niečo sa pokazilo, skúste to znova
-        error_while_saving: Chyba pri ukladaní filtra
-        filter_updated: Filter aktualizovaný
-        no_saved_filters: Neexistujú žiadne uložené filtre
-        save_filter: Filter uložený
-        set_favorite: Filter bol nastavený ako obľúbený
-      submit_or_approve_all: Odoslať alebo schváliť všetky
     report_builder:
       campaign_factors:
         add_field: Pridať pole
@@ -3417,22 +1615,6 @@ sk:
         title: Možnosti balíka zostáv
       update:
         successfully: Balík zostáv %{name} bol úspešne aktualizovaný.
-    report_review:
-      abort_qc: Prerušte kontrolu kvality
-      approve: Schváliť
-      approve_changes: Schválenie zmien
-      edit: Editovať
-      remove_approval: Odstrániť schválenie
-      request_changes: Žiadosť o zmeny
-      review: Revízia
-      send_for_approve: Odoslať na schválenie
-      statuses:
-        approved: Schválený
-        change_requested: Požadované zmeny
-        not_ready: Nie je pripravený
-        pending_qc: Čaká sa na kontrolu kvality
-        qc_completed: QC dokončené
-        qc_in_progress: Prebieha kontrola kvality
     report_settings:
       data_source_types:
         assessment: Hodnotenie
@@ -3456,9 +1638,6 @@ sk:
         title: Faktory kampane hromadného nahrávania
         upload_success: Úspešne nahrané
       copy:
-        copy: kopírovať
-        copy_report: Kopírovať správu
-        name: Meno
         successfully: Správa %{name} bola úspešne skopírovaná.
       create:
         successfully: Správa %{name} bola úspešne vytvorená.
@@ -3466,15 +1645,6 @@ sk:
         successfully: Hlásenie %{name} bolo úspešne odstránené.
       edit:
         header: Úprava názvu zostavy
-      edit_default_language:
-        agreement: Áno, chápem dôsledky zmeny predvoleného jazyka.
-        title: Upraviť predvolený jazyk
-        tooltip: Upraviť predvolený jazyk
-        warning:
-          description_li_1: Zmena predvoleného jazyka z RTL na LTR alebo naopak ovplyvní rozloženie.
-          description_li_2: Ak by ste zmenili predvolený jazyk, museli by ste prepracovať preklady správ.
-          description_li_3: Pred vykonaním tejto zmeny si stiahnite kópiu prekladu správy.
-          title: Pozorne si prečítajte pokyny
       modals:
         remap_assessment:
           new_assessment_name: Nový názov hodnotenia
@@ -3484,10 +1654,6 @@ sk:
       new:
         header: Vyberte Prehľad
       preview:
-        comments: Komentáre
-        hide_resolved: Skryť vyriešené
-        history: História
-        info_to_select_module: Vyberte textový modul, ktorý chcete komentovať
         title: Náhľad
       regenerate:
         successfully: Správa úspešne odoslaná na regeneráciu
@@ -3517,422 +1683,17 @@ sk:
         successfully: Správa bola úspešne aktualizovaná.
       update:
         successfully: Správa %{name} bola úspešne aktualizovaná.
-    reports_language_selection_modal:
-      download: Správa na stiahnutie
-      generate: Generovanie správy
     resource:
       remove_confirm:
         message: Naozaj chcete tento zdroj odstrániť?
         title: Odstrániť zdroj
-    saml_settings:
-      after_signout_url: Po odhlásení URL
-      cert: Certifikát
-      config_details:
-        acs_url: URL adresa služby pre spotrebiteľov pri presadzovaní
-        copied: Skopírované %{element}
-        issuer: ID subjektu/emitent
-        title: Nakonfigurujte Idp s nasledujúcimi informáciami
-      email_pipetext: Odoslanie e-mailu Pipetext
-      enabled: Povolené
-      entity_id: ID subjektu/emitenta
-      name_identifier_format: Identifikátor mena
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Nastavenie SAML
-      save: Uložiť nastavenie
-      sso_service_url: URL adresa služby jediného prihlásenia
-      successfully_saved_msg: Nastavenie SAML bolo úspešne uložené.
     save: Zachrániť
-    scheduling:
-      add_activity: Pridanie aktivity
-      add_assessment_center: Pridanie hodnotiaceho centra
-      add_assessor_form:
-        assessment: Hodnotenie
-        assessor: Hodnotiteľ
-        schedule_time: Naplánovať čas
-      add_subject: Pridanie predmetu
-      assessment_center_form:
-        add_more: Pridať viac
-        allow_late_cancellation_and_scheduling: Povolenie neskorého zrušenia a plánovania
-        assessment_center_group: Skupina hodnotiacich centier
-        assessment_center_group_placeholder: Vyberte skupinu hodnotiaceho centra
-        assessor_ids_label: Hodnotiteľov
-        back: Chrbát
-        basic_info_panel:
-          description: Nižšie zadajte informácie o rozvrhu. Môžete tiež vybrať viacero dátumov a vytvoriť viacero hodnotiacich centier.
-          title: Základné informácie
-        cancellation_lead_time_label: Dodacia lehota na zrušenie
-        copy_hint: Skopíruje vyššie uvedenú konfiguráciu Miesta, Manažéri stredísk, Hodnotitelia a Schôdze a zdroje do nasledujúcich hodnotiacich centier. Po skopírovaní môžete pred pokračovaním vykonať ďalšie zmeny v jednotlivých hodnotiacich centrách.
-        copy_to_all: Kopírovanie do iných hodnotiacich centier
-        create: Vytvoriť
-        dates_label: Dátumy
-        disable_cancellation_and_rescheduling: Zakázať zrušenie a zmenu plánu
-        duration_label: Trvanie
-        duration_max_error: Nemôže byť dlhší ako 16 hodín
-        duration_min_error: Nesmie byť kratšie ako 15 minút
-        duration_placeholder: Napr. 4h 30m
-        manager_ids_label: Manažéri stredísk
-        meeting_link: Prepojenie na stretnutie
-        meetings_and_resources: Stretnutia a zdroje
-        name_label: Meno
-        next: Budúci
-        required_error: Požadovaný
-        resources_panel:
-          description: Pridajte odkazy na všetky zdroje, ku ktorým chcete, aby facilitátori mali prístup.
-          resource_name_placeholder: Názov zdroja
-          resource_url_placeholder: Prepojenie na zdroj
-          title: Zdroje
-          validation_error: Zadajte názov aj adresu URL alebo odstráňte zdroj
-        scheduling_lead_time_label: Dodacia lehota na plánovanie
-        seats_label: Sedadlá
-        time_label: Čas
-        timezone_label: Časové pásmo
-        url_label: Adresa URL
-        video_call_type:
-          custom: Zvyk
-          internal: Vnútorný
-          none: Žiadny
-        video_call_type_label: Pridať videohovor
-      attendance_status:
-        column_name: Stav dochádzky
-        dropped_out: Vypadol
-        late: Neskoro
-        no_show: Nepredstavenie sa
-        no_status: Žiadny stav
-        on_time: Načas
-      attended:
-        attended: Zúčastnili
-        not_attended: Nezúčastnil sa
-      campaign_participants: Účastníci kampane
-      columns:
-        activity: Aktivita
-        assessment_center_date_and_time: Dátum a čas hodnotiaceho centra
-        assessor: Hodnotiteľ
-        assessors: Hodnotiteľov
-        attendance: Účasť
-        attended: Zúčastnili
-        booked_at: Rezervované na
-        campaign_assessment_group: Skupina hodnotiacich centier
-        campaign_name: Názov kampane
-        duration: Trvanie
-        link_to_view_recordings: Prepojenie na zobrazenie záznamov
-        managers: Manažéri
-        meeting_link: Prepojenie na stretnutie
-        name: Meno
-        participants: Účastníkov
-        prework: Príprava
-        recording_date: Dátum nahrávania
-        resource_link: Väzba
-        resource_name: Meno
-        schedule_time: Naplánovať čas
-        scheduling_status: Stav plánovania
-        seats: Sedadlá
-        serial_no: Sériové číslo
-        start_time: Dátum a čas
-        subject: Predmet
-        title: Titul
-        view_recording: Zobraziť záznam
-      errors:
-        assessor_already_assigned: Hodnotiteľ, ktorý už bol pridelený k tomuto hodnoteniu. Vyberte si iného hodnotiteľa alebo hodnotiteľa.
-        date_required: Vyberte dátum
-        invalid_url: Neplatný formát URL adresy
-        meeting_link_https: Odkaz na stretnutie sa musí začínať písmenom "https://"
-      id: ID
-      info:
-        allowed: Povolený
-        assessors: Hodnotiteľov
-        booked: Rezervované miesta
-        campaign_assessment_group: Skupina hodnotiacich centier
-        cancellation_lead_time: Dodacia lehota na zrušenie
-        cancellation_tooltip: Používateľ bude môcť rezerváciu zrušiť do %{date}
-        date: Dátum a čas
-        duration: Trvanie
-        join_meeting: Pripojiť sa k miestnosti
-        late_cancellation_and_scheduling: Neskoré zrušenie a plánovanie
-        link: Odkaz na stretnutie
-        managers: Manažéri stredísk
-        none: Žiadny
-        not_allowed: Nie je povolené
-        recording_enabled: Nahrávanie povolené
-        remaining: Zostávajúce miesta
-        scheduling_lead_time: Plánovanie dodacej lehoty
-        scheduling_tooltip: Používateľ si bude môcť rezervovať miesto do %{date}
-        search_placehoder: Vyhľadávanie podľa ID, e-mailu alebo mena
-        timezone: Časové pásmo
-        total_seats: Celkový počet sedadiel
-      resources:
-        confirm_message: Naozaj chcete odstrániť zdroj %{resource_name}?
-        confirm_title: Vyžaduje sa potvrdenie
-        create: Vytvoriť zdroj
-        invalid_url: Neplatná adresa URL. Zadajte úplnú adresu URL s protokolom http alebo https.
-        resource: Zdroj
-        successful_remove: Zdroj hodnotiaceho centra %{resource_name} bol úspešne odstránený.
-      schedule_assessments: Plánovanie hodnotení
-      scheduling_statuses:
-        cancelled: Zrušené
-        late_cancelled: Neskoro zrušené
-        late_rescheduled: Neskoré preloženie
-        rescheduled: Preložený
-        scheduled: Naplánované
-      search_participant: Účastníci kampane vo vyhľadávaní
-      status:
-        completed: Dokončený
-        dropped_out: Vypadol
-        in_progress: Prebieha
-        late: Neskoro
-        no_show: Nepredstavenie sa
-        not_started: Nezačalo sa
-      status_change_modal:
-        content: Po zatvorení hodnotiaceho centra sa účastníci nebudú môcť zúčastňovať na žiadnych aktivitách centra.
-        title: Zmena stavu hodnotiaceho centra
-      subjects:
-        activities: Činnosti
-        add_assessor_form: Pridať formulár hodnotiteľa
-        assessments: Hodnotenia
-        assessor_forms: Formuláre hodnotiteľov
-        confirm_message: Naozaj chcete zrušiť účasť subjektu e-mailom "%{subject_email}"?<br />Po označení ako zrušený sa tento subjekt nebude môcť zúčastniť hodnotiaceho centra.
-        confirm_title: Vyžaduje sa potvrdenie
-        edit_assessor_form: Upraviť formulár hodnotiteľa
-        form_title: Plánovanie hodnotení
-        language: Jazyk
-        language_not_selected: Nevybraté
-        mark_cancel: Mark Cancel
-        mark_cancel_success: Zrušená účasť subjektu e-mailom %{subject_email}.
-        meeting_link_custom: Zvyk
-        meeting_link_internal: Vnútorný
-        meeting_link_none: Žiadny
-        meeting_link_title: Prepojenie na stretnutie
-        no_change: Žiadna zmena
-        override_existing: Prepísanie existujúcich rozvrhov pre predmety
-        preworks: Príprava
-        re_enroll: Opätovný zápis
-        re_enroll_confirm_message: Ste si istí, že chcete opätovne zapísať predmet s e-mailom '%{subject_email}'?
-        re_enroll_success: Znovuzapísaný subjekt s e-mailom %{subject_email}.
-        schedule: Rozvrh
-        unschedule: Zrušiť plán
-      tabs:
-        activities: Činnosti
-        assessment_center: Hodnotiace centrum
-        invites: Vyzýva
-        recordings: Nahrávky
-        resources: Zdroje
-        subjects: Predmety
     scoring:
-      action_prohibited: Akcia zakázaná
-      active: Aktívny
-      actual_average: Skutočný priemer
-      add_factor: Pridať faktor
-      add_group: Pridať skupinu
-      assessment: Hodnotenie
-      assessment_scoring_type: Typ hodnotenia
-      average: Priemerný
-      campaign_scoring_variables: Premenné hodnotenia kampane
-      code: Kód
-      desc: Prekročili ste maximálny limit %{n} faktorov kampane. Ďalšie faktory nie je možné pridať. Pred pokračovaním skontrolujte a spravujte svoje existujúce faktory.
-      description: Popis
-      dimension: Dimenzia
-      edit_factor: Upraviť faktor
       export:
         details: Prieskumy kampane
         factors: Export faktorov kampane
-      factor: Činiteľ
-      factor_group_removed_successfully: Skupina Faktor kampane bola úspešne odstránená
-      factor_removal_confirmation: Na potvrdenie zadajte názov faktora uvedený nižšie do textového poľa
-      factor_removed_successfully: Faktor kampane bol úspešne odstránený
-      factors_exported_successfully: Úloha Export faktorov kampane bola úspešne naplánovaná
-      factors_imported_successfully: Úloha importu faktorov kampane bola úspešne naplánovaná
-      final: Posledný
-      final_score_updated_successfully: Konečné skóre bolo úspešne aktualizované
-      formula: Vzorec
-      get_started: Začať
-      id: ID
-      import:
-        factors: Importovať faktory kampane
-      innovation_style_removal_confirmation: Do textového poľa zadajte názov štýlu inovácie uvedený nižšie na potvrdenie
-      name: Meno
-      no_groups: Nie sú prítomné žiadne skupiny
-      occupation_removal_confirmation: Do textového poľa zadajte názov povolania uvedený nižšie na potvrdenie
-      output_type: Typ výstupu
-      pattern_error: Povolené sú iba alfanumerické znaky, medzery a pomlčky.
-      profile:
-        years: Rokov
-      public: Verejnosť
-      ranked: Zaradil
-      remove_all_campaign_factors:
-        confirmation: Na potvrdenie zadajte aktuálny názov kampane uvedený nižšie do textového poľa
-        error: Odstránenie faktorov kampane
-        success: Faktory kampane boli úspešne odstránené
-        title: Odstránenie faktorov kampane
-        warning: Chystáte sa odstrániť všetky faktory kampane a všetky súvisiace skóre pre používateľov. Naozaj chcete vykonať túto akciu?
-      remove_factor_group_confirmation_content: Naozaj chcete odstrániť skupinu faktorov %{group_name}?
-      remove_factor_group_confirmation_title: Odstrániť skupinu faktorov
-      required_error: Nemôže byť prázdny
-      save: Zachrániť
-      save_all: Uložiť všetko
-      score_range: Rozsah skóre
-      score_types:
-        norm_score: Normové skóre
-        percentage: Percento
-        percentile: Percentil
-        score: Skóre
-        zscore: Skóre Z
-      scoring: Bodovania
-      scoring_description: Hodnotenie kampane umožňuje vytváranie prehľadov naprieč hodnoteniami
-      select_all: Vyberte všetky %{n} predmetov
-      select_assessment_first: Najprv vyberte Hodnotenie
-      select_factor: Vyberte faktor
-      show_weightages: Zobraziť váhy
-      subject: Predmet
-      subject_list:
-        actions: Akcie
-        bulk_mark_finalized: Hromadná značka dokončená
-        bulk_mark_finalized_confirm: Dokončenie skóre pre vybraných používateľov vygeneruje prehľad, ktorý používa faktor kampane pre používateľov. Naozaj chcete pokračovať?
-        bulk_mark_not_finalized: Hromadná značka nedokončená
-        bulk_mark_not_finalized_confirm: Odstránením finalizácie z vybraných používateľov sa odstráni vygenerovaný report, ktorý používa faktor kampane pre používateľov. Naozaj chcete pokračovať?
-        bulk_rescore: Hromadné prehodnotenie
-        bulk_rescore_confirm: Opätovné hodnotenie vybraných používateľov. Naozaj chcete pokračovať?
-        calculated_date: Vypočítaný dátum
-        calculation_errors: Chyby výpočtu
-        export: Exportné scoringy
-        export_success: Úloha exportu skóre bola úspešne naplánovaná
-        finalized: Dokončený
-        finalized_date: Dátum dokončenia
-        import_external_scores: Import externých testov
-        mark_finalized: Označenie dokončené
-        mark_finalized_confirm: Dokončenie skóre pre používateľa "%{email}" vygeneruje prehľad, ktorý používa faktor kampane pre používateľa. Naozaj chcete pokračovať?
-        mark_not_finalized: Označenie nedokončené
-        mark_not_finalized_confirm: Odstránením finalizácie z používateľa %{email} sa odstráni vygenerovaný prehľad, ktorý používa faktor kampane pre používateľa. Naozaj chcete pokračovať?
-        push_webhook: Tlačte webhooky
-        rank: Rad
-        rescore: Opätovné skóre
-        rescore_confirm: Opätovné hodnotenie používateľa '%{email}'. Naozaj chcete pokračovať?
-        tools: Náradie
-      tabs:
-        settings: Nastavenia
-        subject_scores: Skóre predmetov
-      type: Typ
-      variables: Premenné
-      weightages:
-        assessorForms: Formuláre hodnotiteľov
-        successful_update: Váhy boli úspešne aktualizované
-        tools: Náradie
-        weightages: Váhy
-      weighted_average: Vážený priemer
-    scoring_approval:
-      approve_all: Schváliť všetko
-      bulk_approve_success: "%{approved} schválené skóre."
-      review: Recenzia
-      score_approvals: Schvaľovanie bodovania umelou inteligenciou
     search: Hľadať
-    security_setting:
-      180_days: 180 dní
-      30_days: 30 dní
-      365_days: 365 dní
-      90_days: 90 dní
-      attempts_to_lock: Pokusy o uzamknutie
-      auto_unlock_time: Čas automatického odomknutia
-      disable_password_reuse: Zakázať opakované použitie hesla
-      disallow_password_login: Zakázať prihlásenie heslom
-      enable_login_with_magic_link: Povoliť prihlásenie pomocou magického odkazu
-      enable_recaptcha: Povolenie reCAPTCHA
-      enforce_password_policy: Vynútenie politiky hesiel pri ďalšom prihlásení
-      enforce_strong: Vynútenie silného hesla
-      expiration: Uplynutie platnosti hesla
-      lock_account: Uzamknúť účet
-      magic_link_expiry_duration: Trvanie vypršania platnosti magického odkazu
-      min_length: Minimálna dĺžka hesla
-      never: Nikdy
-      restrict_sequences: Obmedzenie sekvenčných a opakujúcich sa znakov
-      security: Nastavenia zabezpečenia
-      send_unlock_email: Odoslanie odomknutého e-mailu
-      session_timeout_duration: Trvanie časového limitu relácie
-      tfa_enabled: Povoliť dvojfaktorové overenie
-    security_settings:
-      security_setting: Nastavenie zabezpečenia
-    settings:
-      admin_roles:
-        confirm_message: Naozaj chcete zmazať rolu správcu '%{role_name}'?
-      siem:
-        description: Popis
-        destination_type: Typ cieľa
-        destination_types:
-          s3: S3
-          s3_compatible: Kompatibilné so S3
-        enabled: Povolené
-        readable_resource_name: Nastavenia SIEM
-        s3_access_key_id: ID prístupového kľúča
-        s3_bucket_folder: Priečinok vedra S3
-        s3_bucket_name: Názov vedra S3
-        s3_endpoint: Koncový bod S3
-        s3_region: Oblasť S3
-        s3_secret_access_key: Tajný prístupový kľúč
-        send_test_log: Odoslať protokol testu
-        send_test_log_error_message: Testovací protokol nebol odoslaný do vášho segmentu, skontrolujte svoje nastavenia
-        send_test_log_success_message: Testovací denník bol úspešne odoslaný do vášho segmentu
-      skill_aliases:
-        alias: Alias
-        confirm_message: Naozaj chcete zmazať alias zručnosti '%{skill_alias}'?
-        create: Pridanie aliasu zručností
-        select_skill: Vyberte zručnosť
-        skill: Schopnosť
-        skill_alias: Alias zručností
-        successful_remove: Alias zručnosti "%{skill_alias}" bol úspešne odstránený.
-      tabs:
-        admin_roles: Roly správcu
-        feature_flags: Príznaky funkcií
-        siem: SIEM
-        skill_aliases: Aliasy zručností
-    sheets:
-      column:
-        add_column: Pridať stĺpec
-        not_allowed_for_dashboard_use: Aby sa stĺpec použil na tabuli, mal by mať menej ako 64 znakov
-        reorder: Doobjednané
-        save_order: Uložiť objednávku
-      drawers:
-        add_edit:
-          cancelText: Zrušiť
-          markdown:
-            preview: Náhľad
-            title: Markdown
-          save: Zachrániť
-          saving: Úspora
-          success_message_add: Pridaný nový záznam
-          success_message_edit: Záznam aktualizovaný
-          title_add: Pridať záznam hárka
-          title_edit: Úprava záznamu riadka hárka
-          validations:
-            required_email: Zadajte e-mail
-        view:
-          campaign_title: Záznam na úrovni kampane
-          edit_button: Editovať
-          project_title: Záznam na úrovni projektu
-          title: Podrobnosti o zázname riadka hárka
-      list:
-        header:
-          add_record: Pridať záznam
-          search_record: Vyhľadávanie záznamov
-      modals:
-        delete_records:
-          cancelText: Zrušiť
-          content: Naozaj chcete vymazať vybraté {{count}} záznamy?
-          okText: Áno, odstrániť
-          successMessage: "{{count}} záznamy boli úspešne vymazané."
-          title: Vymazanie {{count}} záznamov
-        remove_columns:
-          cancelText: Zrušiť
-          content: Odstránením stĺpca ({{columns}}) sa odstránia údaje v tomto stĺpci pre všetky riadky
-          okText: Áno, odstrániť
-          successMessage: "{{count}} záznamy odstránené"
-          title: Odstránenie stĺpcov
-      tabs:
-        rows: Riadky
-        settings: Nastavenia
     skills:
-      applicable_proficiency_levels: Príslušné úrovne odbornej spôsobilosti
-      columns:
-        skill_group: Skupina zručností
-        skill_type: Typ zručnosti
       errors:
         import:
           missing_fields_data: 'Riadok %{line_number}: Chýbajú povinné polia: %{fields}'
@@ -3946,28 +1707,11 @@ sk:
           query_too_short: je povinný a musí byť dlhší ako 3 znaky
       export:
         details: Detaily
-        failure_msg: Chyba pri exporte prekladov
-        success_msg: Export prebiehajúcich vývojových akcií.
         translations:
           details: Preklady zručností
       form:
         client_placeholder: Vyberte klienta
-        description: Popis
-        name: Meno
         project_placeholder: Vyberte projekt
-        skill_group: Skupina zručností
-        skill_type: Typ zručnosti
-        title: Schopnosť
-      import:
-        download_example_csv: Stiahnuť Príklad csv
-        info_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-        success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-      import_action:
-        skills_title: Importné zručnosti
-        skills_translations_title: Importujte preklady zručností
-      skill_details: Podrobnosti o zručnosti
-      skill_translations: Preklady zručností
-      title: Zručnosti
       translations:
         import:
           errors:
@@ -3975,147 +1719,13 @@ sk:
             missing_columns: 'Chýbajúce povinné stĺpce: %{columns}'
             save_failed: 'Chyba pri spracovaní ID zručnosti %{id}: %{message}'
             skill_not_found: Zručnosť s ID %{id} sa nenašla
-      vector:
-        generate_embedding: Generovanie vkladania
-        generate_embedding_failure_msg: Nepodarilo sa mi zaradiť do fronty na generovanie zručností. Prosím, skúste to znova.
-        generate_embedding_success_msg: Úloha generovania zručností bola úspešne zaradená do fronty. Prosím, skontrolujte stav v notifikáciách.
-        label: Vector DB
-    sms_histories:
-      columns:
-        first_name: Krstné meno
-        last_name: Priezvisko
-        mobile_no: Mobil Nie
-        price: Cena
-        segment_length: Dĺžka segmentu
-        sent_at: Odoslané na
-      drawer:
-        title: Podrobnosti o SMS
-      history: História
-      statuses:
-        accepted: Akceptovaný
-        delivered: Dodané
-        failed: Zlyhalo
-        queued: Vo fronte
-        scheduled: Naplánované
-        sent: Poslal
-        undelivered: Nedodaných
     sms_invites:
-      actions:
-        add: Pridať SMS kontakt
-      columns:
-        created_at: Vytvorené v
-        created_by: Vytvoril
-        email: E-mail
-        first_name: Krstné meno
-        last_name: Priezvisko
-        mobile_no: Mobil Nie
-      contacts: Kontakty
-      form_modal:
-        first_name: Krstné meno
-        last_name: Priezvisko
-        locale: Locale
-        mobile_no: Mobilné nie
-        title: SMS pozvánka
-      import:
-        download_example_csv: Stiahnite si príklad CSV
-        success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-        title: Import pozvánky SMS
       messages:
-        delete_confirm_text: Naozaj chcete odstrániť SMS pozvánku s mobilným číslom %{mobile_no}?
-        delete_success: SMS pozvánka bola úspešne odstránená
         failed_to_sent_invite: Nepodarilo sa odoslať pozvánku do mobilu č. %{mobile_no}
-      send_sms:
-        fields:
-          link_expiry: Uplynutie platnosti odkazu
-          locale: Locale
-          message: Správa
-          statuses: Stavy
-          users: Používateľov
-        modal:
-          btn_name: Poslať SMS
-          title: Poslať SMS
-        pipetext_details: "{{{first_name}}} - krstné meno príjemcu<br />{{{last_name}}} - priezvisko príjemcu<br />{{{invite_url}}} - Registračný odkaz"
-        segment_length_msg: Odhadovaný počet segmentov pre túto správu je %{segment_length}.
-        segment_length_range_msg: Odhadovaný počet segmentov pre túto správu je v rozmedzí %{min_segment_length} až %{max_segment_length}.
-      statuses:
-        all: Všetko
-        failed: Zlyhalo
-        invited: Pozvaní
-        not_invited: Nepozvaný
-        registered: Registrovaný
-      tools:
-        export: Export SMS kontaktov
-        import: Import SMS kontaktov
-        send_sms: Poslať SMS
-    sms_records:
-      columns:
-        id: ID
-        message: Správa
     smtp_settings:
-      authentication: Overovanie
-      authentication_type: Typ overenia
-      authentication_types:
-        cram_md5: CRAM MD5
-        login: Prihlásenie
-        plain: Obyčajný
-      enabled: Povolené
-      encryption: Šifrovanie
-      encryption_types:
-        none: Žiadny
-        ssl: Protokol SSL
-        tls: TLS
       errors:
         authentication_failed: Používateľské meno alebo heslo je nesprávne
         host_unreachable: Nedá sa pripojiť k hostiteľovi. Hostiteľ, port alebo šifrovanie je nesprávne
-      from_email: Z e-mailu
-      from_name: Z názvu
-      host: Hostiteľ
-      password: Heslo
-      port: Prístav
-      send_test_email: Odoslať testovací e-mail
-      smtp: SMTP
-      test_email_modal:
-        input_hint: Nastavenie e-mailu sa neuloží, kým sa úspešne neodošle testovací e-mail.
-        input_placeholder: Testovanie ID e-mailu
-        title: Testovacie ID e-mailu
-      test_modal:
-        success_message: Testovací e-mail odoslaný na adresu %{email_id}.
-        title: Otestujte nastavenie SMTP
-      update_success_msg: Nastavenie SMTP bolo úspešne aktualizované.
-      use_sender_verification: Používanie overenia odosielateľa
-      user_name: Používateľské meno
-    stats:
-      assessments:
-        active: Aktívny
-        columns:
-          assessment_name: Názov hodnotenia
-          completed: Dokončený
-          id: ID
-          in_progress: Prebieha
-          ineligible: Nespôsobilý
-          interrupted: Prerušený
-          not_started: Nezačalo sa
-          timed_out: Vypršal
-        count: Počet
-        inactive: Neaktívny
-        percentage: Percentá
-        title: Hodnotenia
-      top_metrics:
-        completed: Dokončený
-        in_progress: Prebieha
-        interrupted: Prerušený
-        not_started: Nezačalo sa
-        timed_out: Vypršal
-        users: Používateľov
-      users:
-        date_presets:
-          last_30_days: Posledných 30 dní
-          last_7_days: Posledných 7 dní
-          last_month: Minulý mesiac
-          last_week: Minulý týždeň
-          today: Dnes
-          yesterday: Včera
-        y_title: Počet používateľov
     sub_factors:
       destroy:
         successfully: Subfaktor %{name} bol úspešne odstránený.
@@ -4225,18 +1835,7 @@ sk:
           one: 'Spolu : 1'
           other: 'Spolu : {{count}}'
           zero: 'Spolu : 0'
-      more_actions: Ďalšie akcie
     taxonomy:
-      import:
-        description: Nahrajte súbor Excel, aby ste importovali alebo aktualizovali svoju taxonómiu zručností. Tým pridáte nové zručnosti, pracovné pozície a úrovne odbornosti.
-        download_example_file: Stiahnuť vzorový súbor
-        drag_text: Kliknite alebo pretiahnite súbor do tejto oblasti, aby ste ho nahrali.
-        error_title: Import sa nepodaril
-        file_hint: Podporuje súbory .xls a .xlsx
-        import_button: Import taxonómie
-        success_msg: Nahraný súbor bol zaradený do frontu na import. Skontrolujte stav v upozorneniach.
-      import_action:
-        taxonomy: Dovozná taxonómia
       title: Taxonómia
     templates:
       blocks:
@@ -4329,187 +1928,9 @@ sk:
       convert_action:
         already_a_template: Už šablóna
         has_user_data: Pred konverziou na šablónu manuálne resetujte kampaň kliknutím na položku "Resetovať všetkých účastníkov" v rozbaľovacom menu Nástroje.
-      convert_template_modal:
-        cancel: Zrušiť
-        confirm: Potvrďte
-        convert:
-          success: Šablóna bola úspešne prevedená
-        convert_option: Previesť túto kampaň na šablónu
-        copy:
-          success: Úloha vytvorenia šablóny kampane bola úspešne naplánovaná, skontrolujte si stav oznámení.
-        copy_option: Vytvorenie novej šablóny z tejto kampane
-        description: Vyberte, ako chcete vytvoriť šablónu z tejto kampane.
-        failed: Vytvorenie šablóny sa nepodarilo.
-        title: Konvertovať do šablóny
-      email_templates:
-        approve_nomination:
-          description: Táto správa sa odošle manažérovi, keď je potrebné schváliť nomináciu uskutočnenú priamym podriadeným
-          name: Schváliť nomináciu
-        approve_report:
-          description: Táto správa sa odošle manažérovi subjektu, aby ho upozornil, že správa subjektov je pripravená na schválenie
-          name: Schváliť správu
-        categories:
-          approvals: Schválenia
-          invitations: Pozvánky
-          reminders: Pripomenutia
-          report_ready: Správa pripravená
-        consolidated: Konsolidované
-        custom_message:
-          description: Túto správu je možné odoslať komukoľvek, kto sa zúčastňuje hodnotenia
-          name: Vlastná správa
-        days_repeated: dní, opakovane
-        evaluator_invite:
-          description: Táto správa bude zaslaná všetkým účastníkom, ktorí sú hodnotiteľmi
-          name: Pozvánka hodnotiteľa
-        evaluator_reminder:
-          description: Táto správa bude odoslaná s cieľom pripomenúť hodnotiteľom, aby dokončili čakajúce hodnotenia
-          name: Pripomenutie hodnotiteľa
-          rule_description: Určenie pravidiel automatického plánovania plánovania pozvánky
-          rule_name: Pravidlá pripomenutia hodnotiteľa
-        from: Z
-        manager_report_ready:
-          description: Táto správa sa odošle manažérovi subjektu, keď je správa subjektu pripravená
-          name: Správa manažéra pripravená
-        nomination_denied:
-          description: Táto správa sa odošle subjektom, keď je nominácia zamietnutá
-          name: Nominácia zamietnutá
-        reply_to_email: Odpovedať na e-mail
-        request_approval:
-          description: Táto správa sa odošle manažérom, keď subjekt požiada o schválenie
-          name: Žiadosť o schválenie
-        save: Uložiť
-        schedule: Plán
-        schedule_email: Naplánovať e-mail
-        schedule_email_title: Plán E-mail
-        schedule_time: Naplánovať čas
-        send_test_email: Odoslať testovací e-mail
-        subject: Predmet
-        subject_invite:
-          description: Táto správa bude odoslaná s cieľom vyzvať subjekty na účasť na hodnotení
-          name: Predmetová pozvánka
-        subject_reminder:
-          description: Správa zaslaná každému účastníkovi, aby mu pripomenula účasť na hodnotení
-          name: Pripomenutie predmetu
-          rule_description: Určenie pravidiel automatického plánovania plánovania pozvánky
-          rule_name: Pravidlá pripomenutia predmetu
-        subject_report_ready:
-          description: Táto správa sa odošle subjektu, keď je jeho zostava pripravená
-          name: Predmetová správa pripravená
-        times: krát
-      instruction_templates:
-        evaluate_others:
-          description: Táto správa sa zobrazí, keď účastníci hodnotia ostatných z portálu
-          name: Vyhodnoťte ostatných
-        evaluate_self:
-          description: Táto správa sa zobrazí subjektom, keď začnú svoje sebahodnotenie
-          name: Hodnotiteľ sám
-        evaluation_help:
-          description: Text pomocníka zobrazený na skúšobnej karte na ovládacom paneli používateľa
-          name: Pomocník pre hodnotenie
-        evaluator_welcome:
-          description: Táto správa prepíše "Uvítaciu správu" a zobrazí sa účastníkom, ktorí sa momentálne zúčastňujú len ako hodnotitelia.
-          name: Hodnotiteľ je vítaný
-        invite_evaluators:
-          description: Táto správa sa zobrazí subjektom, keď začnú nominovať hodnotiteľov
-          name: Pozvite hodnotiteľov
-        nomination_help:
-          description: Text pomocníka zobrazený na nominačnej karte na ovládacom paneli používateľa
-          name: Pomoc pri nominácii
-        report_help:
-          description: Text pomocníka zobrazený na karte zostavy na ovládacom paneli používateľa
-          name: Prehľady Pomocník
-        welcome_message:
-          description: Táto správa sa zobrazí subjektom, keď sa prihlásia, aby mohli začať hodnotenie alebo zobraziť svoj zoznam úloh
-          name: Uvítacia správa
-      mail_history:
-        actions: Činnosti
-        date: Dátum
-        download_details: Stiahnite si podrobnosti
-        emails_sent: Odoslané e-maily
-        recipient: Príjemca
-        status: Stav
-        subject: Predmet
-      manage:
-        assessment: Hodnotenie
-        dimension: Rozmery
-        manage_relationships: Spravujte vzťahy...
-        report: Správa
-        title: Ovládať
-      menu:
-        actions: Činnosti
-        datasheet:
-          title: Dátový hárok
-        messages:
-          allow_subjects_to_send_reminders: Umožniť subjektom posielať hodnotiteľom upomienky
-          automatically_send_invites: Automatické odosielanie pozvánok novým hodnotiteľom
-          title: Správy
-        participants:
-          columns:
-            action: Akcia
-            email: E-mail
-            evaluations_completed: Ukončené hodnotenia
-            evaluations_received: Prijaté hodnotenia
-            is_subject: Je predmetom
-            name: Názov
-          evaluators:
-            add_evaluators: Pridať hodnotiteľov
-            import_evaluators: Hodnotitelia dovozu
-            title: Hodnotitelia
-          managers:
-            title: Manažéri
-          options:
-            evaluator_options: Možnosti hodnotiteľa
-            global: Globálne možnosti
-            manager_options: Možnosti manažéra
-            subject_options: Možnosti predmetu
-            title: Možnosti
-          subjects:
-            add_subjects: Pridanie predmetov
-            current_job_role: Aktuálna pracovná pozícia
-            email: E-mail
-            first_name: Krstné meno
-            import_subjects: Importované predmety
-            last_name: Priezvisko
-            locale: Locale
-            target_job_role: Cieľová pracovná pozícia
-            title: Predmety
-          title: Účastníkov
-        report:
-          menu:
-            report_approval:
-              title: Nastavenia schválenia zostavy
-            report_options:
-              title: Možnosti zostavy
-          title: Správa
-      messages:
-        email_messages: E-mailové správy
-        factor_benchmark_scores_updated: Skóre Factor Benchmark bolo úspešne aktualizované
-        instruction_messages: Inštruktážne správy
-        mail_history: História pošty
-        options: Možnosti
       reports:
-        add_conditions: Pridať podmienky
-        administrator_approves_reports: Správca schvaľuje správy
-        allow_manager_to_view_individual_responses: Umožniť manažérovi zobraziť jednotlivé odpovede
-        disable_report_download: Zakázať preberanie správ
-        edit_email: Upraviť e-mail
-        email_manager_when_report_is_ready_for_approval: E-mailový manažér, keď je správa pripravená na schválenie
-        email_subject_when_report_becomes_available: Predmet e-mailu, keď bude správa k dispozícii
-        email_subjects_manager_when_available: E-mail manažérovi subjektu, keď bude správa k dispozícii
-        make_report_available_to_subject_when: 'Sprístupnite správu subjektu, keď:'
-        manager_approves_reports: Manažér schvaľuje správy
-        manager_can_access_subject_reports: Manažér má prístup k predmetným správam
-        manager_cannot_access_subject_reports: Manažér nemôže vidieť správu, kým nie sú splnené požiadavky
-        report_access: Prístup k správe
-        report_approval: Schválenie správy
-        report_availability: Dostupnosť správy
         show:
           title: Správa o predmete
-        subject_can_access_reports: Subjekt má prístup k svojim správam
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: Označenie licencií ako deaktivovaných
-    time_zone: Časové pásmo
-    tools: Náradie
     translations:
       assessments:
         new:
@@ -4527,14 +1948,6 @@ sk:
         successfully: Používateľ %{name} bol úspešne vytvorený.
       destroy:
         successfully: Používateľ %{name} bol úspešne odstránený.
-      list:
-        email: E-mail
-      modals:
-        download_idp_reports:
-          error: Naplánovanie úlohy hromadného sťahovania správ IDP zlyhalo.
-          include_reflective_questions: Zahrňte reflexívne otázky
-          success: Úloha hromadného sťahovania správ IDP bola úspešne naplánovaná.
-          title: Hromadné sťahovanie správ IDP
       new:
         header: Nový používateľ
       reset_password:
@@ -4568,24 +1981,15 @@ sk:
         successfully: Používateľ %{name} bol úspešne aktualizovaný.
       toggle_status:
         successfully: Používateľ %{name} bol úspešne aktualizovaný.
-      toolbar:
-        title: Náradie
       update:
         successfully: Používateľ %{name} bol úspešne aktualizovaný.
       user: Užívateľ
     webhook:
       connection_failure: Nedá sa pripojiť k URL adrese webhooku. Skontrolujte, či je adresa URL webhooku správna.
-      delete_success: Nastavenia webhooku boli úspešne odstránené
       request_failure: Žiadosť zlyhala so stavovým kódom %{http_status_code}.
     workshop:
-      actions:
-        remove_workshop: Dielňa bola úspešne odstránená
       errors:
         remove_workshop_failure: Workshop, ktorý sa pokúšate vymazať, má naplánované predmety. Workshop môžete vymazať označením všetkých predmetov ako zrušených
-      statuses:
-        closed: Zatvorený
-        open: Otvorený
     workshop_subjects:
       errors:
         update_assessor_for_failure: Podrobnosti o schôdzi nie je možné pridať, pretože neexistuje žiadna aktivita prepojeného predmetu.
-    years: Rokov

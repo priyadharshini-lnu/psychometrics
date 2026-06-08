@@ -129,7 +129,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
     <ResourceFormModal
       resourceName="occupation"
       resource={occupation}
-      readableResourceName={I18n.t('administration.occupations.index.title')}
+      readableResourceName={I18n.t('admin.occupations_index_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -141,20 +141,20 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
         <>
           <Form.Item
             name="name"
-            label={I18n.t('common.column.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="description"
-            label={I18n.t('common.column.description')}
+            label={I18n.t('shared.description')}
           >
             <TextArea />
           </Form.Item>
           <Form.Item
             name="fullDescription"
-            label={I18n.t('administration.innovation_styles.form.full_description')}
+            label={I18n.t('admin.innovation_styles_form_full_description')}
           >
             <TextArea />
           </Form.Item>
@@ -196,12 +196,12 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
           </Form.Item>
           <Form.Item
             name="color"
-            label={I18n.t('administration.occupations.form.color')}
+            label={I18n.t('admin.occupations_form_color')}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.factors.index.icon')}
+            label={I18n.t('shared.icon')}
           >
             <Space orientation="vertical">
               {occupation?.iconUrl && !fileStates.icon.removed && (
@@ -212,7 +212,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
                     icon={<DeleteOutlined />}
                     onClick={() => handleRemoveIcon('icon')}
                   >
-                    {I18n.t('common.actions.delete')}
+                    {I18n.t('shared.delete')}
                   </Button>
                 </Space>
               )}
@@ -229,7 +229,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
             </Space>
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.occupations.form.alternative_icon')}
+            label={I18n.t('admin.occupations_form_alternative_icon')}
           >
             <Space orientation="vertical">
               {occupation?.alternativeIconUrl && !fileStates.alternativeIcon.removed && (
@@ -244,7 +244,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
                     icon={<DeleteOutlined />}
                     onClick={() => handleRemoveIcon('alternativeIcon')}
                   >
-                    {I18n.t('common.actions.delete')}
+                    {I18n.t('shared.delete')}
                   </Button>
                 </Space>
               )}
@@ -261,7 +261,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
             </Space>
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.occupations.form.indicative_roles_image')}
+            label={I18n.t('admin.occupations_form_indicative_roles_image')}
           >
             <Space orientation="vertical">
               {occupation?.indicativeRolesImageUrl && !fileStates.indicativeRolesImage.removed && (
@@ -276,7 +276,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
                     icon={<DeleteOutlined />}
                     onClick={() => handleRemoveIcon('indicativeRolesImage')}
                   >
-                    {I18n.t('common.actions.delete')}
+                    {I18n.t('shared.delete')}
                   </Button>
                 </Space>
               )}
@@ -293,7 +293,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
             </Space>
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.occupations.form.key_career_tracks_image')}
+            label={I18n.t('admin.occupations_form_key_career_tracks_image')}
           >
             <Space orientation="vertical">
               {occupation?.keyCareerTracksImageUrl && !fileStates.keyCareerTracksImage.removed && (
@@ -308,7 +308,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
                     icon={<DeleteOutlined />}
                     onClick={() => handleRemoveIcon('keyCareerTracksImage')}
                   >
-                    {I18n.t('common.actions.delete')}
+                    {I18n.t('shared.delete')}
                   </Button>
                 </Space>
               )}

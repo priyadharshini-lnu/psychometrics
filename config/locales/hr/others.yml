@@ -1648,7 +1648,6 @@ hr:
     details:
       additional_time: Dodatno vrijeme
       assessment_center: Centar za procjenu
-      assessment_center_invites: Pozivnice za centar za procjenu
       completed_at: Dovršeno u
       completion_status: Status završetka
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ hr:
     modals:
       remove: Jeste li sigurni da želite ukloniti korisnika s e-poštom '%{email}' iz ove kampanje?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Procjene procjenitelja
-      other_assessments: Ostale procjene
-      other_assessor_assessments: Ostale procjene procjenitelja
-      other_reports: Ostala izvješća
     card:
       duration: Trajanje
       starts_in: 'Počinje za:'
@@ -1753,23 +1747,19 @@ hr:
       insert: Umetnuti
       'no': Ne
       ok: OK
-      publish: Objavi
       reject: Odbiti
       remove: Ukloniti
       reset: Ponovno pokrenuti
       resolve: Riješiti
       restore: Vratiti
       return_to_home: Povratak na početnu stranicu
-      run: Trčati
       save: Spremiti
       schedule: Raspored
       search: Pretražiti
-      send: Poslati
       sign_in: Prijavi se
       start: Započeti
       submit: Predati se
       unarchive: Poništiti arhiviranje
-      unpublish: Povuci objavu
       unresolve: Problem nije riješen
       update: Ažurirati
       upload: Prenijeti
@@ -1782,20 +1772,14 @@ hr:
     column:
       action: Status
       active: Aktivan
-      ai_assistant: AI pomoćnik
-      allow_multiple_responses: Dopuštanje višestrukih odgovora
       approval_notification_list: Popis korisnika obavijesti o odobrenju
       approvers_list: Popis odobravatelja
-      assessment: Ocjenjivanje
       assessment_name: Naziv procjene
       assessments: Procjene
-      assessor: Poreznik
       category: Kategorija
       client: Klijent
-      code: Kod
       created_at: Kreirano u
       created_by: Autor projekta
-      created_date: Datum izrade
       default_language: Zadani jezik
       description: Opis
       details: Detalji
@@ -1813,11 +1797,8 @@ hr:
         scoring: Bodovanje JSON
       key: Ključ
       last_name: Prezime
-      linked_activities: Povezane aktivnosti
       linked_assessment: Povezana procjena
-      meeting_link: Veza za sastanak
       modified_by: Autor izmjene
-      modified_date: Datum izmjene
       name: Ime
       owner: Vlasnik
       package_id: ID paketa
@@ -1833,7 +1814,6 @@ hr:
       scheduling: Vremensko planiranje
       skills: Vještine
       status: Status
-      tags: Tags
       timing: Vrijeme
       token: Token
       type: Tip
@@ -1845,15 +1825,12 @@ hr:
     messages:
       leave_message: Jeste li sigurni da želite napustiti ovu stranicu? Svi nespremljeni odgovori koje imate bit će izgubljeni.
     model:
-      admins: Administratori
       assessment: Ocjenjivanje
       assessments: Procjene
       campaigns: Kampanje
       completion_statuses: Statusi dovršetka
-      datasheet: Podatkovna tablica
       report: Izvješće
       reports: Izvješća
-      sms_contact: SMS kontakt
       threesixty_campaign: Trišezdeset rezultata kampanje
     status:
       completed: Završen
@@ -2970,9 +2947,7 @@ hr:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktivan
     campaign_name: Naziv kampanje
-    inactive: Neaktivan
     status_updated_at: Posljednje ažuriranje statusa
     status_updated_by: Posljednje ažuriranje od strane
     subject_email: E-pošta ispitanika
@@ -3976,7 +3951,6 @@ hr:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktivno
     allow_multiple_respones: Omogućiti korisnicima da pošalju više odgovora
     png: PNG
     regenerate_link: Ponovno generiraj poveznicu

@@ -26,7 +26,7 @@ const UpdateCampaignTimeModal: React.FC<Props> = ({
   const handleUpdate = (params) => {
     extendTime(campaignId, userId, params.additionalTime).then(() => {
       message.success(
-        I18n.t('administration.campaigns.extend_time_success_message', { minutes: params.additionalTime }),
+        I18n.t('admin.campaigns_extend_time_success_message', { minutes: params.additionalTime }),
       )
     })
 

@@ -79,20 +79,20 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
 
   const removeWebhook = (webhook) => {
     modal.confirm({
-      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
+      title: I18n.t('shared.delete'),
       content: I18n.t(
-        'administration.project_tabs.webhooks.remove_webhook.content',
+        'admin.project_tabs_webhooks_remove_webhook_content',
         {
           description: webhook.description,
         },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
+      okText: I18n.t('shared.ok'),
       cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
+        'shared.cancel',
       ),
       onOk: async () => {
         removeResource(`${webhook.id}`).then(() => {
-          message.success(I18n.t('administration.webhook.delete_success'))
+          message.success(I18n.t('admin.webhook_delete_success'))
           close()
         }).catch((error) => {
           message.error(error)
@@ -111,7 +111,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
         scroll={{ x: 'max-content' }}
       >
         <Column
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex="id"
           fixed={windowWidth > 800 ? 'left' : undefined}
           key="id"
@@ -120,19 +120,19 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
         />
         <Column
           key="active"
-          title={I18n.t('administration.projects.webhook_settings.column_active')}
+          title={I18n.t('admin.projects_webhook_settings_column_active')}
           render={webhook => <Switch checked={webhook.active} onChange={() => toggleActive(webhook)} />}
         />
         <Column
           key="description"
-          title={I18n.t('administration.projects.webhook_settings.column_description')}
+          title={I18n.t('admin.projects_webhook_settings_column_description')}
           dataIndex="description"
           sorter
           sortOrder={getSortOrder('description')}
         />
         <Column
           key="url"
-          title={I18n.t('administration.projects.webhook_settings.column_url')}
+          title={I18n.t('admin.projects_webhook_settings_column_url')}
           sorter
           sortOrder={getSortOrder('url')}
           render={({ url }) => (
@@ -148,14 +148,14 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
           )}
         />
         <Column
-          title={I18n.t('administration.projects.webhook_settings.column_created_date')}
+          title={I18n.t('admin.projects_webhook_settings_column_created_date')}
           key="created_at"
           dataIndex="createdAt"
           sorter
           sortOrder={getSortOrder('created_at')}
         />
         <Column
-          title={I18n.t('administration.projects.webhook_settings.column_updated_date')}
+          title={I18n.t('admin.projects_webhook_settings_column_updated_date')}
           key="updated_at"
           dataIndex="updatedAt"
           sorter
@@ -164,7 +164,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
         <Column
           key="manage"
           fixed={windowWidth > 800 ? 'right' : undefined}
-          title={I18n.t('administration.projects.webhook_settings.column_manage')}
+          title={I18n.t('shared.manage')}
           render={webhook => (
             <ConditionalDropdown
               menu={
@@ -193,7 +193,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   const Filter = (
     <Space>
       <Input.Search
-        placeholder={I18n.t('administration.projects.webhook_settings.search')}
+        placeholder={I18n.t('admin.projects_webhook_settings_search')}
         value={getFilteredValue('filterable_fields')}
         onChange={e => changeFilter('filterable_fields', e.target.value)}
       />
@@ -212,7 +212,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
           )
         }}
       >
-        {I18n.t('administration.projects.webhook_settings.add')}
+        {I18n.t('admin.projects_webhook_settings_add')}
       </Button>
     </Space>
   )
@@ -254,16 +254,16 @@ const getActionsMenuProps = ({
 }:ActionMenuData):MenuProps => {
   const menuItems: MenuItem[] = [
     {
-      key: I18n.t('administration.project_tabs.webhooks.actions.edit.key'),
-      label: I18n.t('administration.project_tabs.webhooks.actions.edit.label'),
+      key: I18n.t('admin.project_tabs_webhooks_actions_edit_key'),
+      label: I18n.t('shared.edit'),
     },
     {
-      key: I18n.t('administration.project_tabs.webhooks.actions.delete.key'),
-      label: I18n.t('administration.project_tabs.webhooks.actions.delete.label'),
+      key: I18n.t('admin.project_tabs_webhooks_actions_delete_key'),
+      label: I18n.t('shared.delete'),
     },
     {
-      key: I18n.t('administration.project_tabs.webhooks.actions.send_test.key'),
-      label: I18n.t('administration.project_tabs.webhooks.actions.send_test.label'),
+      key: I18n.t('admin.project_tabs_webhooks_actions_send_test_key'),
+      label: I18n.t('admin.project_tabs_webhooks_actions_send_test_label'),
     },
   ]
 

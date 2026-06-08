@@ -64,7 +64,7 @@ const UserAssessment: React.FC<Props> = ({
           <div><b>{`${subjectForm.result.user.first_name} ${subjectForm.result.user.last_name}`}</b></div>
           {_.get(subjectForm.result, 'completed_at') && (
             <div>
-              {I18n.t('administration.assessor.completed_at')}
+              {I18n.t('admin.assessor_completed_at')}
               {': '}
               <b>{dayjs(subjectForm.result.completed_at).format('DD MMM YYYY')}</b>
             </div>

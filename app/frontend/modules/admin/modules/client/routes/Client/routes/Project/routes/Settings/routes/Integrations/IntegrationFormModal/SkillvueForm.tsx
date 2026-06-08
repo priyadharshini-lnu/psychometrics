@@ -29,8 +29,8 @@ export const SkillvueForm: React.FC<OwnProps> = ({ integration }) => {
       {!integration || isEditingApiKey ? (
         <Form.Item
           name="apiKey"
-          label={I18n.t('administration.integrations.modal.skillvue.apiKey')}
-          rules={[{ required: true, message: I18n.t('administration.integrations.modal.skillvue.apiKeyRequired') }]}
+          label={I18n.t('admin.skillvue_apiKey')}
+          rules={[{ required: true, message: I18n.t('admin.skillvue_apiKeyRequired') }]}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Input.Password
@@ -49,7 +49,7 @@ export const SkillvueForm: React.FC<OwnProps> = ({ integration }) => {
         </Form.Item>
       ) : (
         <Form.Item
-          label={I18n.t('administration.integrations.modal.skillvue.apiKey')}
+          label={I18n.t('admin.skillvue_apiKey')}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Input

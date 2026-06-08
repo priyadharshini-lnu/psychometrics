@@ -33,7 +33,7 @@ const ActiveSwitch = ({ block }: { block: Block }) => {
       updateStore: true,
       responseType: BlockTR,
     }).catch(() => {
-      message.error(I18n.t('administration.errors.error_msg'))
+      message.error(I18n.t('admin.errors_error_msg'))
     })
   }
 
@@ -161,7 +161,7 @@ const BlockList: React.FC = () => {
   }
 
   const Filter = (
-    <Resource.Filter name="name_cont" placeholder={I18n.t('administration.search')}>
+    <Resource.Filter name="name_cont" placeholder={I18n.t('shared.search')}>
       <CreateBlockButton />
     </Resource.Filter>
   )
@@ -222,7 +222,7 @@ const BlockList: React.FC = () => {
           <Link to={`/admin/clients/${record.owner.id}`}>
             {ownerName}
           </Link>
-        ) : I18n.t('administration.tte'))}
+        ) : I18n.t('admin.tte'))}
       />
       <Resource.Column<Block>
         id="created_at"
@@ -235,7 +235,7 @@ const BlockList: React.FC = () => {
       />
       <Resource.Column<Block>
         id="actions"
-        title={I18n.t('administration.actions')}
+        title={I18n.t('shared.actions')}
         render={(_, record) => <ActionsCell record={record} />}
       />
     </Resource.Table>

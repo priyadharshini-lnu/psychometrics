@@ -218,25 +218,25 @@ export const InviteEditFormModal: FC<Props> = ({
           <Flex vertical gap={16}>
             <Form.Item
               name="name"
-              label={I18n.t('administration.assessment_center.invite.name')}
+              label={I18n.t('shared.name')}
               className="mb-4"
             >
               <Input
-                placeholder={I18n.t('administration.assessment_center.invite.name_placeholder')}
+                placeholder={I18n.t('admin.invite_name_placeholder')}
               />
             </Form.Item>
             <Form.Item
               name="allowLanguagePreference"
               valuePropName="checked"
               className="mb-0"
-              label={I18n.t('administration.assessment_center.invite.basic_info.allow_preferred_language')}
+              label={I18n.t('admin.invite_basic_info_allow_preferred_language')}
             >
               <Switch />
             </Form.Item>
             {preferredLang && (
               <Form.Item
                 name="allowedLanguages"
-                label={I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
+                label={I18n.t('admin.invite_basic_info_preferred_language')}
                 className="mb-0"
               >
                 <Select
@@ -254,7 +254,7 @@ export const InviteEditFormModal: FC<Props> = ({
               name="allowNeurodiversityOption"
               valuePropName="checked"
               className="mb-0"
-              label={I18n.t('administration.assessment_center.invite.basic_info.neurodiversity')}
+              label={I18n.t('admin.invite_basic_info_neurodiversity')}
             >
               <Switch />
             </Form.Item>
@@ -270,7 +270,7 @@ export const InviteEditFormModal: FC<Props> = ({
                 label: (
                   <Flex justify="space-between" align="center" style={{ width: '100%' }}>
                     <Typography.Title level={5} className="mb-0 mt-0">
-                      {I18n.t('administration.assessment_center.invite.send_invites.title',
+                      {I18n.t('admin.invite_send_invites_title',
                         { lang: I18n.t(`languages.${lang.locale}`) })}
                     </Typography.Title>
                     {canRemove && (
@@ -289,7 +289,7 @@ export const InviteEditFormModal: FC<Props> = ({
                 children: (
                   <Flex vertical gap={8}>
                     <Form.Item
-                      label={I18n.t('administration.assessment_center.invite.send_invites.invitation_title')}
+                      label={I18n.t('admin.invite_send_invites_invitation_title')}
                       validateStatus={errors?.[`translations/${index}/title`] ? 'error' : undefined}
                       hasFeedback={!!errors?.[`translations/${index}/title`]}
                       help={errors?.[`translations/${index}/title`]?.title}
@@ -308,7 +308,7 @@ export const InviteEditFormModal: FC<Props> = ({
                     </Form.Item>
 
                     <Form.Item
-                      label={I18n.t('administration.assessment_center.invite.send_invites.description')}
+                      label={I18n.t('shared.description')}
                       validateStatus={errors?.[`translations/${index}/description`] ? 'error' : undefined}
                       hasFeedback={!!errors?.[`translations/${index}/description`]}
                       help={errors?.[`translations/${index}/description`]?.title}
@@ -345,19 +345,19 @@ export const InviteEditFormModal: FC<Props> = ({
           {allowedLanguages?.length > 0 ? (
             <Form.Item
               name="add_lang"
-              label={I18n.t('administration.assessment_center.invite.send_invites.input_label')}
+              label={I18n.t('admin.invite_send_invites_input_label')}
             >
               <Flex gap={8} align="center">
                 <Select
                   placeholder={I18n.t(
-                    'administration.assessment_center.invite.send_invites.input_placeholder',
+                    'admin.invite_send_invites_input_placeholder',
                   )}
                   options={availableLanguagesForSelection}
                   onChange={setSelectedLang}
                   value={selectedLang}
                 />
                 <Button type="primary" onClick={addLang}>
-                  {I18n.t('administration.assessment_center.invite.send_invites.add')}
+                  {I18n.t('shared.add')}
                 </Button>
               </Flex>
             </Form.Item>

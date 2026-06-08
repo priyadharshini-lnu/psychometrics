@@ -54,7 +54,7 @@ export const DataReportForm: React.FC<Props> = ({
     <Drawer open={show} width="70%" onClose={close} destroyOnHidden maskClosable={false}>
       <ResourceForm
         resourceName="data_reports"
-        readableResourceName={I18n.t('administration.data_reports.form.name')}
+        readableResourceName={I18n.t('admin.data_reports_form_name')}
         resource={dataReport}
         showSuccessMessages
         storeManager={{ form }}
@@ -65,14 +65,14 @@ export const DataReportForm: React.FC<Props> = ({
           <>
             <Form.Item
               name="name"
-              label={I18n.t('common.column.name')}
+              label={I18n.t('shared.name')}
               rules={[{ required: true }]}
             >
               <Input />
             </Form.Item>
             <Form.Item
               name="ownerId"
-              label={I18n.t('common.column.owner')}
+              label={I18n.t('shared.owner')}
               initialValue={dataReport?.owner?.id || null}
               rules={[{ required: true }]}
             >
@@ -94,13 +94,13 @@ export const DataReportForm: React.FC<Props> = ({
             </Form.Item>
             <Form.Item
               name="configuration"
-              label={I18n.t('administration.data_reports.configuration')}
+              label={I18n.t('admin.data_reports_configuration')}
               rules={[{ required: true }]}
             >
               <LuaEditor mode="javascript" />
             </Form.Item>
             <Button type="primary" htmlType="submit">
-              {dataReport?.id ? I18n.t('assessments.update') : I18n.t('assessments.create')}
+              {dataReport?.id ? I18n.t('shared.update') : I18n.t('shared.create')}
             </Button>
           </>
         )}

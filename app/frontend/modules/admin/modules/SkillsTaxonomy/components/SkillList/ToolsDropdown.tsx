@@ -22,7 +22,7 @@ export const ToolsDropdown: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.tools')}</span>
+        <span>{I18n.t('admin.tools')}</span>
         <DownOutlined />
       </Button>
       )}
@@ -39,14 +39,14 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.import) {
     importMenuItems.push({
       key: 'import_skills',
-      label: I18n.t('administration.skills.title'),
+      label: I18n.t('admin.skills_title'),
     })
   }
 
   if (permissions?.importTranslations) {
     importMenuItems.push({
       key: 'import_translations',
-      label: I18n.t('administration.skills.skill_translations'),
+      label: I18n.t('admin.skills_skill_translations'),
     })
   }
 
@@ -55,28 +55,28 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.export) {
     exportMenuItems.push({
       key: 'export_skills',
-      label: I18n.t('administration.skills.title'),
+      label: I18n.t('admin.skills_title'),
     })
   }
 
   if (permissions?.exportTranslations) {
     exportMenuItems.push({
       key: 'export_skills_translations',
-      label: I18n.t('administration.skills.skill_translations'),
+      label: I18n.t('admin.skills_skill_translations'),
     })
   }
 
   menuItems.push({
     type: 'group',
     key: 'import_group',
-    label: I18n.t('common.actions.import'),
+    label: I18n.t('shared.import'),
     children: importMenuItems,
   })
 
   menuItems.push({
     type: 'group',
     key: 'export_group',
-    label: I18n.t('common.actions.export'),
+    label: I18n.t('shared.export'),
     children: exportMenuItems,
   })
 
@@ -84,11 +84,11 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
     menuItems.push({
       type: 'group',
       key: 'vectordb',
-      label: I18n.t('administration.skills.vector.label'),
+      label: I18n.t('admin.skills_vector_label'),
       children: [
         {
           key: 'generate_embedding_skills',
-          label: I18n.t('administration.skills.vector.generate_embedding'),
+          label: I18n.t('admin.skills_vector_generate_embedding'),
         },
       ],
     })

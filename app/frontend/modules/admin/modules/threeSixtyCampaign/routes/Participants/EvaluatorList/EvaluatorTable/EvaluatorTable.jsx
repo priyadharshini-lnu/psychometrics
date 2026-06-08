@@ -22,7 +22,7 @@ export default function EvaluatorTable ({
   return (
     <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false} scroll={{ x: 'max-content' }}>
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.name')}
+        title={I18n.t('shared.name')}
         fixed={windowWidth > 800 ? 'left' : undefined}
         key="fullName"
         render={({ user, permissions }) => (
@@ -36,17 +36,17 @@ export default function EvaluatorTable ({
         )}
       />
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.email')}
+        title={I18n.t('shared.email')}
         key="user_email"
         render={({ user }) => user.email}
       />
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_received')}
+        title={I18n.t('admin.evaluations_received')}
         dataIndex="evaluators"
         key="received_evaluations"
       />
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_completed')}
+        title={I18n.t('admin.evaluations_completed')}
         dataIndex="evaluations"
         key="completed_evaluations"
       />
@@ -64,7 +64,7 @@ export default function EvaluatorTable ({
       />
 
       <Column
-        title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.is_subject')}
+        title={I18n.t('admin.is_subject')}
         render={({ isSubject }) => isSubject && <CheckOutlined className="text-success" />}
         key="isSubject"
       />

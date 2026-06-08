@@ -26,7 +26,7 @@ export const InitializeComponent: React.FC<Props> = ({ openModal }) => (
   <div className="pt-4 pb-4 ps-4 pe-4">
     <Result
       icon={<DashboardOutlined />}
-      title={I18n.t('administration.dashboard.initialize_msg')}
+      title={I18n.t('admin.dashboard_initialize_msg')}
       extra={(
         <Button
           type="primary"
@@ -34,7 +34,7 @@ export const InitializeComponent: React.FC<Props> = ({ openModal }) => (
             openModal('DashboardFormModal')
           }}
         >
-          {I18n.t('administration.dashboard.get_started')}
+          {I18n.t('admin.dashboard_get_started')}
         </Button>
       )}
     />

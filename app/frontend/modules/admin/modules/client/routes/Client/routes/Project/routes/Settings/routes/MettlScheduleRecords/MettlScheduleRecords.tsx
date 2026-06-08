@@ -78,35 +78,35 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
         pagination={false}
       >
         <Column
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex="id"
           key="id"
           sortOrder={getSortOrder('id')}
           sorter
         />
         <Column
-          title={I18n.t('administration.projects.mettl_schedule_records.schedule_id')}
+          title={I18n.t('admin.projects_mettl_schedule_records_schedule_id')}
           dataIndex="scheduleId"
           key="scheduleId"
           sortOrder={getSortOrder('scheduleId')}
           sorter
         />
         <Column
-          title={I18n.t('administration.projects.mettl_schedule_records.schedule_name')}
+          title={I18n.t('admin.projects_mettl_schedule_records_schedule_name')}
           dataIndex="scheduleName"
           key="scheduleName"
           sortOrder={getSortOrder('scheduleName')}
           sorter
         />
         <Column
-          title={I18n.t('administration.projects.mettl_schedule_records.assessment_name')}
+          title={I18n.t('admin.projects_mettl_schedule_records_assessment_name')}
           dataIndex="assessmentName"
           key="assessment.name"
           sortOrder={getSortOrder('assessment.name')}
           sorter
         />
         <Column
-          title={I18n.t('administration.projects.mettl_schedule_records.created_at')}
+          title={I18n.t('admin.projects_mettl_schedule_records_created_at')}
           dataIndex="createdAt"
           key="createdAt"
           sortOrder={getSortOrder('createdAt')}
@@ -114,7 +114,7 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
         />
         <Column
           key="manage"
-          title={I18n.t('administration.projects.webhook_settings.column_manage')}
+          title={I18n.t('shared.manage')}
           render={mettlScheduleRecord => (
             <ConditionalDropdown
               menu={
@@ -141,7 +141,7 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
   const Filter = (
     <Space>
       <Input.Search
-        placeholder={I18n.t('administration.projects.mettl_schedule_records.search')}
+        placeholder={I18n.t('shared.search')}
         value={getFilteredValue('filterable_fields')}
         onChange={e => changeFilter('filterable_fields', e.target.value)}
       />
@@ -158,7 +158,7 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
           )
         }}
       >
-        {I18n.t('administration.projects.mettl_schedule_records.add')}
+        {I18n.t('admin.projects_mettl_schedule_records_add')}
       </Button>
     </Space>
   )
@@ -169,7 +169,7 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
       <Space>
         <DirectionalNavigateBackIcon onClick={() => handleTabChange('integrations')} />
         <Typography.Title level={5}>
-          {I18n.t('administration.integrations.actions.back')}
+          {I18n.t('admin.integrations_actions_back')}
         </Typography.Title>
       </Space>
 
@@ -203,7 +203,7 @@ const getActionsMenuProps = (
   const menuItems: MenuItem[] = [
     {
       key: 'edit',
-      label: I18n.t('administration.projects.mettl_schedule_records.actions.edit'),
+      label: I18n.t('shared.edit'),
     },
   ]
 

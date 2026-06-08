@@ -47,7 +47,7 @@ const TestEmailModalComponent: React.FC<Props> = ({
 
   const handleOnSubmit = () => {
     saveSettings(clientId, smtpSetting.id, { ...smtpSetting, testEmailId: email }).then(() => {
-      message.success(I18n.t('administration.smtp_settings.update_success_msg'))
+      message.success(I18n.t('admin.smtp_settings_update_success_msg'))
     }).catch(setErrors)
       .finally(() => close())
   }
@@ -55,7 +55,7 @@ const TestEmailModalComponent: React.FC<Props> = ({
   return (
     <Modal
       width={650}
-      title={I18n.t('administration.smtp_settings.test_email_modal.title')}
+      title={I18n.t('admin.smtp_settings_test_email_modal_title')}
       open
       onCancel={close}
       footer={[
@@ -66,7 +66,7 @@ const TestEmailModalComponent: React.FC<Props> = ({
           disabled={!email || loading}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.send')}
+          {I18n.t('shared.send')}
         </Button>,
       ]}
     >
@@ -74,7 +74,7 @@ const TestEmailModalComponent: React.FC<Props> = ({
         <ErrorAlertBox errors={errors} className="mbm" />
       )}
       <Input
-        placeholder={I18n.t('administration.smtp_settings.test_email_modal.input_placeholder')}
+        placeholder={I18n.t('admin.smtp_settings_test_email_modal_input_placeholder')}
         prefix={<MailOutlined className="me-2" />}
         value={email as string}
         size="large"
@@ -85,7 +85,7 @@ const TestEmailModalComponent: React.FC<Props> = ({
       <Typography.Text strong>
         <Space className="items-baseline">
           <InfoCircleOutlined />
-          {I18n.t('administration.smtp_settings.test_email_modal.input_hint')}
+          {I18n.t('admin.smtp_settings_test_email_modal_input_hint')}
         </Space>
       </Typography.Text>
     </Modal>

@@ -86,24 +86,24 @@ const SendSmsModalComponent: React.FC<Props> = ({
 
   const segmentLengthMessage = () => {
     if (minSegmentLength !== maxSegmentLength) {
-      return I18n.t('administration.sms_invites.send_sms.segment_length_range_msg',
+      return I18n.t('admin.sms_invites_send_sms_segment_length_range_msg',
         { min_segment_length: minSegmentLength, max_segment_length: maxSegmentLength })
     }
 
-    return I18n.t('administration.sms_invites.send_sms.segment_length_msg', { segment_length: minSegmentLength })
+    return I18n.t('admin.sms_invites_send_sms_segment_length_msg', { segment_length: minSegmentLength })
   }
 
   return (
     <ResourceFormModal
       resourceName="sms_records"
-      title={I18n.t('administration.sms_invites.send_sms.modal.title')}
+      title={I18n.t('admin.sms_invites_send_sms_modal_title')}
       requestScope="campaigns"
       resourceBaseUrl={`/administration/new_campaigns/${campaignId}/sms_records`}
       showSuccessMessages
       close={close}
       scrollToFirstError
       modalProps={{ width: 620 }}
-      submitButtonName={I18n.t('administration.sms_invites.send_sms.modal.btn_name')}
+      submitButtonName={I18n.t('admin.sms_invites_send_sms_modal_btn_name')}
       transformValues={transformValues}
       storeManager={{ form }}
       formProps={{
@@ -114,7 +114,7 @@ const SendSmsModalComponent: React.FC<Props> = ({
     >
       {({ form }) => (
         <>
-          <Form.Item name={['filters', 'localeIn']} label={I18n.t('administration.sms_invites.send_sms.fields.locale')}>
+          <Form.Item name={['filters', 'localeIn']} label={I18n.t('admin.sms_invites_send_sms_fields_locale')}>
             <Select mode="multiple">
               {availableLocales.map(locale => (
                 <Select.Option key={locale} value={locale}>
@@ -126,17 +126,17 @@ const SendSmsModalComponent: React.FC<Props> = ({
           <Form.Item
             name={['filters', 'statusIn']}
             initialValue={['not_invited']}
-            label={I18n.t('administration.sms_invites.send_sms.fields.statuses')}
+            label={I18n.t('admin.sms_invites_send_sms_fields_statuses')}
           >
             <Select mode="multiple">
               {STATUSES.map(status => (
                 <Option value={status} key={status}>
-                  {I18n.t(`administration.sms_invites.statuses.${status}`)}
+                  {I18n.t(`admin.sms_invites_statuses_${status}`)}
                 </Option>
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name={['filters', 'idIn']} label={I18n.t('administration.sms_invites.send_sms.fields.users')}>
+          <Form.Item name={['filters', 'idIn']} label={I18n.t('admin.sms_invites_send_sms_fields_users')}>
             <Select
               mode="multiple"
               showSearch={{ filterOption: false, onSearch: handleSearchUsers }}
@@ -144,12 +144,12 @@ const SendSmsModalComponent: React.FC<Props> = ({
               options={options}
             />
           </Form.Item>
-          <Form.Item name="linkExpiry" label={I18n.t('administration.sms_invites.send_sms.fields.link_expiry')}>
+          <Form.Item name="linkExpiry" label={I18n.t('admin.sms_invites_send_sms_fields_link_expiry')}>
             <DatePicker showTime format="YYYY-MM-DD HH:mm" />
           </Form.Item>
           <Form.Item
             name="message"
-            label={I18n.t('administration.sms_invites.send_sms.fields.message')}
+            label={I18n.t('admin.sms_invites_send_sms_fields_message')}
             className={styles.message}
           >
             <Input.TextArea rows={3} />
@@ -161,7 +161,7 @@ const SendSmsModalComponent: React.FC<Props> = ({
               {segmentLengthMessage()}
             </>
           )}
-          <SafeHTML className="mt-3" html={I18n.lookup('administration.sms_invites.send_sms.pipetext_details')} />
+          <SafeHTML className="mt-3" html={I18n.lookup('admin.sms_invites_send_sms_pipetext_details')} />
         </>
       )}
     </ResourceFormModal>

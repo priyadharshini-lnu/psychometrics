@@ -27,7 +27,7 @@ export const ToolsDropdown: React.FC<Props> = ({
   const btn = (
     <Button>
       <ToolOutlined />
-      <span>{I18n.t('administration.scoring.subject_list.actions')}</span>
+      <span>{I18n.t('shared.actions')}</span>
       <DownOutlined />
     </Button>
   )
@@ -52,25 +52,25 @@ const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
   if (persmission?.changeFinalizedCampaignScore) {
     menuItems.push({
       key: 'mark_finalized',
-      label: I18n.t('administration.scoring.subject_list.mark_finalized'),
+      label: I18n.t('admin.scoring_subject_list_mark_finalized'),
     })
   }
   if (persmission?.changeFinalizedCampaignScore) {
     menuItems.push({
       key: 'mark_not_finalized',
-      label: I18n.t('administration.scoring.subject_list.mark_not_finalized'),
+      label: I18n.t('admin.scoring_subject_list_mark_not_finalized'),
     })
   }
   if (persmission?.rescore) {
     menuItems.push({
       key: 'rescore',
-      label: I18n.t('administration.scoring.subject_list.rescore'),
+      label: I18n.t('admin.scoring_subject_list_rescore'),
     })
   }
   if (persmission?.pushWebhook) {
     menuItems.push({
       key: 'push_webhook',
-      label: I18n.t('administration.scoring.subject_list.push_webhook'),
+      label: I18n.t('admin.scoring_subject_list_push_webhook'),
     })
   }
 

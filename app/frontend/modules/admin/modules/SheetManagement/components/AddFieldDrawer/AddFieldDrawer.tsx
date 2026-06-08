@@ -73,7 +73,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
     try {
       await add(parentResourceType, parentResourceId, sheetType, values)
       message.success(
-        I18n.t('administration.sheets.drawers.add_edit.success_message_add'),
+        I18n.t('admin.sheets_drawers_add_edit_success_message_add'),
       )
       closeDrawer()
     } catch (e) {
@@ -95,7 +95,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
 
   return (
     <Drawer
-      title={I18n.t('administration.sheets.drawers.add_edit.title_add')}
+      title={I18n.t('admin.sheets_drawers_add_edit_title_add')}
       placement="right"
       closable={false}
       open={isOpen}
@@ -107,14 +107,14 @@ const AddFieldDrawerComponent: FC<Props> = ({
         <Col>
           <Space>
             <Button htmlType="reset" onClick={closeDrawer}>
-              {I18n.t('administration.sheets.drawers.add_edit.cancelText')}
+              {I18n.t('shared.cancel')}
             </Button>
             <Button
               htmlType="submit"
               form="add_field_form"
               type="primary"
             >
-              {I18n.t('administration.sheets.column.add_column')}
+              {I18n.t('admin.sheets_column_add_column')}
             </Button>
           </Space>
         </Col>
@@ -167,7 +167,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
               >
                 <Switch disabled={!allowedForDashboardUse} checked={allowedForDashboardUse} />
                 {!allowedForDashboardUse && (
-                  <Tooltip placement="top" title={I18n.t('administration.sheets.column.not_allowed_for_dashboard_use')}>
+                  <Tooltip placement="top" title={I18n.t('admin.sheets_column_not_allowed_for_dashboard_use')}>
                     <span><InfoCircleOutlined className="ms-2" /></span>
                   </Tooltip>
                 )}

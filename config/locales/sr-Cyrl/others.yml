@@ -1642,7 +1642,6 @@ sr-Cyrl:
     details:
       additional_time: Додатно време
       assessment_center: Центар за процену
-      assessment_center_invites: Позивнице за процену
       completed_at: Завршен у
       completion_status: Статус завршетка
       hogan_id: Хоган ИД
@@ -1672,11 +1671,6 @@ sr-Cyrl:
     modals:
       remove: Да ли сте сигурни да желите да уклоните корисника са е-поштом 'ИНТЕРПОЛАТИОН_ВАР_0' из ове кампање?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Процене процењивача
-      other_assessments: Остале процене
-      other_assessor_assessments: Остале процене процењивача
-      other_reports: Остали извештаји
     card:
       duration: Трајање
       starts_in: 'Почиње за:'
@@ -1747,23 +1741,19 @@ sr-Cyrl:
       insert: Уметни
       'no': Не
       ok: У реду
-      publish: Објави
       reject: Одбаци
       remove: Уклони
       reset: Ресетуј
       resolve: Решити
       restore: Врати
       return_to_home: Повратак на почетну адресу
-      run: Трчати
       save: Сачувај
       schedule: Распоред
       search: Претрага
-      send: Пошаљи
       sign_in: Упиши се
       start: Почетак
       submit: Пошаљи
       unarchive: Врати из архиве
-      unpublish: Повуци објаву
       unresolve: Нерешено
       update: Ажурирање
       upload: Отпреми
@@ -1776,20 +1766,14 @@ sr-Cyrl:
     column:
       action: Акција
       active: Активни
-      ai_assistant: АИ помоћник
-      allow_multiple_responses: Дозволите више одговора
       approval_notification_list: Обавештење о одобрењу Листа корисника
       approvers_list: Одобраватељи Особа списак
-      assessment: Процена
       assessment_name: Име процене
       assessments: Процене
-      assessor: Саветник
       category: Категорија
       client: Клијент
-      code: Шифру
       created_at: Направљено у
       created_by: Аутор
-      created_date: Датум креирања
       default_language: Подразумевани језик
       description: Опис
       details: Детаље
@@ -1807,11 +1791,8 @@ sr-Cyrl:
         scoring: Бодовање ЈСОН
       key: Кључ
       last_name: Презиме
-      linked_activities: Повезане активности
       linked_assessment: Повезана процена
-      meeting_link: Линк за састанак
       modified_by: Измењено од стране
-      modified_date: Датум измене
       name: Име
       owner: Власник
       package_id: ИД пакета
@@ -1827,7 +1808,6 @@ sr-Cyrl:
       scheduling: Планирање
       skills: Вељтине
       status: Статус
-      tags: Ознаке
       timing: Тајминг
       token: Симбол
       type: Тип
@@ -1839,15 +1819,12 @@ sr-Cyrl:
     messages:
       leave_message: Да ли сте сигурни да желите да напустите ову страницу? Сви несачувани одговори које имате ће бити изгубљени.
     model:
-      admins: Администратори
       assessment: Процена
       assessments: Процене
       campaigns: Кампање
       completion_statuses: Статуси завршетка
-      datasheet: Мапа сајта
       report: Извештај
       reports: Извештаји
-      sms_contact: СМС контакт
       threesixty_campaign: Тришекдесет резултата кампање
     status:
       completed: Довршено
@@ -2964,9 +2941,7 @@ sr-Cyrl:
   languages_localized:
     sl: Словеншчина
   license_usage:
-    active: Активан
     campaign_name: Име кампање
-    inactive: Неактиван
     status_updated_at: Последње ажурирање статуса
     status_updated_by: Последње ажурирао
     subject_email: Предмет е-поште
@@ -3967,7 +3942,6 @@ sr-Cyrl:
       with_time_zone: "%д %б %Y %И:%М %п %:з"
       workshop_date: "%е %Б %Y, %л:%М %п %:з"
   universal_links:
-    active: Активни
     allow_multiple_respones: Дозволите корисницима да пошаљу више одговора
     png: Билтен
     regenerate_link: Регенеришите везу

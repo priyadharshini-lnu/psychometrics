@@ -1661,7 +1661,6 @@ ja:
     details:
       additional_time: 追加時間
       assessment_center: アセスメント・センター
-      assessment_center_invites: アセスメント・センター招待
       completed_at: 完成
       completion_status: 完成状況
       hogan_id: ホーガンID
@@ -1691,11 +1690,6 @@ ja:
     modals:
       remove: メール '%{email}' を持つユーザーをこのキャンペーンから削除しますか?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: アセッサーの評価
-      other_assessments: その他の評価
-      other_assessor_assessments: その他の査定
-      other_reports: その他のレポート
     card:
       duration: 期間
       starts_in: で始まる：
@@ -1766,23 +1760,19 @@ ja:
       insert: 挿入
       'no': いいえ
       ok: OK
-      publish: 出版
       reject: リジェクト
       remove: 削除
       reset: リセット
       resolve: 解決
       restore: 復元
       return_to_home: ホームに戻る
-      run: 走る
       save: 保存
       schedule: スケジュール
       search: 検索
-      send: 送信
       sign_in: サインイン
       start: 開始
       submit: 投稿する
       unarchive: アーカイブを解除
-      unpublish: 未発表
       unresolve: 未解決にする
       update: 更新
       upload: アップロード
@@ -1795,20 +1785,14 @@ ja:
     column:
       action: アクション
       active: アクティブ
-      ai_assistant: AIアシスタント
-      allow_multiple_responses: 複数の回答を許可する
       approval_notification_list: 承認通知ユーザーリスト
       approvers_list: 承認者リスト
-      assessment: 評価
       assessment_name: 評価名
       assessments: アセスメント
-      assessor: アセッサ
       category: カテゴリー
       client: クライアント
-      code: コード
       created_at: 作成日時：
       created_by: 作成者
-      created_date: 作成日
       default_language: デフォルト言語
       description: 説明
       details: 詳細
@@ -1826,11 +1810,8 @@ ja:
         scoring: JSONの採点
       key: キー
       last_name: ラストネーム
-      linked_activities: リンクされた活動
       linked_assessment: 連動アセスメント
-      meeting_link: ミーティングリンク
       modified_by: 変更者
-      modified_date: 変更日
       name: 名称
       owner: オーナー
       package_id: パッケージID
@@ -1846,7 +1827,6 @@ ja:
       scheduling: スケジューリング
       skills: スキル
       status: ステータス
-      tags: タグ
       timing: タイミング
       token: トークン
       type: タイプ
@@ -1858,15 +1838,12 @@ ja:
     messages:
       leave_message: 保存していない回答はすべて失われます。
     model:
-      admins: 管理者
       assessment: 評価
       assessments: アセスメント
       campaigns: キャンペーン
       completion_statuses: 完了状況
-      datasheet: データシート
       report: レポート
       reports: レポート
-      sms_contact: SMSコンタクト
       threesixty_campaign: Threesixtyキャンペーンスコア
     status:
       completed: 完成
@@ -2956,9 +2933,7 @@ ja:
   languages_localized:
     sl: スロヴェンシュチナ
   license_usage:
-    active: アクティブ
     campaign_name: キャンペーン名
-    inactive: 活動休止中
     status_updated_at: 最終更新日
     status_updated_by: 最終更新者
     subject_email: 件名電子メール
@@ -3962,7 +3937,6 @@ ja:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: アクティブ
     allow_multiple_respones: ユーザーが複数の回答を提出できるようにする
     png: PNG
     regenerate_link: リンク再生

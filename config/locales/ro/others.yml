@@ -1648,7 +1648,6 @@ ro:
     details:
       additional_time: Timp suplimentar
       assessment_center: Centrul de evaluare
-      assessment_center_invites: Invitații la centrul de evaluare
       completed_at: Finalizat la
       completion_status: Starea de finalizare
       hogan_id: Hogan ID
@@ -1678,11 +1677,6 @@ ro:
     modals:
       remove: Sigur doriți să eliminați utilizatorul cu e-mail "%{email}" din această campanie?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Evaluările evaluatorului
-      other_assessments: Alte evaluări
-      other_assessor_assessments: Alte evaluări ale evaluatorului
-      other_reports: Alte rapoarte
     card:
       duration: Durată
       starts_in: 'Începe în:'
@@ -1753,23 +1747,19 @@ ro:
       insert: Insera
       'no': Nu
       ok: OK
-      publish: Publicare
       reject: Respinge
       remove: Eliminați
       reset: Resetare
       resolve: Rezolvați
       restore: Restaurare
       return_to_home: Înapoi la Acasă
-      run: Alerga
       save: Salvați
       schedule: Orar
       search: Căutare
-      send: Trimiteți
       sign_in: Conectează-te
       start: Start
       submit: Prezinte
       unarchive: Dezarhivare
-      unpublish: Nepublicați
       unresolve: Nerezolvat
       update: Actualizați
       upload: Încărcare
@@ -1782,20 +1772,14 @@ ro:
     column:
       action: Acțiuni
       active: Active
-      ai_assistant: Asistent AI
-      allow_multiple_responses: Permiteți mai multe răspunsuri
       approval_notification_list: Lista de utilizatori de notificare de aprobare
       approvers_list: Lista de aprobatori
-      assessment: Evaluare
       assessment_name: Numele evaluării
       assessments: Evaluări
-      assessor: Evaluator
       category: Categorie
       client: Client
-      code: Cod
       created_at: Creat la
       created_by: Creat de
-      created_date: Data creării
       default_language: Limba implicită
       description: Descriere
       details: Detalii
@@ -1813,11 +1797,8 @@ ro:
         scoring: Scor JSON
       key: Cheie
       last_name: Nume de familie
-      linked_activities: Activități legate
       linked_assessment: Evaluare legată
-      meeting_link: Link întâlnire
       modified_by: Modificat de
-      modified_date: Data modificării
       name: Nume
       owner: Proprietar
       package_id: ID-ul pachetului
@@ -1833,7 +1814,6 @@ ro:
       scheduling: Programarea
       skills: Aptitudini
       status: Statut
-      tags: Tags
       timing: Calendarul
       token: Simbol
       type: Tip
@@ -1845,15 +1825,12 @@ ro:
     messages:
       leave_message: Sunteți sigur că doriți să părăsiți această pagină? Orice răspuns nesalvat pe care îl aveți se va pierde.
     model:
-      admins: Administratori
       assessment: Evaluare
       assessments: Evaluări
       campaigns: Campanii
       completion_statuses: Statusuri de finalizare
-      datasheet: Fișă tehnică
       report: Raport
       reports: Rapoarte
-      sms_contact: SMS Contact
       threesixty_campaign: Treișaizeci de scoruri de campanie
     status:
       completed: Completat
@@ -2970,9 +2947,7 @@ ro:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Active
     campaign_name: Numele campaniei
-    inactive: Inactivă
     status_updated_at: Ultima actualizare de stare
     status_updated_by: Ultima actualizare de către
     subject_email: Subiectul e-mailului
@@ -3976,7 +3951,6 @@ ro:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Active
     allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri
     png: PNG
     regenerate_link: Regenerați linkul

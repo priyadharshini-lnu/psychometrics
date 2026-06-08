@@ -1642,7 +1642,6 @@ vi:
     details:
       additional_time: Thời gian bổ sung
       assessment_center: Trung tâm đánh giá
-      assessment_center_invites: Lời mời của Trung tâm Đánh giá
       completed_at: Hoàn thành lúc
       completion_status: Trạng thái hoàn thành
       hogan_id: Mã Hogan
@@ -1672,11 +1671,6 @@ vi:
     modals:
       remove: Bạn có chắc chắn muốn xóa người dùng có email '%{email}' khỏi chiến dịch này không?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Đánh giá của người đánh giá
-      other_assessments: Các đánh giá khác
-      other_assessor_assessments: Các đánh giá khác của người đánh giá
-      other_reports: Các báo cáo khác
     card:
       duration: Khoảng thời gian
       starts_in: 'Bắt đầu vào:'
@@ -1747,23 +1741,19 @@ vi:
       insert: Chèn
       'no': Không
       ok: OK
-      publish: Xuất bản
       reject: Bác bỏ
       remove: Di dời
       reset: Cài lại
       resolve: Giải quyết
       restore: Khôi phục
       return_to_home: Trở về nhà
-      run: Chạy
       save: Cứu
       schedule: Lịch
       search: Tìm kiếm
-      send: Gửi
       sign_in: Đăng nhập
       start: Bắt đầu
       submit: Trình
       unarchive: Bỏ lưu trữ
-      unpublish: Hủy đăng
       unresolve: Chưa giải quyết
       update: Cập nhật
       upload: Tải lên
@@ -1776,20 +1766,14 @@ vi:
     column:
       action: Hoạt động
       active: Hoạt động
-      ai_assistant: Trợ lý AI
-      allow_multiple_responses: Cho phép nhiều phản hồi
       approval_notification_list: Danh sách người dùng thông báo phê duyệt
       approvers_list: Danh sách người phê duyệt
-      assessment: Thuế
       assessment_name: Tên đánh giá
       assessments: Đánh giá
-      assessor: Giám định viên
       category: Loại
       client: Khách hàng
-      code: Mã
       created_at: Được tạo ra tại
       created_by: Tạo bởi
-      created_date: Ngày tạo
       default_language: Ngôn ngữ mặc định
       description: Sự miêu tả
       details: Chi tiết
@@ -1807,11 +1791,8 @@ vi:
         scoring: Chấm điểm JSON
       key: Chìa khoá
       last_name: Họ
-      linked_activities: Hoạt động liên kết
       linked_assessment: Đánh giá liên kết
-      meeting_link: Liên kết cuộc họp
       modified_by: Sửa đổi bởi
-      modified_date: Ngày sửa đổi
       name: Tên
       owner: Chủ nhân
       package_id: ID gói
@@ -1827,7 +1808,6 @@ vi:
       scheduling: Lập kế hoạch
       skills: Kỹ năng
       status: Trạng thái
-      tags: Tags
       timing: Thời gian
       token: Token
       type: Kiểu
@@ -1839,15 +1819,12 @@ vi:
     messages:
       leave_message: Bạn có chắc chắn muốn rời khỏi trang này không? Bất kỳ câu trả lời nào chưa được lưu mà bạn có sẽ bị mất.
     model:
-      admins: Quản trị viên
       assessment: Thuế
       assessments: Đánh giá
       campaigns: Chiến dịch
       completion_statuses: Trạng thái hoàn thành
-      datasheet: Bảng dữ liệu
       report: Báo cáo
       reports: Báo cáo
-      sms_contact: Liên hệ SMS
       threesixty_campaign: Điểm chiến dịch Threesixty
     status:
       completed: Hoàn thành
@@ -2964,9 +2941,7 @@ vi:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Hoạt động
     campaign_name: Tên chiến dịch
-    inactive: Không hoạt động
     status_updated_at: Cập nhật trạng thái cuối cùng
     status_updated_by: Cập nhật lần cuối bởi
     subject_email: Email chủ đề
@@ -3970,7 +3945,6 @@ vi:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Hoạt động
     allow_multiple_respones: Cho phép người dùng gửi nhiều câu trả lời
     png: PNG
     regenerate_link: Tái tạo liên kết

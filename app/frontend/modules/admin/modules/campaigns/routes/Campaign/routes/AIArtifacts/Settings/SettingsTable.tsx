@@ -22,25 +22,25 @@ export const SettingsTable: React.FC<Props> = ({ onEditAIArtifact }:Props) => {
     <>
       <Resource.Table pagination>
         <Resource.Column<AiArtifact>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           width={100}
         />
         <Resource.Column<AiArtifact>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           sorter
           width={200}
         />
         <Resource.Column<AiArtifact>
-          title={I18n.t('administration.ai_artifacts.code')}
+          title={I18n.t('shared.code')}
           id="code"
           width={200}
           render={(_, aiArtifact) => <span>{aiArtifact.code}</span>}
         />
         <Resource.Column<AiArtifact>
-          title={I18n.t('common.column.ai_assistant')}
+          title={I18n.t('admin.ai_assistant')}
           id="aiAssistant"
           width={200}
           render={(_, aiArtifact) => (
@@ -48,7 +48,7 @@ export const SettingsTable: React.FC<Props> = ({ onEditAIArtifact }:Props) => {
           )}
         />
         <Resource.Column<AiArtifact>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, aiArtifact) => (
             <Dropdown
@@ -86,7 +86,7 @@ const getActionsMenuProps = ({ aiArtifact, onEditAIArtifact, onDeleteAIArtifact 
           className="ps-0"
           onClick={() => onEditAIArtifact(aiArtifact)}
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     {
@@ -97,7 +97,7 @@ const getActionsMenuProps = ({ aiArtifact, onEditAIArtifact, onDeleteAIArtifact 
           className="ps-0"
           onClick={() => onDeleteAIArtifact(aiArtifact.id)}
         >
-          {I18n.t('common.actions.delete')}
+          {I18n.t('shared.delete')}
         </Button>),
     },
   ].filter(m => m) as MenuItem[]

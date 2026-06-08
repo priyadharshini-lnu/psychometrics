@@ -22,24 +22,24 @@ const menuItems = [
   {
     key: 'mail',
     icon: <MailOutlined />,
-    label: I18n.t('administration.projects.design_settings.tab_text_one'),
+    label: I18n.t('admin.tab_text_one'),
   },
   {
     key: 'SubMenu',
     icon: <SettingOutlined />,
-    label: I18n.t('administration.projects.design_settings.tab_text_two'),
+    label: I18n.t('admin.tab_text_two'),
     children: [
       {
         type: 'group',
-        label: I18n.t('administration.projects.design_settings.submenu_options.option_title'),
+        label: I18n.t('admin.submenu_options_option_title'),
         children: [
           {
             key: 'setting:1',
-            label: I18n.t('administration.projects.design_settings.submenu_options.option_one'),
+            label: I18n.t('admin.submenu_options_option_one'),
           },
           {
             key: 'setting:2',
-            label: I18n.t('administration.projects.design_settings.submenu_options.option_two'),
+            label: I18n.t('admin.submenu_options_option_two'),
           },
         ],
       },
@@ -74,38 +74,38 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
 
         <SplitSpace>
           <Button type="primary" ghost>
-            {I18n.t('administration.projects.design_settings.primary_button')}
+            {I18n.t('admin.primary_button')}
           </Button>
           <Button ghost>
-            {I18n.t('administration.projects.design_settings.default_button')}
+            {I18n.t('admin.default_button')}
           </Button>
           <Button type="dashed" ghost>
-            {I18n.t('administration.projects.design_settings.dashed_button')}
+            {I18n.t('admin.dashed_button')}
           </Button>
           <Button type="primary" ghost danger>
-            {I18n.t('administration.projects.design_settings.primary_button')}
+            {I18n.t('admin.primary_button')}
           </Button>
           <Button ghost danger>
-            {I18n.t('administration.projects.design_settings.default_button')}
+            {I18n.t('admin.default_button')}
           </Button>
           <Button type="dashed" ghost danger>
-            {I18n.t('administration.projects.design_settings.dashed_button')}
+            {I18n.t('admin.dashed_button')}
           </Button>
         </SplitSpace>
         <SplitSpace>
           <Typography.Text type="success">
-            {I18n.t('administration.projects.design_settings.text_success')}
+            {I18n.t('admin.text_success')}
           </Typography.Text>
           <Typography.Text type="warning">
-            {I18n.t('administration.projects.design_settings.text_warning')}
+            {I18n.t('admin.text_warning')}
           </Typography.Text>
           <Typography.Text type="danger">
-            {I18n.t('administration.projects.design_settings.text_danger')}
+            {I18n.t('admin.text_danger')}
           </Typography.Text>
           <Typography.Link href="#" target="_blank">
-            {I18n.t('administration.projects.design_settings.link_text')}
+            {I18n.t('admin.link_text')}
           </Typography.Link>
-          <Typography.Text copyable>{I18n.t('administration.projects.design_settings.copy_text')}</Typography.Text>
+          <Typography.Text copyable>{I18n.t('admin.copy_text')}</Typography.Text>
 
           {/* Dropdown */}
           <Dropdown
@@ -113,11 +113,11 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
               items: [
                 {
                   key: '1',
-                  label: I18n.t('administration.projects.design_settings.hover_options.first_menu_item'),
+                  label: I18n.t('admin.hover_options_first_menu_item'),
                 },
                 {
                   key: '2',
-                  label: I18n.t('administration.projects.design_settings.hover_options.danger_item'),
+                  label: I18n.t('admin.hover_options_danger_item'),
                   danger: true,
                 },
               ],
@@ -126,7 +126,7 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
           >
             <a onClick={e => e.preventDefault()}>
               <Space>
-                {I18n.t('administration.projects.design_settings.hover_text')}
+                {I18n.t('admin.hover_text')}
                 <DownOutlined />
               </Space>
             </a>

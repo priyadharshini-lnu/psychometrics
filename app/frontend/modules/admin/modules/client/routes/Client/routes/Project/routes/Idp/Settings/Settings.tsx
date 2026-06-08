@@ -61,7 +61,7 @@ export const Settings: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
-                {I18n.t('administration.idp_setting.manager_approves_idp')}
+                {I18n.t('admin.idp_setting_manager_approves_idp')}
               </Flex>
               <Flex gap={8} align="center">
                 <Form.Item
@@ -71,7 +71,7 @@ export const Settings: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
-                {I18n.t('administration.idp_setting.manager_can_edit_idp')}
+                {I18n.t('admin.idp_setting_manager_can_edit_idp')}
               </Flex>
               <Flex gap={8} align="center">
 
@@ -82,7 +82,7 @@ export const Settings: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
-                {I18n.t('administration.idp_setting.require_all_development_actions_complete')}
+                {I18n.t('admin.idp_setting_require_all_development_actions_complete')}
               </Flex>
               <Button
                 type="primary"
@@ -91,7 +91,7 @@ export const Settings: React.FC = () => {
                 loading={isLoading}
                 style={{ alignSelf: 'flex-start' }}
               >
-                {I18n.t('administration.save')}
+                {I18n.t('shared.save')}
               </Button>
             </Flex>
           )}

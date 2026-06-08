@@ -39,7 +39,7 @@ const getMenuProps = ({ onClick }: {onClick: (action: string) => void}): MenuPro
 
   menuItems.push({
     key: 'export_results',
-    label: <span>{I18n.t('admin.ai_artifacts_results_export')}</span>,
+    label: <span>{I18n.t('admin.results_export')}</span>,
   })
 
   const handleMenuClick = ({ key }) => {

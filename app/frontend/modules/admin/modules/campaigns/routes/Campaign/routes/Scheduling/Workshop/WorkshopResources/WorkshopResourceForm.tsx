@@ -26,7 +26,7 @@ export const WorkshopResourceForm: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="workshop_resources"
       resource={workshopResource}
-      readableResourceName={I18n.t('administration.scheduling.resources.resource')}
+      readableResourceName={I18n.t('admin.scheduling_resources_resource')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -39,14 +39,14 @@ export const WorkshopResourceForm: React.FC<Props> = ({
           <Form.Item hidden name="workshopId" rules={[{ required: true }]}><Input.TextArea /></Form.Item>
           <Form.Item
             name="name"
-            label={I18n.t('administration.scheduling.columns.resource_name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input.TextArea name="workshop_resource_name" />
           </Form.Item>
           <Form.Item
             name="url"
-            label={I18n.t('administration.scheduling.columns.resource_link')}
+            label={I18n.t('admin.scheduling_columns_resource_link')}
             rules={[{ required: true }]}
           >
             <Input.TextArea />

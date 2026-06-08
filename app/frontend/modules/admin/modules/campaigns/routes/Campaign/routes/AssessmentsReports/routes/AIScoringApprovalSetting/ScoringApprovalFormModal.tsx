@@ -205,7 +205,7 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
             className="mb24"
             items={[{
               key: '1',
-              label: I18n.t('administration.campaigns.assessment_reports.report_approval.settings'),
+              label: I18n.t('admin.report_approval_settings'),
               children: (
                 <Space direction="vertical" size="middle">
                   <Space align="center">
@@ -267,7 +267,7 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
                         <Switch />
                       </Form.Item>
                       <div className="weight-600">
-                        {I18n.t('administration.campaigns.assessment_reports.report_approval.send_digest_emails')}
+                        {I18n.t('admin.report_approval_send_digest_emails')}
                       </div>
                     </Space>
                   )}
@@ -341,14 +341,14 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
                       )}
                       <Form.Item
                         name="digestTime"
-                        label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_time')}
+                        label={I18n.t('admin.report_approval_digest_time')}
                         rules={[{ required: sendDigestEmails }]}
                       >
                         <TimePicker format="hh:mm A" use12Hours />
                       </Form.Item>
                       <Form.Item
                         name="digestTimezone"
-                        label={I18n.t('administration.campaigns.assessment_reports.report_approval.digest_timezone')}
+                        label={I18n.t('admin.report_approval_digest_timezone')}
                         rules={[{
                           required: sendDigestEmails && digestDeliveryMode === 'scheduled',
                         }]}

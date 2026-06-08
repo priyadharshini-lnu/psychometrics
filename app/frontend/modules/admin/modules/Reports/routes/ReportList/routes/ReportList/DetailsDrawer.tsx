@@ -45,16 +45,16 @@ export const DetailsDrawer: FC<Props> = ({
           >
             {report.id}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.active')} key="active" className="va-t">
-            {report.disabled ? I18n.t('administration.common.disabled') : I18n.t('administration.common.enabled')}
+          <Descriptions.Item label={I18n.t('shared.active')} key="active" className="va-t">
+            {report.disabled ? I18n.t('admin.common_disabled') : I18n.t('admin.common_enabled')}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.name')} key="name" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.name')} key="name" className="va-t">
             {report.name}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.description')} key="name" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.description')} key="name" className="va-t">
             {report.description || '-'}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.icon')} key="icon" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.icon')} key="icon" className="va-t">
             <ResourceAvatar
               url={report.iconUrl}
               color={report.iconColor}
@@ -84,7 +84,7 @@ export const DetailsDrawer: FC<Props> = ({
               ))}
             </Avatar.Group>
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.owner')} key="owner" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.owner')} key="owner" className="va-t">
             {report.owner?.name}
           </Descriptions.Item>
           {report.externalReport && (
@@ -96,20 +96,20 @@ export const DetailsDrawer: FC<Props> = ({
               {report.externalSettings?.reportId}
             </Descriptions.Item>
           )}
-          <Descriptions.Item label={I18n.t('common.column.updated_at')} key="updated_at" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.last_updated')} key="updated_at" className="va-t">
             {report.updatedAt}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.created_by')} key="created_by" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.created_by')} key="created_by" className="va-t">
             {report.createdBy}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.created_at')} key="created_at" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.created_at')} key="created_at" className="va-t">
             {report.createdAt}
           </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.modified_by')} key="modified_by" className="va-t">
+          <Descriptions.Item label={I18n.t('shared.modified_by')} key="modified_by" className="va-t">
             {report.modifiedBy}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('reports.columns.data_only')} key="data_only" className="va-t">
-            {report.dataOnly ? I18n.t('administration.common.enabled') : I18n.t('administration.common.disabled')}
+            {report.dataOnly ? I18n.t('admin.common_enabled') : I18n.t('admin.common_disabled')}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('reports.fields.provider.custom_upload')}
@@ -118,7 +118,7 @@ export const DetailsDrawer: FC<Props> = ({
           >
             {
               report.provider === 'custom_upload'
-                ? I18n.t('administration.common.enabled') : I18n.t('administration.common.disabled')
+                ? I18n.t('admin.common_enabled') : I18n.t('admin.common_disabled')
             }
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('reports.columns.default_language')} key="default_language" className="va-t">

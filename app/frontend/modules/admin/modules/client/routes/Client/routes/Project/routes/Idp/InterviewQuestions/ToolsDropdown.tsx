@@ -19,7 +19,7 @@ export const ToolsDropdown: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.tools')}</span>
+        <span>{I18n.t('admin.tools')}</span>
         <DownOutlined />
       </Button>
       )}
@@ -34,14 +34,14 @@ const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   if (permissions?.import) {
     menuItems.push({
       key: 'import',
-      label: I18n.t('administration.interview_questions.import.action'),
+      label: I18n.t('admin.interview_questions_import_action'),
     })
   }
 
   if (permissions?.export) {
     menuItems.push({
       key: 'export',
-      label: I18n.t('administration.interview_questions.export.action'),
+      label: I18n.t('admin.interview_questions_export_action'),
     })
   }
 

@@ -88,13 +88,13 @@ const AssessmentList: React.FC<Props> = ({
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('administration.assessor.assessments.bulk_delete_confirmation'),
+      content: I18n.t('admin.assessor_assessments_bulk_delete_confirmation'),
       okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds || [])
         await fetch(parsedCampaignId, parsedAssessorId, tableConfig)
-        message.success(I18n.t('administration.assessor.assessments.bulk_delete_successful'))
+        message.success(I18n.t('admin.assessor_assessments_bulk_delete_successful'))
       },
     })
   }
@@ -104,7 +104,7 @@ const AssessmentList: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('common.model.assessments')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('admin.assessments')}`}</span>
         </Col>
         <div className="float-r">
           <div className={styles.newReportButton}>
@@ -118,11 +118,11 @@ const AssessmentList: React.FC<Props> = ({
                   disabled={bulkDeleteInProgress}
                   loading={bulkDeleteInProgress}
                 >
-                  <span>{I18n.t('common.actions.remove')}</span>
+                  <span>{I18n.t('shared.remove')}</span>
                 </Button>
               )}
               <Search
-                placeholder={I18n.t('common.actions.search')}
+                placeholder={I18n.t('shared.search')}
                 className={styles.searchInput}
                 value={filters.filterableFields}
                 onChange={e => changeFilter('filterBySubjectOrAssessment', e.target.value)}
@@ -133,7 +133,7 @@ const AssessmentList: React.FC<Props> = ({
                   onClick={() => openModal('AddAssessmentModal')}
                 >
                   <PlusOutlined />
-                  <span>{I18n.t('administration.assessor.assessments.actions.add_subject')}</span>
+                  <span>{I18n.t('admin.assessor_assessments_actions_add_subject')}</span>
                 </Button>
               )}
             </Space>
@@ -151,36 +151,36 @@ const AssessmentList: React.FC<Props> = ({
             rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
           >
             <Column
-              title={I18n.t('common.column.id')}
+              title={I18n.t('shared.id')}
               dataIndex="id"
               sorter
               sortOrder={getSortOrder('id')}
               key="id"
             />
             <Column
-              title={I18n.t('administration.assessor.assessments.subject_name')}
+              title={I18n.t('admin.assessor_assessments_subject_name')}
               dataIndex="subjectName"
               sorter
               sortOrder={getSortOrder('subjectName')}
               key="subjectName"
             />
             <Column
-              title={I18n.t('administration.assessor.assessments.subject_email')}
+              title={I18n.t('admin.assessor_assessments_subject_email')}
               dataIndex="subjectEmail"
               key="subjectEmail"
             />
             <Column
-              title={I18n.t('campaign_assessment.column.assessment_name')}
+              title={I18n.t('shared.assessment_name')}
               key="assessmentName"
               dataIndex="assessmentName"
             />
             <Column
-              title={I18n.t('common.column.status')}
+              title={I18n.t('shared.status')}
               key="status"
               render={({ status }) => I18n.t(`campaign_assessment.statuses.${status}`)}
             />
             <Column
-              title={I18n.t('common.column.action')}
+              title={I18n.t('shared.action')}
               key="action"
               render={({ subjectEmail, id, permissions }) => (
                 <ConditionalDropdown
@@ -239,48 +239,48 @@ const getActionsMenuProps = ({
 }: ActionsMenuData): MenuProps => {
   const handleReset = () => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('administration.assessor.assessments.reset_confirmation', { subjectEmail }),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      content: I18n.t('admin.assessor_assessments_reset_confirmation', { subjectEmail }),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         reset()
-        message.success(I18n.t('administration.assessor.assessments.reset_successfully', { subjectEmail }))
+        message.success(I18n.t('admin.assessor_assessments_reset_successfully', { subjectEmail }))
       },
     })
   }
 
   const handleResetProgress = () => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('administration.assessor.assessments.reset_progress_confirmation', { subjectEmail }),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      content: I18n.t('admin.assessor_assessments_reset_progress_confirmation', { subjectEmail }),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         resetProgress()
-        message.success(I18n.t('administration.assessor.assessments.reset_progress_successfully', { subjectEmail }))
+        message.success(I18n.t('admin.assessor_assessments_reset_progress_successfully', { subjectEmail }))
       },
     })
   }
 
   const menuItems: MenuItem[] = []
   if (permissions.resetEvaluation) {
-    menuItems.push({ key: 'reset', label: I18n.t('administration.assessor.assessments.actions.reset') })
+    menuItems.push({ key: 'reset', label: I18n.t('admin.assessor_assessments_actions_reset') })
   }
   if (permissions.resetProgress) {
     menuItems.push({
       key: 'resetProgress',
-      label: I18n.t('administration.assessor.assessments.actions.reset_progress'),
+      label: I18n.t('admin.assessor_assessments_actions_reset_progress'),
     })
   }
   if (permissions.rescore) {
-    menuItems.push({ key: 'rescore', label: I18n.t('administration.assessor.assessments.actions.rescore') })
+    menuItems.push({ key: 'rescore', label: I18n.t('admin.assessor_assessments_actions_rescore') })
   }
 
 

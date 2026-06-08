@@ -205,7 +205,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
       onSuccess()
     } catch (error) {
       console.error('Library creation failed', error)
-      message.error(I18n.t('administration.dashboard_form.image_upload_failed'))
+      message.error(I18n.t('admin.dashboard_form_image_upload_failed'))
     } finally {
       setIsSubmitting(false)
     }

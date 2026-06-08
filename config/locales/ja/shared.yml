@@ -18,6 +18,7 @@ ja:
     assessment_id: 評価ID
     assessment_list: 評価リスト
     assessment_name: 評価名
+    assessor: アセッサ
     assessor_approved: 査定者承認済み
     assessors_list: 評価者リスト
     asset_not_present: 資産が存在しません
@@ -26,15 +27,18 @@ ja:
     authentication_failed: 認証に失敗しました。もう一度お試しください。
     back: 戻る
     basic: 基本的な
+    bulk_download: 一括ダウンロード
     camera: カメラ
     camera_preview: カメラのプレビューはここに表示されます
     campaign: キャンペーン
     campaign_id: キャンペーンID
     cancel: キャンセル
+    category: カテゴリー
     change_password: パスワードの変更
     clear_filters: 絞り込みをクリア
     client: クライアント
     close: 閉じる
+    code: コード
     collaborative_learning: 協働学習
     completed: 完了
     configurations: 構成
@@ -43,11 +47,13 @@ ja:
     controller: コントローラー
     cookie_notice: クッキーに関するお知らせ
     cookies_statement: クッキーに関する声明
+    copied: クリップボードにコピー
     copied_successfully: コピーされました
     copied_to_clipboard: クリップボードにコピーされました
     copy: コピー
     create: 作成
     created_at: 作成日時：
+    created_by: 作成者
     created_date: 作成日
     created_successfully: 作成に成功しました
     custom_acknowledgment_text: カスタム謝辞テキスト
@@ -55,11 +61,14 @@ ja:
     custom_consent_text: カスタム同意文
     custom_consent_text_required: コントローラーのデータロールにはカスタム同意テキストが必要です
     data_role: データ役割
+    datasheet: データシート
     decline: 衰退
+    default: デフォルト
     delete: 削除
     description: 形容
     desktop_or_laptop_recommended: デスクトップまたはノートパソコンが推奨されます
     desktop_or_laptop_required: デスクトップまたはノートパソコンが必要です
+    dimension: 寸法
     disabled: 無効
     discard: 破棄
     download: ダウンロード
@@ -69,6 +78,7 @@ ja:
     edit: 編集
     edited: 新規
     email: Eメール
+    end_date: 終了日
     ending_proctoring_session_msg: 試験監督セッションを終了します。<p>回答内容を保存し、ホームページに戻るまでしばらくお待ちください。</p>
     error: エラー
     export: 輸出
@@ -83,11 +93,17 @@ ja:
     generating: 生成
     group_question_max_validation_error: 各グループは最大で{{max}}アイテムを含めることができます。
     group_question_min_validation_error: 各グループには少なくとも{{min}}のアイテムが含まれている必要があります。
+    icon: アイコン
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDPアシスタントはミスを犯すことがあります。回答を使う際はご注意ください。
+    import: 輸入
+    inactive: 活動休止中
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
     last_name: 姓
+    last_updated: 最終更新日
     learning_on_the_job_label: 現場での学び
+    linked_activities: リンクされた活動
+    linked_assessment: 連動アセスメント
     loading: 読み込み中...
     login: ログイン
     maintenance_in_hours: "%{hours} 時間"
@@ -97,11 +113,13 @@ ja:
     maintenance_time_remaining: 残り時間
     maintenance_upcoming_description: "%{date} では、ご利用体験の向上を目的として、約 %{duration} の間、定期メンテナンスを実施いたします。この間、割り当てられたタスクへのアクセスや完了はできません。ご不便をおかけしますが、何卒ご了承ください。"
     maintenance_upcoming_title: 今後のメンテナンス
+    manage: 管理
     manage_cookies: Cookieの設定
     media_id: メディアID
     media_preview: メディア向けプレビュー
     media_question_transcriptions: メディア質問の文字起こし
     media_responses: メディアの反応
+    meeting_link: ミーティングリンク
     microphones: マイク
     mobile_proctoring_disabled_instructions: この評価を続けるにはデスクトップまたはノートパソコンが必要です。活動を完了するにはコンピューターに切り替えてください。
     mobile_proctoring_enabled_instructions: 最適な体験のため、ご利用可能な場合はデスクトップまたはノートパソコンに切り替えてください。必要に応じてモバイル端末でのご利用も可能です。
@@ -115,7 +133,9 @@ ja:
     new: 新規
     next: 次へ
     no_audio_warning: 音声が検出されません。マイクが接続され、正常に動作しているかご確認ください。
+    no_data_found: データなし
     no_results_found: 検索結果が見つかりませんでした
+    none: なし
     not_requested: まだリクエストされていません
     ok: OK
     options: オプション
@@ -130,6 +150,7 @@ ja:
     proctoring_maintenance_active: プロクターリングは現在、%{start_time} から %{end_time} へのメンテナンス中です。メンテナンス終了後、再度お試しください。
     proctoring_maintenance_upcoming: プロクターリングは、%{start_time} から %{end_time} までメンテナンスを行います。
     project: プロジェクト
+    publish: 出版
     question: 質問
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
@@ -142,20 +163,27 @@ ja:
     remove: 削除
     removed: 削除
     replace: 置換
+    required: 必須
+    reset: リセット
     reset_password: パスワードをリセット
     response_text: 応答テキスト
     rte_paste_content_exceeds_char_limit: テキストは{{maxCharacterLimit}}の文字数制限を超えており、貼り付けができません。
     rte_paste_content_exceeds_word_limit: テキストは{{maxWordLimit}}のワード制限を超えており、貼り付けができません。
+    run: 走る
     save: 保存
     saving_video: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
+    schedule_time: スケジュール時間
     scoring_details: 得点詳細
     search: 検索
     select_camera: カメラを選択してください
+    select_language: 言語の選択
     select_microphone: マイクを選択してください
+    send: 送信
     send_email: 電子メールを送信する
     show_more: 続きを表示
     something_wrong: 管理者に連絡してください。
     speakers: 登壇者
+    start_date: 開始日
     status: ステータス
     status_unknown: 状況不明
     subject: 件名
@@ -172,6 +200,7 @@ ja:
           one: 合計：1
           other: 合計：1
           zero: 合計：0
+    tags: タグ
     terms_conditions_privacy: プライバシーに関する声明
     tools: ツール
     transcription: 文字起こし
@@ -183,10 +212,12 @@ ja:
     try_again: もう一度試す
     tte_terms_and_condition: 利用規約とプライバシー
     type: タイプ
+    unpublish: 未発表
     update: 更新
     update_failed: 更新に失敗しました
     updated_at: 更新日時
     updated_successfully: 更新に成功しました
+    upload: アップロード
     user_report_pdf_url_not_generated: PDFのダウンロードリンクを生成できませんでした
     video: 動画
     view: 表示

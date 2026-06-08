@@ -50,27 +50,27 @@ export const FactorTranslationsModal: React.FC<Props> = ({ close }) => {
       message.success(I18n.t('admin.dimension_translations_export_scheduled', { name: dimension?.name }))
       close()
     } catch (_error) {
-      message.error(I18n.t('administration.errors.error_msg'))
+      message.error(I18n.t('admin.errors_error_msg'))
     }
   }
 
   return (
     <ImportModal
-      title={I18n.t('administration.dimensions.translations.header')}
+      title={I18n.t('admin.dimensions_translations_header')}
       validateEndpoint=""
       importEndpoint=""
       translations={{
-        cancel: I18n.t('administration.close'),
-        import: I18n.t('administration.dimensions.translations.import'),
+        cancel: I18n.t('shared.close'),
+        import: I18n.t('shared.import'),
       }}
       fileLabel={I18n.t('admin.translations.title')}
-      fileErrorMessage={I18n.t('administration.errors.csv_file_required')}
+      fileErrorMessage={I18n.t('admin.errors_csv_file_required')}
       fileAccept=".csv,.xlsx,.xls"
       showMappableFields={false}
       skipValidation
       submitFileImport={submitFileImport}
-      successMessage={I18n.t('administration.dimensions.import_modal.import_scheduled')}
-      topActionLabel={I18n.t('administration.dimensions.translations.export')}
+      successMessage={I18n.t('admin.dimensions_import_modal_import_scheduled')}
+      topActionLabel={I18n.t('admin.dimensions_translations_export')}
       onTopAction={handleExportAll}
       onClose={close}
     />

@@ -30,7 +30,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
 
   const handleTestRender = async () => {
     if (!value || !campaignId) {
-      message.warning(I18n.t('admin.ai_assistants_template_and_campaign_required'))
+      message.warning(I18n.t('admin.template_and_campaign_required'))
       return
     }
 
@@ -50,7 +50,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
       if (error.base) {
         setRenderedOutput(error.base[0]?.detail)
       }
-      message.error(I18n.t('admin.ai_assistants_template_render_failed'))
+      message.error(I18n.t('admin.template_render_failed'))
     } finally {
       setIsRendering(false)
     }
@@ -73,11 +73,11 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
         title={(
           <Row align="middle" gutter={8}>
             <Col>
-              {I18n.t('admin.ai_assistants_test_render')}
+              {I18n.t('admin.test_render')}
             </Col>
             <Col>
               <Tooltip
-                title={I18n.t('admin.ai_assistants_test_render_tooltip')}
+                title={I18n.t('admin.test_render_tooltip')}
               >
                 <span><InfoCircleOutlined style={{ cursor: 'pointer', color: '#1890ff' }} /></span>
               </Tooltip>
@@ -96,7 +96,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
                   style={{ width: 'auto', cursor: 'default' }}
                 />
                 <Input
-                  placeholder={I18n.t('admin.ai_assistants_campaign_id_placeholder')}
+                  placeholder={I18n.t('admin.campaign_id_placeholder')}
                   value={campaignId}
                   onChange={e => setCampaignId(e.target.value)}
                 />
@@ -111,7 +111,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
               loading={isRendering}
               disabled={!value || !campaignId}
             >
-              {I18n.t('admin.ai_assistants_render_button')}
+              {I18n.t('admin.render_button')}
             </Button>
           </Col>
         </Row>
@@ -119,7 +119,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
         {(renderedOutput || isRendering) && (
           <div className={styles['advanced-prompt-editor-rendered-output']}>
             <Typography.Text strong className={styles['advanced-prompt-editor-output-label']}>
-              {I18n.t('admin.ai_assistants_rendered_prompt')}
+              {I18n.t('admin.rendered_prompt')}
               :
             </Typography.Text>
             <div className={styles['advanced-prompt-editor-output-content']}>
@@ -128,7 +128,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
                   <Spin />
                 </div>
               ) : (
-                renderedOutput || I18n.t('admin.ai_assistants_no_rendered_output')
+                renderedOutput || I18n.t('admin.no_rendered_output')
               )}
             </div>
           </div>

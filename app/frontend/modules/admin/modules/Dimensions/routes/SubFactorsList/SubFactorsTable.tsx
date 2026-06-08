@@ -28,35 +28,35 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
   <>
     <Resource.Table pagination>
       <Resource.Column<SubFactors>
-        title={I18n.t('common.column.id')}
+        title={I18n.t('shared.id')}
         id="id"
         sorter
         render={subFact => subFact?.id}
         width={100}
       />
       <Resource.Column<SubFactors>
-        title={I18n.t('common.column.name')}
+        title={I18n.t('shared.name')}
         id="name"
         sorter
         render={subFact => subFact.factorName}
         width={200}
       />
       <Resource.Column<SubFactors>
-        title={I18n.t('administration.occupations_factors.list.condition')}
+        title={I18n.t('admin.occupations_factors_list_condition')}
         id="condition"
         sorter
         render={subFact => CONDITION_MAP[subFact.predicate]}
         width={300}
       />
       <Resource.Column<SubFactors>
-        title={I18n.t('administration.occupations_factors.list.position')}
+        title={I18n.t('admin.occupations_factors_list_position')}
         id="position"
         sorter
         render={subFact => subFact.position}
         width={300}
       />
       <Resource.Column<SubFactors>
-        title={I18n.t('common.column.created_at')}
+        title={I18n.t('shared.created_at')}
         id="created_at"
         dataIndex="createdAt"
         render={createdAt => (
@@ -65,7 +65,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
         width={200}
       />
       <Resource.Column<SubFactors>
-        title={I18n.t('common.column.updated_at')}
+        title={I18n.t('shared.last_updated')}
         id="updated_at"
         dataIndex="updatedAt"
         render={updatedAt => (
@@ -74,7 +74,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
         width={200}
       />
       <Resource.Column<SubFactors>
-        title={I18n.t('common.column.action')}
+        title={I18n.t('shared.action')}
         id="action"
         render={(_, subFact) => (
           <Dropdown
@@ -110,7 +110,7 @@ const getActionsMenuProps = ({ subFact, openModal, slug }: DropDownProps): MenuP
           onClick={() => openModal('SubFactorsFormModal', { subFact, slug })}
           className="ps-0"
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     subFact && {
@@ -121,7 +121,7 @@ const getActionsMenuProps = ({ subFact, openModal, slug }: DropDownProps): MenuP
           onClick={() => openModal('RemoveSubFactorsModal', { subFact, slug })}
           className="ps-0"
         >
-          {I18n.t('common.actions.remove')}
+          {I18n.t('shared.remove')}
         </Button>),
     },
   ].filter(m => m) as ItemType[]

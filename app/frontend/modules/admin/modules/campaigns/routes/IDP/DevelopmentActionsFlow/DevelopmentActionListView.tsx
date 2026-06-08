@@ -185,7 +185,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
           >
             <Flex flex={1}>
               <Typography.Text className="font-semi-bold">
-                {I18n.t('administration.idp.development_actions.heading')}
+                {I18n.t('admin.idp_development_actions_heading')}
               </Typography.Text>
             </Flex>
             <Flex flex={1}>
@@ -194,7 +194,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
                 className="ms-4"
               >
                 <Typography.Text className="font-semi-bold">
-                  {I18n.t('administration.idp.development_actions.date_range')}
+                  {I18n.t('admin.idp_development_actions_date_range')}
                 </Typography.Text>
               </Flex>
               <Flex
@@ -202,7 +202,7 @@ export const DevelopmentActionListView: React.FC<DevelopmentActionListViewProps>
                 className="ms-4"
               >
                 <Typography.Text className="font-semi-bold">
-                  {I18n.t('administration.idp.development_actions.completion')}
+                  {I18n.t('admin.idp_development_actions_completion')}
                 </Typography.Text>
               </Flex>
             </Flex>

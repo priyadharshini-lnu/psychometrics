@@ -25,7 +25,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
     <>
       <Resource.Table pagination>
         <Resource.Column<Skill>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={skill => (
@@ -34,7 +34,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           width={150}
         />
         <Resource.Column<Skill>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           render={(_, skill) => (
             <>
@@ -52,7 +52,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           sorter
         />
         <Resource.Column<Skill>
-          title={I18n.t('administration.skills.columns.skill_type')}
+          title={I18n.t('admin.skills_columns_skill_type')}
           id="skill_type"
           width={200}
           render={skill => <Typography.Text>{getLabelForEnumValue(SkillTypeEnum, skill.skillType)}</Typography.Text>}
@@ -64,20 +64,20 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
           filteredValue={resource.getFilteredValue('skill_type_in') as string[]}
         />
         <Resource.Column<Skill>
-          title={I18n.t('administration.skills.columns.skill_group')}
+          title={I18n.t('admin.skills_columns_skill_group')}
           id="skillGroupId"
           render={skill => <Typography.Text>{skill.skillGroup?.name}</Typography.Text>}
           minWidth={200}
           sorter
         />
         <Resource.Column<Skill>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.last_updated')}
           id="updated_at"
           width={200}
           sorter
         />
         <Resource.Column<Skill>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, skill) => (
             <Dropdown
@@ -112,7 +112,7 @@ const getActionsMenuProps = ({ skill, openModal }: ActionMenuData):MenuProps => 
   const menuItems = [
     skill && {
       key: 'edit',
-      label: I18n.t('common.actions.edit'),
+      label: I18n.t('shared.edit'),
       onClick: () => openModal(skill),
     },
   ].filter(m => m) as MenuItem[]

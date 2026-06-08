@@ -83,14 +83,14 @@ export const WorkshopPage: FC = () => {
   const cancellationTooltip = (workshop: Workshop) => {
     const date = dayjs(workshop.startTime)
       .subtract(workshop.cancellationLeadTime, 's')
-    return (I18n.t('administration.scheduling.info.cancellation_tooltip',
+    return (I18n.t('admin.scheduling_info_cancellation_tooltip',
       { date: `${date.format('DD/MM/YYYY hh:mm A')} ${date.format(' (z)')}` }))
   }
 
   const schedulingTooltip = (workshop: Workshop) => {
     const date = dayjs(workshop.startTime)
       .subtract(workshop.schedulingLeadTime, 's')
-    return (I18n.t('administration.scheduling.info.scheduling_tooltip',
+    return (I18n.t('admin.scheduling_info_scheduling_tooltip',
       { date: `${date.format('DD/MM/YYYY hh:mm A')} ${date.format(' (z)')}` }))
   }
 
@@ -104,22 +104,22 @@ export const WorkshopPage: FC = () => {
 
   const items: DescriptionsProps['items'] = [
     {
-      label: I18n.t('administration.scheduling.info.date'),
+      label: I18n.t('admin.scheduling_info_date'),
       children: <DateTimeWithZone dateString={workshop.startTime} />,
       span: {
         sm: 2,
       },
     },
     {
-      label: I18n.t('administration.scheduling.info.duration'),
+      label: I18n.t('admin.scheduling_info_duration'),
       children: `${secondsToDayHoursAndMinutes(workshop.duration)}`,
     },
     {
-      label: I18n.t('common.column.status'),
+      label: I18n.t('shared.status'),
       children: (
         <>
           <Tag color={STATUS_TAG_COLOR[workshop.status]}>
-            {I18n.t(`administration.workshop.statuses.${workshop.status}`)}
+            {I18n.t(`admin.workshop_statuses_${workshop.status}`)}
           </Tag>
           <Button type="link" onClick={() => setOpenChangeStatusModal(true)} className="p-0">
             {I18n.t('common.actions.change')}
@@ -128,29 +128,29 @@ export const WorkshopPage: FC = () => {
       ),
     },
     {
-      label: I18n.t('administration.scheduling.info.booked'),
+      label: I18n.t('admin.scheduling_info_booked'),
       children: `${workshop.bookedSeats}`,
     },
     {
-      label: I18n.t('administration.scheduling.info.remaining'),
+      label: I18n.t('admin.scheduling_info_remaining'),
       children: `${workshop.remainingSeats}`,
     },
     {
-      label: I18n.t('administration.scheduling.info.campaign_assessment_group'),
+      label: I18n.t('admin.scheduling_info_campaign_assessment_group'),
       children: `${workshop.campaignAssessmentGroup?.name}`,
       span: {
         sm: 2,
       },
     },
     {
-      label: I18n.t('administration.scheduling.info.link'),
+      label: I18n.t('admin.scheduling_info_link'),
       children: (
         <>
           {workshop.meetingLink ? (
             <Space>
               {/* deepcode ignore DOMXSS: We are using sanitized url from our own backend */}
               <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
-                {I18n.t('administration.scheduling.info.join_meeting')}
+                {I18n.t('admin.scheduling_info_join_meeting')}
               </a>
               <CopyToClipboard
                 text={workshop.meetingLink}
@@ -159,23 +159,23 @@ export const WorkshopPage: FC = () => {
                 <CopyOutlined />
               </CopyToClipboard>
             </Space>
-          ) : I18n.t('administration.scheduling.info.none')}
+          ) : I18n.t('admin.scheduling_info_none')}
         </>),
     },
     {
-      label: I18n.t('administration.scheduling.info.timezone'),
+      label: I18n.t('admin.scheduling_info_timezone'),
       children: `${workshop.timezone}`,
     },
     {
-      label: I18n.t('administration.scheduling.info.managers'),
+      label: I18n.t('admin.scheduling_info_managers'),
       children: <ResourcesTag resources={workshop.workshopManagers} />,
     },
     {
-      label: I18n.t('administration.scheduling.info.assessors'),
+      label: I18n.t('admin.scheduling_info_assessors'),
       children: <ResourcesTag resources={workshop.workshopAssessors} />,
     },
     {
-      label: I18n.t('administration.scheduling.info.scheduling_lead_time'),
+      label: I18n.t('admin.scheduling_info_scheduling_lead_time'),
       children: (
         <Flex gap={4}>
           <span>
@@ -196,12 +196,12 @@ export const WorkshopPage: FC = () => {
       ),
     },
     {
-      label: I18n.t('administration.scheduling.info.cancellation_lead_time'),
+      label: I18n.t('admin.scheduling_info_cancellation_lead_time'),
       children: (
         <Flex gap={4}>
           <span>
             { workshop.disableCancellationAndRescheduling
-              ? I18n.t('administration.scheduling.info.not_allowed')
+              ? I18n.t('admin.scheduling_info_not_allowed')
               : secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)
             }
           </span>
@@ -219,11 +219,11 @@ export const WorkshopPage: FC = () => {
         </Flex>),
     },
     {
-      label: I18n.t('administration.scheduling.info.late_cancellation_and_scheduling'),
+      label: I18n.t('admin.scheduling_info_late_cancellation_and_scheduling'),
       children: (
         <>
-          {workshop.allowLateCancellationAndRescheduling ? I18n.t('administration.scheduling.info.allowed')
-            : I18n.t('administration.scheduling.info.not_allowed')}
+          {workshop.allowLateCancellationAndRescheduling ? I18n.t('admin.scheduling_info_allowed')
+            : I18n.t('admin.scheduling_info_not_allowed')}
         </>
       ),
       span: {
@@ -246,7 +246,7 @@ export const WorkshopPage: FC = () => {
               {workshop.videoRecordingEnabled
                 && (
                   <Tag color={STATUS_TAG_COLOR.open}>
-                    {I18n.t('administration.scheduling.info.recording_enabled')}
+                    {I18n.t('admin.scheduling_info_recording_enabled')}
                   </Tag>
                 )
               }
@@ -278,11 +278,11 @@ export const WorkshopPage: FC = () => {
         <div>
           <div className={styles.controls}>
             <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
-              <Radio.Button value="subjects">{I18n.t('administration.scheduling.tabs.subjects')}</Radio.Button>
-              <Radio.Button value="resources">{I18n.t('administration.scheduling.tabs.resources')}</Radio.Button>
-              <Radio.Button value="activities">{I18n.t('administration.scheduling.tabs.activities')}</Radio.Button>
+              <Radio.Button value="subjects">{I18n.t('admin.scheduling_tabs_subjects')}</Radio.Button>
+              <Radio.Button value="resources">{I18n.t('admin.scheduling_tabs_resources')}</Radio.Button>
+              <Radio.Button value="activities">{I18n.t('admin.scheduling_tabs_activities')}</Radio.Button>
               {workshop.meta?.permissions?.viewRecordings && (
-                <Radio.Button value="recordings">{I18n.t('administration.scheduling.tabs.recordings')}</Radio.Button>
+                <Radio.Button value="recordings">{I18n.t('admin.scheduling_tabs_recordings')}</Radio.Button>
               )}
             </Radio.Group>
           </div>

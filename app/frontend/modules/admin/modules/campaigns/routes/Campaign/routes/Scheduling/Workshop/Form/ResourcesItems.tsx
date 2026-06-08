@@ -41,33 +41,33 @@ export const ResourcesItems: React.FC<Props> = ({
       {showMeetigOption && (
         <>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
+            label={I18n.t('admin.video_call_type_label')}
             {...fieldLayout}
             name={fieldName !== undefined ? [fieldName, 'video_call_type'] : 'video_call_type'}
             rules={[{ required: true }]}
           >
             <Radio.Group onChange={e => setVideoCallType(e.target.value)}>
               <Radio value={0}>
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.none')}
+                {I18n.t('admin.video_call_type_none')}
               </Radio>
               <Radio value={1}>
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.internal')}
+                {I18n.t('admin.video_call_type_internal')}
               </Radio>
               <Radio value={2}>
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.custom')}
+                {I18n.t('admin.video_call_type_custom')}
               </Radio>
             </Radio.Group>
           </Form.Item>
           {videoCallType === 2 && (
             <Form.Item
-              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
+              label={I18n.t('admin.meeting_link')}
               name={fieldName !== undefined ? [fieldName, 'meeting_link'] : 'meeting_link'}
               {...fieldLayout}
               rules={[{ required: true },
-                { type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url') },
+                { type: 'url', message: I18n.t('admin.scheduling_errors_invalid_url') },
                 {
                   pattern: /^https:\/\/(.*)/,
-                  message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+                  message: I18n.t('admin.scheduling_errors_meeting_link_https'),
                 }]}
             >
               <Input />
@@ -76,7 +76,7 @@ export const ResourcesItems: React.FC<Props> = ({
         </>
       )}
       <Title level={5}>
-        {I18n.t('administration.scheduling.assessment_center_form.resources_panel.title')}
+        {I18n.t('admin.resources_panel_title')}
       </Title>
       <Form.List
         name={fieldName !== undefined ? [fieldName, 'workshop_resources'] : 'workshop_resources'}
@@ -92,7 +92,7 @@ export const ResourcesItems: React.FC<Props> = ({
             })
             return valid ? Promise.resolve()
               : Promise.reject(new Error(
-                I18n.t('administration.scheduling.assessment_center_form.resources_panel.validation_error'),
+                I18n.t('admin.resources_panel_validation_error'),
               ))
           },
         }]}
@@ -105,12 +105,12 @@ export const ResourcesItems: React.FC<Props> = ({
                   <Form.Item
                     {...field}
                     name={[field.name, 'name']}
-                    label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
+                    label={I18n.t('shared.name')}
                     {...fieldLayout}
                   >
                     <Input placeholder={
                       I18n.t(
-                        'administration.scheduling.assessment_center_form.resources_panel.resource_name_placeholder',
+                        'admin.resources_panel_resource_name_placeholder',
                       )}
                     />
                   </Form.Item>
@@ -119,7 +119,7 @@ export const ResourcesItems: React.FC<Props> = ({
                   <Form.Item
                     {...field}
                     name={[field.name, 'url']}
-                    label={I18n.t('administration.scheduling.assessment_center_form.url_label')}
+                    label={I18n.t('admin.url_label')}
                     {...fieldLayout}
                     validateStatus={
                       getAttributeValidationError('url', index) ? 'error' : undefined
@@ -131,13 +131,13 @@ export const ResourcesItems: React.FC<Props> = ({
                       {
                         type: 'url',
                         pattern: /https?:\/\/(.*)/,
-                        message: I18n.t('administration.scheduling.resources.invalid_url'),
+                        message: I18n.t('admin.scheduling_resources_invalid_url'),
                       },
                     ]}
                   >
                     <Input placeholder={
                       I18n.t(
-                        'administration.scheduling.assessment_center_form.resources_panel.resource_url_placeholder',
+                        'admin.resources_panel_resource_url_placeholder',
                       )}
                     />
                   </Form.Item>
@@ -157,7 +157,7 @@ export const ResourcesItems: React.FC<Props> = ({
               onClick={() => add()}
               className="ps-0"
             >
-              {I18n.t('administration.scheduling.assessment_center_form.add_more')}
+              {I18n.t('admin.add_more')}
             </Button>
           </>
         )}

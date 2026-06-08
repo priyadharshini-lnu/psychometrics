@@ -28,15 +28,15 @@ export const AssessorAssessmentList = ({
     rowKey={data => `${data.assessmentId}_${data.assessor?.id}`}
   >
     <Column
-      title={I18n.t('common.column.id')}
+      title={I18n.t('shared.id')}
       dataIndex="id"
     />
     <Column
-      title={I18n.t('common.column.assessment')}
+      title={I18n.t('shared.assessment')}
       dataIndex="name"
     />
     <Column
-      title={I18n.t('common.column.assessor')}
+      title={I18n.t('shared.assessor')}
       dataIndex="assessor"
       render={assessor => (
         assessor && (
@@ -49,7 +49,7 @@ export const AssessorAssessmentList = ({
       )}
     />
     <Column
-      title={I18n.t('common.column.schedule_time')}
+      title={I18n.t('shared.schedule_time')}
       dataIndex="scheduleTime"
       render={scheduleTime => (
         scheduleTime && (
@@ -58,14 +58,14 @@ export const AssessorAssessmentList = ({
       )}
     />
     <Column
-      title={I18n.t('common.column.meeting_link')}
+      title={I18n.t('shared.meeting_link')}
       dataIndex="meetingLink"
       render={meetingLink => (
         <>
           {meetingLink ? (
             <Space>
               <a href={meetingLink} target="_blank" rel="noreferrer">
-                {I18n.t('administration.scheduling.info.join_meeting')}
+                {I18n.t('admin.scheduling_info_join_meeting')}
               </a>
               <CopyToClipboard
                 text={meetingLink}
@@ -79,7 +79,7 @@ export const AssessorAssessmentList = ({
       )}
     />
     <Column
-      title={I18n.t('common.column.status')}
+      title={I18n.t('shared.status')}
       dataIndex="status"
       render={(status => (
         status && (
@@ -88,7 +88,7 @@ export const AssessorAssessmentList = ({
       ))}
     />
     <Column
-      title={I18n.t('common.column.linked_activities')}
+      title={I18n.t('shared.linked_activities')}
       dataIndex="linkedActivityName"
       render={linkedActivityName => (linkedActivityName && linkedActivityName)}
     />

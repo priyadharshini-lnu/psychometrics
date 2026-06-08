@@ -1648,7 +1648,6 @@ bg:
     details:
       additional_time: Допълнително време
       assessment_center: Център за оценяване
-      assessment_center_invites: Покани за център за оценяване
       completed_at: Завършено в
       completion_status: Статус на завършване
       hogan_id: Хоган Ид
@@ -1678,11 +1677,6 @@ bg:
     modals:
       remove: Сигурни ли сте, че искате да премахнете потребител с имейл '%{email}' от тази кампания?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Оценки на оценителя
-      other_assessments: Други оценки
-      other_assessor_assessments: Други оценки на оценителя
-      other_reports: Други доклади
     card:
       duration: Продължителност
       starts_in: 'Започва в:'
@@ -1753,23 +1747,19 @@ bg:
       insert: Вмъквам
       'no': Не
       ok: ОК
-      publish: Публикувайте
       reject: Отхвърлям
       remove: Премахнете
       reset: Нулирайте
       resolve: Разрешете проблема
       restore: Възстановете
       return_to_home: Връщане към дома
-      run: Бягам
       save: Запазете
       schedule: Разписание
       search: Търсете
-      send: Изпратете
       sign_in: Влизане
       start: НЗапочнете
       submit: Изпрати
       unarchive: Разрхивирайте
-      unpublish: Отмяна на публикацията
       unresolve: Неразрешете
       update: Актуализирайте
       upload: Качете
@@ -1782,20 +1772,14 @@ bg:
     column:
       action: Действие
       active: Активен
-      ai_assistant: AI асистент
-      allow_multiple_responses: Разрешаване на множество отговори
       approval_notification_list: Списък с потребители на известие за одобрение
       approvers_list: Списък на одобряващите
-      assessment: Оценка
       assessment_name: Име на оценяването
       assessments: Оценки
-      assessor: Оценител
       category: Категория
       client: Клиент
-      code: Код
       created_at: Създаден в
       created_by: Създаден от
-      created_date: Дата на създаване
       default_language: Език по подразбиране
       description: Описание
       details: Подробности
@@ -1813,11 +1797,8 @@ bg:
         scoring: Оценяване на JSON
       key: Ключ
       last_name: Презиме
-      linked_activities: Свързани дейности
       linked_assessment: Свързано оценяване
-      meeting_link: Връзка към срещата
       modified_by: Променено от
-      modified_date: Дата на промяна
       name: Име
       owner: Собственик
       package_id: Идентификационен номер на пакета
@@ -1833,7 +1814,6 @@ bg:
       scheduling: Планиране
       skills: Умения
       status: Статус
-      tags: Етикети
       timing: Времето
       token: Символ
       type: Вид
@@ -1845,15 +1825,12 @@ bg:
     messages:
       leave_message: Сигурни ли сте, че искате да напуснете тази страница? Всички незапазени отговори, които имате, ще бъдат загубени.
     model:
-      admins: Администратори
       assessment: Оценка
       assessments: Оценки
       campaigns: Кампании
       completion_statuses: Състояния на завършване
-      datasheet: Лист с данни
       report: Доклад
       reports: Доклади
-      sms_contact: SMS контакт
       threesixty_campaign: Тришестдесет резултата от кампанията
     status:
       completed: Завършен
@@ -2970,9 +2947,7 @@ bg:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Активен
     campaign_name: Име на кампанията
-    inactive: Неактивен
     status_updated_at: Последна актуализация на състоянието
     status_updated_by: Последна актуализация от
     subject_email: Имейл с тема
@@ -3976,7 +3951,6 @@ bg:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Активен
     allow_multiple_respones: Разрешаване на потребителите да изпращат няколко отговора
     png: PNG
     regenerate_link: Регенериране на връзка

@@ -47,7 +47,7 @@ export const MediaLibraryFilter: React.FC<Props> = ({
       {
         title: (
           <a href="/admin" style={{ color: 'var(--grey-text)' }}>
-            {I18n.t('administration.navigation.dashboard')}
+            {I18n.t('admin.dashboard')}
           </a>
         ),
       },
@@ -73,7 +73,7 @@ export const MediaLibraryFilter: React.FC<Props> = ({
       {
         title: (
           <a href="/admin" style={{ color: 'var(--grey-text)' }}>
-            {I18n.t('administration.navigation.dashboard')}
+            {I18n.t('admin.dashboard')}
           </a>
         ),
       },
@@ -87,7 +87,7 @@ export const MediaLibraryFilter: React.FC<Props> = ({
       <div style={{ borderBottom: '1px solid #eeeeee', padding: 10 }} data-testid="breadcrumbs">
         <AntBreadcrumb items={breadcrumbItems} />
       </div>
-      <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
+      <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
         <Button
           disabled={tableLoading}
           onClick={() => openModal('MediaLibraryFormModal', {
@@ -104,7 +104,7 @@ export const MediaLibraryFilter: React.FC<Props> = ({
           onClick={handleUpload}
         >
           <UploadOutlined />
-          {I18n.t('admin.upload')}
+          {I18n.t('shared.upload')}
         </Button>
       </Resource.Filter>
     </>
