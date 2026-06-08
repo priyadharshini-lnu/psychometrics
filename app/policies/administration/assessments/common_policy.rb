@@ -10,7 +10,7 @@ module Administration
       end
 
       def export_raw_results?
-        @record.common? && (@user.is?(:superadmin) || @user.has_permission?(
+        (@record.common? || @record.microsite?) && (@user.is?(:superadmin) || @user.has_permission?(
           :results, :raw_responses, project_id: project_id, campaign_id: campaign_id
         ))
       end
