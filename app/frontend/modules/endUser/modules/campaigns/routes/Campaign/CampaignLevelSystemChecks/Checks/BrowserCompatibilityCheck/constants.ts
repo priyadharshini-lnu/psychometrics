@@ -3,9 +3,11 @@ import { BROWSER_NAME } from '~/utils/uaParser'
 
 const { I18n } = window
 
-export const safariProctoring = {
-  title: I18n.t('enduser.safari_proctoring_title'),
-  description: [I18n.t('enduser.safari_proctoring_description')],
+export const BROWSER_NOT_PROCTORING_COMPATIBLE = ['Safari', 'Firefox']
+
+export const browserIncompatibleWithProctoringMessage = {
+  title: I18n.t('enduser.browser_proctoring_title', { browser_name: BROWSER_NAME }),
+  description: [I18n.t('enduser.browser_proctoring_description', { browser_name: BROWSER_NAME })],
 }
 
 export const MIN_BROWSER_VERSIONS = {

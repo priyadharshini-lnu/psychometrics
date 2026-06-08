@@ -22,7 +22,8 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import { CHECK_STATUS, CHECK_TYPE, InternationalizedDetails } from '../../common'
 import {
-  MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage, safariProctoring,
+  MIN_BROWSER_VERSIONS, BrowserCheckType, browserCheckErrorMessage,
+  browserIncompatibleWithProctoringMessage, BROWSER_NOT_PROCTORING_COMPATIBLE,
 } from './constants'
 import { fetchCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import commonStyles from '../../common-styles.less'
@@ -89,8 +90,8 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
   }
 
   const checkBrowserForProctoringSupport = () => {
-    if (BROWSER_NAME === 'Safari' && campaignOptions?.proctoringEnabled) {
-      browserCheckErrorMessage.browserVersion = { ...safariProctoring }
+    if (BROWSER_NOT_PROCTORING_COMPATIBLE.includes(BROWSER_NAME) && campaignOptions?.proctoringEnabled) {
+      browserCheckErrorMessage.browserVersion = { ...browserIncompatibleWithProctoringMessage }
       return false
     }
     return true
@@ -141,9 +142,12 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
 
       if (!hasMinimumBrowserVersion) {
-        if (BROWSER_NAME === 'Safari' && campaignOptions?.proctoringEnabled) {
+        if (BROWSER_NOT_PROCTORING_COMPATIBLE.includes(BROWSER_NAME) && campaignOptions?.proctoringEnabled) {
           details.push({
-            i18nKey: 'enduser.safari_proctoring_description',
+            i18nKey: 'enduser.browser_proctoring_description',
+            i18nVars: [
+              ['browser_name', BROWSER_NAME],
+            ],
           })
         } else {
           details.push({
@@ -252,6 +256,11 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   useEffect(() => {
     if (!systemCheckSessionId) {
+      if (campaignOptions) {
+        checkBrowserForFeatureCompatibility()
+        setIsLoading(false)
+        return
+      }
       setIsLoading(true)
       fetchCampaign(`/campaigns/${campaignId}`).then(({ response }) => {
         dispatch(actions.setCampaignDetailsForSystemCheck(response))
@@ -269,15 +278,12 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
               minimumUploadSpeed: systemCheckRequirementsStatus?.requirements?.network?.minimumUploadSpeed,
             }))
           }
-          checkBrowserForFeatureCompatibility()
         }
-      }).finally(() => {
-        setIsLoading(false)
       })
     } else {
       checkBrowserForFeatureCompatibility()
     }
-  }, [systemCheckRequirementsStatus])
+  }, [systemCheckRequirementsStatus, campaignOptions])
 
   const handleNext = async () => {
     const record = checksArray.filter(check => check.checkType === CHECK_TYPE.browser)[0]

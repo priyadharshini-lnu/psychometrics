@@ -36,6 +36,8 @@ en:
     browser_not_compatible: Your browser %{browser_name} is not compatible with this campaign.
     browser_not_compatible_description: Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
     browser_not_compatible_detail: Your browser %{browser_name} is not compatible with this campaign. Use the latest versions of Chrome, Firefox, Safari or Edge for the best experience.
+    browser_proctoring_description: You are using %{browser_name} browser, which may have certain limitations regarding the proctoring features enabled for this campaign. For the best experience, we recommend using Chrome or Edge
+    browser_proctoring_title: "%{browser_name} Browser Detected"
     browser_version_fix_description_first: Update your %{browser_name} browser to the version %{updated_version} or above to ensure compatibility
     browser_version_fix_title: Your current %{browser_name} does not meet the minimum required version (%{updated_version})  for this campaign
     camera: Video and Audio
