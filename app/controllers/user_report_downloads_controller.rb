@@ -35,11 +35,21 @@ class UserReportDownloadsController < ApplicationController
   end
 
   def user_report
-    @user_report ||= current_user.user_reports.find_by(id: params[:id]) ||
-                     UserReportDownloadPolicy::Scope.new(current_user, UserReport).resolve.find(params[:id])
+    # FIXME: Temp logic to resolve assessor case
+    if current_user.is?(:assessor)
+      user_report = UserReport.find_by(id: params[:id])
+      if UserReportDownloadPolicy.new({ current_user: current_user }, user_report).assessor_can_access_report?
+        @user_report ||= user_report
+      end
+    else
+      @user_report ||= current_user.user_reports.find_by(id: params[:id]) ||
+                       UserReportDownloadPolicy::Scope.new(current_user, UserReport).resolve.find(params[:id])
+    end
   end
 
   def pundit_authorize
+    raise Pundit::NotAuthorizedError unless user_report
+
     authorize(
       user_report,
       :pdf_download_link?,
