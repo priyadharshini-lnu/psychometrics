@@ -91,6 +91,7 @@ const VideoCheckComponent: React.FC<Props> = ({
   const pendingCompleteBlobRef = useRef<Blob | null>(null)
   const uploadReadyResolverRef = useRef<(() => void) | null>(null)
   const faceDetectionRatioRef = useRef<number>(0)
+  const stopRecordingRef = useRef<() => Promise<void>>(async () => {})
 
   const [state, dispatch] = useReducer(reducer, initialState)
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
@@ -393,7 +394,6 @@ const VideoCheckComponent: React.FC<Props> = ({
     try {
       setIsRecording(false)
       dispatch(updateFaceDetection(CheckListStatus.InProgress))
-      faceDetectionRatioRef.current = faceDetectionRatio
 
       const uploadReadyPromise = new Promise<void>((resolve) => {
         uploadReadyResolverRef.current = resolve
@@ -429,7 +429,15 @@ const VideoCheckComponent: React.FC<Props> = ({
       setFailureReason('enduser.video_upload_failed_camera_access')
       dispatch(updateAccess(CheckListStatus.Failed))
     }
-  }, [stopRecording, stopSpeech, faceDetectionRatio])
+  }, [stopRecording, stopSpeech])
+
+  useEffect(() => {
+    faceDetectionRatioRef.current = faceDetectionRatio
+  }, [faceDetectionRatio])
+
+  useEffect(() => {
+    stopRecordingRef.current = handleStopRecording
+  }, [handleStopRecording])
 
   const handleStartWithCountdown = useCallback(async () => {
     if (phraseVerificationEnabled) {
@@ -467,7 +475,7 @@ const VideoCheckComponent: React.FC<Props> = ({
         setRemainingSeconds((prev) => {
           if (prev <= 1) {
             clearInterval(interval)
-            handleStopRecording()
+            stopRecordingRef.current()
             return 0
           }
           return prev - 1
@@ -477,7 +485,7 @@ const VideoCheckComponent: React.FC<Props> = ({
       recordingStartedRef.current = false
     }
     return () => clearInterval(interval)
-  }, [status, handleStopRecording])
+  }, [status])
 
   useEffect(() => {
     const getDevices = async () => {
