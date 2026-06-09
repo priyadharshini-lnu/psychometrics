@@ -59,8 +59,11 @@ module AdminJobs
 
       rows = []
 
-      workshop_groups.each do |assessment_group, workshop_subjects|
-        latest_workshop_subject = workshop_subjects.max_by(&:created_at)
+      workshop_groups.each do |assessment_group, workshop_subjects| # rubocop:disable Metrics/BlockLength
+        latest_workshop_subject = workshop_subjects.find(&:scheduled?) ||
+                                  workshop_subjects.
+                                  reject { |ws| ws.rescheduled? || ws.late_rescheduled? }.
+                                  max_by(&:created_at)
         latest_workshop = latest_workshop_subject&.workshop
         scheduling_status = latest_workshop_subject&.scheduling_status
         assessment_group_name = assessment_group&.name
