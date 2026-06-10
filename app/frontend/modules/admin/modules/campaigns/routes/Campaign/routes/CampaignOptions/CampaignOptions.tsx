@@ -390,7 +390,7 @@ const CampaignOptions: React.FC<Props> = ({
                           <Option
                             key={key}
                             label={
-                              I18n.t(`admin.proctoring_rule_types.${snakeCase(key)}`)
+                              I18n.t(`admin.proctoring_rule_types_${snakeCase(key)}`)
                             }
                             {...parametersForRules(key)}
                           />

@@ -271,7 +271,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
             <InputNumber min={0} max={6} />
           </Form.Item>
           <Form.Item
-            label={I18n.t('admin.factors_index_icon')}
+            label={I18n.t('shared.icon')}
           >
             <Space orientation="vertical">
               {(factor?.iconUrl) && !removeIcon && (

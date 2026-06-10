@@ -132,6 +132,7 @@ en:
     assessment_center: 'Assessment center:'
     assessment_center_group: Assessment Center Group
     assessment_center_group_placeholder: Select Assessment Center Group
+    assessment_center_invites: Assessment Center Invites
     assessment_ids: Assessment IDs
     assessment_placeholder: Select Assessment
     assessment_question_not_supported: This question type is not currently supported.
@@ -1045,6 +1046,7 @@ en:
     integrations_names_hogan: HOGAN
     integrations_names_iiht: IIHT
     integrations_names_mettl: METTL
+    integrations_names_microsite: Microsite
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: View All Mettl Schedules
@@ -2960,6 +2962,7 @@ en:
     topics_list_assessment_started: Assessment Started
     topics_list_assessment_timeout: Assessment Timeout
     topics_list_campaign_results_available: Campaign Results Available
+    topics_list_campaign_user_assessment_summary: Campaign User Assessment Summary
     topics_list_campaign_user_status: Campaign User Status
     topics_list_report_available: Report Available
     topics_list_results_available: Results Available
@@ -2967,6 +2970,7 @@ en:
     topics_list_scheduling_invited: Scheduling Invited
     topics_list_scheduling_rescheduled: Scheduling Rescheduled
     topics_list_scheduling_scheduled: Scheduling Scheduled
+    topics_list_workshop_attendance_status: Workshop Attendance Status
     transcription_record_not_found: Transcription record not found
     transcription_schedule_failed: Failed to schedule transcription job
     transcription_scheduled: Transcription job is scheduled. Please close the modal and check notification status.

@@ -49,7 +49,7 @@ const WorkshopList: React.FC = () => {
 
   return (
     <>
-      <h3>{I18n.t('campaign_users.details.invites')}</h3>
+      <h3>{I18n.t('admin.assessment_center_invites')}</h3>
       <Resource config={config} name="workshop_invited_subjects">
         <Resource.Table pagination>
           <Resource.Column<Response>
