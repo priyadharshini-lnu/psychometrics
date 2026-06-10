@@ -32,7 +32,7 @@ module EndUser
 
     def type
       return 'hogan' if object.assessment.hogan?
-      return 'microsite' if object.assessment.microsite?
+      return 'microsite' if object.assessment.microsite? && !Settings.microsite.internal_assessment_enabled
 
       'user_assessment'
     end
