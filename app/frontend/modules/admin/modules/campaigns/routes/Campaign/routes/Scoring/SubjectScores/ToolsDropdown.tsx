@@ -25,7 +25,7 @@ export const ToolsDropdown: React.FC<Props> = ({
   isBulk, onClick, persmission, isDisabled,
 }: Props) => {
   const btn = (
-    <Button>
+    <Button disabled={isDisabled}>
       <ToolOutlined />
       <span>{I18n.t('shared.actions')}</span>
       <DownOutlined />
