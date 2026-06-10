@@ -2879,6 +2879,7 @@ pl:
     topics_list_assessment_started: Ocena rozpoczęta
     topics_list_assessment_timeout: Limit czasu oceny
     topics_list_campaign_results_available: Dostępne wyniki kampanii
+    topics_list_campaign_user_assessment_summary: Podsumowanie oceny użytkownika kampanii
     topics_list_campaign_user_status: Status użytkownika kampanii
     topics_list_report_available: Dostępny raport
     topics_list_results_available: Dostępne wyniki
@@ -2886,6 +2887,7 @@ pl:
     topics_list_scheduling_invited: Zaproszenie do planowania
     topics_list_scheduling_rescheduled: Planowanie zmienionego terminu
     topics_list_scheduling_scheduled: Planowanie zaplanowane
+    topics_list_workshop_attendance_status: Status obecności na warsztacie
     transcription_record_not_found: Nie znaleziono zapisu transkrypcji.
     transcription_schedule_failed: Nie udało się zaplanować zadania transkrypcji
     transcription_scheduled: Zadanie transkrypcji zostało zaplanowane. Zamknij okno modalne i sprawdź status powiadomienia.

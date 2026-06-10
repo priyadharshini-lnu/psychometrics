@@ -2880,6 +2880,7 @@ hr:
     topics_list_assessment_started: Procjena je započela
     topics_list_assessment_timeout: Vremensko ograničenje procjene
     topics_list_campaign_results_available: Dostupni rezultati kampanje
+    topics_list_campaign_user_assessment_summary: Sažetak procjene korisnika kampanje
     topics_list_campaign_user_status: Status korisnika kampanje
     topics_list_report_available: Dostupno izvješće
     topics_list_results_available: Dostupni rezultati
@@ -2887,6 +2888,7 @@ hr:
     topics_list_scheduling_invited: Zakazivanje pozvanih
     topics_list_scheduling_rescheduled: Zakazivanje je odgođeno
     topics_list_scheduling_scheduled: Zakazivanje rasporeda
+    topics_list_workshop_attendance_status: Status prisustva na radionici
     transcription_record_not_found: Zapis transkripcije nije pronađen
     transcription_schedule_failed: Nije uspjelo zakazati posao transkripcije
     transcription_scheduled: Zadatak transkripcije je zakazan. Molimo zatvorite modalni prozor i provjerite status obavijesti.

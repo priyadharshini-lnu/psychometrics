@@ -2881,6 +2881,7 @@ ko:
     topics_list_assessment_started: 평가 시작
     topics_list_assessment_timeout: 평가 시간 초과
     topics_list_campaign_results_available: 캠페인 결과 사용 가능
+    topics_list_campaign_user_assessment_summary: 캠페인 사용자 평가 요약
     topics_list_campaign_user_status: 캠페인 사용자 상태
     topics_list_report_available: 보고서 사용 가능
     topics_list_results_available: 사용 가능한 결과
@@ -2888,6 +2889,7 @@ ko:
     topics_list_scheduling_invited: 초대된 일정 예약하기
     topics_list_scheduling_rescheduled: 일정 예약 변경
     topics_list_scheduling_scheduled: 예약 예약
+    topics_list_workshop_attendance_status: 워크숍 참석 상태
     transcription_record_not_found: 전사 기록을 찾을 수 없습니다
     transcription_schedule_failed: 전사 작업 예약에 실패했습니다.
     transcription_scheduled: 전사 작업이 예약되었습니다. 모달을 닫고 알림 상태를 확인해 주세요.

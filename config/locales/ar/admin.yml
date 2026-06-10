@@ -2881,6 +2881,7 @@ ar:
     topics_list_assessment_started: Assessment Started
     topics_list_assessment_timeout: Assessment Timeout
     topics_list_campaign_results_available: Campaign Results Available
+    topics_list_campaign_user_assessment_summary: ملخص تقييم مستخدم الحملة
     topics_list_campaign_user_status: Campaign User Status
     topics_list_report_available: التقرير متاح
     topics_list_results_available: Results Available
@@ -2888,6 +2889,7 @@ ar:
     topics_list_scheduling_invited: Scheduling Invited
     topics_list_scheduling_rescheduled: Scheduling Rescheduled
     topics_list_scheduling_scheduled: Scheduling Scheduled
+    topics_list_workshop_attendance_status: حالة الحضور في ورشة العمل
     transcription_record_not_found: لم يتم العثور على سجل النسخ
     transcription_schedule_failed: فشل جدولة مهمة النسخ
     transcription_scheduled: تم جدولة مهمة النسخ. يرجى إغلاق النافذة المنبثقة والتحقق من حالة الإشعار.

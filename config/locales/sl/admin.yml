@@ -2877,6 +2877,7 @@ sl:
     topics_list_assessment_started: Ocenjevanje se je začelo
     topics_list_assessment_timeout: Časovna omejitev ocenjevanja
     topics_list_campaign_results_available: Rezultati oglaševalske akcije so na voljo
+    topics_list_campaign_user_assessment_summary: Povzetek ocene uporabnika kampanje
     topics_list_campaign_user_status: Status uporabnika oglaševalske akcije
     topics_list_report_available: Poročilo je na voljo
     topics_list_results_available: Rezultati so na voljo
@@ -2884,6 +2885,7 @@ sl:
     topics_list_scheduling_invited: Razporejanje vabljenih
     topics_list_scheduling_rescheduled: Razporejanje prestavljenega časa
     topics_list_scheduling_scheduled: Načrtovanje načrtovanja
+    topics_list_workshop_attendance_status: Status udelezbe na delavnici
     transcription_record_not_found: Zapis transkripcije ni bil najden
     transcription_schedule_failed: Naloga za prepis ni bila uspešno načrtovana
     transcription_scheduled: Prepisovanje je načrtovano. Zaprite okno in preverite stanje obvestila.

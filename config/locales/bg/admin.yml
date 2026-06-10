@@ -2878,6 +2878,7 @@ bg:
     topics_list_assessment_started: Оценката започна
     topics_list_assessment_timeout: Време за изчакване на оценяването
     topics_list_campaign_results_available: Налични резултати от кампанията
+    topics_list_campaign_user_assessment_summary: Обобщение на оценката на потребителя в кампанията
     topics_list_campaign_user_status: Състояние на потребителя на кампанията
     topics_list_report_available: Наличен отчет
     topics_list_results_available: Налични резултати
@@ -2885,6 +2886,7 @@ bg:
     topics_list_scheduling_invited: Покана за планиране
     topics_list_scheduling_rescheduled: Планирането е пренасрочено
     topics_list_scheduling_scheduled: Планиране на графика
+    topics_list_workshop_attendance_status: Статус на присъствие в работилницата
     transcription_record_not_found: Не е намерен запис на транскрипцията
     transcription_schedule_failed: Неуспешно планиране на задача за транскрипция
     transcription_scheduled: Задачата за транскрипция е планирана. Моля, затворете модалния прозорец и проверете състоянието на уведомлението.

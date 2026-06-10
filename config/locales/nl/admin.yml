@@ -2873,6 +2873,7 @@ nl:
     topics_list_assessment_started: Beoordeling gestart
     topics_list_assessment_timeout: Time-out beoordeling
     topics_list_campaign_results_available: Campagne resultaten beschikbaar
+    topics_list_campaign_user_assessment_summary: Samenvatting van de gebruikersbeoordeling van de campagne
     topics_list_campaign_user_status: Status campagnegebruiker
     topics_list_report_available: Rapport beschikbaar
     topics_list_results_available: Resultaten beschikbaar
@@ -2880,6 +2881,7 @@ nl:
     topics_list_scheduling_invited: Planning Uitgenodigd
     topics_list_scheduling_rescheduled: Planning Opnieuw gepland
     topics_list_scheduling_scheduled: Planning Gepland
+    topics_list_workshop_attendance_status: Aanwezigheidsstatus workshop
     transcription_record_not_found: Transcriptie niet gevonden
     transcription_schedule_failed: Transcriptietaak kan niet worden gepland
     transcription_scheduled: De transcriptietaak is gepland. Sluit het venster en controleer de status van de melding.

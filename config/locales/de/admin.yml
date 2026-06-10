@@ -2885,6 +2885,7 @@ de:
     topics_list_assessment_started: Begonnene Bewertung
     topics_list_assessment_timeout: Bewertung Timeout
     topics_list_campaign_results_available: Kampagnenergebnisse verfügbar
+    topics_list_campaign_user_assessment_summary: Zusammenfassung der Kampagnenbenutzerbewertung
     topics_list_campaign_user_status: Kampagnen-Benutzerstatus
     topics_list_report_available: Bericht verfügbar
     topics_list_results_available: Ergebnisse verfügbar
@@ -2892,6 +2893,7 @@ de:
     topics_list_scheduling_invited: Terminplanung Eingeladen
     topics_list_scheduling_rescheduled: Terminierung Umgeplant
     topics_list_scheduling_scheduled: Terminplanung Geplant
+    topics_list_workshop_attendance_status: Anwesenheitsstatus des Workshops
     transcription_record_not_found: Transkriptionsdatensatz nicht gefunden
     transcription_schedule_failed: Transkriptionsauftrag konnte nicht geplant werden
     transcription_scheduled: Die Transkription ist geplant. Bitte schließen Sie das Modalfenster und überprüfen Sie den Benachrichtigungsstatus.

@@ -2881,6 +2881,7 @@ vi:
     topics_list_assessment_started: Đánh giá bắt đầu
     topics_list_assessment_timeout: Thời gian chờ đánh giá
     topics_list_campaign_results_available: Kết quả chiến dịch có sẵn
+    topics_list_campaign_user_assessment_summary: Tóm tắt đánh giá người dùng chiến dịch
     topics_list_campaign_user_status: Trạng thái người dùng chiến dịch
     topics_list_report_available: Báo cáo có sẵn
     topics_list_results_available: Kết quả có sẵn
@@ -2888,6 +2889,7 @@ vi:
     topics_list_scheduling_invited: Lên lịch được mời
     topics_list_scheduling_rescheduled: Lên lịch lại
     topics_list_scheduling_scheduled: Lên lịch lên lịch
+    topics_list_workshop_attendance_status: Trạng thái tham dự hội thảo
     transcription_record_not_found: Không tìm thấy bản ghi chép.
     transcription_schedule_failed: Không thể lên lịch công việc chuyển đổi văn bản
     transcription_scheduled: Công việc chuyển đổi văn bản đã được lên lịch. Vui lòng đóng cửa sổ pop-up và kiểm tra trạng thái thông báo.

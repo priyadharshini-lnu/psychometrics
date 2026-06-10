@@ -2877,6 +2877,7 @@ sr-Latn:
     topics_list_assessment_started: Procena je počela
     topics_list_assessment_timeout: Vremensko ograničenje procene
     topics_list_campaign_results_available: Dostupni su rezultati kampanje
+    topics_list_campaign_user_assessment_summary: Sažetak procene korisnika kampanje
     topics_list_campaign_user_status: Status korisnika kampanje
     topics_list_report_available: Izveštaj dostupan
     topics_list_results_available: Rezultati su dostupni
@@ -2884,6 +2885,7 @@ sr-Latn:
     topics_list_scheduling_invited: Zakazivanje pozvanih
     topics_list_scheduling_rescheduled: Zakazivanje ponovno zakazano
     topics_list_scheduling_scheduled: Zakazivanje zakazano
+    topics_list_workshop_attendance_status: Status prisustva na radionici
     transcription_record_not_found: Запис транскрипције није пронађен
     transcription_schedule_failed: Није успело заказивање посла транскрипције
     transcription_scheduled: Посао транскрипције је заказан. Молимо затворите модални прозор и проверите статус обавештења.

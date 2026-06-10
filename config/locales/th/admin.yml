@@ -2882,6 +2882,7 @@ th:
     topics_list_assessment_started: เริ่มการประเมินแล้ว
     topics_list_assessment_timeout: หมดเวลาการประเมิน
     topics_list_campaign_results_available: ผลลัพธ์แคมเปญพร้อมใช้งาน
+    topics_list_campaign_user_assessment_summary: สรุปการประเมินผู้ใช้แคมเปญ
     topics_list_campaign_user_status: สถานะผู้ใช้แคมเปญ
     topics_list_report_available: มีรายงาน
     topics_list_results_available: ผลลัพธ์ที่มี
@@ -2889,6 +2890,7 @@ th:
     topics_list_scheduling_invited: จัดตารางเวลาได้รับเชิญ
     topics_list_scheduling_rescheduled: ตั้งเวลาการเลื่อนกำหนดเวลา
     topics_list_scheduling_scheduled: ตั้งเวลากำหนดเวลา
+    topics_list_workshop_attendance_status: สถานะการเข้าร่วมเวิร์กชอป
     transcription_record_not_found: ไม่พบบันทึกการถอดเสียง
     transcription_schedule_failed: ไม่สามารถกำหนดตารางงานถอดความได้
     transcription_scheduled: งานถอดเสียงถูกกำหนดเวลาแล้ว กรุณาปิดหน้าต่างป๊อปอัปและตรวจสอบสถานะการแจ้งเตือน

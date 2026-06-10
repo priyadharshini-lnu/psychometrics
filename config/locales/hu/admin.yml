@@ -2883,6 +2883,7 @@ hu:
     topics_list_assessment_started: Megkezdődött az értékelés
     topics_list_assessment_timeout: Értékelési időtúllépés
     topics_list_campaign_results_available: Elérhető kampányeredmények
+    topics_list_campaign_user_assessment_summary: Kampányfelhasználó értékelésének összefoglalója
     topics_list_campaign_user_status: Kampány felhasználói státusza
     topics_list_report_available: Jelentés elérhető
     topics_list_results_available: Elérhető eredmények
@@ -2890,6 +2891,7 @@ hu:
     topics_list_scheduling_invited: Ütemezés meghívva
     topics_list_scheduling_rescheduled: Ütemezés átütemezve
     topics_list_scheduling_scheduled: Ütemezés ütemezve
+    topics_list_workshop_attendance_status: Workshop részvételi állapot
     transcription_record_not_found: A leírás nem található
     transcription_schedule_failed: A leírási feladat ütemezése sikertelen
     transcription_scheduled: A transzkripciós feladat ütemezve van. Kérjük, zárja be a modált, és ellenőrizze az értesítés állapotát.

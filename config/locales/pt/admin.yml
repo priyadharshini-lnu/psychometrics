@@ -2884,6 +2884,7 @@ pt:
     topics_list_assessment_started: Avaliação iniciada
     topics_list_assessment_timeout: Tempo limite de avaliação
     topics_list_campaign_results_available: Resultados da campanha disponíveis
+    topics_list_campaign_user_assessment_summary: Resumo da avaliação do usuário da campanha
     topics_list_campaign_user_status: Estado do utilizador da campanha
     topics_list_report_available: Relatório disponível
     topics_list_results_available: Resultados disponíveis
@@ -2891,6 +2892,7 @@ pt:
     topics_list_scheduling_invited: Programação Convidados
     topics_list_scheduling_rescheduled: Programação Reagendada
     topics_list_scheduling_scheduled: Programação Programada
+    topics_list_workshop_attendance_status: Estado de presença no workshop
     transcription_record_not_found: Registro de transcrição não encontrado
     transcription_schedule_failed: Falha ao agendar tarefa de transcrição
     transcription_scheduled: O trabalho de transcrição está agendado. Feche a janela modal e verifique o status da notificação.

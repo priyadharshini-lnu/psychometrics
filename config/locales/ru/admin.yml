@@ -2881,6 +2881,7 @@ ru:
     topics_list_assessment_started: Начало оценки
     topics_list_assessment_timeout: Таймаут оценки
     topics_list_campaign_results_available: Результаты кампании доступны
+    topics_list_campaign_user_assessment_summary: Сводка оценки пользователя кампании
     topics_list_campaign_user_status: Статус пользователя кампании
     topics_list_report_available: Отчет доступен
     topics_list_results_available: Результаты доступны
@@ -2888,6 +2889,7 @@ ru:
     topics_list_scheduling_invited: Планирование приглашенных
     topics_list_scheduling_rescheduled: Перенос графика
     topics_list_scheduling_scheduled: Планирование Запланировано
+    topics_list_workshop_attendance_status: Статус посещения воркшопа
     transcription_record_not_found: Запись транскрипции не найдена
     transcription_schedule_failed: Не удалось запланировать задание транскрипции
     transcription_scheduled: Задание транскрипции запланировано. Закройте модальное окно и проверьте статус уведомления.

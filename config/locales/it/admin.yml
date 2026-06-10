@@ -2880,6 +2880,7 @@ it:
     topics_list_assessment_started: Valutazione avviata
     topics_list_assessment_timeout: Timeout di valutazione
     topics_list_campaign_results_available: Risultati della campagna disponibili
+    topics_list_campaign_user_assessment_summary: Riepilogo della valutazione utente della campagna
     topics_list_campaign_user_status: Stato dell'utente della campagna
     topics_list_report_available: Rapporto disponibile
     topics_list_results_available: Risultati disponibili
@@ -2887,6 +2888,7 @@ it:
     topics_list_scheduling_invited: Programmazione Invitati
     topics_list_scheduling_rescheduled: Programmazione Riprogrammata
     topics_list_scheduling_scheduled: Programmazione Programmata
+    topics_list_workshop_attendance_status: Stato di partecipazione al workshop
     transcription_record_not_found: Trascrizione non trovata
     transcription_schedule_failed: Impossibile pianificare il lavoro di trascrizione
     transcription_scheduled: Il lavoro di trascrizione è stato pianificato. Chiudi la finestra modale e controlla lo stato della notifica.

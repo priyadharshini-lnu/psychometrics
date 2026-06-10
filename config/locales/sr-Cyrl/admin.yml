@@ -2881,6 +2881,7 @@ sr-Cyrl:
     topics_list_assessment_started: Почена процена
     topics_list_assessment_timeout: Време истека процене
     topics_list_campaign_results_available: Резултати кампање доступни
+    topics_list_campaign_user_assessment_summary: Сажетак процене корисника кампање
     topics_list_campaign_user_status: Статус корисника кампање
     topics_list_report_available: Извештај доступан
     topics_list_results_available: Резултати доступни
@@ -2888,6 +2889,7 @@ sr-Cyrl:
     topics_list_scheduling_invited: Закazivanje по позиву
     topics_list_scheduling_rescheduled: Распоређивање поново заказано
     topics_list_scheduling_scheduled: Распоређивање заказано
+    topics_list_workshop_attendance_status: Статус присуства на радионици
     transcription_record_not_found: Запис транскрипције није пронађен
     transcription_schedule_failed: Није успело заказивање посла транскрипције
     transcription_scheduled: Посао транскрипције је заказан. Молимо затворите модални прозор и проверите статус обавештења.

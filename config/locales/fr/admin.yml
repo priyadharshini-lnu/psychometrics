@@ -2885,6 +2885,7 @@ fr:
     topics_list_assessment_started: Début de l'évaluation
     topics_list_assessment_timeout: Délai d'évaluation
     topics_list_campaign_results_available: Résultats de la campagne disponibles
+    topics_list_campaign_user_assessment_summary: Résumé de l'évaluation de l'utilisateur de la campagne
     topics_list_campaign_user_status: Statut de l'utilisateur de la campagne
     topics_list_report_available: Rapport disponible
     topics_list_results_available: Résultats disponibles
@@ -2892,6 +2893,7 @@ fr:
     topics_list_scheduling_invited: Programmation Invités
     topics_list_scheduling_rescheduled: Programmation Reprogrammée
     topics_list_scheduling_scheduled: Programmation Programmation
+    topics_list_workshop_attendance_status: Statut de présence à l'atelier
     transcription_record_not_found: Transcription introuvable
     transcription_schedule_failed: Échec de la planification de la tâche de transcription
     transcription_scheduled: La tâche de transcription est planifiée. Veuillez fermer la fenêtre modale et vérifier l'état de la notification.

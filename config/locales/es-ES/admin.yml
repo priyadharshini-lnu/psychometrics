@@ -2883,6 +2883,7 @@ es-ES:
     topics_list_assessment_started: Evaluación iniciada
     topics_list_assessment_timeout: Tiempo de evaluación
     topics_list_campaign_results_available: Resultados de la campaña disponibles
+    topics_list_campaign_user_assessment_summary: Resumen de evaluación del usuario de la campaña
     topics_list_campaign_user_status: Estado del usuario de la campaña
     topics_list_report_available: Informe disponible
     topics_list_results_available: Resultados disponibles
@@ -2890,6 +2891,7 @@ es-ES:
     topics_list_scheduling_invited: Programación Invitados
     topics_list_scheduling_rescheduled: Programación Reprogramada
     topics_list_scheduling_scheduled: Programación Programación
+    topics_list_workshop_attendance_status: Estado de asistencia al taller
     transcription_record_not_found: No se ha encontrado el registro de transcripción.
     transcription_schedule_failed: No se ha podido programar el trabajo de transcripción.
     transcription_scheduled: El trabajo de transcripción está programado. Cierre la ventana modal y compruebe el estado de la notificación.

@@ -2877,6 +2877,7 @@ sk:
     topics_list_assessment_started: Začiatok hodnotenia
     topics_list_assessment_timeout: Časový limit hodnotenia
     topics_list_campaign_results_available: Dostupné výsledky kampane
+    topics_list_campaign_user_assessment_summary: Súhrn hodnotenia používateľa kampane
     topics_list_campaign_user_status: Stav používateľa kampane
     topics_list_report_available: Správa k dispozícii
     topics_list_results_available: Dostupné výsledky
@@ -2884,6 +2885,7 @@ sk:
     topics_list_scheduling_invited: Plánovanie pozvaných
     topics_list_scheduling_rescheduled: Plánovanie preložené
     topics_list_scheduling_scheduled: Plánovanie plánovania
+    topics_list_workshop_attendance_status: Stav účasti na workshope
     transcription_record_not_found: Záznam prepisov nebol nájdený
     transcription_schedule_failed: Nepodarilo sa naplánovať úlohu prepisovania
     transcription_scheduled: Úloha prepisovania je naplánovaná. Zatvorte modálne okno a skontrolujte stav oznámenia.

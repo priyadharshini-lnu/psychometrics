@@ -2874,6 +2874,7 @@ id:
     topics_list_assessment_started: Penilaian Dimulai
     topics_list_assessment_timeout: Batas Waktu Penilaian
     topics_list_campaign_results_available: Hasil Kampanye Tersedia
+    topics_list_campaign_user_assessment_summary: Ringkasan penilaian pengguna kampanye
     topics_list_campaign_user_status: Status Pengguna Kampanye
     topics_list_report_available: Laporan tersedia
     topics_list_results_available: Hasil tersedia
@@ -2881,6 +2882,7 @@ id:
     topics_list_scheduling_invited: Penjadwalan Diundang
     topics_list_scheduling_rescheduled: Penjadwalan Dijadwalkan Ulang
     topics_list_scheduling_scheduled: Penjadwalan Terjadwal
+    topics_list_workshop_attendance_status: Status kehadiran lokakarya
     transcription_record_not_found: Catatan transkripsi tidak ditemukan
     transcription_schedule_failed: Gagal menjadwalkan tugas transkripsi
     transcription_scheduled: Pekerjaan transkripsi telah dijadwalkan. Silakan tutup jendela pop-up dan periksa status notifikasi.

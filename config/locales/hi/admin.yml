@@ -2885,6 +2885,7 @@ hi:
     topics_list_assessment_started: मूल्यांकन शुरू
     topics_list_assessment_timeout: मूल्यांकन टाइमआउट
     topics_list_campaign_results_available: अभियान के परिणाम उपलब्ध हैं
+    topics_list_campaign_user_assessment_summary: अभियान उपयोगकर्ता मूल्यांकन सारांश
     topics_list_campaign_user_status: अभियान उपयोगकर्ता स्थिति
     topics_list_report_available: रिपोर्ट उपलब्ध
     topics_list_results_available: परिणाम उपलब्ध
@@ -2892,6 +2893,7 @@ hi:
     topics_list_scheduling_invited: आमंत्रित शेड्यूलिंग
     topics_list_scheduling_rescheduled: अनुसूचीकरण पुनर्निर्धारित
     topics_list_scheduling_scheduled: निर्धारित अनुसूचीकरण
+    topics_list_workshop_attendance_status: कार्यशाला उपस्थिति स्थिति
     transcription_record_not_found: प्रतिलेखन रिकॉर्ड नहीं मिला
     transcription_schedule_failed: ट्रांसक्रिप्शन जॉब शेड्यूल करने में विफल
     transcription_scheduled: ट्रांसक्रिप्शन का काम निर्धारित कर दिया गया है। कृपया मोडल बंद करें और सूचना की स्थिति जांचें।

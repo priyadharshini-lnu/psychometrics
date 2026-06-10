@@ -2890,6 +2890,7 @@ ja:
     topics_list_assessment_started: アセスメント開始
     topics_list_assessment_timeout: 評価タイムアウト
     topics_list_campaign_results_available: キャンペーン結果発表
+    topics_list_campaign_user_assessment_summary: キャンペーンユーザー評価サマリー
     topics_list_campaign_user_status: キャンペーン・ユーザーのステータス
     topics_list_report_available: 報告書あり
     topics_list_results_available: 結果あり
@@ -2897,6 +2898,7 @@ ja:
     topics_list_scheduling_invited: 招待されたスケジューリング
     topics_list_scheduling_rescheduled: スケジュール変更
     topics_list_scheduling_scheduled: スケジューリング予定
+    topics_list_workshop_attendance_status: ワークショップ出席状況
     transcription_record_not_found: 転写記録が見つかりません
     transcription_schedule_failed: 文字起こしジョブのスケジュール設定に失敗しました
     transcription_scheduled: 文字起こし作業がスケジュールされました。モーダルを閉じて通知ステータスをご確認ください。

@@ -2858,6 +2858,7 @@ zh:
     topics_list_assessment_started: 评估开始
     topics_list_assessment_timeout: 评估超时
     topics_list_campaign_results_available: 活动结果已公布
+    topics_list_campaign_user_assessment_summary: 活动用户评估摘要
     topics_list_campaign_user_status: 活动用户状态
     topics_list_report_available: 现有报告
     topics_list_results_available: 已有结果
@@ -2865,6 +2866,7 @@ zh:
     topics_list_scheduling_invited: 特邀日程安排
     topics_list_scheduling_rescheduled: 重新安排日程
     topics_list_scheduling_scheduled: 计划安排 计划安排
+    topics_list_workshop_attendance_status: 工作坊出席状态
     transcription_record_not_found: 未找到转录记录
     transcription_schedule_failed: 转录任务调度失败
     transcription_scheduled: 转录任务已安排。请关闭弹出窗口并查看通知状态。

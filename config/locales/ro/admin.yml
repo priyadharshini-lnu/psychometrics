@@ -2873,6 +2873,7 @@ ro:
     topics_list_assessment_started: Evaluarea a început
     topics_list_assessment_timeout: Expirare evaluare
     topics_list_campaign_results_available: Rezultatele campaniei disponibile
+    topics_list_campaign_user_assessment_summary: Rezumatul evaluării utilizatorului campaniei
     topics_list_campaign_user_status: Starea utilizatorului campaniei
     topics_list_report_available: Raport disponibil
     topics_list_results_available: Rezultate disponibile
@@ -2880,6 +2881,7 @@ ro:
     topics_list_scheduling_invited: Programare invitată
     topics_list_scheduling_rescheduled: Programare reprogramată
     topics_list_scheduling_scheduled: Programare programată
+    topics_list_workshop_attendance_status: Starea participării la atelier
     transcription_record_not_found: Înregistrarea transcrierii nu a fost găsită
     transcription_schedule_failed: Nu s-a putut programa sarcina de transcriere
     transcription_scheduled: Sarcina de transcriere este programată. Închideți fereastra modală și verificați starea notificării.
