@@ -18,7 +18,7 @@ module Api
       client = @_resource.client.root
 
       role_name = @_resource.role.to_s.humanize.titleize
-      audit! :sign_in_as, target_user, payload: { sign_in_as: target_user.email }
+      audit! :sign_in_as, target_user, payload: { sign_in_as: target_user.email }, client: client
       siem_log_impersonation_event(target_user, role_name)
       redirect_via_handoff(target_user, client, impersonated_by: current_user)
     end
