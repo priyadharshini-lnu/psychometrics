@@ -148,14 +148,20 @@ export const ClientSwitcher: React.FC<Props> = ({
     </>
   )
 
+  if (!hasSwitchableClients) {
+    return (
+      <div className={styles.staticTrigger}>
+        <span className={styles.clientName}>{currentClient.name}</span>
+      </div>
+    )
+  }
+
   const trigger = (
     <div className={styles.trigger}>
       <span className={styles.clientName}>{currentClient.name}</span>
-      {hasSwitchableClients && <SwapOutlined className={styles.caret} />}
+      <SwapOutlined className={styles.caret} />
     </div>
   )
-
-  if (!hasSwitchableClients) return null
 
   return (
     <>
