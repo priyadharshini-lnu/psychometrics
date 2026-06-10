@@ -52,6 +52,10 @@ module Assessments
       ).to_a
     end
 
+    def name
+      object.name || object.read_attribute(:name)
+    end
+
     def question_recoding
       QuestionRecoding.where(assessment: object)
     end
