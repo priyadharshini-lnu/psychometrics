@@ -74,6 +74,7 @@ en:
         subjects_count_added: Subjects successfully added
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI scoring config can only be added for AudioResponse, VideoResponse and TextEntry type questions
         doesnt_have_header: "'%{sub_header}' does not have header"
         invalid_headers: 'Following headers are invalid: %{headers}'
         invalid_question: Invalid question ID

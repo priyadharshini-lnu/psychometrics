@@ -11,6 +11,7 @@ module AdminJobs
           block = find_or_create_block(row['block'])
           question = create_or_update_question!(block, row)
           add_factor_scoring(question, row)
+          add_ai_scoring_config(question, row)
         end
       end
 
@@ -38,11 +39,34 @@ module AdminJobs
       end
     end
 
+    def add_ai_scoring_config(question, row)
+      ai_config = row['ai_scoring_config']
+      return if ai_config.blank?
+
+      ai_config.each do |factor_name, config_data|
+        factor = factors_index_by_name[factor_name]
+        next unless factor
+
+        factor_scoring = FactorsScoring.find_or_initialize_by(
+          question_id: question.id,
+          factor_id: factor.id,
+          assessment_id: question.assessment_id
+        )
+
+        factor_scoring.ai_scoring_config = {
+          'what_to_look_for' => config_data['what_to_look_for'],
+          'score_definitions' => config_data['score_definitions'] || []
+        }
+        factor_scoring.save!
+      end
+    end
+
     def create_or_update_question!(block, row)
       question_id = row.dig('question', 'id')
       attributes = Assessments::QuestionsImport::QuestionForm.new(row['question']).attributes
       attributes['props'] = process_question_props(row)
       attributes['required_validation'] = process_required_validation(row['required_validation'])
+      attributes['position'] = next_position_for_block(block)
       if question_id
         existing_question = assessment.questions.find_by(id: question_id)
         existing_question.update!(attributes)
@@ -73,6 +97,11 @@ module AdminJobs
       @index_block[block_name] = assessment.blocks.create(
         Assessments::QuestionsImport::BlockForm.new(block_details).attributes
       )
+    end
+
+    def next_position_for_block(block)
+      @position_counter_by_block ||= {}
+      @position_counter_by_block[block.id] = (@position_counter_by_block[block.id] || 0) + 1
     end
 
     def generate_title_link

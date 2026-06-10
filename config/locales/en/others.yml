@@ -279,7 +279,7 @@ en:
               blank: Question Name can't be blank
             type:
               blank: Question Title can't be blank
-              inclusion: Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable' or 'StaticContent'
+              inclusion: Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable', 'StaticContent', 'AudioResponse' or 'VideoResponse'
         questions_import_randomization_property_form:
           attributes:
             questions:

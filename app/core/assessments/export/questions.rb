@@ -23,7 +23,13 @@ module Assessments
             'notApplicable',
             'notApplicableLabel',
             'randomization.type',
-            'randomization.questions'
+            'randomization.questions',
+            'duration',
+            'maxTakes',
+            'scoreWithAIEnabled',
+            'enableTranscription',
+            'aiScoringModelAnswer',
+            'aiScoringKeywords'
           ]
         },
         required_validation: {
@@ -33,13 +39,19 @@ module Assessments
         scoring: {
           header: 'Scoring',
           sub_headers: ['Factors']
+        },
+        ai_scoring_config: {
+          header: 'AI Scoring Config',
+          sub_headers: %w[what_to_look_for score_definitions]
         }
       }.freeze
 
       REPEATING_SUBHEADERS = %w[choicesTexts scalePointsTexts].freeze
 
-      QUESTIONS_TYPE_TO_EXPORT = %w[TextEntry MultipleChoice MatrixTable StaticContent].freeze
+      QUESTIONS_TYPE_TO_EXPORT = %w[TextEntry MultipleChoice MatrixTable StaticContent AudioResponse
+                                    VideoResponse].freeze
       SCORING_ALLOWED_QUESTION_TYPES = %w[MultipleChoice MatrixTable].freeze
+      AI_SCORING_ALLOWED_QUESTION_TYPES = %w[TextEntry AudioResponse VideoResponse].freeze
 
       private_attr_reader :assessment
 
@@ -70,8 +82,8 @@ module Assessments
         @questions_to_export ||= assessment.questions.
                                  not_deleted.
                                  where(type: QUESTIONS_TYPE_TO_EXPORT).
-                                 includes(:block, :factors_scorings).
-                                 order(:block_id)
+                                 includes(:block, factors_scorings: :factor).
+                                 order(:block_id, :position)
       end
 
       def generate_headers
@@ -98,7 +110,7 @@ module Assessments
         end
       end
 
-      def build_question_row(question)
+      def build_question_row(question) # rubocop:disable Metrics/AbcSize
         choices = question.props['choicesTexts'] || []
         scale_points = question.props['scalePointsTexts'] || []
 
@@ -116,8 +128,16 @@ module Assessments
           question.props['notApplicableLabel'],
           question.props.dig('randomization', 'type'),
           question.props.dig('randomization', 'questions'),
+          question.props['duration']&.to_s,
+          question.props['maxTakes']&.to_s,
+          question.props['scoreWithAIEnabled']&.to_s,
+          question.props['enableTranscription']&.to_s,
+          question.props['aiScoringModelAnswer'],
+          question.props['aiScoringKeywords'],
           question.required_validation['type'],
-          extract_factor_scoring(question)
+          extract_factor_scoring(question),
+          extract_ai_what_to_look_for(question),
+          extract_ai_score_definitions(question)
         ]
       end
 
@@ -126,11 +146,38 @@ module Assessments
 
         question.factors_scorings.filter_map do |scoring|
           next unless scoring.factor
+          next if scoring.props.blank?
 
           factor_name = scoring.factor.name
           values = scoring.props.map { |p| p['value'] }.join(',')
           "#{factor_name}: #{values}"
-        end.join("\r\n")
+        end.join("\r\n").presence
+      end
+
+      def extract_ai_what_to_look_for(question)
+        return nil unless ai_scored_question?(question)
+
+        question.factors_scorings.filter_map do |scoring|
+          next if scoring.ai_scoring_config&.dig('what_to_look_for').blank?
+
+          "#{scoring.factor.name}: #{scoring.ai_scoring_config['what_to_look_for']}"
+        end.join("\r\n").presence
+      end
+
+      def extract_ai_score_definitions(question)
+        return nil unless ai_scored_question?(question)
+
+        question.factors_scorings.filter_map do |scoring|
+          definitions = scoring.ai_scoring_config&.dig('score_definitions')
+          next if definitions.blank?
+
+          formatted = definitions.map { |d| "#{d['score']}:#{d['definition']}" }.join('|')
+          "#{scoring.factor.name}: #{formatted}"
+        end.join("\r\n").presence
+      end
+
+      def ai_scored_question?(question)
+        [true, 'true'].include?(question.props['scoreWithAIEnabled'])
       end
 
       def max_column_counts
