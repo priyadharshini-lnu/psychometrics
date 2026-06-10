@@ -74,6 +74,7 @@ export const ClientFormModal: React.FC<Props> = ({
               name="subdomain"
               label={I18n.t('admin.subdomain')}
               rules={[
+                { required: true },
                 { max: 32, message: I18n.t('admin.subdomain_too_long_max_32') },
                 {
                   pattern: /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/,

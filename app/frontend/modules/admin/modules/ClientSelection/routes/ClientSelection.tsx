@@ -42,7 +42,7 @@ export const ClientSelection: React.FC<Props> = ({ clients, spoofUserId }) => {
         <a href="/admin">
           <img src={lighthouseLogo} alt={I18n.t('admin.lighthouse_logo_alt_text')} className={styles.logoImg} />
         </a>
-        <UserProfileDropdown />
+        <UserProfileDropdown hideProfileLinks />
       </nav>
       <div className={styles.container}>
         <div className={styles.header}>

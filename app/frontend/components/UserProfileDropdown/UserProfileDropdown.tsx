@@ -24,7 +24,11 @@ type UserDetails = {
 
 const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
-export const UserProfileDropdown: React.FC = () => {
+interface Props {
+  hideProfileLinks?: boolean
+}
+
+export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false }) => {
   const [user, setUser] = useState<UserDetails | null>(null)
   const isMobile = useMedia({ maxWidth: 600 })
 
@@ -83,20 +87,22 @@ export const UserProfileDropdown: React.FC = () => {
       disabled: true,
     },
     { type: 'divider' },
-    {
-      key: 'profile_details',
-      label: I18n.t('admin.profile_details'),
-      icon: <UserOutlined aria-hidden="true" />,
-      onClick: () => { window.location.href = '/admin/profile/details' },
-    },
-    { type: 'divider' },
-    {
-      key: 'change_password',
-      label: I18n.t('shared.change_password'),
-      icon: <LockOutlined aria-hidden="true" />,
-      onClick: () => { window.location.href = '/admin/profile/change_password' },
-    },
-    { type: 'divider' },
+    ...(!hideProfileLinks ? [
+      {
+        key: 'profile_details',
+        label: I18n.t('admin.profile_details'),
+        icon: <UserOutlined aria-hidden="true" />,
+        onClick: () => { window.location.href = '/admin/profile/details' },
+      },
+      { type: 'divider' as const },
+      {
+        key: 'change_password',
+        label: I18n.t('shared.change_password'),
+        icon: <LockOutlined aria-hidden="true" />,
+        onClick: () => { window.location.href = '/admin/profile/change_password' },
+      },
+      { type: 'divider' as const },
+    ] : []),
     {
       key: 'logout',
       label: I18n.t('administration.navigation.logout'),

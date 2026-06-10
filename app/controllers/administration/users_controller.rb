@@ -48,7 +48,7 @@ class Administration::UsersController < Administration::BaseController
   # DELETE /administration/resources/1
   def destroy
     resource.destroy
-    audit! :delete_user, resource, payload: resource.log_attributes
+    audit! :delete_user, resource, payload: resource.log_attributes, project: resource.project
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -91,7 +91,7 @@ class Administration::UsersController < Administration::BaseController
   #
   def reset_password
     resource.send_reset_password_instructions
-    audit! :reset_password_email, resource, payload: { email: resource.email }
+    audit! :reset_password_email, resource, payload: { email: resource.email }, project: resource.project
     redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
   end
 
@@ -130,13 +130,13 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def spoof_via_handoff(client)
-    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
     siem_log_impersonation_event(resource, 'Admin')
     redirect_via_handoff(resource, client, impersonated_by: current_user)
   end
 
   def spoof_via_client_selection
-    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
     siem_log_impersonation_event(resource, 'Admin')
     redirect_to administration_client_selection_path(spoof_user_id: resource.id)
   end
@@ -147,7 +147,7 @@ class Administration::UsersController < Administration::BaseController
                    else
                      "#{admin_path}/user_availabilities"
                    end
-    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
     siem_log_impersonation_event(resource, 'Admin')
     impersonate_as_admin(resource)
     flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
@@ -155,7 +155,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def login_as_end_user
-    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }
+    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
     siem_log_impersonation_event(resource, 'End User')
     spoof_token = impersonate_as_end_user(resource)
 
