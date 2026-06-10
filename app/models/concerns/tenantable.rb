@@ -37,8 +37,6 @@ module Tenantable
 
   def resolve_tenant_id
     resolved = resolve_tenant_from_record(self) || resolve_tenant_from_source
-    return unless resolved
-
     ActsAsTenant.with_mutable_tenant { self.tenant_id = resolved }
   end
 
@@ -48,7 +46,7 @@ module Tenantable
 
     association_names.each do |association_name|
       parent = public_send(association_name)
-      resolved = resolve_tenant_from_record(parent)
+      resolved = resolve_tenant_from_record(parent) || record_attribute(parent, :tenant_id)
       return resolved if resolved
     end
 
@@ -62,8 +60,7 @@ module Tenantable
       tenant_id_via(record, :threesixty_campaign_id, Threesixty::Campaign) ||
       tenant_id_via(record, :project_id, Client) ||
       tenant_id_via(record, :client_id, Client) ||
-      tenant_id_via_owner(record) ||
-      record_attribute(record, :tenant_id)
+      tenant_id_via_owner(record)
   end
 
   def tenant_id_via(record, fk_column, klass)

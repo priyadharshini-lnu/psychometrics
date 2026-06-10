@@ -230,6 +230,14 @@ describe Tenantable do
       expect(assessment.tenant_id).to eq(tenant_b.id)
     end
 
+    it 'sets tenant_id to nil when owner_id changes to nil (global assessment)' do
+      expect(assessment.tenant_id).to eq(tenant_a.id)
+
+      assessment.skip_owner_validation = true
+      assessment.update!(owner_id: nil)
+      expect(assessment.reload.tenant_id).to be_nil
+    end
+
     it 'keeps tenant_id as current_tenant when current_tenant is set' do
       ActsAsTenant.with_tenant(tenant_a) do
         assessment.skip_owner_validation = true
