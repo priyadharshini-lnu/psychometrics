@@ -102,6 +102,7 @@ const CommonComponent: React.FC<Props> = ({
               )}
               seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
+              safeTimer
             />
           ) : null}
         </Col>

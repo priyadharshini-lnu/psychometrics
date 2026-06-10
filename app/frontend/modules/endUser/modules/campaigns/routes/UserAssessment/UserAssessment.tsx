@@ -175,6 +175,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                 notificationTemplate={notificationMessage}
                 seconds={remainingCampaignTime}
                 onFinish={() => markAssessmentTimedOut(preview)}
+                safeTimer
               />
             )}
             {remainingAssessmentTime && (
@@ -191,6 +192,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                 notificationTemplate={notificationMessage}
                 seconds={remainingAssessmentTime}
                 onFinish={() => markAssessmentTimedOut(preview)}
+                safeTimer
               />
             )}
           </Space>

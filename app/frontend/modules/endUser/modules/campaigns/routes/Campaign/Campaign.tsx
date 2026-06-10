@@ -159,6 +159,7 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
               notificationTemplate={notificationMessage}
               seconds={remainingCampaignTime}
               onFinish={() => fetchCampaign(location.pathname)}
+              safeTimer
             />
           ) : <div className="p-1" />}
         </Flex>

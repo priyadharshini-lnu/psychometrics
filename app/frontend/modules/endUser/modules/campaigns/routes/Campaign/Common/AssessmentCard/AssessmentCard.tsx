@@ -413,6 +413,7 @@ const StartTimeDisplay: FC<StartTimeDisplayProps> = ({ userAssessment, onCountdo
         <CountdownTimer
           seconds={secondsLeftForScheduleTime}
           onFinish={onCountdownFinish}
+          safeTimer
         />
       </Space>
     )

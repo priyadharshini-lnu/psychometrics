@@ -49,6 +49,7 @@ export const MeetingInfo: FC<MeetingInfoProps> = ({
         <CountdownTimer
           seconds={secondsLeftToStartMeeting}
           onFinish={() => setCanJoinMeeting(true)}
+          safeTimer
         />
       </Space>
     </>

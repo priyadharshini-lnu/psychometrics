@@ -221,6 +221,7 @@ const EvaluationComponent = ({
                     { timeRemaining: 900, type: 'error' }]}
                   seconds={secondsLeftFromNow(expiry_date)}
                   onFinish={() => markAssessmentTimedOut(preview)}
+                  safeTimer
                 />
                 {titleElement}
               </Space>
