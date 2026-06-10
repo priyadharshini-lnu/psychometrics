@@ -11,10 +11,10 @@ module Tenantable
 
     class_attribute :tenant_source_association
 
-    before_validation :assign_tenant_from_parent, if: lambda {
-      has_attribute?(:tenant_id) && tenant_id.blank? && ActsAsTenant.current_tenant.nil?
-    }
+    before_validation :resolve_tenant_id, if: :should_resolve_tenant?
   end
+
+  TENANT_DERIVING_COLUMNS = %w[owner_id project_id client_id campaign_id].freeze
 
   class_methods do
     def tenant_source(*association_names)
@@ -24,9 +24,22 @@ module Tenantable
 
   private
 
-  def assign_tenant_from_parent
+  def should_resolve_tenant?
+    return false unless has_attribute?(:tenant_id)
+    return false if ActsAsTenant.current_tenant
+
+    tenant_id.blank? || parent_association_changed?
+  end
+
+  def parent_association_changed?
+    persisted? && changed.intersect?(TENANT_DERIVING_COLUMNS)
+  end
+
+  def resolve_tenant_id
     resolved = resolve_tenant_from_record(self) || resolve_tenant_from_source
-    self.tenant_id = resolved if resolved
+    return unless resolved
+
+    ActsAsTenant.with_mutable_tenant { self.tenant_id = resolved }
   end
 
   def resolve_tenant_from_source

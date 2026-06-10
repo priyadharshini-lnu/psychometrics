@@ -154,5 +154,47 @@ RSpec.describe AdminAuth::ClientScopeFilter do
         expect(described_class.apply(scope, client)).to eq(scope)
       end
     end
+
+    context 'with has_global_records model (Skill via project_id)' do
+      let!(:skill_in_subtree) { create(:skill, project_id: project.id) }
+      let!(:skill_in_other) { create(:skill, project_id: other_project.id) }
+      let!(:global_skill) { create(:skill, project_id: nil) }
+
+      it 'includes records in the client subtree' do
+        result = described_class.apply(Skill.all, client)
+        expect(result).to include(skill_in_subtree)
+      end
+
+      it 'includes global records (nil project_id)' do
+        result = described_class.apply(Skill.all, client)
+        expect(result).to include(global_skill)
+      end
+
+      it 'excludes records belonging to other clients' do
+        result = described_class.apply(Skill.all, client)
+        expect(result).not_to include(skill_in_other)
+      end
+    end
+
+    context 'with has_global_records model (Assessment via owner_id)' do
+      let!(:assessment_owned) { create(:assessment, owner: client) }
+      let!(:assessment_other) { create(:assessment, owner: other_client) }
+      let!(:global_assessment) { create(:assessment, owner: nil) }
+
+      it 'includes records owned by the client subtree' do
+        result = described_class.apply(Assessment.all, client)
+        expect(result).to include(assessment_owned)
+      end
+
+      it 'includes global records (nil owner_id)' do
+        result = described_class.apply(Assessment.all, client)
+        expect(result).to include(global_assessment)
+      end
+
+      it 'excludes records owned by other clients' do
+        result = described_class.apply(Assessment.all, client)
+        expect(result).not_to include(assessment_other)
+      end
+    end
   end
 end

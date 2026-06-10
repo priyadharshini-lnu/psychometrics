@@ -219,6 +219,33 @@ describe Tenantable do
     end
   end
 
+  describe 'tenant_id sync on parent association change' do
+    let(:assessment) { create(:assessment, owner: tenant_a) }
+
+    it 'updates tenant_id when owner_id changes (superadmin context)' do
+      expect(assessment.tenant_id).to eq(tenant_a.id)
+
+      assessment.skip_owner_validation = true
+      assessment.update!(owner: tenant_b)
+      expect(assessment.tenant_id).to eq(tenant_b.id)
+    end
+
+    it 'keeps tenant_id as current_tenant when current_tenant is set' do
+      ActsAsTenant.with_tenant(tenant_a) do
+        assessment.skip_owner_validation = true
+        assessment.owner = tenant_b
+        assessment.valid?
+        expect(assessment.tenant_id).to eq(tenant_a.id)
+      end
+    end
+
+    it 'does not sync when non-tenant columns change' do
+      original_tenant = assessment.tenant_id
+      assessment.update!(name: 'Updated Name')
+      expect(assessment.tenant_id).to eq(original_tenant)
+    end
+  end
+
   describe 'without has_global_records' do
     it 'excludes nil-tenant records from a tenant-scoped query' do
       session = AI::AssistedUserSession.new(resource: nil, assistable: nil, user: create(:user))
