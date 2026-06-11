@@ -1064,14 +1064,17 @@ providers:
         name: MTE KWICLO Trial
         possible_languages:
           - en
+          - ar
       - id: mte-kwiclo-shape
         name: MTE KWICLO Shape
         possible_languages:
           - en
+          - ar
       - id: mte-kwiclo-guide
         name: MTE KWICLO Guide
         possible_languages:
           - en
+          - ar
       - id: mte-defense-trial
         name: MTE Defense Trial
         possible_languages:
