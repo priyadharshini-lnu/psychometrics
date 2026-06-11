@@ -194,7 +194,6 @@ const Manage: React.FC<Props> = ({
       <div>
         <ReportList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('admin.assessments_assessment_report')}</h3>
         <AssessmentList />
 
         <div className={styles.tableDivider} />

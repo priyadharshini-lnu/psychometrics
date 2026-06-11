@@ -3,6 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe AdminJobRecord, type: :model do
+  describe 'operation enum' do
+    it 'includes bulk factor score export operations' do
+      expect(described_class.operations).to include(
+        'bulk_export_raw_factor_scores',
+        'bulk_export_norm_factor_scores'
+      )
+    end
+  end
+
   describe '#increment_completed_tasks' do
     it 'increments completed_tasks!' do
       admin_job_record = create(:admin_job_record, completed_tasks: 0, total_tasks: 2)

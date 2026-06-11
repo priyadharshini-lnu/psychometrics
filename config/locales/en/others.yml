@@ -859,6 +859,8 @@ en:
         bulk_download_idp_reports: Bulk Download IDP Reports
         bulk_download_reports: Bulk Download Reports
         bulk_download_user_reports: Bulk Download User Reports
+        bulk_export_norm_factor_scores: Bulk Norm Factor Scores Export
+        bulk_export_raw_factor_scores: Bulk Raw Factor Scores Export
         bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Results
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports

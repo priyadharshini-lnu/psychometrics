@@ -244,6 +244,13 @@ en:
     blocks_title: Blocks
     booked_at: 'Booked At:'
     breadcrumbs_norms_editor: Norm Editor
+    bulk_assessment_download_date_range_required: Please select date range
+    bulk_assessment_download_export_type: Export type
+    bulk_assessment_download_export_type_required: Please select export type
+    bulk_assessment_download_modal_subtitle: Select a date range and export type, then export selected assessments.
+    bulk_assessment_download_no_data_found: For the chosen date range and assessments, no data found. Please try with different date range or assessments.
+    bulk_assessment_download_norm_factor_scores: Norm factor scores
+    bulk_assessment_download_raw_factor_scores: Raw factor scores
     bulk_assets_modal_choose_csv: Choose CSV File
     bulk_assets_modal_choose_zip: Choose ZIP File
     bulk_assets_modal_not_csv_file_error: Only CSV files are allowed for CSV upload. Please upload a valid CSV file.
@@ -257,6 +264,8 @@ en:
         <li>Upload both the CSV and ZIP files below.</li>
       </ul>
     bulk_assets_modal_title: Upload CSV and ZIP files
+    bulk_export_assessments_file: Bulk assessments export file
+    bulk_export_invalid_params: Invalid bulk export parameters
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign: Campaign
     campaign_admin: Campaign Admin

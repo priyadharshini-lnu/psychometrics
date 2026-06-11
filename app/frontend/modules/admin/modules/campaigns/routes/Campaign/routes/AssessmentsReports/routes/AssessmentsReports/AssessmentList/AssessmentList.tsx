@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Table, Row, Col, Switch, App, Tag,
+  Table, Row, Col, Switch, App, Tag, Button, Space,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -11,6 +11,7 @@ import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { DetailsDrawer } from './DetailsDrawer'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import BulkDownloadAssessmentsModal, { ExportType } from './BulkDownloadAssessmentsModal'
 
 const { Column } = Table
 const { I18n } = window
@@ -39,6 +40,10 @@ const AssessmentList: React.FC<Props> = ({
   toggleRequireScheduling,
   toggleAutoAssign,
   normalizeFactorScores,
+  bulkExportRawFactorScores,
+  bulkExportNormFactorScores,
+  bulkExportRawFactorScoresLoading,
+  bulkExportNormFactorScoresLoading,
   loadingUpdateMettlSchedule,
   updatePearsonVariation,
   updateMhsConfidenceInterval,
@@ -52,11 +57,61 @@ const AssessmentList: React.FC<Props> = ({
   fetchCampaignOptions,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
+  const [selectedAssessmentIds, setSelectedAssessmentIds] = useState<number[]>([])
+  const [bulkModalOpen, setBulkModalOpen] = useState(false)
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const assessmentIdRef = React.useRef<number | null>(null)
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message, modal } = App.useApp()
+  const bulkLoading = bulkExportRawFactorScoresLoading || bulkExportNormFactorScoresLoading
+
+  const hasAnyExportPermission = (assessment: Assessment) => (
+    !!assessment.permissions.exportRawFactorScores
+    || !!assessment.permissions.exportNormedResults
+  )
+
+  const handleBulkDownload = ({
+    exportType,
+    startDate,
+    endDate,
+    includeInactiveUsers,
+  }: {
+    exportType: ExportType
+    startDate: Date
+    endDate: Date
+    includeInactiveUsers: boolean
+  }) => {
+    const payload = {
+      assessmentIds: selectedAssessmentIds,
+      startDate,
+      endDate,
+      includeInactiveUsers,
+    }
+
+    let exportAction
+
+    if (exportType === 'raw_factor_scores') {
+      exportAction = bulkExportRawFactorScores(parsedCampaignId, payload)
+    } else if (exportType === 'norm_factor_scores') {
+      exportAction = bulkExportNormFactorScores(parsedCampaignId, payload)
+    } else {
+      message.error(I18n.t('api_errors.something_went_wrong'))
+      return
+    }
+
+    exportAction.then(() => {
+      const successMsg = exportType === 'raw_factor_scores'
+        ? 'campaign_assessment.messages.raw_factor_export_scheduled'
+        : 'campaign_assessment.messages.norm_results_export_scheduled'
+
+      message.success(I18n.t(successMsg))
+      setBulkModalOpen(false)
+      setSelectedAssessmentIds([])
+    }).catch(() => {
+      message.error(I18n.t('api_errors.something_went_wrong'))
+    })
+  }
 
   const handleTogglePrework = (assessment: Assessment, parsedCampaignId: number, checked: boolean) => {
     openModal('ApplyToExistingUsersFormModal', {
@@ -102,12 +157,35 @@ const AssessmentList: React.FC<Props> = ({
   return (
     <Row>
       <Col span={24}>
+        <Row justify="space-between" className="pm">
+          <Col span={8} className="pls">
+            <h3>{I18n.t('admin.assessments_label')}</h3>
+          </Col>
+          <Space>
+            <Button
+              type="default"
+              onClick={() => setBulkModalOpen(true)}
+              disabled={_.isEmpty(selectedAssessmentIds)}
+            >
+              {I18n.t('campaign_report.actions.bulk_download')}
+            </Button>
+          </Space>
+        </Row>
         <Table
           className="mtm"
           rowKey="id"
           loading={isLoadingAssessmentsAndReports}
           dataSource={list}
           pagination={false}
+          rowSelection={{
+            type: 'checkbox',
+            selectedRowKeys: selectedAssessmentIds,
+            onChange: (ids: React.Key[]) => setSelectedAssessmentIds(ids.map(id => Number(id))),
+            preserveSelectedRowKeys: true,
+            getCheckboxProps: (record: Assessment) => ({
+              disabled: !hasAnyExportPermission(record),
+            }),
+          }}
         >
           <Column
             title={I18n.t('common.column.id')}
@@ -335,6 +413,15 @@ const AssessmentList: React.FC<Props> = ({
             toggleAssessmentCaching={toggleAssessmentCaching}
           />
         ) : null}
+        {bulkModalOpen && (
+          <BulkDownloadAssessmentsModal
+            selectedIds={selectedAssessmentIds}
+            assessments={list}
+            loading={bulkLoading}
+            close={() => setBulkModalOpen(false)}
+            onSubmit={handleBulkDownload}
+          />
+        )}
       </Col>
     </Row>
   )

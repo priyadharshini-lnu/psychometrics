@@ -392,6 +392,8 @@ Rails.application.routes.draw do
             end
             collection do
               get :other
+              post :bulk_export_raw_factor_scores
+              post :bulk_export_norm_factor_scores
             end
           end
           resources :user_assessments, only: [:destroy] do

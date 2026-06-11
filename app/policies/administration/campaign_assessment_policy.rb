@@ -103,6 +103,18 @@ module Administration
       !!(has_permission?(:results, :export_occupations) && @record.dimension&.occupations_enabled?)
     end
 
+    def bulk_export_raw_factor_scores?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :results, :scores, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
+    def bulk_export_norm_factor_scores?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :results, :scores, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def toggle_auto_assign?
       can_manage_campaign_and_users?
     end
