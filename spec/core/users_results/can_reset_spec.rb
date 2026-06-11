@@ -107,6 +107,16 @@ describe UsersResults::CanReset, type: :command do
             expect { subject.call }.to broadcast(:ok, true)
           end
         end
+
+        context 'when assessment is microsite' do
+          before do
+            allow(user_assessment.assessment).to receive(:microsite?).and_return(true)
+          end
+
+          it 'broadcasts true' do
+            expect { subject.call }.to broadcast(:ok, true)
+          end
+        end
       end
     end
   end
