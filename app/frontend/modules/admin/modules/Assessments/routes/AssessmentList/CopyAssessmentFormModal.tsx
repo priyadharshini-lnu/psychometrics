@@ -3,6 +3,7 @@ import {
   Form, Input, App,
   Select,
   Spin,
+  Switch,
 } from 'antd'
 
 import { connect } from 'react-redux'
@@ -14,6 +15,7 @@ import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { MicrositeFields } from './ExternalAssessmentFields/MicrositeFields'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -34,8 +36,14 @@ interface Props {
   currentUser
 }
 
+type RelationshipObject = { type: string, id: string }
+
 type RequestFileds = {
   name: string
+  owner?: RelationshipObject
+  copyAsMicrosite?: boolean
+  project?: RelationshipObject
+  externalSettings?: { assessmentId: string }
 }
 
 const CopyAssessmentFormModal: React.FC<Props> = ({
@@ -43,14 +51,24 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
 }) => {
   const { message } = App.useApp()
   const { resource } = useResourceContext<Assessment>()
+  const [form] = Form.useForm()
 
-  const copy = (values: RequestFileds) => resource.memberAction({
+  const isMicrositeSource = assessment.type === 'microsite'
+  const canCopyAsMicrosite = assessment.type === 'common'
+  const copyAsMicrosite = Form.useWatch('copyAsMicrosite', form)
+  const showMicrositeFields = isMicrositeSource || (canCopyAsMicrosite && copyAsMicrosite)
+
+  const copy = ({
+    name, owner, project, externalSettings,
+  }: RequestFileds) => resource.memberAction({
     id: assessment.id,
     action: 'copy',
     method: 'post',
     updateStore: true,
     responseType: AssessmentTR,
-    body: values,
+    body: showMicrositeFields ? {
+      name, owner, project, externalSettings,
+    } : { name, owner },
   }).then((response: Assessment) => {
     resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount + 1 : 0 })
     message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
@@ -77,6 +95,7 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
       scrollToFirstError
       request={{ createResource: copy }}
       modalProps={{ width: 550 }}
+      storeManager={{ form }}
       formProps={{
         initialValues: {
           name: `${assessment.name} - ${I18n.t('administration.assessments.copy.copy')}`,
@@ -114,6 +133,18 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
               ))}
             </Select>
           </Form.Item>
+          {canCopyAsMicrosite && (
+            <Form.Item
+              name="copyAsMicrosite"
+              label={I18n.t('admin.assessments_copy_as_microsite')}
+              valuePropName="checked"
+            >
+              <Switch />
+            </Form.Item>
+          )}
+          {showMicrositeFields && (
+            <MicrositeFields form={form} handleAssessmentSelect={() => {}} />
+          )}
         </>
       )}
     </ResourceFormModal>

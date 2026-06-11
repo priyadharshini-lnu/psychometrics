@@ -135,6 +135,7 @@ pl:
     assessment_center_search_participants: Wyszukaj uczestników...
     assessment_question_not_supported: Ten typ pytania nie jest obecnie obsługiwany.
     assessments: Oceny
+    assessments_copy_as_microsite: Kopiuj jako ocenę mikrowitryny
     assessments_not_mhs: Wszystkie oceny muszą być typu MHS.
     assessments_reports: Oceny i raporty
     assessor_dashboard: Pulpit nawigacyjny asesora

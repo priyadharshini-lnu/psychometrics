@@ -3,10 +3,11 @@
 module Assessments
   class CopyAssessment < BaseCommand
     private_attr_reader :assessment, :owner_id, :current_user, :skip_owner_validation, :new_assessment_name,
-                        :questions_to_copy
+                        :questions_to_copy, :microsite_settings
 
     def initialize(assessment_id, current_user, owner_id = nil, # rubocop:disable Metrics/ParameterLists
-                   skip_owner_validation: false, new_assessment_name: nil, questions_to_copy: nil)
+                   skip_owner_validation: false, new_assessment_name: nil, questions_to_copy: nil,
+                   microsite_settings: nil)
       @assessment = Assessment.includes(blocks: {
         questions: %i[factors_scorings question_recodings translations]
       }).find(assessment_id)
@@ -18,6 +19,7 @@ module Assessments
       @questions_mapping = {}
       @skip_owner_validation = skip_owner_validation
       @new_assessment_name = new_assessment_name
+      @microsite_settings = microsite_settings
     end
 
     def call # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
@@ -33,6 +35,7 @@ module Assessments
         new_assessment.created_by = current_user
         new_assessment.updated_by = current_user
         new_assessment.skip_owner_validation = skip_owner_validation
+        apply_microsite_settings(new_assessment) if microsite_settings
         new_assessment.save!
 
         copy_instruction_translations(assessment, new_assessment)
@@ -101,6 +104,23 @@ module Assessments
     end
 
     private
+
+    def apply_microsite_settings(new_assessment)
+      new_assessment.type = ::Assessment::TYPES[:microsite]
+      new_assessment.category = ::Assessment::MICROSITE
+      new_assessment.project_id = microsite_settings[:project_id]
+      new_assessment.external_settings = {
+        'assessment_id' => microsite_settings[:assessment_id],
+        'question_mappings' => default_question_mappings(microsite_settings[:assessment_id])
+      }.compact
+    end
+
+    def default_question_mappings(product_id)
+      catalog = MicrositeAssessment.find_by(project_id: microsite_settings[:project_id], product_id: product_id)
+      return unless catalog&.metadata&.dig('questions')
+
+      catalog.metadata['questions'].keys.index_with { |_| nil }
+    end
 
     def update_matrix_question(new_question, question_config)
       choice_texts = question_config[:selected_choice_indexes].map { |index| new_question.props['choicesTexts'][index] }

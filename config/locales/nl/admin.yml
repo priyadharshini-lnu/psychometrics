@@ -135,6 +135,7 @@ nl:
     assessment_center_search_participants: Deelnemers zoeken...
     assessment_question_not_supported: Dit type vraag wordt momenteel niet ondersteund.
     assessments: Beoordeling
+    assessments_copy_as_microsite: Kopiëren als microsite-beoordeling
     assessments_not_mhs: Alle beoordelingen moeten van het type MHS zijn.
     assessments_reports: Beoordelingen en rapporten
     assessor_dashboard: Dashboard voor beoordelaars

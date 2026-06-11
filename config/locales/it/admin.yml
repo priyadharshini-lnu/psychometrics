@@ -135,6 +135,7 @@ it:
     assessment_center_search_participants: Cerca partecipanti...
     assessment_question_not_supported: Questo tipo di domanda non è attualmente supportato.
     assessments: Assessment
+    assessments_copy_as_microsite: Copia come valutazione del microsito
     assessments_not_mhs: Tutte le valutazioni devono essere di tipo MHS.
     assessments_reports: Assessment e report
     assessor_dashboard: Dashboard valutatore

@@ -135,6 +135,7 @@ bg:
     assessment_center_search_participants: Търсене на участници...
     assessment_question_not_supported: Този тип въпрос понастоящем не се поддържа.
     assessments: Оценки
+    assessments_copy_as_microsite: Копиране като оценка на микросайт
     assessments_not_mhs: Всички оценки трябва да бъдат от тип MHS.
     assessments_reports: Оценки и отчети
     assessor_dashboard: Табло за управление на оценителя

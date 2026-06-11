@@ -135,6 +135,7 @@ th:
     assessment_center_search_participants: ค้นหาผู้เข้าร่วม...
     assessment_question_not_supported: ประเภทคำถามนี้ยังไม่รองรับในขณะนี้
     assessments: การประเมิน
+    assessments_copy_as_microsite: คัดลอกเป็นแบบประเมินไมโครไซต์
     assessments_not_mhs: การประเมินทั้งหมดต้องเป็นประเภท MHS
     assessments_reports: การประเมินและรายงาน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน

@@ -135,6 +135,7 @@ zh:
     assessment_center_search_participants: 搜索参与者...
     assessment_question_not_supported: 此题型目前不支持。
     assessments: 评估
+    assessments_copy_as_microsite: 复制为微网站评估
     assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 评估与报告
     assessor_dashboard: 评估员仪表板
