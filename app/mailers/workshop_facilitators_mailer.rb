@@ -6,6 +6,7 @@ class WorkshopFacilitatorsMailer < ApplicationMailer
   def booking_email(workshop, user)
     @user = user
     @workshop = workshop
+    @project = @workshop&.campaign&.project
     @url = administration_project_new_campaign_url(
       @workshop&.campaign&.project, @workshop&.campaign
     ) + "/scheduling/assessment_center/#{@workshop.id}"
@@ -24,6 +25,7 @@ class WorkshopFacilitatorsMailer < ApplicationMailer
   def booking_cancellation_email(workshop, user)
     @user = user
     @workshop = workshop
+    @project = @workshop&.campaign&.project
     @url = administration_project_new_campaign_url(
       @workshop&.campaign&.project, @workshop&.campaign
     ) + "/scheduling/assessment_center/#{@workshop.id}"

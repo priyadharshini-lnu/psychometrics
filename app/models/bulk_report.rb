@@ -28,9 +28,9 @@ class BulkReport < ApplicationRecord
   end
 
   def public_download_urls
-    return [download_administration_bulk_report_url(default_options)] if files.length <= 1
+    return [build_download_url] if files.length <= 1
 
-    files.each_with_index.map { |_, i| download_administration_bulk_report_url(default_options.merge(index: i)) }
+    files.each_with_index.map { |_, i| build_download_url(index: i) }
   end
 
   def private_download_url(index)
@@ -45,7 +45,37 @@ class BulkReport < ApplicationRecord
 
   private
 
-  def default_options
-    { id: self, host: Settings.domain, port: Settings.port }
+  def build_download_url(index: nil)
+    client = associated_client
+
+    if use_admin_subdomain?(client)
+      download_administration_bulk_report_url(
+        id: self,
+        host: AdminSubdomain.admin_host_for(client),
+        port: Settings.port,
+        index: index
+      )
+    else
+      download_administration_bulk_report_url(
+        id: self,
+        host: Settings.domain,
+        subdomain: Settings.subdomain,
+        port: Settings.port,
+        index: index
+      )
+    end
+  end
+
+  def associated_client
+    # Super admins always get root domain URLs
+    return nil if user.superadmin?
+
+    # Client admins get their client's subdomain URL
+    # Use campaign's client when available, otherwise fall back to sole_admin_client
+    campaign&.client || user.sole_admin_client
+  end
+
+  def use_admin_subdomain?(client)
+    AdminSubdomain.client_admin_sso_enabled? && client.present?
   end
 end

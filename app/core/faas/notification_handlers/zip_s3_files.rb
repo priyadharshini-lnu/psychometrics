@@ -36,7 +36,8 @@ module Faas
 
           BulkReportMailer.notify(bulk_report).deliver_later
           if admin_job
-            url = Utility::Url.generate(:download_administration_bulk_report_url, id: bulk_report.id)
+            bulk_report.files.reload
+            url = bulk_report.public_download_urls.first
             content = content_tag(:a, data['file_name'], href: url)
             admin_job.update!(content: content)
             admin_job.complete!

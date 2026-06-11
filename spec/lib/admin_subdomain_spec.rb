@@ -110,4 +110,50 @@ RSpec.describe AdminSubdomain do
       expect(described_class.admin_url_for(client)).to eq('https://adnoc-admin.tte.com:3030/admin')
     end
   end
+
+  describe '.host_options_for' do
+    let(:user) { instance_double('User', superadmin?: false) }
+    let(:client) { instance_double('Client', subdomain: 'adnoc') }
+    let(:project) { instance_double('Client', tte: client) }
+
+    before do
+      allow(Settings).to receive(:port).and_return(nil)
+      allow(described_class).to receive(:client_admin_sso_enabled?).and_return(true)
+      allow(user).to receive(:is?).with(:assessor).and_return(false)
+    end
+
+    it 'returns empty options when user is nil' do
+      expect(described_class.host_options_for(user: nil, project: project)).to eq({})
+    end
+
+    it 'returns empty options when user is a superadmin' do
+      allow(user).to receive(:superadmin?).and_return(true)
+      expect(described_class.host_options_for(user: user, project: project)).to eq({})
+    end
+
+    it 'returns empty options when user is an assessor without admin privileges' do
+      allow(user).to receive(:is?).with(:assessor).and_return(true)
+      allow(user).to receive(:is?).with(:client_admin, :project_admin, :campaign_admin).and_return(false)
+      expect(described_class.host_options_for(user: user, project: project)).to eq({})
+    end
+
+    it 'returns host options when user is an assessor with admin privileges' do
+      allow(user).to receive(:is?).with(:assessor).and_return(true)
+      allow(user).to receive(:is?).with(:client_admin, :project_admin, :campaign_admin).and_return(true)
+      expect(described_class.host_options_for(user: user, project: project)).to eq({ host: 'adnoc-admin.tte.com' })
+    end
+
+    it 'returns host options when client_admin_sso_enabled is true' do
+      expect(described_class.host_options_for(user: user, project: project)).to eq({ host: 'adnoc-admin.tte.com' })
+    end
+
+    it 'returns empty options when client_admin_sso_enabled is false' do
+      allow(described_class).to receive(:client_admin_sso_enabled?).and_return(false)
+      expect(described_class.host_options_for(user: user, project: project)).to eq({})
+    end
+
+    it 'returns empty options when project has no client' do
+      expect(described_class.host_options_for(user: user, project: nil)).to eq({})
+    end
+  end
 end

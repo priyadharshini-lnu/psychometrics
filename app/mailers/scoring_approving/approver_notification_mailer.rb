@@ -7,6 +7,7 @@ module ScoringApproving
     def notify(score_approval, user)
       @score_approval = score_approval
       @user = user
+      @project = @score_approval.project
       @url = administration_ai_scoring_approvals_all_url("#{@score_approval.id}/review")
 
       send_email(

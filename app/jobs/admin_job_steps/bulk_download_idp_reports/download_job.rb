@@ -27,13 +27,14 @@ module AdminJobSteps
       end
 
       def content
+        download_urls = @bulk_report.public_download_urls
+
         [
           content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
           content_tag(:ul) do
             @bulk_report.files.map.with_index do |file, index|
               content_tag(:li) do
-                url = Utility::Url.generate(:download_administration_bulk_report_url, id: @bulk_report.id, index: index)
-                content_tag(:a, file.filename.to_s, href: url)
+                content_tag(:a, file.filename.to_s, href: download_urls[index])
               end
             end.join.html_safe
           end
