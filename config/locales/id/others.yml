@@ -229,6 +229,10 @@ id:
           attributes:
             name:
               not_unique: Integrasi ini sudah ada untuk proyek ini
+        microsite:
+          attributes:
+            name:
+              not_unique: Integrasi ini sudah ada untuk proyek ini
         password_reset:
           attributes:
             email:

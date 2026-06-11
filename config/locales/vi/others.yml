@@ -229,6 +229,10 @@ vi:
           attributes:
             name:
               not_unique: Sự tích hợp này đã có sẵn cho dự án này
+        microsite:
+          attributes:
+            name:
+              not_unique: Sự tích hợp này đã có sẵn cho dự án này
         password_reset:
           attributes:
             email:

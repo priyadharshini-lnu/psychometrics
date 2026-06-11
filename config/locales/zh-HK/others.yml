@@ -229,6 +229,10 @@ zh-HK:
           attributes:
             name:
               not_unique: 此整合已在本專案中存在
+        microsite:
+          attributes:
+            name:
+              not_unique: 此整合已在本專案中存在
         password_reset:
           attributes:
             email:

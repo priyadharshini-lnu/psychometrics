@@ -229,6 +229,10 @@ hi:
           attributes:
             name:
               not_unique: यह एकीकरण इस परियोजना के लिए पहले से ही मौजूद है।
+        microsite:
+          attributes:
+            name:
+              not_unique: यह एकीकरण इस परियोजना के लिए पहले से ही मौजूद है।
         password_reset:
           attributes:
             email:

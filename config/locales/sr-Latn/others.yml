@@ -229,6 +229,10 @@ sr-Latn:
           attributes:
             name:
               not_unique: Ova integracija je već prisutna za ovaj projekat
+        microsite:
+          attributes:
+            name:
+              not_unique: Ova integracija je već prisutna za ovaj projekat
         password_reset:
           attributes:
             email:
