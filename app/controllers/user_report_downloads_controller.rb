@@ -36,10 +36,10 @@ class UserReportDownloadsController < ApplicationController
 
   def user_report
     # FIXME: Temp logic to resolve assessor case
-    if current_user.is?(:superadmin)
-      @user_report = UserReport.find_by(id: params[:id])
+    user_report = UserReport.find_by(id: params[:id])
+    if current_user.is?(:superadmin) || (current_user.is?(:admin) && has_report_permissions?(current_user, user_report))
+      @user_report = user_report
     elsif current_user.is?(:assessor)
-      user_report = UserReport.find_by(id: params[:id])
       if UserReportDownloadPolicy.new({ current_user: current_user }, user_report).assessor_can_access_report?
         @user_report ||= user_report
       end
@@ -56,6 +56,15 @@ class UserReportDownloadsController < ApplicationController
       user_report,
       :pdf_download_link?,
       policy_class: UserReportDownloadPolicy
+    )
+  end
+
+  def has_report_permissions?(current_user, user_report)
+    current_user.has_permission?(
+      :results,
+      :view_report,
+      project_id: user_report.campaign.project_id,
+      campaign_id: user_report.campaign_id
     )
   end
 end
