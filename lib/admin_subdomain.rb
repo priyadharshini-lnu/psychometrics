@@ -54,6 +54,17 @@ module AdminSubdomain
     uri.to_s
   end
 
+  def host_options_for(user:, project:)
+    return {} if user.nil?
+    return {} if user.superadmin?
+    return {} if user.is?(:assessor) && !user.is?(:client_admin, :project_admin, :campaign_admin)
+
+    client = project&.tte
+    return {} unless client && client_admin_sso_enabled?
+
+    { host: admin_host_for(client) }
+  end
+
   def normalize(subdomain)
     subdomain.to_s.downcase.strip
   end

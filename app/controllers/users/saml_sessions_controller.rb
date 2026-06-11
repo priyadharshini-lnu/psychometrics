@@ -74,6 +74,7 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
 
     if access[:error]
       sign_out(user)
+      flash.discard(:notice)
       flash[:alert] = I18n.t('admin.no_client_access')
       return
     end

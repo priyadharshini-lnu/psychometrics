@@ -33,13 +33,20 @@ module Workshops
     end
 
     def assessor_platform_link
+      project = workshop&.campaign&.project
+      host_options = admin_host_options_for(project)
       base_url = Utility::Url.generate(
         :administration_project_new_campaign_url,
-        project_id: workshop&.campaign&.project,
-        id: workshop&.campaign
+        project_id: project,
+        id: workshop&.campaign,
+        **host_options
       )
 
       "#{administration_to_admin_url(base_url)}/scheduling/assessment_center/#{workshop.id}"
+    end
+
+    def admin_host_options_for(project)
+      AdminSubdomain.host_options_for(user: user, project: project)
     end
 
     def generate_event_description(start_time, platform_link)
