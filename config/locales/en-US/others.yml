@@ -229,6 +229,10 @@ en-US:
           attributes:
             name:
               not_unique: This integration is already present for this project
+        microsite:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project
         password_reset:
           attributes:
             email:

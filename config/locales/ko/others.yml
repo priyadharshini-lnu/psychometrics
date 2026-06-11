@@ -229,6 +229,10 @@ ko:
           attributes:
             name:
               not_unique: 이 통합은 이 프로젝트에 이미 존재합니다
+        microsite:
+          attributes:
+            name:
+              not_unique: 이 통합은 이 프로젝트에 이미 존재합니다
         password_reset:
           attributes:
             email:

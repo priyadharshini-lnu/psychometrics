@@ -229,6 +229,10 @@ sr-Cyrl:
           attributes:
             name:
               not_unique: Ова интеграција је већ присутна за овај пројекат
+        microsite:
+          attributes:
+            name:
+              not_unique: Ова интеграција је већ присутна за овај пројекат
         password_reset:
           attributes:
             email:
