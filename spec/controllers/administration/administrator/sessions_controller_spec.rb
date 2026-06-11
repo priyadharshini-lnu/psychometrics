@@ -105,8 +105,9 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
       before do
         ActsAsTenant.current_tenant = client
-        Current.admin_context = :client_admin
-        Current.client = client
+        allow(controller).to receive(:client_admin_context?).and_return(true)
+        allow(Current).to receive(:client_admin_context?).and_return(true)
+        allow(Current).to receive(:client).and_return(client)
       end
 
       it 'redirects to root admin SAML with saml_email_token instead of authenticating' do
@@ -135,12 +136,30 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
       before do
         ActsAsTenant.current_tenant = client
-        Current.admin_context = :client_admin
-        Current.client = client
+        allow(controller).to receive(:client_admin_context?).and_return(true)
+        allow(Current).to receive(:client_admin_context?).and_return(true)
+        allow(Current).to receive(:client).and_return(client)
       end
 
       it 'proceeds to authentication instead of redirecting to SAML' do
         expect(User.find_by(email: user.email).saml_enforced_for_admins?).to be false
+      end
+    end
+
+    context 'when user is a superadmin on a client admin subdomain' do
+      let(:superadmin) { create(:superadmin) }
+
+      before do
+        ActsAsTenant.current_tenant = client
+        allow(controller).to receive(:client_admin_context?).and_return(true)
+      end
+
+      it 'redirects to the administration session path' do
+        post :create, params: { user: { email: superadmin.email } }
+
+        expect(response).to redirect_to(new_administration_session_path)
+        expect(flash[:alert]).to eq(I18n.t('admin.superadmin_use_root_domain',
+                                           default: 'Superadmins must sign in via the root domain.'))
       end
     end
   end

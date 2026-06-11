@@ -9,6 +9,7 @@ module Administration
       prepend_before_action :clear_stale_session_for_handoff, only: [:new]
       prepend_before_action :ensure_redirect_to_saml, only: [:create]
       prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
+      prepend_before_action :reject_superadmin_on_client_subdomain, only: [:create]
 
       helper_method :resource_name, :devise_mapping
       layout 'administration/devise'
@@ -131,6 +132,17 @@ module Administration
       end
 
       private
+
+      def reject_superadmin_on_client_subdomain
+        return unless client_admin_context?
+
+        user = User.find_by(email: params.dig(:user, :email))
+        if user&.is?(:superadmin)
+          flash[:alert] =
+            I18n.t('admin.superadmin_use_root_domain')
+          redirect_to new_administration_session_path and return
+        end
+      end
 
       def ensure_redirect_to_saml
         return if Settings.features.disable_saml_for_admins

@@ -91,12 +91,6 @@ module Administration
     def setup_client_admin_after_password_login(user)
       return true unless Current.client_admin_context?
 
-      if superadmin_without_client_role?(user)
-        sign_out(user)
-        flash[:alert] = I18n.t('admin.superadmin_use_root_domain', default: I18n.t('errors.forbidden'))
-        return false
-      end
-
       access = AdminAuth::ResolveClientAccess.call(user, Current.client)
 
       if access[:error]

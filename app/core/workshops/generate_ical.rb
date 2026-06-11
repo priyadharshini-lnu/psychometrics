@@ -35,14 +35,22 @@ module Workshops
     def assessor_platform_link
       project = workshop&.campaign&.project
       host_options = admin_host_options_for(project)
-      base_url = Utility::Url.generate(
-        :administration_project_new_campaign_url,
+      url_options = default_url_params.merge(host_options).merge(
         project_id: project,
-        id: workshop&.campaign,
-        **host_options
+        id: workshop&.campaign
       )
+      base_url = Rails.application.routes.url_helpers.administration_project_new_campaign_url(url_options)
 
       "#{administration_to_admin_url(base_url)}/scheduling/assessment_center/#{workshop.id}"
+    end
+
+    def default_url_params
+      mailer_defaults = ActionMailer::Base.default_url_options
+      {
+        protocol: Settings.protocol,
+        host: mailer_defaults[:host],
+        port: mailer_defaults[:port]
+      }.compact
     end
 
     def admin_host_options_for(project)
