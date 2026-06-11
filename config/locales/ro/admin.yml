@@ -137,6 +137,7 @@ ro:
     assessments: Evaluări
     assessments_assessment_report: Evaluări
     assessments_copy: Copiați
+    assessments_copy_as_microsite: Copiați ca evaluare de microsite
     assessments_copy_assessment: Evaluarea copierii
     assessments_help_text: Această selecție afectează numai evenimentul „Răspuns brut la evaluare”.
     assessments_label: Evaluări

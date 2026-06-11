@@ -140,6 +140,7 @@ sr-Cyrl:
     assessments: Оцењивања
     assessments_assessment_report: Оцењивања
     assessments_copy: Копија
+    assessments_copy_as_microsite: Копирај као процену микросајта
     assessments_copy_assessment: Копирај процену
     assessments_help_text: Овај избор утиче само на догађај "Assessment Raw Response".
     assessments_label: Оцењивања

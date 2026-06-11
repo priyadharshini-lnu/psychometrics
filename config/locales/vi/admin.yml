@@ -140,6 +140,7 @@ vi:
     assessments: Đánh giá
     assessments_assessment_report: Đánh giá
     assessments_copy: Sao chép
+    assessments_copy_as_microsite: Sao chép dưới dạng bài đánh giá microsite
     assessments_copy_assessment: Bản sao đánh giá
     assessments_help_text: Lựa chọn này chỉ ảnh hưởng đến sự kiện Phản hồi thô của Đánh giá.
     assessments_label: Đánh giá

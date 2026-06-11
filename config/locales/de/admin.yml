@@ -140,6 +140,7 @@ de:
     assessments: Beurteilungen
     assessments_assessment_report: Beurteilungen
     assessments_copy: Kopieren
+    assessments_copy_as_microsite: Als Microsite-Bewertung kopieren
     assessments_copy_assessment: Bewertung kopieren
     assessments_help_text: Diese Auswahl wirkt sich nur auf das Ereignis „Assessment Raw Response“ (Bewertung der Rohantworten) aus.
     assessments_label: Beurteilungen

@@ -140,6 +140,7 @@ fr:
     assessments: Évaluations
     assessments_assessment_report: Évaluations
     assessments_copy: Copie
+    assessments_copy_as_microsite: Copier en tant qu'évaluation du microsite
     assessments_copy_assessment: Évaluation de la copie
     assessments_help_text: Cette sélection n'affecte que l'événement « Réponse brute à l'évaluation ».
     assessments_label: Évaluations

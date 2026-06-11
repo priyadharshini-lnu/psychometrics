@@ -139,6 +139,7 @@ sl:
     assessments: Ocenjevanja
     assessments_assessment_report: Ocenjevanja
     assessments_copy: Kopiraj
+    assessments_copy_as_microsite: Kopiraj kot ocenjevanje mikrostrani
     assessments_copy_assessment: Ocena kopije
     assessments_help_text: Ta izbira vpliva samo na dogodek Ocena surovega odgovora.
     assessments_label: Ocenjevanja

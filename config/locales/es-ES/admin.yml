@@ -139,6 +139,7 @@ es-ES:
     assessments: Evaluaciones
     assessments_assessment_report: Evaluaciones
     assessments_copy: Copiar
+    assessments_copy_as_microsite: Copiar como evaluación del micrositio
     assessments_copy_assessment: Copia Evaluación
     assessments_help_text: Esta selección solo afecta al evento «Respuesta sin procesar de la evaluación».
     assessments_label: Evaluaciones

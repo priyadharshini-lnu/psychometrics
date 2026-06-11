@@ -136,6 +136,7 @@ ar:
     assessments: التقييمات
     assessments_assessment_report: التقييمات
     assessments_copy: نسخ
+    assessments_copy_as_microsite: نسخ كتقييم الموقع المصغر
     assessments_copy_assessment: نسخ التقييم
     assessments_help_text: يؤثر هذا الاختيار فقط على حدث "الرد الأولي على التقييم".
     assessments_label: التقييمات

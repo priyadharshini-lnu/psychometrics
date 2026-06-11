@@ -140,6 +140,7 @@ bg:
     assessments: Оценявания
     assessments_assessment_report: Оценявания
     assessments_copy: Копирайте
+    assessments_copy_as_microsite: Копиране като оценка на микросайт
     assessments_copy_assessment: Копиране на оценка
     assessments_help_text: Този избор засяга само събитието „Оценка на необработения отговор“.
     assessments_label: Оценявания

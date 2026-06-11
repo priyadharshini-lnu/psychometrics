@@ -140,6 +140,7 @@ ko:
     assessments: 평가
     assessments_assessment_report: 평가
     assessments_copy: 복사
+    assessments_copy_as_microsite: 마이크로사이트 평가로 복사
     assessments_copy_assessment: 복사 평가
     assessments_help_text: 이 선택 사항은 평가 원시 응답 이벤트에만 영향을 미칩니다.
     assessments_label: 평가

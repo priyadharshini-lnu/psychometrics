@@ -140,6 +140,7 @@ ru:
     assessments: Оценки
     assessments_assessment_report: Оценки
     assessments_copy: Копировать
+    assessments_copy_as_microsite: Копировать как оценку микросайта
     assessments_copy_assessment: Оценка копирования
     assessments_help_text: Этот выбор влияет только на событие «Необработанный ответ оценки».
     assessments_label: Оценки

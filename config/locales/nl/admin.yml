@@ -136,6 +136,7 @@ nl:
     assessments: Beoordeling
     assessments_assessment_report: Beoordeling
     assessments_copy: Kopie
+    assessments_copy_as_microsite: Kopiëren als microsite-beoordeling
     assessments_copy_assessment: Kopie Beoordeling
     assessments_help_text: Deze selectie heeft alleen invloed op de gebeurtenis 'Ruwe beoordelingsreactie'.
     assessments_label: Beoordeling

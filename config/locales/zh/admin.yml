@@ -140,6 +140,7 @@ zh:
     assessments: 评估
     assessments_assessment_report: 评估
     assessments_copy: 复制
+    assessments_copy_as_microsite: 复制为微网站评估
     assessments_copy_assessment: 副本评估
     assessments_help_text: 此选项仅影响评估原始响应事件。
     assessments_label: 评估

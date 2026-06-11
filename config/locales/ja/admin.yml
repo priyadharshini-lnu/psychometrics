@@ -140,6 +140,7 @@ ja:
     assessments: アセスメント
     assessments_assessment_report: アセスメント
     assessments_copy: コピー
+    assessments_copy_as_microsite: マイクロサイト評価としてコピー
     assessments_copy_assessment: コピー査定
     assessments_help_text: この選択は評価の生の応答イベントにのみ影響します。
     assessments_label: アセスメント

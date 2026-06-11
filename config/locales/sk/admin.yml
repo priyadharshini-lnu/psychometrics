@@ -139,6 +139,7 @@ sk:
     assessments: Hodnotenia
     assessments_assessment_report: Hodnotenia
     assessments_copy: Kopírovať
+    assessments_copy_as_microsite: Kopírovať ako hodnotenie mikrostránky
     assessments_copy_assessment: Posúdenie kópie
     assessments_help_text: Tento výber ovplyvňuje iba udalosť „Hodnotenie surových odpovedí“.
     assessments_label: Hodnotenia

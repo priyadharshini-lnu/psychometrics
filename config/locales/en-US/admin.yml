@@ -140,6 +140,7 @@ en-US:
     assessments: Assessments
     assessments_assessment_report: Assessments
     assessments_copy: Copy
+    assessments_copy_as_microsite: Copy as Microsite Assessment
     assessments_copy_assessment: Copy Assessment
     assessments_help_text: This selection only affects the Assessment Raw Response event.
     assessments_label: Assessments

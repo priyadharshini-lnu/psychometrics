@@ -139,6 +139,7 @@ hr:
     assessments: Procjene
     assessments_assessment_report: Procjene
     assessments_copy: Kopirati
+    assessments_copy_as_microsite: Kopiraj kao procjenu mikrostranice
     assessments_copy_assessment: Kopiranje procjene
     assessments_help_text: Ovaj odabir utječe samo na događaj Procjena sirovog odgovora.
     assessments_label: Procjene

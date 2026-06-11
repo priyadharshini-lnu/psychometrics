@@ -137,6 +137,7 @@ id:
     assessments: Penilaian
     assessments_assessment_report: Penilaian
     assessments_copy: Salin
+    assessments_copy_as_microsite: Salin sebagai Asesmen Microsite
     assessments_copy_assessment: Salin Penilaian
     assessments_help_text: Pilihan ini hanya berlaku untuk acara Respons Mentah Penilaian.
     assessments_label: Penilaian

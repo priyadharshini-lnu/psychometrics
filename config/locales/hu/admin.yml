@@ -140,6 +140,7 @@ hu:
     assessments: Értékelések
     assessments_assessment_report: Értékelések
     assessments_copy: Másolás
+    assessments_copy_as_microsite: Másolás mikrosite-értékelésként
     assessments_copy_assessment: Értékelés másolása
     assessments_help_text: Ez a kiválasztás csak az Értékelés nyers válasz eseményre van hatással.
     assessments_label: Értékelések

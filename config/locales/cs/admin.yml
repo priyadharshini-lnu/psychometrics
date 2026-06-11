@@ -136,6 +136,7 @@ cs:
     assessments: Hodnocení
     assessments_assessment_report: Hodnocení
     assessments_copy: Kopírovat
+    assessments_copy_as_microsite: Kopírovat jako hodnocení mikrostránky
     assessments_copy_assessment: Posouzení kopírování
     assessments_help_text: Tento výběr má vliv pouze na událost „Hodnocení surové odpovědi“.
     assessments_label: Hodnocení

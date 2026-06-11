@@ -138,6 +138,7 @@ it:
     assessments: Assessment
     assessments_assessment_report: Assessment
     assessments_copy: Copia
+    assessments_copy_as_microsite: Copia come valutazione del microsito
     assessments_copy_assessment: Valutazione della copia
     assessments_help_text: Questa selezione influisce solo sull'evento Risposta grezza della valutazione.
     assessments_label: Assessment

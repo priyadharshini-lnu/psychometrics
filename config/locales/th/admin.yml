@@ -140,6 +140,7 @@ th:
     assessments: การประเมิน
     assessments_assessment_report: การประเมิน
     assessments_copy: สำเนา
+    assessments_copy_as_microsite: คัดลอกเป็นแบบประเมินไมโครไซต์
     assessments_copy_assessment: คัดลอกการประเมิน
     assessments_help_text: การเลือกนี้จะมีผลเฉพาะกับเหตุการณ์การตอบสนองดิบของการประเมินเท่านั้น
     assessments_label: การประเมิน

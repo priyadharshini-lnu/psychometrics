@@ -138,6 +138,7 @@ pl:
     assessments: Oceny
     assessments_assessment_report: Oceny
     assessments_copy: Kopiuj
+    assessments_copy_as_microsite: Kopiuj jako ocenę mikrowitryny
     assessments_copy_assessment: Ocena kopii
     assessments_help_text: Ten wybór dotyczy wyłącznie zdarzenia „Ocena surowej odpowiedzi”.
     assessments_label: Oceny
