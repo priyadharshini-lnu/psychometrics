@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import { DefaultAntThemeWrapper } from '~/glint'
 import { ClientSelection } from '~/modules/admin/modules/ClientSelection/routes/ClientSelection'
+import { isRtl } from '~/utils/locales'
 
 const { antdLocale, I18n } = window
 const { locale } = document.body.dataset
@@ -17,7 +18,7 @@ const root = createRoot(container)
 root.render(
   <DefaultAntThemeWrapper
     locale={antdLocale}
-    direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}
+    direction={isRtl(I18n.currentLocale()) ? 'rtl' : 'ltr'}
   >
     <ClientSelection clients={clients} spoofUserId={spoofUserId} />
   </DefaultAntThemeWrapper>,

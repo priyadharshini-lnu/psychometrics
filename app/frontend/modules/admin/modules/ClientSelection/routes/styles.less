@@ -62,9 +62,11 @@
   }
 
   :global(.ant-input-group-addon) {
-    border-radius: 0 6px 6px 0;
+    border-radius: 0;
+    border-start-end-radius: 6px;
+    border-end-end-radius: 6px;
     background: transparent;
-    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    border-inline-start: 1px solid rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -138,7 +140,7 @@
 .ssoBadge {
   position: absolute;
   top: 8px;
-  right: 8px;
+  inset-inline-end: 8px;
   display: inline-flex;
   align-items: center;
   font-size: 12px;
