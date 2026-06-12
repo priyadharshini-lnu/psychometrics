@@ -3534,13 +3534,11 @@ ja:
         title: 以下の情報でIdpを設定する。
       email_pipetext: Pipetextにメールする
       enabled: 有効
-      enforced: SAML の実施
       entity_id: エンティティID/発行者
       name_identifier_format: 名前識別子
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent。
-      saml: サムル
       saml_setting: SAML 設定
       save: 設定の保存
       sso_service_url: SSOサービスURL

@@ -40,12 +40,9 @@ RSpec.describe Administration::CommunicationsController, type: :request do
           resource: {
             subject: 'Test Subject EN',
             body: '<p>Test Body EN</p>',
-            assessment_id: assessment.id,
             client_id: client.id,
-            project_id: project.id,
-            campaign_id: campaign.id,
             owner_id: client.id,
-            kind: 'invitation',
+            kind: 'other',
             delivery_rule: 'send_now',
             recipients: 'all',
             locale: 'en'
@@ -56,7 +53,7 @@ RSpec.describe Administration::CommunicationsController, type: :request do
       context 'when creating communication with English locale' do
         it 'creates communication with translated content' do
           expect do
-            post administration_communications_path, params: valid_params, as: :js
+            post administration_communications_path(format: :js), params: valid_params
           end.to change(Communication, :count).by(1)
 
           communication = Communication.last
@@ -80,7 +77,7 @@ RSpec.describe Administration::CommunicationsController, type: :request do
 
         it 'creates communication with Spanish translated content' do
           expect do
-            post administration_communications_path, params: spanish_params, as: :js
+            post administration_communications_path(format: :js), params: spanish_params
           end.to change(Communication, :count).by(1)
 
           communication = Communication.last

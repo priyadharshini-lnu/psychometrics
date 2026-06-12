@@ -7,6 +7,7 @@ import { AdminRoles } from './AdminRoles'
 import { SkillAliases } from './SkillAliases'
 import { Privacy as PrivacySettings } from './Privacy'
 import { Features } from './Features'
+import { Sso as SsoSettings } from './Sso'
 import { Smtp } from './routes/Smtp'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
@@ -25,7 +26,14 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
     { label: I18n.t('administration.settings.tabs.admin_roles'), key: 'roles', children: <AdminRoles /> },
     ...(
       isSuperAdmin(currentUser)
-        ? [{ label: I18n.t('administration.smtp_settings.smtp'), key: 'smtp', children: <Smtp /> }]
+        ? [
+          { label: I18n.t('administration.smtp_settings.smtp'), key: 'smtp', children: <Smtp /> },
+          {
+            label: I18n.t('admin.sso_settings_tab'),
+            key: 'sso_settings',
+            children: <SsoSettings />,
+          },
+        ]
         : []
     ),
     { label: I18n.t('administration.settings.tabs.siem'), key: 'siem', children: <Siem /> },

@@ -163,7 +163,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
         }}
         crumbs={[
           {
-            link: () => '/admin',
+            link: window.PsyGlobalState?.clientContextData ? undefined : () => '/admin',
             label: () => I18n.t('administration.clients.clients'),
           },
           {

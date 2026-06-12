@@ -69,26 +69,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
   end
 
   def self.records(opts = {})
-    if (role = opts[:context][:params][:filter] && opts[:context][:params][:filter][:role_eq])
-      role_based_class = case role
-                           when User::REGULAR_ROLE
-                             Users::Regular
-                           when User::ADMIN_ROLE
-                             Users::Admin
-                           when User::SUPER_ADMIN_ROLE
-                             Users::SuperAdmin
-                           else
-                             User
-                         end
-
-      ::Pundit.policy_scope!(
-        opts[:context][:user], [:api, :administration, role_based_class]
-      ).includes(:creator, :modifier)
-    else
-      ::Pundit.policy_scope!(
-        opts[:context][:user], [:api, :administration, User]
-      ).includes(:creator, :modifier)
-    end
+    super.includes(:creator, :modifier)
   end
 
   def fetchable_fields

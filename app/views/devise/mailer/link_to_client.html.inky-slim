@@ -8,5 +8,5 @@ spacer[size="16"]
 row
   columns
     .radius.small
-      button href= url_for([:root, { domain: Settings.domain, subdomain: Settings.subdomain, protocol: Settings.protocol, port: Settings.port }])
+      button href= @sign_in_url
         = t("devise.mailer.invitation_instructions.login")

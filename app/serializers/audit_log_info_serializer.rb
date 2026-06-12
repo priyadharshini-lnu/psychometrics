@@ -11,6 +11,7 @@ class AuditLogInfoSerializer < Panko::Serializer
   has_one :project, serializer: Shared::AuditLogSerializers::ProjectSerializer
   has_one :campaign, serializer: Shared::AuditLogSerializers::CampaignSerializer
   has_one :user, serializer: Shared::AuditLogSerializers::UserSerializer
+  has_one :impersonator, serializer: Shared::AuditLogSerializers::UserSerializer
 
   has_many :active_record_audits, each_serializer: ActiveRecordAuditSerializer
 

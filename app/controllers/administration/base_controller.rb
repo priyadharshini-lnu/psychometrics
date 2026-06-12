@@ -7,10 +7,16 @@ module Administration
     include GeoRestriction
     include Administration::Policies
     include Administration::Helpers
+    include Administration::Impersonation
+    include Administration::HandoffRedirect
+    include Administration::SessionEnforcement
+    include ClientScopeable
 
     layout 'administration'
 
     before_action :set_locale
+    before_action :enforce_root_domain_isolation
+    before_action :enforce_admin_session_validity
 
     append_after_action :verify_authorized, except: :index
     append_after_action :verify_policy_scoped, only: :index
@@ -40,7 +46,11 @@ module Administration
       )
         sign_out current_user
       end
-      super
+
+      return super unless Current.client_admin_context? && !user_signed_in?
+
+      store_location_for(:user, request.fullpath)
+      redirect_to new_administration_session_path
     end
 
     def pundit_authorize

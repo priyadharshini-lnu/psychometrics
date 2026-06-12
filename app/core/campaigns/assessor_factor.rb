@@ -14,6 +14,8 @@ module Campaigns
     end
 
     def sql
+      tenant_id = Campaign.where(id: campaign_id).pick(:tenant_id)
+
       <<-SQL.squish
         SELECT DISTINCT
           f.id AS factor_id,
@@ -23,7 +25,8 @@ module Campaigns
           #{CampaignFactor.factor_types[:assessor_scoring]} AS factor_type,
           #{CampaignFactor.assessment_score_types[:score]} AS assessment_score_type,
           #{campaign_id} AS campaign_id,
-          ROW_NUMBER () OVER () AS position
+          ROW_NUMBER () OVER () AS position,
+          #{tenant_id.nil? ? 'NULL' : tenant_id} AS tenant_id
         FROM
           factors f
           INNER JOIN dimensions d ON f.dimension_id = d.id

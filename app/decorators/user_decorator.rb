@@ -17,7 +17,10 @@ class UserDecorator < BaseDecorator
 
   def role
     if object.is?(:admin)
-      I18n.t("activerecord.attributes.user.roles.#{object.memberships.pluck(:role).pop || 'assessor'}")
+      scope = Membership.where(user_id: object.id)
+      scope = scope.where(client_id: Current.client.subtree_ids) if Current.client
+      role_name = (AdminAuth::HighestClientRoles::ROLE_PRIORITY & scope.pluck(:role)).first || 'assessor'
+      I18n.t("activerecord.attributes.user.roles.#{role_name}")
     else
       I18n.t("activerecord.attributes.user.roles.#{User::USER_ROLES.key(object.role)}")
     end

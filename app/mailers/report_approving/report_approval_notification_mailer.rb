@@ -7,6 +7,7 @@ module ReportApproving
     def notify(user_report, user)
       @user_report = user_report
       @user = user
+      @project = @user_report.project
       @url = administration_project_new_campaign_url(
         @user_report.project, @user_report.campaign
       ) + "/user_reports/#{@user_report.id}"

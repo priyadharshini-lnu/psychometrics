@@ -39,6 +39,7 @@ module Api
         validate :validate_subdomain
         validate :uniq_subdomain
         validate :reserved_subdomain
+        validate :admin_subdomain
         validate :single_subscription
 
         def validate_locales
@@ -72,6 +73,13 @@ module Api
           return if Settings.reserved_subdomains.exclude? subdomain
 
           errors.add(:subdomain, "'#{subdomain}' is reserved")
+        end
+
+        def admin_subdomain
+          return if subdomain.nil?
+          return unless Client::RESERVED_ADMIN_SUBDOMAIN_PATTERNS.any? { |pattern| pattern.match?(subdomain) }
+
+          errors.add(:subdomain, I18n.t('admin.subdomain_admin_keyword'))
         end
       end
     end

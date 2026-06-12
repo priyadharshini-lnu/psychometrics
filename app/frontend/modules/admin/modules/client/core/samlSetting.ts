@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
@@ -24,6 +25,18 @@ export interface State {
 const defaultState = {} as State
 
 export const UPDATE_SETTINGS = 'resource/campaigns/samlSetting/UPDATE'
+export const PARSE_METADATA = 'resource/campaigns/samlSetting/PARSE_METADATA'
+
+export const parseMetadata = (
+  projectId: string, body: Record<string, unknown>,
+): ApiAction<Record<string, unknown>> => ({
+  type: PARSE_METADATA,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/saml_settings/parse_metadata`,
+    body,
+  },
+})
 
 type FetchType = ApiActionResponse<ProjectState>
 

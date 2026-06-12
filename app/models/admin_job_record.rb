@@ -14,6 +14,8 @@ class AdminJobRecord < ApplicationRecord
 
   has_one_attachment :file, service: Settings.storage.private_storage_service
 
+  acts_as_tenant(:tenant, class_name: 'Client', foreign_key: :tenant_id, optional: true)
+
   validates :file, content_type: %w[csv xlsx xls zip json pdf pptx]
 
   def attachment_storage_path(attribute_name, filename)

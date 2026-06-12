@@ -174,8 +174,14 @@ Style/GlobalVars:
     - app/models/users/regular.rb
     - app/core/hogan/add_reports.rb
     - app/core/users/authenticate_user.rb
+    - app/core/admin_auth/consume_handoff_token.rb
+    - app/core/admin_auth/generate_handoff_token.rb
+    - app/models/concerns/subdomain_session_limitable.rb
     - config/initializers/redis.rb
     - spec/commands/users/build_sso_url_spec.rb
+    - spec/core/admin_auth/consume_handoff_token_spec.rb
+    - spec/core/admin_auth/generate_handoff_token_spec.rb
+    - spec/models/concerns/subdomain_session_limitable_spec.rb
 
 Style/GuardClause:
   Enabled: false

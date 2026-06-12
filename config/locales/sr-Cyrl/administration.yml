@@ -3592,13 +3592,11 @@ sr-Cyrl:
         title: Конфигуришите Idp са следећим информацијама
       email_pipetext: Пошаљи имејл Pipetext
       enabled: Омогућено
-      enforced: Обавежите SAML
       entity_id: ИД ентитета/Издавач
       name_identifier_format: Именовачни идентификатор
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML подешавање
       save: Сачувај подешавање
       sso_service_url: SSO URL услуге

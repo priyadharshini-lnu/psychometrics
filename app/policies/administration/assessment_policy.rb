@@ -176,7 +176,7 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super.with_attached_icon.with_attached_poster
-        return scope if @user.is?(:superadmin)
+        return scope if superadmin_bypass?
 
         owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
 
@@ -184,7 +184,7 @@ module Administration
           @user.has_permission?(:assessments, :view, project_id: owner_id)
         end
 
-        scope.where(owner_id: permitted_owner_ids)
+        scope.where(owner_id: restrict_to_client_subtree(permitted_owner_ids))
       end
     end
   end

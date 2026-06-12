@@ -36,6 +36,10 @@ module Api
         manage_admins?
       end
 
+      def spoof?
+        manage_admins? && !@record&.user&.superadmin?
+      end
+
       private
 
       def manage_admins?

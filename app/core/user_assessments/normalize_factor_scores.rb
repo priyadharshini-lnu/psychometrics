@@ -31,7 +31,8 @@ module UserAssessments
           UserAssessmentFactorScore.new(
             user_assessment_id: user_assessment.id,
             factor_id: factor_id,
-            scores: scores.slice(*ALLOWED_KEYS)
+            scores: scores.slice(*ALLOWED_KEYS),
+            tenant_id: user_assessment.tenant_id
           )
         end
         UserAssessmentFactorScore.import(

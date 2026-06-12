@@ -3,7 +3,6 @@
 class SmsHistory < ApplicationRecord
   audited
 
-  belongs_to :sms_invite
   belongs_to :sms_record
   include Tenantable
 

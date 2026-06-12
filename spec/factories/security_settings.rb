@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :security_setting do
-    project_id { 1 }
+    association :project, factory: :tenancy
     enforce_strong_password { false }
     min_password_length { 8 }
     enforce_password_policy { false }

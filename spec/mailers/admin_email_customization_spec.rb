@@ -30,6 +30,13 @@ describe 'Admin Email Customization', type: :mailer do
       expect(mail.from).to eq(['custom@cc.com'])
       expect(mail[:from].value).to eq('Custom Admin <custom@cc.com>')
     end
+
+    it 'link_to_client includes client admin subdomain URL' do
+      membership = create(:membership, user: user, client: project)
+      mail = InvitationMailer.link_to_client(user.id, membership)
+
+      expect(mail.body.encoded).to include(client.admin_url)
+    end
   end
 
   describe 'WorkshopFacilitatorsMailer' do

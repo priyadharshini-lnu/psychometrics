@@ -17,6 +17,7 @@ class OccupationsFactor < ApplicationRecord
 
   belongs_to :factor
   belongs_to :occupation
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :factor

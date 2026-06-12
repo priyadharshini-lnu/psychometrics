@@ -43,6 +43,7 @@ module SystemCheckRecords
 
       system_check_record.passed = true
       system_check_record.save!
+      system_check_record.reload
 
       broadcast(:ok, system_check_record)
     end

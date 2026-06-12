@@ -14,6 +14,7 @@ class Factor < ApplicationRecord
   belongs_to :dimension, touch: true
   belongs_to :skill, optional: true
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :dimension

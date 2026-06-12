@@ -12,11 +12,11 @@ class UserReport < ApplicationRecord
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
-  belongs_to :norm
   belongs_to :campaign
   belongs_to :report_family
   include Tenantable
 
+  belongs_to :norm
   belongs_to :approval_status_owner, class_name: 'User'
 
   has_one :project, through: :campaign

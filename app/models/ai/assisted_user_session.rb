@@ -7,6 +7,7 @@ class AI::AssistedUserSession < ApplicationRecord
   belongs_to :user
   belongs_to :assistable, polymorphic: true
   belongs_to :resource, polymorphic: true, optional: true
+
   include Tenantable
 
   tenant_source %i[resource assistable user]
