@@ -229,6 +229,10 @@ ja:
           attributes:
             name:
               not_unique: このプロジェクトでは、この統合はすでに行われている
+        microsite:
+          attributes:
+            name:
+              not_unique: このプロジェクトでは、この統合はすでに行われている
         password_reset:
           attributes:
             email:

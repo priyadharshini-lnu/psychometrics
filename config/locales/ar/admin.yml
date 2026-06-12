@@ -135,6 +135,7 @@ ar:
     assessment_center_search_participants: البحث عن المشاركين...
     assessment_question_not_supported: هذا النوع من الأسئلة غير مدعوم حاليًا.
     assessments: التقييمات
+    assessments_copy_as_microsite: نسخ كتقييم الموقع المصغر
     assessments_not_mhs: يجب أن تكون جميع التقييمات من نوع MHS
     assessments_reports: التقييمات والتقارير
     assessor_dashboard: لوحة معلومات المقيم

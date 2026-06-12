@@ -135,6 +135,7 @@ ro:
     assessment_center_search_participants: Căutare participanți...
     assessment_question_not_supported: Acest tip de întrebare nu este acceptat în prezent.
     assessments: Evaluări
+    assessments_copy_as_microsite: Copiați ca evaluare de microsite
     assessments_not_mhs: Toate evaluările trebuie să fie de tip MHS.
     assessments_reports: Evaluări și rapoarte
     assessor_dashboard: Tabloul de bord al evaluatorului

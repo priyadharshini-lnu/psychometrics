@@ -135,6 +135,7 @@ vi:
     assessment_center_search_participants: Tìm kiếm người tham gia...
     assessment_question_not_supported: Loại câu hỏi này hiện tại chưa được hỗ trợ.
     assessments: Đánh giá
+    assessments_copy_as_microsite: Sao chép dưới dạng bài đánh giá microsite
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
     assessments_reports: Đánh giá & Báo cáo
     assessor_dashboard: Bảng điều khiển đánh giá viên

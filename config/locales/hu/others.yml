@@ -229,6 +229,10 @@ hu:
           attributes:
             name:
               not_unique: Ez az integráció már jelen van ebben a projektben
+        microsite:
+          attributes:
+            name:
+              not_unique: Ez az integráció már jelen van ebben a projektben
         password_reset:
           attributes:
             email:

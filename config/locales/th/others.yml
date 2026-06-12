@@ -229,6 +229,10 @@ th:
           attributes:
             name:
               not_unique: การผสานรวมนี้มีอยู่แล้วสําหรับโครงการนี้
+        microsite:
+          attributes:
+            name:
+              not_unique: การผสานรวมนี้มีอยู่แล้วสําหรับโครงการนี้
         password_reset:
           attributes:
             email:

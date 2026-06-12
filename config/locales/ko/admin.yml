@@ -135,6 +135,7 @@ ko:
     assessment_center_search_participants: 참가자 검색...
     assessment_question_not_supported: 이 질문 유형은 현재 지원되지 않습니다.
     assessments: 평가
+    assessments_copy_as_microsite: 마이크로사이트 평가로 복사
     assessments_not_mhs: 모든 평가는 MHS 유형이어야 합니다
     assessments_reports: 평가 및 보고서
     assessor_dashboard: 평가자 대시보드

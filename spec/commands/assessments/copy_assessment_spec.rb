@@ -240,5 +240,79 @@ describe Assessments::CopyAssessment do
 
       expect(copy.owner_id).to eq(nil)
     end
+
+    context 'with microsite_settings' do
+      let(:project) { create(:project) }
+      let(:microsite_settings) { { project_id: project.id, assessment_id: 'ms-product-123' } }
+
+      let(:microsite_copy) do
+        described_class.call!(
+          assessment.id, user, client.id,
+          new_assessment_name: "Copy of #{assessment.name}",
+          microsite_settings: microsite_settings
+        )[:assessment]
+      end
+
+      it 'copies the assessment as a microsite assessment' do
+        persisted_copy = Assessment.find(microsite_copy.id)
+
+        expect(persisted_copy).to be_an_instance_of(Assessments::Microsite)
+        expect(persisted_copy.category).to eq(Assessment::MICROSITE)
+        expect(persisted_copy.project_id).to eq(project.id)
+        expect(persisted_copy.external_settings['assessment_id']).to eq('ms-product-123')
+      end
+
+      it 'seeds question_mappings from the catalog when available' do
+        create(:microsite_assessment,
+               project: project,
+               product_id: 'ms-product-123',
+               metadata: { 'questions' => { 'q-field-1' => {}, 'q-field-2' => {} } })
+
+        copy = described_class.call!(
+          assessment.id, user, client.id,
+          new_assessment_name: "Copy of #{assessment.name}",
+          microsite_settings: microsite_settings
+        )[:assessment]
+
+        expect(copy.external_settings['question_mappings']).to eq('q-field-1' => nil, 'q-field-2' => nil)
+      end
+
+      it 'does not set question_mappings when catalog has no questions' do
+        create(:microsite_assessment,
+               project: project,
+               product_id: 'ms-product-123',
+               metadata: { 'description' => 'no questions here' })
+
+        copy = described_class.call!(
+          assessment.id, user, client.id,
+          new_assessment_name: "Copy of #{assessment.name}",
+          microsite_settings: microsite_settings
+        )[:assessment]
+
+        expect(copy.external_settings).not_to have_key('question_mappings')
+      end
+
+      it 'still copies blocks and questions' do
+        expect(microsite_copy.blocks.length).to eq(assessment.blocks.length)
+        expect(microsite_copy.questions.length).to eq(assessment.questions.length)
+      end
+
+      context 'when the source is a microsite assessment' do
+        let(:assessment) do
+          create(
+            :assessment, :microsite, owner_id: client.id,
+                                     external_settings: {
+                                       'assessment_id' => 'ms-source-product',
+                                       'question_mappings' => { 'field1' => 1 }
+                                     }
+          )
+        end
+
+        it 'replaces the assessment_id and does not carry over source question mappings' do
+          expect(microsite_copy.external_settings['assessment_id']).to eq('ms-product-123')
+          expect(microsite_copy.external_settings).not_to include('question_mappings' => { 'field1' => 1 })
+        end
+      end
+    end
   end
 end
