@@ -76,6 +76,7 @@ class CampaignUser < ApplicationRecord
 
   def generate_or_remove_report_on_score_finalized
     if campaign_scores_finalized?
+      campaign_factor_dependent_user_reports.each(&:start_approval!)
       UserReports::GenerateAndSavePdfJob.set(wait: 30.seconds).perform_later(
         campaign_factor_dependent_user_reports.pluck(:id), user
       )
@@ -95,6 +96,7 @@ class CampaignUser < ApplicationRecord
 
   def generate_or_remove_report_on_artifact_results_finalized
     if campaign_artifact_results_finalized?
+      campaign_ai_artifact_dependent_user_reports.each(&:start_approval!)
       UserReports::GenerateAndSavePdfJob.set(wait: 30.seconds).perform_later(
         campaign_ai_artifact_dependent_user_reports.pluck(:id), user
       )
