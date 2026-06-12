@@ -2,6 +2,8 @@
 
 module EndUser
   class SystemCheckSessionsController < ApplicationController
+    include SystemCheckCookie
+
     skip_before_action :verify_authenticity_token
 
     before_action :set_campaign_user
@@ -115,20 +117,6 @@ module EndUser
 
     def serialize_record(record)
       EndUser::SystemCheckRecordSerializer.new(context: { campaign_user: @campaign_user }).serialize(record)
-    end
-
-    def store_session_id(session_id)
-      cookies.signed[:system_check_session_id] = {
-        value: session_id,
-        expires: 30.days.from_now,
-        httponly: true,
-        secure: Settings.protocol == 'https',
-        same_site: Settings.protocol == 'https' ? :none : :lax
-      }
-    end
-
-    def stored_session_id
-      cookies.signed[:system_check_session_id]
     end
   end
 end
