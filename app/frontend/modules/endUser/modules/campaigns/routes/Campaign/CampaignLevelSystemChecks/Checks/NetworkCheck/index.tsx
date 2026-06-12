@@ -40,7 +40,7 @@ const connector = connect(null,
   })
 const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const {
-    runTimedTest, formatSpeed, state: testState, reset: resetTest,
+    runTimedTest, formatSpeed, state: testState, reset: resetTest, abort: abortTest,
   } = useNetworkTest()
   const dispatch = useDispatch()
   const [speed, setSpeed] = useState<{ download: string; upload: string } | null>(null)
@@ -123,7 +123,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const runNetworkTest = async (checkPreloaded = true) => {
     if (checkPreloaded) {
-      const preloadedCheck = checksArray?.find(check => check.checkType === CHECK_TYPE.network)
+      const preloadedCheck = checksArray?.findLast(check => check.checkType === CHECK_TYPE.network)
       if (preloadedCheck) {
         setCheckStatus(preloadedCheck.passed ? CHECK_STATUS.passed : CHECK_STATUS.failed)
 
@@ -538,7 +538,29 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       </Flex>
 
       <Flex className="w-100" justify="space-between">
-        <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
+        <Button
+          icon={<DirectionalBackArrowIcon />}
+          onClick={() => {
+            if (checkStatus === CHECK_STATUS.pending) {
+              abortTest()
+              return
+            }
+            dispatch(actions.setChecksArray([
+              {
+                checkType: CHECK_TYPE.network,
+                passed: checkStatus === CHECK_STATUS.passed,
+                data: {
+                  downloadSpeed: speed?.download,
+                  uploadSpeed: speed?.upload,
+                },
+              },
+            ]))
+
+            dispatch(actions.setSystemCheckStatusPassed(checkStatus === CHECK_STATUS.passed))
+
+            onPrev()
+          }}
+        >
           {I18n.t('enduser.back')}
         </Button>
 
