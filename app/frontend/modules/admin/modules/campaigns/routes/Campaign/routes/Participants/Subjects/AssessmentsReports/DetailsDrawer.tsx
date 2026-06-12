@@ -165,7 +165,11 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
                 <Alert
                   type="info"
                   showIcon
-                  message={availabilityReasonMessage}
+                  message={(
+                    <Typography.Text style={{ whiteSpace: 'pre-line' }}>
+                      {availabilityReasonMessage}
+                    </Typography.Text>
+                  )}
                 />
               )}
             </Space>
