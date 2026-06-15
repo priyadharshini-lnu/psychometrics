@@ -210,7 +210,7 @@
     "@types/ua-parser-js": "^0.7.39",
     "@vitest/coverage-v8": "^4.1.4",
     "coveralls-next": "^6.0.1",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "eslint": "^9.0.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-testing-library": "^5.10.0",
