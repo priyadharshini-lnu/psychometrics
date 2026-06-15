@@ -200,12 +200,14 @@ ar:
     table:
       entries:
         selected:
-          one: 1 row selected
-          other: "{{count}} rows selected"
+          one: تم تحديد صف واحد
+          other: تم تحديد {{count}} صفًا
+          two: تم تحديد صفين
         total:
-          one: 'Total : 1'
-          other: 'Total : {{count}}'
-          zero: 'Total : 0'
+          one: 'المجموع : 1'
+          other: 'المجموع : {{count}}'
+          two: 'المجموع : 2'
+          zero: 'المجموع : 0'
     tags: العلامات
     terms_conditions_privacy: بيان الخصوصية
     tools: ادوات
