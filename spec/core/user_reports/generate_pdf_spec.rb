@@ -37,6 +37,59 @@ describe UserReports::GeneratePdf do
       )
     end
 
+    it 'returns preview pdf url for client administrator' do
+      client_admin = create(:user)
+      allow(client_admin).to receive(:is?).with(:regular).and_return(false)
+      allow(client_admin).to receive(:is?).with(:assessor).and_return(false)
+      campaign = user_report.campaign
+      allow(AdminSubdomain).to receive(:host_options_for).
+        with(user: client_admin, project: campaign.project).
+        and_return({ host: 'client-admin.tte.com' })
+
+      url = described_class.new(user_report, client_admin).send(:report_preview_url)
+
+      expect(url).to eq(
+        pdf_preview_administration_new_campaign_user_report_url(
+          host: 'client-admin.tte.com',
+          user_token: client_admin.authentication_token,
+          lang: 'en',
+          port: Settings.port,
+          protocol: Settings.protocol,
+          id: user_report.id,
+          new_campaign_id: campaign.id
+        )
+      )
+    end
+
+    it 'returns preview pdf url for client administrator on 360 campaign' do
+      client_admin = create(:user)
+      allow(client_admin).to receive(:is?).with(:regular).and_return(false)
+      allow(client_admin).to receive(:is?).with(:assessor).and_return(false)
+      campaign = create(:campaign, :threesixty)
+      create(:threesixty_campaign, campaign: campaign)
+      threesixty_user_report = create(:user_report, campaign: campaign)
+      threesixty_subject = create(:threesixty_subject, user: threesixty_user_report.user, campaign: campaign)
+      allow(AdminSubdomain).to receive(:host_options_for).
+        with(user: client_admin, project: campaign.project).
+        and_return({ host: 'client-admin.tte.com' })
+
+      url = described_class.new(threesixty_user_report, client_admin).send(:report_preview_url)
+
+      expect(url).to eq(
+        administration_threesixty_campaign_subject_reports_url(
+          host: 'client-admin.tte.com',
+          user_token: client_admin.authentication_token,
+          lang: 'en',
+          port: Settings.port,
+          protocol: Settings.protocol,
+          id: threesixty_user_report.id,
+          threesixty_campaign_id: campaign.id,
+          subject_id: threesixty_subject.id,
+          format: :pdf
+        )
+      )
+    end
+
     it 'returns preview pdf url for assessor' do
       allow(current_user).to receive(:is?).with(:regular).and_return(false)
       allow(current_user).to receive(:is?).with(:assessor).and_return(true)
