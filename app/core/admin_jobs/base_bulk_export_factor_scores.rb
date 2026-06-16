@@ -21,7 +21,7 @@ module AdminJobs
 
       grouped_assessments.each do |dimension, assessments|
         factors = factors_by_dimension[dimension.id]
-        worksheet_name = safe_sheet_name("Dimension - #{dimension.name}")
+        worksheet_name = safe_sheet_name("#{dimension.id} - #{dimension.name}")
 
         workbook.add_worksheet(name: worksheet_name) do |sheet|
           sheet.add_row(headers(factors))

@@ -48,7 +48,7 @@ RSpec.describe AdminJobs::BaseBulkExportFactorScores do
       package = job.send(:xlsx)
       sheet_names = package.workbook.worksheets.map(&:name)
 
-      expect(sheet_names.first).to start_with('Dimension -')
+      expect(sheet_names.first).to start_with("#{dimension.id} -")
       expect(sheet_names.first).not_to include(':')
     end
   end

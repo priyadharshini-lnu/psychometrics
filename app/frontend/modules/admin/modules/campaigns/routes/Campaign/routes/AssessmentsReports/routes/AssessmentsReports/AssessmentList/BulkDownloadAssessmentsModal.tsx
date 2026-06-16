@@ -80,6 +80,10 @@ const BulkDownloadAssessmentsModal: React.FC<Props> = ({
         </Button>,
       ]}
     >
+      <Paragraph style={{ color: constants.GREY_BORDER }} className="mb-4">
+        {I18n.t('admin.bulk_assessment_download_help_text')}
+      </Paragraph>
+
       <Paragraph style={{ color: constants.DARK_GREY }} className="mb-4">
         {I18n.t('admin.bulk_assessment_download_modal_subtitle')}
       </Paragraph>

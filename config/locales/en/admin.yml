@@ -254,6 +254,7 @@ en:
     bulk_assessment_download_date_range_required: Please select date range
     bulk_assessment_download_export_type: Export type
     bulk_assessment_download_export_type_required: Please select export type
+    bulk_assessment_download_help_text: 'Note: If assessments are linked to different dimensions, downloaded xslx file will contain separate sheets for each dimension.'
     bulk_assessment_download_modal_subtitle: Select a date range and export type, then export selected assessments.
     bulk_assessment_download_no_data_found: For the chosen date range and assessments, no data found. Please try with different date range or assessments.
     bulk_assessment_download_norm_factor_scores: Norm factor scores
