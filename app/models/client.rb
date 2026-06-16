@@ -450,11 +450,6 @@ class Client < ApplicationRecord
     self.tte_id = root.id
   end
 
-  def inherit_tenant_id
-    self.tenant_id = root.id
-    self.tte_id = root.id
-  end
-
   def set_tte
     update_columns(tte_id: root.id, tenant_id: root.id)
   end
