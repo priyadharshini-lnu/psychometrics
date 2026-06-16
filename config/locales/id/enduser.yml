@@ -144,6 +144,7 @@ id:
     profile_details: Detail
     question_counter: Pertanyaan %{current} dari %{total}
     reason_for_idp_plan_rejection: Alasan Penolakan
+    record: Daftar
     recording_progress_bar: Bilah Kemajuan Perekaman
     recording_time_remaining: "%{remainingSeconds} detik tersisa"
     redirect_to_external_assessment: Anda akan dialihkan ke situs penilaian. Silakan klik "Lanjutkan" jika Anda ingin memulai penilaian.

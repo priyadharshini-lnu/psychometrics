@@ -77,7 +77,8 @@ RSpec.describe UserReportDownloadPolicy do
 
       it 'delegates to UserReportPolicy#check_user_report' do
         user_report_policy = instance_double(UserReportPolicy)
-        allow(UserReportPolicy).to receive(:new).with(user, user_report).and_return(user_report_policy)
+        allow(UserReportPolicy).to receive(:new).with({ current_user: user },
+                                                      user_report).and_return(user_report_policy)
         allow(user_report_policy).to receive(:send).with(:check_user_report).and_return(true)
 
         expect(subject.pdf_download_link?).to be true

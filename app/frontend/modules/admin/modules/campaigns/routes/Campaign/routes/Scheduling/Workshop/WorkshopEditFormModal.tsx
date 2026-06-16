@@ -120,20 +120,20 @@ export const WorkshopEditFormModal: FC<Props> = ({
       modalProps={{ width: 700 }}
       formProps={{
         initialValues: {
-          date: workshop.startTime ? dayjs(workshop.startTime) : undefined,
+          date: workshop.startTime ? dayjs(workshop.startTime).tz(workshop.timezone) : undefined,
           time: workshop.startTime ? dayjs(workshop.startTime).tz(workshop.timezone) : undefined,
         },
       }}
       request={{
         updateResource: (data: { workshopManagersIds: string[], workshopAssessorsIds: string[],
-          date: string, time: string, name?: string }) => {
+          date: string, time: string, name?: string, timezone?: string }) => {
           const {
-            date, time, name, ...cleanedData
+            date, time, name, timezone, ...cleanedData
           } = data
 
           let startTime: string | undefined
           if (date && time) {
-            startTime = startDateTime(date, time, workshop.timezone)?.format()
+            startTime = startDateTime(date, time, timezone)?.format()
           }
 
           return updateWorkshop({
@@ -141,7 +141,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             workshopManagersIds: (data.workshopManagersIds || []).map(id => id.toString()),
             workshopAssessorsIds: (data.workshopAssessorsIds || []).map(id => id.toString()),
             ...(startTime ? { start_time: startTime } : {}),
-            name: name || (startTime && formatWorkshopDate(dayjs(startTime).tz(workshop.timezone))),
+            name: name || (startTime && formatWorkshopDate(dayjs(startTime).tz(timezone))),
           })
         },
       }}
@@ -154,6 +154,9 @@ export const WorkshopEditFormModal: FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Input name="workshop_name" />
+          </Form.Item>
+          <Form.Item name="timezone" label={I18n.t('admin.timezone')}>
+            <Input disabled />
           </Form.Item>
           {!(workshop.bookedSeats > 0) && (
             <Row gutter={16}>

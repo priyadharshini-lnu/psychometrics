@@ -124,8 +124,10 @@ class BaseController < ActionController::Base
         'display' => params[:display],
         'return_url' => params[:return_url]
       }
+      add_cookie(:sso_session, 'true')
     else
       session.delete(:sso)
+      cookies.delete(:sso_session)
     end
   end
 

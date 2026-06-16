@@ -258,7 +258,7 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
                 <div className={styles.recordMessage}>
                   {I18n.t('enduser.video_overlay_message')}
                   <Button type="primary" onClick={closeRecordNote}>
-                    {I18n.t('enduser.lets_start')}
+                    {I18n.t('shared.lets_start')}
                   </Button>
                 </div>
               </div>
@@ -287,6 +287,7 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
                 <WarningOutlined
                   style={{ fontSize: '1rem' }}
                   aria-hidden="true"
+                  className="self-start mt-1"
                 />
                 <span>{I18n.t('shared.no_audio_warning')}</span>
               </div>

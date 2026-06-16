@@ -102,6 +102,7 @@ hu:
     last_name: Vezetéknév
     last_updated: Utolsó frissítés
     learning_on_the_job_label: Tanulás munka közben
+    lets_start: Kezdjük!
     linked_activities: Összekapcsolt tevékenységek
     linked_assessment: Kapcsolt értékelés
     loading: Betöltés...
@@ -140,7 +141,9 @@ hu:
     ok: Oké
     options: Beállítások
     owner: Tulajdonos
+    pause: Szünet
     pending: Függőben
+    play: Játék
     policy_version: Politika verzió
     policy_version_format: Csak egész számok megengedettek
     positive: Pozitív
@@ -155,6 +158,7 @@ hu:
     question_id: Kérdés azonosító
     question_transcription_disabled: A leírás le van tiltva ehhez a kérdéshez.
     rec: REC
+    record: Felvétel
     recorded: Felvétel
     recording: Felvétel
     recording_consent_notice: Ezt az ülést rögzítik. Részvétele ezen a találkozón azt jelenti, hogy beleegyezik a rögzítéshez.
@@ -186,11 +190,13 @@ hu:
     start_date: Kezdő dátum
     status: Állapot
     status_unknown: Állapot ismeretlen
+    stop: Állj meg
     subject: Tárgy
     submit: Beküldés
     submit_and_finish_proctoring: A vizsga benyújtása és befejezése
     suspended: Felfüggesztve
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
+    system_check_uploading: Feltöltés
     table:
       entries:
         selected:

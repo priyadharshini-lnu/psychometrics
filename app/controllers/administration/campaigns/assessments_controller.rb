@@ -156,7 +156,7 @@ module Administration
           current_user
         )
         audit! :rescore_responses, campaign_assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment.id }
+               payload: { campaign_id: campaign.id, assessment_id: assessment&.id }
         render json: :ok
       end
 

@@ -25,6 +25,7 @@
   position: relative;
   border-radius: 8px;
   overflow: hidden;
+  font-size: 16px;
 }
 
 .videoContainer {
@@ -153,11 +154,11 @@
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .recordMessage {
-  font-size: 1rem;
+  font-size: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -387,6 +388,7 @@
   position: absolute;
   top: 20px;
   left: 10px;
+  right: 10px;
   z-index: 5;
   display: flex;
   align-items: center;
@@ -418,12 +420,6 @@
   }
 }
 
-@media (max-width: 480px) {
-  .audioWarningOverlay {
-     width: 300px;
-  }
-}
-
 // Playback controls
 .playbackWrapper {
   width: 100%;
@@ -452,7 +448,6 @@
 
   .playbackSeekbarThumb {
       opacity: 1;
-      transform: translateX(-100%) scale(1);
     }
 }
 
@@ -561,7 +556,7 @@
 .recordButton {
   border: none !important;
   height: 36px !important;
-  font-size: 1rem;
+  font-size: 1em;
   padding: 1rem;
 }
 
@@ -569,7 +564,7 @@
   color: white !important;
   border: none !important;
   height: 32px !important;
-  font-size: 1rem;
+  font-size: 1em;
   padding: 1rem;
   background-color: var(--ant-error-color) !important;
 

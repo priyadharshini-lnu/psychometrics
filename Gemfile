@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '3.4.6'
 
+gem 'acts_as_tenant', '~> 1.0', '>= 1.0.1'
 gem 'bootsnap',                   '~> 1.18.0', require: false
 gem 'bundler',                    '~> 2.3.17'
 gem 'erb',                        '< 5.0' # Pin to avoid frozen string issues in ERB 6.0+ with Ruby 3.4
@@ -13,8 +14,7 @@ gem 'faraday',                    '~> 1.10.5'
 gem 'jbuilder',                   '~> 2.12.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.10'
-# gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
-gem 'acts_as_tenant', '~> 1.0', '>= 1.0.1'
+gem 'newrelic_rpm', '~> 10.5', group: 'production', require: ENV.fetch('NEW_RELIC_AGENT_ENABLED', 'false') == 'true'
 gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
