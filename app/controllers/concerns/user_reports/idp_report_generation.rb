@@ -7,6 +7,11 @@ module UserReports::IdpReportGeneration
 
   included do
     prepend_before_action :authenticate_by_token!, only: %i[pdf_preview]
+    skip_before_action :enforce_admin_session_validity, only: %i[pdf_preview], raise: false
+    before_action :enforce_admin_session_validity,
+                  only: %i[pdf_preview],
+                  unless: -> { params[:user_token].present? },
+                  if: -> { respond_to?(:enforce_admin_session_validity, true) }
   end
 
   # This action is used to generate pdf by puppeter
