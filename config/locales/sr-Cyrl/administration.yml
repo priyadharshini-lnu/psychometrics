@@ -763,7 +763,6 @@ sr-Cyrl:
         not_owned: није у власништву клијента
       validations:
         project_and_campaigns_not_allowed: project_ids и campaign_ids не би требало да се наводе заједно.
-        project_not_related_to_client: "%{project_id} није припада клијенту"
         project_or_campaign_required: project_ids или campaign_ids је потребно
         sections_required: Потребни су одељци
     datasheet:

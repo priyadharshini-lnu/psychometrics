@@ -12,7 +12,7 @@ module Api
     def model
       @model ||= policy_class::Scope.new(
         current_user, model_class,
-        filter: { client_id: params[:filter][:data_report_owner_id_eq] }
+        filter: { client_id: params.dig(:filter, :data_report_owner_id_eq) }
       ).resolve.find(model_id)
     end
 
@@ -23,7 +23,7 @@ module Api
         nil,
         policy_class: Api::Administration::DataReportJobPolicy,
         project_id: data_report&.owner_id,
-        filter: { client_id: params[:filter][:data_report_owner_id_eq] }
+        filter: { client_id: params.dig(:filter, :data_report_owner_id_eq) }
       )
     end
   end

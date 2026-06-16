@@ -1855,6 +1855,7 @@ ar:
     project_admin: مسؤول المشروع
     project_admins: مسؤولو المشاريع
     project_features: مميزات المشروع
+    project_ids: معرّفات المشاريع
     project_manager: مدير المشروع
     project_number: رقم المشروع
     project_participants_column_campaigns: الحملات

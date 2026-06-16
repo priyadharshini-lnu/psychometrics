@@ -745,7 +745,6 @@ zh-Hant:
         not_owned: 非客戶所有
       validations:
         project_and_campaigns_not_allowed: project_ids 和 campaign_ids 不應該一起指定
-        project_not_related_to_client: "%{project_id} 不屬於用戶端"
         project_or_campaign_required: 專案_ids 或 campaign_ids 為必填項目
         sections_required: 各節是必需的
     datasheet:

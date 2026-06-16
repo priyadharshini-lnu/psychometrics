@@ -9,20 +9,23 @@ import {
 import { formatedDate } from '~/utils/time'
 import { SelfDestroyText } from '~/glint'
 import { Resource } from '~/modules/admin/components/Resource'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
 
 export const DataReportJobs: React.FC<{}> = () => {
-  const { id, clientId } = useParams<{id: string, clientId: string}>()
+  const { id, clientId } = useParams<{id: string, clientId?: string}>()
 
-  const [passwords, setPasswords] = useState<{ [key: string]: string }>({})
+  const [passwords, setPasswords] = useState<{ [key: string]: string | null }>({})
 
-  const baseApiConfig = {
+  const baseApiConfig: Record<string, unknown> = {
     include: ['created_by'],
     fields: { users: ['name', 'email'] },
-    filter: {
+  }
+  if (clientId) {
+    baseApiConfig.filter = {
       data_report_owner_id_eq: clientId as string,
-    },
+    }
   }
 
   const config = {
@@ -39,19 +42,20 @@ export const DataReportJobs: React.FC<{}> = () => {
     config,
   )
 
-  const showPassword = (id) => {
+  const showPassword = (jobId) => {
     memberAction({
-      id,
+      id: jobId,
       action: 'get_password',
       method: 'get',
       responseType: PasswordTR,
-    }).then((response: Password) => {
-      setPasswords({ [id]: response.password })
+    }).then((response) => {
+      const { password } = response as Password
+      setPasswords({ [jobId]: password })
     })
   }
 
-  const hidePassword = (id) => {
-    setPasswords({ ...passwords, [id]: null })
+  const hidePassword = (jobId) => {
+    setPasswords({ ...passwords, [jobId]: null })
   }
 
   const Table = (
@@ -72,7 +76,7 @@ export const DataReportJobs: React.FC<{}> = () => {
       <Resource.Column<DataReportJob>
         title={I18n.t('admin.data_reports_columns_created_by')}
         dataIndex={['createdBy', 'email']}
-        id="created_at"
+        id="created_by"
       />
       <Resource.Column<DataReportJob>
         title={I18n.t('shared.status')}
@@ -86,10 +90,11 @@ export const DataReportJobs: React.FC<{}> = () => {
         width={350}
         render={(_, record) => {
           const loading = isLoading(`get/show_password@${record.id}`)
+          const password = passwords[record.id]
           return (
             <Space key={record.id}>
-              {passwords[record.id]
-                ? <SelfDestroyText text={passwords[record.id]} onDestroy={() => hidePassword(record.id)} />
+              {password
+                ? <SelfDestroyText text={password} onDestroy={() => hidePassword(record.id)} />
                 : (
                   <>
                     ************
@@ -127,6 +132,23 @@ export const DataReportJobs: React.FC<{}> = () => {
 
   return (
     <>
+      {!clientId && (
+        <Breadcrumb
+          crumbs={[
+            {
+              link: () => '/admin',
+              label: () => I18n.t('admin.dashboard'),
+            },
+            {
+              link: () => '/admin/data_reports',
+              label: () => I18n.t('admin.data_reports'),
+            },
+            {
+              label: () => id,
+            },
+          ]}
+        />
+      )}
       <Resource config={config} name="data_report_jobs">
         {Table}
       </Resource>

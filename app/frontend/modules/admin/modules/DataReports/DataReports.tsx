@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
-import { Button } from 'antd'
-import { PlusOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { DataReport, DataReportTR } from './core'
+import { Button, message, Space } from 'antd'
+import { Link } from 'react-router-dom'
+import { PlusOutlined, EditOutlined, CaretRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  DataReport,
+  DataReportTR,
+  OkResponse,
+} from './core'
 import { DataReportForm } from './DataReportForm'
 import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
+import { useResources } from '~/hooks/useResources'
 
 const { I18n } = window
 
@@ -20,10 +26,36 @@ export const DataReports: React.FC<{}> = () => {
     },
   }
 
-  const edit = (resource) => {
-    setEditable(resource)
-    setShowForm(true)
+  const { memberAction, fetchSingle } = useResources<DataReport>(
+    'data_reports',
+    {
+      trackUrl: true,
+      responseType: DataReportTR,
+      apiConfig: baseApiConfig,
+    },
+  )
+
+  const edit = (resource: DataReport) => {
+    fetchSingle({ id: resource.id, responseType: DataReportTR, apiConfig: baseApiConfig })
+      .then((latestResource) => {
+        const latestDataReport = latestResource as DataReport
+        setEditable(latestDataReport)
+        setShowForm(true)
+      })
+      .catch(() => {
+        setEditable(resource)
+        setShowForm(true)
+      })
   }
+
+  const runReport = (resource: DataReport) => memberAction({
+    id: resource.id,
+    action: 'run',
+    method: 'post',
+    responseType: OkResponse,
+  }).then(() => {
+    message.info(I18n.t('admin.data_reports_messages_runed'))
+  })
 
   const closeForm = () => {
     setEditable(undefined)
@@ -53,6 +85,13 @@ export const DataReports: React.FC<{}> = () => {
         title={I18n.t('shared.id')}
         sorter
         width={150}
+        render={({ id, scope }) => (
+          scope === 'global' ? (
+            <Link to={`/admin/data_reports/${id}`}>{id}</Link>
+          ) : (
+            id
+          )
+        )}
       />
       <Resource.Column<DataReport>
         id="name"
@@ -60,6 +99,13 @@ export const DataReports: React.FC<{}> = () => {
         dataIndex="name"
         key="campaign_name"
         width={300}
+      />
+      <Resource.Column<DataReport>
+        id="scope"
+        title={I18n.t('admin.scope')}
+        dataIndex="scope"
+        render={scope => (scope === 'global' ? I18n.t('admin.scope_global') : I18n.t('admin.scope_client'))}
+        width={100}
       />
       <Resource.Column<DataReport>
         id="owner"
@@ -88,12 +134,19 @@ export const DataReports: React.FC<{}> = () => {
         title={I18n.t('shared.actions')}
         key="link"
         render={(_, resource) => (
-          <Button type="primary" icon={<EditOutlined />} onClick={() => edit(resource)}>
-            {(I18n.t('shared.edit'))}
-          </Button>
+          <Space>
+            <Button type="primary" icon={<EditOutlined />} onClick={() => edit(resource)}>
+              {(I18n.t('admin.report_review_edit'))}
+            </Button>
+            {resource.scope === 'global' && (
+              <Button icon={<CaretRightOutlined />} onClick={() => runReport(resource)}>
+                {I18n.t('admin.run')}
+              </Button>
+            )}
+          </Space>
         )}
         fixed="right"
-        width={100}
+        width={200}
       />
 
     </Resource.Table>

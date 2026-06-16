@@ -745,7 +745,6 @@ sl:
         not_owned: ni v lasti stranke
       validations:
         project_and_campaigns_not_allowed: project_ids in campaign_ids ne bi smeli biti določeni skupaj
-        project_not_related_to_client: "%{project_id} ne pripada odjemalcu"
         project_or_campaign_required: project_ids ali campaign_ids je potreben
         sections_required: odseki so obvezni
     datasheet:

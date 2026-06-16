@@ -745,7 +745,6 @@ ko:
         not_owned: 클라이언트 소유가 아님
       validations:
         project_and_campaigns_not_allowed: 프로젝트_아이디와 캠페인_아이디를 함께 지정해서는 안 됩니다
-        project_not_related_to_client: "%{project_id}가 클라이언트의 소유가 아닙니다"
         project_or_campaign_required: 프로젝트_아이디 또는 캠페인_아이디가 필요합니다
         sections_required: 섹션이 필요합니다
     datasheet:

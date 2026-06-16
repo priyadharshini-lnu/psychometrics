@@ -745,7 +745,6 @@ sk:
         not_owned: nie je vo vlastníctve klienta
       validations:
         project_and_campaigns_not_allowed: project_ids a campaign_ids by sa nemali špecifikovať spoločne
-        project_not_related_to_client: "%{project_id} nepatrí klientovi"
         project_or_campaign_required: project_ids alebo campaign_ids je potrebný
         sections_required: sekcie sú povinné
     datasheet:

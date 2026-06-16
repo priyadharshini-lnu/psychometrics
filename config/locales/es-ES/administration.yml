@@ -745,7 +745,6 @@ es-ES:
         not_owned: no es propiedad del cliente
       validations:
         project_and_campaigns_not_allowed: project_ids y campaign_ids no deben especificarse juntos
-        project_not_related_to_client: "%{project_id} no pertenece al cliente"
         project_or_campaign_required: se requiere project_ids o campaign_ids
         sections_required: secciones es necesario
     datasheet:

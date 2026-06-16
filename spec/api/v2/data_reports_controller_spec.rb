@@ -35,6 +35,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
             type: 'data_reports',
             attributes: {
               name: 'DataReport',
+              report_type: 'json_data_report',
               configuration: {
                 project_ids: [campaign.project.id],
                 sections: [{
@@ -77,6 +78,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
             type: 'data_reports',
             attributes: {
               name: 'changed name',
+              report_type: 'json_data_report',
               configuration: {
                 project_ids: [campaign.project.id],
                 sections: [{
@@ -121,6 +123,49 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
 
         expect(job).to be_present
         expect(AdminJobRecord.last).to eq(job.admin_job_record)
+      end
+    end
+
+    describe 'global scope data reports' do
+      let!(:global_data_report) { create(:data_report, :global, owner: nil) }
+
+      describe 'GET /api/v2/administration/data_reports' do
+        it 'includes global reports in the list' do
+          get '/api/v2/administration/data_reports',
+              params: { include: 'owner,last_updated_by' },
+              headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+          expect(response).to have_http_status(:ok)
+          data = JSON.parse(response.body)['data']
+          scopes = data.map { |d| d['attributes']['scope'] }
+
+          expect(scopes).to include('global')
+          expect(scopes).to include('client')
+        end
+
+        it 'can filter by global scope' do
+          get '/api/v2/administration/data_reports',
+              params: { include: 'owner,last_updated_by', 'filter[scope_eq]' => 'global' },
+              headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+          expect(response).to have_http_status(:ok)
+          data = JSON.parse(response.body)['data']
+          scopes = data.map { |d| d['attributes']['scope'] }.uniq
+
+          expect(scopes).to eq(['global'])
+        end
+      end
+
+      describe 'POST /api/v2/administration/data_reports/:id/run' do
+        it 'runs global scope report' do
+          post "/api/v2/administration/data_reports/#{global_data_report.id}/run",
+               headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+          expect(response).to have_http_status(:ok)
+          job = global_data_report.data_report_jobs.first
+
+          expect(job).to be_present
+        end
       end
     end
   end

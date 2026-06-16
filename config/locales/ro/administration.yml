@@ -745,7 +745,6 @@ ro:
         not_owned: nu este deținut de client
       validations:
         project_and_campaigns_not_allowed: project_ids și campaign_ids nu trebuie specificate împreună
-        project_not_related_to_client: "%{project_id} nu aparține clientului"
         project_or_campaign_required: project_ids sau campaign_ids este necesar
         sections_required: secțiunile sunt necesare
     datasheet:

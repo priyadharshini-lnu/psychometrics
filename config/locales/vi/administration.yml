@@ -745,7 +745,6 @@ vi:
         not_owned: không thuộc sở hữu của khách hàng
       validations:
         project_and_campaigns_not_allowed: project_ids và campaign_ids không nên được chỉ định cùng nhau
-        project_not_related_to_client: "%{project_id} không thuộc về máy khách"
         project_or_campaign_required: project_ids hoặc campaign_ids là bắt buộc
         sections_required: các phần là bắt buộc
     datasheet:

@@ -745,7 +745,6 @@ id:
         not_owned: tidak dimiliki oleh klien
       validations:
         project_and_campaigns_not_allowed: project_ids dan campaign_ids tidak boleh ditentukan bersama-sama
-        project_not_related_to_client: "%{project_id} bukan milik klien"
         project_or_campaign_required: project_ids atau campaign_ids diperlukan
         sections_required: bagian diperlukan
     datasheet:

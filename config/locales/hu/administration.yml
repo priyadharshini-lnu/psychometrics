@@ -745,7 +745,6 @@ hu:
         not_owned: nem az ügyfél tulajdonában
       validations:
         project_and_campaigns_not_allowed: project_ids és campaign_ids nem együtt kell meghatározni
-        project_not_related_to_client: A(z) %{project_id} nem tartozik az ügyfélhez
         project_or_campaign_required: project_ids vagy campaign_ids szükséges
         sections_required: szakaszok szükségesek
     datasheet:

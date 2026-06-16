@@ -745,7 +745,6 @@ ar:
         not_owned: غير مملوك من قبل العميل
       validations:
         project_and_campaigns_not_allowed: لا يجب تحديد project_ids و campaign_ids معًا
-        project_not_related_to_client: "%{project_id} لا ينتمي إلى العميل"
         project_or_campaign_required: project_ids أو campaign_ids مطلوب
         sections_required: الأقسام مطلوبة
     datasheet:

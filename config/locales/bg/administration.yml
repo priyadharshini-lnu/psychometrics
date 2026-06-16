@@ -745,7 +745,6 @@ bg:
         not_owned: не е собственост на клиента
       validations:
         project_and_campaigns_not_allowed: project_ids и campaign_ids не трябва да се уточняват заедно
-        project_not_related_to_client: "%{project_id} не принадлежи на клиента"
         project_or_campaign_required: project_ids или campaign_ids се изисква
         sections_required: секции са задължителни
     datasheet:

@@ -745,7 +745,6 @@ ja:
         not_owned: 顧客所有ではない
       validations:
         project_and_campaigns_not_allowed: project_idsとcampaign_idsは一緒に指定してはならない。
-        project_not_related_to_client: "%{project_id}はクライアントに属していません"
         project_or_campaign_required: project_idsまたはcampaign_idsが必要
         sections_required: セクションが必要
     datasheet:

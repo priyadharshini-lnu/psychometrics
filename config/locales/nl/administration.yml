@@ -745,7 +745,6 @@ nl:
         not_owned: geen eigendom van klant
       validations:
         project_and_campaigns_not_allowed: project_ids en campaign_ids moeten niet samen worden opgegeven
-        project_not_related_to_client: "%{project_id} is niet van de klant"
         project_or_campaign_required: project_ids of campaign_ids is vereist
         sections_required: secties is vereist
     datasheet:

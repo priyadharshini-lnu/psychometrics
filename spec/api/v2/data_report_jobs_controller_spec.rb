@@ -41,4 +41,38 @@ RSpec.describe Api::V2::Administration::DataReportJobsController, type: :request
       end
     end
   end
+
+  describe 'as superadmin' do
+    let!(:global_data_report) { create(:data_report, :global, owner: nil) }
+    let!(:global_data_report_job) { create(:data_report_job, data_report: global_data_report, created_by: superadmin) }
+
+    before do
+      sign_in(superadmin)
+    end
+
+    describe 'GET /data_reports/:data_report_id/data_report_jobs for global report' do
+      it 'returns global report jobs without filter' do
+        get "/api/v2/administration/data_reports/#{global_data_report.id}/data_report_jobs",
+            params: { include: 'created_by' }
+
+        expect(response).to have_http_status(:ok)
+        data = JSON.parse(response.body)['data']
+
+        expect(data.size).to eq(1)
+        expect(data.first['id']).to eq(global_data_report_job.id.to_s)
+      end
+    end
+
+    describe 'GET /data_reports/:data_report_id/data_report_jobs/:id/get_password for global report' do
+      it 'returns password for global report job' do
+        url = "/api/v2/administration/data_reports/#{global_data_report.id}" \
+              "/data_report_jobs/#{global_data_report_job.id}/get_password"
+        get url
+
+        expect(response).to have_http_status(:ok)
+        response_data = JSON.parse(response.body)
+        expect(response_data).to have_key('password')
+      end
+    end
+  end
 end

@@ -745,7 +745,6 @@ ru:
         not_owned: не принадлежит клиенту
       validations:
         project_and_campaigns_not_allowed: project_ids и campaign_ids не должны указываться вместе
-        project_not_related_to_client: "%{project_id} не принадлежит клиенту"
         project_or_campaign_required: project_ids или campaign_ids обязательны
         sections_required: требуется разделы
     datasheet:

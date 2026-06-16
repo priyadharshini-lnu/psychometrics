@@ -3474,7 +3474,9 @@ CREATE TABLE public.data_reports (
     last_updated_by_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    report_type integer DEFAULT 0 NOT NULL,
+    scope integer DEFAULT 0 NOT NULL
 );
 
 
@@ -15459,6 +15461,20 @@ CREATE INDEX index_data_report_jobs_on_tenant_id ON public.data_report_jobs USIN
 
 
 --
+-- Name: index_data_reports_on_report_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_data_reports_on_report_type ON public.data_reports USING btree (report_type);
+
+
+--
+-- Name: index_data_reports_on_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_data_reports_on_scope ON public.data_reports USING btree (scope);
+
+
+--
 -- Name: index_data_reports_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -24170,6 +24186,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260603081303'),
+('20260602120000'),
 ('20260612100749'),
 ('20260610152535'),
 ('20260605122018'),
@@ -25230,3 +25248,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

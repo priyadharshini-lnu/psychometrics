@@ -763,7 +763,6 @@ hi:
         not_owned: ग्राहक के स्वामित्व में नहीं
       validations:
         project_and_campaigns_not_allowed: project_ids और campaign_ids को एक साथ निर्दिष्ट नहीं किया जाना चाहिए।
-        project_not_related_to_client: "%{project_id} ग्राहक का नहीं है"
         project_or_campaign_required: project_ids या campaign_ids आवश्यक है।
         sections_required: अनुभाग आवश्यक है
     datasheet:

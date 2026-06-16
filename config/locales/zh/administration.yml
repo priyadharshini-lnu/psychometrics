@@ -745,7 +745,6 @@ zh:
         not_owned: 非客户所有
       validations:
         project_and_campaigns_not_allowed: 不应同时指定 project_ids 和 campaign_ids
-        project_not_related_to_client: "%{project_id} 不属于客户端"
         project_or_campaign_required: 必须填写 project_ids 或 campaign_ids
         sections_required: 章节为必填项
     datasheet:

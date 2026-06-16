@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useEffect } from 'react'
 import {
   Drawer, Button,
   Form, Input, Select, Spin,
@@ -7,8 +7,11 @@ import ResourceForm from '~/components/ResourceForm'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { DataReport } from './core'
-import { LuaEditor } from '~/glint'
 import { useResourceContext } from '~/modules/admin/components/Resource'
+import {
+  REPORT_TYPE_KEYS,
+  getReportTypeDefinition,
+} from './components/ReportTypeConfigs'
 
 const { I18n } = window
 
@@ -17,6 +20,7 @@ interface Props {
   close(): void
   show: boolean
 }
+
 type OptionsType = {
   id: string
   name: string
@@ -28,6 +32,11 @@ export const DataReportForm: React.FC<Props> = ({
   show,
 }) => {
   const { resource } = useResourceContext()
+  const [form] = Form.useForm()
+  const selectedOwnerId = Form.useWatch('ownerId', form) as string | null
+  const selectedReportType = Form.useWatch('reportType', form) as string
+  const selectedScope = Form.useWatch('scope', form) as string
+
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
@@ -36,19 +45,43 @@ export const DataReportForm: React.FC<Props> = ({
     if (!dataReport || !dataReport.owner || clients.find(d => dataReport?.owner?.id === d.id)) {
       return clients
     }
-
     return [...clients, dataReport.owner]
   }
 
-  const createResource = data => resource.createResource(data).then(() => {
-    close()
-  })
+  const parsedConfiguration = useMemo(() => {
+    if (!dataReport?.configuration) return null
+    try {
+      return JSON.parse(dataReport.configuration)
+    } catch {
+      return null
+    }
+  }, [dataReport?.configuration])
 
-  const updateResource = data => resource.updateResource(data).then(() => {
-    close()
-  })
+  const reportTypeDefinition = getReportTypeDefinition(selectedReportType)
+  const uiRules = reportTypeDefinition?.uiRules
 
-  const [form] = Form.useForm()
+  const defaultScope = uiRules?.defaultScope
+  const scopeOptions = uiRules?.scopeOptions ?? ['client', 'global']
+
+  useEffect(() => {
+    if (defaultScope) {
+      form.setFieldsValue({ scope: defaultScope })
+    }
+  }, [defaultScope, form])
+
+  const createResource = (data: Record<string, unknown>) => {
+    const processedData = reportTypeDefinition?.processConfiguration(data) ?? data
+    return resource.createResource(processedData).then(() => close())
+  }
+
+  const updateResource = (data: Record<string, unknown>) => {
+    const processedData = reportTypeDefinition?.processConfiguration(data) ?? data
+    return resource.updateResource({ ...processedData, id: dataReport?.id as string }).then(() => close())
+  }
+
+  const ConfigComponent = reportTypeDefinition?.component
+
+  const shouldHideOwner = selectedScope === 'global'
 
   return (
     <Drawer open={show} width="70%" onClose={close} destroyOnHidden maskClosable={false}>
@@ -71,34 +104,79 @@ export const DataReportForm: React.FC<Props> = ({
               <Input />
             </Form.Item>
             <Form.Item
-              name="ownerId"
-              label={I18n.t('shared.owner')}
-              initialValue={dataReport?.owner?.id || null}
+              name="scope"
+              label={I18n.t('admin.scope')}
+              initialValue={dataReport?.scope || 'client'}
               rules={[{ required: true }]}
             >
-              <Select
-                showSearch={{
-                  filterOption: false,
-                  onSearch: (value) => {
-                    fetchClients({
-                      apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-                    })
-                  },
-                }}
-                notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+              <Select disabled={Boolean(dataReport?.id) || scopeOptions.length === 1}>
+                {scopeOptions.includes('client') && (
+                  <Select.Option value="client">
+                    {I18n.t('admin.scope_client')}
+                  </Select.Option>
+                )}
+                {scopeOptions.includes('global') && (
+                  <Select.Option value="global">
+                    {I18n.t('admin.scope_global')}
+                  </Select.Option>
+                )}
+              </Select>
+            </Form.Item>
+
+            {!shouldHideOwner && (
+              <Form.Item
+                name="ownerId"
+                label={I18n.t('common.column.owner')}
+                initialValue={dataReport?.owner?.id || null}
+                rules={[{ required: true }]}
               >
-                {getClients().map(({ id, name }) => (
-                  <Select.Option key={id} value={id}>{name}</Select.Option>
+                <Select
+                  disabled={Boolean(dataReport?.id)}
+                  showSearch={{
+                    filterOption: false,
+                    onSearch: (value) => {
+                      fetchClients({
+                        apiConfig: {
+                          filter: { filterable_fields: value },
+                          fields: { clients: ['name'] },
+                        },
+                      })
+                    },
+                  }}
+                  notFoundContent={
+                    isClientsLoading('fetch')
+                      ? <Spin size="small" />
+                      : I18n.t('shared.no_results_found')
+                  }
+                >
+                  {getClients().map(({ id, name }) => (
+                    <Select.Option key={id} value={id}>{name}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            )}
+            <Form.Item
+              name="reportType"
+              label={I18n.t('admin.report_type')}
+              initialValue={dataReport?.reportType || 'json_data_report'}
+              rules={[{ required: true }]}
+            >
+              <Select placeholder={I18n.t('admin.select_report_type')}>
+                {REPORT_TYPE_KEYS.map(key => (
+                  <Select.Option key={key} value={key}>
+                    {I18n.t(`admin.report_types.${key}`)}
+                  </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item
-              name="configuration"
-              label={I18n.t('admin.data_reports_configuration')}
-              rules={[{ required: true }]}
-            >
-              <LuaEditor mode="javascript" />
-            </Form.Item>
+            {ConfigComponent && (
+              <ConfigComponent
+                form={form}
+                ownerId={selectedOwnerId}
+                scope={selectedScope as 'client' | 'global'}
+                parsedConfiguration={parsedConfiguration}
+              />
+            )}
             <Button type="primary" htmlType="submit">
               {dataReport?.id ? I18n.t('shared.update') : I18n.t('shared.create')}
             </Button>

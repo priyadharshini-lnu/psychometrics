@@ -745,7 +745,6 @@ hr:
         not_owned: nije u vlasništvu klijenta
       validations:
         project_and_campaigns_not_allowed: project_ids i campaign_ids ne smiju se navoditi zajedno
-        project_not_related_to_client: "%{project_id} ne pripada klijentu"
         project_or_campaign_required: project_ids ili campaign_ids je potrebno
         sections_required: odjeljci su obavezni
     datasheet:
