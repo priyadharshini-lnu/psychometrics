@@ -102,7 +102,6 @@ ru:
     last_name: Фамилия
     last_updated: Последнее обновление
     learning_on_the_job_label: Обучение на рабочем месте
-    lets_start: Начнём!
     linked_activities: Связанные мероприятия
     linked_assessment: Связанная оценка
     loading: Загрузка...
@@ -141,9 +140,7 @@ ru:
     ok: Хорошо
     options: Параметры
     owner: Владелец
-    pause: Пауза
     pending: В ожидании
-    play: Играть
     policy_version: Версия политики
     policy_version_format: Допускаются только целые числа
     positive: Положительный
@@ -158,7 +155,6 @@ ru:
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
     rec: REC
-    record: Запись
     recorded: записанный
     recording: запись
     recording_consent_notice: Эта сессия будет записываться. Ваше участие в этой встрече означает ваше согласие на запись.
@@ -190,13 +186,11 @@ ru:
     start_date: Дата начала
     status: Статус
     status_unknown: Статус неизвестен
-    stop: Стоп
     subject: Тема
     submit: Отправить
     submit_and_finish_proctoring: Отправить и завершить наблюдение
     suspended: Приостановлено
     switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер
-    system_check_uploading: Загрузка
     table:
       entries:
         selected:

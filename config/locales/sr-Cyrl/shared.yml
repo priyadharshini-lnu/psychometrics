@@ -102,7 +102,6 @@ sr-Cyrl:
     last_name: Презиме
     last_updated: Последње измене
     learning_on_the_job_label: Учење на послу
-    lets_start: Хајде да почнемо!
     linked_activities: Повезане активности
     linked_assessment: Повезана процена
     loading: Учитавање...
@@ -141,9 +140,7 @@ sr-Cyrl:
     ok: У реду
     options: Опције
     owner: Власник
-    pause: Пауза
     pending: У току
-    play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
     positive: Позитивно
@@ -158,7 +155,6 @@ sr-Cyrl:
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: СНИМАЊЕ
-    record: Запис
     recorded: снимано
     recording: снимање
     recording_consent_notice: Ова сесија састанка ће бити снимљена. Ваше учешће на овом састанку представља вашу сагласност да се снима.
@@ -190,13 +186,11 @@ sr-Cyrl:
     start_date: Датум почетка
     status: Статус
     status_unknown: Статус непознат
-    stop: Стоп
     subject: Предмет
     submit: Пошаљи
     submit_and_finish_proctoring: Поднесите и завршите надгледање
     suspended: Сuspended
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
-    system_check_uploading: Постављање
     table:
       entries:
         selected:

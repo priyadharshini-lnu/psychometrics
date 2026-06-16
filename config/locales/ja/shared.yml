@@ -102,7 +102,6 @@ ja:
     last_name: 姓
     last_updated: 最終更新日
     learning_on_the_job_label: 現場での学び
-    lets_start: さあ、始めましょう！
     linked_activities: リンクされた活動
     linked_assessment: 連動アセスメント
     loading: 読み込み中...
@@ -141,9 +140,7 @@ ja:
     ok: OK
     options: オプション
     owner: オーナー
-    pause: 一時停止
     pending: 保留中
-    play: 再生
     policy_version: ポリシーバージョン
     policy_version_format: 整数のみが許可されます
     positive: 肯定的
@@ -158,7 +155,6 @@ ja:
     question_id: 質問ID
     question_transcription_disabled: この質問の文字起こしは無効です
     rec: REC
-    record: 記録
     recorded: 録音
     recording: 録音
     recording_consent_notice: この会議セッションは録画されます。この会議への参加は、記録されることへの同意を意味します。
@@ -190,13 +186,11 @@ ja:
     start_date: 開始日
     status: ステータス
     status_unknown: 状況不明
-    stop: 停止
     subject: 件名
     submit: 送信
     submit_and_finish_proctoring: 送信して試験監督を終了する
     suspended: 停止中
     switch_to_laptop_or_desktop: ノートパソコンまたはデスクトップに切り替える
-    system_check_uploading: アップロード中
     table:
       entries:
         selected:

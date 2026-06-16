@@ -102,7 +102,6 @@ de:
     last_name: Familienname, Nachname
     last_updated: Zuletzt aktualisiert
     learning_on_the_job_label: Lernen am Arbeitsplatz
-    lets_start: Los geht’s!
     linked_activities: Verknüpfte Aktivitäten
     linked_assessment: Verknüpfte Bewertung
     loading: Wird geladen...
@@ -141,9 +140,7 @@ de:
     ok: Ok
     options: Optionen
     owner: Eigentümer
-    pause: Pause
     pending: Ausstehend
-    play: Spielen
     policy_version: Richtlinienversion
     policy_version_format: Es sind nur ganze Zahlen zulässig.
     positive: Positiv
@@ -158,7 +155,6 @@ de:
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
     rec: REC
-    record: Aufzeichnung
     recorded: Aufgenommen
     recording: Aufnahme
     recording_consent_notice: Diese Sitzung wird aufgezeichnet. Ihre Teilnahme an diesem Treffen stellt Ihre Zustimmung zur Aufnahme dar.
@@ -190,13 +186,11 @@ de:
     start_date: Datum des Beginns
     status: Status
     status_unknown: Status unbekannt
-    stop: Stopp
     subject: Betreff
     submit: Einreichen
     submit_and_finish_proctoring: Einreichen und Überwachung beenden
     suspended: Ausgesetzt
     switch_to_laptop_or_desktop: Wechseln Sie zu Laptop oder Desktop
-    system_check_uploading: Hochladen
     table:
       entries:
         selected:

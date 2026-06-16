@@ -144,7 +144,6 @@ zh-Hant:
     profile_details: 詳細資訊
     question_counter: 問題 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒絕原因
-    record: 记录
     recording_progress_bar: 录制进度条
     recording_time_remaining: "%{remainingSeconds} 剩余秒数"
     redirect_to_external_assessment: 您将被重定向至测评页面。如需开始测评，请点击“继续”。

@@ -100,7 +100,6 @@ zh:
     last_name: 姓
     last_updated: 最后更新
     learning_on_the_job_label: 边学边学
-    lets_start: 开始吧！
     linked_activities: 相关活动
     linked_assessment: 关联评估
     loading: 正在加载...
@@ -139,9 +138,7 @@ zh:
     ok: 确定
     options: 选项
     owner: 所有者
-    pause: 暂停
     pending: 待定
-    play: 播放
     policy_version: 政策版本
     policy_version_format: 仅允许整数
     positive: 积极
@@ -156,7 +153,6 @@ zh:
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
     rec: 录制
-    record: 记录
     recorded: 录制
     recording: 录音
     recording_consent_notice: 本次会议将被录制。您参与此次会议即表示您同意被录音。
@@ -188,13 +184,11 @@ zh:
     start_date: 开始日期
     status: 状态
     status_unknown: 状态不明
-    stop: 停止
     subject: 主题
     submit: 提交
     submit_and_finish_proctoring: 提交并结束监考
     suspended: 暂停
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
-    system_check_uploading: 正在上传
     table:
       entries:
         selected:

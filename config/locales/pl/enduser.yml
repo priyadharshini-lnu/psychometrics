@@ -144,7 +144,6 @@ pl:
     profile_details: Szczegóły
     question_counter: Pytanie %{current} z %{total}
     reason_for_idp_plan_rejection: Powód odrzucenia
-    record: Rejestr
     recording_progress_bar: Pasek postępu nagrywania
     recording_time_remaining: "%{remainingSeconds} pozostało sekund"
     redirect_to_external_assessment: Zostaniesz przekierowany na stronę testu. Jeśli chcesz rozpocząć test, kliknij „Kontynuuj”.

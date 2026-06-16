@@ -144,7 +144,6 @@ hi:
     profile_details: विवरण
     question_counter: प्रश्न %{current} का %{total}
     reason_for_idp_plan_rejection: अस्वीकृति का कारण
-    record: दर्ज करें
     recording_progress_bar: प्रगति बार रिकॉर्डिंग
     recording_time_remaining: "%{remainingSeconds} बाकी सेकंड"
     redirect_to_external_assessment: आपको मूल्यांकन साइट पर पुनर्निर्देशित किया जाएगा। यदि आप मूल्यांकन शुरू करना चाहते हैं तो कृपया जारी रखें पर क्लिक करें।

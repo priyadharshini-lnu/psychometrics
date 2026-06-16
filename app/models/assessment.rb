@@ -125,7 +125,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :communications, dependent: :destroy
   has_many :campaign_templates, dependent: :destroy
   has_many :project_assessments, dependent: :destroy
-  has_many :privacy_consents, dependent: :nullify
 
   # HABTM Factors
   has_many :factors_scoring, dependent: :destroy

@@ -142,7 +142,7 @@ module UserAssessments
                             joins(:assessment).
                             pluck('user_assessments.id', 'assessments.name', 'user_assessments.status').
                             map do |id, name, status|
-        { id: id, name: name, status: status }
+        { id: id, name: name, status: status.humanize.titleize }
       end
 
       {

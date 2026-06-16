@@ -144,7 +144,6 @@ ja:
     profile_details: 詳細
     question_counter: 質問 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒否理由
-    record: 記録
     recording_progress_bar: 記録の進捗バー
     recording_time_remaining: "%{remainingSeconds} 残り秒数"
     redirect_to_external_assessment: 評価サイトへ移動します。評価を開始する場合は、「続行」をクリックしてください。

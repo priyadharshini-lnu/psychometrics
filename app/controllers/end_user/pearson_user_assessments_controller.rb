@@ -21,7 +21,7 @@ class EndUser::PearsonUserAssessmentsController < ApplicationController
       error_message = timed_out_error_message
     end
 
-    Pearson::SaveScoresAndReportsJob.set(wait: 1.minute).perform_later(@user_assessment)
+    Pearson::SaveScoresAndReportsJob.perform_later(@user_assessment)
 
     redirect_to(
       assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id),

@@ -102,7 +102,6 @@ sr-Latn:
     last_name: Prezime
     last_updated: Poslednje izmene
     learning_on_the_job_label: Učenje na poslu
-    lets_start: Хајде да почнемо!
     linked_activities: Povezane aktivnosti
     linked_assessment: Povezana procena
     loading: Учитавање...
@@ -141,9 +140,7 @@ sr-Latn:
     ok: Ok
     options: Опције
     owner: Власник
-    pause: Пауза
     pending: Учешће
-    play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
     positive: Позитивно
@@ -158,7 +155,6 @@ sr-Latn:
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
     rec: REC
-    record: Запис
     recorded: snimljeno
     recording: snimanje
     recording_consent_notice: Ova sesija sastanka će biti snimljena. Vaše učešće na ovom sastanku predstavlja vašu saglasnost da se snima.
@@ -190,13 +186,11 @@ sr-Latn:
     start_date: Datum početka
     status: Статус
     status_unknown: Status Nepoznat
-    stop: Стоп
     subject: Предмет
     submit: Пошаљи
     submit_and_finish_proctoring: Поднесите и завршите надгледање
     suspended: Сuspended
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
-    system_check_uploading: Постављање
     table:
       entries:
         selected:

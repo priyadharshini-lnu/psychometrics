@@ -144,7 +144,6 @@ de:
     profile_details: Details
     question_counter: Frage %{current} von %{total}
     reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
-    record: Protokoll
     recording_progress_bar: Fortschrittsanzeige für die Aufzeichnung
     recording_time_remaining: "%{remainingSeconds} verbleibende Sekunden"
     redirect_to_external_assessment: Sie werden zur Testseite weitergeleitet. Bitte klicken Sie auf „Weiter“, wenn Sie mit dem Test beginnen möchten.
