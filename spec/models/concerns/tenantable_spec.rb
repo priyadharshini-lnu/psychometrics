@@ -252,6 +252,13 @@ describe Tenantable do
       assessment.update!(name: 'Updated Name')
       expect(assessment.tenant_id).to eq(original_tenant)
     end
+
+    it 'enqueues dependent sync job when tenant_id changes' do
+      expect do
+        assessment.skip_owner_validation = true
+        assessment.update!(owner: tenant_b)
+      end.to have_enqueued_job(Tenant::SyncDependentsJob).with('Assessment', assessment.id)
+    end
   end
 
   describe 'without has_global_records' do
