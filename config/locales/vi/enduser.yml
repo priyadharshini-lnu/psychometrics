@@ -144,6 +144,7 @@ vi:
     profile_details: Chi tiết
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     reason_for_idp_plan_rejection: Lý do từ chối
+    record: Bảng ghi chép
     recording_progress_bar: Thanh tiến trình ghi âm
     recording_time_remaining: "%{remainingSeconds} thời gian còn lại"
     redirect_to_external_assessment: Bạn sẽ được chuyển hướng đến trang đánh giá. Vui lòng nhấp vào “Tiếp tục” nếu bạn muốn bắt đầu bài đánh giá.

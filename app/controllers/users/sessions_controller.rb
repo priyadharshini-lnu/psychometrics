@@ -7,6 +7,7 @@ module Users
     prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
     before_action :check_if_saml_is_enforced, only: [:create]
     before_action :compute_after_signout_path, only: [:destroy]
+    before_action :redirect_external_logout_url, only: [:new]
     before_action :perform_browser_check, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
     after_action :set_user_flash_message, only: [:create]
@@ -30,6 +31,10 @@ module Users
     end
 
     private
+
+    def redirect_external_logout_url
+      redirect_to(external_logout_url) if external_logout_available?
+    end
 
     def set_return_url_for_redirect
       store_location_for(:user, params[:return_url]) if params[:return_url].present?
@@ -63,10 +68,11 @@ module Users
     end
 
     def external_logout_available?
-      session[:sso].present? && @current_project&.security_setting&.external_logout_redirect_enabled == true
+      cookies[:sso_session] == 'true' && @current_project&.security_setting&.external_logout_redirect_enabled == true
     end
 
     def external_logout_url
+      cookies.delete(:sso_session)
       @current_project&.security_setting&.external_logout_url
     end
 

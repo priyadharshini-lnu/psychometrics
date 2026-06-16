@@ -144,6 +144,7 @@ ko:
     profile_details: 세부 정보
     question_counter: 질문 %{current} / %{total}
     reason_for_idp_plan_rejection: 거절 이유
+    record: 기록
     recording_progress_bar: 녹화 진행률 표시줄
     recording_time_remaining: "%{remainingSeconds} 남은 시간"
     redirect_to_external_assessment: 평가 사이트로 이동합니다. 평가를 시작하려면 ‘계속’을 클릭해 주세요.

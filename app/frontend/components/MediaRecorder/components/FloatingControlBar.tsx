@@ -86,7 +86,7 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
               type="primary"
               icon={<VideoCameraOutlined />}
             >
-              {!isMobile && I18n.t('shared.record', { defaultValue: 'Record' })}
+              {!isMobile && I18n.t('shared.record')}
             </Button>
           </motion.div>
         )}
@@ -133,7 +133,7 @@ const FloatingControlBar: React.FC<FloatingControlBarProps> = ({
                 onClick={onStopRecording}
                 icon={<StopOutlined />}
               >
-                {!isMobile && I18n.t('enduser.stop')}
+                {!isMobile && I18n.t('shared.stop')}
               </Button>
             </div>
 

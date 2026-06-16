@@ -144,6 +144,7 @@ sr-Cyrl:
     profile_details: Детаљи
     question_counter: Питање %{current}-а из %{total}
     reason_for_idp_plan_rejection: Разлог за одбијање
+    record: Запиши
     recording_progress_bar: Шипка напретка за снимање
     recording_time_remaining: "%{remainingSeconds} преосталих секунди"
     redirect_to_external_assessment: Бићете преусмерени на сајт за процену.  Молимо кликните на "Настави" ако желите да започнете процену.
