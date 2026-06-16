@@ -47,12 +47,16 @@ module UserReports
       else
         pdf_preview_administration_new_campaign_user_idp_report_url(
           default_report_preview_url_params.merge!(
-            subdomain: Settings.subdomain,
             new_campaign_id: campaign.id,
             include_reflective_questions: !!options[:include_reflective_questions]
-          )
+          ).merge(tenant_host_options)
         )
       end
+    end
+
+    def tenant_host_options
+      host_options = AdminSubdomain.host_options_for(user: current_user, project: campaign.project)
+      host_options[:host].present? ? host_options : { subdomain: Settings.subdomain }
     end
 
     def report_file_name

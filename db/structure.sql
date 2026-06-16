@@ -24070,6 +24070,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260616103502'),
 ('20260526000001'),
 ('20260527180000'),
 ('20260520094000'),
