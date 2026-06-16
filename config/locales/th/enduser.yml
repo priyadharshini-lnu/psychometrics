@@ -144,7 +144,6 @@ th:
     profile_details: รายละเอียด
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
-    record: ลงทะเบียน
     recording_progress_bar: แถบแสดงความคืบหน้า
     recording_time_remaining: "%{remainingSeconds} วินาทีที่เหลือ"
     redirect_to_external_assessment: คุณจะถูกนำไปยังเว็บไซต์การประเมิน กรุณาคลิกต่อไปหากคุณต้องการเริ่มการประเมิน

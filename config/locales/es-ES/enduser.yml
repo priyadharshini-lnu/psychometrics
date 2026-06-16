@@ -144,7 +144,6 @@ es-ES:
     profile_details: Datos
     question_counter: Pregunta %{current} de %{total}
     reason_for_idp_plan_rejection: Motivo del rechazo
-    record: Registro
     recording_progress_bar: Barra de progreso de grabación
     recording_time_remaining: "%{remainingSeconds} segundos restantes"
     redirect_to_external_assessment: Se le redirigirá a la página de la evaluación. Haga clic en «Continuar» si desea comenzar la evaluación.

@@ -144,7 +144,6 @@ sl:
     profile_details: Podrobnosti profila
     question_counter: Vprašanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog za zavrnitev
-    record: Dnevnik
     recording_progress_bar: Napredek snemanja
     recording_time_remaining: "%{remainingSeconds} preostalih sekund"
     redirect_to_external_assessment: Preusmerjeni boste na stran z ocenjevanjem. Če želite začeti z ocenjevanjem, kliknite »Nadaljuj«.

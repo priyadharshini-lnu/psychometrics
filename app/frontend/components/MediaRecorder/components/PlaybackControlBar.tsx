@@ -5,7 +5,6 @@ import { motion } from 'motion/react'
 import _ from 'lodash'
 import styles from '../styles.less'
 import { CaretRightFilled, PauseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { isRtl } from '~/utils/locales'
 
 const { I18n } = window
 
@@ -96,34 +95,16 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
       seekToClientX(event.clientX)
     }
 
-    const onTouchMove = (event: TouchEvent) => {
-      if (event.touches.length === 0) return
-      if (event.cancelable) {
-        event.preventDefault()
-      }
-      seekToClientX(event.touches[0].clientX)
-    }
-
     const onMouseUp = () => {
-      setIsSeeking(false)
-    }
-
-    const onTouchEnd = () => {
       setIsSeeking(false)
     }
 
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
-    document.addEventListener('touchmove', onTouchMove, { passive: false })
-    document.addEventListener('touchend', onTouchEnd)
-    document.addEventListener('touchcancel', onTouchEnd)
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseup', onMouseUp)
-      document.removeEventListener('touchmove', onTouchMove)
-      document.removeEventListener('touchend', onTouchEnd)
-      document.removeEventListener('touchcancel', onTouchEnd)
     }
   }, [isSeeking, seekToClientX])
 
@@ -152,16 +133,9 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
     seekToClientX(e.clientX)
   }
 
-  const handleSeekStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+  const handleSeekStart = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsSeeking(true)
-    if ('clientX' in e) {
-      seekToClientX(e.clientX)
-    } else if (e.touches && e.touches.length > 0) {
-      if (e.cancelable) {
-        e.preventDefault()
-      }
-      seekToClientX(e.touches[0].clientX)
-    }
+    seekToClientX(e.clientX)
   }
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0
@@ -178,7 +152,7 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
           type="button"
           className={styles.playbackBtn}
           onClick={togglePlay}
-          aria-label={isPlaying ? I18n.t('shared.pause') : I18n.t('shared.play')}
+          aria-label={isPlaying ? I18n.t('enduser.pause') : I18n.t('enduser.play')}
         >
           {isPlaying ? (
             <PauseOutlined style={{ fontSize: '1.5rem' }} />
@@ -196,21 +170,13 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
           ref={progressRef}
           onClick={handleSeek}
           onMouseDown={handleSeekStart}
-          onTouchStart={handleSeekStart}
         >
           <motion.div
             className={styles.playbackSeekbarFill}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.1, ease: 'linear' }}
           />
-          <div
-            className={styles.playbackSeekbarThumb}
-            style={{
-              [isRtl(I18n.locale) ? 'right'
-                : 'left']: `${progress}%`,
-              transform: `translateX(${isRtl(I18n.locale) ? '100%' : '-100%'})`,
-            }}
-          />
+          <div className={styles.playbackSeekbarThumb} style={{ left: `${progress}%` }} />
         </div>
 
         <span className={styles.playbackTime}>

@@ -144,7 +144,6 @@ ru:
     profile_details: Подробности
     question_counter: Вопрос %{current} из %{total}
     reason_for_idp_plan_rejection: Причина отказа
-    record: Журнал
     recording_progress_bar: Индикатор хода записи
     recording_time_remaining: "%{remainingSeconds} оставшихся секунд"
     redirect_to_external_assessment: Вы будете перенаправлены на сайт тестирования. Нажмите «Продолжить», если хотите приступить к тестированию.

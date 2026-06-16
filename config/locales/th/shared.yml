@@ -102,7 +102,6 @@ th:
     last_name: นามสกุล
     last_updated: อัพเดทล่าสุด
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
-    lets_start: มาเริ่มกันเลย!
     linked_activities: กิจกรรมที่เชื่อมโยง
     linked_assessment: การประเมินแบบเชื่อมโยง
     loading: กำลังโหลด...
@@ -141,9 +140,7 @@ th:
     ok: ตกลง
     options: ตัวเลือก
     owner: เจ้าของ
-    pause: หยุดชั่วคราว
     pending: รอดำเนินการ
-    play: เล่น
     policy_version: นโยบายเวอร์ชัน
     policy_version_format: อนุญาตเฉพาะจำนวนเต็มเท่านั้น
     positive: บวก
@@ -158,7 +155,6 @@ th:
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
     rec: บันทึก
-    record: บันทึก
     recorded: บันทึก
     recording: การบันทึก
     recording_consent_notice: เซสชั่นการประชุมนี้จะถูกบันทึกไว้ การเข้าร่วมการประชุมนี้ถือเป็นความยินยอมของคุณที่จะบันทึกไว้
@@ -190,13 +186,11 @@ th:
     start_date: วันที่เริ่มต้น
     status: สถานะ
     status_unknown: ไม่ทราบสถานะ
-    stop: หยุด
     subject: เรื่อง
     submit: ส่ง
     submit_and_finish_proctoring: ส่งและเสร็จสิ้นการคุมสอบ
     suspended: ระงับ
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
-    system_check_uploading: กำลังอัปโหลด
     table:
       entries:
         selected:

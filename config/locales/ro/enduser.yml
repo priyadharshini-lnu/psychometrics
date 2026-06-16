@@ -144,7 +144,6 @@ ro:
     profile_details: Detalii
     question_counter: Întrebarea %{current} din %{total}
     reason_for_idp_plan_rejection: Motivul respingerii
-    record: Registru
     recording_progress_bar: Bara de progres a înregistrării
     recording_time_remaining: "%{remainingSeconds} secunde rămase"
     redirect_to_external_assessment: Veți fi redirecționat către pagina de evaluare. Vă rugăm să faceți clic pe „Continuați” dacă doriți să începeți evaluarea.

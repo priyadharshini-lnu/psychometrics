@@ -144,7 +144,6 @@ nl:
     profile_details: Details
     question_counter: Vraag %{current} van %{total}
     reason_for_idp_plan_rejection: Reden voor afwijzing
-    record: Registreer
     recording_progress_bar: Voortgangsbalk voor opname
     recording_time_remaining: "%{remainingSeconds} resterende seconden"
     redirect_to_external_assessment: U wordt doorgestuurd naar de testpagina. Klik op ‘Doorgaan’ als u de test wilt starten.

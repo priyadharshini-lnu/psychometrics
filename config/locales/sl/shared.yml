@@ -102,7 +102,6 @@ sl:
     last_name: Priimek
     last_updated: Zadnja posodobitev
     learning_on_the_job_label: Učenje na delovnem mestu
-    lets_start: Začnimo!
     linked_activities: Povezane dejavnosti
     linked_assessment: Povezana ocena
     loading: Nalaganje...
@@ -141,9 +140,7 @@ sl:
     ok: Ok
     options: Možnosti
     owner: Lastnik
-    pause: Premor
     pending: V obravnavi
-    play: Igraj
     policy_version: Različica politike
     policy_version_format: Dovoljena so samo cela števila.
     positive: Pozitivno
@@ -158,7 +155,6 @@ sl:
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
     rec: REC
-    record: Zapis
     recorded: Posneto
     recording: Snemanje
     recording_consent_notice: Ta seja bo posneta. Vaša udeležba na tem sestanku pomeni vaše soglasje za snemanje.
@@ -190,13 +186,11 @@ sl:
     start_date: Datum začetka
     status: Status
     status_unknown: Status neznan
-    stop: Stop
     subject: Predmet
     submit: Pošlji
     submit_and_finish_proctoring: Pošlji in zaključi nadzor
     suspended: Začasno prekinjeno
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
-    system_check_uploading: Nalaganje
     table:
       entries:
         selected:

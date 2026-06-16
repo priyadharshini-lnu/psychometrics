@@ -54,6 +54,6 @@ class UserReportDownloadPolicy < BasePolicy
   private
 
   def check_threesixty_user_report
-    UserReportPolicy.new({ current_user: @current_user }, @record).send(:check_user_report)
+    UserReportPolicy.new(@current_user, @record).send(:check_user_report)
   end
 end

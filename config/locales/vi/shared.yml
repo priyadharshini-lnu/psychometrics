@@ -102,7 +102,6 @@ vi:
     last_name: Họ
     last_updated: Cập nhật lần cuối
     learning_on_the_job_label: Học tập trong công việc
-    lets_start: Hãy bắt đầu nào!
     linked_activities: Hoạt động liên kết
     linked_assessment: Đánh giá liên kết
     loading: Đang tải...
@@ -141,9 +140,7 @@ vi:
     ok: Được rồi
     options: Tùy chọn
     owner: Chủ sở hữu
-    pause: Tạm dừng
     pending: Đang chờ xử lý
-    play: Chơi
     policy_version: Phiên bản chính sách
     policy_version_format: Chỉ cho phép các số nguyên.
     positive: Tích cực
@@ -158,7 +155,6 @@ vi:
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
     rec: GHI NHẬN
-    record: Bản ghi
     recorded: được ghi lại
     recording: Ghi âm
     recording_consent_notice: Phiên họp này sẽ được ghi lại. Việc bạn tham gia cuộc họp này cấu thành sự đồng ý của bạn để được ghi lại.
@@ -190,13 +186,11 @@ vi:
     start_date: Ngày bắt đầu
     status: Trạng thái
     status_unknown: Trạng thái không xác định
-    stop: Dừng lại
     subject: Chủ đề
     submit: Gửi
     submit_and_finish_proctoring: Gửi và kết thúc giám sát
     suspended: Bị đình chỉ
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
-    system_check_uploading: Đang tải lên
     table:
       entries:
         selected:

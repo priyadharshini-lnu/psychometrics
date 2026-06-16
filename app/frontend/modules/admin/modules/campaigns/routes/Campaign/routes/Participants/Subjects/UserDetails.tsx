@@ -26,6 +26,7 @@ import {
   extendTime,
 } from '~/modules/admin/modules/campaigns/core/users'
 import styles from './UserDetails.less'
+import array from '~/utils/array'
 import UpdateTimeModal from './UpdateTimeModal'
 import AddReportModal from '../../AssessmentsReports/routes/AssessmentsReports/AddReportModal'
 import UpdateNormModal from './AssessmentsReports/UpdateNormModal'
@@ -143,13 +144,11 @@ export const UserDetails: React.FC<Props> = ({
     const visibleCampaigns = allCampaigns.slice(0, visibleCount)
     const hiddenCount = allCampaigns.length - visibleCount
 
-    const campaignLinks = _.map(visibleCampaigns, (campaign, index) => {
-      const isLastCampaign = index === visibleCampaigns.length - 1
-
+    const campaignLinks = _.map(visibleCampaigns, (campaign) => {
+      if (campaign.id === parsedCampaignId) { return <span key={campaign.id}>{campaign.name}</span> }
       return (
         <a key={campaign.id} href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}>
           {campaign.name}
-          {!isLastCampaign && ', '}
         </a>
       )
     })
@@ -159,7 +158,9 @@ export const UserDetails: React.FC<Props> = ({
         display: 'flex', flexWrap: 'wrap', gap: '4px', alignItems: 'center',
       }}
       >
-        <div>{campaignLinks}</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+          {array.joinJSXElements(campaignLinks, ', ')}
+        </div>
         {hasMore && (
           <Button
             size="small"

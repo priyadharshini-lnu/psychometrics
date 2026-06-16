@@ -82,14 +82,6 @@ module AI
         "#{base_part}/v1"
       end
 
-      # Azure OpenAI's /v1/responses endpoint uses the `model` field to route to a deployment.
-      # The deployment name is extracted from the base URL since it may differ from the model name.
-      def deployment_name
-        original_base = ruby_llm_config.openai_api_base
-        deployment_part = original_base.split('/deployments/').last
-        deployment_part.split('?').first
-      end
-
       def responses_endpoint
         'responses'
       end
@@ -110,7 +102,7 @@ module AI
 
       def request_payload
         {
-          model: deployment_name,
+          model: assistant_chat.model.id,
           input: format_messages,
           stream: false,
           store: false # By default we're storing the state in DB, this shouldn't be required

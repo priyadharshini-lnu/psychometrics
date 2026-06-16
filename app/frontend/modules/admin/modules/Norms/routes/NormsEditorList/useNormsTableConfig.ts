@@ -70,7 +70,6 @@ PercentileFactorNorms => {
   return scores
 }
 
-
 export const useNormsTableConfig = (normType: string | undefined, editorData: NormEditor = []) => {
   const defaultColumns = [{
     title: I18n.t('admin.factors'),
@@ -203,14 +202,8 @@ export const useNormsTableConfig = (normType: string | undefined, editorData: No
     }))
   }, [editorData, normType])
 
-  const getColumnsBasedOnNormType = (normType: string | undefined) => {
-    if (!normType) return []
-
-    return normType === 'percentile' ? percentileColumns : defaultColumns
-  }
-
   return {
-    columns: getColumnsBasedOnNormType(normType),
+    columns: normType === 'percentile' ? percentileColumns : defaultColumns,
     data,
   }
 }

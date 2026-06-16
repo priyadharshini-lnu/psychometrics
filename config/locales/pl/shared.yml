@@ -102,7 +102,6 @@ pl:
     last_name: Nazwisko
     last_updated: Ostatnia aktualizacja
     learning_on_the_job_label: Nauka w pracy
-    lets_start: Zaczynamy!
     linked_activities: Powiązane działania
     linked_assessment: Powiązana ocena
     loading: Ładowanie...
@@ -141,9 +140,7 @@ pl:
     ok: Ok
     options: Opcje
     owner: Właściciel
-    pause: Pauza
     pending: W toku
-    play: Zagraj
     policy_version: Wersja polityki
     policy_version_format: Dopuszczalne są tylko liczby całkowite.
     positive: Pozytywny
@@ -158,7 +155,6 @@ pl:
     question_id: Numer pytania
     question_transcription_disabled: Transkrypcja jest wyłączona dla tego pytania.
     rec: REC
-    record: Rekord
     recorded: Nagranie
     recording: Nagrania
     recording_consent_notice: Sesja tego spotkania będzie nagrywana. Udział w tym spotkaniu oznacza zgodę na nagrywanie.
@@ -190,13 +186,11 @@ pl:
     start_date: Data rozpoczęcia
     status: Status
     status_unknown: Status nieznany
-    stop: Zatrzymaj się
     subject: Temat
     submit: Prześlij
     submit_and_finish_proctoring: Prześlij i zakończ nadzór
     suspended: Zawieszone
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
-    system_check_uploading: Przesyłanie
     table:
       entries:
         selected:

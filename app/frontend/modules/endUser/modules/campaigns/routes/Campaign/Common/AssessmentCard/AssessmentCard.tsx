@@ -126,9 +126,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
   const isAssessmentProctoringMisconfigured = assessmentNeedsProctoring && !timedAssessment
   const isMicrositeAssessment = assessmentType === 'microsite'
   const campaignLevelProctoringEnabled = proctoringEnabled && !selectiveProctoringEnabled
-  const campaignNeedsProctoring = isWorkshopActivity
-    ? (proctoringEnabled && proctoringEnabledOnWorkshopActivity && !isProctored)
-    : (campaignLevelProctoringEnabled && !isProctored)
+  const campaignNeedsProctoring = campaignLevelProctoringEnabled && !isProctored
 
   const canBeginCampaign = !campaignClosedForUser && !hasStartedCampaign
     && fixedTimed && !isCampaignInterrupted
@@ -241,7 +239,7 @@ const AssessmentCardComponent: React.FC<CommonComponentProps> = ({
     }
     const needToBeginOrContinueCampaign = (canBeginCampaign || canContinueCampaign) && !prework
     if (
-      (isWorkshopActivity && proctoringEnabledOnWorkshopActivity && isProctored)
+      (proctoringEnabledOnWorkshopActivity && isProctored)
       || (!needToBeginOrContinueCampaign && (!campaignNeedsProctoring || prework))
     ) {
       return navigateToAssessment()

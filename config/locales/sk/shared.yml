@@ -102,7 +102,6 @@ sk:
     last_name: Priezvisko
     last_updated: Posledná aktualizácia
     learning_on_the_job_label: Učenie sa priamo v práci
-    lets_start: Tak poďme na to!
     linked_activities: Prepojené aktivity
     linked_assessment: Prepojené hodnotenie
     loading: Načítava sa...
@@ -141,9 +140,7 @@ sk:
     ok: Ok
     options: Možnosti
     owner: Majiteľ
-    pause: Pauza
     pending: Čaká na vybavenie
-    play: Hrať
     policy_version: Verzia politiky
     policy_version_format: Povolené sú iba celé čísla
     positive: Pozitívne
@@ -158,7 +155,6 @@ sk:
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
     rec: REC
-    record: Záznam
     recorded: Nahrané
     recording: Nahrávanie
     recording_consent_notice: Toto zasadnutie bude zaznamenané. Vaša účasť na tomto stretnutí znamená váš súhlas s nahrávaním.
@@ -190,13 +186,11 @@ sk:
     start_date: Dátum začiatku
     status: Stav
     status_unknown: Stav neznámy
-    stop: Zastav
     subject: Predmet
     submit: Odoslať
     submit_and_finish_proctoring: Odoslať a ukončiť dohľad
     suspended: Pozastavené
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
-    system_check_uploading: Nahrávanie
     table:
       entries:
         selected:

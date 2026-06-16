@@ -144,7 +144,6 @@ hu:
     profile_details: Részletek
     question_counter: Kérdés %{current} / %{total}
     reason_for_idp_plan_rejection: Az elutasítás oka
-    record: Napló
     recording_progress_bar: Felvétel állapotjelző sáv
     recording_time_remaining: "%{remainingSeconds} hátralévő másodpercek"
     redirect_to_external_assessment: A rendszer átirányítja Önt az értékelés oldalára. Kérjük, kattintson a „Tovább” gombra, ha el szeretné kezdeni az értékelést.

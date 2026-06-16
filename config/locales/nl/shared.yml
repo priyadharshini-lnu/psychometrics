@@ -102,7 +102,6 @@ nl:
     last_name: Achternaam
     last_updated: Laatst bijgewerkt
     learning_on_the_job_label: Leren op de werkvloer
-    lets_start: Laten we beginnen!
     linked_activities: Gekoppelde activiteiten
     linked_assessment: Gekoppelde beoordeling
     loading: Bezig met laden...
@@ -141,9 +140,7 @@ nl:
     ok: Ok
     options: Opties
     owner: Eigenaar
-    pause: Pauze
     pending: In behandeling
-    play: Spelen
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
     positive: Positief
@@ -158,7 +155,6 @@ nl:
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
     rec: REC
-    record: Record
     recorded: Opgenomen
     recording: Opname
     recording_consent_notice: Deze bijeenkomst zal worden opgenomen. Uw deelname aan deze bijeenkomst betekent dat u toestemming geeft om opgenomen te worden.
@@ -190,13 +186,11 @@ nl:
     start_date: Startdatum
     status: Status
     status_unknown: Status onbekend
-    stop: Stop
     subject: Onderwerp
     submit: Verzenden
     submit_and_finish_proctoring: Verzenden en toezicht afronden
     suspended: Opgeschort
     switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop
-    system_check_uploading: Uploaden
     table:
       entries:
         selected:
