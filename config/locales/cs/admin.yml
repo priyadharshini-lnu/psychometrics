@@ -144,6 +144,7 @@ cs:
     assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
     assistant_toolbar_not_a_valid_operation: Neznámá operace %{operation}.
     assistant_validation_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
+    audit_log_impersonated_by: V podání
     audit_logs: Protokoly o auditu
     audit_reports: Auditní zprávy
     auto_moderated_factor_info: Toto hodnocení je generováno automaticky a nelze jej změnit
@@ -232,7 +233,11 @@ cs:
     children_factor_type: Typ faktoru dětí
     client: Nájem klienta
     client_admins: Správci klientů
+    client_selection_instruction: Vyberte klienta a přejděte do administračního panelu.
+    client_selection_sign_out: Odhlásit se
+    client_selection_title: Vybrat klienta
     clients: Nájemní smlouvy klientů
+    clients_search_placeholder: Vyhledávání klienta
     code_required: Je vyžadován kód
     common: Hodnocení TTE
     common_assessment: Hodnocení TTE
@@ -350,6 +355,7 @@ cs:
     feature_flags_platform_group: Funkce platformy
     feature_global_skills_description: Přístup k globální knihovně dovedností pro hodnocení
     feature_idp_description: Povolit individuální plánování rozvoje pro účastníky
+    feature_not_available: Tato funkce není k dispozici
     feature_sms_notification_description: Povolit SMS oznámení pro pozvánky a připomenutí kampaní
     file_size_must_be_less_than_mb: Soubor {{name}} překračuje maximální velikost {{max_size_mb}} MB
     file_upload_failed: Nepodařilo se nahrát {{name}}
@@ -362,6 +368,10 @@ cs:
     generate_transcription: Vytvořit přepis
     graphic: Grafika
     graphic_slider: Grafický posuvník
+    handoff_client_mismatch: Ověřovací token není pro tohoto klienta platný
+    handoff_invalid_token: Neplatný nebo prošlý ověřovací token
+    handoff_token_expired: Platnost ověřovacího tokenu vypršela nebo již byl použit
+    handoff_user_disabled: Váš účet je deaktivován
     hide_middle_scores: Skrýt střední skóre
     high: Vysoká
     hogan: Hogan
@@ -432,9 +442,11 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    lighthouse_logo_alt_text: Logo majáku
     lighthouse_question: Základní otázka
     lighthouse_question_id: ID dotazu Lighthouse
     linked_assessments: Související hodnocení
+    logged_in: Jsem přihlášen
     low: Nízká
     maintenance: Údržba
     maintenance_settings: Nastavení údržby
@@ -474,6 +486,8 @@ cs:
     name_max_length: Název nesmí překročit %{length} znaků.
     name_required: Jméno je vyžadováno
     new_folder: Nová složka
+    no_client_access: K tomuto klientovi nemáte přístup
+    no_clients_found: Nebyli nalezeni žádní klienti
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
     no_question_mappings: Nejsou k dispozici žádná přiřazení otázek
@@ -494,6 +508,7 @@ cs:
     options: Možnosti
     organisational: AGILE
     original_text: Původní text
+    others: Ostatní
     overall: Celkově
     overall_score: Celkové skóre
     participants: Účastníci
@@ -974,6 +989,7 @@ cs:
     questions_title: Otázka
     questions_type: Typ
     range_min_max: ROZSAH%{min} - %{max}
+    recents: Poslední příspěvky
     reflection_questions: Otázky k zamyšlení
     regenerate_transcriptions_action: Obnovit přepisy
     regenerate_transcriptions_confirm_content: Opravdu chcete znovu vygenerovat přepisy pro toto hodnocení? Tím dojde k novému zpracování všech neúplných přepisů.
@@ -1005,6 +1021,10 @@ cs:
     result: Výsledek
     results: Výsledky
     role: Role
+    role_campaign_admin: Správce kampaně
+    role_client_admin: Správa klientů
+    role_project_admin: Správce projektu
+    role_superadmin: Superadministrátor
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
     saml_idp_certificate_label: Certifikát
     saml_idp_entity_id_label: Identifikace subjektu/vydavatele
@@ -1132,6 +1152,36 @@ cs:
     sms_histories: Historie SMS
     sms_invites: Pozvánky SMS
     specialty_questions: Specifické dotazy
+    sso_email_mismatch: Jste přihlášeni k jinému účtu u poskytovatele identit. Odhlaste se prosím u poskytovatele identit a zkuste to znovu.
+    sso_enforced: Vynutit SSO
+    sso_label: SSO
+    sso_not_enabled: Pro tohoto klienta není povoleno SSO
+    sso_settings: Nastavení SSO
+    sso_settings_allowed_domains: Povolené domény
+    sso_settings_certificate: Certifikát IdP
+    sso_settings_enabled: Podpora SSO
+    sso_settings_enforced: Povinné SSO
+    sso_settings_entity_id: ID entity
+    sso_settings_metadata_certificate_expiry: 'Platnost certifikátu končí: %{date}'
+    sso_settings_metadata_file_too_large: Soubor překračuje maximální velikost 1 MB
+    sso_settings_metadata_invalid_xml: Neplatný formát XML
+    sso_settings_metadata_no_idp_descriptor: V metadatech nebyl nalezen žádný deskriptor IdP
+    sso_settings_metadata_parse: Analyzovat metadata
+    sso_settings_metadata_parse_error: Nepodařilo se analyzovat metadata
+    sso_settings_metadata_parse_success: Pole IdP vyplněná na základě metadat
+    sso_settings_metadata_parsing: Analyzuji metadata...
+    sso_settings_metadata_upload: Nahrát XML s metadaty IdP
+    sso_settings_metadata_upload_again: Přetáhněte sem další soubor, který má nahradit
+    sso_settings_metadata_upload_drag_hint: Přetáhněte sem soubor .xml nebo klikněte a vyberte soubor
+    sso_settings_metadata_upload_hint: Nahrajte soubor .xml pro automatické vyplnění polí IdP
+    sso_settings_metadata_upload_retry: Zkuste to znovu s platným souborem XML s metadaty
+    sso_settings_or_configure_manually: Nebo proveďte ruční konfiguraci
+    sso_settings_readable_resource_name: Nastavení SSO
+    sso_settings_save: Uložit
+    sso_settings_session_timeout: Doba vypršení časového limitu relace
+    sso_settings_slo_url: URL služby SLO
+    sso_settings_sso_url: URL služby SSO
+    sso_settings_tab: SSO
     standard_deviation: Směrodatná odchylka
     standard_questions: Standardní otázky
     start: začátek
@@ -1141,7 +1191,13 @@ cs:
     status_details: Podrobnosti o stavu
     structured_learning: Formální učení [10]
     subdomain: Subdoména
+    subdomain_admin_keyword: nelze použít vzor vyhrazené administrátorské subdomény
+    subdomain_invalid_format: Nesprávný formát subdomény.
+    subdomain_reserved: Subdoména %{value} je rezervována
+    subdomain_too_long_max_32: Subdoména je příliš dlouhá (maximální délka je 32 znaků)
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
+    superadmin_use_root_domain: Superadministrátoři se musí přihlásit prostřednictvím hlavní domény
+    switch_client: Přepnout klienta
     target_job_role: Cílová pracovní pozice
     this_field_is_required: Toto pole je povinné
     threesixty: Kampaň 360
@@ -1198,3 +1254,4 @@ cs:
     yoodli_assessment: Yoodliho hodnocení
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: Nacházíte se zde

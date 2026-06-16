@@ -34,6 +34,8 @@ id:
       cant_be_deleted: Catatan ini tidak dapat dihapus
       client_feature:
         ai_assisted_idp_feature_error: Tidak mungkin benar jika fitur asisten ai dinonaktifkan
+      client_sso_settings:
+        sso_enforced_requires_enabled: Fitur ini tidak dapat diaktifkan jika SSO belum diaktifkan
       create_superadmin:
         uniq_email: Email harus uniq.
       development_actions:

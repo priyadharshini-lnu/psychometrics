@@ -144,6 +144,7 @@ th:
     assistant_toolbar_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
     assistant_toolbar_not_a_valid_operation: ไม่สามารถดำเนินการได้ %{operation}.
     assistant_validation_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
+    audit_log_impersonated_by: แอบอ้างโดย
     audit_logs: บันทึกการตรวจสอบ
     audit_reports: รายงานการตรวจสอบ
     auto_moderated_factor_info: คะแนนนี้ได้รับการตรวจสอบโดยอัตโนมัติและไม่สามารถเปลี่ยนแปลงได้
@@ -232,7 +233,11 @@ th:
     children_factor_type: ประเภทปัจจัยของเด็ก
     client: การเช่าลูกค้า
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
+    client_selection_instruction: เลือกลูกค้าเพื่อดำเนินการต่อที่แผงควบคุม
+    client_selection_sign_out: ลงชื่อออก
+    client_selection_title: เลือกผู้ใช้บริการ
     clients: บัญชีลูกค้า
+    clients_search_placeholder: ค้นหาลูกค้า
     code_required: ต้องใช้รหัส
     common: การประเมิน TTE
     common_assessment: การประเมิน TTE
@@ -350,6 +355,7 @@ th:
     feature_flags_platform_group: คุณสมบัติของแพลตฟอร์ม
     feature_global_skills_description: เข้าถึงคลังทักษะระดับโลกสำหรับการประเมิน
     feature_idp_description: เปิดใช้งานการวางแผนพัฒนาบุคคลสำหรับผู้เข้าร่วม
+    feature_not_available: คุณสมบัตินี้ไม่สามารถใช้งานได้
     feature_sms_notification_description: เปิดใช้งานการแจ้งเตือนทาง SMS สำหรับคำเชิญและคำเตือนของแคมเปญ
     file_size_must_be_less_than_mb: ไฟล์ {{name}} มีขนาดใหญ่เกินขนาดสูงสุดที่กำหนดไว้ที่ {{max_size_mb}} MB
     file_upload_failed: ไม่สามารถอัปโหลด {{name}} ได้
@@ -362,6 +368,10 @@ th:
     generate_transcription: สร้างการถอดความ
     graphic: กราฟิก
     graphic_slider: สไลเดอร์กราฟิก
+    handoff_client_mismatch: โทเค็นการยืนยันตัวตนไม่ถูกต้องสำหรับลูกค้านี้
+    handoff_invalid_token: โทเค็นการยืนยันตัวตนไม่ถูกต้องหรือหมดอายุ
+    handoff_token_expired: โทเค็นการยืนยันตัวตนหมดอายุหรือถูกใช้งานไปแล้ว
+    handoff_user_disabled: บัญชีของคุณถูกปิดใช้งาน
     hide_middle_scores: ซ่อนคะแนนกลาง
     high: สูง
     hogan: โฮแกน
@@ -432,9 +442,11 @@ th:
     libraries: ห้องสมุดสื่อ
     library_invalid_type: รายการไลบรารีไม่ถูกต้อง
     licenses: ใบ อนุญาต
+    lighthouse_logo_alt_text: โลโก้ประภาคาร
     lighthouse_question: คำถามสำคัญ
     lighthouse_question_id: รหัสคำถาม Lighthouse
     linked_assessments: การประเมินที่เชื่อมโยง
+    logged_in: เข้าสู่ระบบ
     low: ต่ำ
     maintenance: การบำรุงรักษา
     maintenance_settings: การตั้งค่าการบำรุงรักษา
@@ -474,6 +486,8 @@ th:
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
     name_required: ต้องระบุชื่อ
     new_folder: โฟลเดอร์ใหม่
+    no_client_access: คุณไม่มีสิทธิ์เข้าถึงลูกค้านี้
+    no_clients_found: ไม่พบลูกค้า
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
     no_question_mappings: ไม่มีการจับคู่คำถามพร้อมใช้งาน
@@ -494,6 +508,7 @@ th:
     options: ตัวเลือก
     organisational: ว่องไว
     original_text: ข้อความต้นฉบับ
+    others: อื่นๆ
     overall: โดยรวม
     overall_score: คะแนนรวม
     participants: ผู้เข้าร่วม
@@ -974,6 +989,7 @@ th:
     questions_title: คำถาม
     questions_type: ประเภท
     range_min_max: ระยะทาง%{min} - %{max}
+    recents: รายการล่าสุด
     reflection_questions: คําถามไตร่ตรอง
     regenerate_transcriptions_action: สร้างถอดความใหม่
     regenerate_transcriptions_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการสร้างการถอดเสียงใหม่สำหรับการประเมินนี้? การดำเนินการนี้จะประมวลผลการถอดเสียงที่ยังไม่สมบูรณ์ทั้งหมดใหม่
@@ -1005,6 +1021,10 @@ th:
     result: ผลลัพธ์
     results: ผลลัพธ์
     role: บทบาท
+    role_campaign_admin: ผู้ดูแลแคมเปญ
+    role_client_admin: การจัดการลูกค้า
+    role_project_admin: ผู้ดูแลโครงการ
+    role_superadmin: ผู้ดูแลระบบระดับสูง
     saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
     saml_idp_certificate_label: ใบรับรอง
     saml_idp_entity_id_label: รหัสเอนทิตี/ผู้ออก
@@ -1132,6 +1152,36 @@ th:
     sms_histories: ประวัติ SMS
     sms_invites: คําเชิญทาง SMS
     specialty_questions: คำถามเฉพาะทาง
+    sso_email_mismatch: คุณกำลังเข้าสู่ระบบด้วยบัญชีอื่นบนผู้ให้บริการข้อมูลประจำตัว กรุณาออกจากระบบจากผู้ให้บริการข้อมูลประจำตัวของคุณและลองอีกครั้ง
+    sso_enforced: บังคับใช้ระบบเข้าสู่ระบบครั้งเดียว (SSO)
+    sso_label: SSO
+    sso_not_enabled: SSO ไม่ได้รับการเปิดใช้งานสำหรับลูกค้านี้
+    sso_settings: การตั้งค่า SSO
+    sso_settings_allowed_domains: โดเมนที่ได้รับอนุญาต
+    sso_settings_certificate: ใบรับรอง IdP
+    sso_settings_enabled: เปิดใช้งาน SSO
+    sso_settings_enforced: บังคับใช้ SSO
+    sso_settings_entity_id: รหัสองค์กร
+    sso_settings_metadata_certificate_expiry: 'ใบรับรองหมดอายุ: %{date}'
+    sso_settings_metadata_file_too_large: ไฟล์มีขนาดใหญ่เกินขนาดสูงสุดที่ 1MB
+    sso_settings_metadata_invalid_xml: รูปแบบ XML ไม่ถูกต้อง
+    sso_settings_metadata_no_idp_descriptor: ไม่พบคำอธิบายของ IdP ในข้อมูลเมตา
+    sso_settings_metadata_parse: แยกวิเคราะห์ข้อมูลเมตา
+    sso_settings_metadata_parse_error: ไม่สามารถแยกวิเคราะห์ข้อมูลเมตาได้
+    sso_settings_metadata_parse_success: ฟิลด์ IdP ที่ถูกกรอกจากเมตาดาต้า
+    sso_settings_metadata_parsing: กำลังแยกวิเคราะห์ข้อมูลเมตา...
+    sso_settings_metadata_upload: อัปโหลด XML ข้อมูลเมตาดาตาของ IdP
+    sso_settings_metadata_upload_again: ลากไฟล์อื่นมาวางเพื่อแทนที่
+    sso_settings_metadata_upload_drag_hint: ลากและวางไฟล์ .xml ที่นี่หรือคลิกเพื่อเรียกดู
+    sso_settings_metadata_upload_hint: อัปโหลดไฟล์ .xml เพื่อกรอกข้อมูลในช่อง IdP โดยอัตโนมัติ
+    sso_settings_metadata_upload_retry: ลองอีกครั้งด้วยไฟล์ XML ข้อมูลเมตาที่ถูกต้อง
+    sso_settings_or_configure_manually: หรือกำหนดค่าด้วยตนเอง
+    sso_settings_readable_resource_name: การตั้งค่า SSO
+    sso_settings_save: บันทึก
+    sso_settings_session_timeout: ระยะเวลาหมดเวลาของเซสชัน
+    sso_settings_slo_url: URL บริการ SLO
+    sso_settings_sso_url: URL บริการ SSO
+    sso_settings_tab: SSO
     standard_deviation: ค่าเบี่ยงเบนมาตรฐาน
     standard_questions: คำถามมาตรฐาน
     start: เริ่มต้น
@@ -1141,7 +1191,13 @@ th:
     status_details: รายละเอียดสถานะ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
     subdomain: โดเมนย่อย
+    subdomain_admin_keyword: ไม่สามารถใช้รูปแบบโดเมนย่อยที่สงวนไว้สำหรับผู้ดูแลระบบได้
+    subdomain_invalid_format: รูปแบบซับโดเมนไม่ถูกต้อง
+    subdomain_reserved: ซับโดเมน %{value} ถูกสงวนไว้
+    subdomain_too_long_max_32: ชื่อโดเมนย่อยยาวเกินไป (สูงสุดคือ 32 ตัวอักษร)
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
+    superadmin_use_root_domain: ผู้ดูแลระบบระดับสูงต้องลงชื่อเข้าใช้ผ่านโดเมนหลัก
+    switch_client: สลับลูกค้า
     target_job_role: ตำแหน่งงานเป้าหมาย
     this_field_is_required: ฟิลด์นี้จำเป็นต้องกรอก
     threesixty: แคมเปญ 360
@@ -1198,3 +1254,4 @@ th:
     yoodli_assessment: การประเมิน Yoodli
     yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli
     yoodli_external_assessment_id: รหัสการประเมิน Yoodli
+    you_are_here: คุณอยู่ที่นี่

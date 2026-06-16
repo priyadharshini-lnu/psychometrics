@@ -144,6 +144,7 @@ ru:
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
     assistant_toolbar_not_a_valid_operation: Неизвестная операция %{operation}.
     assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
+    audit_log_impersonated_by: В роли
     audit_logs: Журналы аудита
     audit_reports: Аудиторские отчеты
     auto_moderated_factor_info: Эта оценка проходит автоматическую модерацию и не может быть изменена
@@ -232,7 +233,11 @@ ru:
     children_factor_type: Тип фактора «Дети»
     client: Клиент
     client_admins: Администраторы клиентов
+    client_selection_instruction: Выберите клиента, чтобы перейти в панель администрирования.
+    client_selection_sign_out: Выйти
+    client_selection_title: Выбрать клиента
     clients: Клиенты
+    clients_search_placeholder: Поиск клиента
     code_required: Требуется код
     common: Оценка TTE
     common_assessment: Оценка TTE
@@ -350,6 +355,7 @@ ru:
     feature_flags_platform_group: Особенности платформы
     feature_global_skills_description: Доступ к глобальной библиотеке навыков для оценки
     feature_idp_description: Включить индивидуальное планирование развития для участников
+    feature_not_available: Эта функция недоступна
     feature_sms_notification_description: Включить SMS-уведомления о приглашениях и напоминаниях о кампаниях
     file_size_must_be_less_than_mb: Файл {{name}} превышает максимальный размер в {{max_size_mb}} МБ
     file_upload_failed: Не удалось загрузить {{name}}
@@ -362,6 +368,10 @@ ru:
     generate_transcription: Создать транскрипцию
     graphic: Графика
     graphic_slider: Графический слайдер
+    handoff_client_mismatch: Токен аутентификации недействителен для этого клиента
+    handoff_invalid_token: Недопустимый или просроченный токен аутентификации
+    handoff_token_expired: Срок действия токена аутентификации истек или он уже был использован
+    handoff_user_disabled: Ваша учетная запись заблокирована
     hide_middle_scores: Скрыть средние оценки
     high: Высокий
     hogan: Хоган
@@ -432,9 +442,11 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    lighthouse_logo_alt_text: Логотип «Маяк»
     lighthouse_question: Основной вопрос
     lighthouse_question_id: Идентификатор вопроса Lighthouse
     linked_assessments: Связанные оценки
+    logged_in: Вошел
     low: Низкий
     maintenance: Техническое обслуживание
     maintenance_settings: Настройки обслуживания
@@ -474,6 +486,8 @@ ru:
     name_max_length: Имя не может превышать %{length} символов
     name_required: Имя обязательно
     new_folder: Новая папка
+    no_client_access: У вас нет доступа к этому клиенту
+    no_clients_found: Клиенты не найдены
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
     no_question_mappings: Сопоставления вопросов отсутствуют
@@ -494,6 +508,7 @@ ru:
     options: Варианты
     organisational: AGILE
     original_text: Оригинальный текст
+    others: Прочее
     overall: В целом
     overall_score: Общий балл
     participants: Участники
@@ -974,6 +989,7 @@ ru:
     questions_title: Вопрос
     questions_type: Тип
     range_min_max: ДИАПАЗОН%{min} - %{max}
+    recents: Последние
     reflection_questions: Вопросы для размышления
     regenerate_transcriptions_action: Восстановить транскрипции
     regenerate_transcriptions_confirm_content: Вы уверены, что хотите пересчитать оценки по данной работе? При этом будут пересчитаны все незавершенные оценки.
@@ -1005,6 +1021,10 @@ ru:
     result: Результат
     results: Результаты
     role: Роль
+    role_campaign_admin: Администратор кампании
+    role_client_admin: Администратор клиентов
+    role_project_admin: Администратор проекта
+    role_superadmin: Супер-администратор
     saml_idp_certificate_available: Доступно (щелкните, чтобы скопировать)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: Идентификатор субъекта/эмитента
@@ -1132,6 +1152,36 @@ ru:
     sms_histories: История SMS-сообщений
     sms_invites: SMS-приглашения
     specialty_questions: Специальные вопросы
+    sso_email_mismatch: Вы вошли в систему под другой учетной записью у поставщика услуг аутентификации. Пожалуйста, выйдите из системы у поставщика услуг аутентификации и попробуйте снова.
+    sso_enforced: Принудительное использование SSO
+    sso_label: SSO
+    sso_not_enabled: Для этого клиента не включена функция единого входа (SSO)
+    sso_settings: Настройки SSO
+    sso_settings_allowed_domains: Разрешенные домены
+    sso_settings_certificate: Сертификат IdP
+    sso_settings_enabled: Поддержка SSO
+    sso_settings_enforced: Обязательное использование SSO
+    sso_settings_entity_id: Идентификатор объекта
+    sso_settings_metadata_certificate_expiry: 'Срок действия сертификата истекает: %{date}'
+    sso_settings_metadata_file_too_large: Размер файла превышает максимальный размер в 1 МБ
+    sso_settings_metadata_invalid_xml: Неверный формат XML
+    sso_settings_metadata_no_idp_descriptor: В метаданных не найден дескриптор IdP
+    sso_settings_metadata_parse: Анализ метаданных
+    sso_settings_metadata_parse_error: Не удалось проанализировать метаданные
+    sso_settings_metadata_parse_success: Поля IdP, заполняемые на основе метаданных
+    sso_settings_metadata_parsing: Анализ метаданных...
+    sso_settings_metadata_upload: Загрузить XML-файл с метаданными IdP
+    sso_settings_metadata_upload_again: Перетащите другой файл, чтобы заменить
+    sso_settings_metadata_upload_drag_hint: Перетащите файл .xml сюда или нажмите, чтобы выбрать файл
+    sso_settings_metadata_upload_hint: Загрузите файл .xml для автоматического заполнения полей IdP
+    sso_settings_metadata_upload_retry: Попробуйте ещё раз, используя корректный XML-файл метаданных
+    sso_settings_or_configure_manually: Или настройте вручную
+    sso_settings_readable_resource_name: Настройки SSO
+    sso_settings_save: Сохранить
+    sso_settings_session_timeout: Продолжительность таймаута сеанса
+    sso_settings_slo_url: URL службы SLO
+    sso_settings_sso_url: URL службы SSO
+    sso_settings_tab: SSO
     standard_deviation: Стандартное отклонение
     standard_questions: Стандартные вопросы
     start: начало
@@ -1141,7 +1191,13 @@ ru:
     status_details: Детали статуса
     structured_learning: Формальное обучение [10]
     subdomain: Субдомен
+    subdomain_admin_keyword: невозможно использовать шаблон зарезервированного субдомена администратора
+    subdomain_invalid_format: Неверный формат субдомена.
+    subdomain_reserved: Субдомен %{value} зарезервирован
+    subdomain_too_long_max_32: Субдомен слишком длинный (максимальная длина — 32 символа)
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
+    superadmin_use_root_domain: Суперадминистраторы должны входить в систему через основной домен
+    switch_client: Клиент Switch
     target_job_role: Целевая должность
     this_field_is_required: Это поле является обязательным для заполнения
     threesixty: Кампания «360»
@@ -1198,3 +1254,4 @@ ru:
     yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli
+    you_are_here: Вы находитесь здесь

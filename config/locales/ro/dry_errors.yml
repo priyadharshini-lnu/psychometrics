@@ -34,6 +34,8 @@ ro:
       cant_be_deleted: Această înregistrare nu poate fi ștearsă
       client_feature:
         ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
+      client_sso_settings:
+        sso_enforced_requires_enabled: Nu poate fi activată fără ca SSO să fie activat
       create_superadmin:
         uniq_email: E-mailul ar trebui să fie unic.
       development_actions:

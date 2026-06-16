@@ -144,6 +144,7 @@ vi:
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     assistant_toolbar_not_a_valid_operation: 'Hoạt động không xác định: %{operation}.'
     assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
+    audit_log_impersonated_by: Được đóng giả bởi
     audit_logs: Nhật ký kiểm tra
     audit_reports: Báo cáo kiểm toán
     auto_moderated_factor_info: Điểm số này được điều chỉnh tự động và không thể thay đổi
@@ -232,7 +233,11 @@ vi:
     children_factor_type: Yếu tố liên quan đến trẻ em
     client: Khách hàng thuê nhà
     client_admins: Quản trị viên khách hàng
+    client_selection_instruction: Chọn một khách hàng để tiếp tục vào bảng điều khiển quản trị.
+    client_selection_sign_out: Đăng xuất
+    client_selection_title: Chọn khách hàng
     clients: Thuê khách hàng
+    clients_search_placeholder: Tìm kiếm khách hàng
     code_required: Mã là bắt buộc
     common: Đánh giá TTE
     common_assessment: Đánh giá TTE
@@ -350,6 +355,7 @@ vi:
     feature_flags_platform_group: Tính năng của nền tảng
     feature_global_skills_description: Truy cập thư viện kỹ năng toàn cầu để thực hiện đánh giá.
     feature_idp_description: Kích hoạt Kế hoạch Phát triển Cá nhân cho các thành viên tham gia.
+    feature_not_available: Tính năng này hiện không khả dụng
     feature_sms_notification_description: Bật thông báo SMS cho lời mời và nhắc nhở chiến dịch.
     file_size_must_be_less_than_mb: Tệp {{name}} vượt quá kích thước tối đa là {{max_size_mb}} MB
     file_upload_failed: Không tải lên được {{name}}
@@ -362,6 +368,10 @@ vi:
     generate_transcription: Tạo bản chép lời
     graphic: Đồ họa
     graphic_slider: Thanh trượt hình ảnh
+    handoff_client_mismatch: Mã xác thực không hợp lệ đối với khách hàng này
+    handoff_invalid_token: Mã xác thực không hợp lệ hoặc đã hết hạn
+    handoff_token_expired: Mã xác thực đã hết hạn hoặc đã được sử dụng
+    handoff_user_disabled: Tài khoản của bạn đã bị vô hiệu hóa
     hide_middle_scores: Ẩn điểm số trung bình
     high: Cao
     hogan: Hogan
@@ -432,9 +442,11 @@ vi:
     libraries: Thư viện phương tiện
     library_invalid_type: Mục Thư viện không hợp lệ
     licenses: Giấy phép
+    lighthouse_logo_alt_text: Logo Ngọn hải đăng
     lighthouse_question: Câu hỏi về ngọn hải đăng
     lighthouse_question_id: Mã câu hỏi Lighthouse
     linked_assessments: Các bài đánh giá liên quan
+    logged_in: Đã đăng nhập
     low: Thấp
     maintenance: Bảo trì
     maintenance_settings: Cài đặt bảo trì
@@ -474,6 +486,8 @@ vi:
     name_max_length: Tên không được vượt quá %{length} ký tự.
     name_required: Tên là bắt buộc
     new_folder: Thư mục mới
+    no_client_access: Bạn không có quyền truy cập vào khách hàng này
+    no_clients_found: Không tìm thấy khách hàng nào
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
     no_question_mappings: Không có bản đồ câu hỏi nào có sẵn
@@ -494,6 +508,7 @@ vi:
     options: Tùy chọn
     organisational: NHANH NHẸN
     original_text: Văn bản gốc
+    others: Các mục khác
     overall: Tổng thể
     overall_score: Điểm tổng cộng
     participants: Tham gia
@@ -974,6 +989,7 @@ vi:
     questions_title: Câu hỏi
     questions_type: Loại
     range_min_max: Dải sản phẩm%{min} - %{max}
+    recents: Các bài viết gần đây
     reflection_questions: Câu hỏi suy ngẫm
     regenerate_transcriptions_action: Tạo lại bản chép lời
     regenerate_transcriptions_confirm_content: Bạn có chắc chắn muốn tạo lại bản chép lời cho bài đánh giá này không? Thao tác này sẽ xử lý lại tất cả các bản chép lời chưa hoàn thành.
@@ -1005,6 +1021,10 @@ vi:
     result: Kết quả
     results: Kết quả
     role: Vai trò
+    role_campaign_admin: Quản trị chiến dịch
+    role_client_admin: Quản trị khách hàng
+    role_project_admin: Quản trị dự án
+    role_superadmin: Quản trị viên cao cấp
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
     saml_idp_certificate_label: Chứng chỉ
     saml_idp_entity_id_label: ID thực thể/Tổ chức phát hành
@@ -1132,6 +1152,36 @@ vi:
     sms_histories: Lịch sử SMS
     sms_invites: Lời mời SMS
     specialty_questions: Các câu hỏi chuyên sâu
+    sso_email_mismatch: Bạn đang đăng nhập vào một tài khoản khác trên nhà cung cấp dịch vụ xác thực. Vui lòng đăng xuất khỏi nhà cung cấp dịch vụ xác thực và thử lại.
+    sso_enforced: Áp dụng SSO
+    sso_label: Đăng nhập một lần (SSO)
+    sso_not_enabled: Chức năng SSO chưa được kích hoạt cho khách hàng này
+    sso_settings: Cài đặt SSO
+    sso_settings_allowed_domains: Các tên miền được phép
+    sso_settings_certificate: Chứng chỉ IdP
+    sso_settings_enabled: Đã bật SSO
+    sso_settings_enforced: Bắt buộc sử dụng SSO
+    sso_settings_entity_id: Mã định danh thực thể
+    sso_settings_metadata_certificate_expiry: 'Chứng chỉ hết hạn vào ngày: %{date}'
+    sso_settings_metadata_file_too_large: Tệp này vượt quá giới hạn kích thước tối đa là 1MB
+    sso_settings_metadata_invalid_xml: Định dạng XML không hợp lệ
+    sso_settings_metadata_no_idp_descriptor: Không tìm thấy mô tả IdP trong siêu dữ liệu
+    sso_settings_metadata_parse: Phân tích siêu dữ liệu
+    sso_settings_metadata_parse_error: Không thể phân tích siêu dữ liệu
+    sso_settings_metadata_parse_success: Các trường IdP được điền từ siêu dữ liệu
+    sso_settings_metadata_parsing: Đang phân tích siêu dữ liệu...
+    sso_settings_metadata_upload: Tải lên tệp XML chứa siêu dữ liệu IdP
+    sso_settings_metadata_upload_again: Kéo thả một tệp khác để thay thế
+    sso_settings_metadata_upload_drag_hint: Kéo và thả tệp .xml vào đây hoặc nhấp để duyệt
+    sso_settings_metadata_upload_hint: Tải lên tệp .xml để tự động điền các trường IdP
+    sso_settings_metadata_upload_retry: Hãy thử lại với một tệp XML siêu dữ liệu hợp lệ
+    sso_settings_or_configure_manually: Hoặc cấu hình thủ công
+    sso_settings_readable_resource_name: Cài đặt SSO
+    sso_settings_save: Lưu
+    sso_settings_session_timeout: Thời gian hết hạn phiên
+    sso_settings_slo_url: URL dịch vụ SLO
+    sso_settings_sso_url: URL dịch vụ SSO
+    sso_settings_tab: Đăng nhập một lần (SSO)
     standard_deviation: Độ lệch chuẩn
     standard_questions: Các câu hỏi thường gặp
     start: bắt đầu
@@ -1141,7 +1191,13 @@ vi:
     status_details: Chi tiết trạng thái
     structured_learning: Học chính thức [10]
     subdomain: Tên miền phụ
+    subdomain_admin_keyword: không thể sử dụng mẫu tên miền phụ dành riêng cho quản trị viên
+    subdomain_invalid_format: Định dạng tên miền phụ không đúng.
+    subdomain_reserved: Tên miền phụ %{value} đã được đặt trước
+    subdomain_too_long_max_32: Tên miền phụ quá dài (tối đa 32 ký tự)
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
+    superadmin_use_root_domain: Quản trị viên cấp cao phải đăng nhập qua miền chính
+    switch_client: Chuyển đổi ứng dụng khách
     target_job_role: Vị trí công việc mục tiêu
     this_field_is_required: Trường này là bắt buộc.
     threesixty: Chiến dịch 360
@@ -1198,3 +1254,4 @@ vi:
     yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli
+    you_are_here: Bạn đang ở đây

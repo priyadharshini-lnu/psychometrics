@@ -144,6 +144,7 @@ fr:
     assistant_toolbar_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
     assistant_toolbar_not_a_valid_operation: Opération inconnue %{operation}.
     assistant_validation_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
+    audit_log_impersonated_by: Interprété par
     audit_logs: Journaux d'audit
     audit_reports: Rapports d'audit
     auto_moderated_factor_info: Cette note est modérée automatiquement et ne peut pas être modifiée
@@ -232,7 +233,11 @@ fr:
     children_factor_type: Type de facteur enfant
     client: Location par le client
     client_admins: Administrateurs clients
+    client_selection_instruction: Sélectionnez un client pour accéder au panneau d'administration.
+    client_selection_sign_out: Se déconnecter
+    client_selection_title: Sélectionner un client
     clients: Baux des clients
+    clients_search_placeholder: Rechercher un client
     code_required: Le code est requis
     common: Évaluation TTE
     common_assessment: Évaluation TTE
@@ -350,6 +355,7 @@ fr:
     feature_flags_platform_group: Caractéristiques de la plateforme
     feature_global_skills_description: Accédez à la bibliothèque mondiale de compétences pour les évaluations
     feature_idp_description: Activer la planification du développement individuel pour les participants
+    feature_not_available: Cette fonctionnalité n'est pas disponible
     feature_sms_notification_description: Activer les notifications par SMS pour les invitations et les rappels de campagne
     file_size_must_be_less_than_mb: Le fichier {{name}} dépasse la taille maximale de {{max_size_mb}} Mo
     file_upload_failed: Échec du téléchargement de {{name}}
@@ -362,6 +368,10 @@ fr:
     generate_transcription: Générer une transcription
     graphic: Graphique
     graphic_slider: Curseur graphique
+    handoff_client_mismatch: Le jeton d'authentification n'est pas valide pour ce client
+    handoff_invalid_token: Jeton d'authentification non valide ou périmé
+    handoff_token_expired: Le jeton d'authentification a expiré ou a déjà été utilisé
+    handoff_user_disabled: Votre compte a été désactivé
     hide_middle_scores: Masquer les scores intermédiaires
     high: Élevé
     hogan: Hogan
@@ -432,9 +442,11 @@ fr:
     libraries: Bibliothèque des médias
     library_invalid_type: Élément de bibliothèque invalide
     licenses: Licences
+    lighthouse_logo_alt_text: Logo du phare
     lighthouse_question: Question sur le phare
     lighthouse_question_id: Identifiant de la question Lighthouse
     linked_assessments: Évaluations associées
+    logged_in: Connecté
     low: Faible
     maintenance: Entretien
     maintenance_settings: Paramètres de maintenance
@@ -474,6 +486,8 @@ fr:
     name_max_length: Le nom ne peut pas dépasser %{length} caractères.
     name_required: Le nom est requis
     new_folder: Nouveau dossier
+    no_client_access: Vous n'avez pas accès à ce client
+    no_clients_found: Aucun client trouvé
     no_file_selected: Aucun fichier sélectionné
     no_notifications: Aucune notification
     no_question_mappings: Aucune correspondance de questions n'est disponible
@@ -494,6 +508,7 @@ fr:
     options: Options
     organisational: AGILE
     original_text: Texte original
+    others: Autres
     overall: Dans l'ensemble
     overall_score: Note globale
     participants: Les participants
@@ -974,6 +989,7 @@ fr:
     questions_title: Question
     questions_type: Type
     range_min_max: "%{min}S SUR LA GAMME - %{max}"
+    recents: Dernières actualités
     reflection_questions: Questions de réflexion
     regenerate_transcriptions_action: Recréer les transcriptions
     regenerate_transcriptions_confirm_content: Êtes-vous sûr de vouloir régénérer les transcriptions pour cette évaluation ? Cela entraînera un nouveau traitement de toutes les transcriptions incomplètes.
@@ -1005,6 +1021,10 @@ fr:
     result: Résultat
     results: Résultats
     role: Rôle
+    role_campaign_admin: Administration de la campagne
+    role_client_admin: Gestion des clients
+    role_project_admin: Administrateur de projet
+    role_superadmin: Super administrateur
     saml_idp_certificate_available: Disponible (cliquez pour copier)
     saml_idp_certificate_label: Certificat
     saml_idp_entity_id_label: ID d’entité/Émetteur
@@ -1132,6 +1152,36 @@ fr:
     sms_histories: Histoires de SMS
     sms_invites: Invitations par SMS
     specialty_questions: Questions spécifiques
+    sso_email_mismatch: Vous êtes connecté à un autre compte sur le fournisseur d'identité. Veuillez vous déconnecter de votre fournisseur d'identité et réessayer.
+    sso_enforced: Activer l'authentification unique (SSO)
+    sso_label: SSO
+    sso_not_enabled: L'authentification unique (SSO) n'est pas activée pour ce client
+    sso_settings: Paramètres SSO
+    sso_settings_allowed_domains: Domaines autorisés
+    sso_settings_certificate: Certificat IdP
+    sso_settings_enabled: Authentification unique (SSO) activée
+    sso_settings_enforced: Authentification unique (SSO) obligatoire
+    sso_settings_entity_id: Identifiant de l'entité
+    sso_settings_metadata_certificate_expiry: 'Date d''expiration du certificat : %{date}'
+    sso_settings_metadata_file_too_large: Le fichier dépasse la taille maximale de 1 Mo
+    sso_settings_metadata_invalid_xml: Format XML non valide
+    sso_settings_metadata_no_idp_descriptor: Aucun descripteur IdP n'a été trouvé dans les métadonnées
+    sso_settings_metadata_parse: Analyser les métadonnées
+    sso_settings_metadata_parse_error: Échec de l'analyse des métadonnées
+    sso_settings_metadata_parse_success: Champs IdP renseignés à partir des métadonnées
+    sso_settings_metadata_parsing: Analyse des métadonnées...
+    sso_settings_metadata_upload: Importer le fichier XML contenant les métadonnées de l'IdP
+    sso_settings_metadata_upload_again: Faites glisser un autre fichier pour le remplacer
+    sso_settings_metadata_upload_drag_hint: Glissez-déposez un fichier .xml ici ou cliquez pour parcourir
+    sso_settings_metadata_upload_hint: Importez un fichier .xml pour remplir automatiquement les champs de l'IdP
+    sso_settings_metadata_upload_retry: Réessayez avec un fichier XML de métadonnées valide
+    sso_settings_or_configure_manually: Ou configurez-le manuellement
+    sso_settings_readable_resource_name: Paramètres SSO
+    sso_settings_save: Enregistrer
+    sso_settings_session_timeout: Durée du délai d'expiration de la session
+    sso_settings_slo_url: URL du service SLO
+    sso_settings_sso_url: URL du service SSO
+    sso_settings_tab: SSO
     standard_deviation: Écart type
     standard_questions: Questions courantes
     start: commencer
@@ -1141,7 +1191,13 @@ fr:
     status_details: Détails de statut
     structured_learning: Apprentissage formel [10]
     subdomain: Sous-domaine
+    subdomain_admin_keyword: Impossible d'utiliser le modèle de sous-domaine réservé à l'administration
+    subdomain_invalid_format: Format de sous-domaine incorrect.
+    subdomain_reserved: Le sous-domaine %{value} est réservé
+    subdomain_too_long_max_32: Le sous-domaine est trop long (32 caractères maximum)
     subject_part_of_other_invite: Le sujet avec l'adresse e-mail %{user_email} a déjà été invité à « %{workshop_invite_name} ».
+    superadmin_use_root_domain: Les super-administrateurs doivent se connecter via le domaine principal
+    switch_client: Changer de client
     target_job_role: Poste visé
     this_field_is_required: Ce champ est obligatoire.
     threesixty: Campagne 360
@@ -1198,3 +1254,4 @@ fr:
     yoodli_assessment: Évaluation Yoodli
     yoodli_email_id: ID Email du candidat Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: Vous êtes ici

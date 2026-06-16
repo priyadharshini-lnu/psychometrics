@@ -34,6 +34,8 @@ zh-Hant:
       cant_be_deleted: 無法刪除此記錄
       client_feature:
         ai_assisted_idp_feature_error: 如果禁用 AI 助手功能，則不能為 true
+      client_sso_settings:
+        sso_enforced_requires_enabled: 若未启用单点登录（SSO），则无法启用此功能
       create_superadmin:
         uniq_email: 電子郵件應該是單一的。
       development_actions:

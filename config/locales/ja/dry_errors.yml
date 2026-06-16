@@ -34,6 +34,8 @@ ja:
       cant_be_deleted: このレコードは削除できません
       client_feature:
         ai_assisted_idp_feature_error: AI アシスタント機能が無効になっている場合は当てはまりません
+      client_sso_settings:
+        sso_enforced_requires_enabled: SSOが有効になっていないと、この機能は有効にできません
       create_superadmin:
         uniq_email: 電子メールはユニックでなければならない。
       development_actions:

@@ -144,6 +144,7 @@ ar:
     assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     assistant_toolbar_not_a_valid_operation: عملية غير معروفة%{operation}.
     assistant_validation_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
+    audit_log_impersonated_by: تقمص شخصيته
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
     auto_moderated_factor_info: يخضع هذا التقييم للمراجعة التلقائية ولا يمكن تغييره
@@ -232,7 +233,11 @@ ar:
     children_factor_type: نوع عامل الأطفال
     client: مستأجر العميل
     client_admins: مسؤولو العملاء
+    client_selection_instruction: اختر عميلاً للمتابعة إلى لوحة الإدارة.
+    client_selection_sign_out: تسجيل الخروج
+    client_selection_title: اختر العميل
     clients: عقود العملاء
+    clients_search_placeholder: البحث عن العميل
     code_required: الكود مطلوب
     common: تقييم TTE
     common_assessment: تقييم TTE
@@ -350,6 +355,7 @@ ar:
     feature_flags_platform_group: ميزات المنصة
     feature_global_skills_description: الوصول إلى مكتبة المهارات العالمية للتقييمات
     feature_idp_description: تمكين تخطيط التنمية الفردية للمشاركين
+    feature_not_available: هذه الميزة غير متوفرة
     feature_sms_notification_description: تمكين إشعارات الرسائل القصيرة لدعوات الحملات والتذكيرات
     file_size_must_be_less_than_mb: يتجاوز حجم الملف {{name}} الحد الأقصى المسموح به البالغ {{max_size_mb}} ميغابايت
     file_upload_failed: فشل تحميل {{name}}
@@ -362,6 +368,10 @@ ar:
     generate_transcription: إنشاء نسخة مكتوبة
     graphic: رسم بياني
     graphic_slider: شريط التمرير المصور
+    handoff_client_mismatch: رمز المصادقة غير صالح لهذا العميل
+    handoff_invalid_token: رمز مصادقة غير صالح أو منتهي الصلاحية
+    handoff_token_expired: انتهت صلاحية رمز المصادقة أو تم استخدامه بالفعل
+    handoff_user_disabled: حسابك معطل
     hide_middle_scores: إخفاء النتائج المتوسطة
     high: مرتفع
     hogan: هوجان
@@ -432,9 +442,11 @@ ar:
     libraries: مكتبة الوسائط
     library_invalid_type: عنصر المكتبة غير الصالح
     licenses: التراخيص
+    lighthouse_logo_alt_text: شعار المنارة
     lighthouse_question: السؤال الرئيسي
     lighthouse_question_id: رقم سؤال "لايت هاوس"
     linked_assessments: التقييمات المرتبطة
+    logged_in: تم تسجيل الدخول
     low: منخفض
     maintenance: الصيانة
     maintenance_settings: إعدادات الصيانة
@@ -474,6 +486,8 @@ ar:
     name_max_length: لا يمكن أن يتجاوز الاسم %{length} حرفًا
     name_required: الاسم مطلوب
     new_folder: مجلد جديد
+    no_client_access: ليس لديك حق الوصول إلى هذا العميل
+    no_clients_found: لم يتم العثور على أي عملاء
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
     no_question_mappings: لا توجد خرائط أسئلة متاحة
@@ -494,6 +508,7 @@ ar:
     options: الخيارات
     organisational: رشيق
     original_text: النص الأصلي
+    others: آخرون
     overall: بشكل عام
     overall_score: النتيجة الإجمالية
     participants: المشاركون
@@ -974,6 +989,7 @@ ar:
     questions_title: سؤال
     questions_type: النوع
     range_min_max: النطاق%{min} - %{max}
+    recents: الأحدث
     reflection_questions: أسئلة للتفكير
     regenerate_transcriptions_action: إعادة إنشاء النصوص
     regenerate_transcriptions_confirm_content: هل أنت متأكد من رغبتك في إعادة إنشاء النصوص المكتوبة لهذا التقييم؟ سيؤدي ذلك إلى إعادة معالجة جميع النصوص المكتوبة غير المكتملة.
@@ -1005,6 +1021,10 @@ ar:
     result: النتيجة
     results: النتائج
     role: دور
+    role_campaign_admin: إدارة الحملة
+    role_client_admin: إدارة العملاء
+    role_project_admin: مدير المشروع
+    role_superadmin: المسؤول الأعلى
     saml_idp_certificate_available: متوفر (انقر للنسخة)
     saml_idp_certificate_label: شهادة
     saml_idp_entity_id_label: معرف الكيان/المصدر
@@ -1132,6 +1152,36 @@ ar:
     sms_histories: تواريخ الرسائل النصية القصيرة
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
     specialty_questions: أسئلة متخصصة
+    sso_email_mismatch: أنت مسجل الدخول إلى حساب آخر لدى مزود الهوية. يرجى تسجيل الخروج من حسابك لدى مزود الهوية ومحاولة الدخول مرة أخرى.
+    sso_enforced: تفعيل تسجيل الدخول الموحد (SSO)
+    sso_label: تسجيل الدخول عبر مزود خدمة واحد (SSO)
+    sso_not_enabled: لم يتم تمكين تسجيل الدخول الأحادي (SSO) لهذا العميل
+    sso_settings: إعدادات تسجيل الدخول الموحد (SSO)
+    sso_settings_allowed_domains: النطاقات المسموح بها
+    sso_settings_certificate: شهادة مزود الهوية
+    sso_settings_enabled: تم تمكين تسجيل الدخول الموحد (SSO)
+    sso_settings_enforced: تطبيق تسجيل الدخول الأحادي (SSO)
+    sso_settings_entity_id: معرف الكيان
+    sso_settings_metadata_certificate_expiry: 'تاريخ انتهاء صلاحية الشهادة: %{date}'
+    sso_settings_metadata_file_too_large: يتجاوز حجم الملف الحد الأقصى البالغ 1 ميغابايت
+    sso_settings_metadata_invalid_xml: تنسيق XML غير صالح
+    sso_settings_metadata_no_idp_descriptor: لم يتم العثور على واصف مزود الهوية في البيانات الوصفية
+    sso_settings_metadata_parse: تحليل البيانات الوصفية
+    sso_settings_metadata_parse_error: فشل تحليل البيانات الوصفية
+    sso_settings_metadata_parse_success: حقول مزود الهوية (IdP) التي تم ملؤها من البيانات الوصفية
+    sso_settings_metadata_parsing: تحليل البيانات الوصفية...
+    sso_settings_metadata_upload: تحميل ملف XML الخاص ببيانات تعريف مزود الهوية (IdP)
+    sso_settings_metadata_upload_again: اسحب ملفًا آخر لاستبداله
+    sso_settings_metadata_upload_drag_hint: اسحب ملف .xml وأفلته هنا أو انقر للتصفح
+    sso_settings_metadata_upload_hint: قم بتحميل ملف .xml لملء حقول مزود الهوية (IdP) تلقائيًا
+    sso_settings_metadata_upload_retry: يرجى المحاولة مرة أخرى باستخدام ملف XML صالح للبيانات الوصفية
+    sso_settings_or_configure_manually: أو قم بالإعداد يدويًّا
+    sso_settings_readable_resource_name: إعدادات تسجيل الدخول الأحادي (SSO)
+    sso_settings_save: حفظ
+    sso_settings_session_timeout: مدة انتهاء صلاحية الجلسة
+    sso_settings_slo_url: عنوان URL لخدمة SLO
+    sso_settings_sso_url: عنوان URL لخدمة تسجيل الدخول الموحد (SSO)
+    sso_settings_tab: تسجيل الدخول عبر مزود خدمة واحدة (SSO)
     standard_deviation: الانحراف المعياري
     standard_questions: الأسئلة المعتادة
     start: ابدأ
@@ -1141,7 +1191,13 @@ ar:
     status_details: تفاصيل الحالة
     structured_learning: التعلم الرسمي [10]
     subdomain: المجال الفرعي
+    subdomain_admin_keyword: لا يمكن استخدام نمط النطاق الفرعي المحجوز للمسؤول
+    subdomain_invalid_format: تنسيق النطاق الفرعي غير صحيح.
+    subdomain_reserved: النطاق الفرعي %{value} محجوز
+    subdomain_too_long_max_32: اسم النطاق الفرعي طويل جدًا (الحد الأقصى هو 32 حرفًا)
     subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
+    superadmin_use_root_domain: يجب على المسؤولين الرئيسيين تسجيل الدخول عبر النطاق الرئيسي
+    switch_client: تبديل العميل
     target_job_role: الوظيفة المستهدفة
     this_field_is_required: هذا الحقل مطلوب
     threesixty: حملة 360
@@ -1198,3 +1254,4 @@ ar:
     yoodli_assessment: تقييم يودلي
     yoodli_email_id: معرف البريد الإلكتروني للمرشح في يودلي
     yoodli_external_assessment_id: معرف تقييم يودلي
+    you_are_here: أنت هنا

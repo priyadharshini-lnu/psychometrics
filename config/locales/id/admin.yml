@@ -144,6 +144,7 @@ id:
     assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
     assistant_toolbar_not_a_valid_operation: Operasi tidak dikenal %{operation}.
     assistant_validation_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
+    audit_log_impersonated_by: Dipalsukan oleh
     audit_logs: Log Audit
     audit_reports: Laporan Audit
     auto_moderated_factor_info: Skor ini dimoderasi secara otomatis dan tidak dapat diubah
@@ -232,7 +233,11 @@ id:
     children_factor_type: Jenis Faktor Anak
     client: Klien Pengguna
     client_admins: Admin Klien
+    client_selection_instruction: Pilih klien untuk melanjutkan ke panel administrasi.
+    client_selection_sign_out: Keluar
+    client_selection_title: Pilih Klien
     clients: Klien Pengguna
+    clients_search_placeholder: Cari Klien
     code_required: Kode diperlukan
     common: Penilaian TTE
     common_assessment: Penilaian TTE
@@ -350,6 +355,7 @@ id:
     feature_flags_platform_group: Fitur Platform
     feature_global_skills_description: Akses perpustakaan keterampilan global untuk penilaian.
     feature_idp_description: Aktifkan Perencanaan Pengembangan Pribadi untuk peserta
+    feature_not_available: Fitur ini tidak tersedia
     feature_sms_notification_description: Aktifkan pemberitahuan SMS untuk undangan kampanye dan pengingat.
     file_size_must_be_less_than_mb: Ukuran berkas {{name}} melebihi batas maksimum {{max_size_mb}} MB
     file_upload_failed: Gagal mengunggah {{name}}
@@ -362,6 +368,10 @@ id:
     generate_transcription: Buat Transkrip
     graphic: Grafik
     graphic_slider: Slider Gambar
+    handoff_client_mismatch: Token otentikasi tidak valid untuk klien ini
+    handoff_invalid_token: Token otentikasi tidak valid atau telah kedaluwarsa
+    handoff_token_expired: Token otentikasi telah kedaluwarsa atau sudah digunakan
+    handoff_user_disabled: Akun Anda telah dinonaktifkan
     hide_middle_scores: Sembunyikan skor tengah
     high: Tinggi
     hogan: Hogan
@@ -432,9 +442,11 @@ id:
     libraries: Perpustakaan Media
     library_invalid_type: Item Perpustakaan Tidak Valid
     licenses: Lisensi
+    lighthouse_logo_alt_text: Logo Mercusuar
     lighthouse_question: Pertanyaan Utama
     lighthouse_question_id: ID Pertanyaan Lighthouse
     linked_assessments: Penilaian Terkait
+    logged_in: Sudah masuk
     low: Rendah
     maintenance: Perawatan
     maintenance_settings: Pengaturan Pemeliharaan
@@ -474,6 +486,8 @@ id:
     name_max_length: Nama tidak boleh melebihi %{length} karakter
     name_required: Nama diperlukan
     new_folder: Folder baru
+    no_client_access: Anda tidak memiliki akses ke klien ini
+    no_clients_found: Tidak ditemukan klien
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
     no_question_mappings: Tidak ada pemetaan pertanyaan yang tersedia
@@ -494,6 +508,7 @@ id:
     options: Pilihan
     organisational: LINCAH
     original_text: Teks Asli
+    others: Lainnya
     overall: Secara keseluruhan
     overall_score: Skor Total
     participants: Peserta
@@ -974,6 +989,7 @@ id:
     questions_title: Pertanyaan
     questions_type: Jenis
     range_min_max: RANGE %{min} - %{max}
+    recents: Terbaru
     reflection_questions: Pertanyaan Refleksi
     regenerate_transcriptions_action: Perbarui Transkripsi
     regenerate_transcriptions_confirm_content: Apakah Anda yakin ingin membuat ulang transkripsi untuk penilaian ini? Tindakan ini akan memproses ulang semua transkripsi yang belum selesai.
@@ -1005,6 +1021,10 @@ id:
     result: Hasil
     results: Hasil
     role: Peranan
+    role_campaign_admin: Admin Kampanye
+    role_client_admin: Admin Klien
+    role_project_admin: Administrator Proyek
+    role_superadmin: Super Admin
     saml_idp_certificate_available: Tersedia (klik untuk menyalin)
     saml_idp_certificate_label: Sertifikat
     saml_idp_entity_id_label: ID Entitas/Penerbit
@@ -1132,6 +1152,36 @@ id:
     sms_histories: Riwayat SMS
     sms_invites: Undangan SMS
     specialty_questions: Pertanyaan Khusus
+    sso_email_mismatch: Anda saat ini masuk ke akun yang berbeda di penyedia identitas. Silakan keluar dari penyedia identitas Anda dan coba lagi.
+    sso_enforced: Menerapkan SSO
+    sso_label: SSO
+    sso_not_enabled: SSO belum diaktifkan untuk klien ini
+    sso_settings: Pengaturan SSO
+    sso_settings_allowed_domains: Domain yang Diizinkan
+    sso_settings_certificate: Sertifikat IdP
+    sso_settings_enabled: SSO Diaktifkan
+    sso_settings_enforced: SSO Diwajibkan
+    sso_settings_entity_id: ID Entitas
+    sso_settings_metadata_certificate_expiry: 'Sertifikat berlaku hingga: %{date}'
+    sso_settings_metadata_file_too_large: Ukuran file melebihi batas maksimum 1 MB
+    sso_settings_metadata_invalid_xml: Format XML tidak valid
+    sso_settings_metadata_no_idp_descriptor: Tidak ditemukan deskriptor IdP dalam metadata
+    sso_settings_metadata_parse: Menganalisis Metadata
+    sso_settings_metadata_parse_error: Gagal mengurai metadata
+    sso_settings_metadata_parse_success: Kolom IdP diisi berdasarkan metadata
+    sso_settings_metadata_parsing: Sedang mengurai metadata...
+    sso_settings_metadata_upload: Unggah Berkas XML Metadata IdP
+    sso_settings_metadata_upload_again: Seret file lain untuk menggantikannya
+    sso_settings_metadata_upload_drag_hint: Seret dan lepas berkas .xml ke sini atau klik untuk memilih berkas
+    sso_settings_metadata_upload_hint: Unggah berkas .xml untuk mengisi kolom IdP secara otomatis
+    sso_settings_metadata_upload_retry: Coba lagi dengan berkas XML metadata yang valid
+    sso_settings_or_configure_manually: Atau atur secara manual
+    sso_settings_readable_resource_name: Pengaturan SSO
+    sso_settings_save: Simpan
+    sso_settings_session_timeout: Durasi Batas Waktu Sesi
+    sso_settings_slo_url: URL Layanan SLO
+    sso_settings_sso_url: URL Layanan SSO
+    sso_settings_tab: SSO
     standard_deviation: Simpangan Baku
     standard_questions: Pertanyaan Standar
     start: mulai
@@ -1141,7 +1191,13 @@ id:
     status_details: Detail Status
     structured_learning: Pembelajaran Formal [10]
     subdomain: Subdomain
+    subdomain_admin_keyword: tidak dapat menggunakan pola subdomain admin yang telah dipesan
+    subdomain_invalid_format: Format subdomain salah.
+    subdomain_reserved: Subdomain %{value} telah dipesan
+    subdomain_too_long_max_32: Subdomain terlalu panjang (maksimal 32 karakter)
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
+    superadmin_use_root_domain: Super administrator harus masuk melalui domain utama
+    switch_client: Klien Switch
     target_job_role: Posisi Pekerjaan yang Dituju
     this_field_is_required: Kolom ini wajib diisi.
     threesixty: Kampanye 360
@@ -1198,3 +1254,4 @@ id:
     yoodli_assessment: Penilaian Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli
     yoodli_external_assessment_id: ID Penilaian Yoodli
+    you_are_here: Anda berada di sini
