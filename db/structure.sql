@@ -142,8 +142,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -235,8 +235,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    default_idp_template_id bigint,
     practice_campaign boolean DEFAULT false,
+    default_idp_template_id bigint,
     is_template boolean DEFAULT false,
     tenant_id bigint
 );
@@ -325,6 +325,56 @@ CREATE VIEW bi_models.campaigns AS
     name,
     project_id
    FROM public.campaigns;
+
+
+--
+-- Name: clients; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.clients (
+    id integer NOT NULL,
+    name character varying,
+    subdomain character varying,
+    disabled boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    type integer DEFAULT 0,
+    licenses_count integer DEFAULT 0,
+    number character varying,
+    country character varying,
+    year integer,
+    applicable_level integer DEFAULT 0,
+    project_manager_id integer,
+    archived boolean DEFAULT false,
+    tte_id integer,
+    created_by_id integer,
+    modified_by_id integer,
+    ancestry character varying,
+    ancestry_depth integer DEFAULT 0,
+    end_level boolean DEFAULT false,
+    hogan_group_name character varying,
+    privacy_consent boolean,
+    enable_live_chat boolean DEFAULT false NOT NULL,
+    migrated boolean DEFAULT false,
+    locales json DEFAULT '[]'::json,
+    live_chat_token character varying,
+    custom_privacy_consent boolean DEFAULT false,
+    custom_privacy_consent_text text,
+    custom_privacy_policy_version integer,
+    restricted_to_countries text[] DEFAULT '{}'::text[],
+    tenant_id bigint
+);
+
+
+--
+-- Name: clients; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.clients AS
+ SELECT id,
+    name
+   FROM public.clients
+  WHERE (ancestry_depth = 0);
 
 
 --
@@ -627,7 +677,8 @@ CREATE TABLE public.questions (
     updated_by_id bigint,
     skill_id bigint,
     tenant_id bigint
-);
+)
+WITH (autovacuum_vacuum_threshold='2000', autovacuum_vacuum_scale_factor='0.05', autovacuum_vacuum_insert_threshold='2000', autovacuum_vacuum_insert_scale_factor='0.05');
 
 
 --
@@ -665,6 +716,18 @@ CREATE VIEW bi_models.profile_fields_values AS
      JOIN public.questions ON ((questions.id = profile_fields.question_id)))
      JOIN public.profile_field_values ON ((profile_field_values.profile_field_id = profile_fields.id)))
      JOIN public.user_profiles ON ((user_profiles.id = profile_field_values.user_profile_id)));
+
+
+--
+-- Name: projects; Type: VIEW; Schema: bi_models; Owner: -
+--
+
+CREATE VIEW bi_models.projects AS
+ SELECT id,
+    name,
+    tte_id AS client_id
+   FROM public.clients
+  WHERE (ancestry_depth = 1);
 
 
 --
@@ -776,9 +839,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
+    manager_id bigint,
     unique_session_id character varying,
     external_id character varying,
     disabled_at timestamp(6) without time zone,
@@ -1019,8 +1082,7 @@ CREATE TABLE public.agile_events (
     event character varying,
     data json DEFAULT '{}'::json,
     created_at timestamp without time zone NOT NULL,
-    users_result_id bigint,
-    tenant_id bigint
+    users_result_id bigint
 );
 
 
@@ -1426,8 +1488,8 @@ CREATE TABLE public.ai_scoring_approval_settings (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     allow_one_level_approve boolean DEFAULT false,
-    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[],
-    do_not_send_notifications boolean DEFAULT false,
+    approval_notification_user_ids bigint[] DEFAULT '{}'::bigint[] NOT NULL,
+    do_not_send_notifications boolean DEFAULT false NOT NULL,
     tenant_id bigint
 );
 
@@ -1828,12 +1890,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -2190,18 +2252,18 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
+    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint,
     caching_enabled boolean DEFAULT false,
-    proctoring_enabled boolean DEFAULT false,
+    proctoring_enabled boolean DEFAULT false NOT NULL,
     tenant_id bigint
 );
 
@@ -2481,14 +2543,14 @@ CREATE TABLE public.campaign_options (
     workshop_invite_requires_prework_completion boolean DEFAULT false,
     proctoring_enabled_on_workshop_activity boolean DEFAULT true,
     enable_video_call_recording boolean DEFAULT false NOT NULL,
-    selective_proctoring_enabled boolean DEFAULT false,
+    enable_mobile_proctoring boolean DEFAULT false,
     system_check_enabled boolean DEFAULT false NOT NULL,
     system_check_validity integer DEFAULT 86400,
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
     minimum_upload_speed integer,
     minimum_download_speed integer,
-    enable_mobile_proctoring boolean DEFAULT false,
     skip_assessment_level_checks boolean DEFAULT true NOT NULL,
+    selective_proctoring_enabled boolean DEFAULT false NOT NULL,
     tenant_id bigint
 );
 
@@ -2842,45 +2904,6 @@ CREATE SEQUENCE public.client_translations_id_seq
 --
 
 ALTER SEQUENCE public.client_translations_id_seq OWNED BY public.client_translations.id;
-
-
---
--- Name: clients; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.clients (
-    id integer NOT NULL,
-    name character varying,
-    subdomain character varying,
-    disabled boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    type integer DEFAULT 0,
-    licenses_count integer DEFAULT 0,
-    number character varying,
-    country character varying,
-    year integer,
-    applicable_level integer DEFAULT 0,
-    project_manager_id integer,
-    archived boolean DEFAULT false,
-    tte_id integer,
-    created_by_id integer,
-    modified_by_id integer,
-    ancestry character varying,
-    ancestry_depth integer DEFAULT 0,
-    end_level boolean DEFAULT false,
-    hogan_group_name character varying,
-    privacy_consent boolean,
-    enable_live_chat boolean DEFAULT false NOT NULL,
-    migrated boolean DEFAULT false,
-    locales json DEFAULT '[]'::json,
-    live_chat_token character varying,
-    custom_privacy_consent boolean DEFAULT false,
-    custom_privacy_consent_text text,
-    custom_privacy_policy_version integer,
-    restricted_to_countries text[] DEFAULT '{}'::text[],
-    tenant_id bigint
-);
 
 
 --
@@ -4336,12 +4359,12 @@ CREATE TABLE public.idp_templates (
     skill_source_preference integer DEFAULT 0,
     document_analysis_ai_assistant_id bigint,
     skill_gap_report_analysis_ai_assistant_id bigint,
-    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
-    show_chat_instructions boolean DEFAULT false,
     guideline_position integer DEFAULT 0,
     flip_background boolean DEFAULT false,
     page_styles jsonb DEFAULT '{}'::jsonb NOT NULL,
     show_guidelines boolean DEFAULT true,
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
+    show_chat_instructions boolean DEFAULT false,
     tenant_id bigint
 );
 
@@ -7647,10 +7670,10 @@ ALTER SEQUENCE public.system_check_records_id_seq OWNED BY public.system_check_r
 
 CREATE TABLE public.system_check_sessions (
     id bigint NOT NULL,
+    user_id bigint NOT NULL,
     finished_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    user_id bigint NOT NULL,
     tenant_id bigint
 );
 
@@ -7788,9 +7811,9 @@ CREATE TABLE public.temporary_uploads (
     filename character varying NOT NULL,
     content_type character varying NOT NULL,
     byte_size bigint NOT NULL,
-    checksum character varying,
     service_name character varying NOT NULL,
     bucket character varying NOT NULL,
+    checksum character varying,
     status integer DEFAULT 0 NOT NULL,
     user_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
@@ -8062,6 +8085,7 @@ CREATE TABLE public.threesixty_evaluators (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
     tenant_id bigint
 );
 
@@ -8309,8 +8333,8 @@ CREATE TABLE public.transcriptions (
     updated_at timestamp(6) without time zone NOT NULL,
     error_details jsonb DEFAULT '{}'::jsonb NOT NULL,
     status integer DEFAULT 0 NOT NULL,
-    segments jsonb DEFAULT '[]'::jsonb NOT NULL,
     metadata jsonb DEFAULT '{}'::jsonb NOT NULL,
+    segments jsonb DEFAULT '[]'::jsonb NOT NULL,
     tenant_id bigint
 );
 
@@ -9014,10 +9038,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -19940,7 +19964,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -20734,6 +20758,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260612074019'),
 ('20260527180000'),
 ('20260520094000'),
 ('20260514200000'),
