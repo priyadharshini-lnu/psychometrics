@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project_admin) { create(:user, project: project, role: 'Users::Admin') }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:campaign) { create(:campaign) }
   let!(:project) { campaign.project }
   let!(:client) { project.client }
@@ -17,7 +15,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
   describe 'GET /api/v2/administration/clients/:client_id/projects' do
     it 'fetches Projects list' do
       get "/api/v2/administration/clients/#{client_id}/projects",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       clients = JSON.parse(response.body)
@@ -44,7 +42,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
       post "/api/v2/administration/clients/#{client_id}/projects",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       client_response = JSON.parse(response.body)['data']
@@ -68,7 +66,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
       post "/api/v2/administration/clients/#{client_id}/projects",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       json_response = JSON.parse(response.body)
@@ -79,6 +77,8 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
   describe 'PATCH /api/v2/administration/projects/:id' do
     it 'updates project' do
+      sign_in(superadmin)
+
       body = {
         data: {
           type: 'projects',
@@ -91,7 +91,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
       patch "/api/v2/administration/projects/#{project.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
     end
@@ -103,7 +103,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
       get "/api/v2/administration/projects/#{project.id}/seach_user",
           params: { 'filter[search_query]' => 'test' },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       users = JSON.parse(response.body)
@@ -123,7 +123,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
       put "/api/v2/administration/projects/#{project.id}/add_manager",
           params: body.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       manager_response = JSON.parse(response.body)['data']
@@ -140,7 +140,7 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
 
       put "/api/v2/administration/projects/#{project.id}/add_manager",
           params: body.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       errors = JSON.parse(response.body)['errors']

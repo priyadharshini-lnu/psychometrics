@@ -500,9 +500,6 @@ pl:
         missing_headers: Brakujące nagłówki
         missing_users: 'Następujące adresy e-mail nie istnieją: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Bułka tarta
       archive:
         successfully: Pomyślnie
       base:

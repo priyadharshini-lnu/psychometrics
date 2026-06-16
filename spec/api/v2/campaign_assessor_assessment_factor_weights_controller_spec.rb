@@ -7,15 +7,11 @@ RSpec.describe Api::V2::Administration::CampaignAssessorAssessmentFactorWeightsC
   let!(:campaign_assessor_assessment_factor_weight) { create(:campaign_assessor_assessment_factor_weight) }
   let!(:campaign_id) { campaign_assessor_assessment_factor_weight.campaign_id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_assessor_assessment_factor_weights' do
     it 'fetches campaign assessor assessment factor weights list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessment_factor_weights",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessment_factor_weights"
 
       expect(response).to have_http_status(:ok)
       response_data = JSON.parse(response.body)
@@ -58,7 +54,7 @@ RSpec.describe Api::V2::Administration::CampaignAssessorAssessmentFactorWeightsC
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessment_factor_weights/bulk_upsert",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(campaign_assessor_assessment_factor_weight.reload.weight).to eq(0.92)

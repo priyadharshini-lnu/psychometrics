@@ -500,9 +500,6 @@ it:
         missing_headers: Intestazioni mancanti
         missing_users: 'Le seguenti email non sono esistenti: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Briciola di pane
       archive:
         successfully: Con successo
       base:

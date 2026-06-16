@@ -500,9 +500,6 @@ ru:
         missing_headers: Отсутствующие заголовки
         missing_users: 'Следующие адреса электронной почты не существуют: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Хлебные крошки
       archive:
         successfully: Успешно
       base:

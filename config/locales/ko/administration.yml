@@ -500,9 +500,6 @@ ko:
         missing_headers: 누락된 헤더
         missing_users: '다음 이메일이 없습니다: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: 이동 경로
       archive:
         successfully: 성공적
       base:

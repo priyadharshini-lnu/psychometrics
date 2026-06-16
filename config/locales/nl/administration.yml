@@ -500,9 +500,6 @@ nl:
         missing_headers: Ontbrekende headers
         missing_users: 'De volgende e-mails bestaan niet: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Broodkruimel
       archive:
         successfully: Succesvol
       base:

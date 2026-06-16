@@ -4,9 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /report_approvals' do
@@ -16,7 +13,7 @@ RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: 
       create(:report_approval, campaign_id: ras.campaign_id)
 
       get '/api/v2/administration/report_approvals/',
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']

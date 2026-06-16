@@ -7,11 +7,13 @@ module UserRoles
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
   REGULAR_ROLE = 'Users::Regular'
   ADMIN_ROLE = 'Users::Admin'
+  APPLICATION_ROLE = 'Users::Application'
 
   USER_ROLES = {
     superadmin: SUPER_ADMIN_ROLE,
     admin: ADMIN_ROLE,
-    regular: REGULAR_ROLE
+    regular: REGULAR_ROLE,
+    application: APPLICATION_ROLE
   }.freeze
 
   USER_ROLES_SCOPES = {
@@ -91,6 +93,10 @@ module UserRoles
 
   def superadmin?
     role == SUPER_ADMIN_ROLE
+  end
+
+  def application?
+    role == APPLICATION_ROLE
   end
 
   def admin?

@@ -15,16 +15,11 @@ RSpec.describe Api::V2::Administration::Campaigns::DimensionsController, type: :
   let!(:campaign_assessor_assessment) do
     create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
   end
-
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/dimensions/assessor_dimensions' do
     it 'returns dimensions list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/dimensions/assessor_dimensions",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/dimensions/assessor_dimensions"
 
       expect(response).to have_http_status(200)
       d = JSON.parse(response.body)['data'].first
@@ -35,8 +30,7 @@ RSpec.describe Api::V2::Administration::Campaigns::DimensionsController, type: :
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/dimensions/{dimensions_id}/factors' do
     it 'returns factors for a dimension' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/dimensions/#{dimensions_id}/factors",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/dimensions/#{dimensions_id}/factors"
 
       expect(response).to have_http_status(200)
       d = JSON.parse(response.body)['data'].first

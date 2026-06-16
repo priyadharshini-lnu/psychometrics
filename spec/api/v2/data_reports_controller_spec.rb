@@ -8,9 +8,6 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
   let!(:campaign) { create(:campaign, project: project) }
   let(:data_report) { create(:data_report, owner: project.client) }
   let(:data_report_id) { data_report.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   describe 'as superadmin' do
     before do
       sign_in(superadmin)
@@ -22,7 +19,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
       it 'fetches data reports list' do
         get '/api/v2/administration/data_reports',
             params: { include: 'owner,last_updated_by' },
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         dr = JSON.parse(response.body)['data'].first
@@ -61,7 +58,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
 
         post '/api/v2/administration/data_reports',
              params: body.to_json,
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:created)
         dr = JSON.parse(response.body)['data']
@@ -103,7 +100,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
 
         patch "/api/v2/administration/data_reports/#{data_report_id}",
               params: body.to_json,
-              headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+              headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         dr = JSON.parse(response.body)['data']
@@ -117,7 +114,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
     describe 'POST /api/v2/administration/data_reports/:data_report_id/run' do
       it 'runs report job' do
         post "/api/v2/administration/data_reports/#{data_report_id}/run",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         job = data_report.data_report_jobs.first
@@ -150,7 +147,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
       it 'fetches client data reports list' do
         get '/api/v2/administration/data_reports',
             params: { include: 'owner,last_updated_by', 'filter[owner_id_eq]' => project2.client.id },
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         dr = JSON.parse(response.body)['data']
@@ -165,7 +162,7 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
     describe 'POST /api/v2/administration/data_reports/:client_data_report_id/run' do
       it 'runs client report job' do
         post "/api/v2/administration/data_reports/#{client_data_report.id}/run",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         job = client_data_report.data_report_jobs.first

@@ -29,10 +29,6 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
       created_at: 2.days.ago
     )
   end
-
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     sign_in(superadmin)
     campaign.project.client.client_feature.update!(ai_assistants: true)
@@ -43,8 +39,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/ai_artifacts' do
     it 'fetches AI artifacts list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts"
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data'].first
@@ -65,8 +60,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
     end
 
     it 'fetches AI artifacts list with included ai_assistant' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts?include=ai_assistant",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts?include=ai_assistant"
 
       expect(response).to have_http_status(:ok)
       response_data = JSON.parse(response.body)
@@ -96,8 +90,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
       other_campaign = create(:campaign)
       other_ai_artifact = create(:campaign_ai_artifact, campaign: other_campaign)
 
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts"
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -141,7 +134,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       d = JSON.parse(response.body)['data']
@@ -212,7 +205,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       d = JSON.parse(response.body)['data']
@@ -239,8 +232,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/ai_artifacts/:id' do
     it 'fetches AI artifact details' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}"
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data']
@@ -267,8 +259,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
         dependency_id: question2.id
       )
 
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}"
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data']
@@ -295,8 +286,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
       expected_schema_keys = ai_assistant.assistant_output_schema_keys
 
       get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}?" \
-          'include=ai_assistant.assistant_output_schema_keys',
-          headers: { 'Authorization' => authorization }
+          'include=ai_assistant.assistant_output_schema_keys'
 
       expect(response).to have_http_status(:ok)
       response_data = JSON.parse(response.body)
@@ -349,7 +339,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data']
@@ -371,8 +361,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
   describe 'DELETE /api/v2/administration/campaigns/:campaign_id/ai_artifacts/:id' do
     it 'deletes AI artifact' do
-      delete "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}",
-             headers: { 'Authorization' => authorization }
+      delete "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}"
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to be_empty
@@ -389,7 +378,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/generate",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       response_body = JSON.parse(response.body)
@@ -429,7 +418,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}/test_generate",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data']
@@ -458,7 +447,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/#{ai_artifact.id}/test_generate",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       errors = JSON.parse(response.body)['errors']
@@ -481,7 +470,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifacts/bulk_generate",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       job = AdminJobRecord.last

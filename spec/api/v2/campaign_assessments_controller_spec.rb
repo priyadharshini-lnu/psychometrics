@@ -9,15 +9,12 @@ RSpec.describe Api::V2::Administration::CampaignAssessmentsController, type: :re
   let!(:workshop) { create(:workshop, :with_managers, :with_assessors, campaign_id: campaign_id) }
   let!(:workshop_id) { workshop.id }
   let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/workshops/:workshop_id/campaign_assessments' do
     it 'fetches campaign assessments list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/campaign_assessments",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/campaign_assessments"
 
       expect(response).to have_http_status(:ok)
       workshop_response = JSON.parse(response.body)['data'].first

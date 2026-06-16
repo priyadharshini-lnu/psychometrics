@@ -7,14 +7,11 @@ RSpec.describe Api::V2::Administration::CampaignTemplatesController, type: :requ
   let!(:assessment) { create(:assessment, :with_same_owner_dimension, owner:, created_by: superadmin) }
   let(:report) { create(:report, assessments: [assessment], owner:, created_by: superadmin) }
   let!(:campaign_template) { create(:campaign_template, assessment: assessment, report: report, owner: owner) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaign_templates' do
     it 'returns campaign templates list' do
-      get '/api/v2/administration/campaign_templates', headers: { 'Authorization' => authorization }
+      get '/api/v2/administration/campaign_templates'
 
       expect(response).to have_http_status(:ok)
       campaign_templates = JSON.parse(response.body)
@@ -64,7 +61,7 @@ skip_owner_validation: true)
       }
 
       post '/api/v2/administration/campaign_templates', params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       campaign_template_resp = JSON.parse(response.body)['data']
@@ -120,7 +117,7 @@ owner: owner)
       }
 
       patch "/api/v2/administration/campaign_templates/#{template_to_update.id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       campaign_template_resp = JSON.parse(response.body)['data']
@@ -138,7 +135,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       template_to_delete = create(:campaign_template, assessment: assessment, report: report, owner: owner)
 
       delete "/api/v2/administration/campaign_templates/#{template_to_delete.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to be_empty

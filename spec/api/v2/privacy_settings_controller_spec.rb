@@ -11,16 +11,13 @@ RSpec.describe Api::V2::Administration::PrivacySettingsController, type: :reques
   end
   let!(:project_membership) { create(:project_admin_membership, client: project) }
   let!(:project_id) { privacy_setting_recotrd.project_id }
-  let(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(project_membership.user) }
 
   describe 'GET /api/v2/administration/projects/:project_id/privacy_settings' do
     it 'returns privacy settings' do
       get "/api/v2/administration/projects/#{project_id}/privacy_settings",
-          params: { 'filter[project_id_eq]' => project_id },
-          headers: { 'Authorization' => authorization }
+          params: { 'filter[project_id_eq]' => project_id }
 
       expect(response).to have_http_status(:ok)
       privacy_setting_response = JSON.parse(response.body)['data'].last

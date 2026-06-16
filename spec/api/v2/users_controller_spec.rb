@@ -4,9 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::UsersController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/users' do
@@ -15,7 +12,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
       get '/api/v2/administration/users',
           params: { include_resource_meta: 'permissions', 'filter[role_eq]' => 'Users::Admin' },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -38,8 +35,6 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
   end
 
   describe 'Ignoring Swagger' do
-    before(:each) { login_user(superadmin) }
-    after(:each) { sign_out(superadmin) }
     describe 'Create a Superadmin' do
       it 'check success response' do
         post '/api/v2/administration/users/create_superadmin', params: {
@@ -78,8 +73,6 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
     end
 
     describe 'Get roles' do
-      before(:each) { login_user(superadmin) }
-      after(:each) { sign_out(superadmin) }
       it 'check response' do
         get "/api/v2/administration/users/#{superadmin.id}/roles", params: { user_id: superadmin.id }
         parsed_response = JSON.parse(response.body)
@@ -90,8 +83,6 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
     end
 
     describe 'Get current user details' do
-      before(:each) { login_user(superadmin) }
-      after(:each) { sign_out(superadmin) }
       it 'check response' do
         allow(Settings.features).to receive(:[]).with(:ai_assistant_enabled).and_return(true)
         allow(Settings.features).to receive(:dimensions_react_ui).and_return(true)
@@ -149,7 +140,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
       post "/api/v2/administration/users/#{user.id}/reset_password",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -165,7 +156,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
       user = create(:user, :locked)
 
       post "/api/v2/administration/users/#{user.id}/unlock_user_access",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       user.reload
@@ -188,7 +179,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
       post '/api/v2/administration/users/create_global_assessor',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -203,9 +194,6 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
   end
 
   describe 'POST /api/v2/administration/users/change_password' do
-    before(:each) { login_user(superadmin) }
-    after(:each) { sign_out(superadmin) }
-
     it 'changes password' do
       current_password = superadmin.password
       new_password = 'NewPassword@129'
@@ -221,7 +209,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
       post '/api/v2/administration/users/change_password',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -252,7 +240,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
       patch "/api/v2/administration/users/#{user.id}?include=user_profile",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       user_response = JSON.parse(response.body)['data']

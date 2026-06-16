@@ -50,7 +50,8 @@ describe EndUser::CampaignsController, type: :controller do
       sign_out(user)
     end
 
-    let(:api_key) { create(:api_key, user: user) }
+    let(:application_user) { create(:application_user) }
+    let(:api_key) { create(:api_key, user: application_user) }
     let(:jwt_key) do
       JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i + 20 }, api_key.token, 'HS256',
                  { 'api_key' => api_key.key })

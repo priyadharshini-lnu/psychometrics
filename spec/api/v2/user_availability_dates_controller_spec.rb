@@ -3,17 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::UserAvailabilityDatesController, type: :request do
-  let!(:superadmin) { create(:superadmin) }
   let!(:user) { create(:client_admin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(user) }
 
   describe 'GET /api/v2/administration/user_availability_dates/' do
     it 'returns user availability dates list' do
-      get '/api/v2/administration/user_availability_dates',
-          headers: { 'Authorization' => authorization }
+      get '/api/v2/administration/user_availability_dates'
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -40,7 +36,6 @@ RSpec.describe Api::V2::Administration::UserAvailabilityDatesController, type: :
       post '/api/v2/administration/user_availability_dates',
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -54,7 +49,7 @@ RSpec.describe Api::V2::Administration::UserAvailabilityDatesController, type: :
   end
 
   describe 'PATCH /api/v2/administration/user_availability_dates/:user_availability_date_id/' do
-    let!(:user_availability_date) { create(:user_availability_date, user: superadmin) }
+    let!(:user_availability_date) { create(:user_availability_date, user: user) }
 
     it 'updates a user availability date' do
       body = {
@@ -75,7 +70,6 @@ RSpec.describe Api::V2::Administration::UserAvailabilityDatesController, type: :
       patch "/api/v2/administration/user_availability_dates/#{user_availability_date.id}",
             params: body.to_json,
             headers: {
-              'Authorization' => authorization,
               'Content-Type' => 'application/vnd.api+json'
             }
 

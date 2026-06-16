@@ -6,8 +6,6 @@ RSpec.describe Api::V2::Administration::AIScoringApprovalSettingsController, typ
   let!(:superadmin) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let!(:campaign_id) { campaign.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
@@ -20,7 +18,7 @@ RSpec.describe Api::V2::Administration::AIScoringApprovalSettingsController, typ
       )
 
       get "/api/v2/administration/campaigns/#{campaign_id}/ai_scoring_approval_settings",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       data = JSON.parse(response.body)['data']
       ai_scoring_approval_settings_response = data.find { |d| d['id'] == ai_scoring_approval_setting.id.to_s }
@@ -60,7 +58,7 @@ RSpec.describe Api::V2::Administration::AIScoringApprovalSettingsController, typ
 
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_scoring_approval_settings",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       data = JSON.parse(response.body)['data']
       expect(data).to have_key('id')
@@ -95,7 +93,7 @@ RSpec.describe Api::V2::Administration::AIScoringApprovalSettingsController, typ
 
       patch "/api/v2/administration/campaigns/#{campaign.id}/ai_scoring_approval_settings/#{ai_scoring_approval_setting.id}", # rubocop:disable Layout/LineLength
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       data = JSON.parse(response.body)['data']
       expect(data).to have_key('id')
@@ -113,7 +111,7 @@ RSpec.describe Api::V2::Administration::AIScoringApprovalSettingsController, typ
       ai_scoring_approval_setting = create(:ai_scoring_approval_setting, campaign: campaign)
 
       delete "/api/v2/administration/campaigns/#{campaign.id}/ai_scoring_approval_settings/#{ai_scoring_approval_setting.id}", # rubocop:disable Layout/LineLength
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response.body).to be_empty
       expect(AI::ScoringApprovalSetting.find_by(id: ai_scoring_approval_setting.id)).to eq(nil)

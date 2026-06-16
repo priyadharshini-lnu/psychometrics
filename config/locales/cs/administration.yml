@@ -500,9 +500,6 @@ cs:
         missing_headers: Chybějící záhlaví
         missing_users: 'Následující e-maily neexistují: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Drobečky
       archive:
         successfully: Úspěšně
       base:

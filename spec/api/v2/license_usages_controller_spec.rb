@@ -11,15 +11,11 @@ RSpec.describe Api::V2::Administration::LicenseUsagesController, type: :request 
   let(:license_id) { license.id.to_s }
   let(:license_usage_id) { usage.id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/clients/:client_id/licenses/:license_id/license_usages' do
     it 'returns license usages list' do
-      get "/api/v2/administration/clients/#{client_id}/licenses/#{license_id}/license_usages",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/clients/#{client_id}/licenses/#{license_id}/license_usages"
 
       expect(response).to have_http_status(:ok)
       license_usage = JSON.parse(response.body)
@@ -37,7 +33,7 @@ RSpec.describe Api::V2::Administration::LicenseUsagesController, type: :request 
     it 'toggles license usage status' do
       post "/api/v2/administration/clients/#{client_id}/licenses/#{license_id}/" \
            "license_usages/#{license_usage_id}/toggle_status",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       usage_response = JSON.parse(response.body)['data']

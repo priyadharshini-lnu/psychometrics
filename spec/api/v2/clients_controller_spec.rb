@@ -8,16 +8,13 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
   let!(:include_resource_meta) { 'permissions' }
   let!(:project) { create(:project, parent: membership.client) }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /clients/' do
     it 'Clients List' do
       get '/api/v2/administration/clients/',
           params: { include_resource_meta: include_resource_meta },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       clients = JSON.parse(response.body)
@@ -56,7 +53,7 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
 
       post '/api/v2/administration/clients/',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       client_response = JSON.parse(response.body)['data']
@@ -96,7 +93,7 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
 
       patch "/api/v2/administration/clients/#{client_to_update.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       client_response = JSON.parse(response.body)['data']
@@ -122,7 +119,7 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
 
       patch "/api/v2/administration/clients/#{client_to_update.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       json_response = JSON.parse(response.body)
@@ -136,7 +133,7 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
       client_to_delete = create(:tenancy)
 
       delete "/api/v2/administration/clients/#{client_to_delete.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to be_empty

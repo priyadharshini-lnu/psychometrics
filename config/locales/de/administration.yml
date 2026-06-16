@@ -500,9 +500,6 @@ de:
         missing_headers: Fehlende Kopfzeilen
         missing_users: 'Folgende E-Mails sind nicht vorhanden: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Brotkrümel
       archive:
         successfully: Erfolgreich
       base:

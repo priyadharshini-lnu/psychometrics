@@ -512,9 +512,6 @@ hi:
         missing_headers: अनुपस्थित हेडर
         missing_users: 'निम्नलिखित ईमेल मौजूद नहीं हैं: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: ब्रेडक्रम्ब
       archive:
         successfully: सफलतापूर्वक
       base:

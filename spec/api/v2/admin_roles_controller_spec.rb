@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:client) { create(:tenancy) }
   let!(:admin_role) { create(:admin_role, client_id: client.id) }
   let(:client_id) { client.id }
@@ -15,9 +13,7 @@ RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
 
   describe 'GET /clients/:client_id/admin_roles' do
     it 'returns admin roles list' do
-      get "/api/v2/administration/clients/#{client_id}/admin_roles",
-          headers: { 'Authorization' => authorization }
-
+      get "/api/v2/administration/clients/#{client_id}/admin_roles"
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
       expect(data).not_to be_empty
@@ -40,7 +36,6 @@ RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
       post "/api/v2/administration/clients/#{client_id}/admin_roles",
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -53,8 +48,7 @@ RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
 
   describe 'GET /clients/:client_id/admin_roles/:admin_role_id' do
     it 'returns an admin role' do
-      get "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}"
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -78,7 +72,6 @@ RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
       patch "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}",
             params: body.to_json,
             headers: {
-              'Authorization' => authorization,
               'Content-Type' => 'application/vnd.api+json'
             }
 
@@ -90,8 +83,7 @@ RSpec.describe Api::V2::Administration::AdminRolesController, type: :request do
 
   describe 'DELETE /clients/:client_id/admin_roles/:admin_role_id' do
     it 'deletes an admin role' do
-      delete "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}",
-             headers: { 'Authorization' => authorization }
+      delete "/api/v2/administration/clients/#{client_id}/admin_roles/#{admin_role_id}"
 
       expect(response).to have_http_status(:no_content)
     end

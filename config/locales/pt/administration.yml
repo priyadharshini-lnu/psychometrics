@@ -500,9 +500,6 @@ pt:
         missing_headers: Cabeçalhos em falta
         missing_users: 'As seguintes mensagens de correio eletrónico não existem: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Pão ralado
       archive:
         successfully: Com sucesso
       base:

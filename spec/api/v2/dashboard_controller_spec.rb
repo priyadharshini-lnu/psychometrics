@@ -5,14 +5,11 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::DashboardsController, type: :request do
   let!(:dashboard) { create(:dashboard) }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /dashboards' do
     it 'returns dashboards list' do
-      get '/api/v2/administration/dashboards', headers: { 'Authorization' => authorization }
+      get '/api/v2/administration/dashboards'
 
       expect(response).to have_http_status(:ok)
       dashboards = JSON.parse(response.body)
@@ -28,7 +25,7 @@ RSpec.describe Api::V2::Administration::DashboardsController, type: :request do
     it 'returns dashboard' do
       test_dashboard = create(:dashboard)
 
-      get "/api/v2/administration/dashboards/#{test_dashboard.id}", headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/dashboards/#{test_dashboard.id}"
 
       expect(response).to have_http_status(:ok)
       dashboard_response = JSON.parse(response.body)['data']
@@ -64,7 +61,7 @@ RSpec.describe Api::V2::Administration::DashboardsController, type: :request do
       }
 
       post '/api/v2/administration/dashboards', params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       dashboard_response = JSON.parse(response.body)['data']
@@ -104,7 +101,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       }
 
       patch "/api/v2/administration/dashboards/#{test_dashboard.id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       dashboard_response = JSON.parse(response.body)['data']

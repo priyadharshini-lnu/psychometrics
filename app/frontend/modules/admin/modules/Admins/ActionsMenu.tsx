@@ -3,7 +3,6 @@ import { Button, Tooltip, MenuProps } from 'antd'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 
-import { isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
 import {
   Admin, AdminPermissions,
@@ -90,8 +89,6 @@ interface ActionMenuData {
 
 const getActionMenuProps = ({
   id,
-  userId,
-  currentUser,
   email,
   firstName,
   lastName,
@@ -141,17 +138,6 @@ const getActionMenuProps = ({
     {
       key: 'remove',
       label: I18n.t('shared.remove'),
-    },
-  )
-
-  isSuperAdmin(currentUser) && menuItems.push(
-    {
-      key: 'apiKeys',
-      label: (
-        <a href={`/admin/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
-          {I18n.t('admin.api_keys')}
-        </a>
-      ),
     },
   )
 

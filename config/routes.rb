@@ -1366,6 +1366,17 @@ as: :simulation_progress_notification
               end
             end
           end
+          jsonapi_resources :applications, only: %i[index show create] do
+            member do
+              post :activate
+              post :deactivate
+            end
+            jsonapi_resources :public_keys, only: %i[index create update] do
+              collection do
+                post :generate_key_pair
+              end
+            end
+          end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
           end

@@ -8,15 +8,12 @@ RSpec.describe Api::V2::Administration::CampaignAssessorAssessmentsController,
   let!(:campaign_id) { campaign_assessor_assessment.campaign_id }
   let!(:assessment_id) { campaign_assessor_assessment.assessment_id.to_s }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_assessor_assessments' do
     it 'fetches campaign assessor assessments list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessments",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessments"
 
       expect(response).to have_http_status(:ok)
       campaign_assessor_assessments = JSON.parse(response.body)
@@ -38,7 +35,7 @@ RSpec.describe Api::V2::Administration::CampaignAssessorAssessmentsController,
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_assessor_assessments",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       assessor_assessment_response = JSON.parse(response.body)['data']
@@ -77,7 +74,7 @@ RSpec.describe Api::V2::Administration::CampaignAssessorAssessmentsController,
 
       get "/api/v2/administration/campaigns/#{campaign_id}/workshop_subjects/" \
           "#{workshop_subject_id}/campaign_assessor_assessments/subject_assessor_assessments",
-          headers: { 'Authorization' => authorization }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       assessment_response = JSON.parse(response.body)

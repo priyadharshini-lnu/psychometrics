@@ -11,6 +11,7 @@ import { Registration } from './Registration'
 import { Assessments } from './Assessments'
 import { MettlScheduleRecords } from './MettlScheduleRecords'
 import { Features } from './Features'
+import { Applications, ApplicationDetails } from './Applications'
 
 export const routes = [
   {
@@ -65,5 +66,17 @@ export const routes = [
   {
     path: '/features',
     component: <Features />,
+  },
+  {
+    path: '/applications',
+    component: <Applications />,
+  },
+  {
+    path: '/applications/:applicationId',
+    component: <ApplicationDetails />,
+  },
+  {
+    path: '/applications/:applicationId/*',
+    component: <ApplicationDetails />,
   },
 ]

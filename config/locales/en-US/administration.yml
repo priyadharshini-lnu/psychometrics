@@ -500,9 +500,6 @@ en-US:
         missing_headers: Missing headers
         missing_users: 'Following emails are not existing: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Breadcrumb
       archive:
         successfully: Successfully
       base:

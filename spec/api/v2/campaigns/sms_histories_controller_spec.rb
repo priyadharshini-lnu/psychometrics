@@ -14,14 +14,11 @@ RSpec.describe Api::V2::Administration::Campaigns::SmsHistoriesController, type:
   let!(:superadmin) { create(:superadmin) }
   let!(:campaign_admin) { create(:campaign_admin, campaign: campaign) }
 
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(campaign_admin) }
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/sms_histories' do
     it 'returns a list of SMS histories' do
-      get "/api/v2/administration/campaigns/#{campaign.id}/sms_histories", headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign.id}/sms_histories"
 
       expect(response).to have_http_status(200)
       parsed_response = JSON.parse(response.body)
@@ -39,7 +36,7 @@ RSpec.describe Api::V2::Administration::Campaigns::SmsHistoriesController, type:
       sms_history2.update!(first_name: 'Dane')
 
       get "/api/v2/administration/campaigns/#{campaign.id}/sms_histories",
-          params: { 'filters[filterable_fields]' => 'Jan' }, headers: { 'Authorization' => authorization }
+          params: { 'filters[filterable_fields]' => 'Jan' }
 
       expect(response).to have_http_status(200)
       parsed_response = JSON.parse(response.body)

@@ -9,9 +9,6 @@ RSpec.describe Api::V2::Administration::UserIdpPlansController, type: :request d
   let!(:superadmin) { create(:superadmin) }
   let!(:idp_template1) { create(:idp_template) }
   let!(:license) { create(:license, client: campaign.client, type: :idp) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'POST /user_idp_plans' do
@@ -30,7 +27,7 @@ RSpec.describe Api::V2::Administration::UserIdpPlansController, type: :request d
 
       post '/api/v2/administration/user_idp_plans',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       idp_plan_response = JSON.parse(response.body)['data']
@@ -58,7 +55,7 @@ RSpec.describe Api::V2::Administration::UserIdpPlansController, type: :request d
 
       post '/api/v2/administration/user_idp_plans',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       error_response = JSON.parse(response.body)['errors']
@@ -85,7 +82,7 @@ active: false)
 
       post '/api/v2/administration/user_idp_plans',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       idp_plan_response = JSON.parse(response.body)['data']
@@ -104,7 +101,7 @@ active: false)
       create_list(:user_idp_skill, 3, user_idp_plan: user_idp_plan)
 
       post "/api/v2/administration/user_idp_plans/#{user_idp_plan.id}/reset",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(user_idp_plan.reload.user_idp_skills).to be_empty
       expect(user_idp_plan.approval_status).to eq('not_started')

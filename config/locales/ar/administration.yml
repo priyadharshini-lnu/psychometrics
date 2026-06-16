@@ -500,9 +500,6 @@ ar:
         missing_headers: رؤوس مفقودة
         missing_users: 'البريد الإلكتروني التالي غير موجود: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: فتات الخبز
       archive:
         successfully: بنجاح
       base:

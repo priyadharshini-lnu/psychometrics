@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe 'Assessments' do
-  let!(:membership) { create(:client_admin_membership) }
+  let!(:membership) { create(:client_admin_membership, :with_application_user) }
   let(:campaign) { create(:campaign, project: project) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }

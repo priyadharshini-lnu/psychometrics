@@ -113,5 +113,21 @@ FactoryBot.define do
         create :assessor, attrs
       end
     end
+
+    factory :application_user, class: 'Users::Application' do
+      sequence(:first_name) { |n| "Application#{n}" }
+      last_name { 'App' }
+      role { User::APPLICATION_ROLE }
+
+      transient do
+        tenant { create(:tenancy) }
+      end
+
+      tenant_id { tenant.id }
+
+      after(:create) do |user, evaluator|
+        create(:membership, user: user, client: evaluator.tenant, role: Membership::CLIENT_ADMIN_ROLE)
+      end
+    end
   end
 end

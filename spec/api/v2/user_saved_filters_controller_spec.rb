@@ -8,15 +8,12 @@ RSpec.describe Api::V2::Administration::UserSavedFiltersController, type: :reque
     create(:user_saved_filter, user: superadmin, name: 'Test Filter', resource_type: 'report_approvals_my_tasks',
    filter_params: { 'filterable_fields' => 'rails', 'with_resource_state' => 'active' })
   end
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /user_saved_filters/' do
     it 'User Saved Filter List' do
       get '/api/v2/administration/user_saved_filters/',
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -40,7 +37,7 @@ RSpec.describe Api::V2::Administration::UserSavedFiltersController, type: :reque
       }
 
       post '/api/v2/administration/user_saved_filters/', params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
     end
@@ -59,7 +56,7 @@ RSpec.describe Api::V2::Administration::UserSavedFiltersController, type: :reque
       }
 
       patch "/api/v2/administration/user_saved_filters/#{user_saved_filter.id}", params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
     end
@@ -68,7 +65,7 @@ RSpec.describe Api::V2::Administration::UserSavedFiltersController, type: :reque
   describe 'DELETE /user_saved_filters/:id' do
     it 'Delete User Saved Filter' do
       delete "/api/v2/administration/user_saved_filters/#{user_saved_filter.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+             headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:no_content)
     end

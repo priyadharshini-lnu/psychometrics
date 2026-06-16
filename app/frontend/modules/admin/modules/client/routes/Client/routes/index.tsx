@@ -17,7 +17,7 @@ export const routes = [
     component: <Admins />,
   },
   {
-    path: '/settings',
+    path: '/settings/*',
     component: <Settings />,
   },
   {

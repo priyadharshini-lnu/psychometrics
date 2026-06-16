@@ -8,14 +8,11 @@ RSpec.describe Api::V2::Administration::WebhooksController, type: :request do
   let!(:webhook_id) { webhook.id }
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /projects/:project_id/webhooks' do
     it 'returns webhook list' do
-      get "/api/v2/administration/projects/#{project_id}/webhooks", headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/projects/#{project_id}/webhooks"
 
       expect(response).to have_http_status(:ok)
       webhooks = JSON.parse(response.body)
@@ -43,7 +40,7 @@ RSpec.describe Api::V2::Administration::WebhooksController, type: :request do
       }
 
       post "/api/v2/administration/projects/#{project_id}/webhooks", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       webhook_response = JSON.parse(response.body)['data']
@@ -72,7 +69,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       }
 
       patch "/api/v2/administration/projects/#{project_id}/webhooks/#{webhook_id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       webhook_response = JSON.parse(response.body)['data']

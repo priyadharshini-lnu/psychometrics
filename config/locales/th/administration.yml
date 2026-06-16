@@ -500,9 +500,6 @@ th:
         missing_headers: ส่วนหัวขาดหายไป
         missing_users: 'ไม่มีอีเมลต่อไปนี้: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: เกล็ดขนมปัง
       archive:
         successfully: สำเร็จ
       base:

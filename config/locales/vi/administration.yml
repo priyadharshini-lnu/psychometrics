@@ -500,9 +500,6 @@ vi:
         missing_headers: Thiếu tiêu đề
         missing_users: 'Các email sau không tồn tại: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Vụn bánh mì
       archive:
         successfully: Thành công
       base:

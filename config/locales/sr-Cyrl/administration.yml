@@ -512,9 +512,6 @@ sr-Cyrl:
         missing_headers: Недостају заглавља
         missing_users: 'Следећи имејлови не постоје: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Хлебне мрвице
       archive:
         successfully: Успешно
       base:

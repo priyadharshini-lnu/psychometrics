@@ -8,10 +8,8 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let(:dimension) { create(:dimension) }
   let(:client) { create(:tenancy) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
-  before(:each) { login_user(superadmin) }
+  before(:each) { sign_in(superadmin) }
   after(:each) { sign_out(superadmin) }
 
   describe 'Create Saville Assessment' do
@@ -38,7 +36,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
         }
       )
       post '/api/v2/administration/assessments', params: params,
-       headers: { 'Content-type': 'application/vnd.api+json' }
+           headers: { 'Content-Type': 'application/vnd.api+json' }
 
       parsed_response = JSON.parse(response.body)
       expect(response.status).to eq(201)
@@ -73,7 +71,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
           }
         )
         post '/api/v2/administration/assessments', params: params,
-         headers: { 'Content-type': 'application/vnd.api+json' }
+             headers: { 'Content-Type': 'application/vnd.api+json' }
 
         parsed_response = JSON.parse(response.body)
         expect(response.status).to eq(422)

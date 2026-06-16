@@ -11,15 +11,11 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
   let!(:campaign_factors) do
     create(:campaign_factor, campaign_factor_group: campaign_factor_group, public_visibility: true)
   end
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_factor_groups' do
     it 'fetches campaign factor groups list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups"
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data'].first
@@ -45,7 +41,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       cfg = JSON.parse(response.body)['data']
@@ -74,7 +70,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups/#{campaign_factor_group_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data']
@@ -101,7 +97,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups/#{campaign_factor_group_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data']
@@ -117,8 +113,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
     it 'deletes a campaign factor group' do
       create(:campaign_factor_group, name: 'Test group 2', campaign_id: campaign_id)
 
-      delete "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups/#{campaign_factor_group_id}",
-             headers: { 'Authorization' => authorization }
+      delete "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups/#{campaign_factor_group_id}"
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')
@@ -138,7 +133,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
       FactoryBot.create(:campaign_assessor_assessment, campaign: Campaign.first, assessment: Assessment.first)
 
       post "/api/v2/administration/campaigns/#{test_campaign_id}/campaign_factor_groups/initialize_scoring",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data']
@@ -171,7 +166,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorGroupsController, type: :r
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_groups/update_positions",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data'].first

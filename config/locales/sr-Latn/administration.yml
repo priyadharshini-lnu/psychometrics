@@ -500,9 +500,6 @@ sr-Latn:
         missing_headers: Nedostaju zaglavlja
         missing_users: 'Sledeći imejlovi ne postoje: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Breadcrumb
       archive:
         successfully: Uspešno
       base:

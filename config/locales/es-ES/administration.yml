@@ -500,9 +500,6 @@ es-ES:
         missing_headers: Faltan cabeceras
         missing_users: 'Los siguientes correos electrónicos no existen: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Migas de pan
       archive:
         successfully: Con éxito
       base:

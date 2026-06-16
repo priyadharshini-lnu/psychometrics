@@ -500,9 +500,6 @@ ja:
         missing_headers: ヘッダーの欠落
         missing_users: '以下のメールは存在しません: %{emails}.'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: パンくず
       archive:
         successfully: 成功裏に
       base:

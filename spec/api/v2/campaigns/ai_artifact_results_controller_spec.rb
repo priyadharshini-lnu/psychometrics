@@ -25,9 +25,6 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
     )
   end
   let(:campaign_id) { campaign.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     sign_in(superadmin)
     campaign.project.client.client_feature.update!(ai_assistants: true)
@@ -36,8 +33,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/ai_artifact_results' do
     it 'returns AI artifact results list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results"
 
       expect(response).to have_http_status(200)
       body = JSON.parse(response.body)
@@ -69,8 +65,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
     end
 
     it 'includes meta with all campaign artifacts' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results"
 
       expect(response).to have_http_status(200)
       meta = JSON.parse(response.body)['meta']
@@ -89,8 +84,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
       user_without_artifacts = create(:user)
       create(:campaign_user, campaign: campaign_without_artifacts, user: user_without_artifacts)
 
-      get "/api/v2/administration/campaigns/#{campaign_without_artifacts.id}/ai_artifact_results",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_without_artifacts.id}/ai_artifact_results"
 
       expect(response).to have_http_status(200)
       body = JSON.parse(response.body)
@@ -104,8 +98,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/ai_artifact_results/{user_id}' do
     it 'returns AI artifact results for a specific user' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results/#{user.id}",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results/#{user.id}"
 
       expect(response).to have_http_status(200)
       body = JSON.parse(response.body)
@@ -128,8 +121,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
       new_user = create(:user)
       create(:campaign_user, campaign: campaign, user: new_user)
 
-      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results/#{new_user.id}",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results/#{new_user.id}"
 
       expect(response).to have_http_status(200)
       body = JSON.parse(response.body)
@@ -156,7 +148,6 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
             "ai_artifact_results/#{user.id}/change_finalized_artifact_results"
       post url,
            params: { data: { attributes: { finalized: true } } },
-           headers: { 'Authorization' => authorization },
            as: :json
 
       expect(response).to have_http_status(200)
@@ -173,7 +164,6 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
     it 'updates the finalized state for multiple users' do
       post "/api/v2/administration/campaigns/#{campaign_id}/ai_artifact_results/change_finalized_artifact_results_bulk",
            params: { data: { attributes: { finalized: true, user_ids: [user.id, second_user.id] } } },
-           headers: { 'Authorization' => authorization },
            as: :json
 
       expect(response).to have_http_status(200)
@@ -200,8 +190,7 @@ RSpec.describe Api::V2::Administration::Campaigns::AIArtifactResultsController, 
     end
 
     it 'only includes subjects, not evaluators' do
-      get "/api/v2/administration/campaigns/#{threesixty_base_campaign.id}/ai_artifact_results",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{threesixty_base_campaign.id}/ai_artifact_results"
 
       expect(response).to have_http_status(200)
       returned_ids = JSON.parse(response.body)['data'].map { |d| d['id'].to_i }

@@ -500,9 +500,6 @@ zh-Hant:
         missing_headers: 遺失標頭
         missing_users: 下列電子郵件不存在： %{emails}
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: 麵包屑
       archive:
         successfully: 成功
       base:

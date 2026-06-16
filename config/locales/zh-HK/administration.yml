@@ -500,9 +500,6 @@ zh-HK:
         missing_headers: 缺少标题
         missing_users: 以下电子邮件地址不存在：%{emails}
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: 面包屑导航
       archive:
         successfully: 成功地
       base:

@@ -500,9 +500,6 @@ hr:
         missing_headers: Nedostaju zaglavlja
         missing_users: 'Sljedeće e-poruke ne postoje: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Krušne mrvice
       archive:
         successfully: Uspješno
       base:

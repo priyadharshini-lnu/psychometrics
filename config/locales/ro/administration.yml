@@ -500,9 +500,6 @@ ro:
         missing_headers: Anteturi lipsă
         missing_users: 'Următoarele e-mailuri nu există: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Pesmet
       archive:
         successfully: Succes
       base:

@@ -500,9 +500,6 @@ fr:
         missing_headers: En-têtes manquants
         missing_users: 'Les courriels suivants n''existent pas : %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Fil d'Ariane
       archive:
         successfully: Avec succès
       base:

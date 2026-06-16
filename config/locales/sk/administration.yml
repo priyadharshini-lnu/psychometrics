@@ -500,9 +500,6 @@ sk:
         missing_headers: Chýbajúce hlavičky
         missing_users: 'Nasledujúce e-maily neexistujú: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Strúhanka
       archive:
         successfully: Úspešne
       base:

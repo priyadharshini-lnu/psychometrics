@@ -500,9 +500,6 @@ id:
         missing_headers: Header hilang
         missing_users: 'Email berikut tidak ada: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Remah roti
       archive:
         successfully: Berhasil
       base:

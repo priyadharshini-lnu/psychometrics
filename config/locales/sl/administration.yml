@@ -500,9 +500,6 @@ sl:
         missing_headers: Manjkajoče glave
         missing_users: 'Naslednja e-poštna sporočila ne obstajajo: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Krušna drobtina
       archive:
         successfully: Uspešno
       base:

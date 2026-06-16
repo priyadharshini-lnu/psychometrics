@@ -500,9 +500,6 @@ hu:
         missing_headers: Hiányzó fejlécek
         missing_users: 'A következő e-mailek nem léteznek: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Breadcrumb
       archive:
         successfully: Sikeresen
       base:

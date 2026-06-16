@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe Api::V1::ThreesixtyCampaigns::UsersController, swagger_doc: 'v1/swagger.json', type: :request do
-  let!(:membership) { create(:client_admin_membership) }
+  let!(:membership) { create(:client_admin_membership, :with_application_user) }
   let!(:project) { create(:project, parent: membership.client) }
   let!(:campaign) { create(:campaign, :threesixty, project: project) }
   let!(:user) { create(:user, project: project, external_id: 'ext100') }

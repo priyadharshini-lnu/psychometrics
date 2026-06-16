@@ -500,9 +500,6 @@ bg:
         missing_headers: Липсващи заглавки
         missing_users: 'Следните имейли не съществуват: %{emails}'
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Галета
       archive:
         successfully: Успешно
       base:

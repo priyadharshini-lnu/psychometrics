@@ -6,6 +6,7 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   model_hint model: 'users/regular', resource: :user
   model_hint model: 'users/admin', resource: :user
   model_hint model: 'users/super_admin', resource: :user
+  model_hint model: 'users/application', resource: :application
   model_hint model: 'assessments/common', resource: :assessment
   model_hint model: 'assessments/hogan', resource: :assessment
   model_hint model: 'assessments/pearson', resource: :assessment

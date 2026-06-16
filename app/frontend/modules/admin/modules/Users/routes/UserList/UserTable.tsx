@@ -5,12 +5,9 @@ import {
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
-import { Admin } from 'modules/admin/modules/client/core/admin'
-import { useNavigate } from 'react-router-dom'
 import {
   LockOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import { isSuperAdmin } from '~/core/currentUser'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { ConfirmationModal } from '~/glint'
@@ -161,9 +158,8 @@ interface ActionMenuData extends DropdownProps {
 }
 
 const getActionsMenuProps = ({
-  setConfirmation, user, openResetPasswordModal, userTab, currentUser,
+  setConfirmation, user, openResetPasswordModal,
 }: ActionMenuData):MenuProps => {
-  const navigate = useNavigate()
   const { resource } = useResourceContext<User>()
 
   const toggle2FA = (user) => {
@@ -183,10 +179,6 @@ const getActionsMenuProps = ({
     message.info(I18n.t('users.actions.unlock_user_access.message', { email }))
   })
 
-  const handleAPIKeysClick = (userId: Admin['userId']) => {
-    navigate(`/admin/users/admins/${userId}/api_keys`)
-  }
-
   const menuItems = [
     user.meta.permissions.resetPassword && {
       key: 'reset_password',
@@ -202,11 +194,6 @@ const getActionsMenuProps = ({
       key: 'remove',
       label: I18n.t('shared.remove'),
       onClick: () => setConfirmation(true),
-    },
-    (isSuperAdmin(currentUser) && userTab === 'Users::Admin') && {
-      key: 'apiKeys',
-      label: I18n.t('admin.api_keys'),
-      onClick: () => handleAPIKeysClick(user.id),
     },
     user.meta.permissions.loginAs && {
       key: 'loginAs',

@@ -7,6 +7,7 @@ import RouteList from '~/components/RouteList'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 import routeUtils from '~/utils/route'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { isSuperAdmin } from '~/core/currentUser'
 import { routes } from './routes'
 
 const { I18n } = window
@@ -53,6 +54,10 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
   permissions.manageProjectGeneralSettings && menuItems.push({
     key: '/general',
     label: I18n.t('admin.project_tabs_general'),
+  })
+  isSuperAdmin(currentUser) && menuItems.push({
+    key: '/applications',
+    label: I18n.t('admin.applications'),
   })
   permissions.manageProjectSmtpSettings && menuItems.push({
     key: '/smtp',

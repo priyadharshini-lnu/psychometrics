@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::NormsController, type: :request do
   let(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:include_resource_meta) { 'permissions' }
   let!(:norm) { create(:norm) }
 
@@ -15,7 +13,7 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
     it 'returns norms list' do
       get '/api/v2/administration/norms',
           params: { include_resource_meta: include_resource_meta },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       norms = JSON.parse(response.body)
@@ -49,7 +47,7 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
 
       post '/api/v2/administration/norms',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       norm_response = JSON.parse(response.body)['data']
@@ -75,7 +73,7 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
 
       patch "/api/v2/administration/norms/#{norm.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       norm_response = JSON.parse(response.body)
@@ -89,7 +87,7 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
       norm_id = norm.id
 
       delete "/api/v2/administration/norms/#{norm_id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(Norm.find_by(id: norm_id)).to be_nil
@@ -109,7 +107,7 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
 
       post "/api/v2/administration/norms/#{norm.id}/copy",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       norm_response = JSON.parse(response.body)
@@ -126,7 +124,7 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
 
     it 'returns norm editor data' do
       post "/api/v2/administration/norms/#{norm_one.id}/editor",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       editor_data = JSON.parse(response.body)

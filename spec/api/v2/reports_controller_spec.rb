@@ -9,9 +9,6 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
   let!(:assessment) { create(:hogan_assessment, external_settings: { assessment_id: 'HPI' }) }
   let!(:report) { create(:report, name: 'First Report') }
   let!(:deleted_report) { create(:report, name: 'First Report', deleted_at: Time.zone.now) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /reports/' do
@@ -19,7 +16,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
       hogan_report = create(:report, :hogan, assessments: [assessment])
 
       get '/api/v2/administration/reports/',
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -57,7 +54,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
 
       post '/api/v2/administration/reports/',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       report_response = JSON.parse(response.body)['data']
@@ -81,7 +78,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
 
       patch "/api/v2/administration/reports/#{report.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       report_response = JSON.parse(response.body)['data']
@@ -94,7 +91,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
   describe 'DELETE /reports/{report_id}' do
     it 'Delete a report' do
       delete "/api/v2/administration/reports/#{report.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')
@@ -120,7 +117,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
 
       post "/api/v2/administration/reports/#{report.id}/copy",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       report_response = JSON.parse(response.body)['data']
@@ -132,7 +129,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
   describe 'POST /reports/{report_id}/restore' do
     it 'Restore report' do
       post "/api/v2/administration/reports/#{deleted_report.id}/restore",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       report_response = JSON.parse(response.body)['data']

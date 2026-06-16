@@ -116,6 +116,12 @@ en:
     alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
     api_keys_form_title: api key
+    application: Application
+    application_add: Add Application
+    application_name: Application Name
+    application_name_already_taken: Already exists for this client
+    application_name_format_hint: Only letters and numbers are allowed, with a single space between words
+    applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
     approve_all_questions: Approve All Questions
     approve_nomination_description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved
@@ -774,6 +780,7 @@ en:
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     final_score_empty_msg: Итоговый счет не может быть пустым.
     finalized_at: Finalized At
+    fingerprint: Fingerprint
     first_name_required: First name is required
     fix_grammar: Fix Grammar
     fixed_time: Fixed Time
@@ -821,6 +828,8 @@ en:
     handoff_invalid_token: Invalid or expired authentication token
     handoff_token_expired: Authentication token has expired or already been used
     handoff_user_disabled: Your account is disabled
+    has_api_keys: Has API Keys
+    has_public_keys: Has Public Keys
     header_logout_content: Press Cancel if you want to continue work. Press Ok to logout current user.
     header_logout_title: Are you sure you want to logout.
     hide_all: Hide All
@@ -1162,6 +1171,7 @@ en:
     join_room: Join Room
     keep_original: Keep Original
     key: Key
+    key_id: Key ID
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
     language_id: Language ID
@@ -1803,6 +1813,7 @@ en:
         view: View
         view_recordings: View Recordings
     permissions_360_campaigns: Permissions specific to 360 campaigns
+    permissions_updated: Permissions updated successfully
     piped_text: Piped Text
     piped_text_modal_assessment_center: Assessment Center
     piped_text_modal_campaign_link: Campaign Link
@@ -1997,6 +2008,22 @@ en:
     provider_change_confirm_title: Change Provider?
     provider_previously_used_warning: This assistant has previously generated results with "%{from}". Changing to "%{to}" may alter the assistant's behaviour for future generation requests.
     psychometric: Psychometric
+    public_key: Public Key
+    public_key_add: Add Public Key
+    public_key_cannot_be_changed: cannot be changed after creation
+    public_key_copy_private_key: Copy Private Key
+    public_key_created: Public key created successfully
+    public_key_generate: Generate Key Pair
+    public_key_generate_button: Generate RSA Key Pair
+    public_key_generate_info: Will generate a 2048-bit RSA key pair. Only the public key will be stored. Copy and securely store the private key — it will not be shown again.
+    public_key_invalid_format: must be a valid RSA public key in PEM format
+    public_key_must_be_public: must be a public key, not a private key
+    public_key_paste_placeholder: Paste your RSA public key in PEM format here (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Public Key (PEM)
+    public_key_private_key_copied: Private key copied to clipboard
+    public_key_private_key_label: Private Key (PEM)
+    public_key_private_key_warning: This is the only time the private key will be visible. Copy it now and store it securely.
+    public_keys: Public Keys
     question_center: Question Center
     question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
