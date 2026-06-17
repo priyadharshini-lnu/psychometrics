@@ -94,8 +94,12 @@ module Administration
       after_sign_in_path_for(user)
     end
 
-    def assessor_dashboard_after_handoff?(user, access)
-      access[:highest_role] == Membership::CLIENT_ASSESSOR_ROLE || user.is?(:assessor)
+    def assessor_dashboard_after_handoff?(_user, access)
+      assessor_highest_role?(access[:highest_role])
+    end
+
+    def assessor_highest_role?(highest_role)
+      [Membership::CLIENT_ASSESSOR_ROLE, 'assessor'].include?(highest_role)
     end
 
     def setup_client_admin_after_password_login(user)

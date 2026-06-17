@@ -164,6 +164,23 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
     end
   end
 
+  describe '#after_sign_in_path_for' do
+    let(:client) { create(:tenancy) }
+    let(:project) { create(:project, parent: client) }
+    let(:campaign) { create(:campaign, project: project) }
+    let(:assessor_user) { create(:user, :assessor, with_campaign: campaign) }
+
+    it 'returns assessors dashboard path for pure assessor in client admin context' do
+      allow(controller).to receive(:stored_location_for).and_return(nil)
+      allow(Current).to receive(:client_admin_context?).and_return(true)
+      allow(Current).to receive(:client).and_return(client)
+
+      path = controller.send(:after_sign_in_path_for, assessor_user)
+
+      expect(path).to eq(assessors_dashboard_path)
+    end
+  end
+
   describe 'DELETE #destroy' do
     let(:client_admin) { create(:client_admin) }
 
