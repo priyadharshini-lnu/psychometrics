@@ -21,7 +21,7 @@ module Administration
         sole_client = user_for_clients.sole_admin_client
         if sole_client
           impersonator = target.present? ? current_user : nil
-          clear_central_session_for_single_client_user
+          clear_central_session_for_single_client_user if target.blank?
           return handoff_and_redirect(
             user_for_clients,
             sole_client,
@@ -30,7 +30,7 @@ module Administration
           )
         end
 
-        clients_list = user_for_clients.clients_with_admin_access.includes(:client_sso_setting).to_a
+        clients_list = user_for_clients.clients_with_admin_access.includes(:client_sso_setting, :design_setting).to_a
         highest_roles = AdminAuth::HighestClientRoles.for_user(user_for_clients, clients_list)
 
         @clients_data = Panko::ArraySerializer.new(
@@ -50,9 +50,14 @@ module Administration
       def select
         target = spoof_target_user
         user_for_clients = target || current_user
-
         client = user_for_clients.clients_with_admin_access.find(params[:client_id])
-        handoff_and_redirect(user_for_clients, client, spoofing: target.present?)
+        impersonator = target.present? ? current_user : nil
+        handoff_and_redirect(
+          user_for_clients,
+          client,
+          spoofing: target.present?,
+          impersonated_by: impersonator
+        )
       end
 
       def switch

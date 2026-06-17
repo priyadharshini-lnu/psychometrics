@@ -3,7 +3,8 @@
 module AdminAuth
   class ResolveClientAccess < BaseCommand
     ADMIN_ROLES = %w[client_admin project_admin campaign_admin].freeze
-    ROLE_PRIORITY = ADMIN_ROLES.freeze
+    ENTRY_ROLES = (ADMIN_ROLES + [Membership::CLIENT_ASSESSOR_ROLE]).freeze
+    ROLE_PRIORITY = (ADMIN_ROLES + [Membership::CLIENT_ASSESSOR_ROLE]).freeze
 
     def initialize(user, client)
       @user = user
@@ -32,7 +33,7 @@ module AdminAuth
     def determine_access
       # Superadmin gets access only if they have an actual membership on this client.
       if user.is?(:superadmin)
-        memberships = find_admin_memberships.load
+        memberships = find_entry_memberships.load
         roles = memberships.map(&:role).uniq
 
         return {
@@ -43,7 +44,7 @@ module AdminAuth
         }
       end
 
-      memberships = find_admin_memberships
+      memberships = find_entry_memberships
       roles = memberships.distinct.pluck(:role)
 
       has_assessor_role = user_is_assessor_for_client?
@@ -60,11 +61,11 @@ module AdminAuth
       }
     end
 
-    def find_admin_memberships
+    def find_entry_memberships
       user.memberships.
         joins('LEFT JOIN campaigns ON memberships.campaign_id = campaigns.id').
         where(admin_membership_condition).
-        where(role: ADMIN_ROLES)
+        where(role: ENTRY_ROLES)
     end
 
     def admin_membership_condition

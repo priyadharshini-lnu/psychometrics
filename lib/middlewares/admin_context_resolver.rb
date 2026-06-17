@@ -36,18 +36,21 @@ module Middlewares
       client_subdomain = AdminSubdomain.client_subdomain_from_admin(subdomain)
       return unless client_subdomain
 
-      client = find_client(client_subdomain)
-      return unless client&.active?
+      root = ActsAsTenant.without_tenant do
+        client = find_client(client_subdomain)
+        next unless client&.active?
 
-      root = client.root
+        client.root
+      end
+
+      return unless root
+
       Current.client = root
       ActsAsTenant.current_tenant = root unless bypass_tenant_scoping?(root)
     end
 
     def find_client(subdomain)
-      ActsAsTenant.without_tenant do
-        Client.enabled.find_by(subdomain: subdomain)
-      end
+      Client.enabled.find_by(subdomain: subdomain)
     rescue StandardError
       nil
     end

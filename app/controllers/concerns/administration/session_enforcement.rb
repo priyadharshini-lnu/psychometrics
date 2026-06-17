@@ -11,7 +11,6 @@ module Administration
       return unless user_signed_in?
       return if Current.client_admin_context?
       return if current_user.is?(:superadmin)
-      return if pure_assessor_on_root_domain?
       return if controller_excluded_from_root_domain_isolation?
 
       redirect_to administration_client_selection_path
@@ -42,12 +41,6 @@ module Administration
         is_a?(Administration::Administrator::ClientSelectionController) ||
         (defined?(Administration::Administrator::PasswordsController) &&
           is_a?(Administration::Administrator::PasswordsController))
-    end
-
-    def pure_assessor_on_root_domain?
-      current_user.is?(:assessor) &&
-        !current_user.is?(:client_admin, :project_admin, :campaign_admin) &&
-        Current.root_domain?
     end
   end
 end

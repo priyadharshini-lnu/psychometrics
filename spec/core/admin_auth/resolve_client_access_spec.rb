@@ -99,6 +99,18 @@ RSpec.describe AdminAuth::ResolveClientAccess do
       end
     end
 
+    context 'with client_assessor user' do
+      let(:user) { create(:user) }
+      before do
+        create(:membership, user: user, client: client, role: 'client_assessor')
+      end
+      it 'returns access with client_assessor role' do
+        result = described_class.call(user, client)
+        expect(result[:ok][:has_access]).to be true
+        expect(result[:ok][:highest_role]).to eq('client_assessor')
+        expect(result[:ok][:roles]).to include('client_assessor')
+      end
+    end
     context 'with assessor user' do
       let(:user) { create(:user) }
       let(:campaign) { create(:campaign, project: project) }

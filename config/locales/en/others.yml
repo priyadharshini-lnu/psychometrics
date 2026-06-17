@@ -618,6 +618,7 @@ en:
         roles:
           campaign_admin: Campaign Admin
           client_admin: Client Admin
+          client_assessor: Client Assessor
           manager: Manager
           member: User
           project_admin: Project Admin
@@ -723,6 +724,7 @@ en:
           admins:
             admin: Admin
             campaign_admin: Campaign Admin
+            client_assessor: Client Assessor
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
@@ -732,6 +734,7 @@ en:
           campaign_admin: Campaign Admin
           case_study: Case study
           client_admin: Client Admin
+          client_assessor: Client Assessor
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -3567,12 +3570,14 @@ en:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Client Assessor
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
           case_study: Case study
           client_admin: Client Admin
+          client_assessor: Client Assessor
           hogan: Hogan
           manager: Manager
           member: User
@@ -3706,6 +3711,7 @@ en:
         roles:
           campaign_admin: Campaign Admin
           client_admin: Client Admin
+          client_assessor: Client Assessor
           manager: Manager
           member: User
           project_admin: Project Admin
@@ -3776,12 +3782,14 @@ en:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Client Assessor
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
           case_study: Case study
           client_admin: Client Admin
+          client_assessor: Client Assessor
           hogan: Hogan
           manager: Manager
           member: User
@@ -4244,6 +4252,7 @@ en:
       campaign_assessor: Campaign Assessor
       campaign_user: Campaign User
       client_admin: Client Admin
+      client_assessor: Client Assessor
       project_admin: Project Admin
       superadmin: Super Admin
     superadmins: Super Admins

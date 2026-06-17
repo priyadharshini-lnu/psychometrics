@@ -7,7 +7,9 @@ module Administration
     private
 
     def redirect_via_handoff(target_user, client, impersonated_by: nil, on_error: nil)
-      result = AdminAuth::GenerateHandoffToken.call(target_user, client, impersonated_by: impersonated_by)
+      tte = client.root
+
+      result = AdminAuth::GenerateHandoffToken.call(target_user, tte, impersonated_by: impersonated_by)
 
       if result[:error]
         if on_error
@@ -19,7 +21,7 @@ module Administration
       end
 
       handoff_url = AdminSubdomain.admin_url_for(
-        client,
+        tte,
         path: '/administration/sign_in',
         params: { handoff_token: result[:ok] }
       )
