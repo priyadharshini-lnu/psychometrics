@@ -34,6 +34,8 @@ pl:
       cant_be_deleted: Tego rekordu nie można usunąć
       client_feature:
         ai_assisted_idp_feature_error: Nie może to być prawda, jeśli funkcja asystentów AI jest wyłączona
+      client_sso_settings:
+        sso_enforced_requires_enabled: Nie można włączyć tej funkcji, jeśli nie jest włączone logowanie jednokrotne (SSO)
       create_superadmin:
         uniq_email: Adres e-mail powinien być unikowy.
       development_actions:

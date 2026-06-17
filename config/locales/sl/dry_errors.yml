@@ -34,6 +34,8 @@ sl:
       cant_be_deleted: Tega zapisa ni mogoče izbrisati
       client_feature:
         ai_assisted_idp_feature_error: Ne more biti res, če je funkcija pomočnikov AI onemogočena
+      client_sso_settings:
+        sso_enforced_requires_enabled: Te funkcije ni mogoče vklopiti, če ni omogočen SSO
       create_superadmin:
         uniq_email: E-pošta mora biti uniq.
       development_actions:

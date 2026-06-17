@@ -201,6 +201,7 @@ sr-Latn:
     assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
     attendance: Посећеност
     attendance_status: Статус присуства
+    audit_log_impersonated_by: У улози
     audit_log_title: Informacije o reviziji evidencije
     audit_log_type: Tip zapisa
     audit_logs: Evidencije revizije
@@ -377,7 +378,11 @@ sr-Latn:
     client_secret_label: Tajna klijenta
     client_secret_name: oauth_client_secret
     client_secret_required: Tajna klijenta je obavezna
+    client_selection_instruction: Изаберите клијента да бисте наставили до административног панела.
+    client_selection_sign_out: Одјавите се
+    client_selection_title: Изабери клијента
     clients: Klijentski prostor
+    clients_search_placeholder: Претрага клијента
     closed: Zatvoreno
     code_required: Kod je obavezan
     collapse_filters: Spusti filtere
@@ -735,6 +740,7 @@ sr-Latn:
     feature_flags_platform_group: Карактеристике платформе
     feature_global_skills_description: Приступите глобалној библиотеци вештина за процене
     feature_idp_description: Омогућите појединачно планирање развоја за учеснике
+    feature_not_available: Ова функција није доступна
     feature_sms_notification_description: Омогућите СМС обавештења за позиве и подсетнике кампање
     fields_level: Nivo
     fields_level_description: Opis nivoa
@@ -794,6 +800,10 @@ sr-Latn:
     grant_type_name: oauth_grant_type
     graphic: Графички
     graphic_slider: Графички слајдер
+    handoff_client_mismatch: Токен за аутентификацију није важећи за овог клијента
+    handoff_invalid_token: Неважећи или истекли токен за аутентификацију
+    handoff_token_expired: Токен за аутентификацију је истекао или је већ коришћен
+    handoff_user_disabled: Ваш налог је онемогућен
     header_logout_content: Pritisnite Otkaži ako želite da nastavite sa radom. Pritisnite OK da biste se odjavili trenutni korisnik.
     header_logout_title: Da li ste sigurni da želite da se odjavite.
     hide_all: Sakrij sve
@@ -1146,12 +1156,14 @@ sr-Latn:
     libraries: Biblioteka medija
     library_invalid_type: Neispravna stavka biblioteke
     licenses: Licence
+    lighthouse_logo_alt_text: Логотип Лајтхауса
     lighthouse_question: Питање светионика
     lighthouse_question_id: ИД питања светла
     link_text: Vezu
     linked_assessments: Повезане процене
     locale: Lokalne
     log_date: Datum evidencije
+    logged_in: Пријављен
     login: Prijava
     low: Ниско
     mail_history: Istorija pošte
@@ -1247,6 +1259,8 @@ sr-Latn:
     new_folder: Нова фасцикла
     new_score: Нова оцена
     no_assessments_found: Revizija ID
+    no_client_access: Немате приступ овом клијенту
+    no_clients_found: Није пронађен ниједан клијент
     no_completed_assessments: Još uvek nema završenih procena
     no_file_selected: Nijedan fajl nije izabran
     no_notifications: Nema obaveštenja
@@ -1319,6 +1333,7 @@ sr-Latn:
     other_assessments: Ostale procene
     other_assessor_assessments: Ostale procene procenjivača
     other_reports: Ostali izveštaji
+    others: Остали
     outcome: Ishod
     output_schema_key_constraint: Ključ mora početi malim slovom i može sadržavati samo mala slova, brojeve i podvlake
     output_schema_keys: Izlazni ključevi šeme
@@ -1990,6 +2005,7 @@ sr-Latn:
     rationale: Оправдање
     raw: SIROVO
     reason_for_changes: Разлог за промене
+    recents: Недавни
     record_id: Zapis ID
     recordings: Snimke
     reflection_questions: Pitanja za razmišljanje
@@ -2164,6 +2180,10 @@ sr-Latn:
     revisions_user_prompt: Korisnička uputstva
     revisions_version: Verzija
     role: Ulogu
+    role_campaign_admin: Администратор кампање
+    role_client_admin: Администрација клијента
+    role_project_admin: Администратор пројекта
+    role_superadmin: Супер администратор
     saml_idp_certificate_available: Dostupno (kliknite da biste kopirali)
     saml_idp_certificate_label: Certifikat
     saml_idp_entity_id_label: ID entiteta / izdavač
@@ -2714,6 +2734,36 @@ sr-Latn:
     smtp_settings_use_sender_verification: Koristite verifikaciju pošiljaoca
     smtp_settings_user_name: Korisničko ime
     specialty_questions: Специјална питања
+    sso_email_mismatch: Пријављени сте на други налог на провајдеру идентитета. Молимо вас да се одјавите са провајдера идентитета и покушате поново.
+    sso_enforced: Применити SSO
+    sso_label: ССО
+    sso_not_enabled: SSO није омогућен за овог клијента
+    sso_settings: Подешавања SSO
+    sso_settings_allowed_domains: Дозвољене доменe
+    sso_settings_certificate: Идентитетски сертификат
+    sso_settings_enabled: SSO омогућен
+    sso_settings_enforced: SSO је наметнут
+    sso_settings_entity_id: ИД ентитета
+    sso_settings_metadata_certificate_expiry: 'Сертификат истиче: %{date}'
+    sso_settings_metadata_file_too_large: Датотека прелази максималну величину од 1 МБ
+    sso_settings_metadata_invalid_xml: Неважећи XML формат
+    sso_settings_metadata_no_idp_descriptor: У метаподацима није пронађен опис IdP-а
+    sso_settings_metadata_parse: Анализирај метаподатке
+    sso_settings_metadata_parse_error: Неуспело парсирање метаподата
+    sso_settings_metadata_parse_success: Поља IdP-а попуњена метаподацима
+    sso_settings_metadata_parsing: Анализирање метаподата...
+    sso_settings_metadata_upload: Поставите IdP метаподатке XML
+    sso_settings_metadata_upload_again: Поставите другу датотеку за замену
+    sso_settings_metadata_upload_drag_hint: Повуците и испустите .xml фајл овде или кликните да прегледате
+    sso_settings_metadata_upload_hint: Отпремите .xml фајл за аутоматско попуњавање поља IdP-а
+    sso_settings_metadata_upload_retry: Покушајте поново са важећим XML фајлом метаподата.
+    sso_settings_or_configure_manually: Или конфигуришите ручно
+    sso_settings_readable_resource_name: Подешавања SSO
+    sso_settings_save: Сачувај
+    sso_settings_session_timeout: Време истека сесије
+    sso_settings_slo_url: URL адреса SLO услуге
+    sso_settings_sso_url: SSO URL услуге
+    sso_settings_tab: SSO
     standard: Standardni
     standard_deviation: Стандардни одступање
     standard_questions: Стандардна питања
@@ -2772,6 +2822,10 @@ sr-Latn:
     sub_factors_conditional_average: Uslovni ponderisani prosek faktora
     sub_factors_sum: Ponderisana suma faktora
     subdomain: Poddomen
+    subdomain_admin_keyword: Не може се користити резервисани образац администраторског поддомена
+    subdomain_invalid_format: Погрешан формат поддомена.
+    subdomain_reserved: Подрудомен %{value} је резервисан
+    subdomain_too_long_max_32: Субдомен је превише дуг (максимално 32 знака)
     subject: Tema
     subject_can_access_reports: Subjekat može da pristupi svojim izveštajima
     subject_email: Imejl subjekta
@@ -2796,6 +2850,8 @@ sr-Latn:
     success_title: Stvoreni centri za procenu
     success_update: Podešavanja dizajna su uspešno sačuvana
     suitability_id: Идентификатор подобности
+    superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
+    switch_client: Пребаци клијент
     system_prompt: Sistem prompt
     tab_text_one: Meni
     tab_text_two: Podmeni
@@ -2978,3 +3034,4 @@ sr-Latn:
     yoodli_keyset_url: URL ključa
     yoodli_launch_url: Pokrenite URL adresu
     yoodli_login_url: URL adresa za prijavu
+    you_are_here: Ви сте овде

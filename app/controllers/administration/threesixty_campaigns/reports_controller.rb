@@ -9,6 +9,10 @@ module Administration
       before_action :load_available_languages, only: %i[show]
       before_action :set_resource, only: %i[show export download regenerate]
       prepend_before_action :authenticate_by_token!, only: %i[show]
+      skip_before_action :enforce_admin_session_validity, only: %i[show], raise: false
+      before_action :enforce_admin_session_validity,
+                    only: %i[show],
+                    unless: -> { params[:user_token].present? }
       append_before_action :pundit_authorize
 
       def show

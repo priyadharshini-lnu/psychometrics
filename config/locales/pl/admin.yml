@@ -200,6 +200,7 @@ pl:
     assistant_validation_failed: Nie udało się wygenerować prawidłowego wyniku po wielu próbach.
     attendance: Obecność
     attendance_status: Status obecności
+    audit_log_impersonated_by: W roli
     audit_log_title: Informacje z dziennika inspekcji
     audit_log_type: Typ rekordu
     audit_logs: Dzienniki audytu
@@ -376,7 +377,11 @@ pl:
     client_secret_label: Klucz tajny klienta
     client_secret_name: oauth_client_secret
     client_secret_required: Wymagany jest klucz tajny klienta
+    client_selection_instruction: Wybierz klienta, aby przejść do panelu administracyjnego.
+    client_selection_sign_out: Wyloguj się
+    client_selection_title: Wybierz klienta
     clients: Umowy najmu dla klientów
+    clients_search_placeholder: Wyszukiwanie klienta
     closed: Zamknięty
     code_required: Wymagany jest kod
     collapse_filters: Zwiń filtry
@@ -734,6 +739,7 @@ pl:
     feature_flags_platform_group: Funkcje platformy
     feature_global_skills_description: Uzyskaj dostęp do globalnej biblioteki umiejętności do celów oceny
     feature_idp_description: Włącz indywidualne planowanie rozwoju dla uczestników
+    feature_not_available: Ta funkcja jest niedostępna
     feature_sms_notification_description: Włącz powiadomienia SMS dotyczące zaproszeń i przypomnień dotyczących kampanii
     fields_level: Poziom
     fields_level_description: Opis poziomu
@@ -793,6 +799,10 @@ pl:
     grant_type_name: oauth_grant_type
     graphic: Grafika
     graphic_slider: Suwak graficzny
+    handoff_client_mismatch: Ten token uwierzytelniający jest nieprawidłowy dla tego klienta
+    handoff_invalid_token: Nieprawidłowy lub wygasły token uwierzytelniający
+    handoff_token_expired: Token uwierzytelniający stracił ważność lub został już wykorzystany
+    handoff_user_disabled: Twoje konto zostało zablokowane
     header_logout_content: Naciśnij Anuluj, jeśli chcesz kontynuować pracę. Naciśnij OK, aby wylogować się obecnego użytkownika.
     header_logout_title: Jesteś pewien, że chcesz się wylogować?
     hide_all: Ukryj wszystko
@@ -1145,12 +1155,14 @@ pl:
     libraries: Biblioteka multimediów
     library_invalid_type: Nieprawidłowy element biblioteczny
     licenses: Licencje
+    lighthouse_logo_alt_text: Logo latarni morskiej
     lighthouse_question: Pytanie dotyczące latarni morskiej
     lighthouse_question_id: Numer pytania w serwisie Lighthouse
     link_text: Łącze
     linked_assessments: Powiązane oceny
     locale: Ustawień regionalnych
     log_date: Data logowania
+    logged_in: Zalogowano się
     login: Logowanie
     low: Niski
     mail_history: Historia poczty
@@ -1246,6 +1258,8 @@ pl:
     new_folder: Nowy folder
     new_score: Nowy wynik
     no_assessments_found: Identyfikator audytu
+    no_client_access: Nie masz dostępu do tego klienta
+    no_clients_found: Nie znaleziono żadnych klientów
     no_completed_assessments: Nie ma jeszcze zakończonych ocen
     no_file_selected: Nie wybrano żadnego pliku
     no_notifications: Brak powiadomień
@@ -1318,6 +1332,7 @@ pl:
     other_assessments: Inne oceny
     other_assessor_assessments: Inne oceny oceniającego
     other_reports: Inne raporty
+    others: Inne
     outcome: Wynik
     output_schema_key_constraint: Klucz musi zaczynać się od małej litery i może zawierać tylko małe litery, cyfry i podkreślenia
     output_schema_keys: Klucze schematu wyjściowego
@@ -1989,6 +2004,7 @@ pl:
     rationale: Uzasadnienie
     raw: SUROWY
     reason_for_changes: Powód zmian
+    recents: Ostatnio dodane
     record_id: Identyfikator rekordu
     recordings: Nagrania
     reflection_questions: Pytania do refleksji
@@ -2164,6 +2180,10 @@ pl:
     revisions_user_prompt: Monit użytkownika
     revisions_version: Wersja
     role: Rola
+    role_campaign_admin: Administrator kampanii
+    role_client_admin: Administracja klientami
+    role_project_admin: Administrator projektu
+    role_superadmin: Superadministrator
     saml_idp_certificate_available: Dostępne (kliknij, aby skopiować)
     saml_idp_certificate_label: Certyfikat
     saml_idp_entity_id_label: Identyfikator podmiotu/Emitenta
@@ -2714,6 +2734,36 @@ pl:
     smtp_settings_use_sender_verification: Korzystanie z weryfikacji nadawcy
     smtp_settings_user_name: Nazwa użytkownika
     specialty_questions: Pytania specjalistyczne
+    sso_email_mismatch: Jesteś zalogowany na innym koncie u dostawcy usług uwierzytelniających. Wyloguj się z serwisu dostawcy usług uwierzytelniających i spróbuj ponownie.
+    sso_enforced: Wymuś logowanie jednokrotne (SSO)
+    sso_label: SSO
+    sso_not_enabled: Dla tego klienta nie włączono funkcji SSO
+    sso_settings: Ustawienia SSO
+    sso_settings_allowed_domains: Dopuszczone domeny
+    sso_settings_certificate: Certyfikat dostawcy tożsamości
+    sso_settings_enabled: Włączono logowanie jednokrotne (SSO)
+    sso_settings_enforced: Wymagane logowanie jednokrotne (SSO)
+    sso_settings_entity_id: Identyfikator podmiotu
+    sso_settings_metadata_certificate_expiry: 'Termin ważności certyfikatu: %{date}'
+    sso_settings_metadata_file_too_large: Plik przekracza maksymalny rozmiar 1 MB
+    sso_settings_metadata_invalid_xml: Nieprawidłowy format XML
+    sso_settings_metadata_no_idp_descriptor: W metadanych nie znaleziono deskryptora IdP
+    sso_settings_metadata_parse: Analiza metadanych
+    sso_settings_metadata_parse_error: Nie udało się przeanalizować metadanych
+    sso_settings_metadata_parse_success: Pola IdP wypełniane na podstawie metadanych
+    sso_settings_metadata_parsing: Analiza metadanych...
+    sso_settings_metadata_upload: Prześlij plik XML z metadanymi dostawcy tożsamości
+    sso_settings_metadata_upload_again: Przeciągnij inny plik, aby go zastąpić
+    sso_settings_metadata_upload_drag_hint: Przeciągnij i upuść tutaj plik .xml lub kliknij, aby wybrać plik
+    sso_settings_metadata_upload_hint: Prześlij plik .xml, aby automatycznie wypełnić pola dostawcy tożsamości (IdP)
+    sso_settings_metadata_upload_retry: Spróbuj ponownie, używając prawidłowego pliku XML z metadanymi
+    sso_settings_or_configure_manually: Lub skonfiguruj ręcznie
+    sso_settings_readable_resource_name: Ustawienia SSO
+    sso_settings_save: Zapisz
+    sso_settings_session_timeout: Czas trwania limitu czasu sesji
+    sso_settings_slo_url: Adres URL usługi SLO
+    sso_settings_sso_url: Adres URL usługi SSO
+    sso_settings_tab: SSO
     standard: Norma
     standard_deviation: Odchylenie standardowe
     standard_questions: Typowe pytania
@@ -2772,6 +2822,10 @@ pl:
     sub_factors_conditional_average: Warunkowa średnia ważona czynników
     sub_factors_sum: Ważona suma czynników
     subdomain: Subdomena
+    subdomain_admin_keyword: nie można używać wzorca zastrzeżonej subdomeny administratora
+    subdomain_invalid_format: Nieprawidłowy format subdomeny.
+    subdomain_reserved: Subdomena %{value} jest zarezerwowana
+    subdomain_too_long_max_32: Nazwa subdomeny jest zbyt długa (maksymalnie 32 znaki)
     subject: Przedmiot
     subject_can_access_reports: Podmiot może uzyskać dostęp do swoich raportów
     subject_email: Adres e-mail tematu
@@ -2796,6 +2850,8 @@ pl:
     success_title: Utworzone centra oceny
     success_update: Ustawienia projektu zostały pomyślnie zapisane
     suitability_id: Identyfikator zgodności
+    superadmin_use_root_domain: Superadministratorzy muszą logować się za pośrednictwem domeny głównej
+    switch_client: Klient Switch
     system_prompt: Monit systemowy
     tab_text_one: Menu
     tab_text_two: Podmenu
@@ -2980,3 +3036,4 @@ pl:
     yoodli_keyset_url: URL zestawu kluczy
     yoodli_launch_url: Launch URL
     yoodli_login_url: URL logowania
+    you_are_here: Jesteś tutaj

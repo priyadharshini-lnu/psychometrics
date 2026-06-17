@@ -34,6 +34,8 @@ pt:
       cant_be_deleted: Este registo não pode ser eliminado
       client_feature:
         ai_assisted_idp_feature_error: Não pode ser verdade se o recurso de assistentes de IA estiver desativado
+      client_sso_settings:
+        sso_enforced_requires_enabled: Não pode ser ativado sem que o SSO esteja ativado
       create_superadmin:
         uniq_email: O correio eletrónico deve ser uniq.
       development_actions:

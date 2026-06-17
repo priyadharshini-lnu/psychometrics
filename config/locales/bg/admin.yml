@@ -202,6 +202,7 @@ bg:
     assistant_validation_failed: Не успях да генерирам валиден резултат след многократни опити
     attendance: Присъствие
     attendance_status: Статус на присъствието
+    audit_log_impersonated_by: Имитиран от
     audit_log_title: Информация за одиторския запис
     audit_log_type: Тип запис
     audit_logs: Регистрационни файлове за одит
@@ -378,7 +379,11 @@ bg:
     client_secret_label: Тайната на клиента
     client_secret_name: oauth_client_secret
     client_secret_required: Изисква се клиентска тайна
+    client_selection_instruction: Изберете клиент, за да преминете към панела за администриране.
+    client_selection_sign_out: Излез
+    client_selection_title: Изберете клиент
     clients: Наеми на клиенти
+    clients_search_placeholder: Търсене на клиент
     closed: Затворен
     code_required: Изисква се код
     collapse_filters: Свиване на филтри
@@ -734,6 +739,7 @@ bg:
     feature_flags_platform_group: Характеристики на платформата
     feature_global_skills_description: Достъп до глобалната библиотека с умения за оценки
     feature_idp_description: Активиране на индивидуално планиране на развитието за участниците
+    feature_not_available: Тази функция не е налична
     feature_sms_notification_description: Активиране на SMS известия за покани и напомняния за кампании
     fields_level: Ниво
     fields_level_description: Описание на нивото
@@ -793,6 +799,10 @@ bg:
     grant_type_name: oauth_grant_type
     graphic: Графика
     graphic_slider: Графичен слайдер
+    handoff_client_mismatch: Токенът за удостоверяване не е валиден за този клиент
+    handoff_invalid_token: Невалиден или изтекъл токен за удостоверяване
+    handoff_token_expired: Токенът за удостоверяване е изтекъл или вече е бил използван
+    handoff_user_disabled: Профилът Ви е деактивиран
     header_logout_content: Натиснете Cancel, ако искате да продължите да работите. Натиснете OK, за да излезете от текущия потребител.
     header_logout_title: Сигурен ли си, че искаш да излезеш?
     hide_all: Скрий всичко
@@ -1145,12 +1155,14 @@ bg:
     libraries: Медийна библиотека
     library_invalid_type: Невалиден библиотечен елемент
     licenses: Лицензи
+    lighthouse_logo_alt_text: Логото на „Фар“
     lighthouse_question: Въпрос за фара
     lighthouse_question_id: Идентификационен номер на въпроса за „Lighthouse“
     link_text: Връзка
     linked_assessments: Свързани оценки
     locale: Място
     log_date: Дата на записа
+    logged_in: Влязъл съм
     login: Вход
     low: Ниска
     mail_history: История на пощата
@@ -1246,6 +1258,8 @@ bg:
     new_folder: Нова папка
     new_score: Нов резултат
     no_assessments_found: Идентификационен номер на одита
+    no_client_access: Нямате достъп до този клиент
+    no_clients_found: Не бяха намерени клиенти
     no_completed_assessments: Все още няма завършени оценявания
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
@@ -1318,6 +1332,7 @@ bg:
     other_assessments: Други оценки
     other_assessor_assessments: Други оценки на оценителя
     other_reports: Други доклади
+    others: Други
     outcome: Резултат
     output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
     output_schema_keys: Ключове на изходната схема
@@ -1989,6 +2004,7 @@ bg:
     rationale: Обосновка
     raw: СУРОВИ
     reason_for_changes: Причина за промените
+    recents: Последни
     record_id: Идентификатор на записа
     recordings: Записи
     reflection_questions: Въпроси за размисъл
@@ -2164,6 +2180,10 @@ bg:
     revisions_user_prompt: Потребителска подкана
     revisions_version: Версия
     role: Роля
+    role_campaign_admin: Администратор на кампанията
+    role_client_admin: Администратор на клиенти
+    role_project_admin: Администратор на проекта
+    role_superadmin: Супер администратор
     saml_idp_certificate_available: Наличен (кликнете за копиране)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: Идентификатор на дружеството/Емитент
@@ -2713,6 +2733,36 @@ bg:
     smtp_settings_use_sender_verification: Използване на потвърждаване на подателя
     smtp_settings_user_name: Потребителско име
     specialty_questions: Специфични въпроси
+    sso_email_mismatch: Влизали сте с друг акаунт в доставчика на идентификация. Моля, излезте от акаунта си при доставчика на идентификация и опитайте отново.
+    sso_enforced: Прилагане на SSO
+    sso_label: SSO
+    sso_not_enabled: SSO не е активирано за този клиент
+    sso_settings: Настройки за SSO
+    sso_settings_allowed_domains: Разрешени домейни
+    sso_settings_certificate: Сертификат на доставчика на идентичност
+    sso_settings_enabled: Активирана функция за еднократно влизане (SSO)
+    sso_settings_enforced: Задължително SSO
+    sso_settings_entity_id: Идентификационен номер на субекта
+    sso_settings_metadata_certificate_expiry: 'Срокът на валидност на сертификата изтича: %{date}'
+    sso_settings_metadata_file_too_large: Файлът надвишава максималния размер от 1 MB
+    sso_settings_metadata_invalid_xml: Невалиден XML формат
+    sso_settings_metadata_no_idp_descriptor: В метаданните не беше открит дескриптор на IdP
+    sso_settings_metadata_parse: Анализиране на метаданни
+    sso_settings_metadata_parse_error: Не успях да анализирам метаданните
+    sso_settings_metadata_parse_success: Полетата на IdP, попълнени въз основа на метаданни
+    sso_settings_metadata_parsing: Анализиране на метаданни...
+    sso_settings_metadata_upload: Качване на XML файл с метаданни на IdP
+    sso_settings_metadata_upload_again: Плъзнете друг файл, за да го замените
+    sso_settings_metadata_upload_drag_hint: Плъзнете и пуснете .xml файл тук или кликнете, за да изберете файл
+    sso_settings_metadata_upload_hint: Качете .xml файл, за да се попълнят автоматично полетата на IdP
+    sso_settings_metadata_upload_retry: Опитайте отново с валиден XML файл с метаданни
+    sso_settings_or_configure_manually: Или конфигурирайте ръчно
+    sso_settings_readable_resource_name: Настройки за SSO
+    sso_settings_save: Запази
+    sso_settings_session_timeout: Продължителност на изчакването на сесията
+    sso_settings_slo_url: URL адрес на услугата SLO
+    sso_settings_sso_url: URL адрес на услугата за еднократно влизане (SSO)
+    sso_settings_tab: SSO
     standard: Стандарт
     standard_deviation: Стандартно отклонение
     standard_questions: Стандартни въпроси
@@ -2771,6 +2821,10 @@ bg:
     sub_factors_conditional_average: Условна среднопретеглена стойност на факторите
     sub_factors_sum: Претеглена сума от фактори
     subdomain: Поддомейн
+    subdomain_admin_keyword: не може да се използва запазеният шаблон за поддомейн на администратора
+    subdomain_invalid_format: Неправилен формат на поддомейна.
+    subdomain_reserved: Поддомейнът %{value} е запазен
+    subdomain_too_long_max_32: Поддомейнът е прекалено дълъг (максималният брой символи е 32)
     subject: Тема
     subject_can_access_reports: Субектът може да получи достъп до своите доклади
     subject_email: Имейл на темата
@@ -2795,6 +2849,8 @@ bg:
     success_title: Центрове за оценяване са създадени
     success_update: Настройките за дизайн са запазени успешно
     suitability_id: Идентификационен номер за пригодност
+    superadmin_use_root_domain: Суперадминистраторите трябва да влязат в системата чрез основния домейн
+    switch_client: Превключване на клиент
     system_prompt: Системна подкана
     tab_text_one: Меню
     tab_text_two: Подменю
@@ -2979,3 +3035,4 @@ bg:
     yoodli_keyset_url: URL адрес на ключовия набор
     yoodli_launch_url: URL за стартиране
     yoodli_login_url: URL за вход
+    you_are_here: Вие сте тук

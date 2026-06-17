@@ -202,6 +202,7 @@ ko:
     assistant_validation_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다
     attendance: 출석
     attendance_status: 출석 현황
+    audit_log_impersonated_by: 모방한 사람
     audit_log_title: 감사 로그 정보
     audit_log_type: 레코드 유형
     audit_logs: 감사 로그
@@ -379,7 +380,11 @@ ko:
     client_secret_label: 클라이언트 암호
     client_secret_name: oauth_client_secret
     client_secret_required: 클라이언트 암호가 필요합니다.
+    client_selection_instruction: 관리자 패널로 이동하려면 클라이언트를 선택하세요.
+    client_selection_sign_out: 로그아웃
+    client_selection_title: 고객 선택
     clients: 고객 임차
+    clients_search_placeholder: 클라이언트 검색
     closed: 닫힘
     code_required: 코드 필요
     collapse_filters: 필터 축소
@@ -735,6 +740,7 @@ ko:
     feature_flags_platform_group: 플랫폼 기능
     feature_global_skills_description: 글로벌 스킬 라이브러리에 접속하여 평가를 수행하세요
     feature_idp_description: 참가자를 위한 개인 개발 계획 수립을 활성화하십시오
+    feature_not_available: 이 기능은 사용할 수 없습니다
     feature_sms_notification_description: 캠페인 초대 및 알림에 대한 SMS 알림 활성화
     fields_level: 레벨
     fields_level_description: 레벨 설명
@@ -794,6 +800,10 @@ ko:
     grant_type_name: oauth_grant_type
     graphic: 그래픽
     graphic_slider: 그래픽 슬라이더
+    handoff_client_mismatch: 이 클라이언트에 대해 인증 토큰이 유효하지 않습니다
+    handoff_invalid_token: 인증 토큰이 유효하지 않거나 만료되었습니다
+    handoff_token_expired: 인증 토큰의 유효 기간이 만료되었거나 이미 사용되었습니다
+    handoff_user_disabled: 귀하의 계정이 비활성화되었습니다
     header_logout_content: 작업을 계속하고 싶다면 취소 버튼을 누르세요. 현재 사용자를 로그아웃하려면 확인 버튼을 누르세요.
     header_logout_title: 정말 로그아웃하시겠습니까?
     hide_all: 모두 숨기기
@@ -1151,12 +1161,14 @@ ko:
     libraries: 미디어 라이브러리
     library_invalid_type: 유효하지 않은 라이브러리 항목
     licenses: 라이선스
+    lighthouse_logo_alt_text: 등대 로고
     lighthouse_question: 등대 관련 질문
     lighthouse_question_id: 등대 질문 ID
     link_text: 링크
     linked_assessments: 연관된 평가
     locale: 로캘
     log_date: 로그 날짜
+    logged_in: 로그인됨
     login: 로그인
     low: 낮음
     mail_history: 메일 기록
@@ -1251,6 +1263,8 @@ ko:
     new_folder: 새 폴더
     new_score: 새로운 점수
     no_assessments_found: 감사 ID
+    no_client_access: 이 클라이언트에 대한 액세스 권한이 없습니다
+    no_clients_found: 고객이 없습니다
     no_completed_assessments: 아직 완료된 평가가 없습니다
     no_file_selected: 선택된 파일이 없습니다
     no_notifications: 알림 없음
@@ -1322,6 +1336,7 @@ ko:
     other_assessments: 기타 평가
     other_assessor_assessments: 기타 평가자 평가
     other_reports: 기타 보고서
+    others: 기타
     outcome: 결과
     output_schema_key_constraint: 키는 소문자로 시작해야 하며, 소문자, 숫자, 밑줄만 포함할 수 있습니다
     output_schema_keys: 출력 스키마 키
@@ -1994,6 +2009,7 @@ ko:
     rationale: 이유
     raw: 날것의
     reason_for_changes: 변경 사유
+    recents: 최근 게시물
     record_id: 레코드 ID
     recordings: 녹음
     reflection_questions: 성찰 질문
@@ -2165,6 +2181,10 @@ ko:
     revisions_user_prompt: 사용자 프롬프트
     revisions_version: 버전
     role: 역할
+    role_campaign_admin: 캠페인 관리자
+    role_client_admin: 고객 관리
+    role_project_admin: 프로젝트 관리자
+    role_superadmin: 슈퍼 관리자
     saml_idp_certificate_available: 이용 가능 (클릭하여 복사)
     saml_idp_certificate_label: 증명서
     saml_idp_entity_id_label: 법인 ID/발행자
@@ -2713,6 +2733,36 @@ ko:
     smtp_settings_use_sender_verification: 발신자 인증 사용
     smtp_settings_user_name: 사용자 이름
     specialty_questions: 전문 분야 관련 질문
+    sso_email_mismatch: 신원 확인 서비스에서 다른 계정으로 로그인되어 있습니다. 신원 확인 서비스에서 로그아웃한 후 다시 시도해 주세요.
+    sso_enforced: SSO 적용
+    sso_label: SSO
+    sso_not_enabled: 이 클라이언트에서는 SSO가 활성화되어 있지 않습니다
+    sso_settings: SSO 설정
+    sso_settings_allowed_domains: 허용된 도메인
+    sso_settings_certificate: IdP 인증서
+    sso_settings_enabled: SSO 활성화됨
+    sso_settings_enforced: SSO 적용
+    sso_settings_entity_id: 엔티티 ID
+    sso_settings_metadata_certificate_expiry: '인증서 만료일: %{date}'
+    sso_settings_metadata_file_too_large: 파일 크기가 최대 허용 크기인 1MB를 초과합니다.
+    sso_settings_metadata_invalid_xml: XML 형식이 올바르지 않습니다
+    sso_settings_metadata_no_idp_descriptor: 메타데이터에서 IdP 설명자를 찾을 수 없습니다
+    sso_settings_metadata_parse: 메타데이터 분석
+    sso_settings_metadata_parse_error: 메타데이터 구문 분석에 실패했습니다
+    sso_settings_metadata_parse_success: 메타데이터에서 가져온 IdP 필드
+    sso_settings_metadata_parsing: 메타데이터 분석 중...
+    sso_settings_metadata_upload: IdP 메타데이터 XML 업로드
+    sso_settings_metadata_upload_again: 다른 파일을 드래그하여 덮어쓰기
+    sso_settings_metadata_upload_drag_hint: ".xml 파일을 여기로 드래그 앤 드롭하거나 클릭하여 찾아보세요"
+    sso_settings_metadata_upload_hint: ".xml 파일을 업로드하여 IdP 필드를 자동으로 채우기"
+    sso_settings_metadata_upload_retry: 유효한 메타데이터 XML 파일을 사용하여 다시 시도해 주세요
+    sso_settings_or_configure_manually: 또는 수동으로 설정하세요
+    sso_settings_readable_resource_name: SSO 설정
+    sso_settings_save: 저장
+    sso_settings_session_timeout: 세션 시간 초과 기간
+    sso_settings_slo_url: SLO 서비스 URL
+    sso_settings_sso_url: SSO 서비스 URL
+    sso_settings_tab: SSO
     standard: 표준
     standard_deviation: 표준편차
     standard_questions: 일반적인 질문
@@ -2771,6 +2821,10 @@ ko:
     sub_factors_conditional_average: 요인의 조건부 가중 평균
     sub_factors_sum: 요소의 가중치 합계
     subdomain: 하위 도메인
+    subdomain_admin_keyword: 예약된 관리자 서브도메인 패턴을 사용할 수 없습니다
+    subdomain_invalid_format: 서브도메인 형식이 잘못되었습니다.
+    subdomain_reserved: 하위 도메인 %{value}은 예약되어 있습니다
+    subdomain_too_long_max_32: 서브도메인 길이가 너무 깁니다(최대 32자).
     subject: 제목
     subject_can_access_reports: 주체가 자신의 보고서에 액세스할 수 있습니다.
     subject_email: 수신자 이메일
@@ -2795,6 +2849,8 @@ ko:
     success_title: 평가 센터 생성
     success_update: 디자인 설정이 성공적으로 저장되었습니다
     suitability_id: 적합성 ID
+    superadmin_use_root_domain: 슈퍼 관리자는 메인 도메인을 통해 로그인해야 합니다
+    switch_client: 클라이언트 전환
     system_prompt: 시스템 프롬프트
     tab_text_one: 메뉴
     tab_text_two: 하위 메뉴
@@ -2982,3 +3038,4 @@ ko:
     yoodli_keyset_url: 키셋 URL
     yoodli_launch_url: 출시 URL
     yoodli_login_url: 로그인 URL
+    you_are_here: 현재 위치

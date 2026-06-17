@@ -34,6 +34,8 @@ ko:
       cant_be_deleted: 이 레코드는 삭제할 수 없습니다.
       client_feature:
         ai_assisted_idp_feature_error: AI 어시스턴트 기능이 비활성화된 경우 true일 수 없습니다.
+      client_sso_settings:
+        sso_enforced_requires_enabled: SSO가 활성화되지 않은 상태에서는 이 기능을 활성화할 수 없습니다.
       create_superadmin:
         uniq_email: 이메일은 고유해야 합니다.
       development_actions:

@@ -202,6 +202,7 @@ ja:
     assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
     attendance: 出席状況
     attendance_status: 出席状況
+    audit_log_impersonated_by: なりすまし
     audit_log_title: 監査ログ情報
     audit_log_type: レコードの種類
     audit_logs: 監査ログ
@@ -379,7 +380,11 @@ ja:
     client_secret_label: クライアントシークレット
     client_secret_name: oauth_client_secret
     client_secret_required: クライアントシークレットが必要です
+    client_selection_instruction: 管理画面に進むには、クライアントを選択してください。
+    client_selection_sign_out: ログアウト
+    client_selection_title: クライアントを選択
     clients: 顧客契約
+    clients_search_placeholder: クライアントを検索
     closed: クローズド
     code_required: コードが必要です
     collapse_filters: 折りたたみフィルター
@@ -737,6 +742,7 @@ ja:
     feature_flags_platform_group: プラットフォーム機能
     feature_global_skills_description: グローバルスキルライブラリにアクセスして評価を実施する
     feature_idp_description: 参加者のための個人開発計画を有効にする
+    feature_not_available: この機能はご利用いただけません
     feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
     fields_level: レベル
     fields_level_description: レベル説明
@@ -796,6 +802,10 @@ ja:
     grant_type_name: oauth_grant_type
     graphic: グラフィック
     graphic_slider: グラフィックスライダー
+    handoff_client_mismatch: このクライアントでは、認証トークンが無効です
+    handoff_invalid_token: 認証トークンが無効か、有効期限が切れています
+    handoff_token_expired: 認証トークンの有効期限が切れています、またはすでに使用されています
+    handoff_user_disabled: アカウントが無効になっています
     header_logout_content: 作業を続けたい場合はキャンセルを押してください。現在のユーザーをログアウトするにはOKを押してください。
     header_logout_title: 本当にログアウトしたいですか?
     hide_all: すべて隠す
@@ -1148,12 +1158,14 @@ ja:
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
+    lighthouse_logo_alt_text: 灯台のロゴ
     lighthouse_question: 灯台に関する質問
     lighthouse_question_id: Lighthouse 質問ID
     link_text: リンク
     linked_assessments: 関連する評価
     locale: ロケール
     log_date: ログ日付
+    logged_in: ログイン中
     login: ログイン
     low: 低
     mail_history: メール履歴
@@ -1249,6 +1261,8 @@ ja:
     new_folder: 新しいフォルダ
     new_score: 新スコア
     no_assessments_found: 監査ID
+    no_client_access: このクライアントにはアクセスできません
+    no_clients_found: クライアントが見つかりません
     no_completed_assessments: 完了した査定はまだない
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
@@ -1321,6 +1335,7 @@ ja:
     other_assessments: その他の評価
     other_assessor_assessments: その他の査定
     other_reports: その他のレポート
+    others: その他
     outcome: 成果
     output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
     output_schema_keys: 出力スキーマ・キー
@@ -1992,6 +2007,7 @@ ja:
     rationale: 根拠
     raw: 生
     reason_for_changes: 変更の理由
+    recents: 最近の投稿
     record_id: レコードID
     recordings: 録音
     reflection_questions: 振り返りの質問
@@ -2167,6 +2183,10 @@ ja:
     revisions_user_prompt: ユーザープロンプト
     revisions_version: バージョン
     role: 役割
+    role_campaign_admin: キャンペーン管理
+    role_client_admin: クライアント管理
+    role_project_admin: プロジェクト管理者
+    role_superadmin: スーパー管理者
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
     saml_idp_entity_id_label: 事業体ID/発行者
@@ -2725,6 +2745,36 @@ ja:
     smtp_settings_use_sender_verification: 送信者確認を使用する
     smtp_settings_user_name: ユーザー名
     specialty_questions: 専門的な質問
+    sso_email_mismatch: IDプロバイダーでは別のアカウントでログインしています。IDプロバイダーからログアウトしてから、もう一度お試しください。
+    sso_enforced: SSOを適用する
+    sso_label: SSO
+    sso_not_enabled: このクライアントではSSOが有効になっていません
+    sso_settings: SSO設定
+    sso_settings_allowed_domains: 許可されたドメイン
+    sso_settings_certificate: IdP証明書
+    sso_settings_enabled: SSO 対応
+    sso_settings_enforced: SSOが必須
+    sso_settings_entity_id: エンティティID
+    sso_settings_metadata_certificate_expiry: 証明書の有効期限：%{date}
+    sso_settings_metadata_file_too_large: ファイルが最大サイズ（1MB）を超えています
+    sso_settings_metadata_invalid_xml: XML形式が不正です
+    sso_settings_metadata_no_idp_descriptor: メタデータにIdP記述子が見つかりません
+    sso_settings_metadata_parse: メタデータの解析
+    sso_settings_metadata_parse_error: メタデータの解析に失敗しました
+    sso_settings_metadata_parse_success: メタデータから入力されたIdPフィールド
+    sso_settings_metadata_parsing: メタデータの解析中...
+    sso_settings_metadata_upload: IdPメタデータXMLのアップロード
+    sso_settings_metadata_upload_again: 別のファイルをドラッグして置き換える
+    sso_settings_metadata_upload_drag_hint: ".xml ファイルをここにドラッグ＆ドロップするか、クリックして選択してください"
+    sso_settings_metadata_upload_hint: ".xml ファイルをアップロードして、IdP のフィールドを自動入力する"
+    sso_settings_metadata_upload_retry: 有効なメタデータXMLファイルを使用して、もう一度お試しください
+    sso_settings_or_configure_manually: または手動で設定する
+    sso_settings_readable_resource_name: SSO設定
+    sso_settings_save: 保存
+    sso_settings_session_timeout: セッションのタイムアウト時間
+    sso_settings_slo_url: SLO サービス URL
+    sso_settings_sso_url: SSOサービスのURL
+    sso_settings_tab: SSO
     standard: スタンダード
     standard_deviation: 標準偏差
     standard_questions: よくある質問
@@ -2783,6 +2833,10 @@ ja:
     sub_factors_conditional_average: 要因の条件付き加重平均
     sub_factors_sum: 要因の加重和
     subdomain: サブドメイン
+    subdomain_admin_keyword: 予約済みの管理者サブドメインパターンは使用できません
+    subdomain_invalid_format: サブドメインの形式が正しくありません。
+    subdomain_reserved: サブドメイン %{value} は予約済みです
+    subdomain_too_long_max_32: サブドメインが長すぎます（最大32文字までです）
     subject: 課題
     subject_can_access_reports: 対象者はレポートにアクセスできる
     subject_email: 対象者のEメール
@@ -2807,6 +2861,8 @@ ja:
     success_title: アセスメントセンター設置
     success_update: デザイン設定が正常に保存されました
     suitability_id: 適合性ID
+    superadmin_use_root_domain: スーパー管理者はメインドメイン経由でサインインする必要があります
+    switch_client: Switchクライアント
     system_prompt: システムプロンプト
     tab_text_one: メニュー
     tab_text_two: サブメニュー
@@ -2991,3 +3047,4 @@ ja:
     yoodli_keyset_url: キーセットURL
     yoodli_launch_url: ローンチURL
     yoodli_login_url: ログインURL
+    you_are_here: 現在地

@@ -201,6 +201,7 @@ hr:
     assistant_validation_failed: Nije uspjelo generirati valjan izlaz nakon više pokušaja
     attendance: Posjećenost
     attendance_status: Status prisustva
+    audit_log_impersonated_by: U ulozi
     audit_log_title: Podaci o zapisniku nadzora
     audit_log_type: Vrsta zapisa
     audit_logs: Zapisnici revizije
@@ -377,7 +378,11 @@ hr:
     client_secret_label: Tajna klijenta
     client_secret_name: oauth_client_secret
     client_secret_required: Tajna klijenta je obavezna
+    client_selection_instruction: Odaberite klijenta za nastavak na administratorsku ploču.
+    client_selection_sign_out: Odjavi se
+    client_selection_title: Odabir klijenta
     clients: Klijenti
+    clients_search_placeholder: Pretraži klijenta
     closed: Zatvoreno
     code_required: Potrebna je koda
     collapse_filters: Sažmi filtre
@@ -735,6 +740,7 @@ hr:
     feature_flags_platform_group: Značajke platforme
     feature_global_skills_description: Pristupite globalnoj biblioteci vještina za procjene
     feature_idp_description: Omogućite planiranje individualnog razvoja za sudionike
+    feature_not_available: Ova značajka nije dostupna
     feature_sms_notification_description: Omogućite SMS obavijesti za pozivnice i podsjetnike kampanje
     fields_level: Razina
     fields_level_description: Opis razine
@@ -794,6 +800,10 @@ hr:
     grant_type_name: oauth_grant_type
     graphic: Grafički
     graphic_slider: Grafički klizač
+    handoff_client_mismatch: Token za autentifikaciju nije valjan za ovog klijenta
+    handoff_invalid_token: Neispravan ili istekli token za autentifikaciju
+    handoff_token_expired: Token za autentifikaciju je istekao ili je već korišten
+    handoff_user_disabled: Vaš je račun onemogućen
     header_logout_content: Pritisnite Otkaži ako želite nastaviti s radom. Pritisni Ok za odjavu trenutnog korisnika.
     header_logout_title: Jesi li siguran da želiš odjaviti se?
     hide_all: Sakrij sve
@@ -1146,12 +1156,14 @@ hr:
     libraries: Medijska biblioteka
     library_invalid_type: Nevažeća knjižnična stavka
     licenses: Licence
+    lighthouse_logo_alt_text: Logo svjetionika
     lighthouse_question: Pitanje svjetionika
     lighthouse_question_id: ID pitanja svjetionika
     link_text: Povezati
     linked_assessments: Povezane procjene
     locale: Lokalno
     log_date: Datum zapisa
+    logged_in: Prijavljeno
     login: Prijava
     low: Nisko
     mail_history: Povijest pošte
@@ -1247,6 +1259,8 @@ hr:
     new_folder: Nova mapa
     new_score: Nova ocjena
     no_assessments_found: ID revizije
+    no_client_access: Nemate pristup ovom klijentu
+    no_clients_found: Nisu pronađeni klijenti
     no_completed_assessments: Još nema dovršenih procjena
     no_file_selected: Nijedna datoteka nije odabrana
     no_notifications: Nema obavijesti
@@ -1319,6 +1333,7 @@ hr:
     other_assessments: Ostale procjene
     other_assessor_assessments: Ostale procjene procjenitelja
     other_reports: Ostala izvješća
+    others: Ostali
     outcome: Ishod
     output_schema_key_constraint: Ključ mora započeti malim slovom i smije sadržavati samo mala slova, brojeve i podcrte
     output_schema_keys: Ključevi izlazne sheme
@@ -1990,6 +2005,7 @@ hr:
     rationale: Opravdanje
     raw: SIROV
     reason_for_changes: Razlog promjena
+    recents: Nedavni
     record_id: ID zapisa
     recordings: Snimke
     reflection_questions: Pitanja za razmišljanje
@@ -2165,6 +2181,10 @@ hr:
     revisions_user_prompt: Upit korisnika
     revisions_version: Verzija
     role: Uloga
+    role_campaign_admin: Administrator kampanje
+    role_client_admin: Administracija klijenta
+    role_project_admin: Administrator projekta
+    role_superadmin: Super administrator
     saml_idp_certificate_available: Dostupno (kliknite za kopiranje)
     saml_idp_certificate_label: Certifikat
     saml_idp_entity_id_label: ID subjekta/izdavatelj
@@ -2715,6 +2735,36 @@ hr:
     smtp_settings_use_sender_verification: Korištenje potvrde pošiljatelja
     smtp_settings_user_name: Korisničko ime
     specialty_questions: Posebna pitanja
+    sso_email_mismatch: Prijavljeni ste na drugi račun kod pružatelja identiteta. Molimo odjavite se s pružatelja identiteta i pokušajte ponovno.
+    sso_enforced: Nametnite SSO
+    sso_label: SSO
+    sso_not_enabled: SSO nije omogućen za ovog klijenta
+    sso_settings: Postavke SSO-a
+    sso_settings_allowed_domains: Dozvoljene domene
+    sso_settings_certificate: IdP certifikat
+    sso_settings_enabled: SSO omogućen
+    sso_settings_enforced: SSO je obavezan
+    sso_settings_entity_id: ID entiteta
+    sso_settings_metadata_certificate_expiry: 'Certifikat istječe: %{date}'
+    sso_settings_metadata_file_too_large: Datoteka prelazi maksimalnu veličinu od 1 MB.
+    sso_settings_metadata_invalid_xml: Neispravan XML format
+    sso_settings_metadata_no_idp_descriptor: Nije pronađen IdP deskriptor u metapodacima
+    sso_settings_metadata_parse: Parse metapodatke
+    sso_settings_metadata_parse_error: Neuspjelo parsiranje metapodataka
+    sso_settings_metadata_parse_success: Polja IdP-a popunjena metapodacima
+    sso_settings_metadata_parsing: Analiziranje metapodataka...
+    sso_settings_metadata_upload: Učitaj IdP metapodatkovni XML
+    sso_settings_metadata_upload_again: Pustite drugu datoteku za zamjenu
+    sso_settings_metadata_upload_drag_hint: Povucite i ispustite .xml datoteku ovdje ili kliknite za pregled
+    sso_settings_metadata_upload_hint: Učitajte .xml datoteku za automatsko popunjavanje IdP polja
+    sso_settings_metadata_upload_retry: Pokušajte ponovno s valjanom XML datotekom metapodataka.
+    sso_settings_or_configure_manually: Ili ručno konfigurirajte
+    sso_settings_readable_resource_name: Postavke SSO-a
+    sso_settings_save: Sačuvaj
+    sso_settings_session_timeout: Trajanje isteka sesije
+    sso_settings_slo_url: URL usluge SLO
+    sso_settings_sso_url: URL usluge SSO
+    sso_settings_tab: SSO
     standard: Standardno
     standard_deviation: Standardna devijacija
     standard_questions: Standardna pitanja
@@ -2773,6 +2823,10 @@ hr:
     sub_factors_conditional_average: Uvjetni ponderirani prosjek faktora
     sub_factors_sum: Ponderirani zbroj čimbenika
     subdomain: Poddomena
+    subdomain_admin_keyword: Ne može se koristiti rezervirani obrazac poddomene za administratore
+    subdomain_invalid_format: Pogrešan format poddomene.
+    subdomain_reserved: Poddomena %{value} je rezervirana
+    subdomain_too_long_max_32: Poddomena je preduga (maksimalno 32 znaka)
     subject: Naslov
     subject_can_access_reports: Ispitanik može pristupiti svojim izvješćima
     subject_email: E-pošta ispitanika
@@ -2797,6 +2851,8 @@ hr:
     success_title: Stvoreni centri za procjenu
     success_update: Postavke dizajna uspješno su spremljene
     suitability_id: ID prikladnosti
+    superadmin_use_root_domain: Superadministratori se moraju prijaviti putem glavne domene.
+    switch_client: Prebaciti klijenta
     system_prompt: Upit sustava
     tab_text_one: Izbornik
     tab_text_two: Podizbornik
@@ -2981,3 +3037,4 @@ hr:
     yoodli_keyset_url: URL za skup ključeva
     yoodli_launch_url: Launch URL
     yoodli_login_url: URL za prijavu
+    you_are_here: Vi ste ovdje

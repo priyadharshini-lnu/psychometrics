@@ -202,6 +202,7 @@ en-US:
     assistant_validation_failed: Failed to generate valid output after multiple attempts
     attendance: Attendance
     attendance_status: Attendance status
+    audit_log_impersonated_by: Impersonated By
     audit_log_title: Audit Log Info
     audit_log_type: Record Type
     audit_logs: Audit Logs
@@ -379,7 +380,11 @@ en-US:
     client_secret_label: Client Secret
     client_secret_name: oauth_client_secret
     client_secret_required: Client secret is required
+    client_selection_instruction: Select a client to continue to the administration panel.
+    client_selection_sign_out: Sign Out
+    client_selection_title: Select Client
     clients: Client Tenancies
+    clients_search_placeholder: Search Client
     closed: Closed
     code_required: Code is required
     collapse_filters: Collapse Filters
@@ -737,6 +742,7 @@ en-US:
     feature_flags_platform_group: Platform Features
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
+    feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
     fields_level: Level
     fields_level_description: Level Description
@@ -796,6 +802,10 @@ en-US:
     grant_type_name: oauth_grant_type
     graphic: Graphic
     graphic_slider: Graphic Slider
+    handoff_client_mismatch: Authentication token is not valid for this client
+    handoff_invalid_token: Invalid or expired authentication token
+    handoff_token_expired: Authentication token has expired or already been used
+    handoff_user_disabled: Your account is disabled
     header_logout_content: Press Cancel if you want to continue work. Press Ok to logout current user.
     header_logout_title: Are you sure you want to logout.
     hide_all: Hide All
@@ -1152,12 +1162,14 @@ en-US:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    lighthouse_logo_alt_text: Lighthouse logo
     lighthouse_question: Lighthouse Question
     lighthouse_question_id: Lighthouse Question ID
     link_text: Link
     linked_assessments: Linked assessments
     locale: Locale
     log_date: Log Date
+    logged_in: Logged in
     login: Login
     low: Low
     mail_history: Mail History
@@ -1253,6 +1265,8 @@ en-US:
     new_folder: New folder
     new_score: New Score
     no_assessments_found: Audit ID
+    no_client_access: You do not have access to this client
+    no_clients_found: No clients found
     no_completed_assessments: There are no completed assessments yet
     no_file_selected: No file selected
     no_notifications: No Notifications
@@ -1325,6 +1339,7 @@ en-US:
     other_assessments: Other Assessments
     other_assessor_assessments: Other Assessor Assessments
     other_reports: Other Reports
+    others: Others
     outcome: Outcome
     output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     output_schema_keys: Output Schema Keys
@@ -1997,6 +2012,7 @@ en-US:
     rationale: Rationale
     raw: RAW
     reason_for_changes: Reason for changes
+    recents: Recents
     record_id: Record ID
     recordings: Recordings
     reflection_questions: Reflection Questions
@@ -2172,6 +2188,10 @@ en-US:
     revisions_user_prompt: User Prompt
     revisions_version: Version
     role: Role
+    role_campaign_admin: Campaign Admin
+    role_client_admin: Client Admin
+    role_project_admin: Project Admin
+    role_superadmin: Super Admin
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -2730,6 +2750,36 @@ en-US:
     smtp_settings_use_sender_verification: Use sender verification
     smtp_settings_user_name: User Name
     specialty_questions: Specialty Questions
+    sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
+    sso_enforced: Enforce SSO
+    sso_label: SSO
+    sso_not_enabled: SSO is not enabled for this client
+    sso_settings: SSO Settings
+    sso_settings_allowed_domains: Allowed Domains
+    sso_settings_certificate: IdP Certificate
+    sso_settings_enabled: SSO Enabled
+    sso_settings_enforced: SSO Enforced
+    sso_settings_entity_id: Entity ID
+    sso_settings_metadata_certificate_expiry: 'Certificate expires: %{date}'
+    sso_settings_metadata_file_too_large: File exceeds maximum size of 1MB
+    sso_settings_metadata_invalid_xml: Invalid XML format
+    sso_settings_metadata_no_idp_descriptor: No IdP descriptor found in metadata
+    sso_settings_metadata_parse: Parse Metadata
+    sso_settings_metadata_parse_error: Failed to parse metadata
+    sso_settings_metadata_parse_success: IdP fields populated from metadata
+    sso_settings_metadata_parsing: Parsing metadata...
+    sso_settings_metadata_upload: Upload IdP Metadata XML
+    sso_settings_metadata_upload_again: Drop another file to replace
+    sso_settings_metadata_upload_drag_hint: Drag & drop .xml file here or click to browse
+    sso_settings_metadata_upload_hint: Upload .xml file to auto-populate IdP fields
+    sso_settings_metadata_upload_retry: Try again with a valid metadata XML file
+    sso_settings_or_configure_manually: Or configure manually
+    sso_settings_readable_resource_name: SSO Settings
+    sso_settings_save: Save
+    sso_settings_session_timeout: Session Timeout Duration
+    sso_settings_slo_url: SLO Service URL
+    sso_settings_sso_url: SSO Service URL
+    sso_settings_tab: SSO
     standard: Standard
     standard_deviation: Standard Deviation
     standard_questions: Standard Questions
@@ -2788,6 +2838,10 @@ en-US:
     sub_factors_conditional_average: Conditional Weighted Average of Factors
     sub_factors_sum: Weighted Sum of Factors
     subdomain: Subdomain
+    subdomain_admin_keyword: cannot use reserved admin subdomain pattern
+    subdomain_invalid_format: Wrong subdomain format.
+    subdomain_reserved: Subdomain %{value} is reserved
+    subdomain_too_long_max_32: Subdomain is too long (maximum is 32 characters)
     subject: Subject
     subject_can_access_reports: Subject can access their reports
     subject_email: Subject's Email
@@ -2812,6 +2866,8 @@ en-US:
     success_title: Assessment centers created
     success_update: Design Settings were saved successfully
     suitability_id: Suitability ID
+    superadmin_use_root_domain: Super administrators must sign in through the main domain
+    switch_client: Switch Client
     system_prompt: System Prompt
     tab_text_one: Menu
     tab_text_two: Submenu
@@ -2999,3 +3055,4 @@ en-US:
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: Launch URL
     yoodli_login_url: Login URL
+    you_are_here: You are here

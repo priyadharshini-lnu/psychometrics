@@ -32,6 +32,12 @@ describe UserReports::GenerateIdpReportPdf do
       }
     end
 
+    before do
+      allow(AdminSubdomain).to receive(:host_options_for).
+        with(user: current_user, project: campaign.project).
+        and_return({})
+    end
+
     it 'returns preview pdf url for administrator' do
       url = described_class.new(user_idp_plan, current_user).send(:report_preview_url)
 
@@ -53,6 +59,37 @@ describe UserReports::GenerateIdpReportPdf do
                                   include_reflective_questions: true)
         )
       )
+    end
+
+    context 'for client administrator' do
+      let(:client_admin) { create(:client_admin) }
+      let(:client_admin_url_params) do
+        {
+          host: 'client-admin.tte.com',
+          user_token: client_admin.authentication_token,
+          lang: 'en',
+          port: Settings.port,
+          protocol: Settings.protocol,
+          id: user_idp_plan.id,
+          new_campaign_id: campaign.id
+        }
+      end
+
+      before do
+        allow(AdminSubdomain).to receive(:host_options_for).
+          with(user: client_admin, project: campaign.project).
+          and_return({ host: 'client-admin.tte.com' })
+      end
+
+      it 'returns preview pdf url' do
+        url = described_class.new(user_idp_plan, client_admin).send(:report_preview_url)
+
+        expect(url).to eq(
+          pdf_preview_administration_new_campaign_user_idp_report_url(
+            client_admin_url_params.merge(include_reflective_questions: false)
+          )
+        )
+      end
     end
   end
 

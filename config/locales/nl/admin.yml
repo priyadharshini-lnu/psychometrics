@@ -196,6 +196,7 @@ nl:
     assistant_validation_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
     attendance: Aanwezigheid
     attendance_status: Aanwezigheidsstatus
+    audit_log_impersonated_by: Gespeld door
     audit_log_title: Informatie controlelogboek
     audit_log_type: Opname Type
     audit_logs: Controlelogboeken
@@ -369,7 +370,11 @@ nl:
     client_secret_label: Geheim van de klant
     client_secret_name: oauth_client_secret
     client_secret_required: Klantgeheim is vereist
+    client_selection_instruction: Kies een klant om door te gaan naar het beheerpaneel.
+    client_selection_sign_out: Uitloggen
+    client_selection_title: Kies een klant
     clients: Huurcontracten voor klanten
+    clients_search_placeholder: Zoek klant
     closed: Gesloten
     code_required: Code is vereist
     collapse_filters: Filters samenvouwen
@@ -725,6 +730,7 @@ nl:
     feature_flags_platform_group: Platformfuncties
     feature_global_skills_description: Toegang tot de wereldwijde vaardighedenbibliotheek voor beoordelingen
     feature_idp_description: Individuele ontwikkelingsplanning voor deelnemers inschakelen
+    feature_not_available: Deze functie is niet beschikbaar
     feature_sms_notification_description: SMS-meldingen inschakelen voor campagne-uitnodigingen en herinneringen
     fields_level: Niveau
     fields_level_description: Niveau Beschrijving
@@ -784,6 +790,10 @@ nl:
     grant_type_name: oauth_grant_type
     graphic: Afbeelding
     graphic_slider: Grafische schuifbalk
+    handoff_client_mismatch: Het authenticatietoken is niet geldig voor deze client
+    handoff_invalid_token: Ongeldig of verlopen authenticatietoken
+    handoff_token_expired: Het authenticatietoken is verlopen of is al gebruikt
+    handoff_user_disabled: Uw account is geblokkeerd
     header_logout_content: Druk op Annuleren als je verder wilt werken. Druk op OK om uit te loggen met huidige gebruiker.
     header_logout_title: Weet je zeker dat je wilt uitloggen?
     hide_all: Alles verbergen
@@ -1135,12 +1145,14 @@ nl:
     libraries: Mediatheek
     library_invalid_type: Ongeldig bibliotheekitem
     licenses: Licenties
+    lighthouse_logo_alt_text: Vuurtorenlogo
     lighthouse_question: Vraag over de vuurtoren
     lighthouse_question_id: Vraag-ID van Lighthouse
     link_text: Link
     linked_assessments: Gekoppelde beoordelingen
     locale: Lokaal
     log_date: Log Datum
+    logged_in: Ingelogd
     login: Inloggen
     low: Laag
     mail_history: Mail Geschiedenis
@@ -1236,6 +1248,8 @@ nl:
     new_folder: Nieuwe map
     new_score: Nieuwe score
     no_assessments_found: Controle-id
+    no_client_access: Je hebt geen toegang tot deze klant
+    no_clients_found: Er zijn geen klanten gevonden
     no_completed_assessments: Er zijn nog geen afgeronde beoordelingen
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
@@ -1306,6 +1320,7 @@ nl:
     other_assessments: Andere beoordelingen
     other_assessor_assessments: Andere taxateur taxaties
     other_reports: Andere rapporten
+    others: Anderen
     outcome: Resultaat
     output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
     output_schema_keys: Uitvoerschema sleutels
@@ -1975,6 +1990,7 @@ nl:
     range_min_max: ASSORTIMENT %{min} - %{max}
     raw: RAUW
     reason_for_changes: Reden voor wijzigingen
+    recents: Laatste
     record_id: Record-id
     recordings: Opnamen
     reflection_questions: Reflectie vragen
@@ -2150,6 +2166,10 @@ nl:
     revisions_user_prompt: Gebruikersprompt
     revisions_version: Versie
     role: Rol
+    role_campaign_admin: Campagnebeheer
+    role_client_admin: Klantbeheer
+    role_project_admin: Projectbeheerder
+    role_superadmin: Superbeheerder
     saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
     saml_idp_certificate_label: Certificaat
     saml_idp_entity_id_label: Entiteits-ID/Uitgever
@@ -2708,6 +2728,36 @@ nl:
     smtp_settings_use_sender_verification: Afzenderverificatie gebruiken
     smtp_settings_user_name: Gebruikersnaam
     specialty_questions: Specifieke vragen
+    sso_email_mismatch: U bent aangemeld bij een ander account bij de identiteitsprovider. Meld u af bij uw identiteitsprovider en probeer het opnieuw.
+    sso_enforced: SSO afdwingen
+    sso_label: SSO
+    sso_not_enabled: SSO is niet ingeschakeld voor deze client
+    sso_settings: SSO-instellingen
+    sso_settings_allowed_domains: Toegestane domeinen
+    sso_settings_certificate: IdP-certificaat
+    sso_settings_enabled: SSO ingeschakeld
+    sso_settings_enforced: SSO verplicht
+    sso_settings_entity_id: Entiteits-ID
+    sso_settings_metadata_certificate_expiry: 'Certificaat verloopt: %{date}'
+    sso_settings_metadata_file_too_large: Het bestand is groter dan de maximale grootte van 1 MB
+    sso_settings_metadata_invalid_xml: Ongeldige XML-indeling
+    sso_settings_metadata_no_idp_descriptor: Er is geen IdP-descriptor gevonden in de metagegevens
+    sso_settings_metadata_parse: Metadata parseren
+    sso_settings_metadata_parse_error: Het parseren van de metagegevens is mislukt
+    sso_settings_metadata_parse_success: IdP-velden die worden ingevuld op basis van metagegevens
+    sso_settings_metadata_parsing: Metadata worden geparseerd...
+    sso_settings_metadata_upload: XML-metadata van IdP uploaden
+    sso_settings_metadata_upload_again: Sleep nog een bestand hierheen om het te vervangen
+    sso_settings_metadata_upload_drag_hint: Sleep een .xml-bestand hierheen of klik om te bladeren
+    sso_settings_metadata_upload_hint: Upload een .xml-bestand om de IdP-velden automatisch in te vullen
+    sso_settings_metadata_upload_retry: Probeer het opnieuw met een geldig XML-bestand met metagegevens
+    sso_settings_or_configure_manually: Of handmatig configureren
+    sso_settings_readable_resource_name: SSO-instellingen
+    sso_settings_save: Opslaan
+    sso_settings_session_timeout: Duur van de sessietime-out
+    sso_settings_slo_url: URL van de SLO-service
+    sso_settings_sso_url: URL van de SSO-service
+    sso_settings_tab: SSO
     standard: Standaard
     standard_deviation: Standaardafwijking
     standard_questions: Standaardvragen
@@ -2766,6 +2816,10 @@ nl:
     sub_factors_conditional_average: Voorwaardelijk gewogen gemiddelde van factoren
     sub_factors_sum: Gewogen som van factoren
     subdomain: Subdomein
+    subdomain_admin_keyword: kan het gereserveerde patroon voor beheerderssubdomeinen niet gebruiken
+    subdomain_invalid_format: Onjuist subdomeinformaat.
+    subdomain_reserved: Het subdomein %{value} is gereserveerd
+    subdomain_too_long_max_32: Het subdomein is te lang (maximaal 32 tekens)
     subject: Onderwerp
     subject_can_access_reports: Proefpersoon heeft toegang tot zijn rapporten
     subject_email: E-mail van onderwerp
@@ -2790,6 +2844,8 @@ nl:
     success_title: Opgezette beoordelingscentra
     success_update: De ontwerpinstellingen zijn succesvol opgeslagen
     suitability_id: Geschiktheids-ID
+    superadmin_use_root_domain: Superbeheerders moeten inloggen via het hoofddomein
+    switch_client: Client wisselen
     system_prompt: Systeem prompt
     tab_text_one: Menu
     tab_text_two: Submenu
@@ -2973,3 +3029,4 @@ nl:
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: Lancerings-URL
     yoodli_login_url: Login-URL
+    you_are_here: U bevindt zich hier

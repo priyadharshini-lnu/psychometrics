@@ -196,6 +196,7 @@ cs:
     assistant_validation_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
     attendance: Účast
     attendance_status: Stav docházky
+    audit_log_impersonated_by: V podání
     audit_log_title: Informace o protokolu auditu
     audit_log_type: Typ záznamu
     audit_logs: Protokoly o auditu
@@ -325,19 +326,7 @@ cs:
     client: Nájem klienta
     client_admin: Administrátor klienta
     client_admins: Správci klientů
-    client_credentials_label: Přihlašovací údaje klienta
-    client_credentials_value: client_credentials
-    client_features: Funkce klienta
-    client_id_label: ID klienta
-    client_id_name: oauth_client_id
-    client_id_required: Je vyžadováno ID klienta
-    client_ip: Ip klienta
-    client_logo_label: Logo klienta
-    client_secret_label: Tajný klíč klienta
-    client_secret_name: oauth_client_secret
-    client_secret_required: Je vyžadován tajný klíč klienta
     clients: Nájemní smlouvy klientů
-    closed: Uzavřeno
     code_required: Je vyžadován kód
     collapse_filters: Sbalit filtry
     column_code: Kód
@@ -653,6 +642,7 @@ cs:
     feature_flags_platform_group: Funkce platformy
     feature_global_skills_description: Přístup k globální knihovně dovedností pro hodnocení
     feature_idp_description: Povolit individuální plánování rozvoje pro účastníky
+    feature_not_available: Tato funkce není k dispozici
     feature_sms_notification_description: Povolit SMS oznámení pro pozvánky a připomenutí kampaní
     fields_level: Úroveň
     fields_level_description: Popis úrovně
@@ -704,15 +694,8 @@ cs:
     generate_result_info_message: Výsledky se generují, aktualizujte stránku a podívejte se na aktualizované výsledky.
     generate_results: Generovat výsledky
     generate_transcription: Vytvořit přepis
-    generated_at_time: Generováno v %{time}
-    generated_value: Vytvořená hodnota
-    global_skills: Globální dovednosti
-    global_skills_disabled_by_client: Globální dovednosti jsou klientem zakázány
-    grant_type_label: Typ grantu
-    grant_type_name: oauth_grant_type
-    header_logout_content: Stiskněte Zrušit, pokud chcete pokračovat v práci. Stiskněte Ok pro odhlášení aktuálního uživatele.
-    header_logout_title: Jste si jistý, že chcete odhlásit se?
-    hide_all: Skrýt vše
+    graphic: Grafika
+    graphic_slider: Grafický posuvník
     hide_middle_scores: Skrýt střední skóre
     high: Vysoká
     hogan: Hogan
@@ -1056,11 +1039,9 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
-    link_text: Odkaz
+    lighthouse_question: Základní otázka
+    lighthouse_question_id: ID dotazu Lighthouse
     linked_assessments: Související hodnocení
-    locale: Lokalita
-    log_date: Datum záznamu
-    login: Přihlášení
     low: Nízká
     mail_history: Historie pošty
     main_report: Hlavní zpráva
@@ -1142,9 +1123,6 @@ cs:
     navigation_skills_taxonomy: Taxonomie dovedností
     navigation_users: Uživatelé
     new_folder: Nová složka
-    new_score: Nové skóre
-    no_assessments_found: ID auditu
-    no_completed_assessments: Zatím nejsou k dispozici žádná dokončená hodnocení
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
     no_rendered_output: Žádný vykreslený výstup není k dispozici
@@ -1209,12 +1187,6 @@ cs:
     options_subject_options: Možnosti předmětu
     options_title: Možnosti
     original_text: Původní text
-    other_assessments: Další hodnocení
-    other_assessor_assessments: Ostatní hodnocení Assessor Assessments
-    other_reports: Další zprávy
-    outcome: Výsledek
-    output_schema_key_constraint: Klíč musí začínat malým písmenem a může obsahovat pouze malá písmena, čísla a podtržítka
-    output_schema_keys: Klíče výstupního schématu
     overall: Celkově
     overall_score: Celkové skóre
     overall_scoring: Celkové bodování
@@ -1844,11 +1816,6 @@ cs:
     questions_percentage: Otázky (SUMA / MAX Celkem)
     questions_sum: Otázky (SUM)
     range_min_max: ROZSAH%{min} - %{max}
-    rationale: Odůvodnění
-    raw: SYROVÝ
-    reason_for_changes: Důvod změn
-    record_id: ID záznamu
-    recordings: Nahrávky
     reflection_questions: Otázky k zamyšlení
     reflection_questions_delete_confirmation: Opravdu chcete tuto otázku k zamyšlení smazat?
     reflection_questions_export_action: Otázky k reflexi exportu
@@ -2021,6 +1988,10 @@ cs:
     revisions_user_prompt: Výzva pro uživatele
     revisions_version: Verze
     role: Role
+    role_campaign_admin: Správce kampaně
+    role_client_admin: Správa klientů
+    role_project_admin: Správce projektu
+    role_superadmin: Superadministrátor
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
     saml_idp_certificate_label: Certifikát
     saml_idp_entity_id_label: Identifikace subjektu/vydavatele
@@ -2501,7 +2472,6 @@ cs:
     sms_histories_statuses_undelivered: Nedoručeno
     sms_invites: Pozvánky SMS
     specialty_questions: Specifické dotazy
-    standard: Standardní
     standard_deviation: Směrodatná odchylka
     standard_questions: Standardní otázky
     start: začátek
@@ -2558,36 +2528,7 @@ cs:
     sub_factors_conditional_average: Podmíněný vážený průměr faktorů
     sub_factors_sum: Vážený součet faktorů
     subdomain: Subdoména
-    subject: Předmět
-    subject_can_access_reports: Subjekt má přístup ke svým zprávám
-    subject_email: E-mail subjektu
-    subject_invite_description: Tato zpráva bude zaslána jako výzva subjektům k účasti na hodnocení
-    subject_invite_name: Pozvánka na téma
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
-    subject_placeholder: Hledat předmět...
-    subject_reminder_description: Zpráva zaslaná každému účastníkovi s připomenutím účasti v hodnocení
-    subject_reminder_name: Připomenutí předmětu
-    subject_reminder_rule_description: Zadání pravidel pro automatické plánování při naplánování pozvánky
-    subject_reminder_rule_name: Pravidla pro připomenutí předmětu
-    subject_report_ready_description: Tato zpráva je subjektu zaslána, jakmile je jeho zpráva připravena
-    subject_report_ready_name: Předmět Zpráva připravena
-    subjects_title: Předměty
-    submenu_options_option_one: Možnost 1
-    submenu_options_option_title: Položka 1
-    submenu_options_option_two: Možnost 2
-    success_call_send_invitation: Chcete poslat pozvánky?
-    success_color: Barva úspěchu
-    success_ok: Ano
-    success_skip: Prozatím přeskočit
-    success_title: Vytvořená hodnotící centra
-    success_update: Nastavení návrhu byla úspěšně uložena
-    suitability_id: Identifikátor vhodnosti
-    system_prompt: Systémová výzva
-    tab_text_one: Nabídka
-    tab_text_two: Podnabídka
-    table_more_actions: Další akce
-    tabs_results: Výsledky
-    tabs_settings: Nastavení
     target_job_role: Cílová pracovní pozice
     taxonomy_import_action_taxonomy: Import taxonomie dovedností
     taxonomy_import_description: Nahrajte soubor Excel, abyste mohli importovat nebo aktualizovat taxonomii svých dovedností. Tím přidáte nové dovednosti, pracovní pozice a úrovně znalostí.
@@ -2758,6 +2699,3 @@ cs:
     yoodli_activity_id: Yoodli Activity ID
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
-    yoodli_keyset_url: URL klíčové sady
-    yoodli_launch_url: Launch URL
-    yoodli_login_url: Přihlašovací URL

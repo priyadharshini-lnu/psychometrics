@@ -34,6 +34,8 @@ de:
       cant_be_deleted: Dieser Datensatz kann nicht gelöscht werden
       client_feature:
         ai_assisted_idp_feature_error: Kann nicht wahr sein, wenn die Funktion der KI-Assistenten deaktiviert ist
+      client_sso_settings:
+        sso_enforced_requires_enabled: Kann nicht aktiviert werden, ohne dass SSO aktiviert ist
       create_superadmin:
         uniq_email: E-Mail sollte einheitlich sein.
       development_actions:

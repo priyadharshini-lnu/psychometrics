@@ -34,6 +34,8 @@ ru:
       cant_be_deleted: Этот запис не может быть удален
       client_feature:
         ai_assisted_idp_feature_error: Не может быть правдой, если функция AI-помощников отключена.
+      client_sso_settings:
+        sso_enforced_requires_enabled: Невозможно включить, если не включена функция SSO
       create_superadmin:
         uniq_email: Электронная почта должна быть уникальной.
       development_actions:
