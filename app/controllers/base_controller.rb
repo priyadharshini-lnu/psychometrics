@@ -97,6 +97,7 @@ class BaseController < ActionController::Base
   def handle_successful_authentication(user, found_by, auth_details)
     handle_spoofing(found_by)
     handle_sso_or_jwt(found_by, user)
+    store_jwt_auth_details(found_by, auth_details)
 
     siem_log_authentication_success(user, found_by) if siem_loggable_auth_method?(found_by)
 
@@ -225,5 +226,13 @@ class BaseController < ActionController::Base
     else
       yield
     end
+  end
+
+  def store_jwt_auth_details(found_by, auth_details)
+    return unless %i[api_jwt lighthouse_jwt].include?(found_by)
+    return if auth_details.blank?
+
+    session[:jwt_system_check_session_id] =
+      auth_details['system_check_session_id'] || auth_details[:system_check_session_id]
   end
 end

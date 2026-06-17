@@ -2,6 +2,7 @@
 
 class EndUser::CampaignUsersController < ApplicationController
   include AsyncRequestHandler
+  include SystemCheckCookie
 
   before_action :set_campaign_user
   before_action :ensure_proctoring_maintenance_not_active,
@@ -13,13 +14,16 @@ class EndUser::CampaignUsersController < ApplicationController
   before_action :ensure_campaign_already_in_progress, only: %i[continue_campaign]
 
   async_request :begin_campaign_with_proctoring, handler: CampaignUsers::BeginProctoringCampaign,
-    permit_params: ->(params) { params.require(:campaign_user).permit(:id) }
+    permit_params: ->(params) { params.require(:campaign_user).permit(:id, :system_check_session_id) }
 
   async_request :continue_campaign_with_proctoring, handler: CampaignUsers::ContinueProctoringCampaign,
-    permit_params: ->(params) { params.require(:campaign_user).permit(:id) }
+    permit_params: ->(params) { params.require(:campaign_user).permit(:id, :system_check_session_id) }
 
   def proctoring_redirect
     return redirect_to_campaign unless @campaign_user.proctoring_enabled?
+
+    session[:proctoring_mode] = true
+    reissue_system_check_session_cookie_from_jwt
 
     if @campaign_user.not_started_campaign?
       CampaignUsers::BeginCampaign.call(@campaign_user)
@@ -33,6 +37,8 @@ class EndUser::CampaignUsersController < ApplicationController
   def begin_campaign
     if proctoring_flow_enabled?
       session[:proctoring_mode] = true
+      params[:campaign_user] ||= {}
+      params[:campaign_user][:system_check_session_id] = stored_session_id
       begin_campaign_with_proctoring
     else
       CampaignUsers::BeginCampaign.call!(@campaign_user)
@@ -45,6 +51,8 @@ class EndUser::CampaignUsersController < ApplicationController
   def continue_campaign
     if proctoring_flow_enabled?
       session[:proctoring_mode] = true
+      params[:campaign_user] ||= {}
+      params[:campaign_user][:system_check_session_id] = stored_session_id
       continue_campaign_with_proctoring
     else
       CampaignUsers::ContinueCampaign.call!(@campaign_user)
@@ -84,6 +92,11 @@ class EndUser::CampaignUsersController < ApplicationController
 
   def redirect_to_campaign
     redirect_to(campaign_path(@campaign_user.campaign_id))
+  end
+
+  def reissue_system_check_session_cookie_from_jwt
+    session_id = session.delete(:jwt_system_check_session_id)
+    store_session_id(session_id) if session_id.present?
   end
 
   def set_campaign_user

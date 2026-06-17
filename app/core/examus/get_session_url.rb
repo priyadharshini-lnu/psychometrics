@@ -4,14 +4,15 @@ module Examus
   class GetSessionUrl < BaseCommand
     AVAILABLE_LOCALES = %i[en ar].freeze
 
-    private_attr_reader :subject, :campaign_user, :campaign, :project, :locale
+    private_attr_reader :subject, :campaign_user, :campaign, :project, :locale, :system_check_session_id
 
-    def initialize(campaign_user:, locale:, subject: nil)
+    def initialize(campaign_user:, locale:, subject: nil, system_check_session_id: nil)
       @subject = subject
       @campaign_user = campaign_user
       @campaign = campaign_user.campaign
       @project = campaign.project
       @locale = AVAILABLE_LOCALES.include?(locale) ? locale : 'en'
+      @system_check_session_id = system_check_session_id
     end
 
     def call
@@ -68,8 +69,11 @@ module Examus
       resource_id = subject.present? ? subject.id : campaign_user.id
       resource_url = subject.present? ? :pass_user_assessment_url : :proctoring_redirect_campaign_user_url
       Utility::Url.generate(
-        resource_url, subdomain: project.subdomain, id: resource_id,
-        jwt: jwt_token, user_id: campaign_user.user.id
+        resource_url,
+        subdomain: project.subdomain,
+        id: resource_id,
+        jwt: jwt_token,
+        user_id: campaign_user.user.id
       )
     end
 
@@ -79,9 +83,18 @@ module Examus
 
     def jwt_token
       user = campaign_user.user
-      JWT.encode({ 'sub' => user.id, 'exp' => 1.day.from_now.to_i,
-                   details: { skip_session_limitable: true } },
-                 Settings.secrets.encrypted_key.to_s, 'HS256')
+      JWT.encode(
+        {
+          'sub' => user.id,
+          'exp' => 1.day.from_now.to_i,
+          details: {
+            skip_session_limitable: true,
+            system_check_session_id: system_check_session_id
+          }
+        },
+        Settings.secrets.encrypted_key.to_s,
+        'HS256'
+      )
     end
   end
 end
