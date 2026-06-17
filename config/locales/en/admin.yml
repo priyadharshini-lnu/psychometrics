@@ -962,6 +962,11 @@ en:
     proficiency_levels: Proficiency Levels
     profile_details: Profile Details
     project_admins: Project Admins
+    project_assessor: Project Assessor
+    project_features: Project Features
+    project_ids: Project IDs
+    project_ids_required: project_ids is required for this report type
+    project_licenses: Project Licenses
     project_manager: Project Manager
     project_number: Project Number
     project_settings: Project Settings

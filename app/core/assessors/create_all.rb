@@ -34,9 +34,19 @@ module Assessors
     end
 
     def create_assessor(user)
+      ensure_client_assessor_membership(user)
       assessor = Assessor.create!(campaign: campaign, user: user)
       @new_assessors << assessor
       assessor
+    end
+
+    def ensure_client_assessor_membership(user)
+      Membership.find_or_create_by!(
+        user: user,
+        client: campaign.client,
+        role: Membership::CLIENT_ASSESSOR_ROLE,
+        campaign_id: nil
+      )
     end
 
     def create_user_assessment(assessor_user, subject, assessment_id)

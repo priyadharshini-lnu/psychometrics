@@ -20,7 +20,8 @@ module UserRoles
       :assessor,
       Membership::PROJECT_ADMIN_ROLE,
       Membership::CLIENT_ADMIN_ROLE,
-      Membership::CAMPAIGN_ADMIN_ROLE
+      Membership::CAMPAIGN_ADMIN_ROLE,
+      Membership::CLIENT_ASSESSOR_ROLE
     ],
     user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
   }.freeze

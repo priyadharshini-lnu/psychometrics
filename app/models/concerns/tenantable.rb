@@ -12,13 +12,33 @@ module Tenantable
     class_attribute :tenant_source_association
 
     before_validation :resolve_tenant_id, if: :should_resolve_tenant?
+    after_commit :cascade_tenant_id_to_dependents, if: :saved_change_to_tenant_id?, on: :update
   end
 
   TENANT_DERIVING_COLUMNS = %w[owner_id project_id client_id campaign_id].freeze
+  DEPENDENT_REGISTRY = Hash.new { |h, k| h[k] = [] }
 
   class_methods do
     def tenant_source(*association_names)
       self.tenant_source_association = Array(association_names.flatten).map(&:to_sym)
+      register_as_tenant_dependent
+    end
+
+    def register_as_tenant_dependent
+      tenant_source_association.each do |assoc_name|
+        reflection = reflect_on_association(assoc_name)
+        next unless reflection&.macro == :belongs_to
+        next if reflection.polymorphic?
+
+        source_klass = reflection.klass.base_class
+        fk = reflection.foreign_key.to_sym
+        registry = Tenantable::DEPENDENT_REGISTRY[source_klass]
+        registry << { klass: self, fk: fk } unless registry.any? { |e| e[:klass] == self }
+      end
+    end
+
+    def tenant_dependents
+      Tenantable::DEPENDENT_REGISTRY[base_class]
     end
   end
 
@@ -31,13 +51,37 @@ module Tenantable
     tenant_id.blank? || parent_association_changed?
   end
 
+  def cascade_tenant_id_to_dependents
+    ::Tenant::SyncDependentsJob.perform_later(self.class.base_class.name, id)
+  end
+
   def parent_association_changed?
     persisted? && changed.intersect?(TENANT_DERIVING_COLUMNS)
   end
 
   def resolve_tenant_id
-    resolved = resolve_tenant_from_record(self) || resolve_tenant_from_source
+    resolved = resolved_tenant_id
     ActsAsTenant.with_mutable_tenant { self.tenant_id = resolved }
+  end
+
+  def sync_resolved_tenant_id!
+    resolved = resolved_tenant_id
+    return if tenant_id == resolved
+
+    old_tenant_id = tenant_id
+    ActsAsTenant.with_mutable_tenant { update_columns(tenant_id: resolved) }
+    write_tenant_id_audit(old_tenant_id, resolved)
+  end
+
+  def write_tenant_id_audit(old_value, new_value)
+    Audited.audit_class.create!(
+      auditable_id: id,
+      auditable_type: self.class.base_class.name,
+      action: 'update',
+      audited_changes: { 'tenant_id' => [old_value, new_value] }
+    )
+  rescue StandardError => e
+    Rails.logger.warn("Failed to write tenant_id audit for #{self.class.name}##{id}: #{e.message}")
   end
 
   def resolve_tenant_from_source
@@ -51,6 +95,10 @@ module Tenantable
     end
 
     nil
+  end
+
+  def resolved_tenant_id
+    resolve_tenant_from_record(self) || resolve_tenant_from_source
   end
 
   def resolve_tenant_from_record(record)

@@ -9,6 +9,7 @@ class Assessor < ApplicationRecord
   include Tenantable
 
   has_many :user_assessments, primary_key: :user_id, foreign_key: :evaluator_id
+  after_destroy :remove_client_assessor_membership_if_unused
 
   scope :sort_by_full_name_asc, -> { joins(:user).merge(User.sort_by_full_name_asc) }
   scope :sort_by_full_name_desc, -> { joins(:user).merge(User.sort_by_full_name_desc) }
@@ -28,5 +29,11 @@ class Assessor < ApplicationRecord
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields]
+  end
+
+  private
+
+  def remove_client_assessor_membership_if_unused
+    Assessors::CleanupMembership.call(user, campaign.client)
   end
 end

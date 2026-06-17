@@ -252,6 +252,13 @@ describe Tenantable do
       assessment.update!(name: 'Updated Name')
       expect(assessment.tenant_id).to eq(original_tenant)
     end
+
+    it 'enqueues dependent sync job when tenant_id changes' do
+      expect do
+        assessment.skip_owner_validation = true
+        assessment.update!(owner: tenant_b)
+      end.to have_enqueued_job(Tenant::SyncDependentsJob).with('Assessment', assessment.id)
+    end
   end
 
   describe 'without has_global_records' do
@@ -297,6 +304,51 @@ describe Tenantable do
           expect(UserReport.all).to include(report_a)
           expect(UserReport.all).not_to include(report_b)
         end
+      end
+    end
+  end
+
+  describe '#write_tenant_id_audit' do
+    context 'for a model with audited declared' do
+      it 'creates an ActiveRecordAudit record' do
+        assessment = create(:assessment, owner: tenant_a)
+
+        expect do
+          assessment.send(:write_tenant_id_audit, tenant_a.id, tenant_b.id)
+        end.to change { ActiveRecordAudit.where(auditable_type: 'Assessment', auditable_id: assessment.id).count }.by(1)
+      end
+
+      it 'records the correct tenant_id change in audited_changes' do
+        assessment = create(:assessment, owner: tenant_a)
+
+        assessment.send(:write_tenant_id_audit, tenant_a.id, tenant_b.id)
+
+        audit = ActiveRecordAudit.where(auditable_type: 'Assessment', auditable_id: assessment.id).last
+        expect(audit.action).to eq('update')
+        expect(audit.audited_changes).to eq('tenant_id' => [tenant_a.id, tenant_b.id])
+      end
+    end
+
+    context 'for a model without audited declared' do
+      it 'creates an ActiveRecordAudit record' do
+        # SkillsDevelopmentAction has tenant_source but no audited declaration
+        sda = create(:skills_development_action)
+
+        expect do
+          sda.send(:write_tenant_id_audit, tenant_a.id, tenant_b.id)
+        end.to change {
+                 ActiveRecordAudit.where(auditable_type: 'SkillsDevelopmentAction', auditable_id: sda.id).count
+               }.by(1)
+      end
+
+      it 'records the correct tenant_id change in audited_changes' do
+        sda = create(:skills_development_action)
+
+        sda.send(:write_tenant_id_audit, tenant_a.id, tenant_b.id)
+
+        audit = ActiveRecordAudit.where(auditable_type: 'SkillsDevelopmentAction', auditable_id: sda.id).last
+        expect(audit.action).to eq('update')
+        expect(audit.audited_changes).to eq('tenant_id' => [tenant_a.id, tenant_b.id])
       end
     end
   end
