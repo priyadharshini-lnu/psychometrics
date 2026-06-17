@@ -92,7 +92,12 @@ module Administration
           return stored_path_for_resource
         end
 
-        return "#{admin_path}/clients/#{Current.client.id}/projects" if Current.client_admin_context?
+        if Current.client_admin_context?
+          access = AdminAuth::ResolveClientAccess.call(resource, Current.client)
+          return assessors_dashboard_path if access[:ok] && assessor_dashboard_after_handoff?(resource, access[:ok])
+
+          return "#{admin_path}/clients/#{Current.client.id}/projects"
+        end
 
         central_admin_redirect = central_admin_redirection(resource)
         return central_admin_redirect if central_admin_redirect
