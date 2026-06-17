@@ -8,7 +8,7 @@ module Api
       end
 
       def index?
-        @user.is?(:superadmin)
+        @user.is?(:superadmin) || @user.has_grant?(:project_settings, :feature_flags)
       end
     end
   end
