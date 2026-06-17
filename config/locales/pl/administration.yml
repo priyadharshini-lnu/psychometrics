@@ -1683,25 +1683,6 @@ pl:
       remove_confirm:
         message: Czy na pewno chcesz usunąć ten zasób?
         title: Usuń zasób
-    saml_settings:
-      after_signout_url: Po wylogowaniu się Url
-      cert: Certyfikat
-      config_details:
-        acs_url: Adres URL usługi klienta asercji
-        copied: Skopiowano %{element}
-        issuer: Identyfikator podmiotu/wystawca
-        title: Skonfiguruj dostawcę tożsamości, podając następujące informacje
-      email_pipetext: Potok wiadomości e-mail
-      enabled: Włączone
-      entity_id: Identyfikator podmiotu/wystawca
-      name_identifier_format: Identyfikator nazwy
-      name_identifier_formats:
-        email: urn:oaza:nazwy:tc:SAML:1.1:format-identyfikatora:adres_e-mail
-        persistent: urn:oaza:nazwy:tc:SAML:2.0:format-nazwyid:trwały
-      saml_setting: Ustawienia SAML
-      save: Zapisz ustawienie
-      sso_service_url: Adres URL usługi logowania jednokrotnego
-      successfully_saved_msg: Ustawienia SAML zostały pomyślnie zapisane.
     save: Zapisać
     scoring:
       export:

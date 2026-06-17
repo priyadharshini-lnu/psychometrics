@@ -1683,25 +1683,6 @@ vi:
       remove_confirm:
         message: Bạn có chắc chắn muốn xóa tài nguyên này không?
         title: Xóa tài nguyên
-    saml_settings:
-      after_signout_url: Sau khi đăng xuất Url
-      cert: Chứng chỉ
-      config_details:
-        acs_url: URL dịch vụ người tiêu dùng xác nhận
-        copied: Đã sao chép %{element}
-        issuer: ID thực thể/Nhà phát hành
-        title: Định cấu hình Idp với các thông tin sau
-      email_pipetext: Văn bản đường ống email
-      enabled: Kích hoạt
-      entity_id: ID thực thể/Tổ chức phát hành
-      name_identifier_format: Mã định danh tên
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Cài đặt SAML
-      save: Lưu cài đặt
-      sso_service_url: URL dịch vụ SSO
-      successfully_saved_msg: Cài đặt SAML đã được lưu thành công.
     save: Cứu
     scoring:
       export:

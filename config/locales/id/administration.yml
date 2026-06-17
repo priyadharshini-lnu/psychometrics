@@ -1683,25 +1683,6 @@ id:
       remove_confirm:
         message: Apakah Anda yakin ingin menghapus sumber daya ini?
         title: Hapus Sumber Daya
-    saml_settings:
-      after_signout_url: Setelah URL Keluar
-      cert: Sertifikat
-      config_details:
-        acs_url: URL Layanan Konsumen Pernyataan
-        copied: Disalin %{element}
-        issuer: ID Entitas/Penerbit
-        title: Konfigurasikan Idp dengan info berikut
-      email_pipetext: Email Pipetext
-      enabled: Diaktifkan
-      entity_id: ID Entitas/Penerbit
-      name_identifier_format: Pengenal Nama
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Pengaturan SAML
-      save: Simpan Pengaturan
-      sso_service_url: URL Layanan SSO
-      successfully_saved_msg: Pengaturan SAML berhasil disimpan.
     save: Simpan
     scoring:
       export:

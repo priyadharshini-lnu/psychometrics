@@ -1683,25 +1683,6 @@ ru:
       remove_confirm:
         message: Вы уверены, что хотите удалить этот ресурс?
         title: Удалить ресурс
-    saml_settings:
-      after_signout_url: После выхода URL
-      cert: Сертификат
-      config_details:
-        acs_url: URL службы утверждения потребителя
-        copied: Копировано с %{element}
-        issuer: Идентификатор субъекта/эмитента
-        title: Настройте Idp с помощью следующей информации
-      email_pipetext: Электронная почта Pipetext
-      enabled: Включено
-      entity_id: Идентификатор субъекта/эмитента
-      name_identifier_format: Идентификатор имени
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Настройка SAML
-      save: Сохранить настройки
-      sso_service_url: URL службы SSO
-      successfully_saved_msg: Настройки SAML успешно сохранены.
     save: Сохранить
     scoring:
       export:

@@ -1683,25 +1683,6 @@ hr:
       remove_confirm:
         message: Jeste li sigurni da želite ukloniti ovaj resurs?
         title: Ukloni resurs
-    saml_settings:
-      after_signout_url: URL nakon odjave
-      cert: Certifikat
-      config_details:
-        acs_url: URL korisničke službe za potvrđivanje
-        copied: Kopirano %{element}
-        issuer: ID subjekta/izdavatelj
-        title: Konfigurirajte Idp-a sa sljedećim informacijama
-      email_pipetext: E-pošta Pipetext
-      enabled: Omogućen
-      entity_id: ID subjekta/izdavatelj
-      name_identifier_format: Identifikator imena
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:trajni
-      saml_setting: SAML postavka
-      save: Spremi postavku
-      sso_service_url: URL usluge SSO
-      successfully_saved_msg: SAML postavka je uspješno spremljena.
     save: Spasiti
     scoring:
       export:

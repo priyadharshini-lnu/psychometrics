@@ -1683,25 +1683,6 @@ sk:
       remove_confirm:
         message: Naozaj chcete tento zdroj odstrániť?
         title: Odstrániť zdroj
-    saml_settings:
-      after_signout_url: Po odhlásení URL
-      cert: Certifikát
-      config_details:
-        acs_url: URL adresa služby pre spotrebiteľov pri presadzovaní
-        copied: Skopírované %{element}
-        issuer: ID subjektu/emitent
-        title: Nakonfigurujte Idp s nasledujúcimi informáciami
-      email_pipetext: Odoslanie e-mailu Pipetext
-      enabled: Povolené
-      entity_id: ID subjektu/emitenta
-      name_identifier_format: Identifikátor mena
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Nastavenie SAML
-      save: Uložiť nastavenie
-      sso_service_url: URL adresa služby jediného prihlásenia
-      successfully_saved_msg: Nastavenie SAML bolo úspešne uložené.
     save: Zachrániť
     scoring:
       export:

@@ -1683,25 +1683,6 @@ cs:
       remove_confirm:
         message: Opravdu chcete tento zdroj odebrat?
         title: Odebrat zdroj
-    saml_settings:
-      after_signout_url: Po odhlášení Url
-      cert: Certifikát
-      config_details:
-        acs_url: Adresa URL služby Assertion Consumer Service
-        copied: Zkopírováno %{element}
-        issuer: ID subjektu/Issuer
-        title: Konfigurace Idp s následujícími informacemi
-      email_pipetext: E-mail Pipetext
-      enabled: Povoleno
-      entity_id: ID subjektu/Issuer
-      name_identifier_format: Identifikátor názvu
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Nastavení SAML
-      save: Uložit nastavení
-      sso_service_url: Url služby SSO
-      successfully_saved_msg: Nastavení SAML bylo úspěšně uloženo.
     save: Uložit
     scoring:
       export:
