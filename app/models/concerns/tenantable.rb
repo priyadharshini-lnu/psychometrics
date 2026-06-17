@@ -68,7 +68,20 @@ module Tenantable
     resolved = resolved_tenant_id
     return if tenant_id == resolved
 
+    old_tenant_id = tenant_id
     ActsAsTenant.with_mutable_tenant { update_columns(tenant_id: resolved) }
+    write_tenant_id_audit(old_tenant_id, resolved)
+  end
+
+  def write_tenant_id_audit(old_value, new_value)
+    Audited.audit_class.create!(
+      auditable_id: id,
+      auditable_type: self.class.base_class.name,
+      action: 'update',
+      audited_changes: { 'tenant_id' => [old_value, new_value] }
+    )
+  rescue StandardError => e
+    Rails.logger.warn("Failed to write tenant_id audit for #{self.class.name}##{id}: #{e.message}")
   end
 
   def resolve_tenant_from_source
