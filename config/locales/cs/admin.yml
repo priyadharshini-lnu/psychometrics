@@ -194,9 +194,9 @@ cs:
     assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
     assistant_toolbar_not_a_valid_operation: Neznámá operace %{operation}.
     assistant_validation_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
-    audit_log_impersonated_by: V podání
     attendance: Účast
     attendance_status: Stav docházky
+    audit_log_impersonated_by: V podání
     audit_log_title: Informace o protokolu auditu
     audit_log_type: Typ záznamu
     audit_logs: Protokoly o auditu

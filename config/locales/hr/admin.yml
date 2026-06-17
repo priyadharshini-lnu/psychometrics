@@ -199,9 +199,9 @@ hr:
     assistant_toolbar_failed: Nije uspjelo generirati valjan izlaz nakon više pokušaja
     assistant_toolbar_not_a_valid_operation: Nepoznata operacija %{operation}.
     assistant_validation_failed: Nije uspjelo generirati valjan izlaz nakon više pokušaja
-    audit_log_impersonated_by: U ulozi
     attendance: Posjećenost
     attendance_status: Status prisustva
+    audit_log_impersonated_by: U ulozi
     audit_log_title: Podaci o zapisniku nadzora
     audit_log_type: Vrsta zapisa
     audit_logs: Zapisnici revizije
@@ -367,9 +367,6 @@ hr:
     client: Najam klijenta
     client_admin: Klijent administrator
     client_admins: Klijenti administratori
-    client_selection_instruction: Odaberite klijenta za nastavak na administratorsku ploču.
-    client_selection_sign_out: Odjavi se
-    client_selection_title: Odabir klijenta
     client_credentials_label: Vjerodajnice klijenta
     client_credentials_value: client_credentials
     client_features: Odlike klijenta
@@ -381,6 +378,9 @@ hr:
     client_secret_label: Tajna klijenta
     client_secret_name: oauth_client_secret
     client_secret_required: Tajna klijenta je obavezna
+    client_selection_instruction: Odaberite klijenta za nastavak na administratorsku ploču.
+    client_selection_sign_out: Odjavi se
+    client_selection_title: Odabir klijenta
     clients: Klijenti
     clients_search_placeholder: Pretraži klijenta
     closed: Zatvoreno
@@ -1161,9 +1161,9 @@ hr:
     lighthouse_question_id: ID pitanja svjetionika
     link_text: Povezati
     linked_assessments: Povezane procjene
-    logged_in: Prijavljeno
     locale: Lokalno
     log_date: Datum zapisa
+    logged_in: Prijavljeno
     login: Prijava
     low: Nisko
     mail_history: Povijest pošte
@@ -1257,10 +1257,10 @@ hr:
     navigation_skills_taxonomy: Taksonomija vještina
     navigation_users: Korisnici
     new_folder: Nova mapa
-    no_client_access: Nemate pristup ovom klijentu
-    no_clients_found: Nisu pronađeni klijenti
     new_score: Nova ocjena
     no_assessments_found: ID revizije
+    no_client_access: Nemate pristup ovom klijentu
+    no_clients_found: Nisu pronađeni klijenti
     no_completed_assessments: Još nema dovršenih procjena
     no_file_selected: Nijedna datoteka nije odabrana
     no_notifications: Nema obavijesti
@@ -1330,10 +1330,10 @@ hr:
     options_title: Mogućnosti
     organisational: OKRETAN
     original_text: Originalni tekst
-    others: Ostali
     other_assessments: Ostale procjene
     other_assessor_assessments: Ostale procjene procjenitelja
     other_reports: Ostala izvješća
+    others: Ostali
     outcome: Ishod
     output_schema_key_constraint: Ključ mora započeti malim slovom i smije sadržavati samo mala slova, brojeve i podcrte
     output_schema_keys: Ključevi izlazne sheme
@@ -2002,10 +2002,10 @@ hr:
     questions_title: Pitanje
     questions_type: vrsta
     range_min_max: Raspon%{min} - %{max}
-    recents: Nedavni
     rationale: Opravdanje
     raw: SIROV
     reason_for_changes: Razlog promjena
+    recents: Nedavni
     record_id: ID zapisa
     recordings: Snimke
     reflection_questions: Pitanja za razmišljanje
@@ -2833,8 +2833,6 @@ hr:
     subject_invite_description: Ova poruka bit će poslana kako bi se ispitanici pozvali da sudjeluju u ocjenjivanju
     subject_invite_name: Pozivnica za ispitanika
     subject_part_of_other_invite: Subjekt s e-poštom %{user_email} već je pozvan na '%{workshop_invite_name}'
-    superadmin_use_root_domain: Superadministratori se moraju prijaviti putem glavne domene.
-    switch_client: Prebaciti klijenta
     subject_placeholder: Pretraživanje ispitanika...
     subject_reminder_description: Poruka poslana svakom sudioniku kako bi ih podsjetila da sudjeluju u ocjenjivanju
     subject_reminder_name: Podsjetnik za ispitanika
@@ -2853,6 +2851,8 @@ hr:
     success_title: Stvoreni centri za procjenu
     success_update: Postavke dizajna uspješno su spremljene
     suitability_id: ID prikladnosti
+    superadmin_use_root_domain: Superadministratori se moraju prijaviti putem glavne domene.
+    switch_client: Prebaciti klijenta
     system_prompt: Upit sustava
     tab_text_one: Izbornik
     tab_text_two: Podizbornik
@@ -3034,7 +3034,7 @@ hr:
     yoodli_assessment: Yoodli procjena
     yoodli_email_id: Email ID Yoodli kandidata
     yoodli_external_assessment_id: Yoodli Assessment ID
-    you_are_here: Vi ste ovdje
     yoodli_keyset_url: URL za skup ključeva
     yoodli_launch_url: Launch URL
     yoodli_login_url: URL za prijavu
+    you_are_here: Vi ste ovdje

@@ -200,9 +200,9 @@ ja:
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
     assistant_toolbar_not_a_valid_operation: "%{operation} という操作は不明です。"
     assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
-    audit_log_impersonated_by: なりすまし
     attendance: 出席状況
     attendance_status: 出席状況
+    audit_log_impersonated_by: なりすまし
     audit_log_title: 監査ログ情報
     audit_log_type: レコードの種類
     audit_logs: 監査ログ
@@ -369,9 +369,6 @@ ja:
     client: クライアント・テナンシー
     client_admin: クライアント管理者
     client_admins: クライアント管理者
-    client_selection_instruction: 管理画面に進むには、クライアントを選択してください。
-    client_selection_sign_out: ログアウト
-    client_selection_title: クライアントを選択
     client_credentials_label: クライアント資格情報
     client_credentials_value: client_credentials
     client_features: クライアントの特徴
@@ -383,6 +380,9 @@ ja:
     client_secret_label: クライアントシークレット
     client_secret_name: oauth_client_secret
     client_secret_required: クライアントシークレットが必要です
+    client_selection_instruction: 管理画面に進むには、クライアントを選択してください。
+    client_selection_sign_out: ログアウト
+    client_selection_title: クライアントを選択
     clients: 顧客契約
     clients_search_placeholder: クライアントを検索
     closed: クローズド
@@ -1163,9 +1163,9 @@ ja:
     lighthouse_question_id: Lighthouse 質問ID
     link_text: リンク
     linked_assessments: 関連する評価
-    logged_in: ログイン中
     locale: ロケール
     log_date: ログ日付
+    logged_in: ログイン中
     login: ログイン
     low: 低
     mail_history: メール履歴
@@ -1259,10 +1259,10 @@ ja:
     navigation_skills_taxonomy: スキル分類法
     navigation_users: ユーザー
     new_folder: 新しいフォルダ
-    no_client_access: このクライアントにはアクセスできません
-    no_clients_found: クライアントが見つかりません
     new_score: 新スコア
     no_assessments_found: 監査ID
+    no_client_access: このクライアントにはアクセスできません
+    no_clients_found: クライアントが見つかりません
     no_completed_assessments: 完了した査定はまだない
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
@@ -1332,10 +1332,10 @@ ja:
     options_title: オプション
     organisational: AGILE
     original_text: 原文
-    others: その他
     other_assessments: その他の評価
     other_assessor_assessments: その他の査定
     other_reports: その他のレポート
+    others: その他
     outcome: 成果
     output_schema_key_constraint: キーは小文字で始まらず、小文字、数字、アンダースコアのみを含めます
     output_schema_keys: 出力スキーマ・キー
@@ -2004,10 +2004,10 @@ ja:
     questions_title: 質問
     questions_type: 種類
     range_min_max: 範囲 %{min} - %{max}
-    recents: 最近の投稿
     rationale: 根拠
     raw: 生
     reason_for_changes: 変更の理由
+    recents: 最近の投稿
     record_id: レコードID
     recordings: 録音
     reflection_questions: 振り返りの質問
@@ -2843,8 +2843,6 @@ ja:
     subject_invite_description: このメッセージは、被験者を評価に参加させるために送信される。
     subject_invite_name: 件名 招待
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
-    superadmin_use_root_domain: スーパー管理者はメインドメイン経由でサインインする必要があります
-    switch_client: Switchクライアント
     subject_placeholder: 検索テーマ...
     subject_reminder_description: アセスメントへの参加を促すメッセージを各参加者に送信
     subject_reminder_name: 件名 リマインダー
@@ -2863,6 +2861,8 @@ ja:
     success_title: アセスメントセンター設置
     success_update: デザイン設定が正常に保存されました
     suitability_id: 適合性ID
+    superadmin_use_root_domain: スーパー管理者はメインドメイン経由でサインインする必要があります
+    switch_client: Switchクライアント
     system_prompt: システムプロンプト
     tab_text_one: メニュー
     tab_text_two: サブメニュー
@@ -3044,7 +3044,7 @@ ja:
     yoodli_assessment: ユードリ評価
     yoodli_email_id: ユードリ候補者メールアドレス
     yoodli_external_assessment_id: Yoodli評価ID
-    you_are_here: 現在地
     yoodli_keyset_url: キーセットURL
     yoodli_launch_url: ローンチURL
     yoodli_login_url: ログインURL
+    you_are_here: 現在地

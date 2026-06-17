@@ -200,9 +200,9 @@ hi:
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
     assistant_toolbar_not_a_valid_operation: अज्ञात ऑपरेशन %{operation}।
     assistant_validation_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
-    audit_log_impersonated_by: द्वारा अभिनय किया गया
     attendance: उपस्थिति
     attendance_status: उपस्थिति की स्थिति
+    audit_log_impersonated_by: द्वारा अभिनय किया गया
     audit_log_title: ऑडिट लॉग जानकारी
     audit_log_type: रिकॉर्ड का प्रकार
     audit_logs: ऑडिट लॉग्स
@@ -369,9 +369,6 @@ hi:
     client: ग्राहक
     client_admin: क्लाइंट एडमिन
     client_admins: क्लाइंट एडमिन
-    client_selection_instruction: प्रशासन पैनल पर जारी रखने के लिए एक क्लाइंट चुनें।
-    client_selection_sign_out: निकास
-    client_selection_title: ग्राहक चुनें
     client_credentials_label: क्लाइंट क्रेडेंशियल्स
     client_credentials_value: क्लाइंट प्रमाण-पत्र
     client_features: ग्राहक सुविधाएँ
@@ -383,6 +380,9 @@ hi:
     client_secret_label: ग्राहक रहस्य
     client_secret_name: ओएथ_क्लाइंट_सीक्रेट
     client_secret_required: क्लाइंट सीक्रेट आवश्यक है
+    client_selection_instruction: प्रशासन पैनल पर जारी रखने के लिए एक क्लाइंट चुनें।
+    client_selection_sign_out: निकास
+    client_selection_title: ग्राहक चुनें
     clients: ग्राहक
     clients_search_placeholder: क्लाइंट खोजें
     closed: बंद
@@ -1166,9 +1166,9 @@ hi:
     lighthouse_question_id: लाइटहाउस प्रश्न आईडी
     link_text: लिंक
     linked_assessments: लिंक्ड आकलन
-    logged_in: लॉग इन
     locale: स्थान
     log_date: प्रवेश तिथि
+    logged_in: लॉग इन
     login: लॉगिन
     low: कम
     mail_history: मेल इतिहास
@@ -1261,10 +1261,10 @@ hi:
     navigation_skills_taxonomy: कौशल वर्गीकरण
     navigation_users: उपयोगकर्ता
     new_folder: नया फ़ोल्डर
-    no_client_access: आपके पास इस क्लाइंट तक पहुंच नहीं है।
-    no_clients_found: कोई क्लाइंट नहीं मिला
     new_score: नया स्कोर
     no_assessments_found: ऑडिट आईडी
+    no_client_access: आपके पास इस क्लाइंट तक पहुंच नहीं है।
+    no_clients_found: कोई क्लाइंट नहीं मिला
     no_completed_assessments: अभी तक कोई पूर्ण मूल्यांकन नहीं हुए हैं।
     no_file_selected: कोई फ़ाइल चयनित नहीं है
     no_notifications: कोई सूचना नहीं
@@ -1333,10 +1333,10 @@ hi:
     options_title: विकल्प
     organisational: चपल
     original_text: मूल पाठ
-    others: अन्य
     other_assessments: अन्य आकलन
     other_assessor_assessments: अन्य आकलनकर्ता के आकलन
     other_reports: अन्य रिपोर्टें
+    others: अन्य
     outcome: परिणाम
     output_schema_key_constraint: की एक छोटे अक्षर से शुरू होनी चाहिए और इसमें केवल छोटे अक्षर, अंक और अंडरस्कोर हो सकते हैं।
     output_schema_keys: आउटपुट स्कीमा कुंजियाँ
@@ -2006,10 +2006,10 @@ hi:
     questions_title: प्रश्न
     questions_type: प्रकार
     range_min_max: दायरा %{min} - %{max}
-    recents: हाल के
     rationale: तर्कसंगतता
     raw: कच्चा
     reason_for_changes: बदलाव का कारण
+    recents: हाल के
     record_id: रिकॉर्ड आईडी
     recordings: रिकॉर्डिंग्स
     reflection_questions: चिंतन प्रश्न
@@ -2835,8 +2835,6 @@ hi:
     subject_invite_description: यह संदेश विषयों को मूल्यांकन में भाग लेने के लिए आमंत्रित करने हेतु भेजा जाएगा।
     subject_invite_name: 'विषय: निमंत्रण'
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
-    superadmin_use_root_domain: सुपर एडमिनिस्ट्रेटर्स को मुख्य डोमेन के माध्यम से साइन इन करना चाहिए।
-    switch_client: स्विच क्लाइंट
     subject_placeholder: विषय खोजें...
     subject_reminder_description: प्रत्येक प्रतिभागी को मूल्यांकन में भाग लेने की याद दिलाने के लिए संदेश भेजा गया।
     subject_reminder_name: 'विषय: अनुस्मारक'
@@ -2855,6 +2853,8 @@ hi:
     success_title: मूल्यांकन केंद्र बनाए गए
     success_update: डिज़ाइन सेटिंग्स सफलतापूर्वक सहेजी गईं
     suitability_id: उपयुक्तता आईडी
+    superadmin_use_root_domain: सुपर एडमिनिस्ट्रेटर्स को मुख्य डोमेन के माध्यम से साइन इन करना चाहिए।
+    switch_client: स्विच क्लाइंट
     system_prompt: प्रणाली संकेत
     tab_text_one: मेनू
     tab_text_two: उपमेनू
@@ -3039,7 +3039,7 @@ hi:
     yoodli_assessment: यूडली मूल्यांकन
     yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
     yoodli_external_assessment_id: यूडली मूल्यांकन आईडी
-    you_are_here: आप यहाँ हैं
     yoodli_keyset_url: कीसेट यूआरएल
     yoodli_launch_url: लॉन्च यूआरएल
     yoodli_login_url: लॉगिन यूआरएल
+    you_are_here: आप यहाँ हैं

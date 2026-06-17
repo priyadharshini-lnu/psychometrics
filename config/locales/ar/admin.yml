@@ -198,9 +198,9 @@ ar:
     assistant_validation_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
     attendance: الحضور
     attendance_status: حالة الحضور
+    audit_log_impersonated_by: تقمص شخصيته
     audit_log_title: معلومات سجل التدقيق
     audit_log_type: نوع السجل
-    audit_log_impersonated_by: تقمص شخصيته
     audit_logs: سجلات التدقيق
     audit_reports: تقارير التدقيق
     auth_type_api_key_header_format_error: يُسمح فقط بالحروف والأرقام والشرطة السفلية والواصلات
@@ -376,12 +376,12 @@ ar:
     client_secret_label: سر العميل
     client_secret_name: oauth_client_secret
     client_secret_required: سر العميل مطلوب
-    clients: عقود العملاء
-    closed: مغلق
     client_selection_instruction: اختر عميلاً للمتابعة إلى لوحة الإدارة.
     client_selection_sign_out: تسجيل الخروج
     client_selection_title: اختر العميل
+    clients: عقود العملاء
     clients_search_placeholder: البحث عن العميل
+    closed: مغلق
     code_required: الكود مطلوب
     collapse_filters: طي الفلاتر
     column_code: رمز
@@ -795,13 +795,13 @@ ar:
     grant_type_name: oauth_grant_type
     graphic: رسم بياني
     graphic_slider: شريط التمرير المصور
-    header_logout_content: اضغط إلغاء إذا أردت الاستمرار في العمل. اضغط موافق لتسجيل خروج المستخدم الحالي.
-    header_logout_title: هل أنت متأكد أنك تريد تسجيل الخروج؟
-    hide_all: إخفاء الكل
     handoff_client_mismatch: رمز المصادقة غير صالح لهذا العميل
     handoff_invalid_token: رمز مصادقة غير صالح أو منتهي الصلاحية
     handoff_token_expired: انتهت صلاحية رمز المصادقة أو تم استخدامه بالفعل
     handoff_user_disabled: حسابك معطل
+    header_logout_content: اضغط إلغاء إذا أردت الاستمرار في العمل. اضغط موافق لتسجيل خروج المستخدم الحالي.
+    header_logout_title: هل أنت متأكد أنك تريد تسجيل الخروج؟
+    hide_all: إخفاء الكل
     hide_middle_scores: إخفاء النتائج المتوسطة
     high: مرتفع
     hogan: هوجان
@@ -1158,8 +1158,8 @@ ar:
     linked_assessments: التقييمات المرتبطة
     locale: موقع
     log_date: تاريخ السجل
-    login: تسجيل الدخول
     logged_in: تم تسجيل الدخول
+    login: تسجيل الدخول
     low: منخفض
     mail_history: Mail History
     main_report: التقرير الرئيسي
@@ -1254,9 +1254,9 @@ ar:
     new_folder: مجلد جديد
     new_score: النتيجة الجديدة
     no_assessments_found: معرف التدقيق
-    no_completed_assessments: لا توجد تقييمات مكتملة حتى الآن
     no_client_access: ليس لديك حق الوصول إلى هذا العميل
     no_clients_found: لم يتم العثور على أي عملاء
+    no_completed_assessments: لا توجد تقييمات مكتملة حتى الآن
     no_file_selected: لم يتم اختيار ملف
     no_notifications: لا توجد إشعارات
     no_question_mappings: لا توجد خرائط أسئلة متاحة
@@ -1328,10 +1328,10 @@ ar:
     other_assessments: تقييمات أخرى
     other_assessor_assessments: تقييمات المقيمين الأخرى
     other_reports: تقارير أخرى
+    others: آخرون
     outcome: النتيجة
     output_schema_key_constraint: يجب أن يبدأ المفتاح بحرف صغير ولا يحتوي إلا على الحروف الصغيرة والأرقام والخطوط السفلية
     output_schema_keys: مفاتيح مخطط الإخراج
-    others: آخرون
     overall: بشكل عام
     overall_score: النتيجة الإجمالية
     overall_scoring: التقييم العام
@@ -1999,9 +1999,9 @@ ar:
     rationale: الأساس المنطقي
     raw: نيء
     reason_for_changes: سبب التغييرات
+    recents: الأحدث
     record_id: معرف السجل
     recordings: التسجيلات
-    recents: الأحدث
     reflection_questions: أسئلة للتفكير
     reflection_questions_delete_confirmation: هل تريد بالتأكيد حذف سؤال التفكير هذا؟
     reflection_questions_export_action: أسئلة التفكير في التصدير
@@ -2737,7 +2737,6 @@ ar:
     smtp_settings_use_sender_verification: Use sender verification
     smtp_settings_user_name: User Name
     specialty_questions: أسئلة متخصصة
-    standard: معيار
     sso_email_mismatch: أنت مسجل الدخول إلى حساب آخر لدى مزود الهوية. يرجى تسجيل الخروج من حسابك لدى مزود الهوية ومحاولة الدخول مرة أخرى.
     sso_enforced: تفعيل تسجيل الدخول الموحد (SSO)
     sso_label: تسجيل الدخول عبر مزود خدمة واحد (SSO)
@@ -2768,6 +2767,7 @@ ar:
     sso_settings_slo_url: عنوان URL لخدمة SLO
     sso_settings_sso_url: عنوان URL لخدمة تسجيل الدخول الموحد (SSO)
     sso_settings_tab: تسجيل الدخول عبر مزود خدمة واحدة (SSO)
+    standard: معيار
     standard_deviation: الانحراف المعياري
     standard_questions: الأسئلة المعتادة
     start: ابدأ
@@ -2825,6 +2825,10 @@ ar:
     sub_factors_conditional_average: Conditional Weighted Average of Factors
     sub_factors_sum: Weighted Sum of Factors
     subdomain: المجال الفرعي
+    subdomain_admin_keyword: لا يمكن استخدام نمط النطاق الفرعي المحجوز للمسؤول
+    subdomain_invalid_format: تنسيق النطاق الفرعي غير صحيح.
+    subdomain_reserved: النطاق الفرعي %{value} محجوز
+    subdomain_too_long_max_32: اسم النطاق الفرعي طويل جدًا (الحد الأقصى هو 32 حرفًا)
     subject: الموضوع
     subject_can_access_reports: يمكن للموضوع الوصول إلى تقاريرهم
     subject_email: بريد المشارك الإلكتروني
@@ -2849,13 +2853,15 @@ ar:
     success_title: تم إنشاء مراكز التقييم
     success_update: Design Settings were saved successfully
     suitability_id: رقم الملاءمة
+    superadmin_use_root_domain: يجب على المسؤولين الرئيسيين تسجيل الدخول عبر النطاق الرئيسي
+    switch_client: تبديل العميل
     system_prompt: موجه النظام
     tab_text_one: قائمة الطعام
     tab_text_two: القائمة الفرعية
     table_more_actions: More actions
     tabs_results: النتائج
     tabs_settings: الإعدادات
-    target_job_role: الدور المستهدف
+    target_job_role: الوظيفة المستهدفة
     taxonomy_import_action_taxonomy: تصنيف مهارات الاستيراد
     taxonomy_import_description: قم بتحميل ملف Excel لاستيراد أو تحديث تصنيف مهاراتك. سيؤدي ذلك إلى إضافة مهارات جديدة ووظائف ومستويات كفاءة.
     taxonomy_import_download_example_file: تنزيل ملف المثال
@@ -2873,14 +2879,6 @@ ar:
     text_danger: نص (خطر)
     text_success: النص (نجاح)
     text_warning: نص (تحذير)
-    subdomain_admin_keyword: لا يمكن استخدام نمط النطاق الفرعي المحجوز للمسؤول
-    subdomain_invalid_format: تنسيق النطاق الفرعي غير صحيح.
-    subdomain_reserved: النطاق الفرعي %{value} محجوز
-    subdomain_too_long_max_32: اسم النطاق الفرعي طويل جدًا (الحد الأقصى هو 32 حرفًا)
-    subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
-    superadmin_use_root_domain: يجب على المسؤولين الرئيسيين تسجيل الدخول عبر النطاق الرئيسي
-    switch_client: تبديل العميل
-    target_job_role: الوظيفة المستهدفة
     this_field_is_required: هذا الحقل مطلوب
     threesixity_advance_settings_campaign_template: قالب الحملة
     threesixity_advance_settings_factors: العوامل

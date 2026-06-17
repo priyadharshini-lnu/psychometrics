@@ -197,9 +197,9 @@ id:
     assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
     assistant_toolbar_not_a_valid_operation: Operasi tidak dikenal %{operation}.
     assistant_validation_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
-    audit_log_impersonated_by: Dipalsukan oleh
     attendance: Kehadiran
     attendance_status: Status kehadiran
+    audit_log_impersonated_by: Dipalsukan oleh
     audit_log_type: Jenis Rekaman
     audit_logs: Log Audit
     audit_reports: Laporan Audit
@@ -364,9 +364,6 @@ id:
     client: Klien Pengguna
     client_admin: Admin Klien
     client_admins: Admin Klien
-    client_selection_instruction: Pilih klien untuk melanjutkan ke panel administrasi.
-    client_selection_sign_out: Keluar
-    client_selection_title: Pilih Klien
     client_credentials_label: Kredensial Klien
     client_credentials_value: client_credentials
     client_features: Fitur Klien
@@ -378,6 +375,9 @@ id:
     client_secret_label: Rahasia Klien
     client_secret_name: oauth_client_secret
     client_secret_required: Rahasia klien diperlukan
+    client_selection_instruction: Pilih klien untuk melanjutkan ke panel administrasi.
+    client_selection_sign_out: Keluar
+    client_selection_title: Pilih Klien
     clients: Klien Pengguna
     clients_search_placeholder: Cari Klien
     closed: Tertutup
@@ -1158,9 +1158,9 @@ id:
     lighthouse_question_id: ID Pertanyaan Lighthouse
     link_text: Tautan
     linked_assessments: Penilaian Terkait
-    logged_in: Sudah masuk
     locale: Lokal
     log_date: Tanggal Log
+    logged_in: Sudah masuk
     login: Masuk
     low: Rendah
     mail_history: Riwayat Surat
@@ -1254,10 +1254,10 @@ id:
     navigation_skills_taxonomy: Taksonomi Keterampilan
     navigation_users: Pengguna
     new_folder: Folder baru
-    no_client_access: Anda tidak memiliki akses ke klien ini
-    no_clients_found: Tidak ditemukan klien
     new_score: Skor Baru
     no_assessments_found: Audit ID
+    no_client_access: Anda tidak memiliki akses ke klien ini
+    no_clients_found: Tidak ditemukan klien
     no_completed_assessments: Belum ada penilaian yang selesai
     no_file_selected: Tidak ada file yang dipilih
     no_notifications: Tidak ada pemberitahuan
@@ -1326,10 +1326,10 @@ id:
     options_title: Pilihan
     organisational: LINCAH
     original_text: Teks Asli
-    others: Lainnya
     other_assessments: Penilaian Lainnya
     other_assessor_assessments: Penilaian Penilai Lainnya
     other_reports: Laporan Lainnya
+    others: Lainnya
     outcome: Hasil
     output_schema_key_constraint: Kunci harus dimulai dengan huruf kecil dan hanya dapat berisi huruf kecil, angka, dan garis bawah
     output_schema_keys: Tombol Skema Keluaran
@@ -1997,10 +1997,10 @@ id:
     questions_title: Pertanyaan
     questions_type: Jenis
     range_min_max: RANGE %{min} - %{max}
-    recents: Terbaru
     rationale: Alasan
     raw: MENTAH
     reason_for_changes: Alasan perubahan
+    recents: Terbaru
     record_id: Rekor ID
     recordings: Rekaman
     reflection_questions: Pertanyaan Refleksi
@@ -2827,8 +2827,6 @@ id:
     subject_invite_description: Pesan ini akan dikirim untuk mengundang subjek untuk berpartisipasi dalam penilaian
     subject_invite_name: Undangan Subjek
     subject_part_of_other_invite: Subjek dengan alamat email %{user_email} sudah diundang ke '%{workshop_invite_name}'
-    superadmin_use_root_domain: Super administrator harus masuk melalui domain utama
-    switch_client: Klien Switch
     subject_placeholder: Subjek Pencarian...
     subject_reminder_description: Pesan yang dikirim kepada setiap peserta untuk mengingatkan mereka untuk berpartisipasi dalam penilaian
     subject_reminder_name: Pengingat Subjek
@@ -2847,6 +2845,8 @@ id:
     success_title: Pusat penilaian dibuat
     success_update: Pengaturan Desain berhasil disimpan
     suitability_id: ID Kesesuaian
+    superadmin_use_root_domain: Super administrator harus masuk melalui domain utama
+    switch_client: Klien Switch
     system_prompt: Prompt Sistem
     tab_text_one: Menu
     tab_text_two: Submenu
@@ -3028,7 +3028,7 @@ id:
     yoodli_assessment: Penilaian Yoodli
     yoodli_email_id: ID Email Kandidat Yoodli
     yoodli_external_assessment_id: ID Penilaian Yoodli
-    you_are_here: Anda berada di sini
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: URL peluncuran
     yoodli_login_url: Login URL
+    you_are_here: Anda berada di sini

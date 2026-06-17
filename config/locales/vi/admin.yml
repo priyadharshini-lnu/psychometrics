@@ -200,9 +200,9 @@ vi:
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     assistant_toolbar_not_a_valid_operation: 'Hoạt động không xác định: %{operation}.'
     assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
-    audit_log_impersonated_by: Được đóng giả bởi
     attendance: Tỷ lệ tham dự
     attendance_status: Tình trạng tham dự
+    audit_log_impersonated_by: Được đóng giả bởi
     audit_log_title: Thông tin nhật ký kiểm toán
     audit_log_type: Loại bản ghi
     audit_logs: Nhật ký kiểm tra
@@ -369,9 +369,6 @@ vi:
     client: Khách hàng thuê nhà
     client_admin: Quản trị viên khách hàng
     client_admins: Quản trị viên khách hàng
-    client_selection_instruction: Chọn một khách hàng để tiếp tục vào bảng điều khiển quản trị.
-    client_selection_sign_out: Đăng xuất
-    client_selection_title: Chọn khách hàng
     client_credentials_label: Thông tin đăng nhập khách hàng
     client_credentials_value: client_credentials
     client_features: Tính năng khách hàng
@@ -383,6 +380,9 @@ vi:
     client_secret_label: Bí mật khách hàng
     client_secret_name: oauth_client_secret
     client_secret_required: Bí mật khách hàng là bắt buộc
+    client_selection_instruction: Chọn một khách hàng để tiếp tục vào bảng điều khiển quản trị.
+    client_selection_sign_out: Đăng xuất
+    client_selection_title: Chọn khách hàng
     clients: Thuê khách hàng
     clients_search_placeholder: Tìm kiếm khách hàng
     closed: Khép kín
@@ -1164,8 +1164,8 @@ vi:
     linked_assessments: Đánh giá liên kết
     locale: Locale
     log_date: Ngày ghi nhật ký
-    login: Đăng nhập
     logged_in: Đã đăng nhập
+    login: Đăng nhập
     low: Thấp
     mail_history: Lịch sử thư
     main_report: Báo cáo chính
@@ -1258,10 +1258,10 @@ vi:
     navigation_skills_taxonomy: Phân loại kỹ năng
     navigation_users: Người dùng
     new_folder: Thư mục mới
-    no_client_access: Bạn không có quyền truy cập vào khách hàng này
-    no_clients_found: Không tìm thấy khách hàng nào
     new_score: Điểm mới
     no_assessments_found: Mã kiểm toán
+    no_client_access: Bạn không có quyền truy cập vào khách hàng này
+    no_clients_found: Không tìm thấy khách hàng nào
     no_completed_assessments: Chưa có đánh giá hoàn thành
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
@@ -1331,10 +1331,10 @@ vi:
     options_title: Tùy chọn
     organisational: NHANH NHẸN
     original_text: Văn bản gốc
-    others: Các mục khác
     other_assessments: Các đánh giá khác
     other_assessor_assessments: Các đánh giá khác của người đánh giá
     other_reports: Các báo cáo khác
+    others: Các mục khác
     outcome: Kết quả
     output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
     output_schema_keys: Các khóa lược đồ đầu ra
@@ -2003,10 +2003,10 @@ vi:
     questions_title: Câu hỏi
     questions_type: Loại
     range_min_max: Dải sản phẩm%{min} - %{max}
-    recents: Các bài viết gần đây
     rationale: Lý do
     raw: SỐNG
     reason_for_changes: Lý do thay đổi
+    recents: Các bài viết gần đây
     record_id: ID bản ghi
     recordings: Ghi
     reflection_questions: Câu hỏi suy ngẫm
@@ -2834,8 +2834,6 @@ vi:
     subject_invite_description: Tin nhắn này sẽ được gửi để mời các đối tượng tham gia đánh giá
     subject_invite_name: Lời mời đối tượng
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
-    superadmin_use_root_domain: Quản trị viên cấp cao phải đăng nhập qua miền chính
-    switch_client: Chuyển đổi ứng dụng khách
     subject_placeholder: Chủ đề tìm kiếm...
     subject_reminder_description: Tin nhắn gửi đến từng người tham gia để nhắc nhở họ tham gia đánh giá
     subject_reminder_name: Nhắc nhở chủ đề
@@ -2854,6 +2852,8 @@ vi:
     success_title: Các trung tâm đánh giá được tạo ra
     success_update: Cài đặt thiết kế đã được lưu thành công
     suitability_id: Mã phù hợp
+    superadmin_use_root_domain: Quản trị viên cấp cao phải đăng nhập qua miền chính
+    switch_client: Chuyển đổi ứng dụng khách
     system_prompt: Nhắc nhở hệ thống
     tab_text_one: Thực đơn
     tab_text_two: Thực đơn con
@@ -3035,7 +3035,7 @@ vi:
     yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli
-    you_are_here: Bạn đang ở đây
     yoodli_keyset_url: URL bộ khóa
     yoodli_launch_url: URL khởi chạy
     yoodli_login_url: URL đăng nhập
+    you_are_here: Bạn đang ở đây

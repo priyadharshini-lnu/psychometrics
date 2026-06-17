@@ -200,9 +200,9 @@ de:
     assistant_toolbar_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
     assistant_toolbar_not_a_valid_operation: Unbekannter Vorgang „%{operation}“.
     assistant_validation_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
-    audit_log_impersonated_by: Imitiert von
     attendance: Anwesenheit
     attendance_status: Anwesenheitsstatus
+    audit_log_impersonated_by: Imitiert von
     audit_log_title: Audit-Log-Informationen
     audit_log_type: Satzart
     audit_logs: Audit-Protokolle
@@ -369,9 +369,6 @@ de:
     client: Client Mietverhältnis
     client_admin: Kunde Verwaltung
     client_admins: Client-Admins
-    client_selection_instruction: Wählen Sie einen Kunden aus, um zum Verwaltungsbereich zu gelangen.
-    client_selection_sign_out: Abmelden
-    client_selection_title: Kunden auswählen
     client_credentials_label: Client-Anmeldeinformationen
     client_credentials_value: client_credentials
     client_features: Kundeneigenschaften
@@ -383,6 +380,9 @@ de:
     client_secret_label: Geheimer Clientschlüssel
     client_secret_name: oauth_client_secret
     client_secret_required: Geheimer Clientschlüssel ist erforderlich
+    client_selection_instruction: Wählen Sie einen Kunden aus, um zum Verwaltungsbereich zu gelangen.
+    client_selection_sign_out: Abmelden
+    client_selection_title: Kunden auswählen
     clients: Kunden-Mietverhältnisse
     clients_search_placeholder: Client suchen
     closed: Geschlossen
@@ -1166,9 +1166,9 @@ de:
     lighthouse_question_id: Lighthouse-Frage-ID
     link_text: Link
     linked_assessments: Verknüpfte Bewertungen
-    logged_in: Angemeldet
     locale: Schauplatz
     log_date: Datum protokollieren
+    logged_in: Angemeldet
     login: Anmelden
     low: Niedrig
     mail_history: Mail-Geschichte
@@ -1261,10 +1261,10 @@ de:
     navigation_skills_taxonomy: Fähigkeiten-Taxonomie
     navigation_users: Benutzer
     new_folder: Neuer Ordner
-    no_client_access: Sie haben keinen Zugriff auf diesen Kunden
-    no_clients_found: Es wurden keine Kunden gefunden
     new_score: Neue Punktzahl
     no_assessments_found: Audit-Kennung
+    no_client_access: Sie haben keinen Zugriff auf diesen Kunden
+    no_clients_found: Es wurden keine Kunden gefunden
     no_completed_assessments: Es liegen noch keine abgeschlossenen Bewertungen vor
     no_file_selected: Keine Datei ausgewählt
     no_notifications: Keine Benachrichtigungen
@@ -1333,10 +1333,10 @@ de:
     options_title: Optionen
     organisational: AGILE
     original_text: Originaltext
-    others: Sonstiges
     other_assessments: Andere Beurteilungen
     other_assessor_assessments: Andere Assessor-Bewertungen
     other_reports: Andere Berichte
+    others: Sonstiges
     outcome: Ergebnis
     output_schema_key_constraint: Die Tonart muss mit einem Kleinbuchstaben beginnen und darf nur Kleinbuchstaben, Zahlen und Unterstriche enthalten
     output_schema_keys: Schema-Schlüssel ausgeben
@@ -2006,10 +2006,10 @@ de:
     questions_title: Frage
     questions_type: Typ
     range_min_max: REICHWEITE %{min} - %{max}
-    recents: Zuletzt
     rationale: Begründung
     raw: ROH
     reason_for_changes: Grund für die Änderungen
+    recents: Zuletzt
     record_id: Datensatz-ID
     recordings: Aufnahmen
     reflection_questions: Fragen zur Reflexion
@@ -2835,8 +2835,6 @@ de:
     subject_invite_description: Diese Nachricht wird verschickt, um die Testpersonen zur Teilnahme an der Bewertung einzuladen
     subject_invite_name: Thema Einladen
     subject_part_of_other_invite: Der Absender der E-Mail %{user_email} wurde bereits zu „%{workshop_invite_name}” eingeladen.
-    superadmin_use_root_domain: Superadministratoren müssen sich über die Hauptdomain anmelden
-    switch_client: Client wechseln
     subject_placeholder: Thema suchen...
     subject_reminder_description: Nachricht an jeden Teilnehmer, um ihn an die Teilnahme an der Bewertung zu erinnern
     subject_reminder_name: Betreff Erinnerung
@@ -2855,6 +2853,8 @@ de:
     success_title: Assessment Center eingerichtet
     success_update: Designeinstellungen wurden erfolgreich gespeichert
     suitability_id: Eignungs-ID
+    superadmin_use_root_domain: Superadministratoren müssen sich über die Hauptdomain anmelden
+    switch_client: Client wechseln
     system_prompt: System-Eingabeaufforderung
     tab_text_one: Menü
     tab_text_two: Untermenü
@@ -3039,7 +3039,7 @@ de:
     yoodli_assessment: Yoodli-Bewertung
     yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
     yoodli_external_assessment_id: Yoodli Bewertungs-ID
-    you_are_here: Sie befinden sich hier
     yoodli_keyset_url: Keyset-URL
     yoodli_launch_url: Start-URL
     yoodli_login_url: Login-URL
+    you_are_here: Sie befinden sich hier

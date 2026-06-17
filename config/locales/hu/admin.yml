@@ -200,9 +200,9 @@ hu:
     assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
     assistant_toolbar_not_a_valid_operation: Ismeretlen művelet %{operation}.
     assistant_validation_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
-    audit_log_impersonated_by: Szerepeltette
     attendance: Jelenlét
     attendance_status: Jelenléti státusz
+    audit_log_impersonated_by: Szerepeltette
     audit_log_title: Auditnapló adatai
     audit_log_type: Bejegyzés típusa
     audit_logs: Auditnaplók
@@ -369,9 +369,6 @@ hu:
     client: Ügyfél bérleti joga
     client_admin: Ügyfél rendszergazda
     client_admins: Ügyféladminisztrátorok
-    client_selection_instruction: Válasszon ki egy ügyfelet, hogy továbbjusson az adminisztrációs felületre.
-    client_selection_sign_out: Kijelentkezés
-    client_selection_title: Ügyfél kiválasztása
     client_credentials_label: Ügyfél hitelesítő adatai
     client_credentials_value: client_credentials
     client_features: Ügyfélfunkciók
@@ -383,6 +380,9 @@ hu:
     client_secret_label: Titkos ügyfélkód
     client_secret_name: oauth_client_secret
     client_secret_required: Titkos ügyfélkód szükséges
+    client_selection_instruction: Válasszon ki egy ügyfelet, hogy továbbjusson az adminisztrációs felületre.
+    client_selection_sign_out: Kijelentkezés
+    client_selection_title: Ügyfél kiválasztása
     clients: Ügyfélcsoportok
     clients_search_placeholder: Ügyfélkeresés
     closed: Zárt
@@ -1167,9 +1167,9 @@ hu:
     lighthouse_question_id: Lighthouse kérdésazonosító
     link_text: Láncszem
     linked_assessments: Kapcsolódó értékelések
-    logged_in: Bejelentkezve
     locale: Színhely
     log_date: Naplózás dátuma
+    logged_in: Bejelentkezve
     login: Bejelentkezés
     low: Alacsony
     mail_history: Levelezési előzmények
@@ -1262,10 +1262,10 @@ hu:
     navigation_skills_taxonomy: Készségek taxonómiája
     navigation_users: Felhasználók
     new_folder: Új mappa
-    no_client_access: Nincs hozzáférése ehhez az ügyfélhez
-    no_clients_found: Nem találtunk ügyfeleket
     new_score: Új pontszám
     no_assessments_found: Ellenőrzés azonosítója
+    no_client_access: Nincs hozzáférése ehhez az ügyfélhez
+    no_clients_found: Nem találtunk ügyfeleket
     no_completed_assessments: Még nincsenek befejezett értékelések
     no_file_selected: Fájl nem volt kiválasztva
     no_notifications: Nincs értesítés
@@ -1334,10 +1334,10 @@ hu:
     options_title: Beállítások
     organisational: FÜRGE
     original_text: Eredeti szöveg
-    others: Egyéb
     other_assessments: Egyéb értékelések
     other_assessor_assessments: Egyéb értékelő értékelések
     other_reports: Egyéb jelentések
+    others: Egyéb
     outcome: Eredmény
     output_schema_key_constraint: A kulcsnak kisbetűvel kell kezdődnie, és csak kisbetűket, számokat és aláhúzásokat tartalmazhat
     output_schema_keys: Kimeneti séma kulcsok
@@ -2007,10 +2007,10 @@ hu:
     questions_title: Kérdés
     questions_type: Típus
     range_min_max: RANGE %{min} - %{max}
-    recents: Legutóbbi bejegyzések
     rationale: Indoklás
     raw: NYERS
     reason_for_changes: A változások oka
+    recents: Legutóbbi bejegyzések
     record_id: Bejegyzés azonosítója
     recordings: Felvételek
     reflection_questions: Reflexiós kérdések
@@ -2833,8 +2833,6 @@ hu:
     subject_invite_description: Ezt az üzenetet küldjük, hogy meghívjuk a vizsgálati alanyokat az értékelésben való részvételre
     subject_invite_name: Tárgy meghívó
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
-    superadmin_use_root_domain: A szuperadminisztrátoroknak a fő domainen keresztül kell bejelentkezniük
-    switch_client: Ügyfélváltás
     subject_placeholder: Keresés tárgya...
     subject_reminder_description: Az egyes résztvevőknek küldött üzenet, amely emlékezteti őket az értékelésben való részvételre
     subject_reminder_name: Tárgy emlékeztető
@@ -2853,6 +2851,8 @@ hu:
     success_title: Létrehozott értékelési központok
     success_update: A tervezési beállítások mentése sikeresen megtörtént
     suitability_id: Alkalmassági azonosító
+    superadmin_use_root_domain: A szuperadminisztrátoroknak a fő domainen keresztül kell bejelentkezniük
+    switch_client: Ügyfélváltás
     system_prompt: Rendszerkérés
     tab_text_one: Menü
     tab_text_two: Almenü
@@ -3037,7 +3037,7 @@ hu:
     yoodli_assessment: Yoodli értékelés
     yoodli_email_id: Yoodli jelölt e-mail azonosító
     yoodli_external_assessment_id: Yoodli Assessment ID
-    you_are_here: Ön itt van
     yoodli_keyset_url: Kulcskészlet URL
     yoodli_launch_url: Indítási URL
     yoodli_login_url: Bejelentkezési URL
+    you_are_here: Ön itt van

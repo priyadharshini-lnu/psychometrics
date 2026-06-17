@@ -198,9 +198,9 @@ it:
     assistant_toolbar_failed: Impossibile generare un output valido dopo diversi tentativi
     assistant_toolbar_not_a_valid_operation: Operazione sconosciuta %{operation}.
     assistant_validation_failed: Impossibile generare un output valido dopo diversi tentativi
-    audit_log_impersonated_by: Interpretato da
     attendance: Presenze
     attendance_status: Stato delle presenze
+    audit_log_impersonated_by: Interpretato da
     audit_log_title: Informazioni sul registro di controllo
     audit_log_type: Tipo di record
     audit_logs: Registri di controllo
@@ -362,9 +362,6 @@ it:
     client: Contratto di locazione del cliente
     client_admin: Amministratore del cliente
     client_admins: Amministratori clienti
-    client_selection_instruction: Seleziona un cliente per accedere al pannello di amministrazione.
-    client_selection_sign_out: Esci
-    client_selection_title: Seleziona cliente
     client_credentials_label: Credenziali client
     client_credentials_value: client_credentials
     client_features: Caratteristiche del cliente
@@ -376,6 +373,9 @@ it:
     client_secret_label: Segreto client
     client_secret_name: oauth_client_secret
     client_secret_required: Il segreto client è obbligatorio
+    client_selection_instruction: Seleziona un cliente per accedere al pannello di amministrazione.
+    client_selection_sign_out: Esci
+    client_selection_title: Seleziona cliente
     clients: Clienti
     clients_search_placeholder: Ricerca cliente
     closed: Chiuso
@@ -1154,9 +1154,9 @@ it:
     lighthouse_question_id: ID domanda Lighthouse
     link_text: Collegamento
     linked_assessments: Valutazioni correlate
-    logged_in: Hai effettuato l'accesso
     locale: Locale
     log_date: Data del registro
+    logged_in: Hai effettuato l'accesso
     login: Accesso
     low: Basso
     mail_history: Storia della posta
@@ -1250,10 +1250,10 @@ it:
     navigation_skills_taxonomy: Tassonomia delle competenze
     navigation_users: Utenti
     new_folder: Nuova cartella
-    no_client_access: Non hai accesso a questo cliente
-    no_clients_found: Nessun cliente trovato
     new_score: Nuovo punteggio
     no_assessments_found: ID audit
+    no_client_access: Non hai accesso a questo cliente
+    no_clients_found: Nessun cliente trovato
     no_completed_assessments: Non ci sono ancora valutazioni completate
     no_file_selected: Nessun file selezionato
     no_notifications: Nessun messaggio
@@ -1323,10 +1323,10 @@ it:
     options_title: Opzioni
     organisational: AGILE
     original_text: Testo originale
-    others: Altro
     other_assessments: Altre valutazioni
     other_assessor_assessments: Altre Assessment dell'Assessore
     other_reports: Altri rapporti
+    others: Altro
     outcome: Risultato
     output_schema_key_constraint: La tonalità deve iniziare con una lettera minuscola e può contenere solo lettere minuscole, numeri e sottolinee
     output_schema_keys: Chiavi dello schema di uscita
@@ -1995,10 +1995,10 @@ it:
     questions_title: Domanda
     questions_type: Tipo
     range_min_max: GAMMA%{min} - %{max}
-    recents: Ultimi
     rationale: Motivazione
     raw: CRUDO
     reason_for_changes: Motivo delle modifiche
+    recents: Ultimi
     record_id: ID del record
     recordings: Registrazioni
     reflection_questions: Domande di riflessione
@@ -2833,8 +2833,6 @@ it:
     subject_invite_description: Questo messaggio verrà inviato per invitare i soggetti a partecipare alla valutazione
     subject_invite_name: Soggetto invitato
     subject_part_of_other_invite: Il soggetto con indirizzo e-mail %{user_email} è già stato invitato a "%{workshop_invite_name}".
-    superadmin_use_root_domain: Gli amministratori con privilegi elevati devono effettuare l'accesso tramite il dominio principale
-    switch_client: Cambia client
     subject_placeholder: Cerca per argomento...
     subject_reminder_description: Messaggio inviato a ogni partecipante per ricordargli di partecipare alla valutazione
     subject_reminder_name: Promemoria del soggetto
@@ -2853,6 +2851,8 @@ it:
     success_title: Creazione di centri di valutazione
     success_update: Le impostazioni di progettazione sono state salvate correttamente
     suitability_id: Codice di idoneità
+    superadmin_use_root_domain: Gli amministratori con privilegi elevati devono effettuare l'accesso tramite il dominio principale
+    switch_client: Cambia client
     system_prompt: Prompt del sistema
     tab_text_one: Menu
     tab_text_two: Sottomenu
@@ -3034,7 +3034,7 @@ it:
     yoodli_assessment: Valutazione Yoodli
     yoodli_email_id: ID email del candidato Yoodli
     yoodli_external_assessment_id: ID valutazione Yoodli
-    you_are_here: Ti trovi qui
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: URL di lancio
     yoodli_login_url: URL di accesso
+    you_are_here: Ti trovi qui

@@ -194,9 +194,9 @@ nl:
     assistant_toolbar_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
     assistant_toolbar_not_a_valid_operation: Onbekende bewerking %{operation}.
     assistant_validation_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
-    audit_log_impersonated_by: Gespeld door
     attendance: Aanwezigheid
     attendance_status: Aanwezigheidsstatus
+    audit_log_impersonated_by: Gespeld door
     audit_log_title: Informatie controlelogboek
     audit_log_type: Opname Type
     audit_logs: Controlelogboeken
@@ -360,9 +360,6 @@ nl:
     client: Huurder
     client_admin: Klant Admin
     client_admins: Klanten-admins
-    client_selection_instruction: Kies een klant om door te gaan naar het beheerpaneel.
-    client_selection_sign_out: Uitloggen
-    client_selection_title: Kies een klant
     client_credentials_label: Inloggegevens van de klant
     client_credentials_value: client_credentials
     client_features: Klantkenmerken
@@ -373,6 +370,9 @@ nl:
     client_secret_label: Geheim van de klant
     client_secret_name: oauth_client_secret
     client_secret_required: Klantgeheim is vereist
+    client_selection_instruction: Kies een klant om door te gaan naar het beheerpaneel.
+    client_selection_sign_out: Uitloggen
+    client_selection_title: Kies een klant
     clients: Huurcontracten voor klanten
     clients_search_placeholder: Zoek klant
     closed: Gesloten
@@ -1150,9 +1150,9 @@ nl:
     lighthouse_question_id: Vraag-ID van Lighthouse
     link_text: Link
     linked_assessments: Gekoppelde beoordelingen
-    logged_in: Ingelogd
     locale: Lokaal
     log_date: Log Datum
+    logged_in: Ingelogd
     login: Inloggen
     low: Laag
     mail_history: Mail Geschiedenis
@@ -1246,10 +1246,10 @@ nl:
     navigation_skills_taxonomy: Taxonomie van vaardigheden
     navigation_users: Gebruikers
     new_folder: Nieuwe map
-    no_client_access: Je hebt geen toegang tot deze klant
-    no_clients_found: Er zijn geen klanten gevonden
     new_score: Nieuwe score
     no_assessments_found: Controle-id
+    no_client_access: Je hebt geen toegang tot deze klant
+    no_clients_found: Er zijn geen klanten gevonden
     no_completed_assessments: Er zijn nog geen afgeronde beoordelingen
     no_file_selected: Geen bestand geselecteerd
     no_notifications: Geen meldingen
@@ -1317,10 +1317,10 @@ nl:
     options_title: Opties
     organisational: AGIEL
     original_text: Oorspronkelijke tekst
-    others: Anderen
     other_assessments: Andere beoordelingen
     other_assessor_assessments: Andere taxateur taxaties
     other_reports: Andere rapporten
+    others: Anderen
     outcome: Resultaat
     output_schema_key_constraint: De toonsoort moet beginnen met een kleine letter en mag alleen kleine letters, cijfers en onderstreepjes bevatten
     output_schema_keys: Uitvoerschema sleutels
@@ -1988,9 +1988,9 @@ nl:
     questions_title: Vraag
     questions_type: Type
     range_min_max: ASSORTIMENT %{min} - %{max}
-    recents: Laatste
     raw: RAUW
     reason_for_changes: Reden voor wijzigingen
+    recents: Laatste
     record_id: Record-id
     recordings: Opnamen
     reflection_questions: Reflectie vragen
@@ -2826,8 +2826,6 @@ nl:
     subject_invite_description: Dit bericht wordt verstuurd om proefpersonen uit te nodigen om deel te nemen aan de beoordeling
     subject_invite_name: Onderwerp Uitnodiging
     subject_part_of_other_invite: De persoon met e-mailadres %{user_email} is al uitgenodigd voor '%{workshop_invite_name}'.
-    superadmin_use_root_domain: Superbeheerders moeten inloggen via het hoofddomein
-    switch_client: Client wisselen
     subject_placeholder: Zoek Onderwerp...
     subject_reminder_description: Bericht verzonden naar elke deelnemer om hen eraan te herinneren deel te nemen aan de beoordeling
     subject_reminder_name: Onderwerp Herinnering
@@ -2846,6 +2844,8 @@ nl:
     success_title: Opgezette beoordelingscentra
     success_update: De ontwerpinstellingen zijn succesvol opgeslagen
     suitability_id: Geschiktheids-ID
+    superadmin_use_root_domain: Superbeheerders moeten inloggen via het hoofddomein
+    switch_client: Client wisselen
     system_prompt: Systeem prompt
     tab_text_one: Menu
     tab_text_two: Submenu
@@ -3026,7 +3026,7 @@ nl:
     yoodli_assessment: Yoodli-beoordeling
     yoodli_email_id: Yoodli Kandidaat E-mailadres
     yoodli_external_assessment_id: Yoodli Assessment ID
-    you_are_here: U bevindt zich hier
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: Lancerings-URL
     yoodli_login_url: Login-URL
+    you_are_here: U bevindt zich hier

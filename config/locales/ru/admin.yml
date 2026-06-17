@@ -200,9 +200,9 @@ ru:
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
     assistant_toolbar_not_a_valid_operation: Неизвестная операция %{operation}.
     assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
-    audit_log_impersonated_by: В роли
     attendance: Посещаемость
     attendance_status: Статус посещаемости
+    audit_log_impersonated_by: В роли
     audit_log_title: Информация журнала аудита
     audit_log_type: Тип записи
     audit_logs: Журналы аудита
@@ -369,9 +369,6 @@ ru:
     client: Клиент
     client_admin: Администратор клиента
     client_admins: Администраторы клиентов
-    client_selection_instruction: Выберите клиента, чтобы перейти в панель администрирования.
-    client_selection_sign_out: Выйти
-    client_selection_title: Выбрать клиента
     client_credentials_label: Учетные данные клиента
     client_credentials_value: клиентские_учетные_данные
     client_features: Особенности клиента
@@ -383,6 +380,9 @@ ru:
     client_secret_label: Секретный ключ клиента
     client_secret_name: oauth_client_secret
     client_secret_required: Требуется секретный ключ клиента
+    client_selection_instruction: Выберите клиента, чтобы перейти в панель администрирования.
+    client_selection_sign_out: Выйти
+    client_selection_title: Выбрать клиента
     clients: Клиенты
     clients_search_placeholder: Поиск клиента
     closed: Закрыто
@@ -1166,9 +1166,9 @@ ru:
     lighthouse_question_id: Идентификатор вопроса Lighthouse
     link_text: Ссылка
     linked_assessments: Связанные оценки
-    logged_in: Вошел
     locale: Локаль
     log_date: Дата регистрации
+    logged_in: Вошел
     login: Вход
     low: Низкий
     mail_history: История почты
@@ -1261,10 +1261,10 @@ ru:
     navigation_skills_taxonomy: Таксономия навыков
     navigation_users: Пользователи
     new_folder: Новая папка
-    no_client_access: У вас нет доступа к этому клиенту
-    no_clients_found: Клиенты не найдены
     new_score: Новый счет
     no_assessments_found: Идентификатор аудита
+    no_client_access: У вас нет доступа к этому клиенту
+    no_clients_found: Клиенты не найдены
     no_completed_assessments: Пока нет завершенных оценок
     no_file_selected: Файл не выбран
     no_notifications: Нет уведомлений
@@ -1333,10 +1333,10 @@ ru:
     options_title: Варианты
     organisational: AGILE
     original_text: Оригинальный текст
-    others: Прочее
     other_assessments: Другие оценки
     other_assessor_assessments: Другие оценки оценщиков
     other_reports: Другие отчеты
+    others: Прочее
     outcome: Результат
     output_schema_key_constraint: Ключ должен начинаться с строчной буквы и может содержать только строчные буквы, цифры и символы подчеркивания.
     output_schema_keys: Ключи схемы вывода
@@ -2006,10 +2006,10 @@ ru:
     questions_title: Вопрос
     questions_type: Тип
     range_min_max: ДИАПАЗОН%{min} - %{max}
-    recents: Последние
     rationale: Обоснование
     raw: RAW
     reason_for_changes: Причина изменений
+    recents: Последние
     record_id: Идентификатор записи
     recordings: Записи
     reflection_questions: Вопросы для размышления
@@ -2831,8 +2831,6 @@ ru:
     subject_invite_description: Это сообщение будет отправлено для приглашения участников к участию в оценке.
     subject_invite_name: Тема приглашения
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
-    superadmin_use_root_domain: Суперадминистраторы должны входить в систему через основной домен
-    switch_client: Клиент Switch
     subject_placeholder: Поиск по теме...
     subject_reminder_description: Сообщение, отправленное каждому участнику, чтобы напомнить им об участии в оценке
     subject_reminder_name: Напоминание о предмете
@@ -2851,6 +2849,8 @@ ru:
     success_title: Созданы центры оценки
     success_update: Настройки дизайна были успешно сохранены
     suitability_id: Идентификатор соответствия
+    superadmin_use_root_domain: Суперадминистраторы должны входить в систему через основной домен
+    switch_client: Клиент Switch
     system_prompt: Системный запрос
     tab_text_one: Меню
     tab_text_two: подменю
@@ -3035,7 +3035,7 @@ ru:
     yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli
-    you_are_here: Вы находитесь здесь
     yoodli_keyset_url: URL набора клавиш
     yoodli_launch_url: URL запуска
     yoodli_login_url: URL для входа
+    you_are_here: Вы находитесь здесь

@@ -197,9 +197,9 @@ ro:
     assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
     assistant_toolbar_not_a_valid_operation: Operațiune necunoscută %{operation}.
     assistant_validation_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
-    audit_log_impersonated_by: Interpretat de
     attendance: Prezența
     attendance_status: Starea prezenței
+    audit_log_impersonated_by: Interpretat de
     audit_log_title: Informații jurnal de audit
     audit_log_type: Tip de înregistrare
     audit_logs: Jurnale de audit
@@ -364,9 +364,6 @@ ro:
     client: Închirierea clientului
     client_admin: Administrator client
     client_admins: Administratori clienți
-    client_selection_instruction: Selectați un client pentru a accesa panoul de administrare.
-    client_selection_sign_out: Deconectare
-    client_selection_title: Selectați clientul
     client_credentials_label: Acreditări client
     client_credentials_value: client_credentials
     client_features: Caracteristicile clientului
@@ -378,6 +375,9 @@ ro:
     client_secret_label: Secretul clientului
     client_secret_name: oauth_client_secret
     client_secret_required: Secretul clientului este obligatoriu
+    client_selection_instruction: Selectați un client pentru a accesa panoul de administrare.
+    client_selection_sign_out: Deconectare
+    client_selection_title: Selectați clientul
     clients: Clienți
     clients_search_placeholder: Căutare client
     closed: Încheiată
@@ -1156,9 +1156,9 @@ ro:
     lighthouse_question_id: ID întrebare Lighthouse
     link_text: Legătură
     linked_assessments: Evaluări asociate
-    logged_in: Conectat
     locale: Setări regionale
     log_date: Data jurnalului
+    logged_in: Conectat
     login: Autentificare
     low: Scăzut
     mail_history: Istoricul e-mailurilor
@@ -1252,10 +1252,10 @@ ro:
     navigation_skills_taxonomy: Taxonomia abilităților
     navigation_users: Utilizatorii
     new_folder: Dosar nou
-    no_client_access: Nu aveți acces la acest client
-    no_clients_found: Nu s-au găsit clienți
     new_score: Scor nou
     no_assessments_found: Audit ID
+    no_client_access: Nu aveți acces la acest client
+    no_clients_found: Nu s-au găsit clienți
     no_completed_assessments: Nu există încă evaluări finalizate
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
@@ -1324,10 +1324,10 @@ ro:
     options_title: Opțiuni
     organisational: AGIL
     original_text: Textul original
-    others: Altele
     other_assessments: Alte evaluări
     other_assessor_assessments: Alte evaluări ale evaluatorului
     other_reports: Alte rapoarte
+    others: Altele
     outcome: Rezultat
     output_schema_key_constraint: Cheia trebuie să înceapă cu literă mică și poate conține doar litere mici, cifre și sublinii
     output_schema_keys: Chei ale schemei de ieșire
@@ -1996,10 +1996,10 @@ ro:
     questions_title: Întrebare
     questions_type: Tip
     range_min_max: GAMA%{min} - %{max}
-    recents: Cele mai recente
     rationale: Justificare
     raw: CRUD
     reason_for_changes: Motivul modificărilor
+    recents: Cele mai recente
     record_id: ID înregistrare
     recordings: Înregistrări
     reflection_questions: Întrebări de reflecție
@@ -2826,8 +2826,6 @@ ro:
     subject_invite_description: Acest mesaj va fi trimis pentru a invita subiecții să participe la evaluare
     subject_invite_name: Subiect Invitație
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
-    superadmin_use_root_domain: Superadministratorii trebuie să se autentifice prin intermediul domeniului principal
-    switch_client: Schimbă clientul
     subject_placeholder: Subiectul căutării...
     subject_reminder_description: Mesaj trimis fiecărui participant pentru a le reaminti să participe la evaluare
     subject_reminder_name: Memento subiect
@@ -2846,6 +2844,8 @@ ro:
     success_title: Centre de evaluare create
     success_update: Setările de proiectare au fost salvate cu succes
     suitability_id: Cod de compatibilitate
+    superadmin_use_root_domain: Superadministratorii trebuie să se autentifice prin intermediul domeniului principal
+    switch_client: Schimbă clientul
     system_prompt: Solicitare de sistem
     tab_text_one: Meniu
     tab_text_two: Submeniu
@@ -3027,7 +3027,7 @@ ro:
     yoodli_assessment: Evaluarea Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli
     yoodli_external_assessment_id: ID de evaluare Yoodli
-    you_are_here: Vă aflați aici
     yoodli_keyset_url: URL-ul setului de chei
     yoodli_launch_url: URL de lansare
     yoodli_login_url: URL de autentificare
+    you_are_here: Vă aflați aici

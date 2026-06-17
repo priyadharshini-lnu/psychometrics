@@ -199,9 +199,9 @@ sr-Latn:
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
     assistant_toolbar_not_a_valid_operation: Непозната операција %{operation}.
     assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
-    audit_log_impersonated_by: У улози
     attendance: Посећеност
     attendance_status: Статус присуства
+    audit_log_impersonated_by: У улози
     audit_log_title: Informacije o reviziji evidencije
     audit_log_type: Tip zapisa
     audit_logs: Evidencije revizije
@@ -367,9 +367,6 @@ sr-Latn:
     client: Zakup klijenta
     client_admin: Administrator klijenta
     client_admins: Administratori klijenata
-    client_selection_instruction: Изаберите клијента да бисте наставили до административног панела.
-    client_selection_sign_out: Одјавите се
-    client_selection_title: Изабери клијента
     client_credentials_label: Akreditivi klijenta
     client_credentials_value: client_credentials
     client_features: Karakteristike klijenta
@@ -381,6 +378,9 @@ sr-Latn:
     client_secret_label: Tajna klijenta
     client_secret_name: oauth_client_secret
     client_secret_required: Tajna klijenta je obavezna
+    client_selection_instruction: Изаберите клијента да бисте наставили до административног панела.
+    client_selection_sign_out: Одјавите се
+    client_selection_title: Изабери клијента
     clients: Klijentski prostor
     clients_search_placeholder: Претрага клијента
     closed: Zatvoreno
@@ -1161,9 +1161,9 @@ sr-Latn:
     lighthouse_question_id: ИД питања светла
     link_text: Vezu
     linked_assessments: Повезане процене
-    logged_in: Пријављен
     locale: Lokalne
     log_date: Datum evidencije
+    logged_in: Пријављен
     login: Prijava
     low: Ниско
     mail_history: Istorija pošte
@@ -1257,10 +1257,10 @@ sr-Latn:
     navigation_skills_taxonomy: Taksonomija veština
     navigation_users: Korisnici
     new_folder: Нова фасцикла
-    no_client_access: Немате приступ овом клијенту
-    no_clients_found: Није пронађен ниједан клијент
     new_score: Нова оцена
     no_assessments_found: Revizija ID
+    no_client_access: Немате приступ овом клијенту
+    no_clients_found: Није пронађен ниједан клијент
     no_completed_assessments: Još uvek nema završenih procena
     no_file_selected: Nijedan fajl nije izabran
     no_notifications: Nema obaveštenja
@@ -1330,10 +1330,10 @@ sr-Latn:
     options_title: Opcije
     organisational: GIBGIB
     original_text: Оригинални текст
-    others: Остали
     other_assessments: Ostale procene
     other_assessor_assessments: Ostale procene procenjivača
     other_reports: Ostali izveštaji
+    others: Остали
     outcome: Ishod
     output_schema_key_constraint: Ključ mora početi malim slovom i može sadržavati samo mala slova, brojeve i podvlake
     output_schema_keys: Izlazni ključevi šeme
@@ -2002,10 +2002,10 @@ sr-Latn:
     questions_title: Питање
     questions_type: Тип
     range_min_max: Домeн %{min} - %{max}
-    recents: Недавни
     rationale: Оправдање
     raw: SIROVO
     reason_for_changes: Разлог за промене
+    recents: Недавни
     record_id: Zapis ID
     recordings: Snimke
     reflection_questions: Pitanja za razmišljanje
@@ -2832,8 +2832,6 @@ sr-Latn:
     subject_invite_description: Ova poruka će biti poslata da pozove subjekte da učestvuju u proceni
     subject_invite_name: Poziv subjektu
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} већ је позван на '%{workshop_invite_name}'
-    superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
-    switch_client: Пребаци клијент
     subject_placeholder: Pretraži subjekta...
     subject_reminder_description: Poruka poslata svakom učesniku da ih podseti da učestvuju u proceni
     subject_reminder_name: Podsetnik za subjekta
@@ -2852,6 +2850,8 @@ sr-Latn:
     success_title: Stvoreni centri za procenu
     success_update: Podešavanja dizajna su uspešno sačuvana
     suitability_id: Идентификатор подобности
+    superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
+    switch_client: Пребаци клијент
     system_prompt: Sistem prompt
     tab_text_one: Meni
     tab_text_two: Podmeni
@@ -3031,7 +3031,7 @@ sr-Latn:
     yoodli_assessment: Joodli Procena
     yoodli_email_id: ID e-pošte kandidata za joodli
     yoodli_external_assessment_id: Ioodli Procena ID
-    you_are_here: Ви сте овде
     yoodli_keyset_url: URL ključa
     yoodli_launch_url: Pokrenite URL adresu
     yoodli_login_url: URL adresa za prijavu
+    you_are_here: Ви сте овде

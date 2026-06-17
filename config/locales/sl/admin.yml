@@ -199,9 +199,9 @@ sl:
     assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     assistant_toolbar_not_a_valid_operation: Neznana operacija %{operation}.
     assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
-    audit_log_impersonated_by: V vlogi
     attendance: Prisotnost
     attendance_status: Stanje prisotnosti
+    audit_log_impersonated_by: V vlogi
     audit_log_title: Informacije o dnevniku nadzora
     audit_log_type: Vrsta zapisa
     audit_logs: Dnevniki nadzora
@@ -367,9 +367,6 @@ sl:
     client: Najem stranke
     client_admin: Skrbnik odjemalca
     client_admins: Skrbniki odjemalcev
-    client_selection_instruction: Izberite stranko, da nadaljujete v nadzorno ploščo.
-    client_selection_sign_out: Odjavi se
-    client_selection_title: Izberi stranko
     client_credentials_label: Poverilnice odjemalca
     client_credentials_value: client_credentials
     client_features: Funkcije odjemalca
@@ -381,6 +378,9 @@ sl:
     client_secret_label: Skrivnost stranke
     client_secret_name: oauth_client_secret
     client_secret_required: Skrivnost odjemalca je obvezna
+    client_selection_instruction: Izberite stranko, da nadaljujete v nadzorno ploščo.
+    client_selection_sign_out: Odjavi se
+    client_selection_title: Izberi stranko
     clients: Spletno okolje naročnika
     clients_search_placeholder: Iskanje stranke
     closed: Zaprt
@@ -1159,9 +1159,9 @@ sl:
     lighthouse_question_id: ID vprašanja Lighthouse
     link_text: Povezava
     linked_assessments: Povezane ocene
-    logged_in: Prijavljen
     locale: Locale
     log_date: Datum dnevnika
+    logged_in: Prijavljen
     login: Prijava
     low: Nizka
     mail_history: Zgodovina pošte
@@ -1255,10 +1255,10 @@ sl:
     navigation_skills_taxonomy: Taksonomija spretnosti
     navigation_users: Uporabniki
     new_folder: Nova mapa
-    no_client_access: Nimate dostopa do tega stranke
-    no_clients_found: Ni bilo najdenih strank
     new_score: Nova ocena
     no_assessments_found: ID revizije
+    no_client_access: Nimate dostopa do tega stranke
+    no_clients_found: Ni bilo najdenih strank
     no_completed_assessments: Ocen še ni zaključenih
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
@@ -1328,10 +1328,10 @@ sl:
     options_title: Možnosti
     organisational: AGILE
     original_text: Izvirno besedilo
-    others: Ostali
     other_assessments: Druga ocenjevanja
     other_assessor_assessments: Druga ocenjevanja ocenjevalcev
     other_reports: Druga poročila
+    others: Ostali
     outcome: Rezultat
     output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
     output_schema_keys: Ključi izhodne sheme
@@ -2000,10 +2000,10 @@ sl:
     questions_title: Vprašanje
     questions_type: Vrsta
     range_min_max: RANGE %{min} - %{max}
-    recents: Zadnje
     rationale: Utemeljitev
     raw: SUROV
     reason_for_changes: Razlog za spremembe
+    recents: Zadnje
     record_id: ID zapisa
     recordings: Posnetkov
     reflection_questions: Vprašanja za razmislek
@@ -2830,8 +2830,6 @@ sl:
     subject_invite_description: To sporočilo bo poslano za povabilo udeležencev k sodelovanju pri ocenjevanju
     subject_invite_name: Zadevno povabilo
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
-    superadmin_use_root_domain: Superupravitelji se morajo prijaviti prek glavne domene
-    switch_client: Preklop na odjemalca
     subject_placeholder: Zadeva iskanja ...
     subject_reminder_description: Sporočilo, poslano vsakemu udeležencu, da ga opomni na sodelovanje pri ocenjevanju
     subject_reminder_name: Opomnik za zadevo
@@ -2850,6 +2848,8 @@ sl:
     success_title: Ustvarjeni ocenjevalni centri
     success_update: Nastavitve načrta so bile uspešno shranjene
     suitability_id: ID primernosti
+    superadmin_use_root_domain: Superupravitelji se morajo prijaviti prek glavne domene
+    switch_client: Preklop na odjemalca
     system_prompt: Sistemski poziv
     tab_text_one: Meni
     tab_text_two: Podmenu
@@ -3031,7 +3031,7 @@ sl:
     yoodli_assessment: Yoodlijeva ocena
     yoodli_email_id: E-poštni ID kandidata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
-    you_are_here: Trenutno ste tukaj
     yoodli_keyset_url: URL nabora ključev
     yoodli_launch_url: Zagon URL
     yoodli_login_url: URL za prijavo
+    you_are_here: Trenutno ste tukaj

@@ -199,9 +199,9 @@ sk:
     assistant_toolbar_failed: Po viacerých pokusoch sa nepodarilo vygenerovať platný výstup.
     assistant_toolbar_not_a_valid_operation: Neznáma operácia %{operation}.
     assistant_validation_failed: Po viacerých pokusoch sa nepodarilo vygenerovať platný výstup.
-    audit_log_impersonated_by: V podaní
     attendance: Účasť
     attendance_status: Stav účasti
+    audit_log_impersonated_by: V podaní
     audit_log_title: Informácie denníka auditu
     audit_log_type: Typ záznamu
     audit_logs: Protokoly auditu
@@ -367,9 +367,6 @@ sk:
     client: Prenájom klienta
     client_admin: Správca klienta
     client_admins: Správcovia klientov
-    client_selection_instruction: Vyberte klienta a prejdite do administračného panela.
-    client_selection_sign_out: Odhlásiť sa
-    client_selection_title: Vyberte klienta
     client_credentials_label: Prihlasovacie údaje klienta
     client_credentials_value: client_credentials
     client_features: Funkcie klienta
@@ -381,6 +378,9 @@ sk:
     client_secret_label: Tajný kľúč klienta
     client_secret_name: oauth_client_secret
     client_secret_required: Vyžaduje sa tajný kľúč klienta
+    client_selection_instruction: Vyberte klienta a prejdite do administračného panela.
+    client_selection_sign_out: Odhlásiť sa
+    client_selection_title: Vyberte klienta
     clients: Prenájom klientov
     clients_search_placeholder: Vyhľadávanie klienta
     closed: Zatvorený
@@ -1159,9 +1159,9 @@ sk:
     lighthouse_question_id: ID otázky Lighthouse
     link_text: Väzba
     linked_assessments: Súvisiace hodnotenia
-    logged_in: Prihlásený
     locale: Locale
     log_date: Dátum záznamu
+    logged_in: Prihlásený
     login: Prihlásenie
     low: Nízka
     mail_history: História pošty
@@ -1255,10 +1255,10 @@ sk:
     navigation_skills_taxonomy: Taxonómia zručností
     navigation_users: Používateľov
     new_folder: Nový priečinok
-    no_client_access: Nemáte prístup k tomuto klientovi
-    no_clients_found: Nenašli sa žiadni klienti
     new_score: Nové skóre
     no_assessments_found: ID auditu
+    no_client_access: Nemáte prístup k tomuto klientovi
+    no_clients_found: Nenašli sa žiadni klienti
     no_completed_assessments: Zatiaľ nie sú dokončené hodnotenia
     no_file_selected: Žiadny súbor nevybraný
     no_notifications: Žiadne upozornenia
@@ -1328,10 +1328,10 @@ sk:
     options_title: Možnosti
     organisational: ŽIVÝ
     original_text: Pôvodný text
-    others: Ostatní
     other_assessments: Iné hodnotenia
     other_assessor_assessments: Ďalšie hodnotenia hodnotiteľov
     other_reports: Ďalšie správy
+    others: Ostatní
     outcome: Výsledok
     output_schema_key_constraint: Kľúč musí začínať malým písmenom a môže obsahovať len malé písmená, čísla a podčiarknutia
     output_schema_keys: Kľúče výstupnej schémy
@@ -1999,10 +1999,10 @@ sk:
     questions_title: Otázka
     questions_type: Typ
     range_min_max: ROZSAH%{min} - %{max}
-    recents: Najnovšie
     rationale: Odôvodnenie
     raw: SUROVÝ
     reason_for_changes: Dôvod zmien
+    recents: Najnovšie
     record_id: ID záznamu
     recordings: Nahrávky
     reflection_questions: Otázky na zamyslenie
@@ -2830,8 +2830,6 @@ sk:
     subject_invite_description: Táto správa bude odoslaná s cieľom vyzvať subjekty na účasť na hodnotení
     subject_invite_name: Predmetová pozvánka
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} je už pozvaná na „%{workshop_invite_name}“.
-    superadmin_use_root_domain: Superadministrátori sa musia prihlásiť cez hlavnú doménu
-    switch_client: Prepnúť klienta
     subject_placeholder: Hľadať predmet...
     subject_reminder_description: Správa zaslaná každému účastníkovi, aby mu pripomenula účasť na hodnotení
     subject_reminder_name: Pripomenutie predmetu
@@ -2850,6 +2848,8 @@ sk:
     success_title: Vytvorené hodnotiace centrá
     success_update: Nastavenia návrhu boli úspešne uložené
     suitability_id: Identifikačný kód vhodnosti
+    superadmin_use_root_domain: Superadministrátori sa musia prihlásiť cez hlavnú doménu
+    switch_client: Prepnúť klienta
     system_prompt: Systémová výzva
     tab_text_one: Ponuka
     tab_text_two: Podmenu
@@ -3031,7 +3031,7 @@ sk:
     yoodli_assessment: Yoodli hodnotenie
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
-    you_are_here: Nachádzate sa tu
     yoodli_keyset_url: URL keysetu
     yoodli_launch_url: Launch URL
     yoodli_login_url: Prihlasovacia URL adresa
+    you_are_here: Nachádzate sa tu

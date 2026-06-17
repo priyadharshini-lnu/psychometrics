@@ -197,9 +197,9 @@ es-ES:
     assistant_toolbar_failed: No se ha podido generar una salida válida tras varios intentos.
     assistant_toolbar_not_a_valid_operation: Operación desconocida %{operation}.
     assistant_validation_failed: No se ha podido generar una salida válida tras múltiples intentos.
-    audit_log_impersonated_by: Interpretado por
     attendance: Asistencia
     attendance_status: Estado de asistencia
+    audit_log_impersonated_by: Interpretado por
     audit_log_title: Información del registro de auditoría
     audit_log_type: Tipo de registro
     audit_logs: Registros de auditoría
@@ -366,9 +366,6 @@ es-ES:
     client: Arrendamiento de clientes
     client_admin: Administración de clientes
     client_admins: Administradores de clientes
-    client_selection_instruction: Selecciona un cliente para acceder al panel de administración.
-    client_selection_sign_out: Cerrar sesión
-    client_selection_title: Seleccionar cliente
     client_credentials_label: Credenciales de cliente
     client_credentials_value: client_credentials
     client_features: Características del cliente
@@ -380,6 +377,9 @@ es-ES:
     client_secret_label: Secreto de cliente
     client_secret_name: oauth_client_secret
     client_secret_required: Se requiere secreto de cliente
+    client_selection_instruction: Selecciona un cliente para acceder al panel de administración.
+    client_selection_sign_out: Cerrar sesión
+    client_selection_title: Seleccionar cliente
     clients: Clientes
     clients_search_placeholder: Buscar cliente
     closed: Cerrado
@@ -1157,9 +1157,9 @@ es-ES:
     lighthouse_question_id: ID de la pregunta de Lighthouse
     link_text: Enlace
     linked_assessments: Evaluaciones relacionadas
-    logged_in: Iniciado sesión
     locale: Local
     log_date: Fecha de registro
+    logged_in: Iniciado sesión
     login: Iniciar sesión
     low: Bajo
     mail_history: Historia del correo
@@ -1253,10 +1253,10 @@ es-ES:
     navigation_skills_taxonomy: Taxonomía de competencias
     navigation_users: Usuarios
     new_folder: Nueva carpeta
-    no_client_access: No tienes acceso a este cliente
-    no_clients_found: No se han encontrado clientes
     new_score: Nueva puntuación
     no_assessments_found: ID de auditoría
+    no_client_access: No tienes acceso a este cliente
+    no_clients_found: No se han encontrado clientes
     no_completed_assessments: Aún no hay valoraciones realizadas
     no_file_selected: No se selecciona ningún archivo
     no_notifications: Sin notificaciones
@@ -1325,10 +1325,10 @@ es-ES:
     options_title: Opciones
     organisational: AGIL
     original_text: Texto original
-    others: Otros
     other_assessments: Otras evaluaciones
     other_assessor_assessments: Otras evaluaciones
     other_reports: Otros informes
+    others: Otros
     outcome: Resultado
     output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
     output_schema_keys: Claves del esquema de salida
@@ -1997,10 +1997,10 @@ es-ES:
     questions_title: Pregunta
     questions_type: Tipo
     range_min_max: RANGE %{min} - %{max}
-    recents: Últimas publicaciones
     rationale: Fundamento
     raw: CRUDO
     reason_for_changes: Motivo de los cambios
+    recents: Últimas publicaciones
     record_id: ID de registro
     recordings: Grabaciones
     reflection_questions: Preguntas de reflexión
@@ -2836,8 +2836,6 @@ es-ES:
     subject_invite_description: Este mensaje se enviará para invitar a los sujetos a participar en la evaluación
     subject_invite_name: Asunto Invitación
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
-    superadmin_use_root_domain: Los superadministradores deben iniciar sesión a través del dominio principal
-    switch_client: Cambiar de cliente
     subject_placeholder: Buscar Asunto...
     subject_reminder_description: Mensaje enviado a cada participante para recordarle que debe participar en la evaluación
     subject_reminder_name: Recordatorio de asunto
@@ -2856,6 +2854,8 @@ es-ES:
     success_title: Creación de centros de evaluación
     success_update: Los ajustes de diseño se han guardado correctamente
     suitability_id: Código de idoneidad
+    superadmin_use_root_domain: Los superadministradores deben iniciar sesión a través del dominio principal
+    switch_client: Cambiar de cliente
     system_prompt: Indicación del sistema
     tab_text_one: Menú
     tab_text_two: Submenú
@@ -3037,7 +3037,7 @@ es-ES:
     yoodli_assessment: Evaluación de Yoodli
     yoodli_email_id: ID de correo electrónico del candidato Yoodli
     yoodli_external_assessment_id: ID de evaluación Yoodli
-    you_are_here: Estás aquí
     yoodli_keyset_url: URL del conjunto de claves
     yoodli_launch_url: URL de lanzamiento
     yoodli_login_url: URL de inicio de sesión
+    you_are_here: Estás aquí

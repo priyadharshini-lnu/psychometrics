@@ -200,9 +200,9 @@ ko:
     assistant_toolbar_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다.
     assistant_toolbar_not_a_valid_operation: 알 수 없는 작업%{operation}.
     assistant_validation_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다
-    audit_log_impersonated_by: 모방한 사람
     attendance: 출석
     attendance_status: 출석 현황
+    audit_log_impersonated_by: 모방한 사람
     audit_log_title: 감사 로그 정보
     audit_log_type: 레코드 유형
     audit_logs: 감사 로그
@@ -369,9 +369,6 @@ ko:
     client: 클라이언트 테넌시
     client_admin: 클라이언트 관리자
     client_admins: 클라이언트 관리자
-    client_selection_instruction: 관리자 패널로 이동하려면 클라이언트를 선택하세요.
-    client_selection_sign_out: 로그아웃
-    client_selection_title: 고객 선택
     client_credentials_label: 클라이언트 자격 증명
     client_credentials_value: client_credentials
     client_features: 클라이언트 기능
@@ -383,6 +380,9 @@ ko:
     client_secret_label: 클라이언트 암호
     client_secret_name: oauth_client_secret
     client_secret_required: 클라이언트 암호가 필요합니다.
+    client_selection_instruction: 관리자 패널로 이동하려면 클라이언트를 선택하세요.
+    client_selection_sign_out: 로그아웃
+    client_selection_title: 고객 선택
     clients: 고객 임차
     clients_search_placeholder: 클라이언트 검색
     closed: 닫힘
@@ -1166,9 +1166,9 @@ ko:
     lighthouse_question_id: 등대 질문 ID
     link_text: 링크
     linked_assessments: 연관된 평가
-    logged_in: 로그인됨
     locale: 로캘
     log_date: 로그 날짜
+    logged_in: 로그인됨
     login: 로그인
     low: 낮음
     mail_history: 메일 기록
@@ -1261,10 +1261,10 @@ ko:
     navigation_skills_taxonomy: 기술 분류
     navigation_users: 사용자
     new_folder: 새 폴더
-    no_client_access: 이 클라이언트에 대한 액세스 권한이 없습니다
-    no_clients_found: 고객이 없습니다
     new_score: 새로운 점수
     no_assessments_found: 감사 ID
+    no_client_access: 이 클라이언트에 대한 액세스 권한이 없습니다
+    no_clients_found: 고객이 없습니다
     no_completed_assessments: 아직 완료된 평가가 없습니다
     no_file_selected: 선택된 파일이 없습니다
     no_notifications: 알림 없음
@@ -1333,10 +1333,10 @@ ko:
     options_title: 옵션
     organisational: AGILE
     original_text: 원문
-    others: 기타
     other_assessments: 기타 평가
     other_assessor_assessments: 기타 평가자 평가
     other_reports: 기타 보고서
+    others: 기타
     outcome: 결과
     output_schema_key_constraint: 키는 소문자로 시작해야 하며, 소문자, 숫자, 밑줄만 포함할 수 있습니다
     output_schema_keys: 출력 스키마 키
@@ -2006,10 +2006,10 @@ ko:
     questions_title: 질문
     questions_type: 유형
     range_min_max: RANGE %{min} - %{max}
-    recents: 최근 게시물
     rationale: 이유
     raw: 날것의
     reason_for_changes: 변경 사유
+    recents: 최근 게시물
     record_id: 레코드 ID
     recordings: 녹음
     reflection_questions: 성찰 질문
@@ -2831,8 +2831,6 @@ ko:
     subject_invite_description: 이 메시지는 피험자가 평가에 참여하도록 초대하기 위해 전송됩니다
     subject_invite_name: 제목 초대
     subject_part_of_other_invite: 이메일 주소 %{user_email}을 가진 사용자는 이미 '%{workshop_invite_name}'에 초대되었습니다.
-    superadmin_use_root_domain: 슈퍼 관리자는 메인 도메인을 통해 로그인해야 합니다
-    switch_client: 클라이언트 전환
     subject_placeholder: 검색 제목...
     subject_reminder_description: 각 참가자에게 평가에 참여하도록 상기시키는 메시지를 보냅니다
     subject_reminder_name: 제목 알림
@@ -2851,6 +2849,8 @@ ko:
     success_title: 평가 센터 생성
     success_update: 디자인 설정이 성공적으로 저장되었습니다
     suitability_id: 적합성 ID
+    superadmin_use_root_domain: 슈퍼 관리자는 메인 도메인을 통해 로그인해야 합니다
+    switch_client: 클라이언트 전환
     system_prompt: 시스템 프롬프트
     tab_text_one: 메뉴
     tab_text_two: 하위 메뉴
@@ -3035,7 +3035,7 @@ ko:
     yoodli_assessment: 유들리 평가
     yoodli_email_id: 유들리 후보자 이메일 ID
     yoodli_external_assessment_id: Yoodli 평가 ID
-    you_are_here: 현재 위치
     yoodli_keyset_url: 키셋 URL
     yoodli_launch_url: 출시 URL
     yoodli_login_url: 로그인 URL
+    you_are_here: 현재 위치

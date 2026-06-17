@@ -200,9 +200,9 @@ zh-Hant:
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
     assistant_toolbar_not_a_valid_operation: 未知操作%{operation}。
     assistant_validation_failed: 多次尝试后仍未能生成有效输出
-    audit_log_impersonated_by: 被冒充者
     attendance: 出勤情况
     attendance_status: 出勤状况
+    audit_log_impersonated_by: 被冒充者
     audit_log_title: 稽核記錄資訊
     audit_log_type: 記錄類型
     audit_logs: 稽核記錄
@@ -369,9 +369,6 @@ zh-Hant:
     client: 客戶租約
     client_admin: 客戶管理
     client_admins: 客戶端管理員
-    client_selection_instruction: 选择一个客户，继续进入管理面板。
-    client_selection_sign_out: 退出
-    client_selection_title: 选择客户
     client_credentials_label: 用戶端認證
     client_credentials_value: client_credentials
     client_features: 客戶特色
@@ -383,6 +380,9 @@ zh-Hant:
     client_secret_label: 用戶端密碼
     client_secret_name: oauth_client_secret
     client_secret_required: 需要用戶端密碼
+    client_selection_instruction: 选择一个客户，继续进入管理面板。
+    client_selection_sign_out: 退出
+    client_selection_title: 选择客户
     clients: 客戶租約
     clients_search_placeholder: 搜索客户
     closed: 關閉
@@ -1162,9 +1162,9 @@ zh-Hant:
     lighthouse_question_id: Lighthouse 问题 ID
     link_text: 連結
     linked_assessments: 关联评估
-    logged_in: 已登录
     locale: 地點
     log_date: 記錄日期
+    logged_in: 已登录
     login: 登入
     low: 低
     mail_history: 郵件歷史
@@ -1258,10 +1258,10 @@ zh-Hant:
     navigation_skills_taxonomy: 技能分類法
     navigation_users: 使用者
     new_folder: 新建文件夹
-    no_client_access: 您无权访问此客户
-    no_clients_found: 未找到任何客户
     new_score: 新分数
     no_assessments_found: 審計編號
+    no_client_access: 您无权访问此客户
+    no_clients_found: 未找到任何客户
     no_completed_assessments: 目前尚未完成評估
     no_file_selected: 未選取任何檔案
     no_notifications: 沒有通知
@@ -1331,10 +1331,10 @@ zh-Hant:
     options_title: 選項
     organisational: AGILE
     original_text: 原文
-    others: 其他
     other_assessments: 其他評估
     other_assessor_assessments: 其他評估員評估
     other_reports: 其他報告
+    others: 其他
     outcome: 結果
     output_schema_key_constraint: 鍵必須以小寫字母開頭，且只能包含小寫字母、數字和底線
     output_schema_keys: 輸出模式鍵
@@ -2003,10 +2003,10 @@ zh-Hant:
     questions_title: 问题
     questions_type: 类型
     range_min_max: RANGE %{min} - %{max}
-    recents: 最近
     rationale: 依据
     raw: 生
     reason_for_changes: 变更原因
+    recents: 最近
     record_id: 記錄 ID
     recordings: 錄音
     reflection_questions: 反思問題
@@ -2842,8 +2842,6 @@ zh-Hant:
     subject_invite_description: 此訊息將發送給受試者，邀請他們參加評估
     subject_invite_name: 主題邀請
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
-    superadmin_use_root_domain: 超级管理员必须通过主域登录
-    switch_client: 切换客户端
     subject_placeholder: 搜尋主題...
     subject_reminder_description: 向每位參與者發送訊息，提醒他們參加評估
     subject_reminder_name: 主題提醒
@@ -2862,6 +2860,8 @@ zh-Hant:
     success_title: 設立評估中心
     success_update: 設計設定已成功儲存
     suitability_id: 适用性标识
+    superadmin_use_root_domain: 超级管理员必须通过主域登录
+    switch_client: 切换客户端
     system_prompt: 系統提示
     tab_text_one: 選單
     tab_text_two: 子選單
@@ -3043,7 +3043,7 @@ zh-Hant:
     yoodli_assessment: Yoodli 評估
     yoodli_email_id: Yoodli 候選人電子郵件 ID
     yoodli_external_assessment_id: Yoodli 評估識別碼
-    you_are_here: 您当前所在位置
     yoodli_keyset_url: 鍵組網址
     yoodli_launch_url: 啟動網址
     yoodli_login_url: 登入網址
+    you_are_here: 您当前所在位置

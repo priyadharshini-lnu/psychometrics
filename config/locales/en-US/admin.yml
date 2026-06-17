@@ -200,9 +200,9 @@ en-US:
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     assistant_validation_failed: Failed to generate valid output after multiple attempts
-    audit_log_impersonated_by: Impersonated By
     attendance: Attendance
     attendance_status: Attendance status
+    audit_log_impersonated_by: Impersonated By
     audit_log_title: Audit Log Info
     audit_log_type: Record Type
     audit_logs: Audit Logs
@@ -369,9 +369,6 @@ en-US:
     client: Client Tenancy
     client_admin: Client Admin
     client_admins: Client Admins
-    client_selection_instruction: Select a client to continue to the administration panel.
-    client_selection_sign_out: Sign Out
-    client_selection_title: Select Client
     client_credentials_label: Client Credentials
     client_credentials_value: client_credentials
     client_features: Client Features
@@ -383,6 +380,9 @@ en-US:
     client_secret_label: Client Secret
     client_secret_name: oauth_client_secret
     client_secret_required: Client secret is required
+    client_selection_instruction: Select a client to continue to the administration panel.
+    client_selection_sign_out: Sign Out
+    client_selection_title: Select Client
     clients: Client Tenancies
     clients_search_placeholder: Search Client
     closed: Closed
@@ -1167,9 +1167,9 @@ en-US:
     lighthouse_question_id: Lighthouse Question ID
     link_text: Link
     linked_assessments: Linked assessments
-    logged_in: Logged in
     locale: Locale
     log_date: Log Date
+    logged_in: Logged in
     login: Login
     low: Low
     mail_history: Mail History
@@ -1263,10 +1263,10 @@ en-US:
     navigation_skills_taxonomy: Skills Taxonomy
     navigation_users: Users
     new_folder: New folder
-    no_client_access: You do not have access to this client
-    no_clients_found: No clients found
     new_score: New Score
     no_assessments_found: Audit ID
+    no_client_access: You do not have access to this client
+    no_clients_found: No clients found
     no_completed_assessments: There are no completed assessments yet
     no_file_selected: No file selected
     no_notifications: No Notifications
@@ -1336,10 +1336,10 @@ en-US:
     options_title: Options
     organisational: AGILE
     original_text: Original Text
-    others: Others
     other_assessments: Other Assessments
     other_assessor_assessments: Other Assessor Assessments
     other_reports: Other Reports
+    others: Others
     outcome: Outcome
     output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
     output_schema_keys: Output Schema Keys
@@ -2009,10 +2009,10 @@ en-US:
     questions_title: Question
     questions_type: Type
     range_min_max: RANGE %{min} - %{max}
-    recents: Recents
     rationale: Rationale
     raw: RAW
     reason_for_changes: Reason for changes
+    recents: Recents
     record_id: Record ID
     recordings: Recordings
     reflection_questions: Reflection Questions
@@ -2848,8 +2848,6 @@ en-US:
     subject_invite_description: This message will be sent to invite subjects to participate in the assessment
     subject_invite_name: Subject Invite
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
-    superadmin_use_root_domain: Super administrators must sign in through the main domain
-    switch_client: Switch Client
     subject_placeholder: Search Subject...
     subject_reminder_description: Message sent to each participant to remind them to participate in the assessment
     subject_reminder_name: Subject Reminder
@@ -2868,6 +2866,8 @@ en-US:
     success_title: Assessment centers created
     success_update: Design Settings were saved successfully
     suitability_id: Suitability ID
+    superadmin_use_root_domain: Super administrators must sign in through the main domain
+    switch_client: Switch Client
     system_prompt: System Prompt
     tab_text_one: Menu
     tab_text_two: Submenu
@@ -3052,7 +3052,7 @@ en-US:
     yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID
-    you_are_here: You are here
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: Launch URL
     yoodli_login_url: Login URL
+    you_are_here: You are here

@@ -200,9 +200,9 @@ sr-Cyrl:
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
     assistant_toolbar_not_a_valid_operation: Непозната операција %{operation}.
     assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
-    audit_log_impersonated_by: У улози
     attendance: Посећеност
     attendance_status: Статус присуства
+    audit_log_impersonated_by: У улози
     audit_log_title: Информације о дневнику ревизије
     audit_log_type: Тип записа
     audit_logs: Логови ревизије
@@ -369,9 +369,6 @@ sr-Cyrl:
     client: Клијент
     client_admin: Администратор клијента
     client_admins: Администратори клијената
-    client_selection_instruction: Изаберите клијента да бисте наставили до административног панела.
-    client_selection_sign_out: Одјавите се
-    client_selection_title: Изабери клијента
     client_credentials_label: Клијентске акредитиве
     client_credentials_value: клијентске акредитивације
     client_features: Клијентске функције
@@ -383,6 +380,9 @@ sr-Cyrl:
     client_secret_label: Тајна клијента
     client_secret_name: оутх_клијент_тајна
     client_secret_required: Потребан је тајни кључ клијента
+    client_selection_instruction: Изаберите клијента да бисте наставили до административног панела.
+    client_selection_sign_out: Одјавите се
+    client_selection_title: Изабери клијента
     clients: Клијенти
     clients_search_placeholder: Претрага клијента
     closed: Затворено
@@ -1166,9 +1166,9 @@ sr-Cyrl:
     lighthouse_question_id: ИД питања светла
     link_text: Везу
     linked_assessments: Повезане процене
-    logged_in: Пријављено
     locale: Локалне
     log_date: Датум уписа
+    logged_in: Пријављено
     login: Пријава
     low: Ниско
     mail_history: Историја поште
@@ -1261,10 +1261,10 @@ sr-Cyrl:
     navigation_skills_taxonomy: Таксономија вештина
     navigation_users: Корисници
     new_folder: Нова фасцикла
-    no_client_access: Немате приступ овом клијенту
-    no_clients_found: Није пронађен ниједан клијент
     new_score: Нова оцена
     no_assessments_found: Идентификациони број ревизије
+    no_client_access: Немате приступ овом клијенту
+    no_clients_found: Није пронађен ниједан клијент
     no_completed_assessments: Још нема завршених процена.
     no_file_selected: Није изабрана датотека
     no_notifications: Нема обавештења
@@ -1333,10 +1333,10 @@ sr-Cyrl:
     options_title: Опције
     organisational: Окретан
     original_text: Оригинални текст
-    others: Остали
     other_assessments: Остале процене
     other_assessor_assessments: Остале процене процењивача
     other_reports: Остали извештаји
+    others: Остали
     outcome: Исход
     output_schema_key_constraint: Кључ мора да почне малим словом и може да садржи само мала слова, бројеве и подвлаке.
     output_schema_keys: Кључеви шеме излаза
@@ -2006,10 +2006,10 @@ sr-Cyrl:
     questions_title: Питање
     questions_type: Тип
     range_min_max: Домeн %{min} - %{max}
-    recents: Недавни
     rationale: Оправдање
     raw: сирово
     reason_for_changes: Разлог за промене
+    recents: Недавни
     record_id: Идентификациони број записа
     recordings: Снимке
     reflection_questions: Питања за размишљање
@@ -2831,8 +2831,6 @@ sr-Cyrl:
     subject_invite_description: Ова порука ће бити послата како би се позвали учесници да учествују у процењивању.
     subject_invite_name: Позив
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
-    superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
-    switch_client: Пребаци клијент
     subject_placeholder: Претрага предмета...
     subject_reminder_description: Порука је послата сваком учеснику да их подсети да учествују у процењивању.
     subject_reminder_name: 'Предмет: Подсетник'
@@ -2851,6 +2849,8 @@ sr-Cyrl:
     success_title: Креирани центри за процену
     success_update: Подешавања дизајна су успешно сачувана
     suitability_id: Идентификатор подобности
+    superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
+    switch_client: Пребаци клијент
     system_prompt: Системски упит
     tab_text_one: Мени
     tab_text_two: Подмени
@@ -3035,7 +3035,7 @@ sr-Cyrl:
     yoodli_assessment: Јоодли Процена
     yoodli_email_id: Јуубли идентификациони број кандидата
     yoodli_external_assessment_id: Идентификатор процене Yoodli
-    you_are_here: Ви сте овде
     yoodli_keyset_url: URL сета кључева
     yoodli_launch_url: URL за покретање
     yoodli_login_url: УРЛ за пријаву
+    you_are_here: Ви сте овде

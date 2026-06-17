@@ -202,9 +202,9 @@ bg:
     assistant_validation_failed: Не успях да генерирам валиден резултат след многократни опити
     attendance: Присъствие
     attendance_status: Статус на присъствието
+    audit_log_impersonated_by: Имитиран от
     audit_log_title: Информация за одиторския запис
     audit_log_type: Тип запис
-    audit_log_impersonated_by: Имитиран от
     audit_logs: Регистрационни файлове за одит
     audit_reports: Одиторски доклади
     auth_type_api_key_header_format_error: Допускат се само букви, цифри, долни черти и тирета
@@ -379,13 +379,12 @@ bg:
     client_secret_label: Тайната на клиента
     client_secret_name: oauth_client_secret
     client_secret_required: Изисква се клиентска тайна
-    clients: Наеми на клиенти
-    closed: Затворен
     client_selection_instruction: Изберете клиент, за да преминете към панела за администриране.
     client_selection_sign_out: Излез
     client_selection_title: Изберете клиент
     clients: Наеми на клиенти
     clients_search_placeholder: Търсене на клиент
+    closed: Затворен
     code_required: Изисква се код
     collapse_filters: Свиване на филтри
     column_code: Код
@@ -800,13 +799,13 @@ bg:
     grant_type_name: oauth_grant_type
     graphic: Графика
     graphic_slider: Графичен слайдер
-    header_logout_content: Натиснете Cancel, ако искате да продължите да работите. Натиснете OK, за да излезете от текущия потребител.
-    header_logout_title: Сигурен ли си, че искаш да излезеш?
-    hide_all: Скрий всичко
     handoff_client_mismatch: Токенът за удостоверяване не е валиден за този клиент
     handoff_invalid_token: Невалиден или изтекъл токен за удостоверяване
     handoff_token_expired: Токенът за удостоверяване е изтекъл или вече е бил използван
     handoff_user_disabled: Профилът Ви е деактивиран
+    header_logout_content: Натиснете Cancel, ако искате да продължите да работите. Натиснете OK, за да излезете от текущия потребител.
+    header_logout_title: Сигурен ли си, че искаш да излезеш?
+    hide_all: Скрий всичко
     hide_middle_scores: Скриване на средните резултати
     high: Висока
     hogan: Хоган
@@ -1163,8 +1162,8 @@ bg:
     linked_assessments: Свързани оценки
     locale: Място
     log_date: Дата на записа
-    login: Вход
     logged_in: Влязъл съм
+    login: Вход
     low: Ниска
     mail_history: История на пощата
     main_report: Основен доклад
@@ -1259,9 +1258,9 @@ bg:
     new_folder: Нова папка
     new_score: Нов резултат
     no_assessments_found: Идентификационен номер на одита
-    no_completed_assessments: Все още няма завършени оценявания
     no_client_access: Нямате достъп до този клиент
     no_clients_found: Не бяха намерени клиенти
+    no_completed_assessments: Все още няма завършени оценявания
     no_file_selected: Няма избран файл
     no_notifications: Няма известия
     no_question_mappings: Няма налични съответствия на въпросите
@@ -1333,10 +1332,10 @@ bg:
     other_assessments: Други оценки
     other_assessor_assessments: Други оценки на оценителя
     other_reports: Други доклади
+    others: Други
     outcome: Резултат
     output_schema_key_constraint: Ключът трябва да започва с малка буква и може да съдържа само малки букви, цифри и подчертавания
     output_schema_keys: Ключове на изходната схема
-    others: Други
     overall: Общо
     overall_score: Общ резултат
     overall_scoring: Общо оценяване
@@ -2005,9 +2004,9 @@ bg:
     rationale: Обосновка
     raw: СУРОВИ
     reason_for_changes: Причина за промените
+    recents: Последни
     record_id: Идентификатор на записа
     recordings: Записи
-    recents: Последни
     reflection_questions: Въпроси за размисъл
     reflection_questions_delete_confirmation: Сигурни ли сте, че искате да изтриете този въпрос за размисъл?
     reflection_questions_export_action: Експортиране на въпроси за размисъл
@@ -2734,7 +2733,6 @@ bg:
     smtp_settings_use_sender_verification: Използване на потвърждаване на подателя
     smtp_settings_user_name: Потребителско име
     specialty_questions: Специфични въпроси
-    standard: Стандарт
     sso_email_mismatch: Влизали сте с друг акаунт в доставчика на идентификация. Моля, излезте от акаунта си при доставчика на идентификация и опитайте отново.
     sso_enforced: Прилагане на SSO
     sso_label: SSO
@@ -2765,6 +2763,7 @@ bg:
     sso_settings_slo_url: URL адрес на услугата SLO
     sso_settings_sso_url: URL адрес на услугата за еднократно влизане (SSO)
     sso_settings_tab: SSO
+    standard: Стандарт
     standard_deviation: Стандартно отклонение
     standard_questions: Стандартни въпроси
     start: начало
@@ -2822,6 +2821,10 @@ bg:
     sub_factors_conditional_average: Условна среднопретеглена стойност на факторите
     sub_factors_sum: Претеглена сума от фактори
     subdomain: Поддомейн
+    subdomain_admin_keyword: не може да се използва запазеният шаблон за поддомейн на администратора
+    subdomain_invalid_format: Неправилен формат на поддомейна.
+    subdomain_reserved: Поддомейнът %{value} е запазен
+    subdomain_too_long_max_32: Поддомейнът е прекалено дълъг (максималният брой символи е 32)
     subject: Тема
     subject_can_access_reports: Субектът може да получи достъп до своите доклади
     subject_email: Имейл на темата
@@ -2846,19 +2849,14 @@ bg:
     success_title: Центрове за оценяване са създадени
     success_update: Настройките за дизайн са запазени успешно
     suitability_id: Идентификационен номер за пригодност
+    superadmin_use_root_domain: Суперадминистраторите трябва да влязат в системата чрез основния домейн
+    switch_client: Превключване на клиент
     system_prompt: Системна подкана
     tab_text_one: Меню
     tab_text_two: Подменю
     table_more_actions: Още действия
     tabs_results: Резултати
     tabs_settings: Настройки
-    subdomain_admin_keyword: не може да се използва запазеният шаблон за поддомейн на администратора
-    subdomain_invalid_format: Неправилен формат на поддомейна.
-    subdomain_reserved: Поддомейнът %{value} е запазен
-    subdomain_too_long_max_32: Поддомейнът е прекалено дълъг (максималният брой символи е 32)
-    subject_part_of_other_invite: Получателят на имейла %{user_email} вече е поканен на „%{workshop_invite_name}”
-    superadmin_use_root_domain: Суперадминистраторите трябва да влязат в системата чрез основния домейн
-    switch_client: Превключване на клиент
     target_job_role: Целева длъжност
     taxonomy_import_action_taxonomy: Таксономия на вноса
     taxonomy_import_description: Качете Excel файл, за да импортирате или актуализирате таксономията на вашите умения. Това ще добави нови умения, длъжности и нива на компетентност.

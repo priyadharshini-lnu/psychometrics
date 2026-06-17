@@ -185,9 +185,9 @@ zh-HK:
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
     assistant_toolbar_not_a_valid_operation: 未知操作 %{operation}。
     assistant_validation_failed: 多次尝试后仍未能生成有效输出
-    audit_log_impersonated_by: 被冒充者
     attendance: 出勤情况
     attendance_status: 出勤状况
+    audit_log_impersonated_by: 被冒充者
     audit_log_title: 审计日志信息
     audit_log_type: 记录类型
     audit_logs: 审计日志
@@ -348,9 +348,6 @@ zh-HK:
     client: 客户
     client_admin: 用戶端管理
     client_admins: 客户管理员
-    client_selection_instruction: 选择一个客户，继续进入管理面板。
-    client_selection_sign_out: 退出
-    client_selection_title: 选择客户
     client_credentials_label: 客户端凭证
     client_credentials_value: 客户端凭证
     client_features: 客户功能
@@ -362,6 +359,9 @@ zh-HK:
     client_secret_label: 客户端密钥
     client_secret_name: oauth_client_secret
     client_secret_required: 需要客户端密钥
+    client_selection_instruction: 选择一个客户，继续进入管理面板。
+    client_selection_sign_out: 退出
+    client_selection_title: 选择客户
     clients: 客户
     clients_search_placeholder: 搜索客户
     closed: 关闭
@@ -1120,9 +1120,9 @@ zh-HK:
     lighthouse_question_id: Lighthouse 问题 ID
     link_text: 連接
     linked_assessments: 关联评估
-    logged_in: 已登录
     locale: 土
     log_date: 日志日期
+    logged_in: 已登录
     login: 登入
     low: 低
     mail_history: 邮件历史记录
@@ -1215,10 +1215,10 @@ zh-HK:
     navigation_skills_taxonomy: 技能分类法
     navigation_users: 用户
     new_folder: 新建文件夹
-    no_client_access: 您无权访问此客户
-    no_clients_found: 未找到任何客户
     new_score: 新分数
     no_assessments_found: 审计ID
+    no_client_access: 您无权访问此客户
+    no_clients_found: 未找到任何客户
     no_file_selected: 未选择文件
     no_notifications: 无通知
     no_question_mappings: 没有可用的问题映射
@@ -1287,10 +1287,10 @@ zh-HK:
     options_title: 选项
     organisational: 敏捷
     original_text: 原文
-    others: 其他
     other_assessments: 其他評估
     other_assessor_assessments: 其他評估員評量
     other_reports: 其他報導
+    others: 其他
     outcome: 结果
     output_schema_key_constraint: 密钥必须以小写字母开头，且只能包含小写字母、数字和下划线。
     output_schema_keys: 输出模式键
@@ -1950,9 +1950,9 @@ zh-HK:
     questions_title: 问题
     questions_type: 类型
     range_min_max: RANGE %{min} - %{max}
-    recents: 最近
     rationale: 依据
     reason_for_changes: 变更原因
+    recents: 最近
     record_id: 记录ID
     recordings: 錄音
     reflection_questions: 反思问题
@@ -2784,8 +2784,6 @@ zh-HK:
     subject_invite_description: 本消息将发送给受试者，邀请其参与评估。
     subject_invite_name: 主题邀请
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
-    superadmin_use_root_domain: 超级管理员必须通过主域登录
-    switch_client: 切换客户端
     subject_placeholder: 搜索主题...
     subject_reminder_description: 发送给每位参与者的消息，提醒他们参与评估
     subject_reminder_name: 主题提醒
@@ -2804,6 +2802,8 @@ zh-HK:
     success_title: 评估中心创建
     success_update: 设计设置已成功保存
     suitability_id: 适用性标识
+    superadmin_use_root_domain: 超级管理员必须通过主域登录
+    switch_client: 切换客户端
     system_prompt: 系统提示
     tab_text_one: 菜单
     tab_text_two: 子菜单
@@ -2972,7 +2972,7 @@ zh-HK:
     yoodli_assessment: Yoodli 評估
     yoodli_email_id: 优迪候选人电子邮箱ID
     yoodli_external_assessment_id: 优德利评估ID
-    you_are_here: 您当前所在的位置
     yoodli_keyset_url: 键盘布局URL
     yoodli_launch_url: 启动网址
     yoodli_login_url: 登录网址
+    you_are_here: 您当前所在的位置
