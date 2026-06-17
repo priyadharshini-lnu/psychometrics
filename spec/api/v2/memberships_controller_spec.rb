@@ -183,4 +183,16 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
       expect(AdminJobRecord.last.data).to include({ 'campaign_id' => campaign.id })
     end
   end
+  describe 'GET /memberships/{membership_id}/spoof' do
+    it 'falls back to root-domain impersonation when client admin sso is disabled' do
+      membership = create(:client_admin_membership)
+      allow(AdminSubdomain).to receive(:client_admin_sso_enabled?).and_return(false)
+
+      get "/api/v2/administration/memberships/#{membership.id}/spoof"
+
+      expect(response).to have_http_status(:found)
+      expect(response).to redirect_to('/admin/user_availabilities')
+      expect(session[:impersonated_by_id]).to eq(superadmin.id)
+    end
+  end
 end
