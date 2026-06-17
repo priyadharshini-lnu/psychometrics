@@ -103,7 +103,6 @@ module Administration
       def default_admin_path_for(resource)
         return '/admin/clients' if resource.has_grant?(:clients, :view)
         return "#{admin_path}/dashboards" if helpers.show_dashboard?
-        return assessors_dashboard_path if resource.is?(:assessor)
 
         admin_path
       end
@@ -113,7 +112,6 @@ module Administration
         return nil if resource.is?(:superadmin)
 
         has_client_access = resource.clients_with_admin_access.exists?
-        return nil if resource.is?(:assessor) && !has_client_access
 
         if has_client_access
           administration_client_selection_path

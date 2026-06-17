@@ -61,8 +61,6 @@ module ApplicationHelper
   end
 
   def admin_dashboard_path
-    return assessors_dashboard_path if current_user.is?(:assessor)
-
     admin_path
   end
 

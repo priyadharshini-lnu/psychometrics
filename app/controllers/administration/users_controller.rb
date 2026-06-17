@@ -118,7 +118,7 @@ class Administration::UsersController < Administration::BaseController
   def login_as_other_admin
     return spoof_on_root_domain unless AdminSubdomain.client_admin_sso_enabled?
 
-    return spoof_on_root_domain unless resource.is?(:client_admin, :project_admin, :campaign_admin)
+    return spoof_on_root_domain unless resource.is?(:client_admin, :project_admin, :campaign_admin, :client_assessor)
 
     clients = resource.clients_with_admin_access
     return spoof_via_client_selection if clients.size > 1

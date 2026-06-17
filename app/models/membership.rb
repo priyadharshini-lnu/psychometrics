@@ -13,13 +13,15 @@ class Membership < ApplicationRecord
     MANAGER_ROLE = 'manager',
     PROJECT_ADMIN_ROLE = 'project_admin',
     CLIENT_ADMIN_ROLE = 'client_admin',
-    CAMPAIGN_ADMIN_ROLE = 'campaign_admin'
+    CAMPAIGN_ADMIN_ROLE = 'campaign_admin',
+    CLIENT_ASSESSOR_ROLE = 'client_assessor'
   ].freeze
 
   SCOPES = {
     PROJECT_ADMIN_ROLE => :administration,
     CLIENT_ADMIN_ROLE => :administration,
     CAMPAIGN_ADMIN_ROLE => :administration,
+    CLIENT_ASSESSOR_ROLE => :administration,
     MANAGER_ROLE => :user,
     MEMBER_ROLE => :user
   }.freeze
@@ -230,7 +232,7 @@ class Membership < ApplicationRecord
 
   def relevant_role
     valid = case role
-              when CLIENT_ADMIN_ROLE
+              when CLIENT_ADMIN_ROLE, CLIENT_ASSESSOR_ROLE
                 client.tenancy?
               when PROJECT_ADMIN_ROLE
                 client.project?

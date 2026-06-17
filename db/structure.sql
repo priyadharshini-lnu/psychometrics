@@ -13718,7 +13718,7 @@ CREATE INDEX idx_on_user_assessment_id_cb9cc55a9e ON public.user_assessment_veri
 
 
 --
--- Name: idx_sessions_user_client_impersonator; Type: INDEX; Schema: public; Owner: -
+-- Name: idx_sessions_user_tenant_impersonator; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_sessions_user_tenant_impersonator ON public.sessions USING btree (user_id, tenant_id, impersonator_id);
@@ -17414,13 +17414,6 @@ CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.savi
 
 
 --
--- Name: index_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_sessions_on_tenant_id ON public.sessions USING btree (tenant_id);
-
-
---
 -- Name: index_sessions_on_impersonator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17432,6 +17425,13 @@ CREATE INDEX index_sessions_on_impersonator_id ON public.sessions USING btree (i
 --
 
 CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_tenant_id ON public.sessions USING btree (tenant_id);
 
 
 --
@@ -24193,6 +24193,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260605122018'),
 ('20260605000000'),
 ('20260526000001'),
+('20260615195000'),
 ('20260527180000'),
 ('20260520094000'),
 ('20260514200000'),
@@ -24208,11 +24209,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260504120000'),
 ('20260429130533'),
 ('20260424120000'),
-('20260331100000'),
-('20260415153054'),
 ('20260423120000'),
 ('20260423084117'),
 ('20260417093000'),
+('20260415153054'),
 ('20260414030000'),
 ('20260409120000'),
 ('20260408123820'),
@@ -24221,6 +24221,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260401045303'),
 ('20260401031414'),
 ('20260401030425'),
+('20260331100000'),
 ('20260325000001'),
 ('20260323084342'),
 ('20260320102153'),

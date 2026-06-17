@@ -50,7 +50,7 @@ module Administration
       store_client_session_data(access, impersonated_by_id: handoff_data[:impersonated_by_id])
       audit_handoff_login(user, handoff_data)
 
-      redirect_to after_sign_in_path_for(user)
+      redirect_to after_client_admin_handoff_path(user, access)
     end
 
     def verify_client_access(user)
@@ -86,6 +86,16 @@ module Administration
 
       Current.memberships = access[:memberships]
       Current.membership_roles = access[:roles]
+    end
+
+    def after_client_admin_handoff_path(user, access)
+      return assessors_dashboard_path if assessor_dashboard_after_handoff?(user, access)
+
+      after_sign_in_path_for(user)
+    end
+
+    def assessor_dashboard_after_handoff?(user, access)
+      access[:highest_role] == Membership::CLIENT_ASSESSOR_ROLE || user.is?(:assessor)
     end
 
     def setup_client_admin_after_password_login(user)

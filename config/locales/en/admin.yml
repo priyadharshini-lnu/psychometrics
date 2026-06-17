@@ -1927,6 +1927,7 @@ en:
     project: Project
     project_admin: Project Admin
     project_admins: Project Admins
+    project_assessor: Project Assessor
     project_features: Project Features
     project_ids: Project IDs
     project_ids_required: project_ids is required for this report type

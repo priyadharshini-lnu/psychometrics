@@ -105,6 +105,9 @@ class User < ApplicationRecord
   has_many :campaign_admin_clients, lambda {
     where(memberships: { role: Membership::CAMPAIGN_ADMIN_ROLE, disabled: false })
   }, through: :memberships, source: 'client'
+  has_many :client_assessor_clients,
+           -> { where(memberships: { role: Membership::CLIENT_ASSESSOR_ROLE, disabled: false }) },
+           through: :memberships, source: 'client'
   has_many :campaign_admin_clients_ttes, through: :campaign_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
@@ -198,7 +201,13 @@ class User < ApplicationRecord
       association(:client_admin_clients).reset
       association(:project_admin_clients).reset
       association(:campaign_admin_clients).reset
-      (client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids).uniq.compact
+      association(:client_assessor_clients).reset
+      (
+        client_admin_client_ids +
+        project_admin_clients_tte_ids +
+        campaign_admin_clients_tte_ids +
+        client_assessor_client_ids
+      ).uniq.compact
     end
   end
 

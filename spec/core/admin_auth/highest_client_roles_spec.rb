@@ -83,6 +83,16 @@ RSpec.describe AdminAuth::HighestClientRoles do
       end
     end
 
+    context 'with client_assessor membership only' do
+      let(:user) { create(:user) }
+      before do
+        create(:membership, user: user, client: tenancy, role: 'client_assessor')
+      end
+      it 'maps the client assessor role back to the tenancy' do
+        result = described_class.for_user(user, [tenancy])
+        expect(result[tenancy.id]).to eq('client_assessor')
+      end
+    end
     context 'with campaign-level membership only' do
       let(:user) { create(:user) }
       let(:project) { create(:client, parent: tenancy) }
