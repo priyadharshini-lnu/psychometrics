@@ -1683,6 +1683,25 @@ zh-HK:
       remove_confirm:
         message: 您确定要删除此资源吗？
         title: 删除资源
+    saml_settings:
+      after_signout_url: 注销后重定向网址
+      cert: 证书
+      config_details:
+        acs_url: 断言消费者服务URL
+        copied: 复制自 %{element}
+        issuer: 实体标识符/签发者
+        title: 使用以下信息配置身份提供商
+      email_pipetext: 电子邮件 Pipetext
+      enabled: 启用
+      entity_id: 实体标识符/签发者
+      name_identifier_format: 名称标识符
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: SAML 设置
+      save: 保存设置
+      sso_service_url: 单点登录服务网址
+      successfully_saved_msg: SAML设置已成功保存。
     save: 保存
     scoring:
       export:

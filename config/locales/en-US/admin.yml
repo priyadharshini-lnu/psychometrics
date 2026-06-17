@@ -200,6 +200,7 @@ en-US:
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     assistant_validation_failed: Failed to generate valid output after multiple attempts
+    audit_log_impersonated_by: Impersonated By
     attendance: Attendance
     attendance_status: Attendance status
     audit_log_title: Audit Log Info
@@ -368,6 +369,9 @@ en-US:
     client: Client Tenancy
     client_admin: Client Admin
     client_admins: Client Admins
+    client_selection_instruction: Select a client to continue to the administration panel.
+    client_selection_sign_out: Sign Out
+    client_selection_title: Select Client
     client_credentials_label: Client Credentials
     client_credentials_value: client_credentials
     client_features: Client Features
@@ -380,6 +384,7 @@ en-US:
     client_secret_name: oauth_client_secret
     client_secret_required: Client secret is required
     clients: Client Tenancies
+    clients_search_placeholder: Search Client
     closed: Closed
     code_required: Code is required
     collapse_filters: Collapse Filters
@@ -737,6 +742,7 @@ en-US:
     feature_flags_platform_group: Platform Features
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
+    feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
     fields_level: Level
     fields_level_description: Level Description
@@ -796,6 +802,10 @@ en-US:
     grant_type_name: oauth_grant_type
     graphic: Graphic
     graphic_slider: Graphic Slider
+    handoff_client_mismatch: Authentication token is not valid for this client
+    handoff_invalid_token: Invalid or expired authentication token
+    handoff_token_expired: Authentication token has expired or already been used
+    handoff_user_disabled: Your account is disabled
     header_logout_content: Press Cancel if you want to continue work. Press Ok to logout current user.
     header_logout_title: Are you sure you want to logout.
     hide_all: Hide All
@@ -1152,10 +1162,12 @@ en-US:
     libraries: Media Library
     library_invalid_type: Invalid Library Item
     licenses: Licenses
+    lighthouse_logo_alt_text: Lighthouse logo
     lighthouse_question: Lighthouse Question
     lighthouse_question_id: Lighthouse Question ID
     link_text: Link
     linked_assessments: Linked assessments
+    logged_in: Logged in
     locale: Locale
     log_date: Log Date
     login: Login
@@ -1251,6 +1263,8 @@ en-US:
     navigation_skills_taxonomy: Skills Taxonomy
     navigation_users: Users
     new_folder: New folder
+    no_client_access: You do not have access to this client
+    no_clients_found: No clients found
     new_score: New Score
     no_assessments_found: Audit ID
     no_completed_assessments: There are no completed assessments yet
@@ -1322,6 +1336,7 @@ en-US:
     options_title: Options
     organisational: AGILE
     original_text: Original Text
+    others: Others
     other_assessments: Other Assessments
     other_assessor_assessments: Other Assessor Assessments
     other_reports: Other Reports
@@ -1994,6 +2009,7 @@ en-US:
     questions_title: Question
     questions_type: Type
     range_min_max: RANGE %{min} - %{max}
+    recents: Recents
     rationale: Rationale
     raw: RAW
     reason_for_changes: Reason for changes
@@ -2172,6 +2188,10 @@ en-US:
     revisions_user_prompt: User Prompt
     revisions_version: Version
     role: Role
+    role_campaign_admin: Campaign Admin
+    role_client_admin: Client Admin
+    role_project_admin: Project Admin
+    role_superadmin: Super Admin
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -2730,6 +2750,36 @@ en-US:
     smtp_settings_use_sender_verification: Use sender verification
     smtp_settings_user_name: User Name
     specialty_questions: Specialty Questions
+    sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
+    sso_enforced: Enforce SSO
+    sso_label: SSO
+    sso_not_enabled: SSO is not enabled for this client
+    sso_settings: SSO Settings
+    sso_settings_allowed_domains: Allowed Domains
+    sso_settings_certificate: IdP Certificate
+    sso_settings_enabled: SSO Enabled
+    sso_settings_enforced: SSO Enforced
+    sso_settings_entity_id: Entity ID
+    sso_settings_metadata_certificate_expiry: 'Certificate expires: %{date}'
+    sso_settings_metadata_file_too_large: File exceeds maximum size of 1MB
+    sso_settings_metadata_invalid_xml: Invalid XML format
+    sso_settings_metadata_no_idp_descriptor: No IdP descriptor found in metadata
+    sso_settings_metadata_parse: Parse Metadata
+    sso_settings_metadata_parse_error: Failed to parse metadata
+    sso_settings_metadata_parse_success: IdP fields populated from metadata
+    sso_settings_metadata_parsing: Parsing metadata...
+    sso_settings_metadata_upload: Upload IdP Metadata XML
+    sso_settings_metadata_upload_again: Drop another file to replace
+    sso_settings_metadata_upload_drag_hint: Drag & drop .xml file here or click to browse
+    sso_settings_metadata_upload_hint: Upload .xml file to auto-populate IdP fields
+    sso_settings_metadata_upload_retry: Try again with a valid metadata XML file
+    sso_settings_or_configure_manually: Or configure manually
+    sso_settings_readable_resource_name: SSO Settings
+    sso_settings_save: Save
+    sso_settings_session_timeout: Session Timeout Duration
+    sso_settings_slo_url: SLO Service URL
+    sso_settings_sso_url: SSO Service URL
+    sso_settings_tab: SSO
     standard: Standard
     standard_deviation: Standard Deviation
     standard_questions: Standard Questions
@@ -2788,12 +2838,18 @@ en-US:
     sub_factors_conditional_average: Conditional Weighted Average of Factors
     sub_factors_sum: Weighted Sum of Factors
     subdomain: Subdomain
+    subdomain_admin_keyword: cannot use reserved admin subdomain pattern
+    subdomain_invalid_format: Wrong subdomain format.
+    subdomain_reserved: Subdomain %{value} is reserved
+    subdomain_too_long_max_32: Subdomain is too long (maximum is 32 characters)
     subject: Subject
     subject_can_access_reports: Subject can access their reports
     subject_email: Subject's Email
     subject_invite_description: This message will be sent to invite subjects to participate in the assessment
     subject_invite_name: Subject Invite
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    superadmin_use_root_domain: Super administrators must sign in through the main domain
+    switch_client: Switch Client
     subject_placeholder: Search Subject...
     subject_reminder_description: Message sent to each participant to remind them to participate in the assessment
     subject_reminder_name: Subject Reminder
@@ -2996,6 +3052,7 @@ en-US:
     yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: You are here
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: Launch URL
     yoodli_login_url: Login URL

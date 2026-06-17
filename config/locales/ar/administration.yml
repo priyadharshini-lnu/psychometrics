@@ -1683,6 +1683,25 @@ ar:
       remove_confirm:
         message: Are you sure you want to remove this resource?
         title: Remove Resource
+    saml_settings:
+      after_signout_url: After Signout Url
+      cert: Certificate
+      config_details:
+        acs_url: عنوان URL خدمة مستهلك التأكيد
+        copied: تم نسخ %{element}
+        issuer: معرّف الكيان/المُصدر
+        title: تكوين Idp بالمعلومات التالية
+      email_pipetext: البريد الإلكتروني Pipetext
+      enabled: ممكّنة
+      entity_id: معرّف الكيان/المُصدر
+      name_identifier_format: معرّف الاسم
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: SAML Setting
+      save: إعداد الحفظ
+      sso_service_url: عنوان خدمة SSO
+      successfully_saved_msg: تم حفظ إعداد SAML بنجاح.
     save: الحفظ
     scoring:
       export:

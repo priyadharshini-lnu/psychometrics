@@ -1683,6 +1683,25 @@ th:
       remove_confirm:
         message: คุณแน่ใจหรือไม่ว่าต้องการลบทรัพยากรนี้?
         title: ลบทรัพยากร
+    saml_settings:
+      after_signout_url: หลังจากออกจากระบบ URL
+      cert: ใบรับรอง
+      config_details:
+        acs_url: URL ของบริการผู้บริโภคการยืนยัน
+        copied: คัดลอก %{element}
+        issuer: รหัสเอนทิตี/ผู้ออก
+        title: กําหนดค่า Idp ด้วยข้อมูลต่อไปนี้
+      email_pipetext: ข้อความไปป์อีเมล
+      enabled: เปิด
+      entity_id: รหัสเอนทิตี/ผู้ออก
+      name_identifier_format: ตัวระบุชื่อ
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:ถาวร
+      saml_setting: การตั้งค่า SAML
+      save: บันทึกการตั้งค่า
+      sso_service_url: URL บริการ SSO
+      successfully_saved_msg: บันทึกการตั้งค่า SAML เรียบร้อยแล้ว
     save: บันทึก
     scoring:
       export:

@@ -1683,6 +1683,25 @@ ko:
       remove_confirm:
         message: 이 리소스를 제거하시겠습니까?
         title: 리소스 제거
+    saml_settings:
+      after_signout_url: 로그아웃 후 URL
+      cert: 인증서
+      config_details:
+        acs_url: 어설션 소비자 서비스 URL
+        copied: 복사한 %{element}
+        issuer: 엔티티 ID/발급자
+        title: 다음 정보를 사용하여 Idp를 구성합니다
+      email_pipetext: 이메일 Pipetext
+      enabled: 활성화됨
+      entity_id: 법인 ID/발급자
+      name_identifier_format: 이름 식별자
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-형식:이메일주소
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: SAML 설정
+      save: 설정 저장
+      sso_service_url: SSO 서비스 URL
+      successfully_saved_msg: SAML 설정이 성공적으로 저장되었습니다.
     save: 저장
     scoring:
       export:

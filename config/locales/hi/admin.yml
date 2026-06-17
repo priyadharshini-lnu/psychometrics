@@ -200,6 +200,7 @@ hi:
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
     assistant_toolbar_not_a_valid_operation: अज्ञात ऑपरेशन %{operation}।
     assistant_validation_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
+    audit_log_impersonated_by: द्वारा अभिनय किया गया
     attendance: उपस्थिति
     attendance_status: उपस्थिति की स्थिति
     audit_log_title: ऑडिट लॉग जानकारी
@@ -368,6 +369,9 @@ hi:
     client: ग्राहक
     client_admin: क्लाइंट एडमिन
     client_admins: क्लाइंट एडमिन
+    client_selection_instruction: प्रशासन पैनल पर जारी रखने के लिए एक क्लाइंट चुनें।
+    client_selection_sign_out: निकास
+    client_selection_title: ग्राहक चुनें
     client_credentials_label: क्लाइंट क्रेडेंशियल्स
     client_credentials_value: क्लाइंट प्रमाण-पत्र
     client_features: ग्राहक सुविधाएँ
@@ -380,6 +384,7 @@ hi:
     client_secret_name: ओएथ_क्लाइंट_सीक्रेट
     client_secret_required: क्लाइंट सीक्रेट आवश्यक है
     clients: ग्राहक
+    clients_search_placeholder: क्लाइंट खोजें
     closed: बंद
     code_required: कोड आवश्यक है
     collapse_filters: फ़िल्टर बंद करें
@@ -735,6 +740,7 @@ hi:
     feature_flags_platform_group: प्लेटफ़ॉर्म की विशेषताएँ
     feature_global_skills_description: मूल्यांकन के लिए वैश्विक कौशल लाइब्रेरी तक पहुँचें
     feature_idp_description: प्रतिभागियों के लिए व्यक्तिगत विकास योजना सक्षम करें
+    feature_not_available: यह सुविधा उपलब्ध नहीं है
     feature_sms_notification_description: अभियान के निमंत्रणों और अनुस्मारकों के लिए एसएमएस सूचनाएं सक्षम करें
     fields_level: स्तर
     fields_level_description: स्तर का विवरण
@@ -794,6 +800,10 @@ hi:
     grant_type_name: ओएथ_ग्रांट_टाइप
     graphic: चित्रात्मक
     graphic_slider: ग्राफिक स्लाइडर
+    handoff_client_mismatch: यह प्रमाणीकरण टोकन इस क्लाइंट के लिए मान्य नहीं है।
+    handoff_invalid_token: अमान्य या समाप्त हो चुका प्रमाणीकरण टोकन
+    handoff_token_expired: प्रमाणीकरण टोकन की अवधि समाप्त हो गई है या पहले ही उपयोग हो चुका है।
+    handoff_user_disabled: आपका खाता अक्षम कर दिया गया है।
     header_logout_content: यदि आप काम जारी रखना चाहते हैं तो रद्द दबाएँ। वर्तमान उपयोगकर्ता से लॉगआउट करने के लिए ठीक दबाएँ।
     header_logout_title: क्या आप वास्तव में लॉगआउट करना चाहते हैं?
     hide_all: सब छुपाएँ
@@ -1151,10 +1161,12 @@ hi:
     libraries: मीडिया पुस्तकालय
     library_invalid_type: अमान्य पुस्तकालय आइटम
     licenses: लाइसेंस
+    lighthouse_logo_alt_text: लाइटहाउस लोगो
     lighthouse_question: लाइटहाउस प्रश्न
     lighthouse_question_id: लाइटहाउस प्रश्न आईडी
     link_text: लिंक
     linked_assessments: लिंक्ड आकलन
+    logged_in: लॉग इन
     locale: स्थान
     log_date: प्रवेश तिथि
     login: लॉगिन
@@ -1249,6 +1261,8 @@ hi:
     navigation_skills_taxonomy: कौशल वर्गीकरण
     navigation_users: उपयोगकर्ता
     new_folder: नया फ़ोल्डर
+    no_client_access: आपके पास इस क्लाइंट तक पहुंच नहीं है।
+    no_clients_found: कोई क्लाइंट नहीं मिला
     new_score: नया स्कोर
     no_assessments_found: ऑडिट आईडी
     no_completed_assessments: अभी तक कोई पूर्ण मूल्यांकन नहीं हुए हैं।
@@ -1319,6 +1333,7 @@ hi:
     options_title: विकल्प
     organisational: चपल
     original_text: मूल पाठ
+    others: अन्य
     other_assessments: अन्य आकलन
     other_assessor_assessments: अन्य आकलनकर्ता के आकलन
     other_reports: अन्य रिपोर्टें
@@ -1991,6 +2006,7 @@ hi:
     questions_title: प्रश्न
     questions_type: प्रकार
     range_min_max: दायरा %{min} - %{max}
+    recents: हाल के
     rationale: तर्कसंगतता
     raw: कच्चा
     reason_for_changes: बदलाव का कारण
@@ -2165,6 +2181,10 @@ hi:
     revisions_user_prompt: उपयोगकर्ता संकेत
     revisions_version: संस्करण
     role: भूमिका
+    role_campaign_admin: अभियान प्रशासक
+    role_client_admin: ग्राहक व्यवस्थापक
+    role_project_admin: परियोजना प्रशासक
+    role_superadmin: सुपर एडमिन
     saml_idp_certificate_available: उपलब्ध (नकल करने के लिए क्लिक करें)
     saml_idp_certificate_label: प्रमाणपत्र
     saml_idp_entity_id_label: इकाई आईडी/जारीकर्ता
@@ -2717,6 +2737,36 @@ hi:
     smtp_settings_use_sender_verification: प्रेषक सत्यापन का उपयोग करें
     smtp_settings_user_name: उपयोगकर्ता नाम
     specialty_questions: विशेष प्रश्न
+    sso_email_mismatch: आप पहचान प्रदाता पर एक अलग खाते में साइन इन हैं। कृपया अपने पहचान प्रदाता से साइन आउट करें और फिर से प्रयास करें।
+    sso_enforced: एसएसओ लागू करें
+    sso_label: एकल साइन-ऑन
+    sso_not_enabled: इस क्लाइंट के लिए SSO सक्षम नहीं है।
+    sso_settings: एसएसओ सेटिंग्स
+    sso_settings_allowed_domains: अनुमत डोमेन
+    sso_settings_certificate: आईडीपी प्रमाणपत्र
+    sso_settings_enabled: एसएसओ सक्षम
+    sso_settings_enforced: एसएसओ लागू
+    sso_settings_entity_id: इकाई आईडी
+    sso_settings_metadata_certificate_expiry: 'प्रमाणपत्र समाप्त होता है: %{date}'
+    sso_settings_metadata_file_too_large: फ़ाइल 1MB की अधिकतम सीमा से बड़ी है।
+    sso_settings_metadata_invalid_xml: अमान्य XML प्रारूप
+    sso_settings_metadata_no_idp_descriptor: मेटाडेटा में कोई IdP डिस्क्रिप्टर नहीं मिला
+    sso_settings_metadata_parse: मेटाडेटा पार्स करें
+    sso_settings_metadata_parse_error: मेटाडेटा पार्स करने में असफल
+    sso_settings_metadata_parse_success: मेटाडेटा से भरे गए IdP फ़ील्ड्स
+    sso_settings_metadata_parsing: मेटाडेटा पार्स कर रहा है...
+    sso_settings_metadata_upload: IdP मेटाडेटा XML अपलोड करें
+    sso_settings_metadata_upload_again: बदलने के लिए एक और फ़ाइल ड्रॉप करें
+    sso_settings_metadata_upload_drag_hint: ".xml फ़ाइल को यहाँ ड्रैग और ड्रॉप करें या ब्राउज़ करने के लिए क्लिक करें।"
+    sso_settings_metadata_upload_hint: IdP फ़ील्ड्स को स्वतः भरने के लिए .xml फ़ाइल अपलोड करें।
+    sso_settings_metadata_upload_retry: एक मान्य मेटाडेटा XML फ़ाइल के साथ फिर से प्रयास करें।
+    sso_settings_or_configure_manually: या मैन्युअल रूप से कॉन्फ़िगर करें
+    sso_settings_readable_resource_name: एसएसओ सेटिंग्स
+    sso_settings_save: बचाएँ
+    sso_settings_session_timeout: सत्र समाप्ति अवधि
+    sso_settings_slo_url: SLO सेवा URL
+    sso_settings_sso_url: एसएसओ सेवा यूआरएल
+    sso_settings_tab: एकल साइन-ऑन
     standard: मानक
     standard_deviation: मानक विचलन
     standard_questions: मानक प्रश्न
@@ -2775,12 +2825,18 @@ hi:
     sub_factors_conditional_average: कारकों का सशर्त भारित औसत
     sub_factors_sum: गुणकों का भारित योग
     subdomain: उप-डोमेन
+    subdomain_admin_keyword: आरक्षित एडमिन सबडोमेन पैटर्न का उपयोग नहीं किया जा सकता।
+    subdomain_invalid_format: गलत सबडोमेन प्रारूप।
+    subdomain_reserved: उप-डोमेन %{value} आरक्षित है
+    subdomain_too_long_max_32: सबडोमेन बहुत लंबा है (अधिकतम 32 अक्षर)
     subject: विषय
     subject_can_access_reports: विषय अपनी रिपोर्टों तक पहुँच सकता है।
     subject_email: विषय का ईमेल
     subject_invite_description: यह संदेश विषयों को मूल्यांकन में भाग लेने के लिए आमंत्रित करने हेतु भेजा जाएगा।
     subject_invite_name: 'विषय: निमंत्रण'
     subject_part_of_other_invite: "%{user_email} ईमेल वाले विषय को पहले ही '%{workshop_invite_name}' में आमंत्रित किया जा चुका है।"
+    superadmin_use_root_domain: सुपर एडमिनिस्ट्रेटर्स को मुख्य डोमेन के माध्यम से साइन इन करना चाहिए।
+    switch_client: स्विच क्लाइंट
     subject_placeholder: विषय खोजें...
     subject_reminder_description: प्रत्येक प्रतिभागी को मूल्यांकन में भाग लेने की याद दिलाने के लिए संदेश भेजा गया।
     subject_reminder_name: 'विषय: अनुस्मारक'
@@ -2983,6 +3039,7 @@ hi:
     yoodli_assessment: यूडली मूल्यांकन
     yoodli_email_id: यूडली उम्मीदवार ईमेल आईडी
     yoodli_external_assessment_id: यूडली मूल्यांकन आईडी
+    you_are_here: आप यहाँ हैं
     yoodli_keyset_url: कीसेट यूआरएल
     yoodli_launch_url: लॉन्च यूआरएल
     yoodli_login_url: लॉगिन यूआरएल

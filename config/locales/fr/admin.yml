@@ -200,6 +200,7 @@ fr:
     assistant_toolbar_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
     assistant_toolbar_not_a_valid_operation: Opération inconnue %{operation}.
     assistant_validation_failed: Échec de la génération d'une sortie valide après plusieurs tentatives
+    audit_log_impersonated_by: Interprété par
     attendance: Présence
     attendance_status: Statut de présence
     audit_log_title: Informations sur le journal d'audit
@@ -368,6 +369,9 @@ fr:
     client: Location par le client
     client_admin: Administration des clients
     client_admins: Administrateurs clients
+    client_selection_instruction: Sélectionnez un client pour accéder au panneau d'administration.
+    client_selection_sign_out: Se déconnecter
+    client_selection_title: Sélectionner un client
     client_credentials_label: Informations d’identification du client
     client_credentials_value: client_credentials
     client_features: Caractéristiques du client
@@ -380,6 +384,7 @@ fr:
     client_secret_name: oauth_client_secret
     client_secret_required: La clé secrète client est requise
     clients: Baux des clients
+    clients_search_placeholder: Rechercher un client
     closed: Fermé
     code_required: Le code est requis
     collapse_filters: Réduire les filtres
@@ -735,6 +740,7 @@ fr:
     feature_flags_platform_group: Caractéristiques de la plateforme
     feature_global_skills_description: Accédez à la bibliothèque mondiale de compétences pour les évaluations
     feature_idp_description: Activer la planification du développement individuel pour les participants
+    feature_not_available: Cette fonctionnalité n'est pas disponible
     feature_sms_notification_description: Activer les notifications par SMS pour les invitations et les rappels de campagne
     fields_level: Niveau
     fields_level_description: Niveau Description
@@ -794,6 +800,10 @@ fr:
     grant_type_name: oauth_grant_type
     graphic: Graphique
     graphic_slider: Curseur graphique
+    handoff_client_mismatch: Le jeton d'authentification n'est pas valide pour ce client
+    handoff_invalid_token: Jeton d'authentification non valide ou périmé
+    handoff_token_expired: Le jeton d'authentification a expiré ou a déjà été utilisé
+    handoff_user_disabled: Votre compte a été désactivé
     header_logout_content: Appuyez sur Annuler si vous voulez continuer à travailler. Appuyez sur Ok pour se déconnecter de l’utilisateur actuel.
     header_logout_title: Êtes-vous sûr de vouloir vous déconnecter ?
     hide_all: Cacher tout
@@ -1151,10 +1161,12 @@ fr:
     libraries: Bibliothèque des médias
     library_invalid_type: Élément de bibliothèque invalide
     licenses: Licences
+    lighthouse_logo_alt_text: Logo du phare
     lighthouse_question: Question sur le phare
     lighthouse_question_id: Identifiant de la question Lighthouse
     link_text: Lien
     linked_assessments: Évaluations associées
+    logged_in: Connecté
     locale: Localité
     log_date: Date du journal
     login: Connexion
@@ -1249,6 +1261,8 @@ fr:
     navigation_skills_taxonomy: Taxonomie des compétences
     navigation_users: Utilisateurs
     new_folder: Nouveau dossier
+    no_client_access: Vous n'avez pas accès à ce client
+    no_clients_found: Aucun client trouvé
     new_score: Nouveau score
     no_assessments_found: Identité d'audit
     no_completed_assessments: Il n'y a pas encore d'évaluations terminées
@@ -1319,6 +1333,7 @@ fr:
     options_title: Options
     organisational: AGILE
     original_text: Texte original
+    others: Autres
     other_assessments: Autres évaluations
     other_assessor_assessments: Autres évaluations de l'Assesseur
     other_reports: Autres rapports
@@ -1991,6 +2006,7 @@ fr:
     questions_title: Question
     questions_type: Type
     range_min_max: "%{min}S SUR LA GAMME - %{max}"
+    recents: Dernières actualités
     rationale: Justification
     raw: CRU
     reason_for_changes: Motif des modifications
@@ -2165,6 +2181,10 @@ fr:
     revisions_user_prompt: Invite de l'utilisateur
     revisions_version: Version
     role: Rôle
+    role_campaign_admin: Administration de la campagne
+    role_client_admin: Gestion des clients
+    role_project_admin: Administrateur de projet
+    role_superadmin: Super administrateur
     saml_idp_certificate_available: Disponible (cliquez pour copier)
     saml_idp_certificate_label: Certificat
     saml_idp_entity_id_label: ID d’entité/Émetteur
@@ -2717,6 +2737,36 @@ fr:
     smtp_settings_use_sender_verification: Utiliser la vérification de l'expéditeur
     smtp_settings_user_name: Nom de l'utilisateur
     specialty_questions: Questions spécifiques
+    sso_email_mismatch: Vous êtes connecté à un autre compte sur le fournisseur d'identité. Veuillez vous déconnecter de votre fournisseur d'identité et réessayer.
+    sso_enforced: Activer l'authentification unique (SSO)
+    sso_label: SSO
+    sso_not_enabled: L'authentification unique (SSO) n'est pas activée pour ce client
+    sso_settings: Paramètres SSO
+    sso_settings_allowed_domains: Domaines autorisés
+    sso_settings_certificate: Certificat IdP
+    sso_settings_enabled: Authentification unique (SSO) activée
+    sso_settings_enforced: Authentification unique (SSO) obligatoire
+    sso_settings_entity_id: Identifiant de l'entité
+    sso_settings_metadata_certificate_expiry: 'Date d''expiration du certificat : %{date}'
+    sso_settings_metadata_file_too_large: Le fichier dépasse la taille maximale de 1 Mo
+    sso_settings_metadata_invalid_xml: Format XML non valide
+    sso_settings_metadata_no_idp_descriptor: Aucun descripteur IdP n'a été trouvé dans les métadonnées
+    sso_settings_metadata_parse: Analyser les métadonnées
+    sso_settings_metadata_parse_error: Échec de l'analyse des métadonnées
+    sso_settings_metadata_parse_success: Champs IdP renseignés à partir des métadonnées
+    sso_settings_metadata_parsing: Analyse des métadonnées...
+    sso_settings_metadata_upload: Importer le fichier XML contenant les métadonnées de l'IdP
+    sso_settings_metadata_upload_again: Faites glisser un autre fichier pour le remplacer
+    sso_settings_metadata_upload_drag_hint: Glissez-déposez un fichier .xml ici ou cliquez pour parcourir
+    sso_settings_metadata_upload_hint: Importez un fichier .xml pour remplir automatiquement les champs de l'IdP
+    sso_settings_metadata_upload_retry: Réessayez avec un fichier XML de métadonnées valide
+    sso_settings_or_configure_manually: Ou configurez-le manuellement
+    sso_settings_readable_resource_name: Paramètres SSO
+    sso_settings_save: Enregistrer
+    sso_settings_session_timeout: Durée du délai d'expiration de la session
+    sso_settings_slo_url: URL du service SLO
+    sso_settings_sso_url: URL du service SSO
+    sso_settings_tab: SSO
     standard: Standard
     standard_deviation: Écart type
     standard_questions: Questions courantes
@@ -2775,12 +2825,18 @@ fr:
     sub_factors_conditional_average: Moyenne pondérée conditionnelle des facteurs
     sub_factors_sum: Somme pondérée des facteurs
     subdomain: Sous-domaine
+    subdomain_admin_keyword: Impossible d'utiliser le modèle de sous-domaine réservé à l'administration
+    subdomain_invalid_format: Format de sous-domaine incorrect.
+    subdomain_reserved: Le sous-domaine %{value} est réservé
+    subdomain_too_long_max_32: Le sous-domaine est trop long (32 caractères maximum)
     subject: Sujet
     subject_can_access_reports: Le sujet peut accéder à ses rapports
     subject_email: Courriel du sujet
     subject_invite_description: Ce message sera envoyé pour inviter les sujets à participer à l'évaluation
     subject_invite_name: Sujet Invitation
     subject_part_of_other_invite: Le sujet avec l'adresse e-mail %{user_email} a déjà été invité à « %{workshop_invite_name} ».
+    superadmin_use_root_domain: Les super-administrateurs doivent se connecter via le domaine principal
+    switch_client: Changer de client
     subject_placeholder: Sujet de recherche...
     subject_reminder_description: Message envoyé à chaque participant pour lui rappeler de participer à l'évaluation
     subject_reminder_name: Rappel du sujet
@@ -2983,6 +3039,7 @@ fr:
     yoodli_assessment: Évaluation Yoodli
     yoodli_email_id: ID Email du candidat Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: Vous êtes ici
     yoodli_keyset_url: URL du jeu de clés
     yoodli_launch_url: URL de lancement
     yoodli_login_url: URL de connexion

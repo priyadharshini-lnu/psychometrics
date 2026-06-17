@@ -1676,6 +1676,25 @@ zh:
       remove_confirm:
         message: 您确定要删除此资源吗？
         title: 删除资源
+    saml_settings:
+      after_signout_url: 登出后网址
+      cert: 证书
+      config_details:
+        acs_url: 断言消费者服务 URL
+        copied: 复制的 %{element}
+        issuer: 实体 ID/发行人
+        title: 用以下信息配置 Idp
+      email_pipetext: 向 Pipetext 发送电子邮件
+      enabled: 已启用
+      entity_id: 实体 ID/发行人
+      name_identifier_format: 名称标识符
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: SAML 设置
+      save: 保存设置
+      sso_service_url: SSO 服务网址
+      successfully_saved_msg: SAML 设置已成功保存。
     save: 节省
     scoring:
       export:

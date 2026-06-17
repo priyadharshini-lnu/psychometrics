@@ -200,6 +200,7 @@ zh-Hant:
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
     assistant_toolbar_not_a_valid_operation: 未知操作%{operation}。
     assistant_validation_failed: 多次尝试后仍未能生成有效输出
+    audit_log_impersonated_by: 被冒充者
     attendance: 出勤情况
     attendance_status: 出勤状况
     audit_log_title: 稽核記錄資訊
@@ -368,6 +369,9 @@ zh-Hant:
     client: 客戶租約
     client_admin: 客戶管理
     client_admins: 客戶端管理員
+    client_selection_instruction: 选择一个客户，继续进入管理面板。
+    client_selection_sign_out: 退出
+    client_selection_title: 选择客户
     client_credentials_label: 用戶端認證
     client_credentials_value: client_credentials
     client_features: 客戶特色
@@ -380,6 +384,7 @@ zh-Hant:
     client_secret_name: oauth_client_secret
     client_secret_required: 需要用戶端密碼
     clients: 客戶租約
+    clients_search_placeholder: 搜索客户
     closed: 關閉
     code_required: 必須使用程式碼
     collapse_filters: 折疊篩選器
@@ -736,6 +741,7 @@ zh-Hant:
     feature_flags_platform_group: 平台功能
     feature_global_skills_description: 访问全球技能库进行评估
     feature_idp_description: 为参与者启用个人发展规划
+    feature_not_available: 此功能不可用
     feature_sms_notification_description: 为活动邀请和提醒启用短信通知
     fields_level: 等級
     fields_level_description: 等級描述
@@ -795,6 +801,10 @@ zh-Hant:
     grant_type_name: oauth_grant_type
     graphic: 图形
     graphic_slider: 图片滑块
+    handoff_client_mismatch: 此客户端的身份验证令牌无效
+    handoff_invalid_token: 身份验证令牌无效或已过期
+    handoff_token_expired: 身份验证令牌已过期或已被使用
+    handoff_user_disabled: 您的账户已被停用
     header_logout_content: 如果你想繼續工作，請按取消。按下確定鍵即可登出目前使用者。
     header_logout_title: 你確定要登出嗎？
     hide_all: 全部隱藏
@@ -1147,10 +1157,12 @@ zh-Hant:
     libraries: 媒體圖書館
     library_invalid_type: 無效圖書館項目
     licenses: 許可證
+    lighthouse_logo_alt_text: 灯塔标志
     lighthouse_question: 灯塔问题
     lighthouse_question_id: Lighthouse 问题 ID
     link_text: 連結
     linked_assessments: 关联评估
+    logged_in: 已登录
     locale: 地點
     log_date: 記錄日期
     login: 登入
@@ -1246,6 +1258,8 @@ zh-Hant:
     navigation_skills_taxonomy: 技能分類法
     navigation_users: 使用者
     new_folder: 新建文件夹
+    no_client_access: 您无权访问此客户
+    no_clients_found: 未找到任何客户
     new_score: 新分数
     no_assessments_found: 審計編號
     no_completed_assessments: 目前尚未完成評估
@@ -1317,6 +1331,7 @@ zh-Hant:
     options_title: 選項
     organisational: AGILE
     original_text: 原文
+    others: 其他
     other_assessments: 其他評估
     other_assessor_assessments: 其他評估員評估
     other_reports: 其他報告
@@ -1988,6 +2003,7 @@ zh-Hant:
     questions_title: 问题
     questions_type: 类型
     range_min_max: RANGE %{min} - %{max}
+    recents: 最近
     rationale: 依据
     raw: 生
     reason_for_changes: 变更原因
@@ -2166,6 +2182,10 @@ zh-Hant:
     revisions_user_prompt: 使用者提示
     revisions_version: 版本
     role: 角色
+    role_campaign_admin: 活动管理员
+    role_client_admin: 客户管理
+    role_project_admin: 项目管理员
+    role_superadmin: 超级管理员
     saml_idp_certificate_available: 可購買（點擊複製）
     saml_idp_certificate_label: 券
     saml_idp_entity_id_label: 實體識別碼/發行人
@@ -2724,6 +2744,36 @@ zh-Hant:
     smtp_settings_use_sender_verification: 使用寄件者驗證
     smtp_settings_user_name: 使用者名稱
     specialty_questions: 专业问题
+    sso_email_mismatch: 您在身份提供商上登录的是另一个账户。请先从身份提供商中退出，然后重试。
+    sso_enforced: 强制实施单点登录
+    sso_label: SSO
+    sso_not_enabled: 此客户端未启用单点登录
+    sso_settings: 单点登录设置
+    sso_settings_allowed_domains: 允许的域名
+    sso_settings_certificate: 身份提供者证书
+    sso_settings_enabled: 已启用单点登录
+    sso_settings_enforced: 强制使用单点登录
+    sso_settings_entity_id: 实体 ID
+    sso_settings_metadata_certificate_expiry: 证书过期时间：%{date}
+    sso_settings_metadata_file_too_large: 文件大小超过1MB的上限
+    sso_settings_metadata_invalid_xml: XML 格式无效
+    sso_settings_metadata_no_idp_descriptor: 在元数据中未找到 IdP 描述符
+    sso_settings_metadata_parse: 解析元数据
+    sso_settings_metadata_parse_error: 无法解析元数据
+    sso_settings_metadata_parse_success: 从元数据中填充的IdP字段
+    sso_settings_metadata_parsing: 正在解析元数据...
+    sso_settings_metadata_upload: 上传身份提供商元数据 XML
+    sso_settings_metadata_upload_again: 拖放另一个文件进行替换
+    sso_settings_metadata_upload_drag_hint: 将 .xml 文件拖放到此处，或点击浏览
+    sso_settings_metadata_upload_hint: 上传 .xml 文件以自动填充身份提供商（IdP）字段
+    sso_settings_metadata_upload_retry: 请使用有效的元数据 XML 文件重试
+    sso_settings_or_configure_manually: 或手动配置
+    sso_settings_readable_resource_name: 单点登录设置
+    sso_settings_save: 保存
+    sso_settings_session_timeout: 会话超时时长
+    sso_settings_slo_url: SLO 服务 URL
+    sso_settings_sso_url: SSO 服务 URL
+    sso_settings_tab: SSO
     standard: 標準
     standard_deviation: 标准差
     standard_questions: 标准问题
@@ -2782,12 +2832,18 @@ zh-Hant:
     sub_factors_conditional_average: 因素的條件加權平均值
     sub_factors_sum: 因子的加權總和
     subdomain: 子網域
+    subdomain_admin_keyword: 无法使用预留的管理子域名模式
+    subdomain_invalid_format: 子域格式错误。
+    subdomain_reserved: 子域名 %{value} 已被保留
+    subdomain_too_long_max_32: 子域名过长（最长为32个字符）
     subject: 主題
     subject_can_access_reports: 主題可存取其報告
     subject_email: 主題的電子郵件
     subject_invite_description: 此訊息將發送給受試者，邀請他們參加評估
     subject_invite_name: 主題邀請
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已受邀加入 '%{workshop_invite_name}' 群组。
+    superadmin_use_root_domain: 超级管理员必须通过主域登录
+    switch_client: 切换客户端
     subject_placeholder: 搜尋主題...
     subject_reminder_description: 向每位參與者發送訊息，提醒他們參加評估
     subject_reminder_name: 主題提醒
@@ -2987,6 +3043,7 @@ zh-Hant:
     yoodli_assessment: Yoodli 評估
     yoodli_email_id: Yoodli 候選人電子郵件 ID
     yoodli_external_assessment_id: Yoodli 評估識別碼
+    you_are_here: 您当前所在位置
     yoodli_keyset_url: 鍵組網址
     yoodli_launch_url: 啟動網址
     yoodli_login_url: 登入網址

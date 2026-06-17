@@ -1741,6 +1741,25 @@ hi:
       remove_confirm:
         message: क्या आप इस संसाधन को हटाना चाहते हैं?
         title: संसाधन हटाएँ
+    saml_settings:
+      after_signout_url: साइनआउट यूआरएल के बाद
+      cert: प्रमाणपत्र
+      config_details:
+        acs_url: दावा उपभोक्ता सेवा यूआरएल
+        copied: "%{element} से कॉपी किया गया"
+        issuer: इकाई आईडी/जारीकर्ता
+        title: निम्नलिखित जानकारी के साथ Idp कॉन्फ़िगर करें
+      email_pipetext: ईमेल पिपेटटेक्स्ट
+      enabled: सक्षम
+      entity_id: इकाई आईडी/जारीकर्ता
+      name_identifier_format: नाम पहचानकर्ता
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: स्थायी
+      saml_setting: SAML सेटिंग
+      save: सेटिंग सहेजें
+      sso_service_url: एसएसओ सेवा यूआरएल
+      successfully_saved_msg: SAML सेटिंग सफलतापूर्वक सहेजी गई।
     save: बचाएँ
     scoring:
       export:

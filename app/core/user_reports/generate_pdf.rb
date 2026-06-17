@@ -50,10 +50,9 @@ module UserReports
     end
 
     def report_preview_assessor_url
-      params = default_report_preview_url_params.merge!(
-        subdomain: Settings.subdomain,
+      params = default_report_preview_url_params.merge(
         campaign_id: campaign.id
-      )
+      ).merge(tenant_host_options)
 
       pdf_preview_assessors_campaign_user_report_url(params)
     end
@@ -62,16 +61,15 @@ module UserReports
       if campaign.threesixty?
         params = default_report_preview_url_params.merge(
           threesixty_campaign_id: campaign.id,
-          subdomain: Settings.subdomain,
           subject_id: Threesixty::Subject.find_by(user_id: user_report.user_id).id,
           format: :pdf
-        )
+        ).merge(tenant_host_options)
+
         administration_threesixty_campaign_subject_reports_url(params)
       else
         params = default_report_preview_url_params.merge(
-          subdomain: Settings.subdomain,
           new_campaign_id: campaign.id
-        )
+        ).merge(tenant_host_options)
 
         pdf_preview_administration_new_campaign_user_report_url(params)
       end
@@ -100,6 +98,11 @@ module UserReports
 
     def report_directory
       Rails.root.join('tmp/reports', user.email)
+    end
+
+    def tenant_host_options
+      host_options = AdminSubdomain.host_options_for(user: current_user, project: campaign.project)
+      host_options[:host].present? ? host_options : { subdomain: Settings.subdomain }
     end
 
     def default_report_preview_url_params

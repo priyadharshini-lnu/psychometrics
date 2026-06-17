@@ -1683,6 +1683,25 @@ zh-Hant:
       remove_confirm:
         message: 您確定要移除此資源嗎？
         title: 移除資源
+    saml_settings:
+      after_signout_url: 登出後的網址
+      cert: 證書
+      config_details:
+        acs_url: 認證消費者服務 URL
+        copied: 已複製 %{element}
+        issuer: 實體 ID/發行人
+        title: 使用下列資訊設定 Idp
+      email_pipetext: 電郵 Pipetext
+      enabled: 已啟用
+      entity_id: 實體 ID/發行人
+      name_identifier_format: 名稱 識別碼
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: SAML 設定
+      save: 儲存設定
+      sso_service_url: SSO 服務網址
+      successfully_saved_msg: SAML 設定已成功儲存。
     save: 節省
     scoring:
       export:

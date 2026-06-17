@@ -199,6 +199,7 @@ sl:
     assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     assistant_toolbar_not_a_valid_operation: Neznana operacija %{operation}.
     assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
+    audit_log_impersonated_by: V vlogi
     attendance: Prisotnost
     attendance_status: Stanje prisotnosti
     audit_log_title: Informacije o dnevniku nadzora
@@ -366,6 +367,9 @@ sl:
     client: Najem stranke
     client_admin: Skrbnik odjemalca
     client_admins: Skrbniki odjemalcev
+    client_selection_instruction: Izberite stranko, da nadaljujete v nadzorno ploščo.
+    client_selection_sign_out: Odjavi se
+    client_selection_title: Izberi stranko
     client_credentials_label: Poverilnice odjemalca
     client_credentials_value: client_credentials
     client_features: Funkcije odjemalca
@@ -378,6 +382,7 @@ sl:
     client_secret_name: oauth_client_secret
     client_secret_required: Skrivnost odjemalca je obvezna
     clients: Spletno okolje naročnika
+    clients_search_placeholder: Iskanje stranke
     closed: Zaprt
     code_required: Potrebna je koda
     collapse_filters: Strnitev filtrov
@@ -733,6 +738,7 @@ sl:
     feature_flags_platform_group: Značilnosti platforme
     feature_global_skills_description: Dostop do globalne knjižnice znanj za ocenjevanje
     feature_idp_description: Omogočite individualno načrtovanje razvoja za udeležence
+    feature_not_available: Ta funkcija ni na voljo
     feature_sms_notification_description: Omogoči SMS obvestila za vabila in opomnike kampanj
     fields_level: Raven
     fields_level_description: Opis ravni
@@ -792,6 +798,10 @@ sl:
     grant_type_name: oauth_grant_type
     graphic: Grafika
     graphic_slider: Grafični drsnik
+    handoff_client_mismatch: Preveritveni žeton za tega odjemalca ni veljaven
+    handoff_invalid_token: Neveljaven ali potekel avtentifikacijski žeton
+    handoff_token_expired: Potrditveni žeton je potekel ali je bil že uporabljen
+    handoff_user_disabled: Vaš račun je onemogočen
     header_logout_content: Pritisnite Prekliči, če želite nadaljevati z delom. Pritisni Ok za odjavo trenutnega uporabnika.
     header_logout_title: Si prepričan, da želiš odjaviti se?
     hide_all: Skrij vse
@@ -1144,10 +1154,12 @@ sl:
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
+    lighthouse_logo_alt_text: Logotip svetilnika
     lighthouse_question: Ključno vprašanje
     lighthouse_question_id: ID vprašanja Lighthouse
     link_text: Povezava
     linked_assessments: Povezane ocene
+    logged_in: Prijavljen
     locale: Locale
     log_date: Datum dnevnika
     login: Prijava
@@ -1243,6 +1255,8 @@ sl:
     navigation_skills_taxonomy: Taksonomija spretnosti
     navigation_users: Uporabniki
     new_folder: Nova mapa
+    no_client_access: Nimate dostopa do tega stranke
+    no_clients_found: Ni bilo najdenih strank
     new_score: Nova ocena
     no_assessments_found: ID revizije
     no_completed_assessments: Ocen še ni zaključenih
@@ -1314,6 +1328,7 @@ sl:
     options_title: Možnosti
     organisational: AGILE
     original_text: Izvirno besedilo
+    others: Ostali
     other_assessments: Druga ocenjevanja
     other_assessor_assessments: Druga ocenjevanja ocenjevalcev
     other_reports: Druga poročila
@@ -1985,6 +2000,7 @@ sl:
     questions_title: Vprašanje
     questions_type: Vrsta
     range_min_max: RANGE %{min} - %{max}
+    recents: Zadnje
     rationale: Utemeljitev
     raw: SUROV
     reason_for_changes: Razlog za spremembe
@@ -2163,6 +2179,10 @@ sl:
     revisions_user_prompt: Poziv uporabnika
     revisions_version: Različica
     role: Vloga
+    role_campaign_admin: Upravitelj kampanje
+    role_client_admin: Upravljanje strank
+    role_project_admin: Upravitelj projekta
+    role_superadmin: Super administrator
     saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
     saml_idp_certificate_label: Potrdilo
     saml_idp_entity_id_label: ID subjekta/izdajatelj
@@ -2713,6 +2733,36 @@ sl:
     smtp_settings_use_sender_verification: Uporaba preverjanja pošiljatelja
     smtp_settings_user_name: Uporabniško ime
     specialty_questions: Posebna vprašanja
+    sso_email_mismatch: Pri ponudniku identitete ste prijavljeni v drug račun. Odjavite se iz ponudnika identitete in poskusite znova.
+    sso_enforced: Uveljavitev SSO
+    sso_label: SSO
+    sso_not_enabled: Za tega odjemalca SSO ni omogočen
+    sso_settings: Nastavitve SSO
+    sso_settings_allowed_domains: Dovoljene domene
+    sso_settings_certificate: Potrdilo ponudnika identitete
+    sso_settings_enabled: Omogočeno SSO
+    sso_settings_enforced: Obvezna uporaba SSO
+    sso_settings_entity_id: ID entitete
+    sso_settings_metadata_certificate_expiry: 'Potek veljavnosti certifikata: %{date}'
+    sso_settings_metadata_file_too_large: Datoteka presega največjo dovoljeno velikost 1 MB
+    sso_settings_metadata_invalid_xml: Neveljaven format XML
+    sso_settings_metadata_no_idp_descriptor: V metapodatkih ni bilo najdeno nobenega deskriptorja IdP
+    sso_settings_metadata_parse: Analiza metapodatkov
+    sso_settings_metadata_parse_error: Analiza metapodatkov ni uspela
+    sso_settings_metadata_parse_success: Polja IdP, izpolnjena na podlagi metapodatkov
+    sso_settings_metadata_parsing: Analiza metapodatkov...
+    sso_settings_metadata_upload: Naloži XML z metapodatki ponudnika identitete
+    sso_settings_metadata_upload_again: Povleci še eno datoteko, da jo zamenjaš
+    sso_settings_metadata_upload_drag_hint: Povlecite datoteko .xml sem ali kliknite za izbiro datoteke
+    sso_settings_metadata_upload_hint: Naložite datoteko .xml za samodejno izpolnjevanje polj ponudnika identitete
+    sso_settings_metadata_upload_retry: Poskusite znova z veljavno datoteko XML z metapodatki
+    sso_settings_or_configure_manually: Ali pa nastavite ročno
+    sso_settings_readable_resource_name: Nastavitve SSO
+    sso_settings_save: Shrani
+    sso_settings_session_timeout: Trajanje časovne omejitve seje
+    sso_settings_slo_url: URL storitve SLO
+    sso_settings_sso_url: URL storitve SSO
+    sso_settings_tab: SSO
     standard_deviation: Standardni odmik
     standard_questions: Standardna vprašanja
     start: začetek
@@ -2770,12 +2820,18 @@ sl:
     sub_factors_conditional_average: Pogojno tehtano povprečje dejavnikov
     sub_factors_sum: Tehtana vsota dejavnikov
     subdomain: Poddomena
+    subdomain_admin_keyword: ne morem uporabiti vzorca za rezervirano poddomensko ime za administratorja
+    subdomain_invalid_format: Nepravilen format poddomene.
+    subdomain_reserved: Poddomena %{value} je rezervirana
+    subdomain_too_long_max_32: Poddomena je predolga (največ 32 znakov)
     subject: Zadeva
     subject_can_access_reports: Subjekt lahko dostopa do svojih poročil
     subject_email: E-poštni naslov subjekta
     subject_invite_description: To sporočilo bo poslano za povabilo udeležencev k sodelovanju pri ocenjevanju
     subject_invite_name: Zadevno povabilo
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
+    superadmin_use_root_domain: Superupravitelji se morajo prijaviti prek glavne domene
+    switch_client: Preklop na odjemalca
     subject_placeholder: Zadeva iskanja ...
     subject_reminder_description: Sporočilo, poslano vsakemu udeležencu, da ga opomni na sodelovanje pri ocenjevanju
     subject_reminder_name: Opomnik za zadevo
@@ -2975,6 +3031,7 @@ sl:
     yoodli_assessment: Yoodlijeva ocena
     yoodli_email_id: E-poštni ID kandidata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: Trenutno ste tukaj
     yoodli_keyset_url: URL nabora ključev
     yoodli_launch_url: Zagon URL
     yoodli_login_url: URL za prijavo

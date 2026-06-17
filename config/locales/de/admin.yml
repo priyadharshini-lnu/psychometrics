@@ -200,6 +200,7 @@ de:
     assistant_toolbar_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
     assistant_toolbar_not_a_valid_operation: Unbekannter Vorgang „%{operation}“.
     assistant_validation_failed: Nach mehreren Versuchen konnte keine gültige Ausgabe generiert werden.
+    audit_log_impersonated_by: Imitiert von
     attendance: Anwesenheit
     attendance_status: Anwesenheitsstatus
     audit_log_title: Audit-Log-Informationen
@@ -368,6 +369,9 @@ de:
     client: Client Mietverhältnis
     client_admin: Kunde Verwaltung
     client_admins: Client-Admins
+    client_selection_instruction: Wählen Sie einen Kunden aus, um zum Verwaltungsbereich zu gelangen.
+    client_selection_sign_out: Abmelden
+    client_selection_title: Kunden auswählen
     client_credentials_label: Client-Anmeldeinformationen
     client_credentials_value: client_credentials
     client_features: Kundeneigenschaften
@@ -380,6 +384,7 @@ de:
     client_secret_name: oauth_client_secret
     client_secret_required: Geheimer Clientschlüssel ist erforderlich
     clients: Kunden-Mietverhältnisse
+    clients_search_placeholder: Client suchen
     closed: Geschlossen
     code_required: Code ist erforderlich
     collapse_filters: Filter zusammenklappen
@@ -735,6 +740,7 @@ de:
     feature_flags_platform_group: Plattformfunktionen
     feature_global_skills_description: Greifen Sie auf die globale Kompetenzbibliothek für Bewertungen zu.
     feature_idp_description: Individuelle Entwicklungsplanung für Teilnehmer aktivieren
+    feature_not_available: Diese Funktion ist nicht verfügbar
     feature_sms_notification_description: SMS-Benachrichtigungen für Kampagnen-Einladungen und Erinnerungen aktivieren
     fields_level: Ebene
     fields_level_description: Ebene Beschreibung
@@ -794,6 +800,10 @@ de:
     grant_type_name: oauth_grant_type
     graphic: Grafik
     graphic_slider: Grafik-Slider
+    handoff_client_mismatch: Das Authentifizierungstoken ist für diesen Client ungültig
+    handoff_invalid_token: Ungültiges oder abgelaufenes Authentifizierungstoken
+    handoff_token_expired: Das Authentifizierungstoken ist abgelaufen oder wurde bereits verwendet
+    handoff_user_disabled: Ihr Konto ist deaktiviert
     header_logout_content: Drücke auf Abbrechen, wenn du weiterarbeiten möchtest. Drücke Ok, um den aktuellen Nutzer auszuloggen.
     header_logout_title: Bist du sicher, dass du dich abmelden willst?
     hide_all: Alle ausblenden
@@ -1151,10 +1161,12 @@ de:
     libraries: Mediathek
     library_invalid_type: Ungültiger Bibliothekseintrag
     licenses: Lizenzen
+    lighthouse_logo_alt_text: Leuchtturm-Logo
     lighthouse_question: Leuchtturm-Frage
     lighthouse_question_id: Lighthouse-Frage-ID
     link_text: Link
     linked_assessments: Verknüpfte Bewertungen
+    logged_in: Angemeldet
     locale: Schauplatz
     log_date: Datum protokollieren
     login: Anmelden
@@ -1249,6 +1261,8 @@ de:
     navigation_skills_taxonomy: Fähigkeiten-Taxonomie
     navigation_users: Benutzer
     new_folder: Neuer Ordner
+    no_client_access: Sie haben keinen Zugriff auf diesen Kunden
+    no_clients_found: Es wurden keine Kunden gefunden
     new_score: Neue Punktzahl
     no_assessments_found: Audit-Kennung
     no_completed_assessments: Es liegen noch keine abgeschlossenen Bewertungen vor
@@ -1319,6 +1333,7 @@ de:
     options_title: Optionen
     organisational: AGILE
     original_text: Originaltext
+    others: Sonstiges
     other_assessments: Andere Beurteilungen
     other_assessor_assessments: Andere Assessor-Bewertungen
     other_reports: Andere Berichte
@@ -1991,6 +2006,7 @@ de:
     questions_title: Frage
     questions_type: Typ
     range_min_max: REICHWEITE %{min} - %{max}
+    recents: Zuletzt
     rationale: Begründung
     raw: ROH
     reason_for_changes: Grund für die Änderungen
@@ -2165,6 +2181,10 @@ de:
     revisions_user_prompt: Benutzeraufforderung
     revisions_version: Version
     role: Rolle
+    role_campaign_admin: Kampagnenverwaltung
+    role_client_admin: Kundenverwaltung
+    role_project_admin: Projektverwaltung
+    role_superadmin: Super-Admin
     saml_idp_certificate_available: Verfügbar (klicken zum Kopieren)
     saml_idp_certificate_label: Zertifikat
     saml_idp_entity_id_label: Entitäts-ID/Emittent
@@ -2717,6 +2737,36 @@ de:
     smtp_settings_use_sender_verification: Absenderüberprüfung verwenden
     smtp_settings_user_name: Name des Benutzers
     specialty_questions: Fachfragen
+    sso_email_mismatch: Sie sind beim Identitätsanbieter mit einem anderen Konto angemeldet. Bitte melden Sie sich beim Identitätsanbieter ab und versuchen Sie es erneut.
+    sso_enforced: SSO erzwingen
+    sso_label: SSO
+    sso_not_enabled: SSO ist für diesen Client nicht aktiviert
+    sso_settings: SSO-Einstellungen
+    sso_settings_allowed_domains: Zulässige Domains
+    sso_settings_certificate: IdP-Zertifikat
+    sso_settings_enabled: SSO aktiviert
+    sso_settings_enforced: SSO erzwungen
+    sso_settings_entity_id: Entitäts-ID
+    sso_settings_metadata_certificate_expiry: 'Das Zertifikat läuft ab am: %{date}'
+    sso_settings_metadata_file_too_large: Die Datei überschreitet die maximale Größe von 1 MB
+    sso_settings_metadata_invalid_xml: Ungültiges XML-Format
+    sso_settings_metadata_no_idp_descriptor: In den Metadaten wurde kein IdP-Deskriptor gefunden
+    sso_settings_metadata_parse: Metadaten analysieren
+    sso_settings_metadata_parse_error: Die Metadaten konnten nicht analysiert werden
+    sso_settings_metadata_parse_success: IdP-Felder, die aus Metadaten ausgefüllt werden
+    sso_settings_metadata_parsing: Metadaten werden analysiert...
+    sso_settings_metadata_upload: XML-Metadaten des Identitätsanbieters hochladen
+    sso_settings_metadata_upload_again: Zieh eine andere Datei per Drag & Drop darauf, um sie zu ersetzen
+    sso_settings_metadata_upload_drag_hint: Ziehen Sie die XML-Datei hierher oder klicken Sie hier, um nach einer Datei zu suchen
+    sso_settings_metadata_upload_hint: Laden Sie eine XML-Datei hoch, um die IdP-Felder automatisch auszufüllen
+    sso_settings_metadata_upload_retry: Versuchen Sie es erneut mit einer gültigen XML-Datei mit Metadaten
+    sso_settings_or_configure_manually: Oder manuell konfigurieren
+    sso_settings_readable_resource_name: SSO-Einstellungen
+    sso_settings_save: Speichern
+    sso_settings_session_timeout: Dauer des Sitzungszeitlimits
+    sso_settings_slo_url: SLO-Service-URL
+    sso_settings_sso_url: URL des SSO-Dienstes
+    sso_settings_tab: SSO
     standard: Standard
     standard_deviation: Standardabweichung
     standard_questions: Standardfragen
@@ -2775,12 +2825,18 @@ de:
     sub_factors_conditional_average: Bedingter gewichteter Durchschnitt der Faktoren
     sub_factors_sum: Gewichtete Summe der Faktoren
     subdomain: Subdomain
+    subdomain_admin_keyword: Das reservierte Admin-Subdomain-Muster kann nicht verwendet werden
+    subdomain_invalid_format: Falsches Subdomain-Format.
+    subdomain_reserved: Die Subdomain %{value} ist reserviert
+    subdomain_too_long_max_32: Die Subdomain ist zu lang (maximal 32 Zeichen)
     subject: Betreff
     subject_can_access_reports: Subjekt kann auf seine Berichte zugreifen
     subject_email: E-Mail des Betreffs
     subject_invite_description: Diese Nachricht wird verschickt, um die Testpersonen zur Teilnahme an der Bewertung einzuladen
     subject_invite_name: Thema Einladen
     subject_part_of_other_invite: Der Absender der E-Mail %{user_email} wurde bereits zu „%{workshop_invite_name}” eingeladen.
+    superadmin_use_root_domain: Superadministratoren müssen sich über die Hauptdomain anmelden
+    switch_client: Client wechseln
     subject_placeholder: Thema suchen...
     subject_reminder_description: Nachricht an jeden Teilnehmer, um ihn an die Teilnahme an der Bewertung zu erinnern
     subject_reminder_name: Betreff Erinnerung
@@ -2983,6 +3039,7 @@ de:
     yoodli_assessment: Yoodli-Bewertung
     yoodli_email_id: Yoodli-Kandidaten-E-Mail-ID
     yoodli_external_assessment_id: Yoodli Bewertungs-ID
+    you_are_here: Sie befinden sich hier
     yoodli_keyset_url: Keyset-URL
     yoodli_launch_url: Start-URL
     yoodli_login_url: Login-URL

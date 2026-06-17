@@ -34,6 +34,8 @@ sk:
       cant_be_deleted: Tento záznam nie je možné odstrániť
       client_feature:
         ai_assisted_idp_feature_error: Nemôže to byť pravda, ak je funkcia ai asistentov vypnutá
+      client_sso_settings:
+        sso_enforced_requires_enabled: Túto funkciu nie je možné aktivovať, pokiaľ nie je aktivované SSO
       create_superadmin:
         uniq_email: E-mail by mal byť uniq.
       development_actions:

@@ -198,6 +198,7 @@ it:
     assistant_toolbar_failed: Impossibile generare un output valido dopo diversi tentativi
     assistant_toolbar_not_a_valid_operation: Operazione sconosciuta %{operation}.
     assistant_validation_failed: Impossibile generare un output valido dopo diversi tentativi
+    audit_log_impersonated_by: Interpretato da
     attendance: Presenze
     attendance_status: Stato delle presenze
     audit_log_title: Informazioni sul registro di controllo
@@ -361,6 +362,9 @@ it:
     client: Contratto di locazione del cliente
     client_admin: Amministratore del cliente
     client_admins: Amministratori clienti
+    client_selection_instruction: Seleziona un cliente per accedere al pannello di amministrazione.
+    client_selection_sign_out: Esci
+    client_selection_title: Seleziona cliente
     client_credentials_label: Credenziali client
     client_credentials_value: client_credentials
     client_features: Caratteristiche del cliente
@@ -373,6 +377,7 @@ it:
     client_secret_name: oauth_client_secret
     client_secret_required: Il segreto client è obbligatorio
     clients: Clienti
+    clients_search_placeholder: Ricerca cliente
     closed: Chiuso
     code_required: È necessario il codice
     collapse_filters: Filtri di chiusura
@@ -728,6 +733,7 @@ it:
     feature_flags_platform_group: Caratteristiche della piattaforma
     feature_global_skills_description: Accedi alla libreria globale delle competenze per le valutazioni
     feature_idp_description: Abilita la pianificazione dello sviluppo individuale per i partecipanti
+    feature_not_available: Questa funzione non è disponibile
     feature_sms_notification_description: Abilita le notifiche SMS per gli inviti alle campagne e i promemoria
     fields_level: Livello
     fields_level_description: Descrizione del livello
@@ -787,6 +793,10 @@ it:
     grant_type_name: oauth_grant_type
     graphic: Grafica
     graphic_slider: Slider grafico
+    handoff_client_mismatch: Il token di autenticazione non è valido per questo client
+    handoff_invalid_token: Token di autenticazione non valido o scaduto
+    handoff_token_expired: Il token di autenticazione è scaduto o è già stato utilizzato
+    handoff_user_disabled: Il tuo account è stato disattivato
     header_logout_content: Premi Annullato se vuoi continuare a lavorare. Premi Ok per disconnettere l'utente attuale.
     header_logout_title: Sei sicuro di voler disconnetterti?
     hide_all: Nascondi tutto
@@ -1139,10 +1149,12 @@ it:
     libraries: Biblioteca multimediale
     library_invalid_type: Voce della biblioteca invalida
     licenses: Licenze
+    lighthouse_logo_alt_text: Logo del faro
     lighthouse_question: Domanda chiave
     lighthouse_question_id: ID domanda Lighthouse
     link_text: Collegamento
     linked_assessments: Valutazioni correlate
+    logged_in: Hai effettuato l'accesso
     locale: Locale
     log_date: Data del registro
     login: Accesso
@@ -1238,6 +1250,8 @@ it:
     navigation_skills_taxonomy: Tassonomia delle competenze
     navigation_users: Utenti
     new_folder: Nuova cartella
+    no_client_access: Non hai accesso a questo cliente
+    no_clients_found: Nessun cliente trovato
     new_score: Nuovo punteggio
     no_assessments_found: ID audit
     no_completed_assessments: Non ci sono ancora valutazioni completate
@@ -1309,6 +1323,7 @@ it:
     options_title: Opzioni
     organisational: AGILE
     original_text: Testo originale
+    others: Altro
     other_assessments: Altre valutazioni
     other_assessor_assessments: Altre Assessment dell'Assessore
     other_reports: Altri rapporti
@@ -1980,6 +1995,7 @@ it:
     questions_title: Domanda
     questions_type: Tipo
     range_min_max: GAMMA%{min} - %{max}
+    recents: Ultimi
     rationale: Motivazione
     raw: CRUDO
     reason_for_changes: Motivo delle modifiche
@@ -2158,6 +2174,10 @@ it:
     revisions_user_prompt: Prompt dell'utente
     revisions_version: Versione
     role: Ruolo
+    role_campaign_admin: Amministrazione della campagna
+    role_client_admin: Amministrazione clienti
+    role_project_admin: Amministratore del progetto
+    role_superadmin: Superamministratore
     saml_idp_certificate_available: Disponibile (clicca per copia)
     saml_idp_certificate_label: Certificato
     saml_idp_entity_id_label: ID Entità/Emittente
@@ -2716,6 +2736,36 @@ it:
     smtp_settings_use_sender_verification: Utilizzare la verifica del mittente
     smtp_settings_user_name: Nome utente
     specialty_questions: Domande specifiche
+    sso_email_mismatch: Hai effettuato l'accesso a un account diverso sul provider di identità. Esci dal provider di identità e riprova.
+    sso_enforced: Attiva l'SSO
+    sso_label: SSO
+    sso_not_enabled: L'SSO non è abilitato per questo client
+    sso_settings: Impostazioni SSO
+    sso_settings_allowed_domains: Domini consentiti
+    sso_settings_certificate: Certificato IdP
+    sso_settings_enabled: SSO abilitato
+    sso_settings_enforced: SSO obbligatorio
+    sso_settings_entity_id: ID entità
+    sso_settings_metadata_certificate_expiry: 'Scadenza del certificato: %{date}'
+    sso_settings_metadata_file_too_large: Il file supera la dimensione massima di 1 MB
+    sso_settings_metadata_invalid_xml: Formato XML non valido
+    sso_settings_metadata_no_idp_descriptor: Nessun descrittore IdP trovato nei metadati
+    sso_settings_metadata_parse: Analizza i metadati
+    sso_settings_metadata_parse_error: Impossibile analizzare i metadati
+    sso_settings_metadata_parse_success: Campi IdP popolati dai metadati
+    sso_settings_metadata_parsing: Analisi dei metadati...
+    sso_settings_metadata_upload: Carica il file XML dei metadati dell'IdP
+    sso_settings_metadata_upload_again: Trascina un altro file per sostituirlo
+    sso_settings_metadata_upload_drag_hint: Trascina qui il file .xml oppure clicca per selezionarlo
+    sso_settings_metadata_upload_hint: Carica il file .xml per compilare automaticamente i campi dell'IdP
+    sso_settings_metadata_upload_retry: Riprova con un file XML di metadati valido
+    sso_settings_or_configure_manually: Oppure configurare manualmente
+    sso_settings_readable_resource_name: Impostazioni SSO
+    sso_settings_save: Salva
+    sso_settings_session_timeout: Durata del timeout della sessione
+    sso_settings_slo_url: URL del servizio SLO
+    sso_settings_sso_url: URL del servizio SSO
+    sso_settings_tab: SSO
     standard_deviation: Deviazione standard
     standard_questions: Domande standard
     start: Inizia
@@ -2773,12 +2823,18 @@ it:
     sub_factors_conditional_average: Media ponderata condizionale dei fattori
     sub_factors_sum: Somma ponderata dei fattori
     subdomain: Sottodominio
+    subdomain_admin_keyword: Non è possibile utilizzare il modello di sottodominio riservato all'amministratore
+    subdomain_invalid_format: Formato del sottodominio errato.
+    subdomain_reserved: Il sottodominio %{value} è riservato
+    subdomain_too_long_max_32: Il sottodominio è troppo lungo (il limite massimo è di 32 caratteri)
     subject: Oggetto
     subject_can_access_reports: Il soggetto può accedere ai propri rapporti
     subject_email: Email del soggetto
     subject_invite_description: Questo messaggio verrà inviato per invitare i soggetti a partecipare alla valutazione
     subject_invite_name: Soggetto invitato
     subject_part_of_other_invite: Il soggetto con indirizzo e-mail %{user_email} è già stato invitato a "%{workshop_invite_name}".
+    superadmin_use_root_domain: Gli amministratori con privilegi elevati devono effettuare l'accesso tramite il dominio principale
+    switch_client: Cambia client
     subject_placeholder: Cerca per argomento...
     subject_reminder_description: Messaggio inviato a ogni partecipante per ricordargli di partecipare alla valutazione
     subject_reminder_name: Promemoria del soggetto
@@ -2978,6 +3034,7 @@ it:
     yoodli_assessment: Valutazione Yoodli
     yoodli_email_id: ID email del candidato Yoodli
     yoodli_external_assessment_id: ID valutazione Yoodli
+    you_are_here: Ti trovi qui
     yoodli_keyset_url: Keyset URL
     yoodli_launch_url: URL di lancio
     yoodli_login_url: URL di accesso

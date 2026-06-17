@@ -200,6 +200,7 @@ hu:
     assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
     assistant_toolbar_not_a_valid_operation: Ismeretlen művelet %{operation}.
     assistant_validation_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
+    audit_log_impersonated_by: Szerepeltette
     attendance: Jelenlét
     attendance_status: Jelenléti státusz
     audit_log_title: Auditnapló adatai
@@ -368,6 +369,9 @@ hu:
     client: Ügyfél bérleti joga
     client_admin: Ügyfél rendszergazda
     client_admins: Ügyféladminisztrátorok
+    client_selection_instruction: Válasszon ki egy ügyfelet, hogy továbbjusson az adminisztrációs felületre.
+    client_selection_sign_out: Kijelentkezés
+    client_selection_title: Ügyfél kiválasztása
     client_credentials_label: Ügyfél hitelesítő adatai
     client_credentials_value: client_credentials
     client_features: Ügyfélfunkciók
@@ -380,6 +384,7 @@ hu:
     client_secret_name: oauth_client_secret
     client_secret_required: Titkos ügyfélkód szükséges
     clients: Ügyfélcsoportok
+    clients_search_placeholder: Ügyfélkeresés
     closed: Zárt
     code_required: Kód szükséges
     collapse_filters: Szűrők bezárása
@@ -736,6 +741,7 @@ hu:
     feature_flags_platform_group: A platform jellemzői
     feature_global_skills_description: Hozzáférés a globális készségek könyvtárához az értékelésekhez
     feature_idp_description: Engedélyezze az egyéni fejlesztési terv készítését a résztvevők számára
+    feature_not_available: Ez a funkció nem érhető el
     feature_sms_notification_description: SMS-értesítések engedélyezése kampánymeghívók és emlékeztetők esetén
     fields_level: Szint
     fields_level_description: Szint leírása
@@ -795,6 +801,10 @@ hu:
     grant_type_name: oauth_grant_type
     graphic: Grafika
     graphic_slider: Grafikus csúszka
+    handoff_client_mismatch: A hitelesítési token nem érvényes erre az ügyfélre
+    handoff_invalid_token: Érvénytelen vagy lejárt hitelesítési token
+    handoff_token_expired: A hitelesítési token lejárt, vagy már felhasználásra került
+    handoff_user_disabled: Fiókja letiltásra került
     header_logout_content: Nyomd meg a Cancel gombot, ha folytatni szeretnéd a munkát. Nyomd meg az OK-t, hogy kijelentkezz a jelenlegi felhasználóról.
     header_logout_title: Biztos vagy benne, hogy ki akarsz jelentkezni?
     hide_all: Az összes elrejtése
@@ -1152,10 +1162,12 @@ hu:
     libraries: Médiatár
     library_invalid_type: Érvénytelen könyvtári tétel
     licenses: Licencek
+    lighthouse_logo_alt_text: A Lighthouse logója
     lighthouse_question: A világítótorony kérdése
     lighthouse_question_id: Lighthouse kérdésazonosító
     link_text: Láncszem
     linked_assessments: Kapcsolódó értékelések
+    logged_in: Bejelentkezve
     locale: Színhely
     log_date: Naplózás dátuma
     login: Bejelentkezés
@@ -1250,6 +1262,8 @@ hu:
     navigation_skills_taxonomy: Készségek taxonómiája
     navigation_users: Felhasználók
     new_folder: Új mappa
+    no_client_access: Nincs hozzáférése ehhez az ügyfélhez
+    no_clients_found: Nem találtunk ügyfeleket
     new_score: Új pontszám
     no_assessments_found: Ellenőrzés azonosítója
     no_completed_assessments: Még nincsenek befejezett értékelések
@@ -1320,6 +1334,7 @@ hu:
     options_title: Beállítások
     organisational: FÜRGE
     original_text: Eredeti szöveg
+    others: Egyéb
     other_assessments: Egyéb értékelések
     other_assessor_assessments: Egyéb értékelő értékelések
     other_reports: Egyéb jelentések
@@ -1992,6 +2007,7 @@ hu:
     questions_title: Kérdés
     questions_type: Típus
     range_min_max: RANGE %{min} - %{max}
+    recents: Legutóbbi bejegyzések
     rationale: Indoklás
     raw: NYERS
     reason_for_changes: A változások oka
@@ -2166,6 +2182,10 @@ hu:
     revisions_user_prompt: Felhasználói kérés
     revisions_version: Verzió
     role: Szerep
+    role_campaign_admin: Kampányadminisztrátor
+    role_client_admin: Ügyfélkezelés
+    role_project_admin: Projektadminisztrátor
+    role_superadmin: Szuperadmin
     saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
     saml_idp_certificate_label: Igazolás
     saml_idp_entity_id_label: Entity ID/Kibocsátó
@@ -2715,6 +2735,36 @@ hu:
     smtp_settings_use_sender_verification: Feladó-ellenőrzés használata
     smtp_settings_user_name: Felhasználónév
     specialty_questions: Speciális kérdések
+    sso_email_mismatch: Az azonosítószolgáltatón egy másik fiókba van bejelentkezve. Kérjük, jelentkezzen ki az azonosítószolgáltatóból, majd próbálja meg újra.
+    sso_enforced: Az SSO érvényesítése
+    sso_label: SSO
+    sso_not_enabled: Az SSO nincs engedélyezve ezen az ügyféloldalon
+    sso_settings: SSO-beállítások
+    sso_settings_allowed_domains: Engedélyezett domainnevek
+    sso_settings_certificate: IdP-tanúsítvány
+    sso_settings_enabled: SSO engedélyezve
+    sso_settings_enforced: Kötelező SSO
+    sso_settings_entity_id: Entitásazonosító
+    sso_settings_metadata_certificate_expiry: 'A tanúsítvány lejárati ideje: %{date}'
+    sso_settings_metadata_file_too_large: A fájl meghaladja az 1 MB-os maximális méretet
+    sso_settings_metadata_invalid_xml: Érvénytelen XML-formátum
+    sso_settings_metadata_no_idp_descriptor: A metaadatokban nem található IdP-leíró
+    sso_settings_metadata_parse: Metadatok elemzése
+    sso_settings_metadata_parse_error: A metaadatok értelmezése sikertelen
+    sso_settings_metadata_parse_success: Az IdP mezőinek kitöltése metaadatok alapján
+    sso_settings_metadata_parsing: A metaadatok feldolgozása...
+    sso_settings_metadata_upload: IdP-metadatok XML-fájljának feltöltése
+    sso_settings_metadata_upload_again: Húzz ide egy másik fájlt a cseréhez
+    sso_settings_metadata_upload_drag_hint: Húzza ide az .xml fájlt, vagy kattintson a Tallózás gombra
+    sso_settings_metadata_upload_hint: Töltse fel az .xml fájlt az azonosítószolgáltató mezőinek automatikus kitöltéséhez
+    sso_settings_metadata_upload_retry: Próbálja meg újra egy érvényes metaadat-XML-fájllal
+    sso_settings_or_configure_manually: Vagy állítsd be kézzel
+    sso_settings_readable_resource_name: SSO-beállítások
+    sso_settings_save: Mentés
+    sso_settings_session_timeout: A munkamenet időtúllépésének időtartama
+    sso_settings_slo_url: SLO szolgáltatás URL-címe
+    sso_settings_sso_url: SSO-szolgáltatás URL-címe
+    sso_settings_tab: SSO
     standard: Szabvány
     standard_deviation: Szórás
     standard_questions: Gyakori kérdések
@@ -2773,12 +2823,18 @@ hu:
     sub_factors_conditional_average: A tényezők feltételes súlyozott átlaga
     sub_factors_sum: A tényezők súlyozott összege
     subdomain: Aldomain
+    subdomain_admin_keyword: nem használható a fenntartott admin aldomain-minta
+    subdomain_invalid_format: Helytelen aldomain-formátum.
+    subdomain_reserved: Az %{value} aldomain foglalt
+    subdomain_too_long_max_32: Az aldomain túl hosszú (a maximális hossz 32 karakter)
     subject: Tárgy
     subject_can_access_reports: Az alanyok hozzáférhetnek jelentéseikhez
     subject_email: A tárgyhoz tartozó e-mail cím
     subject_invite_description: Ezt az üzenetet küldjük, hogy meghívjuk a vizsgálati alanyokat az értékelésben való részvételre
     subject_invite_name: Tárgy meghívó
     subject_part_of_other_invite: Az e-mail címmel %{user_email} rendelkező személy már meghívást kapott a „%{workshop_invite_name}” rendezvényre.
+    superadmin_use_root_domain: A szuperadminisztrátoroknak a fő domainen keresztül kell bejelentkezniük
+    switch_client: Ügyfélváltás
     subject_placeholder: Keresés tárgya...
     subject_reminder_description: Az egyes résztvevőknek küldött üzenet, amely emlékezteti őket az értékelésben való részvételre
     subject_reminder_name: Tárgy emlékeztető
@@ -2981,6 +3037,7 @@ hu:
     yoodli_assessment: Yoodli értékelés
     yoodli_email_id: Yoodli jelölt e-mail azonosító
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: Ön itt van
     yoodli_keyset_url: Kulcskészlet URL
     yoodli_launch_url: Indítási URL
     yoodli_login_url: Bejelentkezési URL

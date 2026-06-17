@@ -1683,6 +1683,25 @@ ja:
       remove_confirm:
         message: 本当にこのリソースを削除しますか？
         title: リソースの削除
+    saml_settings:
+      after_signout_url: サインアウト後のURL
+      cert: 証明書
+      config_details:
+        acs_url: アサーション・コンシューマー・サービスURL
+        copied: コピーされた %{element}
+        issuer: エンティティID/発行者
+        title: 以下の情報でIdpを設定する。
+      email_pipetext: Pipetextにメールする
+      enabled: 有効
+      entity_id: エンティティID/発行者
+      name_identifier_format: 名前識別子
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent。
+      saml_setting: SAML 設定
+      save: 設定の保存
+      sso_service_url: SSOサービスURL
+      successfully_saved_msg: SAML 設定が正常に保存されました。
     save: セーブ
     scoring:
       export:

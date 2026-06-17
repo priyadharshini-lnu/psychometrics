@@ -34,6 +34,8 @@ bg:
       cant_be_deleted: Този запис не може да бъде изтрит
       client_feature:
         ai_assisted_idp_feature_error: Не може да е вярно, ако функцията за AI асистенти е деактивирана
+      client_sso_settings:
+        sso_enforced_requires_enabled: Не може да бъде активирана, ако SSO не е активиран
       create_superadmin:
         uniq_email: Имейлът трябва да е uniq.
       development_actions:

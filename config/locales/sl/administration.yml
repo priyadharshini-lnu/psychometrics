@@ -1683,6 +1683,25 @@ sl:
       remove_confirm:
         message: Ali ste prepričani, da želite odstraniti ta vir?
         title: Odstrani vir
+    saml_settings:
+      after_signout_url: URL po odjavi
+      cert: Potrdilo
+      config_details:
+        acs_url: URL storitve za potrošnike za potrditev
+        copied: Kopirano %{element}
+        issuer: ID subjekta/izdajatelj
+        title: Konfiguriranje IDP-ja z naslednjimi informacijami
+      email_pipetext: Pošljite e-poštno besedilo cevi
+      enabled: Omogočeno
+      entity_id: ID subjekta/izdajatelj
+      name_identifier_format: Identifikator imena
+      name_identifier_formats:
+        email: urn:oasis:imena:tc:SAML:1.1:nameid-format:e-poštni naslov
+        persistent: urn:oasis:imena:tc:SAML:2.0:nameid-format:trajni
+      saml_setting: Nastavitev SAML
+      save: Shrani nastavitev
+      sso_service_url: URL storitve enotne prijave
+      successfully_saved_msg: Nastavitev SAML je bila uspešno shranjena.
     save: Shrani
     scoring:
       export:

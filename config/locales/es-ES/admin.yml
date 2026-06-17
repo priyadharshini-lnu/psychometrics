@@ -197,6 +197,7 @@ es-ES:
     assistant_toolbar_failed: No se ha podido generar una salida válida tras varios intentos.
     assistant_toolbar_not_a_valid_operation: Operación desconocida %{operation}.
     assistant_validation_failed: No se ha podido generar una salida válida tras múltiples intentos.
+    audit_log_impersonated_by: Interpretado por
     attendance: Asistencia
     attendance_status: Estado de asistencia
     audit_log_title: Información del registro de auditoría
@@ -365,6 +366,9 @@ es-ES:
     client: Arrendamiento de clientes
     client_admin: Administración de clientes
     client_admins: Administradores de clientes
+    client_selection_instruction: Selecciona un cliente para acceder al panel de administración.
+    client_selection_sign_out: Cerrar sesión
+    client_selection_title: Seleccionar cliente
     client_credentials_label: Credenciales de cliente
     client_credentials_value: client_credentials
     client_features: Características del cliente
@@ -377,6 +381,7 @@ es-ES:
     client_secret_name: oauth_client_secret
     client_secret_required: Se requiere secreto de cliente
     clients: Clientes
+    clients_search_placeholder: Buscar cliente
     closed: Cerrado
     code_required: Se requiere código
     collapse_filters: Colapsar filtros
@@ -732,6 +737,7 @@ es-ES:
     feature_flags_platform_group: Características de la plataforma
     feature_global_skills_description: Acceda a la biblioteca global de habilidades para evaluaciones.
     feature_idp_description: Habilitar la planificación del desarrollo individual para los participantes.
+    feature_not_available: Esta función no está disponible
     feature_sms_notification_description: Habilita las notificaciones por SMS para invitaciones y recordatorios de campañas.
     fields_level: Nivel
     fields_level_description: Descripción del nivel
@@ -791,6 +797,10 @@ es-ES:
     grant_type_name: oauth_grant_type
     graphic: Gráfico
     graphic_slider: Control deslizante de imágenes
+    handoff_client_mismatch: El token de autenticación no es válido para este cliente
+    handoff_invalid_token: Token de autenticación no válido o caducado
+    handoff_token_expired: El token de autenticación ha caducado o ya se ha utilizado
+    handoff_user_disabled: Tu cuenta está desactivada
     header_logout_content: Pulsa Cancelar si quieres seguir trabajando. Pulsa Aceptar para cerrar sesión con el usuario actual.
     header_logout_title: "¿Estás seguro de que quieres cerrar sesión?"
     hide_all: Ocultar todo
@@ -1142,10 +1152,12 @@ es-ES:
     libraries: Mediateca
     library_invalid_type: Elemento inválido de la biblioteca
     licenses: Licencias
+    lighthouse_logo_alt_text: Logotipo del faro
     lighthouse_question: Pregunta sobre el faro
     lighthouse_question_id: ID de la pregunta de Lighthouse
     link_text: Enlace
     linked_assessments: Evaluaciones relacionadas
+    logged_in: Iniciado sesión
     locale: Local
     log_date: Fecha de registro
     login: Iniciar sesión
@@ -1241,6 +1253,8 @@ es-ES:
     navigation_skills_taxonomy: Taxonomía de competencias
     navigation_users: Usuarios
     new_folder: Nueva carpeta
+    no_client_access: No tienes acceso a este cliente
+    no_clients_found: No se han encontrado clientes
     new_score: Nueva puntuación
     no_assessments_found: ID de auditoría
     no_completed_assessments: Aún no hay valoraciones realizadas
@@ -1311,6 +1325,7 @@ es-ES:
     options_title: Opciones
     organisational: AGIL
     original_text: Texto original
+    others: Otros
     other_assessments: Otras evaluaciones
     other_assessor_assessments: Otras evaluaciones
     other_reports: Otros informes
@@ -1982,6 +1997,7 @@ es-ES:
     questions_title: Pregunta
     questions_type: Tipo
     range_min_max: RANGE %{min} - %{max}
+    recents: Últimas publicaciones
     rationale: Fundamento
     raw: CRUDO
     reason_for_changes: Motivo de los cambios
@@ -2160,6 +2176,10 @@ es-ES:
     revisions_user_prompt: Pregunta al usuario
     revisions_version: Versión
     role: Rol
+    role_campaign_admin: Administrador de la campaña
+    role_client_admin: Administración de clientes
+    role_project_admin: Administrador del proyecto
+    role_superadmin: Superadministrador
     saml_idp_certificate_available: Disponible (haz clic para copiar)
     saml_idp_certificate_label: Certificado
     saml_idp_entity_id_label: ID de entidad/Emisor
@@ -2718,6 +2738,36 @@ es-ES:
     smtp_settings_use_sender_verification: Utilizar la verificación del remitente
     smtp_settings_user_name: Nombre de usuario
     specialty_questions: Preguntas específicas
+    sso_email_mismatch: Has iniciado sesión en una cuenta diferente en el proveedor de identidad. Cierra la sesión en el proveedor de identidad e inténtalo de nuevo.
+    sso_enforced: Aplicar el inicio de sesión único (SSO)
+    sso_label: SSO
+    sso_not_enabled: El inicio de sesión único (SSO) no está habilitado para este cliente
+    sso_settings: Configuración de SSO
+    sso_settings_allowed_domains: Dominios permitidos
+    sso_settings_certificate: Certificado de proveedor de identidades
+    sso_settings_enabled: SSO habilitado
+    sso_settings_enforced: SSO obligatorio
+    sso_settings_entity_id: ID de entidad
+    sso_settings_metadata_certificate_expiry: 'El certificado caduca el: %{date}'
+    sso_settings_metadata_file_too_large: El archivo supera el tamaño máximo de 1 MB
+    sso_settings_metadata_invalid_xml: Formato XML no válido
+    sso_settings_metadata_no_idp_descriptor: No se ha encontrado ningún descriptor de IdP en los metadatos
+    sso_settings_metadata_parse: Analizar metadatos
+    sso_settings_metadata_parse_error: No se han podido analizar los metadatos
+    sso_settings_metadata_parse_success: Campos del IdP rellenados a partir de metadatos
+    sso_settings_metadata_parsing: Analizando los metadatos...
+    sso_settings_metadata_upload: Subir el archivo XML de metadatos del IdP
+    sso_settings_metadata_upload_again: Arrastra otro archivo para sustituirlo
+    sso_settings_metadata_upload_drag_hint: Arrastra y suelta aquí el archivo .xml o haz clic para buscarlo
+    sso_settings_metadata_upload_hint: Sube un archivo .xml para rellenar automáticamente los campos del IdP
+    sso_settings_metadata_upload_retry: Inténtalo de nuevo con un archivo XML de metadatos válido
+    sso_settings_or_configure_manually: O bien, configúralo manualmente
+    sso_settings_readable_resource_name: Configuración de SSO
+    sso_settings_save: Guardar
+    sso_settings_session_timeout: Duración del tiempo de espera de la sesión
+    sso_settings_slo_url: URL del servicio SLO
+    sso_settings_sso_url: URL del servicio SSO
+    sso_settings_tab: SSO
     standard: Estándar
     standard_deviation: Desviación estándar
     standard_questions: Preguntas habituales
@@ -2776,12 +2826,18 @@ es-ES:
     sub_factors_conditional_average: Media ponderada condicional de los factores
     sub_factors_sum: Suma ponderada de factores
     subdomain: Subdominio
+    subdomain_admin_keyword: No se puede utilizar el patrón de subdominio de administrador reservado
+    subdomain_invalid_format: Formato de subdominio incorrecto.
+    subdomain_reserved: El subdominio %{value} está reservado
+    subdomain_too_long_max_32: El subdominio es demasiado largo (el máximo es de 32 caracteres)
     subject: Asunto
     subject_can_access_reports: El sujeto puede acceder a sus informes
     subject_email: Correo electrónico del sujeto
     subject_invite_description: Este mensaje se enviará para invitar a los sujetos a participar en la evaluación
     subject_invite_name: Asunto Invitación
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
+    superadmin_use_root_domain: Los superadministradores deben iniciar sesión a través del dominio principal
+    switch_client: Cambiar de cliente
     subject_placeholder: Buscar Asunto...
     subject_reminder_description: Mensaje enviado a cada participante para recordarle que debe participar en la evaluación
     subject_reminder_name: Recordatorio de asunto
@@ -2981,6 +3037,7 @@ es-ES:
     yoodli_assessment: Evaluación de Yoodli
     yoodli_email_id: ID de correo electrónico del candidato Yoodli
     yoodli_external_assessment_id: ID de evaluación Yoodli
+    you_are_here: Estás aquí
     yoodli_keyset_url: URL del conjunto de claves
     yoodli_launch_url: URL de lanzamiento
     yoodli_login_url: URL de inicio de sesión

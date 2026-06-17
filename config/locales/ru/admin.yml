@@ -200,6 +200,7 @@ ru:
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
     assistant_toolbar_not_a_valid_operation: Неизвестная операция %{operation}.
     assistant_validation_failed: Не удалось сгенерировать действительный результат после нескольких попыток
+    audit_log_impersonated_by: В роли
     attendance: Посещаемость
     attendance_status: Статус посещаемости
     audit_log_title: Информация журнала аудита
@@ -368,6 +369,9 @@ ru:
     client: Клиент
     client_admin: Администратор клиента
     client_admins: Администраторы клиентов
+    client_selection_instruction: Выберите клиента, чтобы перейти в панель администрирования.
+    client_selection_sign_out: Выйти
+    client_selection_title: Выбрать клиента
     client_credentials_label: Учетные данные клиента
     client_credentials_value: клиентские_учетные_данные
     client_features: Особенности клиента
@@ -380,6 +384,7 @@ ru:
     client_secret_name: oauth_client_secret
     client_secret_required: Требуется секретный ключ клиента
     clients: Клиенты
+    clients_search_placeholder: Поиск клиента
     closed: Закрыто
     code_required: Требуется код
     collapse_filters: Свернуть фильтры
@@ -735,6 +740,7 @@ ru:
     feature_flags_platform_group: Особенности платформы
     feature_global_skills_description: Доступ к глобальной библиотеке навыков для оценки
     feature_idp_description: Включить индивидуальное планирование развития для участников
+    feature_not_available: Эта функция недоступна
     feature_sms_notification_description: Включить SMS-уведомления о приглашениях и напоминаниях о кампаниях
     fields_level: Уровень
     fields_level_description: Описание уровня
@@ -794,6 +800,10 @@ ru:
     grant_type_name: oauth_grant_type
     graphic: Графика
     graphic_slider: Графический слайдер
+    handoff_client_mismatch: Токен аутентификации недействителен для этого клиента
+    handoff_invalid_token: Недопустимый или просроченный токен аутентификации
+    handoff_token_expired: Срок действия токена аутентификации истек или он уже был использован
+    handoff_user_disabled: Ваша учетная запись заблокирована
     header_logout_content: Нажмите «Отмена», если хотите продолжить работу. Нажмите «ОК», чтобы выйти из системы под текущим именем пользователя.
     header_logout_title: Вы уверены, что хотите выйти из системы?
     hide_all: Скрыть все
@@ -1151,10 +1161,12 @@ ru:
     libraries: Медиатека
     library_invalid_type: Недействительный элемент библиотеки
     licenses: Лицензии
+    lighthouse_logo_alt_text: Логотип «Маяк»
     lighthouse_question: Основной вопрос
     lighthouse_question_id: Идентификатор вопроса Lighthouse
     link_text: Ссылка
     linked_assessments: Связанные оценки
+    logged_in: Вошел
     locale: Локаль
     log_date: Дата регистрации
     login: Вход
@@ -1249,6 +1261,8 @@ ru:
     navigation_skills_taxonomy: Таксономия навыков
     navigation_users: Пользователи
     new_folder: Новая папка
+    no_client_access: У вас нет доступа к этому клиенту
+    no_clients_found: Клиенты не найдены
     new_score: Новый счет
     no_assessments_found: Идентификатор аудита
     no_completed_assessments: Пока нет завершенных оценок
@@ -1319,6 +1333,7 @@ ru:
     options_title: Варианты
     organisational: AGILE
     original_text: Оригинальный текст
+    others: Прочее
     other_assessments: Другие оценки
     other_assessor_assessments: Другие оценки оценщиков
     other_reports: Другие отчеты
@@ -1991,6 +2006,7 @@ ru:
     questions_title: Вопрос
     questions_type: Тип
     range_min_max: ДИАПАЗОН%{min} - %{max}
+    recents: Последние
     rationale: Обоснование
     raw: RAW
     reason_for_changes: Причина изменений
@@ -2165,6 +2181,10 @@ ru:
     revisions_user_prompt: Подсказка пользователю
     revisions_version: Версия
     role: Роль
+    role_campaign_admin: Администратор кампании
+    role_client_admin: Администратор клиентов
+    role_project_admin: Администратор проекта
+    role_superadmin: Супер-администратор
     saml_idp_certificate_available: Доступно (щелкните, чтобы скопировать)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: Идентификатор субъекта/эмитента
@@ -2713,6 +2733,36 @@ ru:
     smtp_settings_use_sender_verification: Используйте проверку отправителя
     smtp_settings_user_name: Имя пользователя
     specialty_questions: Специальные вопросы
+    sso_email_mismatch: Вы вошли в систему под другой учетной записью у поставщика услуг аутентификации. Пожалуйста, выйдите из системы у поставщика услуг аутентификации и попробуйте снова.
+    sso_enforced: Принудительное использование SSO
+    sso_label: SSO
+    sso_not_enabled: Для этого клиента не включена функция единого входа (SSO)
+    sso_settings: Настройки SSO
+    sso_settings_allowed_domains: Разрешенные домены
+    sso_settings_certificate: Сертификат IdP
+    sso_settings_enabled: Поддержка SSO
+    sso_settings_enforced: Обязательное использование SSO
+    sso_settings_entity_id: Идентификатор объекта
+    sso_settings_metadata_certificate_expiry: 'Срок действия сертификата истекает: %{date}'
+    sso_settings_metadata_file_too_large: Размер файла превышает максимальный размер в 1 МБ
+    sso_settings_metadata_invalid_xml: Неверный формат XML
+    sso_settings_metadata_no_idp_descriptor: В метаданных не найден дескриптор IdP
+    sso_settings_metadata_parse: Анализ метаданных
+    sso_settings_metadata_parse_error: Не удалось проанализировать метаданные
+    sso_settings_metadata_parse_success: Поля IdP, заполняемые на основе метаданных
+    sso_settings_metadata_parsing: Анализ метаданных...
+    sso_settings_metadata_upload: Загрузить XML-файл с метаданными IdP
+    sso_settings_metadata_upload_again: Перетащите другой файл, чтобы заменить
+    sso_settings_metadata_upload_drag_hint: Перетащите файл .xml сюда или нажмите, чтобы выбрать файл
+    sso_settings_metadata_upload_hint: Загрузите файл .xml для автоматического заполнения полей IdP
+    sso_settings_metadata_upload_retry: Попробуйте ещё раз, используя корректный XML-файл метаданных
+    sso_settings_or_configure_manually: Или настройте вручную
+    sso_settings_readable_resource_name: Настройки SSO
+    sso_settings_save: Сохранить
+    sso_settings_session_timeout: Продолжительность таймаута сеанса
+    sso_settings_slo_url: URL службы SLO
+    sso_settings_sso_url: URL службы SSO
+    sso_settings_tab: SSO
     standard: Стандартный
     standard_deviation: Стандартное отклонение
     standard_questions: Стандартные вопросы
@@ -2771,12 +2821,18 @@ ru:
     sub_factors_conditional_average: Условная взвешенная средняя факторов
     sub_factors_sum: Взвешенная сумма факторов
     subdomain: Субдомен
+    subdomain_admin_keyword: невозможно использовать шаблон зарезервированного субдомена администратора
+    subdomain_invalid_format: Неверный формат субдомена.
+    subdomain_reserved: Субдомен %{value} зарезервирован
+    subdomain_too_long_max_32: Субдомен слишком длинный (максимальная длина — 32 символа)
     subject: Тема
     subject_can_access_reports: Субъект может получить доступ к своим отчетам
     subject_email: Электронная почта субъекта
     subject_invite_description: Это сообщение будет отправлено для приглашения участников к участию в оценке.
     subject_invite_name: Тема приглашения
     subject_part_of_other_invite: Участник с адресом электронной почты %{user_email} уже приглашен в «%{workshop_invite_name}».
+    superadmin_use_root_domain: Суперадминистраторы должны входить в систему через основной домен
+    switch_client: Клиент Switch
     subject_placeholder: Поиск по теме...
     subject_reminder_description: Сообщение, отправленное каждому участнику, чтобы напомнить им об участии в оценке
     subject_reminder_name: Напоминание о предмете
@@ -2979,6 +3035,7 @@ ru:
     yoodli_assessment: Оценка Yoodli
     yoodli_email_id: Идентификатор электронной почты кандидата Yoodli
     yoodli_external_assessment_id: Идентификатор оценки Yoodli
+    you_are_here: Вы находитесь здесь
     yoodli_keyset_url: URL набора клавиш
     yoodli_launch_url: URL запуска
     yoodli_login_url: URL для входа

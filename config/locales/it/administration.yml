@@ -1683,6 +1683,25 @@ it:
       remove_confirm:
         message: Sei sicuro di voler rimuovere questa risorsa?
         title: Rimuovi risorsa
+    saml_settings:
+      after_signout_url: Dopo l'uscita l'URL
+      cert: Certificato
+      config_details:
+        acs_url: URL del servizio consumatori di asserzioni
+        copied: Copiato %{element}
+        issuer: ID dell'entità/assegnatario
+        title: Configurare Idp con le seguenti informazioni
+      email_pipetext: Invia un'e-mail a Pipetext
+      enabled: Abilitato
+      entity_id: ID entità/assegnatario
+      name_identifier_format: Nome Identificatore
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: Impostazione SAML
+      save: Salva l'impostazione
+      sso_service_url: URL del servizio SSO
+      successfully_saved_msg: L'impostazione SAML è stata salvata con successo.
     save: Risparmiare
     scoring:
       export:

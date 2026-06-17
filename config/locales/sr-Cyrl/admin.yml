@@ -200,6 +200,7 @@ sr-Cyrl:
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
     assistant_toolbar_not_a_valid_operation: Непозната операција %{operation}.
     assistant_validation_failed: Није успело да генерише важећи излаз након више покушаја
+    audit_log_impersonated_by: У улози
     attendance: Посећеност
     attendance_status: Статус присуства
     audit_log_title: Информације о дневнику ревизије
@@ -368,6 +369,9 @@ sr-Cyrl:
     client: Клијент
     client_admin: Администратор клијента
     client_admins: Администратори клијената
+    client_selection_instruction: Изаберите клијента да бисте наставили до административног панела.
+    client_selection_sign_out: Одјавите се
+    client_selection_title: Изабери клијента
     client_credentials_label: Клијентске акредитиве
     client_credentials_value: клијентске акредитивације
     client_features: Клијентске функције
@@ -380,6 +384,7 @@ sr-Cyrl:
     client_secret_name: оутх_клијент_тајна
     client_secret_required: Потребан је тајни кључ клијента
     clients: Клијенти
+    clients_search_placeholder: Претрага клијента
     closed: Затворено
     code_required: Код је потребан
     collapse_filters: Сакриј филтере
@@ -735,6 +740,7 @@ sr-Cyrl:
     feature_flags_platform_group: Карактеристике платформе
     feature_global_skills_description: Приступите глобалној библиотеци вештина за процене
     feature_idp_description: Омогућите појединачно планирање развоја за учеснике
+    feature_not_available: Ова функција није доступна
     feature_sms_notification_description: Омогућите СМС обавештења за позиве и подсетнике кампање
     fields_level: Ниво
     fields_level_description: Опис нивоа
@@ -794,6 +800,10 @@ sr-Cyrl:
     grant_type_name: тип овлашћења OAuth
     graphic: Графички
     graphic_slider: Графички слајдер
+    handoff_client_mismatch: Токен за аутентификацију није важећи за овог клијента
+    handoff_invalid_token: Неважећи или истекли токен за аутентификацију
+    handoff_token_expired: Токен за аутентификацију је истекао или је већ коришћен
+    handoff_user_disabled: Ваш налог је онемогућен
     header_logout_content: Притисните "Откажи" ако желите да наставите рад. Притисните "У реду" да бисте се одјавили са тренутног корисника.
     header_logout_title: Да ли сте сигурни да желите да се одјавите?
     hide_all: Сакриј све
@@ -1151,10 +1161,12 @@ sr-Cyrl:
     libraries: Медијска библиотека
     library_invalid_type: Неважећи библиотечки предмет
     licenses: Лиценце
+    lighthouse_logo_alt_text: Логотип Лајтхауса
     lighthouse_question: Питање светионика
     lighthouse_question_id: ИД питања светла
     link_text: Везу
     linked_assessments: Повезане процене
+    logged_in: Пријављено
     locale: Локалне
     log_date: Датум уписа
     login: Пријава
@@ -1249,6 +1261,8 @@ sr-Cyrl:
     navigation_skills_taxonomy: Таксономија вештина
     navigation_users: Корисници
     new_folder: Нова фасцикла
+    no_client_access: Немате приступ овом клијенту
+    no_clients_found: Није пронађен ниједан клијент
     new_score: Нова оцена
     no_assessments_found: Идентификациони број ревизије
     no_completed_assessments: Још нема завршених процена.
@@ -1319,6 +1333,7 @@ sr-Cyrl:
     options_title: Опције
     organisational: Окретан
     original_text: Оригинални текст
+    others: Остали
     other_assessments: Остале процене
     other_assessor_assessments: Остале процене процењивача
     other_reports: Остали извештаји
@@ -1991,6 +2006,7 @@ sr-Cyrl:
     questions_title: Питање
     questions_type: Тип
     range_min_max: Домeн %{min} - %{max}
+    recents: Недавни
     rationale: Оправдање
     raw: сирово
     reason_for_changes: Разлог за промене
@@ -2165,6 +2181,10 @@ sr-Cyrl:
     revisions_user_prompt: Кориснички упит
     revisions_version: Верзија
     role: Улога
+    role_campaign_admin: Администратор кампање
+    role_client_admin: Администрација клијента
+    role_project_admin: Администратор пројекта
+    role_superadmin: Супер администратор
     saml_idp_certificate_available: Доступно (кликните да копирате)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: ИД ентитета/Издавач
@@ -2713,6 +2733,36 @@ sr-Cyrl:
     smtp_settings_use_sender_verification: Користите верификацију пошиљаоца
     smtp_settings_user_name: Име корисника
     specialty_questions: Специјална питања
+    sso_email_mismatch: Пријављени сте на други налог на провајдеру идентитета. Молимо вас да се одјавите са провајдера идентитета и покушате поново.
+    sso_enforced: Применити SSO
+    sso_label: ССО
+    sso_not_enabled: SSO није омогућен за овог клијента
+    sso_settings: Подешавања SSO
+    sso_settings_allowed_domains: Дозвољене домене
+    sso_settings_certificate: Идентитетски сертификат
+    sso_settings_enabled: SSO омогућен
+    sso_settings_enforced: SSO је наметнут
+    sso_settings_entity_id: ИД ентитета
+    sso_settings_metadata_certificate_expiry: 'Сертификат истиче: %{date}'
+    sso_settings_metadata_file_too_large: Датотека прелази максималну величину од 1 МБ.
+    sso_settings_metadata_invalid_xml: Неважећи XML формат
+    sso_settings_metadata_no_idp_descriptor: У метаподацима није пронађен IdP дескриптор
+    sso_settings_metadata_parse: Анализирај метаподатке
+    sso_settings_metadata_parse_error: Неуспело парсирање метаподата
+    sso_settings_metadata_parse_success: Поља IdP-а попуњена метаподацима
+    sso_settings_metadata_parsing: Анализирање метаподата...
+    sso_settings_metadata_upload: Поставите ИДП метаподатке XML
+    sso_settings_metadata_upload_again: Поставите другу датотеку за замену
+    sso_settings_metadata_upload_drag_hint: Повуците и испустите .xml фајл овде или кликните да прегледате
+    sso_settings_metadata_upload_hint: Отпремите .xml фајл за аутоматско попуњавање поља IdP-а
+    sso_settings_metadata_upload_retry: Покушајте поново са важећом XML датотеком метаподата.
+    sso_settings_or_configure_manually: Или конфигуришите ручно
+    sso_settings_readable_resource_name: Подешавања SSO
+    sso_settings_save: Сачувај
+    sso_settings_session_timeout: Време истека сесије
+    sso_settings_slo_url: URL адреса SLO услуге
+    sso_settings_sso_url: SSO URL услуге
+    sso_settings_tab: ССО
     standard: Стандардни
     standard_deviation: Стандардни одступање
     standard_questions: Стандардна питања
@@ -2771,12 +2821,18 @@ sr-Cyrl:
     sub_factors_conditional_average: Условљени ponderисани просек фактора
     sub_factors_sum: Пондерисани збир фактора
     subdomain: Поддомен
+    subdomain_admin_keyword: Не може се користити резервисани образац администраторског поддомена
+    subdomain_invalid_format: Погрешан формат поддомена.
+    subdomain_reserved: Подрудомен %{value} је резервисан
+    subdomain_too_long_max_32: Поддомен је превише дуг (максимално 32 знака)
     subject: Предмет
     subject_can_access_reports: Субјект може да приступи својим извештајима.
     subject_email: Е-пошта субјекта
     subject_invite_description: Ова порука ће бити послата како би се позвали учесници да учествују у процењивању.
     subject_invite_name: Позив
     subject_part_of_other_invite: Корисник са адресом електронске поште %{user_email} је већ позван на '%{workshop_invite_name}'
+    superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
+    switch_client: Пребаци клијент
     subject_placeholder: Претрага предмета...
     subject_reminder_description: Порука је послата сваком учеснику да их подсети да учествују у процењивању.
     subject_reminder_name: 'Предмет: Подсетник'
@@ -2979,6 +3035,7 @@ sr-Cyrl:
     yoodli_assessment: Јоодли Процена
     yoodli_email_id: Јуубли идентификациони број кандидата
     yoodli_external_assessment_id: Идентификатор процене Yoodli
+    you_are_here: Ви сте овде
     yoodli_keyset_url: URL сета кључева
     yoodli_launch_url: URL за покретање
     yoodli_login_url: УРЛ за пријаву

@@ -1683,6 +1683,25 @@ ro:
       remove_confirm:
         message: Sunteți sigur că doriți să eliminați această resursă?
         title: Eliminați resursa
+    saml_settings:
+      after_signout_url: Adresa URL după deconectare
+      cert: Certificat
+      config_details:
+        acs_url: Adresa URL a serviciului pentru consumatori de aserțiune
+        copied: Copiat %{element}
+        issuer: ID entitate/emitent
+        title: Configurați Idp cu următoarele informații
+      email_pipetext: Text de e-mail
+      enabled: Activat
+      entity_id: ID-ul entității/emitentului
+      name_identifier_format: Identificator de nume
+      name_identifier_formats:
+        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: Setare SAML
+      save: Setare salvare
+      sso_service_url: Adresa URL a serviciului SSO
+      successfully_saved_msg: Setarea SAML a fost salvată cu succes.
     save: Salva
     scoring:
       export:

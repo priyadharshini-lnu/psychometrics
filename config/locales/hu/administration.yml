@@ -1683,6 +1683,25 @@ hu:
       remove_confirm:
         message: Biztosan el akarja távolítani ezt a forrást?
         title: Forrás eltávolítása
+    saml_settings:
+      after_signout_url: Kijelentkezés utáni URL-cím
+      cert: Igazolás
+      config_details:
+        acs_url: Assertion Consumer Service URL-címe
+        copied: Másolt %{element}
+        issuer: Szervezet azonosítója/kibocsátó
+        title: Az Idp konfigurálása a következő információkkal
+      email_pipetext: E-mail küldése a Pipetextnek
+      enabled: Engedélyezve
+      entity_id: Szervezet azonosítója/kibocsátó
+      name_identifier_format: Név azonosító
+      name_identifier_formats:
+        email: urn:oasis:nevek:tc:SAML:1.1:nameid-format:emailAddress
+        persistent: urn:oasis:nevek:tc:SAML:2.0:nameid-format:persistent
+      saml_setting: SAML beállítás
+      save: Mentési beállítás
+      sso_service_url: SSO-szolgáltatás URL-címe
+      successfully_saved_msg: Az SAML-beállítás mentése sikeresen megtörtént.
     save: Mentés
     scoring:
       export:

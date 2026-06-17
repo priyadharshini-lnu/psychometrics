@@ -139,12 +139,20 @@ module UserAssessments
       subject_assessments = UserAssessment.
                             self_assessment.
                             where(campaign_id: user_assessment.campaign_id, subject_id: user_assessment.subject_id).
-                            joins(:assessment).
-                            pluck('user_assessments.id', 'assessments.name', 'user_assessments.status').
-                            map do |id, name, status|
-        { id: id, name: name, status: status }
-      end
-
+                            left_joins(assessment: :tags).
+                            select(
+                              'user_assessments.assessment_id',
+                              'assessments.name as assessment_name',
+                              'user_assessments.status',
+                              'ARRAY_AGG(tags.name) as tags'
+                            ).
+                            group(:id, :assessment_name, :status).
+                            map do |ua|
+                              {
+                                id: ua.assessment_id, name: ua.assessment_name, status: ua.status,
+                                tags: ua.tags.compact
+                              }
+                            end
       {
         campaign: user_assessment.campaign,
         subject: user_assessment.subject,
