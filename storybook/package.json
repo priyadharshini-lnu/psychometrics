@@ -25,6 +25,7 @@
   },
   "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
   "dependencies": {
+    "@babel/core": "7.29.6",
     "@babel/eslint-plugin": "^7.14.5",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-interactions": "^8.6.4",

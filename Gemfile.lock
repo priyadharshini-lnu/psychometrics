@@ -746,7 +746,7 @@ GEM
     neighbor (0.6.0)
       activerecord (>= 7.1)
     nenv (0.3.0)
-    net-imap (0.6.4)
+    net-imap (0.6.4.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -1388,7 +1388,7 @@ DEPENDENCIES
   mobility (~> 1.2.9)
   mustache (~> 1.1.1)
   neighbor
-  net-imap (~> 0.6.4)
+  net-imap (~> 0.6.4.1)
   newrelic_rpm (~> 10.5)
   nkf
   oauth2 (~> 2.0)

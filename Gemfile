@@ -80,7 +80,7 @@ gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails',            '~> 1.11.1'
 
-gem 'net-imap',                   '~> 0.6.4'
+gem 'net-imap',                   '~> 0.6.4.1'
 
 ### XLS import
 gem 'file_validators',            '~> 3.0.0'
