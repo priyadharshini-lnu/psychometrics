@@ -189,8 +189,8 @@ class User < ApplicationRecord
 
       when UserRoles::ADMIN_ROLE
         joins(:memberships).
-          where.not(memberships: { client_id: restricted_client_subquery })
-
+          where.not(memberships: { client_id: restricted_client_subquery }).
+          distinct
       else
         all
     end
