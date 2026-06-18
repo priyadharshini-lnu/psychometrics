@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {
   Form, Select, Spin,
 } from 'antd'
@@ -17,19 +17,23 @@ type OptionsType = {
 }
 
 export const MicrositeFields: React.FC<{
-  form: FormInstance, assessment: Assessment, handleAssessmentSelect(value: string): void
+  form: FormInstance,
+  assessment?: Assessment,
+  handleAssessmentSelect(value: string): void
 }> = (
   { form, assessment, handleAssessmentSelect },
 ) => {
   const projectId = Form.useWatch(['projectId'], form)
   const ownerId = Form.useWatch(['ownerId'], form)
 
+  const seededProject = assessment?.project
+
   const getProjects = (): OptionsType[] => {
-    if (!assessment || !assessment.project || projects.find(d => assessment?.owner?.id === d.id)) {
+    if (!seededProject || seededProject.id !== projectId || projects.find(d => d.id === seededProject.id)) {
       return projects
     }
 
-    return [...projects, assessment.project]
+    return [...projects, seededProject]
   }
 
   const {
@@ -39,6 +43,33 @@ export const MicrositeFields: React.FC<{
   const {
     data: projects, fetch: fetchProjects, isLoading: projectIsLoading,
   } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
+
+  const previousOwnerId = useRef(ownerId)
+  const previousProjectId = useRef(projectId)
+
+  useEffect(() => {
+    if (previousOwnerId.current !== undefined && previousOwnerId.current !== ownerId) {
+      form.setFieldsValue({ projectId: undefined })
+      form.setFieldValue(['externalSettings', 'assessmentId'], undefined)
+      fetchProjects({
+        apiConfig: { filter: { has_integration: 'microsite' }, fields: { clients: ['name'] } },
+      })
+    }
+    previousOwnerId.current = ownerId
+  }, [ownerId])
+
+  useEffect(() => {
+    if (previousProjectId.current !== undefined && previousProjectId.current !== projectId) {
+      form.setFieldValue(['externalSettings', 'assessmentId'], undefined)
+
+      if (projectId) {
+        fetchAssessments({
+          apiConfig: { filter: { type_eq: 'microsite', project_id_eq: projectId } },
+        })
+      }
+    }
+    previousProjectId.current = projectId
+  }, [projectId])
 
   return (
     <>

@@ -229,6 +229,10 @@ ar:
           attributes:
             name:
               not_unique: هذا التكامل موجود بالفعل لهذا المشروع
+        microsite:
+          attributes:
+            name:
+              not_unique: هذا التكامل موجود بالفعل لهذا المشروع
         password_reset:
           attributes:
             email:
@@ -1113,7 +1117,7 @@ ar:
     instructions:
       begin_assessment: ابدأ
       cancel: إلغاء
-      default: هذا التقييم محدد المدة، سيكون لديك %{time} دقيقة لإكماله بعد النقر فوق  زر "ابدأ"
+      default: سيكون لديك %{time} دقيقة لإكمال التقييم بعد النقر فوق زر "ابدأ"
       title: تعليمات
     messages:
       external_scores_export_scheduled: تمت جدولة مهمة تصدير درجات التقييم بنجاح

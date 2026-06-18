@@ -135,6 +135,7 @@ fr:
     assessment_center_search_participants: Rechercher des participants...
     assessment_question_not_supported: Ce type de question n'est actuellement pas pris en charge.
     assessments: Évaluations
+    assessments_copy_as_microsite: Copier en tant qu'évaluation du microsite
     assessments_not_mhs: Toutes les évaluations doivent être de type MHS.
     assessments_reports: Évaluations et rapports
     assessor_dashboard: Tableau de bord de l'évaluateur

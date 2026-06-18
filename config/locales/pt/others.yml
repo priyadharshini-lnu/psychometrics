@@ -229,6 +229,10 @@ pt:
           attributes:
             name:
               not_unique: Esta integração já está presente para este projeto
+        microsite:
+          attributes:
+            name:
+              not_unique: Esta integração já está presente para este projeto
         password_reset:
           attributes:
             email:

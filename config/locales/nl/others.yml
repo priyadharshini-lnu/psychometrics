@@ -229,6 +229,10 @@ nl:
           attributes:
             name:
               not_unique: Deze integratie is al aanwezig voor dit project
+        microsite:
+          attributes:
+            name:
+              not_unique: Deze integratie is al aanwezig voor dit project
         password_reset:
           attributes:
             email:

@@ -135,6 +135,7 @@ cs:
     assessment_center_search_participants: Vyhledat účastníky...
     assessment_question_not_supported: Tento typ otázky není v současné době podporován.
     assessments: Hodnocení
+    assessments_copy_as_microsite: Kopírovat jako hodnocení mikrostránky
     assessments_not_mhs: Všechna hodnocení musí být typu MHS.
     assessments_reports: Hodnocení a zprávy
     assessor_dashboard: Přístrojový panel hodnotitele

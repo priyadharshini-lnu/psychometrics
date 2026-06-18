@@ -135,6 +135,7 @@ sr-Cyrl:
     assessment_center_search_participants: Претрага учесника...
     assessment_question_not_supported: Ова врста питања тренутно није подржана.
     assessments: Оцењивања
+    assessments_copy_as_microsite: Копирај као процену микросајта
     assessments_not_mhs: Свака процена мора бити типа MHS.
     assessments_reports: Процене и извештаји
     assessor_dashboard: Контролна табла процењивача

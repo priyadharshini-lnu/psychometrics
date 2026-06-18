@@ -135,6 +135,7 @@ ru:
     assessment_center_search_participants: Поиск участников...
     assessment_question_not_supported: Этот тип вопроса в настоящее время не поддерживается.
     assessments: Оценки
+    assessments_copy_as_microsite: Копировать как оценку микросайта
     assessments_not_mhs: Все оценки должны быть типа MHS.
     assessments_reports: Оценки и отчеты
     assessor_dashboard: Панель инструментов оценщика

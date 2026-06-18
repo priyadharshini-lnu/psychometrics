@@ -67,7 +67,8 @@ module Api
         resource.id,
         current_user,
         params.dig(:data, :relationships, :owner, :data, :id),
-        new_assessment_name: params.dig(:data, :attributes, :name)
+        new_assessment_name: params.dig(:data, :attributes, :name),
+        microsite_settings: microsite_copy_settings
       )
       jsonapi_render json: result[:assessment]
     end
@@ -120,6 +121,16 @@ module Api
     end
 
     private
+
+    def microsite_copy_settings
+      assessment_id = params.dig(:data, :attributes, :external_settings, :assessment_id)
+      return if assessment_id.blank?
+
+      {
+        project_id: params.dig(:data, :relationships, :project, :data, :id),
+        assessment_id: assessment_id
+      }
+    end
 
     def resource
       @resource ||= Api::Administration::AssessmentPolicy::Scope.new(

@@ -135,6 +135,7 @@ sl:
     assessment_center_search_participants: Iskanje udeležencev...
     assessment_question_not_supported: Ta vrsta vprašanja trenutno ni podprta.
     assessments: Ocenjevanja
+    assessments_copy_as_microsite: Kopiraj kot ocenjevanje mikrostrani
     assessments_not_mhs: Vse ocene morajo biti tipa MHS.
     assessments_reports: Ocenjevanja in poročila
     assessor_dashboard: Nadzorna plošča ocenjevalca

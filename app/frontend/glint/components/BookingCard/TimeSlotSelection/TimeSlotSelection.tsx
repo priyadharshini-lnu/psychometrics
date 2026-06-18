@@ -109,7 +109,7 @@ export const TimeSlotSelection:FC<Props> = ({
                 onClick={() => onTimeSelection(slot)}
                 size="large"
                 className={cs(styles.button, 'ltr')}
-                key={formattedTimeText}
+                key={slot.id}
                 block
               >
                 {formattedTimeText}

@@ -62,6 +62,7 @@ interface MicrositeUserAssessmentDetails {
   registrationStatus: string | null
   errorMessage: string | null
   rawResponse: Record<string, unknown> | null
+  assessmentUrl: string | null
 }
 
 export default interface UserAssessment {

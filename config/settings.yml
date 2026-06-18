@@ -43,6 +43,7 @@ skillvue:
   base_api_url: <%= ENV.fetch('SKILLVUE_BASE_API_URL', nil) %>
 microsite:
   base_api_url: <%= ENV.fetch('MICROSITE_BASE_API_URL', nil) %>
+  internal_assessment_enabled: <%= ENV.fetch('MICROSITE_INTERNAL_ASSESSMENT_ENABLED', 'false') == 'true' %>
 aws:
   s3:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
@@ -1065,14 +1066,17 @@ providers:
         name: MTE KWICLO Trial
         possible_languages:
           - en
+          - ar
       - id: mte-kwiclo-shape
         name: MTE KWICLO Shape
         possible_languages:
           - en
+          - ar
       - id: mte-kwiclo-guide
         name: MTE KWICLO Guide
         possible_languages:
           - en
+          - ar
       - id: mte-defense-trial
         name: MTE Defense Trial
         possible_languages:

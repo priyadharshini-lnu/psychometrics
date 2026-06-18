@@ -229,6 +229,10 @@ zh-Hant:
           attributes:
             name:
               not_unique: 此專案已經有此整合
+        microsite:
+          attributes:
+            name:
+              not_unique: 此專案已經有此整合
         password_reset:
           attributes:
             email:

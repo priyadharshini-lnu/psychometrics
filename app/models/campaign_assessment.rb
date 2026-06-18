@@ -29,6 +29,7 @@ class CampaignAssessment < ApplicationRecord
            :saville?,
            :iiht?,
            :mettl?,
+           :microsite?,
            :simulation?,
            :has_external_norm?,
            :external_assessment_id,
