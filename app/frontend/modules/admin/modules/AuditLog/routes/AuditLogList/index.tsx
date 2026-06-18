@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin,
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin, App,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import { AppstoreOutlined, SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { AppstoreOutlined, SearchOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RangeValueType } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import {
-  get as getLogs, fetch, fetchActions, FETCH,
+  get as getLogs, fetch, fetchActions, scheduleExport, FETCH,
 } from '~/modules/admin/modules/AuditLog/core'
 import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -16,6 +16,7 @@ import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { isRequestInProgress } from '~/core/request'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import settings from '../../settings'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
@@ -28,10 +29,12 @@ const connecter = connect(
   (state: RootState) => ({
     auditLogs: getLogs(state),
     isLoading: isRequestInProgress(state, FETCH),
+    currentUser: getCurrentUser(state),
   }),
   {
     fetch,
     fetchActions,
+    scheduleExport,
   },
 )
 
@@ -57,6 +60,8 @@ const AuditLogList: React.FC<Props> = (
     removeFilter,
     removeAllFilters,
     changePage,
+    currentUser,
+    scheduleExport,
   },
 ) => {
   useEffect(() => {
@@ -86,6 +91,8 @@ const AuditLogList: React.FC<Props> = (
 
   const [form] = Form.useForm()
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isExportLoading, setIsExportLoading] = useState(false)
+  const { message: messageApi } = App.useApp()
 
   const handleSearch = (values) => {
     const {
@@ -113,6 +120,14 @@ const AuditLogList: React.FC<Props> = (
     form.resetFields()
     removeAllFilters('auditLogList')
     setRange(initialRange)
+  }
+
+  const handleExportCsv = () => {
+    setIsExportLoading(true)
+    scheduleExport(tableConfig.filters)
+      .then(() => messageApi.success(I18n.t('admin.audit_logs_export_queued')))
+      .catch(() => messageApi.error(I18n.t('admin.audit_logs_export_failed')))
+      .finally(() => setIsExportLoading(false))
   }
 
   const disabledDate = (current) => {
@@ -258,6 +273,16 @@ const AuditLogList: React.FC<Props> = (
                     {I18n.t('shared.search')}
                   </Button>
                   <Button onClick={handleReset}>{I18n.t('shared.reset')}</Button>
+                  {isSuperAdmin(currentUser) && (
+                    <Button
+                      loading={isExportLoading}
+                      onClick={handleExportCsv}
+                      disabled={total === 0}
+                      icon={<DownloadOutlined />}
+                    >
+                      {I18n.t('admin.export_to_csv')}
+                    </Button>
+                  )}
                 </Space>
               </Form.Item>
             </Col>

@@ -116,7 +116,8 @@ class AdminJob < ApplicationJob
     rescore_ai_scoring: AdminJobs::RescoreAIScoring,
     regenerate_assessment_transcriptions: AdminJobs::RegenerateAssessmentTranscriptionsJob,
     bulk_export_raw_factor_scores: AdminJobs::BulkExportRawFactorScores,
-    bulk_export_norm_factor_scores: AdminJobs::BulkExportNormFactorScores
+    bulk_export_norm_factor_scores: AdminJobs::BulkExportNormFactorScores,
+    export_audit_logs: AdminJobs::ExportAuditLogs
   }.freeze
 
   def perform(record, stage = nil)

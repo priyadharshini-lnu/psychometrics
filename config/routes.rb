@@ -167,6 +167,7 @@ Rails.application.routes.draw do
       resources :audit_logs do
         collection do
           get :actions
+          post :schedule_export
         end
       end
 

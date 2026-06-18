@@ -880,6 +880,7 @@ en:
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
         export_assessment_questions: Export Assessment Questions
+        export_audit_logs: Export Audit Logs
         export_campaign_ai_artifacts: Export Campaign AI Artifacts
         export_campaign_ai_artifacts_results: Export Campaign AI Artifacts Results
         export_campaign_datasheet: Export Campaign Datasheet

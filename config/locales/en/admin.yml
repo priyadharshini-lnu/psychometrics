@@ -214,6 +214,8 @@ en:
     audit_log_title: Audit Log Info
     audit_log_type: Record Type
     audit_logs: Audit Logs
+    audit_logs_export_failed: Failed to schedule export job. Please try again.
+    audit_logs_export_queued: Export job has been scheduled successfully.
     audit_reports: Audit Reports
     auth_type_api_key_header_format_error: Only letters, numbers, underscores and hyphens are allowed
     auth_type_api_key_header_label: API Key Header
@@ -735,6 +737,7 @@ en:
     export_failure_msg: Error while exporting proficiency levels
     export_success: Admin export job was scheduled successfully. Please check your notification for status.
     export_success_msg: Exporting development actions in progress
+    export_to_csv: Export to CSV
     export_with_inactive_users: Export with inactive users
     external_report_id: External Report ID
     external_score: External Score
