@@ -135,6 +135,7 @@ de:
     assessment_center_search_participants: Teilnehmer suchen...
     assessment_question_not_supported: Dieser Fragetyp wird derzeit nicht unterstützt.
     assessments: Beurteilungen
+    assessments_copy_as_microsite: Als Microsite-Bewertung kopieren
     assessments_not_mhs: Alle Bewertungen müssen vom Typ MHS sein.
     assessments_reports: Beurteilungen und Berichte
     assessor_dashboard: Assessor Dashboard

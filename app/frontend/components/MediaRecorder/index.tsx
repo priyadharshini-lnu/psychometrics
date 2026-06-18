@@ -313,6 +313,14 @@ const MediaRecorderComponent: React.FC<Props> = ({
   if (status === 'recording') barKey = 'recording'
   else if (isPlaybackReady) barKey = 'playback'
 
+  const handleStartRecording = useCallback((): void => {
+    if (!isRecording) {
+      startRecording()
+    }
+    setVideoReady(false)
+    setRecStopCountdownRemainingDuration(maxDuration)
+  }, [isRecording, startRecording, maxDuration])
+
   const handleRequestPermission = useCallback(async () => {
     setIsRequestingPermission(true)
     try {
@@ -321,32 +329,30 @@ const MediaRecorderComponent: React.FC<Props> = ({
         return
       }
 
-      if (previewStream) {
-        mediaStreamRef.current = previewStream
-      } else {
-        const videoConstraints = selectedVideoDevice
-          ? { deviceId: { exact: selectedVideoDevice }, ...VIDEO_RESOLUTION }
-          : VIDEO_RESOLUTION
-        const audioConstraints = selectedAudioDevice
-          ? { deviceId: { exact: selectedAudioDevice } }
-          : true
+      const videoConstraints = selectedVideoDevice
+        ? { deviceId: { exact: selectedVideoDevice }, ...VIDEO_RESOLUTION }
+        : VIDEO_RESOLUTION
+      const audioConstraints = selectedAudioDevice
+        ? { deviceId: { exact: selectedAudioDevice } }
+        : true
 
-        const mediaStream = await requestMediaStream({
-          audio: audioConstraints,
-          video: videoConstraints,
-        })
+      const mediaStream = await requestMediaStream({
+        audio: audioConstraints,
+        video: videoConstraints,
+      })
 
-        mediaStreamRef.current = mediaStream
-        if (videoRef.current) {
-          videoRef.current.srcObject = mediaStream
-        }
-        setPermissionGranted(true)
+      mediaStreamRef.current = mediaStream
+      if (videoRef.current) {
+        videoRef.current.srcObject = mediaStream
       }
+      setPermissionGranted(true)
+      setPreviewStream(mediaStream)
 
       if (isDiscardedAfterRecordingRef.current) {
         isDiscardedAfterRecordingRef.current = false
         return
       }
+
       setIsRecording(true)
       markQuestionInProgress(questionId, 'recording')
       handleStartRecording()
@@ -356,7 +362,13 @@ const MediaRecorderComponent: React.FC<Props> = ({
     } finally {
       setIsRequestingPermission(false)
     }
-  }, [selectedAudioDevice, selectedVideoDevice])
+  }, [
+    selectedAudioDevice,
+    selectedVideoDevice,
+    requestMediaStream,
+    questionId,
+    handleStartRecording,
+  ])
 
   const handleChangeVideoDevice = (deviceId: string) => {
     setSelectedVideoDevice(deviceId)
@@ -390,11 +402,10 @@ const MediaRecorderComponent: React.FC<Props> = ({
     }
 
     return () => {
-      setPreviewStream(null)
       video.removeEventListener('canplay', markVideoReady)
       video.removeEventListener('loadedmetadata', markVideoReady)
     }
-  }, [playbackSource, isRecording])
+  }, [playbackSource])
 
 
   const resetRecorder = useCallback(async (): Promise<void> => {
@@ -456,24 +467,13 @@ const MediaRecorderComponent: React.FC<Props> = ({
     setRecordingStartedAt(null)
     setIsRecording(false)
     stopRecording()
-    if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach(track => track.stop())
-      mediaStreamRef.current = null
-    }
+
     if (previewStream) {
       previewStream.getTracks().forEach(track => track.stop())
       setPreviewStream(null)
     }
     setVideoReady(true)
   }, [stopRecording, previewStream, setPreviewStream])
-
-  const handleStartRecording = useCallback((): void => {
-    if (!isRecording) {
-      startRecording()
-    }
-    setVideoReady(false)
-    setRecStopCountdownRemainingDuration(maxDuration)
-  }, [isRecording, startRecording, maxDuration])
 
   const handleVideoPlay = (): void => {}
 

@@ -1,5 +1,8 @@
 import { FC } from 'react'
-import { Descriptions, Tag } from 'antd'
+import {
+  Button, Descriptions, message, Tag, Tooltip,
+} from 'antd'
+import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
@@ -48,6 +51,32 @@ export const MicrositeDetails: FC<Props> = ({
           key="microsite_participant_id"
         >
           {details?.participantId ?? '-'}
+        </Descriptions.Item>
+        <Descriptions.Item
+          className="va-t w-30"
+          labelStyle={{ width: '40%' }}
+          contentStyle={{ width: '60%' }}
+          label={I18n.t('campaign_assessment.column.microsite_assessment_url')}
+          key="microsite_assessment_url"
+        >
+          {details?.assessmentUrl ? (
+            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <a href={details.assessmentUrl} target="_blank" rel="noopener noreferrer">
+                {details.assessmentUrl}
+              </a>
+              <Tooltip title={I18n.t('shared.copy')}>
+                <Button
+                  type="text"
+                  size="small"
+                  icon={<CopyOutlined />}
+                  onClick={() => {
+                    navigator.clipboard.writeText(details.assessmentUrl!)
+                    message.success(I18n.t('shared.copied_to_clipboard'))
+                  }}
+                />
+              </Tooltip>
+            </span>
+          ) : '-'}
         </Descriptions.Item>
         <Descriptions.Item
           className="va-t w-30"

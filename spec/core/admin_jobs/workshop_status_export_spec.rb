@@ -282,4 +282,62 @@ workshop_invite: create(:workshop_invite, campaign: campaign, campaign_assessmen
     scheduling_statuses = [csv[1][8], csv[2][8]]
     expect(scheduling_statuses).to contain_exactly('Scheduled', 'Late cancelled')
   end
+
+  it 'picks the scheduled workshop subject as latest when one exists among rescheduled ones with latest created_at' do
+    create(:campaign_user, campaign: campaign, user: user)
+
+    assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
+    workshop_old = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group,
+                   name: 'Old Workshop')
+    workshop_rescheduled = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group,
+                   name: 'Re-Scheduled Workshop')
+
+    create(
+      :workshop_subject, user: user, workshop: workshop_old, campaign: campaign,
+      scheduling_status: :scheduled, created_at: 2.days.ago
+    )
+    create(
+      :workshop_subject, user: user, workshop: workshop_rescheduled, campaign: campaign,
+      scheduling_status: :rescheduled, created_at: 1.day.ago
+    )
+
+    described_class.call!(job_record)
+
+    csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+
+    expect(csv[1][8]).to eq('Scheduled')
+    expect(csv[1][10]).to eq('Old Workshop')
+  end
+
+  it 'picks the most recent non-rescheduled workshop subject when none are scheduled' do
+    create(:campaign_user, campaign: campaign, user: user)
+
+    assessment_group = create(:campaign_assessment_group, campaign: campaign, name: 'Test Group')
+    workshop_rescheduled = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group,
+                           name: 'Rescheduled Workshop')
+    workshop_late_rescheduled = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group,
+                                name: 'Late Rescheduled Workshop')
+    workshop_cancelled = create(:workshop, campaign: campaign, campaign_assessment_group: assessment_group,
+                         name: 'Cancelled Workshop')
+
+    create(
+      :workshop_subject, user: user, workshop: workshop_rescheduled, campaign: campaign,
+      scheduling_status: :rescheduled, created_at: 1.day.ago
+    )
+    create(
+      :workshop_subject, user: user, workshop: workshop_late_rescheduled, campaign: campaign,
+      scheduling_status: :late_rescheduled, created_at: 2.days.ago
+    )
+    create(
+      :workshop_subject, user: user, workshop: workshop_cancelled, campaign: campaign,
+      scheduling_status: :cancelled, created_at: 3.days.ago
+    )
+
+    described_class.call!(job_record)
+
+    csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+
+    expect(csv[1][8]).to eq('Cancelled')
+    expect(csv[1][10]).to eq('Cancelled Workshop')
+  end
 end

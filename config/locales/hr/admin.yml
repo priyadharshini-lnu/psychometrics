@@ -135,6 +135,7 @@ hr:
     assessment_center_search_participants: Pretraži sudionike...
     assessment_question_not_supported: Ova vrsta pitanja trenutno nije podržana.
     assessments: Procjene
+    assessments_copy_as_microsite: Kopiraj kao procjenu mikrostranice
     assessments_not_mhs: Sva procjena mora biti tipa MHS.
     assessments_reports: Procjene i izvješća
     assessor_dashboard: Nadzorna ploča procjenitelja

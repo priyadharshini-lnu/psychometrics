@@ -135,6 +135,7 @@ en-US:
     assessment_center_search_participants: Search Participants...
     assessment_question_not_supported: This question type is not currently supported.
     assessments: Assessments
+    assessments_copy_as_microsite: Copy as Microsite Assessment
     assessments_not_mhs: All Assessment must be a MHS type
     assessments_reports: Assessments & Reports
     assessor_dashboard: Assessor Dashboard

@@ -135,6 +135,7 @@ hu:
     assessment_center_search_participants: Résztvevők keresése...
     assessment_question_not_supported: Ez a kérdés típus jelenleg nem támogatott.
     assessments: Értékelések
+    assessments_copy_as_microsite: Másolás mikrosite-értékelésként
     assessments_not_mhs: Minden értékelésnek MHS típusúnak kell lennie.
     assessments_reports: Felmérések és jelentések
     assessor_dashboard: Értékelő irányítópult

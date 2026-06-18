@@ -135,6 +135,7 @@ sr-Latn:
     assessment_center_search_participants: Претрага учесника...
     assessment_question_not_supported: Ова врста питања тренутно није подржана.
     assessments: Procene
+    assessments_copy_as_microsite: Kopiraj kao procenu mikrosajta
     assessments_not_mhs: Свака процена мора бити типа MHS.
     assessments_reports: Procene i izveštaji
     assessor_dashboard: Kontrolna tabla procenjivača

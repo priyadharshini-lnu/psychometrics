@@ -49,6 +49,8 @@ module EndUser
     end
 
     def type
+      return Assessment::TYPES[:common] if internal_microsite?
+
       object.assessment.type
     end
 
@@ -132,6 +134,10 @@ module EndUser
     end
 
     private
+
+    def internal_microsite?
+      object.assessment.microsite? && Settings.microsite.internal_assessment_enabled
+    end
 
     def campaign
       context[:campaign]

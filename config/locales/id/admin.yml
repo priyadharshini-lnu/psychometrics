@@ -135,6 +135,7 @@ id:
     assessment_center_search_participants: Cari Peserta...
     assessment_question_not_supported: Jenis pertanyaan ini saat ini tidak didukung.
     assessments: Penilaian
+    assessments_copy_as_microsite: Salin sebagai Asesmen Microsite
     assessments_not_mhs: Semua penilaian harus berupa jenis MHS.
     assessments_reports: Penilaian & Laporan
     assessor_dashboard: Dasbor Penilai

@@ -135,6 +135,7 @@ zh-Hant:
     assessment_center_search_participants: 搜索参与者...
     assessment_question_not_supported: 此题型目前不支持。
     assessments: 評估
+    assessments_copy_as_microsite: 複製為微網站評估
     assessments_not_mhs: 所有评估必须采用MHS类型
     assessments_reports: 評估與報告
     assessor_dashboard: 評估員儀表板

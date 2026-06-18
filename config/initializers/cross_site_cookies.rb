@@ -46,11 +46,11 @@ class CrossSiteCookies
   end
 
   def convert_to_cross_site(cookie)
-    if cookie.is_a?(Array)
-      cookie.map { |c| c.gsub(/samesite=lax/i, 'SameSite=None; Partitioned;') }
-    else
-      cookie.gsub(/samesite=lax/i, 'SameSite=None; Partitioned;')
-    end
+    Array.wrap(cookie).map { |c| upgrade_to_partitioned(c) }
+  end
+
+  def upgrade_to_partitioned(cookie)
+    cookie.gsub(/samesite=lax/i, 'SameSite=None; Partitioned;')
   end
 end
 

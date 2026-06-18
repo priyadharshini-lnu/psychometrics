@@ -229,6 +229,10 @@ ru:
           attributes:
             name:
               not_unique: Эта интеграция уже присутствует в данном проекте.
+        microsite:
+          attributes:
+            name:
+              not_unique: Эта интеграция уже присутствует в данном проекте.
         password_reset:
           attributes:
             email:
