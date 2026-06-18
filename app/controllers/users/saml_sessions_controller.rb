@@ -40,10 +40,16 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
   end
 
   def after_sign_in_path_for(resource)
+    return_url = extract_return_url_from_relay_state || stored_location_for(resource)
+    return return_url if return_url.present?
+
     if client_admin_context? && Current.client
+      access = AdminAuth::ResolveClientAccess.call(resource, Current.client)
+      return assessors_dashboard_path if access[:ok] && assessor_dashboard_after_handoff?(resource, access[:ok])
+
       "#{admin_path}/clients/#{Current.client.id}/projects"
     else
-      extract_return_url_from_relay_state || super
+      signed_in_root_path(resource)
     end
   end
 
