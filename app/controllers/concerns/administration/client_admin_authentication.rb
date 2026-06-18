@@ -10,6 +10,8 @@ module Administration
       return if params[:handoff_token].blank?
       return unless Current.client_admin_context?
 
+      cookies[:locale] = LocaleValidator.sanitize(params[:locale]) if params[:locale].present?
+
       result = AdminAuth::ConsumeHandoffToken.call(
         params[:handoff_token],
         expected_client_id: Current.client.id
