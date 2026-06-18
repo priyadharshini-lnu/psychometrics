@@ -28,6 +28,7 @@ import {
   PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon, FontsizeModifier,
 } from '~/glint'
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
+import { protectPageInteractions } from '~/utils/contentProtection'
 import styles from './UserAssessment.less'
 
 const connector = connect((state: RootState) => ({
@@ -116,7 +117,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 
   const { isMobile } = useContext(MediaQueryContext)
   const navigate = useNavigate()
+  const isCopyEnabled = assessment?.extra?.enable_copy_content === true
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
+
+  useEffect(() => {
+    if (isCopyEnabled) return
+
+    return protectPageInteractions()
+  }, [isCopyEnabled])
 
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '80vw' } } }
 
