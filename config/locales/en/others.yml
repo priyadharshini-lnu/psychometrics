@@ -874,6 +874,7 @@ en:
         completion_status_export: Completion Status Export
         copy_as_template_or_campaign: Copy Campaign as Template
         copy_dimension: Copy Dimension
+        copy_report: Copy Report
         create_threesixty_campaign: Create Threesixty Campaign
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
@@ -967,6 +968,8 @@ en:
       errors:
         no_plans: No active IDP plans found
     close: Close
+    copy_report:
+      failed: Report copy failed
     details: Details
     errors: Errors
     invalid_job: This notification corresponds to deleted record

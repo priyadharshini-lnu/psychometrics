@@ -263,6 +263,7 @@ en:
     copied_url_success: URL is copied to clipboard successfully
     copy_ai_artifacts: Copy AI Artifacts
     copy_image_url: Copy Image URL
+    copy_report_scheduled: Report copy job has been scheduled.
     copy_url: Copy URL
     country: Country
     create_client: Create Client

@@ -122,7 +122,8 @@ class AdminJobRecord < ApplicationRecord
     campaign_report_extract_and_upload_bulk_assets: 96,
     export_campaign_datasheet: 97,
     rescore_ai_scoring: 98,
-    regenerate_assessment_transcriptions: 99
+    regenerate_assessment_transcriptions: 99,
+    copy_report: 100
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
