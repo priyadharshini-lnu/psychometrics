@@ -1353,6 +1353,7 @@ providers:
           - D3B327C6-EEB7-4CDE-AD40-FC45896E3DDA
           - C5C50E25-7610-4703-A46D-FD4A3E628545
           - 5FC302E6-953B-44F7-B78B-B78C1325E433
+          - 26942103-8F21-45D6-94B9-D0E75568AD2F
 
         report_ids:
           - 0B623B16-D4CC-4992-B560-7584348D49E8
@@ -1590,6 +1591,8 @@ providers:
         report_ids:
           - E10E68CF-9B20-4C35-8867-81E2D767718F
     norms:
+      - id: 26942103-8F21-45D6-94B9-D0E75568AD2F
+        name: Professionals &amp; Managers (AUS, IA, 2021)
       - id: 998C485C-B931-416D-8404-9B284160F688
         name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 846B63CF-358A-43F0-9835-A95D8F38D860
