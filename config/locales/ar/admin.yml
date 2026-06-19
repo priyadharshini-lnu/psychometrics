@@ -21,7 +21,7 @@ ar:
     active_record_audits_title: التغييرات المدققة
     activity: النشاط
     add_admin: إضافة مسؤول
-    add_btn: Add subject
+    add_btn: إضافة موضوع
     add_campaign_admin: إضافة مسؤول حملة
     add_client_admin: إضافة مسؤول عميل
     add_conditions: إضافة شروط
@@ -103,22 +103,22 @@ ar:
     all_corner_rounded: جميع الزوايا مستديرة
     allow_ai_rescoring: السماح بإعادة تقييم الذكاء الاصطناعي
     allow_continue_with_warning_system_check: السماح للمستخدمين بالمتابعة مع ظهور تحذيرات عند فشل فحص النظام
-    allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
+    allow_late_cancellation_and_scheduling: السماح بالإلغاء والجدولة في وقت متأخر
     allow_manager_to_view_individual_responses: السماح للمدير بعرض الردود الفردية
     allow_multiple_responses: السماح بردود متعددة
     allow_subjects_to_send_reminders: السماح للموضوعات بإرسال تذكيرات إلى المقيِّمين
-    alt_text_invalid: Alt Text contains unsupported characters.
-    alt_text_logo: Logo Alt-Text
-    alt_text_logo_required: Alt-Text Logo is Required
-    alt_text_long: Exceeds the maximum limit of 100 characters.
+    alt_text_invalid: يحتوي نص بديل على أحرف غير مدعومة.
+    alt_text_logo: نص بديل للشعار
+    alt_text_logo_required: نص بديل للشعار مطلوب
+    alt_text_long: يتجاوز الحد الأقصى البالغ 100 حرف.
     api_keys: مفاتيح API
     api_keys_form_title: مفتاح API
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
     approve_all_questions: الموافقة على جميع الأسئلة
-    approve_nomination_description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved
-    approve_nomination_name: Approve Nomination
+    approve_nomination_description: يتم إرسال هذه الرسالة إلى المدير عندما يتطلب ترشيح قدمته تقرير مباشر موافقة
+    approve_nomination_name: الموافقة على الترشيح
     approve_question: الموافقة على السؤال
-    approve_report_description: This message is sent to a subject's manager to notify them that the subjects report is ready for approval
+    approve_report_description: يتم إرسال هذه الرسالة إلى مدير الموضوع لإخطاره بأن تقرير الموضوع جاهز للموافقة عليه
     approve_report_name: الموافقة على التقرير
     archive: أرشيف
     archive_content: هل أنت متأكد أنك تريد أرشفة '%{project_name}'؟
@@ -126,13 +126,13 @@ ar:
     archive_title: أرشفة المشروع
     artifact_results: نتائج القطع الأثرية
     assessment: التقييم
-    assessment_center: 'Assessment center:'
+    assessment_center: 'مركز التقييم:'
     assessment_center_group: مجموعة مركز التقييم
     assessment_center_group_placeholder: اختر مجموعة مركز التقييم
     assessment_ids: معرّفات التقييم
     assessment_placeholder: حدد التقييم
     assessment_question_not_supported: هذا النوع من الأسئلة غير مدعوم حاليًا.
-    assessment_required: Assessment is required
+    assessment_required: التقييم مطلوب
     assessments: التقييمات
     assessments_assessment_report: التقييمات
     assessments_copy: نسخ
@@ -153,7 +153,7 @@ ar:
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: اختر تقييمًا
     assessor_assessment_name: تقييم المقيم
     assessor_assessments: تقييمات المقيم
-    assessor_assessments_actions_add_subject: Add subject
+    assessor_assessments_actions_add_subject: إضافة موضوع
     assessor_assessments_actions_rescore: إعادة التقييم
     assessor_assessments_actions_reset: إعادة التقييم
     assessor_assessments_actions_reset_progress: إعادة تعيين التقدم
@@ -209,9 +209,9 @@ ar:
     auth_type_api_key_label: مفتاح API
     auth_type_api_key_name: مفتاح_مفتاح_API
     auth_type_api_key_value: API_مفتاح_مفتاح_المصادقة
-    auth_type_basic_label: Basic
+    auth_type_basic_label: أساسي
     auth_type_basic_value: basic_auth
-    auth_type_label: Auth Type
+    auth_type_label: نوع المصادقة
     auth_type_name: auth_type
     auth_type_no_auth_label: اي
     auth_type_no_auth_value: no_auth
@@ -226,12 +226,12 @@ ar:
     back: إعادة تعيين النتيجة
     back_to_main: القائمة الرئيسية
     background_color: لون الخلفية
-    background_label: Background
-    background_overlay_label: Background Overlay
-    background_size: Background Size
-    background_size_contain: Contain
-    background_size_cover: Cover
-    basic_info_panel_description: Please enter the schedule information below. You can also select multiple dates to create multiple assessment centers.
+    background_label: الخلفية
+    background_overlay_label: تراكب الخلفية
+    background_size: حجم الخلفية
+    background_size_contain: الاحتواء
+    background_size_cover: تغطية
+    basic_info_panel_description: يرجى إدخال معلومات الجدول الزمني أدناه. يمكنك أيضًا تحديد عدة تواريخ لإنشاء مراكز تقييم متعددة.
     basic_info_panel_title: المعلومات الأساسية
     block_editor_add_question: إضافة سؤال
     block_editor_question_randomization: ترتيب الأسئلة عشوائياً
@@ -239,7 +239,7 @@ ar:
     block_settings: إعدادات الكتلة
     blocks_new_button: كتلة جديدة
     blocks_title: الكتل
-    booked_at: 'Booked At:'
+    booked_at: 'تم الحجز في:'
     breadcrumbs_norms_editor: محرر المعايير
     bulk_assets_modal_choose_csv: اختر ملف CSV
     bulk_assets_modal_choose_zip: اختر ملف ZIP
@@ -344,15 +344,15 @@ ar:
     cancel_confirmation_message: هل أنت متأكد أنك تريد تجاهل تقدم النموذج؟
     cancel_confirmation_title: تجاهل تقدم النموذج
     cancellation_and_rescheduling_disabled: تم تعطيل الإلغاء وإعادة الجدولة
-    cancellation_lead_time_label: Lead time for cancellation
+    cancellation_lead_time_label: الوقت المتقدم للإلغاء
     cannot_change_type_when_in_use: لا يمكن تغيير نوع المساعد الذكي "%{name}" لأنه قيد الاستخدام حاليًا.
     captcha: التحقق من كابتشا
     case_study: دراسات الحالة
     casual: غير رسمي
     categories_approvals: الموافقات
-    categories_invitations: Invitations
-    categories_reminders: Reminders
-    categories_report_ready: Report Ready
+    categories_invitations: الدعوات
+    categories_reminders: التذكيرات
+    categories_report_ready: التقرير جاهز
     category: فئة
     cell_save_msg: يتم حفظ التغييرات الصحيحة تلقائيًا بمجرد مغادرة الخلية بعد التعديل.
     change_reason: سبب التغيير
@@ -386,7 +386,7 @@ ar:
     collapse_filters: طي الفلاتر
     column_code: رمز
     column_invitation_status: حالة الدعوة
-    column_participant: Participant
+    column_participant: المشارك
     column_provider: كاسب
     column_scheduling_details: تفاصيل الجدولة
     column_usage_stats: إحصائيات الاستخدام
@@ -414,15 +414,15 @@ ar:
     confirmation_required: يلزم التأكيد
     confirmation_required_details: هل أنت متأكد من رغبتك في حذف ملف "%{resource_name}" الموجود في المجلد "%{resource}"؟
     consolidated: مدمجة
-    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
-    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
+    contrast_ratio_warning: 'ملاحظة: قد يؤدي استخدام هذا اللون الأساسي إلى انتهاك متطلبات نسبة التباين لقراءة النص.'
+    contrast_ratio_warning_lighter_color: 'ملاحظة: قد يؤدي استخدام هذا لون %{name} إلى انتهاك متطلبات نسبة التباين لقراءة النص. حاول استخدام لون أغمق.'
     copied: نسخ
     copied_url_success: تم نسخ عنوان URL إلى الحافظة بنجاح
     copy_ai_artifacts: نسخ أعمال الفن الاصطناعي
-    copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
+    copy_hint: ينسخ الإعدادات أعلاه للمقاعد ومديري المركز والمقيمين والاجتماعات والموارد إلى مراكز التقييم التالية. بعد النسخ، يمكنك إجراء تغييرات إضافية على مراكز التقييم الفردية قبل المتابعة.
     copy_image_url: نسخ عنوان URL للصورة
     copy_text: نص
-    copy_to_all: Copy to other Assessment Centers
+    copy_to_all: نسخ إلى مراكز التقييم الأخرى
     copy_url: نسخ الرابط
     country: البلد
     course: دورة
@@ -435,9 +435,9 @@ ar:
     created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
     current: الحالي
     current_job_role: الدور الوظيفي الحالي
-    custom_formula: Custom Formula
-    custom_message_description: This message can be sent to anyone participating in the assessment
-    custom_message_name: Custom Message
+    custom_formula: صيغة مخصصة
+    custom_message_description: يمكن إرسال هذه الرسالة إلى أي شخص يشارك في التقييم
+    custom_message_name: رسالة مخصصة
     custom_upload: تحميل مخصص
     dashboard: لوحة القيادة
     dashboard_capacity_name: اسم السعة
@@ -490,10 +490,10 @@ ar:
     date_range: نطاق التاريخ
     dates_completed: اكتمل في
     dates_end: تاريخ الانتهاء
-    dates_label: Dates
+    dates_label: التواريخ
     dates_start: تاريخ البدء
     dates_started: بدأ في
-    days_repeated: days, repeated
+    days_repeated: أيام، مكررة
     declined: انخفض
     default: الافتراضي
     default_assessment_language: لغة التقييم الافتراضية
@@ -592,7 +592,7 @@ ar:
     disable_caching_successfully: تم تعطيل التخزين المؤقت لهذا التقييم.
     disable_caching_title: تعطيل التخزين المؤقت للتقييم؟
     disable_cancellation_and_rescheduling: تعطيل الإلغاء وإعادة الجدولة
-    disable_dp: Don't allow further data processing
+    disable_dp: عدم السماح بمعالجة البيانات الإضافية
     disable_proctoring: تعطيل المراقبة
     disable_report_download: تعطيل تنزيل التقرير
     disallow_lead_assessor_moderation: منع المراقبة من قِبل المقيم الرئيسي
@@ -604,21 +604,21 @@ ar:
     discard_question_confirm_description: سيؤدي ذلك إلى إعادة تعيين جميع الدرجات لهذا السؤال ومسح أي تجاوزات. هل أنت متأكد؟
     discard_question_confirm_title: إعادة تعيين درجات الأسئلة؟
     discarded_changes: التغييرات المهملة
-    document_titles_project_assessors: Assessors | %{project}
-    document_titles_project_participants: Participants | %{project}
+    document_titles_project_assessors: المقيمون | %{project}
+    document_titles_project_participants: المشاركون | %{project}
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
     download_bulk_asset_download_example_csv: تنزيل مثال CSV.
     download_example_csv: تنزيل مثال csv
     dp_consent: تمكين الموافقة على معالجة البيانات
-    dp_consent_custom: Customise Data Processing consent
-    dp_consent_version: Policy Version
+    dp_consent_custom: تخصيص موافقة معالجة البيانات
+    dp_consent_version: إصدار السياسة
     duration: المدة
     duration_label: المدة الزمنية
-    duration_max_error: Cannot be greater than 16 hours
-    duration_min_error: Cannot be less than 15 minutes
+    duration_max_error: لا يمكن أن يكون أكثر من 16 ساعة
+    duration_min_error: لا يمكن أن يكون أقل من 15 دقيقة
     duration_must_be_positive: يجب أن تكون المدة عددًا موجبًا
-    duration_placeholder: E.g. 4h 30m
+    duration_placeholder: مثال. 4 ساعات 30 دقيقة
     edit_ai_assistants: تحرير مساعد الذكاء الاصطناعي
     edit_campaign_admin: تعديل مسؤول حملة
     edit_client_admin: تعديل مسؤول عميل
@@ -632,7 +632,7 @@ ar:
     edit_project_admin: تعديل مسؤول مشروع
     edit_threesixty_campaign_admin: تعديل مسؤول حملة
     email_manager_when_report_is_ready_for_approval: إرسال بريد إلكتروني للمدير عندما يكون التقرير جاهزاً للموافقة عليه
-    email_messages: Email Messages
+    email_messages: رسائل البريد الإلكتروني
     email_subject_when_report_becomes_available: إرسال الموضوع بالبريد الإلكتروني عندما يتوفر التقرير
     email_subjects_manager_when_available: إرسال بريد إلكتروني إلى مدير الموضوع عند توفر التقرير
     empty: فارغ
@@ -658,30 +658,30 @@ ar:
     enter_question_id: أدخل رقم السؤال
     enter_schema_key: أدخل مفتاح المخطط
     error: خطأ
-    error_color: Error Color
+    error_color: لون الخطأ
     errors_csv_file_required: يجب أن يكون الملف ملف CSV
     errors_min_retention: لا يمكن أن تقل عن 1 يوم
-    errors_policy_version_format: Only whole numbers are allowed
+    errors_policy_version_format: يُسمح فقط بالأرقام الكاملة
     errors_required: مطلوب
     estimated_tokens: الرموز (تقديرية)
-    evaluate_others_description: This message will be displayed when participants are evaluating others from inside the portal
-    evaluate_others_name: Evaluate Others
-    evaluate_self_description: This message will be displayed to subjects when they begin their self-evaluation
-    evaluate_self_name: Evaluator Self
-    evaluation_help_description: Help text displayed on evaluation card on user's dashboard
+    evaluate_others_description: سيتم عرض هذه الرسالة عندما يقوم المشاركون بتقييم الآخرين من داخل البوابة
+    evaluate_others_name: تقييم الآخرين
+    evaluate_self_description: سيتم عرض هذه الرسالة للموضوعات عندما تبدأ تقييمهم الذاتي
+    evaluate_self_name: التقييم الذاتي للمقيم
+    evaluation_help_description: نص مساعدة معروض على بطاقة التقييم في لوحة تحكم المستخدم
     evaluation_help_name: مساعدة التقييم
     evaluation_status: حالة التقييم
     evaluation_status_not_done: حالة التقييم ليست 'مكتملة' لشخص أو أكثر من المشاركات المختارة. يرجى التأكد من أن جميع المستخدمين المختارين قد أكملوا التقييمات أو وضع علامة على أنهم تم.
     evaluations_completed: التقييمات المنجزة
     evaluations_received: التقييمات المستلمة
-    evaluator_invite_description: This message will be sent to all participants that are evaluators
-    evaluator_invite_name: Evaluator Invite
-    evaluator_reminder_description: This message will be sent to remind evaluators to complete pending evaluations
-    evaluator_reminder_name: Evaluator Reminder
-    evaluator_reminder_rule_description: Specify rules for automatically scheduling when an invitation is scheduled
-    evaluator_reminder_rule_name: Evaluator Reminder Rules
-    evaluator_welcome_description: This message will override the "Welcome Message" and be displayed to participants who are currently participating as evaluators only.
-    evaluator_welcome_name: Evaluator welcome
+    evaluator_invite_description: سيتم إرسال هذه الرسالة إلى جميع المشاركين الذين هم مقيمون
+    evaluator_invite_name: دعوة المقيم
+    evaluator_reminder_description: سيتم إرسال هذه الرسالة لتذكير المقيمين بإكمال التقييمات المعلقة
+    evaluator_reminder_name: تذكير المقيم
+    evaluator_reminder_rule_description: حدد القواعس الخاصة بجدولة تلقائية عند جدولة دعوة
+    evaluator_reminder_rule_name: قواعس تذكير المقيم
+    evaluator_welcome_description: ستقوم هذه الرسالة بتجاوز "رسالة الترحيب" وسيتم عرضها للمشاركين الذين يشاركون حاليًا كمقيمين فقط.
+    evaluator_welcome_name: ترحيب المقيم
     evaluators_title: المقيّمون
     evidence_from_transcript: أدلة من النص
     expand_filters: توسيع الفلاتر
@@ -698,31 +698,31 @@ ar:
     export_success_msg: تصدير إجراءات التطوير قيد التنفيذ
     export_with_inactive_users: التصدير مع المستخدمين غير النشطين
     external_report_id: رقم التقرير الخارجي
-    external_score: External Score
+    external_score: درجة خارجية
     external_settings: الإعدادات الخارجية
-    factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
+    factor_benchmark_scores_updated: تم تحديث درجات معايير العوامل بنجاح.
     factor_feedback: ملاحظات حول العوامل
     factor_selection: اختيار العوامل
     factors: العوامل
-    factors_form_components_ExternalList_table_jsonpath: JSON Path
-    factors_form_components_ExternalList_table_types_norm_score: Normed Score
-    factors_form_components_ExternalList_table_types_percentage: Percentage
-    factors_form_components_ExternalList_table_types_percentile: Percentile Score
+    factors_form_components_ExternalList_table_jsonpath: مسار JSON
+    factors_form_components_ExternalList_table_types_norm_score: درجة معايرة
+    factors_form_components_ExternalList_table_types_percentage: نسبة مئوية
+    factors_form_components_ExternalList_table_types_percentile: درجة النسبة المئوية
     factors_form_components_ExternalList_table_types_score: نقاط
-    factors_form_components_ExternalList_table_types_zscore: Z Score
-    factors_form_components_ExternalList_title: JSON Paths for Scores
+    factors_form_components_ExternalList_table_types_zscore: درجة Z
+    factors_form_components_ExternalList_title: مسارات JSON للدرجات
     factors_form_predicate: الفاعل
-    factors_form_scoring_strategies_custom_formula: Custom Formula
-    factors_form_scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
-    factors_form_scoring_strategy: Scoring strategy
+    factors_form_scoring_strategies_custom_formula: صيغة مخصصة
+    factors_form_scoring_strategies_tip: " <strong>الأسئلة (المتوسط):</strong> هذا مثل طريقة التقييم الحالية عندما تكون هناك أسئلة مرتبطة بعامل. <br /> <br /> <strong>الأسئلة (المجموع):</strong> هذا مثل الأسئلة (المتوسط)، لكن باستخدام المجموع <br /> <br /> <strong>أسئلة العوامل الأخرى (المتوسط):</strong> هذا مثل طريقة التقييم الحالية عندما توجد عوامل فرعية لعامل ما، التغيير الوحيد هو إضافة الوزن. <br /> <br /> <strong>أسئلة العوامل الأخرى (المجموع):</strong> هذا مثل العوامل الأخرى (المتوسط)، لكن باستخدام المجموع <br /> <br /> <strong>المجموع المرجح للعوامل:</strong> هنا يتم ضرب درجات العوامل الأخرى المحددة بأوزانها ويتم جمعها."
+    factors_form_scoring_strategy: استراتيجية التقييم
     factors_form_search_factors: عوامل البحث
-    factors_form_use_sub_factor_norm_score: Use Factors norm score
+    factors_form_use_sub_factor_norm_score: استخدم درجة معايير العوامل
     factors_form_value: قيمة
     factors_index_precision: الدقة
-    factors_index_scoring_strategy: Scoring strategy
-    factors_index_sub_factors: Sub factors
+    factors_index_scoring_strategy: استراتيجية التقييم
+    factors_index_sub_factors: العوامل الفرعية
     factors_index_title: العوامل
-    factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_confirmations_delete_body: "<p>هل أنت متأكد من أنك تريد حذف هذا العامل؟</p>\n"
     failure_reason: سبب الفشل
     feature_ai_assistants_description: تمكين المساعدين المدعومين بالذكاء الاصطناعي لتحسين تجربة المستخدم
     feature_ai_assisted_idp_description: استخدام الذكاء الاصطناعي للمساعدة في توصيات تخطيط التنمية الفردية
@@ -781,7 +781,7 @@ ar:
     from: من
     genders_female: انثى
     genders_male: رجل
-    genders_not_set: Not set
+    genders_not_set: لم يتم التعيين
     generate: ولد
     generate_result_confirm: سيؤدي إنشاء نتائج الأداة للمستخدم "%{email}" إلى إزالة التقرير الحالي الذي يعتمد على هذه الأداة التي تعمل بالذكاء الاصطناعي. هل أنت متأكد من أنك تريد المتابعة؟
     generate_result_info_message: يتم إنشاء النتائج ، يرجى تحديث الصفحة لرؤية النتائج المحدثة.
@@ -813,14 +813,14 @@ ar:
     hover_options_first_menu_item: 1 عنصر القائمة 1
     hover_text: مرر لي
     idp: آي دي بي
-    idp_actions_remove_confirm: Enter current template name given below in text box to remove template
-    idp_actions_success: "%{idpName} was removed successfully."
-    idp_add_idp_template: Add IDP Template
+    idp_actions_remove_confirm: أدخل اسم القالب الحالي المعطى أدناه في مربع النص لإزالة القالب
+    idp_actions_success: تم إزالة %{idpName} بنجاح.
+    idp_add_idp_template: إضافة قالب IDP
     idp_ai_assistant: مساعد الذكاء الاصطناعي
     idp_ai_assisted_idp_enabled: تمكين المشردين داخلياً بمساعدة الذكاء الاصطناعي
     idp_ai_enabled: تمكين الذكاء الاصطناعي
     idp_ai_settings: إعدادات الذكاء الاصطناعي
-    idp_all: All
+    idp_all: الكل
     idp_appearance: المظهر
     idp_appearance_body: النص
     idp_appearance_color: اللون
@@ -848,8 +848,8 @@ ar:
     idp_appearance_success: تم حفظ إعدادات المظهر بنجاح
     idp_appearance_title: العنوان
     idp_background_image: صورة الخلفية
-    idp_behavioral_skills: Behavioral Skills
-    idp_client_skills: Client Skills
+    idp_behavioral_skills: المهارات السلوكية
+    idp_client_skills: مهارات العميل
     idp_delete_skill: هل أنت متأكد أنك تريد حذف المهارة لأنها ستؤدي إلى حذف جميع إجراءات التطوير المرتبطة بها أيضًا؟
     idp_delete_skill_msg: هل أنت متأكد أنك تريد حذف هذه المهارة؟ حذف اللعبة سيزيل أيضا جميع إجراءات التطوير ذات الصلة.
     idp_details_updated: تم تحديث تفاصيل IDP بنجاح
@@ -869,10 +869,10 @@ ar:
     idp_development_actions_no_development_actions: لا توجد إجراءات تطويرية
     idp_disabled_by_client: تم تعطيل IDP بواسطة العميل
     idp_document_ai_assistant: مساعد الذكاء الاصطناعي لتحليل المستندات
-    idp_edit_template: Edit IDP Template
+    idp_edit_template: تحرير قالب IDP
     idp_enter_tag_or_skills_error: حدد علامة أو مهارة واحدة على الأقل
-    idp_enter_template_description_error: Template description is required.
-    idp_enter_template_name_error: Template name is required
+    idp_enter_template_description_error: وصف القالب مطلوب.
+    idp_enter_template_name_error: اسم القالب مطلوب
     idp_errors_cannot_update_progress_plan_completed: لا يمكن تحديث التقدم المحرز لأن خطة IDP قد اكتملت
     idp_errors_skills_required_on_publishing: يرجى اختيار المهارات قبل نشر القالب.
     idp_errors_update: غير مسموح بالتحديث لأن قالب IDP مقترن بالفعل بخطة IDP لمستخدم.
@@ -887,9 +887,9 @@ ar:
     idp_fields_publish_date: تاريخ النشر
     idp_fields_review_date: تاريخ المراجعة
     idp_fields_target_job_role: الدور المستهدف
-    idp_global_skills: Global Skills
+    idp_global_skills: المهارات العالمية
     idp_idp: آي دي بي
-    idp_idp_template: Add IDP Template
+    idp_idp_template: إضافة قالب IDP
     idp_interview_questions: أسئلة المقابلة
     idp_interview_questions_updated: تم تحديث أسئلة المقابلة بنجاح.
     idp_intro_message: رسالة مقدمة
@@ -904,7 +904,7 @@ ar:
     idp_logo_type_none: بدون شعارات
     idp_no_interview_questions_selected: لم يتم اختيار أي أسئلة مقابلة
     idp_no_reflection_questions_selected: لم يتم اختيار أي أسئلة للتفكير
-    idp_none: اي
+    idp_none: لا شيء
     idp_one_click_idp_enabled: تم تمكين IDP بنقرة واحدة
     idp_plan_reset_success: تم إعادة ضبط الخطة بنجاح
     idp_reference_locale: لغة مرجعية
@@ -915,15 +915,15 @@ ar:
     idp_revert_skill_to_public_errors_skill_already_public: المهارة عامة بالفعل
     idp_revert_skill_to_public_errors_skill_not_found: لم يتم العثور على مهارة
     idp_revert_skill_to_public_success_base_message: أصبحت المهارة "%{skill_name}" مرئية الآن لمديرك
-    idp_select_by_tags: Select by Tags
+    idp_select_by_tags: التحديد حسب العلامات
     idp_select_interview_question: ابدأ الكتابة للبحث وتحديد السؤال
     idp_select_reflection_question: ابدأ الكتابة للبحث وتحديد السؤال
-    idp_select_skill_gap_report: Select skill gap report
-    idp_select_specific_skills: Select Specific Skills
+    idp_select_skill_gap_report: حدد تقرير فجوة المهارات
+    idp_select_specific_skills: حدد مهارات معينة
     idp_selected: المحدد
-    idp_self_rating: Enable Self Rating
-    idp_setting_manager_approves_idp: Manager approves IDP
-    idp_setting_manager_can_edit_idp: Manager can edit IDP
+    idp_self_rating: تمكين التقييم الذاتي
+    idp_setting_manager_approves_idp: يوافق المدير على IDP
+    idp_setting_manager_can_edit_idp: يمكن للمدير تحرير IDP
     idp_setting_require_all_development_actions_complete: اشتراط اكتمال جميع إجراءات التطوير
     idp_show_reflections: عرض الانعكاسات
     idp_skill_gap_report: تقرير فجوة المهارات
@@ -945,9 +945,9 @@ ar:
     idp_tab_interview_questions: أسئلة المقابلة
     idp_tab_reflection_questions: أسئلة للتفكير
     idp_tab_settings: الإعدادات
-    idp_tab_templates: Templates
-    idp_technical_skills: Technical Skills
-    idp_template_details: Template Details
+    idp_tab_templates: القوالب
+    idp_technical_skills: المهارات التقنية
+    idp_template_details: تفاصيل القالب
     idp_templates: قوالب IDP
     idp_title_text: نص العنوان
     idp_update_interview_questions: تحديث أسئلة المقابلة
@@ -955,8 +955,8 @@ ar:
     iiht: IIHT
     iiht_assessment: تقييم IIHT
     iiht_password: كلمة المرور
-    iiht_tenancy_name: Tenancy name
-    iiht_tenant_id: Tenant ID
+    iiht_tenancy_name: اسم الإقامة
+    iiht_tenant_id: معرف المستأجر
     iiht_user: المستخدم
     image: صورة
     import_action_title: استيراد قطع أثرية من الذكاء الاصطناعي للحملة
@@ -992,40 +992,33 @@ ar:
     import_upload: رفع
     import_users: استيراد المستخدمين
     inactive: كسلان
-    include_locales_label: Include Translations
+    include_locales_label: صر مربع
     include_locales_name: include_locales
     index_title: المشاريع
     individual_invite_tabs_assessment_center: مركز التقييم
     individual_invite_tabs_invitation_status: حالة الدعوة
-    info_color: Info Color
+    info_color: لون معلومات
     innovation_styles_form_full_description: الوصف الكامل
     innovation_styles_index_title: أنماط الابتكار
     innovation_styles_list_position: المنصب
     innovation_styles_resource_confirmations_delete_body: "<p>Are you sure you want to delete this innovation style?</p>\n"
-    instruction_messages: Instruction Messages
+    instruction_messages: رسائل التعليمات
     instructions_actions_saved: تم حفظ التعليمات بنجاح
     instructions_enable: تمكين التعليمات
     instructions_save: حفظ التعليمات
-    integrations_actions_add: Integrations
-    integrations_actions_back: Back to Integrations
-    integrations_actions_load_mettl_catalog: Load Mettl Assessment Catalog
+    integrations_actions_add: التكاملات
+    integrations_actions_back: العودة إلى التكاملات
+    integrations_actions_load_mettl_catalog: تحميل كتالوج تقييم Mettl
     integrations_actions_load_microsite_catalog: تحميل كتالوج تقييم المواقع المصغرة
     integrations_actions_load_skillvue_catalog: تحميل كتالوج تقييم المهارات
     integrations_columns_active: نشط
     integrations_columns_details: التفاصيل
-    integrations_columns_name: Integration Name
-    integrations_details_client_id: معرف العميل
-    integrations_details_deployment_id: معرف النشر
-    integrations_details_platform_access_token_url: رابط رمز الوصول إلى المنصة
-    integrations_details_platform_authentication_request_url: رابط طلب التحقق من المنصة
-    integrations_details_platform_host_name: اسم مضيف المنصة
-    integrations_details_platform_id: معرف المنصة
-    integrations_details_platform_public_keyset_url: رابط مجموعة المفاتيح العامة للمنصة
-    integrations_details_provider: Provider Name
-    integrations_details_webhookUrl: Webhook URL
-    integrations_details_webhookUrls: Webhook URLs
-    integrations_integrations: Integrations
-    integrations_load_mettl_success: Load mettl assessments job is successfully enqueued
+    integrations_columns_name: اسم التكامل
+    integrations_details_provider: اسم المزود
+    integrations_details_webhookUrl: عنوان URL للخطاف
+    integrations_details_webhookUrls: عناوين URL للخطاف
+    integrations_integrations: التكاملات
+    integrations_load_mettl_success: تم وضع مهمة تحميل تقييمات mettl في قائمة الانتظار بنجاح
     integrations_load_microsite_success: تم إدراج مهمة تقييم المواقع المصغرة في قائمة الانتظار بنجاح
     integrations_load_skillvue_success: تم تحميل مهمة تقييمات مهارات التحميل بنجاح
     integrations_names_hogan: هوجان
@@ -1033,7 +1026,7 @@ ar:
     integrations_names_mettl: ميتل
     integrations_names_skillvue: سكيلفيو
     integrations_names_yoodli: يودلي
-    integrations_view_all_schedules: View All Mettl Schedules
+    integrations_view_all_schedules: عرض جميع جداول Mettl
     interface: الواجهة
     internal: داخلي
     interview_questions_delete_confirmation: هل أنت متأكد من أنك تريد حذف سؤال المقابلة هذا؟
@@ -1070,8 +1063,8 @@ ar:
     invite_center_group: مجموعة مركز التقييم
     invite_confirm_message: هل أنت متأكد أنك تريد حذف الدعوة؟
     invite_confirm_message_with_title: هل أنت متأكد أنك تريد إزالة الدعوة بعنوان '%{invite_title}'؟
-    invite_evaluators_description: This message will be displayed to subjects when they begin nominating evaluators
-    invite_evaluators_name: Invite Evaluators
+    invite_evaluators_description: سيتم عرض هذه الرسالة للموضوعات عندما تبدأ في ترشيح المقيمين
+    invite_evaluators_name: دعوة المقيمين
     invite_invites: الدعوات
     invite_name_placeholder: أدخل اسم الدعوة
     invite_not_selected: غير محدد
@@ -1094,7 +1087,7 @@ ar:
     invite_steps_basic_info: المعلومات الأساسية
     invite_steps_has_errors: يحتوي على أخطاء
     invite_steps_send_invitation: إرسال دعوة
-    invite_subjects_count: Subjects
+    invite_subjects_count: المشاركون
     invite_subjects_csv_imported: "%{count} مشاركين تم استيرادهم"
     invite_subjects_description: يمكنك إضافة المشاركين بشكل فردي عن طريق البحث أو تحميل ملف CSV بشكل جماعي.
     invite_subjects_download: تحميل
@@ -1161,7 +1154,7 @@ ar:
     logged_in: تم تسجيل الدخول
     login: تسجيل الدخول
     low: منخفض
-    mail_history: Mail History
+    mail_history: سجل البريد
     main_report: التقرير الرئيسي
     maintenance: الصيانة
     maintenance_settings: إعدادات الصيانة
@@ -1171,10 +1164,10 @@ ar:
     manager_approves_reports: يوافق المدير على التقارير
     manager_can_access_subject_reports: يمكن للمدير الوصول إلى تقارير الموضوعات
     manager_cannot_access_subject_reports: لا يمكن للمدير الاطلاع على التقرير حتى يتم استيفاء المتطلبات
-    manager_ids_label: Center Managers
-    manager_report_ready_description: This message is sent to a subject's manager once the subject's report is ready
-    manager_report_ready_name: Manager Report Ready
-    managers_title: Mangers
+    manager_ids_label: مديرو المركز
+    manager_report_ready_description: يتم إرسال هذه الرسالة إلى مدير الموضوع بمجرد أن يكون تقرير الموضوع جاهزًا
+    manager_report_ready_name: تقرير المدير جاهز
+    managers_title: المديرون
     mark_finalized: تم الانتهاء من وضع العلامة
     mark_finalized_bulk_confirm: سيؤدي إنهاء نتائج العناصر لجميع المستخدمين المحددين إلى إنشاء التقارير التي تستخدم عناصر الذكاء الاصطناعي. هل أنت متأكد من رغبتك في المتابعة؟
     mark_finalized_confirm: سيؤدي إنهاء نتائج الأداة الخاصة بالمستخدم "%{email}" إلى إنشاء التقرير الذي يستخدم أداة الذكاء الاصطناعي الخاصة بهذا المستخدم. هل أنت متأكد من أنك تريد المتابعة؟
@@ -1182,13 +1175,13 @@ ar:
     mark_not_finalized: لم يتم إتمام العلامة
     mark_not_finalized_bulk_confirm: ستؤدي إزالة "finalize" من جميع المستخدمين المحددين إلى حذف التقارير التي تم إنشاؤها والتي تستخدم عناصر الذكاء الاصطناعي. هل أنت متأكد من أنك تريد المتابعة؟
     mark_not_finalized_confirm: ستؤدي إزالة الإعداد النهائي للمستخدم "%{email}" إلى حذف التقرير الذي تم إنشاؤه والذي يستخدم أداة الذكاء الاصطناعي الخاصة بهذا المستخدم. هل أنت متأكد من أنك تريد المتابعة؟
-    mask_identity_for_examus: Mask data for Examus Proctoring
-    mask_identity_for_hogan: Mask data for Hogan
-    mask_identity_for_iiht: Mask data for IIHT
-    mask_identity_for_mettl: Mask data for METTL
+    mask_identity_for_examus: بيانات القناع للمراقبة في Examus
+    mask_identity_for_hogan: بيانات القناع لـ Hogan
+    mask_identity_for_iiht: بيانات القناع لـ IIHT
+    mask_identity_for_mettl: بيانات القناع لـ METTL
     mask_identity_for_mhs: بيانات القناع لـ MHS
-    mask_identity_for_pearson: Mask data for Pearson
-    mask_identity_for_saville: Mask data for Saville
+    mask_identity_for_pearson: بيانات القناع لـ Pearson
+    mask_identity_for_saville: بيانات القناع لـ Saville
     mask_identity_for_skillvue: بيانات القناع لسكيلفيو
     mask_identity_for_yoodli: بيانات القناع ليودلي
     max_value: القيمة القصوى
@@ -1198,17 +1191,17 @@ ar:
     media_library_page_title: مكتبة الوسائط - لوحة التحكم - Mercer Lighthouse
     meeting: اجتماع
     meeting_link: رابط الاجتماع
-    meetings_and_resources: Meetings & Resources
-    messages: Messages
-    meta_title: Administration panel
+    meetings_and_resources: الاجتماعات والموارد
+    messages: الرسائل
+    meta_title: لوحة الإدارة
     mettl: METTL
     mettl_apiBaseUrl: نقطة نهاية واجهة برمجة التطبيقات
     mettl_apiBaseUrlRequired: نقطة نهاية API مطلوبة.
     mettl_assessment: تقييم Mettl
-    mettl_privateKey: Private Key
-    mettl_privateKeyRequired: Private key is required.
-    mettl_publicKey: Public Key
-    mettl_publicKeyRequired: Public key is required.
+    mettl_privateKey: المفتاح الخاص
+    mettl_privateKeyRequired: المفتاح الخاص مطلوب.
+    mettl_publicKey: المفتاح العام
+    mettl_publicKeyRequired: المفتاح العام مطلوب.
     mettl_servers_mettl_eu: أوروبا
     mettl_servers_mettl_india: الهند
     mhs: MHS
@@ -1262,9 +1255,9 @@ ar:
     no_question_mappings: لا توجد خرائط أسئلة متاحة
     no_rendered_output: لا يوجد مخرج مرسوم متوفر
     no_status: لا يوجد حالة
-    nomination_denied_description: This message is sent to subjects when a nomination is denied
-    nomination_denied_name: Nomination Denied
-    nomination_help_description: Help text displayed on nomination card on user's dashboard
+    nomination_denied_description: يتم إرسال هذه الرسالة للموضوعات عند رفض الترشيح
+    nomination_denied_name: تم رفض الترشيح
+    nomination_help_description: نص مساعدة معروض على بطاقة الترشيح في لوحة تحكم المستخدم
     nomination_help_name: مساعدة الترشيح
     norm: المعيار
     norm_editor_numeric_value_error: يُسمح فقط بالقيم الرقمية (أعداد صحيحة أو أعداد عشرية).
@@ -1285,21 +1278,20 @@ ar:
     norms_import_success_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
     norms_import_title: استيراد المعايير
     norms_index_import: استيراد
-    norms_remove_confirm: Enter norm name given below in text box to confirm
-    norms_remove_warning: Are you sure you want to delete the norm "%{name}"
-    norms_score_types_five_scale: Five scale
-    norms_score_types_norm_type: Norm type
-    norms_score_types_percentage: Percentage
-    norms_sidebar_copy: Copy Norm
-    norms_sidebar_editor: محرر المعايير
-    norms_sidebar_export: Export Norm
+    norms_remove_confirm: أدخل اسم المعيار المعطى أدناه في مربع النص للتأكيد
+    norms_remove_warning: هل أنت متأكد من أنك تريد حذف المعيار "%{name}"
+    norms_score_types_five_scale: مقياس من خمس نقاط
+    norms_score_types_norm_type: نوع المعيار
+    norms_score_types_percentage: نسبة مئوية
+    norms_sidebar_copy: نسخ المعيار
+    norms_sidebar_export: تصدير المعيار
     norms_title: المعيار
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
     notes: ملاحظات
     nothing_assigned: لا يتم تعيين مقيمين
     nothing_assigned_tooltip: لم يتم تعيين أي تقييمات لهذا المستخدم
-    notification_bell_icon_alt_text: Notification Bell Icon
+    notification_bell_icon_alt_text: أيقونة جرس الإشعارات
     notifications: الاخطارات
     number: العدد
     oauth_scope_label: نطاق
@@ -1314,10 +1306,10 @@ ar:
     occupations_form_indicative_roles_image: صورة توضح الأدوار
     occupations_form_key_career_tracks_image: صورة لمسارات مهنية رئيسية
     occupations_index_title: المهن
-    occupations_resource_confirmations_delete_body: "<p>Are you sure you want to delete this occupation?</p>\n"
+    occupations_resource_confirmations_delete_body: "<p>هل أنت متأكد من أنك تريد حذف هذه المهنة؟</p>\n"
     on_the_job: في العمل [70]
     only_editable_on_create: هذا الخيار قابل للتعديل فقط أثناء الإنشاء.
-    options: Options
+    options: الخيارات
     options_evaluator_options: خيارات المقيّم
     options_global: الخيارات العالمية
     options_manager_options: خيارات المدير
@@ -1341,8 +1333,8 @@ ar:
     participants: المشاركون
     participants_tab: المشاركون
     participants_tabs_assessors: المقيمون
-    participants_tabs_sms_contacts: SMS Contacts
-    participants_tabs_subjects: Subjects
+    participants_tabs_sms_contacts: جهات اتصال الرسائل النصية القصيرة
+    participants_tabs_subjects: الموضوعات
     password_label: كلمة المرور
     password_name: كلمة المرور
     past: الماضي
@@ -1792,16 +1784,16 @@ ar:
     piped_text_modal_projects: المشاريع
     piped_text_modal_report_name: اسم التقرير
     piped_text_modal_start_time: وقت البدء
-    piped_text_modal_title: Add Piped Text
+    piped_text_modal_title: إضافة نص موصول
     piped_text_modal_user_reports: تقارير المستخدمين
     piped_text_modal_users: المستخدمون
     playground: ملعب
     playground_info: اختبر الأداة الخاصة بك باستخدام عينة البيانات لمعاينة النتائج التي تم إنشاؤها.
     playground_placeholder: إدخال بيانات الاختبار
-    position_auto: Auto
-    position_label: Login Box Position
+    position_auto: تلقائي
+    position_label: موضع صندوق تسجيل الدخول
     position_left: يسار
-    position_right: Right
+    position_right: يمين
     precision: الدقة
     preview_report: تقرير المعاينة
     previous: السابق
@@ -1809,13 +1801,13 @@ ar:
     prework_required: لا تسمح بحجز المركز إذا لم يتم إكمال الأعمال التحضيرية
     prework_required_for_invite: إرسال بريد الدعوة فقط عند اكتمال الأعمال التحضيرية
     primary_button: ابتدائي
-    primary_color: Primary Color
-    privacy: Privacy
-    privacy_link: Enable Privacy Link
+    primary_color: لون أساسي
+    privacy: الخصوصية
+    privacy_link: تمكين رابط الخصوصية
     privacy_link_label: رابط الخصوصية
-    privacy_link_placeholder: Enter Privacy Link
+    privacy_link_placeholder: أدخل رابط الخصوصية
     privacy_text: نص الخصوصية
-    privacy_text_placeholder: Enter Privacy Text
+    privacy_text_placeholder: أدخل نص الخصوصية
     proctoring: الإشراف
     proctoring_enable: تمكين المراقبة
     proctoring_errors_timed_only: لا يمكن تفعيل المراقبة الانتقائية إلا في الاختبارات المحددة بوقت.
@@ -1850,8 +1842,8 @@ ar:
     proctoring_sessions_columns_session_id: معرّف الجلسة
     proctoring_sessions_columns_started_at: بدأ في
     proctoring_sessions_links_report: تقرير
-    proctoring_sessions_links_review: Review
-    proctoring_sessions_resource_name: Proctoring Sessions
+    proctoring_sessions_links_review: مراجعة
+    proctoring_sessions_resource_name: جلسات المراقبة
     proctoring_settings: إعدادات المراقبة
     proctoring_trial: تجربة المراقبة
     proctoring_type: نوع
@@ -1863,7 +1855,7 @@ ar:
     proficiency_level: مفاتيح API
     proficiency_levels: مستويات الكفاءة
     proficiency_levels_fields_title: الكفاءة
-    profile: Profile
+    profile: الملف الشخصي
     profile_change_password: غيّر كلمة المرور
     profile_details: تفاصيل الملف الشخصي للمستخدم
     project: مشروع
@@ -1884,23 +1876,23 @@ ar:
     project_settings: إعدادات المشروع
     project_tabs_assessments_column_normalize_factor_scores: تطبيع درجات العامل
     project_tabs_assessments_column_user_result_validity_in_days: صلاحية النتيجة
-    project_tabs_assessments_delete_content: Are you sure you want to delete assessment '%{name}'?
-    project_tabs_assessments_delete_success: Assessment '%{name}' was deleted successfully.
-    project_tabs_assessments_delete_title: Delete Assessment
+    project_tabs_assessments_delete_content: هل أنت متأكد من أنك تريد حذف التقييم '%{name}'?
+    project_tabs_assessments_delete_success: تم حذف التقييم '%{name}' بنجاح.
+    project_tabs_assessments_delete_title: حذف التقييم
     project_tabs_assessments_title: التقييمات
     project_tabs_design: التصميم
-    project_tabs_general: General
-    project_tabs_privacy: Privacy
-    project_tabs_profile: Profile
-    project_tabs_registration: Registration
+    project_tabs_general: عام
+    project_tabs_privacy: الخصوصية
+    project_tabs_profile: الملف الشخصي
+    project_tabs_registration: التسجيل
     project_tabs_webhooks_actions_delete_key: " حذف"
     project_tabs_webhooks_actions_edit_key: تعديل
     project_tabs_webhooks_actions_send_test_key: send_test
     project_tabs_webhooks_actions_send_test_label: إرسال الاختبار
-    project_tabs_webhooks_remove_webhook_content: Delete %{description}?
-    project_tabs_webhooks_title: Webhooks
-    project_tools_workshop_status_export: Workshop Status Export
-    project_tools_workshop_status_export_success: Workshop Status Export was scheduled successfully.
+    project_tabs_webhooks_remove_webhook_content: حذف %{description}؟
+    project_tabs_webhooks_title: خطافات الويب
+    project_tools_workshop_status_export: تصدير حالة الورشة
+    project_tools_workshop_status_export_success: تم جدولة تصدير حالة الورشة بنجاح.
     project_users_change_password: غيّر كلمة المرور
     project_users_column_campaigns: الحملات
     project_users_column_created_at: تم إنشاؤها في
@@ -1920,48 +1912,48 @@ ar:
     project_users_search_accessor: ملحقات البحث
     project_users_send_email: إرسال بريد إلكتروني
     projects: المشاريع
-    projects_addProject: Add Project
-    projects_assessment_settings_search: Search Assessment
+    projects_addProject: إضافة مشروع
+    projects_assessment_settings_search: البحث عن التقييم
     projects_columns_project_number: رقم المشروع
     projects_form_project_number: رقم المشروع
     projects_form_subdomain: المجال الفرعي
     projects_form_title: مشروع
-    projects_general_settings_live_chat: Enable Live Chat
+    projects_general_settings_live_chat: تمكين الدردشة الحية
     projects_general_settings_locales_label: اللغات
     projects_general_settings_project_number_label: رقم المشروع
-    projects_general_settings_save_changes: Save Changes
-    projects_general_settings_sub_domain_label: Sub Domain
-    projects_mettl_schedule_records_add: Add Schedule
-    projects_mettl_schedule_records_assessment_id: Assessment ID
+    projects_general_settings_save_changes: حفظ التغييرات
+    projects_general_settings_sub_domain_label: نطاق فرعي
+    projects_mettl_schedule_records_add: إضافة جدول زمني
+    projects_mettl_schedule_records_assessment_id: معرف التقييم
     projects_mettl_schedule_records_assessment_name: اسم التقييم
-    projects_mettl_schedule_records_candidate_authorization: Enable Candidate Authorization
-    projects_mettl_schedule_records_candidate_screen_capture: Enable Candidate Screen Capture
-    projects_mettl_schedule_records_count: Browsing tolerance count
+    projects_mettl_schedule_records_candidate_authorization: تمكين تفويض المرشح
+    projects_mettl_schedule_records_candidate_screen_capture: تمكين التقاط شاشة المرشح
+    projects_mettl_schedule_records_count: عدد تحمل التصفح
     projects_mettl_schedule_records_created_at: تم إنشاؤها في
-    projects_mettl_schedule_records_schedule_id: Schedule ID
-    projects_mettl_schedule_records_schedule_name: Schedule Name
-    projects_mettl_schedule_records_secure_browser_enabled: Enable Secure Browser
+    projects_mettl_schedule_records_schedule_id: معرف الجدول الزمني
+    projects_mettl_schedule_records_schedule_name: اسم الجدول الزمني
+    projects_mettl_schedule_records_secure_browser_enabled: تمكين المتصفح الآمن
     projects_mettl_schedule_records_settings: الإعدادات
-    projects_mettl_schedule_records_show_remaining_counts: Enable Showing Remaining Count
-    projects_mettl_schedule_records_visual_proctoring_enabled: Enable Visual Proctoring
-    projects_mettl_schedule_records_web_proctoring_enabled: Enable Web Proctoring
+    projects_mettl_schedule_records_show_remaining_counts: تمكين عرض عدد العناصر المتبقية
+    projects_mettl_schedule_records_visual_proctoring_enabled: تمكين المراقبة البصرية
+    projects_mettl_schedule_records_web_proctoring_enabled: تمكين مراقبة الويب
     projects_profile_settings_form_fields_enabled: تمكين
     projects_profile_settings_form_fields_half_size: نصف الحجم
     projects_profile_settings_form_fields_locked: مغلق
     projects_profile_settings_form_fields_sort: فرز
     projects_profile_settings_month: الشهر
-    projects_profile_settings_never: Never
-    projects_profile_settings_update_in: Notify Profile Update in
-    projects_profile_settings_year: Year
-    projects_registration_settings_hide_signup: Hide Sign up option
-    projects_registration_settings_require_mobile_number: Require Mobile Number
-    projects_webhook_settings_add: Add Webhook
+    projects_profile_settings_never: أبدًا
+    projects_profile_settings_update_in: إخطار تحديث الملف الشخصي في
+    projects_profile_settings_year: سنة
+    projects_registration_settings_hide_signup: إخفاء خيار التسجيل
+    projects_registration_settings_require_mobile_number: مطلوب رقم الهاتف المحمول
+    projects_webhook_settings_add: إضافة خطاف ويب
     projects_webhook_settings_column_active: نشط
     projects_webhook_settings_column_created_date: تاريخ الإنشاء
     projects_webhook_settings_column_description: الوصفx
     projects_webhook_settings_column_updated_date: تاريخ التعديل
     projects_webhook_settings_column_url: الرابط
-    projects_webhook_settings_search: Search Webhoook
+    projects_webhook_settings_search: البحث في خطاف الويب
     prompt: موجه
     provider: كاسب
     provider_change_confirm_title: هل تريد تغيير المزود؟
@@ -2025,8 +2017,8 @@ ar:
     registration_codes: رموز التسجيل
     registration_settings: إعدادات التسجيل
     remove_children_to_change_type: إزالة جميع الأطفال لتغيير النوع
-    remove_confirm_content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
-    remove_confirm_success: Subject with email '%{subjectEmail}'' was successfully removed.
+    remove_confirm_content: هل أنت متأكد من رغبتك في إزالة الموضوع بالبريد الإلكتروني "%{subjectEmail}"؟
+    remove_confirm_success: تمت إزالة الموضوع بالبريد الإلكتروني "%{subjectEmail}" بنجاح.
     remove_confirm_title: إزالة الموضوع
     remove_confirmation: هل أنت متأكد من أنك تريد حذف هذا العنصر؟
     remove_output_schema_key: إزالة مفتاح مخطط الإخراج
@@ -2080,21 +2072,21 @@ ar:
     report_approval_remove_modal_success: 'تم حذف إعداد الموافقة للتقرير بمعرف: %{reportId} بنجاح'
     report_approval_remove_modal_text: 'هل أنت متأكد أنك تريد حذف هذا الإعداد للتقرير بمعرف: %{reportId}؟'
     report_approval_report: تقرير
-    report_approval_review: Review
-    report_approval_saving_filters_actions_clear_filters: Clear Filters
-    report_approval_saving_filters_actions_delete_filter: Delete Filter
-    report_approval_saving_filters_actions_save_new_filter: Save as new Filter
-    report_approval_saving_filters_actions_saved_filters: Saved Filters
-    report_approval_saving_filters_delete_saved_filters: Filter Deleted
-    report_approval_saving_filters_edit_filter_name: Filter Name saved
-    report_approval_saving_filters_error_while_deleting: Error While deleting
-    report_approval_saving_filters_error_while_editing: Error while editing
-    report_approval_saving_filters_error_while_fetching: Something went wrong , try again
-    report_approval_saving_filters_error_while_saving: Error while saving filter
-    report_approval_saving_filters_filter_updated: Filter updated
-    report_approval_saving_filters_no_saved_filters: There are no saved filters
-    report_approval_saving_filters_save_filter: Filter Saved
-    report_approval_saving_filters_set_favorite: Filter has been set as favorite
+    report_approval_review: مراجعة
+    report_approval_saving_filters_actions_clear_filters: مسح الفلاتر
+    report_approval_saving_filters_actions_delete_filter: حذف الفلتر
+    report_approval_saving_filters_actions_save_new_filter: حفظ كفلتر جديد
+    report_approval_saving_filters_actions_saved_filters: الفلاتر المحفوظة
+    report_approval_saving_filters_delete_saved_filters: تم حذف الفلتر
+    report_approval_saving_filters_edit_filter_name: اسم الفلتر محفوظ
+    report_approval_saving_filters_error_while_deleting: خطأ أثناء الحذف
+    report_approval_saving_filters_error_while_editing: خطأ أثناء التحرير
+    report_approval_saving_filters_error_while_fetching: حدث خطأ ما، حاول مجددًا
+    report_approval_saving_filters_error_while_saving: خطأ أثناء حفظ الفلتر
+    report_approval_saving_filters_filter_updated: تم تحديث الفلتر
+    report_approval_saving_filters_no_saved_filters: لا توجد فلاتر محفوظة
+    report_approval_saving_filters_save_filter: تم حفظ الفلتر
+    report_approval_saving_filters_set_favorite: بالفعل تم تعيين الفلتر كمفضل
     report_approval_send_digest_emails: إرسال رسائل البريد الإلكتروني الملخصة
     report_approval_settings: إعدادات الموافقة على التقارير
     report_approval_submit_or_approve_all: إرسال الكل أو الموافقة على الكل
@@ -2111,16 +2103,16 @@ ar:
     report_not_generated: التقرير %{user} يفي بشروط التوفر لكنه لم يتم إعداده بعد. يرجى إنشاء التقرير أولا.
     report_on_hold: تقرير %{user} معلق حاليا
     report_pdf_status: حالة ملف PDF
-    report_review_abort_qc: Abort QC
+    report_review_abort_qc: إبطال ضمان الجودة
     report_review_approve: صدق
-    report_review_approve_changes: Approve Changes
+    report_review_approve_changes: موافقة على التغييرات
     report_review_edit: تعديل
-    report_review_remove_approval: Remove Approval
-    report_review_request_changes: Request Changes
-    report_review_review: Review
-    report_review_send_for_approve: Send for Approval
+    report_review_remove_approval: حذف الموافقة
+    report_review_request_changes: طلب تغييرات
+    report_review_review: مراجعة
+    report_review_send_for_approve: إرسال للموافقة
     report_review_statuses_approved: تمت الموافقه
-    report_review_statuses_change_requested: Changes Requested
+    report_review_statuses_change_requested: طلبات التغيير
     report_review_statuses_not_ready: غير جاهز
     report_review_statuses_pending_qc: مراقبة الجودة المعلقة
     report_review_statuses_qc_completed: اكتمل مراقبة الجودة
@@ -2158,11 +2150,11 @@ ar:
     reset_idp_plan_title: خطة إعادة التعيين
     reset_score: إعادة تعيين النتيجة
     reset_score_description: سيتم إعادة النتيجة إلى قيمة الذكاء الاصطناعي الأصلية.
-    resources_panel_description: Add the links to any resources you would like the facilitators to have access to.
-    resources_panel_resource_name_placeholder: Resource Name
-    resources_panel_resource_url_placeholder: Resource Link
-    resources_panel_title: Resources
-    resources_panel_validation_error: Enter both Name and URL or remove the resource
+    resources_panel_description: أضف روابط أي موارد ترغب أن يتمكن الميسرون من الوصول إليها.
+    resources_panel_resource_name_placeholder: اسم المورد
+    resources_panel_resource_url_placeholder: رابط المورد
+    resources_panel_title: الموارد
+    resources_panel_validation_error: أدخل الاسم والرابط معًا أو احذف المورد
     response_meta: الاستجابة الفوقية
     responses: ردود الذكاء الاصطناعي
     result: النتيجة
@@ -2228,8 +2220,8 @@ ar:
     saml_service_provider_updated_date: تاريخ التحديث
     saml_service_providers: مزودو الخدمة
     saml_settings: إعدادات SAML
-    saml_settings_after_signout_url: After Signout Url
-    saml_settings_cert: Certificate
+    saml_settings_after_signout_url: عنوان URL بعد تسجيل الخروج
+    saml_settings_cert: الشهادة
     saml_settings_config_details_acs_url: عنوان URL خدمة مستهلك التأكيد
     saml_settings_config_details_copied: تم نسخ %{element}
     saml_settings_config_details_issuer: معرّف الكيان/المُصدر
@@ -2264,131 +2256,131 @@ ar:
     saville: سافيل
     saville_assessment: تقييم سافيل
     schedule: جدول
-    schedule_email: Schedule Email
+    schedule_email: جدولة البريد الإلكتروني
     schedule_email_title: جدولة البريد الإلكتروني
     schedule_time: تحديد موعد
     scheduling: الجدولة
-    scheduling_add_activity: Add Activity
-    scheduling_add_assessment_center: Add Assessment Center
+    scheduling_add_activity: إضافة نشاط
+    scheduling_add_assessment_center: إضافة مركز تقييم
     scheduling_add_assessor_form_assessment: تقييم
     scheduling_add_assessor_form_assessor: مقيم
     scheduling_add_assessor_form_schedule_time: الجدول الزمني
-    scheduling_add_subject: Add subject
-    scheduling_attendance_status_column_name: Attendance status
+    scheduling_add_subject: إضافة مشارك
+    scheduling_attendance_status_column_name: حالة الحضور
     scheduling_attendance_status_dropped_out: تسرب الدراسة
     scheduling_attendance_status_late: متأخر
     scheduling_attendance_status_no_show: عدم الحضور
     scheduling_attendance_status_no_status: لا يوجد حالة
     scheduling_attendance_status_on_time: في الموعد
-    scheduling_attended_attended: Attended
-    scheduling_attended_not_attended: Not Attended
-    scheduling_campaign_participants: Campaign participants
+    scheduling_attended_attended: حضر
+    scheduling_attended_not_attended: لم يحضر
+    scheduling_campaign_participants: المشاركون في الحملة
     scheduling_columns_activity: النشاط
     scheduling_columns_assessment_center_date_and_time: تاريخ ووقت مركز التقييم
     scheduling_columns_assessor: مقيم
     scheduling_columns_assessors: المقيمون
-    scheduling_columns_attendance: Attendance
-    scheduling_columns_attended: Attended
-    scheduling_columns_booked_at: Booked At
+    scheduling_columns_attendance: الحضور
+    scheduling_columns_attended: تم الحضور
+    scheduling_columns_booked_at: تاريخ الحجز
     scheduling_columns_campaign_assessment_group: مجموعة مركز التقييم
     scheduling_columns_campaign_name: اسم الحملة
     scheduling_columns_duration: المدة الزمنية
     scheduling_columns_link_to_view_recordings: رابط لعرض التسجيلات
-    scheduling_columns_managers: Mangers
+    scheduling_columns_managers: المدراء
     scheduling_columns_meeting_link: رابط الاجتماع
     scheduling_columns_participants: المشاركون
     scheduling_columns_prework: ما قبل العمل
     scheduling_columns_recording_date: تاريخ التسجيل
     scheduling_columns_resource_link: رابط
     scheduling_columns_schedule_time: الجدول الزمني
-    scheduling_columns_scheduling_status: Scheduling status
-    scheduling_columns_seats: Seats
+    scheduling_columns_scheduling_status: حالة الجدولة
+    scheduling_columns_seats: المقاعد
     scheduling_columns_serial_no: الرقم التسلسلي
-    scheduling_columns_start_time: Date & Time
+    scheduling_columns_start_time: التاريخ والوقت
     scheduling_columns_subject: الموضوع
-    scheduling_columns_title: Title
+    scheduling_columns_title: العنوان
     scheduling_columns_view_recording: عرض التسجيل
-    scheduling_errors_assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
-    scheduling_errors_date_required: Please select a date
+    scheduling_errors_assessor_already_assigned: تم تعيين مقيّم لهذا التقييم بالفعل. يرجى اختيار تقييم أو مقيّم آخر.
+    scheduling_errors_date_required: يرجى اختيار تاريخ
     scheduling_errors_invalid_url: تنسيق عنوان URL غير صالح
-    scheduling_errors_meeting_link_https: Meeting link must start with "https://"
-    scheduling_info_allowed: Allowed
+    scheduling_errors_meeting_link_https: يجب أن يبدأ رابط الاجتماع بـ "https://"
+    scheduling_info_allowed: مسموح
     scheduling_info_assessors: المقيمون
-    scheduling_info_booked: Seats Booked
+    scheduling_info_booked: المقاعد المحجوزة
     scheduling_info_campaign_assessment_group: مجموعة مركز التقييم
-    scheduling_info_cancellation_lead_time: Cancellation Lead Time
-    scheduling_info_cancellation_tooltip: User would be able to cancel the booking till %{date}
-    scheduling_info_date: Date & Time
+    scheduling_info_cancellation_lead_time: المهلة الزمنية للإلغاء
+    scheduling_info_cancellation_tooltip: سيتمكن المستخدم من إلغاء الحجز حتى %{date}
+    scheduling_info_date: التاريخ والوقت
     scheduling_info_duration: المدة الزمنية
-    scheduling_info_join_meeting: Join Room
-    scheduling_info_late_cancellation_and_scheduling: Late cancellation and scheduling
+    scheduling_info_join_meeting: الانضمام إلى الغرفة
+    scheduling_info_late_cancellation_and_scheduling: الإلغاء والجدولة المتأخران
     scheduling_info_link: رابط الاجتماع
-    scheduling_info_managers: Center Managers
+    scheduling_info_managers: مدراء المركز
     scheduling_info_none: اي
-    scheduling_info_not_allowed: Not Allowed
+    scheduling_info_not_allowed: غير مسموح
     scheduling_info_recording_enabled: تمكين التسجيل
-    scheduling_info_remaining: Seats Remaining
-    scheduling_info_scheduling_lead_time: Scheduling Lead Time
-    scheduling_info_scheduling_tooltip: User would be able to book a slot till %{date}
-    scheduling_info_search_placehoder: Search by id, email or name
+    scheduling_info_remaining: المقاعد المتبقية
+    scheduling_info_scheduling_lead_time: المهلة الزمنية للجدولة
+    scheduling_info_scheduling_tooltip: سيتمكن المستخدم من حجز فترة حتى %{date}
+    scheduling_info_search_placehoder: البحث بالمعرف أو البريد الإلكتروني أو الاسم
     scheduling_info_timezone: المنطقة الزمنية
-    scheduling_info_total_seats: Total Seats
-    scheduling_lead_time_label: Lead time for scheduling
-    scheduling_resources_confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
+    scheduling_info_total_seats: إجمالي المقاعد
+    scheduling_lead_time_label: المهلة الزمنية للجدولة
+    scheduling_resources_confirm_message: هل أنت متأكد أنك تريد حذف المورد '%{resource_name}'؟
     scheduling_resources_confirm_title: 'مطلوب منك التأكيد '
-    scheduling_resources_create: Create Resource
-    scheduling_resources_invalid_url: Invalid URL. Specify the complete url with http or https protocol in it.
-    scheduling_resources_resource: Resource
-    scheduling_resources_successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
-    scheduling_schedule_assessments: Schedule Assessments
-    scheduling_scheduling_statuses_cancelled: Cancelled
+    scheduling_resources_create: إنشاء مورد
+    scheduling_resources_invalid_url: عنوان URL غير صالح. حدّد الرابط الكامل متضمنًا بروتوكول http أو https.
+    scheduling_resources_resource: المورد
+    scheduling_resources_successful_remove: تم حذف مورد مركز التقييم %{resource_name} بنجاح.
+    scheduling_schedule_assessments: جدولة التقييمات
+    scheduling_scheduling_statuses_cancelled: أُلغي
     scheduling_scheduling_statuses_late_cancelled: تم الإلغاء في وقت متأخر
     scheduling_scheduling_statuses_late_rescheduled: إعادة الجدولة المتأخرة
-    scheduling_scheduling_statuses_rescheduled: Rescheduled
+    scheduling_scheduling_statuses_rescheduled: أُعيدت جدولته
     scheduling_scheduling_statuses_scheduled: المقرر
-    scheduling_search_participant: Search campaign participants
+    scheduling_search_participant: البحث عن المشاركين في الحملة
     scheduling_status: حالة الجدولة
-    scheduling_status_change_modal_content: Once you close the assessment center, participants will not be able to participate in any center activities.
-    scheduling_status_change_modal_title: Change assessment center status
+    scheduling_status_change_modal_content: بمجرد إغلاق مركز التقييم، لن يتمكن المشاركون من المشاركة في أي أنشطة داخل المركز.
+    scheduling_status_change_modal_title: تغيير حالة مركز التقييم
     scheduling_status_completed: تم اكماله
     scheduling_status_dropped_out: تسرب الدراسة
     scheduling_status_in_progress: قيد التنفيذ
     scheduling_status_late: متأخر
     scheduling_status_no_show: عدم الحضور
     scheduling_status_not_started: لم يبدأ
-    scheduling_subjects_activities: Activities
-    scheduling_subjects_add_assessor_form: Add Assessor Form
+    scheduling_subjects_activities: الأنشطة
+    scheduling_subjects_add_assessor_form: إضافة نموذج مقيّم
     scheduling_subjects_assessments: التقييمات
-    scheduling_subjects_assessor_forms: Assessor Forms
+    scheduling_subjects_assessor_forms: نماذج المقيّمين
     scheduling_subjects_confirm_message: |-
       Are you sure you want to cancel the participation of the subject with the email '%{subject_email}'?
       <br />
       Once marked as cancelled, this subject will not be able to participate in the assessment center.
     scheduling_subjects_confirm_title: 'مطلوب منك التأكيد '
-    scheduling_subjects_edit_assessor_form: Edit Assessor Form
-    scheduling_subjects_form_title: Schedule Assessments
+    scheduling_subjects_edit_assessor_form: تعديل نموذج المقيّم
+    scheduling_subjects_form_title: جدولة التقييمات
     scheduling_subjects_language: اللغة
     scheduling_subjects_language_not_selected: غير محدد
     scheduling_subjects_mark_cancel: إلغاء العلامة
-    scheduling_subjects_mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
+    scheduling_subjects_mark_cancel_success: تم إلغاء مشاركة المشارك بالبريد الإلكتروني %{subject_email}.
     scheduling_subjects_meeting_link_custom: إنشائي
     scheduling_subjects_meeting_link_internal: داخلي
     scheduling_subjects_meeting_link_none: اي
     scheduling_subjects_meeting_link_title: رابط الاجتماع
-    scheduling_subjects_no_change: No Change
-    scheduling_subjects_override_existing: Override existing schedules for subjects
+    scheduling_subjects_no_change: بدون تغيير
+    scheduling_subjects_override_existing: تجاوز الجداول الحالية للمشاركين
     scheduling_subjects_preworks: ما قبل العمل
     scheduling_subjects_re_enroll: إعادة التسجيل
     scheduling_subjects_re_enroll_confirm_message: هل أنت متأكد من رغبتك في إعادة تسجيل الموضوع بالبريد الإلكتروني "%{subject_email}"؟
     scheduling_subjects_re_enroll_success: موضوع إعادة التسجيل مع البريد الإلكتروني %{subject_email}.
     scheduling_subjects_schedule: جدول
     scheduling_subjects_unschedule: إلغاء الجدولة
-    scheduling_tabs_activities: Activities
+    scheduling_tabs_activities: الأنشطة
     scheduling_tabs_assessment_center: مركز التقييم
     scheduling_tabs_invites: الدعوات
     scheduling_tabs_recordings: التسجيلات
-    scheduling_tabs_resources: Resources
-    scheduling_tabs_subjects: Subjects
+    scheduling_tabs_resources: الموارد
+    scheduling_tabs_subjects: المشاركون
     schema_key_description_required: وصف مفتاح المخطط مطلوب
     schema_key_required: مفتاح المخطط مطلوب
     schema_key_type: نوع المفتاح
@@ -2406,11 +2398,11 @@ ar:
     score_with_ai: تسجيل النقاط باستخدام الذكاء الاصطناعي
     scores_finalized: تم إغلاق النتائج ولا يمكن تغييرها
     scoring: سجل
-    scoring_action_prohibited: Action Prohibited
+    scoring_action_prohibited: الإجراء غير مسموح
     scoring_active: نشط
-    scoring_actual_average: Actual Average
-    scoring_add_factor: Add Factor
-    scoring_add_group: Add Group
+    scoring_actual_average: المتوسط الفعلي
+    scoring_add_factor: إضافة عامل
+    scoring_add_group: إضافة مجموعة
     scoring_approval_add_settings: إضافة إعدادات
     scoring_approval_allow_bulk_approve: السماح بالموافقة الجماعية
     scoring_approval_allow_bulk_approve_scores: السماح بالموافقة الجماعية على الدرجات
@@ -2429,12 +2421,12 @@ ar:
     scoring_approval_review: مراجعة
     scoring_approval_score_approvals: الموافقات على التقييمات باستخدام الذكاء الاصطناعي
     scoring_assessment: تقييم
-    scoring_assessment_scoring_type: Assessment Scoring Type
-    scoring_average: Average
-    scoring_campaign_scoring_variables: Campaign Scoring Variables
-    scoring_desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.
+    scoring_assessment_scoring_type: نوع تسجيل تقييم التقييم
+    scoring_average: المتوسط
+    scoring_campaign_scoring_variables: متغيرات تسجيل الحملة
+    scoring_desc: لقد تجاوزت الحد الأقصى لعوامل الحملة وهو %{n}. لا يمكن إضافة عوامل إضافية. يرجى مراجعة وإدارة العوامل الحالية قبل المتابعة.
     scoring_dimension: البعد
-    scoring_edit_factor: Edit Factor
+    scoring_edit_factor: تعديل العامل
     scoring_export_factors: عوامل حملة التصدير
     scoring_factor: فئة الدرجات
     scoring_factor_group_removed_successfully: تمت إزالة مجموعة عامل الحملة بنجاح
@@ -2446,68 +2438,68 @@ ar:
     scoring_final_score_updated_successfully: تم تحديث النتيجة النهائية بنجاح
     scoring_formula: الصيغة
     scoring_get_started: ابدأ الآن
-    scoring_import_factors: Import Campaign Factors
+    scoring_import_factors: استيراد عوامل الحملة
     scoring_innovation_style_removal_confirmation: أدخل اسم نمط الابتكار المذكور أدناه في مربع النص للتأكيد
-    scoring_no_groups: No groups present
+    scoring_no_groups: لا توجد مجموعات
     scoring_occupation_removal_confirmation: أدخل اسم المهنة المذكور أدناه في مربع النص للتأكيد
-    scoring_output_type: Output Type
-    scoring_pattern_error: Only alphanumeric characters, spaces and dashes are allowed.
+    scoring_output_type: نوع المخرجات
+    scoring_pattern_error: يُسمح فقط بالأحرف والأرقام والمسافات والشرطات.
     scoring_profile_years: السنوات
     scoring_public: عام
-    scoring_ranked: Ranked
-    scoring_remove_all_campaign_factors_confirmation: Enter current campaign name given below in text box to confirm
-    scoring_remove_all_campaign_factors_error: Campaign Factors remove failed
-    scoring_remove_all_campaign_factors_success: Campaign Factors removed successfully
-    scoring_remove_all_campaign_factors_title: Remove campaign factors
-    scoring_remove_all_campaign_factors_warning: Your are about to delete all campaign factor and all associated scores for the users. Are you sure you want to perform this action?
-    scoring_remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
-    scoring_remove_factor_group_confirmation_title: Remove Factor Group
-    scoring_required_error: Can't be empty
-    scoring_save_all: Save All
-    scoring_score_range: Score Range
-    scoring_score_types_norm_score: Norm Score
-    scoring_score_types_percentage: Percentage
-    scoring_score_types_percentile: Percentile
+    scoring_ranked: مُرتّب
+    scoring_remove_all_campaign_factors_confirmation: أدخل اسم الحملة الحالي الموضح أدناه في مربع النص للتأكيد
+    scoring_remove_all_campaign_factors_error: فشل حذف عوامل الحملة
+    scoring_remove_all_campaign_factors_success: تم حذف عوامل الحملة بنجاح
+    scoring_remove_all_campaign_factors_title: حذف عوامل الحملة
+    scoring_remove_all_campaign_factors_warning: أنت على وشك حذف جميع عوامل الحملة وجميع الدرجات المرتبطة بها للمستخدمين. هل أنت متأكد أنك تريد تنفيذ هذا الإجراء؟
+    scoring_remove_factor_group_confirmation_content: هل أنت متأكد أنك تريد إزالة مجموعة العوامل '%{group_name}'؟
+    scoring_remove_factor_group_confirmation_title: إزالة مجموعة العوامل
+    scoring_required_error: لا يمكن أن يكون فارغًا
+    scoring_save_all: حفظ الكل
+    scoring_score_range: نطاق الدرجات
+    scoring_score_types_norm_score: الدرجة المعيارية
+    scoring_score_types_percentage: النسبة المئوية
+    scoring_score_types_percentile: الدرجة المئينية
     scoring_score_types_score: نقاط
-    scoring_score_types_zscore: Z Score
-    scoring_scoring: Scoring
-    scoring_scoring_description: Campaign Scoring allows reporting across assessments
-    scoring_select_all: Select all %{n} subjects
-    scoring_select_assessment_first: Select Assessment First
-    scoring_select_factor: Select Factor
-    scoring_show_weightages: Show Weightages
+    scoring_score_types_zscore: درجة Z
+    scoring_scoring: التسجيل
+    scoring_scoring_description: يتيح تسجيل الحملة إعداد تقارير عبر التقييمات
+    scoring_select_all: تحديد جميع المشاركين (%{n})
+    scoring_select_assessment_first: اختر التقييم أولًا
+    scoring_select_factor: اختر العامل
+    scoring_show_weightages: عرض الأوزان
     scoring_subject: الموضوع
-    scoring_subject_list_bulk_mark_finalized: Bulk Mark Finalized
-    scoring_subject_list_bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?
-    scoring_subject_list_bulk_mark_not_finalized: Bulk Mark Not Finalized
-    scoring_subject_list_bulk_mark_not_finalized_confirm: Removing finalize from the selected users will remove the generated report which uses campaign factor for the users. Are you sure you want to proceed?
-    scoring_subject_list_bulk_rescore: Bulk Rescore
-    scoring_subject_list_bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
-    scoring_subject_list_calculated_date: Calculated Date
-    scoring_subject_list_calculation_errors: Calculation Errors
-    scoring_subject_list_export: Export Scorings
-    scoring_subject_list_export_success: Export scores job was scheduled successfully
-    scoring_subject_list_finalized: Finalized
-    scoring_subject_list_finalized_date: Finalized Date
-    scoring_subject_list_import_external_scores: Import External Scorings
-    scoring_subject_list_mark_finalized: Mark Finalized
-    scoring_subject_list_mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?
-    scoring_subject_list_mark_not_finalized: Mark Not Finalized
-    scoring_subject_list_mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
-    scoring_subject_list_push_webhook: Push webhooks
+    scoring_subject_list_bulk_mark_finalized: تعليم كمكتمل بشكل جماعي
+    scoring_subject_list_bulk_mark_finalized_confirm: سيؤدي اعتماد الدرجات للمستخدمين المحددين إلى إنشاء التقرير الذي يستخدم عامل الحملة لهؤلاء المستخدمين. هل أنت متأكد أنك تريد المتابعة؟
+    scoring_subject_list_bulk_mark_not_finalized: تعليم كغير مكتمل بشكل جماعي
+    scoring_subject_list_bulk_mark_not_finalized_confirm: سيؤدي إلغاء الاكتمال عن المستخدمين المحددين إلى إزالة التقرير الذي تم إنشاؤه والذي يستخدم عامل الحملة لهؤلاء المستخدمين. هل أنت متأكد أنك تريد المتابعة؟
+    scoring_subject_list_bulk_rescore: إعادة التقييم بشكل جماعي
+    scoring_subject_list_bulk_rescore_confirm: إعادة تقييم المستخدمين المحددين. هل أنت متأكد أنك تريد المتابعة؟
+    scoring_subject_list_calculated_date: تاريخ الاحتساب
+    scoring_subject_list_calculation_errors: أخطاء الاحتساب
+    scoring_subject_list_export: تصدير نتائج التقييم
+    scoring_subject_list_export_success: تمت جدولة مهمة تصدير الدرجات بنجاح
+    scoring_subject_list_finalized: مكتمل
+    scoring_subject_list_finalized_date: تاريخ الاكتمال
+    scoring_subject_list_import_external_scores: استيراد درجات خارجية
+    scoring_subject_list_mark_finalized: تعليم كمكتمل
+    scoring_subject_list_mark_finalized_confirm: سيؤدي اعتماد درجة المستخدم '%{email}' إلى إنشاء التقرير الذي يستخدم عامل الحملة لهذا المستخدم. هل أنت متأكد أنك تريد المتابعة؟
+    scoring_subject_list_mark_not_finalized: تعليم كغير مكتمل
+    scoring_subject_list_mark_not_finalized_confirm: سيؤدي إلغاء الاكتمال عن المستخدم '%{email}' إلى إزالة التقرير الذي تم إنشاؤه والذي يستخدم عامل الحملة لهذا المستخدم. هل أنت متأكد أنك تريد المتابعة؟
+    scoring_subject_list_push_webhook: إرسال webhooks
     scoring_subject_list_rank: المرتبة
     scoring_subject_list_rescore: إعادة التقييم
-    scoring_subject_list_rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
+    scoring_subject_list_rescore_confirm: إعادة تقييم المستخدم '%{email}'. هل أنت متأكد أنك تريد المتابعة؟
     scoring_supported_only_for_ai_questions: يُسمح بالتسجيل فقط في الأسئلة التي تدعم الذكاء الاصطناعي للعامل المحدد حاليًا.
     scoring_tabs_settings: الإعدادات
-    scoring_tabs_subject_scores: Subject Scores
+    scoring_tabs_subject_scores: درجات المشاركين
     scoring_value_info: يجب أن تكون النتيجة بين %{min} و %{max}.
     scoring_value_out_of_range_err_msg: يجب أن تكون درجة لعبة "%{factor_name}" بين %{min} و %{max}.
-    scoring_variables: Variables
-    scoring_weightages_assessorForms: Assessor Forms
-    scoring_weightages_successful_update: Weightages were updated successfully
-    scoring_weightages_weightages: Weightages
-    scoring_weighted_average: Weighted Average
+    scoring_variables: المتغيرات
+    scoring_weightages_assessorForms: نماذج المقيّمين
+    scoring_weightages_successful_update: تم تحديث الأوزان بنجاح
+    scoring_weightages_weightages: الأوزان
+    scoring_weighted_average: المتوسط المرجّح
     search_admins: البحث عن المسؤولين
     search_campaign: البحث عن حملة
     search_client: البحث عن عميل
@@ -2516,32 +2508,32 @@ ar:
     search_project: البحث عن مشروع
     search_record: البحث بمعرف السجل
     search_user: البحث عن مستخدم
-    seats_label: Seats
-    sec_logo_label: Secondary Logo
-    secondary_logo_alt_text: Secondary Logo Alt-Text
-    secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
-    security_setting_180_days: 180 Days
-    security_setting_30_days: 30 Days
-    security_setting_365_days: 365 Days
-    security_setting_90_days: 90 Days
-    security_setting_attempts_to_lock: Attempts to lock
-    security_setting_auto_unlock_time: Auto unlock time
-    security_setting_disable_password_reuse: Disable password reuse
-    security_setting_disallow_password_login: Disallow password login
-    security_setting_enable_login_with_magic_link: Enable Login with magic link
+    seats_label: المقاعد
+    sec_logo_label: الشعار الثانوي
+    secondary_logo_alt_text: نص بديل للشعار الثانوي
+    secondary_logo_alt_text_required: النص البديل للشعار الثانوي مطلوب
+    security_setting_180_days: 180 يومًا
+    security_setting_30_days: 30 يومًا
+    security_setting_365_days: 365 يومًا
+    security_setting_90_days: 90 يومًا
+    security_setting_attempts_to_lock: محاولات القفل
+    security_setting_auto_unlock_time: وقت إلغاء القفل تلقائيًا
+    security_setting_disable_password_reuse: تعطيل إعادة استخدام كلمة المرور
+    security_setting_disallow_password_login: منع تسجيل الدخول بكلمة المرور
+    security_setting_enable_login_with_magic_link: تمكين تسجيل الدخول عبر رابط سحري
     security_setting_enable_recaptcha: تمكين اختبار إعادة التحقق من التحقق من التحقق من صحة المعلومات (reCAPTCHA)
-    security_setting_enforce_password_policy: Enforce password policy at next sign-in
-    security_setting_enforce_strong: Enforce strong password
-    security_setting_expiration: Password expiration
-    security_setting_lock_account: Lock account
-    security_setting_magic_link_expiry_duration: Magic link expiration duration
-    security_setting_min_length: Minimum password length
-    security_setting_never: Never
-    security_setting_restrict_sequences: Restrict sequential and repetitive characters
-    security_setting_security: Security Settings
-    security_setting_send_unlock_email: Send unlock email
-    security_setting_session_timeout_duration: Session Timeout Duration
-    security_setting_tfa_enabled: Enable Two Factor Authentication
+    security_setting_enforce_password_policy: فرض سياسة كلمة المرور عند تسجيل الدخول التالي
+    security_setting_enforce_strong: فرض كلمة مرور قوية
+    security_setting_expiration: انتهاء صلاحية كلمة المرور
+    security_setting_lock_account: قفل الحساب
+    security_setting_magic_link_expiry_duration: مدة انتهاء صلاحية الرابط السحري
+    security_setting_min_length: الحد الأدنى لطول كلمة المرور
+    security_setting_never: أبدًا
+    security_setting_restrict_sequences: تقييد الأحرف المتسلسلة والمتكررة
+    security_setting_security: إعدادات الأمان
+    security_setting_send_unlock_email: إرسال بريد إلغاء القفل
+    security_setting_session_timeout_duration: مدة انتهاء الجلسة
+    security_setting_tfa_enabled: تمكين المصادقة الثنائية
     security_settings_security_setting: إعدادات الأمان
     select_admin_role: اختر دور المسؤول
     select_assessment_language: تحديد لغة التقييم
@@ -2553,66 +2545,66 @@ ar:
     select_start_time: حدد وقت البدء
     selective_proctoring: المراقبة الانتقائية
     send_email: إرسال بريد إلكتروني
-    send_test_email: Send Test Email
+    send_test_email: إرسال بريد إلكتروني تجريبي
     set_min_max_scores_warning: يرجى تعيين الحد الأدنى والحد الأقصى للدرجات لهذا العامل لتكوين نظام التقييم بالذكاء الاصطناعي.
     settings: الإعدادات
-    settings_admin_roles_confirm_message: Are you sure you want to delete admin role '%{role_name}'?
+    settings_admin_roles_confirm_message: هل أنت متأكد أنك تريد حذف دور المسؤول '%{role_name}'؟
     settings_saved_successfully: تم حفظ الإعدادات بنجاح
-    settings_siem_destination_type: Destination Type
+    settings_siem_destination_type: نوع الوجهة
     settings_siem_destination_types_s3: S3
     settings_siem_destination_types_s3_compatible: S3 Compatible
     settings_siem_enabled: تمكين
-    settings_siem_readable_resource_name: SIEM settings
-    settings_siem_s3_access_key_id: Access Key ID
-    settings_siem_s3_bucket_folder: S3 Bucket Folder
-    settings_siem_s3_bucket_name: S3 Bucket Name
-    settings_siem_s3_endpoint: S3 Endpoint
-    settings_siem_s3_region: S3 Region
-    settings_siem_s3_secret_access_key: Secret Access Key
-    settings_siem_send_test_log: Send Test Log
-    settings_siem_send_test_log_error_message: Test log has not been sent to your bucket, check your settings
-    settings_siem_send_test_log_success_message: Test log has been successfully sent to your bucket
-    settings_skill_aliases_alias: Alias
-    settings_skill_aliases_confirm_message: Are you sure you want to delete skill alias '%{skill_alias}'?
-    settings_skill_aliases_create: Add Skill Alias
-    settings_skill_aliases_select_skill: Select Skill
+    settings_siem_readable_resource_name: إعدادات SIEM
+    settings_siem_s3_access_key_id: معرّف مفتاح الوصول
+    settings_siem_s3_bucket_folder: مجلد S3 Bucket
+    settings_siem_s3_bucket_name: اسم S3 Bucket
+    settings_siem_s3_endpoint: نقطة نهاية S3
+    settings_siem_s3_region: منطقة S3
+    settings_siem_s3_secret_access_key: مفتاح الوصول السري
+    settings_siem_send_test_log: إرسال سجل اختبار
+    settings_siem_send_test_log_error_message: لم يتم إرسال سجل الاختبار إلى الحاوية الخاصة بك، تحقق من إعداداتك
+    settings_siem_send_test_log_success_message: تم إرسال سجل الاختبار إلى الحاوية الخاصة بك بنجاح
+    settings_skill_aliases_alias: الاسم المستعار
+    settings_skill_aliases_confirm_message: هل أنت متأكد أنك تريد حذف الاسم المستعار للمهارة '%{skill_alias}'؟
+    settings_skill_aliases_create: إضافة اسم مستعار للمهارة
+    settings_skill_aliases_select_skill: اختر المهارة
     settings_skill_aliases_skill: مهارة
-    settings_skill_aliases_skill_alias: Skill Alias
-    settings_skill_aliases_successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
-    settings_tabs_admin_roles: Admin Roles
+    settings_skill_aliases_skill_alias: الاسم المستعار للمهارة
+    settings_skill_aliases_successful_remove: تم حذف الاسم المستعار للمهارة '%{skill_alias}' بنجاح.
+    settings_tabs_admin_roles: أدوار المسؤول
     settings_tabs_feature_flags: أعلام الميزات
     settings_tabs_siem: SIEM
-    settings_tabs_skill_aliases: Skill Aliases
-    sheets_column_add_column: Add Column
-    sheets_column_not_allowed_for_dashboard_use: For column to be used in dashboard it should be less than 64 characters
-    sheets_column_reorder: Reorder
-    sheets_column_save_order: Save order
+    settings_tabs_skill_aliases: الأسماء المستعارة للمهارات
+    sheets_column_add_column: إضافة عمود
+    sheets_column_not_allowed_for_dashboard_use: لاستخدام العمود في لوحة المعلومات يجب أن يكون أقل من 64 حرفًا
+    sheets_column_reorder: إعادة الترتيب
+    sheets_column_save_order: حفظ الترتيب
     sheets_drawers_add_edit_cancelText: 'إلغاء '
-    sheets_drawers_add_edit_markdown_preview: Preview
-    sheets_drawers_add_edit_markdown_title: Markdown
+    sheets_drawers_add_edit_markdown_preview: معاينة
+    sheets_drawers_add_edit_markdown_title: ماركداون
     sheets_drawers_add_edit_save: حفظ
-    sheets_drawers_add_edit_saving: Saving
-    sheets_drawers_add_edit_success_message_add: New record added
-    sheets_drawers_add_edit_success_message_edit: Record updated
-    sheets_drawers_add_edit_title_add: Add Sheet record
-    sheets_drawers_add_edit_title_edit: Edit Sheet Row record
-    sheets_drawers_add_edit_validations_required_email: Please enter email
-    sheets_drawers_view_campaign_title: Campaign level record
-    sheets_drawers_view_project_title: Project level record
-    sheets_drawers_view_title: Sheet Row record details
-    sheets_list_header_add_record: Add record
-    sheets_list_header_search_record: Search records
+    sheets_drawers_add_edit_saving: جارٍ الحفظ
+    sheets_drawers_add_edit_success_message_add: تمت إضافة سجل جديد
+    sheets_drawers_add_edit_success_message_edit: تم تحديث السجل
+    sheets_drawers_add_edit_title_add: إضافة سجل Sheet
+    sheets_drawers_add_edit_title_edit: تعديل سجل صف Sheet
+    sheets_drawers_add_edit_validations_required_email: يرجى إدخال البريد الإلكتروني
+    sheets_drawers_view_campaign_title: سجل على مستوى الحملة
+    sheets_drawers_view_project_title: سجل على مستوى المشروع
+    sheets_drawers_view_title: تفاصيل سجل صف Sheet
+    sheets_list_header_add_record: إضافة سجل
+    sheets_list_header_search_record: البحث في السجلات
     sheets_modals_delete_records_cancelText: 'إلغاء '
-    sheets_modals_delete_records_content: Are you sure you want to delete the selected {{count}} records?
+    sheets_modals_delete_records_content: هل أنت متأكد أنك تريد حذف السجلات المحددة وعددها {{count}}؟
     sheets_modals_delete_records_okText: نعم، احذف
-    sheets_modals_delete_records_successMessage: "{{count}} records were deleted successfully."
-    sheets_modals_delete_records_title: Delete {{count}} records
+    sheets_modals_delete_records_successMessage: تم حذف {{count}} سجلًا بنجاح.
+    sheets_modals_delete_records_title: حذف {{count}} سجلًا
     sheets_modals_remove_columns_cancelText: 'إلغاء '
-    sheets_modals_remove_columns_content: Deleting a column ({{columns}}) will remove the data in this column for all rows
+    sheets_modals_remove_columns_content: سيؤدي حذف عمود ({{columns}}) إلى إزالة البيانات في هذا العمود لجميع الصفوف
     sheets_modals_remove_columns_okText: نعم، احذف
-    sheets_modals_remove_columns_successMessage: "{{count}} records deleted"
-    sheets_modals_remove_columns_title: Delete columns
-    sheets_tabs_rows: Rows
+    sheets_modals_remove_columns_successMessage: تم حذف {{count}} سجلًا
+    sheets_modals_remove_columns_title: حذف الأعمدة
+    sheets_tabs_rows: الصفوف
     sheets_tabs_settings: الإعدادات
     show_all: عرض الكل
     show_all_assessment_responses: عرض جميع ردود التقييم
@@ -2625,7 +2617,7 @@ ar:
     siem: SIEM
     simulation: محاكاة
     simulation_assessment: تقييم المحاكاة
-    skill_aliases: Skill Aliases
+    skill_aliases: الأسماء المستعارة للمهارات
     skill_rater: مقيّم المهارات
     skills: المهارات
     skills_applicable_proficiency_levels: مستويات الكفاءة المطبقة
@@ -2640,7 +2632,7 @@ ar:
     skills_import_action_skills_translations_title: استيراد ترجمات المهارات
     skills_import_download_example_csv: تنزيل مثال csv
     skills_import_info_msg: تم وضع الملف الذي تم تحميله في قائمة الانتظار للاستيراد. يرجى التحقق من الحالة في الإشعارات.
-    skills_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    skills_import_success_msg: تمت إضافة الملف المُحمّل إلى قائمة انتظار الاستيراد. يرجى التحقق من الحالة في الإشعارات.
     skills_skill_details: تفاصيل المهارة
     skills_skill_translations: ترجمات المهارات
     skills_taxonomy: تصنيف المهارات
@@ -2652,90 +2644,90 @@ ar:
     skillvue: سكيلفيو
     skillvue_apiKey: مفتاح API
     skillvue_apiKeyRequired: مفتاح API مطلوب
-    skillvue_assessment: تقييم Skillvue
+    skillvue_assessment: تقييم سكيلفيو
     skip_assessment_level_checks: تخطي فحوصات نظام مستويات التقييم
     slot_name: اسم الماكينة
     sms_contact: الاتصال بالرسائل النصية القصيرة
     sms_histories: تواريخ الرسائل النصية القصيرة
-    sms_histories_columns_mobile_no: Mobile No
-    sms_histories_columns_price: Price
-    sms_histories_columns_segment_length: Segment Length
-    sms_histories_columns_sent_at: Sent At
-    sms_histories_drawer_title: SMS Details
-    sms_histories_history: History
+    sms_histories_columns_mobile_no: رقم الجوال
+    sms_histories_columns_price: السعر
+    sms_histories_columns_segment_length: طول المقطع
+    sms_histories_columns_sent_at: وقت الإرسال
+    sms_histories_drawer_title: تفاصيل الرسائل النصية القصيرة
+    sms_histories_history: السجل
     sms_histories_statuses_accepted: قبلت
-    sms_histories_statuses_delivered: Delivered
+    sms_histories_statuses_delivered: تم التسليم
     sms_histories_statuses_failed: فشل
-    sms_histories_statuses_queued: Queued
+    sms_histories_statuses_queued: في قائمة الانتظار
     sms_histories_statuses_scheduled: المقرر
-    sms_histories_statuses_sent: Sent
+    sms_histories_statuses_sent: تم الإرسال
     sms_histories_statuses_undelivered: لم يتم تسليمها
     sms_invites: الدعوات عبر الرسائل النصية القصيرة
-    sms_invites_actions_add: Add SMS Contact
+    sms_invites_actions_add: إضافة جهة اتصال SMS
     sms_invites_columns_created_at: تم إنشاؤها في
     sms_invites_columns_created_by: تم إنشاؤه بواسطة
-    sms_invites_columns_mobile_no: Mobile No
-    sms_invites_contacts: Contacts
+    sms_invites_columns_mobile_no: رقم الجوال
+    sms_invites_contacts: جهات الاتصال
     sms_invites_form_modal_locale: موقع
-    sms_invites_form_modal_mobile_no: Mobile No
-    sms_invites_form_modal_title: Sms Invite
+    sms_invites_form_modal_mobile_no: رقم الجوال
+    sms_invites_form_modal_title: دعوة SMS
     sms_invites_import_download_example_csv: تنزيل مثال csv
-    sms_invites_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
-    sms_invites_import_title: SMS Invite import
-    sms_invites_messages_delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
-    sms_invites_messages_delete_success: SMS Invite was deleted successfully
-    sms_invites_send_sms_fields_link_expiry: Link Expiry
+    sms_invites_import_success_msg: تمت إضافة الملف المُحمّل إلى قائمة انتظار الاستيراد. يرجى التحقق من الحالة في الإشعارات.
+    sms_invites_import_title: استيراد دعوات SMS
+    sms_invites_messages_delete_confirm_text: هل أنت متأكد أنك تريد إزالة دعوة SMS لرقم الجوال %{mobile_no}؟
+    sms_invites_messages_delete_success: تم حذف دعوة SMS بنجاح
+    sms_invites_send_sms_fields_link_expiry: انتهاء صلاحية الرابط
     sms_invites_send_sms_fields_locale: موقع
     sms_invites_send_sms_fields_message: الرسالة
-    sms_invites_send_sms_fields_statuses: Statuses
+    sms_invites_send_sms_fields_statuses: الحالات
     sms_invites_send_sms_fields_users: المستخدمون
-    sms_invites_send_sms_modal_btn_name: Send SMS
-    sms_invites_send_sms_modal_title: Send SMS
+    sms_invites_send_sms_modal_btn_name: إرسال SMS
+    sms_invites_send_sms_modal_title: إرسال SMS
     sms_invites_send_sms_pipetext_details: |-
-      {{{first_name}}} - Recipient First Name
+      {{{first_name}}} - الاسم الأول للمستلم
       <br />
-      {{{last_name}}} - Recipient Last Name
+      {{{last_name}}} - اسم العائلة للمستلم
       <br />
-      {{{invite_url}}} - Registration Link
-    sms_invites_send_sms_segment_length_msg: Estimated number of segments for this message is %{segment_length}.
-    sms_invites_send_sms_segment_length_range_msg: Estimated number of segments for this message is between %{min_segment_length} and %{max_segment_length}.
-    sms_invites_statuses_all: All
+      {{{invite_url}}} - رابط التسجيل
+    sms_invites_send_sms_segment_length_msg: العدد التقديري لمقاطع هذه الرسالة هو %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: العدد التقديري لمقاطع هذه الرسالة يتراوح بين %{min_segment_length} و %{max_segment_length}.
+    sms_invites_statuses_all: الكل
     sms_invites_statuses_failed: فشل
-    sms_invites_statuses_invited: Invited
-    sms_invites_statuses_not_invited: Not Invited
-    sms_invites_statuses_registered: Registered
-    sms_invites_tools_export: Export SMS Contacts
-    sms_invites_tools_import: Import SMS Contacts
-    sms_invites_tools_send_sms: Send SMS
+    sms_invites_statuses_invited: تمت الدعوة
+    sms_invites_statuses_not_invited: لم تتم الدعوة
+    sms_invites_statuses_registered: مسجّل
+    sms_invites_tools_export: تصدير جهات اتصال SMS
+    sms_invites_tools_import: استيراد جهات اتصال SMS
+    sms_invites_tools_send_sms: إرسال SMS
     sms_notification: إشعار الرسائل النصية القصيرة
     sms_notification_disabled_by_client: تم تعطيل إشعار الرسائل القصيرة من قبل العميل
     sms_records_columns_message: الرسالة
     smtp_settings: إعدادات SMTP
-    smtp_settings_authentication: Authentication
-    smtp_settings_authentication_type: Authentication Type
+    smtp_settings_authentication: المصادقة
+    smtp_settings_authentication_type: نوع المصادقة
     smtp_settings_authentication_types_cram_md5: cram md5
     smtp_settings_authentication_types_login: تسجيل الدخول
-    smtp_settings_authentication_types_plain: Plain
+    smtp_settings_authentication_types_plain: عادي
     smtp_settings_enabled: تمكين
-    smtp_settings_encryption: Encryption
+    smtp_settings_encryption: التشفير
     smtp_settings_encryption_types_none: اي
     smtp_settings_encryption_types_ssl: SSL
     smtp_settings_encryption_types_tls: TLS
-    smtp_settings_from_email: From email
-    smtp_settings_from_name: From name
-    smtp_settings_host: Host
+    smtp_settings_from_email: من البريد الإلكتروني
+    smtp_settings_from_name: من الاسم
+    smtp_settings_host: المضيف
     smtp_settings_password: كلمة المرور
-    smtp_settings_port: Port
-    smtp_settings_send_test_email: Send Test Email
+    smtp_settings_port: المنفذ
+    smtp_settings_send_test_email: إرسال بريد إلكتروني تجريبي
     smtp_settings_smtp: SMTP
     smtp_settings_test_email_modal_input_hint: لن يتم حفظ إعداد البريد الإلكتروني الخاص بك حتى يتم إرسال البريد الإلكتروني الاختباري بنجاح.
     smtp_settings_test_email_modal_input_placeholder: معرف البريد الإلكتروني الاختباري
     smtp_settings_test_email_modal_title: معرف البريد الإلكتروني الاختباري
-    smtp_settings_test_modal_success_message: Test Email sent to %{email_id}.
-    smtp_settings_test_modal_title: Test SMTP setting
-    smtp_settings_update_success_msg: SMTP setting was updated successfully.
-    smtp_settings_use_sender_verification: Use sender verification
-    smtp_settings_user_name: User Name
+    smtp_settings_test_modal_success_message: تم إرسال بريد إلكتروني تجريبي إلى %{email_id}.
+    smtp_settings_test_modal_title: اختبار إعداد SMTP
+    smtp_settings_update_success_msg: تم تحديث إعداد SMTP بنجاح.
+    smtp_settings_use_sender_verification: استخدام التحقق من المرسل
+    smtp_settings_user_name: اسم المستخدم
     specialty_questions: أسئلة متخصصة
     sso_email_mismatch: أنت مسجل الدخول إلى حساب آخر لدى مزود الهوية. يرجى تسجيل الخروج من حسابك لدى مزود الهوية ومحاولة الدخول مرة أخرى.
     sso_enforced: تفعيل تسجيل الدخول الموحد (SSO)
@@ -2798,20 +2790,20 @@ ar:
     stats_users_date_presets_last_week: الأسبوع الماضي
     stats_users_date_presets_today: اليوم
     stats_users_date_presets_yesterday: أمس
-    stats_users_y_title: Number of Users
+    stats_users_y_title: عدد المستخدمين
     status_active: نشط
     status_archived: المؤرشفه
     status_details: تفاصيل الحالة
     statuses_accepted: قبلت
-    statuses_cancelled: Cancelled
+    statuses_cancelled: أُلغي
     statuses_late_cancelled: تم الإلغاء في وقت متأخر
     statuses_late_rescheduled: إعادة الجدولة المتأخرة
-    statuses_pending: Pending
-    statuses_requested_cancellation: Requested Cancellation
-    statuses_requested_cancellation_rejected: Cancellation Rejected
-    statuses_requested_rescheduling: Requested Rescheduling
-    statuses_requested_rescheduling_rejected: Rescheduling Rejected
-    statuses_rescheduled: Rescheduled
+    statuses_pending: قيد الانتظار
+    statuses_requested_cancellation: طلب إلغاء
+    statuses_requested_cancellation_rejected: تم رفض الإلغاء
+    statuses_requested_rescheduling: طلب إعادة جدولة
+    statuses_requested_rescheduling_rejected: تم رفض إعادة الجدولة
+    statuses_rescheduled: أُعيدت جدولته
     statuses_scheduled: المقرر
     steps_basic_information: المعلومات الأساسية
     steps_facilitators: الميسرين
@@ -2819,11 +2811,11 @@ ar:
     steps_invite_subjects: دعوة المشاركين
     steps_send_invitations: إرسال الدعوات
     structured_learning: التعلم الرسمي [10]
-    sub_factor_questions: Questions of other Factors (Average)
-    sub_factor_questions_sum: Questions of other Factors (SUM)
-    sub_factors_average: Weighted Average of Factors
-    sub_factors_conditional_average: Conditional Weighted Average of Factors
-    sub_factors_sum: Weighted Sum of Factors
+    sub_factor_questions: أسئلة العوامل الأخرى (المتوسط)
+    sub_factor_questions_sum: أسئلة العوامل الأخرى (المجموع)
+    sub_factors_average: المتوسط المرجّح للعوامل
+    sub_factors_conditional_average: المتوسط المرجّح المشروط للعوامل
+    sub_factors_sum: المجموع المرجّح للعوامل
     subdomain: المجال الفرعي
     subdomain_admin_keyword: لا يمكن استخدام نمط النطاق الفرعي المحجوز للمسؤول
     subdomain_invalid_format: تنسيق النطاق الفرعي غير صحيح.
@@ -2832,33 +2824,33 @@ ar:
     subject: الموضوع
     subject_can_access_reports: يمكن للموضوع الوصول إلى تقاريرهم
     subject_email: بريد المشارك الإلكتروني
-    subject_invite_description: This message will be sent to invite subjects to participate in the assessment
-    subject_invite_name: Subject Invite
+    subject_invite_description: ستُرسل هذه الرسالة لدعوة المشاركين للمشاركة في التقييم
+    subject_invite_name: دعوة المشارك
     subject_part_of_other_invite: الموضوع مع البريد الإلكتروني %{user_email} تمت دعوته بالفعل إلى "%{workshop_invite_name}"
     subject_placeholder: البحث عن مشارك...
-    subject_reminder_description: Message sent to each participant to remind them to participate in the assessment
-    subject_reminder_name: Subject Reminder
-    subject_reminder_rule_description: Specify rules for automatically scheduling when an invitation is scheduled
-    subject_reminder_rule_name: Subject Reminder Rules
-    subject_report_ready_description: This message is sent to a subject once their report is ready
-    subject_report_ready_name: Subject Report Ready
+    subject_reminder_description: رسالة تُرسل لكل مشارك لتذكيره بالمشاركة في التقييم
+    subject_reminder_name: تذكير المشارك
+    subject_reminder_rule_description: حدّد القواعد الخاصة بالجدولة التلقائية عند جدولة دعوة
+    subject_reminder_rule_name: قواعد تذكير المشارك
+    subject_report_ready_description: تُرسل هذه الرسالة إلى المشارك بمجرد أن يصبح تقريره جاهزًا
+    subject_report_ready_name: جاهزية تقرير المشارك
     subjects_title: الموضوعات
     submenu_options_option_one: الخيار 1
     submenu_options_option_title: البند 1
     submenu_options_option_two: الخيار 2
     success_call_send_invitation: هل ترغب في إرسال الدعوات؟
-    success_color: Success Color
+    success_color: لون النجاح
     success_ok: نعم
     success_skip: تخطي الآن
     success_title: تم إنشاء مراكز التقييم
-    success_update: Design Settings were saved successfully
+    success_update: تم حفظ إعدادات التصميم بنجاح
     suitability_id: رقم الملاءمة
     superadmin_use_root_domain: يجب على المسؤولين الرئيسيين تسجيل الدخول عبر النطاق الرئيسي
     switch_client: تبديل العميل
     system_prompt: موجه النظام
     tab_text_one: قائمة الطعام
     tab_text_two: القائمة الفرعية
-    table_more_actions: More actions
+    table_more_actions: المزيد من الإجراءات
     tabs_results: النتائج
     tabs_settings: الإعدادات
     target_job_role: الوظيفة المستهدفة
@@ -2904,19 +2896,19 @@ ar:
     threesixty_campaigns_mail_history_subject: الموضوع
     threesixty_campaigns_manage_assessment: تقييم
     threesixty_campaigns_manage_dimension: الأبعاد
-    threesixty_campaigns_manage_manage_relationships: Manage Relationships...
+    threesixty_campaigns_manage_manage_relationships: إدارة العلاقات...
     threesixty_campaigns_manage_report: تقرير
     threesixty_campaigns_menu_datasheet_title: ورقة البيانات
-    threesixty_campaigns_menu_messages_title: Messages
+    threesixty_campaigns_menu_messages_title: الرسائل
     threesixty_campaigns_menu_participants_title: المشاركون
     threesixty_campaigns_menu_report_menu_report_approval_title: إعدادات الموافقة على التقارير
-    threesixty_campaigns_menu_report_menu_report_options_title: Report Options
+    threesixty_campaigns_menu_report_menu_report_options_title: خيارات التقرير
     threesixty_campaigns_menu_report_title: تقرير
-    time_label: Time
-    time_zone: Time Zone
+    time_label: الوقت
+    time_zone: المنطقة الزمنية
     timed_label: 'الرابط: %{time_text}'
     timelines: الجداول الزمنية
-    times: times
+    times: مرات
     timezone: المنطقة الزمنية
     timezone_label: المنطقة الزمنية
     timing: التوقيت
@@ -2932,21 +2924,21 @@ ar:
     toolbar_text_replaced: تم استبدال النص!
     toolbar_what_changed_and_why: ما الذي تغير ولماذا
     tools: الأدوات
-    topics_label: Events
-    topics_list_assessment_assigned: Assessment Assigned
-    topics_list_assessment_completed: Assessment Completed
+    topics_label: الأحداث
+    topics_list_assessment_assigned: تم تعيين تقييم
+    topics_list_assessment_completed: اكتمل التقييم
     topics_list_assessment_raw_response: تقييم الردود الأولية
-    topics_list_assessment_started: Assessment Started
-    topics_list_assessment_timeout: Assessment Timeout
-    topics_list_campaign_results_available: Campaign Results Available
+    topics_list_assessment_started: بدأ التقييم
+    topics_list_assessment_timeout: انتهت مهلة التقييم
+    topics_list_campaign_results_available: نتائج الحملة متاحة
     topics_list_campaign_user_assessment_summary: ملخص تقييم مستخدم الحملة
-    topics_list_campaign_user_status: Campaign User Status
+    topics_list_campaign_user_status: حالة مستخدم الحملة
     topics_list_report_available: التقرير متاح
-    topics_list_results_available: Results Available
-    topics_list_scheduling_cancelled: Scheduling Cancelled
-    topics_list_scheduling_invited: Scheduling Invited
-    topics_list_scheduling_rescheduled: Scheduling Rescheduled
-    topics_list_scheduling_scheduled: Scheduling Scheduled
+    topics_list_results_available: النتائج متاحة
+    topics_list_scheduling_cancelled: تم إلغاء الجدولة
+    topics_list_scheduling_invited: تمت دعوة الجدولة
+    topics_list_scheduling_rescheduled: أُعيدت الجدولة
+    topics_list_scheduling_scheduled: تمت الجدولة
     topics_list_workshop_attendance_status: حالة الحضور في ورشة العمل
     transcription_record_not_found: لم يتم العثور على سجل النسخ
     transcription_schedule_failed: فشل جدولة مهمة النسخ
@@ -2989,7 +2981,7 @@ ar:
     user_report_events: أحداث تقارير المستخدم
     user_report_id: رقم تقرير المستخدم
     user_result_validity_in_days: صلاحية النتيجة بالأيام
-    username_label: User Name
+    username_label: اسم المستخدم
     username_name: اسم المستخدم
     users: المستخدمون
     users_modals_download_idp_reports_error: فشل جدولة مهمة تقارير IDP للتنزيل الجماعي فشلت مهمة تقارير IDP المجمعة.
@@ -3006,25 +2998,25 @@ ar:
     video_call_recording_scope: تمكين تسجيل الفيديو لجميع الحملات الجديدة
     video_call_type_custom: إنشائي
     video_call_type_internal: داخلي
-    video_call_type_label: Add Video Call
+    video_call_type_label: إضافة مكالمة فيديو
     video_call_type_none: اي
     view_licenses: عرض التراخيص
     visual_header_visibility: رؤية رأس العرض
     wait_for_upload_completion: يرجى الانتظار حتى ينتهي تحميل جميع الملفات
     waiting: انتظار
-    warning_color: Warning Color
+    warning_color: لون التحذير
     watermark_content: محتوى العلامة المائية
     watermark_info: إذا لم تضف أي محتوى، فسيظهر البريد الإلكتروني للمستخدم كعلامة مائية افتراضيًا. يمكنك استخدام أي من النصوص التالية -<br/> {{id}} - معرف المشارك </br> {{first_name}} - الاسم الأول للمشارك </br> {{last_name}} - الاسم الأخير للمشارك </br> {{email}} - البريد الإلكتروني للمشارك
-    webhook_delete_success: Webhook settings was deleted successfully
+    webhook_delete_success: تم حذف إعدادات Webhook بنجاح
     weight: الوزن
-    welcome_message_description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
-    welcome_message_name: Welcome Message
+    welcome_message_description: ستظهر هذه الرسالة للمشاركين عند تسجيل الدخول لبدء التقييم أو عرض قائمة مهامهم
+    welcome_message_name: رسالة الترحيب
     what_to_look_for: ما الذي يجب البحث عنه
     what_to_look_for_placeholder: دليل على السلوكيات أو الإجراءات أو النتائج التي تثبت هذا العامل
     words: الكلمات
-    workshop_actions_remove_workshop: Workshop Removed Successfully
+    workshop_actions_remove_workshop: تمت إزالة ورشة العمل بنجاح
     workshop_statuses_closed: مغلق
-    workshop_statuses_open: Open
+    workshop_statuses_open: مفتوح
     workshops: ورش العمل
     writing_assistant_not_configured: مساعد الكتابة غير مهيأ
     x_axis_interval_label: فاصل المحور السيني
