@@ -456,6 +456,7 @@ en:
     copy_image_url: Copy Image URL
     copy_text: Text
     copy_to_all: Copy to other Assessment Centers
+    copy_report_scheduled: Report copy job has been scheduled.
     copy_url: Copy URL
     country: Country
     course: Course

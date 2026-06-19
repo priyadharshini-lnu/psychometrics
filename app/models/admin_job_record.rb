@@ -125,7 +125,8 @@ class AdminJobRecord < ApplicationRecord
     regenerate_assessment_transcriptions: 99,
     bulk_export_raw_factor_scores: 100,
     bulk_export_norm_factor_scores: 101,
-    export_audit_logs: 102
+    export_audit_logs: 102,
+    copy_report: 103
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

@@ -116,7 +116,7 @@ module Administration
         redirect_via_handoff(target_user, client, impersonated_by: impersonator, on_error: lambda {
           flash[:alert] = I18n.t('admin.no_client_access')
           redirect_to administration_client_selection_path
-        })
+        }, locale: LocaleValidator.sanitize(cookies[:locale]))
       end
 
       def requires_sso_login?(client, spoofing, impersonator)

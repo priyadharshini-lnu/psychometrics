@@ -115,14 +115,19 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
         }
       }
 
-      post "/api/v2/administration/reports/#{report.id}/copy",
-           params: body.to_json,
-           headers: { 'Content-Type' => 'application/vnd.api+json' }
+      expect do
+        post "/api/v2/administration/reports/#{report.id}/copy",
+             params: body.to_json
+      end.to change(AdminJobRecord, :count).by(1)
 
       expect(response).to have_http_status(:ok)
-      report_response = JSON.parse(response.body)['data']
-      expect(report_response).to have_key('id')
-      expect(report_response).to have_attribute(:name).with_value('Copy of First Report')
+      expect(JSON.parse(response.body)).to eq('ok')
+
+      job = AdminJobRecord.order(:created_at).last
+      expect(job.operation).to eq('copy_report')
+      expect(job.data['report_id']).to eq(report.id)
+      expect(job.data['owner_id']).to eq(client.id)
+      expect(job.data['name']).to eq('Copy of First Report')
     end
   end
 

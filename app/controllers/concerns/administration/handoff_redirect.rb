@@ -6,7 +6,7 @@ module Administration
 
     private
 
-    def redirect_via_handoff(target_user, client, impersonated_by: nil, on_error: nil)
+    def redirect_via_handoff(target_user, client, impersonated_by: nil, on_error: nil, locale: nil)
       tte = client.root
 
       result = AdminAuth::GenerateHandoffToken.call(target_user, tte, impersonated_by: impersonated_by)
@@ -20,10 +20,12 @@ module Administration
         return
       end
 
+      handoff_params = { handoff_token: result[:ok] }
+      handoff_params[:locale] = locale if locale.present?
       handoff_url = AdminSubdomain.admin_url_for(
         tte,
         path: '/administration/sign_in',
-        params: { handoff_token: result[:ok] }
+        params: handoff_params
       )
 
       Utility::Url.redirect_to_safe_internal_url(self, handoff_url, allow_other_host: true)

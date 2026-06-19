@@ -10,6 +10,8 @@ module Administration
       return if params[:handoff_token].blank?
       return unless Current.client_admin_context?
 
+      cookies[:locale] = LocaleValidator.sanitize(params[:locale]) if params[:locale].present?
+
       result = AdminAuth::ConsumeHandoffToken.call(
         params[:handoff_token],
         expected_client_id: Current.client.id
@@ -99,7 +101,7 @@ module Administration
     end
 
     def assessor_highest_role?(highest_role)
-      [Membership::CLIENT_ASSESSOR_ROLE, 'assessor'].include?(highest_role)
+      ['assessor'].include?(highest_role)
     end
 
     def setup_client_admin_after_password_login(user)

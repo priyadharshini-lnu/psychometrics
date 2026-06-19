@@ -2,7 +2,7 @@
 
 module AdminAuth
   class HighestClientRoles
-    ROLE_PRIORITY = %w[client_admin project_admin campaign_admin client_assessor].freeze
+    ROLE_PRIORITY = %w[client_admin project_admin campaign_admin].freeze
 
     def self.for_user(user, clients)
       return {} if user.blank? || clients.blank?
