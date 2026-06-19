@@ -3,8 +3,6 @@
 module AdminAuth
   class ResolveClientAccess < BaseCommand
     ADMIN_ROLES = %w[client_admin project_admin campaign_admin].freeze
-    ENTRY_ROLES = (ADMIN_ROLES + [Membership::CLIENT_ASSESSOR_ROLE]).freeze
-    ROLE_PRIORITY = (ADMIN_ROLES + [Membership::CLIENT_ASSESSOR_ROLE]).freeze
 
     def initialize(user, client)
       @user = user
@@ -38,7 +36,7 @@ module AdminAuth
 
         return {
           has_access: memberships.any?,
-          highest_role: ROLE_PRIORITY.find { |r| roles.include?(r) },
+          highest_role: ADMIN_ROLES.find { |r| roles.include?(r) },
           roles: roles,
           memberships: memberships
         }
@@ -50,7 +48,7 @@ module AdminAuth
       has_assessor_role = user_is_assessor_for_client?
       roles << 'assessor' if has_assessor_role
 
-      highest_role = ROLE_PRIORITY.find { |r| roles.include?(r) }
+      highest_role = ADMIN_ROLES.find { |r| roles.include?(r) }
       highest_role ||= 'assessor' if has_assessor_role
 
       {
@@ -65,7 +63,7 @@ module AdminAuth
       user.memberships.
         joins('LEFT JOIN campaigns ON memberships.campaign_id = campaigns.id').
         where(admin_membership_condition).
-        where(role: ENTRY_ROLES)
+        where(role: ADMIN_ROLES)
     end
 
     def admin_membership_condition

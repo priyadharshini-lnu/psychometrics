@@ -117,7 +117,8 @@ class AdminJob < ApplicationJob
     regenerate_assessment_transcriptions: AdminJobs::RegenerateAssessmentTranscriptionsJob,
     bulk_export_raw_factor_scores: AdminJobs::BulkExportRawFactorScores,
     bulk_export_norm_factor_scores: AdminJobs::BulkExportNormFactorScores,
-    export_audit_logs: AdminJobs::ExportAuditLogs
+    export_audit_logs: AdminJobs::ExportAuditLogs,
+    copy_report: AdminJobs::CopyReport
   }.freeze
 
   def perform(record, stage = nil)
