@@ -454,9 +454,9 @@ en:
     copy_ai_artifacts: Copy AI Artifacts
     copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
     copy_image_url: Copy Image URL
+    copy_report_scheduled: Report copy job has been scheduled.
     copy_text: Text
     copy_to_all: Copy to other Assessment Centers
-    copy_report_scheduled: Report copy job has been scheduled.
     copy_url: Copy URL
     country: Country
     course: Course

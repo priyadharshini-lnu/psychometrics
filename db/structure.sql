@@ -2590,7 +2590,6 @@ CREATE TABLE public.campaign_options (
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
     minimum_upload_speed integer,
     minimum_download_speed integer,
-    enable_mobile_proctoring boolean DEFAULT false,
     face_detection_enabled boolean DEFAULT false NOT NULL,
     minimum_face_detection_ratio integer DEFAULT 85,
     phrase_verification_enabled boolean DEFAULT false NOT NULL,
