@@ -117,7 +117,8 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
 
       expect do
         post "/api/v2/administration/reports/#{report.id}/copy",
-             params: body.to_json
+             params: body.to_json,
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
       end.to change(AdminJobRecord, :count).by(1)
 
       expect(response).to have_http_status(:ok)
