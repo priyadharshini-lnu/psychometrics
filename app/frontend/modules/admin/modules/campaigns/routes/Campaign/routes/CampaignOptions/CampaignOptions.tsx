@@ -92,8 +92,8 @@ const CampaignOptions: React.FC<Props> = ({
   }, [options.watermarkContent])
 
   useEffect(() => {
-    setDownloadSpeed(options.minimumDownloadSpeed || options.calculatedMinimumDownloadSpeed)
-    setUploadSpeed(options.minimumUploadSpeed || options.calculatedMinimumUploadSpeed)
+    setDownloadSpeed(options.minimumDownloadSpeed ?? options.calculatedMinimumDownloadSpeed)
+    setUploadSpeed(options.minimumUploadSpeed ?? options.calculatedMinimumUploadSpeed)
   }, [options.calculatedMinimumDownloadSpeed, options.calculatedMinimumUploadSpeed])
 
   useEffect(() => {
