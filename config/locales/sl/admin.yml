@@ -181,7 +181,6 @@ sl:
     assessor_form: Obrazec ocenjevalca
     assessor_ids_label: Ocenjevalcev
     assessor_last_name: Priimek ocenjevalca
-    assessor_modals_create_assessor_title: Dodajanje ocenjevalca
     assessor_modals_import_body: Oglejte si funkcijo izvoza, da izvlečete predlogo, ki jo lahko uporabite za uvoz tukaj.
     assessor_modals_import_title: Ocenjevalci uvoza
     assessor_overview: Pregled

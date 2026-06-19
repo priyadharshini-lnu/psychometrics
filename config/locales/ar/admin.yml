@@ -178,7 +178,6 @@ ar:
     assessor_form: نموذج المقيم
     assessor_ids_label: المقيمون
     assessor_last_name: الاسم الأخير للمقيم
-    assessor_modals_create_assessor_title: إضافة مقيم
     assessor_modals_import_body: الرجوع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
     assessor_modals_import_title: استيراد المقيمين
     assessor_overview: لمحة عامة

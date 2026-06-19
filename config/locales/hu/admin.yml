@@ -182,7 +182,6 @@ hu:
     assessor_form: Értékelő űrlap
     assessor_ids_label: Értékelők
     assessor_last_name: Az értékelő vezetékneve
-    assessor_modals_create_assessor_title: Értékelő hozzáadása
     assessor_modals_import_body: Az exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
     assessor_modals_import_title: Értékelők importálása
     assessor_overview: Áttekintés

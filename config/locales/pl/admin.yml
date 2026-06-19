@@ -180,7 +180,6 @@ pl:
     assessor_form: Formularz asesora
     assessor_ids_label: Asesorów
     assessor_last_name: Nazwisko asesora
-    assessor_modals_create_assessor_title: Dodaj asesora
     assessor_modals_import_body: Zapoznaj się z funkcją eksportu, aby wyodrębnić szablon, którego można użyć do importowania tutaj.
     assessor_modals_import_title: Asesorzy importowi
     assessor_overview: Przegląd

@@ -182,7 +182,6 @@ vi:
     assessor_form: Biểu mẫu đánh giá viên
     assessor_ids_label: Đánh giá viên
     assessor_last_name: Họ của giám định viên
-    assessor_modals_create_assessor_title: Thêm đánh giá viên
     assessor_modals_import_body: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
     assessor_modals_import_title: Giám định viên nhập khẩu
     assessor_overview: Tổng quan

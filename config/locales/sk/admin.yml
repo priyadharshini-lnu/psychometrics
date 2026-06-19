@@ -181,7 +181,6 @@ sk:
     assessor_form: Formulár hodnotiteľa
     assessor_ids_label: Hodnotiteľov
     assessor_last_name: Priezvisko hodnotiteľa
-    assessor_modals_create_assessor_title: Pridať hodnotiteľa
     assessor_modals_import_body: Pozrite si funkciu Export a extrahujte šablónu, ktorú je možné použiť na import.
     assessor_modals_import_title: Hodnotitelia dovozu
     assessor_overview: Prehľad

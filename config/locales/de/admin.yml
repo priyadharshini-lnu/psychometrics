@@ -182,7 +182,6 @@ de:
     assessor_form: Beisitzer-Formular
     assessor_ids_label: Beisitzer
     assessor_last_name: Nachname des Gutachters
-    assessor_modals_create_assessor_title: Assessor hinzufügen
     assessor_modals_import_body: Mit der Exportfunktion können Sie eine Vorlage extrahieren, die Sie für den Import verwenden können.
     assessor_modals_import_title: Prüfer importieren
     assessor_overview: Übersicht

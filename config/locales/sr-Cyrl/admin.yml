@@ -182,7 +182,6 @@ sr-Cyrl:
     assessor_form: Образац за оцењивача
     assessor_ids_label: Процењивачи
     assessor_last_name: Презиме процењивача
-    assessor_modals_create_assessor_title: Додај процењивача
     assessor_modals_import_body: Погледајте функционалност за извоз да бисте извукли шаблон који се овде може користити за увоз.
     assessor_modals_import_title: Увозни процењивачи
     assessor_overview: Преглед

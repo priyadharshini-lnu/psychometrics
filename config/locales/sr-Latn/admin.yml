@@ -181,7 +181,6 @@ sr-Latn:
     assessor_form: Obrazac ocenjivača
     assessor_ids_label: Ocenjivači
     assessor_last_name: Prezime procenjivača
-    assessor_modals_create_assessor_title: Dodaj procenjivača
     assessor_modals_import_body: Pogledajte opciju Izvoz da izvučete šablon koji se može koristiti za Uvoz ovde.
     assessor_modals_import_title: Uvezi procenjivače
     assessor_overview: Pregled

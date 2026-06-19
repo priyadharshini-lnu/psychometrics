@@ -182,7 +182,6 @@ bg:
     assessor_form: Формуляр за оценител
     assessor_ids_label: Оценители
     assessor_last_name: Фамилно име на оценителя
-    assessor_modals_create_assessor_title: Добавяне на оценител
     assessor_modals_import_body: Вижте функционалността за експортиране, за да извлечете шаблон, който може да се използва за импортиране тук.
     assessor_modals_import_title: Импортирам оценители
     assessor_overview: Преглед

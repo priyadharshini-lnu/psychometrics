@@ -180,7 +180,6 @@ it:
     assessor_form: Modulo per il valutatore
     assessor_ids_label: Valutatori
     assessor_last_name: Cognome dell'assessore
-    assessor_modals_create_assessor_title: Aggiungere il valutatore
     assessor_modals_import_body: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
     assessor_modals_import_title: Valutatori di importazione
     assessor_overview: Panoramica

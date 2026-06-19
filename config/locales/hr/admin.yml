@@ -181,7 +181,6 @@ hr:
     assessor_form: Obrazac procjenitelja
     assessor_ids_label: Procjenitelji
     assessor_last_name: Prezime procjenitelja
-    assessor_modals_create_assessor_title: Dodaj procjenitelja
     assessor_modals_import_body: Pogledajte funkciju Izvoz da biste izdvojili predložak koji se ovdje može koristiti za uvoz.
     assessor_modals_import_title: Uvoz procjenitelja
     assessor_overview: Opći pregled

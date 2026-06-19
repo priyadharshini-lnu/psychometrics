@@ -182,7 +182,6 @@ ru:
     assessor_form: Форма оценщика
     assessor_ids_label: Оценщики
     assessor_last_name: Фамилия оценщика
-    assessor_modals_create_assessor_title: Добавить оценщика
     assessor_modals_import_body: Обратитесь к функции «Экспорт», чтобы извлечь шаблон, который можно использовать для импорта здесь.
     assessor_modals_import_title: Эксперты по импорту
     assessor_overview: Обзор

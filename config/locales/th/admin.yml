@@ -182,7 +182,6 @@ th:
     assessor_form: แบบฟอร์มผู้ประเมิน
     assessor_ids_label: ผู้ประเมิน
     assessor_last_name: นามสกุลของผู้ประเมิน
-    assessor_modals_create_assessor_title: เพิ่มผู้ประเมิน
     assessor_modals_import_body: อ้างถึงฟังก์ชันการส่งออกเพื่อแยกเทมเพลตที่สามารถใช้เพื่อนําเข้าได้ที่นี่
     assessor_modals_import_title: ผู้ประเมินนําเข้า
     assessor_overview: ภาพรวม

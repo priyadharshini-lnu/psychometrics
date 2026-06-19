@@ -179,7 +179,6 @@ id:
     assessor_form: Formulir Penilai
     assessor_ids_label: Asesor
     assessor_last_name: Nama Belakang Penilai
-    assessor_modals_create_assessor_title: Tambahkan Penilai
     assessor_modals_import_body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
     assessor_modals_import_title: Impor Penilai
     assessor_overview: Ikhtisar

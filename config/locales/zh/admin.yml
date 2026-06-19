@@ -182,7 +182,6 @@ zh:
     assessor_form: 评估员表格
     assessor_ids_label: 评估员
     assessor_last_name: 评估员姓氏
-    assessor_modals_create_assessor_title: 添加评估员
     assessor_modals_import_body: 请参阅 "导出 "功能，提取可用于此处 "导入 "的模板。
     assessor_modals_import_title: 进口评估员
     assessor_overview: 概述

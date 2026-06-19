@@ -176,7 +176,6 @@ nl:
     assessor_form: Beoordelaarsformulier
     assessor_ids_label: Taxateurs
     assessor_last_name: Achternaam taxateur
-    assessor_modals_create_assessor_title: Assessor toevoegen
     assessor_modals_import_body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
     assessor_modals_import_title: Importeurs
     assessor_overview: Overzicht

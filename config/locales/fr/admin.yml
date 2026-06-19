@@ -182,7 +182,6 @@ fr:
     assessor_form: Formulaire de l'évaluateur
     assessor_ids_label: Évaluateurs
     assessor_last_name: Nom de famille de l'évaluateur
-    assessor_modals_create_assessor_title: Ajouter l'assesseur
     assessor_modals_import_body: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
     assessor_modals_import_title: Évaluateurs des importations
     assessor_overview: Vue d'ensemble

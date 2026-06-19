@@ -182,7 +182,6 @@ zh-Hant:
     assessor_form: 評估員表格
     assessor_ids_label: 評估員
     assessor_last_name: 評稅員的姓氏
-    assessor_modals_create_assessor_title: 新增評稅員
     assessor_modals_import_body: 請參閱匯出功能，擷取可用於在此匯入的範本。
     assessor_modals_import_title: 進口評估員
     assessor_overview: 概述

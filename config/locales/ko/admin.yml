@@ -182,7 +182,6 @@ ko:
     assessor_form: 평가자 양식
     assessor_ids_label: 평가자
     assessor_last_name: 평가자 성
-    assessor_modals_create_assessor_title: 평가자 추가
     assessor_modals_import_body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
     assessor_modals_import_title: 평가자 가져오기
     assessor_overview: 개요

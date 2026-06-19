@@ -182,7 +182,6 @@ hi:
     assessor_form: मूल्यांकनकर्ता प्रपत्र
     assessor_ids_label: मूल्यांकनकर्ता
     assessor_last_name: मूल्यांकनकर्ता का अंतिम नाम
-    assessor_modals_create_assessor_title: मूल्यांकनकर्ता जोड़ें
     assessor_modals_import_body: यहाँ आयात करने के लिए उपयोग किए जाने वाले टेम्पलेट को निकालने हेतु निर्यात कार्यक्षमता देखें।
     assessor_modals_import_title: आयात मूल्यांकनकर्ता
     assessor_overview: अवलोकन

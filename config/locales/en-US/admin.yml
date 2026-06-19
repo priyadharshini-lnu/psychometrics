@@ -182,7 +182,6 @@ en-US:
     assessor_form: Assessor Form
     assessor_ids_label: Assessors
     assessor_last_name: Assessor's Last Name
-    assessor_modals_create_assessor_title: Add Assessor
     assessor_modals_import_body: Refer to the Export functionality to extract a template that can be used to Import here.
     assessor_modals_import_title: Import Assessors
     assessor_overview: Overview

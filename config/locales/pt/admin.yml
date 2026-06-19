@@ -181,7 +181,6 @@ pt:
     assessor_form: Formulário do assessor
     assessor_ids_label: Avaliadores
     assessor_last_name: Apelido do assessor
-    assessor_modals_create_assessor_title: Adicionar avaliador
     assessor_modals_import_body: Consulte a funcionalidade Exportar para extrair um modelo que pode ser utilizado para Importar aqui.
     assessor_modals_import_title: Avaliadores de importação
     assessor_overview: Visão geral

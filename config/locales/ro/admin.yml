@@ -179,7 +179,6 @@ ro:
     assessor_form: Formular evaluator
     assessor_ids_label: Evaluatori
     assessor_last_name: Numele de familie al evaluatorului
-    assessor_modals_create_assessor_title: Adăugați evaluator
     assessor_modals_import_body: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
     assessor_modals_import_title: Evaluatori de import
     assessor_overview: Prezentare generală

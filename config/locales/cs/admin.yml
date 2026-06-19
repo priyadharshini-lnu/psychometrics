@@ -176,7 +176,6 @@ cs:
     assessor_first_name: Křestní jméno posuzovatele
     assessor_ids_label: Posuzovatelé
     assessor_last_name: Příjmení odhadce
-    assessor_modals_create_assessor_title: Přidat hodnotitele
     assessor_modals_import_body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
     assessor_modals_import_title: Posuzovatelé dovozu
     assessor_overview: Přehled
