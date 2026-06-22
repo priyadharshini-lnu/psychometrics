@@ -145,6 +145,7 @@ ko:
     assistant_toolbar_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다.
     assistant_toolbar_not_a_valid_operation: 알 수 없는 작업%{operation}.
     assistant_validation_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다
+    audit_log_impersonated_by: 모방한 사람
     audit_logs: 감사 로그
     audit_reports: 감사 보고서
     auto_moderated_factor_info: 이 점수는 자동 심사 대상이며 변경할 수 없습니다
@@ -233,7 +234,11 @@ ko:
     children_factor_type: 아동 요인 유형
     client: 클라이언트 테넌시
     client_admins: 클라이언트 관리자
+    client_selection_instruction: 관리자 패널로 이동하려면 클라이언트를 선택하세요.
+    client_selection_sign_out: 로그아웃
+    client_selection_title: 고객 선택
     clients: 고객 임차
+    clients_search_placeholder: 클라이언트 검색
     code_required: 코드 필요
     common: TTE 평가
     common_assessment: TTE 평가
@@ -351,6 +356,7 @@ ko:
     feature_flags_platform_group: 플랫폼 기능
     feature_global_skills_description: 글로벌 스킬 라이브러리에 접속하여 평가를 수행하세요
     feature_idp_description: 참가자를 위한 개인 개발 계획 수립을 활성화하십시오
+    feature_not_available: 이 기능은 사용할 수 없습니다
     feature_sms_notification_description: 캠페인 초대 및 알림에 대한 SMS 알림 활성화
     file_size_must_be_less_than_mb: 파일 {{name}}의 크기가 {{max_size_mb}} MB를 초과합니다.
     file_upload_failed: "{{name}} 업로드에 실패했습니다"
@@ -363,6 +369,10 @@ ko:
     generate_transcription: 자막 생성
     graphic: 그래픽
     graphic_slider: 그래픽 슬라이더
+    handoff_client_mismatch: 이 클라이언트에 대해 인증 토큰이 유효하지 않습니다
+    handoff_invalid_token: 인증 토큰이 유효하지 않거나 만료되었습니다
+    handoff_token_expired: 인증 토큰의 유효 기간이 만료되었거나 이미 사용되었습니다
+    handoff_user_disabled: 귀하의 계정이 비활성화되었습니다
     hide_middle_scores: 중간 점수 숨기기
     high: 높음
     hogan: 호건
@@ -433,9 +443,11 @@ ko:
     libraries: 미디어 라이브러리
     library_invalid_type: 유효하지 않은 라이브러리 항목
     licenses: 라이선스
+    lighthouse_logo_alt_text: 등대 로고
     lighthouse_question: 등대 관련 질문
     lighthouse_question_id: 등대 질문 ID
     linked_assessments: 연관된 평가
+    logged_in: 로그인됨
     low: 낮음
     maintenance: 유지보수
     maintenance_settings: 유지보수 설정
@@ -475,6 +487,8 @@ ko:
     name_max_length: 이름은 %{length}자를 초과할 수 없습니다.
     name_required: 이름은 필수입니다
     new_folder: 새 폴더
+    no_client_access: 이 클라이언트에 대한 액세스 권한이 없습니다
+    no_clients_found: 고객이 없습니다
     no_file_selected: 선택된 파일이 없습니다
     no_notifications: 알림 없음
     no_question_mappings: 매핑된 질문이 없습니다
@@ -495,6 +509,7 @@ ko:
     options: 옵션
     organisational: AGILE
     original_text: 원문
+    others: 기타
     overall: 전체적으로
     overall_score: 종합 점수
     participants: 참가자
@@ -975,6 +990,7 @@ ko:
     questions_title: 질문
     questions_type: 유형
     range_min_max: RANGE %{min} - %{max}
+    recents: 최근 게시물
     reflection_questions: 성찰 질문
     regenerate_transcriptions_action: 자막 다시 생성
     regenerate_transcriptions_confirm_content: 이 평가에 대한 필사본을 다시 생성하시겠습니까? 이 작업을 수행하면 완료되지 않은 모든 필사본이 다시 처리됩니다.
@@ -1006,6 +1022,10 @@ ko:
     result: 결과
     results: 결과
     role: 역할
+    role_campaign_admin: 캠페인 관리자
+    role_client_admin: 고객 관리
+    role_project_admin: 프로젝트 관리자
+    role_superadmin: 슈퍼 관리자
     saml_idp_certificate_available: 이용 가능 (클릭하여 복사)
     saml_idp_certificate_label: 증명서
     saml_idp_entity_id_label: 법인 ID/발행자
@@ -1133,6 +1153,36 @@ ko:
     sms_histories: SMS 기록
     sms_invites: SMS 초대
     specialty_questions: 전문 분야 관련 질문
+    sso_email_mismatch: 신원 확인 서비스에서 다른 계정으로 로그인되어 있습니다. 신원 확인 서비스에서 로그아웃한 후 다시 시도해 주세요.
+    sso_enforced: SSO 적용
+    sso_label: SSO
+    sso_not_enabled: 이 클라이언트에서는 SSO가 활성화되어 있지 않습니다
+    sso_settings: SSO 설정
+    sso_settings_allowed_domains: 허용된 도메인
+    sso_settings_certificate: IdP 인증서
+    sso_settings_enabled: SSO 활성화됨
+    sso_settings_enforced: SSO 적용
+    sso_settings_entity_id: 엔티티 ID
+    sso_settings_metadata_certificate_expiry: '인증서 만료일: %{date}'
+    sso_settings_metadata_file_too_large: 파일 크기가 최대 허용 크기인 1MB를 초과합니다.
+    sso_settings_metadata_invalid_xml: XML 형식이 올바르지 않습니다
+    sso_settings_metadata_no_idp_descriptor: 메타데이터에서 IdP 설명자를 찾을 수 없습니다
+    sso_settings_metadata_parse: 메타데이터 분석
+    sso_settings_metadata_parse_error: 메타데이터 구문 분석에 실패했습니다
+    sso_settings_metadata_parse_success: 메타데이터에서 가져온 IdP 필드
+    sso_settings_metadata_parsing: 메타데이터 분석 중...
+    sso_settings_metadata_upload: IdP 메타데이터 XML 업로드
+    sso_settings_metadata_upload_again: 다른 파일을 드래그하여 덮어쓰기
+    sso_settings_metadata_upload_drag_hint: ".xml 파일을 여기로 드래그 앤 드롭하거나 클릭하여 찾아보세요"
+    sso_settings_metadata_upload_hint: ".xml 파일을 업로드하여 IdP 필드를 자동으로 채우기"
+    sso_settings_metadata_upload_retry: 유효한 메타데이터 XML 파일을 사용하여 다시 시도해 주세요
+    sso_settings_or_configure_manually: 또는 수동으로 설정하세요
+    sso_settings_readable_resource_name: SSO 설정
+    sso_settings_save: 저장
+    sso_settings_session_timeout: 세션 시간 초과 기간
+    sso_settings_slo_url: SLO 서비스 URL
+    sso_settings_sso_url: SSO 서비스 URL
+    sso_settings_tab: SSO
     standard_deviation: 표준편차
     standard_questions: 일반적인 질문
     start: 시작
@@ -1142,7 +1192,13 @@ ko:
     status_details: 상태 세부사항
     structured_learning: 정식 학습 [10]
     subdomain: 하위 도메인
+    subdomain_admin_keyword: 예약된 관리자 서브도메인 패턴을 사용할 수 없습니다
+    subdomain_invalid_format: 서브도메인 형식이 잘못되었습니다.
+    subdomain_reserved: 하위 도메인 %{value}은 예약되어 있습니다
+    subdomain_too_long_max_32: 서브도메인 길이가 너무 깁니다(최대 32자).
     subject_part_of_other_invite: 이메일 주소 %{user_email}을 가진 사용자는 이미 '%{workshop_invite_name}'에 초대되었습니다.
+    superadmin_use_root_domain: 슈퍼 관리자는 메인 도메인을 통해 로그인해야 합니다
+    switch_client: 클라이언트 전환
     target_job_role: 목표 직무 역할
     this_field_is_required: 이 필드는 필수입니다
     threesixty: 360 캠페인
@@ -1199,3 +1255,4 @@ ko:
     yoodli_assessment: 유들리 평가
     yoodli_email_id: 유들리 후보자 이메일 ID
     yoodli_external_assessment_id: Yoodli 평가 ID
+    you_are_here: 현재 위치

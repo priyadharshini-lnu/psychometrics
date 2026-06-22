@@ -34,6 +34,8 @@ es-ES:
       cant_be_deleted: Este registro no se puede eliminar
       client_feature:
         ai_assisted_idp_feature_error: No puede ser cierto si la función de asistentes de IA está desactivada
+      client_sso_settings:
+        sso_enforced_requires_enabled: No se puede activar si no está habilitado el SSO
       create_superadmin:
         uniq_email: El correo electrónico debe ser uniq.
       development_actions:

@@ -35,4 +35,14 @@ class ApplicationMailer < ActionMailer::Base
 
     attributes
   end
+
+  def default_url_options
+    super.merge(admin_url_host_options)
+  end
+
+  private
+
+  def admin_url_host_options
+    AdminSubdomain.host_options_for(user: @user, project: @project)
+  end
 end

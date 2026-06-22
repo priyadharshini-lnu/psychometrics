@@ -34,6 +34,8 @@ sr-Latn:
       cant_be_deleted: Ovaj zapis se ne može obrisati
       client_feature:
         ai_assisted_idp_feature_error: Ne može biti istina ako je funkcija AI pomoćnika onemogućena
+      client_sso_settings:
+        sso_enforced_requires_enabled: Не може се омогућити без омогућавања SSO-а
       create_superadmin:
         uniq_email: E-pošta treba da bude unik.
       development_actions:

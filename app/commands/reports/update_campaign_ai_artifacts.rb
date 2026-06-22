@@ -70,7 +70,8 @@ module Reports
           code: artifact_params['code'],
           name: artifact_params['name'],
           ai_assistant_id: artifact_params.dig('ai_assistant', 'id'),
-          report_id: report.id
+          report_id: report.id,
+          tenant_id: report.tenant_id
         }
       end
 

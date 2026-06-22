@@ -9,7 +9,8 @@ class ProctoringSession < ApplicationRecord
   tenant_source :campaign_user
 
   belongs_to :user_assessment, optional: true
-  belongs_to :campaign
+
+  has_one :campaign, through: :campaign_user
   has_one :license_usage
 
   scope :valid_sessions, -> { where(invalid_session: false) }

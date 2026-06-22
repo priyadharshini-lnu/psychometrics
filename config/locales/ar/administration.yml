@@ -3534,13 +3534,11 @@ ar:
         title: تكوين Idp بالمعلومات التالية
       email_pipetext: البريد الإلكتروني Pipetext
       enabled: ممكّنة
-      enforced: إنفاذ SAML
       entity_id: معرّف الكيان/المُصدر
       name_identifier_format: معرّف الاسم
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML Setting
       save: إعداد الحفظ
       sso_service_url: عنوان خدمة SSO

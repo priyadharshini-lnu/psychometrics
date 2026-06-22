@@ -71,7 +71,7 @@ module Administration
 
     def set_log
       ActiveRecord::Base.connected_to(role: :reading) do
-        @log = policy_scope(::AuditLog).includes(:user, :active_record_audits, :client, :project,
+        @log = policy_scope(::AuditLog).includes(:user, :impersonator, :active_record_audits, :client, :project,
                                                  :campaign).find(params[:id])
       end
     end

@@ -15,7 +15,8 @@ module WebhookEvents
           {
             id: assessment[:id],
             name: assessment[:name],
-            status: assessment[:status]
+            status: assessment[:status],
+            tags: assessment[:tags]
           }
         end
       }

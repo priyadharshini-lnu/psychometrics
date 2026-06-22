@@ -34,6 +34,8 @@ cs:
       cant_be_deleted: Tento záznam nelze smazat
       client_feature:
         ai_assisted_idp_feature_error: Nemůže to být pravda, pokud je funkce asistentů ai zakázána
+      client_sso_settings:
+        sso_enforced_requires_enabled: Nelze povolit, pokud není povoleno SSO
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
       development_actions:

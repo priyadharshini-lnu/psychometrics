@@ -15,12 +15,14 @@ module Api
 
     def spoof
       target_user = @_resource.user
+      client = @_resource.client.root
+
       role_name = @_resource.role.to_s.humanize.titleize
+      audit! :sign_in_as, target_user, payload: { sign_in_as: target_user.email }, client: client
       siem_log_impersonation_event(target_user, role_name)
-      sign_in(target_user)
-      redirect_url ||= admin_path
-      flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
-      redirect_to redirect_url
+      return impersonate_on_root_domain(target_user) unless AdminSubdomain.client_admin_sso_enabled?
+
+      redirect_via_handoff(target_user, client, impersonated_by: current_user)
     end
 
     def context
@@ -48,6 +50,23 @@ module Api
 
     private
 
+    def impersonate_on_root_domain(target_user)
+      impersonate_as_admin(target_user)
+      flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
+      redirect_to(root_admin_redirect_path_for(target_user))
+    end
+
+    def root_admin_redirect_path_for(target_user)
+      target_user.assessors.exists? ? assessors_dashboard_path : "#{admin_path}/user_availabilities"
+    end
+
+    def authorize_spoof
+      set_resource unless @_resource
+      policy_klass = policy_class_for_role(@_resource.role)
+      authorize @_resource, :spoof?, policy_class: policy_klass,
+               project_id: @_resource.client_id, campaign_id: @_resource.campaign_id
+    end
+
     def enforce_geo_restriction
       return if current_user.superadmin?
 
@@ -55,20 +74,23 @@ module Api
     end
 
     def set_resource
+      membership_id = params[:id] || params[:membership_id]
+
       @_resource = Api::Administration::MembershipPolicy::Scope.new(
         current_user, Membership
-      ).resolve.find(params[:membership_id])
+      ).resolve.find(membership_id)
+    end
+
+    def policy_class_for_role(role)
+      case role.to_s
+        when 'project_admin' then Api::Administration::ProjectMembershipPolicy
+        when 'campaign_admin' then Api::Administration::CampaignMembershipPolicy
+        else Api::Administration::MembershipPolicy
+      end
     end
 
     def policy_class
-      @policy_class ||= case params.dig(:filter, :with_role)
-                          when 'project_admin'
-                            Api::Administration::ProjectMembershipPolicy
-                          when 'campaign_admin'
-                            Api::Administration::CampaignMembershipPolicy
-                          else
-                            super
-                        end
+      @policy_class ||= policy_class_for_role(params.dig(:filter, :with_role))
     end
 
     def export_job_data

@@ -37,6 +37,7 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
           type: 'clients',
           attributes: {
             name: 'Client 1',
+            subdomain: 'client-1-subdomain',
             year: Time.zone.now.year,
             type: 'partner',
             country: 'India',
@@ -105,6 +106,28 @@ RSpec.describe Api::V2::Administration::ClientsController, type: :request do
       expect(client_response).to have_attribute(:number).with_value(client_to_update.number)
       expect(client_response).to have_relationship(:project_manager).
         with_data({ 'id' => project_manager.id.to_s, 'type' => 'users' })
+    end
+
+    it 'returns 422 if subdomain contains reserved admin keyword' do
+      client_to_update = create(:tenancy)
+      body = {
+        data: {
+          type: 'clients',
+          id: client_to_update.id.to_s,
+          attributes: {
+            subdomain: 'illegal-admin-test'
+          }
+        }
+      }
+
+      patch "/api/v2/administration/clients/#{client_to_update.id}",
+            params: body.to_json,
+            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_response = JSON.parse(response.body)
+      expected_error = I18n.t('admin.subdomain_admin_keyword')
+      expect(json_response['errors'].first['detail']).to include(expected_error)
     end
   end
 

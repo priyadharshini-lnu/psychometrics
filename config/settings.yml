@@ -90,6 +90,7 @@ features:
   enable_webspellchecker: <%= ENV.fetch('ENABLE_WEBSPELLCHECKER', 'false') == 'true' %>
   upload_bulk_assets_enabled: <%= ENV.fetch('UPLOAD_BULK_ASSETS_ENABLED', 'false') == 'true' %>
   ai_content_analysis_enabled: <%= ENV.fetch('AI_CONTENT_ANALYSIS_ENABLED', 'false') == 'true' %>
+  client_admin_sso_enabled: <%= ENV.fetch('CLIENT_ADMIN_SSO_ENABLED', 'true') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -2666,3 +2667,8 @@ smtp_default:
   concurrency_limit: <%= ENV.fetch('SMTP_CONCURRENCY_LIMIT', 10).to_i %>
   rate_limit: <%= ENV.fetch('SMTP_RATE_LIMIT', 100).to_i %>
   rate_limit_period: <%= ENV.fetch('SMTP_RATE_LIMIT_PERIOD', 1).to_i %>
+
+# Tenant scoping safety controls
+tenant_scoping:
+  disabled: <%= ENV.fetch('TENANT_SCOPING_DISABLED', 'false') == 'true' %>
+  bypass_subdomains: <%= ENV.fetch('TENANT_BYPASS_SUBDOMAINS', '').split(',').map(&:strip) %>

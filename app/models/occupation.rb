@@ -15,6 +15,7 @@ class Occupation < ApplicationRecord
   has_one_image_attachment :alternative_icon, variants: [:icon]
   has_one_image_attachment :indicative_roles_image, variants: [:icon]
   has_one_image_attachment :key_career_tracks_image, variants: [:icon]
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :dimension

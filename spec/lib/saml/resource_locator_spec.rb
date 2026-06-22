@@ -34,5 +34,18 @@ describe Saml::ResourceLocator do
       result = described_class.call(User, saml_response, admin_user.email)
       expect(result).to eq(admin_user)
     end
+
+    it 'finds the user on a client admin subdomain' do
+      tenancy = create(:tenancy, subdomain: 'acmecorp')
+      admin_user = create(:client_admin, email: 'admin@acme.com', client: tenancy)
+      saml_response = double(
+        raw_response: double(
+          destination: 'https://acmecorp-admin.example.com',
+          issuers: ['client-specific-issuer']
+        )
+      )
+      result = described_class.call(User, saml_response, admin_user.email)
+      expect(result).to eq(admin_user)
+    end
   end
 end

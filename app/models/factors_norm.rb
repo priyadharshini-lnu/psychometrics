@@ -6,6 +6,7 @@ class FactorsNorm < ApplicationRecord
   belongs_to :factor
   belongs_to :norm, touch: true
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :norm, :factor

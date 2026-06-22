@@ -5,9 +5,10 @@ import {
   Spin,
 } from 'antd'
 
+import * as t from 'io-ts'
 import { connect } from 'react-redux'
 import { useResourceContext } from '~/modules/admin/components/Resource'
-import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
+import { Report } from '~/modules/admin/modules/client/core/reports'
 
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
@@ -44,17 +45,14 @@ const CopyReportFormModal: React.FC<Props> = ({
   const { message } = App.useApp()
   const { resource } = useResourceContext<Report>()
 
-
   const copy = (values: RequestFileds) => resource.memberAction({
     id: report.id,
     action: 'copy',
     method: 'post',
-    updateStore: true,
-    responseType: ReportTR,
+    responseType: t.string,
     body: values,
-  }).then((response: Report) => {
-    resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount + 1 : 0 })
-    message.success(I18n.t('reports.actions.copy.success_message', { name: response.name }))
+  }).then(() => {
+    message.info(I18n.t('admin.copy_report_scheduled'))
   })
 
   const {

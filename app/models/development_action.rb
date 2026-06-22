@@ -11,6 +11,8 @@ class DevelopmentAction < ApplicationRecord
 
   belongs_to :owner, polymorphic: true, optional: true
   belongs_to :project, foreign_key: :owner_id, class_name: 'Client', optional: true
+
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   has_many :skills_development_actions, dependent: :destroy

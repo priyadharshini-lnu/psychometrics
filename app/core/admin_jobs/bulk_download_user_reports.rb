@@ -20,18 +20,7 @@ module AdminJobs
       end
 
       if bulk_report
-        content = [
-          content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
-          content_tag(:ul) do
-            bulk_report.files.map.with_index do |file, index|
-              content_tag(:li) do
-                url = Utility::Url.generate(:download_administration_bulk_report_url, id: bulk_report.id, index: index)
-                content_tag(:a, file.filename.to_s, href: url)
-              end
-            end.join.html_safe
-          end
-        ].join.html_safe
-
+        content = build_download_content(bulk_report)
         broadcast :ok, { content: content }
       end
 

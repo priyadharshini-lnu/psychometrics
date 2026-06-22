@@ -12,6 +12,8 @@ module Api
     include AddCookie
     include SetCurrentCountry
     include GeoRestriction
+    include ::Administration::Impersonation
+    include ::Administration::HandoffRedirect
 
     def siem_log_impersonation_event(target_user, role)
       super(target_user, current_user, role)
@@ -40,6 +42,14 @@ module Api
     ]
     append_before_action :pundit_authorize
     append_after_action :verify_authorized
+
+    def render(*args)
+      options = args.extract_options!
+      if [nil, 0].include?(options[:status]) && json_api_error_response?(options)
+        options[:status] = :unprocessable_content
+      end
+      super(*(args << options))
+    end
 
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
     rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
@@ -88,7 +98,7 @@ module Api
       end
 
       if schema_validation&.failure?
-        render json: convert_dry_errors_to_json_api_standard(schema_validation.errors), status: 422
+        render json: convert_dry_errors_to_json_api_standard(schema_validation.errors), status: :unprocessable_content
       end
     end
 
@@ -183,7 +193,8 @@ module Api
         params: params,
         request_details: request_details_to_log,
         project: project,
-        campaign: campaign
+        campaign: campaign,
+        impersonated_by_id: session[:impersonated_by_id]
       }
     end
 
@@ -333,6 +344,10 @@ module Api
       Current.ip_address = request.remote_ip
       Current.request_url = request.url
       Current.application_component = 'admin'
+    end
+
+    def json_api_error_response?(options)
+      options[:json].is_a?(Hash) && options[:json].key?(:errors)
     end
   end
 end

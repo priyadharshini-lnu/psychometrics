@@ -34,6 +34,8 @@ hi:
       cant_be_deleted: इस रिकॉर्ड को हटाया नहीं जा सकता।
       client_feature:
         ai_assisted_idp_feature_error: अगर एआई असिस्टेंट सुविधा अक्षम है तो यह सच नहीं हो सकता।
+      client_sso_settings:
+        sso_enforced_requires_enabled: SSO सक्षम किए बिना इसे सक्षम नहीं किया जा सकता।
       create_superadmin:
         uniq_email: ईमेल अद्वितीय होना चाहिए।
       development_actions:

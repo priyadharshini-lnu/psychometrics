@@ -95,7 +95,7 @@ class BaseController < ActionController::Base
   end
 
   def handle_successful_authentication(user, found_by, auth_details)
-    handle_spoofing(found_by)
+    handle_spoofing(found_by, user)
     handle_sso_or_jwt(found_by, user)
     store_jwt_auth_details(found_by, auth_details)
 
@@ -104,12 +104,15 @@ class BaseController < ActionController::Base
     sign_in_and_redirect(user, found_by, auth_details)
   end
 
-  def handle_spoofing(found_by)
+  def handle_spoofing(found_by, user)
     if found_by == :spoof
       request.env['warden'].request.env['devise.skip_trackable'] = 1
       session[:spoofed] = true
+      session[:impersonated_by_id] = user.spoofed_by_id
+      user.update_column(:spoofed_by_id, nil)
     else
       session.delete(:spoofed)
+      session.delete(:impersonated_by_id)
     end
   end
 

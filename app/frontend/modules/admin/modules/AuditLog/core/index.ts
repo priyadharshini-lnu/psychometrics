@@ -24,6 +24,14 @@ const LogTR = t.type({
   client: t.any,
   project: t.any,
   campaign: t.any,
+  impersonator: t.union([
+    t.type({
+      fullName: t.string,
+      email: t.string,
+    }),
+    t.undefined,
+    t.null,
+  ]),
   activeRecordAudits: t.union([
     t.array(
       t.type({

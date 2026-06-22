@@ -3534,13 +3534,11 @@ ro:
         title: Configurați Idp cu următoarele informații
       email_pipetext: Text de e-mail
       enabled: Activat
-      enforced: Aplicarea SAML
       entity_id: ID-ul entității/emitentului
       name_identifier_format: Identificator de nume
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: Setare SAML
       save: Setare salvare
       sso_service_url: Adresa URL a serviciului SSO

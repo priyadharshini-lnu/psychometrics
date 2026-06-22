@@ -3534,13 +3534,11 @@ sl:
         title: Konfiguriranje IDP-ja z naslednjimi informacijami
       email_pipetext: Pošljite e-poštno besedilo cevi
       enabled: Omogočeno
-      enforced: Uveljavljanje SAML
       entity_id: ID subjekta/izdajatelj
       name_identifier_format: Identifikator imena
       name_identifier_formats:
         email: urn:oasis:imena:tc:SAML:1.1:nameid-format:e-poštni naslov
         persistent: urn:oasis:imena:tc:SAML:2.0:nameid-format:trajni
-      saml: SAML
       saml_setting: Nastavitev SAML
       save: Shrani nastavitev
       sso_service_url: URL storitve enotne prijave

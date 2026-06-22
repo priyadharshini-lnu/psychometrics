@@ -34,6 +34,8 @@ hu:
       cant_be_deleted: Ez a rekord nem törölhető
       client_feature:
         ai_assisted_idp_feature_error: Nem lehet igaz, ha az AI asszisztensek funkció le van tiltva
+      client_sso_settings:
+        sso_enforced_requires_enabled: Az SSO engedélyezése nélkül nem lehet bekapcsolni
       create_superadmin:
         uniq_email: Az e-mailnek uniq-nak kell lennie.
       development_actions:

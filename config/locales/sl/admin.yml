@@ -145,6 +145,7 @@ sl:
     assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     assistant_toolbar_not_a_valid_operation: Neznana operacija %{operation}.
     assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
+    audit_log_impersonated_by: V vlogi
     audit_logs: Dnevniki nadzora
     audit_reports: Revizijska poročila
     auto_moderated_factor_info: Ta ocena je avtomatsko potrjena in je ni mogoče spremeniti
@@ -233,7 +234,11 @@ sl:
     children_factor_type: Tip otroškega faktorja
     client: Najem stranke
     client_admins: Skrbniki odjemalcev
+    client_selection_instruction: Izberite stranko, da nadaljujete v nadzorno ploščo.
+    client_selection_sign_out: Odjavi se
+    client_selection_title: Izberi stranko
     clients: Spletno okolje naročnika
+    clients_search_placeholder: Iskanje stranke
     code_required: Potrebna je koda
     common: Ocena TTE
     common_assessment: Ocena TTE
@@ -351,6 +356,7 @@ sl:
     feature_flags_platform_group: Značilnosti platforme
     feature_global_skills_description: Dostop do globalne knjižnice znanj za ocenjevanje
     feature_idp_description: Omogočite individualno načrtovanje razvoja za udeležence
+    feature_not_available: Ta funkcija ni na voljo
     feature_sms_notification_description: Omogoči SMS obvestila za vabila in opomnike kampanj
     file_size_must_be_less_than_mb: Datoteka {{name}} presega največjo dovoljeno velikost {{max_size_mb}} MB
     file_upload_failed: Naložitev {{name}} ni uspela
@@ -363,6 +369,10 @@ sl:
     generate_transcription: Ustvari transkripcijo
     graphic: Grafika
     graphic_slider: Grafični drsnik
+    handoff_client_mismatch: Preveritveni žeton za tega odjemalca ni veljaven
+    handoff_invalid_token: Neveljaven ali potekel avtentifikacijski žeton
+    handoff_token_expired: Potrditveni žeton je potekel ali je bil že uporabljen
+    handoff_user_disabled: Vaš račun je onemogočen
     hide_middle_scores: Skrij srednje ocene
     high: Visoko
     hogan: Hogan
@@ -433,9 +443,11 @@ sl:
     libraries: Medijska knjižnica
     library_invalid_type: Neveljaven knjižnični element
     licenses: Licence
+    lighthouse_logo_alt_text: Logotip svetilnika
     lighthouse_question: Ključno vprašanje
     lighthouse_question_id: ID vprašanja Lighthouse
     linked_assessments: Povezane ocene
+    logged_in: Prijavljen
     low: Nizka
     maintenance: Vzdrževanje
     maintenance_settings: Nastavitve vzdrževanja
@@ -475,6 +487,8 @@ sl:
     name_max_length: Ime ne sme biti daljše od %{length} znakov.
     name_required: Ime je potrebno
     new_folder: Nova mapa
+    no_client_access: Nimate dostopa do tega stranke
+    no_clients_found: Ni bilo najdenih strank
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
     no_question_mappings: Na voljo ni nobenih preslikav vprašanj
@@ -495,6 +509,7 @@ sl:
     options: Možnosti
     organisational: AGILE
     original_text: Izvirno besedilo
+    others: Ostali
     overall: Na splošno
     overall_score: Skupna ocena
     participants: Udeleženci
@@ -975,6 +990,7 @@ sl:
     questions_title: Vprašanje
     questions_type: Vrsta
     range_min_max: RANGE %{min} - %{max}
+    recents: Zadnje
     reflection_questions: Vprašanja za razmislek
     regenerate_transcriptions_action: Obnovi prepise
     regenerate_transcriptions_confirm_content: Ali ste prepričani, da želite ponovno ustvariti prepise za to ocenjevanje? S tem se bodo ponovno obdelali vsi nepopolni prepisi.
@@ -1006,6 +1022,10 @@ sl:
     result: Rezultat
     results: Rezultati
     role: Vloga
+    role_campaign_admin: Upravitelj kampanje
+    role_client_admin: Upravljanje strank
+    role_project_admin: Upravitelj projekta
+    role_superadmin: Super administrator
     saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
     saml_idp_certificate_label: Potrdilo
     saml_idp_entity_id_label: ID subjekta/izdajatelj
@@ -1133,6 +1153,36 @@ sl:
     sms_histories: Zgodovina sporočil SMS
     sms_invites: SMS vabila
     specialty_questions: Posebna vprašanja
+    sso_email_mismatch: Pri ponudniku identitete ste prijavljeni v drug račun. Odjavite se iz ponudnika identitete in poskusite znova.
+    sso_enforced: Uveljavitev SSO
+    sso_label: SSO
+    sso_not_enabled: Za tega odjemalca SSO ni omogočen
+    sso_settings: Nastavitve SSO
+    sso_settings_allowed_domains: Dovoljene domene
+    sso_settings_certificate: Potrdilo ponudnika identitete
+    sso_settings_enabled: Omogočeno SSO
+    sso_settings_enforced: Obvezna uporaba SSO
+    sso_settings_entity_id: ID entitete
+    sso_settings_metadata_certificate_expiry: 'Potek veljavnosti certifikata: %{date}'
+    sso_settings_metadata_file_too_large: Datoteka presega največjo dovoljeno velikost 1 MB
+    sso_settings_metadata_invalid_xml: Neveljaven format XML
+    sso_settings_metadata_no_idp_descriptor: V metapodatkih ni bilo najdeno nobenega deskriptorja IdP
+    sso_settings_metadata_parse: Analiza metapodatkov
+    sso_settings_metadata_parse_error: Analiza metapodatkov ni uspela
+    sso_settings_metadata_parse_success: Polja IdP, izpolnjena na podlagi metapodatkov
+    sso_settings_metadata_parsing: Analiza metapodatkov...
+    sso_settings_metadata_upload: Naloži XML z metapodatki ponudnika identitete
+    sso_settings_metadata_upload_again: Povleci še eno datoteko, da jo zamenjaš
+    sso_settings_metadata_upload_drag_hint: Povlecite datoteko .xml sem ali kliknite za izbiro datoteke
+    sso_settings_metadata_upload_hint: Naložite datoteko .xml za samodejno izpolnjevanje polj ponudnika identitete
+    sso_settings_metadata_upload_retry: Poskusite znova z veljavno datoteko XML z metapodatki
+    sso_settings_or_configure_manually: Ali pa nastavite ročno
+    sso_settings_readable_resource_name: Nastavitve SSO
+    sso_settings_save: Shrani
+    sso_settings_session_timeout: Trajanje časovne omejitve seje
+    sso_settings_slo_url: URL storitve SLO
+    sso_settings_sso_url: URL storitve SSO
+    sso_settings_tab: SSO
     standard_deviation: Standardni odmik
     standard_questions: Standardna vprašanja
     start: začetek
@@ -1142,7 +1192,13 @@ sl:
     status_details: Podrobnosti o statusu
     structured_learning: Formalno učenje [10]
     subdomain: Poddomena
+    subdomain_admin_keyword: ne morem uporabiti vzorca za rezervirano poddomensko ime za administratorja
+    subdomain_invalid_format: Nepravilen format poddomene.
+    subdomain_reserved: Poddomena %{value} je rezervirana
+    subdomain_too_long_max_32: Poddomena je predolga (največ 32 znakov)
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
+    superadmin_use_root_domain: Superupravitelji se morajo prijaviti prek glavne domene
+    switch_client: Preklop na odjemalca
     target_job_role: Ciljna delovna vloga
     this_field_is_required: To polje je obvezno
     threesixty: Kampanja 360
@@ -1199,3 +1255,4 @@ sl:
     yoodli_assessment: Yoodlijeva ocena
     yoodli_email_id: E-poštni ID kandidata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    you_are_here: Trenutno ste tukaj

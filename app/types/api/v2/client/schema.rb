@@ -15,6 +15,7 @@ module Api
             attribute[:number].filled(:string)
             attribute[:country].filled(:string)
             attribute[:year].filled(:integer, gteq?: Time.zone.now.year - 2, lteq?: Time.zone.now.year + 10)
+            optional(:subdomain).maybe(:string)
           end
         end
 

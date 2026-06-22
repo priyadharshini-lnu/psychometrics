@@ -1,3 +1,17 @@
+- client_context_json = 'null'
+- switchable_clients_json = '[]'
+- recent_client_ids_json = '[]'
+- if Current.client_admin_context? && Current.client
+  - logo_attachment = Current.client.design_setting&.logo
+  - logo_url = logo_attachment&.attached? ? url_for(logo_attachment) : nil
+  - sso_setting = Current.client.client_sso_setting
+  - client_context_json = { id: Current.client.id, name: Current.client.name, subdomain: Current.client.subdomain, logo_url: logo_url, sso_enabled: sso_setting&.saml_login_allowed? || false, sso_enforced: sso_setting&.saml_enforced? || false }.to_json.html_safe
+  - if user_signed_in? && !current_user.is?(:superadmin)
+    - switchable = ActsAsTenant.without_tenant { current_user.clients_with_admin_access.includes(:client_sso_setting, design_setting: { logo_attachment: :blob }).select(:id, :name, :subdomain).order(:name).to_a }
+    - impersonator = session[:impersonated_by_id].present? ? User.find_by(id: session[:impersonated_by_id]) : nil
+    - active_ids = AdminAuth::SessionRegistry.active_client_ids(current_user, impersonator: impersonator).to_set
+    - recent_client_ids_json = AdminAuth::SessionRegistry.recent_client_ids(current_user, impersonator: impersonator, limit: 4).to_json.html_safe
+    - switchable_clients_json = switchable.map { |c| { id: c.id, name: c.name, subdomain: c.subdomain, sso_enforced: c.client_sso_setting&.saml_enforced? || false, logo_url: c.design_setting&.logo&.url, has_active_session: active_ids.include?(c.id) } }.to_json.html_safe
 javascript [nonce=content_security_policy_nonce]:
   var PsyGlobalState = {
     realEnv: "#{ENV['REAL_ENV']}",
@@ -7,5 +21,8 @@ javascript [nonce=content_security_policy_nonce]:
     sentryUrl: "#{ENV['SENTRY_URL']}",
     sentryDebug: "#{ENV['SENTRY_DEBUG']}",
     features: #{Settings.features.to_h.transform_values { |v| v == true }.to_json.html_safe},
-    availableAiProviders: "#{ENV['AVAILABLE_AI_PROVIDERS']}"
+    availableAiProviders: "#{ENV['AVAILABLE_AI_PROVIDERS']}",
+    clientContextData: #{client_context_json},
+    switchableClients: #{switchable_clients_json},
+    recentClientIds: #{recent_client_ids_json}
   }

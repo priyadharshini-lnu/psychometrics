@@ -3534,13 +3534,11 @@ en:
         title: Configure Idp with following info
       email_pipetext: Email Pipetext
       enabled: Enabled
-      enforced: Enforce SAML
       entity_id: Entity ID/Issuer
       name_identifier_format: Name Identifier
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML Setting
       save: Save Setting
       sso_service_url: SSO Service Url

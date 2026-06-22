@@ -17,6 +17,7 @@ class InnovationStylesFactor < ApplicationRecord
 
   belongs_to :innovation_style
   belongs_to :factor
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :innovation_style

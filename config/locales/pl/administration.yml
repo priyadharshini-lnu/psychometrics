@@ -3534,13 +3534,11 @@ pl:
         title: Skonfiguruj dostawcę tożsamości, podając następujące informacje
       email_pipetext: Potok wiadomości e-mail
       enabled: Włączone
-      enforced: Egzekwowanie protokołu SAML
       entity_id: Identyfikator podmiotu/wystawca
       name_identifier_format: Identyfikator nazwy
       name_identifier_formats:
         email: urn:oaza:nazwy:tc:SAML:1.1:format-identyfikatora:adres_e-mail
         persistent: urn:oaza:nazwy:tc:SAML:2.0:format-nazwyid:trwały
-      saml: SAML
       saml_setting: Ustawienia SAML
       save: Zapisz ustawienie
       sso_service_url: Adres URL usługi logowania jednokrotnego

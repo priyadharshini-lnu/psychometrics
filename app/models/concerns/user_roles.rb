@@ -20,7 +20,8 @@ module UserRoles
       :assessor,
       Membership::PROJECT_ADMIN_ROLE,
       Membership::CLIENT_ADMIN_ROLE,
-      Membership::CAMPAIGN_ADMIN_ROLE
+      Membership::CAMPAIGN_ADMIN_ROLE,
+      Membership::CLIENT_ASSESSOR_ROLE
     ],
     user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
   }.freeze
@@ -39,7 +40,7 @@ module UserRoles
     arr = if current_membership
             [current_membership.role.to_sym]
           else
-            [current_role] + memberships.map { |m| m.role.to_sym }
+            [current_role] + scoped_memberships.map { |m| m.role.to_sym }
           end
     arr << :assessor if global_assessor? || assessors.exists?
     arr.intersect?(roles)
@@ -66,15 +67,15 @@ module UserRoles
   def has_grant?(scope, grant)
     return true if is?(:superadmin)
 
-    memberships.any? { |m| m.has_grant?(scope, grant) }
+    scoped_memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
   def has_permission?(scope, grant, project_id: nil, campaign_id: nil)
     return true if is?(:superadmin)
     return false if project_id.nil? && campaign_id.nil?
 
-    project = Client.find(project_id) if project_id
-    project ||= Campaign.find(campaign_id).project
+    project = ActsAsTenant.without_tenant { Client.find(project_id) } if project_id
+    project ||= ActsAsTenant.without_tenant { Campaign.find(campaign_id).project }
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])
@@ -99,5 +100,21 @@ module UserRoles
 
   def assessor?
     is?(:assessor)
+  end
+
+  private
+
+  def scoped_memberships
+    unless TenantEnforcement.globally_disabled? || TenantEnforcement.client_bypassed?
+      return memberships
+    end
+
+    if Current.client.present?
+      memberships.where(tenant_id: Current.client.id)
+    elsif Current.project.present?
+      memberships.where(tenant_id: Current.project.tenant_id)
+    else
+      memberships
+    end
   end
 end

@@ -57,6 +57,8 @@ describe UserAssessments::NormalizeFactorScores do
     factor2_uafs = UserAssessmentFactorScore.find_by(factor: factors[1])
     expect(factor1_uafs.scores).to eq(factor1_score)
     expect(factor2_uafs.scores).to eq(factor2_score)
+    expect(factor1_uafs.tenant_id).to eq(user_result.user_assessment.tenant_id)
+    expect(factor2_uafs.tenant_id).to eq(user_result.user_assessment.tenant_id)
   end
 
   it "delete factor scores is scoring columns doesn't have scores" do

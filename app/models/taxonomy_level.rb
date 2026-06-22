@@ -4,6 +4,8 @@ class TaxonomyLevel < ApplicationRecord
   extend Mobility
 
   belongs_to :project, class_name: 'Client', optional: true
+
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   validates :hierarchy_type, presence: true, inclusion: { in: %w[job_group skill_group] }

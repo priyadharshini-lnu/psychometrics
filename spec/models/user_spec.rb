@@ -78,6 +78,10 @@ RSpec.describe User, type: :model do
   end
 
   describe '#timeout_in' do
+    before do
+      allow(Settings.features).to receive(:disable_session_timeout).and_return(false)
+    end
+
     it 'returns the default session timeout for admins' do
       super_admin = create(:superadmin)
       client_admin = create(:client_admin)

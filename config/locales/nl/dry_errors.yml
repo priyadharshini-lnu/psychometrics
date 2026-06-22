@@ -34,6 +34,8 @@ nl:
       cant_be_deleted: Deze record kan niet worden verwijderd
       client_feature:
         ai_assisted_idp_feature_error: Kan niet waar zijn als de functie voor ai-assistenten is uitgeschakeld
+      client_sso_settings:
+        sso_enforced_requires_enabled: Kan niet worden ingeschakeld als SSO niet is ingeschakeld
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
       development_actions:

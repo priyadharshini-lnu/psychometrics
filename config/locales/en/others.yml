@@ -622,6 +622,7 @@ en:
         roles:
           campaign_admin: Campaign Admin
           client_admin: Client Admin
+          client_assessor: Client Assessor
           manager: Manager
           member: User
           project_admin: Project Admin
@@ -727,6 +728,7 @@ en:
           admins:
             admin: Admin
             campaign_admin: Campaign Admin
+            client_assessor: Client Assessor
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
@@ -736,6 +738,7 @@ en:
           campaign_admin: Campaign Admin
           case_study: Case study
           client_admin: Client Admin
+          client_assessor: Client Assessor
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -871,6 +874,7 @@ en:
         completion_status_export: Completion Status Export
         copy_as_template_or_campaign: Copy Campaign as Template
         copy_dimension: Copy Dimension
+        copy_report: Copy Report
         create_threesixty_campaign: Create Threesixty Campaign
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
@@ -964,6 +968,8 @@ en:
       errors:
         no_plans: No active IDP plans found
     close: Close
+    copy_report:
+      failed: Report copy failed
     details: Details
     errors: Errors
     invalid_job: This notification corresponds to deleted record
@@ -3572,12 +3578,14 @@ en:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Client Assessor
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
           case_study: Case study
           client_admin: Client Admin
+          client_assessor: Client Assessor
           hogan: Hogan
           manager: Manager
           member: User
@@ -3711,6 +3719,7 @@ en:
         roles:
           campaign_admin: Campaign Admin
           client_admin: Client Admin
+          client_assessor: Client Assessor
           manager: Manager
           member: User
           project_admin: Project Admin
@@ -3781,12 +3790,14 @@ en:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Client Assessor
             project_admin: Project Admin
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
           case_study: Case study
           client_admin: Client Admin
+          client_assessor: Client Assessor
           hogan: Hogan
           manager: Manager
           member: User
@@ -4249,6 +4260,7 @@ en:
       campaign_assessor: Campaign Assessor
       campaign_user: Campaign User
       client_admin: Client Admin
+      client_assessor: Client Assessor
       project_admin: Project Admin
       superadmin: Super Admin
     superadmins: Super Admins

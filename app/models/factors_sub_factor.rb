@@ -6,6 +6,7 @@ class FactorsSubFactor < ApplicationRecord
   belongs_to :sub_factor, class_name: 'Factor'
   belongs_to :factor
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :factor

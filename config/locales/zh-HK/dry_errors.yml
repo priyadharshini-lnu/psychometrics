@@ -34,6 +34,8 @@ zh-HK:
       cant_be_deleted: 無法刪除此記錄
       client_feature:
         ai_assisted_idp_feature_error: 如果 AI 助理功能被停用，則不可能是真的
+      client_sso_settings:
+        sso_enforced_requires_enabled: 若未启用单点登录（SSO），则无法启用此功能
       create_superadmin:
         uniq_email: 電子郵件應該是 uniq。
       development_actions:

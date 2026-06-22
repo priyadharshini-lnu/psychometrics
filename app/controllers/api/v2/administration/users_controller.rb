@@ -19,7 +19,7 @@ module Api
       @resource.update!(
         password: password, force_password_change: attrs[:change_password_on_login]
       )
-      audit! :reset_password_email, @resource, payload: attrs.except(:password)
+      audit! :reset_password_email, @resource, payload: attrs.except(:password), project: @resource.project
       if !@resource.disabled? && attrs[:send_password_email]
         SendPasswordMailer.password_email(@resource, password).deliver_later
         message_key = 'send_password_email_success'
@@ -35,7 +35,7 @@ module Api
 
     def unlock_user_access
       @resource.unlock_access!
-      audit! :unlock_user_access, @resource
+      audit! :unlock_user_access, @resource, project: @resource.project
       jsonapi_render json: @resource
     end
 

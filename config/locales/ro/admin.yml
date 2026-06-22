@@ -145,6 +145,7 @@ ro:
     assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
     assistant_toolbar_not_a_valid_operation: Operațiune necunoscută %{operation}.
     assistant_validation_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
+    audit_log_impersonated_by: Interpretat de
     audit_logs: Jurnale de audit
     audit_reports: Rapoarte de audit
     auto_moderated_factor_info: Acest scor este moderat automat și nu poate fi modificat
@@ -233,7 +234,11 @@ ro:
     children_factor_type: Tipul factorului copii
     client: Închirierea clientului
     client_admins: Administratori clienți
+    client_selection_instruction: Selectați un client pentru a accesa panoul de administrare.
+    client_selection_sign_out: Deconectare
+    client_selection_title: Selectați clientul
     clients: Clienți
+    clients_search_placeholder: Căutare client
     code_required: Este necesar codul
     common: Evaluarea TTE
     common_assessment: Evaluarea TTE
@@ -351,6 +356,7 @@ ro:
     feature_flags_platform_group: Caracteristici ale platformei
     feature_global_skills_description: Accesați biblioteca globală de competențe pentru evaluări
     feature_idp_description: Activați planificarea dezvoltării individuale pentru participanți
+    feature_not_available: Această funcție nu este disponibilă
     feature_sms_notification_description: Activați notificările SMS pentru invitații și mementouri legate de campanii
     file_size_must_be_less_than_mb: Fișierul {{name}} depășește dimensiunea maximă de {{max_size_mb}} MB
     file_upload_failed: Nu s-a putut încărca {{name}}
@@ -363,6 +369,10 @@ ro:
     generate_transcription: Generați transcrierea
     graphic: Grafic
     graphic_slider: Slider grafic
+    handoff_client_mismatch: Tokenul de autentificare nu este valabil pentru acest client
+    handoff_invalid_token: Token de autentificare nevalid sau expirat
+    handoff_token_expired: Tokenul de autentificare a expirat sau a fost deja utilizat
+    handoff_user_disabled: Contul dumneavoastră este dezactivat
     hide_middle_scores: Ascunde scorurile medii
     high: Ridicat
     hogan: Hogan
@@ -433,9 +443,11 @@ ro:
     libraries: Bibliotecă media
     library_invalid_type: Element invalid din bibliotecă
     licenses: Licenţe
+    lighthouse_logo_alt_text: Logo-ul Farului
     lighthouse_question: Întrebarea-cheie
     lighthouse_question_id: ID întrebare Lighthouse
     linked_assessments: Evaluări asociate
+    logged_in: Conectat
     low: Scăzut
     maintenance: Întreținere
     maintenance_settings: Setări de întreținere
@@ -475,6 +487,8 @@ ro:
     name_max_length: Numele nu poate depăși %{length} caractere
     name_required: Este necesar numele
     new_folder: Dosar nou
+    no_client_access: Nu aveți acces la acest client
+    no_clients_found: Nu s-au găsit clienți
     no_file_selected: Niciun fișier selectat
     no_notifications: Fără notificări
     no_question_mappings: Nu sunt disponibile corespondențe între întrebări
@@ -495,6 +509,7 @@ ro:
     options: Opțiuni
     organisational: AGIL
     original_text: Textul original
+    others: Altele
     overall: În general
     overall_score: Scorul general
     participants: Participanţii
@@ -975,6 +990,7 @@ ro:
     questions_title: Întrebare
     questions_type: Tip
     range_min_max: GAMA%{min} - %{max}
+    recents: Cele mai recente
     reflection_questions: Întrebări de reflecție
     regenerate_transcriptions_action: Regenerare transcrieri
     regenerate_transcriptions_confirm_content: Ești sigur că vrei să regenerezi transcrierile pentru această evaluare? Această acțiune va reprocesa toate transcrierile incomplete.
@@ -1006,6 +1022,10 @@ ro:
     result: Rezultat
     results: Rezultatele
     role: Rol
+    role_campaign_admin: Administrator de campanie
+    role_client_admin: Administrare clienți
+    role_project_admin: Administrator de proiect
+    role_superadmin: Superadministrator
     saml_idp_certificate_available: Disponibil (click pentru copiere)
     saml_idp_certificate_label: Certificat
     saml_idp_entity_id_label: ID entități/Emitent
@@ -1133,6 +1153,36 @@ ro:
     sms_histories: Istoricul SMS-urilor
     sms_invites: Invitații prin SMS
     specialty_questions: Întrebări specifice
+    sso_email_mismatch: Sunteți conectat la un alt cont pe platforma de autentificare. Vă rugăm să vă deconectați de pe platforma de autentificare și să încercați din nou.
+    sso_enforced: Aplică SSO
+    sso_label: SSO
+    sso_not_enabled: SSO nu este activat pentru acest client
+    sso_settings: Setări SSO
+    sso_settings_allowed_domains: Domenii permise
+    sso_settings_certificate: Certificat IdP
+    sso_settings_enabled: SSO activat
+    sso_settings_enforced: Autentificare unică (SSO) obligatorie
+    sso_settings_entity_id: ID entitate
+    sso_settings_metadata_certificate_expiry: 'Certificatul expiră: %{date}'
+    sso_settings_metadata_file_too_large: Fișierul depășește dimensiunea maximă de 1 MB
+    sso_settings_metadata_invalid_xml: Format XML nevalid
+    sso_settings_metadata_no_idp_descriptor: Nu s-a găsit niciun descriptor IdP în metadate
+    sso_settings_metadata_parse: Analizează metadatele
+    sso_settings_metadata_parse_error: Nu s-au putut analiza metadatele
+    sso_settings_metadata_parse_success: Câmpurile IdP completate pe baza metadatelor
+    sso_settings_metadata_parsing: Se analizează metadatele...
+    sso_settings_metadata_upload: Încărcare fișier XML cu metadate IdP
+    sso_settings_metadata_upload_again: Trageți un alt fișier pentru a-l înlocui
+    sso_settings_metadata_upload_drag_hint: Trageți și plasați fișierul .xml aici sau faceți clic pentru a căuta
+    sso_settings_metadata_upload_hint: Încărcați fișierul .xml pentru a completa automat câmpurile IdP
+    sso_settings_metadata_upload_retry: Încearcă din nou cu un fișier XML de metadate valid
+    sso_settings_or_configure_manually: Sau configurați manual
+    sso_settings_readable_resource_name: Setări SSO
+    sso_settings_save: Salvare
+    sso_settings_session_timeout: Durata timpului de expirare a sesiunii
+    sso_settings_slo_url: URL-ul serviciului SLO
+    sso_settings_sso_url: Adresa URL a serviciului SSO
+    sso_settings_tab: SSO
     standard_deviation: Abaterea standard
     standard_questions: Întrebări standard
     start: începe
@@ -1142,7 +1192,13 @@ ro:
     status_details: Detalii despre stadiu
     structured_learning: Învățarea formală [10]
     subdomain: Subdomeniu
+    subdomain_admin_keyword: nu se poate utiliza modelul de subdomeniu rezervat pentru administrator
+    subdomain_invalid_format: Format incorect al subdomeniului.
+    subdomain_reserved: Subdomeniul %{value} este rezervat
+    subdomain_too_long_max_32: Subdomeniul este prea lung (lungimea maximă este de 32 de caractere)
     subject_part_of_other_invite: Persoana cu adresa de e-mail %{user_email} este deja invitată la „%{workshop_invite_name}”.
+    superadmin_use_root_domain: Superadministratorii trebuie să se autentifice prin intermediul domeniului principal
+    switch_client: Schimbă clientul
     target_job_role: Postul vizat
     this_field_is_required: Acest câmp este obligatoriu
     threesixty: Campania 360
@@ -1199,3 +1255,4 @@ ro:
     yoodli_assessment: Evaluarea Yoodli
     yoodli_email_id: ID-ul de email al candidatului Yoodli
     yoodli_external_assessment_id: ID de evaluare Yoodli
+    you_are_here: Vă aflați aici

@@ -119,34 +119,48 @@ module Administration
 
     class Scope < Scope
       def resolve
-        return scope if @user.is?(:superadmin)
+        return scope if superadmin_bypass?
 
-        # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
-        permitted_client_admin_clients_ids = @user.client_admin_client_ids.select do |client_id|
-          @user.has_permission?(:clients, :view, project_id: client_id)
-        end
+        permitted_ids = permitted_client_admin_clients_ids +
+                        permitted_project_admin_client_ids +
+                        permitted_campaign_admin_project_ids +
+                        assessor_campaigns_ids
 
-        permitted_project_admin_client_ids = @user.project_admin_client_ids.select do |project_id|
-          @user.has_permission?(:projects, :view, project_id: project_id)
-        end
+        client_ids = restrict_to_client_subtree(permitted_ids)
+        return scope.none if client_ids.empty?
 
-        permitted_campaign_admin_project_ids = @user.campaign_admin_campaigns.select do |campaign|
-          @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
-        end.pluck(:project_id)
+        clients = scope.where(id: client_ids).not_retails.select(:id, :ancestry)
+        return scope.none if clients.empty?
 
-        assessor_campaigns_ids = @user.assessors_campaings.pluck(:project_id)
-
-        clients_scope = scope.where(
-          id: (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
-            permitted_campaign_admin_project_ids + assessor_campaigns_ids)
-        )
-
-        clients = clients_scope.not_retails.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
-        client_ids = [] if client_ids.nil?
+        client_ids ||= []
         ancestor_ids = ancestors.nil? ? [] : ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
         scope.where('clients.id in (?) or ancestry ~ ?', ancestor_ids + client_ids,
                     "(^|\\D)(#{client_ids.join('|')})(/|$)")
+      end
+
+      private
+
+      def permitted_client_admin_clients_ids
+        @user.client_admin_client_ids.select do |client_id|
+          @user.has_permission?(:clients, :view, project_id: client_id)
+        end
+      end
+
+      def permitted_project_admin_client_ids
+        @user.project_admin_client_ids.select do |project_id|
+          @user.has_permission?(:projects, :view, project_id: project_id)
+        end
+      end
+
+      def permitted_campaign_admin_project_ids
+        @user.campaign_admin_campaigns.select do |campaign|
+          @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
+        end.pluck(:project_id)
+      end
+
+      def assessor_campaigns_ids
+        @user.assessors_campaings.pluck(:project_id)
       end
     end
   end

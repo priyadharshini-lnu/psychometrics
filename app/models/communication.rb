@@ -39,11 +39,9 @@ class Communication < ApplicationRecord
   belongs_to :client
   belongs_to :owner, class_name: 'Client'
   belongs_to :project, class_name: 'Client'
-  belongs_to :campaign, class_name: 'Client', optional: true
   # rename project_campaign relation when we will ditch all old structures
   belongs_to :project_campaign, class_name: 'Campaign', foreign_key: :campaign_id, optional: true
   belongs_to :sub_campaign, class_name: 'Client'
-  belongs_to :end_level, class_name: 'Client', optional: true
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
   belongs_to :campaign_assessment_group, optional: true
@@ -51,6 +49,9 @@ class Communication < ApplicationRecord
   has_many :workshop_subjects, through: :project_campaign
 
   include Tenantable
+
+  belongs_to :end_level, class_name: 'Client', optional: true
+  belongs_to :campaign, class_name: 'Client', optional: true
 
   enum :recipients, { all: 0, selected: 1, new_users: 2, new_assignment: 3 }, suffix: true
   enum :kind, {

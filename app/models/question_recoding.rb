@@ -10,6 +10,7 @@ class QuestionRecoding < ApplicationRecord
   belongs_to :assessment
   belongs_to :question
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :assessment

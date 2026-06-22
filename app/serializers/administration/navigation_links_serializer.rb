@@ -12,6 +12,7 @@ module Administration
     # rubocop:disable Metrics/CyclomaticComplexity
     # rubocop:disable Metrics/BlockLength -- This block needs to be long due to the complex navigation structure
     def links
+      preload_membership_associations
       {}.tap do |links|
         links['dashboards'] = "#{admin_path}/dashboards" if show_dashboard?
         links['profile_details'] = "#{admin_path}/profile/details"
@@ -88,6 +89,17 @@ module Administration
 
     def feature_enabled?(feature)
       Settings.features[feature]
+    end
+
+    def preload_membership_associations
+      return if object.memberships.loaded? && object.memberships.all? do |m|
+        m.association(:admin_roles).loaded? && m.association(:grants).loaded?
+      end
+
+      ActiveRecord::Associations::Preloader.new(
+        records: [object],
+        associations: { memberships: %i[admin_roles grants] }
+      ).call
     end
   end
 end

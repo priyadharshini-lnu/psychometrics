@@ -46,7 +46,7 @@ RSpec.describe Api::V2::Administration::Projects::ReflectionQuestionsController,
             project: {
               data: {
                 type: 'clients',
-                id: project.client.id.to_s
+                id: project_id.to_s
               }
             }
           }
@@ -103,7 +103,7 @@ RSpec.describe Api::V2::Administration::Projects::ReflectionQuestionsController,
             project: {
               data: {
                 type: 'clients',
-                id: project.client.id.to_s
+                id: project_id.to_s
               }
             }
           }

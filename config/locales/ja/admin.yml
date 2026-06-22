@@ -145,6 +145,7 @@ ja:
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
     assistant_toolbar_not_a_valid_operation: "%{operation} という操作は不明です。"
     assistant_validation_failed: 複数回の試行後も有効な出力を生成できませんでした
+    audit_log_impersonated_by: なりすまし
     audit_logs: 監査ログ
     audit_reports: 監査報告書
     auto_moderated_factor_info: このスコアは自動で調整されており、変更することはできません
@@ -233,7 +234,11 @@ ja:
     children_factor_type: 児童要因タイプ
     client: クライアント・テナンシー
     client_admins: クライアント管理者
+    client_selection_instruction: 管理画面に進むには、クライアントを選択してください。
+    client_selection_sign_out: ログアウト
+    client_selection_title: クライアントを選択
     clients: 顧客契約
+    clients_search_placeholder: クライアントを検索
     code_required: コードが必要です
     common: TTEアセスメント
     common_assessment: TTEアセスメント
@@ -351,6 +356,7 @@ ja:
     feature_flags_platform_group: プラットフォーム機能
     feature_global_skills_description: グローバルスキルライブラリにアクセスして評価を実施する
     feature_idp_description: 参加者のための個人開発計画を有効にする
+    feature_not_available: この機能はご利用いただけません
     feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
     file_size_must_be_less_than_mb: ファイル {{name}} は、最大サイズ {{max_size_mb}} MB を超えています
     file_upload_failed: "{{name}} のアップロードに失敗しました"
@@ -363,6 +369,10 @@ ja:
     generate_transcription: 文字起こしを生成する
     graphic: グラフィック
     graphic_slider: グラフィックスライダー
+    handoff_client_mismatch: このクライアントでは、認証トークンが無効です
+    handoff_invalid_token: 認証トークンが無効か、有効期限が切れています
+    handoff_token_expired: 認証トークンの有効期限が切れています、またはすでに使用されています
+    handoff_user_disabled: アカウントが無効になっています
     hide_middle_scores: 中間スコアを非表示にする
     high: 高い
     hogan: ホーガン
@@ -433,9 +443,11 @@ ja:
     libraries: メディアライブラリー
     library_invalid_type: 無効なライブラリ項目
     licenses: ライセンス
+    lighthouse_logo_alt_text: 灯台のロゴ
     lighthouse_question: 灯台に関する質問
     lighthouse_question_id: Lighthouse 質問ID
     linked_assessments: 関連する評価
+    logged_in: ログイン中
     low: 低
     maintenance: 保守
     maintenance_settings: メンテナンス設定
@@ -475,6 +487,8 @@ ja:
     name_max_length: 名前は%{length}文字を超えてはいけません
     name_required: 名前が必要です
     new_folder: 新しいフォルダ
+    no_client_access: このクライアントにはアクセスできません
+    no_clients_found: クライアントが見つかりません
     no_file_selected: ファイルが選択されていない
     no_notifications: 通知はありません
     no_question_mappings: 利用可能なマッピングはありません
@@ -495,6 +509,7 @@ ja:
     options: オプション
     organisational: AGILE
     original_text: 原文
+    others: その他
     overall: 全体的に
     overall_score: 総合スコア
     participants: 参加者
@@ -975,6 +990,7 @@ ja:
     questions_title: 質問
     questions_type: 種類
     range_min_max: 範囲 %{min} - %{max}
+    recents: 最近の投稿
     reflection_questions: 振り返りの質問
     regenerate_transcriptions_action: 文字起こしを再生成する
     regenerate_transcriptions_confirm_content: この評価の文字起こしを再生成してもよろしいですか？これにより、未完了の文字起こしがすべて再処理されます。
@@ -1006,6 +1022,10 @@ ja:
     result: 結果
     results: 結果
     role: 役割
+    role_campaign_admin: キャンペーン管理
+    role_client_admin: クライアント管理
+    role_project_admin: プロジェクト管理者
+    role_superadmin: スーパー管理者
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
     saml_idp_entity_id_label: 事業体ID/発行者
@@ -1133,6 +1153,36 @@ ja:
     sms_histories: SMSヒストリー
     sms_invites: SMS招待
     specialty_questions: 専門的な質問
+    sso_email_mismatch: IDプロバイダーでは別のアカウントでログインしています。IDプロバイダーからログアウトしてから、もう一度お試しください。
+    sso_enforced: SSOを適用する
+    sso_label: SSO
+    sso_not_enabled: このクライアントではSSOが有効になっていません
+    sso_settings: SSO設定
+    sso_settings_allowed_domains: 許可されたドメイン
+    sso_settings_certificate: IdP証明書
+    sso_settings_enabled: SSO 対応
+    sso_settings_enforced: SSOが必須
+    sso_settings_entity_id: エンティティID
+    sso_settings_metadata_certificate_expiry: 証明書の有効期限：%{date}
+    sso_settings_metadata_file_too_large: ファイルが最大サイズ（1MB）を超えています
+    sso_settings_metadata_invalid_xml: XML形式が不正です
+    sso_settings_metadata_no_idp_descriptor: メタデータにIdP記述子が見つかりません
+    sso_settings_metadata_parse: メタデータの解析
+    sso_settings_metadata_parse_error: メタデータの解析に失敗しました
+    sso_settings_metadata_parse_success: メタデータから入力されたIdPフィールド
+    sso_settings_metadata_parsing: メタデータの解析中...
+    sso_settings_metadata_upload: IdPメタデータXMLのアップロード
+    sso_settings_metadata_upload_again: 別のファイルをドラッグして置き換える
+    sso_settings_metadata_upload_drag_hint: ".xml ファイルをここにドラッグ＆ドロップするか、クリックして選択してください"
+    sso_settings_metadata_upload_hint: ".xml ファイルをアップロードして、IdP のフィールドを自動入力する"
+    sso_settings_metadata_upload_retry: 有効なメタデータXMLファイルを使用して、もう一度お試しください
+    sso_settings_or_configure_manually: または手動で設定する
+    sso_settings_readable_resource_name: SSO設定
+    sso_settings_save: 保存
+    sso_settings_session_timeout: セッションのタイムアウト時間
+    sso_settings_slo_url: SLO サービス URL
+    sso_settings_sso_url: SSOサービスのURL
+    sso_settings_tab: SSO
     standard_deviation: 標準偏差
     standard_questions: よくある質問
     start: 開始
@@ -1142,7 +1192,13 @@ ja:
     status_details: 状況詳細
     structured_learning: 正式な学習 [10]
     subdomain: サブドメイン
+    subdomain_admin_keyword: 予約済みの管理者サブドメインパターンは使用できません
+    subdomain_invalid_format: サブドメインの形式が正しくありません。
+    subdomain_reserved: サブドメイン %{value} は予約済みです
+    subdomain_too_long_max_32: サブドメインが長すぎます（最大32文字までです）
     subject_part_of_other_invite: メールアドレス %{user_email} のユーザーは既に「%{workshop_invite_name}」に招待済みです
+    superadmin_use_root_domain: スーパー管理者はメインドメイン経由でサインインする必要があります
+    switch_client: Switchクライアント
     target_job_role: 対象職務
     this_field_is_required: この項目は必須です
     threesixty: 360キャンペーン
@@ -1199,3 +1255,4 @@ ja:
     yoodli_assessment: ユードリ評価
     yoodli_email_id: ユードリ候補者メールアドレス
     yoodli_external_assessment_id: Yoodli評価ID
+    you_are_here: 現在地

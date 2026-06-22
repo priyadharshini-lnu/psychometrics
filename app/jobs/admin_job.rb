@@ -114,7 +114,8 @@ class AdminJob < ApplicationJob
     export_campaign_ai_artifacts_results: AdminJobs::ExportCampaignAIArtifactsResultsJob,
     export_campaign_datasheet: AdminJobs::ExportCampaignDatasheet,
     rescore_ai_scoring: AdminJobs::RescoreAIScoring,
-    regenerate_assessment_transcriptions: AdminJobs::RegenerateAssessmentTranscriptionsJob
+    regenerate_assessment_transcriptions: AdminJobs::RegenerateAssessmentTranscriptionsJob,
+    copy_report: AdminJobs::CopyReport
   }.freeze
 
   def perform(record, stage = nil)

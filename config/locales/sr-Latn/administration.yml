@@ -3534,13 +3534,11 @@ sr-Latn:
         title: Konfigurišite Idp sa sledećim informacijama
       email_pipetext: Imejl pajptekst
       enabled: Omogućeno
-      enforced: Sprovedi SAML
       entity_id: ID entiteta / izdavač
       name_identifier_format: Identifikator imena
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML podešavanje
       save: Sačuvaj podešavanje
       sso_service_url: SSO servis URL

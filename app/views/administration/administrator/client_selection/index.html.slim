@@ -1,0 +1,6 @@
+javascript [nonce=content_security_policy_nonce]:
+  window.__CLIENT_SELECTION__ = #{@clients_data.to_json.html_safe}
+  window.__SPOOF_USER_ID__ = #{@spoof_user_id.to_json}
+
+#client-selection-container
+= vite_javascript_tag "entrypoints/admin/client_selection.jsx"

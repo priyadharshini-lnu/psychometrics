@@ -34,6 +34,8 @@ sr-Cyrl:
       cant_be_deleted: Овај запис се не може избрисати
       client_feature:
         ai_assisted_idp_feature_error: Не може бити истина ако је функција АИ асистента онемогућена
+      client_sso_settings:
+        sso_enforced_requires_enabled: Не може се омогућити без омогућавања SSO-а
       create_superadmin:
         uniq_email: Е -маил треба да буде уник.
       development_actions:

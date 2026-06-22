@@ -51,6 +51,30 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
       expect(client_response).to have_key('id')
       expect(client_response).to have_attribute(:name).with_value('Project Name')
     end
+
+    it 'returns 422 if subdomain contains reserved admin keyword' do
+      sign_in(superadmin)
+
+      body = {
+        data: {
+          type: 'projects',
+          attributes: {
+            name: 'Project Name',
+            subdomain: 'illegal-admin-test',
+            number: '123'
+          }
+        }
+      }
+
+      post "/api/v2/administration/clients/#{client_id}/projects",
+           params: body.to_json,
+           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      json_response = JSON.parse(response.body)
+      expected_error = I18n.t('admin.subdomain_admin_keyword')
+      expect(json_response['errors'].first['title']).to include(expected_error)
+    end
   end
 
   describe 'PATCH /api/v2/administration/projects/:id' do

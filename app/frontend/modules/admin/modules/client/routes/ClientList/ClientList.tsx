@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Input, Space, Pagination, Button, MenuProps,
+  Table, Input, Space, Pagination, Button, MenuProps, Typography,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -122,8 +122,20 @@ const ClientList: React.FC<Props> = ({
           render={({
             name,
             id,
-          }) => (
-            <Link to={`/admin/clients/${id}/projects`}>{name}</Link>
+            url,
+          }: Client) => (
+            <Space direction="vertical" size={0}>
+              <Link to={`/admin/clients/${id}/projects`} style={{ fontWeight: 'bold' }}>{name}</Link>
+              {url && (
+                <Typography.Link
+                  href={url}
+                  target="_blank"
+                  copyable
+                >
+                  {url}
+                </Typography.Link>
+              )}
+            </Space>
           )}
           minWidth={300}
         />

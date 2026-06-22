@@ -28,6 +28,10 @@ class ApplicationRecord < ActiveRecord::Base
     connected_to(role: :reading, prevent_writes: true, &)
   end
 
+  def self.tenant_config(**options)
+    @tenant_config_options = options
+  end
+
   def psy_debug
     klass = "PsyDebug::#{self.class.name}".safe_constantize || PsyDebug::Base
     klass.new(self)

@@ -226,6 +226,14 @@ export const menuItems = (
   const idpEnabled = camelizeKeys(featureFlags ?? {})?.idpEnabled
   const skillRaterEnabled = camelizeKeys(featureFlags ?? {})?.skillRaterEnabled
 
+  const clientContext = window.PsyGlobalState?.clientContextData
+  const clientsMenuLink = clientContext
+    ? `${permissions.clients}/${clientContext.id}/projects`
+    : permissions.clients
+  const clientsMenuLabel = clientContext
+    ? I18n.t('admin.projects')
+    : I18n.t('admin.clients')
+
   const isConfigurationEnabled = permissions.skillsTaxonomy
     || permissions.developmentActions || permissions.aiAssistants || permissions.campaignTemplates
   const isContentEnabled = permissions.assessments
@@ -278,8 +286,8 @@ export const menuItems = (
       ? {
         key: 'clients',
         label: (
-          <Link href={permissions.clients}>
-            {I18n.t('admin.clients')}
+          <Link href={clientsMenuLink}>
+            {clientsMenuLabel}
           </Link>
         ),
         icon: <GlobalOutlined aria-hidden="true" />,

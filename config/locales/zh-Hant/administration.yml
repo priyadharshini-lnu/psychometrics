@@ -3534,13 +3534,11 @@ zh-Hant:
         title: 使用下列資訊設定 Idp
       email_pipetext: 電郵 Pipetext
       enabled: 已啟用
-      enforced: 強制執行 SAML
       entity_id: 實體 ID/發行人
       name_identifier_format: 名稱 識別碼
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML 設定
       save: 儲存設定
       sso_service_url: SSO 服務網址

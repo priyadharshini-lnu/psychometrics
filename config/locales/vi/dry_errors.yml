@@ -34,6 +34,8 @@ vi:
       cant_be_deleted: Không thể xóa bản ghi này
       client_feature:
         ai_assisted_idp_feature_error: Không thể đúng nếu tính năng trợ lý ai bị tắt
+      client_sso_settings:
+        sso_enforced_requires_enabled: Không thể kích hoạt nếu tính năng SSO chưa được bật
       create_superadmin:
         uniq_email: Email nên là uniq.
       development_actions:

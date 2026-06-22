@@ -3536,13 +3536,11 @@ hu:
         title: Az Idp konfigurálása a következő információkkal
       email_pipetext: E-mail küldése a Pipetextnek
       enabled: Engedélyezve
-      enforced: Az SAML kényszerítése
       entity_id: Szervezet azonosítója/kibocsátó
       name_identifier_format: Név azonosító
       name_identifier_formats:
         email: urn:oasis:nevek:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:nevek:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML beállítás
       save: Mentési beállítás
       sso_service_url: SSO-szolgáltatás URL-címe

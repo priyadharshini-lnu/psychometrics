@@ -28,8 +28,8 @@ module AI
       geo_filtered_scope = AI::ScoreApproval.geo_scoped(Current.user_country)
       scope = geo_filtered_scope.joins(
         %(
-          join ai_scoring_approval_settings as setting on user_assessments.campaign_id = setting.campaign_id
-          AND user_assessments.assessment_id = setting.assessment_id
+          join ai_scoring_approval_settings on user_assessments.campaign_id = ai_scoring_approval_settings.campaign_id
+          AND user_assessments.assessment_id = ai_scoring_approval_settings.assessment_id
         )
       ).joins(:users_result).where(users_result: { ai_scoring_status: :completed })
 

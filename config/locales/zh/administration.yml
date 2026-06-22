@@ -3534,13 +3534,11 @@ zh:
         title: 用以下信息配置 Idp
       email_pipetext: 向 Pipetext 发送电子邮件
       enabled: 已启用
-      enforced: 执行 SAML
       entity_id: 实体 ID/发行人
       name_identifier_format: 名称标识符
       name_identifier_formats:
         email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml: SAML
       saml_setting: SAML 设置
       save: 保存设置
       sso_service_url: SSO 服务网址
