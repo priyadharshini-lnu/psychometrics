@@ -20,6 +20,7 @@ ja:
     active_record_audits_old_diff_parse_error: 古い変更を含むJSONの解析に失敗しました。
     active_record_audits_title: 監査による変更
     activity: アクティビティ
+    activity_period: 活動期間
     add_admin: 管理者を追加する
     add_admin_role: 管理者ロールの追加
     add_btn: 件名の追加
@@ -117,6 +118,12 @@ ja:
     alt_text_long: 最大文字数の100文字を超える。
     api_keys: APIキー
     api_keys_form_title: APIキー
+    application: 用途
+    application_add: アプリケーションを追加
+    application_name: アプリケーション名
+    application_name_already_taken: このクライアントについてはすでに存在します
+    application_name_format_hint: 使用できるのは英数字のみであり、単語の間にはスペースを1つ入れること
+    applications: 用途
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
     approve_all_questions: すべての質問を承認する
     approve_nomination_description: このメッセージは、直属の部下による指名を承認する必要がある場合に、マネージャーに送信されます。
@@ -133,6 +140,7 @@ ja:
     assessment_center: アセスメントセンター
     assessment_center_group: アセスメント・センター・グループ
     assessment_center_group_placeholder: セレクト・アセスメント・センター・グループ
+    assessment_center_invites: アセスメントセンターからの招待状
     assessment_ids: 評価ID
     assessment_placeholder: 評価の選択
     assessment_question_not_supported: この質問タイプは現在サポートされていません。
@@ -205,6 +213,8 @@ ja:
     audit_log_title: 監査ログ情報
     audit_log_type: レコードの種類
     audit_logs: 監査ログ
+    audit_logs_export_failed: エクスポートジョブのスケジュール設定に失敗しました。もう一度お試しください。
+    audit_logs_export_queued: エクスポートジョブが正常にスケジュールされました。
     audit_reports: 監査報告書
     auth_type_api_key_header_format_error: アルファベット、数字、アンダースコア、ハイフンのみが使用可能です。
     auth_type_api_key_header_label: APIキー・ヘッダ
@@ -244,11 +254,21 @@ ja:
     blocks_title: ブロック
     booked_at: で予約：
     breadcrumbs_norms_editor: ノーム・エディター
+    bulk_assessment_download_date_range_required: 期間を選択してください
+    bulk_assessment_download_export_type: エクスポート形式
+    bulk_assessment_download_export_type_required: エクスポート形式を選択してください
+    bulk_assessment_download_help_text: 注：評価が異なるディメンションに関連付けられている場合、ダウンロードされたxslxファイルには、ディメンションごとに個別のシートが含まれます。
+    bulk_assessment_download_modal_subtitle: 日付範囲とエクスポート形式を選択し、選択した評価をエクスポートしてください。
+    bulk_assessment_download_no_data_found: 指定された期間および評価項目については、データが見つかりませんでした。別の期間または評価項目で再度お試しください。
+    bulk_assessment_download_norm_factor_scores: 正規化係数の得点
+    bulk_assessment_download_raw_factor_scores: 未調整の因子得点
     bulk_assets_modal_choose_csv: CSVファイルを選択
     bulk_assets_modal_choose_zip: ZIPファイルを選択
     bulk_assets_modal_not_csv_file_error: CSVアップロードではCSVファイルのみが許可されています。有効なCSVファイルをアップロードしてください。
     bulk_assets_modal_subtitle: "<b>1つのCSVファイル</b>（ヘッダー：user_email, file_name）と、<b>1つのZIPファイル</b>（CSVのファイル名と一致するPDFファイルを含む）をアップロードしてください。ZIPファイルは%{max_file_size}MB未満である必要があります。"
     bulk_assets_modal_title: CSVファイルとZIPファイルをアップロード
+    bulk_export_assessments_file: 一括査定のエクスポートファイル
+    bulk_export_invalid_params: 無効な一括エクスポートパラメータ
     bulk_upload_ai_artifacts: 大量アップロードAIアーティファクト
     campaign: キャンペーン
     campaign_admin: キャンペーン管理者
@@ -374,6 +394,7 @@ ja:
     client_id_label: クライアントID
     client_id_name: oauth_client_id
     client_id_required: クライアントIDは必須です
+    client_ids: クライアントID
     client_ip: クライアントIp
     client_logo_label: クライアントロゴ
     client_secret_label: クライアントシークレット
@@ -412,6 +433,7 @@ ja:
     concise: 簡潔
     confidence_interval: 信頼区間
     confidence_interval_update_success: 信頼区間が正常に更新されました
+    configuration: 設定
     configure_model_answer_title: 模範解答とキーワードを設定する
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
     confirmation_required: 確認が必要です
@@ -424,6 +446,7 @@ ja:
     copy_ai_artifacts: AI生成のアートワークをコピー
     copy_hint: 上記のシート、センターマネージャー、アセッサー、ミーティングおよびリソースの設定を次のアセスメントセンターにコピーします。 コピー後、次に進む前に個々のアセスメントセンターに対してさらに変更を加えることができます。
     copy_image_url: 画像のURLをコピー
+    copy_report_scheduled: レポートのコピー処理がスケジュールされました。
     copy_text: テキスト
     copy_to_all: 他のアセスメント・センターへのコピー
     copy_url: URLをコピー
@@ -486,12 +509,15 @@ ja:
     datasheet: データシート
     date_and_time: 日時
     date_presets_last_30_days: 過去30日間
+    date_presets_last_6_months: 過去6か月
     date_presets_last_7_days: 直近7日間
     date_presets_last_month: 先月
     date_presets_last_week: 先週
+    date_presets_last_year: 昨年
     date_presets_today: 今日
     date_presets_yesterday: 昨日
     date_range: 日付範囲
+    date_range_required: 日付範囲の入力が必要です
     dates_completed: 完成
     dates_end: 終了日
     dates_label: 日程
@@ -645,8 +671,10 @@ ja:
     enable_caching_successfully: この評価のためにキャッシュが有効化されています。
     enable_caching_title: 評価キャッシュを有効にする?
     enable_enhance_with_ai_client_level: クライアントレベルで「AIによる強化」機能を有効にしてください
+    enable_face_detection: 顔検出を有効にする
     enable_maintenance: メンテナンスを有効にする
     enable_mobile_proctoring: モバイル試験監督を有効にする
+    enable_phrase_verification: フレーズ認証を有効にする
     enable_system_check: システムチェックを有効にする
     enable_transcription: 文字起こしを有効にする
     enable_transcription_msg: 動画/音声応答問題でAIスコアリングを使用するには、文字起こし機能を有効にしてください。
@@ -657,9 +685,12 @@ ja:
     end_time_must_be_after_start_time: 終了時刻は開始時刻より後でなければならない
     enhance_with_ai: AIで強化する
     enhance_with_ai_requires_ai_assistants: AIによる強化には、AIアシスタント機能の有効化が必要です
+    enter_client_ids: クライアントIDを入力してください
     enter_description: 説明を入力してください
     enter_name: 名前を入力してください
+    enter_project_ids: プロジェクトIDを入力してください
     enter_question_id: 質問IDを入力してください
+    enter_report_ids: レポートIDを入力してください
     enter_schema_key: スキーマ・キーを入力
     error: エラー
     error_color: エラーカラー
@@ -701,6 +732,7 @@ ja:
     export_failure_msg: 熟練度レベルのエクスポート時のエラー
     export_success: 管理者エクスポートジョブは正常にスケジュールされました。 ステータスについては通知を確認してください。
     export_success_msg: 進行中の開発アクションのエクスポート
+    export_to_csv: CSV形式でエクスポート
     export_with_inactive_users: 非アクティブユーザーを含むエクスポート
     external_report_id: 外部レポートID
     external_score: 外部スコア
@@ -754,9 +786,12 @@ ja:
     file_size_must_be_less_than_mb: ファイル {{name}} は、最大サイズ {{max_size_mb}} MB を超えています
     file_upload_failed: "{{name}} のアップロードに失敗しました"
     fill_empty_score_msg: 保存する前にすべての最終スコアを記入してください。
+    filter_by_client: クライアントで絞り込む
+    filter_by_client_help: クライアントを選択して、そのプロジェクトを読み込んでください
     final_score_empty_err_msg: "%{factor_name}の最終スコアは空欄であってはならない。"
     final_score_empty_msg: 合計金額は空欄にできません。
     finalized_at: 確定日
+    fingerprint: 指紋
     first_name_required: 姓は必須
     fix_grammar: 文法修正
     fixed_time: 固定時間
@@ -805,6 +840,8 @@ ja:
     handoff_invalid_token: 認証トークンが無効か、有効期限が切れています
     handoff_token_expired: 認証トークンの有効期限が切れています、またはすでに使用されています
     handoff_user_disabled: アカウントが無効になっています
+    has_api_keys: APIキーがある
+    has_public_keys: 公開鍵を持っている
     header_logout_content: 作業を続けたい場合はキャンセルを押してください。現在のユーザーをログアウトするにはOKを押してください。
     header_logout_title: 本当にログアウトしたいですか?
     hide_all: すべて隠す
@@ -867,6 +904,7 @@ ja:
     idp_development_actions_custom: カスタム
     idp_development_actions_date_range: 開始日 - 終了日
     idp_development_actions_edit_plan_to_add_development_actions: 計画を編集し、開発アクションを追加します。
+    idp_development_actions_errors_invalid_learning_style: "「%{learning_style}」は有効な学習スタイルではありません。有効なオプションは以下の通りです：%{valid_styles}"
     idp_development_actions_errors_learning_style_blank: 学習スタイルを空白にすることはできません
     idp_development_actions_generate_by_ai: AIによる生成
     idp_development_actions_generate_more: さらに増やす
@@ -921,6 +959,7 @@ ja:
     idp_revert_skill_to_public_errors_skill_already_public: スキルは既に公開されています
     idp_revert_skill_to_public_errors_skill_not_found: スキルが見つかりません
     idp_revert_skill_to_public_success_base_message: スキル「%{skill_name}」がマネージャーに表示されるようになりました
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} また、お客様のIDPプランは承認のために提出されました"
     idp_select_by_tags: タグで選ぶ
     idp_select_interview_question: 入力を開始して質問を検索して選択します
     idp_select_reflection_question: 入力を開始して質問を検索して選択します
@@ -1009,6 +1048,7 @@ ja:
     innovation_styles_list_position: ポジション
     innovation_styles_resource_confirmations_delete_body: "<p>本当にこの革新的なスタイルを削除したいのですか？</p>\n"
     instruction_messages: 指導メッセージ
+    instructions: 手順
     instructions_actions_saved: 指示は正常に保存された
     instructions_enable: 指示を有効にする
     instructions_save: 保存方法
@@ -1037,6 +1077,7 @@ ja:
     integrations_names_hogan: ホーガン
     integrations_names_iiht: IIHT
     integrations_names_mettl: メトル
+    integrations_names_microsite: マイクロサイト
     integrations_names_skillvue: スキルビュー
     integrations_names_yoodli: ユードリ
     integrations_view_all_schedules: すべてのMettlのスケジュールを見る
@@ -1057,11 +1098,15 @@ ja:
     interview_questions_import_failure_msg: ファイルのインポート中にエラーが発生しました。
     interview_questions_import_success_msg: 面接の質問のインポートが進行中です。通知で状況をご確認ください。
     interview_questions_question: 質問
+    invalid_client_ids: 無効なクライアントID
     invalid_confidence_interval: confidence_interval は 0 または 1 でなければなりません
     invalid_csv_header: CSVファイルには無効なヘッダーが含まれています。
+    invalid_json: 設定が有効なJSONではありません
     invalid_leadership_bar: leadership_bar は 0 または 1 でなければなりません
     invalid_norm_option: Norm Option は 0 から 3 の間でなければなりません
+    invalid_project_ids: 無効なプロジェクト ID：%{ids}
     invalid_question_ids: この評価には以下の質問IDが含まれていません：%{ids}
+    invalid_report_ids: 無効なレポートID
     invite_add_invite: 招待を追加する
     invite_assessment_center: アセスメント・センター
     invite_basic_info_allow_preferred_language: 優先言語を許可する
@@ -1085,6 +1130,7 @@ ja:
     invite_request_reason: 理由
     invite_request_reject: リジェクト
     invite_request_remove_confirm_content: 本当に %{subjectName} から %{action} %{status} したいのですか？
+    invite_request_remove_confirm_success: "%{status} %{subjectName} からのリクエストは、%{action} へのリクエストとして正常に処理されました。"
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: 件名
     invite_request_workshop_time: ワークショップの時間
@@ -1101,6 +1147,7 @@ ja:
     invite_steps_has_errors: エラーを含む
     invite_steps_send_invitation: 招待状を送る
     invite_subjects_count: 対象
+    invite_subjects_csv_error: "%{index}行目：メールアドレス %{email} のユーザーは、このキャンペーンの対象外です"
     invite_subjects_csv_imported: "%{count} 件の科目をインポートしました"
     invite_subjects_description: 被写体を個別に検索して追加することも、csvファイルを一括アップロードすることもできます。
     invite_subjects_download: ダウンロード
@@ -1140,6 +1187,7 @@ ja:
     join_room: ルームに参加する
     keep_original: オリジナルを保つ
     key: キー
+    key_id: キーID
     keywords: キーワード
     keywords_placeholder: キーワードをコンマで区切って入力してください。
     language_id: 言語ID
@@ -1232,6 +1280,7 @@ ja:
     min_value: 最小値
     minimum_10_words: 最低10語
     minimum_download_speed: 最低ダウンロード速度（Mbps）
+    minimum_face_detection_ratio: 顔検出の最低比率
     minimum_system_check_validity: キャンペーンの「システムチェックの有効期間」は、最低でも15分である必要があります
     minimum_upload_speed: 最低アップロード速度（Mbps）
     missing_min_max_values: 最小値と最大値が必要です。
@@ -1780,6 +1829,7 @@ ja:
         view: 表示
         view_recordings: 録画の表示
     permissions_360_campaigns: 360キャンペーンに特化したパーミッション
+    permissions_updated: 権限の更新に成功しました
     piped_text: パイプ付きテキスト
     piped_text_modal_assessment_center: アセスメント・センター
     piped_text_modal_campaign_link: キャンペーンリンク
@@ -1823,6 +1873,7 @@ ja:
     privacy_text: プライバシーテキスト
     privacy_text_placeholder: プライバシーテキストを入力
     proctoring: 試験監督
+    proctoring_allow_on_assessment_center: アセスメントセンターでの試験監督を許可する
     proctoring_enable: 試験監督を可能にする
     proctoring_errors_timed_only: 選択的監督機能は、時間制限のある評価においてのみ有効にできます。
     proctoring_fixed_time_required: "「固定時間」を有効にして、このオプションを選択してください"
@@ -1875,8 +1926,13 @@ ja:
     project: プロジェクト
     project_admin: プロジェクト管理者
     project_admins: プロジェクト管理者
+    project_assessor: プロジェクト評価担当者
     project_features: プロジェクトの特徴
+    project_ids: プロジェクトID
+    project_ids_required: このレポートタイプでは、project_ids の指定が必須です
+    project_licenses: プロジェクトライセンス
     project_manager: プロジェクトマネージャー
+    project_not_related_to_client: プロジェクト「%{project_id}」は、クライアントのものではありません。
     project_number: プロジェクト番号
     project_participants_column_campaigns: キャンペーン
     project_participants_column_createdAt: 作成日時：
@@ -1972,6 +2028,22 @@ ja:
     provider_change_confirm_title: プロバイダーを変更しますか？
     provider_previously_used_warning: このアシスタントは以前、「%{from}」を使用して結果を生成していました。「%{to}」に変更すると、今後の生成リクエストにおけるアシスタントの動作が変わる可能性があります。
     psychometric: サイコメトリック
+    public_key: 公開鍵
+    public_key_add: 公開鍵を追加する
+    public_key_cannot_be_changed: 作成後は変更できません
+    public_key_copy_private_key: 秘密鍵をコピーする
+    public_key_created: 公開鍵の作成に成功しました
+    public_key_generate: 鍵ペアを生成する
+    public_key_generate_button: RSA鍵ペアの生成
+    public_key_generate_info: 2048ビットのRSA鍵ペアを生成します。保存されるのは公開鍵のみです。秘密鍵はコピーして安全に保管してください。この鍵は二度と表示されません。
+    public_key_invalid_format: PEM形式の有効なRSA公開鍵でなければなりません
+    public_key_must_be_public: 秘密鍵ではなく、公開鍵でなければなりません
+    public_key_paste_placeholder: ここにPEM形式のRSA公開鍵を貼り付けてください（-----BEGIN PUBLIC KEY-----）
+    public_key_pem: 公開鍵（PEM）
+    public_key_private_key_copied: 秘密鍵がクリップボードにコピーされました
+    public_key_private_key_label: 秘密鍵（PEM）
+    public_key_private_key_warning: 秘密鍵が表示されるのは、今回だけです。今すぐコピーして、安全な場所に保管してください。
+    public_keys: 公開鍵
     question_center: 質問センター
     question_center_page_title: 質問センター - ダッシュボード - マーサー・ライトハウス
     question_editor_change_type: タイプを変更
@@ -2113,6 +2185,8 @@ ja:
     report_help_description: ユーザー・ダッシュボードのレポート・カードにヘルプ・テキストを表示
     report_help_name: レポートのヘルプ
     report_id: 報告書ID
+    report_ids: レポートID
+    report_ids_required: レポートIDの入力が必要です
     report_name: レポート名
     report_no_evaluations: "%{user}の報告書は入手できず、評価は受け取っていません。"
     report_not_generated: "%{user}のレポートは可用性条件を満たしていますが、まだ生成されていません。まずレポートを作成してください。"
@@ -2133,6 +2207,17 @@ ja:
     report_review_statuses_qc_completed: QC完了
     report_review_statuses_qc_in_progress: 進行中のQC
     report_status: 報告状況
+    report_type: レポートの種類
+    report_types:
+      active_clients_projects: 現在進行中のクライアントおよびプロジェクト
+      client_assessment_counts: クライアント評価の重要性
+      hogan_usage_report: Hoganアセスメントの利用状況
+      json_data_report: JSONデータレポート
+      pearson_usage_report: ピアソン・アセスメントの利用状況
+      report_usage_summary: レポートの利用状況の概要
+      saville_usage_report: サヴィル・アセスメントの利用方法
+      user_created_dates: ユーザー作成日
+      user_reports_export: ユーザーレポートのエクスポート
     reports: レポート
     reports_copy_copy: コピー
     reports_copy_copy_report: コピーレポート
@@ -2186,6 +2271,7 @@ ja:
     role_client_admin: クライアント管理
     role_project_admin: プロジェクト管理者
     role_superadmin: スーパー管理者
+    run: 実行
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
     saml_idp_entity_id_label: 事業体ID/発行者
@@ -2400,6 +2486,9 @@ ja:
     schema_key_required: スキーマ・キーが必要
     schema_key_type: キータイプ
     schema_key_unique: スキーマ・キーは一意でなければならない
+    scope: 適用範囲
+    scope_client: クライアント
+    scope_global: グローバル
     score: スコア
     score_approval_not_allowed_to_approve: このスコアを承認することはできません。
     score_approval_not_allowed_to_discard: このスコアを破棄することはできません。
@@ -2552,11 +2641,17 @@ ja:
     security_settings_security_setting: セキュリティ設定
     select_admin_role: 管理者ロールの選択
     select_assessment_language: 評価言語の選択
+    select_client: クライアントを選択
     select_end_time: 終了時間を選択
     select_language_to_translate: 翻訳する言語を選択してください
     select_level: レベルを選択
+    select_project_ids_required: 必要な project_ids を選択してください
+    select_projects: プロジェクト一覧
+    select_projects_required: 少なくとも1つのプロジェクトを選択してください
     select_question: 名前またはIDで質問を検索
+    select_report_ids_required: 必要な report_ids を選択してください
     select_report_language: レポート言語の選択
+    select_report_type: レポートの種類を選択してください
     select_start_time: 開始時間を選択
     selective_proctoring: 選択的監督
     send_email: 電子メールを送信する
@@ -2891,6 +2986,9 @@ ja:
     threesixity_advance_settings_factors: 要因
     threesixity_close_content: Multi Rater Campaign Creatorを終了してもよろしいですか？ 保存されていないカスタマイズ作業は失われます。 決定を確認してください。
     threesixity_close_title: マルチ・レイター・キャンペーン・クリエーターを閉じる
+    threesixity_instructions_creation_empty: 空白：空白のアンケートから始め、具体的なニーズに合わせてカスタマイズしてください。
+    threesixity_instructions_creation_previous: 前へ：以前の評価を出発点として選択し、修正を加えます。
+    threesixity_instructions_creation_standard: 標準：よく使われる質問や指標が盛り込まれた、あらかじめ作成されたテンプレートを使用する。
     threesixity_instructions_creation_sub_title: キャンペーンの種類を選択してください。
     threesixity_instructions_creation_title: マルチレイターキャンペーンクリエーターへようこそ！
     threesixity_instructions_customization_sub_title: テンプレートと評価に含める要素を選択します。
@@ -3037,6 +3135,7 @@ ja:
     x_axis_interval_label: X軸間隔
     y_axis_interval_label: Y軸間隔
     year: 国名
+    year_range: 対象年度
     years: 年
     yoodli: ユードリ
     yoodli_activity_id: YoodliアクティビティID

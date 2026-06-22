@@ -20,6 +20,7 @@ sk:
     active_record_audits_old_diff_parse_error: Nepodarilo sa analyzovať JSON so starými zmenami
     active_record_audits_title: Auditované zmeny
     activity: Aktivita
+    activity_period: Obdobie činnosti
     add_admin: Pridať správcu
     add_admin_role: Pridanie roly správcu
     add_btn: Pridanie predmetu
@@ -57,6 +58,7 @@ sk:
     ai_artifacts: Artefakty AI
     ai_assistant: AI asistent
     ai_assistant_model_id_label: Identifikácia modelu
+    ai_assistant_model_label: Model
     ai_assistant_model_provider: Poskytovateľ
     ai_assistant_model_region_label: Región
     ai_assistant_required: AI Assistant je povinný
@@ -116,6 +118,12 @@ sk:
     alt_text_long: Prekračuje maximálny limit 100 znakov.
     api_keys: Kľúče API
     api_keys_form_title: Kľúč API
+    application: Žiadosť
+    application_add: Pridať žiadosť
+    application_name: Názov aplikácie
+    application_name_already_taken: Pre tohto klienta už existuje
+    application_name_format_hint: Povolené sú iba písmená a čísla, medzi slovami je povolená iba jedna medzera
+    applications: Aplikácie
     apply_to_existing_users: Túto zmenu aplikujte na existujúcich používateľov v tejto kampani.
     approve_all_questions: Schváliť všetky otázky
     approve_nomination_description: Táto správa sa odošle manažérovi, keď je potrebné schváliť nomináciu uskutočnenú priamym podriadeným
@@ -132,6 +140,7 @@ sk:
     assessment_center: 'Assessment centrum:'
     assessment_center_group: Skupina hodnotiacich centier
     assessment_center_group_placeholder: Vyberte skupinu hodnotiaceho centra
+    assessment_center_invites: Pozvánky do hodnotiaceho centra
     assessment_ids: Identifikačné čísla hodnotenia
     assessment_placeholder: Vyberte položku Hodnotenie
     assessment_question_not_supported: Tento typ otázky momentálne nie je podporovaný.
@@ -204,6 +213,8 @@ sk:
     audit_log_title: Informácie denníka auditu
     audit_log_type: Typ záznamu
     audit_logs: Protokoly auditu
+    audit_logs_export_failed: Nepodarilo sa naplánovať úlohu exportu. Skúste to prosím znova.
+    audit_logs_export_queued: Úloha exportu bola úspešne naplánovaná.
     audit_reports: Audítorské správy
     auth_type_api_key_header_format_error: Povolené sú iba písmená, číslice, podčiarkovníky a spojovníky
     auth_type_api_key_header_label: Hlavička kľúča API
@@ -220,6 +231,7 @@ sk:
     auth_type_oauth_label: OAuth
     auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Toto hodnotenie je automaticky moderované a nie je možné ho zmeniť
+    auto_placeholder: Auto
     automatically_send_invites: Automatické odosielanie pozvánok novým hodnotiteľom
     availability: Dostupnosť
     available_languages: Dostupné jazyky
@@ -242,11 +254,21 @@ sk:
     blocks_title: Bloky
     booked_at: 'Rezervované na:'
     breadcrumbs_norms_editor: Editor noriem
+    bulk_assessment_download_date_range_required: Vyberte prosím časové obdobie
+    bulk_assessment_download_export_type: Typ exportu
+    bulk_assessment_download_export_type_required: Vyberte prosím typ exportu
+    bulk_assessment_download_help_text: 'Poznámka: Ak sú hodnotenia priradené k rôznym dimenziám, stiahnutý súbor xslx bude obsahovať samostatné listy pre každú dimenziu.'
+    bulk_assessment_download_modal_subtitle: Vyberte časové obdobie a typ exportu, potom vyexportujte vybrané hodnotenia.
+    bulk_assessment_download_no_data_found: Pre zvolené časové obdobie a hodnotenia neboli nájdené žiadne údaje. Skúste prosím zvoliť iné časové obdobie alebo hodnotenia.
+    bulk_assessment_download_norm_factor_scores: Skóre normatívneho faktora
+    bulk_assessment_download_raw_factor_scores: Hrubé skóre faktorov
     bulk_assets_modal_choose_csv: Vyberte súbor CSV
     bulk_assets_modal_choose_zip: Vyberte súbor ZIP
     bulk_assets_modal_not_csv_file_error: Na nahratie CSV sú povolené iba súbory CSV. Nahrajte platný súbor CSV.
     bulk_assets_modal_subtitle: 'Nahrajte prosím <b>jeden súbor CSV</b> (s hlavičkami: user_email, file_name) a <b>jeden súbor ZIP</b> (obsahujúci súbory PDF zodpovedajúce názvom súborov z csv). Veľkosť súboru ZIP nesmie presiahnuť %{max_file_size} MB.'
     bulk_assets_modal_title: Nahrať súbory CSV a ZIP
+    bulk_export_assessments_file: Exportný súbor hromadných vyúčtovaní
+    bulk_export_invalid_params: Neplatné parametre hromadného exportu
     bulk_upload_ai_artifacts: Hromadné nahrávanie AI artefaktov
     campaign: Kampaň
     campaign_admin: Správca kampane
@@ -372,6 +394,7 @@ sk:
     client_id_label: ID klienta
     client_id_name: oauth_client_id
     client_id_required: Vyžaduje sa identifikácia klienta
+    client_ids: ID klientov
     client_ip: IP adresa klienta
     client_logo_label: Logo klienta
     client_secret_label: Tajný kľúč klienta
@@ -393,6 +416,7 @@ sk:
     column_usage_stats: Štatistiky používania
     common: Hodnotenie TTE
     common_assessment: Hodnotenie TTE
+    common_disabled: Vypnuté
     common_download_sample_file: Stiahnuť vzorový súbor
     common_enabled: Povolené
     common_import_failure_msg: Chyba pri importovaní súboru.
@@ -409,6 +433,7 @@ sk:
     concise: Stručný
     confidence_interval: Interval spoľahlivosti
     confidence_interval_update_success: Interval spoľahlivosti bol úspešne aktualizovaný
+    configuration: Konfigurácia
     configure_model_answer_title: Nakonfigurujte vzorové odpovede a kľúčové slová
     confirm_remove_admin: Naozaj chcete odstrániť správcu používateľa s e-mailom '%{email}'?
     confirmation_required: Je potrebné potvrdenie
@@ -421,6 +446,7 @@ sk:
     copy_ai_artifacts: Kopírovať umelecké diela vytvorené umelou inteligenciou
     copy_hint: Skopíruje vyššie uvedenú konfiguráciu Miesta, Manažéri stredísk, Hodnotitelia a Schôdze a zdroje do nasledujúcich hodnotiacich centier. Po skopírovaní môžete pred pokračovaním vykonať ďalšie zmeny v jednotlivých hodnotiacich centrách.
     copy_image_url: Skopíruj adresu URL obrázka
+    copy_report_scheduled: Úloha na vytvorenie kópie správy bola naplánovaná.
     copy_text: Text
     copy_to_all: Kopírovanie do iných hodnotiacich centier
     copy_url: Kopírovať URL
@@ -442,6 +468,7 @@ sk:
     dashboard: Tabuľu
     dashboard_capacity_name: Názov kapacity
     dashboard_choose_file_format: Výber formátu súboru
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
     dashboard_dashboard_types_powerbi: PowerBi
     dashboard_dashboards: Tabule
     dashboard_export_dashboard_to_file: Exportovať tabuľu do súboru
@@ -482,12 +509,15 @@ sk:
     datasheet: Dátový hárok
     date_and_time: Dátum a čas
     date_presets_last_30_days: Posledných 30 dní
+    date_presets_last_6_months: Posledných 6 mesiacov
     date_presets_last_7_days: Posledných 7 dní
     date_presets_last_month: Minulý mesiac
     date_presets_last_week: Minulý týždeň
+    date_presets_last_year: Minulý rok
     date_presets_today: Dnes
     date_presets_yesterday: Včera
     date_range: Rozsah dátumov
+    date_range_required: Je potrebné zadať časové obdobie
     dates_completed: Dokončené v
     dates_end: Dátum ukončenia
     dates_label: Dátumy
@@ -641,8 +671,10 @@ sk:
     enable_caching_successfully: Pre toto hodnotenie bolo zapnuté ukladanie do vyrovnávacej pamäte.
     enable_caching_title: Povoliť cache hodnotenia?
     enable_enhance_with_ai_client_level: Aktivujte funkciu Vylepšiť pomocou AI na úrovni klienta.
+    enable_face_detection: Zapnúť detekciu tváre
     enable_maintenance: Povoliť údržbu
     enable_mobile_proctoring: Aktivovať mobilné monitorovanie
+    enable_phrase_verification: Zapnúť overovanie fráz
     enable_system_check: Zapnúť kontrolu systému
     enable_transcription: Povoliť prepis
     enable_transcription_msg: Povoliť prepisovanie s využitím umelej inteligencie na hodnotenie otázok s video/audio odpoveďami.
@@ -653,9 +685,12 @@ sk:
     end_time_must_be_after_start_time: Koniec času musí byť po začiatku času
     enhance_with_ai: Vylepšite pomocou umelej inteligencie
     enhance_with_ai_requires_ai_assistants: Funkcia Vylepšiť pomocou AI vyžaduje, aby bola povolená funkcia AI asistenti.
+    enter_client_ids: Zadajte identifikačné čísla klientov
     enter_description: Zadajte popis
     enter_name: Zadajte meno
+    enter_project_ids: Zadajte identifikačné čísla projektov
     enter_question_id: Zadajte ID otázky
+    enter_report_ids: Zadajte identifikačné čísla správ
     enter_schema_key: Zadajte kľúč schémy
     error: Chyba
     error_color: Farba chyby
@@ -697,6 +732,7 @@ sk:
     export_failure_msg: Chyba pri exporte úrovní odbornosti
     export_success: Úloha exportu správcu bola úspešne naplánovaná. Skontrolujte stav svojho oznámenia.
     export_success_msg: Export prebiehajúcich vývojových akcií
+    export_to_csv: Exportovať do CSV
     export_with_inactive_users: Export s neaktívnymi používateľmi
     external_report_id: ID externej správy
     external_score: Externé skóre
@@ -750,9 +786,12 @@ sk:
     file_size_must_be_less_than_mb: Súbor {{name}} presahuje maximálnu veľkosť {{max_size_mb}} MB
     file_upload_failed: Nepodarilo sa nahrať {{name}}
     fill_empty_score_msg: Vyplňte všetky konečné skóre pred uložením.
+    filter_by_client: Filtrovať podľa klienta
+    filter_by_client_help: Vyberte klienta, aby sa načítali jeho projekty
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nemôže byť prázdne.
     final_score_empty_msg: Konečný účet nemôže byť prázdny.
     finalized_at: 'Dátum dokončenia:'
+    fingerprint: Otlačok prsta
     first_name_required: Krstné meno je povinné
     fix_grammar: Opravte gramatiku
     fixed_time: Pevný čas
@@ -801,6 +840,8 @@ sk:
     handoff_invalid_token: Neplatný alebo neplatný overovací token
     handoff_token_expired: Platnosť overovacieho tokenu vypršala alebo bol už použitý
     handoff_user_disabled: Váš účet je deaktivovaný
+    has_api_keys: Má kľúče API
+    has_public_keys: Má verejné kľúče
     header_logout_content: Stlačte Zrušiť, ak chcete pokračovať v práci. Stlačte Ok na odhlásenie aktuálneho používateľa.
     header_logout_title: Si si istý, že sa chceš odhlásiť?
     hide_all: Skryť všetko
@@ -863,6 +904,7 @@ sk:
     idp_development_actions_custom: Zvyk
     idp_development_actions_date_range: Dátum začiatku - Dátum ukončenia
     idp_development_actions_edit_plan_to_add_development_actions: Upraviť plán a pridať vývojové akcie.
+    idp_development_actions_errors_invalid_learning_style: "„%{learning_style}“ nie je platný štýl učenia. Platné možnosti sú: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: Štýl učenia nemôže byť prázdny
     idp_development_actions_generate_by_ai: Generovanie pomocou AI
     idp_development_actions_generate_more: Generovať viac
@@ -917,6 +959,7 @@ sk:
     idp_revert_skill_to_public_errors_skill_already_public: Zručnosť je už verejná
     idp_revert_skill_to_public_errors_skill_not_found: Zručnosť sa nenašla
     idp_revert_skill_to_public_success_base_message: Zručnosť "%{skill_name}" je teraz viditeľná pre vášho manažéra
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} a váš plán IDP bol predložený na schválenie"
     idp_select_by_tags: Vybrať podľa značiek
     idp_select_interview_question: Začnite písať a vyhľadajte a vyberte otázku
     idp_select_reflection_question: Začnite písať a vyhľadajte a vyberte otázku
@@ -1005,6 +1048,7 @@ sk:
     innovation_styles_list_position: Pozícia
     innovation_styles_resource_confirmations_delete_body: "<p>Naozaj chcete tento štýl inovácie odstrániť?</p>\n"
     instruction_messages: Inštruktážne správy
+    instructions: Pokyny
     instructions_actions_saved: Pokyny boli úspešne uložené
     instructions_enable: Pokyny na aktiváciu
     instructions_save: Uložiť pokyny
@@ -1033,6 +1077,7 @@ sk:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Mikrostránka
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Zobraziť všetky cestovné poriadky Mettl
@@ -1053,11 +1098,15 @@ sk:
     interview_questions_import_failure_msg: Chyba pri importovaní súboru.
     interview_questions_import_success_msg: Prebieha import otázok na pohovor. Skontrolujte stav v upozorneniach.
     interview_questions_question: Otázka
+    invalid_client_ids: Neplatné ID klientov
     invalid_confidence_interval: confidence_interval musí byť 0 alebo 1
     invalid_csv_header: CSV súbor obsahuje neplatné hlavičky.
+    invalid_json: konfigurácia nie je platným JSON
     invalid_leadership_bar: leadership_bar musí byť 0 alebo 1
     invalid_norm_option: Normálna voľba musí byť medzi 0 a 3
+    invalid_project_ids: 'Neplatné identifikátory projektov: %{ids}'
     invalid_question_ids: 'ID otázok, ktoré sa v tomto hodnotení nenachádzajú: %{ids}'
+    invalid_report_ids: Neplatné identifikátory správ
     invite_add_invite: Pridať pozvánku
     invite_assessment_center: Hodnotiace centrum
     invite_basic_info_allow_preferred_language: Povoliť preferovaný jazyk
@@ -1081,6 +1130,7 @@ sk:
     invite_request_reason: Dôvod
     invite_request_reject: Odmietnuť
     invite_request_remove_confirm_content: Naozaj chcete %{action} %{status} z %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} z adresy %{subjectName} bol úspešne presmerovaný na %{action}."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Názov subjektu
     invite_request_workshop_time: Čas workshopu
@@ -1097,6 +1147,7 @@ sk:
     invite_steps_has_errors: obsahuje chyby
     invite_steps_send_invitation: Odoslať pozvánku
     invite_subjects_count: Predmety
+    invite_subjects_csv_error: "%{index} riadku: používateľ s e-mailovou adresou %{email} nie je súčasťou tejto kampane"
     invite_subjects_csv_imported: "%{count} importovaných subjektov"
     invite_subjects_description: Predmety môžete pridať jednotlivo vyhľadaním alebo hromadným nahratím súboru CSV.
     invite_subjects_download: Stiahnite si
@@ -1136,6 +1187,7 @@ sk:
     join_room: Vstúpiť do miestnosti
     keep_original: Zachovať originál
     key: Kľúč
+    key_id: ID kľúča
     keywords: Kľúčové slová
     keywords_placeholder: Zadajte kľúčové slová oddelené čiarkami.
     language_id: Kód jazyka
@@ -1228,6 +1280,7 @@ sk:
     min_value: Minimálna hodnota
     minimum_10_words: Minimálne 10 slov
     minimum_download_speed: Minimálna rýchlosť sťahovania (v Mbps)
+    minimum_face_detection_ratio: Minimálny pomer detekcie tváre
     minimum_system_check_validity: Minimálna platnosť kontroly systému v rámci kampane by mala byť 15 minút
     minimum_upload_speed: Minimálna rýchlosť odosielania (v Mbps)
     missing_min_max_values: Minimálne a maximálne hodnoty sú povinné.
@@ -1348,6 +1401,7 @@ sk:
     password_label: Heslo
     password_name: Heslo
     past: Minulosť
+    payload: Užitočné zaťaženie
     pearson: Pearson
     pearson_assessment: Pearsonovo hodnotenie
     permissions:
@@ -1775,6 +1829,7 @@ sk:
         view: Pohľad
         view_recordings: Zobraziť nahrávky
     permissions_360_campaigns: Povolenia špecifické pre 360° kampane
+    permissions_updated: Oprávnenia boli úspešne aktualizované
     piped_text: Text v potrubí
     piped_text_modal_assessment_center: Hodnotiace centrum
     piped_text_modal_campaign_link: Odkaz na kampaň
@@ -1818,6 +1873,7 @@ sk:
     privacy_text: Text o ochrane osobných údajov
     privacy_text_placeholder: Zadajte text ochrany osobných údajov
     proctoring: Dohliadanie
+    proctoring_allow_on_assessment_center: Povoliť dohľad v hodnotiacom centre
     proctoring_enable: Povoliť proctoring
     proctoring_errors_timed_only: Selektívne dohliadanie je možné aktivovať len pri časovo obmedzených testoch.
     proctoring_fixed_time_required: Ak chcete túto možnosť aktivovať, nastavte pevný čas
@@ -1870,8 +1926,13 @@ sk:
     project: Projekt
     project_admin: Správca projektu
     project_admins: Správcovia projektov
+    project_assessor: Hodnotiteľ projektu
     project_features: Funkcie projektu
+    project_ids: Identifikačné čísla projektov
+    project_ids_required: Pre tento typ správy je povinné pole „project_ids“
+    project_licenses: Licencie na projekty
     project_manager: Projektový manažér
+    project_not_related_to_client: Projekt „%{project_id}“ nepatrí klientovi
     project_number: Číslo projektu
     project_participants_column_campaigns: Kampane
     project_participants_column_createdAt: Vytvorené v
@@ -1967,6 +2028,22 @@ sk:
     provider_change_confirm_title: Zmeniť poskytovateľa?
     provider_previously_used_warning: Tento asistent doteraz generoval výsledky pomocou „%{from}“. Zmena na „%{to}“ môže ovplyvniť správanie asistenta pri budúcich požiadavkách na generovanie.
     psychometric: Psychometrické
+    public_key: Verejný kľúč
+    public_key_add: Pridať verejný kľúč
+    public_key_cannot_be_changed: po vytvorení sa nedá zmeniť
+    public_key_copy_private_key: Skopírovať súkromný kľúč
+    public_key_created: Verejný kľúč bol úspešne vytvorený
+    public_key_generate: Vytvoriť pár kľúčov
+    public_key_generate_button: Vytvoriť pár kľúčov RSA
+    public_key_generate_info: Vytvorí sa pár kľúčov RSA s dĺžkou 2048 bitov. Uloží sa iba verejný kľúč. Súkromný kľúč si skopírujte a bezpečne uložte – už sa viac nezobrazí.
+    public_key_invalid_format: musí byť platný verejný kľúč RSA vo formáte PEM
+    public_key_must_be_public: musí to byť verejný kľúč, nie súkromný kľúč
+    public_key_paste_placeholder: Vložte sem svoj verejný kľúč RSA vo formáte PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Verejný kľúč (PEM)
+    public_key_private_key_copied: Súkromný kľúč bol skopírovaný do schránky
+    public_key_private_key_label: Súkromný kľúč (PEM)
+    public_key_private_key_warning: Toto je jediný okamih, kedy bude súkromný kľúč viditeľný. Okamžite si ho skopírujte a bezpečne ho uložte.
+    public_keys: Verejné kľúče
     question_center: Centrum otázok
     question_center_page_title: Centrum otázok – Prehľad – Mercer Lighthouse
     question_editor_change_type: Zmeniť typ
@@ -2108,6 +2185,8 @@ sk:
     report_help_description: Text pomocníka zobrazený na karte zostavy na ovládacom paneli používateľa
     report_help_name: Pomocné správy
     report_id: ID zostavy
+    report_ids: Identifikačné čísla správ
+    report_ids_required: Identifikačné čísla správ sú povinné
     report_name: Názov správy
     report_no_evaluations: Správa o %{user} nie je dostupná – neboli prijaté žiadne hodnotenia.
     report_not_generated: Report pre %{user} spĺňa podmienky dostupnosti, ale ešte nebol vygenerovaný. Prosím, najskôr vygenerujte správu.
@@ -2128,6 +2207,17 @@ sk:
     report_review_statuses_qc_completed: QC dokončené
     report_review_statuses_qc_in_progress: Prebieha kontrola kvality
     report_status: Stav správy
+    report_type: Typ správy
+    report_types:
+      active_clients_projects: Aktívni klienti a projekty
+      client_assessment_counts: Hodnotenie klientov je dôležité
+      hogan_usage_report: Využitie hodnotenia Hogan
+      json_data_report: Správa s údajmi vo formáte JSON
+      pearson_usage_report: Využitie hodnotenia spoločnosti Pearson
+      report_usage_summary: Súhrn využitia správy
+      saville_usage_report: Využitie hodnotenia Saville
+      user_created_dates: Dátumy vytvorené používateľom
+      user_reports_export: Export užívateľských správ
     reports: Správy
     reports_copy_copy: Kopírovať
     reports_copy_copy_report: Kopírovať správu
@@ -2181,6 +2271,7 @@ sk:
     role_client_admin: Správa klientov
     role_project_admin: Správca projektu
     role_superadmin: Superadministrátor
+    run: Spustiť
     saml_idp_certificate_available: Dostupné (kliknite pre kopírovanie)
     saml_idp_certificate_label: Certifikát
     saml_idp_entity_id_label: Identifikátor subjektu/Emitent
@@ -2392,6 +2483,9 @@ sk:
     schema_key_required: Vyžaduje sa kľúč schémy
     schema_key_type: Typ kľúča
     schema_key_unique: Kľúče schémy by mali byť jedinečné
+    scope: Rozsah pôsobnosti
+    scope_client: Klient
+    scope_global: Celosvetovo
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nemôžete schváliť.
     score_approval_not_allowed_to_discard: Toto skóre nemôžete zahodiť.
@@ -2544,11 +2638,17 @@ sk:
     security_settings_security_setting: Nastavenie zabezpečenia
     select_admin_role: Vyberte rolu správcu
     select_assessment_language: Výber jazyka hodnotenia
+    select_client: Vyberte klienta
     select_end_time: Vyberte čas ukončenia
     select_language_to_translate: Vyberte jazyk, do ktorého chcete preložiť
     select_level: Vyberte úroveň
+    select_project_ids_required: Vyberte požadované ID projektov
+    select_projects: Vybrané projekty
+    select_projects_required: Vyberte prosím aspoň jeden projekt
     select_question: Vyhľadajte otázku podľa názvu alebo ID
+    select_report_ids_required: Vyberte požadované report_ids
     select_report_language: Výber jazyka správy
+    select_report_type: Vyberte typ správy
     select_start_time: Vyberte čas začatia
     selective_proctoring: Selektívne dohliadanie
     send_email: Odoslať e-mail
@@ -2878,6 +2978,9 @@ sk:
     threesixity_advance_settings_factors: Faktory
     threesixity_close_content: Naozaj chcete zavrieť Tvorcu kampaní Multi Rater? Akákoľvek neuložená práca na prispôsobení sa stratí. Potvrďte svoje rozhodnutie.
     threesixity_close_title: Zavrieť tvorcu kampane s viacerými hodnotiteľmi?
+    threesixity_instructions_creation_empty: 'Prázdny: Začnite s prázdnym dotazníkom a prispôsobte si ho podľa svojich konkrétnych potrieb.'
+    threesixity_instructions_creation_previous: 'Predchádzajúce: Vyberte predchádzajúce hodnotenie ako východiskový bod a vykonajte úpravy.'
+    threesixity_instructions_creation_standard: 'Štandard: Použite vopred pripravenú šablónu s bežne používanými otázkami a ukazovateľmi.'
     threesixity_instructions_creation_sub_title: Vyberte typ kampane, ktorú chcete vytvoriť.
     threesixity_instructions_creation_title: Vitajte v tvorcovi kampaní Multi Rater!
     threesixity_instructions_customization_sub_title: Vyberte šablónu a faktory, ktoré sa majú zahrnúť do hodnotenia.
@@ -3024,6 +3127,7 @@ sk:
     x_axis_interval_label: Interval osi X
     y_axis_interval_label: Interval osi Y
     year: Krajina
+    year_range: Rozsah rokov
     years: Rokov
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID

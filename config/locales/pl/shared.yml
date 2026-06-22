@@ -140,9 +140,11 @@ pl:
     not_requested: Jeszcze nie zgłoszone
     ok: Ok
     options: Opcje
+    overview: Przegląd
     owner: Właściciel
     pause: Pauza
     pending: W toku
+    permissions: Uprawnienia
     play: Zagraj
     policy_version: Wersja polityki
     policy_version_format: Dopuszczalne są tylko liczby całkowite.
@@ -222,9 +224,31 @@ pl:
     update: Odarchiwizuj
     update_failed: Aktualizacja nie powiodła się
     updated_at: Zaktualizowano
+    updated_by: Zaktualizowane przez
     updated_successfully: Aktualizacja zakończona sukcesem
     upload: Przesyłać
     user_report_pdf_url_not_generated: Nie udało się wygenerować linku do pobrania pliku PDF
+    user_reports_approval_status_pending_qc: Oczekuje na kontrolę jakości
+    user_reports_approval_status_qc_completed: Kontrola jakości zakończona
+    user_reports_assessment_name_not_completed_reason_template: Ocena „%{names}” nie została zakończona
+    user_reports_assessments_name_not_completed_reason_template: Oceny %{names} nie zostały zakończone
+    user_reports_assessor_not_completed_reason_template: Formularz rzeczoznawcy „%{names}” nie został wypełniony
+    user_reports_assessors_not_completed_reason_template: Formularze rzeczoznawcy %{names} nie zostały wypełnione
+    user_reports_campaign_artifact_results_pending_reason_message: Wyniki artefaktów kampanii nie są jeszcze ostateczne dla tego użytkownika
+    user_reports_campaign_scoring_pending_reason_message: Wyniki kampanii dla tego użytkownika nie są jeszcze ostateczne
+    user_reports_custom_upload_report_reason_message: Źródło raportu to plik przesłany samodzielnie
+    user_reports_external_report_pending_reason_message: Czekamy na raport od dostawcy
+    user_reports_lead_assessor_not_completed_reason_template: Formularz głównego rzeczoznawcy %{names} nie został wypełniony
+    user_reports_lead_assessors_not_completed_reason_template: Formularze głównego rzeczoznawcy %{names} nie zostały wypełnione
+    user_reports_no_report_module_reason_message: Nie znaleziono modułu dla tego raportu
+    user_reports_not_prepared_reason_message: Raport nie został jeszcze sporządzony
+    user_reports_pending_approval_reason_template: Status zatwierdzenia to „%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: Oczekuje się na ostateczne zatwierdzenie wyników oceny AI
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Oczekuje się na zatwierdzenie oceny AI przez dział kontroli jakości
+    user_reports_pending_qc_approval_reason_message: Oczekuje się na zatwierdzenie raportu kontroli jakości
+    user_reports_qc_completed_approval_reason_message: Oczekuje się na zatwierdzenie raportu końcowego
+    user_reports_report_generating_reason_message: Trwa generowanie raportu
+    user_reports_report_generation_failed_reason_message: Nie udało się wygenerować raportu
     video: Wideo
     view: Widok
     view_audio: Wyświetl audio

@@ -8,6 +8,7 @@ nl:
     actions_add_code: Code toevoegen
     actions_archive: Archief
     actions_playground: Speelplaats
+    actions_unarchive: Uit archief halen
     active: Actief
     active_label: Actief
     active_name: Actief
@@ -19,6 +20,7 @@ nl:
     active_record_audits_old_diff_parse_error: Mislukt bij het parsen van JSON met oude wijzigingen
     active_record_audits_title: Gecontroleerde wijzigingen
     activity: Activiteit
+    activity_period: Activiteitsperiode
     add_admin: Beheerder toevoegen
     add_admin_role: Beheerdersrol toevoegen
     add_btn: Onderwerp toevoegen
@@ -47,6 +49,7 @@ nl:
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
     administrator_approves_reports: Beheerder keurt rapporten goed
     administrators_list_columns_email: E-mail
+    admins: Beheerders
     advanced: Geavanceerd
     advanced_mode_tooltip: Gebruik de geavanceerde modus voor prompt-templates met vloeibare template en beschikbare variabelen. Raadpleeg de documentatie voor meer details.
     agile: AGIEL
@@ -55,6 +58,7 @@ nl:
     ai_artifacts: AI-artefacten
     ai_assistant: AI-assistent
     ai_assistant_model_id_label: Model-ID
+    ai_assistant_model_label: Model
     ai_assistant_model_provider: Aanbieder
     ai_assistant_model_region_label: Regio
     ai_assistant_required: AI Assistant is vereist
@@ -90,6 +94,7 @@ nl:
     ai_scoring_approval_digest_mailer_count_label: 'Aantal doelpunten: %{value}'
     ai_scoring_approval_digest_mailer_dear: Beste %{name},
     ai_scoring_approval_digest_mailer_link_text: Goedkeuringen toekennen
+    ai_scoring_approval_digest_mailer_project_label: 'Project: %{value}'
     ai_scoring_approval_settings: Instellingen voor goedkeuring van AI-scores
     ai_scoring_approval_stale_description: Configuratie-updates sinds de laatste uitvoering kunnen de score hebben gewijzigd. Voer een nieuwe beoordeling uit om de score bij te werken met de nieuwste instellingen.
     ai_scoring_approval_stale_title: De score is mogelijk verouderd
@@ -113,6 +118,12 @@ nl:
     alt_text_long: Overschrijdt de maximumlimiet van 100 tekens.
     api_keys: API-sleutels
     api_keys_form_title: api-sleutel
+    application: Toepassing
+    application_add: Toepassing toevoegen
+    application_name: Naam van de applicatie
+    application_name_already_taken: Bestaat al voor deze klant
+    application_name_format_hint: Alleen letters en cijfers zijn toegestaan, met één spatie tussen de woorden
+    applications: Toepassingen
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
     approve_all_questions: Alle vragen goedkeuren
     approve_nomination_description: Dit bericht wordt naar een manager gestuurd als een nominatie, gemaakt door een direct rapport, moet worden goedgekeurd
@@ -129,6 +140,7 @@ nl:
     assessment_center: 'Beoordelingscentrum:'
     assessment_center_group: Assessment Center Groep
     assessment_center_group_placeholder: Selecteer Assessment Center-groep
+    assessment_center_invites: Uitnodigingen voor het Assessment Center
     assessment_ids: Beoordelings-ID's
     assessment_placeholder: Selecteer Assessment
     assessment_question_not_supported: Dit type vraag wordt momenteel niet ondersteund.
@@ -152,7 +164,9 @@ nl:
     assessor_add_subject_modal_title: Onderwerp toevoegen
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Selecteer een beoordeling
     assessor_assessment_name: Beoordelaar Beoordeling
+    assessor_assessments: Beoordelingen door beoordelaars
     assessor_assessments_actions_add_subject: Onderwerp toevoegen
+    assessor_assessments_actions_rescore: Opnieuw beoordelen
     assessor_assessments_actions_reset: Evaluatie resetten
     assessor_assessments_actions_reset_progress: Vooruitgang resetten
     assessor_assessments_bulk_delete_confirmation: Weet je zeker dat je de geselecteerde records wilt verwijderen?
@@ -199,6 +213,8 @@ nl:
     audit_log_title: Informatie controlelogboek
     audit_log_type: Opname Type
     audit_logs: Controlelogboeken
+    audit_logs_export_failed: Het is niet gelukt om de exporttaak in te plannen. Probeer het nog eens.
+    audit_logs_export_queued: De exporttaak is succesvol ingepland.
     audit_reports: Controleverslagen
     auth_type_api_key_header_format_error: Alleen letters, cijfers, underscores en koppeltekens zijn toegestaan
     auth_type_api_key_header_label: API-sleutel header
@@ -215,6 +231,7 @@ nl:
     auth_type_oauth_label: OAuth
     auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Deze score wordt automatisch gemodereerd en kan niet worden gewijzigd
+    auto_placeholder: Auto
     automatically_send_invites: Automatisch uitnodigingen versturen naar nieuwe beoordelaars
     availability: Beschikbaarheid
     available_languages: Beschikbare talen
@@ -237,11 +254,21 @@ nl:
     blocks_title: Blokken
     booked_at: 'Geboekt bij:'
     breadcrumbs_norms_editor: Norm-editor
+    bulk_assessment_download_date_range_required: Selecteer een datumbereik
+    bulk_assessment_download_export_type: Exporttype
+    bulk_assessment_download_export_type_required: Kies het exporttype
+    bulk_assessment_download_help_text: 'Opmerking: Als beoordelingen aan verschillende dimensies zijn gekoppeld, bevat het gedownloade xslx-bestand voor elke dimensie een apart blad.'
+    bulk_assessment_download_modal_subtitle: Kies een datumbereik en een exporttype, en exporteer vervolgens de geselecteerde beoordelingen.
+    bulk_assessment_download_no_data_found: Voor de geselecteerde periode en beoordelingen zijn er geen gegevens gevonden. Probeer het alstublieft met een andere periode of andere beoordelingen.
+    bulk_assessment_download_norm_factor_scores: Normfactorscores
+    bulk_assessment_download_raw_factor_scores: Ruwe factorscores
     bulk_assets_modal_choose_csv: Kies CSV-bestand
     bulk_assets_modal_choose_zip: Kies ZIP-bestand
     bulk_assets_modal_not_csv_file_error: Alleen CSV-bestanden zijn toegestaan voor CSV-upload. Upload een geldig CSV-bestand.
     bulk_assets_modal_subtitle: 'Upload <b>één CSV-bestand</b> (met kopteksten: user_email, file_name) en <b>één ZIP-bestand</b> (met PDF-bestanden die overeenkomen met de bestandsnamen uit het CSV-bestand). Het ZIP-bestand mag niet groter zijn dan %{max_file_size} MB.'
     bulk_assets_modal_title: CSV- en ZIP-bestanden uploaden
+    bulk_export_assessments_file: Exportbestand met bulkbeoordelingen
+    bulk_export_invalid_params: Ongeldige parameters voor bulkexport
     bulk_upload_ai_artifacts: Bulk upload AI-artefacten
     campaign: Campagne
     campaign_admin: Campagne Admin
@@ -311,6 +338,7 @@ nl:
     campaigns_filters_archived: Gearchiveerd
     campaigns_filters_closed: Gesloten
     campaigns_filters_inactive: Inactief
+    campaigns_filters_status: Status
     campaigns_form_active_notice: Campagnestatus wordt automatisch gewijzigd in gesloten op de geselecteerde einddatum
     campaigns_form_campaign: Campagne
     campaigns_form_copy_factors: Kopieer factoren
@@ -343,6 +371,7 @@ nl:
     cannot_change_type_when_in_use: Het type AI-assistent '%{name}' kan niet worden gewijzigd omdat deze momenteel in gebruik is.
     captcha: Captcha-verificatie
     case_study: Casestudies
+    casual: Casual
     categories_approvals: Goedkeuringen
     categories_invitations: Uitnodigingen
     categories_reminders: Herinneringen
@@ -365,6 +394,8 @@ nl:
     client_id_label: Klant-ID
     client_id_name: oauth_client_id
     client_id_required: Een klant-ID is vereist
+    client_ids: Klant-ID's
+    client_ip: IP-adres van de klant
     client_logo_label: Logo klant
     client_secret_label: Geheim van de klant
     client_secret_name: oauth_client_secret
@@ -385,6 +416,7 @@ nl:
     column_usage_stats: Gebruiksstatistieken
     common: TTE-beoordeling
     common_assessment: TTE-beoordeling
+    common_disabled: Uitgeschakeld
     common_download_sample_file: Voorbeeldbestand downloaden
     common_enabled: Ingeschakeld
     common_import_failure_msg: Fout bij importeren bestand.
@@ -401,6 +433,7 @@ nl:
     concise: Beknopt
     confidence_interval: Betrouwbaarheidsinterval
     confidence_interval_update_success: Betrouwbaarheidsinterval succesvol bijgewerkt
+    configuration: Configuratie
     configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
     confirmation_required: Bevestiging vereist
@@ -413,6 +446,7 @@ nl:
     copy_ai_artifacts: AI-artefacten kopiëren
     copy_hint: Kopieert de bovenstaande configuratie van Zitplaatsen, Centrummanagers, Assessoren en Vergaderingen &amp; Middelen naar de volgende Assessment Centers. Na het kopiëren kun je verdere wijzigingen aanbrengen in de individuele Assessment Centers voordat je verder gaat.
     copy_image_url: URL van afbeelding kopiëren
+    copy_report_scheduled: De taak voor het kopiëren van rapporten is ingepland.
     copy_text: Tekst
     copy_to_all: Kopiëren naar andere beoordelingscentra
     copy_url: URL kopiëren
@@ -434,6 +468,7 @@ nl:
     dashboard: Dashboard
     dashboard_capacity_name: Capaciteit Naam
     dashboard_choose_file_format: Kies bestandsformaat
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
     dashboard_dashboard_types_powerbi: PowerBi
     dashboard_dashboards: Dashboards
     dashboard_export_dashboard_to_file: Dashboard exporteren naar bestand
@@ -474,12 +509,15 @@ nl:
     datasheet: Technische fiche
     date_and_time: Datum en tijd
     date_presets_last_30_days: Laatste 30 dagen
+    date_presets_last_6_months: De afgelopen 6 maanden
     date_presets_last_7_days: Laatste 7 dagen
     date_presets_last_month: Laatste maand
     date_presets_last_week: Vorige week
+    date_presets_last_year: Vorig jaar
     date_presets_today: Vandaag
     date_presets_yesterday: Gisteren
     date_range: Datumbereik
+    date_range_required: Het datumbereik is verplicht
     dates_completed: Voltooid Op
     dates_end: Einddatum
     dates_label: Data
@@ -633,8 +671,10 @@ nl:
     enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     enable_caching_title: Assessment caching mogelijk maken?
     enable_enhance_with_ai_client_level: Schakel de functie Verbeteren met AI in op klantniveau.
+    enable_face_detection: Gezichtsherkenning inschakelen
     enable_maintenance: Onderhoud inschakelen
     enable_mobile_proctoring: Mobiel toezicht inschakelen
+    enable_phrase_verification: Zinsverificatie inschakelen
     enable_system_check: Systeemcontrole inschakelen
     enable_transcription: Transcriptie inschakelen
     enable_transcription_msg: Schakel transcriptie in om AI-scores te gebruiken voor vragen met video-/audio-antwoorden.
@@ -645,9 +685,12 @@ nl:
     end_time_must_be_after_start_time: De eindtijd moet na de starttijd liggen.
     enhance_with_ai: Verbeter met AI
     enhance_with_ai_requires_ai_assistants: Verbeteren met AI vereist dat de functie AI-assistenten is ingeschakeld.
+    enter_client_ids: Voer de klant-ID’s in
     enter_description: Beschrijving invoeren
     enter_name: Naam invoeren
+    enter_project_ids: Voer de project-ID’s in
     enter_question_id: Voer het vraag-ID in
+    enter_report_ids: Voer de rapport-ID’s in
     enter_schema_key: Schemasleutel invoeren
     error: Fout
     error_color: Fout Kleur
@@ -689,6 +732,7 @@ nl:
     export_failure_msg: Fout bij het exporteren van vaardigheidsniveaus
     export_success: De exporttaak van de beheerder is met succes ingepland. Controleer uw melding voor de status.
     export_success_msg: Lopende ontwikkelingsacties exporteren
+    export_to_csv: Exporteren naar CSV
     export_with_inactive_users: Exporteren met inactieve gebruikers
     external_report_id: Extern rapport-ID
     external_score: Externe score
@@ -742,9 +786,12 @@ nl:
     file_size_must_be_less_than_mb: Het bestand {{name}} overschrijdt de maximale grootte van {{max_size_mb}} MB
     file_upload_failed: Het uploaden van {{name}} is mislukt
     fill_empty_score_msg: Vul alle eindscores in voordat je opslaat.
+    filter_by_client: Filteren op klant
+    filter_by_client_help: Kies een klant om diens projecten te laden
     final_score_empty_err_msg: De eindscore van %{factor_name} mag niet leeg zijn.
     final_score_empty_msg: Het eindresultaat mag niet leeg zijn.
     finalized_at: Vastgesteld op
+    fingerprint: Vingerafdruk
     first_name_required: Voornaam is verplicht
     fix_grammar: Grammatica corrigeren
     fixed_time: Vaste tijd
@@ -793,6 +840,8 @@ nl:
     handoff_invalid_token: Ongeldig of verlopen authenticatietoken
     handoff_token_expired: Het authenticatietoken is verlopen of is al gebruikt
     handoff_user_disabled: Uw account is geblokkeerd
+    has_api_keys: Beschikt over API-sleutels
+    has_public_keys: Heeft openbare sleutels
     header_logout_content: Druk op Annuleren als je verder wilt werken. Druk op OK om uit te loggen met huidige gebruiker.
     header_logout_title: Weet je zeker dat je wilt uitloggen?
     hide_all: Alles verbergen
@@ -855,6 +904,7 @@ nl:
     idp_development_actions_custom: Gewoonte
     idp_development_actions_date_range: Startdatum - Einddatum
     idp_development_actions_edit_plan_to_add_development_actions: Plan bewerken en ontwikkelingsacties toevoegen.
+    idp_development_actions_errors_invalid_learning_style: "'%{learning_style}' is geen geldige leerstijl. Geldige opties zijn: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: Leerstijl mag niet leeg zijn
     idp_development_actions_generate_by_ai: Genereren door AI
     idp_development_actions_generate_more: Meer genereren
@@ -909,6 +959,7 @@ nl:
     idp_revert_skill_to_public_errors_skill_already_public: Vaardigheid is al openbaar
     idp_revert_skill_to_public_errors_skill_not_found: Vaardigheid niet gevonden
     idp_revert_skill_to_public_success_base_message: Vaardigheid '%{skill_name}' is nu zichtbaar voor je manager
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} en uw IDP-plan is ter goedkeuring ingediend"
     idp_select_by_tags: Selecteer op tags
     idp_select_interview_question: Begin met typen om vraag te zoeken en te selecteren
     idp_select_reflection_question: Begin met typen om vraag te zoeken en te selecteren
@@ -997,6 +1048,7 @@ nl:
     innovation_styles_list_position: Positie
     innovation_styles_resource_confirmations_delete_body: "<p>Weet je zeker dat je deze innovatiestijl wilt verwijderen?</p>\n"
     instruction_messages: Instructie Berichten
+    instructions: Instructies
     instructions_actions_saved: Instructies succesvol opgeslagen
     instructions_enable: Instructies inschakelen
     instructions_save: Instructies opslaan
@@ -1025,9 +1077,11 @@ nl:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Microsite
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Bekijk alle Mettl schema's
+    interface: Interface
     internal: Intern
     interview_questions_delete_confirmation: Weet je zeker dat je deze interviewvraag wilt verwijderen?
     interview_questions_export_action: Sollicitatievragen exporteren
@@ -1044,11 +1098,15 @@ nl:
     interview_questions_import_failure_msg: Fout bij importeren bestand.
     interview_questions_import_success_msg: Importeren van interviewvragen in uitvoering. Controleer de status in de meldingen.
     interview_questions_question: Vraag
+    invalid_client_ids: Ongeldige klant-ID’s
     invalid_confidence_interval: confidence_interval moet 0 of 1 zijn
     invalid_csv_header: CSV-bestand bevat ongeldige headers.
+    invalid_json: de configuratie is geen geldige JSON
     invalid_leadership_bar: leadership_bar moet 0 of 1 zijn
     invalid_norm_option: De optie Norm moet tussen 0 en 3 liggen.
+    invalid_project_ids: 'Ongeldige project-ID''s: %{ids}'
     invalid_question_ids: 'Vraag-ID’s die niet in deze toets voorkomen: %{ids}'
+    invalid_report_ids: Ongeldige rapport-ID’s
     invite_add_invite: Uitnodiging toevoegen
     invite_assessment_center: Beoordelingscentrum
     invite_basic_info_allow_preferred_language: Voorkeurstaal toestaan
@@ -1072,6 +1130,7 @@ nl:
     invite_request_reason: Reden
     invite_request_reject: Verwerpen
     invite_request_remove_confirm_content: Weet je zeker dat je %{action} %{status} van %{subjectName} wilt?
+    invite_request_remove_confirm_success: "%{status} van %{subjectName} was %{action}, wat goed is gelukt."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Naam onderwerp
     invite_request_workshop_time: Workshop tijd
@@ -1088,6 +1147,7 @@ nl:
     invite_steps_has_errors: bevat fouten
     invite_steps_send_invitation: Uitnodiging versturen
     invite_subjects_count: Onderwerpen
+    invite_subjects_csv_error: 'Rij %{index}: de gebruiker met e-mailadres %{email} komt niet voor in deze campagne'
     invite_subjects_csv_imported: "%{count} geïmporteerde onderwerpen"
     invite_subjects_description: Je kunt onderwerpen individueel toevoegen door te zoeken of in bulk een csv-bestand uploaden.
     invite_subjects_download: Downloaden
@@ -1127,6 +1187,7 @@ nl:
     join_room: Ga naar de chatroom
     keep_original: Origineel bewaren
     key: Sleutel
+    key_id: Sleutel-ID
     keywords: Sleutelwoorden
     keywords_placeholder: Voer trefwoorden in, gescheiden door komma's.
     language_id: Taalcode
@@ -1219,6 +1280,7 @@ nl:
     min_value: Minimale waarde
     minimum_10_words: Minimaal 10 woorden
     minimum_download_speed: Minimale downloadsnelheid (in Mbps)
+    minimum_face_detection_ratio: Minimale gezichtsdetectieverhouding
     minimum_system_check_validity: De geldigheidsduur van de systeemcontrole voor het minimale campagneniveau moet 15 minuten bedragen
     minimum_upload_speed: Minimale uploadsnelheid (in Mbps)
     missing_min_max_values: Minimale en maximale waarden zijn vereist.
@@ -1259,7 +1321,9 @@ nl:
     nomination_denied_name: Nominatie afgewezen
     nomination_help_description: Help-tekst weergegeven op nominatiekaart op dashboard van gebruiker
     nomination_help_name: Hulp bij nominaties
+    norm: Norm
     norm_editor_numeric_value_error: Alleen numerieke waarden zijn toegestaan (gehele getallen of getallen met decimalen).
+    norm_id: Norm-ID
     norm_option: Normoptie
     norm_option_form_select: Selecteer Normoptie
     norm_option_update_success: Normoptie succesvol bijgewerkt
@@ -1765,6 +1829,7 @@ nl:
         view: Bekijk
         view_recordings: Opnames bekijken
     permissions_360_campaigns: Rechten specifiek voor 360 campagnes
+    permissions_updated: De machtigingen zijn succesvol bijgewerkt
     piped_text: Tekst in pijpen
     piped_text_modal_assessment_center: Beoordelingscentrum
     piped_text_modal_campaign_link: Link naar de campagne
@@ -1808,6 +1873,7 @@ nl:
     privacy_text: Privacy tekst
     privacy_text_placeholder: Privacy invoeren
     proctoring: Toezicht houden
+    proctoring_allow_on_assessment_center: Toezicht toestaan in het assessmentcentrum
     proctoring_enable: Proctoraat inschakelen
     proctoring_errors_timed_only: Selectief toezicht kan alleen worden ingeschakeld voor toetsen met een tijdslimiet.
     proctoring_fixed_time_required: Schakel 'Vaste tijd' in om deze optie te selecteren
@@ -1845,6 +1911,7 @@ nl:
     proctoring_sessions_resource_name: Proctor Sessies
     proctoring_settings: Instellingen voor toezicht
     proctoring_trial: Proeven
+    proctoring_type: Type
     proctoring_types:
       offline: Offline
       online: Online
@@ -1859,8 +1926,13 @@ nl:
     project: Project
     project_admin: Projectbeheerder
     project_admins: Projectbeheerders
+    project_assessor: Projectbeoordelaar
     project_features: Kenmerken van het project
+    project_ids: Project-ID's
+    project_ids_required: project_ids is verplicht voor dit rapporttype
+    project_licenses: Projectlicenties
     project_manager: Projectmanager
+    project_not_related_to_client: Het project '%{project_id}' is niet van de klant
     project_number: Projectnummer
     project_participants_column_campaigns: Campagnes
     project_participants_column_createdAt: Gemaakt op
@@ -1956,6 +2028,22 @@ nl:
     provider_change_confirm_title: Van aanbieder veranderen?
     provider_previously_used_warning: Deze assistent heeft eerder resultaten gegenereerd met "%{from}". Als u dit wijzigt in "%{to}", kan dit het gedrag van de assistent bij toekomstige generatieverzoeken beïnvloeden.
     psychometric: Psychometrisch
+    public_key: Openbare sleutel
+    public_key_add: Openbare sleutel toevoegen
+    public_key_cannot_be_changed: kan na het aanmaken niet meer worden gewijzigd
+    public_key_copy_private_key: Privésleutel kopiëren
+    public_key_created: De openbare sleutel is succesvol aangemaakt
+    public_key_generate: Sleutelpaar genereren
+    public_key_generate_button: RSA-sleutelpaar genereren
+    public_key_generate_info: Er wordt een RSA-sleutelpaar van 2048 bits gegenereerd. Alleen de openbare sleutel wordt opgeslagen. Kopieer de privésleutel en bewaar deze op een veilige plek — deze wordt niet nogmaals weergegeven.
+    public_key_invalid_format: moet een geldige openbare RSA-sleutel in PEM-formaat zijn
+    public_key_must_be_public: moet een openbare sleutel zijn, geen privésleutel
+    public_key_paste_placeholder: Plak hier je openbare RSA-sleutel in PEM-formaat (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Openbare sleutel (PEM)
+    public_key_private_key_copied: De privésleutel is naar het klembord gekopieerd
+    public_key_private_key_label: Privésleutel (PEM)
+    public_key_private_key_warning: Dit is de enige keer dat de privésleutel zichtbaar zal zijn. Kopieer deze nu en bewaar hem op een veilige plek.
+    public_keys: Openbare sleutels
     question_center: Vragencentrum
     question_center_page_title: Vraagcentrum - Dashboard - Mercer Lighthouse
     question_editor_change_type: Type wijzigen
@@ -1987,6 +2075,7 @@ nl:
     questions_title: Vraag
     questions_type: Type
     range_min_max: ASSORTIMENT %{min} - %{max}
+    rationale: Motivering
     raw: RAUW
     reason_for_changes: Reden voor wijzigingen
     recents: Laatste
@@ -2096,6 +2185,8 @@ nl:
     report_help_description: Help-tekst weergegeven op rapportkaart op dashboard van gebruiker
     report_help_name: Rapporten helpen
     report_id: Rapport ID
+    report_ids: Rapport-ID's
+    report_ids_required: Rapport-ID’s zijn verplicht
     report_name: Naam van het rapport
     report_no_evaluations: Rapport voor %{user} is niet beschikbaar - er zijn geen evaluaties ontvangen.
     report_not_generated: Rapport voor %{user} voldoet aan de beschikbaarheidsvoorwaarden maar nog niet is opgesteld. Wilt u eerst het rapport genereren.
@@ -2116,6 +2207,17 @@ nl:
     report_review_statuses_qc_completed: QC Voltooid
     report_review_statuses_qc_in_progress: QC in uitvoering
     report_status: Rapportstatus
+    report_type: Type rapport
+    report_types:
+      active_clients_projects: Actieve klanten en projecten
+      client_assessment_counts: De beoordeling door de klant telt
+      hogan_usage_report: Gebruik van de Hogan-beoordeling
+      json_data_report: JSON-gegevensrapport
+      pearson_usage_report: Gebruik van Pearson Assessment
+      report_usage_summary: Overzicht van het rapportgebruik
+      saville_usage_report: Gebruik van Saville Assessment
+      user_created_dates: Door gebruikers aangemaakte datums
+      user_reports_export: Gebruikersrapporten exporteren
     reports: Rapporten
     reports_copy_copy: Kopie
     reports_copy_copy_report: Kopieer Rapport
@@ -2169,6 +2271,7 @@ nl:
     role_client_admin: Klantbeheer
     role_project_admin: Projectbeheerder
     role_superadmin: Superbeheerder
+    run: Rennen
     saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
     saml_idp_certificate_label: Certificaat
     saml_idp_entity_id_label: Entiteits-ID/Uitgever
@@ -2383,6 +2486,9 @@ nl:
     schema_key_required: Schemasleutel is vereist
     schema_key_type: Type sleutel
     schema_key_unique: Schemasleutels moeten uniek zijn
+    scope: Toepassingsgebied
+    scope_client: Klant
+    scope_global: Wereldwijd
     score: Score
     score_approval_not_allowed_to_approve: Je mag deze score niet goedkeuren.
     score_approval_not_allowed_to_discard: Je mag deze score niet weggooien.
@@ -2535,11 +2641,17 @@ nl:
     security_settings_security_setting: Beveiligingsinstelling
     select_admin_role: Selecteer beheerdersrol
     select_assessment_language: Taal voor beoordeling kiezen
+    select_client: Klant selecteren
     select_end_time: Eindtijd selecteren
     select_language_to_translate: Selecteer de taal die u wilt vertalen
     select_level: Selecteer niveau
+    select_project_ids_required: Selecteer de vereiste project-ID’s
+    select_projects: Geselecteerde projecten
+    select_projects_required: Kies ten minste één project
     select_question: Zoek op naam of ID
+    select_report_ids_required: Selecteer de vereiste rapport-ID's
     select_report_language: Rapporttaal selecteren
+    select_report_type: Selecteer rapporttype
     select_start_time: Starttijd selecteren
     selective_proctoring: Selectief toezicht
     send_email: Stuur e-mail
@@ -2874,6 +2986,9 @@ nl:
     threesixity_advance_settings_factors: Factoren
     threesixity_close_content: Weet je zeker dat je de Multi Rater Campaign Creator wilt sluiten? Alle niet-opgeslagen aanpassingen zullen verloren gaan. Bevestig alsjeblieft je beslissing.
     threesixity_close_title: Campagnecreator met meerdere beoordelaars sluiten?
+    threesixity_instructions_creation_empty: 'Leeg: Begin met een lege enquête en pas deze aan uw specifieke behoeften aan.'
+    threesixity_instructions_creation_previous: 'Vorige: Kies een eerdere beoordeling als uitgangspunt en breng wijzigingen aan.'
+    threesixity_instructions_creation_standard: 'Standaard: Gebruik een kant-en-klaar sjabloon met veelgebruikte vragen en indicatoren.'
     threesixity_instructions_creation_sub_title: Selecteer het type campagne dat je wilt maken.
     threesixity_instructions_creation_title: Welkom bij de Campagnecreator met meerdere beoordelaars!
     threesixity_instructions_customization_sub_title: Selecteer het sjabloon en de factoren die in de beoordeling moeten worden opgenomen.
@@ -2959,6 +3074,7 @@ nl:
     type_locked_tooltip: Deze assistent is momenteel in gebruik en het type kan niet worden gewijzigd.
     unarchive_content: Weet je zeker dat je '%{project_name}' wilt uitarchiveren?
     unarchive_success: Project '%{project_name}' is succesvol gedearchiveerd.
+    unarchive_title: Project uit het archief halen
     unsaved_changes: Niet-opgeslagen wijzigingen zijn aanwezig, overweeg om het formulier in te dienen om een bijgewerkte reactie van Playground te genereren.
     upcoming: Komende
     update_success: "%{readableResourceName} is succesvol bijgewerkt"
@@ -3019,6 +3135,7 @@ nl:
     x_axis_interval_label: X-as interval
     y_axis_interval_label: Y-as interval
     year: Land
+    year_range: Jaarbereik
     years: Jaren
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Activiteits-ID

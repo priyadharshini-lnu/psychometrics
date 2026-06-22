@@ -622,6 +622,7 @@ hi:
         roles:
           campaign_admin: अभियान प्रशासक
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक मूल्यांकनकर्ता
           manager: प्रबंधक
           member: उपयोगकर्ता
           project_admin: परियोजना प्रशासक
@@ -727,6 +728,7 @@ hi:
           admins:
             admin: प्रशासक
             campaign_admin: अभियान प्रशासक
+            client_assessor: ग्राहक आकलनकर्ता
             project_admin: परियोजना प्रशासक
             regular: क्लाइंट एडमिन
             superadmin: सुपर एडमिन
@@ -736,6 +738,7 @@ hi:
           campaign_admin: अभियान प्रशासक
           case_study: केस स्टडी
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक मूल्यांकनकर्ता
           hogan: होगन
           iiht: आईआईएचटी
           manager: प्रबंधक
@@ -859,6 +862,8 @@ hi:
         bulk_download_idp_reports: IDP रिपोर्ट्स थोक में डाउनलोड करें
         bulk_download_reports: थोक रिपोर्ट डाउनलोड करें
         bulk_download_user_reports: उपयोगकर्ता रिपोर्टों का थोक डाउनलोड
+        bulk_export_norm_factor_scores: बल्क नॉर्म फैक्टर स्कोर निर्यात
+        bulk_export_raw_factor_scores: थोक कच्चे कारक स्कोर निर्यात
         bulk_generate_user_campaign_ai_artifact_results: बल्क में अभियान एआई कलाकृति परिणाम उत्पन्न करें
         bulk_regenerate_reports: अभियान रिपोर्टें पुनः उत्पन्न करें
         bulk_regenerate_threesixty_reports: थ्रीसिक्स्टी विषय रिपोर्टें पुनः उत्पन्न करें
@@ -871,10 +876,12 @@ hi:
         completion_status_export: पूर्णता स्थिति निर्यात
         copy_as_template_or_campaign: अभियान को टेम्पलेट के रूप में कॉपी करें
         copy_dimension: आयाम की प्रतिलिपि
+        copy_report: रिपोर्ट की प्रतिलिपि
         create_threesixty_campaign: थ्रीसिक्स्टी अभियान बनाएँ
         data_report_export: डेटा रिपोर्ट निर्यात
         export_admin_with_permissions: अनुमतिओं के साथ निर्यात प्रशासक
         export_assessment_questions: निर्यात मूल्यांकन प्रश्न
+        export_audit_logs: ऑडिट लॉग्स निर्यात करें
         export_campaign_ai_artifacts: निर्यात अभियान एआई कलाकृतियाँ
         export_campaign_ai_artifacts_results: निर्यात अभियान एआई कलाकृतियों के परिणाम
         export_campaign_datasheet: निर्यात अभियान डेटाशीट
@@ -964,6 +971,8 @@ hi:
       errors:
         no_plans: कोई सक्रिय आईडीपी योजना नहीं मिली
     close: बंद करें
+    copy_report:
+      failed: रिपोर्ट कॉपी विफल हो गई
     details: विवरण
     errors: त्रुटियाँ
     invalid_job: यह सूचना हटाए गए रिकॉर्ड से संबंधित है।
@@ -1459,6 +1468,7 @@ hi:
       external_user_id: स्किलव्यू उम्मीदवार आईडी
       id: अभियान मूल्यांकन आईडी
       locales: स्थानीय क्षेत्र
+      microsite_assessment_url: माइक्रोसाइट मूल्यांकन यूआरएल
       microsite_error_message: त्रुटि संदेश
       microsite_participant_id: माइक्रोसाइट प्रतिभागी आईडी
       microsite_registration_status: पंजीकरण स्थिति
@@ -2137,6 +2147,7 @@ hi:
     invalid_token: कुछ गलत हो गया। कृपया पेज रीलोड करें और फिर से प्रयास करें।
     max_regeneration_limit: अधिकतम पुनर्जनन सीमा पार हो गई है, अपने प्रशासन से संपर्क करें।
     messages:
+      content_type_invalid: अमान्य सामग्री का प्रकार
       data_report_blank: डेटा रिपोर्ट मौजूद नहीं है
       password_complexity:
         digit:
@@ -3474,12 +3485,14 @@ hi:
           admin: प्रशासक
           admins:
             admin: प्रशासक
+            client_assessor: ग्राहक आकलनकर्ता
             project_admin: परियोजना प्रशासक
             regular: क्लाइंट एडमिन
             superadmin: सुपर एडमिन
           agile: चपल
           case_study: केस स्टडी
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक आकलनकर्ता
           hogan: होगन
           manager: प्रबंधक
           member: उपयोगकर्ता
@@ -3613,6 +3626,7 @@ hi:
         roles:
           campaign_admin: अभियान प्रशासक
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक आकलनकर्ता
           manager: प्रबंधक
           member: उपयोगकर्ता
           project_admin: परियोजना प्रशासक
@@ -3683,12 +3697,14 @@ hi:
           admin: प्रशासक
           admins:
             admin: प्रशासक
+            client_assessor: ग्राहक आकलनकर्ता
             project_admin: परियोजना प्रशासक
             regular: क्लाइंट एडमिन
             superadmin: सुपर एडमिन
           agile: चपल
           case_study: केस स्टडी
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक मूल्यांकनकर्ता
           hogan: होगन
           manager: प्रबंधक
           member: उपयोगकर्ता
@@ -4147,6 +4163,7 @@ hi:
       campaign_assessor: अभियान मूल्यांकनकर्ता
       campaign_user: अभियान उपयोगकर्ता
       client_admin: क्लाइंट एडमिन
+      client_assessor: ग्राहक आकलनकर्ता
       project_admin: परियोजना प्रशासक
       superadmin: सुपर एडमिन
     superadmins: सुपर एडमिन

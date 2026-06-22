@@ -36,6 +36,8 @@ sr-Cyrl:
     browser_not_compatible: Ваш прегледач %{browser_name} није компатибилан са овом кампањом. Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
     browser_not_compatible_description: Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
     browser_not_compatible_detail: Ваш прегледач %{browser_name} није компатибилан са овом кампањом. Користите најновије верзије Chrome-а, Firefox-а, Safari-ја или Edge-а за најбоље искуство.
+    browser_proctoring_description: Користите прегледач%{browser_name}, који може имати одређена ограничења у погледу функција надзора омогућених за ову кампању. За најбоље искуство препоручујемо коришћење Chrome-а или Edge-а.
+    browser_proctoring_title: "%{browser_name} Прегледач детектован"
     browser_version_fix_description_first: 'Користите подржани прегледач: Chrome, Firefox, Edge или Safari'
     browser_version_fix_title: Ваша верзија прегледача није подржана.
     camera: Видео и аудио
@@ -43,6 +45,7 @@ sr-Cyrl:
     camera_check: Тест камере и микрофона
     camera_check_abruptly_ended: Камера је изненада искључена. Молимо омогућите камеру и поново покрените проверу.
     camera_check_description: Проверите да ли ваша камера и микрофон исправно раде за снимање.
+    camera_check_failed: Проверка видеоа није успела
     camera_check_passed: Провера видео и аудио записа успешно прошла
     camera_check_record_instruction: Кликните на "Сними" и наглас прочитајте следећи пасус.
     camera_test_step: Корак за тест видео и аудио
@@ -69,6 +72,9 @@ sr-Cyrl:
     error_uploading_audio_detail: Дошло је до грешке при отпремању вашег аудио записа.
     error_uploading_video: Грешка при отпремању видео записа
     error_uploading_video_detail: Дошло је до грешке приликом отпремања видео записа.
+    face_detection_error: Дошло је до грешке током детекције лица. Уверите се да ваша камера ради и покушајте поново.
+    face_detection_failed: Лице није детектовано на видео снимку. Молимо вас да проверите да ли је камера откривена и да ли је ваше лице видљиво.
+    face_not_detected_warning: Није детектован лик. Молимо вас да ваш лик буде видљив камери.
     fail: Неуспех
     file_submission_already_exists: Већ имамо ваш одговор на ово питање. Молимо вас да освежите страницу, а ако и даље не видите свој претходни одговор, обратите се администратору.
     follow_these_steps: Пратите ове кораке да бисте решили проблеме откривене током провере система.
@@ -162,6 +168,8 @@ sr-Cyrl:
     select_video_device: Изаберите видео уређај
     selected_count: "%{count} изабрано"
     skill_type: Тип вештине
+    speech_verification_error: Дошло је до грешке током провере вашег говора. Молимо поново покушајте.
+    speech_verification_failed: Ваш говор није одговарао тестној фрази. Молимо поново покушајте и изговорите фразу јасно.
     start_campaign_message_proctored: Ово је надгледана кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_campaign_message_timed: Ово је временски ограничена кампања, кликните на дугме "%{buttonText}" да бисте започели активности.
     start_readiness_check: Покрените проверу спремности
@@ -186,10 +194,12 @@ sr-Cyrl:
       one: Ја вриштим, ти вриштиш, сви вриштимо за сладолед!
       seven: Сваки дан је нови почетак. Реците то гласно и поносно!
       six: Пица или паста? Тешке су одлуке.
+      ten: Ја сам спреман. Ово је тест снимање да потврдим да мој микрофон исправно ради.
       three: Тестирање, један два три, звук је јасан колико год може бити!
       two: Брза смеђа лисица прескаче лењог пса.
     system_check_audio_title: Молим вас, изговорите и поновите следећу реченицу 3 пута.
     system_check_complete: Провера система је завршена
+    system_check_face_detection: Препознавање лица
     system_check_failed: Провера система је неуспела
     system_check_failed_description: Молимо вас да решите проблеме и поново покренете провере система.
     system_check_failed_message: Нека провере система нису успеле. Молимо вас да прегледате детаље и поново покушате.
@@ -200,6 +210,7 @@ sr-Cyrl:
     system_check_retake: Не, желим поново да узмем
     system_check_run_again: Трчи поново
     system_check_session_not_found: Сесија провере система није пронађена. Молимо покрените нову проверу система.
+    system_check_speech_verification: Верификација говора
     system_check_start_recording: Почните са снимањем
     system_check_stop_recording: Заустави снимање
     system_check_test_message: Драго ми је да разговарам са тобом
@@ -257,6 +268,10 @@ sr-Cyrl:
     video_overlay_label: Изаберите микрофон и камеру, кликните на "Сними", а затим прочитајте следећу поруку чим притиснете дугме "Сними".
     video_overlay_message: Изаберите микрофон и камеру, кликните на "Сними", а затим наглас прочитајте реченицу која се појављује на дну.
     video_recorder_label: Видео снимач
+    video_upload_failed_camera_access: Не можемо да приступимо вашој камери или микрофону. Молимо вас да проверите дозволе на уређају и покушате поново.
+    video_upload_failed_chunk_upload: Део снимања није отпремљен. Молимо вас да проверите интернет везу и покушате поново.
+    video_upload_failed_finalize: Снимак је направљен, али није могао да се сачува. Молимо покушајте поново.
+    video_upload_failed_no_recording: Није пронађен ниједан снимак за отпремање. Молимо снимите поново.
     view_details: Прикажи детаље
     webgl_api_fix_description_first: Уверите се да ваш прегледач подржава WebGL и да је он омогућен у подешавањима.
     webgl_api_fix_description_second: Ажурирајте графичке драјвере на најновију верзију.

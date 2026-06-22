@@ -140,9 +140,11 @@ vi:
     not_requested: Chưa được yêu cầu
     ok: Được rồi
     options: Tùy chọn
+    overview: Tổng quan
     owner: Chủ sở hữu
     pause: Tạm dừng
     pending: Đang chờ xử lý
+    permissions: Quyền truy cập
     play: Chơi
     policy_version: Phiên bản chính sách
     policy_version_format: Chỉ cho phép các số nguyên.
@@ -222,9 +224,31 @@ vi:
     update: Cập nhật
     update_failed: Cập nhật không thành công
     updated_at: Cập nhật vào
+    updated_by: Cập nhật bởi
     updated_successfully: Đã cập nhật thành công
     upload: Tải lên
     user_report_pdf_url_not_generated: Không thể tạo liên kết tải xuống PDF
+    user_reports_approval_status_pending_qc: Đang chờ kiểm tra chất lượng
+    user_reports_approval_status_qc_completed: Đã hoàn tất kiểm tra chất lượng
+    user_reports_assessment_name_not_completed_reason_template: Chưa hoàn thành bài đánh giá “%{names}”
+    user_reports_assessments_name_not_completed_reason_template: Các bài đánh giá tại %{names} chưa được hoàn thành
+    user_reports_assessor_not_completed_reason_template: Mẫu đơn của người thẩm định %{names} chưa được điền đầy đủ
+    user_reports_assessors_not_completed_reason_template: Các biểu mẫu của Thẩm định viên %{names} chưa được điền đầy đủ
+    user_reports_campaign_artifact_results_pending_reason_message: Kết quả vật phẩm chiến dịch của người dùng này vẫn chưa được xác định chính thức
+    user_reports_campaign_scoring_pending_reason_message: Điểm chiến dịch của người dùng này chưa được xác định chính thức
+    user_reports_custom_upload_report_reason_message: Nguồn báo cáo là tệp tải lên tùy chỉnh
+    user_reports_external_report_pending_reason_message: Đang chờ báo cáo từ nhà cung cấp
+    user_reports_lead_assessor_not_completed_reason_template: Mẫu đơn của chuyên gia đánh giá chính tại %{names} chưa được điền đầy đủ
+    user_reports_lead_assessors_not_completed_reason_template: Các biểu mẫu dành cho chuyên gia đánh giá chính %{names} chưa được điền đầy đủ
+    user_reports_no_report_module_reason_message: Không tìm thấy mô-đun báo cáo nào cho báo cáo này
+    user_reports_not_prepared_reason_message: Báo cáo vẫn chưa được hoàn thành
+    user_reports_pending_approval_reason_template: Trạng thái phê duyệt là “%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: Đang chờ phê duyệt điểm số AI cuối cùng
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Đang chờ phê duyệt điểm số AI từ bộ phận Kiểm soát Chất lượng
+    user_reports_pending_qc_approval_reason_message: Đang chờ phê duyệt báo cáo kiểm soát chất lượng
+    user_reports_qc_completed_approval_reason_message: Đang chờ phê duyệt báo cáo cuối cùng
+    user_reports_report_generating_reason_message: Báo cáo đang được tạo
+    user_reports_report_generation_failed_reason_message: Không thể tạo báo cáo
     video: Video
     view: Xem
     view_audio: Xem video âm thanh

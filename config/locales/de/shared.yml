@@ -140,9 +140,11 @@ de:
     not_requested: Noch nicht angefordert
     ok: Ok
     options: Optionen
+    overview: Übersicht
     owner: Eigentümer
     pause: Pause
     pending: Ausstehend
+    permissions: Berechtigungen
     play: Spielen
     policy_version: Richtlinienversion
     policy_version_format: Es sind nur ganze Zahlen zulässig.
@@ -222,9 +224,31 @@ de:
     update: Aktualisieren
     update_failed: Aktualisierung fehlgeschlagen
     updated_at: Aktualisiert am
+    updated_by: Aktualisiert von
     updated_successfully: Erfolgreich aktualisiert
     upload: Hochladen
     user_report_pdf_url_not_generated: Der Link zum PDF-Download konnte nicht generiert werden
+    user_reports_approval_status_pending_qc: In Bearbeitung (Qualitätskontrolle)
+    user_reports_approval_status_qc_completed: Qualitätskontrolle abgeschlossen
+    user_reports_assessment_name_not_completed_reason_template: Die Bewertung „%{names}“ ist noch nicht abgeschlossen
+    user_reports_assessments_name_not_completed_reason_template: Die Bewertungen unter %{names} sind noch nicht abgeschlossen
+    user_reports_assessor_not_completed_reason_template: Das Formular „%{names}“ des Gutachters wurde nicht ausgefüllt
+    user_reports_assessors_not_completed_reason_template: Die Formulare für die Gutachter %{names} wurden nicht ausgefüllt
+    user_reports_campaign_artifact_results_pending_reason_message: Die Ergebnisse der Kampagnen-Artefakte sind für diesen Benutzer noch nicht endgültig feststehend
+    user_reports_campaign_scoring_pending_reason_message: Die Kampagnenwerte für diesen Nutzer stehen noch nicht endgültig fest
+    user_reports_custom_upload_report_reason_message: Der Berichtsanbieter ist ein benutzerdefinierter Upload
+    user_reports_external_report_pending_reason_message: Warten auf den Bericht des Anbieters
+    user_reports_lead_assessor_not_completed_reason_template: Das Formular für den federführenden Gutachter unter %{names} wurde nicht ausgefüllt
+    user_reports_lead_assessors_not_completed_reason_template: Die Formulare für den leitenden Gutachter %{names} wurden nicht ausgefüllt
+    user_reports_no_report_module_reason_message: Für diesen Bericht wurde kein Berichtsmodul gefunden
+    user_reports_not_prepared_reason_message: Der Bericht liegt noch nicht vor.
+    user_reports_pending_approval_reason_template: Der Genehmigungsstatus lautet „%{status}“
+    user_reports_pending_final_ai_scoring_approval_reason_message: Die endgültige Genehmigung der KI-Bewertung steht noch aus
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Genehmigung der QC-KI-Bewertung steht noch aus
+    user_reports_pending_qc_approval_reason_message: Freigabe des QC-Berichts steht noch aus
+    user_reports_qc_completed_approval_reason_message: Die Genehmigung des Abschlussberichts steht noch aus
+    user_reports_report_generating_reason_message: Der Bericht wird gerade erstellt
+    user_reports_report_generation_failed_reason_message: Die Berichterstellung ist fehlgeschlagen
     video: Video
     view: Ansicht
     view_audio: Audio anzeigen

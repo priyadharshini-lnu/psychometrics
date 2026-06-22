@@ -74,6 +74,7 @@ bg:
         subjects_count_added: Успешно добавени теми
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Конфигурацията за оценяване чрез изкуствен интелект може да се добави само за въпроси от типа „AudioResponse“, „VideoResponse“ и „TextEntry“
         doesnt_have_header: "'%{sub_header}' няма заглавие"
         invalid_headers: 'Следните заглавия са невалидни: %{headers}'
         invalid_question: Невалиден идентификационен номер на въпроса

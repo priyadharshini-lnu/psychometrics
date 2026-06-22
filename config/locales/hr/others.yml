@@ -622,6 +622,7 @@ hr:
         roles:
           campaign_admin: Administrator kampanje
           client_admin: Klijent administrator
+          client_assessor: Procjenitelj klijenta
           manager: Upravitelj
           member: Korisnik
           project_admin: Administrator projekta
@@ -727,6 +728,7 @@ hr:
           admins:
             admin: Admin
             campaign_admin: Administrator kampanje
+            client_assessor: Procjenitelj klijenta
             project_admin: Administrator projekta
             regular: Klijent administrator
             superadmin: Super administrator
@@ -736,6 +738,7 @@ hr:
           campaign_admin: Administrator kampanje
           case_study: Analiza slučaja
           client_admin: Klijent administrator
+          client_assessor: Klijent procjenitelj
           hogan: Hogan
           iiht: IIHT
           manager: Upravitelj
@@ -859,6 +862,8 @@ hr:
         bulk_download_idp_reports: Skupno preuzimanje izvješća IDP-a
         bulk_download_reports: Izvješća o skupnom preuzimanju
         bulk_download_user_reports: Skupno preuzimanje korisničkih izvješća
+        bulk_export_norm_factor_scores: Masovni izvoz ocjena Norm faktora
+        bulk_export_raw_factor_scores: Masovni izvoz sirovih bodova faktora
         bulk_generate_user_campaign_ai_artifact_results: Skupno generirajte rezultate AI artefakata kampanje
         bulk_regenerate_reports: Ponovno generiranje izvješća kampanje
         bulk_regenerate_threesixty_reports: Regenerirajte cjelovita izvješća ispitanika
@@ -871,10 +876,12 @@ hr:
         completion_status_export: Izvoz statusa dovršetka
         copy_as_template_or_campaign: Kopiraj kampanju kao predložak
         copy_dimension: Kopiraj dimenziju
+        copy_report: Kopiraj izvještaj
         create_threesixty_campaign: Kreirajte kampanju Threesixty
         data_report_export: Izvoz izvješća o podacima
         export_admin_with_permissions: Izvoz administratora s dozvolama
         export_assessment_questions: Pitanja za procjenu izvoza
+        export_audit_logs: Izvoz dnevnika revizije
         export_campaign_ai_artifacts: AI artefakti iz izvozne kampanje
         export_campaign_ai_artifacts_results: Izvoz rezultata umjetničkih artefakata kampanje AI
         export_campaign_datasheet: Izvezi podatkovni list kampanje
@@ -964,6 +971,8 @@ hr:
       errors:
         no_plans: Nisu pronađeni aktivni IDP planovi
     close: Blizak
+    copy_report:
+      failed: Prijenos kopije je propao
     details: Detalji
     errors: Greške
     invalid_job: Ova obavijest odgovara izbrisanom zapisu
@@ -1454,6 +1463,7 @@ hr:
       external_user_id: Skillvue ID kandidata
       id: ID procjene kampanje
       locales: Poprište
+      microsite_assessment_url: URL za procjenu mikrolokacije
       microsite_error_message: Poruka o pogrešci
       microsite_participant_id: ID sudionika mikrolokacije
       microsite_registration_status: Status registracije
@@ -2132,6 +2142,7 @@ hr:
     invalid_token: Došlo je do pogreške. Ponovno učitajte stranicu.
     max_regeneration_limit: Prekoračena maksimalna granica regeneracije, obratite se svojoj upravi.
     messages:
+      content_type_invalid: neispravan tip sadržaja
       data_report_blank: Izvješće o podacima ne postoji
       password_complexity:
         digit:
@@ -3467,12 +3478,14 @@ hr:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Procjenitelj klijenta
             project_admin: Administrator projekta
             regular: Klijent administrator
             superadmin: Super administrator
           agile: AGILNO
           case_study: Analiza slučaja
           client_admin: Klijent administrator
+          client_assessor: Klijent procjenitelj
           hogan: Hogan
           manager: Rukovoditelj
           member: Korisnik
@@ -3606,6 +3619,7 @@ hr:
         roles:
           campaign_admin: Administrator kampanje
           client_admin: Klijent administrator
+          client_assessor: Procjenitelj klijenta
           manager: Rukovoditelj
           member: Korisnik
           project_admin: Administrator projekta
@@ -3676,12 +3690,14 @@ hr:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Procjenitelj klijenta
             project_admin: Administrator projekta
             regular: Klijent administrator
             superadmin: Super administrator
           agile: AGILNO
           case_study: Analiza slučaja
           client_admin: Klijent administrator
+          client_assessor: Procjenitelj klijenta
           hogan: Hogan
           manager: Rukovoditelj
           member: Korisnik
@@ -4143,6 +4159,7 @@ hr:
       campaign_assessor: Procjenitelj kampanje
       campaign_user: Korisnik kampanje
       client_admin: Klijent administrator
+      client_assessor: Procjenitelj klijenta
       project_admin: Administrator projekta
       superadmin: Super administrator
     superadmins: Super administratori

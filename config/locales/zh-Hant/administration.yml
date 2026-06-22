@@ -74,6 +74,7 @@ zh-Hant:
         subjects_count_added: 成功新增主題
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI评分配置仅可添加至AudioResponse、VideoResponse和TextEntry类型的问题中
         doesnt_have_header: "%{sub_header}'沒有標頭"
         invalid_headers: 下列標頭無效： %{headers}
         invalid_question: 問題 ID 無效

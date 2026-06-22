@@ -622,6 +622,7 @@ ar:
         roles:
           campaign_admin: مسؤول الحملة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           manager: مدير
           member: مستخدم
           project_admin: مسؤول المشروع
@@ -727,6 +728,7 @@ ar:
           admins:
             admin: المشرف
             campaign_admin: مسؤول الحملة
+            client_assessor: مُقيِّم العملاء
             project_admin: مسؤول المشروع
             regular: مسؤول العميل
             superadmin: المشرف المتميز
@@ -736,6 +738,7 @@ ar:
           campaign_admin: مسؤول الحملة
           case_study: دراسة حالة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           hogan: هوجان
           iiht: IIHT
           manager: مدير
@@ -859,6 +862,8 @@ ar:
         bulk_download_idp_reports: تنزيل تقارير IDP بالمجمع
         bulk_download_reports: تقارير التنزيل الجماعي
         bulk_download_user_reports: تنزيل تقارير المستخدم بالجملة
+        bulk_export_norm_factor_scores: تصدير درجات عامل المعيار الإجمالية
+        bulk_export_raw_factor_scores: تصدير درجات العوامل الأولية بالجملة
         bulk_generate_user_campaign_ai_artifact_results: الإنشاء المجمع لنتائج الذكاء الاصطناعي للحملة
         bulk_regenerate_reports: إعادة إنشاء تقارير الحملة
         bulk_regenerate_threesixty_reports: إعادة إنشاء تقارير موضوع Threesixty
@@ -871,10 +876,12 @@ ar:
         completion_status_export: تصدير حالة الإنجاز
         copy_as_template_or_campaign: نسخ الحملة كقالب
         copy_dimension: أبعاد النسخ
+        copy_report: نسخ التقرير
         create_threesixty_campaign: إنشاء حملة Threesixty
         data_report_export: تصدير تقرير البيانات
         export_admin_with_permissions: تصدير المسؤول مع الأذونات
         export_assessment_questions: أسئلة تقييم التصدير
+        export_audit_logs: تصدير سجلات التدقيق
         export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
         export_campaign_ai_artifacts_results: تصدير نتائج حملة AI Artifacts
         export_campaign_datasheet: ورقة بيانات حملة التصدير
@@ -964,6 +971,8 @@ ar:
       errors:
         no_plans: لم يتم العثور على خطط آي دي بي نشطة
     close: غلق
+    copy_report:
+      failed: فشل نسخ التقرير
     details: التفاصيل
     errors: اخطاء
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
@@ -1467,6 +1476,7 @@ ar:
       external_user_id: هوية المرشح سكيلفيو
       id: معرف تقييم الحملة
       locales: لغات
+      microsite_assessment_url: رابط تقييم الموقع المصغر
       microsite_error_message: رسالة خطأ
       microsite_participant_id: رقم تعريف المشارك في الموقع المصغر
       microsite_registration_status: حالة التسجيل
@@ -2145,6 +2155,7 @@ ar:
     invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
     max_regeneration_limit: تجاوز الحد الأقصى للتجديد ، اتصل بإدارتك.
     messages:
+      content_type_invalid: نوع محتوى غير صالح
       data_report_blank: تقرير البيانات غير موجود
       password_complexity:
         digit:
@@ -3480,12 +3491,14 @@ ar:
           admin: المشرف
           admins:
             admin: المشرف
+            client_assessor: مُقيّم العملاء
             project_admin: مسؤول المشروع
             regular: مسؤول العميل
             superadmin: المشرف المتميز
           agile: رشيق
           case_study: دراسة حالة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           hogan: هوجان
           manager: مدير
           member: مستخدم
@@ -3619,6 +3632,7 @@ ar:
         roles:
           campaign_admin: مسؤول الحملة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           manager: مدير
           member: مستخدم
           project_admin: مسؤول المشروع
@@ -3689,12 +3703,14 @@ ar:
           admin: المشرف
           admins:
             admin: المشرف
+            client_assessor: مُقيِّم العملاء
             project_admin: مسؤول المشروع
             regular: مسؤول العميل
             superadmin: المشرف المتميز
           agile: رشيق
           case_study: دراسة حالة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           hogan: هوجان
           manager: مدير
           member: مستخدم
@@ -4156,6 +4172,7 @@ ar:
       campaign_assessor: مقيم الحملة
       campaign_user: مستخدم الحملة
       client_admin: مسؤول العميل
+      client_assessor: مُقيِّم العملاء
       project_admin: مسؤول المشروع
       superadmin: المشرف المتميز
     superadmins: المشرفون المتميزون

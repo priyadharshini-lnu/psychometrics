@@ -622,6 +622,7 @@ cs:
         roles:
           campaign_admin: Správce kampaně
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           manager: Manažer
           member: Uživatel
           project_admin: Administrátor projektu
@@ -727,6 +728,7 @@ cs:
           admins:
             admin: Admin
             campaign_admin: Správce kampaně
+            client_assessor: Hodnotitel klienta
             project_admin: Administrátor projektu
             regular: Administrátor klienta
             superadmin: Super administrátor
@@ -736,6 +738,7 @@ cs:
           campaign_admin: Správce kampaně
           case_study: Případová studie
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           hogan: Hogan
           iiht: IIHT
           manager: Manažer
@@ -859,6 +862,8 @@ cs:
         bulk_download_idp_reports: Hromadné stahování zpráv IDP
         bulk_download_reports: Hromadné stahování zpráv
         bulk_download_user_reports: Hromadné stahování uživatelských zpráv
+        bulk_export_norm_factor_scores: Hromadný export skóre faktorových norm, faktorů
+        bulk_export_raw_factor_scores: Hromadný export skóre surových faktorů
         bulk_generate_user_campaign_ai_artifact_results: Hromadné generování výsledků artefaktů AI kampaně
         bulk_regenerate_reports: Regenerovat zprávy o kampani
         bulk_regenerate_threesixty_reports: Regenerovat třistašedesát předmětových zpráv
@@ -871,10 +876,12 @@ cs:
         completion_status_export: Export stavu dokončení
         copy_as_template_or_campaign: Kopírování kampaně jako šablony
         copy_dimension: Kopírovat rozměr
+        copy_report: Kopírovat zprávu
         create_threesixty_campaign: Vytvořit kampaň Threesixty
         data_report_export: Export datové zprávy
         export_admin_with_permissions: Export správce s oprávněními
         export_assessment_questions: Otázky pro posouzení vývozu
+        export_audit_logs: Exportovat protokoly auditu
         export_campaign_ai_artifacts: AI artefakty exportní kampaně
         export_campaign_ai_artifacts_results: Výsledky exportu artefaktů AI kampaně
         export_campaign_datasheet: Technický list exportní kampaně
@@ -964,6 +971,8 @@ cs:
       errors:
         no_plans: Nebyly nalezeny žádné aktivní plány IDP
     close: Zavřít
+    copy_report:
+      failed: Kopírování zprávy se nezdařilo
     details: Podrobnosti na
     errors: Chyby
     invalid_job: Toto oznámení odpovídá smazanému záznamu
@@ -1466,6 +1475,7 @@ cs:
       external_user_id: ID kandidáta Skillvue
       id: ID hodnocení kampaně
       locales: Lokality
+      microsite_assessment_url: URL pro vyhodnocení mikrostránky
       microsite_error_message: Chybová zpráva
       microsite_participant_id: ID účastníka mikrowebu
       microsite_registration_status: Stav registrace
@@ -2117,6 +2127,7 @@ cs:
     invalid_token: Něco se pokazilo. Znovu načtěte stránku a zkuste to znovu.
     max_regeneration_limit: Překročení maximálního limitu regenerace, kontaktujte svou správu.
     messages:
+      content_type_invalid: neplatný typ obsahu
       data_report_blank: Datová zpráva neexistuje
       password_complexity:
         digit:
@@ -3452,12 +3463,14 @@ cs:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Hodnotitel klienta
             project_admin: Administrátor projektu
             regular: Administrátor klienta
             superadmin: Super administrátor
           agile: AGILE
           case_study: Případová studie
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           hogan: Hogan
           manager: Manažer
           member: Uživatel
@@ -3591,6 +3604,7 @@ cs:
         roles:
           campaign_admin: Správce kampaně
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           manager: Manažer
           member: Uživatel
           project_admin: Administrátor projektu
@@ -3661,12 +3675,14 @@ cs:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Hodnotitel klienta
             project_admin: Administrátor projektu
             regular: Administrátor klienta
             superadmin: Super administrátor
           agile: AGILE
           case_study: Případová studie
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           hogan: Hogan
           manager: Manažer
           member: Uživatel
@@ -4128,6 +4144,7 @@ cs:
       campaign_assessor: Posuzovatel kampaní
       campaign_user: Uživatel kampaně
       client_admin: Administrátor klienta
+      client_assessor: Hodnotitel klienta
       project_admin: Administrátor projektu
       superadmin: Super administrátor
     superadmins: Superadministrátoři

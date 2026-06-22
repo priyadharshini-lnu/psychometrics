@@ -140,9 +140,11 @@ ro:
     not_requested: Nu a fost încă solicitat
     ok: Bine
     options: Opțiuni
+    overview: Prezentare generală
     owner: Proprietar
     pause: Pauză
     pending: În așteptare
+    permissions: Permisiuni
     play: Joacă
     policy_version: Versiunea politicii
     policy_version_format: Sunt permise numai numere întregi
@@ -222,9 +224,31 @@ ro:
     update: Actualizați
     update_failed: Actualizarea a eșuat
     updated_at: Actualizat la
+    updated_by: Actualizat de
     updated_successfully: Actualizat cu succes
     upload: Încărca
     user_report_pdf_url_not_generated: Nu s-a putut genera linkul de descărcare a fișierului PDF
+    user_reports_approval_status_pending_qc: În așteptarea controlului de calitate
+    user_reports_approval_status_qc_completed: Controlul calității a fost finalizat
+    user_reports_assessment_name_not_completed_reason_template: Evaluarea „%{names}” nu este finalizată
+    user_reports_assessments_name_not_completed_reason_template: Evaluările de pe %{names} nu au fost finalizate
+    user_reports_assessor_not_completed_reason_template: Formularul evaluatorului %{names} nu este completat
+    user_reports_assessors_not_completed_reason_template: Formularele evaluatorilor %{names} nu sunt completate
+    user_reports_campaign_artifact_results_pending_reason_message: Rezultatele artefactelor din campanie nu sunt definitive pentru acest utilizator
+    user_reports_campaign_scoring_pending_reason_message: Rezultatele campaniei nu sunt definitive pentru acest utilizator
+    user_reports_custom_upload_report_reason_message: Furnizorul raportului este o încărcare personalizată
+    user_reports_external_report_pending_reason_message: În așteptarea raportului de la furnizor
+    user_reports_lead_assessor_not_completed_reason_template: Formularul evaluatorului principal de la %{names} nu este completat
+    user_reports_lead_assessors_not_completed_reason_template: Formularele evaluatorului principal %{names} nu sunt completate
+    user_reports_no_report_module_reason_message: Nu s-a găsit niciun modul de raport pentru acest raport
+    user_reports_not_prepared_reason_message: Raportul nu a fost încă întocmit
+    user_reports_pending_approval_reason_template: Starea aprobării este „%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: În așteptarea aprobării finale a punctajului generat de IA
+    user_reports_pending_qc_ai_scoring_approval_reason_message: În așteptarea aprobării punctajului generat de IA în cadrul controlului calității
+    user_reports_pending_qc_approval_reason_message: În așteptarea aprobării raportului de control al calității
+    user_reports_qc_completed_approval_reason_message: În așteptarea aprobării raportului final
+    user_reports_report_generating_reason_message: Se generează raportul
+    user_reports_report_generation_failed_reason_message: Generarea raportului a eșuat
     video: Video
     view: Vizualizare
     view_audio: Vizualizați audio

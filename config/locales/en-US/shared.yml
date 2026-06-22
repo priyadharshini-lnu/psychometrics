@@ -140,9 +140,11 @@ en-US:
     not_requested: Not Yet Requested
     ok: Ok
     options: Options
+    overview: Overview
     owner: Owner
     pause: Pause
     pending: Pending
+    permissions: Permissions
     play: Play
     policy_version: Policy Version
     policy_version_format: Only whole numbers are allowed
@@ -222,9 +224,31 @@ en-US:
     update: Update
     update_failed: Update failed
     updated_at: Updated At
+    updated_by: Updated By
     updated_successfully: Updated successfully
     upload: Upload
     user_report_pdf_url_not_generated: PDF download link could not be generated
+    user_reports_approval_status_pending_qc: Pending QC
+    user_reports_approval_status_qc_completed: QC completed
+    user_reports_assessment_name_not_completed_reason_template: Assessment %{names} is not completed
+    user_reports_assessments_name_not_completed_reason_template: Assessments %{names} are not completed
+    user_reports_assessor_not_completed_reason_template: Assessor form %{names} is not completed
+    user_reports_assessors_not_completed_reason_template: Assessor forms %{names} are not completed
+    user_reports_campaign_artifact_results_pending_reason_message: Campaign artifact results are not finalized for this user
+    user_reports_campaign_scoring_pending_reason_message: Campaign scores are not finalized for this user
+    user_reports_custom_upload_report_reason_message: Report provider is custom upload
+    user_reports_external_report_pending_reason_message: Waiting for report from provider
+    user_reports_lead_assessor_not_completed_reason_template: Lead assessor form %{names} is not completed
+    user_reports_lead_assessors_not_completed_reason_template: Lead assessor forms %{names} are not completed
+    user_reports_no_report_module_reason_message: No report module found for this report
+    user_reports_not_prepared_reason_message: Report is not yet prepared
+    user_reports_pending_approval_reason_template: Approval status is '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: Pending final AI scoring approval
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Pending QC AI scoring approval
+    user_reports_pending_qc_approval_reason_message: Pending QC report approval
+    user_reports_qc_completed_approval_reason_message: Pending final report approval
+    user_reports_report_generating_reason_message: Report is being generated
+    user_reports_report_generation_failed_reason_message: Report generation failed
     video: Video
     view: View
     view_audio: View Audio

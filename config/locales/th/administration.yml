@@ -74,6 +74,7 @@ th:
         subjects_count_added: เพิ่มหัวข้อสำเร็จ
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: การตั้งค่าการให้คะแนนด้วย AI สามารถเพิ่มได้เฉพาะสำหรับคำถามประเภท AudioResponse, VideoResponse และ TextEntry เท่านั้น
         doesnt_have_header: "'%{sub_header}' ไม่มีหัวข้อ"
         invalid_headers: 'หัวข้อต่อไปนี้ไม่ถูกต้อง: %{headers}'
         invalid_question: รหัสคําถามไม่ถูกต้อง

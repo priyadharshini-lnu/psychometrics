@@ -140,9 +140,11 @@ sl:
     not_requested: Še ni zahtevano
     ok: Ok
     options: Možnosti
+    overview: Pregled
     owner: Lastnik
     pause: Premor
     pending: V obravnavi
+    permissions: Dovoljenja
     play: Igraj
     policy_version: Različica politike
     policy_version_format: Dovoljena so samo cela števila.
@@ -222,9 +224,31 @@ sl:
     update: Posodobitev
     update_failed: Posodobitev ni uspela
     updated_at: Posodobljeno dne
+    updated_by: 'Posodobil:'
     updated_successfully: Posodobljeno uspešno
     upload: Upload
     user_report_pdf_url_not_generated: Povezave za prenos datoteke PDF ni bilo mogoče ustvariti
+    user_reports_approval_status_pending_qc: V postopku kakovostnega nadzora
+    user_reports_approval_status_qc_completed: Kontrola kakovosti zaključena
+    user_reports_assessment_name_not_completed_reason_template: Ocena »%{names}« ni zaključena
+    user_reports_assessments_name_not_completed_reason_template: Ocene %{names} niso zaključene
+    user_reports_assessor_not_completed_reason_template: Obrazec ocenjevalca %{names} ni izpolnjen
+    user_reports_assessors_not_completed_reason_template: Obrazci ocenjevalcev %{names} niso izpolnjeni
+    user_reports_campaign_artifact_results_pending_reason_message: Rezultati artefaktov kampanje za tega uporabnika še niso dokončni
+    user_reports_campaign_scoring_pending_reason_message: Rezultati kampanje za tega uporabnika še niso dokončni
+    user_reports_custom_upload_report_reason_message: Poročilo je bilo naloženo s strani uporabnika
+    user_reports_external_report_pending_reason_message: Čakamo na poročilo od ponudnika
+    user_reports_lead_assessor_not_completed_reason_template: Obrazec za glavnega ocenjevalca %{names} ni izpolnjen
+    user_reports_lead_assessors_not_completed_reason_template: Obrazci glavnega ocenjevalca %{names} niso izpolnjeni
+    user_reports_no_report_module_reason_message: Za to poročilo ni bilo najdeno nobeno poročevalsko modul
+    user_reports_not_prepared_reason_message: Poročilo še ni pripravljeno
+    user_reports_pending_approval_reason_template: Status odobritve je »%{status}«
+    user_reports_pending_final_ai_scoring_approval_reason_message: Čaka se na končno odobritev ocene s pomočjo umetne inteligence
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Čaka se na odobritev ocene QC AI
+    user_reports_pending_qc_approval_reason_message: Čaka se na odobritev poročila o nadzoru kakovosti
+    user_reports_qc_completed_approval_reason_message: Čaka se na končno odobritev poročila
+    user_reports_report_generating_reason_message: Poročilo se pripravlja
+    user_reports_report_generation_failed_reason_message: Priprava poročila ni uspela
     video: Video
     view: Pogled
     view_audio: Poglej avdio

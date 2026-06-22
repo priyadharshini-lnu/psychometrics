@@ -140,9 +140,11 @@ sr-Latn:
     not_requested: Још није затражено
     ok: Ok
     options: Опције
+    overview: Преглед
     owner: Власник
     pause: Пауза
     pending: Учешће
+    permissions: Дозволе
     play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
@@ -222,9 +224,31 @@ sr-Latn:
     update: Ažuriraj
     update_failed: Ажурирање није успело
     updated_at: Ажурирано у
+    updated_by: Ажурирано од
     updated_successfully: Успешно ажурирано
     upload: Otpremanje
     user_report_pdf_url_not_generated: Није могуће генерисати везу за преузимање PDF-а
+    user_reports_approval_status_pending_qc: Учешће у КЦ
+    user_reports_approval_status_qc_completed: КК завршен
+    user_reports_assessment_name_not_completed_reason_template: Оцењивање %{names} није завршено
+    user_reports_assessments_name_not_completed_reason_template: Оцењивања %{names} нису завршена
+    user_reports_assessor_not_completed_reason_template: Образац процењивача %{names} није попуњен.
+    user_reports_assessors_not_completed_reason_template: Обрасци процењивача %{names} нису попуњени
+    user_reports_campaign_artifact_results_pending_reason_message: Резултати артефакта кампање нису коначни за овог корисника
+    user_reports_campaign_scoring_pending_reason_message: Резултати кампање нису коначни за овог корисника
+    user_reports_custom_upload_report_reason_message: Пружалац извештаја је прилагођено отпремање.
+    user_reports_external_report_pending_reason_message: Чекање извештаја од провајдера
+    user_reports_lead_assessor_not_completed_reason_template: Образац главног процењивача %{names} није попуњен.
+    user_reports_lead_assessors_not_completed_reason_template: Обрасци главног процењивача %{names} нису попуњени
+    user_reports_no_report_module_reason_message: За овај извештај није пронађен модул извештаја.
+    user_reports_not_prepared_reason_message: Извештај још није припремљен
+    user_reports_pending_approval_reason_template: Статус одобрења је "%{status}"
+    user_reports_pending_final_ai_scoring_approval_reason_message: Уче се коначно одобравање бодовања вештачке интелигенције
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Уче се резултати QC AI
+    user_reports_pending_qc_approval_reason_message: Учешће у току одобрења QC извештаја
+    user_reports_qc_completed_approval_reason_message: Уче се чекање на одобрење коначног извештаја
+    user_reports_report_generating_reason_message: Извештај се генерише
+    user_reports_report_generation_failed_reason_message: Генерација извештаја није успела
     video: Видео
     view: Приказ
     view_audio: Погледај аудио

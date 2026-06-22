@@ -20,6 +20,7 @@ sr-Cyrl:
     active_record_audits_old_diff_parse_error: Неуспело парсирање JSON-а са старим изменама
     active_record_audits_title: Ревидиране измене
     activity: Активност
+    activity_period: Период активности
     add_admin: Додај администратора
     add_admin_role: Додајте улогу администратора
     add_btn: Додајте предмет
@@ -117,6 +118,12 @@ sr-Cyrl:
     alt_text_long: Прелази максимални лимит од 100 знакова.
     api_keys: АПИ кључеви
     api_keys_form_title: АПИ кључ
+    application: Примена
+    application_add: Додај апликацију
+    application_name: Име апликације
+    application_name_already_taken: Већ постоји за овог клијента
+    application_name_format_hint: Дозвољени су само слови и бројеви, са једним размаком између речи.
+    applications: Примене
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи.
     approve_all_questions: Одобри сва питања
     approve_nomination_description: Ова порука се шаље менаџеру када номинација коју је поднео директни подређени треба да буде одобрена.
@@ -133,6 +140,7 @@ sr-Cyrl:
     assessment_center: 'Центар за процену:'
     assessment_center_group: Група за процену
     assessment_center_group_placeholder: Изаберите групу центра за процену
+    assessment_center_invites: Позиви на центар за процену
     assessment_ids: Идентификатори процене
     assessment_placeholder: Избор процене
     assessment_question_not_supported: Ова врста питања тренутно није подржана.
@@ -205,6 +213,8 @@ sr-Cyrl:
     audit_log_title: Информације о дневнику ревизије
     audit_log_type: Тип записа
     audit_logs: Логови ревизије
+    audit_logs_export_failed: Није успело заказивање посла извоза. Молимо покушајте поново.
+    audit_logs_export_queued: Извоз посла је успешно заказан.
     audit_reports: Извештаји о ревизији
     auth_type_api_key_header_format_error: Дозвољени су само слови, бројеви, подвлаке и цртице.
     auth_type_api_key_header_label: Заглавље API кључа
@@ -244,11 +254,21 @@ sr-Cyrl:
     blocks_title: Блокови
     booked_at: 'Резервисано у:'
     breadcrumbs_norms_editor: Норм уредник
+    bulk_assessment_download_date_range_required: Молимо изаберите распон датума
+    bulk_assessment_download_export_type: Тип извоза
+    bulk_assessment_download_export_type_required: Молимо изаберите тип извоза
+    bulk_assessment_download_help_text: 'Напомена: Ако су процене повезане са различитим димензијама, преузета xslx датотека ће садржати одвојене листове за сваку димензију.'
+    bulk_assessment_download_modal_subtitle: Изаберите распон датума и тип извоза, затим извезите изабране процене.
+    bulk_assessment_download_no_data_found: За изабрани распон датума и процене нису пронађени никакви подаци. Молимо покушајте са другим распоном датума или проценама.
+    bulk_assessment_download_norm_factor_scores: Норм фактор бодови
+    bulk_assessment_download_raw_factor_scores: Сирови факторски резултати
     bulk_assets_modal_choose_csv: Изаберите CSV фајл
     bulk_assets_modal_choose_zip: Изаберите ZIP фајл
     bulk_assets_modal_not_csv_file_error: За учитавање CSV фајлова дозвољени су само CSV фајлови. Молимо вас да отпремите важећи CSV фајл.
     bulk_assets_modal_subtitle: 'Молимо отпремите <b>један CSV фајл</b> (са насловницама: user_email, file_name) и <b>један ZIP фајл</b> (који садржи PDF фајлове који одговарају именима из CSV фајла). ZIP фајл мора бити мањи од %{max_file_size} MB.'
     bulk_assets_modal_title: Отпремите CSV и ZIP датотеке
+    bulk_export_assessments_file: Датотека за масовни извоз процена
+    bulk_export_invalid_params: Неважећи параметри за масовни извоз
     bulk_upload_ai_artifacts: Масовни унос АИ артефаката
     campaign: Кампања
     campaign_admin: Администратор кампање
@@ -374,6 +394,7 @@ sr-Cyrl:
     client_id_label: Идентификатор клијента
     client_id_name: оаутх_клијент_ид
     client_id_required: ИД клијента је обавезан
+    client_ids: ИД клијената
     client_ip: Клијент ИП
     client_logo_label: Лого клијента
     client_secret_label: Тајна клијента
@@ -412,6 +433,7 @@ sr-Cyrl:
     concise: Сажето
     confidence_interval: Поверјени интервал
     confidence_interval_update_success: Поверљиви интервал успешно ажуриран
+    configuration: Конфигурација
     configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
     confirmation_required: Потврда је неопходна
@@ -424,6 +446,7 @@ sr-Cyrl:
     copy_ai_artifacts: Копирајте АИ артефакте
     copy_hint: Копира горе наведене конфигурације места, менаџера центра, процењивача и састанака и ресурса у следеће центре процене. Након копирања, можете направити даље измене на појединачним центрима процене пре него што наставите.
     copy_image_url: Копирајте УРЛ слике
+    copy_report_scheduled: Задатак копирања извештаја је заказан.
     copy_text: Текстуална порука
     copy_to_all: Копирај у друге центре за процену
     copy_url: Копирај УРЛ
@@ -486,12 +509,15 @@ sr-Cyrl:
     datasheet: Лист са подацима
     date_and_time: Датум и време
     date_presets_last_30_days: Последњих 30 дана
+    date_presets_last_6_months: Последњих 6 месеци
     date_presets_last_7_days: Последњих 7 дана
     date_presets_last_month: Прошлог месеца
     date_presets_last_week: Прошлу седмицу
+    date_presets_last_year: Прошле године
     date_presets_today: Данас
     date_presets_yesterday: Јуче
     date_range: Опсег датума
+    date_range_required: Опсег датума је обавезан
     dates_completed: Завршено у
     dates_end: Датум завршетка
     dates_label: Датуми
@@ -587,6 +613,9 @@ sr-Cyrl:
     dimensions_import_modal_owner_select: Изаберите власника
     dimensions_import_modal_select_json: Изаберите JSON фајл
     dimensions_index_title: Димензије
+    dimensions_resource_confirmations_delete_body: 'Јесте ли сигурни да желите да избришете ову димензију?
+
+      '
     dimensions_resource_confirmations_delete_message: Унесите назив димензије наведен испод у поље за текст да бисте потврдили
     dimensions_resource_tooltips_export_json: Извезите JSON за увоз на другој платформи
     dimensions_translations_export: Извези све
@@ -644,8 +673,10 @@ sr-Cyrl:
     enable_caching_successfully: За ово оцењивање омогућено је кеширање.
     enable_caching_title: Омогући кеширање процене?
     enable_enhance_with_ai_client_level: Молимо омогућите функцију Enhance with AI на нивоу клијента.
+    enable_face_detection: Омогућите детекцију лица
     enable_maintenance: Омогући одржавање
     enable_mobile_proctoring: Омогући мобилно надгледање
+    enable_phrase_verification: Омогућите верификацију фраза
     enable_system_check: Омогући преглед система
     enable_transcription: Омогући транскрипцију
     enable_transcription_msg: Омогућите транскрипцију за коришћење АИ бодовања на видео/аудио питањима са одговорима.
@@ -656,9 +687,12 @@ sr-Cyrl:
     end_time_must_be_after_start_time: Крајње време мора бити након почетног времена
     enhance_with_ai: Унапредите помоћу вештачке интелигенције
     enhance_with_ai_requires_ai_assistants: Побољшање помоћу вештачке интелигенције захтева да је омогућена функција AI Assistants.
+    enter_client_ids: Унесите ИД-ове клијената
     enter_description: Унесите опис
     enter_name: Унесите име
+    enter_project_ids: Унесите ИД пројеката
     enter_question_id: Унесите ИД питања
+    enter_report_ids: Унесите ИД-ове извештаја
     enter_schema_key: Унесите Схема кључ
     error: Грешка
     error_color: Боја грешке
@@ -700,6 +734,7 @@ sr-Cyrl:
     export_failure_msg: Грешка при извозу нивоа компетентности
     export_success: Задатак административног извоза је успешно заказан. Погледајте обавештење за статус.
     export_success_msg: Извоз акција развоја у току
+    export_to_csv: Извоз у CSV
     export_with_inactive_users: Извоз са неактивним корисницима
     external_report_id: ИД спољног извештаја
     external_score: Спољни резултат
@@ -717,6 +752,7 @@ sr-Cyrl:
     factors_form_components_ExternalList_title: ЈСОН путеви за резултате
     factors_form_predicate: Предикат
     factors_form_scoring_strategies_custom_formula: Прилагођена формула
+    factors_form_scoring_strategies_tip: " **Питања (просек):** Ово је као тренутни метод бодовања када постоје питања повезана са фактором.  <br /> <br />  **Питања (сума):** Ово је као Питања (просек), али се користи СУМА  <br /> <br /> Питања других фактора (просек): Ово је као тренутни метод бодовања када постоје подфактори за неки фактор, једина разлика је додавање тежине. <br /> <br /> Питања других фактора (СУМ): Ово је као Питања других фактора (просек), али се користи СУМ <br /> <br /> Утежена сума фактора: Овде се резултати изабраних других фактора множе њиховим тежинама и сабирају."
     factors_form_scoring_strategy: Стратегија бодовања
     factors_form_search_factors: Фактори претраге
     factors_form_use_sub_factor_norm_score: Користите нормирани резултат фактора
@@ -752,9 +788,12 @@ sr-Cyrl:
     file_size_must_be_less_than_mb: Датотека {{name}} прелази максималну величину од {{max_size_mb}} MB
     file_upload_failed: Покушај отпремања {{name}} није успео.
     fill_empty_score_msg: Попуните све коначне резултате пре сачувања.
+    filter_by_client: Филтрирај по клијенту
+    filter_by_client_help: Изаберите клијента да учита његове пројекте
     final_score_empty_err_msg: Коначан резултат у %{factor_name}-у не може бити празан.
     final_score_empty_msg: Коначан резултат не може бити празан.
     finalized_at: Завршено у
+    fingerprint: Отисак прста
     first_name_required: Прво име је обавезно
     fix_grammar: Поправите граматику
     fixed_time: Фиктовано време
@@ -803,6 +842,8 @@ sr-Cyrl:
     handoff_invalid_token: Неважећи или истекли токен за аутентификацију
     handoff_token_expired: Токен за аутентификацију је истекао или је већ коришћен
     handoff_user_disabled: Ваш налог је онемогућен
+    has_api_keys: Има API кључеве
+    has_public_keys: Има јавне кључеве
     header_logout_content: Притисните "Откажи" ако желите да наставите рад. Притисните "У реду" да бисте се одјавили са тренутног корисника.
     header_logout_title: Да ли сте сигурни да желите да се одјавите?
     hide_all: Сакриј све
@@ -1038,6 +1079,7 @@ sr-Cyrl:
     integrations_names_hogan: Хоган
     integrations_names_iiht: ИИХТ
     integrations_names_mettl: ОМИЉЕНО
+    integrations_names_microsite: Микросајт
     integrations_names_skillvue: ОМИЉЕНО
     integrations_names_yoodli: Јоодли
     integrations_view_all_schedules: Прикажи све Метл распореде
@@ -1058,11 +1100,15 @@ sr-Cyrl:
     interview_questions_import_failure_msg: Грешка при увозу датотеке.
     interview_questions_import_success_msg: Увоз питања за интервју је у току. Молимо проверите статус у обавештењима.
     interview_questions_question: Питање
+    invalid_client_ids: Неважећи ИД-ови клијената
     invalid_confidence_interval: interвал_поуздања мора бити 0 или 1
     invalid_csv_header: CSV фајл садржи неважеће заглавља.
+    invalid_json: Конфигурација није важећи JSON
     invalid_leadership_bar: leadership_bar мора бити 0 или 1
     invalid_norm_option: Норм опција мора бити између 0 и 3
+    invalid_project_ids: 'Неважећи ИД-ови пројеката: %{ids}'
     invalid_question_ids: 'ИД питања нису пронађени у овој процени: %{ids}'
+    invalid_report_ids: Неважећи ИД-ови извештаја
     invite_add_invite: Додај позив
     invite_assessment_center: Центар за процену
     invite_basic_info_allow_preferred_language: Дозволи одабрани језик
@@ -1143,6 +1189,7 @@ sr-Cyrl:
     join_room: Придружи се соби
     keep_original: Сачувај оригинал
     key: Кључ
+    key_id: Кључни ИД
     keywords: Кључне речи
     keywords_placeholder: Унесите кључне речи раздвојене зарезима.
     language_id: Идентификатор језика
@@ -1175,6 +1222,7 @@ sr-Cyrl:
     maintenance: Одрживање
     maintenance_settings: Подешавања одржавања
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
+    make_report_available_to_subject_when: 'Омогућите извештај одговорном лицу када:'
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     manager_approves_reports: Менаџер одобрава извештаје
     manager_can_access_subject_reports: Менаџер може да приступи извештајима о предметима
@@ -1234,6 +1282,7 @@ sr-Cyrl:
     min_value: Минимална вредност
     minimum_10_words: Минимално 10 речи
     minimum_download_speed: Минимална брзина преузимања (у Mbps)
+    minimum_face_detection_ratio: Минимални однос детекције лица
     minimum_system_check_validity: Минимално трајање провере ваљаности система на нивоу кампање треба да буде 15 минута.
     minimum_upload_speed: Минимална брзина отпремања (у Mbps)
     missing_min_max_values: Потребне су минималне и максималне вредности.
@@ -1322,6 +1371,9 @@ sr-Cyrl:
     occupations_form_indicative_roles_image: Индикативне улоге слика
     occupations_form_key_career_tracks_image: Кључне каријерне путање
     occupations_index_title: Занимања
+    occupations_resource_confirmations_delete_body: 'Јесте ли сигурни да желите да избришете ово занимање?
+
+      '
     on_the_job: На послу [70]
     only_editable_on_create: Ову опцију је могуће уређивати само током креирања.
     options: Опције
@@ -1781,6 +1833,7 @@ sr-Cyrl:
         view: Приказ
         view_recordings: Погледајте снимке
     permissions_360_campaigns: Дозволе специфичне за 360 кампање
+    permissions_updated: Дозволе успешно ажуриране
     piped_text: Текст у цевци
     piped_text_modal_assessment_center: Центар за процену
     piped_text_modal_campaign_link: Линк кампање
@@ -1877,8 +1930,13 @@ sr-Cyrl:
     project: Пројекат
     project_admin: Администратор пројекта
     project_admins: Администратори пројекта
+    project_assessor: Пројектни процењивач
     project_features: Карактеристике пројекта
+    project_ids: ИД пројеката
+    project_ids_required: project_ids је обавезан за овај тип извештаја.
+    project_licenses: Пројектне лиценце
     project_manager: Менаџер пројекта
+    project_not_related_to_client: Пројекат "%{project_id}" не припада клијенту.
     project_number: Број пројекта
     project_participants_column_campaigns: Кампање
     project_participants_column_createdAt: Направљено у
@@ -1974,6 +2032,22 @@ sr-Cyrl:
     provider_change_confirm_title: Променити провајдера?
     provider_previously_used_warning: Овај асистент је раније генерисао резултате са "%{from}". Преласком на "%{to}" може се променити понашање асистента приликом будућих захтева за генерисање.
     psychometric: Психометријски
+    public_key: Јавни кључ
+    public_key_add: Додајте јавни кључ
+    public_key_cannot_be_changed: не може се променити након креирања
+    public_key_copy_private_key: Копирајте приватни кључ
+    public_key_created: Јавни кључ је успешно креиран
+    public_key_generate: Генеришите пар кључева
+    public_key_generate_button: Генеришите RSA пар кључева
+    public_key_generate_info: Ће генерисати пар RSA кључева од 2048 бита. Само јавни кључ ће бити сачуван. Копирајте и безбедно сачувајте приватни кључ — он се више неће приказивати.
+    public_key_invalid_format: мора да буде важећи јавни RSA кључ у PEM формату
+    public_key_must_be_public: мора да буде јавни кључ, а не приватни кључ
+    public_key_paste_placeholder: Уметните свој јавни RSA кључ у PEM формату овде (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Јавни кључ (ПЕМ)
+    public_key_private_key_copied: Приватни кључ копиран у међуспремник
+    public_key_private_key_label: Приватни кључ (ПЕМ)
+    public_key_private_key_warning: Ово је једини пут када ће приватни кључ бити видљив. Копирајте га сада и безбедно га чувајте.
+    public_keys: Јавни кључеви
     question_center: Центар за питања
     question_center_page_title: Центар за питања - контролна табла - Мерсер Лајтхаус
     question_editor_change_type: Променити тип
@@ -2057,6 +2131,7 @@ sr-Cyrl:
     report_approval_approvers: Одобриоци
     report_approval_approvers_can_edit: Одобриоци могу да уређују
     report_approval_approvers_not_required: Одобрење није потребно
+    report_approval_bulk_approve_success: "%{sent_for_approval} Послато на одобрење. Извештаји %{approved}-а одобрени. Извештаји %{ignored}-а захтевају ручно одобрење због промена/коментара QC-а."
     report_approval_columns_approval_status: Статус одобрења
     report_approval_columns_approved_by: Одобрио
     report_approval_columns_assessed_by: Проценио
@@ -2066,11 +2141,14 @@ sr-Cyrl:
     report_approval_columns_subject_email: Предмет е-поште
     report_approval_columns_user_email: Имејл корисника
     report_approval_columns_user_name: Име корисника
+    report_approval_digest_delivery_mode_form_label: Начин испоруке дигеста
     report_approval_digest_frequency_daily: Свакодневно
+    report_approval_digest_frequency_form_label: Фреквенција дигеста
     report_approval_digest_frequency_weekdays: Радним данима
     report_approval_digest_frequency_weekly: Недељно
     report_approval_digest_time: Време за варење
     report_approval_digest_timezone: Дигест временска зона
+    report_approval_digest_weekdays_form_label: Сажетак радних дана
     report_approval_digest_weekdays_friday: Петак
     report_approval_digest_weekdays_monday: Понедељак
     report_approval_digest_weekdays_saturday: Субота
@@ -2111,6 +2189,8 @@ sr-Cyrl:
     report_help_description: Помоћни текст приказан на картици извештаја на контролној табли корисника
     report_help_name: Помоћ за извештаје
     report_id: ИД извештаја
+    report_ids: ИД извештаја
+    report_ids_required: Идентификациони бројеви извештаја су обавезни
     report_name: Назив извештаја
     report_no_evaluations: Извештај за "%{user}" није доступан – нису примљене никакве оцене.
     report_not_generated: Извештај за "%{user}" испуњава услове доступности, али још није генерисан. Молимо вас да прво генеришете извештај.
@@ -2131,6 +2211,17 @@ sr-Cyrl:
     report_review_statuses_qc_completed: КЦ Завршен
     report_review_statuses_qc_in_progress: КЦ у току
     report_status: Извештај о статусу
+    report_type: Тип извештаја
+    report_types:
+      active_clients_projects: Активни клијенти и пројекти
+      client_assessment_counts: Процена клијента је важна
+      hogan_usage_report: Употреба Hogan асесмента
+      json_data_report: Извештај о JSON подацима
+      pearson_usage_report: Коришћење Пирсон тестова
+      report_usage_summary: Извештај о резимеу коришћења
+      saville_usage_report: Употреба Савилл процене
+      user_created_dates: Датуми креирани од стране корисника
+      user_reports_export: Извештај о корисницима
     reports: Извештаји
     reports_copy_copy: Копија
     reports_copy_copy_report: Копирај извештај
@@ -2184,6 +2275,7 @@ sr-Cyrl:
     role_client_admin: Администрација клијента
     role_project_admin: Администратор пројекта
     role_superadmin: Супер администратор
+    run: Покрени
     saml_idp_certificate_available: Доступно (кликните да копирате)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: ИД ентитета/Издавач
@@ -2365,6 +2457,10 @@ sr-Cyrl:
     scheduling_subjects_add_assessor_form: Додај образац процењивача
     scheduling_subjects_assessments: Оцењивања
     scheduling_subjects_assessor_forms: Обрасци процењивача
+    scheduling_subjects_confirm_message: |
+      Да ли сте сигурни да желите да откажете учешће субјекта са имејлом '%{subject_email}'?
+      <br />
+      Када буде означен као отказан, овај субјект неће моћи да учествује у центру за процену.
     scheduling_subjects_confirm_title: Потребна је потврда
     scheduling_subjects_edit_assessor_form: Уреди образац процењивача
     scheduling_subjects_form_title: Закажите процене
@@ -2394,6 +2490,9 @@ sr-Cyrl:
     schema_key_required: Шема кључ је потребан
     schema_key_type: Тип кључа
     schema_key_unique: Кључеви шеме треба да буду јединствени
+    scope: Опсег
+    scope_client: Клијент
+    scope_global: Глобал
     score: Резултат
     score_approval_not_allowed_to_approve: Немате дозволу да одобрите овај резултат.
     score_approval_not_allowed_to_discard: Није вам дозвољено да одбаците овај резултат.
@@ -2546,11 +2645,17 @@ sr-Cyrl:
     security_settings_security_setting: Подешавање безбедности
     select_admin_role: Изаберите улогу администратора
     select_assessment_language: Изаберите језик процене
+    select_client: Изабери клијента
     select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво
+    select_project_ids_required: Одаберите пројектне ИД-ове који су потребни
+    select_projects: Изабери пројекте
+    select_projects_required: Молимо изаберите барем један пројекат.
     select_question: Претражите питање по називу или ИД-у
+    select_report_ids_required: Одаберите потребне report_ids
     select_report_language: Изаберите језик извештаја
+    select_report_type: Изаберите тип извештаја
     select_start_time: Изаберите време почетка
     selective_proctoring: Селективно надгледање
     send_email: Пошаљи имејл
@@ -2692,6 +2797,12 @@ sr-Cyrl:
     sms_invites_send_sms_fields_users: Корисници
     sms_invites_send_sms_modal_btn_name: Пошаљи СМС
     sms_invites_send_sms_modal_title: Пошаљи СМС
+    sms_invites_send_sms_pipetext_details: |
+      {{{first_name}}} - Име примаоца
+      <br />
+      {{{last_name}}} - Презиме примаоца
+      <br />
+      {{{invite_url}}} - Линк за регистрацију
     sms_invites_send_sms_segment_length_msg: Процењени број сегмената за ову поруку је %{segment_length}.
     sms_invites_send_sms_segment_length_range_msg: Процењивани број сегмената за ову поруку је између %{min_segment_length} и %{max_segment_length}.
     sms_invites_statuses_all: Све
@@ -3028,6 +3139,7 @@ sr-Cyrl:
     x_axis_interval_label: Интервал X-осе
     y_axis_interval_label: Y-оска интервала
     year: Година
+    year_range: Опсег година
     years: Године
     yoodli: Јуудили
     yoodli_activity_id: Јуудили ИД активности

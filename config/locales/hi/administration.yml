@@ -74,6 +74,7 @@ hi:
         subjects_count_added: विषय सफलतापूर्वक जोड़े गए
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI स्कोरिंग कॉन्फ़िगरेशन केवल ऑडियोरिस्पॉन्स, वीडियोरिस्पॉन्स और टेक्स्टएंट्री प्रकार के प्रश्नों के लिए ही जोड़ा जा सकता है।
         doesnt_have_header: "'%{sub_header}' में हेडर नहीं है।"
         invalid_headers: 'निम्नलिखित हेडर अमान्य हैं: %{headers}'
         invalid_question: अमान्य प्रश्न आईडी

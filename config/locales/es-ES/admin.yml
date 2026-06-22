@@ -20,6 +20,7 @@ es-ES:
     active_record_audits_old_diff_parse_error: Error al analizar JSON con cambios antiguos
     active_record_audits_title: Cambios auditados
     activity: Actividad
+    activity_period: Período de actividad
     add_admin: Añadir admin
     add_admin_role: Añadir función de administrador
     add_btn: Añadir tema
@@ -48,6 +49,7 @@ es-ES:
     admin_updated_successfully: Admin '%{name}' se ha actualizado correctamente
     administrator_approves_reports: El administrador aprueba los informes
     administrators_list_columns_email: Correo electrónico
+    admins: Administradores
     advanced: Avanzado
     advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
     agile: AGIL
@@ -116,6 +118,12 @@ es-ES:
     alt_text_long: Supera el límite máximo de 100 caracteres.
     api_keys: Claves API
     api_keys_form_title: clave api
+    application: Solicitud
+    application_add: Añadir solicitud
+    application_name: Nombre de la aplicación
+    application_name_already_taken: Ya existe para este cliente
+    application_name_format_hint: Solo se permiten letras y números, con un único espacio entre palabras
+    applications: Aplicaciones
     apply_to_existing_users: Aplicar este cambio a los usuarios existentes en esta campaña.
     approve_all_questions: Aprobar todas las preguntas
     approve_nomination_description: Este mensaje se envía a un directivo cuando debe aprobarse una candidatura presentada por un subordinado directo
@@ -132,6 +140,7 @@ es-ES:
     assessment_center: 'Centro de evaluación:'
     assessment_center_group: Grupo del Assessment Center
     assessment_center_group_placeholder: Seleccionar grupo del centro de evaluación
+    assessment_center_invites: Convocatorias del Centro de Evaluación
     assessment_ids: Números de identificación de evaluación
     assessment_placeholder: Seleccione Evaluación
     assessment_question_not_supported: Este tipo de pregunta no está disponible actualmente.
@@ -157,6 +166,7 @@ es-ES:
     assessor_assessment_name: Evaluador Evaluación
     assessor_assessments: Evaluaciones del evaluador
     assessor_assessments_actions_add_subject: Añadir tema
+    assessor_assessments_actions_rescore: Recalificar
     assessor_assessments_actions_reset: Restablecer evaluación
     assessor_assessments_actions_reset_progress: Restablecer progreso
     assessor_assessments_bulk_delete_confirmation: "¿Está seguro de que desea eliminar los registros seleccionados?"
@@ -192,6 +202,7 @@ es-ES:
     assessor_subjects_statuses_not_started: No iniciado
     assessor_toolbar_export: Asesores de exportación
     assessor_toolbar_import: Evaluadores de importaciones
+    assessor_workshops: Centro de evaluación
     assessors: Asesores
     assistant_toolbar_failed: No se ha podido generar una salida válida tras varios intentos.
     assistant_toolbar_not_a_valid_operation: Operación desconocida %{operation}.
@@ -202,6 +213,8 @@ es-ES:
     audit_log_title: Información del registro de auditoría
     audit_log_type: Tipo de registro
     audit_logs: Registros de auditoría
+    audit_logs_export_failed: No se ha podido programar la tarea de exportación. Inténtalo de nuevo.
+    audit_logs_export_queued: La tarea de exportación se ha programado correctamente.
     audit_reports: Informes de auditoría
     auth_type_api_key_header_format_error: Sólo se permiten letras, números, guiones bajos y guiones.
     auth_type_api_key_header_label: Cabecera de clave API
@@ -241,11 +254,21 @@ es-ES:
     blocks_title: Bloques
     booked_at: 'Reservado en:'
     breadcrumbs_norms_editor: Norma Editor
+    bulk_assessment_download_date_range_required: Selecciona un intervalo de fechas
+    bulk_assessment_download_export_type: Tipo de exportación
+    bulk_assessment_download_export_type_required: Selecciona el tipo de exportación
+    bulk_assessment_download_help_text: 'Nota: Si las evaluaciones están vinculadas a diferentes dimensiones, el archivo xslx descargado contendrá hojas independientes para cada dimensión.'
+    bulk_assessment_download_modal_subtitle: Selecciona un intervalo de fechas y un tipo de exportación y, a continuación, exporta las evaluaciones seleccionadas.
+    bulk_assessment_download_no_data_found: No se han encontrado datos para el intervalo de fechas y las evaluaciones seleccionados. Inténtalo con otro intervalo de fechas o con otras evaluaciones.
+    bulk_assessment_download_norm_factor_scores: Puntuaciones normalizadas
+    bulk_assessment_download_raw_factor_scores: Puntuaciones brutas de los factores
     bulk_assets_modal_choose_csv: Seleccionar archivo CSV
     bulk_assets_modal_choose_zip: Seleccionar archivo ZIP
     bulk_assets_modal_not_csv_file_error: Solo se permiten archivos CSV para la carga de CSV. Cargue un archivo CSV válido.
     bulk_assets_modal_subtitle: 'Por favor, suba <b>un archivo CSV</b> (con los encabezados: user_email, file_name) y <b>un archivo ZIP</b> (que contenga archivos PDF que coincidan con los nombres de archivo del CSV). El archivo ZIP debe tener un tamaño inferior a %{max_file_size} MB.'
     bulk_assets_modal_title: Subir archivos CSV y ZIP
+    bulk_export_assessments_file: Archivo de exportación de liquidaciones masivas
+    bulk_export_invalid_params: Parámetros de exportación masiva no válidos
     bulk_upload_ai_artifacts: Artefactos de IA de subida masiva
     campaign: Campaña
     campaign_admin: Administración
@@ -371,6 +394,7 @@ es-ES:
     client_id_label: ID de cliente
     client_id_name: oauth_client_id
     client_id_required: Se requiere el ID del cliente
+    client_ids: ID de cliente
     client_ip: Ip del cliente
     client_logo_label: Logotipo del cliente
     client_secret_label: Secreto de cliente
@@ -392,6 +416,7 @@ es-ES:
     column_usage_stats: Estadísticas de uso
     common: Evaluación TTE
     common_assessment: Evaluación TTE
+    common_disabled: Desactivado
     common_download_sample_file: Descargar archivo de muestra
     common_enabled: Activado
     common_import_failure_msg: Error al importar el archivo.
@@ -408,6 +433,7 @@ es-ES:
     concise: Conciso
     confidence_interval: Intervalo de confianza
     confidence_interval_update_success: Intervalo de confianza actualizado correctamente
+    configuration: Configuración
     configure_model_answer_title: Configurar la respuesta modelo y las palabras clave
     confirm_remove_admin: "¿Está seguro de que desea eliminar el usuario administrador con el correo electrónico '%{email}'?"
     confirmation_required: Se requiere confirmación
@@ -420,6 +446,7 @@ es-ES:
     copy_ai_artifacts: Copiar artefactos de IA
     copy_hint: Copia la configuración anterior de Asientos, Administradores de centros, Evaluadores y Reuniones y recursos a los siguientes Centros de evaluación. Después de copiar, puede realizar más cambios en los Centros de evaluación individuales antes de continuar.
     copy_image_url: Copiar la URL de la imagen
+    copy_report_scheduled: Se ha programado la tarea de copia del informe.
     copy_text: Texto
     copy_to_all: Copia a otros Centros de Evaluación
     copy_url: Copiar URL
@@ -441,6 +468,7 @@ es-ES:
     dashboard: Cuadro de mandos
     dashboard_capacity_name: Capacidad Nombre
     dashboard_choose_file_format: Elegir formato de archivo
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
     dashboard_dashboard_types_powerbi: PowerBi
     dashboard_dashboards: Cuadros de mando
     dashboard_export_dashboard_to_file: Exportar el cuadro de mandos a un archivo
@@ -481,12 +509,15 @@ es-ES:
     datasheet: Hoja de datos
     date_and_time: Fecha y hora
     date_presets_last_30_days: Últimos 30 días
+    date_presets_last_6_months: Últimos 6 meses
     date_presets_last_7_days: Últimos 7 días
     date_presets_last_month: Último mes
     date_presets_last_week: Última semana
+    date_presets_last_year: El año pasado
     date_presets_today: Hoy
     date_presets_yesterday: Ayer
     date_range: Intervalo de fechas
+    date_range_required: Es obligatorio indicar un intervalo de fechas
     dates_completed: Completado en
     dates_end: Fecha final
     dates_label: Fechas
@@ -640,8 +671,10 @@ es-ES:
     enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
     enable_caching_title: "¿Habilitar la caché de evaluaciones?"
     enable_enhance_with_ai_client_level: Habilite la función Mejorar con IA a nivel de cliente.
+    enable_face_detection: Activar la detección de rostros
     enable_maintenance: Habilitar mantenimiento
     enable_mobile_proctoring: Habilitar supervisión móvil
+    enable_phrase_verification: Activar la verificación por frase
     enable_system_check: Habilitar la comprobación del sistema
     enable_transcription: Habilitar transcripción
     enable_transcription_msg: Habilita la transcripción para utilizar la puntuación de IA en preguntas de respuesta de vídeo/audio.
@@ -652,9 +685,12 @@ es-ES:
     end_time_must_be_after_start_time: La hora de finalización debe ser posterior a la hora de inicio.
     enhance_with_ai: Mejora con IA
     enhance_with_ai_requires_ai_assistants: Para mejorar con IA, es necesario habilitar la función Asistentes de IA.
+    enter_client_ids: Introduce los ID de cliente
     enter_description: Introducir descripción
     enter_name: Introduzca el nombre
+    enter_project_ids: Introduce los ID de los proyectos
     enter_question_id: Introduce el ID de la pregunta
+    enter_report_ids: Introduce los ID de los informes
     enter_schema_key: Introducir clave de esquema
     error: Error
     error_color: Error Color
@@ -696,6 +732,7 @@ es-ES:
     export_failure_msg: Error al exportar niveles de competencia
     export_success: El trabajo de exportación de Admin se ha programado correctamente. Compruebe el estado en su notificación.
     export_success_msg: Exportación de acciones de desarrollo en curso
+    export_to_csv: Exportar a CSV
     export_with_inactive_users: Exportar con usuarios inactivos
     external_report_id: Identificador del informe externo
     external_score: Puntuación externa
@@ -749,9 +786,12 @@ es-ES:
     file_size_must_be_less_than_mb: El archivo {{name}} supera el tamaño máximo de {{max_size_mb}} MB
     file_upload_failed: No se ha podido subir {{name}}
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
+    filter_by_client: Filtrar por cliente
+    filter_by_client_help: Selecciona un cliente para cargar sus proyectos
     final_score_empty_err_msg: La puntuación final de %{factor_name} no puede estar vacía.
     final_score_empty_msg: La cuenta final no puede estar vacía.
     finalized_at: Finalizado el
+    fingerprint: Huella dactilar
     first_name_required: El nombre es obligatorio
     fix_grammar: Corregir gramática
     fixed_time: Tiempo fijo
@@ -800,6 +840,8 @@ es-ES:
     handoff_invalid_token: Token de autenticación no válido o caducado
     handoff_token_expired: El token de autenticación ha caducado o ya se ha utilizado
     handoff_user_disabled: Tu cuenta está desactivada
+    has_api_keys: Dispone de claves API
+    has_public_keys: Tiene claves públicas
     header_logout_content: Pulsa Cancelar si quieres seguir trabajando. Pulsa Aceptar para cerrar sesión con el usuario actual.
     header_logout_title: "¿Estás seguro de que quieres cerrar sesión?"
     hide_all: Ocultar todo
@@ -862,6 +904,7 @@ es-ES:
     idp_development_actions_custom: Personalizado
     idp_development_actions_date_range: Fecha de Inicio - Fecha de Finalización
     idp_development_actions_edit_plan_to_add_development_actions: Edite Plan y agregue Acciones de Desarrollo.
+    idp_development_actions_errors_invalid_learning_style: "«%{learning_style}» no es un estilo de aprendizaje válido. Las opciones válidas son: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: El estilo de aprendizaje no puede estar en blanco
     idp_development_actions_generate_by_ai: Generar por IA
     idp_development_actions_generate_more: Generar Más
@@ -916,6 +959,7 @@ es-ES:
     idp_revert_skill_to_public_errors_skill_already_public: La habilidad ya es pública
     idp_revert_skill_to_public_errors_skill_not_found: Habilidad no encontrada
     idp_revert_skill_to_public_success_base_message: La habilidad '%{skill_name}' ahora es visible para su gerente
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} y tu plan de IDP ya se ha presentado para su aprobación"
     idp_select_by_tags: Seleccionar por etiquetas
     idp_select_interview_question: Comience a escribir para buscar y seleccionar la pregunta
     idp_select_reflection_question: Comience a escribir para buscar y seleccionar la pregunta
@@ -1004,6 +1048,7 @@ es-ES:
     innovation_styles_list_position: Posición
     innovation_styles_resource_confirmations_delete_body: "<p>¿Está seguro de que desea eliminar este estilo de innovación?</p>\n"
     instruction_messages: Mensajes de instrucciones
+    instructions: Instrucciones
     instructions_actions_saved: Instrucciones guardadas correctamente
     instructions_enable: Habilitar instrucciones
     instructions_save: Salvar instrucciones
@@ -1032,6 +1077,7 @@ es-ES:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Micrositio
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Ver todos los horarios de Mettl
@@ -1052,12 +1098,17 @@ es-ES:
     interview_questions_import_failure_msg: Error al importar el archivo.
     interview_questions_import_success_msg: Importación de preguntas de entrevista en curso. Por favor, comprueba el estado en las notificaciones.
     interview_questions_question: Pregunta
+    invalid_client_ids: ID de cliente no válidos
     invalid_confidence_interval: confidence_interval debe ser 0 o 1
     invalid_csv_header: CSV contiene cabeceras inválidas.
+    invalid_json: La configuración no es un JSON válido
     invalid_leadership_bar: leadership_bar debe ser 0 o 1
     invalid_norm_option: La opción Norm debe estar entre 0 y 3.
+    invalid_project_ids: 'ID de proyecto no válidos: %{ids}'
     invalid_question_ids: 'Números de identificación de preguntas que no se encuentran en esta evaluación: %{ids}'
+    invalid_report_ids: ID de informe no válidos
     invite_add_invite: Añadir invitación
+    invite_assessment_center: Centro de evaluación
     invite_basic_info_allow_preferred_language: Permitir idioma preferido
     invite_basic_info_assessment_centers: Centros de evaluación
     invite_basic_info_assessment_centers_hint: Ejemplo de búsqueda "10 de agosto de 2023, 20:06"
@@ -1079,6 +1130,7 @@ es-ES:
     invite_request_reason: Motivo
     invite_request_reject: Rechazar
     invite_request_remove_confirm_content: "¿Estás seguro de que quieres %{action} %{status} de %{subjectName}?"
+    invite_request_remove_confirm_success: "%{status} La dirección %{subjectName} fue redirigida correctamente a %{action}."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Nombre del sujeto
     invite_request_workshop_time: Hora del taller
@@ -1095,6 +1147,7 @@ es-ES:
     invite_steps_has_errors: contiene errores
     invite_steps_send_invitation: Enviar invitación
     invite_subjects_count: Temas
+    invite_subjects_csv_error: 'Fila «%{index}»: el usuario con la dirección de correo electrónico %{email} no figura en esta campaña'
     invite_subjects_csv_imported: "%{count} sujetos importados"
     invite_subjects_description: Puede añadir temas individualmente mediante búsquedas o cargar en bloque un archivo csv.
     invite_subjects_download: Descargar
@@ -1134,6 +1187,7 @@ es-ES:
     join_room: Entrar en la sala
     keep_original: Conservar original
     key: Clave
+    key_id: ID de clave
     keywords: Palabras clave
     keywords_placeholder: Introduzca las palabras clave separadas por comas.
     language_id: Identificador de idioma
@@ -1226,6 +1280,7 @@ es-ES:
     min_value: Valor mínimo
     minimum_10_words: Mínimo 10 palabras
     minimum_download_speed: Velocidad mínima de descarga (en Mbps)
+    minimum_face_detection_ratio: Índice mínimo de detección de rostros
     minimum_system_check_validity: El tiempo mínimo de validez de la comprobación del sistema de la campaña debe ser de 15 minutos
     minimum_upload_speed: Velocidad mínima de subida (en Mbps)
     missing_min_max_values: Se requieren valores mínimos y máximos.
@@ -1275,6 +1330,7 @@ es-ES:
     norm_region: Región normal
     norm_region_form_select: Seleccionar región normal
     norm_region_update_success: Región Norm actualizada correctamente
+    normal: Normal
     normalize_factor_scores: Normalizar las puntuaciones de los factores
     norms: Normas
     norms_copy_successfully: La norma "%{name}" se ha copiado correctamente.
@@ -1773,6 +1829,7 @@ es-ES:
         view: Ver
         view_recordings: Ver grabaciones
     permissions_360_campaigns: Permisos específicos para campañas 360
+    permissions_updated: Los permisos se han actualizado correctamente
     piped_text: Texto canalizado
     piped_text_modal_assessment_center: Centro de Evaluación
     piped_text_modal_campaign_link: Enlace a la campaña
@@ -1816,6 +1873,7 @@ es-ES:
     privacy_text: Texto de privacidad
     privacy_text_placeholder: Introducir texto de privacidad
     proctoring: Supervisión
+    proctoring_allow_on_assessment_center: Permitir la supervisión en el centro de evaluación
     proctoring_enable: Habilitar la verificación
     proctoring_errors_timed_only: La supervisión selectiva solo se puede activar en las evaluaciones cronometradas.
     proctoring_fixed_time_required: Activa «Tiempo fijo» para seleccionar esta opción
@@ -1868,8 +1926,13 @@ es-ES:
     project: Proyecto
     project_admin: Administrador del proyecto
     project_admins: Administradores de proyectos
+    project_assessor: Evaluador de proyectos
     project_features: Características del proyecto
+    project_ids: Números de identificación de los proyectos
+    project_ids_required: "«project_ids» es obligatorio para este tipo de informe"
+    project_licenses: Licencias de proyectos
     project_manager: Responsable de proyecto
+    project_not_related_to_client: El proyecto «%{project_id}» no pertenece al cliente.
     project_number: Número de proyecto
     project_participants_column_campaigns: Campañas
     project_participants_column_createdAt: Creado/a el
@@ -1965,6 +2028,22 @@ es-ES:
     provider_change_confirm_title: "¿Cambiar de proveedor?"
     provider_previously_used_warning: Este asistente ha generado resultados anteriormente con «%{from}». Cambiar a «%{to}» podría alterar el comportamiento del asistente en futuras solicitudes de generación.
     psychometric: Psicométrico
+    public_key: Clave pública
+    public_key_add: Añadir clave pública
+    public_key_cannot_be_changed: No se puede modificar una vez creado
+    public_key_copy_private_key: Copiar clave privada
+    public_key_created: La clave pública se ha creado correctamente
+    public_key_generate: Generar un par de claves
+    public_key_generate_button: Generar un par de claves RSA
+    public_key_generate_info: Se generará un par de claves RSA de 2048 bits. Solo se almacenará la clave pública. Copia y guarda de forma segura la clave privada, ya que no volverá a mostrarse.
+    public_key_invalid_format: Debe ser una clave pública RSA válida en formato PEM
+    public_key_must_be_public: Debe ser una clave pública, no una clave privada.
+    public_key_paste_placeholder: Pega aquí tu clave pública RSA en formato PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Clave pública (PEM)
+    public_key_private_key_copied: Clave privada copiada en el portapapeles
+    public_key_private_key_label: Clave privada (PEM)
+    public_key_private_key_warning: Esta será la única ocasión en la que se podrá ver la clave privada. Cópiala ahora y guárdala en un lugar seguro.
+    public_keys: Claves públicas
     question_center: Centro de preguntas
     question_center_page_title: Centro de preguntas - Panel de control - Mercer Lighthouse
     question_editor_change_type: Cambiar tipo
@@ -2106,6 +2185,8 @@ es-ES:
     report_help_description: Texto de ayuda mostrado en el boletín de calificaciones del panel de control del usuario
     report_help_name: Ayuda con los informes
     report_id: Informe ID
+    report_ids: Identificadores de informe
+    report_ids_required: Es obligatorio indicar los números de identificación de los informes
     report_name: Nombre del informe
     report_no_evaluations: No hay disponible el informe para %{user} - no se han recibido evaluaciones.
     report_not_generated: Informe para %{user} cumple las condiciones de disponibilidad pero aún no se ha generado. Por favor, genera el informe primero.
@@ -2126,6 +2207,17 @@ es-ES:
     report_review_statuses_qc_completed: Control de calidad finalizado
     report_review_statuses_qc_in_progress: Control de calidad en curso
     report_status: Estado del informe
+    report_type: Tipo de informe
+    report_types:
+      active_clients_projects: Clientes y proyectos en curso
+      client_assessment_counts: La valoración del cliente es importante
+      hogan_usage_report: Uso de la evaluación Hogan
+      json_data_report: Informe de datos JSON
+      pearson_usage_report: Uso de las evaluaciones de Pearson
+      report_usage_summary: Resumen de uso del informe
+      saville_usage_report: Uso de la evaluación de Saville
+      user_created_dates: Fechas creadas por el usuario
+      user_reports_export: Exportación de informes de usuarios
     reports: Informes
     reports_copy_copy: Copiar
     reports_copy_copy_report: Copiar informe
@@ -2179,6 +2271,7 @@ es-ES:
     role_client_admin: Administración de clientes
     role_project_admin: Administrador del proyecto
     role_superadmin: Superadministrador
+    run: Correr
     saml_idp_certificate_available: Disponible (haz clic para copiar)
     saml_idp_certificate_label: Certificado
     saml_idp_entity_id_label: ID de entidad/Emisor
@@ -2393,6 +2486,9 @@ es-ES:
     schema_key_required: La clave de esquema es obligatoria
     schema_key_type: Tipo de llave
     schema_key_unique: Las claves del esquema deben ser únicas
+    scope: Ámbito de aplicación
+    scope_client: Cliente
+    scope_global: Global
     score: Puntuación
     score_approval_not_allowed_to_approve: No está permitido aprobar esta puntuación.
     score_approval_not_allowed_to_discard: No está permitido descartar esta puntuación.
@@ -2545,11 +2641,17 @@ es-ES:
     security_settings_security_setting: Configuración de seguridad
     select_admin_role: Seleccione el rol de administrador
     select_assessment_language: Seleccionar idioma de evaluación
+    select_client: Seleccionar cliente
     select_end_time: Seleccionar hora de finalización
     select_language_to_translate: Seleccione el idioma para traducir.
     select_level: Seleccionar nivel
+    select_project_ids_required: Selecciona los «project_ids» necesarios
+    select_projects: Proyectos destacados
+    select_projects_required: Selecciona al menos un proyecto
     select_question: Buscar una pregunta por nombre o ID
+    select_report_ids_required: Selecciona los «report_ids» necesarios
     select_report_language: Seleccione el idioma del informe
+    select_report_type: Seleccionar tipo de informe
     select_start_time: Seleccionar hora de inicio
     selective_proctoring: Supervisión selectiva
     send_email: Enviar correo electrónico
@@ -2884,6 +2986,9 @@ es-ES:
     threesixity_advance_settings_factors: Factores
     threesixity_close_content: "¿Está seguro de que desea cerrar el Creador de Campañas Multi-Rater? Cualquier trabajo de personalización no guardado se perderá. Por favor, confirme su decisión."
     threesixity_close_title: "¿Cerrar el Creador de Campañas Multi-Rater?"
+    threesixity_instructions_creation_empty: 'Vacío: Empieza con una encuesta en blanco y personalízala según tus necesidades específicas.'
+    threesixity_instructions_creation_previous: 'Anterior: Selecciona una evaluación anterior como punto de partida y realiza modificaciones.'
+    threesixity_instructions_creation_standard: 'Norma: Utiliza una plantilla prediseñada con preguntas e indicadores de uso habitual.'
     threesixity_instructions_creation_sub_title: Seleccione el tipo de campaña que desea crear.
     threesixity_instructions_creation_title: "¡Bienvenido al Creador de Campañas Multi-Rater!"
     threesixity_instructions_customization_sub_title: Seleccione la plantilla y los factores que deben incluirse en la evaluación.
@@ -3030,6 +3135,7 @@ es-ES:
     x_axis_interval_label: Intervalo del eje X
     y_axis_interval_label: Intervalo del eje Y
     year: País
+    year_range: Intervalo de años
     years: Años
     yoodli: Yoodli
     yoodli_activity_id: ID de actividad Yoodli

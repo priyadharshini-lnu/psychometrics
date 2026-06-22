@@ -83,6 +83,7 @@ zh:
     error: 错误
     export: 导出
     failed: 失败
+    'false': false
     file: 文件
     first_name: 名
     formal_learning: 正规学习
@@ -93,6 +94,7 @@ zh:
     group_question_max_validation_error: 每个组最多可包含{{max}}个物品。
     group_question_min_validation_error: 每个组至少需要包含{{min}}条项。
     icon: 图标
+    id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP助手可能会犯错。使用回复时请务必小心。
     import: 进口
     inactive: 不活动
@@ -138,9 +140,11 @@ zh:
     not_requested: 尚未请求
     ok: 确定
     options: 选项
+    overview: 概述
     owner: 所有者
     pause: 暂停
     pending: 待定
+    permissions: 权限
     play: 播放
     policy_version: 政策版本
     policy_version_format: 仅允许整数
@@ -212,6 +216,7 @@ zh:
     transcription_not_enabled: 媒体响应未启用转录功能
     transcription_status: 转录状态
     transcriptions: 改编
+    'true': true
     try_again: 重试
     tte_terms_and_condition: 条款和隐私
     type: 类型
@@ -219,9 +224,31 @@ zh:
     update: 更新
     update_failed: 更新失败
     updated_at: 更新于
+    updated_by: 更新者：
     updated_successfully: 更新成功
     upload: 上传
     user_report_pdf_url_not_generated: 无法生成 PDF 下载链接
+    user_reports_approval_status_pending_qc: 待质量检查
+    user_reports_approval_status_qc_completed: 质量检查已完成
+    user_reports_assessment_name_not_completed_reason_template: 评估 %{names} 尚未完成
+    user_reports_assessments_name_not_completed_reason_template: 评估 %{names} 尚未完成
+    user_reports_assessor_not_completed_reason_template: 评估员表格%{names}未填写
+    user_reports_assessors_not_completed_reason_template: 评估员表格 %{names} 尚未填写
+    user_reports_campaign_artifact_results_pending_reason_message: 该用户的活动道具结果尚未最终确定
+    user_reports_campaign_scoring_pending_reason_message: 该用户的活动得分尚未最终确定
+    user_reports_custom_upload_report_reason_message: 报告提供方为自定义上传
+    user_reports_external_report_pending_reason_message: 等待服务提供商发来的报告
+    user_reports_lead_assessor_not_completed_reason_template: "%{names} 中的首席评估员表格尚未填写"
+    user_reports_lead_assessors_not_completed_reason_template: 铅评估员表格 %{names} 尚未填写
+    user_reports_no_report_module_reason_message: 未找到此报表对应的报表模块
+    user_reports_not_prepared_reason_message: 报告尚未完成
+    user_reports_pending_approval_reason_template: 审批状态为“%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: 待最终AI评分审批
+    user_reports_pending_qc_ai_scoring_approval_reason_message: 待质量控制（QC）AI评分审批
+    user_reports_pending_qc_approval_reason_message: 待质量控制报告批准
+    user_reports_qc_completed_approval_reason_message: 待最终报告批准
+    user_reports_report_generating_reason_message: 正在生成报告
+    user_reports_report_generation_failed_reason_message: 报告生成失败
     video: 视频
     view: 查看
     view_audio: 查看音频

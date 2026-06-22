@@ -74,6 +74,7 @@ hu:
         subjects_count_added: A témákat sikeresen hozzáadta
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Az AI-alapú pontozási beállítások csak az AudioResponse, VideoResponse és TextEntry típusú kérdésekhez adhatók hozzá
         doesnt_have_header: A(z) %{sub_header}' nem rendelkezik fejléccel
         invalid_headers: 'A következő fejlécek érvénytelenek: %{headers}'
         invalid_question: Érvénytelen kérdésazonosító

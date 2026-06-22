@@ -622,6 +622,7 @@ sr-Cyrl:
         roles:
           campaign_admin: Администратор кампање
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           manager: Менаџер
           member: Корисник
           project_admin: Администратор пројекта
@@ -727,6 +728,7 @@ sr-Cyrl:
           admins:
             admin: Администраторског
             campaign_admin: Администратор кампање
+            client_assessor: Клијент процењивач
             project_admin: Администратор пројекта
             regular: Администратор клијента
             superadmin: Супер Администратор
@@ -736,6 +738,7 @@ sr-Cyrl:
           campaign_admin: Администратор кампање
           case_study: Студија случаја
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           hogan: Хоган
           iiht: ИИХТ
           manager: Менаџер
@@ -859,6 +862,8 @@ sr-Cyrl:
         bulk_download_idp_reports: Булк Довнлоад ИДП извештаје
         bulk_download_reports: Извештаји о масовном преузимању
         bulk_download_user_reports: Булк Довнлоад Усер Репортс
+        bulk_export_norm_factor_scores: Масовни извоз резултата норм-фактора
+        bulk_export_raw_factor_scores: Масовни извоз резултата фактора сировог
         bulk_generate_user_campaign_ai_artifact_results: Булк Генерате Цампаигн АИ Артифацт Резултати
         bulk_regenerate_reports: Регенеришите извештаје о кампањи
         bulk_regenerate_threesixty_reports: Регенеришите тришекдесет предметних извештаја
@@ -871,10 +876,12 @@ sr-Cyrl:
         completion_status_export: Завршетак статуса Извоз
         copy_as_template_or_campaign: Копирај кампању као шаблон
         copy_dimension: Копирај димензију
+        copy_report: Копирај извештај
         create_threesixty_campaign: Креирајте кампању Тхреесиxтy
         data_report_export: Извоз извештаја о подацима
         export_admin_with_permissions: Извоз администратора са дозволама
         export_assessment_questions: Питања за процену извоза
+        export_audit_logs: Извези логове ревизије
         export_campaign_ai_artifacts: Извозна кампања АИ артефаката
         export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
         export_campaign_datasheet: Радни лист кампање за извоз
@@ -964,6 +971,8 @@ sr-Cyrl:
       errors:
         no_plans: Није пронађен активан ИДП планови
     close: Затворите
+    copy_report:
+      failed: Извештај копије није успео
     details: Детаље
     errors: Грешке
     invalid_job: Ово обавештење одговара избрисаном запису
@@ -1448,6 +1457,7 @@ sr-Cyrl:
       external_user_id: Скиллвуе ИД кандидата
       id: ИД процене кампање
       locales: Локализације
+      microsite_assessment_url: URL за процену микросајта
       microsite_error_message: Порука о грешци
       microsite_participant_id: ИД учесника микросајта
       microsite_registration_status: Статус регистрације
@@ -2126,6 +2136,7 @@ sr-Cyrl:
     invalid_token: Дошло је до грешке. Поново учитајте страницу и покушајте поново.
     max_regeneration_limit: Максимална граница регенерације прекорачена, обратите се својој администрацији.
     messages:
+      content_type_invalid: неважећи тип садржаја
       data_report_blank: Извештај о подацима не постоји
       password_complexity:
         digit:
@@ -3461,12 +3472,14 @@ sr-Cyrl:
           admin: Администраторског
           admins:
             admin: Администраторског
+            client_assessor: Клијент процењивач
             project_admin: Администратор пројекта
             regular: Администратор клијента
             superadmin: Супер Администратор
           agile: Окретан
           case_study: Студија случаја
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           hogan: Хоган
           manager: Менаџер
           member: Корисник
@@ -3600,6 +3613,7 @@ sr-Cyrl:
         roles:
           campaign_admin: Администратор кампање
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           manager: Менаџер
           member: Корисник
           project_admin: Администратор пројекта
@@ -3670,12 +3684,14 @@ sr-Cyrl:
           admin: Администраторског
           admins:
             admin: Администраторског
+            client_assessor: Клијент процењивач
             project_admin: Администратор пројекта
             regular: Администратор клијента
             superadmin: Супер Администратор
           agile: Окретан
           case_study: Студија случаја
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           hogan: Хоган
           manager: Менаџер
           member: Корисник
@@ -4134,6 +4150,7 @@ sr-Cyrl:
       campaign_assessor: Процењивач кампање
       campaign_user: Корисник кампање
       client_admin: Администратор клијента
+      client_assessor: Клијент процењивач
       project_admin: Администратор пројекта
       superadmin: Супер Администратор
     superadmins: Супер Администратори

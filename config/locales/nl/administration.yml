@@ -74,6 +74,7 @@ nl:
         subjects_count_added: Succesvol toegevoegde onderwerpen
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: De configuratie voor AI-scoring kan alleen worden toegevoegd voor vragen van het type AudioResponse, VideoResponse en TextEntry
         doesnt_have_header: "%{sub_header}' heeft geen header"
         invalid_headers: 'De volgende headers zijn ongeldig: %{headers}'
         invalid_question: Ongeldige vraag-ID

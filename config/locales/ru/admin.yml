@@ -20,6 +20,7 @@ ru:
     active_record_audits_old_diff_parse_error: Не удалось проанализировать JSON со старыми изменениями
     active_record_audits_title: Проверенные изменения
     activity: Деятельность
+    activity_period: Период деятельности
     add_admin: Добавить администратора
     add_admin_role: Добавить роль администратора
     add_btn: Добавить тему
@@ -117,6 +118,12 @@ ru:
     alt_text_long: Превышает максимальный лимит в 100 символов.
     api_keys: API-ключи
     api_keys_form_title: ключ API
+    application: Заявка
+    application_add: Добавить заявку
+    application_name: Название приложения
+    application_name_already_taken: У этого клиента уже есть
+    application_name_format_hint: Допускаются только буквы и цифры, с одним пробелом между словами
+    applications: Приложения
     apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
     approve_all_questions: Утвердить все вопросы
     approve_nomination_description: Это сообщение отправляется руководителю, когда необходимо утвердить кандидатуру, выдвинутую непосредственным подчиненным.
@@ -133,6 +140,7 @@ ru:
     assessment_center: 'Центр оценки:'
     assessment_center_group: Группа оценочного центра
     assessment_center_group_placeholder: Выберите группу оценочного центра
+    assessment_center_invites: Приглашения в центр оценки
     assessment_ids: Идентификаторы оценки
     assessment_placeholder: Выбрать оценку
     assessment_question_not_supported: Этот тип вопроса в настоящее время не поддерживается.
@@ -205,6 +213,8 @@ ru:
     audit_log_title: Информация журнала аудита
     audit_log_type: Тип записи
     audit_logs: Журналы аудита
+    audit_logs_export_failed: Не удалось запланировать задание экспорта. Пожалуйста, попробуйте ещё раз.
+    audit_logs_export_queued: Задание на экспорт успешно запланировано.
     audit_reports: Аудиторские отчеты
     auth_type_api_key_header_format_error: Допускаются только буквы, цифры, подчеркивания и дефисы.
     auth_type_api_key_header_label: Заголовок API-ключа
@@ -244,11 +254,21 @@ ru:
     blocks_title: Блоки
     booked_at: 'Забронировано в:'
     breadcrumbs_norms_editor: Редактор норм
+    bulk_assessment_download_date_range_required: Пожалуйста, выберите диапазон дат
+    bulk_assessment_download_export_type: Тип экспорта
+    bulk_assessment_download_export_type_required: Пожалуйста, выберите тип экспорта
+    bulk_assessment_download_help_text: 'Примечание: если показатели привязаны к разным измерениям, загруженный файл xslx будет содержать отдельные листы для каждого измерения.'
+    bulk_assessment_download_modal_subtitle: Выберите диапазон дат и тип экспорта, а затем экспортируйте выбранные оценки.
+    bulk_assessment_download_no_data_found: Для выбранного диапазона дат и оценок данных не найдено. Попробуйте указать другой диапазон дат или другие оценки.
+    bulk_assessment_download_norm_factor_scores: Оценки по нормованному коэффициенту
+    bulk_assessment_download_raw_factor_scores: Исходные факторные оценки
     bulk_assets_modal_choose_csv: Выбрать файл CSV
     bulk_assets_modal_choose_zip: Выбрать ZIP-файл
     bulk_assets_modal_not_csv_file_error: Для загрузки CSV допускаются только файлы CSV. Загрузите действительный файл CSV.
     bulk_assets_modal_subtitle: 'Пожалуйста, загрузите <b>один файл CSV</b> (с заголовками: user_email, file_name) и <b>один файл ZIP</b> (содержащий файлы PDF, соответствующие именам файлов из csv). Размер файла Zip не должен превышать %{max_file_size} МБ.'
     bulk_assets_modal_title: Загрузить файлы CSV и ZIP
+    bulk_export_assessments_file: Файл экспорта данных массовой оценки
+    bulk_export_invalid_params: Недопустимые параметры массового экспорта
     bulk_upload_ai_artifacts: Массовая загрузка артефактов искусственного интеллекта
     campaign: Кампания
     campaign_admin: Администратор кампании
@@ -374,6 +394,7 @@ ru:
     client_id_label: Идентификатор клиента
     client_id_name: oauth_client_id
     client_id_required: Требуется идентификатор клиента
+    client_ids: Идентификаторы клиентов
     client_ip: IP-адрес клиента
     client_logo_label: Логотип клиента
     client_secret_label: Секретный ключ клиента
@@ -412,6 +433,7 @@ ru:
     concise: Лаконичный
     confidence_interval: Доверительный интервал
     confidence_interval_update_success: Доверительный интервал обновлен успешно
+    configuration: Настройка
     configure_model_answer_title: Настройте образец ответа и ключевые слова
     confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
     confirmation_required: Требуется подтверждение
@@ -424,6 +446,7 @@ ru:
     copy_ai_artifacts: Копировать артефакты искусственного интеллекта
     copy_hint: Копирует вышеуказанную конфигурацию «Места», «Менеджеры центра», «Оценщики» и «Встречи и ресурсы» в следующие центры оценки. После копирования вы можете внести дополнительные изменения в отдельные центры оценки, прежде чем продолжить.
     copy_image_url: Скопировать URL изображения
+    copy_report_scheduled: Задание на копирование отчета добавлено в график.
     copy_text: Текст
     copy_to_all: Копировать в другие центры оценки
     copy_url: Скопировать URL
@@ -486,12 +509,15 @@ ru:
     datasheet: Технические характеристики
     date_and_time: Дата и время
     date_presets_last_30_days: Последние 30 дней
+    date_presets_last_6_months: Последние 6 месяцев
     date_presets_last_7_days: Последние 7 дней
     date_presets_last_month: Прошлый месяц
     date_presets_last_week: Прошлая неделя
+    date_presets_last_year: В прошлом году
     date_presets_today: Сегодня
     date_presets_yesterday: Вчера
     date_range: Диапазон дат
+    date_range_required: Необходимо указать диапазон дат
     dates_completed: Завершено в
     dates_end: Дата окончания
     dates_label: Даты
@@ -587,6 +613,7 @@ ru:
     dimensions_import_modal_owner_select: Выберите владельца
     dimensions_import_modal_select_json: Выберите файл JSON
     dimensions_index_title: Размеры
+    dimensions_resource_confirmations_delete_body: "<p>Вы уверены, что хотите удалить это измерение?</p>\n"
     dimensions_resource_confirmations_delete_message: Введите в текстовое поле название измерения, указанное ниже, для подтверждения
     dimensions_resource_tooltips_export_json: Экспорт JSON для импорта на другую платформу
     dimensions_translations_export: Экспорт всего
@@ -644,8 +671,10 @@ ru:
     enable_caching_successfully: Для этой оценки включено кэширование.
     enable_caching_title: Включить кэширование оценок?
     enable_enhance_with_ai_client_level: Пожалуйста, включите функцию «Улучшение с помощью ИИ» на уровне клиента.
+    enable_face_detection: Включить распознавание лиц
     enable_maintenance: Включить обслуживание
     enable_mobile_proctoring: Включить мобильный контроль
+    enable_phrase_verification: Включить проверку фраз
     enable_system_check: Включить проверку системы
     enable_transcription: Включить транскрипцию
     enable_transcription_msg: Включите транскрипцию, чтобы использовать оценку ИИ для вопросов с видео/аудио ответами.
@@ -656,9 +685,12 @@ ru:
     end_time_must_be_after_start_time: Время окончания должно быть позже времени начала
     enhance_with_ai: Улучшайте с помощью ИИ
     enhance_with_ai_requires_ai_assistants: Для улучшения с помощью ИИ необходимо включить функцию «ИИ-помощники».
+    enter_client_ids: Введите идентификаторы клиентов
     enter_description: Введите описание
     enter_name: Введите имя
+    enter_project_ids: Введите идентификаторы проектов
     enter_question_id: Введите идентификатор вопроса
+    enter_report_ids: Введите идентификаторы отчетов
     enter_schema_key: Введите ключ схемы
     error: Ошибка
     error_color: Цвет ошибки
@@ -700,6 +732,7 @@ ru:
     export_failure_msg: Ошибка при экспорте уровней владения языком
     export_success: Задание экспорта администратора было успешно запланировано. Пожалуйста, проверьте уведомление о статусе.
     export_success_msg: Экспорт текущих действий по развитию
+    export_to_csv: Экспорт в CSV
     export_with_inactive_users: Экспорт с неактивными пользователями
     external_report_id: Идентификатор внешнего отчета
     external_score: Внешний балл
@@ -717,6 +750,7 @@ ru:
     factors_form_components_ExternalList_title: JSON-пути для оценок
     factors_form_predicate: предикат
     factors_form_scoring_strategies_custom_formula: Индивидуальная формула
+    factors_form_scoring_strategies_tip: " <strong>Вопросы (среднее значение):</strong> Этот вариант аналогичен текущему методу подсчёта баллов, когда вопросы связаны с одним фактором. <br /> <br /> <strong>Вопросы (СУММА):</strong> Этот вариант аналогичен варианту «Вопросы (среднее значение)», но использует сумму <br /> <br /> <strong>Вопросы других факторов (среднее):</strong> Это похоже на текущий метод подсчёта баллов, когда у фактора есть подфакторы; единственное изменение — добавление веса. <br /> <br /> <strong>Вопросы других факторов (СУММА):</strong> Это аналогично варианту «Другие факторы (среднее)», но с использованием суммы <br /> <br /> <strong>Взвешенная сумма факторов:</strong> Здесь оценки выбранных других факторов умножаются на их веса и суммируются."
     factors_form_scoring_strategy: Стратегия подсчета очков
     factors_form_search_factors: Факторы поиска
     factors_form_use_sub_factor_norm_score: Использовать нормативный балл факторов
@@ -752,9 +786,12 @@ ru:
     file_size_must_be_less_than_mb: Файл {{name}} превышает максимальный размер в {{max_size_mb}} МБ
     file_upload_failed: Не удалось загрузить {{name}}
     fill_empty_score_msg: Заполните все окончательные результаты перед сохранением.
+    filter_by_client: Фильтр по клиенту
+    filter_by_client_help: Выберите клиента, чтобы загрузить его проекты
     final_score_empty_err_msg: Итоговый счет «%{factor_name}» не может быть пустым.
     final_score_empty_msg: Итоговый счет не может быть пустым.
     finalized_at: Утверждено
+    fingerprint: Отпечаток пальца
     first_name_required: Имя обязательно
     fix_grammar: Исправить грамматику
     fixed_time: Фиксированное время
@@ -803,6 +840,8 @@ ru:
     handoff_invalid_token: Недопустимый или просроченный токен аутентификации
     handoff_token_expired: Срок действия токена аутентификации истек или он уже был использован
     handoff_user_disabled: Ваша учетная запись заблокирована
+    has_api_keys: Имеет ключи API
+    has_public_keys: Имеет открытые ключи
     header_logout_content: Нажмите «Отмена», если хотите продолжить работу. Нажмите «ОК», чтобы выйти из системы под текущим именем пользователя.
     header_logout_title: Вы уверены, что хотите выйти из системы?
     hide_all: Скрыть все
@@ -1038,6 +1077,7 @@ ru:
     integrations_names_hogan: Хоган
     integrations_names_iiht: IIHT
     integrations_names_mettl: Меттл
+    integrations_names_microsite: Микросайт
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Просмотреть все расписания Mettl
@@ -1058,11 +1098,15 @@ ru:
     interview_questions_import_failure_msg: Ошибка при импорте файла.
     interview_questions_import_success_msg: Импорт вопросов для собеседования в процессе. Пожалуйста, проверьте статус в уведомлениях.
     interview_questions_question: Вопрос
+    invalid_client_ids: Недопустимые идентификаторы клиентов
     invalid_confidence_interval: confidence_interval должен быть равен 0 или 1
     invalid_csv_header: CSV-файл содержит недействительные заголовки.
+    invalid_json: конфигурация не соответствует формату JSON
     invalid_leadership_bar: leadership_bar должен быть равен 0 или 1
     invalid_norm_option: Параметр Norm должен быть в диапазоне от 0 до 3.
+    invalid_project_ids: 'Недопустимые идентификаторы проектов: %{ids}'
     invalid_question_ids: 'Идентификаторы вопросов, отсутствующие в данном тесте: %{ids}'
+    invalid_report_ids: Недопустимые идентификаторы отчетов
     invite_add_invite: Добавить приглашение
     invite_assessment_center: Центр оценки
     invite_basic_info_allow_preferred_language: Разрешить предпочтительный язык
@@ -1143,6 +1187,7 @@ ru:
     join_room: Войти в чат
     keep_original: Сохранить оригинал
     key: Ключ
+    key_id: Идентификатор ключа
     keywords: Ключевые слова
     keywords_placeholder: Введите ключевые слова, разделенные запятыми.
     language_id: Идентификатор языка
@@ -1175,6 +1220,7 @@ ru:
     maintenance: Техническое обслуживание
     maintenance_settings: Настройки обслуживания
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
+    make_report_available_to_subject_when: 'Предоставить отчет субъекту, когда:'
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     manager_approves_reports: Менеджер утверждает отчеты
     manager_can_access_subject_reports: Менеджер может получить доступ к отчетам по предмету
@@ -1234,6 +1280,7 @@ ru:
     min_value: Минимальное значение
     minimum_10_words: Минимум 10 слов
     minimum_download_speed: Минимальная скорость загрузки (в Мбит/с)
+    minimum_face_detection_ratio: Минимальный коэффициент распознавания лиц
     minimum_system_check_validity: Минимальный уровень кампании. Срок действия проверки системы должен составлять 15 минут
     minimum_upload_speed: Минимальная скорость загрузки (в Мбит/с)
     missing_min_max_values: Требуются минимальные и максимальные значения.
@@ -1322,6 +1369,7 @@ ru:
     occupations_form_indicative_roles_image: Иллюстрация типичных ролей
     occupations_form_key_career_tracks_image: Изображение основных направлений карьерного роста
     occupations_index_title: Профессии
+    occupations_resource_confirmations_delete_body: "<p>Вы уверены, что хотите удалить эту профессию?</p>\n"
     on_the_job: На работе [70]
     only_editable_on_create: Этот параметр можно изменить только во время создания.
     options: Варианты
@@ -1781,6 +1829,7 @@ ru:
         view: Просмотр
         view_recordings: Просмотр записей
     permissions_360_campaigns: Разрешения, специфичные для кампаний 360
+    permissions_updated: Права доступа успешно обновлены
     piped_text: Текст в трубе
     piped_text_modal_assessment_center: Центр оценки
     piped_text_modal_campaign_link: Ссылка на кампанию
@@ -1877,8 +1926,13 @@ ru:
     project: Проект
     project_admin: Администратор проекта
     project_admins: Администраторы проекта
+    project_assessor: Эксперт по оценке проектов
     project_features: Особенности проекта
+    project_ids: Идентификаторы проектов
+    project_ids_required: Для данного типа отчета требуется поле project_ids
+    project_licenses: Лицензии на проекты
     project_manager: Руководитель проекта
+    project_not_related_to_client: Проект «%{project_id}» не принадлежит клиенту
     project_number: Номер проекта
     project_participants_column_campaigns: Кампании
     project_participants_column_createdAt: Создано в
@@ -1974,6 +2028,22 @@ ru:
     provider_change_confirm_title: Сменить поставщика?
     provider_previously_used_warning: Ранее этот помощник генерировал результаты с использованием «%{from}». Переход на «%{to}» может повлиять на поведение помощника при последующих запросах на генерацию.
     psychometric: Психометрический
+    public_key: Открытый ключ
+    public_key_add: Добавить открытый ключ
+    public_key_cannot_be_changed: не может быть изменено после создания
+    public_key_copy_private_key: Скопировать закрытый ключ
+    public_key_created: Открытый ключ создан успешно
+    public_key_generate: Создать пару ключей
+    public_key_generate_button: Создать пару ключей RSA
+    public_key_generate_info: Будет сгенерирована пара ключей RSA длиной 2048 бит. Сохранится только открытый ключ. Скопируйте и надежно сохраните закрытый ключ — он больше не будет отображаться.
+    public_key_invalid_format: должен быть действительным открытым ключом RSA в формате PEM
+    public_key_must_be_public: это должен быть открытый ключ, а не закрытый ключ
+    public_key_paste_placeholder: Вставьте сюда свой открытый ключ RSA в формате PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Открытый ключ (PEM)
+    public_key_private_key_copied: Личный ключ скопирован в буфер обмена
+    public_key_private_key_label: Личный ключ (PEM)
+    public_key_private_key_warning: Это единственный случай, когда закрытый ключ будет отображаться. Скопируйте его сейчас и надежно сохраните.
+    public_keys: Открытые ключи
     question_center: Центр вопросов
     question_center_page_title: Центр вопросов — Панель управления — Mercer Lighthouse
     question_editor_change_type: Изменить тип
@@ -2057,6 +2127,7 @@ ru:
     report_approval_approvers: Утверждающие лица
     report_approval_approvers_can_edit: Утверждающие лица могут редактировать
     report_approval_approvers_not_required: Утверждающие лица не требуются
+    report_approval_bulk_approve_success: "%{sent_for_approval} отправлено на утверждение. Отчеты %{approved} утверждены. Отчеты %{ignored} требуют ручного утверждения в связи с изменениями/комментариями службы контроля качества."
     report_approval_columns_approval_status: Статус утверждения
     report_approval_columns_approved_by: Утверждено
     report_approval_columns_assessed_by: Оценка
@@ -2066,11 +2137,14 @@ ru:
     report_approval_columns_subject_email: Тема письма
     report_approval_columns_user_email: Электронная почта пользователя
     report_approval_columns_user_name: Имя пользователя
+    report_approval_digest_delivery_mode_form_label: Режим доставки дайджеста
     report_approval_digest_frequency_daily: Ежедневно
+    report_approval_digest_frequency_form_label: Периодичность выпуска дайджеста
     report_approval_digest_frequency_weekdays: Будние дни
     report_approval_digest_frequency_weekly: Еженедельно
     report_approval_digest_time: Время переваривания
     report_approval_digest_timezone: Дайджест Часовой пояс
+    report_approval_digest_weekdays_form_label: Дайджест по будням
     report_approval_digest_weekdays_friday: пятница
     report_approval_digest_weekdays_monday: понедельник
     report_approval_digest_weekdays_saturday: суббота
@@ -2111,6 +2185,8 @@ ru:
     report_help_description: Справка, отображаемая в отчете на панели управления пользователя
     report_help_name: Отчеты помогают
     report_id: Идентификатор отчета
+    report_ids: Идентификаторы отчетов
+    report_ids_required: Идентификаторы отчетов являются обязательными
     report_name: Название отчета
     report_no_evaluations: Отчет по программе «%{user}» недоступен — оценки не поступали.
     report_not_generated: Отчет «%{user}» соответствует условиям доступности, но еще не сгенерирован. Сначала сгенерируйте отчет.
@@ -2131,6 +2207,17 @@ ru:
     report_review_statuses_qc_completed: Контроль качества завершен
     report_review_statuses_qc_in_progress: Контроль качества в процессе
     report_status: Состояние отчета
+    report_type: Тип отчета
+    report_types:
+      active_clients_projects: Текущие клиенты и проекты
+      client_assessment_counts: Оценка клиентов имеет значение
+      hogan_usage_report: Использование системы оценки Hogan
+      json_data_report: Отчет по данным в формате JSON
+      pearson_usage_report: Использование оценочных материалов Pearson
+      report_usage_summary: Сводка по использованию отчета
+      saville_usage_report: Использование системы оценки Saville
+      user_created_dates: Даты, созданные пользователем
+      user_reports_export: Экспорт отчетов пользователей
     reports: Отчеты
     reports_copy_copy: Копировать
     reports_copy_copy_report: Копировать отчет
@@ -2184,6 +2271,7 @@ ru:
     role_client_admin: Администратор клиентов
     role_project_admin: Администратор проекта
     role_superadmin: Супер-администратор
+    run: Запустить
     saml_idp_certificate_available: Доступно (щелкните, чтобы скопировать)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: Идентификатор субъекта/эмитента
@@ -2365,6 +2453,10 @@ ru:
     scheduling_subjects_add_assessor_form: Добавить форму оценщика
     scheduling_subjects_assessments: Оценки
     scheduling_subjects_assessor_forms: Формы оценщика
+    scheduling_subjects_confirm_message: |
+      Вы уверены, что хотите отменить участие кандидата с адресом электронной почты «%{subject_email}»?
+      <br />
+      После отмены этот кандидат не сможет принять участие в оценке в центре.
     scheduling_subjects_confirm_title: Требуется подтверждение
     scheduling_subjects_edit_assessor_form: Редактировать форму оценщика
     scheduling_subjects_form_title: График оценок
@@ -2394,6 +2486,9 @@ ru:
     schema_key_required: Требуется ключ схемы
     schema_key_type: Тип клавиши
     schema_key_unique: Ключи схемы должны быть уникальными
+    scope: Область применения
+    scope_client: Клиент
+    scope_global: Глобальный
     score: Счет
     score_approval_not_allowed_to_approve: Вы не имеете права утверждать эту оценку.
     score_approval_not_allowed_to_discard: Вы не имеете права отбрасывать этот результат.
@@ -2546,11 +2641,17 @@ ru:
     security_settings_security_setting: Настройка безопасности
     select_admin_role: Выберите роль администратора
     select_assessment_language: Выберите язык оценки
+    select_client: Выбрать клиента
     select_end_time: Выберите время окончания
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень
+    select_project_ids_required: Выберите необходимые project_ids
+    select_projects: Выбрать проекты
+    select_projects_required: Пожалуйста, выберите хотя бы один проект
     select_question: Поиск вопроса по названию или идентификатору
+    select_report_ids_required: Выберите необходимые report_ids
     select_report_language: Выберите язык отчета
+    select_report_type: Выберите тип отчета
     select_start_time: Выберите время начала
     selective_proctoring: Выборочный контроль
     send_email: Отправить электронное письмо
@@ -2692,6 +2793,12 @@ ru:
     sms_invites_send_sms_fields_users: Пользователи
     sms_invites_send_sms_modal_btn_name: Отправить SMS
     sms_invites_send_sms_modal_title: Отправить SMS
+    sms_invites_send_sms_pipetext_details: |
+      {{{first_name}}} — Имя получателя
+      <br />
+      {{{last_name}}} — Фамилия получателя
+      <br />
+      {{{invite_url}}} — Ссылка для регистрации
     sms_invites_send_sms_segment_length_msg: Предполагаемое количество сегментов для этого сообщения составляет %{segment_length}.
     sms_invites_send_sms_segment_length_range_msg: Предполагаемое количество сегментов для этого сообщения составляет от %{min_segment_length} до %{max_segment_length}.
     sms_invites_statuses_all: Все
@@ -3028,6 +3135,7 @@ ru:
     x_axis_interval_label: Интервал по оси X
     y_axis_interval_label: Интервал по оси Y
     year: Год
+    year_range: Диапазон лет
     years: Годы
     yoodli: Yoodli
     yoodli_activity_id: Идентификатор активности Yoodli

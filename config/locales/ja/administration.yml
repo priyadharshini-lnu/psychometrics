@@ -74,6 +74,7 @@ ja:
         subjects_count_added: 被験者の追加に成功
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI採点の設定は、AudioResponse、VideoResponse、およびTextEntry タイプの質問にのみ追加できます。
         doesnt_have_header: "'%{sub_header}' はヘッダを持っていません。"
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
         invalid_question: 無効な質問 ID

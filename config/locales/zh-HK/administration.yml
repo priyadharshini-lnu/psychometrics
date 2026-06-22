@@ -74,6 +74,7 @@ zh-HK:
         subjects_count_added: 科目已成功添加
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI评分配置仅可添加至AudioResponse、VideoResponse和TextEntry类型的问题中
         doesnt_have_header: "'%{sub_header}' 没有头部信息"
         invalid_headers: 以下标头无效：%{headers}
         invalid_question: 无效的问题ID

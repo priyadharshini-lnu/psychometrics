@@ -140,9 +140,11 @@ ja:
     not_requested: まだリクエストされていません
     ok: OK
     options: オプション
+    overview: 概要
     owner: オーナー
     pause: 一時停止
     pending: 保留中
+    permissions: 権限
     play: 再生
     policy_version: ポリシーバージョン
     policy_version_format: 整数のみが許可されます
@@ -222,9 +224,31 @@ ja:
     update: 更新
     update_failed: 更新に失敗しました
     updated_at: 更新日時
+    updated_by: 更新者：
     updated_successfully: 更新に成功しました
     upload: アップロード
     user_report_pdf_url_not_generated: PDFのダウンロードリンクを生成できませんでした
+    user_reports_approval_status_pending_qc: 品質管理待ち
+    user_reports_approval_status_qc_completed: 品質管理が完了しました
+    user_reports_assessment_name_not_completed_reason_template: 評価「%{names}」が完了していません
+    user_reports_assessments_name_not_completed_reason_template: "%{names} の評価が完了していません"
+    user_reports_assessor_not_completed_reason_template: 査定員用フォーム「%{names}」が未記入です
+    user_reports_assessors_not_completed_reason_template: 査定員用フォーム「%{names}」が記入されていない
+    user_reports_campaign_artifact_results_pending_reason_message: このユーザーについては、キャンペーンアーティファクトの結果はまだ確定していません
+    user_reports_campaign_scoring_pending_reason_message: このユーザーのキャンペーンスコアはまだ確定していません
+    user_reports_custom_upload_report_reason_message: レポートの提供元はカスタムアップロードです
+    user_reports_external_report_pending_reason_message: プロバイダーからの報告を待っている
+    user_reports_lead_assessor_not_completed_reason_template: "%{names} の主任査定員用フォームが記入されていません"
+    user_reports_lead_assessors_not_completed_reason_template: 主任査定員用フォーム（%{names}）が記入されていない
+    user_reports_no_report_module_reason_message: このレポートに対応するレポートモジュールが見つかりませんでした
+    user_reports_not_prepared_reason_message: 報告書はまだ作成されていません
+    user_reports_pending_approval_reason_template: 承認ステータスは「%{status}」です。
+    user_reports_pending_final_ai_scoring_approval_reason_message: AIによる最終スコアの承認待ち
+    user_reports_pending_qc_ai_scoring_approval_reason_message: QCによるAIスコアリングの承認待ち
+    user_reports_pending_qc_approval_reason_message: 品質管理レポートの承認待ち
+    user_reports_qc_completed_approval_reason_message: 最終報告書の承認待ち
+    user_reports_report_generating_reason_message: レポートが生成されています
+    user_reports_report_generation_failed_reason_message: レポートの生成に失敗しました
     video: 動画
     view: 表示
     view_audio: 音声を見る

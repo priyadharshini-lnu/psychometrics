@@ -140,9 +140,11 @@ es-ES:
     not_requested: Aún no solicitado
     ok: De acuerdo
     options: Opciones
+    overview: Resumen
     owner: Propietario
     pause: Pausa
     pending: Pendiente
+    permissions: Permisos
     play: Jugar
     policy_version: Versión de la política
     policy_version_format: Solo se permiten números enteros.
@@ -222,9 +224,31 @@ es-ES:
     update: Actualizar
     update_failed: Actualización fallida
     updated_at: Actualizado el
+    updated_by: Actualizado por
     updated_successfully: Actualizado correctamente
     upload: Cargar
     user_report_pdf_url_not_generated: No se ha podido generar el enlace de descarga del PDF
+    user_reports_approval_status_pending_qc: Pendiente de control de calidad
+    user_reports_approval_status_qc_completed: Control de calidad completado
+    user_reports_assessment_name_not_completed_reason_template: La evaluación %{names} no se ha completado
+    user_reports_assessments_name_not_completed_reason_template: Las evaluaciones %{names} no se han completado
+    user_reports_assessor_not_completed_reason_template: El formulario del asesor «%{names}» no está cumplimentado
+    user_reports_assessors_not_completed_reason_template: No se han cumplimentado los formularios del tasador %{names}
+    user_reports_campaign_artifact_results_pending_reason_message: Los resultados de los artefactos de la campaña aún no son definitivos para este usuario
+    user_reports_campaign_scoring_pending_reason_message: Las puntuaciones de la campaña aún no son definitivas para este usuario
+    user_reports_custom_upload_report_reason_message: El proveedor del informe es una subida personalizada
+    user_reports_external_report_pending_reason_message: A la espera del informe del proveedor
+    user_reports_lead_assessor_not_completed_reason_template: No se ha rellenado el formulario del evaluador principal de %{names}
+    user_reports_lead_assessors_not_completed_reason_template: No se han cumplimentado los formularios del evaluador principal %{names}
+    user_reports_no_report_module_reason_message: No se ha encontrado ningún módulo de informe para este informe
+    user_reports_not_prepared_reason_message: El informe aún no está listo
+    user_reports_pending_approval_reason_template: El estado de aprobación es «%{status}»
+    user_reports_pending_final_ai_scoring_approval_reason_message: A la espera de la aprobación definitiva de la puntuación de la IA
+    user_reports_pending_qc_ai_scoring_approval_reason_message: A la espera de la aprobación de la puntuación de IA por parte de Control de Calidad
+    user_reports_pending_qc_approval_reason_message: A la espera de la aprobación del informe de control de calidad
+    user_reports_qc_completed_approval_reason_message: A la espera de la aprobación del informe final
+    user_reports_report_generating_reason_message: Se está generando el informe
+    user_reports_report_generation_failed_reason_message: No se ha podido generar el informe
     video: Vídeo
     view: Ver
     view_audio: Ver audio

@@ -469,9 +469,11 @@ zh:
         active: 活跃
         categories:
           '360': 360 运动
+          agile: AGILE
           assessor_form: 评估员表格
           case_study: 案例研究
           hogan: 霍根
+          iiht: IIHT
           lead_assessor_form: 主任评估员表格
           meeting: 会议
           mettl: 梅特尔
@@ -549,6 +551,7 @@ zh:
           other: 其他
           partner: 合作伙伴
           retail: 零售
+          tte: TTE
         updated_at: 修改日期
         year: 客户年度
       communication:
@@ -602,6 +605,7 @@ zh:
         types:
           common: 常见问题
           proctoring: 监考
+          threesixty: Threesixty
         unlimited: 无限制
         used_number: 二手许可证编号
       membership:
@@ -618,6 +622,7 @@ zh:
         roles:
           campaign_admin: 活动管理
           client_admin: 客户管理
+          client_assessor: 客户评估员
           manager: 经理
           member: 用户
           project_admin: 项目管理
@@ -723,15 +728,19 @@ zh:
           admins:
             admin: 管理员
             campaign_admin: 活动管理
+            client_assessor: 客户评估员
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
+          agile: AGILE
           assessor: 评估员
           assessor_form: 评估员表格
           campaign_admin: 活动管理
           case_study: 案例研究
           client_admin: 客户管理
+          client_assessor: 客户评估员
           hogan: 霍根
+          iiht: IIHT
           manager: 经理
           meeting: 会议
           member: 用户
@@ -743,6 +752,7 @@ zh:
           saville: 萨维尔
           super_admin: 超级管理员
           superadmin: 超级管理员
+          threesixty: Threesixty
         types:
           anonymous: 匿名用户
           identified: 确定的用户
@@ -852,6 +862,8 @@ zh:
         bulk_download_idp_reports: 批量下载 IDP 报告
         bulk_download_reports: 批量下载报告
         bulk_download_user_reports: 批量下载用户报告
+        bulk_export_norm_factor_scores: 批量导出规范因子得分
+        bulk_export_raw_factor_scores: 批量导出原始因子得分
         bulk_generate_user_campaign_ai_artifact_results: 批量生成活动 AI 工件结果
         bulk_regenerate_reports: 再生活动报告
         bulk_regenerate_threesixty_reports: 再生三六零主题报告
@@ -864,10 +876,12 @@ zh:
         completion_status_export: 详细完成状态
         copy_as_template_or_campaign: 复制活动作为模板
         copy_dimension: 复制尺寸
+        copy_report: 复制报告
         create_threesixty_campaign: 创建 Threesixty 活动
         data_report_export: 数据报告导出
         export_admin_with_permissions: 带权限的导出管理员
         export_assessment_questions: 出口评估问题
+        export_audit_logs: 导出审计日志
         export_campaign_ai_artifacts: 出口战役AI工件
         export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_datasheet: 导出活动数据表
@@ -957,6 +971,8 @@ zh:
       errors:
         no_plans: 未找到有效的 IDP 计划
     close: 关闭
+    copy_report:
+      failed: 报告复制失败
     details: 详细信息
     errors: 错误
     invalid_job: 该通知对应已删除的记录
@@ -1071,6 +1087,7 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
+        yoodli_scenario_id: Yoodli 场景 ID
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1198,6 +1215,7 @@ zh:
       assessment_center: 评估中心
       assessment_center_invites: 评估中心邀请
       assessments_and_reports: 评估与报告
+      idp: IDP
       manage: 管理
       recordings: 录音
       report_approval: 报告审批设置
@@ -1325,7 +1343,12 @@ zh:
   browsers:
     chrome: 谷歌浏览器
     download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
       instruction: 下载
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
     firefox: 火狐浏览器
     safari: 苹果 Safari
     support:
@@ -1450,6 +1473,7 @@ zh:
       external_user_id: Skillvue 候选人 ID
       id: 活动评估 ID
       locales: 地点
+      microsite_assessment_url: 微网站评估网址
       microsite_error_message: 错误信息
       microsite_participant_id: 微网站参与者ID
       microsite_registration_status: 注册状态
@@ -1789,6 +1813,7 @@ zh:
       first_name: 姓名
       icon: 图标
       icon_color: 图标颜色
+      id: ID
       json:
         answer: 回答 JSON
         external_result: 外部结果 JSON
@@ -1900,6 +1925,7 @@ zh:
       shared:
         links:
           about: 关于
+          app_name: "© 2016 AppName（简体中文（大陆））"
           contact_us: 联系我们
           privacy: 隐私权
     confirmations:
@@ -2099,6 +2125,7 @@ zh:
     invalid_token: 出错了，请重新加载页面再试。
     max_regeneration_limit: 超出最大再生限制，请联系管理部门。
     messages:
+      content_type_invalid: 内容类型无效
       data_report_blank: 数据报告不存在
       password_complexity:
         digit:
@@ -2191,6 +2218,8 @@ zh:
         complete_preworks: 完成所有前期工作
         please_visit: 请访问
         requirements_message: 只有完成以下要求后，您才能进行预订
+        requirements_plural: s
+        requirements_singular: ''
         to_complete_requirements: 完成这些要求。
       assessment_center_group_name: 评估中心
       booking_failed_msg: 预约名额失败：%{error}
@@ -2601,6 +2630,7 @@ zh:
         other: 删除的开发作
     initial_steps:
       add_skill_group_description: 选择你希望进一步发展的技能，作为你发展计划的一部分。
+      add_skill_group_title: "%{category}"
       add_skills: 添加
       add_skills_step: 添加技能
       back: 返回
@@ -2853,6 +2883,7 @@ zh:
     ca: 加泰罗尼亚语
     cn: 中文
     cs: 捷克语
+    cy: 威尔士语
     da: 丹麦语
     de: 德语
     el: 希腊文
@@ -2938,7 +2969,9 @@ zh:
     type: 类型
     types:
       common: 常见问题
+      idp: IDP
       proctoring: 监考
+      threesixty: Threesixty
     used_number: 二手许可证
     used_out_of: 完成于 %{used}中 %{total}。
   lti:
@@ -3171,6 +3204,7 @@ zh:
           barBorderRadius: 条形边框半径
           barWeight: 杆重量
           dataFormat: 数据格式
+          graphOption3D: 3D
           graphOptionStandard: 标准
           graphSubType: 图表子类型
           graphTypeHorizontal: 横向
@@ -3392,6 +3426,7 @@ zh:
           other: 其他
           partner: 合作伙伴
           retail: 零售
+          tte: TTE
         updated_at: 修改日期
         year: 客户年度
       membership:
@@ -3426,11 +3461,14 @@ zh:
           admin: 管理员
           admins:
             admin: 管理员
+            client_assessor: 客户评估员
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
+          agile: AGILE
           case_study: 案例研究
           client_admin: 客户管理
+          client_assessor: 客户评估员
           hogan: 霍根
           manager: 经理
           member: 用户
@@ -3441,6 +3479,7 @@ zh:
           saville: 萨维尔
           super_admin: 超级管理员
           superadmin: 超级管理员
+          threesixty: Threesixty
         types:
           anonymous: 匿名用户
           identified: 确定的用户
@@ -3449,6 +3488,7 @@ zh:
         active: 活跃
         categories:
           '360': 360 运动
+          agile: AGILE
           assessor_form: 评估员表格
           case_study: 案例研究
           hogan: 霍根
@@ -3512,6 +3552,7 @@ zh:
           other: 其他
           partner: 合作伙伴
           retail: 零售
+          tte: TTE
         updated_at: 修改日期
         year: 客户年度
       communication:
@@ -3544,6 +3585,7 @@ zh:
         type: 许可证
         types:
           common: 常见问题
+          threesixty: Threesixty
         unlimited: 无限制
         used_number: 二手许可证编号
       memebrship:
@@ -3560,6 +3602,7 @@ zh:
         roles:
           campaign_admin: 活动管理
           client_admin: 客户管理
+          client_assessor: 客户评估员
           manager: 经理
           member: 用户
           project_admin: 项目管理
@@ -3630,11 +3673,14 @@ zh:
           admin: 管理员
           admins:
             admin: 管理员
+            client_assessor: 客户评估员
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
+          agile: AGILE
           case_study: 案例研究
           client_admin: 客户管理
+          client_assessor: 客户评估员
           hogan: 霍根
           manager: 经理
           member: 用户
@@ -3645,6 +3691,7 @@ zh:
           saville: 萨维尔
           super_admin: 超级管理员
           superadmin: 超级管理员
+          threesixty: Threesixty
         types:
           anonymous: 匿名用户
           identified: 确定的用户
@@ -3665,6 +3712,7 @@ zh:
         role: 角色
         updated_at: 修改日期
     required:
+      mark: "*"
       text: 所需
     'yes': 是
   subjects:
@@ -3889,14 +3937,29 @@ zh:
     privacy_notice: 隐私声明
   time:
     formats:
+      date: "%d/%m/%y"
       datetimepicker_client: 日/月/年 hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z简体中文（大陆）
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
       datetimepicker_without_time_client: 年/月/日
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     allow_multiple_respones: 允许用户提交多个回复
     png: 巴新
     regenerate_link: 再生链接
     successfully_generated: 成功生成
     successfully_updated: 更新成功
+    svg: SVG
   user:
     datasheet:
       attribute: 属性
@@ -4079,6 +4142,7 @@ zh:
       campaign_assessor: 活动评估员
       campaign_user: 活动用户
       client_admin: 客户管理
+      client_assessor: 客户评估员
       project_admin: 项目管理
       superadmin: 超级管理员
     superadmins: 超级管理员

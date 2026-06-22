@@ -140,9 +140,11 @@ fr:
     not_requested: Pas encore demandé
     ok: Ok
     options: Options
+    overview: Présentation générale
     owner: Propriétaire
     pause: Pause
     pending: En attente
+    permissions: Autorisations
     play: Jouer
     policy_version: Version de la politique
     policy_version_format: Seuls les nombres entiers sont autorisés.
@@ -222,9 +224,31 @@ fr:
     update: Mettre à jour
     update_failed: Échec de la mise à jour
     updated_at: Mis à jour le
+    updated_by: Mis à jour par
     updated_successfully: Mise à jour réussie
     upload: Télécharger
     user_report_pdf_url_not_generated: Le lien de téléchargement du fichier PDF n'a pas pu être généré
+    user_reports_approval_status_pending_qc: En attente de contrôle qualité
+    user_reports_approval_status_qc_completed: Contrôle qualité terminé
+    user_reports_assessment_name_not_completed_reason_template: L'%{names}s relatives à l'évaluation ne sont pas complètes
+    user_reports_assessments_name_not_completed_reason_template: Les évaluations %{names} n'ont pas été effectuées
+    user_reports_assessor_not_completed_reason_template: Le formulaire de l'évaluateur « %{names} » n'a pas été rempli
+    user_reports_assessors_not_completed_reason_template: Les formulaires destinés aux évaluateurs %{names} n'ont pas été remplis
+    user_reports_campaign_artifact_results_pending_reason_message: Les résultats relatifs aux éléments de campagne ne sont pas encore définitifs pour cet utilisateur.
+    user_reports_campaign_scoring_pending_reason_message: Les résultats de la campagne ne sont pas encore définitifs pour cet utilisateur
+    user_reports_custom_upload_report_reason_message: Le fournisseur du rapport est un fichier téléchargé personnalisÃ©
+    user_reports_external_report_pending_reason_message: En attente du rapport du prestataire
+    user_reports_lead_assessor_not_completed_reason_template: Le formulaire de l'évaluateur principal %{names} n'a pas été rempli
+    user_reports_lead_assessors_not_completed_reason_template: Les formulaires destinés à l'évaluateur principal %{names} n'ont pas été remplis
+    user_reports_no_report_module_reason_message: Aucun module de rapport n'a été trouvé pour ce rapport
+    user_reports_not_prepared_reason_message: Le rapport n'est pas encore prêt.
+    user_reports_pending_approval_reason_template: Le statut d'approbation est « %{status} »
+    user_reports_pending_final_ai_scoring_approval_reason_message: En attente de la validation finale de la notation par IA
+    user_reports_pending_qc_ai_scoring_approval_reason_message: En attente de validation de la notation par l'IA du contrôle qualité
+    user_reports_pending_qc_approval_reason_message: En attente de validation du rapport de contrôle qualité
+    user_reports_qc_completed_approval_reason_message: En attente de l'approbation du rapport final
+    user_reports_report_generating_reason_message: Le rapport est en cours de génération
+    user_reports_report_generation_failed_reason_message: Échec de la génération du rapport
     video: Vidéo
     view: Afficher
     view_audio: Voir l'audio

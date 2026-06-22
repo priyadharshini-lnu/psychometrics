@@ -20,6 +20,7 @@ hu:
     active_record_audits_old_diff_parse_error: Nem sikerült elemezni a JSON-t a régi módosításokkal
     active_record_audits_title: Ellenőrzött változtatások
     activity: Tevékenység
+    activity_period: Tevékenységi időszak
     add_admin: Adminisztrátor hozzáadása
     add_admin_role: Adminisztrátori szerepkör hozzáadása
     add_btn: Tárgy hozzáadása
@@ -117,6 +118,12 @@ hu:
     alt_text_long: Túllépi a 100 karakteres maximális korlátot.
     api_keys: API-kulcsok
     api_keys_form_title: API-kulcs
+    application: Alkalmazás
+    application_add: Alkalmazás hozzáadása
+    application_name: Alkalmazás neve
+    application_name_already_taken: Ez az ügyfél számára már létezik
+    application_name_format_hint: Csak betűk és számok használhatók, a szavak között egyetlen szóközzel
+    applications: Alkalmazások
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
     approve_all_questions: Minden kérdés jóváhagyása
     approve_nomination_description: Ezt az üzenetet akkor küldi el a menedzsernek, ha egy közvetlen beosztott által benyújtott jelölést jóvá kell hagyni
@@ -133,6 +140,7 @@ hu:
     assessment_center: 'Értékelő központ:'
     assessment_center_group: Értékelési központ csoport
     assessment_center_group_placeholder: Értékelési központ csoport kiválasztása
+    assessment_center_invites: Az értékelőközpont meghívói
     assessment_ids: Értékelési azonosítók
     assessment_placeholder: Válassza az Értékelés lehetőséget
     assessment_question_not_supported: Ez a kérdés típus jelenleg nem támogatott.
@@ -205,6 +213,8 @@ hu:
     audit_log_title: Auditnapló adatai
     audit_log_type: Bejegyzés típusa
     audit_logs: Auditnaplók
+    audit_logs_export_failed: Az exportálási feladat ütemezése nem sikerült. Kérjük, próbálja meg újra.
+    audit_logs_export_queued: Az exportálási feladat ütemezése sikeresen megtörtént.
     audit_reports: Auditjelentések
     auth_type_api_key_header_format_error: Csak betűk, számok, aláhúzások és kötőjelek engedélyezettek
     auth_type_api_key_header_label: API-kulcs fejléc
@@ -244,11 +254,21 @@ hu:
     blocks_title: Tömbök
     booked_at: 'Foglalás ideje:'
     breadcrumbs_norms_editor: Normaszerkesztő
+    bulk_assessment_download_date_range_required: Kérjük, válassza ki a dátumtartományt
+    bulk_assessment_download_export_type: Exporttípus
+    bulk_assessment_download_export_type_required: Kérjük, válassza ki az export típusát
+    bulk_assessment_download_help_text: 'Megjegyzés: Ha az értékelések különböző dimenziókhoz kapcsolódnak, a letöltött xslx fájl minden dimenzióhoz külön lapot tartalmaz.'
+    bulk_assessment_download_modal_subtitle: Válasszon ki egy dátumtartományt és egy exporttípust, majd exportálja a kiválasztott értékeléseket.
+    bulk_assessment_download_no_data_found: A kiválasztott dátumtartományra és értékelésekre vonatkozóan nem találtunk adatokat. Kérjük, próbálkozzon más dátumtartománnyal vagy értékelésekkel.
+    bulk_assessment_download_norm_factor_scores: Normatív tényező pontszámok
+    bulk_assessment_download_raw_factor_scores: Nyers tényezőértékek
     bulk_assets_modal_choose_csv: CSV fájl kiválasztása
     bulk_assets_modal_choose_zip: ZIP fájl kiválasztása
     bulk_assets_modal_not_csv_file_error: CSV-fájlok feltöltésére csak CSV-fájlok használhatók. Kérjük, töltse fel az érvényes CSV-fájlt.
     bulk_assets_modal_subtitle: 'Kérjük, töltsön fel <b>egy CSV</b> fájlt (a következő fejlécekkel: user_email, file_name) és <b>egy ZIP</b> fájlt (amely a csv fájl nevével megegyező PDF fájlokat tartalmaz). A ZIP fájl mérete nem haladhatja meg a %{max_file_size} MB-ot.'
     bulk_assets_modal_title: CSV és ZIP fájlok feltöltése
+    bulk_export_assessments_file: Tömeges adómegállapítások exportfájlja
+    bulk_export_invalid_params: Érvénytelen tömeges export paraméterek
     bulk_upload_ai_artifacts: Tömeges feltöltési AI tárgyak
     campaign: Kampány
     campaign_admin: Kampány adminisztrátora
@@ -374,6 +394,7 @@ hu:
     client_id_label: Kliens ID
     client_id_name: oauth_client_id
     client_id_required: Ügyfélazonosító szükséges
+    client_ids: Ügyfélazonosítók
     client_ip: Ügyfél IP-címe
     client_logo_label: Ügyfél logó
     client_secret_label: Titkos ügyfélkód
@@ -412,6 +433,7 @@ hu:
     concise: Tömör
     confidence_interval: Bizalmi intervallum
     confidence_interval_update_success: A konfidencia intervallum frissítése sikeresen megtörtént.
+    configuration: Beállítások
     configure_model_answer_title: Modellválasz és kulcsszavak konfigurálása
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
     confirmation_required: Megerősítés szükséges
@@ -424,6 +446,7 @@ hu:
     copy_ai_artifacts: AI-műalkotások másolása
     copy_hint: Átmásolja a fenti helyek, központvezetők, értékelők és értekezletek & erőforrások konfigurációt a következő értékelési központokba. A másolás után a folytatás előtt további módosításokat végezhet az egyes értékelőközpontokban.
     copy_image_url: Kép URL-jének másolása
+    copy_report_scheduled: A jelentésmásolási feladat ütemezése megtörtént.
     copy_text: SMS
     copy_to_all: Másolás más értékelőközpontokba
     copy_url: URL másolása
@@ -486,12 +509,15 @@ hu:
     datasheet: Adatlap
     date_and_time: Dátum és idő
     date_presets_last_30_days: Az elmúlt 30 nap
+    date_presets_last_6_months: Az elmúlt 6 hónap
     date_presets_last_7_days: Az elmúlt 7 nap
     date_presets_last_month: Múlt hónap
     date_presets_last_week: Múlt héten
+    date_presets_last_year: Tavaly
     date_presets_today: Ma
     date_presets_yesterday: Tegnap
     date_range: Dátumtartomány
+    date_range_required: Az időtartomány megadása kötelező
     dates_completed: 'Befejezve:'
     dates_end: Befejezés dátuma
     dates_label: Dátumok
@@ -645,8 +671,10 @@ hu:
     enable_caching_successfully: A gyorsítótározás lehetővé vált ehhez az értékeléshez.
     enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
     enable_enhance_with_ai_client_level: Kérjük, engedélyezze az AI-vel történő fejlesztés funkciót ügyfélszinten.
+    enable_face_detection: Arcfelismerés engedélyezése
     enable_maintenance: Karbantartás engedélyezése
     enable_mobile_proctoring: Mobil felügyelet engedélyezése
+    enable_phrase_verification: Kifejezés-ellenőrzés engedélyezése
     enable_system_check: Rendszerellenőrzés engedélyezése
     enable_transcription: Feliratozás engedélyezése
     enable_transcription_msg: Engedélyezze a Transcription számára az AI-pontozás használatát a videó/audio válaszok kérdéseinél.
@@ -657,9 +685,12 @@ hu:
     end_time_must_be_after_start_time: A befejezési időnek a kezdési idő után kell lennie.
     enhance_with_ai: Fejlesztés mesterséges intelligenciával
     enhance_with_ai_requires_ai_assistants: Az AI-val történő fejlesztéshez engedélyezni kell az AI-asszisztensek funkciót.
+    enter_client_ids: Adja meg az ügyfélazonosítókat
     enter_description: Írja be a leírást
     enter_name: Írja be a nevet
+    enter_project_ids: Adja meg a projektazonosítókat
     enter_question_id: Írja be a kérdés azonosítóját
+    enter_report_ids: Adja meg a jelentésazonosítókat
     enter_schema_key: Sémakulcs megadása
     error: Hiba
     error_color: Hibás szín
@@ -701,6 +732,7 @@ hu:
     export_failure_msg: Hiba a tudásszintekszintek exportálása során
     export_success: Az adminisztrátori exportálási feladat ütemezése sikeresen megtörtént. Kérjük, ellenőrizze az értesítései állapotát.
     export_success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása
+    export_to_csv: Exportálás CSV-be
     export_with_inactive_users: Exportálás inaktív felhasználókkal
     external_report_id: Külső jelentés azonosítója
     external_score: Külső pontszám
@@ -718,6 +750,7 @@ hu:
     factors_form_components_ExternalList_title: JSON-elérési utak pontszámokhoz
     factors_form_predicate: Predikátum
     factors_form_scoring_strategies_custom_formula: Szokásos képlet
+    factors_form_scoring_strategies_tip: " <strong>Kérdések (átlag):</strong> Ez hasonló a jelenlegi pontozási módszerhez, amikor egy tényezőhöz több kérdés is kapcsolódik. <br /> <br /> <strong>Kérdések (összeg):</strong> Ez hasonló a „Kérdések (átlag)” módszerhez, de az összeget veszi figyelembe. <br /> <br /> <strong>Egyéb tényezők kérdései (átlag):</strong> Ez hasonló a jelenlegi pontozási módszerhez, amikor egy tényezőhöz al-tényezők tartoznak; az egyetlen változás a súlyozás hozzáadása. <br /> <br /> <strong>Egyéb tényezők kérdései (ÖSSZEG):</strong> Ez hasonló az „Egyéb tényezők (átlag)” módszerhez, de az ÖSSZEG műveletet használja. <br /> <br /> <strong>A tényezők súlyozott összege:</strong> Itt a kiválasztott egyéb tényezők pontszámait megszorozzák a súlyukkal, majd összeadják őket."
     factors_form_scoring_strategy: Pontozási stratégia
     factors_form_search_factors: Keresési szempontok
     factors_form_use_sub_factor_norm_score: Használja a Tényezők normapontszámát
@@ -753,9 +786,12 @@ hu:
     file_size_must_be_less_than_mb: A {{name}} fájl meghaladja a {{max_size_mb}} MB-os maximális méretet
     file_upload_failed: A {{name}} feltöltése nem sikerült
     fill_empty_score_msg: Töltsd ki az összes végső pontszámot mentés előtt.
+    filter_by_client: Szűrés ügyfél szerint
+    filter_by_client_help: Válasszon ki egy ügyfelet a projektjeinek betöltéséhez
     final_score_empty_err_msg: "%{factor_name} végső pontszáma nem lehet üres."
     final_score_empty_msg: A végösszeg nem lehet üres.
     finalized_at: 'Véglegesítve:'
+    fingerprint: Ujjlenyomat
     first_name_required: A keresztnév megadása kötelező
     fix_grammar: Helyesírás javítása
     fixed_time: Rögzített idő
@@ -804,6 +840,8 @@ hu:
     handoff_invalid_token: Érvénytelen vagy lejárt hitelesítési token
     handoff_token_expired: A hitelesítési token lejárt, vagy már felhasználásra került
     handoff_user_disabled: Fiókja letiltásra került
+    has_api_keys: Rendelkezik API-kulcsokkal
+    has_public_keys: Nyilvános kulcsokkal rendelkezik
     header_logout_content: Nyomd meg a Cancel gombot, ha folytatni szeretnéd a munkát. Nyomd meg az OK-t, hogy kijelentkezz a jelenlegi felhasználóról.
     header_logout_title: Biztos vagy benne, hogy ki akarsz jelentkezni?
     hide_all: Az összes elrejtése
@@ -1039,6 +1077,7 @@ hu:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Mikrooldal
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Az összes Mettl-menetrend megtekintése
@@ -1059,11 +1098,15 @@ hu:
     interview_questions_import_failure_msg: Hiba a fájl importálása közben.
     interview_questions_import_success_msg: Folyamatban lévő interjúkérdések importálása. Kérjük, ellenőrizze az állapotot az értesítésekben.
     interview_questions_question: Kérdés
+    invalid_client_ids: Érvénytelen ügyfélazonosítók
     invalid_confidence_interval: A confidence_interval értékének 0 vagy 1 kell lennie.
     invalid_csv_header: A CSV fájl érvénytelen fejléceket tartalmaz.
+    invalid_json: A konfiguráció nem érvényes JSON-formátumú
     invalid_leadership_bar: A leadership_bar értékének 0 vagy 1 kell lennie.
     invalid_norm_option: A Norm opció értéke 0 és 3 között kell legyen.
+    invalid_project_ids: 'Érvénytelen projektazonosítók: %{ids}'
     invalid_question_ids: 'Az értékelésben nem található kérdésazonosítók: %{ids}'
+    invalid_report_ids: Érvénytelen jelentés-azonosítók
     invite_add_invite: Meghívó hozzáadása
     invite_assessment_center: Értékelési központ
     invite_basic_info_allow_preferred_language: Előnyben részesített nyelv engedélyezése
@@ -1144,6 +1187,7 @@ hu:
     join_room: Csatlakozz a szobához
     keep_original: Eredeti megőrzése
     key: Kulcs
+    key_id: Kulcsazonosító
     keywords: Kulcsszavak
     keywords_placeholder: Írja be a kulcsszavakat vesszővel elválasztva.
     language_id: Nyelv azonosító
@@ -1176,6 +1220,7 @@ hu:
     maintenance: Karbantartás
     maintenance_settings: Karbantartási beállítások
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
+    make_report_available_to_subject_when: 'A jelentést akkor kell az érintett rendelkezésére bocsátani, amikor:'
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     manager_approves_reports: A menedzser jóváhagyja a jelentéseket
     manager_can_access_subject_reports: A menedzser hozzáférhet a témajelentésekhez
@@ -1235,6 +1280,7 @@ hu:
     min_value: Minimális érték
     minimum_10_words: Legalább 10 szó
     minimum_download_speed: Minimális letöltési sebesség (Mbps-ben)
+    minimum_face_detection_ratio: Minimális arcfelismerési arány
     minimum_system_check_validity: A kampány minimális rendszerellenőrzési érvényességi ideje 15 perc legyen
     minimum_upload_speed: Minimális feltöltési sebesség (Mbps-ben)
     missing_min_max_values: A minimális és maximális értékek megadása kötelező.
@@ -1323,6 +1369,7 @@ hu:
     occupations_form_indicative_roles_image: Példakénti szerepek képe
     occupations_form_key_career_tracks_image: A főbb karrierpályák ábrája
     occupations_index_title: Foglalkozások
+    occupations_resource_confirmations_delete_body: "<p>Biztosan törölni szeretné ezt a foglalkozást?</p>\n"
     on_the_job: A munkában [70]
     only_editable_on_create: Ez az opció csak létrehozáskor szerkeszthető.
     options: Beállítások
@@ -1782,6 +1829,7 @@ hu:
         view: Nézet
         view_recordings: Felvételek megtekintése
     permissions_360_campaigns: 360°-os kampányokra vonatkozó engedélyek
+    permissions_updated: A jogosultságok frissítése sikeresen megtörtént
     piped_text: Csővezetékes szöveg
     piped_text_modal_assessment_center: Értékelő központ
     piped_text_modal_campaign_link: Kampány link
@@ -1878,8 +1926,13 @@ hu:
     project: Projekt
     project_admin: Projekt adminisztrátor
     project_admins: Projektadminisztrátorok
+    project_assessor: Projektértékelő
     project_features: A projekt jellemzői
+    project_ids: Projektazonosítók
+    project_ids_required: A „project_ids” mező megadása kötelező ehhez a jelentéstípushoz
+    project_licenses: Projektlicencek
     project_manager: Projektmenedzser
+    project_not_related_to_client: A „%{project_id}” projekt nem az ügyfélé
     project_number: Projekt száma
     project_participants_column_campaigns: Kampányok
     project_participants_column_createdAt: Létrehozva
@@ -1975,6 +2028,22 @@ hu:
     provider_change_confirm_title: Szolgáltatót váltani?
     provider_previously_used_warning: Ez az asszisztens korábban a „%{from}” beállítással generált eredményeket. A „%{to}” beállításra való váltás megváltoztathatja az asszisztens viselkedését a jövőbeli generálási kérések esetén.
     psychometric: Pszichometriai
+    public_key: Nyilvános kulcs
+    public_key_add: Nyilvános kulcs hozzáadása
+    public_key_cannot_be_changed: létrehozás után nem módosítható
+    public_key_copy_private_key: Magánkulcs másolása
+    public_key_created: A nyilvános kulcs létrehozása sikeresen megtörtént
+    public_key_generate: Kulcspár létrehozása
+    public_key_generate_button: RSA kulcspár létrehozása
+    public_key_generate_info: A rendszer létrehoz egy 2048 bites RSA kulcspárt. Csak a nyilvános kulcs kerül tárolásra. Másolja le és biztonságosan őrizze meg a titkos kulcsot — ez a jövőben nem jelenik meg újra.
+    public_key_invalid_format: érvényes RSA nyilvános kulcsnak kell lennie PEM formátumban
+    public_key_must_be_public: nyilvános kulcsnak kell lennie, nem pedig titkos kulcsnak
+    public_key_paste_placeholder: Illessze be ide az RSA nyilvános kulcsát PEM formátumban (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Nyilvános kulcs (PEM)
+    public_key_private_key_copied: A titkos kulcs a vágólapra másolva
+    public_key_private_key_label: Titkos kulcs (PEM)
+    public_key_private_key_warning: Ez az egyetlen alkalom, amikor a titkos kulcs látható lesz. Másolja le most, és őrizze meg biztonságos helyen.
+    public_keys: Nyilvános kulcsok
     question_center: Kérdésközpont
     question_center_page_title: Kérdések központja – Műszerfal – Mercer Lighthouse
     question_editor_change_type: Típus módosítása
@@ -2058,6 +2127,7 @@ hu:
     report_approval_approvers: Jóváhagyók
     report_approval_approvers_can_edit: A jóváhagyók szerkeszthetik
     report_approval_approvers_not_required: Nincs szükség jóváhagyókra
+    report_approval_bulk_approve_success: "%{sent_for_approval} jóváhagyásra elküldve. A %{approved} alatt szereplő jelentések jóváhagyásra kerültek. A %{ignored} alatt szereplő jelentések a minőség-ellenőrzési változtatások/megjegyzések miatt kézi jóváhagyást igényelnek."
     report_approval_columns_approval_status: Jóváhagyási állapot
     report_approval_columns_approved_by: Jóváhagyta
     report_approval_columns_assessed_by: Értékelte
@@ -2067,11 +2137,14 @@ hu:
     report_approval_columns_subject_email: Tárgy e-mail
     report_approval_columns_user_email: Felhasználói e-mail cím
     report_approval_columns_user_name: Felhasználónév
+    report_approval_digest_delivery_mode_form_label: Összefoglaló kézbesítési módja
     report_approval_digest_frequency_daily: Mindennapi
+    report_approval_digest_frequency_form_label: A hírlevél megjelenési gyakorisága
     report_approval_digest_frequency_weekdays: Hétköznap
     report_approval_digest_frequency_weekly: Heti
     report_approval_digest_time: Emésztési idő
     report_approval_digest_timezone: Kivonat időzóna
+    report_approval_digest_weekdays_form_label: Összefoglaló – Hétköznapok
     report_approval_digest_weekdays_friday: Péntek
     report_approval_digest_weekdays_monday: Hétfő
     report_approval_digest_weekdays_saturday: Szombat
@@ -2112,6 +2185,8 @@ hu:
     report_help_description: A felhasználó irányítópultján a jelentéskártyán megjelenő súgószöveg
     report_help_name: Segítség a jelentésekhez
     report_id: Jelentés azonosítója
+    report_ids: Jelentésazonosítók
+    report_ids_required: A jelentésazonosítók megadása kötelező
     report_name: Jelentés neve
     report_no_evaluations: A %{user} jelentése nem érhető el – értékelések nem érkeztek.
     report_not_generated: Jelentés %{user} megfelel a rendelkezésre állási feltételeknek, de még nem készült el. Kérem, előbb készítsd el a jelentést.
@@ -2132,6 +2207,17 @@ hu:
     report_review_statuses_qc_completed: Minőségellenőrzés befejeződött
     report_review_statuses_qc_in_progress: Minőségellenőrzés folyamatban
     report_status: Jelentés állapota
+    report_type: Jelentés típusa
+    report_types:
+      active_clients_projects: Aktív ügyfelek és projektek
+      client_assessment_counts: Az ügyfelek értékelése számít
+      hogan_usage_report: A Hogan-értékelés használata
+      json_data_report: JSON-adatjelentés
+      pearson_usage_report: A Pearson értékelési eszközök használata
+      report_usage_summary: A jelentés használatának összefoglalása
+      saville_usage_report: A Saville-értékelés használata
+      user_created_dates: Felhasználó által létrehozott dátumok
+      user_reports_export: Felhasználói jelentések exportálása
     reports: Jelentések
     reports_copy_copy: Másolás
     reports_copy_copy_report: Jelentés másolása
@@ -2185,6 +2271,7 @@ hu:
     role_client_admin: Ügyfélkezelés
     role_project_admin: Projektadminisztrátor
     role_superadmin: Szuperadmin
+    run: Futtatás
     saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
     saml_idp_certificate_label: Igazolás
     saml_idp_entity_id_label: Entity ID/Kibocsátó
@@ -2396,6 +2483,9 @@ hu:
     schema_key_required: Séma kulcs szükséges
     schema_key_type: Kulcs típusa
     schema_key_unique: A séma kulcsoknak egyedinek kell lenniük
+    scope: Hatály
+    scope_client: Ügyfél
+    scope_global: Globális
     score: Pontszám
     score_approval_not_allowed_to_approve: Nem engedélyezheti ezt az eredményt.
     score_approval_not_allowed_to_discard: Ezt a pontszámot nem szabad eldobni.
@@ -2548,11 +2638,17 @@ hu:
     security_settings_security_setting: Biztonsági beállítás
     select_admin_role: Válassza ki az adminisztrátori szerepkört
     select_assessment_language: Értékelési nyelv kiválasztása
+    select_client: Ügyfél kiválasztása
     select_end_time: Végidő kiválasztása
     select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
     select_level: Szint kiválasztása
+    select_project_ids_required: Válassza ki a szükséges project_ids-eket
+    select_projects: Kiválasztott projektek
+    select_projects_required: Kérjük, válasszon ki legalább egy projektet
     select_question: Keresés név vagy azonosító alapján
+    select_report_ids_required: Válassza ki a szükséges report_ids-eket
     select_report_language: Jelentés nyelvének kiválasztása
+    select_report_type: Jelentéstípus kiválasztása
     select_start_time: Kezdési idő kiválasztása
     selective_proctoring: Szelektív felügyelet
     send_email: E-mail küldése
@@ -2694,6 +2790,12 @@ hu:
     sms_invites_send_sms_fields_users: Felhasználók
     sms_invites_send_sms_modal_btn_name: SMS küldése
     sms_invites_send_sms_modal_title: SMS küldése
+    sms_invites_send_sms_pipetext_details: |
+      {{{first_name}}} – A címzett keresztneve
+      <br />
+      {{{last_name}}} – A címzett vezetékneve
+      <br />
+      {{{invite_url}}} – Regisztrációs link
     sms_invites_send_sms_segment_length_msg: Az üzenet szegmenseinek becsült száma %{segment_length}.
     sms_invites_send_sms_segment_length_range_msg: Az üzenet szegmenseinek becsült száma %{min_segment_length} és %{max_segment_length} között van.
     sms_invites_statuses_all: Összes
@@ -3030,6 +3132,7 @@ hu:
     x_axis_interval_label: X-tengely intervallum
     y_axis_interval_label: Y-tengely intervallum
     year: Ország
+    year_range: Évszám-tartomány
     years: Év
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID

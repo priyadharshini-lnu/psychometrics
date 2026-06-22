@@ -140,9 +140,11 @@ th:
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
     options: ตัวเลือก
+    overview: ภาพรวม
     owner: เจ้าของ
     pause: หยุดชั่วคราว
     pending: รอดำเนินการ
+    permissions: สิทธิ์การใช้งาน
     play: เล่น
     policy_version: นโยบายเวอร์ชัน
     policy_version_format: อนุญาตเฉพาะจำนวนเต็มเท่านั้น
@@ -222,9 +224,31 @@ th:
     update: อัปเดต
     update_failed: การอัปเดตล้มเหลว
     updated_at: อัปเดตเมื่อ
+    updated_by: อัปเดตโดย
     updated_successfully: อัปเดตสำเร็จ
     upload: อัปโหลด
     user_report_pdf_url_not_generated: ไม่สามารถสร้างลิงก์ดาวน์โหลด PDF ได้
+    user_reports_approval_status_pending_qc: อยู่ระหว่างการตรวจสอบคุณภาพ
+    user_reports_approval_status_qc_completed: QC เสร็จสิ้น
+    user_reports_assessment_name_not_completed_reason_template: การประเมินผล %{names} ยังไม่เสร็จสมบูรณ์
+    user_reports_assessments_name_not_completed_reason_template: การประเมินผล %{names} ไม่ได้รับการดำเนินการ
+    user_reports_assessor_not_completed_reason_template: แบบฟอร์มผู้ประเมิน %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_assessors_not_completed_reason_template: แบบฟอร์มผู้ประเมิน %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_campaign_artifact_results_pending_reason_message: ผลลัพธ์ของแคมเปญยังไม่เสร็จสมบูรณ์สำหรับผู้ใช้รายนี้
+    user_reports_campaign_scoring_pending_reason_message: คะแนนแคมเปญยังไม่สมบูรณ์สำหรับผู้ใช้รายนี้
+    user_reports_custom_upload_report_reason_message: ผู้ให้บริการรายงานคือการอัปโหลดที่กำหนดเอง
+    user_reports_external_report_pending_reason_message: กำลังรอรายงานจากผู้ให้บริการ
+    user_reports_lead_assessor_not_completed_reason_template: แบบฟอร์มผู้ประเมินหลัก %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_lead_assessors_not_completed_reason_template: แบบฟอร์มผู้ประเมินหลัก %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_no_report_module_reason_message: ไม่พบโมดูลรายงานสำหรับรายงานนี้
+    user_reports_not_prepared_reason_message: รายงานยังไม่ได้จัดทำ
+    user_reports_pending_approval_reason_template: สถานะการอนุมัติคือ '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: อยู่ระหว่างการอนุมัติคะแนน AI ขั้นสุดท้าย
+    user_reports_pending_qc_ai_scoring_approval_reason_message: กำลังรอการอนุมัติคะแนนจาก QC AI
+    user_reports_pending_qc_approval_reason_message: รอการอนุมัติรายงาน QC
+    user_reports_qc_completed_approval_reason_message: อยู่ระหว่างการอนุมัติรายงานฉบับสมบูรณ์
+    user_reports_report_generating_reason_message: กำลังสร้างรายงาน
+    user_reports_report_generation_failed_reason_message: การสร้างรายงานล้มเหลว
     video: วิดีโอ
     view: มุมมอง
     view_audio: ดูเสียง

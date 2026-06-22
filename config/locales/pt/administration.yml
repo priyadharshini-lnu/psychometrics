@@ -74,6 +74,7 @@ pt:
         subjects_count_added: Disciplinas adicionadas com sucesso
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: A configuração de pontuação por IA só pode ser adicionada a perguntas dos tipos AudioResponse, VideoResponse e TextEntry
         doesnt_have_header: "'%{sub_header}' não tem cabeçalho"
         invalid_headers: 'Os seguintes cabeçalhos são inválidos: %{headers}'
         invalid_question: ID de pergunta inválida

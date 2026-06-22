@@ -140,9 +140,11 @@ it:
     not_requested: Non ancora richiesto
     ok: Ok
     options: Opzioni
+    overview: Panoramica
     owner: Proprietario
     pause: Pausa
     pending: In sospeso
+    permissions: Autorizzazioni
     play: Gioca
     policy_version: Versione della politica
     policy_version_format: Sono ammessi solo numeri interi
@@ -222,9 +224,31 @@ it:
     update: Aggiorna
     update_failed: Aggiornamento non riuscito
     updated_at: Aggiornato alle
+    updated_by: Aggiornato da
     updated_successfully: Aggiornamento completato con successo
     upload: Caricare
     user_report_pdf_url_not_generated: Impossibile generare il link per il download del PDF
+    user_reports_approval_status_pending_qc: In attesa di controllo qualità
+    user_reports_approval_status_qc_completed: Controllo qualità completato
+    user_reports_assessment_name_not_completed_reason_template: La valutazione %{names} non è stata completata
+    user_reports_assessments_name_not_completed_reason_template: Le valutazioni %{names} non sono state completate
+    user_reports_assessor_not_completed_reason_template: Il modulo dell'assessore %{names} non è stato compilato
+    user_reports_assessors_not_completed_reason_template: I moduli dell'Assessor %{names} non sono stati compilati
+    user_reports_campaign_artifact_results_pending_reason_message: I risultati relativi agli artefatti della campagna non sono ancora definitivi per questo utente
+    user_reports_campaign_scoring_pending_reason_message: I punteggi della campagna non sono ancora definitivi per questo utente
+    user_reports_custom_upload_report_reason_message: Il fornitore del report è un caricamento personalizzato
+    user_reports_external_report_pending_reason_message: In attesa della relazione da parte del fornitore
+    user_reports_lead_assessor_not_completed_reason_template: Il modulo del valutatore principale %{names} non è stato compilato
+    user_reports_lead_assessors_not_completed_reason_template: I moduli del valutatore principale %{names} non sono stati compilati
+    user_reports_no_report_module_reason_message: Non è stato trovato alcun modulo per questo report
+    user_reports_not_prepared_reason_message: Il rapporto non è ancora stato redatto
+    user_reports_pending_approval_reason_template: Lo stato di approvazione è "%{status}"
+    user_reports_pending_final_ai_scoring_approval_reason_message: In attesa dell'approvazione definitiva del punteggio generato dall'IA
+    user_reports_pending_qc_ai_scoring_approval_reason_message: In attesa dell'approvazione del punteggio AI da parte del controllo qualità
+    user_reports_pending_qc_approval_reason_message: In attesa dell'approvazione del rapporto di controllo qualità
+    user_reports_qc_completed_approval_reason_message: In attesa dell'approvazione della relazione finale
+    user_reports_report_generating_reason_message: Il report è in fase di generazione
+    user_reports_report_generation_failed_reason_message: Impossibile generare il report
     video: Video
     view: Visualizza
     view_audio: Visualizza audio

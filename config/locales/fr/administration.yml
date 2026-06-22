@@ -74,6 +74,7 @@ fr:
         subjects_count_added: Sujets ajoutés avec succès
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: La configuration de la notation par IA ne peut être ajoutée que pour les questions de type « AudioResponse », « VideoResponse » et « TextEntry ».
         doesnt_have_header: "'%{sub_header}' n'a pas d'en-tête"
         invalid_headers: 'Les en-têtes suivants ne sont pas valides : %{headers}'
         invalid_question: ID de question non valide

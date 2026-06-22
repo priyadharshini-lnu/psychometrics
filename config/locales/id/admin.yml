@@ -12,6 +12,7 @@ id:
     active: Aktif
     active_label: Aktif
     active_name: Aktif
+    active_record_audits_audit_id: ID Audit
     active_record_audits_auditable_id: Rekor ID
     active_record_audits_auditable_type: Jenis Rekaman
     active_record_audits_audited_changes: Perubahan yang Diaudit
@@ -19,6 +20,7 @@ id:
     active_record_audits_old_diff_parse_error: Gagal mengurai JSON dengan perubahan lama
     active_record_audits_title: Perubahan yang Diaudit
     activity: Kegiatan
+    activity_period: Periode Kegiatan
     add_admin: Tambahkan admin
     add_admin_role: Tambahkan Peran Admin
     add_btn: Tambahkan subjek
@@ -46,6 +48,7 @@ id:
     admin_roles: Peran Admin
     admin_updated_successfully: Admin '%{name}' berhasil diperbarui
     administrator_approves_reports: Administrator menyetujui laporan
+    administrators_list_columns_email: Email
     admins: Admin
     advanced: Lanjutan
     advanced_mode_tooltip: Gunakan mode lanjutan untuk templat prompt menggunakan templat cair dengan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
@@ -54,6 +57,7 @@ id:
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
     ai_assistant: Asisten AI
+    ai_assistant_model_id_label: ID Model
     ai_assistant_model_label: Pola
     ai_assistant_model_provider: Penyedia
     ai_assistant_model_region_label: Wilayah
@@ -114,6 +118,12 @@ id:
     alt_text_long: Melebihi batas maksimum 100 karakter.
     api_keys: Kunci API
     api_keys_form_title: Kunci API
+    application: Aplikasi
+    application_add: Tambahkan Aplikasi
+    application_name: Nama Aplikasi
+    application_name_already_taken: Sudah ada untuk klien ini
+    application_name_format_hint: Hanya huruf dan angka yang diperbolehkan, dengan satu spasi di antara kata-kata
+    applications: Aplikasi
     apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
     approve_all_questions: Setujui Semua Pertanyaan
     approve_nomination_description: Pesan ini dikirim ke manajer ketika nominasi, yang dibuat oleh bawahan langsung, perlu disetujui
@@ -130,6 +140,7 @@ id:
     assessment_center: 'Pusat penilaian:'
     assessment_center_group: Kelompok Pusat Penilaian
     assessment_center_group_placeholder: Pilih Grup Pusat Penilaian
+    assessment_center_invites: Undangan ke Pusat Penilaian
     assessment_ids: ID Penilaian
     assessment_placeholder: Pilih Penilaian
     assessment_question_not_supported: Jenis pertanyaan ini saat ini tidak didukung.
@@ -199,8 +210,11 @@ id:
     attendance: Kehadiran
     attendance_status: Status kehadiran
     audit_log_impersonated_by: Dipalsukan oleh
+    audit_log_title: Informasi Catatan Audit
     audit_log_type: Jenis Rekaman
     audit_logs: Log Audit
+    audit_logs_export_failed: Gagal menjadwalkan tugas ekspor. Silakan coba lagi.
+    audit_logs_export_queued: Pekerjaan ekspor telah dijadwalkan dengan sukses.
     audit_reports: Laporan Audit
     auth_type_api_key_header_format_error: Hanya huruf, angka, garis bawah, dan tanda hubung yang diperbolehkan
     auth_type_api_key_header_label: Header Kunci API
@@ -240,11 +254,21 @@ id:
     blocks_title: Blok
     booked_at: 'Dipesan di:'
     breadcrumbs_norms_editor: Editor Norma
+    bulk_assessment_download_date_range_required: Silakan pilih rentang tanggal
+    bulk_assessment_download_export_type: Jenis ekspor
+    bulk_assessment_download_export_type_required: Silakan pilih jenis ekspor
+    bulk_assessment_download_help_text: 'Catatan: Jika penilaian terkait dengan dimensi yang berbeda, berkas xslx yang diunduh akan berisi lembar terpisah untuk setiap dimensi.'
+    bulk_assessment_download_modal_subtitle: Pilih rentang tanggal dan jenis ekspor, lalu ekspor penilaian yang dipilih.
+    bulk_assessment_download_no_data_found: Untuk rentang tanggal dan penilaian yang dipilih, tidak ditemukan data. Silakan coba dengan rentang tanggal atau penilaian yang berbeda.
+    bulk_assessment_download_norm_factor_scores: Skor faktor norma
+    bulk_assessment_download_raw_factor_scores: Skor faktor mentah
     bulk_assets_modal_choose_csv: Pilih Berkas CSV
     bulk_assets_modal_choose_zip: Pilih Berkas ZIP
     bulk_assets_modal_not_csv_file_error: Hanya berkas CSV yang diizinkan untuk unggahan CSV. Silakan unggah berkas CSV yang valid.
     bulk_assets_modal_subtitle: 'Silakan unggah <b>satu file CSV</b> (dengan kolom header: user_email, file_name) dan <b>satu file ZIP</b> (yang berisi file PDF dengan nama yang sesuai dengan nama file dari CSV). File ZIP harus berukuran di bawah %{max_file_size} MB.'
     bulk_assets_modal_title: Unggah berkas CSV dan ZIP
+    bulk_export_assessments_file: File ekspor penilaian massal
+    bulk_export_invalid_params: Parameter ekspor massal tidak valid
     bulk_upload_ai_artifacts: Unggah Artefak AI Massal
     campaign: Kampanye
     campaign_admin: Admin Kampanye
@@ -314,6 +338,7 @@ id:
     campaigns_filters_archived: Diarsipkan
     campaigns_filters_closed: Tertutup
     campaigns_filters_inactive: Aktif
+    campaigns_filters_status: Status
     campaigns_form_active_notice: Status kampanye akan secara otomatis berubah menjadi ditutup pada tanggal akhir yang dipilih
     campaigns_form_campaign: Kampanye
     campaigns_form_copy_factors: Faktor Salin
@@ -369,6 +394,7 @@ id:
     client_id_label: ID Klien
     client_id_name: oauth_client_id
     client_id_required: ID Klien diperlukan
+    client_ids: ID Klien
     client_ip: IP Klien
     client_logo_label: Logo klien
     client_secret_label: Rahasia Klien
@@ -407,6 +433,7 @@ id:
     concise: Ringkas
     confidence_interval: Interval Kepercayaan
     confidence_interval_update_success: Interval kepercayaan telah diperbarui dengan sukses.
+    configuration: Konfigurasi
     configure_model_answer_title: Konfigurasikan Jawaban Model dan Kata Kunci
     confirm_remove_admin: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
     confirmation_required: Diperlukan Konfirmasi
@@ -419,6 +446,7 @@ id:
     copy_ai_artifacts: Salin Artefak AI
     copy_hint: Menyalin konfigurasi Kursi, Manajer Pusat, Penilai, dan Rapat & Sumber Daya di atas ke Pusat Penilaian berikut. Setelah menyalin, Anda dapat membuat perubahan lebih lanjut pada masing-masing Pusat Penilaian sebelum melanjutkan.
     copy_image_url: Salin URL Gambar
+    copy_report_scheduled: Tugas pencetakan laporan telah dijadwalkan.
     copy_text: Teks
     copy_to_all: Salin ke Pusat Penilaian lainnya
     copy_url: Salin URL
@@ -481,12 +509,15 @@ id:
     datasheet: Lembar data
     date_and_time: Tanggal & Waktu
     date_presets_last_30_days: 30 hari terakhir
+    date_presets_last_6_months: 6 bulan terakhir
     date_presets_last_7_days: 7 hari terakhir
     date_presets_last_month: Bulan Lalu
     date_presets_last_week: Minggu lalu
+    date_presets_last_year: Tahun lalu
     date_presets_today: Hari Ini
     date_presets_yesterday: Kemarin
     date_range: Rentang Tanggal
+    date_range_required: Rentang tanggal wajib diisi
     dates_completed: Selesai
     dates_end: Tanggal akhir
     dates_label: Tanggal
@@ -640,8 +671,10 @@ id:
     enable_caching_successfully: Caching telah diaktifkan untuk penilaian ini.
     enable_caching_title: Aktifkan Assessment Caching?
     enable_enhance_with_ai_client_level: Silakan aktifkan fitur "Enhance with AI" di tingkat klien.
+    enable_face_detection: Aktifkan Deteksi Wajah
     enable_maintenance: Aktifkan Pemeliharaan
     enable_mobile_proctoring: Aktifkan Pengawasan Ujian Mobile
+    enable_phrase_verification: Aktifkan Verifikasi Frasa
     enable_system_check: Aktifkan Pemeriksaan Sistem
     enable_transcription: Aktifkan Transkripsi
     enable_transcription_msg: Aktifkan Transkripsi untuk menggunakan penilaian AI pada pertanyaan respons video/audio.
@@ -652,9 +685,12 @@ id:
     end_time_must_be_after_start_time: Waktu akhir harus setelah waktu mulai.
     enhance_with_ai: Perkuat dengan AI
     enhance_with_ai_requires_ai_assistants: Untuk menggunakan fitur Peningkatan dengan AI, fitur Asisten AI harus diaktifkan.
+    enter_client_ids: Masukkan ID klien
     enter_description: Masukkan deskripsi
     enter_name: Masukkan nama
+    enter_project_ids: Masukkan ID proyek
     enter_question_id: Masukkan ID Pertanyaan
+    enter_report_ids: Masukkan ID laporan
     enter_schema_key: Masukkan Kunci Skema
     error: Kesalahan
     error_color: Warna Kesalahan
@@ -696,6 +732,7 @@ id:
     export_failure_msg: Kesalahan saat mengekspor tingkat kecakapan
     export_success: Pekerjaan ekspor admin berhasil dijadwalkan. Silakan periksa notifikasi Anda untuk status.
     export_success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung
+    export_to_csv: Ekspor ke CSV
     export_with_inactive_users: Ekspor berikut pengguna yang tidak aktif
     external_report_id: ID Laporan Eksternal
     external_score: Skor Eksternal
@@ -749,9 +786,12 @@ id:
     file_size_must_be_less_than_mb: Ukuran berkas {{name}} melebihi batas maksimum {{max_size_mb}} MB
     file_upload_failed: Gagal mengunggah {{name}}
     fill_empty_score_msg: Isi semua skor akhir sebelum menyimpan.
+    filter_by_client: Saring berdasarkan Klien
+    filter_by_client_help: Pilih klien untuk memuat proyek-proyeknya
     final_score_empty_err_msg: Skor akhir dari %{factor_name} tidak boleh kosong.
     final_score_empty_msg: Saldo akhir tidak boleh kosong.
     finalized_at: Diselesaikan pada
+    fingerprint: Sidik jari
     first_name_required: Nama depan diperlukan
     fix_grammar: Perbaiki Tata Bahasa
     fixed_time: Waktu Tetap
@@ -800,6 +840,8 @@ id:
     handoff_invalid_token: Token otentikasi tidak valid atau telah kedaluwarsa
     handoff_token_expired: Token otentikasi telah kedaluwarsa atau sudah digunakan
     handoff_user_disabled: Akun Anda telah dinonaktifkan
+    has_api_keys: Memiliki Kunci API
+    has_public_keys: Memiliki Kunci Publik
     header_logout_content: Tekan Batal jika Anda ingin melanjutkan pekerjaan. Tekan Ok untuk keluar dari pengguna saat ini.
     header_logout_title: Apakah Anda yakin ingin logout.
     hide_all: Sembunyikan Semua
@@ -862,6 +904,7 @@ id:
     idp_development_actions_custom: Adat
     idp_development_actions_date_range: Tanggal Mulai - Tanggal Akhir
     idp_development_actions_edit_plan_to_add_development_actions: Edit Rencana dan untuk menambahkan Tindakan Pengembangan.
+    idp_development_actions_errors_invalid_learning_style: "'%{learning_style}' bukanlah gaya belajar yang sah. Pilihan yang sah adalah: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: Gaya belajar tidak bisa kosong
     idp_development_actions_generate_by_ai: Hasilkan oleh AI
     idp_development_actions_generate_more: Hasilkan Lebih Banyak
@@ -916,6 +959,7 @@ id:
     idp_revert_skill_to_public_errors_skill_already_public: Keterampilan sudah publik
     idp_revert_skill_to_public_errors_skill_not_found: Keterampilan tidak ditemukan
     idp_revert_skill_to_public_success_base_message: Keterampilan '%{skill_name}' sekarang terlihat oleh manajer Anda
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} dan rencana IDP Anda telah diajukan untuk disetujui"
     idp_select_by_tags: Pilih berdasarkan Tag
     idp_select_interview_question: Mulai mengetik untuk mencari dan memilih pertanyaan
     idp_select_reflection_question: Mulai mengetik untuk mencari dan memilih pertanyaan
@@ -1004,6 +1048,7 @@ id:
     innovation_styles_list_position: Posisi
     innovation_styles_resource_confirmations_delete_body: "<p>Apakah Anda yakin ingin menghapus gaya inovasi ini?</p>\n"
     instruction_messages: Pesan Instruksi
+    instructions: Petunjuk
     instructions_actions_saved: Instruksi berhasil disimpan
     instructions_enable: Aktifkan Instruksi
     instructions_save: Simpan Instruksi
@@ -1032,6 +1077,7 @@ id:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Situs mini
     integrations_names_skillvue: Keterampilan
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Lihat Semua Jadwal Mettl
@@ -1052,11 +1098,15 @@ id:
     interview_questions_import_failure_msg: Kesalahan saat mengimpor file.
     interview_questions_import_success_msg: Mengimpor Pertanyaan Wawancara yang sedang berlangsung. Silakan periksa status di notifikasi.
     interview_questions_question: Pertanyaan
+    invalid_client_ids: ID klien tidak valid
     invalid_confidence_interval: Interval kepercayaan harus 0 atau 1
     invalid_csv_header: File CSV berisi header yang tidak valid.
+    invalid_json: Konfigurasi tersebut bukan JSON yang valid
     invalid_leadership_bar: leadership_bar harus bernilai 0 atau 1
     invalid_norm_option: Opsi Norm harus berada antara 0 dan 3
+    invalid_project_ids: 'ID proyek yang tidak valid: %{ids}'
     invalid_question_ids: 'ID soal yang tidak ditemukan dalam penilaian ini: %{ids}'
+    invalid_report_ids: ID Laporan Tidak Sah
     invite_add_invite: Tambahkan Undangan
     invite_assessment_center: Pusat Penilaian
     invite_basic_info_allow_preferred_language: Izinkan Bahasa Pilihan
@@ -1080,6 +1130,7 @@ id:
     invite_request_reason: Alasan
     invite_request_reject: Menolak
     invite_request_remove_confirm_content: Apakah Anda yakin ingin %{action} %{status} dari %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} dari %{subjectName}, tautan %{action} berhasil diakses."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Nama subjek
     invite_request_workshop_time: Waktu Lokakarya
@@ -1096,6 +1147,7 @@ id:
     invite_steps_has_errors: berisi kesalahan
     invite_steps_send_invitation: Kirim undangan
     invite_subjects_count: Mata pelajaran
+    invite_subjects_csv_error: 'Baris ke-%{index}: pengguna dengan alamat email %{email} tidak termasuk dalam kampanye ini'
     invite_subjects_csv_imported: "%{count} subjek yang diimpor"
     invite_subjects_description: Anda dapat menambahkan subjek satu per satu dengan mencari atau mengunggah file csv secara massal.
     invite_subjects_download: Unduh
@@ -1135,6 +1187,7 @@ id:
     join_room: Masuk ke Ruang
     keep_original: Tetap Asli
     key: Kunci
+    key_id: ID Kunci
     keywords: Kata kunci
     keywords_placeholder: Masukkan kata kunci yang dipisahkan dengan koma.
     language_id: Kode Bahasa
@@ -1227,6 +1280,7 @@ id:
     min_value: Nilai minimum
     minimum_10_words: Minimal 10 kata
     minimum_download_speed: Kecepatan Unduh Minimum (dalam Mbps)
+    minimum_face_detection_ratio: Rasio Deteksi Wajah Minimum
     minimum_system_check_validity: Validitas Pemeriksaan Sistem pada tingkat Kampanye minimum harus 15 menit
     minimum_upload_speed: Kecepatan Unggah Minimum (dalam Mbps)
     missing_min_max_values: Nilai minimum dan maksimum diharuskan.
@@ -1276,6 +1330,7 @@ id:
     norm_region: Wilayah Norma
     norm_region_form_select: Pilih Wilayah Standar
     norm_region_update_success: Wilayah Norm telah diperbarui dengan sukses.
+    normal: Normal
     normalize_factor_scores: Menormalkan Skor Faktor
     norms: Norma
     norms_copy_successfully: Norma "%{name}" berhasil disalin.
@@ -1346,6 +1401,7 @@ id:
     password_label: Kata sandi
     password_name: Kata sandi
     past: Masa lalu
+    payload: Muatan
     pearson: Pearson
     pearson_assessment: Penilaian Pearson
     permissions:
@@ -1773,6 +1829,7 @@ id:
         view: Melihat
         view_recordings: Lihat Rekaman
     permissions_360_campaigns: Izin khusus untuk kampanye 360
+    permissions_updated: Izin telah diperbarui dengan sukses
     piped_text: Teks yang disalurkan
     piped_text_modal_assessment_center: Pusat Penilaian
     piped_text_modal_campaign_link: Tautan Kampanye
@@ -1816,6 +1873,7 @@ id:
     privacy_text: Teks privasi
     privacy_text_placeholder: Masukkan Teks Privasi
     proctoring: Pengawasan
+    proctoring_allow_on_assessment_center: Izinkan pengawasan selama sesi penilaian di pusat penilaian
     proctoring_enable: Aktifkan Pengawasan
     proctoring_errors_timed_only: Pengawasan selektif hanya dapat diaktifkan untuk penilaian yang dibatasi waktu.
     proctoring_fixed_time_required: Aktifkan Waktu Tetap untuk memilih opsi ini
@@ -1868,8 +1926,13 @@ id:
     project: Proyek
     project_admin: Admin Proyek
     project_admins: Admin Proyek
+    project_assessor: Penilai Proyek
     project_features: Fitur Proyek
+    project_ids: ID Proyek
+    project_ids_required: project_ids wajib diisi untuk jenis laporan ini
+    project_licenses: Lisensi Proyek
     project_manager: Manajer Proyek
+    project_not_related_to_client: Proyek '%{project_id}' bukan milik klien
     project_number: Nomor Proyek
     project_participants_column_campaigns: Kampanye
     project_participants_column_createdAt: Dibuat di
@@ -1965,6 +2028,22 @@ id:
     provider_change_confirm_title: Ingin mengganti penyedia layanan?
     provider_previously_used_warning: Asisten ini sebelumnya telah menghasilkan hasil dengan "%{from}". Mengubahnya menjadi "%{to}" dapat memengaruhi perilaku asisten pada permintaan pembangkitan di masa mendatang.
     psychometric: Psikometrik
+    public_key: Kunci Publik
+    public_key_add: Tambahkan Kunci Publik
+    public_key_cannot_be_changed: tidak dapat diubah setelah dibuat
+    public_key_copy_private_key: Salin Kunci Pribadi
+    public_key_created: Kunci publik berhasil dibuat
+    public_key_generate: Buat Pasangan Kunci
+    public_key_generate_button: Buat Pasangan Kunci RSA
+    public_key_generate_info: Akan menghasilkan pasangan kunci RSA 2048-bit. Hanya kunci publik yang akan disimpan. Salin dan simpan kunci pribadi dengan aman — kunci tersebut tidak akan ditampilkan lagi.
+    public_key_invalid_format: harus berupa kunci publik RSA yang sah dalam format PEM
+    public_key_must_be_public: harus berupa kunci publik, bukan kunci pribadi
+    public_key_paste_placeholder: Tempelkan kunci publik RSA Anda dalam format PEM di sini (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Kunci Publik (PEM)
+    public_key_private_key_copied: Kunci pribadi telah disalin ke papan klip
+    public_key_private_key_label: Kunci Pribadi (PEM)
+    public_key_private_key_warning: Ini adalah satu-satunya saat di mana kunci pribadi akan terlihat. Salinlah sekarang dan simpanlah dengan aman.
+    public_keys: Kunci Publik
     question_center: Pusat Pertanyaan
     question_center_page_title: Pusat Pertanyaan - Dasbor - Mercer Lighthouse
     question_editor_change_type: Ubah jenis
@@ -2016,6 +2095,7 @@ id:
     reflection_questions_import_failure_msg: Kesalahan saat mengimpor file.
     reflection_questions_import_success_msg: Mengimpor Pertanyaan Refleksi sedang berlangsung. Silakan periksa status di notifikasi.
     reflection_questions_question: Pertanyaan
+    refresh: Segarkan
     refresh_interval: Interval Refresh (menit)
     regenerate_transcriptions_action: Perbarui Transkripsi
     regenerate_transcriptions_confirm_content: Apakah Anda yakin ingin membuat ulang transkripsi untuk penilaian ini? Tindakan ini akan memproses ulang semua transkripsi yang belum selesai.
@@ -2105,6 +2185,8 @@ id:
     report_help_description: Teks bantuan ditampilkan di rapor di dasbor pengguna
     report_help_name: Bantuan laporan
     report_id: ID Laporan
+    report_ids: ID Laporan
+    report_ids_required: ID Laporan wajib diisi
     report_name: Nama Laporan
     report_no_evaluations: Laporan untuk %{user} tidak tersedia - tidak ada evaluasi yang diterima.
     report_not_generated: Laporan untuk %{user} memenuhi persyaratan ketersediaan tetapi belum dibuat. Silakan buat laporan terlebih dahulu.
@@ -2125,6 +2207,17 @@ id:
     report_review_statuses_qc_completed: QC Selesai
     report_review_statuses_qc_in_progress: QC sedang berlangsung
     report_status: Status Laporan
+    report_type: Jenis Laporan
+    report_types:
+      active_clients_projects: Klien dan Proyek Aktif
+      client_assessment_counts: Penilaian Klien Itu Penting
+      hogan_usage_report: Penggunaan Penilaian Hogan
+      json_data_report: Laporan Data JSON
+      pearson_usage_report: Penggunaan Asesmen Pearson
+      report_usage_summary: Ringkasan Penggunaan Laporan
+      saville_usage_report: Penggunaan Saville Assessment
+      user_created_dates: Tanggal yang Dibuat Pengguna
+      user_reports_export: Ekspor Laporan Pengguna
     reports: Laporan
     reports_copy_copy: Salin
     reports_copy_copy_report: Salin Laporan
@@ -2178,6 +2271,7 @@ id:
     role_client_admin: Admin Klien
     role_project_admin: Administrator Proyek
     role_superadmin: Super Admin
+    run: Lari
     saml_idp_certificate_available: Tersedia (klik untuk menyalin)
     saml_idp_certificate_label: Sertifikat
     saml_idp_entity_id_label: ID Entitas/Penerbit
@@ -2389,6 +2483,9 @@ id:
     schema_key_required: Diperlukan Kunci Skema
     schema_key_type: Jenis Kunci
     schema_key_unique: Kunci Skema harus unik
+    scope: Ruang Lingkup
+    scope_client: Klien
+    scope_global: Global
     score: Skor
     score_approval_not_allowed_to_approve: Anda tidak diizinkan untuk menyetujui skor ini.
     score_approval_not_allowed_to_discard: Anda tidak diperbolehkan untuk membuang skor ini.
@@ -2541,11 +2638,17 @@ id:
     security_settings_security_setting: Pengaturan keamanan
     select_admin_role: Pilih peran admin
     select_assessment_language: Pilih bahasa penilaian
+    select_client: Pilih Klien
     select_end_time: Pilih Waktu Berakhir
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
+    select_project_ids_required: Pilih project_ids yang diperlukan
+    select_projects: Pilih Proyek
+    select_projects_required: Silakan pilih setidaknya satu proyek
     select_question: Cari pertanyaan berdasarkan nama atau ID
+    select_report_ids_required: Pilih _ids_ laporan yang diperlukan
     select_report_language: Memilih bahasa laporan
+    select_report_type: Pilih Jenis Laporan
     select_start_time: Pilih Waktu Mulai
     selective_proctoring: Pengawasan Terpilih
     send_email: Kirim email
@@ -2875,6 +2978,9 @@ id:
     threesixity_advance_settings_factors: Faktor
     threesixity_close_content: Apakah Anda yakin ingin menutup Pembuat Kampanye Multi Rater? Setiap pekerjaan penyesuaian yang belum disimpan akan hilang. Harap konfirmasi keputusan Anda.
     threesixity_close_title: Tutup Pembuat Kampanye Multi Rater?
+    threesixity_instructions_creation_empty: 'Kosong: Mulailah dengan survei kosong, lalu sesuaikan sesuai kebutuhan spesifik Anda.'
+    threesixity_instructions_creation_previous: 'Sebelumnya: Pilih penilaian sebelumnya sebagai titik awal, lalu lakukan perubahan.'
+    threesixity_instructions_creation_standard: 'Standar: Gunakan templat yang sudah dirancang sebelumnya yang berisi pertanyaan dan indikator yang umum digunakan.'
     threesixity_instructions_creation_sub_title: Silakan pilih jenis kampanye yang ingin Anda buat.
     threesixity_instructions_creation_title: Selamat datang di Pembuat Kampanye Multi Rater!
     threesixity_instructions_customization_sub_title: Pilih templat dan faktor yang akan disertakan dalam penilaian.
@@ -3021,6 +3127,7 @@ id:
     x_axis_interval_label: Interval Sumbu X
     y_axis_interval_label: Interval Sumbu Y
     year: Negara
+    year_range: Rentang Tahun
     years: Tahun
     yoodli: Yoodli
     yoodli_activity_id: ID Aktivitas Yoodli

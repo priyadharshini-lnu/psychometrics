@@ -74,6 +74,7 @@ ko:
         subjects_count_added: 주제 추가 성공
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI 채점 설정은 AudioResponse, VideoResponse 및 TextEntry 유형의 문제에만 추가할 수 있습니다.
         doesnt_have_header: "'%{sub_header}'에 헤더가 없습니다"
         invalid_headers: '다음 헤더가 잘못되었습니다: %{headers}'
         invalid_question: 잘못된 질문 ID

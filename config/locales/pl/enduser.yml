@@ -36,6 +36,8 @@ pl:
     browser_not_compatible: Twoja przeglądarka %{browser_name} nie jest zgodna z tą kampanią. Aby zapewnić sobie najlepsze wrażenia podczas korzystania ze strony, użyj najnowszej wersji przeglądarki Chrome, Firefox, Safari lub Edge.
     browser_not_compatible_description: Aby zapewnić sobie najlepsze wrażenia podczas korzystania z witryny, używaj najnowszych wersji przeglądarek Chrome, Firefox, Safari lub Edge.
     browser_not_compatible_detail: Twoja przeglądarka %{browser_name} nie jest zgodna z tą kampanią. Aby uzyskać najlepsze wrażenia podczas korzystania ze strony, użyj najnowszej wersji przeglądarki Chrome, Firefox, Safari lub Edge.
+    browser_proctoring_description: Korzystasz z przeglądarki %{browser_name}, która może mieć pewne ograniczenia dotyczące funkcji nadzoru nad egzaminami udostępnionych w ramach tej kampanii. Aby zapewnić sobie najlepsze wrażenia podczas korzystania z serwisu, zalecamy używanie przeglądarki Chrome lub Edge.
+    browser_proctoring_title: "%{browser_name} Wykryto przeglądarkę"
     browser_version_fix_description_first: 'Użyj obsługiwanej przeglądarki: Chrome, Firefox, Edge lub Safari'
     browser_version_fix_title: Twoja wersja przeglądarki nie jest obsługiwana.
     camera: Wideo i audio
@@ -43,6 +45,7 @@ pl:
     camera_check: Test kamery i mikrofonu
     camera_check_abruptly_ended: Kamera została nagle wyłączona. Proszę włączyć kamerę i ponownie przeprowadzić kontrolę.
     camera_check_description: Sprawdź, czy kamera i mikrofon działają prawidłowo podczas nagrywania
+    camera_check_failed: Sprawdzenie pliku wideo nie powiodło się
     camera_check_passed: Sprawdzenie obrazu i dźwięku zakończyło się powodzeniem
     camera_check_record_instruction: Kliknij przycisk „Nagraj” i przeczytaj na głos poniższy fragment
     camera_test_step: 'Krok: Test obrazu i dźwięku'
@@ -69,6 +72,9 @@ pl:
     error_uploading_audio_detail: Wystąpił błąd podczas przesyłania pliku audio
     error_uploading_video: Wystąpił błąd podczas przesyłania filmu
     error_uploading_video_detail: Wystąpił błąd podczas przesyłania filmu
+    face_detection_error: Wystąpił błąd podczas wykrywania twarzy. Sprawdź, czy kamera działa, i spróbuj ponownie.
+    face_detection_failed: W nagraniu wideo nie wykryto twarzy. Upewnij się, że kamera nie jest zasłonięta, a Twoja twarz jest widoczna.
+    face_not_detected_warning: Nie wykryto twarzy. Upewnij się, że Twoja twarz jest widoczna dla kamery.
     fail: Niepowodzenie
     file_submission_already_exists: Otrzymaliśmy już Twoją odpowiedź na to pytanie. Odśwież stronę, a jeśli nadal nie widzisz swojej poprzedniej odpowiedzi, skontaktuj się z administratorem.
     follow_these_steps: Aby rozwiązać problemy wykryte podczas sprawdzania systemu, wykonaj poniższe czynności
@@ -162,6 +168,8 @@ pl:
     select_video_device: Wybierz urządzenie wideo
     selected_count: Wybrane
     skill_type: Typ umiejętności
+    speech_verification_error: Podczas weryfikacji Twojej wypowiedzi wystąpił błąd. Spróbuj ponownie.
+    speech_verification_failed: Twoja wypowiedź nie zgadzała się z frazą testową. Spróbuj jeszcze raz i wypowiedz tę frazę wyraźnie.
     start_campaign_message_proctored: To jest kampania nadzorowana, kliknij przycisk '%{buttonText}', aby rozpocząć aktywność.
     start_campaign_message_timed: To jest kampania na czas, kliknij przycisk '%{buttonText}', aby rozpocząć aktywności.
     start_readiness_check: Rozpocznij kontrolę gotowości
@@ -186,10 +194,12 @@ pl:
       one: Ja krzyczę, ty krzyczysz, wszyscy krzyczymy o lody!
       seven: Każdy dzień to nowy początek - powiedz to głośno i z dumą!
       six: Pizza czy pasta? Decyzje są trudne.
+      ten: Jestem gotowy. To jest nagranie testowe, które ma na celu sprawdzenie, czy mój mikrofon działa prawidłowo.
       three: Testowanie, raz dwa trzy, dźwięk jest czysty jak może być!
       two: Szybki brązowy lis przeskakuje leniwego psa.
     system_check_audio_title: Wypowiedz i powtórz poniższe zdanie 3 razy.
     system_check_complete: Sprawdzenie systemu zakończone
+    system_check_face_detection: Wykrywanie twarzy
     system_check_failed: Sprawdzenie systemu nie powiodło się
     system_check_failed_description: Proszę rozwiązać te problemy i ponownie przeprowadzić kontrolę systemu.
     system_check_failed_message: Niektóre testy systemowe zakończyły się niepowodzeniem. Proszę sprawdzić szczegóły i spróbować ponownie.
@@ -200,6 +210,7 @@ pl:
     system_check_retake: Nie, chcę powtórzyć
     system_check_run_again: Uruchom ponownie
     system_check_session_not_found: Nie znaleziono sesji sprawdzania systemu. Proszę rozpocząć nowe sprawdzanie systemu.
+    system_check_speech_verification: Weryfikacja mowy
     system_check_start_recording: Rozpocznij nagrywanie
     system_check_stop_recording: Zatrzymaj nagrywanie
     system_check_test_message: świetnie się z tobą rozmawia
@@ -257,6 +268,10 @@ pl:
     video_overlay_label: Wybierz mikrofon i kamerę, kliknij przycisk „Nagrywaj”, a po jego naciśnięciu przeczytaj poniższą wiadomość
     video_overlay_message: Wybierz mikrofon i kamerę, kliknij „Nagraj”, a następnie przeczytaj na głos zdanie wyświetlone na dole ekranu.
     video_recorder_label: Rejestrator wideo
+    video_upload_failed_camera_access: Nie można uzyskać dostępu do kamery lub mikrofonu. Sprawdź uprawnienia urządzenia i spróbuj ponownie.
+    video_upload_failed_chunk_upload: Nie udało się przesłać części nagrania. Sprawdź połączenie internetowe i spróbuj ponownie.
+    video_upload_failed_finalize: Nagranie zostało zarejestrowane, ale nie udało się go zapisać. Spróbuj ponownie.
+    video_upload_failed_no_recording: Nie znaleziono nagrania do przesłania. Proszę nagrać je ponownie.
     view_details: Zobacz szczegóły
     webgl_api_fix_description_first: Upewnij się, że Twoja przeglądarka obsługuje WebGL i że funkcja ta jest włączona w ustawieniach
     webgl_api_fix_description_second: Zaktualizuj sterowniki graficzne do najnowszej wersji

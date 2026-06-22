@@ -140,9 +140,11 @@ ru:
     not_requested: Еще не запрошено
     ok: Хорошо
     options: Параметры
+    overview: Обзор
     owner: Владелец
     pause: Пауза
     pending: В ожидании
+    permissions: Права доступа
     play: Играть
     policy_version: Версия политики
     policy_version_format: Допускаются только целые числа
@@ -222,9 +224,31 @@ ru:
     update: Обновление
     update_failed: Ошибка обновления
     updated_at: Обновлено
+    updated_by: Обновлено
     updated_successfully: Обновление успешно завершено
     upload: Загрузить
     user_report_pdf_url_not_generated: Не удалось сгенерировать ссылку для скачивания PDF-файла
+    user_reports_approval_status_pending_qc: Ожидается проверка качества
+    user_reports_approval_status_qc_completed: Контроль качества завершен
+    user_reports_assessment_name_not_completed_reason_template: Оценка «%{names}» не завершена
+    user_reports_assessments_name_not_completed_reason_template: Оценки %{names} не завершены
+    user_reports_assessor_not_completed_reason_template: Форма оценщика «%{names}» не заполнена
+    user_reports_assessors_not_completed_reason_template: Формы оценщика %{names} не заполнены
+    user_reports_campaign_artifact_results_pending_reason_message: Результаты по артефактам кампании для этого пользователя ещё не окончательные
+    user_reports_campaign_scoring_pending_reason_message: Результаты кампании для этого пользователя ещё не подсчитаны
+    user_reports_custom_upload_report_reason_message: Источник отчета — пользовательская загрузка
+    user_reports_external_report_pending_reason_message: Ожидание отчета от поставщика
+    user_reports_lead_assessor_not_completed_reason_template: Форма ведущего эксперта «%{names}» не заполнена
+    user_reports_lead_assessors_not_completed_reason_template: Формы главного оценщика %{names} не заполнены
+    user_reports_no_report_module_reason_message: Модуль для данного отчета не найден
+    user_reports_not_prepared_reason_message: Отчет пока не подготовлен
+    user_reports_pending_approval_reason_template: 'Статус утверждения: «%{status}»'
+    user_reports_pending_final_ai_scoring_approval_reason_message: Ожидается окончательное утверждение результатов оценки с использованием ИИ
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Ожидается утверждение результатов оценки QC AI
+    user_reports_pending_qc_approval_reason_message: Ожидается утверждение отчета по контролю качества
+    user_reports_qc_completed_approval_reason_message: Ожидается утверждение окончательного отчета
+    user_reports_report_generating_reason_message: Ведётся формирование отчёта
+    user_reports_report_generation_failed_reason_message: Ошибка при создании отчета
     video: Видео
     view: Просмотр
     view_audio: Просмотр аудио

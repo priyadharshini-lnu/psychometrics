@@ -74,6 +74,7 @@ es-ES:
         subjects_count_added: Asignaturas añadidas con éxito
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: La configuración de puntuación mediante IA solo se puede añadir a las preguntas de tipo «AudioResponse», «VideoResponse» y «TextEntry».
         doesnt_have_header: "'%{sub_header}' no tiene cabecera"
         invalid_headers: 'Las siguientes cabeceras no son válidas: %{headers}'
         invalid_question: ID de pregunta no válido

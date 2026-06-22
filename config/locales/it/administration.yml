@@ -74,6 +74,7 @@ it:
         subjects_count_added: Partecipanti aggiunti con successo
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: La configurazione del punteggio AI può essere aggiunta solo per le domande di tipo AudioResponse, VideoResponse e TextEntry
         doesnt_have_header: "'%{sub_header}' non ha un'intestazione"
         invalid_headers: 'Le seguenti intestazioni non sono valide: %{headers}'
         invalid_question: ID domanda non valido

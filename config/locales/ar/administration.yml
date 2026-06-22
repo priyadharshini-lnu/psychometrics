@@ -74,6 +74,7 @@ ar:
         subjects_count_added: تم إضافة المشاركين بنجاح
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: لا يمكن إضافة إعدادات التقييم باستخدام الذكاء الاصطناعي إلا للأسئلة من أنواع AudioResponse وVideoResponse وTextEntry
         doesnt_have_header: "'%{sub_header}' لا يحتوي على رأس"
         invalid_headers: 'الرؤوس التالية غير صالحة: %{headers}'
         invalid_question: معرف السؤال غير صالح

@@ -140,9 +140,11 @@ bg:
     not_requested: Все още не е поискано
     ok: Добре
     options: Опции
+    overview: Общ преглед
     owner: Собственик
     pause: Пауза
     pending: В очакване
+    permissions: Права за достъп
     play: Играй
     policy_version: Версия на политиката
     policy_version_format: Допускат се само цели числа
@@ -222,9 +224,31 @@ bg:
     update: Актуализирайте
     update_failed: Актуализацията се провали
     updated_at: Актуализирано на
+    updated_by: Актуализирано от
     updated_successfully: Актуализирано успешно
     upload: Качвам
     user_report_pdf_url_not_generated: Не е възможно да се генерира линк за изтегляне на PDF
+    user_reports_approval_status_pending_qc: В очакване на контрол на качеството
+    user_reports_approval_status_qc_completed: Контролът на качеството е завършен
+    user_reports_assessment_name_not_completed_reason_template: Оценката „%{names}“ не е завършена
+    user_reports_assessments_name_not_completed_reason_template: Оценките %{names} не са завършени
+    user_reports_assessor_not_completed_reason_template: Формулярът на оценителя „%{names}“ не е попълнен
+    user_reports_assessors_not_completed_reason_template: Формулярите за оценка %{names} не са попълнени
+    user_reports_campaign_artifact_results_pending_reason_message: Резултатите от артефактите на кампанията за този потребител все още не са окончателни
+    user_reports_campaign_scoring_pending_reason_message: Резултатите от кампанията за този потребител все още не са окончателни
+    user_reports_custom_upload_report_reason_message: Източникът на отчета е качване на потребителски файл
+    user_reports_external_report_pending_reason_message: В очакване на доклад от доставчика
+    user_reports_lead_assessor_not_completed_reason_template: Формулярът за главния оценител %{names} не е попълнен
+    user_reports_lead_assessors_not_completed_reason_template: Формулярите за главния оценител %{names} не са попълнени
+    user_reports_no_report_module_reason_message: Не беше намерен модул за този отчет
+    user_reports_not_prepared_reason_message: Докладът все още не е изготвен
+    user_reports_pending_approval_reason_template: Статусът на одобрението е „%{status}“
+    user_reports_pending_final_ai_scoring_approval_reason_message: В очакване на окончателно одобрение на оценката от ИИ
+    user_reports_pending_qc_ai_scoring_approval_reason_message: В очакване на одобрение на оценката от QC AI
+    user_reports_pending_qc_approval_reason_message: В очакване на одобрение на доклада за контрол на качеството
+    user_reports_qc_completed_approval_reason_message: В очакване на одобрение на окончателния доклад
+    user_reports_report_generating_reason_message: Докладът се изготвя
+    user_reports_report_generation_failed_reason_message: Генерирането на отчета се провали
     video: Видео
     view: Преглед
     view_audio: Виж аудио

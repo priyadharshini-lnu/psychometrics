@@ -12,6 +12,7 @@ ro:
     active: Activă
     active_label: Activă
     active_name: Active
+    active_record_audits_audit_id: ID-ul auditului
     active_record_audits_auditable_id: ID înregistrare
     active_record_audits_auditable_type: Tip de înregistrare
     active_record_audits_audited_changes: Modificări auditate
@@ -19,6 +20,7 @@ ro:
     active_record_audits_old_diff_parse_error: Nu s-a reușit să analizeze JSON cu modificările vechi
     active_record_audits_title: Modificări auditate
     activity: Activitate
+    activity_period: Perioada de desfășurare a activității
     add_admin: Adăugați administrator
     add_admin_role: Adăugați rol de administrator
     add_btn: Adaugă subiect
@@ -55,6 +57,8 @@ ro:
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
     ai_assistant: Asistent AI
+    ai_assistant_model_id_label: ID-ul modelului
+    ai_assistant_model_label: Model
     ai_assistant_model_provider: Furnizor
     ai_assistant_model_region_label: Regiune
     ai_assistant_required: Asistentul AI este necesar
@@ -114,6 +118,12 @@ ro:
     alt_text_long: Depășește limita maximă de 100 de caractere.
     api_keys: Chei API
     api_keys_form_title: Cheie API
+    application: Cerere
+    application_add: Adăugare cerere
+    application_name: Numele aplicației
+    application_name_already_taken: Există deja pentru acest client
+    application_name_format_hint: Sunt permise doar litere și cifre, cu un singur spațiu între cuvinte
+    applications: Aplicații
     apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
     approve_all_questions: Aprobă toate întrebările
     approve_nomination_description: Acest mesaj este trimis unui manager atunci când o nominalizare, făcută de un subordonat direct, trebuie aprobată
@@ -130,6 +140,7 @@ ro:
     assessment_center: 'Centrul de evaluare:'
     assessment_center_group: Grupul centrului de evaluare
     assessment_center_group_placeholder: Selectați grupul Centru de evaluare
+    assessment_center_invites: Invitații la Centrul de evaluare
     assessment_ids: Coduri de evaluare
     assessment_placeholder: Selectați Evaluare
     assessment_question_not_supported: Acest tip de întrebare nu este acceptat în prezent.
@@ -202,6 +213,8 @@ ro:
     audit_log_title: Informații jurnal de audit
     audit_log_type: Tip de înregistrare
     audit_logs: Jurnale de audit
+    audit_logs_export_failed: Nu s-a reușit programarea sarcinii de export. Vă rugăm să încercați din nou.
+    audit_logs_export_queued: Sarcina de export a fost programată cu succes.
     audit_reports: Rapoarte de audit
     auth_type_api_key_header_format_error: Sunt permise doar literele, numerele, liniile de subliniere și cratimele
     auth_type_api_key_header_label: Antetul cheii API
@@ -218,6 +231,7 @@ ro:
     auth_type_oauth_label: OAuth
     auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Acest scor este moderat automat și nu poate fi modificat
+    auto_placeholder: Auto
     automatically_send_invites: Trimiteți automat invitații noilor evaluatori
     availability: Disponibilitate
     available_languages: Limbi disponibile
@@ -240,11 +254,21 @@ ro:
     blocks_title: Blocuri
     booked_at: 'Rezervat la:'
     breadcrumbs_norms_editor: Editor de norme
+    bulk_assessment_download_date_range_required: Vă rugăm să selectați intervalul de date
+    bulk_assessment_download_export_type: Tipul exportului
+    bulk_assessment_download_export_type_required: Vă rugăm să selectați tipul de export
+    bulk_assessment_download_help_text: 'Notă: Dacă evaluările sunt asociate cu dimensiuni diferite, fișierul xslx descărcat va conține foi separate pentru fiecare dimensiune.'
+    bulk_assessment_download_modal_subtitle: Selectați un interval de date și un tip de export, apoi exportați evaluările selectate.
+    bulk_assessment_download_no_data_found: Pentru intervalul de date și evaluările selectate, nu s-au găsit date. Vă rugăm să încercați cu un alt interval de date sau cu alte evaluări.
+    bulk_assessment_download_norm_factor_scores: Scorurile factorului normativ
+    bulk_assessment_download_raw_factor_scores: Scoruri brute ale factorilor
     bulk_assets_modal_choose_csv: Alegeți fișierul CSV
     bulk_assets_modal_choose_zip: Alegeți fișierul ZIP
     bulk_assets_modal_not_csv_file_error: Pentru încărcarea CSV sunt permise numai fișiere CSV. Vă rugăm să încărcați un fișier CSV valid.
     bulk_assets_modal_subtitle: 'Vă rugăm să încărcați <b>un fișier CSV</b> (cu anteturile: user_email, file_name) și <b>un fișier ZIP</b> (conținând fișiere PDF care corespund numelor de fișiere din csv). Fișierul zip trebuie să aibă o dimensiune mai mică de %{max_file_size} MB.'
     bulk_assets_modal_title: Încărcați fișiere CSV și ZIP
+    bulk_export_assessments_file: Fișier de export pentru evaluări în bloc
+    bulk_export_invalid_params: Parametri de export în bloc nevalizi
     bulk_upload_ai_artifacts: Artefacte AI cu încărcare în masă
     campaign: Campanie
     campaign_admin: Administratorul campaniei
@@ -347,6 +371,7 @@ ro:
     cannot_change_type_when_in_use: Nu se poate modifica tipul asistentului AI „%{name}”, deoarece acesta este utilizat în prezent.
     captcha: Verificare Captcha
     case_study: Studii de caz
+    casual: Casual
     categories_approvals: Aprobări
     categories_invitations: Invitaţii
     categories_reminders: Mementouri
@@ -369,6 +394,7 @@ ro:
     client_id_label: Client ID
     client_id_name: oauth_client_id
     client_id_required: Este necesar ID-ul clientului
+    client_ids: ID-urile clienților
     client_ip: IP-ul clientului
     client_logo_label: Logo-ul clientului
     client_secret_label: Secretul clientului
@@ -390,6 +416,7 @@ ro:
     column_usage_stats: Statistici de utilizare
     common: Evaluarea TTE
     common_assessment: Evaluarea TTE
+    common_disabled: Dezactivat
     common_download_sample_file: Descărcați fișierul eșantion
     common_enabled: Activat
     common_import_failure_msg: Eroare la importul fișierului.
@@ -406,6 +433,7 @@ ro:
     concise: Concis
     confidence_interval: Interval de încredere
     confidence_interval_update_success: Intervalul de încredere actualizat cu succes
+    configuration: Configurare
     configure_model_answer_title: Configurați răspunsul model și cuvintele cheie
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
     confirmation_required: Este necesară confirmarea
@@ -418,6 +446,7 @@ ro:
     copy_ai_artifacts: Copiere artefacte AI
     copy_hint: Copiază configurația locurilor, managerilor de centru, evaluatorilor și întâlnirilor și resurselor de mai sus în următoarele centre de evaluare. După copiere, puteți face modificări suplimentare la centrele de evaluare individuale înainte de a continua.
     copy_image_url: Copiază adresa URL a imaginii
+    copy_report_scheduled: Sarcina de copiere a raportului a fost programată.
     copy_text: Text
     copy_to_all: Copiați la alte centre de evaluare
     copy_url: Copiază adresa URL
@@ -439,6 +468,7 @@ ro:
     dashboard: Tablou
     dashboard_capacity_name: Nume capacitate
     dashboard_choose_file_format: Alegeți formatul fișierului
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
     dashboard_dashboard_types_powerbi: PowerBi
     dashboard_dashboards: Dashboards
     dashboard_export_dashboard_to_file: Exportați tabloul de bord în fișier
@@ -479,12 +509,15 @@ ro:
     datasheet: Fișă tehnică
     date_and_time: Data și ora
     date_presets_last_30_days: Ultimele 30 de zile
+    date_presets_last_6_months: Ultimele 6 luni
     date_presets_last_7_days: Ultimele 7 zile
     date_presets_last_month: Luna trecută
     date_presets_last_week: Săptămâna trecută
+    date_presets_last_year: Anul trecut
     date_presets_today: Azi
     date_presets_yesterday: Ieri
     date_range: Interval de date
+    date_range_required: Este necesar să se specifice un interval de date
     dates_completed: Finalizat la
     dates_end: Data de încheiere
     dates_label: Curmale
@@ -638,8 +671,10 @@ ro:
     enable_caching_successfully: Cache-ul a fost activat pentru această evaluare.
     enable_caching_title: Activarea cache-ului evaluării?
     enable_enhance_with_ai_client_level: Vă rugăm să activați funcția Îmbunătățire cu AI la nivel de client.
+    enable_face_detection: Activează detectarea feței
     enable_maintenance: Activați întreținerea
     enable_mobile_proctoring: Activați supravegherea mobilă
+    enable_phrase_verification: Activează verificarea frazelor
     enable_system_check: Activează verificarea sistemului
     enable_transcription: Activați transcrierea
     enable_transcription_msg: Activați transcrierea pentru a utiliza punctajul AI la întrebările cu răspunsuri video/audio.
@@ -650,9 +685,12 @@ ro:
     end_time_must_be_after_start_time: Ora de încheiere trebuie să fie după ora de începere
     enhance_with_ai: Îmbunătățiți cu AI
     enhance_with_ai_requires_ai_assistants: Pentru a îmbunătăți cu AI, este necesar să fie activată funcția Asistenți AI.
+    enter_client_ids: Introduceți ID-urile clienților
     enter_description: Introduceți descrierea
     enter_name: Introduceți numele
+    enter_project_ids: Introduceți ID-urile proiectelor
     enter_question_id: Introduceți ID-ul întrebării
+    enter_report_ids: Introduceți ID-urile rapoartelor
     enter_schema_key: Introduceți cheia schemei
     error: Eroare
     error_color: Culoare eroare
@@ -694,6 +732,7 @@ ro:
     export_failure_msg: Eroare la exportul nivelurilor de competență
     export_success: Lucrarea de export de administrator a fost programată cu succes. Vă rugăm să verificați starea notificării.
     export_success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare
+    export_to_csv: Export în format CSV
     export_with_inactive_users: Exportați cu utilizatori inactivi
     external_report_id: ID-ul raportului extern
     external_score: Scor extern
@@ -747,9 +786,12 @@ ro:
     file_size_must_be_less_than_mb: Fișierul {{name}} depășește dimensiunea maximă de {{max_size_mb}} MB
     file_upload_failed: Nu s-a putut încărca {{name}}
     fill_empty_score_msg: Completează toate scorurile finale înainte de a salva.
+    filter_by_client: Filtrează după client
+    filter_by_client_help: Selectați un client pentru a-i încărca proiectele
     final_score_empty_err_msg: Scorul final al jocului „%{factor_name}” nu poate fi gol.
     final_score_empty_msg: Suma finală nu poate fi goală.
     finalized_at: Finalizat la
+    fingerprint: Amprentă digitală
     first_name_required: Prenumele este obligatoriu
     fix_grammar: Corectează gramatica
     fixed_time: Timp fix
@@ -798,6 +840,8 @@ ro:
     handoff_invalid_token: Token de autentificare nevalid sau expirat
     handoff_token_expired: Tokenul de autentificare a expirat sau a fost deja utilizat
     handoff_user_disabled: Contul dumneavoastră este dezactivat
+    has_api_keys: Are chei API
+    has_public_keys: Are chei publice
     header_logout_content: Apasă Anulare dacă vrei să continui să lucrezi. Apasă Ok pentru a deloga utilizatorul curent.
     header_logout_title: Ești sigur că vrei să te deloghezi?
     hide_all: Ascundeți tot
@@ -860,6 +904,7 @@ ro:
     idp_development_actions_custom: Obicei
     idp_development_actions_date_range: Data de începere - Data de sfârșit
     idp_development_actions_edit_plan_to_add_development_actions: Editați planul și adăugați acțiuni de dezvoltare.
+    idp_development_actions_errors_invalid_learning_style: "„%{learning_style}” nu este un stil de învățare valid. Opțiunile valide sunt: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: Stilul de învățare nu poate fi gol
     idp_development_actions_generate_by_ai: Generați prin AI
     idp_development_actions_generate_more: Generează mai mult
@@ -914,6 +959,7 @@ ro:
     idp_revert_skill_to_public_errors_skill_already_public: Skill este deja publică
     idp_revert_skill_to_public_errors_skill_not_found: Abilitate negăsită
     idp_revert_skill_to_public_success_base_message: Abilitatea "%{skill_name}" este acum vizibilă pentru managerul dvs.
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} iar planul dumneavoastră IDP a fost trimis spre aprobare"
     idp_select_by_tags: Selectează după etichete
     idp_select_interview_question: Începeți să tastați pentru a căuta și selectați întrebarea
     idp_select_reflection_question: Începeți să tastați pentru a căuta și selectați întrebarea
@@ -1002,6 +1048,7 @@ ro:
     innovation_styles_list_position: Poziție
     innovation_styles_resource_confirmations_delete_body: "<p>Sunteți sigur că doriți să ștergeți acest stil de inovație?</p>\n"
     instruction_messages: Mesaje de instrucțiuni
+    instructions: Instrucțiuni
     instructions_actions_saved: Instrucțiuni salvate cu succes
     instructions_enable: Activați instrucțiunile
     instructions_save: Instrucțiuni de salvare
@@ -1030,6 +1077,7 @@ ro:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Microsite
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Vezi toate programele Mettl
@@ -1050,11 +1098,15 @@ ro:
     interview_questions_import_failure_msg: Eroare la importul fișierului.
     interview_questions_import_success_msg: Importul întrebărilor de interviu în curs. Vă rugăm să verificați starea în notificări.
     interview_questions_question: Întrebare
+    invalid_client_ids: ID-uri de client nevalide
     invalid_confidence_interval: intervalul_de_încredere trebuie să fie 0 sau 1
     invalid_csv_header: CSV conține antete invalide.
+    invalid_json: configurația nu este în format JSON valid
     invalid_leadership_bar: leadership_bar trebuie să fie 0 sau 1
     invalid_norm_option: Opțiunea Normă trebuie să fie între 0 și 3
+    invalid_project_ids: 'ID-uri de proiect nevalide: %{ids}'
     invalid_question_ids: 'Codurile întrebărilor care nu se regăsesc în această evaluare: %{ids}'
+    invalid_report_ids: ID-uri de raport nevalide
     invite_add_invite: Adăugați invitație
     invite_assessment_center: Centrul de evaluare
     invite_basic_info_allow_preferred_language: Permiteți limba preferată
@@ -1078,6 +1130,7 @@ ro:
     invite_request_reason: Motivul
     invite_request_reject: Respinge
     invite_request_remove_confirm_content: Sunteți sigur că doriți %{action} %{status} de la %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} de pe %{subjectName} a fost %{action} cu succes."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Numele subiectului
     invite_request_workshop_time: Timpul atelierului
@@ -1094,6 +1147,7 @@ ro:
     invite_steps_has_errors: conține erori
     invite_steps_send_invitation: Trimite invitație
     invite_subjects_count: Utilizatori
+    invite_subjects_csv_error: 'Rândul %{index}: utilizatorul cu adresa de e-mail %{email} nu figurează în această campanie'
     invite_subjects_csv_imported: "%{count} subiecte importate"
     invite_subjects_description: Puteți adăuga subiecte individual căutând sau încărcand în bloc un fișier csv.
     invite_subjects_download: Descărcare
@@ -1133,6 +1187,7 @@ ro:
     join_room: Intră în cameră
     keep_original: Păstrați originalul
     key: Cheie
+    key_id: ID-ul cheii
     keywords: Cuvinte cheie
     keywords_placeholder: Introduceți cuvintele cheie separate prin virgule.
     language_id: Codul limbii
@@ -1225,6 +1280,7 @@ ro:
     min_value: Valoarea minimă
     minimum_10_words: Minimum 10 cuvinte
     minimum_download_speed: Viteza minimă de descărcare (în Mbps)
+    minimum_face_detection_ratio: Rata minimă de detectare a fețelor
     minimum_system_check_validity: Durata minimă a valabilității verificării sistemului pentru campanie trebuie să fie de 15 minute
     minimum_upload_speed: Viteza minimă de încărcare (în Mbps)
     missing_min_max_values: Sunt necesare valorile minime și maxime.
@@ -1274,6 +1330,7 @@ ro:
     norm_region: Regiunea normă
     norm_region_form_select: Selectați regiunea normă
     norm_region_update_success: Regiunea Norm a fost actualizată cu succes
+    normal: Normal
     normalize_factor_scores: Normalizați scorurile factorilor
     norms: Normele
     norms_copy_successfully: Norma "%{name}" a fost copiată cu succes.
@@ -1772,6 +1829,7 @@ ro:
         view: Vedere
         view_recordings: Vizualizați înregistrările
     permissions_360_campaigns: Permisiuni specifice campaniilor 360
+    permissions_updated: Permisiunile au fost actualizate cu succes
     piped_text: Text încadrat
     piped_text_modal_assessment_center: Centrul de evaluare
     piped_text_modal_campaign_link: Link către campanie
@@ -1815,6 +1873,7 @@ ro:
     privacy_text: Textul de confidențialitate
     privacy_text_placeholder: Introduceți textul de confidențialitate
     proctoring: Supravegherea
+    proctoring_allow_on_assessment_center: Permite supravegherea în cadrul centrului de evaluare
     proctoring_enable: Activați supravegherea
     proctoring_errors_timed_only: Supravegherea selectivă poate fi activată numai pentru evaluările cu durată limitată.
     proctoring_fixed_time_required: Activați opțiunea „Timp fix” pentru a selecta această opțiune
@@ -1867,8 +1926,13 @@ ro:
     project: Proiect
     project_admin: Administrator de proiect
     project_admins: Administratori de proiect
+    project_assessor: Evaluator de proiecte
     project_features: Caracteristicile proiectului
+    project_ids: Coduri de proiect
+    project_ids_required: "„project_ids” este obligatoriu pentru acest tip de raport"
+    project_licenses: Licențe de proiect
     project_manager: Manager de proiect
+    project_not_related_to_client: Proiectul „%{project_id}” nu aparține clientului
     project_number: Numărul proiectului
     project_participants_column_campaigns: Campanii
     project_participants_column_createdAt: Creat la
@@ -1964,6 +2028,22 @@ ro:
     provider_change_confirm_title: Vrei să schimbi furnizorul?
     provider_previously_used_warning: Acest asistent a generat anterior rezultate folosind „%{from}”. Schimbarea în „%{to}” poate modifica comportamentul asistentului pentru viitoarele solicitări de generare.
     psychometric: Psihometrice
+    public_key: Cheie publică
+    public_key_add: Adăugare cheie publică
+    public_key_cannot_be_changed: nu poate fi modificat după creare
+    public_key_copy_private_key: Copierea cheii private
+    public_key_created: Cheia publică a fost creată cu succes
+    public_key_generate: Generare pereche de chei
+    public_key_generate_button: Generare pereche de chei RSA
+    public_key_generate_info: Se va genera o pereche de chei RSA de 2048 de biți. Se va stoca doar cheia publică. Copiați și păstrați în siguranță cheia privată — aceasta nu va mai fi afișată.
+    public_key_invalid_format: trebuie să fie o cheie publică RSA validă în format PEM
+    public_key_must_be_public: trebuie să fie o cheie publică, nu o cheie privată
+    public_key_paste_placeholder: Lipiți aici cheia publică RSA în format PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Cheie publică (PEM)
+    public_key_private_key_copied: Cheia privată a fost copiată în clipboard
+    public_key_private_key_label: Cheie privată (PEM)
+    public_key_private_key_warning: Aceasta este singura ocazie în care cheia privată va fi vizibilă. Copiați-o acum și păstrați-o într-un loc sigur.
+    public_keys: Chei publice
     question_center: Centrul de întrebări
     question_center_page_title: Centrul de întrebări - Tablou de bord - Mercer Lighthouse
     question_editor_change_type: Schimbă tipul
@@ -2105,6 +2185,8 @@ ro:
     report_help_description: Textul de ajutor afișat pe fișa de raport din tabloul de bord al utilizatorului
     report_help_name: Ajutor pentru rapoarte
     report_id: ID raport
+    report_ids: ID-uri de raport
+    report_ids_required: Sunt necesare ID-urile rapoartelor
     report_name: Numele raportului
     report_no_evaluations: Raportul pentru %{user} nu este disponibil – nu au fost primite evaluări.
     report_not_generated: Raportul pentru %{user} îndeplinește condițiile de disponibilitate, dar nu a fost încă generat. Vă rugăm să generați raportul mai întâi.
@@ -2125,6 +2207,17 @@ ro:
     report_review_statuses_qc_completed: QC finalizat
     report_review_statuses_qc_in_progress: QC în curs de desfășurare
     report_status: Stadiul raportului
+    report_type: Tipul raportului
+    report_types:
+      active_clients_projects: Clienți activi și proiecte
+      client_assessment_counts: Evaluarea clienților contează
+      hogan_usage_report: Utilizarea evaluării Hogan
+      json_data_report: Raport privind datele JSON
+      pearson_usage_report: Utilizarea instrumentelor de evaluare Pearson
+      report_usage_summary: Rezumatul utilizării raportului
+      saville_usage_report: Utilizarea evaluării Saville
+      user_created_dates: Date create de utilizatori
+      user_reports_export: Exportul rapoartelor utilizatorilor
     reports: Rapoarte
     reports_copy_copy: Copiați
     reports_copy_copy_report: Copiați raportul
@@ -2178,6 +2271,7 @@ ro:
     role_client_admin: Administrare clienți
     role_project_admin: Administrator de proiect
     role_superadmin: Superadministrator
+    run: Alergă
     saml_idp_certificate_available: Disponibil (click pentru copiere)
     saml_idp_certificate_label: Certificat
     saml_idp_entity_id_label: ID entități/Emitent
@@ -2389,6 +2483,9 @@ ro:
     schema_key_required: Cheia schemei este necesară
     schema_key_type: Tip cheie
     schema_key_unique: Cheile schemei trebuie să fie unice
+    scope: Domeniul de aplicare
+    scope_client: Client
+    scope_global: La nivel mondial
     score: Scor
     score_approval_not_allowed_to_approve: Nu aveți voie să aprobați acest scor.
     score_approval_not_allowed_to_discard: Nu aveți voie să renunțați la acest scor.
@@ -2541,11 +2638,17 @@ ro:
     security_settings_security_setting: Setare de securitate
     select_admin_role: Selectați rolul de administrator
     select_assessment_language: Selectați limba de evaluare
+    select_client: Selectați clientul
     select_end_time: Selectați ora de încheiere
     select_language_to_translate: Vă rugăm să selectați limba pentru traducere
     select_level: Selectați nivelul
+    select_project_ids_required: Selectați ID-urile de proiect necesare
+    select_projects: Proiecte selectate
+    select_projects_required: Vă rugăm să selectați cel puțin un proiect
     select_question: Căutați o întrebare după nume sau ID
+    select_report_ids_required: Selectați ID-urile rapoartelor necesare
     select_report_language: Selectați limba raportului
+    select_report_type: Selectați tipul de raport
     select_start_time: Selectați ora de începere
     selective_proctoring: Supraveghere selectivă
     send_email: Trimite e-mail
@@ -2758,6 +2861,7 @@ ro:
     sso_settings_slo_url: URL-ul serviciului SLO
     sso_settings_sso_url: Adresa URL a serviciului SSO
     sso_settings_tab: SSO
+    standard: Standard
     standard_deviation: Abaterea standard
     standard_questions: Întrebări standard
     start: începe
@@ -2874,6 +2978,9 @@ ro:
     threesixity_advance_settings_factors: Factori
     threesixity_close_content: Sigur doriți să închideți Creatorul de campanii Multi Rater? Orice lucru de personalizare nesalvat se va pierde. Vă rugăm să vă confirmați decizia.
     threesixity_close_title: Închideți Creatorul de campanii Multi Rater?
+    threesixity_instructions_creation_empty: 'Gol: Începeți cu un chestionar gol și personalizați-l în funcție de nevoile dvs. specifice.'
+    threesixity_instructions_creation_previous: 'Anterior: Selectați o evaluare anterioară ca punct de plecare și efectuați modificările necesare.'
+    threesixity_instructions_creation_standard: 'Standard: Utilizați un șablon prestabilit care conține întrebări și indicatori folosiți frecvent.'
     threesixity_instructions_creation_sub_title: Vă rugăm să selectați tipul de campanie pe care doriți să o creați.
     threesixity_instructions_creation_title: Bine ați venit la Creatorul de campanii Multi Rater!
     threesixity_instructions_customization_sub_title: Selectați șablonul și factorii care urmează să fie incluși în evaluare.
@@ -2897,6 +3004,7 @@ ro:
     threesixty_campaigns_manage_manage_relationships: Gestionați relațiile...
     threesixty_campaigns_manage_report: Raport
     threesixty_campaigns_menu_datasheet_title: Fișă tehnică
+    threesixty_campaigns_menu_messages_title: Mesaje
     threesixty_campaigns_menu_participants_title: Participanţii
     threesixty_campaigns_menu_report_menu_report_approval_title: Setări de aprobare a rapoartelor
     threesixty_campaigns_menu_report_menu_report_options_title: Opțiuni de raportare
@@ -3020,6 +3128,7 @@ ro:
     x_axis_interval_label: Intervalul axei X
     y_axis_interval_label: Intervalul axei Y
     year: Țara
+    year_range: Intervalul de ani
     years: Ani
     yoodli: Yoodli
     yoodli_activity_id: ID-ul activității Yoodli

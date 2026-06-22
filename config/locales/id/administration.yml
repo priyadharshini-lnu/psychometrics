@@ -74,6 +74,7 @@ id:
         subjects_count_added: Subjek berhasil ditambahkan
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Konfigurasi penilaian AI hanya dapat ditambahkan untuk soal-soal tipe AudioResponse, VideoResponse, dan TextEntry
         doesnt_have_header: "'%{sub_header}' tidak memiliki header"
         invalid_headers: 'Header berikut tidak valid: %{headers}'
         invalid_question: ID pertanyaan tidak valid

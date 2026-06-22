@@ -74,6 +74,7 @@ ro:
         subjects_count_added: Utilizatori adăugate cu succes
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Configurația de notare AI poate fi adăugată numai pentru întrebările de tip AudioResponse, VideoResponse și TextEntry
         doesnt_have_header: "'%{sub_header}' nu are antet"
         invalid_headers: 'Următoarele anteturi sunt nevalide: %{headers}'
         invalid_question: ID întrebare nevalid

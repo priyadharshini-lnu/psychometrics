@@ -622,6 +622,7 @@ nl:
         roles:
           campaign_admin: Campagne Admin
           client_admin: Klant Admin
+          client_assessor: Klantbeoordelaar
           manager: Manager
           member: Gebruiker
           project_admin: Projectbeheerder
@@ -727,6 +728,7 @@ nl:
           admins:
             admin: Admin
             campaign_admin: Campagne Admin
+            client_assessor: Klantbeoordelaar
             project_admin: Projectbeheerder
             regular: Klant Admin
             superadmin: Superbeheerder
@@ -736,6 +738,7 @@ nl:
           campaign_admin: Campagne Admin
           case_study: Casestudy
           client_admin: Klant Admin
+          client_assessor: Klantbeoordelaar
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -859,6 +862,8 @@ nl:
         bulk_download_idp_reports: IDP-rapporten in bulk downloaden
         bulk_download_reports: Bulkrapporten downloaden
         bulk_download_user_reports: Bulk Download Gebruikersrapporten
+        bulk_export_norm_factor_scores: Bulk-export van normfactorscores
+        bulk_export_raw_factor_scores: Bulk-export van ruwe factorscores
         bulk_generate_user_campaign_ai_artifact_results: Genereer bulksgewijs resultaten van AI-artefacten voor campagnes
         bulk_regenerate_reports: Campagneverslagen opnieuw genereren
         bulk_regenerate_threesixty_reports: Regenereren van drieënzestig onderwerpsrapporten
@@ -871,10 +876,12 @@ nl:
         completion_status_export: Export van voltooiingsstatus
         copy_as_template_or_campaign: Campagne kopiëren als sjabloon
         copy_dimension: Dimensie kopiëren
+        copy_report: Rapport kopiëren
         create_threesixty_campaign: Creëer DrieZestig Campagne
         data_report_export: Gegevensrapport exporteren
         export_admin_with_permissions: Admin exporteren met machtigingen
         export_assessment_questions: Vragen over exportbeoordeling
+        export_audit_logs: Exportlogboeken exporteren
         export_campaign_ai_artifacts: Exportcampagne-AI-artefacten
         export_campaign_ai_artifacts_results: Exporteer resultaten van AI-artefacten van campagnes
         export_campaign_datasheet: Gegevensblad exportcampagne
@@ -964,6 +971,8 @@ nl:
       errors:
         no_plans: Geen actieve IDP-plannen gevonden
     close: Sluit
+    copy_report:
+      failed: Het kopiëren van het rapport is mislukt
     details: Details
     errors: Fouten
     invalid_job: Deze melding komt overeen met verwijderde record
@@ -1454,6 +1463,7 @@ nl:
       external_user_id: Skillvue Kandidaat-ID
       id: Campagne Beoordeling ID
       locales: Locaties
+      microsite_assessment_url: URL voor de beoordeling van de microsite
       microsite_error_message: Foutmelding
       microsite_participant_id: Microsite-deelnemers-ID
       microsite_registration_status: Registratiestatus
@@ -2105,6 +2115,7 @@ nl:
     invalid_token: Er is iets misgegaan. Laad de pagina opnieuw en probeer het opnieuw.
     max_regeneration_limit: Maximale regeneratielimiet overschreden, neem contact op met uw administratie.
     messages:
+      content_type_invalid: ongeldig inhoudstype
       data_report_blank: Gegevensrapport bestaat niet
       password_complexity:
         digit:
@@ -3440,12 +3451,14 @@ nl:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Klantbeoordelaar
             project_admin: Projectbeheerder
             regular: Klant Admin
             superadmin: Superbeheerder
           agile: AGIEL
           case_study: Casestudy
           client_admin: Klant Admin
+          client_assessor: Klantbeoordelaar
           hogan: Hogan
           manager: Manager
           member: Gebruiker
@@ -3579,6 +3592,7 @@ nl:
         roles:
           campaign_admin: Campagne Admin
           client_admin: Klant Admin
+          client_assessor: Klantbeoordelaar
           manager: Manager
           member: Gebruiker
           project_admin: Projectbeheerder
@@ -3649,12 +3663,14 @@ nl:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Klantbeoordelaar
             project_admin: Projectbeheerder
             regular: Klant Admin
             superadmin: Superbeheerder
           agile: AGIEL
           case_study: Casestudy
           client_admin: Klant Admin
+          client_assessor: Klantbeoordelaar
           hogan: Hogan
           manager: Manager
           member: Gebruiker
@@ -4116,6 +4132,7 @@ nl:
       campaign_assessor: Campagne Assessor
       campaign_user: Campagne Gebruiker
       client_admin: Klant Admin
+      client_assessor: Klantbeoordelaar
       project_admin: Projectbeheerder
       superadmin: Superbeheerder
     superadmins: Superbeheerders

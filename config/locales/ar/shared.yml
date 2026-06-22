@@ -140,9 +140,11 @@ ar:
     not_requested: لم يتم طلبه بعد
     ok: موافق
     options: خيارات
+    overview: نظرة عامة
     owner: المالك
     pause: توقف مؤقت
     pending: قيد الانتظار
+    permissions: الأذونات
     play: تشغيل
     policy_version: إصدار السياسة
     policy_version_format: يُسمح فقط بالأرقام الصحيحة
@@ -224,9 +226,31 @@ ar:
     update: تحديث
     update_failed: فشل التحديث
     updated_at: تم التحديث في
+    updated_by: تم التحديث بواسطة
     updated_successfully: تم التحديث بنجاح
     upload: رفع
     user_report_pdf_url_not_generated: تعذر إنشاء رابط تنزيل ملف PDF
+    user_reports_approval_status_pending_qc: في انتظار مراجعة الجودة
+    user_reports_approval_status_qc_completed: اكتمل فحص الجودة
+    user_reports_assessment_name_not_completed_reason_template: لم يتم إكمال التقييم %{names}
+    user_reports_assessments_name_not_completed_reason_template: لم يتم إكمال التقييمات %{names}
+    user_reports_assessor_not_completed_reason_template: نموذج المُقيِّم %{names} لم يتم ملؤه
+    user_reports_assessors_not_completed_reason_template: لم يتم ملء استمارات المُقيِّم %{names}
+    user_reports_campaign_artifact_results_pending_reason_message: لم يتم الانتهاء من نتائج عناصر الحملة لهذا المستخدم
+    user_reports_campaign_scoring_pending_reason_message: لم يتم تحديد النتائج النهائية للحملة بالنسبة لهذا المستخدم
+    user_reports_custom_upload_report_reason_message: مصدر التقرير هو تحميل مخصص
+    user_reports_external_report_pending_reason_message: في انتظار تقرير من المزود
+    user_reports_lead_assessor_not_completed_reason_template: لم يتم ملء نموذج «المُقيِّم الرئيسي» (%{names})
+    user_reports_lead_assessors_not_completed_reason_template: لم يتم ملء استمارات المقيم الرئيسي %{names}
+    user_reports_no_report_module_reason_message: لم يتم العثور على وحدة نمطية لهذا التقرير
+    user_reports_not_prepared_reason_message: لم يتم إعداد التقرير بعد
+    user_reports_pending_approval_reason_template: حالة الموافقة هي «%{status}»
+    user_reports_pending_final_ai_scoring_approval_reason_message: في انتظار الموافقة النهائية على تقييم الذكاء الاصطناعي
+    user_reports_pending_qc_ai_scoring_approval_reason_message: في انتظار الموافقة على تقييم الذكاء الاصطناعي من قسم مراقبة الجودة
+    user_reports_pending_qc_approval_reason_message: في انتظار الموافقة على تقرير مراقبة الجودة
+    user_reports_qc_completed_approval_reason_message: في انتظار الموافقة على التقرير النهائي
+    user_reports_report_generating_reason_message: يجري إعداد التقرير
+    user_reports_report_generation_failed_reason_message: فشل إنشاء التقرير
     video: فيديو
     view: عرض
     view_audio: عرض الصوت

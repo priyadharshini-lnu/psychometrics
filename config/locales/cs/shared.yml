@@ -140,9 +140,11 @@ cs:
     not_requested: Dosud nepožadováno
     ok: OK
     options: Možnosti
+    overview: Přehled
     owner: Majitel
     pause: Pauza
     pending: Čeká na vyřízení
+    permissions: Oprávnění
     play: Hrát
     policy_version: Verze politiky
     policy_version_format: Povolena jsou pouze celá čísla.
@@ -222,9 +224,31 @@ cs:
     update: Aktualizovat
     update_failed: Aktualizace se nezdařila
     updated_at: Aktualizováno dne
+    updated_by: Aktualizováno uživatelem
     updated_successfully: Aktualizace úspěšně dokončena
     upload: Nahrát
     user_report_pdf_url_not_generated: Odkaz ke stažení souboru PDF se nepodařilo vygenerovat
+    user_reports_approval_status_pending_qc: Čeká na kontrolu kvality
+    user_reports_approval_status_qc_completed: Kontrola kvality dokončena
+    user_reports_assessment_name_not_completed_reason_template: Hodnocení „%{names}“ nebylo dokončeno
+    user_reports_assessments_name_not_completed_reason_template: Hodnocení %{names} nebyla dokončena
+    user_reports_assessor_not_completed_reason_template: Formulář posuzovatele „%{names}“ není vyplněn
+    user_reports_assessors_not_completed_reason_template: Formuláře pro posuzovatele %{names} nejsou vyplněny
+    user_reports_campaign_artifact_results_pending_reason_message: Výsledky artefaktů kampaně nejsou pro tohoto uživatele ještě konečné
+    user_reports_campaign_scoring_pending_reason_message: Výsledky kampaně pro tohoto uživatele ještě nejsou konečné
+    user_reports_custom_upload_report_reason_message: Poskytovatel zprávy je vlastní nahraný soubor
+    user_reports_external_report_pending_reason_message: Čekáme na zprávu od poskytovatele
+    user_reports_lead_assessor_not_completed_reason_template: Formulář hlavního hodnotitele z adresy %{names} není vyplněn
+    user_reports_lead_assessors_not_completed_reason_template: Formuláře hlavního hodnotitele %{names} nejsou vyplněny
+    user_reports_no_report_module_reason_message: Pro tento report nebyl nalezen žádný modul
+    user_reports_not_prepared_reason_message: Zpráva ještě není hotová
+    user_reports_pending_approval_reason_template: Stav schválení je „%{status}“
+    user_reports_pending_final_ai_scoring_approval_reason_message: Čeká se na konečné schválení hodnocení umělou inteligencí
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Čeká se na schválení hodnocení QC AI
+    user_reports_pending_qc_approval_reason_message: Čeká se na schválení zprávy o kontrole kvality
+    user_reports_qc_completed_approval_reason_message: Čeká se na schválení závěrečné zprávy
+    user_reports_report_generating_reason_message: Zpráva se právě generuje
+    user_reports_report_generation_failed_reason_message: Vytvoření zprávy se nezdařilo
     video: Video
     view: Zobrazit
     view_audio: Zobrazit zvuk

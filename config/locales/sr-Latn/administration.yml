@@ -74,6 +74,7 @@ sr-Latn:
         subjects_count_added: Subjekti su uspešno dodati
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Конфигурација за бодовање вештачке интелигенције може се додати само за питања типа AudioResponse, VideoResponse и TextEntry.
         doesnt_have_header: "'%{sub_header}' nema zaglavlje"
         invalid_headers: 'Sledeći zaglavlja su nevažeća: %{headers}'
         invalid_question: Nevažeći ID pitanja

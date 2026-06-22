@@ -74,6 +74,7 @@ zh:
         subjects_count_added: 成功添加科目
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI评分配置仅可添加至AudioResponse、VideoResponse和TextEntry类型的问题中
         doesnt_have_header: "%{sub_header}' 没有标题"
         invalid_headers: 以下标头无效： %{headers}
         invalid_question: 问题 ID 无效
@@ -842,6 +843,7 @@ zh:
       list:
         active: 活跃
         created_at: 创建日期
+        id: ID
         name: 名称
         updated_at: 修改日期
       new:
@@ -928,6 +930,7 @@ zh:
       list:
         active: 活跃
         created_at: 创建日期
+        id: ID
         name: 名称
         updated_at: 修改日期
       new:
@@ -1084,6 +1087,7 @@ zh:
         title: 创新风格
       list:
         created_at: 创建日期
+        id: ID
         name: 名称
         position: 职位
         updated_at: 修改日期
@@ -1116,6 +1120,7 @@ zh:
       list:
         condition: 条件
         created_at: 创建日期
+        id: ID
         name: 名称
         position: 职位
         updated_at: 修改日期
@@ -1259,6 +1264,7 @@ zh:
         active: 活跃
         created_at: 创建日期
         dimension_id: 尺寸同上
+        id: ID
         name: 名称
         updated_at: 修改日期
         updated_by: 更新人
@@ -1309,6 +1315,7 @@ zh:
         title: 职业
       list:
         created_at: 创建日期
+        id: ID
         name: 名称
         updated_at: 修改日期
       new:
@@ -1340,6 +1347,7 @@ zh:
       list:
         condition: 条件
         created_at: 创建日期
+        id: ID
         name: 名称
         position: 职位
         updated_at: 修改日期
@@ -1768,10 +1776,15 @@ zh:
         date_format: 日期格式
         date_format_options:
           dd_mm_yyy: 日-月-年
+          mm_yyyy: MM-YYYY
+          yyyy: YYYY
+          yyyy_mm: YYYY-MM
           yyyy_mm_dd: 年月日
         duration_options:
+          '10': 10秒
           '120': 2 分钟
           '180': 3 分钟
+          '30': 30年代
           '300': 5 分钟
           '60': 1 分钟
           '600': 10 分钟
@@ -1779,7 +1792,12 @@ zh:
           enable: 附图片
           preview: 点击预览
           size:
+            large: L
+            medium: M
+            small: S
             title: 网格大小
+            x-small: XS
+            xx-small: XXS
         max_duration: 最长持续时间
         multiple_choice_types:
           dropdown: 下拉式
@@ -1920,6 +1938,7 @@ zh:
         export: 出口翻译
         import: 进口翻译
         import_descr: 请参阅导出功能，提取可用于此处导入的模板。
+    tte: TTE
     update: 更新
     users:
       create:

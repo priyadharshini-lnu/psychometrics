@@ -74,6 +74,7 @@ vi:
         subjects_count_added: Các đối tượng được thêm thành công
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Cài đặt chấm điểm bằng AI chỉ có thể được thêm vào cho các câu hỏi thuộc loại AudioResponse, VideoResponse và TextEntry
         doesnt_have_header: "'%{sub_header}' không có tiêu đề"
         invalid_headers: 'Các tiêu đề sau không hợp lệ: %{headers}'
         invalid_question: ID câu hỏi không hợp lệ

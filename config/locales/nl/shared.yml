@@ -140,9 +140,11 @@ nl:
     not_requested: Nog niet aangevraagd
     ok: Ok
     options: Opties
+    overview: Overzicht
     owner: Eigenaar
     pause: Pauze
     pending: In behandeling
+    permissions: Rechten
     play: Spelen
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
@@ -222,9 +224,31 @@ nl:
     update: Update
     update_failed: Update mislukt
     updated_at: Bijgewerkt op
+    updated_by: Bijgewerkt door
     updated_successfully: Succesvol bijgewerkt
     upload: Uploaden
     user_report_pdf_url_not_generated: De downloadlink voor de PDF kon niet worden gegenereerd
+    user_reports_approval_status_pending_qc: In afwachting van kwaliteitscontrole
+    user_reports_approval_status_qc_completed: Kwaliteitscontrole voltooid
+    user_reports_assessment_name_not_completed_reason_template: De beoordeling %{names} is nog niet voltooid
+    user_reports_assessments_name_not_completed_reason_template: De beoordelingen %{names} zijn nog niet afgerond
+    user_reports_assessor_not_completed_reason_template: Het beoordelaarsformulier %{names} is niet ingevuld
+    user_reports_assessors_not_completed_reason_template: De formulieren voor de beoordelaar %{names} zijn niet ingevuld
+    user_reports_campaign_artifact_results_pending_reason_message: De resultaten van de campagne-artefacten zijn voor deze gebruiker nog niet definitief
+    user_reports_campaign_scoring_pending_reason_message: De campagnescores voor deze gebruiker zijn nog niet definitief
+    user_reports_custom_upload_report_reason_message: De bron van het rapport is een aangepaste upload
+    user_reports_external_report_pending_reason_message: In afwachting van het rapport van de dienstverlener
+    user_reports_lead_assessor_not_completed_reason_template: Het formulier voor de hoofdbeoordelaar %{names} is niet ingevuld
+    user_reports_lead_assessors_not_completed_reason_template: De formulieren voor de hoofdbeoordelaar %{names} zijn niet ingevuld
+    user_reports_no_report_module_reason_message: Er is geen rapportmodule gevonden voor dit rapport
+    user_reports_not_prepared_reason_message: Het rapport is nog niet opgesteld
+    user_reports_pending_approval_reason_template: De goedkeuringsstatus is '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: In afwachting van definitieve goedkeuring van de AI-score
+    user_reports_pending_qc_ai_scoring_approval_reason_message: In afwachting van goedkeuring van de QC AI-score
+    user_reports_pending_qc_approval_reason_message: In afwachting van goedkeuring van het kwaliteitscontrolerapport
+    user_reports_qc_completed_approval_reason_message: In afwachting van goedkeuring van het eindrapport
+    user_reports_report_generating_reason_message: Het rapport wordt gegenereerd
+    user_reports_report_generation_failed_reason_message: Het genereren van het rapport is mislukt
     video: Video
     view: Bekijken
     view_audio: Audio bekijken

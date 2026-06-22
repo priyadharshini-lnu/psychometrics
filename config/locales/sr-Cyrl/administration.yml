@@ -74,6 +74,7 @@ sr-Cyrl:
         subjects_count_added: Предмети успешно додати
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Конфигурација за бодовање вештачке интелигенције може се додати само за питања типа AudioResponse, VideoResponse и TextEntry.
         doesnt_have_header: "'%{sub_header}' нема заглавље"
         invalid_headers: 'Следећи заглавља су неважећи: %{headers}'
         invalid_question: Неважећи ИД питања

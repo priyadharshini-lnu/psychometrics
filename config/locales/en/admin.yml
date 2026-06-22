@@ -371,6 +371,7 @@ en:
     campaigns_users_no_permission_message: You do not have permission to modify
     campaigns_users_title: Users
     campaigns_users_updated_by: Updated By
+    cancel: 取消
     cancel_confirmation_message: Are you sure you want to discard the form progress?
     cancel_confirmation_title: Discard Form Progress
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
@@ -545,6 +546,7 @@ en:
     delete_ok_text: Yes, Delete
     denied: Denied
     dependencies: Dependencies
+    description: 描述
     description_name: description
     description_save: Save Description
     description_save_success: Description saved successfully
@@ -566,6 +568,7 @@ en:
     development_actions_form_project_placeholder: Select a Project
     development_actions_form_skills: Skills
     development_actions_form_skills_placeholder: Select skills
+    development_actions_form_tags: 標籤
     development_actions_form_title: Development Action
     development_actions_global: Is Global Development Action?
     development_actions_heading: Development Actions
@@ -828,6 +831,7 @@ en:
     genders_female: Female
     genders_male: Male
     genders_not_set: Not set
+    generate: 產生
     generate_result_confirm: Generating artifact results for user '%{email}' will remove the existing report which depends on this AI artifact. Are you sure you want to proceed?
     generate_result_info_message: Results are being generated, please refresh the page to see the updated results.
     generate_results: Generate Results
@@ -2310,6 +2314,7 @@ en:
     saml_service_provider_masking_integration: "%{integration} Driven"
     saml_service_provider_masking_manual_disabled: Disabled
     saml_service_provider_masking_manual_enabled: Enabled
+    saml_service_provider_name: 名字
     saml_service_provider_name_placeholder: Enter service provider name
     saml_service_provider_name_required: Name is required
     saml_service_provider_privacy_policy: Privacy Policy Page
@@ -2341,6 +2346,7 @@ en:
     saml_settings_save: Save Setting
     saml_settings_sso_service_url: SSO Service Url
     saml_settings_successfully_saved_msg: SAML Setting was saved successfully.
+    save: 保存
     save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
     save_block: Save Block
     saved_filter_label:
@@ -3027,6 +3033,7 @@ en:
     timezone: TimeZone
     timezone_label: Timezone
     timing: Timing
+    title: Mesaje
     to: To
     token_url_label: Token URL
     token_url_name: oauth_token_url
@@ -3081,6 +3088,7 @@ en:
     upcoming: Upcoming
     update_success: "%{readableResourceName} was updated successfully"
     updated_successfully: AI Assistant was updated successfully.
+    upload: 上传
     upload_media: Upload Media
     upload_required: Please add at least one file to upload
     upload_success: Uploaded successfully

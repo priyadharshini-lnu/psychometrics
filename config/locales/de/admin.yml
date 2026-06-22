@@ -20,6 +20,7 @@ de:
     active_record_audits_old_diff_parse_error: JSON mit alten Änderungen konnte nicht geparst werden
     active_record_audits_title: Geprüfte Änderungen
     activity: Aktivität
+    activity_period: Aktivitätszeitraum
     add_admin: Admin hinzufügen
     add_admin_role: Admin-Rolle hinzufügen
     add_btn: Thema hinzufügen
@@ -117,6 +118,12 @@ de:
     alt_text_long: Überschreitet die Höchstgrenze von 100 Zeichen.
     api_keys: API-Schlüssel
     api_keys_form_title: api-Schlüssel
+    application: Anwendung
+    application_add: Anwendung hinzufügen
+    application_name: Anwendungsname
+    application_name_already_taken: Ist für diesen Kunden bereits vorhanden
+    application_name_format_hint: Es sind nur Buchstaben und Zahlen erlaubt, mit einem einzigen Leerzeichen zwischen den Wörtern
+    applications: Anwendungen
     apply_to_existing_users: Diese Änderung auf bestehende Benutzer in dieser Kampagne anwenden
     approve_all_questions: Alle Fragen genehmigen
     approve_nomination_description: Diese Nachricht wird an einen Vorgesetzten gesendet, wenn eine Nominierung, die von einem direkten Mitarbeiter gemacht wurde, genehmigt werden muss
@@ -133,6 +140,7 @@ de:
     assessment_center: 'Assessment Center:'
     assessment_center_group: Assessment Center Gruppe
     assessment_center_group_placeholder: Assessment Center-Gruppe auswählen
+    assessment_center_invites: Einladungen zum Assessment Center
     assessment_ids: Bewertungs-IDs
     assessment_placeholder: Bewertung auswählen
     assessment_question_not_supported: Dieser Fragetyp wird derzeit nicht unterstützt.
@@ -205,6 +213,8 @@ de:
     audit_log_title: Audit-Log-Informationen
     audit_log_type: Satzart
     audit_logs: Audit-Protokolle
+    audit_logs_export_failed: Der Exportauftrag konnte nicht geplant werden. Bitte versuchen Sie es erneut.
+    audit_logs_export_queued: Der Exportauftrag wurde erfolgreich geplant.
     audit_reports: Audit-Berichte
     auth_type_api_key_header_format_error: Nur Buchstaben, Zahlen, Unterstriche und Bindestriche sind erlaubt
     auth_type_api_key_header_label: API-Schlüssel-Kopfzeile
@@ -244,11 +254,21 @@ de:
     blocks_title: Blöcke
     booked_at: 'Gebucht bei:'
     breadcrumbs_norms_editor: Norm Editor
+    bulk_assessment_download_date_range_required: Bitte wählen Sie einen Zeitraum aus
+    bulk_assessment_download_export_type: Exporttyp
+    bulk_assessment_download_export_type_required: Bitte wählen Sie die Exportart aus
+    bulk_assessment_download_help_text: 'Hinweis: Wenn Bewertungen mit verschiedenen Dimensionen verknüpft sind, enthält die heruntergeladene XSLX-Datei für jede Dimension ein eigenes Blatt.'
+    bulk_assessment_download_modal_subtitle: Wählen Sie einen Datumsbereich und eine Exportart aus und exportieren Sie anschließend die ausgewählten Bewertungen.
+    bulk_assessment_download_no_data_found: Für den ausgewählten Zeitraum und die ausgewählten Prüfungen wurden keine Daten gefunden. Bitte versuchen Sie es mit einem anderen Zeitraum oder anderen Prüfungen.
+    bulk_assessment_download_norm_factor_scores: Normierte Faktorscores
+    bulk_assessment_download_raw_factor_scores: Rohfaktorscores
     bulk_assets_modal_choose_csv: CSV-Datei auswählen
     bulk_assets_modal_choose_zip: ZIP-Datei auswählen
     bulk_assets_modal_not_csv_file_error: Für den CSV-Upload sind nur CSV-Dateien zulässig. Bitte laden Sie eine gültige CSV-Datei hoch.
     bulk_assets_modal_subtitle: 'Bitte laden Sie <b>eine CSV-Datei</b> (mit den Spaltenüberschriften: user_email, file_name) und <b>eine ZIP-Datei</b> (mit PDF-Dateien, deren Namen mit den Dateinamen aus der CSV-Datei übereinstimmen) hoch. Die ZIP-Datei darf nicht größer als %{max_file_size} MB sein.'
     bulk_assets_modal_title: CSV- und ZIP-Dateien hochladen
+    bulk_export_assessments_file: Exportdatei für Sammelbescheide
+    bulk_export_invalid_params: Ungültige Parameter für den Massenexport
     bulk_upload_ai_artifacts: Bulk-Upload KI-Artefakte
     campaign: Event
     campaign_admin: Kampagnenverwaltung
@@ -374,6 +394,7 @@ de:
     client_id_label: Kunden-ID
     client_id_name: oauth_client_id
     client_id_required: Kunden-ID ist erforderlich
+    client_ids: Kunden-IDs
     client_ip: Kunde Ip
     client_logo_label: Kundenlogo
     client_secret_label: Geheimer Clientschlüssel
@@ -412,6 +433,7 @@ de:
     concise: Prägnant
     confidence_interval: Konfidenzintervall
     confidence_interval_update_success: Konfidenzintervall erfolgreich aktualisiert
+    configuration: Konfiguration
     configure_model_answer_title: Modellantwort und Schlüsselwörter konfigurieren
     confirm_remove_admin: Sind Sie sicher, dass Sie den Admin-Benutzer mit der E-Mail '%{email}' entfernen möchten?
     confirmation_required: Bestätigung erforderlich
@@ -424,6 +446,7 @@ de:
     copy_ai_artifacts: AI-Artefakte kopieren
     copy_hint: Kopiert die obige Konfiguration von Plätzen, Center-Managern, Beurteilern und Meetings &amp; Ressourcen auf die folgenden Assessment Center. Nach dem Kopieren können Sie weitere Änderungen an den einzelnen Assessment Centern vornehmen, bevor Sie fortfahren.
     copy_image_url: Bild-URL kopieren
+    copy_report_scheduled: Der Berichtskopierauftrag wurde eingeplant.
     copy_text: Text
     copy_to_all: Kopie an andere Assessment Center
     copy_url: URL kopieren
@@ -486,12 +509,15 @@ de:
     datasheet: Datenblatt
     date_and_time: Datum und Uhrzeit
     date_presets_last_30_days: Letzte 30 Tage
+    date_presets_last_6_months: Die letzten 6 Monate
     date_presets_last_7_days: Letzte 7 Tage
     date_presets_last_month: Letzter Monat
     date_presets_last_week: Letzte Woche
+    date_presets_last_year: Letztes Jahr
     date_presets_today: Heute
     date_presets_yesterday: Gestern
     date_range: Datumsbereich
+    date_range_required: Der Datumsbereich ist erforderlich
     dates_completed: Abgeschlossen am
     dates_end: Datum des Endes
     dates_label: Daten
@@ -587,6 +613,7 @@ de:
     dimensions_import_modal_owner_select: Wählen Sie einen Eigentümer
     dimensions_import_modal_select_json: JSON-Datei auswählen
     dimensions_index_title: Abmessungen
+    dimensions_resource_confirmations_delete_body: "<p>Möchten Sie diese Dimension wirklich löschen?</p>\n"
     dimensions_resource_confirmations_delete_message: Geben Sie den unten angegebenen Dimensionsnamen in das Textfeld ein, um zu bestätigen
     dimensions_resource_tooltips_export_json: JSON exportieren, um es in andere Plattformen zu importieren
     dimensions_translations_export: Alle exportieren
@@ -644,8 +671,10 @@ de:
     enable_caching_successfully: Für diese Bewertung wurde Caching aktiviert.
     enable_caching_title: Assessment Caching ermöglichen?
     enable_enhance_with_ai_client_level: Bitte aktivieren Sie die Funktion „Mit KI verbessern“ auf Client-Ebene.
+    enable_face_detection: Gesichtserkennung aktivieren
     enable_maintenance: Wartung aktivieren
     enable_mobile_proctoring: Mobile Proctoring aktivieren
+    enable_phrase_verification: Phrasenüberprüfung aktivieren
     enable_system_check: Systemprüfung aktivieren
     enable_transcription: Transkription aktivieren
     enable_transcription_msg: Aktivieren Sie die Transkription, um KI-Bewertungen für Video-/Audio-Antwortfragen zu verwenden.
@@ -656,9 +685,12 @@ de:
     end_time_must_be_after_start_time: Die Endzeit muss nach der Startzeit liegen.
     enhance_with_ai: Mit KI verbessern
     enhance_with_ai_requires_ai_assistants: Für „Mit KI verbessern“ muss die Funktion „KI-Assistenten“ aktiviert sein.
+    enter_client_ids: Kunden-IDs eingeben
     enter_description: Beschreibung eingeben
     enter_name: Name eingeben
+    enter_project_ids: Projekt-IDs eingeben
     enter_question_id: Frage-ID eingeben
+    enter_report_ids: Berichts-IDs eingeben
     enter_schema_key: Schema-Schlüssel eingeben
     error: Fehler
     error_color: Fehler Farbe
@@ -700,6 +732,7 @@ de:
     export_failure_msg: Fehler beim Exportieren von Kompetenzstufen
     export_success: Admin-Exportauftrag wurde erfolgreich geplant. Bitte prüfen Sie den Status in Ihrer Benachrichtigung.
     export_success_msg: Exportieren laufender Entwicklungsmaßnahmen
+    export_to_csv: In CSV exportieren
     export_with_inactive_users: Export mit inaktiven Benutzern
     external_report_id: Externe Berichts-ID
     external_score: Externe Bewertung
@@ -717,6 +750,7 @@ de:
     factors_form_components_ExternalList_title: JSON-Pfade für Partituren
     factors_form_predicate: Prädikat
     factors_form_scoring_strategies_custom_formula: Benutzerdefinierte Formel
+    factors_form_scoring_strategies_tip: " <strong>Fragen (Durchschnitt):</strong> Dies entspricht der aktuellen Bewertungsmethode, wenn Fragen mit einem Faktor verknüpft sind. <br /> <br /> <strong>Fragen (SUMME):</strong> Dies entspricht „Fragen (Durchschnitt)“, jedoch unter Verwendung der SUMME. <br /> <br /> <strong>Fragen anderer Faktoren (Durchschnitt):</strong> Dies entspricht der aktuellen Bewertungsmethode, wenn es Unterfaktoren für einen Faktor gibt; die einzige Änderung ist die Hinzufügung der Gewichtung. <br /> <br /> <strong>Fragen anderer Faktoren (SUMME):</strong> Dies entspricht „Andere Faktoren (Durchschnitt)“, jedoch unter Verwendung der SUMME <br /> <br /> <strong>Gewichtete Summe der Faktoren:</strong> Hier werden die Punktzahlen der ausgewählten anderen Faktoren mit ihren Gewichten multipliziert und addiert."
     factors_form_scoring_strategy: Strategie der Punktevergabe
     factors_form_search_factors: Suchkriterien
     factors_form_use_sub_factor_norm_score: Verwendung Faktoren Normwert
@@ -752,9 +786,12 @@ de:
     file_size_must_be_less_than_mb: Die Datei {{name}} überschreitet die maximale Größe von {{max_size_mb}} MB
     file_upload_failed: Das Hochladen von {{name}} ist fehlgeschlagen
     fill_empty_score_msg: Füllen Sie alle Endpunktzahlen aus, bevor Sie speichern.
+    filter_by_client: Nach Kunde filtern
+    filter_by_client_help: Wählen Sie einen Kunden aus, um dessen Projekte zu laden
     final_score_empty_err_msg: Das Endergebnis von „%{factor_name}“ darf nicht leer sein.
     final_score_empty_msg: Die Endabrechnung darf nicht leer sein.
     finalized_at: Abgeschlossen am
+    fingerprint: Fingerabdruck
     first_name_required: Vorname ist erforderlich
     fix_grammar: Grammatik korrigieren
     fixed_time: Feste Zeit
@@ -803,6 +840,8 @@ de:
     handoff_invalid_token: Ungültiges oder abgelaufenes Authentifizierungstoken
     handoff_token_expired: Das Authentifizierungstoken ist abgelaufen oder wurde bereits verwendet
     handoff_user_disabled: Ihr Konto ist deaktiviert
+    has_api_keys: Verfügt über API-Schlüssel
+    has_public_keys: Verfügt über öffentliche Schlüssel
     header_logout_content: Drücke auf Abbrechen, wenn du weiterarbeiten möchtest. Drücke Ok, um den aktuellen Nutzer auszuloggen.
     header_logout_title: Bist du sicher, dass du dich abmelden willst?
     hide_all: Alle ausblenden
@@ -1038,6 +1077,7 @@ de:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Mikrosite
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Alle Mettl-Zeitpläne anzeigen
@@ -1058,11 +1098,15 @@ de:
     interview_questions_import_failure_msg: Fehler beim Importieren der Datei.
     interview_questions_import_success_msg: Importieren von laufenden Interviewfragen. Bitte überprüfen Sie den Status in den Benachrichtigungen.
     interview_questions_question: Frage
+    invalid_client_ids: Ungültige Client-IDs
     invalid_confidence_interval: Das Konfidenzintervall muss 0 oder 1 sein.
     invalid_csv_header: CSV-Datei enthält ungültige Header.
+    invalid_json: Die Konfiguration ist kein gültiges JSON.
     invalid_leadership_bar: leadership_bar muss 0 oder 1 sein
     invalid_norm_option: Die Norm-Option muss zwischen 0 und 3 liegen.
+    invalid_project_ids: 'Ungültige Projekt-IDs: %{ids}'
     invalid_question_ids: 'In dieser Bewertung nicht gefundene Fragen-IDs: %{ids}'
+    invalid_report_ids: Ungültige Berichts-IDs
     invite_add_invite: Einladen hinzufügen
     invite_assessment_center: Assessment Center
     invite_basic_info_allow_preferred_language: Bevorzugte Sprache zulassen
@@ -1143,6 +1187,7 @@ de:
     join_room: Dem Raum beitreten
     keep_original: Original beibehalten
     key: Schlüssel
+    key_id: Schlüssel-ID
     keywords: Schlüsselwörter
     keywords_placeholder: Geben Sie die Suchbegriffe durch Kommas getrennt ein.
     language_id: Sprach-ID
@@ -1175,6 +1220,7 @@ de:
     maintenance: Wartung
     maintenance_settings: Wartungseinstellungen
     maintenance_settings_description: Systemwartungsfenster und -einstellungen verwalten
+    make_report_available_to_subject_when: 'Den Bericht der betroffenen Person zur Verfügung stellen, wenn:'
     manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
     manager_approves_reports: Der Manager genehmigt die Berichte
     manager_can_access_subject_reports: Manager kann auf Fachberichte zugreifen
@@ -1234,6 +1280,7 @@ de:
     min_value: Minimalwert
     minimum_10_words: Mindestens 10 Wörter
     minimum_download_speed: Mindest-Download-Geschwindigkeit (in Mbit/s)
+    minimum_face_detection_ratio: Mindestquote bei der Gesichtserkennung
     minimum_system_check_validity: Die Gültigkeitsdauer der Systemprüfung sollte mindestens 15 Minuten betragen
     minimum_upload_speed: Mindest-Upload-Geschwindigkeit (in Mbit/s)
     missing_min_max_values: Mindest- und Höchstwerte sind erforderlich.
@@ -1322,6 +1369,7 @@ de:
     occupations_form_indicative_roles_image: Beispielbild für Rollen
     occupations_form_key_career_tracks_image: 'Bild: Wichtige Karrierewege'
     occupations_index_title: Berufe
+    occupations_resource_confirmations_delete_body: "<p>Möchten Sie diesen Beruf wirklich löschen?</p>\n"
     on_the_job: Im Dienst [70]
     only_editable_on_create: Diese Option kann nur während der Erstellung bearbeitet werden.
     options: Optionen
@@ -1781,6 +1829,7 @@ de:
         view: Siehe
         view_recordings: Aufzeichnungen ansehen
     permissions_360_campaigns: Spezifische Genehmigungen für 360-Kampagnen
+    permissions_updated: Berechtigungen wurden erfolgreich aktualisiert
     piped_text: Eingebetteter Text
     piped_text_modal_assessment_center: Assessment Center
     piped_text_modal_campaign_link: Link zur Kampagne
@@ -1877,8 +1926,13 @@ de:
     project: Projekt
     project_admin: Projektverwaltung
     project_admins: Projektadministratoren
+    project_assessor: Projektgutachter
     project_features: Projekt-Funktionen
+    project_ids: Projekt-IDs
+    project_ids_required: Für diesen Berichtstyp ist „project_ids“ erforderlich.
+    project_licenses: Projektlizenzen
     project_manager: Projektleiter
+    project_not_related_to_client: Das Projekt „%{project_id}“ gehört nicht zum Kunden.
     project_number: Projektnummer
     project_participants_column_campaigns: Kampagnen
     project_participants_column_createdAt: Erstellt am
@@ -1974,6 +2028,22 @@ de:
     provider_change_confirm_title: Anbieter wechseln?
     provider_previously_used_warning: Dieser Assistent hat bisher Ergebnisse mit „%{from}“ generiert. Eine Änderung auf „%{to}“ kann das Verhalten des Assistenten bei zukünftigen Generierungsanfragen beeinflussen.
     psychometric: Psychometrische Daten
+    public_key: Öffentlicher Schlüssel
+    public_key_add: Öffentlichen Schlüssel hinzufügen
+    public_key_cannot_be_changed: kann nach der Erstellung nicht mehr geändert werden
+    public_key_copy_private_key: Privaten Schlüssel kopieren
+    public_key_created: Öffentlicher Schlüssel erfolgreich erstellt
+    public_key_generate: Schlüsselpaar generieren
+    public_key_generate_button: RSA-Schlüsselpaar generieren
+    public_key_generate_info: Es wird ein 2048-Bit-RSA-Schlüsselpaar generiert. Es wird nur der öffentliche Schlüssel gespeichert. Kopieren Sie den privaten Schlüssel und bewahren Sie ihn sicher auf – er wird nicht erneut angezeigt.
+    public_key_invalid_format: muss ein gültiger öffentlicher RSA-Schlüssel im PEM-Format sein
+    public_key_must_be_public: Es muss sich um einen öffentlichen Schlüssel handeln, nicht um einen privaten Schlüssel.
+    public_key_paste_placeholder: Fügen Sie hier Ihren öffentlichen RSA-Schlüssel im PEM-Format ein (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Öffentlicher Schlüssel (PEM)
+    public_key_private_key_copied: Privater Schlüssel in die Zwischenablage kopiert
+    public_key_private_key_label: Privater Schlüssel (PEM)
+    public_key_private_key_warning: Dies ist der einzige Moment, in dem der private Schlüssel sichtbar ist. Kopieren Sie ihn jetzt und bewahren Sie ihn sicher auf.
+    public_keys: Öffentliche Schlüssel
     question_center: Fragen-Center
     question_center_page_title: Fragen-Center – Dashboard – Mercer Lighthouse
     question_editor_change_type: Typ ändern
@@ -2057,6 +2127,7 @@ de:
     report_approval_approvers: Genehmiger
     report_approval_approvers_can_edit: Genehmigende können bearbeiten
     report_approval_approvers_not_required: Genehmigende nicht erforderlich
+    report_approval_bulk_approve_success: "%{sent_for_approval} zur Genehmigung eingereicht. %{approved}-Berichte wurden genehmigt. %{ignored}-Berichte müssen aufgrund von Änderungen/Anmerkungen der Qualitätskontrolle manuell genehmigt werden."
     report_approval_columns_approval_status: Genehmigungsstatus
     report_approval_columns_approved_by: Genehmigt von
     report_approval_columns_assessed_by: Bewertet von
@@ -2066,11 +2137,14 @@ de:
     report_approval_columns_subject_email: 'Betreff: E-Mail'
     report_approval_columns_user_email: Benutzer-E-Mail
     report_approval_columns_user_name: Name des Benutzers
+    report_approval_digest_delivery_mode_form_label: Art der Zustellung des Digest
     report_approval_digest_frequency_daily: Täglich
+    report_approval_digest_frequency_form_label: Erscheinungshäufigkeit des Digests
     report_approval_digest_frequency_weekdays: Wochentage
     report_approval_digest_frequency_weekly: Wöchentlich
     report_approval_digest_time: Zeit für die Verdauung
     report_approval_digest_timezone: Digest Zeitzone
+    report_approval_digest_weekdays_form_label: Digest an Wochentagen
     report_approval_digest_weekdays_friday: Freitag
     report_approval_digest_weekdays_monday: Montag
     report_approval_digest_weekdays_saturday: Samstag
@@ -2111,6 +2185,8 @@ de:
     report_help_description: Anzeige des Hilfetextes auf der Berichtskarte im Dashboard des Benutzers
     report_help_name: Berichte helfen
     report_id: Bericht ID
+    report_ids: Berichts-IDs
+    report_ids_required: Berichts-IDs sind erforderlich
     report_name: Name des Berichts
     report_no_evaluations: Der Bericht für %{user} ist nicht verfügbar – es wurden keine Bewertungen eingegangen.
     report_not_generated: Der Bericht für %{user} die Verfügbarkeitsbedingungen erfüllt, aber noch nicht erstellt wurde. Bitte erstelle zuerst den Bericht.
@@ -2131,6 +2207,17 @@ de:
     report_review_statuses_qc_completed: QC Abgeschlossen
     report_review_statuses_qc_in_progress: QC in Bearbeitung
     report_status: Berichtsstatus
+    report_type: Berichtstyp
+    report_types:
+      active_clients_projects: Aktuelle Kunden und Projekte
+      client_assessment_counts: Die Kundenbewertung zählt
+      hogan_usage_report: Verwendung des Hogan-Assessments
+      json_data_report: JSON-Datenbericht
+      pearson_usage_report: Nutzung von Pearson Assessment
+      report_usage_summary: Zusammenfassung zur Berichtnutzung
+      saville_usage_report: Verwendung des Saville-Assessments
+      user_created_dates: Vom Benutzer erstellte Daten
+      user_reports_export: Export von Benutzerberichten
     reports: Berichte
     reports_copy_copy: Kopieren
     reports_copy_copy_report: Bericht kopieren
@@ -2184,6 +2271,7 @@ de:
     role_client_admin: Kundenverwaltung
     role_project_admin: Projektverwaltung
     role_superadmin: Super-Admin
+    run: Laufen
     saml_idp_certificate_available: Verfügbar (klicken zum Kopieren)
     saml_idp_certificate_label: Zertifikat
     saml_idp_entity_id_label: Entitäts-ID/Emittent
@@ -2398,6 +2486,9 @@ de:
     schema_key_required: Schemaschlüssel ist erforderlich
     schema_key_type: Schlüssel Typ
     schema_key_unique: Schema-Schlüssel sollten eindeutig sein
+    scope: Geltungsbereich
+    scope_client: Kunde
+    scope_global: Weltweit
     score: Punktzahl
     score_approval_not_allowed_to_approve: Sie dürfen diese Bewertung nicht genehmigen.
     score_approval_not_allowed_to_discard: Sie dürfen diese Punktzahl nicht verwerfen.
@@ -2550,11 +2641,17 @@ de:
     security_settings_security_setting: Sicherheitseinstellungen
     select_admin_role: Admin-Rolle auswählen
     select_assessment_language: Bewertungssprache auswählen
+    select_client: Kunde auswählen
     select_end_time: Endzeit auswählen
     select_language_to_translate: Bitte Sprache für die Übersetzung auswählen
     select_level: Stufe auswählen
+    select_project_ids_required: Wählen Sie die erforderlichen Projekt-IDs aus
+    select_projects: Ausgewählte Projekte
+    select_projects_required: Bitte wählen Sie mindestens ein Projekt aus
     select_question: Frage nach Name oder ID suchen
+    select_report_ids_required: Wählen Sie die erforderlichen report_ids aus
     select_report_language: Berichtssprache auswählen
+    select_report_type: Berichtstyp auswählen
     select_start_time: Startzeit auswählen
     selective_proctoring: Selektive Prüfungsaufsicht
     send_email: E-Mail senden
@@ -2696,6 +2793,12 @@ de:
     sms_invites_send_sms_fields_users: Benutzer
     sms_invites_send_sms_modal_btn_name: SMS versenden
     sms_invites_send_sms_modal_title: SMS versenden
+    sms_invites_send_sms_pipetext_details: |
+      {{{first_name}}} – Vorname des Empfängers
+      <br />
+      {{{last_name}}} – Nachname des Empfängers
+      <br />
+      {{{invite_url}}} – Anmeldelink
     sms_invites_send_sms_segment_length_msg: Die geschätzte Anzahl der Segmente für diese Nachricht ist %{segment_length}.
     sms_invites_send_sms_segment_length_range_msg: Die geschätzte Anzahl der Segmente für diese Nachricht liegt zwischen %{min_segment_length} und %{max_segment_length}.
     sms_invites_statuses_all: Alle
@@ -3032,6 +3135,7 @@ de:
     x_axis_interval_label: X-Achsen-Intervall
     y_axis_interval_label: Y-Achsen-Intervall
     year: Land
+    year_range: Jahreszeitraum
     years: Jahre
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Aktivitäts-ID

@@ -622,6 +622,7 @@ zh-Hant:
         roles:
           campaign_admin: 活動管理員
           client_admin: 客戶管理
+          client_assessor: 客户评估员
           manager: 經理
           member: 使用者
           project_admin: 專案管理員
@@ -727,6 +728,7 @@ zh-Hant:
           admins:
             admin: 管理員
             campaign_admin: 活動管理員
+            client_assessor: 客户评估员
             project_admin: 專案管理員
             regular: 客戶管理
             superadmin: 超級管理員
@@ -736,6 +738,7 @@ zh-Hant:
           campaign_admin: 活動管理員
           case_study: 個案研究
           client_admin: 客戶管理
+          client_assessor: 客户评估员
           hogan: Hogan
           iiht: IIHT
           manager: 經理
@@ -859,6 +862,8 @@ zh-Hant:
         bulk_download_idp_reports: 批量下載IDP報告
         bulk_download_reports: 大量下載報告
         bulk_download_user_reports: 大量下載使用者報告
+        bulk_export_norm_factor_scores: 批量导出规范因子得分
+        bulk_export_raw_factor_scores: 批量导出原始因子得分
         bulk_generate_user_campaign_ai_artifact_results: 批量生成活動 AI 成品結果
         bulk_regenerate_reports: 再生活動報告
         bulk_regenerate_threesixty_reports: 再生三六零主題報告
@@ -871,10 +876,12 @@ zh-Hant:
         completion_status_export: 完成狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
         copy_dimension: 複製尺寸
+        copy_report: 复制报告
         create_threesixty_campaign: 建立 Threesixty 活動
         data_report_export: 資料報告匯出
         export_admin_with_permissions: 匯出有權限的管理員
         export_assessment_questions: 出口評估問題
+        export_audit_logs: 导出审计日志
         export_campaign_ai_artifacts: 輸出戰役 AI 工件
         export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_datasheet: 导出活动数据表
@@ -964,6 +971,8 @@ zh-Hant:
       errors:
         no_plans: 未找到有效的 IDP 計劃
     close: 關閉
+    copy_report:
+      failed: 报告复制失败
     details: 詳細資訊
     errors: 錯誤
     invalid_job: 此通知對應已刪除的記錄
@@ -1454,6 +1463,7 @@ zh-Hant:
       external_user_id: Skillvue 候選人 ID
       id: 活動評估 ID
       locales: 地點
+      microsite_assessment_url: 微网站评估网址
       microsite_error_message: 错误信息
       microsite_participant_id: 微网站参与者ID
       microsite_registration_status: 注册状态
@@ -2105,6 +2115,7 @@ zh-Hant:
     invalid_token: 出錯了，請重新載入頁面再試一次。
     max_regeneration_limit: 超出最大再生限制，請聯絡您的管理人員。
     messages:
+      content_type_invalid: 内容类型无效
       data_report_blank: 資料報告不存在
       password_complexity:
         digit:
@@ -3440,12 +3451,14 @@ zh-Hant:
           admin: 管理員
           admins:
             admin: 管理員
+            client_assessor: 客户评估员
             project_admin: 專案管理員
             regular: 客戶管理
             superadmin: 超級管理員
           agile: AGILE
           case_study: 個案研究
           client_admin: 客戶管理
+          client_assessor: 客户评估员
           hogan: Hogan
           manager: 經理
           member: 使用者
@@ -3579,6 +3592,7 @@ zh-Hant:
         roles:
           campaign_admin: 活動管理員
           client_admin: 客戶管理
+          client_assessor: 客户评估员
           manager: 經理
           member: 使用者
           project_admin: 專案管理員
@@ -3649,12 +3663,14 @@ zh-Hant:
           admin: 管理員
           admins:
             admin: 管理員
+            client_assessor: 客户评估员
             project_admin: 專案管理員
             regular: 客戶管理
             superadmin: 超級管理員
           agile: AGILE
           case_study: 個案研究
           client_admin: 客戶管理
+          client_assessor: 客户评估员
           hogan: Hogan
           manager: 經理
           member: 使用者
@@ -4116,6 +4132,7 @@ zh-Hant:
       campaign_assessor: 活動評估員
       campaign_user: 活動使用者
       client_admin: 客戶管理
+      client_assessor: 客户评估员
       project_admin: 專案管理員
       superadmin: 超級管理員
     superadmins: 超級管理員

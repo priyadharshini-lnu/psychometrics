@@ -20,6 +20,7 @@ hi:
     active_record_audits_old_diff_parse_error: पुराने परिवर्तनों के साथ JSON पार्स करने में विफल
     active_record_audits_title: ऑडिट किए गए परिवर्तन
     activity: गतिविधि
+    activity_period: गतिविधि अवधि
     add_admin: प्रशासक जोड़ें
     add_admin_role: प्रशासक भूमिका जोड़ें
     add_btn: विषय जोड़ें
@@ -117,6 +118,12 @@ hi:
     alt_text_long: 100 अक्षरों की अधिकतम सीमा से अधिक है।
     api_keys: एपीआई कुंजी
     api_keys_form_title: एपीआई कुंजी
+    application: आवेदन
+    application_add: आवेदन जोड़ें
+    application_name: आवेदन का नाम
+    application_name_already_taken: इस क्लाइंट के लिए पहले से ही मौजूद है
+    application_name_format_hint: केवल अक्षर और अंक ही अनुमत हैं, शब्दों के बीच एक खाली स्थान के साथ।
+    applications: आवेदन
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
     approve_all_questions: सभी प्रश्नों को अनुमोदित करें
     approve_nomination_description: यह संदेश एक प्रबंधक को तब भेजा जाता है जब किसी प्रत्यक्ष अधीनस्थ द्वारा की गई नामांकन को अनुमोदित करने की आवश्यकता होती है।
@@ -133,6 +140,7 @@ hi:
     assessment_center: 'मूल्यांकन केंद्र:'
     assessment_center_group: मूल्यांकन केंद्र समूह
     assessment_center_group_placeholder: मूल्यांकन केंद्र समूह चुनें
+    assessment_center_invites: मूल्यांकन केंद्र के निमंत्रण
     assessment_ids: मूल्यांकन आईडी
     assessment_placeholder: मूल्यांकन चुनें
     assessment_question_not_supported: यह प्रश्न प्रकार वर्तमान में समर्थित नहीं है।
@@ -205,6 +213,8 @@ hi:
     audit_log_title: ऑडिट लॉग जानकारी
     audit_log_type: रिकॉर्ड का प्रकार
     audit_logs: ऑडिट लॉग्स
+    audit_logs_export_failed: निर्यात जॉब शेड्यूल करने में असफल रहा। कृपया फिर से प्रयास करें।
+    audit_logs_export_queued: निर्यात कार्य सफलतापूर्वक निर्धारित हो गया है।
     audit_reports: लेखा परीक्षा रिपोर्टें
     auth_type_api_key_header_format_error: केवल अक्षर, अंक, अंडरस्कोर और हाइफ़न की अनुमति है।
     auth_type_api_key_header_label: एपीआई कुंजी हेडर
@@ -244,11 +254,21 @@ hi:
     blocks_title: ब्लॉक
     booked_at: 'बुक किया गया:'
     breadcrumbs_norms_editor: नॉर्म संपादक
+    bulk_assessment_download_date_range_required: कृपया दिनांक सीमा चुनें
+    bulk_assessment_download_export_type: निर्यात प्रकार
+    bulk_assessment_download_export_type_required: कृपया निर्यात का प्रकार चुनें
+    bulk_assessment_download_help_text: 'नोट: यदि आकलनों को विभिन्न आयामों से जोड़ा गया है, तो डाउनलोड की गई xslx फ़ाइल में प्रत्येक आयाम के लिए अलग-अलग शीट्स होंगी।'
+    bulk_assessment_download_modal_subtitle: दिनांक सीमा और निर्यात प्रकार चुनें, फिर चयनित आकलनों को निर्यात करें।
+    bulk_assessment_download_no_data_found: चुनी गई तिथि सीमा और मूल्यांकनों के लिए कोई डेटा नहीं मिला। कृपया अलग तिथि सीमा या मूल्यांकन आज़माएँ।
+    bulk_assessment_download_norm_factor_scores: नॉर्म फैक्टर स्कोर
+    bulk_assessment_download_raw_factor_scores: कच्चे कारक स्कोर
     bulk_assets_modal_choose_csv: CSV फ़ाइल चुनें
     bulk_assets_modal_choose_zip: ज़िप फ़ाइल चुनें
     bulk_assets_modal_not_csv_file_error: CSV अपलोड के लिए केवल CSV फ़ाइलें ही अनुमत हैं। कृपया एक मान्य CSV फ़ाइल अपलोड करें।
     bulk_assets_modal_subtitle: 'कृपया <b>एक CSV फ़ाइल</b> (हेडर: user_email, file_name) और <b>एक ZIP फ़ाइल</b> (जिसमें CSV में दिए गए फ़ाइल नामों से मेल खाने वाली PDF फ़ाइलें हों) अपलोड करें। ZIP फ़ाइल का आकार %{max_file_size} MB से कम होना चाहिए।'
     bulk_assets_modal_title: CSV और ZIP फ़ाइलें अपलोड करें
+    bulk_export_assessments_file: थोक मूल्यांकन निर्यात फ़ाइल
+    bulk_export_invalid_params: अमान्य थोक निर्यात पैरामीटर
     bulk_upload_ai_artifacts: बल्क अपलोड एआई आर्टिफैक्ट्स
     campaign: अभियान
     campaign_admin: अभियान प्रशासक
@@ -374,6 +394,7 @@ hi:
     client_id_label: क्लाइंट आईडी
     client_id_name: ओएथ_क्लाइंट_आईडी
     client_id_required: क्लाइंट आईडी आवश्यक है।
+    client_ids: क्लाइंट आईडी
     client_ip: क्लाइंट आईपी
     client_logo_label: क्लाइंट लोगो
     client_secret_label: ग्राहक रहस्य
@@ -412,6 +433,7 @@ hi:
     concise: संक्षिप्त
     confidence_interval: विश्वास अंतराल
     confidence_interval_update_success: विश्वास अंतराल सफलतापूर्वक अद्यतन किया गया
+    configuration: संरचना
     configure_model_answer_title: मॉडल उत्तर और कीवर्ड्स कॉन्फ़िगर करें
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
     confirmation_required: पुष्टि आवश्यक है
@@ -424,6 +446,7 @@ hi:
     copy_ai_artifacts: एआई कलाकृतियों की प्रतिलिपि बनाएँ
     copy_hint: उपरोक्त सीटें, केंद्र प्रबंधक, मूल्यांकनकर्ता और बैठकें एवं संसाधन कॉन्फ़िगरेशन को निम्नलिखित मूल्यांकन केंद्रों में कॉपी करता है। कॉपी करने के बाद, आगे बढ़ने से पहले आप प्रत्येक मूल्यांकन केंद्र में और बदलाव कर सकते हैं।
     copy_image_url: छवि का URL कॉपी करें
+    copy_report_scheduled: रिपोर्ट कॉपी जॉब निर्धारित कर दिया गया है।
     copy_text: पाठ
     copy_to_all: अन्य मूल्यांकन केंद्रों को प्रतिलिपि भेजें
     copy_url: यूआरएल कॉपी करें
@@ -486,12 +509,15 @@ hi:
     datasheet: डेटाशीट
     date_and_time: दिनांक और समय
     date_presets_last_30_days: पिछले 30 दिन
+    date_presets_last_6_months: पिछले 6 महीने
     date_presets_last_7_days: पिछले 7 दिन
     date_presets_last_month: पिछला महीना
     date_presets_last_week: पिछला सप्ताह
+    date_presets_last_year: पिछले साल
     date_presets_today: आज
     date_presets_yesterday: कल
     date_range: दिनांक सीमा
+    date_range_required: दिनांक सीमा आवश्यक है
     dates_completed: पर पूरा किया गया
     dates_end: अंतिम तिथि
     dates_label: तिथियाँ
@@ -587,6 +613,9 @@ hi:
     dimensions_import_modal_owner_select: एक मालिक चुनें
     dimensions_import_modal_select_json: JSON फ़ाइल चुनें
     dimensions_index_title: आयाम
+    dimensions_resource_confirmations_delete_body: 'क्या आप इस डायमेंशन को हटाना चाहते हैं?
+
+      '
     dimensions_resource_confirmations_delete_message: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए आयाम का नाम दर्ज करें।
     dimensions_resource_tooltips_export_json: अन्य प्लेटफ़ॉर्म में आयात करने के लिए JSON निर्यात करें
     dimensions_translations_export: सभी निर्यात करें
@@ -644,8 +673,10 @@ hi:
     enable_caching_successfully: इस मूल्यांकन के लिए कैशिंग सक्षम कर दी गई है।
     enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
     enable_enhance_with_ai_client_level: कृपया क्लाइंट स्तर पर एआई के साथ एनहेंस सुविधा सक्षम करें।
+    enable_face_detection: चेहरा पहचान सक्षम करें
     enable_maintenance: रखरखाव सक्षम करें
     enable_mobile_proctoring: मोबाइल प्रॉक्टरिंग सक्षम करें
+    enable_phrase_verification: वाक्यांश सत्यापन सक्षम करें
     enable_system_check: सिस्टम जाँच सक्षम करें
     enable_transcription: प्रतिलेखन सक्षम करें
     enable_transcription_msg: वीडियो/ऑडियो प्रतिक्रिया प्रश्नों पर एआई स्कोरिंग का उपयोग करने के लिए ट्रांसक्रिप्शन सक्षम करें।
@@ -656,9 +687,12 @@ hi:
     end_time_must_be_after_start_time: अंतिम समय प्रारंभ समय के बाद होना चाहिए।
     enhance_with_ai: एआई से बेहतर बनाएँ
     enhance_with_ai_requires_ai_assistants: AI के साथ बढ़ाएँ के लिए AI सहायक सुविधा सक्षम होना आवश्यक है।
+    enter_client_ids: क्लाइंट आईडी दर्ज करें
     enter_description: विवरण दर्ज करें
     enter_name: नाम दर्ज करें
+    enter_project_ids: परियोजना आईडी दर्ज करें
     enter_question_id: प्रश्न आईडी दर्ज करें
+    enter_report_ids: रिपोर्ट आईडी दर्ज करें
     enter_schema_key: स्कीमा कुंजी दर्ज करें
     error: त्रुटि
     error_color: त्रुटि का रंग
@@ -700,6 +734,7 @@ hi:
     export_failure_msg: प्रवीणता स्तरों को निर्यात करते समय त्रुटि
     export_success: प्रशासन निर्यात कार्य सफलतापूर्वक निर्धारित हो गया है। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
     export_success_msg: प्रगति में विकास क्रियाओं का निर्यात
+    export_to_csv: सीएसवी में निर्यात करें
     export_with_inactive_users: निष्क्रिय उपयोगकर्ताओं के साथ निर्यात करें
     external_report_id: बाहरी रिपोर्ट आईडी
     external_score: बाहरी स्कोर
@@ -717,6 +752,7 @@ hi:
     factors_form_components_ExternalList_title: स्कोर के लिए JSON पथ
     factors_form_predicate: क्रियापद
     factors_form_scoring_strategies_custom_formula: अनुकूलित सूत्र
+    factors_form_scoring_strategies_tip: " प्रश्न (औसत): यह वर्तमान स्कोरिंग विधि की तरह है जब किसी कारक से प्रश्न जुड़े होते हैं। <br /> <br /> प्रश्न (योग): यह प्रश्न (औसत) की तरह है, लेकिन इसमें योग (SUM) का उपयोग किया जाता है। <br /> <br /> अन्य कारकों के प्रश्न (औसत): यह वर्तमान स्कोरिंग विधि के समान है जब किसी कारक के लिए उप-कारक होते हैं, एकमात्र अंतर वज़न का जुड़ाव है। <br /> <br /> अन्य कारकों के प्रश्न (SUM): यह अन्य कारक (औसत) के समान है, लेकिन SUM का उपयोग करता है <br /> <br /> कारकों का भारित योग: यहां चयनित अन्य कारकों के स्कोर को उनके भारों से गुणा करके जोड़ा जाता है।"
     factors_form_scoring_strategy: स्कोरिंग रणनीति
     factors_form_search_factors: खोज कारक
     factors_form_use_sub_factor_norm_score: कारक मानक स्कोर का उपयोग करें
@@ -752,9 +788,12 @@ hi:
     file_size_must_be_less_than_mb: फ़ाइल {{name}} का आकार {{max_size_mb}} एमबी की अधिकतम सीमा से अधिक है।
     file_upload_failed: "{{name}} अपलोड करने में असफल रहा"
     fill_empty_score_msg: सहेजने से पहले सभी अंतिम स्कोर भरें।
+    filter_by_client: ग्राहक के अनुसार फ़िल्टर करें
+    filter_by_client_help: परियोजनाएँ लोड करने के लिए एक क्लाइंट चुनें
     final_score_empty_err_msg: "%{factor_name} का अंतिम स्कोर शून्य नहीं हो सकता।"
     final_score_empty_msg: अंतिम स्कोर खाली नहीं हो सकता।
     finalized_at: पर अंतिम रूप दिया गया
+    fingerprint: अंगूठे का निशान
     first_name_required: पहला नाम अनिवार्य है।
     fix_grammar: व्याकरण ठीक करें
     fixed_time: निश्चित समय
@@ -803,6 +842,8 @@ hi:
     handoff_invalid_token: अमान्य या समाप्त हो चुका प्रमाणीकरण टोकन
     handoff_token_expired: प्रमाणीकरण टोकन की अवधि समाप्त हो गई है या पहले ही उपयोग हो चुका है।
     handoff_user_disabled: आपका खाता अक्षम कर दिया गया है।
+    has_api_keys: क्या API कुंजी हैं
+    has_public_keys: पब्लिक कीज़ हैं
     header_logout_content: यदि आप काम जारी रखना चाहते हैं तो रद्द दबाएँ। वर्तमान उपयोगकर्ता से लॉगआउट करने के लिए ठीक दबाएँ।
     header_logout_title: क्या आप वास्तव में लॉगआउट करना चाहते हैं?
     hide_all: सब छुपाएँ
@@ -1038,6 +1079,7 @@ hi:
     integrations_names_hogan: होगन
     integrations_names_iiht: आईआईएचटी
     integrations_names_mettl: मेटल
+    integrations_names_microsite: माइक्रोसाइट
     integrations_names_skillvue: स्किलव्यू
     integrations_names_yoodli: यूडली
     integrations_view_all_schedules: सभी Mettl शेड्यूल देखें
@@ -1058,11 +1100,15 @@ hi:
     interview_questions_import_failure_msg: फ़ाइल आयात करते समय त्रुटि।
     interview_questions_import_success_msg: साक्षात्कार प्रश्न आयात हो रहे हैं। कृपया सूचनाओं में स्थिति देखें।
     interview_questions_question: प्रश्न
+    invalid_client_ids: अमान्य क्लाइंट आईडी
     invalid_confidence_interval: confidence_interval 0 या 1 होना चाहिए।
     invalid_csv_header: CSV फ़ाइल में अमान्य हेडर हैं।
+    invalid_json: संरचना वैध JSON नहीं है।
     invalid_leadership_bar: leadership_bar 0 या 1 होना चाहिए
     invalid_norm_option: नॉर्म विकल्प 0 और 3 के बीच होना चाहिए।
+    invalid_project_ids: 'अमान्य प्रोजेक्ट आईडी: %{ids}'
     invalid_question_ids: 'इस मूल्यांकन में प्रश्न आईडी नहीं मिले: %{ids}'
+    invalid_report_ids: अमान्य रिपोर्ट आईडी
     invite_add_invite: नमंत्रण जोड़ें
     invite_assessment_center: मूल्यांकन केंद्र
     invite_basic_info_allow_preferred_language: पसंदीदा भाषा की अनुमति दें
@@ -1143,6 +1189,7 @@ hi:
     join_room: कमरे में शामिल हों
     keep_original: मूल रखें
     key: मुख्य
+    key_id: मुख्य आईडी
     keywords: मुख्य शब्द
     keywords_placeholder: अल्पविरामों से अलग किए गए कीवर्ड दर्ज करें।
     language_id: भाषा आईडी
@@ -1175,6 +1222,7 @@ hi:
     maintenance: रखरखाव
     maintenance_settings: रखरखाव सेटिंग्स
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
+    make_report_available_to_subject_when: 'रिपोर्ट विषय को तब उपलब्ध कराएं जब:'
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     manager_approves_reports: प्रबंधक रिपोर्टों को मंजूरी देता है
     manager_can_access_subject_reports: प्रबंधक विषय रिपोर्टों तक पहुँच सकता है।
@@ -1234,6 +1282,7 @@ hi:
     min_value: न्यूनतम मान
     minimum_10_words: न्यूनतम 10 शब्द
     minimum_download_speed: न्यूनतम डाउनलोड गति (एमबीपीएस में)
+    minimum_face_detection_ratio: न्यूनतम चेहरा पहचान अनुपात
     minimum_system_check_validity: न्यूनतम अभियान स्तर पर सिस्टम जाँच की वैधता 15 मिनट होनी चाहिए।
     minimum_upload_speed: न्यूनतम अपलोड गति (एमबीपीएस में)
     missing_min_max_values: न्यूनतम और अधिकतम मान आवश्यक हैं।
@@ -1322,6 +1371,9 @@ hi:
     occupations_form_indicative_roles_image: संकेतात्मक भूमिकाओं की छवि
     occupations_form_key_career_tracks_image: मुख्य करियर मार्गों की छवि
     occupations_index_title: व्यवसाय
+    occupations_resource_confirmations_delete_body: 'क्या आप इस व्यवसाय को हटाना चाहते हैं?
+
+      '
     on_the_job: काम पर [70]
     only_editable_on_create: यह विकल्प केवल निर्माण के दौरान ही संपादित किया जा सकता है।
     options: विकल्प
@@ -1781,6 +1833,7 @@ hi:
         view: देखें
         view_recordings: रिकॉर्डिंग देखें
     permissions_360_campaigns: 360 अभियानों के लिए विशिष्ट अनुमतियाँ
+    permissions_updated: अनुमतियाँ सफलतापूर्वक अपडेट की गईं
     piped_text: पाइप्ड टेक्स्ट
     piped_text_modal_assessment_center: मूल्यांकन केंद्र
     piped_text_modal_campaign_link: अभियान लिंक
@@ -1877,8 +1930,13 @@ hi:
     project: परियोजना
     project_admin: परियोजना प्रशासक
     project_admins: परियोजना प्रशासक
+    project_assessor: परियोजना मूल्यांकनकर्ता
     project_features: परियोजना की विशेषताएँ
+    project_ids: परियोजना आईडी
+    project_ids_required: इस रिपोर्ट प्रकार के लिए project_ids आवश्यक है।
+    project_licenses: परियोजना लाइसेंस
     project_manager: परियोजना प्रबंधक
+    project_not_related_to_client: परियोजना '%{project_id}' ग्राहक की नहीं है।
     project_number: परियोजना संख्या
     project_participants_column_campaigns: अभियान
     project_participants_column_createdAt: पर बनाया गया
@@ -1974,6 +2032,22 @@ hi:
     provider_change_confirm_title: प्रदाता बदलें?
     provider_previously_used_warning: इस सहायक ने पहले "%{from}" के साथ परिणाम उत्पन्न किए हैं। "%{to}" में बदलने से भविष्य की जेनरेशन अनुरोधों के लिए सहायक का व्यवहार बदल सकता है।
     psychometric: मनोमापी
+    public_key: सार्वजनिक कुंजी
+    public_key_add: सार्वजनिक कुंजी जोड़ें
+    public_key_cannot_be_changed: बनाने के बाद बदला नहीं जा सकता
+    public_key_copy_private_key: निजी कुंजी की प्रतिलिपि करें
+    public_key_created: सार्वजनिक कुंजी सफलतापूर्वक बनाई गई
+    public_key_generate: कुंजी जोड़ी उत्पन्न करें
+    public_key_generate_button: RSA कुंजी जोड़ी उत्पन्न करें
+    public_key_generate_info: 2048-बिट RSA कुंजी जोड़ी उत्पन्न की जाएगी। केवल सार्वजनिक कुंजी संग्रहीत की जाएगी। निजी कुंजी को कॉपी करें और सुरक्षित रूप से संग्रहीत करें — यह फिर कभी नहीं दिखाई जाएगी।
+    public_key_invalid_format: PEM प्रारूप में एक मान्य RSA सार्वजनिक कुंजी होनी चाहिए।
+    public_key_must_be_public: यह एक सार्वजनिक कुंजी होनी चाहिए, निजी कुंजी नहीं।
+    public_key_paste_placeholder: अपनी RSA सार्वजनिक कुंजी को PEM प्रारूप में यहां पेस्ट करें (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: सार्वजनिक कुंजी (पीईएम)
+    public_key_private_key_copied: निजी कुंजी क्लिपबोर्ड पर कॉपी की गई
+    public_key_private_key_label: निजी कुंजी (PEM)
+    public_key_private_key_warning: यह एकमात्र समय है जब निजी कुंजी दिखाई देगी। इसे अभी कॉपी करें और सुरक्षित रूप से संग्रहीत करें।
+    public_keys: सार्वजनिक कुंजी
     question_center: प्रश्न केंद्र
     question_center_page_title: प्रश्न केंद्र - डैशबोर्ड - मर्सर लाइटहाउस
     question_editor_change_type: प्रकार बदलें
@@ -2057,6 +2131,7 @@ hi:
     report_approval_approvers: अनुमोदक
     report_approval_approvers_can_edit: अनुमोदक संपादित कर सकते हैं
     report_approval_approvers_not_required: अनुमोदक आवश्यक नहीं
+    report_approval_bulk_approve_success: "%{sent_for_approval} मंजूरी के लिए भेजा गया। %{approved} रिपोर्टें स्वीकृत हैं। QC परिवर्तनों/टिप्पणियों के कारण %{ignored} रिपोर्टों को मैन्युअल अनुमोदन की आवश्यकता है।"
     report_approval_columns_approval_status: अनुमोदन स्थिति
     report_approval_columns_approved_by: द्वारा अनुमोदित
     report_approval_columns_assessed_by: द्वारा आकलित
@@ -2066,11 +2141,14 @@ hi:
     report_approval_columns_subject_email: विषय ईमेल
     report_approval_columns_user_email: उपयोगकर्ता ईमेल
     report_approval_columns_user_name: उपयोगकर्ता नाम
+    report_approval_digest_delivery_mode_form_label: डाइजेस्ट वितरण मोड
     report_approval_digest_frequency_daily: दैनिक
+    report_approval_digest_frequency_form_label: पाचन आवृत्ति
     report_approval_digest_frequency_weekdays: सप्ताह के दिन
     report_approval_digest_frequency_weekly: साप्ताहिक
     report_approval_digest_time: पचाने का समय
     report_approval_digest_timezone: समय क्षेत्र पचें
+    report_approval_digest_weekdays_form_label: सप्ताह के कार्यदिवस पचाएँ
     report_approval_digest_weekdays_friday: शुक्रवार
     report_approval_digest_weekdays_monday: सोमवार
     report_approval_digest_weekdays_saturday: शनिवार
@@ -2111,6 +2189,8 @@ hi:
     report_help_description: उपयोगकर्ता के डैशबोर्ड पर रिपोर्ट कार्ड पर प्रदर्शित सहायता पाठ
     report_help_name: रिपोर्ट्स मदद करती हैं
     report_id: रिपोर्ट आईडी
+    report_ids: रिपोर्ट आईडी
+    report_ids_required: रिपोर्ट आईडी अनिवार्य हैं।
     report_name: रिपोर्ट का नाम
     report_no_evaluations: "%{user} के लिए रिपोर्ट उपलब्ध नहीं है - कोई मूल्यांकन प्राप्त नहीं हुए हैं।"
     report_not_generated: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा करती है लेकिन अभी तक उत्पन्न नहीं की गई है। कृपया पहले रिपोर्ट उत्पन्न करें।"
@@ -2131,6 +2211,17 @@ hi:
     report_review_statuses_qc_completed: QC पूरा
     report_review_statuses_qc_in_progress: गुणवत्ता नियंत्रण प्रगति पर
     report_status: रिपोर्ट की स्थिति
+    report_type: रिपोर्ट का प्रकार
+    report_types:
+      active_clients_projects: सक्रिय ग्राहक और परियोजनाएँ
+      client_assessment_counts: ग्राहक मूल्यांकन मायने रखता है
+      hogan_usage_report: होगन मूल्यांकन उपयोग
+      json_data_report: जेएसओएन डेटा रिपोर्ट
+      pearson_usage_report: पियर्सन मूल्यांकन उपयोग
+      report_usage_summary: उपयोग सारांश रिपोर्ट
+      saville_usage_report: सैविल मूल्यांकन का उपयोग
+      user_created_dates: उपयोगकर्ता निर्मित दिनांक
+      user_reports_export: उपयोगकर्ता रिपोर्ट निर्यात
     reports: रिपोर्टें
     reports_copy_copy: प्रतिलिपि
     reports_copy_copy_report: रिपोर्ट कॉपी करें
@@ -2184,6 +2275,7 @@ hi:
     role_client_admin: ग्राहक व्यवस्थापक
     role_project_admin: परियोजना प्रशासक
     role_superadmin: सुपर एडमिन
+    run: दौड़ो
     saml_idp_certificate_available: उपलब्ध (नकल करने के लिए क्लिक करें)
     saml_idp_certificate_label: प्रमाणपत्र
     saml_idp_entity_id_label: इकाई आईडी/जारीकर्ता
@@ -2398,6 +2490,9 @@ hi:
     schema_key_required: स्कीमा कुंजी आवश्यक है
     schema_key_type: कुंजी का प्रकार
     schema_key_unique: स्कीमा कुंजियाँ अद्वितीय होनी चाहिए।
+    scope: दायरा
+    scope_client: ग्राहक
+    scope_global: वैश्विक
     score: स्कोर
     score_approval_not_allowed_to_approve: आपको इस स्कोर को मंजूरी देने की अनुमति नहीं है।
     score_approval_not_allowed_to_discard: आपको इस स्कोर को त्यागने की अनुमति नहीं है।
@@ -2550,11 +2645,17 @@ hi:
     security_settings_security_setting: सुरक्षा सेटिंग
     select_admin_role: प्रशासक भूमिका चुनें
     select_assessment_language: मूल्यांकन भाषा चुनें
+    select_client: ग्राहक चुनें
     select_end_time: अंत का समय चुनें
     select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
     select_level: स्तर चुनें
+    select_project_ids_required: आवश्यक project_ids चुनें
+    select_projects: परियोजनाएँ चुनें
+    select_projects_required: कृपया कम से कम एक परियोजना चुनें।
     select_question: नाम या आईडी से प्रश्न खोजें
+    select_report_ids_required: आवश्यक रिपोर्ट_आईडीज़ चुनें
     select_report_language: रिपोर्ट की भाषा चुनें
+    select_report_type: रिपोर्ट का प्रकार चुनें
     select_start_time: आरंभ समय चुनें
     selective_proctoring: चयनात्मक निगरानी
     send_email: ईमेल भेजें
@@ -2696,6 +2797,12 @@ hi:
     sms_invites_send_sms_fields_users: उपयोगकर्ता
     sms_invites_send_sms_modal_btn_name: एसएमएस भेजें
     sms_invites_send_sms_modal_title: एसएमएस भेजें
+    sms_invites_send_sms_pipetext_details: |
+      {{{first_name}}} - प्राप्तकर्ता का पहला नाम
+      <br />
+      {{{last_name}}} - प्राप्तकर्ता का अंतिम नाम
+      <br />
+      {{{invite_url}}} - पंजीकरण लिंक
     sms_invites_send_sms_segment_length_msg: इस संदेश के लिए अनुमानित सेगमेंटों की संख्या %{segment_length} है।
     sms_invites_send_sms_segment_length_range_msg: इस संदेश के लिए अनुमानित सेगमेंटों की संख्या %{min_segment_length} और %{max_segment_length} के बीच है।
     sms_invites_statuses_all: सभी
@@ -3032,6 +3139,7 @@ hi:
     x_axis_interval_label: एक्स-अक्ष अंतराल
     y_axis_interval_label: वाई-अक्ष अंतराल
     year: वर्ष
+    year_range: वर्ष सीमा
     years: वर्ष
     yoodli: यूडली
     yoodli_activity_id: यूडल एक्टिविटी आईडी

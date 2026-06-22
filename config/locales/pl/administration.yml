@@ -74,6 +74,7 @@ pl:
         subjects_count_added: Tematy zostały dodane
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Konfigurację punktacji opartej na sztucznej inteligencji można dodać wyłącznie w przypadku pytań typu „AudioResponse”, „VideoResponse” i „TextEntry”
         doesnt_have_header: '"%{sub_header}" nie ma nagłówka'
         invalid_headers: 'Następujące nagłówki są nieprawidłowe: %{headers}'
         invalid_question: Nieprawidłowy identyfikator pytania

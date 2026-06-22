@@ -140,9 +140,11 @@ hi:
     not_requested: अभी तक अनुरोध नहीं किया गया
     ok: ठीक है
     options: विकल्प
+    overview: अवलोकन
     owner: मालिक
     pause: रुकें
     pending: लंबित
+    permissions: अनुमतिएँ
     play: बजाएँ
     policy_version: नीति संस्करण
     policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
@@ -222,9 +224,31 @@ hi:
     update: अपडेट
     update_failed: अपडेट विफल हो गया
     updated_at: पर अद्यतन किया गया
+    updated_by: द्वारा अद्यतन
     updated_successfully: सफलतापूर्वक अद्यतन किया गया
     upload: अपलोड
     user_report_pdf_url_not_generated: पीडीएफ डाउनलोड लिंक उत्पन्न नहीं हो सका।
+    user_reports_approval_status_pending_qc: QC लंबित
+    user_reports_approval_status_qc_completed: QC पूरा हुआ
+    user_reports_assessment_name_not_completed_reason_template: मूल्यांकन %{names} पूरा नहीं हुआ है
+    user_reports_assessments_name_not_completed_reason_template: "%{names} मूल्यांकन पूरे नहीं हुए हैं"
+    user_reports_assessor_not_completed_reason_template: आकलनकर्ता फॉर्म %{names} पूरा नहीं किया गया है।
+    user_reports_assessors_not_completed_reason_template: "%{names} के आकलनकर्ता फॉर्म पूरे नहीं किए गए हैं।"
+    user_reports_campaign_artifact_results_pending_reason_message: इस उपयोगकर्ता के लिए अभियान कलाकृति परिणाम अंतिम नहीं हैं।
+    user_reports_campaign_scoring_pending_reason_message: इस उपयोगकर्ता के लिए अभियान स्कोर अंतिम नहीं हैं।
+    user_reports_custom_upload_report_reason_message: रिपोर्ट प्रदाता कस्टम अपलोड है।
+    user_reports_external_report_pending_reason_message: प्रदाता से रिपोर्ट का इंतजार
+    user_reports_lead_assessor_not_completed_reason_template: "%{names} का लीड असेसर फॉर्म पूरा नहीं किया गया है।"
+    user_reports_lead_assessors_not_completed_reason_template: लीड असेसर फॉर्म %{names} पूरे नहीं किए गए हैं।
+    user_reports_no_report_module_reason_message: इस रिपोर्ट के लिए कोई रिपोर्ट मॉड्यूल नहीं मिला।
+    user_reports_not_prepared_reason_message: रिपोर्ट अभी तक तैयार नहीं हुई है।
+    user_reports_pending_approval_reason_template: अनुमोदन की स्थिति '%{status}' है।
+    user_reports_pending_final_ai_scoring_approval_reason_message: अंतिम एआई स्कोरिंग अनुमोदन लंबित
+    user_reports_pending_qc_ai_scoring_approval_reason_message: QC AI स्कोरिंग की मंजूरी लंबित
+    user_reports_pending_qc_approval_reason_message: QC रिपोर्ट की मंजूरी लंबित
+    user_reports_qc_completed_approval_reason_message: अंतिम रिपोर्ट की मंजूरी लंबित
+    user_reports_report_generating_reason_message: रिपोर्ट तैयार हो रही है
+    user_reports_report_generation_failed_reason_message: रिपोर्ट निर्माण विफल हो गया
     video: वीडियो
     view: देखें
     view_audio: ऑडियो देखें

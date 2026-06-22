@@ -622,6 +622,7 @@ ja:
         roles:
           campaign_admin: キャンペーン管理者
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           manager: マネージャー
           member: ユーザー
           project_admin: プロジェクト管理者
@@ -727,6 +728,7 @@ ja:
           admins:
             admin: 管理者
             campaign_admin: キャンペーン管理者
+            client_assessor: クライアント評価担当者
             project_admin: プロジェクト管理者
             regular: クライアント管理者
             superadmin: スーパー管理者
@@ -736,6 +738,7 @@ ja:
           campaign_admin: キャンペーン管理者
           case_study: ケーススタディ
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           hogan: ホーガン
           iiht: IIHT
           manager: マネージャー
@@ -859,6 +862,8 @@ ja:
         bulk_download_idp_reports: IDP レポートの一括ダウンロード
         bulk_download_reports: レポートの一括ダウンロード
         bulk_download_user_reports: ユーザーレポートの一括ダウンロード
+        bulk_export_norm_factor_scores: バルク・ノーム・ファクター得点のエクスポート
+        bulk_export_raw_factor_scores: 未加工のファクター得点の一括エクスポート
         bulk_generate_user_campaign_ai_artifact_results: キャンペーン AI アーティファクト結果の一括生成
         bulk_regenerate_reports: キャンペーン・レポートの再生成
         bulk_regenerate_threesixty_reports: スリーシックスティ課題レポートを再生
@@ -871,10 +876,12 @@ ja:
         completion_status_export: 完成状況のエクスポート
         copy_as_template_or_campaign: キャンペーンをテンプレートとしてコピーする
         copy_dimension: コピー寸法
+        copy_report: レポートをコピー
         create_threesixty_campaign: クリエイト・スリーシックスティ・キャンペーン
         data_report_export: データ・レポート・エクスポート
         export_admin_with_permissions: 権限を持つ管理者のエクスポート
         export_assessment_questions: 輸出評価に関する質問
+        export_audit_logs: 監査ログのエクスポート
         export_campaign_ai_artifacts: エクスポートキャンペーンAIアーティファクト
         export_campaign_ai_artifacts_results: キャンペーンAIアーティファクト結果のエクスポート
         export_campaign_datasheet: キャンペーンデータシートのエクスポート
@@ -964,6 +971,8 @@ ja:
       errors:
         no_plans: アクティブな IDP プランが見つかりませんでした
     close: 閉じる
+    copy_report:
+      failed: レポートのコピーに失敗しました
     details: 詳細
     errors: エラー
     invalid_job: この通知は削除されたレコードに対応する
@@ -1467,6 +1476,7 @@ ja:
       external_user_id: スキルビュー候補者ID
       id: キャンペーン・アセスメントID
       locales: ロケール
+      microsite_assessment_url: マイクロサイトの評価用URL
       microsite_error_message: エラーメッセージ
       microsite_participant_id: マイクロサイト参加者ID
       microsite_registration_status: 登録状況
@@ -2118,6 +2128,7 @@ ja:
     invalid_token: ページを再読み込みしてやり直してください。
     max_regeneration_limit: 最大再生回数の制限を超えました。
     messages:
+      content_type_invalid: 無効なコンテンツタイプ
       data_report_blank: データレポートが存在しない
       password_complexity:
         digit:
@@ -3453,12 +3464,14 @@ ja:
           admin: 管理者
           admins:
             admin: 管理者
+            client_assessor: クライアント評価担当者
             project_admin: プロジェクト管理者
             regular: クライアント管理者
             superadmin: スーパー管理者
           agile: AGILE
           case_study: ケーススタディ
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           hogan: ホーガン
           manager: マネージャー
           member: ユーザー
@@ -3592,6 +3605,7 @@ ja:
         roles:
           campaign_admin: キャンペーン管理者
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           manager: マネージャー
           member: ユーザー
           project_admin: プロジェクト管理者
@@ -3662,12 +3676,14 @@ ja:
           admin: 管理者
           admins:
             admin: 管理者
+            client_assessor: クライアント評価担当者
             project_admin: プロジェクト管理者
             regular: クライアント管理者
             superadmin: スーパー管理者
           agile: AGILE
           case_study: ケーススタディ
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           hogan: ホーガン
           manager: マネージャー
           member: ユーザー
@@ -4129,6 +4145,7 @@ ja:
       campaign_assessor: キャンペーン・アセッサ
       campaign_user: キャンペーンユーザー
       client_admin: クライアント管理者
+      client_assessor: クライアント評価担当者
       project_admin: プロジェクト管理者
       superadmin: スーパー管理者
     superadmins: スーパー管理者

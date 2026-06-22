@@ -74,6 +74,7 @@ sl:
         subjects_count_added: Uspešno dodani predmeti
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Nastavitve ocenjevanja z umetno inteligenco je mogoče dodati le za vprašanja tipov »AudioResponse«, »VideoResponse« in »TextEntry«
         doesnt_have_header: "'%{sub_header}' nima glave"
         invalid_headers: 'Naslednje glave so neveljavne: %{headers}'
         invalid_question: ID neveljavnega vprašanja

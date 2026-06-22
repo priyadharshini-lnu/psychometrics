@@ -622,6 +622,7 @@ ro:
         roles:
           campaign_admin: Administratorul campaniei
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           manager: Manager
           member: Utilizator
           project_admin: Administrator de proiect
@@ -727,6 +728,7 @@ ro:
           admins:
             admin: Admin
             campaign_admin: Administratorul campaniei
+            client_assessor: Evaluator de clienți
             project_admin: Administrator de proiect
             regular: Administrator client
             superadmin: Super Admin
@@ -736,6 +738,7 @@ ro:
           campaign_admin: Administratorul campaniei
           case_study: Studiu de caz
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -859,6 +862,8 @@ ro:
         bulk_download_idp_reports: Descărcați în bloc rapoarte IDP
         bulk_download_reports: Rapoarte de descărcare în bloc
         bulk_download_user_reports: Descărcați în bloc rapoartele utilizatorilor
+        bulk_export_norm_factor_scores: Exportare scoruri factor normă în bloc
+        bulk_export_raw_factor_scores: Export în bloc al scorurilor factorilor bruti
         bulk_generate_user_campaign_ai_artifact_results: Generați în bloc rezultate ale artefactelor AI ale campaniei
         bulk_regenerate_reports: Regenerarea rapoartelor de campanie
         bulk_regenerate_threesixty_reports: Regenerarea rapoartelor Three6ty Subject
@@ -871,10 +876,12 @@ ro:
         completion_status_export: Exportul stării de finalizare
         copy_as_template_or_campaign: Copiați campania ca șablon
         copy_dimension: Copiere parametru
+        copy_report: Copiere raport
         create_threesixty_campaign: Creați campania Threesixty
         data_report_export: Exportul raportului de date
         export_admin_with_permissions: Exportați administratorul cu permisiuni
         export_assessment_questions: Întrebări de evaluare a exporturilor
+        export_audit_logs: Exportarea jurnalelor de audit
         export_campaign_ai_artifacts: Artefacte AI din campaniile de export
         export_campaign_ai_artifacts_results: Exportați rezultatele campaniei AI Artifacts
         export_campaign_datasheet: Fișă tehnică a campaniei de export
@@ -964,6 +971,8 @@ ro:
       errors:
         no_plans: Nu s-au găsit planuri IDP active
     close: Închide
+    copy_report:
+      failed: Copierea raportului a eșuat
     details: Detalii
     errors: Erori
     invalid_job: Această notificare corespunde înregistrării șterse
@@ -1454,6 +1463,7 @@ ro:
       external_user_id: ID candidat Skillvue
       id: ID de evaluare a campaniei
       locales: Localizări
+      microsite_assessment_url: URL-ul microsite-ului de evaluare
       microsite_error_message: Mesaj de eroare
       microsite_participant_id: ID participant microsite
       microsite_registration_status: Starea înregistrării
@@ -2132,6 +2142,7 @@ ro:
     invalid_token: Ceva nu a mers bine. Vă rugăm să reîncărcați pagina și să încercați din nou.
     max_regeneration_limit: Limita maximă de regenerare depășită, contactați administrația.
     messages:
+      content_type_invalid: tip de conținut nevalid
       data_report_blank: Raportul de date nu există
       password_complexity:
         digit:
@@ -3467,12 +3478,14 @@ ro:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Evaluator de clienți
             project_admin: Administrator de proiect
             regular: Administrator client
             superadmin: Super Admin
           agile: AGIL
           case_study: Studiu de caz
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           hogan: Hogan
           manager: Manager
           member: Utilizator
@@ -3606,6 +3619,7 @@ ro:
         roles:
           campaign_admin: Administratorul campaniei
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           manager: Manager
           member: Utilizator
           project_admin: Administrator de proiect
@@ -3676,12 +3690,14 @@ ro:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Evaluator de clienți
             project_admin: Administrator de proiect
             regular: Administrator client
             superadmin: Super Admin
           agile: AGIL
           case_study: Studiu de caz
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           hogan: Hogan
           manager: Manager
           member: Utilizator
@@ -4143,6 +4159,7 @@ ro:
       campaign_assessor: Evaluator de campanie
       campaign_user: Utilizator campanie
       client_admin: Administrator client
+      client_assessor: Evaluator de clienți
       project_admin: Administrator de proiect
       superadmin: Super Admin
     superadmins: Super administratori

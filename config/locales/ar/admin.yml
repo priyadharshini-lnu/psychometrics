@@ -20,7 +20,9 @@ ar:
     active_record_audits_old_diff_parse_error: فشل في تحليل JSON مع التغييرات القديمة
     active_record_audits_title: التغييرات المدققة
     activity: النشاط
+    activity_period: فترة النشاط
     add_admin: إضافة مسؤول
+    add_admin_role: إضافة دور إداري
     add_btn: إضافة موضوع
     add_campaign_admin: إضافة مسؤول حملة
     add_client_admin: إضافة مسؤول عميل
@@ -32,6 +34,7 @@ ar:
     add_more: أضف المزيد
     add_new_folder: إضافة مجلد جديد
     add_output_schema_key: إضافة مفتاح مخطط الإخراج
+    add_project: إضافة مشروع
     add_project_admin: إضافة مسؤول مشروع
     add_report: إضافة تقرير
     add_subjects: إضافة مشاركين
@@ -41,6 +44,8 @@ ar:
     admin_created_successfully: تم إنشاء المسؤول '%{name}' بنجاح
     admin_export_scheduled: تم جدولة مهمة تصدير المسؤول بنجاح. يرجى التحقق من إشعارك للحصول على الحالة.
     admin_removed_successfully: تم إزالة المسؤول بالبريد الإلكتروني '%{email}' بنجاح
+    admin_role_deleted: تم حذف دور المسؤول «%{role_name}» بنجاح.
+    admin_roles: أدوار المسؤولين
     admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
     administrator_approves_reports: يوافق المسؤول على التقارير
     administrators_list_columns_email: البريد الإلكتروني
@@ -113,6 +118,12 @@ ar:
     alt_text_long: يتجاوز الحد الأقصى البالغ 100 حرف.
     api_keys: مفاتيح API
     api_keys_form_title: مفتاح API
+    application: التطبيق
+    application_add: إضافة طلب
+    application_name: اسم التطبيق
+    application_name_already_taken: موجود بالفعل لهذا العميل
+    application_name_format_hint: يُسمح فقط باستخدام الحروف والأرقام، مع ترك مسافة واحدة بين الكلمات
+    applications: التطبيقات
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
     approve_all_questions: الموافقة على جميع الأسئلة
     approve_nomination_description: يتم إرسال هذه الرسالة إلى المدير عندما يتطلب ترشيح قدمته تقرير مباشر موافقة
@@ -129,6 +140,7 @@ ar:
     assessment_center: 'مركز التقييم:'
     assessment_center_group: مجموعة مركز التقييم
     assessment_center_group_placeholder: اختر مجموعة مركز التقييم
+    assessment_center_invites: دعوات من مركز التقييم
     assessment_ids: معرّفات التقييم
     assessment_placeholder: حدد التقييم
     assessment_question_not_supported: هذا النوع من الأسئلة غير مدعوم حاليًا.
@@ -201,6 +213,8 @@ ar:
     audit_log_title: معلومات سجل التدقيق
     audit_log_type: نوع السجل
     audit_logs: سجلات التدقيق
+    audit_logs_export_failed: فشل جدولة مهمة التصدير. يرجى المحاولة مرة أخرى.
+    audit_logs_export_queued: تم جدولة مهمة التصدير بنجاح.
     audit_reports: تقارير التدقيق
     auth_type_api_key_header_format_error: يُسمح فقط بالحروف والأرقام والشرطة السفلية والواصلات
     auth_type_api_key_header_label: رأس مفتاح API
@@ -240,11 +254,21 @@ ar:
     blocks_title: الكتل
     booked_at: 'تم الحجز في:'
     breadcrumbs_norms_editor: محرر المعايير
+    bulk_assessment_download_date_range_required: يرجى تحديد نطاق زمني
+    bulk_assessment_download_export_type: نوع التصدير
+    bulk_assessment_download_export_type_required: يرجى تحديد نوع التصدير
+    bulk_assessment_download_help_text: 'ملاحظة: إذا كانت التقييمات مرتبطة بأبعاد مختلفة، فسيحتوي ملف xslx الذي تم تنزيله على أوراق منفصلة لكل بُعد.'
+    bulk_assessment_download_modal_subtitle: حدد نطاقًا زمنيًا ونوع التصدير، ثم قم بتصدير التقييمات المحددة.
+    bulk_assessment_download_no_data_found: بالنسبة للنطاق الزمني والاختبارات المحددة، لم يتم العثور على أي بيانات. يرجى تجربة نطاق زمني أو اختبارات أخرى.
+    bulk_assessment_download_norm_factor_scores: درجات معامل المعيار
+    bulk_assessment_download_raw_factor_scores: درجات العوامل الأولية
     bulk_assets_modal_choose_csv: اختر ملف CSV
     bulk_assets_modal_choose_zip: اختر ملف ZIP
     bulk_assets_modal_not_csv_file_error: لا يُسمح بتحميل سوى ملفات CSV. يرجى تحميل ملف CSV صالح.
     bulk_assets_modal_subtitle: 'يرجى تحميل ملف CSV واحد (مع العناوين: user_email، file_name) وملف ZIP واحد (يحتوي على ملفات PDF مطابقة لأسماء الملفات من ملف csv). يجب ألا يزيد حجم ملف zip عن %{max_file_size} ميغابايت.'
     bulk_assets_modal_title: تحميل ملفات CSV و ZIP
+    bulk_export_assessments_file: ملف تصدير التقييمات الجماعية
+    bulk_export_invalid_params: معلمات تصدير مجمعة غير صالحة
     bulk_upload_ai_artifacts: التحف الذكاء الاصطناعي بالتحميل الجماعي
     campaign: الحملة
     campaign_admin: مسؤول الحملة
@@ -370,6 +394,7 @@ ar:
     client_id_label: معرف العميل
     client_id_name: oauth_client_id
     client_id_required: مطلوب معرف العميل
+    client_ids: معرّفات العملاء
     client_ip: عنوان IP للعميل
     client_logo_label: شعار العميل
     client_secret_label: سر العميل
@@ -408,6 +433,7 @@ ar:
     concise: موجز
     confidence_interval: فاصل الثقة
     confidence_interval_update_success: تم تحديث فاصل الثقة بنجاح
+    configuration: الإعدادات
     configure_model_answer_title: تكوين نموذج الإجابة والكلمات المفتاحية
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
     confirmation_required: يلزم التأكيد
@@ -420,6 +446,7 @@ ar:
     copy_ai_artifacts: نسخ أعمال الفن الاصطناعي
     copy_hint: ينسخ الإعدادات أعلاه للمقاعد ومديري المركز والمقيمين والاجتماعات والموارد إلى مراكز التقييم التالية. بعد النسخ، يمكنك إجراء تغييرات إضافية على مراكز التقييم الفردية قبل المتابعة.
     copy_image_url: نسخ عنوان URL للصورة
+    copy_report_scheduled: تم جدولة مهمة نسخ التقرير.
     copy_text: نص
     copy_to_all: نسخ إلى مراكز التقييم الأخرى
     copy_url: نسخ الرابط
@@ -441,6 +468,7 @@ ar:
     dashboard: لوحة القيادة
     dashboard_capacity_name: اسم السعة
     dashboard_choose_file_format: اختر تنسيق الملف
+    dashboard_dashboard_types_oracle_analytics: أوراكل أناليتيكس
     dashboard_dashboard_types_powerbi: PowerBi
     dashboard_dashboards: لوحات التحكم
     dashboard_export_dashboard_to_file: تصدير لوحة التحكم إلى ملف
@@ -481,12 +509,15 @@ ar:
     datasheet: ورقة البيانات
     date_and_time: التاريخ والوقت
     date_presets_last_30_days: آخر 30 يومًا
+    date_presets_last_6_months: الستة أشهر الماضية
     date_presets_last_7_days: آخر 7 أيام
     date_presets_last_month: الشهر الماضي
     date_presets_last_week: الأسبوع الماضي
+    date_presets_last_year: في العام الماضي
     date_presets_today: اليوم
     date_presets_yesterday: أمس
     date_range: نطاق التاريخ
+    date_range_required: يجب تحديد نطاق زمني
     dates_completed: اكتمل في
     dates_end: تاريخ الانتهاء
     dates_label: التواريخ
@@ -640,8 +671,10 @@ ar:
     enable_caching_successfully: تم تفعيل التخزين المؤقت لهذا التقييم.
     enable_caching_title: تمكين التخزين المؤقت للتقييم؟
     enable_enhance_with_ai_client_level: يرجى تمكين ميزة "تحسين باستخدام الذكاء الاصطناعي" على مستوى العميل
+    enable_face_detection: تمكين ميزة التعرف على الوجوه
     enable_maintenance: تمكين الصيانة
     enable_mobile_proctoring: تمكين المراقبة عبر الهاتف المحمول
+    enable_phrase_verification: تمكين التحقق من العبارة
     enable_system_check: تمكين فحص النظام
     enable_transcription: تمكين النسخ
     enable_transcription_msg: تمكين النسخ لاستخدام التقييم بالذكاء الاصطناعي في أسئلة الردود بالفيديو/الصوت.
@@ -652,13 +685,17 @@ ar:
     end_time_must_be_after_start_time: يجب أن يكون وقت الانتهاء بعد وقت البدء
     enhance_with_ai: تعزيز بالذكاء الاصطناعي
     enhance_with_ai_requires_ai_assistants: يتطلب تحسين الأداء باستخدام الذكاء الاصطناعي تمكين ميزة المساعدات الذكية.
+    enter_client_ids: أدخل معرّفات العملاء
     enter_description: أدخل الوصف
     enter_name: أدخل الاسم
+    enter_project_ids: أدخل معرّفات المشاريع
     enter_question_id: أدخل رقم السؤال
+    enter_report_ids: أدخل معرّفات التقارير
     enter_schema_key: أدخل مفتاح المخطط
     error: خطأ
     error_color: لون الخطأ
     errors_csv_file_required: يجب أن يكون الملف ملف CSV
+    errors_error_msg: حدث خطأ ما. يرجى تحديث الصفحة، وإذا استمرت المشكلة، فيرجى الاتصال بالمسؤول
     errors_min_retention: لا يمكن أن تقل عن 1 يوم
     errors_policy_version_format: يُسمح فقط بالأرقام الكاملة
     errors_required: مطلوب
@@ -695,6 +732,7 @@ ar:
     export_failure_msg: خطأ أثناء تصدير مستويات الكفاءة
     export_success: تم جدولة مهمة تصدير المسؤول بنجاح. يرجى التحقق من إشعارك للحصول على الحالة.
     export_success_msg: تصدير إجراءات التطوير قيد التنفيذ
+    export_to_csv: تصدير إلى ملف CSV
     export_with_inactive_users: التصدير مع المستخدمين غير النشطين
     external_report_id: رقم التقرير الخارجي
     external_score: درجة خارجية
@@ -748,15 +786,19 @@ ar:
     file_size_must_be_less_than_mb: يتجاوز حجم الملف {{name}} الحد الأقصى المسموح به البالغ {{max_size_mb}} ميغابايت
     file_upload_failed: فشل تحميل {{name}}
     fill_empty_score_msg: املأ جميع الدرجات النهائية قبل الحفظ.
+    filter_by_client: التصفية حسب العميل
+    filter_by_client_help: اختر عميلاً لتحميل مشاريعه
     final_score_empty_err_msg: لا يمكن أن تكون النتيجة النهائية لـ %{factor_name} فارغة.
     final_score_empty_msg: لا يمكن أن يكون الحساب النهائي فارغًا.
     finalized_at: تم الانتهاء منه في
+    fingerprint: بصمة الإصبع
     first_name_required: الاسم الأول مطلوب
     fix_grammar: تصحيح القواعد النحوية
     fixed_time: وقت ثابت
     form_active: نشط
     form_add_assessment: إضافة تقييم
     form_ai_assistant: مساعد الذكاء الاصطناعي
+    form_assessment_required: يلزم إجراء تقييم
     form_assessments: التقييمات
     form_campaign_factors: عوامل الحملة
     form_code: رمز
@@ -798,6 +840,8 @@ ar:
     handoff_invalid_token: رمز مصادقة غير صالح أو منتهي الصلاحية
     handoff_token_expired: انتهت صلاحية رمز المصادقة أو تم استخدامه بالفعل
     handoff_user_disabled: حسابك معطل
+    has_api_keys: لديه مفاتيح API
+    has_public_keys: لديه مفاتيح عامة
     header_logout_content: اضغط إلغاء إذا أردت الاستمرار في العمل. اضغط موافق لتسجيل خروج المستخدم الحالي.
     header_logout_title: هل أنت متأكد أنك تريد تسجيل الخروج؟
     hide_all: إخفاء الكل
@@ -860,6 +904,7 @@ ar:
     idp_development_actions_custom: إنشائي
     idp_development_actions_date_range: تاريخ البداية - تاريخ النهاية
     idp_development_actions_edit_plan_to_add_development_actions: تحرير الخطة وإضافة إجراءات التطوير.
+    idp_development_actions_errors_invalid_learning_style: '"%{learning_style}" ليس أسلوبًا تعليميًا صالحًا. الخيارات الصحيحة هي: %{valid_styles}'
     idp_development_actions_errors_learning_style_blank: لا يمكن أن يكون أسلوب التعلم فارغا
     idp_development_actions_generate_by_ai: توليد بواسطة الذكاء الاصطناعي
     idp_development_actions_generate_more: توليد المزيد
@@ -914,6 +959,7 @@ ar:
     idp_revert_skill_to_public_errors_skill_already_public: المهارة عامة بالفعل
     idp_revert_skill_to_public_errors_skill_not_found: لم يتم العثور على مهارة
     idp_revert_skill_to_public_success_base_message: أصبحت المهارة "%{skill_name}" مرئية الآن لمديرك
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} وقد تم تقديم خطة IDP الخاصة بك للموافقة عليها"
     idp_select_by_tags: التحديد حسب العلامات
     idp_select_interview_question: ابدأ الكتابة للبحث وتحديد السؤال
     idp_select_reflection_question: ابدأ الكتابة للبحث وتحديد السؤال
@@ -1002,6 +1048,7 @@ ar:
     innovation_styles_list_position: المنصب
     innovation_styles_resource_confirmations_delete_body: "<p>Are you sure you want to delete this innovation style?</p>\n"
     instruction_messages: رسائل التعليمات
+    instructions: التعليمات
     instructions_actions_saved: تم حفظ التعليمات بنجاح
     instructions_enable: تمكين التعليمات
     instructions_save: حفظ التعليمات
@@ -1013,6 +1060,13 @@ ar:
     integrations_columns_active: نشط
     integrations_columns_details: التفاصيل
     integrations_columns_name: اسم التكامل
+    integrations_details_client_id: رقم العميل
+    integrations_details_deployment_id: معرّف النشر
+    integrations_details_platform_access_token_url: عنوان URL لرمز الوصول إلى المنصة
+    integrations_details_platform_authentication_request_url: عنوان URL لطلب مصادقة المنصة
+    integrations_details_platform_host_name: اسم مضيف المنصة
+    integrations_details_platform_id: معرّف المنصة
+    integrations_details_platform_public_keyset_url: عنوان URL لمجموعة المفاتيح العامة للمنصة
     integrations_details_provider: اسم المزود
     integrations_details_webhookUrl: عنوان URL للخطاف
     integrations_details_webhookUrls: عناوين URL للخطاف
@@ -1023,6 +1077,7 @@ ar:
     integrations_names_hogan: هوجان
     integrations_names_iiht: IIHT
     integrations_names_mettl: ميتل
+    integrations_names_microsite: الموقع المصغر
     integrations_names_skillvue: سكيلفيو
     integrations_names_yoodli: يودلي
     integrations_view_all_schedules: عرض جميع جداول Mettl
@@ -1043,11 +1098,15 @@ ar:
     interview_questions_import_failure_msg: خطأ أثناء استيراد الملف.
     interview_questions_import_success_msg: استيراد أسئلة المقابلة قيد التقدم. يرجى التحقق من الحالة في الإشعارات.
     interview_questions_question: سؤال
+    invalid_client_ids: معرّفات عملاء غير صالحة
     invalid_confidence_interval: يجب أن يكون confidence_interval 0 أو 1
     invalid_csv_header: يحتوي ملف CSV على رؤوس غير صالحة.
+    invalid_json: التكوين ليس بتنسيق JSON صالحًا
     invalid_leadership_bar: يجب أن يكون leadership_bar 0 أو 1
     invalid_norm_option: يجب أن يكون خيار المعيار بين 0 و 3
+    invalid_project_ids: 'معرّفات المشاريع غير الصالحة: %{ids}'
     invalid_question_ids: 'لم يتم العثور على معرّفات الأسئلة التالية في هذا الاختبار: %{ids}'
+    invalid_report_ids: معرّفات التقارير غير الصالحة
     invite_add_invite: إضافة دعوة
     invite_assessment_center: مركز التقييم
     invite_basic_info_allow_preferred_language: السماح باللغة المفضلة
@@ -1071,6 +1130,7 @@ ar:
     invite_request_reason: سبب
     invite_request_reject: رفض
     invite_request_remove_confirm_content: هل أنت متأكد أنك تريد %{action} %{status} من %{subjectName}؟
+    invite_request_remove_confirm_success: "%{status} من %{subjectName} تم إرساله بنجاح إلى %{action}."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: اسم الموضوع
     invite_request_workshop_time: وقت الورشة
@@ -1087,6 +1147,7 @@ ar:
     invite_steps_has_errors: يحتوي على أخطاء
     invite_steps_send_invitation: إرسال دعوة
     invite_subjects_count: المشاركون
+    invite_subjects_csv_error: 'الصف %{index}: المستخدم صاحب البريد الإلكتروني %{email} غير موجود في هذه الحملة'
     invite_subjects_csv_imported: "%{count} مشاركين تم استيرادهم"
     invite_subjects_description: يمكنك إضافة المشاركين بشكل فردي عن طريق البحث أو تحميل ملف CSV بشكل جماعي.
     invite_subjects_download: تحميل
@@ -1126,6 +1187,7 @@ ar:
     join_room: انضم إلى الغرفة
     keep_original: الاحتفاظ بالأصل
     key: مفتاح
+    key_id: معرّف المفتاح
     keywords: الكلمات المفتاحية
     keywords_placeholder: أدخل الكلمات الرئيسية مفصولة بفواصل.
     language_id: معرف اللغة
@@ -1218,6 +1280,7 @@ ar:
     min_value: القيمة الدنيا
     minimum_10_words: 10 كلمات على الأقل
     minimum_download_speed: الحد الأدنى لسرعة التنزيل (بالميجابت في الثانية)
+    minimum_face_detection_ratio: الحد الأدنى لنسبة الكشف عن الوجوه
     minimum_system_check_validity: يجب ألا تقل مدة صلاحية فحص النظام عن 15 دقيقة
     minimum_upload_speed: الحد الأدنى لسرعة التحميل (بالميجابت في الثانية)
     missing_min_max_values: القيم الدنيا والقصوى مطلوبة.
@@ -1283,6 +1346,7 @@ ar:
     norms_score_types_norm_type: نوع المعيار
     norms_score_types_percentage: نسبة مئوية
     norms_sidebar_copy: نسخ المعيار
+    norms_sidebar_editor: محرر القواعد
     norms_sidebar_export: تصدير المعيار
     norms_title: المعيار
     not_completed: لم يكتمل
@@ -1765,6 +1829,7 @@ ar:
         view: منظر
         view_recordings: عرض التسجيلات
     permissions_360_campaigns: أذونات خاصة بحملات 360
+    permissions_updated: تم تحديث الأذونات بنجاح
     piped_text: نص موصول
     piped_text_modal_assessment_center: مركز التقييم
     piped_text_modal_campaign_link: رابط الحملة
@@ -1808,6 +1873,7 @@ ar:
     privacy_text: نص الخصوصية
     privacy_text_placeholder: أدخل نص الخصوصية
     proctoring: الإشراف
+    proctoring_allow_on_assessment_center: السماح بالإشراف في مركز التقييم
     proctoring_enable: تمكين المراقبة
     proctoring_errors_timed_only: لا يمكن تفعيل المراقبة الانتقائية إلا في الاختبارات المحددة بوقت.
     proctoring_fixed_time_required: قم بتفعيل "وقت محدد" لاختيار هذا الخيار
@@ -1860,9 +1926,13 @@ ar:
     project: مشروع
     project_admin: مسؤول المشروع
     project_admins: مسؤولو المشاريع
+    project_assessor: مقيم المشروع
     project_features: مميزات المشروع
     project_ids: معرّفات المشاريع
+    project_ids_required: يُعد «project_ids» حقلًا إلزاميًا لهذا النوع من التقارير
+    project_licenses: تراخيص المشاريع
     project_manager: مدير المشروع
+    project_not_related_to_client: مشروع «%{project_id}» لا ينتمي إلى العميل
     project_number: رقم المشروع
     project_participants_column_campaigns: الحملات
     project_participants_column_createdAt: تم إنشاؤها في
@@ -1958,6 +2028,22 @@ ar:
     provider_change_confirm_title: هل تريد تغيير المزود؟
     provider_previously_used_warning: كان هذا المساعد قد أنشأ نتائج سابقًا باستخدام "%{from}". وقد يؤدي التغيير إلى "%{to}" إلى تغيير سلوك المساعد في طلبات الإنشاء المستقبلية.
     psychometric: القياس النفسي
+    public_key: المفتاح العام
+    public_key_add: إضافة مفتاح عام
+    public_key_cannot_be_changed: لا يمكن تغييره بعد إنشائه
+    public_key_copy_private_key: نسخ المفتاح الخاص
+    public_key_created: تم إنشاء المفتاح العام بنجاح
+    public_key_generate: إنشاء زوج مفاتيح
+    public_key_generate_button: إنشاء زوج مفاتيح RSA
+    public_key_generate_info: سيتم إنشاء زوج مفاتيح RSA بقيمة 2048 بت. سيتم تخزين المفتاح العام فقط. انسخ المفتاح الخاص واحفظه في مكان آمن — فلن يتم عرضه مرة أخرى.
+    public_key_invalid_format: يجب أن يكون مفتاحًا عامًا صالحًا من نوع RSA بتنسيق PEM
+    public_key_must_be_public: يجب أن يكون مفتاحًا عامًا، وليس مفتاحًا خاصًا
+    public_key_paste_placeholder: الصق مفتاحك العام RSA بتنسيق PEM هنا (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: المفتاح العام (PEM)
+    public_key_private_key_copied: تم نسخ المفتاح الخاص إلى الحافظة
+    public_key_private_key_label: المفتاح الخاص (PEM)
+    public_key_private_key_warning: هذه هي المرة الوحيدة التي سيظهر فيها المفتاح الخاص. انسخه الآن واحفظه في مكان آمن.
+    public_keys: المفاتيح العامة
     question_center: مركز الأسئلة
     question_center_page_title: مركز الأسئلة - لوحة التحكم - Mercer Lighthouse
     question_editor_change_type: تغيير النوع
@@ -1984,6 +2070,8 @@ ar:
     question_type_video_response: رد بالفيديو
     questions: أسئلة
     questions_new_button: سؤال جديد
+    questions_percentage: الأسئلة (المجموع / القيمة القصوى)
+    questions_sum: الأسئلة (SUM)
     questions_title: سؤال
     questions_type: النوع
     range_min_max: النطاق%{min} - %{max}
@@ -2097,6 +2185,8 @@ ar:
     report_help_description: Help text displayed on report card on user's dashboard
     report_help_name: مساعدة التقارير
     report_id: معرف التقرير
+    report_ids: معرّفات التقارير
+    report_ids_required: يجب إدخال معرّفات التقارير
     report_name: اسم التقرير
     report_no_evaluations: تقرير %{user} غير متوفر - لم يتم استلام أي تقييمات.
     report_not_generated: التقرير %{user} يفي بشروط التوفر لكنه لم يتم إعداده بعد. يرجى إنشاء التقرير أولا.
@@ -2117,6 +2207,17 @@ ar:
     report_review_statuses_qc_completed: اكتمل مراقبة الجودة
     report_review_statuses_qc_in_progress: مراقبة الجودة قيد التنفيذ
     report_status: حالة التقرير
+    report_type: نوع التقرير
+    report_types:
+      active_clients_projects: العملاء والمشاريع الحالية
+      client_assessment_counts: أهمية تقييم العملاء
+      hogan_usage_report: استخدام تقييم هوجان
+      json_data_report: تقرير بيانات JSON
+      pearson_usage_report: استخدام تقييمات بيرسون
+      report_usage_summary: ملخص استخدام التقرير
+      saville_usage_report: استخدام تقييم سافيل
+      user_created_dates: التواريخ التي أنشأها المستخدمون
+      user_reports_export: تصدير تقارير المستخدمين
     reports: التقارير
     reports_copy_copy: نسخ
     reports_copy_copy_report: Copy Report
@@ -2170,6 +2271,7 @@ ar:
     role_client_admin: إدارة العملاء
     role_project_admin: مدير المشروع
     role_superadmin: المسؤول الأعلى
+    run: تشغيل
     saml_idp_certificate_available: متوفر (انقر للنسخة)
     saml_idp_certificate_label: شهادة
     saml_idp_entity_id_label: معرف الكيان/المصدر
@@ -2384,6 +2486,9 @@ ar:
     schema_key_required: مفتاح المخطط مطلوب
     schema_key_type: نوع المفتاح
     schema_key_unique: يجب أن تكون مفاتيح المخطط فريدة من نوعها
+    scope: النطاق
+    scope_client: العميل
+    scope_global: عالمي
     score: النتيجة
     score_approval_not_allowed_to_approve: لا يجوز لك الموافقة على هذه النتيجة.
     score_approval_not_allowed_to_discard: لا يجوز لك التخلص من هذه النتيجة.
@@ -2536,11 +2641,17 @@ ar:
     security_settings_security_setting: إعدادات الأمان
     select_admin_role: اختر دور المسؤول
     select_assessment_language: تحديد لغة التقييم
+    select_client: اختر العميل
     select_end_time: حدد وقت الانتهاء
     select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
     select_level: اختر المستوى
+    select_project_ids_required: حدد معرّفات المشاريع المطلوبة
+    select_projects: مشاريع مختارة
+    select_projects_required: يرجى اختيار مشروع واحد على الأقل
     select_question: البحث عن سؤال بالاسم أو الرقم التعريفي
+    select_report_ids_required: حدد معرّفات التقارير المطلوبة
     select_report_language: تحديد لغة التقرير
+    select_report_type: اختر نوع التقرير
     select_start_time: حدد وقت البدء
     selective_proctoring: المراقبة الانتقائية
     send_email: إرسال بريد إلكتروني
@@ -2875,6 +2986,9 @@ ar:
     threesixity_advance_settings_factors: العوامل
     threesixity_close_content: هل أنت متأكد أنك تريد إغلاق منشئ الحملة متعددة التقييمات؟ سيتم فقدان أي عمل تخصيص غير محفوظ. يرجى تأكيد قرارك.
     threesixity_close_title: إغلاق منشئ الحملة متعددة التقييمات؟
+    threesixity_instructions_creation_empty: 'فارغ: ابدأ باستبيان فارغ وقم بتخصيصه وفقًا لاحتياجاتك المحددة.'
+    threesixity_instructions_creation_previous: 'السابق: اختر تقييمًا سابقًا كنقطة انطلاق وقم بإجراء التعديلات عليه.'
+    threesixity_instructions_creation_standard: 'المعيار: استخدام نموذج جاهز يتضمن الأسئلة والمؤشرات الشائعة الاستخدام.'
     threesixity_instructions_creation_sub_title: يرجى اختيار نوع الحملة التي ترغب في إنشائها.
     threesixity_instructions_creation_title: مرحبًا بك في منشئ الحملة متعددة التقييمات!
     threesixity_instructions_customization_sub_title: اختر القالب والعوامل التي سيتم تضمينها في التقييم.
@@ -3021,6 +3135,7 @@ ar:
     x_axis_interval_label: فاصل المحور السيني
     y_axis_interval_label: فاصل المحور Y
     year: البلد
+    year_range: النطاق الزمني
     years: السنوات
     yoodli: يودلي
     yoodli_activity_id: معرف نشاط يودلي

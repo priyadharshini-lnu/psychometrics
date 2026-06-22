@@ -622,6 +622,7 @@ vi:
         roles:
           campaign_admin: Quản trị viên chiến dịch
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           manager: Giám đốc
           member: Người dùng
           project_admin: Quản trị viên dự án
@@ -727,6 +728,7 @@ vi:
           admins:
             admin: Admin
             campaign_admin: Quản trị viên chiến dịch
+            client_assessor: Chuyên viên đánh giá khách hàng
             project_admin: Quản trị viên dự án
             regular: Quản trị viên khách hàng
             superadmin: Siêu quản trị viên
@@ -736,6 +738,7 @@ vi:
           campaign_admin: Quản trị viên chiến dịch
           case_study: Nghiên cứu điển hình
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           hogan: Hogan
           iiht: IIHT
           manager: Giám đốc
@@ -859,6 +862,8 @@ vi:
         bulk_download_idp_reports: Tải xuống hàng loạt báo cáo IDP
         bulk_download_reports: Tải xuống hàng loạt báo cáo
         bulk_download_user_reports: Tải xuống hàng loạt báo cáo người dùng
+        bulk_export_norm_factor_scores: Xuất điểm số Hệ số Tiêu chuẩn theo lô
+        bulk_export_raw_factor_scores: Xuất hàng loạt điểm số yếu tố thô
         bulk_generate_user_campaign_ai_artifact_results: Tạo hàng loạt kết quả tạo tác AI chiến dịch
         bulk_regenerate_reports: Tạo lại báo cáo chiến dịch
         bulk_regenerate_threesixty_reports: Tái tạo Báo cáo Ba Sáu Mươi Chủ Đề
@@ -871,10 +876,12 @@ vi:
         completion_status_export: Xuất trạng thái hoàn thành
         copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
         copy_dimension: Sao chép kích thước
+        copy_report: Sao chép báo cáo
         create_threesixty_campaign: Tạo chiến dịch Threesixty
         data_report_export: Xuất báo cáo dữ liệu
         export_admin_with_permissions: Xuất quản trị viên có quyền
         export_assessment_questions: Câu hỏi đánh giá xuất khẩu
+        export_audit_logs: Xuất nhật ký kiểm toán
         export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
         export_campaign_ai_artifacts_results: Kết quả của Chiến dịch Xuất khẩu Các Tác phẩm Nghệ thuật Trí tuệ Nhân tạo
         export_campaign_datasheet: Bảng dữ liệu chiến dịch xuất khẩu
@@ -964,6 +971,8 @@ vi:
       errors:
         no_plans: Không tìm thấy kế hoạch IDP đang hoạt động
     close: Đóng
+    copy_report:
+      failed: Không sao chép được báo cáo
     details: Chi tiết
     errors: Lỗi
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
@@ -1448,6 +1457,7 @@ vi:
       external_user_id: ID ứng viên Skillvue
       id: ID đánh giá chiến dịch
       locales: Địa điểm
+      microsite_assessment_url: URL đánh giá trang web chuyên biệt
       microsite_error_message: Thông báo lỗi
       microsite_participant_id: Mã số người tham gia trang web chuyên biệt
       microsite_registration_status: Tình trạng đăng ký
@@ -2126,6 +2136,7 @@ vi:
     invalid_token: Có lỗi xảy ra. Vui lòng tải lại trang và thử lại.
     max_regeneration_limit: Vượt quá giới hạn tái tạo tối đa, hãy liên hệ với ban quản trị của bạn.
     messages:
+      content_type_invalid: loại nội dung không hợp lệ
       data_report_blank: Báo cáo dữ liệu không tồn tại
       password_complexity:
         digit:
@@ -3461,12 +3472,14 @@ vi:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Chuyên viên đánh giá khách hàng
             project_admin: Quản trị viên dự án
             regular: Quản trị viên khách hàng
             superadmin: Siêu quản trị viên
           agile: NHANH NHẸN
           case_study: Nghiên cứu điển hình
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           hogan: Hogan
           manager: Giám đốc
           member: Người dùng
@@ -3600,6 +3613,7 @@ vi:
         roles:
           campaign_admin: Quản trị viên chiến dịch
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           manager: Giám đốc
           member: Người dùng
           project_admin: Quản trị viên dự án
@@ -3670,12 +3684,14 @@ vi:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Chuyên viên đánh giá khách hàng
             project_admin: Quản trị viên dự án
             regular: Quản trị viên khách hàng
             superadmin: Siêu quản trị viên
           agile: NHANH NHẸN
           case_study: Nghiên cứu điển hình
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           hogan: Hogan
           manager: Giám đốc
           member: Người dùng
@@ -4137,6 +4153,7 @@ vi:
       campaign_assessor: Đánh giá viên chiến dịch
       campaign_user: Người dùng chiến dịch
       client_admin: Quản trị viên khách hàng
+      client_assessor: Chuyên viên đánh giá khách hàng
       project_admin: Quản trị viên dự án
       superadmin: Siêu quản trị viên
     superadmins: Quản trị viên cấp cao

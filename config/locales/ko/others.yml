@@ -622,6 +622,7 @@ ko:
         roles:
           campaign_admin: 캠페인 관리자
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           manager: 관리자
           member: 사용자
           project_admin: 프로젝트 관리자
@@ -727,6 +728,7 @@ ko:
           admins:
             admin: 관리자
             campaign_admin: 캠페인 관리자
+            client_assessor: 고객 평가 담당자
             project_admin: 프로젝트 관리자
             regular: 클라이언트 관리자
             superadmin: 슈퍼 관리자
@@ -736,6 +738,7 @@ ko:
           campaign_admin: 캠페인 관리자
           case_study: 사례 연구
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           hogan: Hogan
           iiht: IIHT
           manager: 관리자
@@ -859,6 +862,8 @@ ko:
         bulk_download_idp_reports: IDP 보고서 대량 다운로드
         bulk_download_reports: 보고서 대량 다운로드
         bulk_download_user_reports: 사용자 보고서 대량 다운로드
+        bulk_export_norm_factor_scores: 대량 규범 요인 점수 내보내기
+        bulk_export_raw_factor_scores: 원시 요인 점수 일괄 내보내기
         bulk_generate_user_campaign_ai_artifact_results: 캠페인 AI 아티팩트 결과 대량 생성
         bulk_regenerate_reports: 캠페인 보고서 재생성
         bulk_regenerate_threesixty_reports: 주제 보고서 3십 개 재생성하기
@@ -871,10 +876,12 @@ ko:
         completion_status_export: 완료 상태 내보내기
         copy_as_template_or_campaign: 캠페인을 템플릿으로 복사
         copy_dimension: 복사 차원
+        copy_report: 보고서 복사
         create_threesixty_campaign: 쓰리식스티 캠페인 만들기
         data_report_export: 데이터 보고서 내보내기
         export_admin_with_permissions: 권한이 있는 관리자 내보내기
         export_assessment_questions: 수출 평가 질문
+        export_audit_logs: 감사 로그 내보내기
         export_campaign_ai_artifacts: 수출 캠페인 AI 아티팩트
         export_campaign_ai_artifacts_results: 캠페인 AI 아티팩트 결과 내보내기
         export_campaign_datasheet: 캠페인 데이터시트 내보내기
@@ -964,6 +971,8 @@ ko:
       errors:
         no_plans: 활성 IDP 플랜을 찾을 수 없습니다.
     close: 닫기
+    copy_report:
+      failed: 보고서 복사에 실패했습니다.
     details: 세부 정보
     errors: 오류
     invalid_job: 이 알림은 삭제된 레코드에 해당합니다
@@ -1454,6 +1463,7 @@ ko:
       external_user_id: 스킬뷰 응시자 ID
       id: 캠페인 평가 ID
       locales: 로캘
+      microsite_assessment_url: 마이크로사이트 평가 URL
       microsite_error_message: 오류 메시지
       microsite_participant_id: 마이크로사이트 참가자 ID
       microsite_registration_status: 등록 상태
@@ -2111,6 +2121,7 @@ ko:
     invalid_token: 문제가 발생했습니다. 페이지를 새로고침하고 다시 시도하세요.
     max_regeneration_limit: 최대 재생 한도가 초과되었으니 관리팀에 문의하세요.
     messages:
+      content_type_invalid: 잘못된 콘텐츠 유형
       data_report_blank: 데이터 보고서가 존재하지 않습니다
       password_complexity:
         digit:
@@ -3446,12 +3457,14 @@ ko:
           admin: 관리자
           admins:
             admin: 관리자
+            client_assessor: 고객 평가 담당자
             project_admin: 프로젝트 관리자
             regular: 클라이언트 관리자
             superadmin: 슈퍼 관리자
           agile: AGILE
           case_study: 사례 연구
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           hogan: Hogan
           manager: 관리자
           member: 사용자
@@ -3585,6 +3598,7 @@ ko:
         roles:
           campaign_admin: 캠페인 관리자
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           manager: 관리자
           member: 사용자
           project_admin: 프로젝트 관리자
@@ -3655,12 +3669,14 @@ ko:
           admin: 관리자
           admins:
             admin: 관리자
+            client_assessor: 고객 평가 담당자
             project_admin: 프로젝트 관리자
             regular: 클라이언트 관리자
             superadmin: 슈퍼 관리자
           agile: AGILE
           case_study: 사례 연구
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           hogan: Hogan
           manager: 관리자
           member: 사용자
@@ -4122,6 +4138,7 @@ ko:
       campaign_assessor: 캠페인 평가자
       campaign_user: 캠페인 사용자
       client_admin: 클라이언트 관리자
+      client_assessor: 고객 평가 담당자
       project_admin: 프로젝트 관리자
       superadmin: 슈퍼 관리자
     superadmins: 슈퍼 관리자

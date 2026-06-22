@@ -622,6 +622,7 @@ it:
         roles:
           campaign_admin: Admin della campagna
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           manager: Manager
           member: Utente
           project_admin: Progetto Admin
@@ -727,6 +728,7 @@ it:
           admins:
             admin: Admin
             campaign_admin: Admin della campagna
+            client_assessor: Valutatore clienti
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
@@ -736,6 +738,7 @@ it:
           campaign_admin: Admin della campagna
           case_study: Studio di caso
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -859,6 +862,8 @@ it:
         bulk_download_idp_reports: Download in blocco dei rapporti IDP
         bulk_download_reports: Report scaricati in blocco
         bulk_download_user_reports: Scaricamento massivo dei rapporti utente
+        bulk_export_norm_factor_scores: Esportazione dei punteggi del fattore di normalizzazione in blocco
+        bulk_export_raw_factor_scores: Esportazione in blocco dei punteggi grezzi dei fattori
         bulk_generate_user_campaign_ai_artifact_results: Genera in blocco i risultati degli artefatti AI della campagna
         bulk_regenerate_reports: Rigenerare i rapporti della campagna
         bulk_regenerate_threesixty_reports: Rigenerare trecentosessanta rapporti di soggetto
@@ -871,10 +876,12 @@ it:
         completion_status_export: Esporta dello stato di completamento
         copy_as_template_or_campaign: Copiare la campagna come modello
         copy_dimension: Copiare la dimensione
+        copy_report: Copia rapporto
         create_threesixty_campaign: Creare una campagna Threesixty
         data_report_export: Esporta di rapporti di dati
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
+        export_audit_logs: Esportazione dei registri di audit
         export_campaign_ai_artifacts: Artefatti AI della Campagna di Esportazione
         export_campaign_ai_artifacts_results: Esporta risultati della campagna AI Artifacts
         export_campaign_datasheet: Scheda tecnica della campagna di esportazione
@@ -964,6 +971,8 @@ it:
       errors:
         no_plans: Non sono stati trovati piani IDP attivi
     close: Chiudere
+    copy_report:
+      failed: La copia del report non è andata a buon fine
     details: Dettagli
     errors: Errori
     invalid_job: Questa notifica corrisponde al record cancellato
@@ -1454,6 +1463,7 @@ it:
       external_user_id: ID candidato Skillvue
       id: ID di valutazione della campagna
       locales: Località
+      microsite_assessment_url: URL del microsito da valutare
       microsite_error_message: Messaggio di errore
       microsite_participant_id: ID partecipante al microsito
       microsite_registration_status: Stato della registrazione
@@ -2105,6 +2115,7 @@ it:
     invalid_token: Qualcosa è andato storto. Ricaricare la pagina e riprovare.
     max_regeneration_limit: Superato il limite massimo di rigenerazione, contattare l'amministrazione.
     messages:
+      content_type_invalid: tipo di contenuto non valido
       data_report_blank: Il rapporto dati non esiste
       password_complexity:
         digit:
@@ -3440,12 +3451,14 @@ it:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Valutatore clienti
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
           agile: AGILE
           case_study: Studio di caso
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           hogan: Hogan
           manager: Manager
           member: Utente
@@ -3579,6 +3592,7 @@ it:
         roles:
           campaign_admin: Admin della campagna
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           manager: Manager
           member: Utente
           project_admin: Progetto Admin
@@ -3649,12 +3663,14 @@ it:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Valutatore clienti
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
           agile: AGILE
           case_study: Studio di caso
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           hogan: Hogan
           manager: Manager
           member: Utente
@@ -4116,6 +4132,7 @@ it:
       campaign_assessor: Valutatore della campagna
       campaign_user: Utente della campagna
       client_admin: Amministratore del cliente
+      client_assessor: Valutatore clienti
       project_admin: Progetto Admin
       superadmin: Super Admin
     superadmins: Super amministratori

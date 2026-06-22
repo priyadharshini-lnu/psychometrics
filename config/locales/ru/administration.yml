@@ -74,6 +74,7 @@ ru:
         subjects_count_added: Предметы успешно добавлены
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Настройки оценки с использованием ИИ можно добавить только для вопросов типов «AudioResponse», «VideoResponse» и «TextEntry»
         doesnt_have_header: "«%{sub_header}» не имеет заголовка"
         invalid_headers: 'Следующие заголовки являются недействительными: %{headers}'
         invalid_question: Неверный идентификатор вопроса

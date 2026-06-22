@@ -20,6 +20,7 @@ en-US:
     active_record_audits_old_diff_parse_error: Failed to parse JSON with old changes
     active_record_audits_title: Audited Changes
     activity: Activity
+    activity_period: Activity Period
     add_admin: Add admin
     add_admin_role: Add Admin Role
     add_btn: Add subject
@@ -117,6 +118,12 @@ en-US:
     alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
     api_keys_form_title: api key
+    application: Application
+    application_add: Add Application
+    application_name: Application Name
+    application_name_already_taken: Already exists for this client
+    application_name_format_hint: Only letters and numbers are allowed, with a single space between words
+    applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
     approve_all_questions: Approve All Questions
     approve_nomination_description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved
@@ -133,6 +140,7 @@ en-US:
     assessment_center: 'Assessment center:'
     assessment_center_group: Assessment Center Group
     assessment_center_group_placeholder: Select Assessment Center Group
+    assessment_center_invites: Assessment Center Invites
     assessment_ids: Assessment IDs
     assessment_placeholder: Select Assessment
     assessment_question_not_supported: This question type is not currently supported.
@@ -205,6 +213,8 @@ en-US:
     audit_log_title: Audit Log Info
     audit_log_type: Record Type
     audit_logs: Audit Logs
+    audit_logs_export_failed: Failed to schedule export job. Please try again.
+    audit_logs_export_queued: Export job has been scheduled successfully.
     audit_reports: Audit Reports
     auth_type_api_key_header_format_error: Only letters, numbers, underscores and hyphens are allowed
     auth_type_api_key_header_label: API Key Header
@@ -244,11 +254,21 @@ en-US:
     blocks_title: Blocks
     booked_at: 'Booked At:'
     breadcrumbs_norms_editor: Norm Editor
+    bulk_assessment_download_date_range_required: Please select date range
+    bulk_assessment_download_export_type: Export type
+    bulk_assessment_download_export_type_required: Please select export type
+    bulk_assessment_download_help_text: 'Note: If assessments are linked to different dimensions, downloaded xslx file will contain separate sheets for each dimension.'
+    bulk_assessment_download_modal_subtitle: Select a date range and export type, then export selected assessments.
+    bulk_assessment_download_no_data_found: For the chosen date range and assessments, no data found. Please try with different date range or assessments.
+    bulk_assessment_download_norm_factor_scores: Norm factor scores
+    bulk_assessment_download_raw_factor_scores: Raw factor scores
     bulk_assets_modal_choose_csv: Choose CSV File
     bulk_assets_modal_choose_zip: Choose ZIP File
     bulk_assets_modal_not_csv_file_error: Only CSV files are allowed for CSV upload. Please upload a valid CSV file.
     bulk_assets_modal_subtitle: 'Please upload <b>one CSV</b> file (with headers: user_email, file_name) and <b>one ZIP</b> file (containing PDF files matching the file names from csv). Zip file must be under %{max_file_size} MB.'
     bulk_assets_modal_title: Upload CSV and ZIP files
+    bulk_export_assessments_file: Bulk assessments export file
+    bulk_export_invalid_params: Invalid bulk export parameters
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign: Campaign
     campaign_admin: Campaign Admin
@@ -374,6 +394,7 @@ en-US:
     client_id_label: Client ID
     client_id_name: oauth_client_id
     client_id_required: Client ID is required
+    client_ids: Client IDs
     client_ip: Client Ip
     client_logo_label: Client logo
     client_secret_label: Client Secret
@@ -412,6 +433,7 @@ en-US:
     concise: Concise
     confidence_interval: Confidence Interval
     confidence_interval_update_success: Confidence interval updated successfully
+    configuration: Configuration
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     confirmation_required: Confirmation Required
@@ -424,6 +446,7 @@ en-US:
     copy_ai_artifacts: Copy AI Artifacts
     copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
     copy_image_url: Copy Image URL
+    copy_report_scheduled: Report copy job has been scheduled.
     copy_text: Text
     copy_to_all: Copy to other Assessment Centers
     copy_url: Copy URL
@@ -486,12 +509,15 @@ en-US:
     datasheet: Datasheet
     date_and_time: Date & Time
     date_presets_last_30_days: Last 30 days
+    date_presets_last_6_months: Last 6 months
     date_presets_last_7_days: Last 7 days
     date_presets_last_month: Last Month
     date_presets_last_week: Last Week
+    date_presets_last_year: Last year
     date_presets_today: Today
     date_presets_yesterday: Yesterday
     date_range: Date Range
+    date_range_required: Date range is required
     dates_completed: Completed At
     dates_end: End date
     dates_label: Dates
@@ -645,8 +671,10 @@ en-US:
     enable_caching_successfully: Caching has been enabled for this assessment.
     enable_caching_title: Enable Assessment Caching?
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enable_face_detection: Enable Face Detection
     enable_maintenance: Enable Maintenance
     enable_mobile_proctoring: Enable Mobile Proctoring
+    enable_phrase_verification: Enable Phrase Verification
     enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
@@ -657,9 +685,12 @@ en-US:
     end_time_must_be_after_start_time: End time must be after start time
     enhance_with_ai: Enhance with AI
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
+    enter_client_ids: Enter client IDs
     enter_description: Enter description
     enter_name: Enter name
+    enter_project_ids: Enter project IDs
     enter_question_id: Enter Question ID
+    enter_report_ids: Enter report IDs
     enter_schema_key: Enter Schema Key
     error: Error
     error_color: Error Color
@@ -701,6 +732,7 @@ en-US:
     export_failure_msg: Error while exporting proficiency levels
     export_success: Admin export job was scheduled successfully. Please check your notification for status.
     export_success_msg: Exporting development actions in progress
+    export_to_csv: Export to CSV
     export_with_inactive_users: Export with inactive users
     external_report_id: External Report ID
     external_score: External Score
@@ -754,9 +786,12 @@ en-US:
     file_size_must_be_less_than_mb: File {{name}} exceeds the maximum size of {{max_size_mb}} MB
     file_upload_failed: Failed to upload {{name}}
     fill_empty_score_msg: Fill all the final scores before saving.
+    filter_by_client: Filter by Client
+    filter_by_client_help: Select a client to load its projects
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     final_score_empty_msg: Final score cannot be empty.
     finalized_at: Finalized At
+    fingerprint: Fingerprint
     first_name_required: First name is required
     fix_grammar: Fix Grammar
     fixed_time: Fixed Time
@@ -805,6 +840,8 @@ en-US:
     handoff_invalid_token: Invalid or expired authentication token
     handoff_token_expired: Authentication token has expired or already been used
     handoff_user_disabled: Your account is disabled
+    has_api_keys: Has API Keys
+    has_public_keys: Has Public Keys
     header_logout_content: Press Cancel if you want to continue work. Press Ok to logout current user.
     header_logout_title: Are you sure you want to logout.
     hide_all: Hide All
@@ -1011,6 +1048,7 @@ en-US:
     innovation_styles_list_position: Position
     innovation_styles_resource_confirmations_delete_body: "<p>Are you sure you want to delete this innovation style?</p>\n"
     instruction_messages: Instruction Messages
+    instructions: Instructions
     instructions_actions_saved: Instructions saved successfully
     instructions_enable: Enable Instructions
     instructions_save: Save Instructions
@@ -1039,6 +1077,7 @@ en-US:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Microsite
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: View All Mettl Schedules
@@ -1059,11 +1098,15 @@ en-US:
     interview_questions_import_failure_msg: Error while importing file.
     interview_questions_import_success_msg: Importing Interview Questions in progress. Please check the status in the notifications.
     interview_questions_question: Question
+    invalid_client_ids: Invalid client IDs
     invalid_confidence_interval: confidence_interval must be 0 or 1
     invalid_csv_header: CSV file contains invalid headers.
+    invalid_json: configuration is not valid JSON
     invalid_leadership_bar: leadership_bar must be 0 or 1
     invalid_norm_option: Norm Option must be between 0 and 3
+    invalid_project_ids: 'Invalid project IDs: %{ids}'
     invalid_question_ids: 'Question IDs not found in this assessment: %{ids}'
+    invalid_report_ids: Invalid Report IDs
     invite_add_invite: Add Invite
     invite_assessment_center: Assessment Center
     invite_basic_info_allow_preferred_language: Allow Preferred Language
@@ -1144,6 +1187,7 @@ en-US:
     join_room: Join Room
     keep_original: Keep Original
     key: Key
+    key_id: Key ID
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
     language_id: Language ID
@@ -1236,6 +1280,7 @@ en-US:
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_face_detection_ratio: Minimum Face Detection Ratio
     minimum_system_check_validity: Minimum Campaign level System Check validity should be 15 minutes
     minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
@@ -1784,6 +1829,7 @@ en-US:
         view: View
         view_recordings: View Recordings
     permissions_360_campaigns: Permissions specific to 360 campaigns
+    permissions_updated: Permissions updated successfully
     piped_text: Piped Text
     piped_text_modal_assessment_center: Assessment Center
     piped_text_modal_campaign_link: Campaign Link
@@ -1880,8 +1926,13 @@ en-US:
     project: Project
     project_admin: Project Admin
     project_admins: Project Admins
+    project_assessor: Project Assessor
     project_features: Project Features
+    project_ids: Project IDs
+    project_ids_required: project_ids is required for this report type
+    project_licenses: Project Licenses
     project_manager: Project Manager
+    project_not_related_to_client: project '%{project_id}' does not belong to the client
     project_number: Project Number
     project_participants_column_campaigns: Campaigns
     project_participants_column_createdAt: Created At
@@ -1977,6 +2028,22 @@ en-US:
     provider_change_confirm_title: Change Provider?
     provider_previously_used_warning: This assistant has previously generated results with "%{from}". Changing to "%{to}" may alter the assistant's behaviour for future generation requests.
     psychometric: Psychometric
+    public_key: Public Key
+    public_key_add: Add Public Key
+    public_key_cannot_be_changed: cannot be changed after creation
+    public_key_copy_private_key: Copy Private Key
+    public_key_created: Public key created successfully
+    public_key_generate: Generate Key Pair
+    public_key_generate_button: Generate RSA Key Pair
+    public_key_generate_info: Will generate a 2048-bit RSA key pair. Only the public key will be stored. Copy and securely store the private key — it will not be shown again.
+    public_key_invalid_format: must be a valid RSA public key in PEM format
+    public_key_must_be_public: must be a public key, not a private key
+    public_key_paste_placeholder: Paste your RSA public key in PEM format here (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Public Key (PEM)
+    public_key_private_key_copied: Private key copied to clipboard
+    public_key_private_key_label: Private Key (PEM)
+    public_key_private_key_warning: This is the only time the private key will be visible. Copy it now and store it securely.
+    public_keys: Public Keys
     question_center: Question Center
     question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
@@ -2118,6 +2185,8 @@ en-US:
     report_help_description: Help text displayed on report card on user's dashboard
     report_help_name: Reports help
     report_id: Report ID
+    report_ids: Report IDs
+    report_ids_required: Report IDs are required
     report_name: Report Name
     report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
     report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
@@ -2138,6 +2207,17 @@ en-US:
     report_review_statuses_qc_completed: QC Completed
     report_review_statuses_qc_in_progress: QC in Progress
     report_status: Report Status
+    report_type: Report Type
+    report_types:
+      active_clients_projects: Active Clients & Projects
+      client_assessment_counts: Client Assessment Counts
+      hogan_usage_report: Hogan Assessment Usage
+      json_data_report: JSON Data Report
+      pearson_usage_report: Pearson Assessment Usage
+      report_usage_summary: Report Usage Summary
+      saville_usage_report: Saville Assessment Usage
+      user_created_dates: User Created Dates
+      user_reports_export: User Reports Export
     reports: Reports
     reports_copy_copy: Copy
     reports_copy_copy_report: Copy Report
@@ -2191,6 +2271,7 @@ en-US:
     role_client_admin: Client Admin
     role_project_admin: Project Admin
     role_superadmin: Super Admin
+    run: Run
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -2405,6 +2486,9 @@ en-US:
     schema_key_required: Schema Key is required
     schema_key_type: Key Type
     schema_key_unique: Schema Keys should be unique
+    scope: Scope
+    scope_client: Client
+    scope_global: Global
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
     score_approval_not_allowed_to_discard: You are not allowed to discard this score.
@@ -2557,11 +2641,17 @@ en-US:
     security_settings_security_setting: Security setting
     select_admin_role: Select admin role
     select_assessment_language: Select assessment language
+    select_client: Select Client
     select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level
+    select_project_ids_required: Select project_ids required
+    select_projects: Select Projects
+    select_projects_required: Please select at least one project
     select_question: Search question by name or ID
+    select_report_ids_required: Select report_ids required
     select_report_language: Select report language
+    select_report_type: Select Report Type
     select_start_time: Select Start Time
     selective_proctoring: Selective Proctoring
     send_email: Send email
@@ -3045,6 +3135,7 @@ en-US:
     x_axis_interval_label: X-Axis Interval
     y_axis_interval_label: Y-Axis Interval
     year: Year
+    year_range: Year Range
     years: Years
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID

@@ -74,6 +74,7 @@ de:
         subjects_count_added: Erfolgreich hinzugefügte Fächer
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Die Konfiguration der KI-Bewertung kann nur für Fragen der Typen „AudioResponse“, „VideoResponse“ und „TextEntry“ hinzugefügt werden.
         doesnt_have_header: "%{sub_header}' hat keine Kopfzeile"
         invalid_headers: 'Folgende Header sind ungültig: %{headers}'
         invalid_question: Ungültige Frage-ID

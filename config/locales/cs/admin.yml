@@ -20,6 +20,7 @@ cs:
     active_record_audits_old_diff_parse_error: Nepodařilo se analyzovat JSON se starými změnami
     active_record_audits_title: Auditované změny
     activity: Aktivita
+    activity_period: Období činnosti
     add_admin: Přidat správce
     add_admin_role: Přidání role správce
     add_btn: Přidat předmět
@@ -49,18 +50,22 @@ cs:
     administrator_approves_reports: Správce schvaluje zprávy
     administrators_list_columns_email: E-mail
     admins: Administrátoři
+    advanced: Pokročilé
     advanced_mode_tooltip: Použijte pokročilý režim pro šablonování promptů pomocí tekuté šablony s dostupnými proměnnými. Pro více informací se podívejte na dokumentaci.
+    agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nelze vygenerovat pro uživatele „%{user_email}“.
     ai_artifact_result_stale: Výsledek může být zastaralý, protože závislosti artefaktu AI se od posledního vygenerování výsledku změnily. Zvažte opětovné vygenerování artefaktu s nejnovějšími závislostmi.
     ai_artifacts: Artefakty AI
     ai_assistant: AI asistent
     ai_assistant_model_id_label: Identifikace modelu
+    ai_assistant_model_label: Model
     ai_assistant_model_provider: Poskytovatel
     ai_assistant_model_region_label: Oblast
     ai_assistant_required: AI Assistant je povinný
     ai_assistant_select_dependencies: Vyberte závislosti
     ai_assistants: Asistenti AI
     ai_assistants_disabled_by_client: AI Assistants je klientem deaktivován
+    ai_assistants_playground: Hřiště pro AI asistenty
     ai_assisted_idp: Poskytovatel identity s pomocí umělé inteligence
     ai_assisted_idp_disabled_by_client: AI Assisted IDP je deaktivováno klientem
     ai_assisted_idp_feature_disabled: Funkce AI asistovaného IDP byla pro tento projekt deaktivována.
@@ -113,6 +118,12 @@ cs:
     alt_text_long: Překračuje maximální limit 100 znaků.
     api_keys: Klíče API
     api_keys_form_title: klíč api
+    application: Žádost
+    application_add: Přidat aplikaci
+    application_name: Název aplikace
+    application_name_already_taken: Pro tohoto klienta již existuje
+    application_name_format_hint: Povoleny jsou pouze písmena a číslice, mezi slovy smí být pouze jedna mezera
+    applications: Aplikace
     apply_to_existing_users: Použít tuto změnu na stávající uživatele v této kampani
     approve_all_questions: Schválit všechny otázky
     approve_nomination_description: Tato zpráva je zaslána vedoucímu pracovníkovi, když je třeba schválit nominaci provedenou přímým podřízeným
@@ -129,6 +140,7 @@ cs:
     assessment_center: 'Hodnotící centrum:'
     assessment_center_group: Skupina Assessment Center
     assessment_center_group_placeholder: Vyberte skupinu Assessment Center
+    assessment_center_invites: Pozvánky do assessment centra
     assessment_ids: Identifikační čísla hodnocení
     assessment_placeholder: Vyberte možnost Hodnocení
     assessment_question_not_supported: Tento typ otázky není v současné době podporován.
@@ -154,6 +166,7 @@ cs:
     assessor_assessment_name: Hodnocení hodnotitele
     assessor_assessments: Hodnocení hodnotitele
     assessor_assessments_actions_add_subject: Přidat předmět
+    assessor_assessments_actions_rescore: Přehodnocení
     assessor_assessments_actions_reset: Vyhodnocení resetování
     assessor_assessments_actions_reset_progress: Obnovení postupu
     assessor_assessments_bulk_delete_confirmation: Jste si jisti, že chcete odstranit vybrané záznamy?
@@ -174,6 +187,7 @@ cs:
     assessor_email: E-mail odhadce
     assessor_evaluations: Hodnocení hodnotitelů
     assessor_first_name: Křestní jméno posuzovatele
+    assessor_form: Formulář pro hodnotitele
     assessor_ids_label: Posuzovatelé
     assessor_last_name: Příjmení odhadce
     assessor_modals_import_body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
@@ -199,6 +213,8 @@ cs:
     audit_log_title: Informace o protokolu auditu
     audit_log_type: Typ záznamu
     audit_logs: Protokoly o auditu
+    audit_logs_export_failed: Nepodařilo se naplánovat exportní úlohu. Zkuste to prosím znovu.
+    audit_logs_export_queued: Úloha exportu byla úspěšně naplánována.
     audit_reports: Auditní zprávy
     auth_type_api_key_header_format_error: Povolena jsou pouze písmena, číslice, podtržítka a pomlčky.
     auth_type_api_key_header_label: Záhlaví klíče API
@@ -215,6 +231,7 @@ cs:
     auth_type_oauth_label: OAuth
     auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Toto hodnocení je generováno automaticky a nelze jej změnit
+    auto_placeholder: Auto
     automatically_send_invites: Automatické zasílání pozvánek novým hodnotitelům
     availability: Dostupnost
     available_languages: Dostupné jazyky
@@ -229,13 +246,29 @@ cs:
     background_size_cover: Obálka
     basic_info_panel_description: Níže zadejte informace o rozvrhu. Můžete také vybrat více termínů a vytvořit tak více hodnotících center.
     basic_info_panel_title: Základní informace
+    block_editor_add_question: Přidat otázku
+    block_editor_question_randomization: Náhodné řazení otázek
+    block_options: Možnosti bloku
+    block_settings: Nastavení bloku
+    blocks_new_button: Nový blok
+    blocks_title: Bloky
     booked_at: 'Rezervováno v:'
     breadcrumbs_norms_editor: Normální editor
+    bulk_assessment_download_date_range_required: Vyberte prosím časové období
+    bulk_assessment_download_export_type: Typ exportu
+    bulk_assessment_download_export_type_required: Vyberte prosím typ exportu
+    bulk_assessment_download_help_text: 'Poznámka: Pokud jsou hodnocení přiřazena k různým dimenzím, bude stažený soubor ve formátu xslx obsahovat samostatné listy pro každou dimenzi.'
+    bulk_assessment_download_modal_subtitle: Vyberte časové období a typ exportu a poté vybraná hodnocení exportujte.
+    bulk_assessment_download_no_data_found: Pro zadané časové období a hodnocení nebyla nalezena žádná data. Zkuste prosím zadat jiné časové období nebo jiná hodnocení.
+    bulk_assessment_download_norm_factor_scores: Skóre normativních faktorů
+    bulk_assessment_download_raw_factor_scores: Hodnoty faktorů v surové podobě
     bulk_assets_modal_choose_csv: Vyberte soubor CSV
     bulk_assets_modal_choose_zip: Vyberte soubor ZIP
     bulk_assets_modal_not_csv_file_error: Pro nahrávání CSV souborů jsou povoleny pouze soubory CSV. Nahrajte prosím platný soubor CSV.
     bulk_assets_modal_subtitle: 'Nahrajte prosím <b>jeden soubor CSV</b> (s hlavičkami: user_email, file_name) a <b>jeden soubor ZIP</b> (obsahující soubory PDF odpovídající názvům souborů z csv). Soubor ZIP musí mít velikost menší než %{max_file_size} MB.'
     bulk_assets_modal_title: Nahrát soubory CSV a ZIP
+    bulk_export_assessments_file: Soubor pro export hromadných vyměření
+    bulk_export_invalid_params: Neplatné parametry hromadného exportu
     bulk_upload_ai_artifacts: Hromadné AI artefakty
     campaign: Kampaň
     campaign_admin: Správce kampaně
@@ -244,6 +277,34 @@ cs:
     campaign_assessment_actions_disable_caching: Vypnout cache hodnocení
     campaign_assessment_actions_enable_caching: Povolit cache hodnocení
     campaign_assessment_column_caching_enabled: Zapnuto cache hodnocení
+    campaign_assessment_column_hogan_assessment_id: Identifikační číslo hodnocení Hogana
+    campaign_assessment_column_hogan_form_id: Identifikační číslo formuláře Hogan
+    campaign_assessment_column_pearson_assessment_id: Identifikační číslo testu společnosti Pearson
+    campaign_assessment_column_pearson_assessment_language: Jazyk testů společnosti Pearson
+    campaign_assessment_column_pearson_error_details: Podrobnosti o Pearsonově chybě
+    campaign_assessment_column_pearson_product_id: Identifikační číslo produktu společnosti Pearson
+    campaign_assessment_column_saville_error_code: Chybový kód Saville
+    campaign_assessment_column_saville_norm_id: Saville Norm ID
+    campaign_assessment_column_saville_request_id: Identifikační číslo žádosti Saville
+    campaign_assessment_mhs_confidence_interval: Interval spolehlivosti
+    campaign_assessment_mhs_confidence_interval_update_success: Interval spolehlivosti byl úspěšně aktualizován
+    campaign_assessment_mhs_invalid_confidence_interval: hodnota confidence_interval musí být 0 nebo 1
+    campaign_assessment_mhs_invalid_leadership_bar: hodnota leadership_bar musí být 0 nebo 1
+    campaign_assessment_mhs_invalid_norm_option: Hodnota parametru „Norm“ musí být v rozmezí 0 až 3
+    campaign_assessment_mhs_leadership_bar: Lišta vedení
+    campaign_assessment_mhs_leadership_bar_update_success: Bar „Leadership“ byl úspěšně aktualizován
+    campaign_assessment_mhs_norm_option: Možnost normy
+    campaign_assessment_mhs_norm_option_form_select: Vyberte možnost normy
+    campaign_assessment_mhs_norm_option_update_success: Možnost „Norm“ byla úspěšně aktualizována
+    campaign_assessment_mhs_norm_region: Region Norm
+    campaign_assessment_mhs_norm_region_form_select: Vyberte oblast normy
+    campaign_assessment_mhs_norm_region_update_success: Údaje o regionu Norm byly úspěšně aktualizovány
+    campaign_assessment_modals_disable_caching_content: Opravdu chcete deaktivovat ukládání do mezipaměti pro tento test?
+    campaign_assessment_modals_disable_caching_successfully: U tohoto hodnocení bylo ukládání do mezipaměti deaktivováno.
+    campaign_assessment_modals_disable_caching_title: Zakázat ukládání hodnocení do mezipaměti?
+    campaign_assessment_modals_enable_caching_content: Opravdu chcete povolit ukládání do mezipaměti pro tento test?
+    campaign_assessment_modals_enable_caching_successfully: Pro tento test bylo povoleno ukládání do mezipaměti.
+    campaign_assessment_modals_enable_caching_title: Povolit ukládání hodnocení do mezipaměti?
     campaign_factors: Faktory kampaně
     campaign_id_placeholder: Vstup do kampaně ID
     campaign_name: Název kampaně
@@ -308,6 +369,8 @@ cs:
     cancellation_and_rescheduling_disabled: Zrušení a změna termínu jsou zakázány.
     cancellation_lead_time_label: Doba pro zrušení
     cannot_change_type_when_in_use: Typ AI asistenta „%{name}“ nelze změnit, protože je právě používán.
+    captcha: Ověření pomocí CAPTCHA
+    case_study: Případové studie
     casual: Neformální
     categories_approvals: Schválení
     categories_invitations: Pozvánky
@@ -325,7 +388,24 @@ cs:
     client: Nájem klienta
     client_admin: Administrátor klienta
     client_admins: Správci klientů
+    client_credentials_label: Přihlašovací údaje klienta
+    client_credentials_value: přihlašovací údaje klienta
+    client_features: Funkce pro klienty
+    client_id_label: ID klienta
+    client_id_name: oauth_client_id
+    client_id_required: Je nutné zadat ID klienta
+    client_ids: ID klientů
+    client_ip: IP adresa klienta
+    client_logo_label: Logo klienta
+    client_secret_label: Tajný klíč klienta
+    client_secret_name: oauth_client_secret
+    client_secret_required: Je nutné zadat tajný klíč klienta
+    client_selection_instruction: Vyberte klienta a přejděte do administračního panelu.
+    client_selection_sign_out: Odhlásit se
+    client_selection_title: Vyberte klienta
     clients: Nájemní smlouvy klientů
+    clients_search_placeholder: Vyhledávání klienta
+    closed: Zavřeno
     code_required: Je vyžadován kód
     collapse_filters: Sbalit filtry
     column_code: Kód
@@ -334,6 +414,9 @@ cs:
     column_provider: Poskytovatel
     column_scheduling_details: Podrobnosti o plánování
     column_usage_stats: Statistiky používání
+    common: Hodnocení TTE
+    common_assessment: Hodnocení TTE
+    common_disabled: Zakázáno
     common_download_sample_file: Stáhnout ukázkový soubor
     common_enabled: Povoleno
     common_import_failure_msg: Chyba při importu souboru.
@@ -350,8 +433,11 @@ cs:
     concise: Stručný
     confidence_interval: Interval spolehlivosti
     confidence_interval_update_success: Interval spolehlivosti byl úspěšně aktualizován.
+    configuration: Konfigurace
     configure_model_answer_title: Nakonfigurujte vzorovou odpověď a klíčová slova
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
+    confirmation_required: Je nutné potvrzení
+    confirmation_required_details: Opravdu chcete smazat soubor „%{resource_name}“ z adresáře „%{resource}“?
     consolidated: Konsolidované
     contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
     contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
@@ -360,8 +446,10 @@ cs:
     copy_ai_artifacts: Kopírovat artefakty AI
     copy_hint: Zkopíruje výše uvedené konfigurace Seats, Center Managers, Assessors a Meetings &amp; Resources do následujících Assessment Center. Po zkopírování můžete před pokračováním provést další změny v jednotlivých Assessment Centrech.
     copy_image_url: Zkopírovat adresu URL obrázku
+    copy_report_scheduled: Úloha kopírování zprávy byla naplánována.
     copy_text: Text
     copy_to_all: Kopírování do ostatních středisek pro posuzování
+    copy_url: Zkopírovat URL
     country: Země
     course: Kurz
     create_ai_assistants: Vytvořit asistenta AI
@@ -376,9 +464,11 @@ cs:
     custom_formula: Vlastní vzorec
     custom_message_description: Tato zpráva může být zaslána komukoli, kdo se účastní hodnocení
     custom_message_name: Vlastní zpráva
+    custom_upload: Vlastní nahrání
     dashboard: Přístrojová deska
     dashboard_capacity_name: Název kapacity
     dashboard_choose_file_format: Výběr formátu souboru
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
     dashboard_dashboard_types_powerbi: PowerBi
     dashboard_dashboards: Přístrojové panely
     dashboard_export_dashboard_to_file: Exportovat přístrojový panel do souboru
@@ -419,12 +509,15 @@ cs:
     datasheet: Datový list
     date_and_time: Datum a čas
     date_presets_last_30_days: Posledních 30 dní
+    date_presets_last_6_months: Posledních 6 měsíců
     date_presets_last_7_days: Posledních 7 dní
     date_presets_last_month: Poslední měsíc
     date_presets_last_week: Minulý týden
+    date_presets_last_year: V loňském roce
     date_presets_today: Dnes
     date_presets_yesterday: Včera
     date_range: Rozsah dat
+    date_range_required: Je nutné zadat časové období
     dates_completed: Konec
     dates_end: Datum ukončení
     dates_label: Data
@@ -498,6 +591,38 @@ cs:
       wednesday: středa
     dimension_translations_export_scheduled: Export překladů naplánovaný pro dimenzi „%{name}“.
     dimensions: Rozměry
+    dimensions_destroy_successfully: Dimenze „%{name}“ byla úspěšně odstraněna.
+    dimensions_export_json_successfully: Je naplánován export dat ve formátu JSON pro dimenzi „%{name}“.
+    dimensions_form_enable_innovation_styles: Povolit styly inovací
+    dimensions_form_enable_occupations: Povolit povolání
+    dimensions_form_title: Rozměry
+    dimensions_import_factors_sample_file: Ukázkový soubor
+    dimensions_import_factors_title: Faktory dovozu
+    dimensions_import_modal_after: Poté, co
+    dimensions_import_modal_before: Předtím
+    dimensions_import_modal_change_log_input: Seznam změn
+    dimensions_import_modal_error: Chyba
+    dimensions_import_modal_error_occurred: Došlo k chybě
+    dimensions_import_modal_errors_file_error: Než budete pokračovat, vyberte prosím soubor JSON.
+    dimensions_import_modal_errors_processing_error: Chyba při zpracování souboru
+    dimensions_import_modal_field: Pole
+    dimensions_import_modal_import_dimension: Importovat dimenzi
+    dimensions_import_modal_import_scheduled: Plánovaný import
+    dimensions_import_modal_operation: Provoz
+    dimensions_import_modal_owner_input_validation: Vyberte prosím majitele
+    dimensions_import_modal_owner_select: Vyberte vlastníka
+    dimensions_import_modal_select_json: Vyberte soubor JSON
+    dimensions_index_title: Rozměry
+    dimensions_resource_confirmations_delete_body: "<p>Opravdu chcete tuto dimenzi smazat?</p>\n"
+    dimensions_resource_confirmations_delete_message: Do textového pole zadejte níže uvedený název dimenze pro potvrzení
+    dimensions_resource_tooltips_export_json: Exportovat JSON pro import do jiné platformy
+    dimensions_translations_export: Exportovat vše
+    dimensions_translations_header: Překlady faktorů
+    disable_caching_content: Opravdu chcete deaktivovat ukládání do mezipaměti pro tento test?
+    disable_caching_successfully: U tohoto hodnocení bylo ukládání do mezipaměti deaktivováno.
+    disable_caching_title: Zakázat ukládání hodnocení do mezipaměti?
+    disable_cancellation_and_rescheduling: Zakázat zrušení a změnu termínu
+    disable_dp: Nepovolujte další zpracování údajů
     disable_proctoring: Zrušit dohled
     disable_report_download: Zakázat stahování zpráv
     disallow_lead_assessor_moderation: Zakázat moderování vedoucím hodnotitelem
@@ -546,8 +671,10 @@ cs:
     enable_caching_successfully: Pro toto hodnocení bylo zapnuto ukládání do mezipaměti.
     enable_caching_title: Povolit cache hodnocení?
     enable_enhance_with_ai_client_level: Povolte funkci Vylepšit pomocí AI na úrovni klienta.
+    enable_face_detection: Zapnout detekci obličeje
     enable_maintenance: Povolit údržbu
     enable_mobile_proctoring: Povolit mobilní dohled
+    enable_phrase_verification: Zapnout ověřování frází
     enable_system_check: Zapnout kontrolu systému
     enable_transcription: Povolit přepis
     enable_transcription_msg: Povolit přepis pro použití AI skórování u otázek s video/audio odpověďmi.
@@ -558,8 +685,12 @@ cs:
     end_time_must_be_after_start_time: Konec musí být po začátku
     enhance_with_ai: Vylepšete pomocí AI
     enhance_with_ai_requires_ai_assistants: Funkce Vylepšit pomocí AI vyžaduje, aby byla povolena funkce AI asistenti.
+    enter_client_ids: Zadejte ID klientů
     enter_description: Zadejte popis
     enter_name: Zadejte jméno
+    enter_project_ids: Zadejte ID projektů
+    enter_question_id: Zadejte ID otázky
+    enter_report_ids: Zadejte ID zpráv
     enter_schema_key: Zadejte klíč schématu
     error: Chyba
     error_color: Barva chyby
@@ -601,6 +732,7 @@ cs:
     export_failure_msg: Chyba při exportu úrovní pokročilosti
     export_success: Úloha exportu správce byla úspěšně naplánována. Zkontrolujte prosím stav oznámení.
     export_success_msg: Exportování probíhajících vývojových akcí
+    export_to_csv: Exportovat do CSV
     export_with_inactive_users: Export s neaktivními uživateli
     external_report_id: Externí ID zprávy
     external_score: Externí skóre
@@ -654,9 +786,12 @@ cs:
     file_size_must_be_less_than_mb: Soubor {{name}} překračuje maximální velikost {{max_size_mb}} MB
     file_upload_failed: Nepodařilo se nahrát {{name}}
     fill_empty_score_msg: Vyplňte všechny konečné skóre před uložením.
+    filter_by_client: Filtrovat podle klienta
+    filter_by_client_help: Vyberte klienta, abyste načtli jeho projekty
     final_score_empty_err_msg: Konečné skóre hry „%{factor_name}“ nesmí být prázdné.
     final_score_empty_msg: Konečný účet nemůže být prázdný.
     finalized_at: Dokončeno dne
+    fingerprint: Otisk prstu
     first_name_required: Křestní jméno je povinné
     fix_grammar: Opravit gramatiku
     fixed_time: Pevný čas
@@ -693,8 +828,23 @@ cs:
     generate_result_info_message: Výsledky se generují, aktualizujte stránku a podívejte se na aktualizované výsledky.
     generate_results: Generovat výsledky
     generate_transcription: Vytvořit přepis
+    generated_at_time: Vytvořeno na adrese %{time}
+    generated_value: Vytvořená hodnota
+    global_skills: Globální dovednosti
+    global_skills_disabled_by_client: Funkce Global Skills je na straně klienta deaktivována
+    grant_type_label: Typ grantu
+    grant_type_name: oauth_grant_type
     graphic: Grafika
     graphic_slider: Grafický posuvník
+    handoff_client_mismatch: Ověřovací token není pro tohoto klienta platný
+    handoff_invalid_token: Neplatný nebo prošlý ověřovací token
+    handoff_token_expired: Platnost ověřovacího tokenu vypršela nebo již byl použit
+    handoff_user_disabled: Váš účet je deaktivován
+    has_api_keys: Má API klíče
+    has_public_keys: Má veřejné klíče
+    header_logout_content: Stiskněte tlačítko „Zrušit“, pokud chcete pokračovat v práci. Stiskněte tlačítko „OK“, chcete-li odhlásit aktuálního uživatele.
+    header_logout_title: Opravdu se chcete odhlásit?
+    hide_all: Skrýt vše
     hide_middle_scores: Skrýt střední skóre
     high: Vysoká
     hogan: Hogan
@@ -754,6 +904,7 @@ cs:
     idp_development_actions_custom: Vlastní
     idp_development_actions_date_range: Datum zahájení - Datum ukončení
     idp_development_actions_edit_plan_to_add_development_actions: Upravit plán a přidat akce vývoje.
+    idp_development_actions_errors_invalid_learning_style: "„%{learning_style}“ není platný styl učení. Platné možnosti jsou: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: Styl učení nemůže být prázdný
     idp_development_actions_generate_by_ai: Vygenerovat pomocí AI
     idp_development_actions_generate_more: Vygenerovat více
@@ -808,6 +959,7 @@ cs:
     idp_revert_skill_to_public_errors_skill_already_public: Dovednost je již veřejná
     idp_revert_skill_to_public_errors_skill_not_found: Dovednost nenalezena
     idp_revert_skill_to_public_success_base_message: Dovednost "%{skill_name}" je nyní viditelná pro vašeho nadřízeného
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} a váš plán IDP byl předložen ke schválení"
     idp_select_by_tags: Vybrat podle značek
     idp_select_interview_question: Začněte psát pro vyhledávání a výběr otázky
     idp_select_reflection_question: Začněte psát pro vyhledávání a výběr otázky
@@ -845,6 +997,8 @@ cs:
     idp_title_text: Text názvu
     idp_update_interview_questions: Aktualizujte otázky k pohovoru
     idp_update_reflection_questions: Aktualizace otázek k zamyšlení
+    iiht: IIHT
+    iiht_assessment: Hodnocení IIHT
     iiht_password: Heslo
     iiht_tenancy_name: Název nájemní smlouvy
     iiht_tenant_id: ID nájemce
@@ -894,12 +1048,14 @@ cs:
     innovation_styles_list_position: Pozice
     innovation_styles_resource_confirmations_delete_body: "<p>Jste si jisti, že chcete tento styl inovace odstranit?</p>\n"
     instruction_messages: Pokyny Zprávy
+    instructions: Pokyny
     instructions_actions_saved: Pokyny byly úspěšně uloženy
     instructions_enable: Povolení pokynů
     instructions_save: Pokyny pro uložení
     integrations_actions_add: Integrace
     integrations_actions_back: Zpět na Integrace
     integrations_actions_load_mettl_catalog: Katalog hodnocení zatížení Mettl
+    integrations_actions_load_microsite_catalog: Načíst katalog hodnocení mikrostránek
     integrations_actions_load_skillvue_catalog: Načíst katalog hodnocení dovedností Skillvue
     integrations_columns_active: Aktivní
     integrations_columns_details: Podrobnosti
@@ -916,10 +1072,12 @@ cs:
     integrations_details_webhookUrls: Adresy URL webhooku
     integrations_integrations: Integrace
     integrations_load_mettl_success: Úloha pro vyhodnocování mettlů zatížení je úspěšně zařazena do fronty
+    integrations_load_microsite_success: Úloha „Vyhodnocení mikrostránek“ byla úspěšně zařazena do fronty
     integrations_load_skillvue_success: Úloha Load skillvue assessments byla úspěšně zařazena do fronty
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Mikrostránka
     integrations_names_skillvue: Skillvue
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Zobrazit všechny plány Mettl
@@ -940,10 +1098,15 @@ cs:
     interview_questions_import_failure_msg: Chyba při importu souboru.
     interview_questions_import_success_msg: Import otázek k pohovoru probíhá. Zkontrolujte prosím stav v notifikacích.
     interview_questions_question: Otázka
+    invalid_client_ids: Neplatná ID klientů
     invalid_confidence_interval: confidence_interval musí být 0 nebo 1
     invalid_csv_header: CSV soubor obsahuje neplatné hlavičky.
+    invalid_json: konfigurace není platným JSONem
     invalid_leadership_bar: leadership_bar musí být 0 nebo 1
     invalid_norm_option: Normální volba musí být mezi 0 a 3
+    invalid_project_ids: 'Neplatná ID projektů: %{ids}'
+    invalid_question_ids: 'ID otázek, které se v tomto testu nevyskytují: %{ids}'
+    invalid_report_ids: Neplatná ID zpráv
     invite_add_invite: Přidat pozvánku
     invite_assessment_center: Hodnotící centrum
     invite_basic_info_allow_preferred_language: Povolit preferovaný jazyk
@@ -967,6 +1130,7 @@ cs:
     invite_request_reason: Důvod
     invite_request_reject: Odmítat
     invite_request_remove_confirm_content: Jste si jisti, že chcete %{action} %{status} z %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} z adresy %{subjectName} byl úspěšně odeslán na adresu %{action}."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Název subjektu
     invite_request_workshop_time: Čas workshopu
@@ -983,6 +1147,7 @@ cs:
     invite_steps_has_errors: obsahuje chyby
     invite_steps_send_invitation: Odeslat pozvánku
     invite_subjects_count: Předměty
+    invite_subjects_csv_error: 'Řádek %{index}: uživatel s e-mailovou adresou %{email} není součástí této kampaně'
     invite_subjects_csv_imported: "%{count} importovaných subjektů"
     invite_subjects_description: Subjekty můžete přidávat jednotlivě pomocí vyhledávání nebo hromadně nahrát soubor csv.
     invite_subjects_download: Stáhnout
@@ -1022,11 +1187,13 @@ cs:
     join_room: Vstoupit do místnosti
     keep_original: Zachovejte originál
     key: Klíč
+    key_id: ID klíče
     keywords: Klíčová slova
     keywords_placeholder: Zadejte klíčová slova oddělená čárkami.
     language_id: ID jazyka
     last_name_required: Příjmení je povinné
     lead_assessment: Hodnocení olova
+    lead_assessor_form: Formulář pro hlavního hodnotitele
     leadership_bar: Bar vedení
     leadership_bar_update_success: Lišta vedení úspěšně aktualizována
     learning_from_others: Společné učení [20]
@@ -1038,9 +1205,15 @@ cs:
     libraries: Knihovna médií
     library_invalid_type: Neplatný knihovní prvek
     licenses: Licence
+    lighthouse_logo_alt_text: Logo majáku
     lighthouse_question: Základní otázka
     lighthouse_question_id: ID dotazu Lighthouse
+    link_text: Odkaz
     linked_assessments: Související hodnocení
+    locale: Místní nastavení
+    log_date: Datum záznamu
+    logged_in: Jsem přihlášen/a
+    login: Přihlášení
     low: Nízká
     mail_history: Historie pošty
     main_report: Hlavní zpráva
@@ -1073,14 +1246,19 @@ cs:
     mask_identity_for_skillvue: Údaje o masce pro Skillvue
     mask_identity_for_yoodli: Data o masce pro Yoodli
     max_value: Maximální hodnota
+    mean: Průměr
     media_files_label: Soubory
     media_library: Mediální knihovna
+    media_library_page_title: Mediální knihovna – Řídicí panel – Mercer Lighthouse
+    meeting: Setkání
     meeting_link: Odkaz na setkání
     meetings_and_resources: Schůzky a zdroje
     messages: Zprávy
     meta_title: Administrativní panel
+    mettl: Mettl
     mettl_apiBaseUrl: Koncový bod API
     mettl_apiBaseUrlRequired: Je vyžadován koncový bod API.
+    mettl_assessment: Hodnocení Mettl
     mettl_privateKey: Soukromý klíč
     mettl_privateKeyRequired: Je vyžadován soukromý klíč.
     mettl_publicKey: Veřejný klíč
@@ -1095,9 +1273,15 @@ cs:
     mhs_external_assessment_id: ID hodnocení Mhs
     mhs_report_id: ID zprávy MHS
     mhs_session_id: ID relace Mhs
+    microsite: Mikrostránka
+    microsite_assessment: Hodnocení mikrostránek
+    microsite_assessment_name: Název hodnocení mikrostránky
+    microsite_question_id: ID dotazu na mikrostránce
     min_value: Minimální hodnota
     minimum_10_words: Minimálně 10 slov
     minimum_download_speed: Minimální rychlost stahování (v Mbps)
+    minimum_face_detection_ratio: Minimální poměr detekce obličeje
+    minimum_system_check_validity: Minimální platnost systémové kontroly úrovně kampaně by měla být 15 minut
     minimum_upload_speed: Minimální rychlost nahrávání (v Mbps)
     missing_min_max_values: Minimální a maximální hodnoty jsou povinné.
     modal_convert_option: Převést tuto kampaň na šablonu
@@ -1110,6 +1294,7 @@ cs:
     modal_title: Převést na šablonu
     model_answer: Vzorová odpověď
     model_answer_placeholder: Zadejte vzorovou odpověď pro hodnocení AI.
+    must_be_a_valid_url: Neplatná adresa URL. Zadejte úplnou adresu URL včetně protokolu http nebo https.
     name: Jméno
     name_max_length: Název nesmí překročit %{length} znaků.
     name_required: Jméno je vyžadováno
@@ -1122,14 +1307,22 @@ cs:
     navigation_skills_taxonomy: Taxonomie dovedností
     navigation_users: Uživatelé
     new_folder: Nová složka
+    new_score: Nové skóre
+    no_assessments_found: Nebyly nalezeny žádné hodnocení
+    no_client_access: K tomuto klientovi nemáte přístup
+    no_clients_found: Nebyli nalezeni žádní klienti
+    no_completed_assessments: Zatím nejsou k dispozici žádné vyplněné dotazníky
     no_file_selected: Žádný soubor nebyl vybrán
     no_notifications: Žádná oznámení
+    no_question_mappings: Nejsou k dispozici žádná přiřazení otázek
     no_rendered_output: Žádný vykreslený výstup není k dispozici
     no_status: Bez statusu
     nomination_denied_description: Tato zpráva je subjektům zaslána, když je nominace zamítnuta
     nomination_denied_name: Zamítnutí nominace
     nomination_help_description: Text nápovědy zobrazený na nominační kartě na hlavním panelu uživatele
     nomination_help_name: Nápověda k nominaci
+    norm: Norm
+    norm_editor_numeric_value_error: Povoleny jsou pouze číselné hodnoty (celá čísla nebo desetinná čísla).
     norm_id: ID normy
     norm_option: Normální volba
     norm_option_form_select: Vyberte možnost Norm
@@ -1185,7 +1378,15 @@ cs:
     options_manager_options: Možnosti manažera
     options_subject_options: Možnosti předmětu
     options_title: Možnosti
+    organisational: Průzkumy organizace
     original_text: Původní text
+    other_assessments: Další hodnocení
+    other_assessor_assessments: Další posudky od posuzovatelů
+    other_reports: Další zprávy
+    others: Ostatní
+    outcome: Výsledek
+    output_schema_key_constraint: Klíč musí začínat malým písmenem a smí obsahovat pouze malá písmena, číslice a podtržítka
+    output_schema_keys: Klíče výstupního schématu
     overall: Celkově
     overall_score: Celkové skóre
     overall_scoring: Celkové bodování
@@ -1201,6 +1402,8 @@ cs:
     password_name: Heslo
     past: Minulost
     payload: Užitečné zatížení
+    pearson: Pearson
+    pearson_assessment: Hodnocení společnosti Pearson
     permissions:
       aiArtifacts:
         export: Vývoz
@@ -1531,6 +1734,8 @@ cs:
       projectSettings:
         assessments: Hodnocení
         design: Design
+        external_logout_redirect_enabled: Povolit odhlášení pomocí externího přesměrování
+        external_logout_url: Externí URL pro odhlášení
         feature_flags: Příznaky funkcí
         idp: IDP
         integrations: Integrace
@@ -1624,6 +1829,7 @@ cs:
         view: Zobrazit
         view_recordings: Zobrazit nahrávky
     permissions_360_campaigns: Oprávnění specifická pro kampaně 360
+    permissions_updated: Oprávnění byla úspěšně aktualizována
     piped_text: Text v potrubí
     piped_text_modal_assessment_center: Hodnotící centrum
     piped_text_modal_campaign_link: Odkaz na kampaň
@@ -1667,7 +1873,10 @@ cs:
     privacy_text: Text o ochraně soukromí
     privacy_text_placeholder: Zadejte text o ochraně osobních údajů
     proctoring: Dohled
+    proctoring_allow_on_assessment_center: Povolit dohled v assessment centru
     proctoring_enable: Povolení proctoringu
+    proctoring_errors_timed_only: Selektivní dohled lze aktivovat pouze u testů s časovým limitem.
+    proctoring_fixed_time_required: Chcete-li tuto možnost vybrat, povolte možnost „Pevný čas“
     proctoring_identification: Identifikace
     proctoring_identifications:
       face: Obličej
@@ -1677,6 +1886,8 @@ cs:
     proctoring_integration_types:
       iframe: IFrame
       ldb: Prohlížeč Lockdown
+    proctoring_mode_all: Zapnout dohled u všech testů
+    proctoring_mode_all_except_ac: Zapnout dohled u všech hodnocení s výjimkou assessment centra
     proctoring_rule_types_allow_absence_in_frame: Povolit nepřítomnost v rámečku
     proctoring_rule_types_allow_to_use_books: Povolit používání knih
     proctoring_rule_types_allow_to_use_calculator: Povolit použití kalkulačky
@@ -1698,6 +1909,7 @@ cs:
     proctoring_sessions_links_report: Nahlásit
     proctoring_sessions_links_review: Recenze
     proctoring_sessions_resource_name: Proctoringové relace
+    proctoring_settings: Nastavení dohledu
     proctoring_trial: Zkouška proctoringu
     proctoring_type: Typ
     proctoring_types:
@@ -1714,8 +1926,13 @@ cs:
     project: Projekt
     project_admin: Administrátor projektu
     project_admins: Správci projektů
+    project_assessor: Hodnotitel projektu
     project_features: Vlastnosti projektu
+    project_ids: Identifikační čísla projektů
+    project_ids_required: Pro tento typ sestavy je pole „project_ids“ povinné
+    project_licenses: Licence k projektům
     project_manager: Projektový manažer
+    project_not_related_to_client: Projekt „%{project_id}“ nepatří klientovi
     project_number: Číslo projektu
     project_participants_column_campaigns: Kampaně
     project_participants_column_createdAt: Vytvořeno v
@@ -1810,11 +2027,60 @@ cs:
     provider: Poskytovatel
     provider_change_confirm_title: Změnit poskytovatele?
     provider_previously_used_warning: Tento asistent dosud generoval výsledky s adresou „%{from}“. Změna na adresu „%{to}“ může ovlivnit chování asistenta při budoucích požadavcích na generování.
+    psychometric: Psychometrický
+    public_key: Veřejný klíč
+    public_key_add: Přidat veřejný klíč
+    public_key_cannot_be_changed: po vytvoření nelze změnit
+    public_key_copy_private_key: Zkopírovat soukromý klíč
+    public_key_created: Veřejný klíč byl úspěšně vytvořen
+    public_key_generate: Vygenerovat pár klíčů
+    public_key_generate_button: Vygenerovat pár klíčů RSA
+    public_key_generate_info: Bude vygenerován pár klíčů RSA o délce 2048 bitů. Uložen bude pouze veřejný klíč. Soukromý klíč si zkopírujte a bezpečně uložte – již se znovu nezobrazí.
+    public_key_invalid_format: musí se jednat o platný veřejný klíč RSA ve formátu PEM
+    public_key_must_be_public: musí se jednat o veřejný klíč, nikoli o soukromý klíč
+    public_key_paste_placeholder: Zde vložte svůj veřejný klíč RSA ve formátu PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Veřejný klíč (PEM)
+    public_key_private_key_copied: Soukromý klíč byl zkopírován do schránky
+    public_key_private_key_label: Soukromý klíč (PEM)
+    public_key_private_key_warning: Toto je jediný okamžik, kdy bude soukromý klíč viditelný. Zkopírujte si ho nyní a bezpečně ho uložte.
+    public_keys: Veřejné klíče
     question_center: Centrum otázek
+    question_center_page_title: Centrum dotazů – Přehled – Mercer Lighthouse
+    question_editor_change_type: Změnit typ
+    question_editor_click_to_write: Klikněte sem a zadejte text dotazu...
+    question_editor_copy_question: Zkopírovat otázku
+    question_editor_enable_transcription: Zapnout přepis
+    question_editor_preview_question: Náhled otázky
+    question_editor_validation_type: Typ ověření
+    question_mapping: Mapování otázek
+    question_randomization: Náhodné řazení otázek
+    question_type_audio_response: Zvuková odezva
+    question_type_constant_sum: Konstantní součet
+    question_type_file_upload: Nahrání souboru
+    question_type_gap_analysis: Analýza mezer
+    question_type_hot_spot: Hot Spot
+    question_type_matrix_table: Matice
+    question_type_meta_info: Meta informace
+    question_type_multiple_choice: Výběr z více možností
+    question_type_pick_group_rank: Vybrat pořadí skupiny
+    question_type_rank_order: Pořadí
+    question_type_side_by_side: Vedle sebe
+    question_type_slider: Posuvník
+    question_type_text_entry: Zadávání textu
+    question_type_video_response: Odpověď ve formě videa
     questions: Otázky
+    questions_new_button: Nová otázka
     questions_percentage: Otázky (SUMA / MAX Celkem)
     questions_sum: Otázky (SUM)
+    questions_title: Otázka
+    questions_type: Typ
     range_min_max: ROZSAH%{min} - %{max}
+    rationale: Odůvodnění
+    raw: RAW
+    reason_for_changes: Důvod změn
+    recents: Poslední příspěvky
+    record_id: ID záznamu
+    recordings: Nahrávky
     reflection_questions: Otázky k zamyšlení
     reflection_questions_delete_confirmation: Opravdu chcete tuto otázku k zamyšlení smazat?
     reflection_questions_export_action: Otázky k reflexi exportu
@@ -1848,6 +2114,7 @@ cs:
     rendered_prompt: Vykreslený prompt
     reply_to_email: Odpovědět na e-mail
     report_access: Přístup k hlášení
+    report_alias_save_confirmation: Pokud chcete uložit VŠECHNY změny v nástroji Report Builder i v části Aliasy, klikněte prosím na tlačítko „ULOŽIT“. Stránka se znovu načte a vaše změny budou úspěšně uloženy.
     report_approval: Schválení zprávy
     report_approval_allow_bulk_approve: Povolit hromadné schvalování
     report_approval_allow_qc_bulk_submit: Povolit hromadné odeslání QC
@@ -1918,6 +2185,8 @@ cs:
     report_help_description: Text nápovědy zobrazený na kartě hlášení na hlavním panelu uživatele
     report_help_name: Nápověda ke zprávám
     report_id: ID hlášení
+    report_ids: Identifikátory zpráv
+    report_ids_required: ID zpráv jsou povinná
     report_name: Název zprávy
     report_no_evaluations: Zpráva o %{user} není k dispozici – nebyla přijata žádná hodnocení.
     report_not_generated: Report pro %{user} splňuje podmínky dostupnosti, ale ještě nebyl vytvořen. Prosím, nejprve vygenerujte zprávu.
@@ -1938,6 +2207,17 @@ cs:
     report_review_statuses_qc_completed: QC Dokončeno
     report_review_statuses_qc_in_progress: Probíhající kontrola kvality
     report_status: Stav zprávy
+    report_type: Typ zprávy
+    report_types:
+      active_clients_projects: Aktivní klienti a projekty
+      client_assessment_counts: Hodnocení klientů je důležité
+      hogan_usage_report: Využití hodnocení Hogan
+      json_data_report: Zpráva o datech ve formátu JSON
+      pearson_usage_report: Využití testů společnosti Pearson
+      report_usage_summary: Souhrn využití zprávy
+      saville_usage_report: Využití hodnocení Saville
+      user_created_dates: Datumy vytvořené uživatelem
+      user_reports_export: Export uživatelských zpráv
     reports: Zprávy
     reports_copy_copy: Kopírovat
     reports_copy_copy_report: Kopírování zprávy
@@ -1991,6 +2271,7 @@ cs:
     role_client_admin: Správa klientů
     role_project_admin: Správce projektu
     role_superadmin: Superadministrátor
+    run: Spustit
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
     saml_idp_certificate_label: Certifikát
     saml_idp_entity_id_label: Identifikace subjektu/vydavatele
@@ -1999,6 +2280,8 @@ cs:
     saml_service_provider_acs_urls: ACS URL
     saml_service_provider_acs_urls_placeholder: Zadejte URL oddělené čárkami, např. https://app1.com/saml/acs, https://app2.com/saml/acs
     saml_service_provider_acs_urls_required: Jsou vyžadovány ACS URL
+    saml_service_provider_action_delete_label: Odstranit
+    saml_service_provider_action_download_xml_label: Stáhnout XML
     saml_service_provider_action_edit_label: Upravit
     saml_service_provider_action_rotate_certificate_label: Rotační certifikát
     saml_service_provider_add: Přidat poskytovatele SAML služeb
@@ -2057,6 +2340,7 @@ cs:
     saml_settings_successfully_saved_msg: Nastavení SAML bylo úspěšně uloženo.
     save: Uložit
     save_assessment_for_scoring_management: Před zahájením bodování uložte hodnocení.
+    save_block: Uložit blok
     saved_filter_label:
       approval_status_in: Stav schválení
       approver_user_id_in: Schvalovatel
@@ -2070,6 +2354,8 @@ cs:
       subject_full_name_cont: Název předmětu
       user_email_cont: E-mail uživatele
       user_full_name_cont: Uživatelské jméno
+    saville: Saville
+    saville_assessment: Hodnocení Saville
     schedule: Plán
     schedule_email: Plán E-mail
     schedule_email_title: Plán E-mail
@@ -2200,6 +2486,9 @@ cs:
     schema_key_required: Je vyžadován klíč schématu
     schema_key_type: Typ klíče
     schema_key_unique: Klíče schématu by měly být jedinečné
+    scope: Rozsah
+    scope_client: Klient
+    scope_global: Celosvětově
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nesmíte schválit.
     score_approval_not_allowed_to_discard: Tento výsledek nesmíte zahodit.
@@ -2211,6 +2500,7 @@ cs:
     score_not_applicable: Skóre se nevztahuje
     score_range_info: 'Rozsah skóre: %{min} - %{max}'
     score_with_ai: Skórujte s AI
+    scores_finalized: Výsledky jsou konečné a nelze je změnit
     scoring: Bodování
     scoring_action_prohibited: Zakázaná akce
     scoring_active: Aktivní
@@ -2351,16 +2641,25 @@ cs:
     security_settings_security_setting: Nastavení zabezpečení
     select_admin_role: Vyberte roli správce
     select_assessment_language: Výběr jazyka hodnocení
+    select_client: Vyberte klienta
     select_end_time: Vyberte čas ukončení
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň
+    select_project_ids_required: Vyberte požadované ID projektů
+    select_projects: Vybrané projekty
+    select_projects_required: Vyberte prosím alespoň jeden projekt
+    select_question: Vyhledat dotaz podle názvu nebo ID
+    select_report_ids_required: Vyberte požadované report_ids
     select_report_language: Výběr jazyka zprávy
+    select_report_type: Vyberte typ zprávy
     select_start_time: Vyberte čas zahájení
+    selective_proctoring: Selektivní dohled
     send_email: Odeslat e-mail
     send_test_email: Odeslání testovacího e-mailu
     set_min_max_scores_warning: Nastavte minimální a maximální skóre pro tento faktor, abyste nakonfigurovali bodování AI.
     settings: Nastavení
     settings_admin_roles_confirm_message: Opravdu chcete odstranit roli správce '%{role_name}'?
+    settings_saved_successfully: Nastavení byla úspěšně uložena
     settings_siem_destination_type: Typ cíle
     settings_siem_destination_types_s3: S3
     settings_siem_destination_types_s3_compatible: S3 Kompatibilní
@@ -2426,6 +2725,8 @@ cs:
     show_watermark: Zobrazit vodoznak
     sidebar_title: Možnosti projektu
     siem: SIEM
+    simulation: Simulace
+    simulation_assessment: Hodnocení simulace
     skill_aliases: Pseudonymy dovedností
     skill_rater: Hodnocení dovedností
     skills: Dovednosti
@@ -2450,8 +2751,10 @@ cs:
     skills_vector_generate_embedding_failure_msg: Nepodařilo se mi zařadit generování dovedností do fronty. Zkuste to prosím znovu.
     skills_vector_generate_embedding_success_msg: Generování dovedností bylo úspěšně zařazeno. Prosím, zkontrolujte stav v oznámeních.
     skills_vector_label: Vector DB
+    skillvue: Skillvue
     skillvue_apiKey: klíč api
     skillvue_apiKeyRequired: Je vyžadován klíč API
+    skillvue_assessment: Hodnocení Skillvue
     skip_assessment_level_checks: Přeskočit kontroly systému na úrovni hodnocení
     slot_name: Název slotu
     sms_contact: SMS kontakt
@@ -2470,11 +2773,108 @@ cs:
     sms_histories_statuses_sent: Odesláno
     sms_histories_statuses_undelivered: Nedoručeno
     sms_invites: Pozvánky SMS
+    sms_invites_actions_add: Přidat kontakt z SMS
+    sms_invites_columns_created_at: Vytvořeno dne
+    sms_invites_columns_created_by: Vytvořil
+    sms_invites_columns_mobile_no: Číslo mobilního telefonu
+    sms_invites_contacts: Kontakty
+    sms_invites_form_modal_locale: Místní nastavení
+    sms_invites_form_modal_mobile_no: Číslo mobilního telefonu
+    sms_invites_form_modal_title: Pozvánka prostřednictvím SMS
+    sms_invites_import_download_example_csv: Stáhnout ukázkový soubor CSV
+    sms_invites_import_success_msg: Nahraný soubor byl zařazen do fronty k importu. Stav si prosím zkontrolujte v oznámeních.
+    sms_invites_import_title: Import pozvánek přes SMS
+    sms_invites_messages_delete_confirm_text: Opravdu chcete odstranit pozvánku SMS s mobilním číslem %{mobile_no}?
+    sms_invites_messages_delete_success: Pozvánka přes SMS byla úspěšně smazána
+    sms_invites_send_sms_fields_link_expiry: Vypršení platnosti odkazu
+    sms_invites_send_sms_fields_locale: Místní nastavení
+    sms_invites_send_sms_fields_message: Zpráva
+    sms_invites_send_sms_fields_statuses: Stavy
+    sms_invites_send_sms_fields_users: Uživatelé
+    sms_invites_send_sms_modal_btn_name: Odeslat SMS
+    sms_invites_send_sms_modal_title: Odeslat SMS
+    sms_invites_send_sms_pipetext_details: |
+      {{{first_name}}} – Křestní jméno příjemce
+      <br />
+      {{{last_name}}} – Příjmení příjemce
+      <br />
+      {{{invite_url}}} – Odkaz pro registraci
+    sms_invites_send_sms_segment_length_msg: Odhadovaný počet segmentů této zprávy je %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: Odhadovaný počet segmentů této zprávy se pohybuje mezi %{min_segment_length} a %{max_segment_length}.
+    sms_invites_statuses_all: Vše
+    sms_invites_statuses_failed: Neúspěšné
+    sms_invites_statuses_invited: Pozvaný
+    sms_invites_statuses_not_invited: Nezvaný
+    sms_invites_statuses_registered: Zaregistrovaný
+    sms_invites_tools_export: Exportovat kontakty z SMS
+    sms_invites_tools_import: Importovat kontakty ze SMS
+    sms_invites_tools_send_sms: Odeslat SMS
+    sms_notification: SMS upozornění
+    sms_notification_disabled_by_client: Oznámení prostřednictvím SMS je klientem deaktivováno
+    sms_records_columns_message: Zpráva
+    smtp_settings: Nastavení SMTP
+    smtp_settings_authentication: Ověření
+    smtp_settings_authentication_type: Typ ověření
+    smtp_settings_authentication_types_cram_md5: cram md5
+    smtp_settings_authentication_types_login: Přihlášení
+    smtp_settings_authentication_types_plain: Obyčejný
+    smtp_settings_enabled: Zapnuto
+    smtp_settings_encryption: Šifrování
+    smtp_settings_encryption_types_none: Žádné
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: Z e-mailu
+    smtp_settings_from_name: Z jména
+    smtp_settings_host: Hostitel
+    smtp_settings_password: Heslo
+    smtp_settings_port: Přístav
+    smtp_settings_send_test_email: Odeslat zkušební e-mail
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: Vaše nastavení e-mailu se neuloží, dokud nebude zkušební e-mail úspěšně odeslán.
+    smtp_settings_test_email_modal_input_placeholder: Testovací e-mailová adresa
+    smtp_settings_test_email_modal_title: Testovací e-mailová adresa
+    smtp_settings_test_modal_success_message: Zkušební e-mail odeslán na adresu %{email_id}.
+    smtp_settings_test_modal_title: Otestovat nastavení SMTP
+    smtp_settings_update_success_msg: Nastavení SMTP bylo úspěšně aktualizováno.
+    smtp_settings_use_sender_verification: Použít ověření odesílatele
+    smtp_settings_user_name: Uživatelské jméno
     specialty_questions: Specifické dotazy
+    sso_email_mismatch: Jste přihlášeni k jinému účtu u poskytovatele identit. Odhlaste se prosím u svého poskytovatele identit a zkuste to znovu.
+    sso_enforced: Vynutit SSO
+    sso_label: SSO
+    sso_not_enabled: Pro tohoto klienta není povoleno SSO
+    sso_settings: Nastavení SSO
+    sso_settings_allowed_domains: Povolené domény
+    sso_settings_certificate: Certifikát IdP
+    sso_settings_enabled: SSO je povoleno
+    sso_settings_enforced: Povinné SSO
+    sso_settings_entity_id: ID entity
+    sso_settings_metadata_certificate_expiry: 'Platnost certifikátu vyprší: %{date}'
+    sso_settings_metadata_file_too_large: Soubor překračuje maximální velikost 1 MB
+    sso_settings_metadata_invalid_xml: Neplatný formát XML
+    sso_settings_metadata_no_idp_descriptor: V metadatech nebyl nalezen žádný deskriptor IdP
+    sso_settings_metadata_parse: Analyzovat metadata
+    sso_settings_metadata_parse_error: Nepodařilo se analyzovat metadata
+    sso_settings_metadata_parse_success: Pole IdP vyplněná na základě metadat
+    sso_settings_metadata_parsing: Analyzuji metadata...
+    sso_settings_metadata_upload: Nahrát XML s metadaty IdP
+    sso_settings_metadata_upload_again: Přetáhněte sem další soubor, který má být nahrazen
+    sso_settings_metadata_upload_drag_hint: Přetáhněte sem soubor .xml nebo klikněte a vyberte soubor
+    sso_settings_metadata_upload_hint: Nahrajte soubor .xml, aby se pole IdP vyplnila automaticky
+    sso_settings_metadata_upload_retry: Zkuste to znovu s platným souborem XML s metadaty
+    sso_settings_or_configure_manually: Nebo proveďte konfiguraci ručně
+    sso_settings_readable_resource_name: Nastavení SSO
+    sso_settings_save: Uložit
+    sso_settings_session_timeout: Doba vypršení platnosti relace
+    sso_settings_slo_url: URL služby SLO
+    sso_settings_sso_url: URL služby SSO
+    sso_settings_tab: SSO
+    standard: Standardní
     standard_deviation: Směrodatná odchylka
     standard_questions: Standardní otázky
     start: začátek
     start_time: Čas zahájení
+    static_content: Statický obsah
     stats: Statistiky
     stats_assessments_active: Aktivní
     stats_assessments_columns_assessment_name: Název hodnocení
@@ -2527,7 +2927,42 @@ cs:
     sub_factors_conditional_average: Podmíněný vážený průměr faktorů
     sub_factors_sum: Vážený součet faktorů
     subdomain: Subdoména
+    subdomain_admin_keyword: nelze použít vzor vyhrazené administrátorské subdomény
+    subdomain_invalid_format: Nesprávný formát subdomény.
+    subdomain_reserved: Subdoména %{value} je vyhrazena
+    subdomain_too_long_max_32: Subdoména je příliš dlouhá (maximální délka je 32 znaků)
+    subject: Předmět
+    subject_can_access_reports: Uživatel má přístup ke svým zprávám
+    subject_email: E-mailová adresa příjemce
+    subject_invite_description: Tato zpráva bude odeslána s cílem pozvat účastníky k účasti na hodnocení
+    subject_invite_name: 'Předmět: Pozvánka'
     subject_part_of_other_invite: Osoba s e-mailovou adresou %{user_email} již byla pozvána do skupiny „%{workshop_invite_name}“.
+    subject_placeholder: Vyhledat téma...
+    subject_reminder_description: Zpráva zaslaná každému účastníkovi s připomenutím, aby se zúčastnil hodnocení
+    subject_reminder_name: Připomenutí předmětu
+    subject_reminder_rule_description: Zadejte pravidla pro automatické naplánování odeslání pozvánky
+    subject_reminder_rule_name: Pravidla pro zasílání připomínek k předmětům
+    subject_report_ready_description: Tato zpráva se odesílá subjektu, jakmile je jeho zpráva hotová
+    subject_report_ready_name: Zpráva k danému tématu je hotová
+    subjects_title: Předměty
+    submenu_options_option_one: Možnost 1
+    submenu_options_option_title: Bod 1
+    submenu_options_option_two: Možnost 2
+    success_call_send_invitation: Chtěl bys rozeslat pozvánky?
+    success_color: Barva úspěchu
+    success_ok: Ano
+    success_skip: Prozatím přeskočit
+    success_title: Založení hodnotících center
+    success_update: Nastavení vzhledu bylo úspěšně uloženo
+    suitability_id: Identifikátor vhodnosti
+    superadmin_use_root_domain: Superadministrátoři se musí přihlásit prostřednictvím hlavní domény
+    switch_client: Změnit klienta
+    system_prompt: Systémová výzva
+    tab_text_one: Nabídka
+    tab_text_two: Podmenu
+    table_more_actions: Další akce
+    tabs_results: Výsledky
+    tabs_settings: Nastavení
     target_job_role: Cílová pracovní pozice
     taxonomy_import_action_taxonomy: Import taxonomie dovedností
     taxonomy_import_description: Nahrajte soubor Excel, abyste mohli importovat nebo aktualizovat taxonomii svých dovedností. Tím přidáte nové dovednosti, pracovní pozice a úrovně znalostí.
@@ -2551,6 +2986,9 @@ cs:
     threesixity_advance_settings_factors: Faktory
     threesixity_close_content: Opravdu chcete zavřít nástroj Multi Rater Campaign Creator? Veškeré neuložené úpravy budou ztraceny. Potvrďte prosím své rozhodnutí.
     threesixity_close_title: Zavřít nástroj Multi Rater Campaign Creator?
+    threesixity_instructions_creation_empty: 'Prázdný: Začněte s prázdným dotazníkem a přizpůsobte jej svým konkrétním potřebám.'
+    threesixity_instructions_creation_previous: 'Předchozí: Vyberte předchozí hodnocení jako výchozí bod a proveďte úpravy.'
+    threesixity_instructions_creation_standard: 'Standard: Použijte předem připravenou šablonu s běžně používanými otázkami a ukazateli.'
     threesixity_instructions_creation_sub_title: Vyberte typ kampaně, kterou chcete vytvořit.
     threesixity_instructions_creation_title: Vítejte v nástroji pro vytváření kampaní s více hodnotiteli!
     threesixity_instructions_customization_sub_title: Vyberte šablonu a faktory, které mají být zahrnuty do hodnocení.
@@ -2581,9 +3019,12 @@ cs:
     threesixty_campaigns_menu_report_title: Nahlásit
     time_label: Čas
     time_zone: Časové pásmo
+    timed_label: 'Časový záznam: %{time_text}'
+    timelines: Časové osy
     times: krát
     timezone: Časové pásmo
     timezone_label: Časové pásmo
+    timing: Načasování
     to: K
     token_url_label: Adresa URL tokenu
     token_url_name: oauth_token_url
@@ -2694,7 +3135,14 @@ cs:
     x_axis_interval_label: Interval osy X
     y_axis_interval_label: Interval osy Y
     year: Země
+    year_range: Rozmezí let
     years: Roky
+    yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
+    yoodli_assessment: Hodnocení Yoodli
     yoodli_email_id: E-mailové ID kandidáta Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    yoodli_keyset_url: URL klíče
+    yoodli_launch_url: Spouštěcí URL
+    yoodli_login_url: Adresa URL pro přihlášení
+    you_are_here: Nacházíte se zde

@@ -74,6 +74,7 @@ hr:
         subjects_count_added: Uspješno dodani ispitanici
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Konfiguracija bodovanja umjetne inteligencije može se dodati samo za pitanja tipa AudioResponse, VideoResponse i TextEntry.
         doesnt_have_header: "'%{sub_header}' nema zaglavlje"
         invalid_headers: 'Sljedeća zaglavlja su nevažeća: %{headers}'
         invalid_question: Nevažeći ID pitanja

@@ -140,9 +140,11 @@ hr:
     not_requested: Još nije zatraženo
     ok: U redu
     options: Opcije
+    overview: Pregled
     owner: Vlasnik
     pause: Pauza
     pending: U čekanju
+    permissions: Dozvole
     play: Pusti
     policy_version: Verzija politike
     policy_version_format: Dopušteni su samo cijeli brojevi.
@@ -222,9 +224,31 @@ hr:
     update: Ažurirati
     update_failed: Ažuriranje nije uspjelo
     updated_at: Ažurirano u
+    updated_by: Ažurirao
     updated_successfully: Uspješno ažurirano
     upload: Učitati
     user_report_pdf_url_not_generated: Nije moguće generirati poveznicu za preuzimanje PDF-a
+    user_reports_approval_status_pending_qc: Čeka se QC
+    user_reports_approval_status_qc_completed: QC dovršeno
+    user_reports_assessment_name_not_completed_reason_template: Procjena %{names} nije dovršena
+    user_reports_assessments_name_not_completed_reason_template: Procjene %{names} nisu dovršene
+    user_reports_assessor_not_completed_reason_template: Obrazac procjenitelja %{names} nije ispunjen.
+    user_reports_assessors_not_completed_reason_template: Obrazci procjenitelja %{names} nisu ispunjeni
+    user_reports_campaign_artifact_results_pending_reason_message: Rezultati artefakata kampanje nisu finalizirani za ovog korisnika.
+    user_reports_campaign_scoring_pending_reason_message: Rezultati kampanje za ovog korisnika nisu konačni.
+    user_reports_custom_upload_report_reason_message: Pružatelj izvještaja je prilagođeni upload
+    user_reports_external_report_pending_reason_message: Čekamo izvješće od pružatelja
+    user_reports_lead_assessor_not_completed_reason_template: Obrazac glavnog ocjenjivača %{names} nije ispunjen.
+    user_reports_lead_assessors_not_completed_reason_template: Obrazci glavnog procjenitelja %{names} nisu ispunjeni
+    user_reports_no_report_module_reason_message: Nije pronađen modul za ovo izvješće.
+    user_reports_not_prepared_reason_message: Izvješće još nije pripremljeno.
+    user_reports_pending_approval_reason_template: Status odobrenja je '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: U čeka odobrenje konačnog bodovanja AI-ja
+    user_reports_pending_qc_ai_scoring_approval_reason_message: U čekanju odobrenja QC AI bodovanja
+    user_reports_pending_qc_approval_reason_message: U čeku odobrenja QC izvještaja
+    user_reports_qc_completed_approval_reason_message: U iščekivanju odobrenja konačnog izvještaja
+    user_reports_report_generating_reason_message: Izvješće se generira
+    user_reports_report_generation_failed_reason_message: Generiranje izvještaja nije uspjelo
     video: Video
     view: Pregled
     view_audio: Pregledaj audio

@@ -74,6 +74,7 @@ cs:
         subjects_count_added: Úspěšně přidané subjekty
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Konfiguraci bodování pomocí AI lze přidat pouze u otázek typu AudioResponse, VideoResponse a TextEntry
         doesnt_have_header: "'%{sub_header}' nemá hlavičku"
         invalid_headers: 'Následující hlavičky jsou neplatné: %{headers}'
         invalid_question: Neplatné ID otázky

@@ -20,6 +20,7 @@ vi:
     active_record_audits_old_diff_parse_error: Không thể phân tích cú pháp JSON với các thay đổi cũ
     active_record_audits_title: Các thay đổi đã được kiểm toán
     activity: Hoạt động
+    activity_period: Thời gian hoạt động
     add_admin: Thêm quản trị viên
     add_admin_role: Thêm vai trò quản trị viên
     add_btn: Thêm chủ đề
@@ -117,6 +118,12 @@ vi:
     alt_text_long: Vượt quá giới hạn tối đa là 100 ký tự.
     api_keys: Khóa API
     api_keys_form_title: Khóa API
+    application: Ứng dụng
+    application_add: Thêm ứng dụng
+    application_name: Tên ứng dụng
+    application_name_already_taken: Đã tồn tại cho khách hàng này
+    application_name_format_hint: Chỉ được phép sử dụng chữ cái và số, với một khoảng trắng giữa các từ
+    applications: Ứng dụng
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
     approve_all_questions: Chấp thuận tất cả các câu hỏi
     approve_nomination_description: Thông báo này được gửi đến người quản lý khi một đề cử, được thực hiện bởi một báo cáo trực tiếp, cần được phê duyệt
@@ -133,6 +140,7 @@ vi:
     assessment_center: 'Trung tâm đánh giá:'
     assessment_center_group: Nhóm Trung tâm Đánh giá
     assessment_center_group_placeholder: Chọn Nhóm Trung tâm Đánh giá
+    assessment_center_invites: Thư mời tham gia Trung tâm Đánh giá
     assessment_ids: Mã đánh giá
     assessment_placeholder: Chọn Đánh giá
     assessment_question_not_supported: Loại câu hỏi này hiện tại chưa được hỗ trợ.
@@ -205,6 +213,8 @@ vi:
     audit_log_title: Thông tin nhật ký kiểm toán
     audit_log_type: Loại bản ghi
     audit_logs: Nhật ký kiểm tra
+    audit_logs_export_failed: Không thể lên lịch tác vụ xuất dữ liệu. Vui lòng thử lại.
+    audit_logs_export_queued: Công việc xuất dữ liệu đã được lên lịch thành công.
     audit_reports: Báo cáo kiểm toán
     auth_type_api_key_header_format_error: Chỉ cho phép chữ cái, số, dấu gạch dưới và dấu gạch nối
     auth_type_api_key_header_label: Tiêu đề khóa API
@@ -244,11 +254,21 @@ vi:
     blocks_title: Khối
     booked_at: 'Đặt tại:'
     breadcrumbs_norms_editor: Trình chỉnh sửa định mức
+    bulk_assessment_download_date_range_required: Vui lòng chọn khoảng thời gian
+    bulk_assessment_download_export_type: Loại xuất khẩu
+    bulk_assessment_download_export_type_required: Vui lòng chọn loại xuất
+    bulk_assessment_download_help_text: 'Lưu ý: Nếu các bài đánh giá được liên kết với các chiều khác nhau, tệp xslx đã tải xuống sẽ chứa các trang tính riêng biệt cho từng chiều.'
+    bulk_assessment_download_modal_subtitle: Chọn khoảng thời gian và loại xuất, sau đó xuất các bài đánh giá đã chọn.
+    bulk_assessment_download_no_data_found: Đối với khoảng thời gian và các bài đánh giá đã chọn, không tìm thấy dữ liệu nào. Vui lòng thử với khoảng thời gian hoặc các bài đánh giá khác.
+    bulk_assessment_download_norm_factor_scores: Điểm hệ số chuẩn hóa
+    bulk_assessment_download_raw_factor_scores: Điểm yếu tố thô
     bulk_assets_modal_choose_csv: Chọn tệp CSV
     bulk_assets_modal_choose_zip: Chọn tệp ZIP
     bulk_assets_modal_not_csv_file_error: Chỉ chấp nhận các tệp CSV cho việc tải lên CSV. Vui lòng tải lên một tệp CSV hợp lệ.
     bulk_assets_modal_subtitle: 'Vui lòng tải lên <b>một tệp CSV</b> (với các tiêu đề: user_email, file_name) và <b>một tệp ZIP</b> (chứa các tệp PDF có tên trùng khớp với tên tệp trong CSV). Tệp ZIP phải có dung lượng dưới %{max_file_size} MB.'
     bulk_assets_modal_title: Tải lên các tệp CSV và ZIP
+    bulk_export_assessments_file: Tệp xuất kết quả đánh giá hàng loạt
+    bulk_export_invalid_params: Các tham số xuất hàng loạt không hợp lệ
     bulk_upload_ai_artifacts: Tải lên hàng loạt hiện vật AI
     campaign: Chiến dịch
     campaign_admin: Quản trị viên chiến dịch
@@ -374,6 +394,7 @@ vi:
     client_id_label: ID khách hàng
     client_id_name: oauth_client_id
     client_id_required: ID khách hàng là bắt buộc
+    client_ids: Mã khách hàng
     client_ip: IP khách hàng
     client_logo_label: Logo khách hàng
     client_secret_label: Bí mật khách hàng
@@ -395,6 +416,7 @@ vi:
     column_usage_stats: Số liệu thống kê sử dụng
     common: Đánh giá TTE
     common_assessment: Đánh giá TTE
+    common_disabled: Đã tắt
     common_download_sample_file: Tải xuống tệp mẫu
     common_enabled: Kích hoạt
     common_import_failure_msg: Lỗi khi nhập tệp.
@@ -411,6 +433,7 @@ vi:
     concise: Ngắn gọn
     confidence_interval: Khoảng tin cậy
     confidence_interval_update_success: Khoảng tin cậy đã được cập nhật thành công.
+    configuration: Cấu hình
     configure_model_answer_title: Cấu hình câu trả lời mẫu và từ khóa
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
     confirmation_required: Yêu cầu xác nhận
@@ -423,6 +446,7 @@ vi:
     copy_ai_artifacts: Sao chép các tác phẩm nghệ thuật do AI tạo ra
     copy_hint: Sao chép cấu hình Chỗ ngồi, Quản lý Trung tâm, Đánh giá viên và Cuộc họp & Tài nguyên ở trên cho các Trung tâm Đánh giá sau. Sau khi sao chép, bạn có thể thực hiện các thay đổi khác đối với các Trung tâm Đánh giá riêng lẻ trước khi tiếp tục.
     copy_image_url: Sao chép URL hình ảnh
+    copy_report_scheduled: Tác vụ sao chép báo cáo đã được lên lịch.
     copy_text: Nhắn tin
     copy_to_all: Sao chép đến các Trung tâm Đánh giá khác
     copy_url: Sao chép URL
@@ -485,12 +509,15 @@ vi:
     datasheet: Bảng dữ liệu
     date_and_time: Ngày & Giờ
     date_presets_last_30_days: 30 ngày qua
+    date_presets_last_6_months: 6 tháng qua
     date_presets_last_7_days: 7 ngày qua
     date_presets_last_month: Tháng trước
     date_presets_last_week: Tuần trước
+    date_presets_last_year: Năm ngoái
     date_presets_today: Hôm nay
     date_presets_yesterday: Hôm qua
     date_range: Phạm vi ngày
+    date_range_required: Phải điền khoảng thời gian
     dates_completed: Hoàn thành lúc
     dates_end: Ngày kết thúc
     dates_label: Ngày
@@ -644,8 +671,10 @@ vi:
     enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
     enable_caching_title: Bật bộ nhớ đệm đánh giá?
     enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
+    enable_face_detection: Bật tính năng nhận diện khuôn mặt
     enable_maintenance: Bật chế độ bảo trì
     enable_mobile_proctoring: Bật Chế độ Giám sát Trực tuyến trên Thiết bị Di động
+    enable_phrase_verification: Bật tính năng xác minh bằng cụm từ
     enable_system_check: Bật tính năng Kiểm tra hệ thống
     enable_transcription: Bật tính năng chuyển văn bản
     enable_transcription_msg: Bật tính năng Chuyển văn bản để sử dụng đánh giá bằng trí tuệ nhân tạo (AI) cho các câu hỏi trả lời bằng video/âm thanh.
@@ -656,9 +685,12 @@ vi:
     end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
     enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
+    enter_client_ids: Nhập ID khách hàng
     enter_description: Nhập mô tả
     enter_name: Nhập tên
+    enter_project_ids: Nhập mã dự án
     enter_question_id: Nhập ID câu hỏi
+    enter_report_ids: Nhập mã báo cáo
     enter_schema_key: Nhập khóa lược đồ
     error: Lỗi
     error_color: Màu lỗi
@@ -700,6 +732,7 @@ vi:
     export_failure_msg: Lỗi khi xuất mức độ thành thạo
     export_success: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
     export_success_msg: Xuất các hành động phát triển đang được tiến hành
+    export_to_csv: Xuất sang CSV
     export_with_inactive_users: Xuất với người dùng không hoạt động
     external_report_id: Mã báo cáo bên ngoài
     external_score: Điểm số bên ngoài
@@ -753,9 +786,12 @@ vi:
     file_size_must_be_less_than_mb: Tệp {{name}} vượt quá kích thước tối đa là {{max_size_mb}} MB
     file_upload_failed: Không tải lên được {{name}}
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
+    filter_by_client: Lọc theo khách hàng
+    filter_by_client_help: Chọn một khách hàng để tải các dự án của khách hàng đó
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
     final_score_empty_msg: Tổng số tiền không thể để trống.
     finalized_at: Đã hoàn tất vào
+    fingerprint: Dấu vân tay
     first_name_required: Tên riêng là bắt buộc
     fix_grammar: Sửa lỗi ngữ pháp
     fixed_time: Thời gian cố định
@@ -804,6 +840,8 @@ vi:
     handoff_invalid_token: Mã xác thực không hợp lệ hoặc đã hết hạn
     handoff_token_expired: Mã xác thực đã hết hạn hoặc đã được sử dụng
     handoff_user_disabled: Tài khoản của bạn đã bị vô hiệu hóa
+    has_api_keys: Có khóa API
+    has_public_keys: Có khóa công khai
     header_logout_content: Nhấn Hủy nếu bạn muốn tiếp tục công việc. Nhấn Ok để đăng xuất người dùng hiện tại.
     header_logout_title: Bạn có chắc chắn muốn đăng xuất.
     hide_all: Ẩn tất cả
@@ -866,6 +904,7 @@ vi:
     idp_development_actions_custom: Phong tục
     idp_development_actions_date_range: Ngày bắt đầu - Ngày kết thúc
     idp_development_actions_edit_plan_to_add_development_actions: Chỉnh sửa Kế hoạch và thêm Hành động Phát triển.
+    idp_development_actions_errors_invalid_learning_style: "“%{learning_style}” không phải là một kiểu học hợp lệ. Các tùy chọn hợp lệ là: %{valid_styles}"
     idp_development_actions_errors_learning_style_blank: Phong cách học tập không thể trống
     idp_development_actions_generate_by_ai: Tạo bằng AI
     idp_development_actions_generate_more: Tạo thêm
@@ -920,6 +959,7 @@ vi:
     idp_revert_skill_to_public_errors_skill_already_public: Kỹ năng đã được công khai
     idp_revert_skill_to_public_errors_skill_not_found: Không tìm thấy kỹ năng
     idp_revert_skill_to_public_success_base_message: Kỹ năng '%{skill_name}' hiện hiển thị cho người quản lý của bạn
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} và kế hoạch IDP của bạn đã được gửi đi để xin phê duyệt"
     idp_select_by_tags: Chọn theo thẻ
     idp_select_interview_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
     idp_select_reflection_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
@@ -1008,6 +1048,7 @@ vi:
     innovation_styles_list_position: Vị trí
     innovation_styles_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa phong cách đổi mới này không?</p>\n"
     instruction_messages: Thông điệp hướng dẫn
+    instructions: Hướng dẫn
     instructions_actions_saved: Hướng dẫn được lưu thành công
     instructions_enable: Bật hướng dẫn
     instructions_save: Lưu hướng dẫn
@@ -1036,6 +1077,7 @@ vi:
     integrations_names_hogan: Hogan
     integrations_names_iiht: IIHT
     integrations_names_mettl: Mettl
+    integrations_names_microsite: Trang web chuyên biệt
     integrations_names_skillvue: Kỹ năng
     integrations_names_yoodli: Yoodli
     integrations_view_all_schedules: Xem tất cả lịch trình Mettl
@@ -1056,11 +1098,15 @@ vi:
     interview_questions_import_failure_msg: Lỗi khi nhập tệp.
     interview_questions_import_success_msg: Đang nhập câu hỏi phỏng vấn. Vui lòng kiểm tra trạng thái trong thông báo.
     interview_questions_question: Câu hỏi
+    invalid_client_ids: ID khách hàng không hợp lệ
     invalid_confidence_interval: Khoảng tin cậy phải là 0 hoặc 1.
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    invalid_json: Cấu hình không phải là JSON hợp lệ
     invalid_leadership_bar: Thanh lãnh đạo phải là 0 hoặc 1
     invalid_norm_option: Tùy chọn Norm phải nằm trong khoảng từ 0 đến 3.
+    invalid_project_ids: 'Các ID dự án không hợp lệ: %{ids}'
     invalid_question_ids: 'Không tìm thấy các mã câu hỏi sau trong bài kiểm tra này: %{ids}'
+    invalid_report_ids: Mã báo cáo không hợp lệ
     invite_add_invite: Thêm lời mời
     invite_assessment_center: Trung tâm đánh giá
     invite_basic_info_allow_preferred_language: Cho phép ngôn ngữ ưa thích
@@ -1084,6 +1130,7 @@ vi:
     invite_request_reason: Lý do
     invite_request_reject: Bác bỏ
     invite_request_remove_confirm_content: Bạn có chắc chắn muốn %{action} %{status} từ %{subjectName} không?
+    invite_request_remove_confirm_success: "%{status} Từ %{subjectName}, liên kết %{action} đã được truy cập thành công."
     invite_request_remove_confirm_title: "%{category}"
     invite_request_subject_name: Tên chủ đề
     invite_request_workshop_time: Thời gian hội thảo
@@ -1100,6 +1147,7 @@ vi:
     invite_steps_has_errors: chứa lỗi
     invite_steps_send_invitation: Gửi lời mời
     invite_subjects_count: Đối tượng
+    invite_subjects_csv_error: 'Dòng %{index}: người dùng có địa chỉ email %{email} không nằm trong chiến dịch này'
     invite_subjects_csv_imported: "%{count} đối tượng đã nhập"
     invite_subjects_description: Bạn có thể thêm chủ đề riêng lẻ bằng cách tìm kiếm hoặc tải lên hàng loạt tệp csv.
     invite_subjects_download: Tải về
@@ -1139,6 +1187,7 @@ vi:
     join_room: Tham gia phòng
     keep_original: Giữ nguyên bản
     key: Chìa khoá
+    key_id: Mã định danh
     keywords: Từ khóa
     keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
     language_id: Mã ngôn ngữ
@@ -1231,6 +1280,7 @@ vi:
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
+    minimum_face_detection_ratio: Tỷ lệ phát hiện khuôn mặt tối thiểu
     minimum_system_check_validity: Thời gian kiểm tra hệ thống tối thiểu cho chiến dịch phải là 15 phút
     minimum_upload_speed: Tốc độ tải lên tối thiểu (tính bằng Mbps)
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
@@ -1779,6 +1829,7 @@ vi:
         view: Cảnh
         view_recordings: Xem bản ghi
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
+    permissions_updated: Quyền truy cập đã được cập nhật thành công
     piped_text: Văn bản được truyền qua ống
     piped_text_modal_assessment_center: Trung tâm đánh giá
     piped_text_modal_campaign_link: Liên kết chiến dịch
@@ -1822,6 +1873,7 @@ vi:
     privacy_text: Văn bản bảo mật
     privacy_text_placeholder: Nhập văn bản bảo mật
     proctoring: Giám sát
+    proctoring_allow_on_assessment_center: Cho phép có giám thị tại trung tâm đánh giá
     proctoring_enable: Bật giám sát
     proctoring_errors_timed_only: Chức năng giám sát có chọn lọc chỉ có thể được kích hoạt cho các bài kiểm tra có giới hạn thời gian.
     proctoring_fixed_time_required: Bật "Thời gian cố định" để chọn tùy chọn này
@@ -1874,8 +1926,13 @@ vi:
     project: Dự án
     project_admin: Quản trị viên dự án
     project_admins: Quản trị viên dự án
+    project_assessor: Chuyên gia đánh giá dự án
     project_features: Tính năng dự án
+    project_ids: Mã dự án
+    project_ids_required: project_ids là trường bắt buộc đối với loại báo cáo này
+    project_licenses: Giấy phép dự án
     project_manager: Quản lý dự án
+    project_not_related_to_client: Dự án “%{project_id}” không thuộc về khách hàng
     project_number: Số dự án
     project_participants_column_campaigns: Chiến dịch
     project_participants_column_createdAt: Được tạo ra tại
@@ -1971,6 +2028,22 @@ vi:
     provider_change_confirm_title: Thay đổi nhà cung cấp?
     provider_previously_used_warning: Trợ lý này trước đây đã tạo ra kết quả với "%{from}". Việc thay đổi thành "%{to}" có thể làm thay đổi cách thức hoạt động của trợ lý đối với các yêu cầu tạo kết quả trong tương lai.
     psychometric: Tâm lý học
+    public_key: Khóa công khai
+    public_key_add: Thêm khóa công khai
+    public_key_cannot_be_changed: không thể thay đổi sau khi tạo
+    public_key_copy_private_key: Sao chép khóa riêng
+    public_key_created: Khóa công khai đã được tạo thành công
+    public_key_generate: Tạo cặp khóa
+    public_key_generate_button: Tạo cặp khóa RSA
+    public_key_generate_info: Hệ thống sẽ tạo ra một cặp khóa RSA 2048-bit. Chỉ khóa công khai mới được lưu trữ. Hãy sao chép và lưu giữ khóa riêng một cách an toàn — khóa này sẽ không được hiển thị lại.
+    public_key_invalid_format: phải là một khóa công khai RSA hợp lệ ở định dạng PEM
+    public_key_must_be_public: phải là khóa công khai, không phải khóa riêng tư
+    public_key_paste_placeholder: Hãy dán khóa công khai RSA của bạn ở định dạng PEM vào đây (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Khóa công khai (PEM)
+    public_key_private_key_copied: Khóa riêng tư đã được sao chép vào khay nhớ tạm
+    public_key_private_key_label: Khóa riêng (PEM)
+    public_key_private_key_warning: Đây là lần duy nhất khóa riêng sẽ được hiển thị. Hãy sao chép nó ngay bây giờ và lưu giữ an toàn.
+    public_keys: Khóa công khai
     question_center: Trung tâm câu hỏi
     question_center_page_title: Trung tâm câu hỏi - Bảng điều khiển - Mercer Lighthouse
     question_editor_change_type: Thay đổi loại
@@ -2112,6 +2185,8 @@ vi:
     report_help_description: Văn bản trợ giúp hiển thị trên thẻ báo cáo trên bảng điều khiển của người dùng
     report_help_name: Báo cáo trợ giúp
     report_id: ID báo cáo
+    report_ids: Mã báo cáo
+    report_ids_required: Phải có mã báo cáo
     report_name: Tên báo cáo
     report_no_evaluations: Báo cáo cho %{user} không có sẵn - không nhận được đánh giá.
     report_not_generated: Báo cáo cho %{user} đáp ứng các điều kiện khả dụng nhưng chưa được tạo. Vui lòng tạo báo cáo trước.
@@ -2132,6 +2207,17 @@ vi:
     report_review_statuses_qc_completed: QC đã hoàn thành
     report_review_statuses_qc_in_progress: QC đang tiến hành
     report_status: Trạng thái báo cáo
+    report_type: Loại báo cáo
+    report_types:
+      active_clients_projects: Khách hàng và dự án đang triển khai
+      client_assessment_counts: Việc đánh giá khách hàng rất quan trọng
+      hogan_usage_report: Việc sử dụng công cụ đánh giá Hogan
+      json_data_report: Báo cáo dữ liệu JSON
+      pearson_usage_report: Việc sử dụng các bài kiểm tra của Pearson
+      report_usage_summary: Tóm tắt báo cáo về tình hình sử dụng
+      saville_usage_report: Cách sử dụng công cụ đánh giá Saville
+      user_created_dates: Ngày do người dùng tạo
+      user_reports_export: Xuất báo cáo người dùng
     reports: Báo cáo
     reports_copy_copy: Sao chép
     reports_copy_copy_report: Sao chép báo cáo
@@ -2185,6 +2271,7 @@ vi:
     role_client_admin: Quản trị khách hàng
     role_project_admin: Quản trị dự án
     role_superadmin: Quản trị viên cao cấp
+    run: Chạy
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
     saml_idp_certificate_label: Chứng chỉ
     saml_idp_entity_id_label: ID thực thể/Tổ chức phát hành
@@ -2396,6 +2483,9 @@ vi:
     schema_key_required: Khóa lược đồ là bắt buộc
     schema_key_type: Loại phím
     schema_key_unique: Các khóa lược đồ phải là duy nhất.
+    scope: Phạm vi
+    scope_client: Khách hàng
+    scope_global: Toàn cầu
     score: Điểm
     score_approval_not_allowed_to_approve: Bạn không được phép phê duyệt điểm số này.
     score_approval_not_allowed_to_discard: Bạn không được phép loại bỏ điểm số này.
@@ -2548,11 +2638,17 @@ vi:
     security_settings_security_setting: Cài đặt bảo mật
     select_admin_role: Chọn vai trò quản trị viên
     select_assessment_language: Chọn ngôn ngữ đánh giá
+    select_client: Chọn khách hàng
     select_end_time: Chọn Thời gian kết thúc
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ
+    select_project_ids_required: Chọn các project_ids bắt buộc
+    select_projects: Chọn các dự án
+    select_projects_required: Vui lòng chọn ít nhất một dự án
     select_question: Tìm kiếm câu hỏi theo tên hoặc ID
+    select_report_ids_required: Chọn các report_ids cần thiết
     select_report_language: Chọn ngôn ngữ báo cáo
+    select_report_type: Chọn loại báo cáo
     select_start_time: Chọn Thời gian bắt đầu
     selective_proctoring: Giám sát có chọn lọc
     send_email: Gửi email
@@ -2882,6 +2978,9 @@ vi:
     threesixity_advance_settings_factors: Yếu tố
     threesixity_close_content: Bạn có chắc chắn muốn đóng Multi Rater Campaign Creator không? Mọi công việc tùy chỉnh chưa lưu sẽ bị mất. Vui lòng xác nhận quyết định của bạn.
     threesixity_close_title: Đóng Multi Rater Campaign Creator?
+    threesixity_instructions_creation_empty: 'Trống: Bắt đầu với một bản khảo sát trống và tùy chỉnh nó theo nhu cầu cụ thể của bạn.'
+    threesixity_instructions_creation_previous: 'Trước đó: Chọn một bài đánh giá trước đó làm điểm xuất phát và thực hiện các điều chỉnh.'
+    threesixity_instructions_creation_standard: 'Tiêu chuẩn: Sử dụng mẫu có sẵn với các câu hỏi và chỉ số thường được sử dụng.'
     threesixity_instructions_creation_sub_title: Vui lòng chọn loại chiến dịch bạn muốn tạo.
     threesixity_instructions_creation_title: Chào mừng bạn đến với Trình tạo chiến dịch Multi Rater!
     threesixity_instructions_customization_sub_title: Chọn mẫu và các yếu tố để đưa vào đánh giá.
@@ -3028,6 +3127,7 @@ vi:
     x_axis_interval_label: Khoảng cách trục X
     y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
+    year_range: Khoảng năm
     years: Tuổi
     yoodli: Yoodli
     yoodli_activity_id: ID hoạt động Yoodli
