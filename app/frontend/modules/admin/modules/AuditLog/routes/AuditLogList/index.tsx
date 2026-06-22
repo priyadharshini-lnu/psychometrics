@@ -124,7 +124,17 @@ const AuditLogList: React.FC<Props> = (
 
   const handleExportCsv = () => {
     setIsExportLoading(true)
-    scheduleExport(tableConfig.filters)
+
+    const filtersForCurrentDayPresent = tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq
+    const exportFilters = filtersForCurrentDayPresent
+      ? tableConfig.filters
+      : {
+        ...tableConfig.filters,
+        created_at_gteq: dayjs().startOf('day').toString(),
+        created_at_lteq: dayjs().endOf('day').toString(),
+      }
+
+    scheduleExport(exportFilters)
       .then(() => messageApi.success(I18n.t('admin.audit_logs_export_queued')))
       .catch(() => messageApi.error(I18n.t('admin.audit_logs_export_failed')))
       .finally(() => setIsExportLoading(false))

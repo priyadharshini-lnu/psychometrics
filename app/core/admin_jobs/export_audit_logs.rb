@@ -36,7 +36,9 @@ module AdminJobs
 
     def records_for_export
       filters = record.data['filters'] || {}
-      audit_logs_scope.ransack(filters).result.order(created_at: :desc)
+      audit_logs_scope.ransack(filters).result.
+        includes(:user, :client, :project, :campaign).
+        order(created_at: :desc)
     end
 
     def audit_logs_scope
