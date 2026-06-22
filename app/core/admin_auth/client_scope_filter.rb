@@ -3,6 +3,7 @@
 module AdminAuth
   class ClientScopeFilter
     def self.apply(scope, client)
+      return scope if Settings.client_scope_filter_disabled
       return scope unless client
 
       subtree_ids = client.subtree_ids
