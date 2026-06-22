@@ -1,20 +1,46 @@
 const COPY_PROTECTED_CLASS = 'assessment-copy-protected'
 const PRINT_PROTECTION_CLASS = 'assessment-print-protection-active'
 const PROTECTION_STYLE_ID = 'assessment-content-protection'
+const CONTENT_PROTECTION_FEATURE = 'assessment_content_protection_enabled'
 
-const EDITABLE_TARGET_SELECTOR = 'input, textarea, [contenteditable="true"], [data-allow-content-copy="1"]'
+const LEGACY_EDITABLE_TARGET_SELECTOR = [
+  'input',
+  'textarea',
+  '[contenteditable="true"]',
+  '[data-allow-content-copy="1"]',
+].join(', ')
 
-const PROTECTION_CSS = `
+const ENHANCED_EDITABLE_TARGET_SELECTOR = [
+  ...LEGACY_EDITABLE_TARGET_SELECTOR.split(', '),
+  '[role="slider"]',
+  'input[type="range"]',
+  '[data-interactive="true"]',
+].join(', ')
+
+const PASTE_BLOCK_TARGET_SELECTOR = 'input, textarea, [contenteditable="true"]'
+
+const isContentProtectionEnabled = () => (
+  window.PsyGlobalState?.features?.[CONTENT_PROTECTION_FEATURE] === true
+)
+
+const getEditableTargetSelector = () => (
+  isContentProtectionEnabled() ? ENHANCED_EDITABLE_TARGET_SELECTOR : LEGACY_EDITABLE_TARGET_SELECTOR
+)
+
+const buildProtectionCss = () => {
+  const editableTargets = getEditableTargetSelector()
+    .split(', ')
+    .map(selector => `[data-content-protected] ${selector}`)
+    .join(',\n')
+
+  return `
 [data-content-protected] {
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
 
-[data-content-protected] input,
-[data-content-protected] textarea,
-[data-content-protected] [contenteditable="true"],
-[data-content-protected] [data-allow-content-copy="1"] {
+${editableTargets} {
   user-select: text;
   -webkit-user-select: text;
   -webkit-touch-callout: default;
@@ -30,6 +56,7 @@ body.${PRINT_PROTECTION_CLASS} * {
   }
 }
 `
+}
 
 let printBlockingCount = 0
 
@@ -71,7 +98,7 @@ export const enablePrintBlocking = () => {
   if (!document.getElementById(PROTECTION_STYLE_ID)) {
     const style = document.createElement('style')
     style.id = PROTECTION_STYLE_ID
-    style.textContent = PROTECTION_CSS
+    style.textContent = buildProtectionCss()
     document.head.appendChild(style)
   }
 }
@@ -90,20 +117,45 @@ export const disablePrintBlocking = () => {
   document.getElementById(PROTECTION_STYLE_ID)?.remove()
 }
 
+const toTargetElement = (target: EventTarget | null) => {
+  if (target instanceof Element) return target
+  if (target instanceof Node) return target.parentElement
+
+  return null
+}
+
 const isEditableTarget = (target: EventTarget | null) => {
-  if (!(target instanceof Element)) return false
-  return Boolean(target.closest(EDITABLE_TARGET_SELECTOR))
+  const targetElement = toTargetElement(target)
+  if (!targetElement) return false
+
+  return Boolean(targetElement.closest(getEditableTargetSelector()))
 }
 
 const toElement = (node: Node | null) => (node instanceof Element ? node : node?.parentElement)
 
 export const protectContent = (getContainer: () => HTMLElement | null) => {
+  if (!isContentProtectionEnabled()) {
+    return () => {}
+  }
+
   const shouldProtectEventTarget = (target: EventTarget | null) => {
     const container = getContainer()
-    if (!container || !(target instanceof Element)) return false
-    if (!container.contains(target)) return false
+    const targetElement = toTargetElement(target)
 
-    return !isEditableTarget(target)
+    if (!container || !targetElement) return false
+    if (!container.contains(targetElement)) return false
+
+    return !isEditableTarget(targetElement)
+  }
+
+  const shouldBlockPasteTarget = (target: EventTarget | null) => {
+    const container = getContainer()
+    const targetElement = toTargetElement(target)
+
+    if (!container || !targetElement) return false
+    if (!container.contains(targetElement)) return false
+
+    return Boolean(targetElement.closest(PASTE_BLOCK_TARGET_SELECTOR))
   }
 
   const blockEvent = (event: Event) => {
@@ -111,6 +163,14 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
 
     event.preventDefault()
     event.stopPropagation()
+  }
+
+  const blockPasteEvent = (event: ClipboardEvent) => {
+    if (!shouldBlockPasteTarget(event.target)) return
+
+    event.preventDefault()
+    event.stopPropagation()
+    event.stopImmediatePropagation()
   }
 
   const clearProtectedSelection = () => {
@@ -131,21 +191,19 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
   const blockSelectionShortcut = (event: KeyboardEvent) => {
     const key = event.key?.toLowerCase()
     const modifierPressed = event.ctrlKey || event.metaKey
-    if (!modifierPressed || !['a', 'c', 's'].includes(key)) return
+    if (!modifierPressed || key !== 's') return
     if (!shouldProtectEventTarget(event.target)) return
 
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-
-    window.getSelection()?.removeAllRanges()
   }
 
   document.addEventListener('copy', blockEvent, true)
   document.addEventListener('cut', blockEvent, true)
+  document.addEventListener('paste', blockPasteEvent, true)
   document.addEventListener('contextmenu', blockEvent, true)
   document.addEventListener('selectstart', blockEvent, true)
-  document.addEventListener('mousedown', blockEvent, true)
   document.addEventListener('selectionchange', clearProtectedSelection)
   document.addEventListener('keydown', blockSelectionShortcut, true)
   enablePrintBlocking()
@@ -153,9 +211,9 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
   return () => {
     document.removeEventListener('copy', blockEvent, true)
     document.removeEventListener('cut', blockEvent, true)
+    document.removeEventListener('paste', blockPasteEvent, true)
     document.removeEventListener('contextmenu', blockEvent, true)
     document.removeEventListener('selectstart', blockEvent, true)
-    document.removeEventListener('mousedown', blockEvent, true)
     document.removeEventListener('selectionchange', clearProtectedSelection)
     document.removeEventListener('keydown', blockSelectionShortcut, true)
     disablePrintBlocking()
@@ -163,6 +221,10 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
 }
 
 export const protectPageInteractions = () => {
+  if (!isContentProtectionEnabled()) {
+    return () => {}
+  }
+
   const blockContextMenu = (event: MouseEvent) => {
     event.preventDefault()
     event.stopPropagation()
