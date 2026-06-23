@@ -36,7 +36,7 @@ const ActiveSwitch = ({ question }: { question: Question }) => {
       updateStore: true,
       responseType: QuestionTR,
     }).catch(() => {
-      message.error(I18n.t('administration.errors.error_msg'))
+      message.error(I18n.t('admin.errors_error_msg'))
     })
   }
 
@@ -111,7 +111,7 @@ const QuestionList: React.FC = () => {
   const handleNewQuestion = () => dispatch(openModal('CreateQuestionFormModal'))
 
   const Filter = (
-    <Resource.Filter name="name_cont" placeholder={I18n.t('administration.search')}>
+    <Resource.Filter name="name_cont" placeholder={I18n.t('shared.search')}>
       <Button
         type="primary"
         icon={<PlusOutlined />}
@@ -182,7 +182,7 @@ const QuestionList: React.FC = () => {
           <Link to={`/admin/clients/${record.owner.id}`}>
             {ownerName}
           </Link>
-        ) : I18n.t('administration.tte'))}
+        ) : I18n.t('admin.tte'))}
       />
       <Resource.Column<Question>
         id="created_at"
@@ -204,7 +204,7 @@ const QuestionList: React.FC = () => {
       />
       <Resource.Column<Question>
         id="actions"
-        title={I18n.t('administration.actions')}
+        title={I18n.t('shared.actions')}
         render={(_, record) => <ActionsCell record={record} />}
       />
     </Resource.Table>

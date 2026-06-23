@@ -7,6 +7,9 @@ module Assessments
         mimic :questions_import_text_entry_form
 
         attribute :type, String
+        attribute :scoreWithAIEnabled, String
+        attribute :aiScoringModelAnswer, String
+        attribute :aiScoringKeywords, String
 
         validates :type, presence: true
         validates :type, inclusion: { in: %w[SingleLine MultiLine EssayTextBox] }, if: -> { type.present? }
@@ -15,6 +18,12 @@ module Assessments
           {
             'allowDictation' => false
           }
+        end
+
+        def attributes
+          attrs = super
+          attrs['scoreWithAIEnabled'] = ActiveModel::Type::Boolean.new.cast(attrs[:scoreWithAIEnabled])
+          attrs
         end
       end
     end

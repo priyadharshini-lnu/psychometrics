@@ -115,12 +115,12 @@ function CreateSubjectModal ({
   return (
     <Modal
       width={550}
-      title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}
+      title={I18n.t('admin.add_subjects')}
       open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -137,7 +137,7 @@ function CreateSubjectModal ({
         <Alert
           message={
             typeof errors === 'object' ? Object.values(errors).join(', ')
-              : (errors || I18n.t('common.errors.something_wrong'))
+              : (errors || I18n.t('shared.something_wrong'))
           }
           type="error"
           className="mb-4"
@@ -152,7 +152,7 @@ function CreateSubjectModal ({
       >
         <Form.Item
           name="email"
-          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.email')}
+          label={I18n.t('shared.email')}
           rules={[
             {
               required: true,
@@ -181,7 +181,7 @@ function CreateSubjectModal ({
 
         <Form.Item
           name="firstName"
-          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.first_name')}
+          label={I18n.t('shared.first_name')}
           rules={[
             {
               required: true,
@@ -195,7 +195,7 @@ function CreateSubjectModal ({
 
         <Form.Item
           name="lastName"
-          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.last_name')}
+          label={I18n.t('shared.last_name')}
           rules={[
             {
               required: true,
@@ -209,7 +209,7 @@ function CreateSubjectModal ({
 
         <Form.Item
           name="locale"
-          label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.locale')}
+          label={I18n.t('admin.locale')}
         >
           <Input />
         </Form.Item>
@@ -218,7 +218,7 @@ function CreateSubjectModal ({
           <>
             <Form.Item
               name="currentJobRole"
-              label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role')}
+              label={I18n.t('admin.current_job_role')}
             >
               <Select
                 allowClear
@@ -238,7 +238,7 @@ function CreateSubjectModal ({
 
             <Form.Item
               name="targetJobRole"
-              label={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role')}
+              label={I18n.t('admin.target_job_role')}
             >
               <Select
                 allowClear

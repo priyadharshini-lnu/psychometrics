@@ -108,7 +108,7 @@ const CopyQuestionFormModal: React.FC<Props> = ({
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {isSuperAdmin(currentUser) && <Select.Option value="">{I18n.t('administration.tte')}</Select.Option>}
+              {isSuperAdmin(currentUser) && <Select.Option value="">{I18n.t('admin.tte')}</Select.Option>}
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}

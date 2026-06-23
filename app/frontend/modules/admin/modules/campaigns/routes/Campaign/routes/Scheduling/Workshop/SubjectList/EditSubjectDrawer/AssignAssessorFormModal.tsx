@@ -76,7 +76,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
   const handleFormFinish = (values: FormValues) => {
     const validateForm = handleFormValidate(values)
     if (validateForm) {
-      setError(I18n.t('administration.scheduling.errors.assessor_already_assigned'))
+      setError(I18n.t('admin.scheduling_errors_assessor_already_assigned'))
       return
     }
     const type = assessment ? 'update' : 'create'
@@ -120,10 +120,10 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
   const meetingLinkFieldRules: FormRule[] = meetingType === 'custom'
     ? [{ required: true }, {
       type: 'url',
-      message: I18n.t('administration.scheduling.errors.invalid_url'),
+      message: I18n.t('admin.scheduling_errors_invalid_url'),
     }, {
       pattern: /^https:\/\/(.*)/,
-      message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+      message: I18n.t('admin.scheduling_errors_meeting_link_https'),
     }] : [{ required: true }]
 
   const assessorsOptions = useMemo(() => {
@@ -154,8 +154,8 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
 
   return (
     <Modal
-      title={assessment ? I18n.t('administration.scheduling.subjects.edit_assessor_form')
-        : I18n.t('administration.scheduling.subjects.add_assessor_form')}
+      title={assessment ? I18n.t('admin.scheduling_subjects_edit_assessor_form')
+        : I18n.t('admin.scheduling_subjects_add_assessor_form')}
       key="AssessorFormModal"
       open
       onCancel={close}
@@ -178,7 +178,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
       >
         <Form.Item
           rules={[{ required: true, message: I18n.t('validations.blank') }]}
-          label={I18n.t('administration.scheduling.add_assessor_form.assessment')}
+          label={I18n.t('admin.scheduling_add_assessor_form_assessment')}
           name="assessmentId"
         >
           <Select
@@ -202,7 +202,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
         </Form.Item>
         <Form.Item
           rules={[{ required: true, message: I18n.t('validations.blank') }]}
-          label={I18n.t('administration.scheduling.add_assessor_form.assessor')}
+          label={I18n.t('admin.scheduling_add_assessor_form_assessor')}
           name="assessorUserId"
         >
           <Select
@@ -221,7 +221,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
         </Form.Item>
         <Form.Item
           rules={[{ required: true, message: I18n.t('validations.blank') }]}
-          label={I18n.t('administration.scheduling.add_assessor_form.schedule_time')}
+          label={I18n.t('admin.scheduling_add_assessor_form_schedule_time')}
           name="scheduleTime"
         >
           <TimePicker
@@ -236,13 +236,13 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
         {(selectedAssessment?.linkedActivityId && linkedAssessments?.get(selectedAssessment?.linkedActivityId)) && (
           <Form.Item
             className="mb-1"
-            label={I18n.t('administration.scheduling.subjects.meeting_link_title')}
+            label={I18n.t('admin.scheduling_subjects_meeting_link_title')}
             name="meetingType"
           >
             <Radio.Group>
-              <Radio value="not_available">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
-              <Radio value="internal">{I18n.t('administration.scheduling.subjects.meeting_link_internal')}</Radio>
-              <Radio value="custom">{I18n.t('administration.scheduling.subjects.meeting_link_custom')}</Radio>
+              <Radio value="not_available">{I18n.t('admin.scheduling_subjects_meeting_link_none')}</Radio>
+              <Radio value="internal">{I18n.t('admin.scheduling_subjects_meeting_link_internal')}</Radio>
+              <Radio value="custom">{I18n.t('admin.scheduling_subjects_meeting_link_custom')}</Radio>
             </Radio.Group>
           </Form.Item>
         )}

@@ -55,7 +55,7 @@ export const MhsNormRegionForm: FC<Props> = ({
     }
     updateMhsNormRegion(campaignId, assessment.id, payload)
       .then(() => {
-        message.success(I18n.t('admin.campaign_assessment_mhs_norm_region_update_success'))
+        message.success(I18n.t('admin.norm_region_update_success'))
       })
       .catch((err) => {
         message.error(err)
@@ -79,7 +79,7 @@ export const MhsNormRegionForm: FC<Props> = ({
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
-          label={I18n.t('admin.campaign_assessment_mhs_norm_region')}
+          label={I18n.t('admin.norm_region')}
         >
           <span>{selectedNormRegion.label}</span>
           {permissions?.updateMhsNormRegion && (
@@ -93,7 +93,7 @@ export const MhsNormRegionForm: FC<Props> = ({
         </Descriptions.Item>
       </Descriptions>
       <Modal
-        title={I18n.t('admin.campaign_assessment_mhs_norm_region')}
+        title={I18n.t('admin.norm_region')}
         open={modalVisible}
         getContainer={false}
         closable={false}
@@ -109,7 +109,7 @@ export const MhsNormRegionForm: FC<Props> = ({
         <div className="mt-4 mb-6">
           <Select
             value={selectedNormRegion.value}
-            placeholder={I18n.t('admin.campaign_assessment_mhs_norm_region_form_select')}
+            placeholder={I18n.t('admin.norm_region_form_select')}
             onChange={(val) => {
               const region = mhsNormRegions.find(r => r.value === val)
               setSelectedNormRegion(region || { label: '', value: 0 })

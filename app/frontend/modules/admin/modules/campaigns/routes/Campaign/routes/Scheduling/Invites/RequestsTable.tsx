@@ -48,7 +48,7 @@ export const RequestsTable = () => {
       <br />
       <Resource.Table pagination>
         <Resource.Column<WorkshopInvitedSubject>
-          title={I18n.t('administration.assessment_center.invite_request.subject_name')}
+          title={I18n.t('admin.invite_request_subject_name')}
           id="user.firstName"
           sorter
           render={(_, { user }) => (
@@ -67,15 +67,15 @@ export const RequestsTable = () => {
           )}
         />
         <Resource.Column<WorkshopInvitedSubject>
-          title={I18n.t('administration.assessment_center.invite_request.status')}
+          title={I18n.t('shared.status')}
           id="status"
           sorter
           render={(_, { status }) => (
-            <Tag color={STATUSES_TO_COLOR[status]}>{I18n.t(`administration.invited_subject.statuses.${status}`)}</Tag>
+            <Tag color={STATUSES_TO_COLOR[status]}>{I18n.t(`admin.statuses_${status}`)}</Tag>
           )}
         />
         <Resource.Column<WorkshopInvitedSubject>
-          title={I18n.t('administration.assessment_center.invite_request.workshop_time')}
+          title={I18n.t('admin.invite_request_workshop_time')}
           id="workshop"
           render={(data) => {
             if (data.status.includes('requested_rescheduling')) {
@@ -96,12 +96,12 @@ export const RequestsTable = () => {
           }}
         />
         <Resource.Column<WorkshopInvitedSubject>
-          title={I18n.t('administration.assessment_center.invite_request.reason')}
+          title={I18n.t('admin.invite_request_reason')}
           id="reason"
         />
         <Resource.Column<WorkshopInvitedSubject>
           id="action"
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           render={(_, workshopInvitedSubject) => <ActionButtons workshopInvitedSubject={workshopInvitedSubject} />}
           width={100}
         />
@@ -119,17 +119,17 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
   const rejectInvitedSubject = ({ id, user: { fullName }, status }: WorkshopInvitedSubject) => {
     modal.confirm({
       title: I18n.t(
-        'administration.assessment_center.invite_request.remove_confirm.title',
+        'admin.invite_request_remove_confirm_title',
         {
           action: 'Reject',
-          status: I18n.t(`administration.invited_subject.statuses.${status}`),
+          status: I18n.t(`admin.statuses_${status}`),
         },
       ),
       content: I18n.t(
-        'administration.assessment_center.invite_request.remove_confirm.content',
+        'admin.invite_request_remove_confirm_content',
         {
           action: 'reject',
-          status: I18n.t(`administration.invited_subject.statuses.${status}`),
+          status: I18n.t(`admin.statuses_${status}`),
           subjectName: fullName,
         },
       ),
@@ -142,9 +142,9 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
         }).then(() => {
           resource.setData(resource.data.filter(r => r.id !== id))
           message.success(I18n.t(
-            'administration.assessment_center.invite_request.remove_confirm.success',
+            'admin.invite_request_remove_confirm_success',
             {
-              status: I18n.t(`administration.invited_subject.statuses.${status}`),
+              status: I18n.t(`admin.statuses_${status}`),
               action: 'rejected',
               subjectName: fullName,
             },
@@ -157,17 +157,17 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
   const acceptInvitedSubject = ({ id, user: { fullName }, status }: WorkshopInvitedSubject) => {
     modal.confirm({
       title: I18n.t(
-        'administration.assessment_center.invite_request.remove_confirm.title',
+        'admin.invite_request_remove_confirm_title',
         {
           action: 'Accept',
-          status: I18n.t(`administration.invited_subject.statuses.${status}`),
+          status: I18n.t(`admin.statuses_${status}`),
         },
       ),
       content: I18n.t(
-        'administration.assessment_center.invite_request.remove_confirm.content',
+        'admin.invite_request_remove_confirm_content',
         {
           action: 'accept',
-          status: I18n.t(`administration.invited_subject.statuses.${status}`),
+          status: I18n.t(`admin.statuses_${status}`),
           subjectName: fullName,
         },
       ),
@@ -180,9 +180,9 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
         }).then(() => {
           resource.setData(resource.data.filter(r => r.id !== id))
           message.success(I18n.t(
-            'administration.assessment_center.invite_request.remove_confirm.success',
+            'admin.invite_request_remove_confirm_success',
             {
-              status: I18n.t(`administration.invited_subject.statuses.${status}`),
+              status: I18n.t(`admin.statuses_${status}`),
               action: 'accepted',
               subjectName: fullName,
             },
@@ -200,13 +200,13 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
           disabled={workshopInvitedSubject.status.includes('rejected')}
           onClick={() => rejectInvitedSubject(workshopInvitedSubject)}
         >
-          {I18n.t('administration.assessment_center.invite_request.reject')}
+          {I18n.t('admin.invite_request_reject')}
         </Button>
         <Button
           type="link"
           onClick={() => acceptInvitedSubject(workshopInvitedSubject)}
         >
-          {I18n.t('administration.assessment_center.invite_request.accept')}
+          {I18n.t('admin.invite_request_accept')}
         </Button>
       </Space>
     </>

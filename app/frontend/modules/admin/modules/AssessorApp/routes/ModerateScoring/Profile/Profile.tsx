@@ -41,7 +41,7 @@ const ProfileCard = ({
               <span>{email}</span>
             </Flex>
             <span>
-              {age ? `${age} ${I18n.t('administration.scoring.profile.years')}, ` : null}
+              {age ? `${age} ${I18n.t('admin.scoring_profile_years')}, ` : null}
               {gender ? `${gender}, ` : null}
               {locale ? I18n.t(`languages.${locale}`) : null}
             </span>

@@ -262,7 +262,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       // if new DA and it is not global is being added
       <Form.Item
         name="ownerId"
-        label={I18n.t('common.column.client')}
+        label={I18n.t('admin.client')}
         rules={[
           {
             required: true,
@@ -271,7 +271,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
       >
         <Select
           showSearch={{ filterOption: false, onSearch: searchAvailableOwners }}
-          placeholder={I18n.t('administration.development_actions.form.client_placeholder')}
+          placeholder={I18n.t('admin.development_actions_form_client_placeholder')}
           notFoundContent={ownersLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
           {
@@ -294,7 +294,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     return (
       <Form.Item
         name="projectId"
-        label={I18n.t('common.column.project')}
+        label={I18n.t('admin.project')}
         rules={[
           {
             required: true,
@@ -308,7 +308,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             value: p.id,
             label: p.name,
           }))}
-          placeholder={I18n.t('administration.development_actions.form.project_placeholder')}
+          placeholder={I18n.t('admin.development_actions_form_project_placeholder')}
           value={form.getFieldValue('projectId')}
           notFoundContent={projectIsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         />
@@ -320,7 +320,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
     <ResourceFormModal
       resourceName="development_actions"
       resource={developmentAction}
-      readableResourceName={I18n.t('administration.development_actions.form.title')}
+      readableResourceName={I18n.t('admin.development_actions_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -345,7 +345,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.development_actions.form.name')}
+            label={I18n.t('shared.name')}
             rules={[
               {
                 required: true,
@@ -356,7 +356,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           </Form.Item>
           <Form.Item
             name="description"
-            label={I18n.t('administration.development_actions.form.description')}
+            label={I18n.t('shared.description')}
             rules={[
               {
                 required: true,
@@ -371,7 +371,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                 <>
                   <Form.Item
                     name="global"
-                    label={I18n.t('administration.development_actions.global')}
+                    label={I18n.t('admin.development_actions_global')}
                   >
                     <Switch />
                   </Form.Item>
@@ -383,7 +383,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           )}
           <Form.Item
             name="developmentActionType"
-            label={I18n.t('administration.development_actions.form.development_action_type')}
+            label={I18n.t('admin.development_actions_form_development_action_type')}
             rules={[
               { required: true },
             ]}
@@ -394,7 +394,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                   .map(developmentActionType => (
                     <Option key={developmentActionType} value={developmentActionType}>
                       {I18n.t(
-                        `administration.development_actions.development_action_types.${developmentActionType}`,
+                        `admin.${developmentActionType}`,
                       )}
                     </Option>
                   ))
@@ -406,7 +406,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             developmentActionType === DevelopmentActionType.course
               ? (
                 <>
-                  <Form.Item name="image" label={I18n.t('administration.development_actions.form.course_image')}>
+                  <Form.Item name="image" label={I18n.t('admin.development_actions_form_course_image')}>
                     <Upload
                       listType="picture"
                       maxCount={1}
@@ -423,21 +423,21 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                       beforeUpload={() => false}
                     >
                       <Button disabled={imageField && imageField.fileList?.length !== 0} icon={<UploadOutlined />}>
-                        {I18n.t('administration.development_actions.form.upload')}
+                        {I18n.t('shared.upload')}
                       </Button>
                     </Upload>
                   </Form.Item>
 
                   <Form.Item
                     name="course_url"
-                    label={I18n.t('administration.development_actions.form.course_link')}
+                    label={I18n.t('admin.development_actions_form_course_link')}
                   >
                     <Input />
                   </Form.Item>
                   <Flex flex={1} gap={4}>
                     <Form.Item
                       name="course_start_date"
-                      label={I18n.t('administration.development_actions.form.start_date')}
+                      label={I18n.t('shared.start_date')}
                     >
                       <DatePicker
                         format="YYYY-MM-DD"
@@ -446,7 +446,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                     </Form.Item>
                     <Form.Item
                       name="course_end_date"
-                      label={I18n.t('administration.development_actions.form.end_date')}
+                      label={I18n.t('shared.end_date')}
                     >
                       <DatePicker
                         format="YYYY-MM-DD"
@@ -459,7 +459,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
                     developmentActionType === DevelopmentActionType.course && (
                       <Form.Item
                         name="availableLanguages"
-                        label={I18n.t('administration.development_actions.form.available_languages')}
+                        label={I18n.t('admin.development_actions_form_available_languages')}
                       >
                         <Select mode="multiple">
                           {availableLocales
@@ -477,7 +477,7 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           }
           <Form.Item
             name="learning_style"
-            label={I18n.t('administration.development_actions.form.learning_style')}
+            label={I18n.t('admin.development_actions_form_learning_style')}
             rules={[
               { required: true },
             ]}
@@ -497,14 +497,14 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           </Form.Item>
           <Form.Item
             name="duration"
-            label={I18n.t('administration.development_actions.form.duration')}
+            label={I18n.t('admin.development_actions_form_duration')}
             rules={[
               {
                 validator: durationValidator({
                   minMinutes: 1,
                   maxMinutes: 24 * 60 * 365,
-                  minError: I18n.t('administration.development_actions.duration.min_length'),
-                  maxError: I18n.t('administration.development_actions.duration.max_length'),
+                  minError: I18n.t('admin.development_actions_duration_min_length'),
+                  maxError: I18n.t('admin.development_actions_duration_max_length'),
                   requiredError: '',
                   required: false,
                 }),
@@ -514,17 +514,17 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
             <InputDuration
               value=""
               onChange={() => {}}
-              placeholder={I18n.t('administration.components.input_duration.placeholder')}
+              placeholder={I18n.t('admin.components_input_duration_placeholder')}
             />
           </Form.Item>
           <Form.Item
             name="skillIds"
-            label={I18n.t('administration.development_actions.form.skills')}
+            label={I18n.t('admin.development_actions_form_skills')}
             rules={[{ required: true }]}
           >
             <Select
               showSearch={{ filterOption: false, onSearch: searchAvailableSkills }}
-              placeholder={I18n.t('administration.development_actions.form.skills_placeholder')}
+              placeholder={I18n.t('admin.development_actions_form_skills_placeholder')}
               mode="multiple"
               notFoundContent={isSkillsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               defaultActiveFirstOption={false}
@@ -539,12 +539,12 @@ export const DevelopmentActionsFormModal: React.FC<Props> = ({ close, developmen
           </Form.Item>
           <Form.Item
             name="tagList"
-            label={I18n.t('admin.development_actions_form_tags')}
+            label={I18n.t('shared.tags')}
           >
             <Select
               mode="tags"
               style={{ width: '100%' }}
-              placeholder={I18n.t('admin.development_actions_form_tags')}
+              placeholder={I18n.t('shared.tags')}
               showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
               notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               maxTagCount="responsive"

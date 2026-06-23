@@ -42,53 +42,53 @@ export const SmsHistoriesList = () => {
             width={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('administration.sms_histories.columns.mobile_no')}
+            title={I18n.t('admin.sms_histories_columns_mobile_no')}
             id="mobileNo"
             dataIndex="mobileNo"
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('administration.sms_histories.columns.first_name')}
+            title={I18n.t('shared.first_name')}
             id="firstName"
             dataIndex="firstName"
             sorter
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('administration.sms_histories.columns.last_name')}
+            title={I18n.t('shared.last_name')}
             id="lastName"
             dataIndex="lastName"
             sorter
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('administration.sms_histories.columns.segment_length')}
+            title={I18n.t('admin.sms_histories_columns_segment_length')}
             id="segmentLength"
             dataIndex="segmentLength"
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('administration.sms_histories.columns.price')}
+            title={I18n.t('admin.sms_histories_columns_price')}
             id="price"
             dataIndex="price"
             render={price => I18n.toCurrency(price)}
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('administration.sms_histories.columns.sent_at')}
+            title={I18n.t('admin.sms_histories_columns_sent_at')}
             id="createdAt"
             dataIndex="createdAt"
             sorter
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('common.column.status')}
+            title={I18n.t('shared.status')}
             id="status"
-            render={({ status }) => I18n.t(`administration.sms_histories.statuses.${status}`)}
+            render={({ status }) => I18n.t(`admin.sms_histories_statuses_${status}`)}
             minWidth={100}
           />
           <Resource.Column<SmsHistory>
-            title={I18n.t('common.column.action')}
+            title={I18n.t('shared.action')}
             id="action"
             render={(_, smsHistory: SmsHistory) => (
               <Dropdown

@@ -323,4 +323,216 @@ RSpec.describe 'UserReport Approval Bug - Exact Workflow Reproduction', type: :m
       expect(user_report.approval_status).to eq('pending_qc')
     end
   end
+
+  describe 'Campaign factor scoring dependency for report approval' do
+    let(:campaign_factor) { create(:campaign_factor, campaign: campaign, factor_type: :formula) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+
+    let(:report_with_campaign_factor) { create(:report, assessments: [user_assessment_def]) }
+    let!(:report_campaign_factor) do
+      create(:report_campaign_factor, report: report_with_campaign_factor, code: campaign_factor.code)
+    end
+
+    let!(:campaign_report_with_factor) do
+      create(:campaign_report, campaign: campaign, report: report_with_campaign_factor)
+    end
+
+    let!(:user_report_with_factor) do
+      create(:user_report,
+             campaign: campaign,
+             report: report_with_campaign_factor,
+             user: user,
+             approval_status: :not_ready)
+    end
+
+    let!(:report_approval_setting_with_factor) do
+      create(:report_approval_setting,
+             report: report_with_campaign_factor,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [],
+             approvers_not_required: true)
+    end
+
+    it 'does not transition to pending_qc when campaign scores are not finalized' do
+      # Complete the assessment
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: user_assessment_def,
+             subject: user,
+             evaluator: user,
+             relationship: self_relationship,
+             status: :completed,
+             score_calculated: true)
+
+      user_report_with_factor.reload
+      expect(user_report_with_factor.all_assessments_are_scored?).to be_truthy
+
+      # Campaign scores not finalized yet
+      expect(campaign_user.campaign_scores_finalized?).to be_falsey
+
+      # Try to start approval
+      user_report_with_factor.start_approval!
+      user_report_with_factor.reload
+
+      # Should NOT transition to pending_qc because campaign scores are not finalized
+      expect(user_report_with_factor.approval_status).to eq('not_ready')
+    end
+
+    it 'transitions to pending_qc when campaign scores are finalized' do
+      # Complete the assessment
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: user_assessment_def,
+             subject: user,
+             evaluator: user,
+             relationship: self_relationship,
+             status: :completed,
+             score_calculated: true)
+
+      user_report_with_factor.reload
+      expect(user_report_with_factor.all_assessments_are_scored?).to be_truthy
+
+      # Finalize campaign scores
+      campaign_user.update!(campaign_scores_finalized: true)
+
+      # start_approval! should be called by the callback, but we test it explicitly
+      user_report_with_factor.start_approval!
+      user_report_with_factor.reload
+
+      # Should transition to pending_qc because campaign scores are now finalized
+      expect(user_report_with_factor.approval_status).to eq('pending_qc')
+    end
+
+    it 'triggers start_approval! via callback when campaign scores are finalized' do
+      # Complete the assessment
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: user_assessment_def,
+             subject: user,
+             evaluator: user,
+             relationship: self_relationship,
+             status: :completed,
+             score_calculated: true)
+
+      user_report_with_factor.reload
+      expect(user_report_with_factor.all_assessments_are_scored?).to be_truthy
+      expect(user_report_with_factor.approval_status).to eq('not_ready')
+
+      # Finalize campaign scores - callback should trigger start_approval!
+      allow(UserReports::GenerateAndSavePdfJob).to receive_message_chain(:set, :perform_later)
+
+      campaign_user.update!(campaign_scores_finalized: true)
+
+      user_report_with_factor.reload
+      # Should transition to pending_qc via the callback
+      expect(user_report_with_factor.approval_status).to eq('pending_qc')
+    end
+  end
+
+  describe 'AI artifact dependency for report approval' do
+    let(:assistant) { create(:assistant) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+
+    let(:report_with_ai_artifact) { create(:report, assessments: [user_assessment_def]) }
+    let!(:report_campaign_ai_artifact) do
+      create(:report_campaign_ai_artifact, report: report_with_ai_artifact, ai_assistant: assistant)
+    end
+
+    let!(:campaign_report_with_artifact) do
+      create(:campaign_report, campaign: campaign, report: report_with_ai_artifact)
+    end
+
+    let!(:user_report_with_artifact) do
+      create(:user_report,
+             campaign: campaign,
+             report: report_with_ai_artifact,
+             user: user,
+             approval_status: :not_ready)
+    end
+
+    let!(:report_approval_setting_with_artifact) do
+      create(:report_approval_setting,
+             report: report_with_ai_artifact,
+             campaign: campaign,
+             qc_user_ids: [qc_user.id],
+             approver_user_ids: [],
+             approvers_not_required: true)
+    end
+
+    it 'does not transition to pending_qc when artifact results are not finalized' do
+      # Complete the assessment
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: user_assessment_def,
+             subject: user,
+             evaluator: user,
+             relationship: self_relationship,
+             status: :completed,
+             score_calculated: true)
+
+      user_report_with_artifact.reload
+      expect(user_report_with_artifact.all_assessments_are_scored?).to be_truthy
+
+      # Artifact results not finalized yet
+      expect(campaign_user.campaign_artifact_results_finalized?).to be_falsey
+
+      # Try to start approval
+      user_report_with_artifact.start_approval!
+      user_report_with_artifact.reload
+
+      # Should NOT transition to pending_qc because artifact results are not finalized
+      expect(user_report_with_artifact.approval_status).to eq('not_ready')
+    end
+
+    it 'transitions to pending_qc when artifact results are finalized' do
+      # Complete the assessment
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: user_assessment_def,
+             subject: user,
+             evaluator: user,
+             relationship: self_relationship,
+             status: :completed,
+             score_calculated: true)
+
+      user_report_with_artifact.reload
+      expect(user_report_with_artifact.all_assessments_are_scored?).to be_truthy
+
+      # Finalize artifact results
+      campaign_user.update!(campaign_artifact_results_finalized: true)
+
+      # start_approval! should be called by the callback, but we test it explicitly
+      user_report_with_artifact.start_approval!
+      user_report_with_artifact.reload
+
+      # Should transition to pending_qc because artifact results are now finalized
+      expect(user_report_with_artifact.approval_status).to eq('pending_qc')
+    end
+
+    it 'triggers start_approval! via callback when artifact results are finalized' do
+      # Complete the assessment
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: user_assessment_def,
+             subject: user,
+             evaluator: user,
+             relationship: self_relationship,
+             status: :completed,
+             score_calculated: true)
+
+      user_report_with_artifact.reload
+      expect(user_report_with_artifact.all_assessments_are_scored?).to be_truthy
+      expect(user_report_with_artifact.approval_status).to eq('not_ready')
+
+      # Finalize artifact results - callback should trigger start_approval!
+      allow(UserReports::GenerateAndSavePdfJob).to receive_message_chain(:set, :perform_later)
+
+      campaign_user.update!(campaign_artifact_results_finalized: true)
+
+      user_report_with_artifact.reload
+      # Should transition to pending_qc via the callback
+      expect(user_report_with_artifact.approval_status).to eq('pending_qc')
+    end
+  end
 end

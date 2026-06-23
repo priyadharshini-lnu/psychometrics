@@ -72,14 +72,14 @@ const RegistrationCodes: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('administration.navigation.registration_codes')} `}</span>
+          <span className="mlm">{`${total} ${I18n.t('admin.navigation_registration_codes')} `}</span>
         </Col>
         {permissions.create && (
           <div className="float-r">
             <div>
               <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
                 <PlusOutlined />
-                <span>{I18n.t('administration.clients.registration_codes.actions.add_code')}</span>
+                <span>{I18n.t('admin.actions_add_code')}</span>
               </Button>
             </div>
           </div>
@@ -96,30 +96,30 @@ const RegistrationCodes: React.FC<Props> = ({
             pagination={false}
           >
             <Column
-              title={I18n.t('common.column.active')}
+              title={I18n.t('shared.active')}
               key="active"
               width={40}
               render={({ disabled }) => (disabled ? <CloseOutlined /> : <CheckOutlined />)}
             />
             <Column
-              title={I18n.t('common.column.name')}
+              title={I18n.t('shared.name')}
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
               dataIndex="name"
             />
             <Column
-              title={I18n.t('administration.clients.registration_codes.column.code')}
+              title={I18n.t('admin.column_code')}
               key="code"
               dataIndex="code"
             />
             <Column
-              title={I18n.t('administration.dates.start')}
+              title={I18n.t('admin.dates_start')}
               key="startDate"
               render={({ startDate }) => formatedDate(startDate)}
             />
             <Column
-              title={I18n.t('administration.dates.end')}
+              title={I18n.t('admin.dates_end')}
               key="endDate"
               render={({ endDate }) => formatedDate(endDate)}
             />
@@ -129,12 +129,12 @@ const RegistrationCodes: React.FC<Props> = ({
               render={({ restrictedDomains }) => (restrictedDomains ? restrictedDomains.split('\n').length : 0)}
             />
             <Column
-              title={I18n.t('administration.clients.registration_codes.column.usage_stats')}
+              title={I18n.t('admin.column_usage_stats')}
               key="usage"
               render={({ useCount, totalCount }) => `${useCount} of ${totalCount}`}
             />
             <Column
-              title={I18n.t('common.column.action')}
+              title={I18n.t('shared.action')}
               key="action"
               render={code => (
                 <>
@@ -252,13 +252,13 @@ const getActionsMenuProps = ({
 }:ActionMenuData): MenuProps => {
   const handleRemove = () => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
       content: <SafeHTML html={I18n.t('registration_code.modals.remove.content', { code })} />,
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         onCancelConfirm()
         message.success(I18n.t('registration_code.modals.remove.successfully', { code }))
@@ -269,11 +269,11 @@ const getActionsMenuProps = ({
   const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
-    label: I18n.t('common.actions.edit'),
+    label: I18n.t('shared.edit'),
   })
   permissions.remove && menuItems.push({
     key: 'remove',
-    label: I18n.t('common.actions.remove'),
+    label: I18n.t('shared.remove'),
   })
 
   const handleMenuClick = ({ key }) => {

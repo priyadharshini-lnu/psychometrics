@@ -4,8 +4,14 @@ module Api
   module Administration
     class DataReportPolicy < Administration::BasePolicy
       def run?
+        return @user.is?(:superadmin) if @record.scope_global?
+
         @user.is?(:superadmin) || (has_permission?(:clients, :export_data_report) &&
           @user.client_admin_clients.include?(@record.owner))
+      end
+
+      def show?
+        run?
       end
 
       def index?
@@ -27,7 +33,7 @@ module Api
           if @user.is?(:superadmin)
             geo_filtered_scope.all
           elsif @user.is?(:client_admin)
-            geo_filtered_scope.where(owner: @user.client_admin_clients)
+            geo_filtered_scope.where(scope: :client, owner: @user.client_admin_clients)
           else
             geo_filtered_scope.none
           end

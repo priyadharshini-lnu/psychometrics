@@ -19,7 +19,7 @@ export const CreateProjectModal: React.FC<Props> = ({
 }) => (
   <ResourceFormModal
     resourceName="projects"
-    readableResourceName={I18n.t('administration.projects.form.title')}
+    readableResourceName={I18n.t('admin.projects_form_title')}
     showSuccessMessages
     close={close}
     scrollToFirstError
@@ -30,19 +30,19 @@ export const CreateProjectModal: React.FC<Props> = ({
   >
     {() => (
       <>
-        <Form.Item name="name" label={I18n.t('administration.projects.form.name')} rules={[{ required: true }]}>
+        <Form.Item name="name" label={I18n.t('shared.name')} rules={[{ required: true }]}>
           <Input name="project_name" />
         </Form.Item>
         <Form.Item
           name="subdomain"
-          label={I18n.t('administration.projects.form.subdomain')}
+          label={I18n.t('admin.projects_form_subdomain')}
           rules={[{ required: true }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           name="number"
-          label={I18n.t('administration.projects.form.project_number')}
+          label={I18n.t('admin.projects_form_project_number')}
           rules={[{ required: true }]}
         >
           <Input />

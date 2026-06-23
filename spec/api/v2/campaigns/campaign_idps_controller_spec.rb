@@ -11,18 +11,13 @@ RSpec.describe Api::V2::Administration::Campaigns::CampaignIdpsController, type:
   let(:user) { create(:user) }
   let(:campaign_id) { campaign.id }
   let(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
-
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_idps' do
     it 'fetches campaign IDP list' do
       create(:campaign_idp, campaign: campaign, idp_template: idp_template)
 
-      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps"
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data'].first
@@ -59,7 +54,7 @@ RSpec.describe Api::V2::Administration::Campaigns::CampaignIdpsController, type:
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       d = JSON.parse(response.body)['data']
@@ -96,7 +91,7 @@ RSpec.describe Api::V2::Administration::Campaigns::CampaignIdpsController, type:
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       d = JSON.parse(response.body)['data']
@@ -139,7 +134,7 @@ RSpec.describe Api::V2::Administration::Campaigns::CampaignIdpsController, type:
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps/#{campaign_idp.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data']
@@ -179,7 +174,7 @@ RSpec.describe Api::V2::Administration::Campaigns::CampaignIdpsController, type:
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_idps/#{campaign_idp.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       d = JSON.parse(response.body)['data']

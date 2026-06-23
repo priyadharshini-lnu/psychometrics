@@ -91,8 +91,8 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
 
     const action = disabled ? 'unarchive' : 'archive'
     modal.confirm({
-      title: I18n.t(`administration.clients.projects.${action}.title`),
-      content: I18n.t(`administration.clients.projects.${action}.content`, { project_name: name }),
+      title: I18n.t(`admin.${action}_title`),
+      content: I18n.t(`admin.${action}_content`, { project_name: name }),
       onOk: () => {
         updateResource(
           {
@@ -100,7 +100,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
             disabled: !disabled,
           },
         ).then(() => {
-          message.success(I18n.t(`administration.clients.projects.${action}.success`, { project_name: name }))
+          message.success(I18n.t(`admin.${action}_success`, { project_name: name }))
           fetch()
         })
       },
@@ -195,7 +195,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         />
 
         <Column
-          title={I18n.t('administration.projects.columns.project_number')}
+          title={I18n.t('admin.projects_columns_project_number')}
           key="number"
           dataIndex="number"
           render={number => (
@@ -206,14 +206,14 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         />
 
         <Column
-          title={I18n.t('common.column.created_by')}
+          title={I18n.t('shared.created_by')}
           key="created_by"
           render={project => project.creator?.name}
           minWidth={150}
         />
 
         <Column
-          title={I18n.t('common.column.created_date')}
+          title={I18n.t('shared.created_date')}
           key="created_at"
           dataIndex="createdAt"
           sorter
@@ -222,14 +222,14 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         />
 
         <Column
-          title={I18n.t('common.column.modified_by')}
+          title={I18n.t('shared.modified_by')}
           key="modified_by"
           render={project => project.modifier?.name}
           minWidth={150}
         />
 
         <Column
-          title={I18n.t('common.column.modified_date')}
+          title={I18n.t('shared.modified_date')}
           key="updated_at"
           dataIndex="updatedAt"
           sorter
@@ -239,7 +239,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
 
         {client?.meta?.permissions?.canManageProject && (
           <Column
-            title={I18n.t('common.column.action')}
+            title={I18n.t('shared.action')}
             key="action"
             fixed={windowWidth > 800 ? 'right' : undefined}
             render={project => (
@@ -273,14 +273,14 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         defaultValue={getFilteredValue('disabled_true') || 'false'}
       >
         <Radio.Button value="false">
-          {I18n.t('administration.clients.projects.status.active')}
+          {I18n.t('admin.status_active')}
         </Radio.Button>
         <Radio.Button value="true">
-          {I18n.t('administration.clients.projects.status.archived')}
+          {I18n.t('admin.status_archived')}
         </Radio.Button>
       </Radio.Group>
       <Search
-        placeholder={I18n.t('common.actions.search')}
+        placeholder={I18n.t('shared.search')}
         value={getFilteredValue('filterable_fields')}
         onChange={e => changeFilter('filterable_fields', e.target.value)}
       />
@@ -294,7 +294,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
             }}
           >
             <PlusOutlined />
-            {I18n.t('administration.projects.addProject')}
+            {I18n.t('admin.projects_addProject')}
           </Button>
         )}
     </Space>
@@ -330,12 +330,12 @@ const getActionsMenuProps = ({
   if (disabled) {
     menuItems.push({
       key: 'unarchive',
-      label: I18n.t('administration.clients.projects.actions.unarchive'),
+      label: I18n.t('admin.actions_unarchive'),
     })
   } else {
     menuItems.push({
       key: 'archive',
-      label: I18n.t('administration.clients.projects.actions.archive'),
+      label: I18n.t('admin.actions_archive'),
     })
   }
 

@@ -190,7 +190,7 @@ const SheetComponent: FC<Props> = ({
             <Divider type="vertical" />
             <Input.Search
               placeholder={I18n.t(
-                'administration.sheets.list.header.search_record',
+                'admin.sheets_list_header_search_record',
               )}
               value={filters.emailCont}
               onChange={e => changeFilter('emailCont', e.target.value)}
@@ -209,7 +209,7 @@ const SheetComponent: FC<Props> = ({
                 disabled={isListLoading}
               >
                 <PlusOutlined />
-                {I18n.t('administration.sheets.list.header.add_record')}
+                {I18n.t('admin.sheets_list_header_add_record')}
               </Button>
             )}
           </Space>
@@ -230,7 +230,7 @@ const SheetComponent: FC<Props> = ({
                 onChange: (rowKey: string[]) => setSelectedRowKeys(rowKey),
               }}
             />
-          ) : <Empty description={I18n.t('administration.no_data_found')} />}
+          ) : <Empty description={I18n.t('shared.no_data_found')} />}
         </Col>
       </Row>
       <Row className="pt-4 pb-4 ps-4 pe-4">

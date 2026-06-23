@@ -74,7 +74,7 @@ const UserList: React.FC<Props> = (
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('administration.navigation.users')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('admin.navigation_users')}`}</span>
         </Col>
         <div className="float-r">
           <Search
@@ -101,7 +101,7 @@ const UserList: React.FC<Props> = (
             pagination={false}
           >
             <Column
-              title={I18n.t('administration.campaigns.users.id')}
+              title={I18n.t('shared.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
@@ -112,14 +112,14 @@ const UserList: React.FC<Props> = (
               )}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.name')}
+              title={I18n.t('shared.name')}
               key="fullName"
               dataIndex="fullName"
               sorter
               sortOrder={getSortOrder('fullName')}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.email')}
+              title={I18n.t('shared.email')}
               key="email"
               sorter
               sortOrder={getSortOrder('email')}
@@ -129,7 +129,7 @@ const UserList: React.FC<Props> = (
               title={I18n.t('assessors.campaigns_list.column.evaluation_status')}
               key="status"
               render={({ evaluationCompletionStatus }) => (
-                I18n.t(`administration.assessor_subjects.statuses.${evaluationCompletionStatus}`)
+                I18n.t(`admin.assessor_subjects_statuses_${evaluationCompletionStatus}`)
               )}
             />
             <Column
@@ -141,7 +141,7 @@ const UserList: React.FC<Props> = (
               title={I18n.t('assessors.campaigns_list.column.moderation_status')}
               key="status"
               render={({ moderationCompletionStatus }) => (
-                I18n.t(`administration.assessor_subjects.statuses.${moderationCompletionStatus}`)
+                I18n.t(`admin.assessor_subjects_statuses_${moderationCompletionStatus}`)
               )}
             />
             <Column

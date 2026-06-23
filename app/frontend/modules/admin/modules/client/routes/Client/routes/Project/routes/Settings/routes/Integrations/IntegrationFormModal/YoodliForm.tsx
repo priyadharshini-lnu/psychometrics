@@ -38,7 +38,7 @@ export const YoodliForm: React.FC<OwnProps> = ({ integration }) => {
     <>
       <Form.Item
         name="launchUrl"
-        label={I18n.t('administration.integrations.modal.yoodli.launch_url')}
+        label={I18n.t('admin.yoodli_launch_url')}
         rules={[{ required: true }]}
       >
         <Input />
@@ -46,7 +46,7 @@ export const YoodliForm: React.FC<OwnProps> = ({ integration }) => {
 
       <Form.Item
         name="loginUrl"
-        label={I18n.t('administration.integrations.modal.yoodli.login_url')}
+        label={I18n.t('admin.yoodli_login_url')}
         rules={[{ required: true }]}
       >
         <Input />
@@ -54,7 +54,7 @@ export const YoodliForm: React.FC<OwnProps> = ({ integration }) => {
 
       <Form.Item
         name="keysetUrl"
-        label={I18n.t('administration.integrations.modal.yoodli.keyset_url')}
+        label={I18n.t('admin.yoodli_keyset_url')}
         rules={[{ required: true }]}
       >
         <Input />

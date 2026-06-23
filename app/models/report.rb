@@ -73,6 +73,9 @@ class Report < ApplicationRecord
   scope :assignable, -> { where(disabled: false, archived: false) }
   scope :campaign_factor_dependable, -> { joins(:campaign_factors) }
   scope :campaign_ai_artifact_dependable, -> { joins(:campaign_ai_artifacts) }
+  scope :with_campaign, lambda { |campaign_id|
+    joins(:campaign_reports).where(campaign_reports: { campaign_id: campaign_id })
+  }
 
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
@@ -273,7 +276,7 @@ class Report < ApplicationRecord
   end
 
   def self.ransackable_scopes(_)
-    %i[filterable_fields with_resource_state]
+    %i[filterable_fields with_resource_state with_campaign]
   end
 
   def add_all_factor_aliases

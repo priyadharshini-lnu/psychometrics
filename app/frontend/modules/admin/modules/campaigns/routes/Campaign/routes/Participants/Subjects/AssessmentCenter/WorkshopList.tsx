@@ -68,12 +68,12 @@ const WorkshopList: React.FC = () => {
       <Resource config={config} name="workshop_subjects">
         <Resource.Table pagination>
           <Resource.Column<Response>
-            title={I18n.t('common.column.id')}
+            title={I18n.t('shared.id')}
             id="id"
             width="3%"
           />
           <Resource.Column<Response>
-            title={I18n.t('common.column.name')}
+            title={I18n.t('shared.name')}
             id="name"
             width="20%"
             render={(_, { workshop }) => (
@@ -86,39 +86,39 @@ const WorkshopList: React.FC = () => {
             )}
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.columns.start_time')}
+            title={I18n.t('admin.scheduling_columns_start_time')}
             id="startTime"
             width="15%"
             render={(_, { workshop }) => formatWorkshopDate(workshop.startTime)}
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.columns.campaign_assessment_group')}
+            title={I18n.t('admin.scheduling_columns_campaign_assessment_group')}
             id="campaignAssessmentGroupName"
             width="10%"
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.columns.attended')}
+            title={I18n.t('admin.scheduling_columns_attended')}
             id="attended"
             render={(_, { attended }) => (
               <Tag color={attended ? 'success' : 'error'}>
                 {attended
-                  ? I18n.t('administration.scheduling.attended.attended')
-                  : I18n.t('administration.scheduling.attended.not_attended')
+                  ? I18n.t('admin.scheduling_attended_attended')
+                  : I18n.t('admin.scheduling_attended_not_attended')
                 }
               </Tag>
             )}
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.attendance_status.column_name')}
+            title={I18n.t('admin.scheduling_attendance_status_column_name')}
             id="attendanceStatus"
             render={(_, { attendanceStatus }) => (
               <Tag color={ATTENDANCE_TAG_COLORS[attendanceStatus]}>
-                {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
+                {I18n.t(`admin.scheduling_attendance_status_${attendanceStatus}`)}
               </Tag>
             )}
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.columns.booked_at')}
+            title={I18n.t('admin.scheduling_columns_booked_at')}
             id="bookedAt"
             render={(_, { createdAt }) => {
               const bookedAt = dayjs(createdAt)
@@ -130,11 +130,11 @@ const WorkshopList: React.FC = () => {
             }}
           />
           <Resource.Column<Response>
-            title={I18n.t('administration.scheduling.columns.scheduling_status')}
+            title={I18n.t('admin.scheduling_columns_scheduling_status')}
             id="scheduling_status"
             render={(_, { schedulingStatus }) => (
               <Tag color={SCHEDULING_STATUS_TO_TAG_COLOR[schedulingStatus]}>
-                {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
+                {I18n.t(`admin.scheduling_scheduling_statuses_${schedulingStatus}`)}
               </Tag>
             )}
           />

@@ -96,7 +96,7 @@ const SkillsForm = ({
 
       try {
         await updateResource({ id: idp.id, ...payload })
-        message.success(I18n.t('administration.idp.skills_updated'))
+        message.success(I18n.t('admin.idp_skills_updated'))
       } catch (e) {
         if (e?.base?.[0]) {
           message.error(e?.base?.[0]?.title)
@@ -167,7 +167,7 @@ const SkillsForm = ({
           <Col xs={24} md={24}>
             <Row gutter={16}>
               <Col xs={24} md={12}>
-                <Card title={I18n.t('administration.idp.behavioral_skills')}>
+                <Card title={I18n.t('admin.idp_behavioral_skills')}>
                   {globalSkillsEnabled && (
                     <SkillsAndTagsSelection
                       categorizedSkills={categorizedSkills}
@@ -187,7 +187,7 @@ const SkillsForm = ({
                 </Card>
               </Col>
               <Col xs={24} md={12}>
-                <Card title={I18n.t('administration.idp.technical_skills')}>
+                <Card title={I18n.t('admin.idp_technical_skills')}>
                   {globalSkillsEnabled && (
                     <SkillsAndTagsSelection
                       categorizedSkills={categorizedSkills}
@@ -215,7 +215,7 @@ const SkillsForm = ({
           onClick={handleSubmit}
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>
       </Space>
     </Form>

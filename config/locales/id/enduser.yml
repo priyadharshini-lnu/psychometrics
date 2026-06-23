@@ -36,6 +36,8 @@ id:
     browser_not_compatible: Browser Anda %{browser_name} tidak kompatibel dengan kampanye ini. Gunakan versi terbaru Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
     browser_not_compatible_description: Gunakan versi terbaru Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
     browser_not_compatible_detail: Browser Anda %{browser_name} tidak kompatibel dengan kampanye ini. Gunakan versi terbaru dari Chrome, Firefox, Safari, atau Edge untuk pengalaman terbaik.
+    browser_proctoring_description: Anda sedang menggunakan browser %{browser_name}, yang mungkin memiliki beberapa keterbatasan terkait fitur pengawasan yang diaktifkan untuk kampanye ini. Untuk pengalaman terbaik, kami menyarankan Anda menggunakan Chrome atau Edge
+    browser_proctoring_title: "%{browser_name} Browser Terdeteksi"
     browser_version_fix_description_first: 'Gunakan browser yang didukung: Chrome, Firefox, Edge, atau Safari'
     browser_version_fix_title: Versi browser Anda tidak didukung.
     camera: Video dan Audio
@@ -43,6 +45,7 @@ id:
     camera_check: Uji Kamera dan Mikrofon
     camera_check_abruptly_ended: Kamera tiba-tiba dimatikan. Silakan nyalakan kamera Anda dan jalankan kembali pemeriksaan tersebut.
     camera_check_description: Pastikan kamera dan mikrofon Anda berfungsi dengan baik untuk merekam
+    camera_check_failed: Pemeriksaan video gagal
     camera_check_passed: Pemeriksaan video dan audio telah berhasil dilalui
     camera_check_record_instruction: Klik "Rekam" dan bacalah paragraf berikut dengan lantang
     camera_test_step: Langkah Pengujian Video dan Audio
@@ -69,6 +72,9 @@ id:
     error_uploading_audio_detail: Terjadi kesalahan saat mengunggah audio Anda
     error_uploading_video: Terjadi kesalahan saat mengunggah video
     error_uploading_video_detail: Terjadi kesalahan saat mengunggah video
+    face_detection_error: Terjadi kesalahan saat proses pendeteksian wajah. Pastikan kamera Anda berfungsi dengan baik, lalu coba lagi.
+    face_detection_failed: Wajah tidak terdeteksi dalam rekaman video. Pastikan kamera Anda tidak tertutup dan wajah Anda terlihat jelas.
+    face_not_detected_warning: Wajah tidak terdeteksi. Pastikan wajah Anda terlihat oleh kamera.
     fail: Gagal
     file_submission_already_exists: Kami sudah menerima kiriman Anda untuk pertanyaan ini. Silakan segarkan halaman ini, dan jika Anda masih tidak dapat melihat kiriman Anda sebelumnya, silakan hubungi administrator Anda.
     follow_these_steps: Ikuti langkah-langkah berikut untuk mengatasi masalah yang terdeteksi selama pemeriksaan sistem
@@ -162,6 +168,8 @@ id:
     select_video_device: Pilih Perangkat Video
     selected_count: Dipilih
     skill_type: Jenis Keterampilan
+    speech_verification_error: Terjadi kesalahan saat memverifikasi ucapan Anda. Silakan coba lagi.
+    speech_verification_failed: Ucapan Anda tidak sesuai dengan frasa uji. Silakan coba lagi dan ucapkan frasa tersebut dengan jelas.
     start_campaign_message_proctored: Ini adalah kampanye yang diawasi, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_readiness_check: Mulai Pemeriksaan Kesiapan
@@ -186,10 +194,12 @@ id:
       one: Saya berteriak, Anda berteriak, kita semua berteriak minta es krim! (I scream, you scream, we all scream for ice cream!)
       seven: Setiap hari adalah awal yang baru. Katakan dengan keras dan bangga! (Every day is a new beginning. Say it loud and proud!)
       six: Pizza atau pasta? Keputusan yang sulit. (Pizza or pasta? Decisions are hard.)
+      ten: Saya sudah siap. Ini adalah rekaman uji coba untuk memastikan mikrofon saya berfungsi dengan baik.
       three: Tes, satu dua tiga, suaranya jernih sekali! (Testing, one two three, the sound is clear as can be!)
       two: Rubah coklat yang cepat melompati anjing yang malas. (The quick brown fox jumps over the lazy dog.)
     system_check_audio_title: Silakan ucapkan dan ulangi kalimat berikut ini sebanyak 3 kali.
     system_check_complete: Pemeriksaan Sistem Telah Selesai
+    system_check_face_detection: Pendeteksian Wajah
     system_check_failed: Pemeriksaan Sistem Gagal
     system_check_failed_description: Mohon selesaikan masalah tersebut dan jalankan kembali pemeriksaan sistem.
     system_check_failed_message: Beberapa pemeriksaan sistem gagal. Silakan periksa detailnya dan coba lagi.
@@ -200,6 +210,7 @@ id:
     system_check_retake: Tidak, saya ingin mengulang
     system_check_run_again: Jalankan lagi
     system_check_session_not_found: Sesi pemeriksaan sistem tidak ditemukan. Silakan mulai pemeriksaan sistem yang baru.
+    system_check_speech_verification: Verifikasi Suara
     system_check_start_recording: Mulai merekam
     system_check_stop_recording: Berhenti merekam
     system_check_test_message: senang berbicara dengan Anda
@@ -257,6 +268,10 @@ id:
     video_overlay_label: Pilih mikrofon dan kamera Anda, klik Rekam, lalu bacalah pesan berikut setelah Anda menekan tombol Rekam
     video_overlay_message: Pilih mikrofon dan kamera Anda, klik "Rekam", lalu bacalah dengan lantang kalimat yang muncul di bagian bawah.
     video_recorder_label: Perekam Video
+    video_upload_failed_camera_access: Tidak dapat mengakses kamera atau mikrofon Anda. Silakan periksa izin perangkat Anda dan coba lagi.
+    video_upload_failed_chunk_upload: Sebagian rekaman tidak berhasil diunggah. Silakan periksa koneksi internet Anda dan coba lagi.
+    video_upload_failed_finalize: Rekaman tersebut telah direkam, tetapi tidak dapat disimpan. Silakan coba lagi.
+    video_upload_failed_no_recording: Tidak ditemukan rekaman yang dapat diunggah. Silakan rekam ulang.
     view_details: Lihat Detail
     webgl_api_fix_description_first: Pastikan browser Anda mendukung WebGL dan fitur tersebut telah diaktifkan di pengaturan
     webgl_api_fix_description_second: Perbarui driver grafis Anda ke versi terbaru

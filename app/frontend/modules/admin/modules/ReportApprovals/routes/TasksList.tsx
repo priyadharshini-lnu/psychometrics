@@ -248,7 +248,7 @@ const TasksListComponent: React.FC<Props> = ({
         .filter(reportApproval => reportApproval.approvalStatus !== 'approved')
       setData(newData)
       const { responseMeta } = response
-      message.success(I18n.t('administration.report_approval.bulk_approve_success',
+      message.success(I18n.t('admin.report_approval_bulk_approve_success',
         {
           approved: responseMeta.approved,
           ignored: responseMeta.ignored,
@@ -265,7 +265,7 @@ const TasksListComponent: React.FC<Props> = ({
       {type === 'myTasks' && (
         <Flex justify="end" align="center" className="m-5">
           <Button type="primary" onClick={submitAll} disabled={!selected.length}>
-            {I18n.t('administration.report_approval.submit_or_approve_all')}
+            {I18n.t('admin.report_approval_submit_or_approve_all')}
           </Button>
         </Flex>
       )}
@@ -295,7 +295,7 @@ const TasksListComponent: React.FC<Props> = ({
           />
         )}
         <Column
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex="id"
           key="id"
           sorter
@@ -303,7 +303,7 @@ const TasksListComponent: React.FC<Props> = ({
           fixed="left"
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.campaign_name')}
+          title={I18n.t('admin.report_approval_columns_campaign_name')}
           dataIndex={['campaign', 'name']}
           key="campaign_name"
           {...filterProps(
@@ -313,7 +313,7 @@ const TasksListComponent: React.FC<Props> = ({
           width={300}
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.report_name')}
+          title={I18n.t('admin.report_approval_columns_report_name')}
           dataIndex={['report', 'name']}
           key="report_name"
           {...filterProps(
@@ -323,7 +323,7 @@ const TasksListComponent: React.FC<Props> = ({
           width={300}
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.user_name')}
+          title={I18n.t('admin.report_approval_columns_user_name')}
           dataIndex={['user', 'name']}
           key="user_name"
           {...filterProps(
@@ -333,7 +333,7 @@ const TasksListComponent: React.FC<Props> = ({
           width={200}
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.user_email')}
+          title={I18n.t('admin.report_approval_columns_user_email')}
           dataIndex={['user', 'email']}
           key="user_email"
           {...filterProps(
@@ -343,27 +343,27 @@ const TasksListComponent: React.FC<Props> = ({
           width={300}
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.approval_status')}
+          title={I18n.t('admin.report_approval_columns_approval_status')}
           key="approvalStatus"
           {...filterProps(
             '', 'approval_status_in', 'approval_status_in',
             getFilteredValue('approval_status_in'), [
-              { id: 'not_ready', name: I18n.t('administration.report_approval.approval_statuses.not_ready') },
-              { id: 'pending_qc', name: I18n.t('administration.report_approval.approval_statuses.pending_qc') },
-              { id: 'qc_in_progress', name: I18n.t('administration.report_approval.approval_statuses.qc_in_progress') },
-              { id: 'qc_completed', name: I18n.t('administration.report_approval.approval_statuses.qc_completed') },
+              { id: 'not_ready', name: I18n.t('admin.report_approval_approval_statuses_not_ready') },
+              { id: 'pending_qc', name: I18n.t('admin.report_approval_approval_statuses_pending_qc') },
+              { id: 'qc_in_progress', name: I18n.t('admin.report_approval_approval_statuses_qc_in_progress') },
+              { id: 'qc_completed', name: I18n.t('admin.report_approval_approval_statuses_qc_completed') },
               {
                 id: 'change_requested',
-                name: I18n.t('administration.report_approval.approval_statuses.change_requested'),
+                name: I18n.t('admin.report_approval_approval_statuses_change_requested'),
               },
-              { id: 'approved', name: I18n.t('administration.report_approval.approval_statuses.approved') },
+              { id: 'approved', name: I18n.t('admin.report_approval_approval_statuses_approved') },
             ],
           )}
-          render={({ approvalStatus }) => I18n.t(`administration.report_review.statuses.${approvalStatus}`)}
+          render={({ approvalStatus }) => I18n.t(`admin.report_review_statuses_${approvalStatus}`)}
         />
         <Column
           width={150}
-          title={I18n.t('administration.report_approval.columns.qc_by')}
+          title={I18n.t('admin.report_approval_columns_qc_by')}
           key="qcBy"
           {...filterProps(
             '', 'qc_user_id_in', 'qc_user_id_in',
@@ -382,7 +382,7 @@ const TasksListComponent: React.FC<Props> = ({
         />
         <Column
           width={150}
-          title={I18n.t('administration.report_approval.columns.approved_by')}
+          title={I18n.t('admin.report_approval_columns_approved_by')}
           key="approvedBy"
           {...filterProps(
             '', 'approver_user_id_in', 'approver_user_id_in',
@@ -400,18 +400,18 @@ const TasksListComponent: React.FC<Props> = ({
           )}
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.actions')}
+          title={I18n.t('shared.actions')}
           key="link"
           render={({
             id, campaign, projectId, pdfUrl, approvalStatus,
           }) => (
             <Space>
               <a href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
-                {I18n.t('administration.report_approval.review')}
+                {I18n.t('admin.report_approval_review')}
               </a>
               {approvalStatus === 'approved' && pdfUrl && (
                 <a href={pdfUrl}>
-                  {I18n.t('administration.report_approval.download')}
+                  {I18n.t('shared.download')}
                 </a>
               )}
             </Space>
@@ -435,10 +435,10 @@ const TasksListComponent: React.FC<Props> = ({
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.report_approval.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
-            label: () => I18n.t('administration.report_approval.report_approvals'),
+            label: () => I18n.t('admin.report_approvals'),
           },
         ]}
       />

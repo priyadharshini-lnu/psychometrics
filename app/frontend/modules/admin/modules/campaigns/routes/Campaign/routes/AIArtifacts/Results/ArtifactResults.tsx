@@ -69,7 +69,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
               className={cs('p-4 align-middle', styles.borderLight, styles.bgLight, styles.colorDarkGray)}
             >
               <Typography.Text strong>
-                {I18n.t('administration.ai_artifacts.key')}
+                {I18n.t('admin.key')}
               </Typography.Text>
             </Col>
             <Col
@@ -77,7 +77,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
               className={cs('p-4', styles.borderLight)}
             >
               <Typography.Text strong>
-                {I18n.t('administration.ai_artifacts.generated_value')}
+                {I18n.t('admin.generated_value')}
               </Typography.Text>
             </Col>
           </Row>
@@ -112,7 +112,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
                     onClick={() => toggleRawMode(result.key)}
                     className={styles.rawToggleButton}
                   >
-                    {I18n.t('administration.ai_artifacts.raw')}
+                    {I18n.t('admin.raw')}
                   </Button>
                 )}
               </Col>
@@ -122,7 +122,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
             <Col span={24} className={cs('p-4', styles.borderLight)}>
               <Skeleton loading={isLoading} active title paragraph={false}>
                 <Typography.Text strong>
-                  {I18n.t('administration.ai_artifacts.used_tokens.title')}
+                  {I18n.t('admin.used_tokens_title')}
                 </Typography.Text>
               </Skeleton>
             </Col>
@@ -132,7 +132,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
             <Col span={12}>
               <Skeleton loading={isLoading} active title paragraph={false}>
                 <Statistic
-                  title={I18n.t('administration.ai_artifacts.used_tokens.input_tokens')}
+                  title={I18n.t('admin.used_tokens_input_tokens')}
                   value={totalInputTokens}
                   styles={{ content: { fontSize: 14 } }}
                 />
@@ -141,7 +141,7 @@ export const ArtifactResults: React.FC<ArtifactResultsProps> = ({
             <Col span={12}>
               <Skeleton loading={isLoading} active title paragraph={false}>
                 <Statistic
-                  title={I18n.t('administration.ai_artifacts.used_tokens.output_tokens')}
+                  title={I18n.t('admin.used_tokens_output_tokens')}
                   value={totalOutputTokens}
                   styles={{ content: { fontSize: 14 } }}
                 />

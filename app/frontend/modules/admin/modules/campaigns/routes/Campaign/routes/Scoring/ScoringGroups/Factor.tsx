@@ -59,7 +59,7 @@ export const Factor = React.forwardRef(
                 {factor.name}
                 {factor.ranked
                   ? (
-                    <Tooltip title={I18n.t('administration.scoring.ranked')}>
+                    <Tooltip title={I18n.t('admin.scoring_ranked')}>
                       <span><StarOutlined /></span>
                     </Tooltip>
                   )

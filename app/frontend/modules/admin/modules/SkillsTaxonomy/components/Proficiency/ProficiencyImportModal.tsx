@@ -58,7 +58,7 @@ export const ProficiencyImportModal: React.FC<OwnProps> = ({
           key="back"
           onClick={close}
         >
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -78,7 +78,7 @@ export const ProficiencyImportModal: React.FC<OwnProps> = ({
           <a href={csvFilePath}>
             <CloudDownloadOutlined />
             <span className="mls">
-              {I18n.t('administration.skills.import.download_example_csv')}
+              {I18n.t('admin.skills_import_download_example_csv')}
             </span>
           </a>
 

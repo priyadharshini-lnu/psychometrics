@@ -89,7 +89,7 @@ const AssessorList: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{I18n.t('administration.assessor.count', { count: total })}</span>
+          <span className="mlm">{I18n.t('admin.assessor_count', { count: total })}</span>
         </Col>
         <div>
           <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
@@ -103,7 +103,7 @@ const AssessorList: React.FC<Props> = ({
             <div className={styles.newUserButton}>
               <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
                 <PlusOutlined />
-                <span>{I18n.t('administration.assessor.create_assessor')}</span>
+                <span>{I18n.t('admin.assessor_create_assessor')}</span>
               </Button>
             </div>
           )}
@@ -120,7 +120,7 @@ const AssessorList: React.FC<Props> = ({
             pagination={false}
           >
             <Column
-              title={I18n.t('administration.campaigns.users.id')}
+              title={I18n.t('shared.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
@@ -131,29 +131,29 @@ const AssessorList: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('common.column.name')}
+              title={I18n.t('shared.name')}
               key="fullName"
               dataIndex="fullName"
               sorter
               sortOrder={getSortOrder('fullName')}
             />
             <Column
-              title={I18n.t('administration.users.list.email')}
+              title={I18n.t('shared.email')}
               key="email"
               dataIndex="email"
             />
             <Column
-              title={I18n.t('common.column.status')}
+              title={I18n.t('shared.status')}
               key="status"
-              render={({ status }) => I18n.t(`administration.assessor.statuses.${status}`)}
+              render={({ status }) => I18n.t(`admin.assessor_statuses_${status}`)}
             />
             <Column
-              title={I18n.t('administration.assessor.evaluations')}
+              title={I18n.t('admin.assessor_evaluations')}
               key="evaluationsCompleted"
               render={({ totalEvaluations, completedEvaluations }) => `${completedEvaluations} / ${totalEvaluations}`}
             />
             <Column
-              title={I18n.t('administration.campaigns.actions')}
+              title={I18n.t('shared.manage')}
               key="action"
               render={assessor => (
                 <ConditionalDropdown

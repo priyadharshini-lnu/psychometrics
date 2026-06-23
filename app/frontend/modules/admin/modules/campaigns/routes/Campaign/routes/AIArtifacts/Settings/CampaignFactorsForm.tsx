@@ -55,7 +55,7 @@ export const CampaignFactorsForm: React.FC<Props> = ({ aiArtifact }) => {
       <Form.Item name="campaignFactors">
         <Select
           mode="multiple"
-          placeholder={I18n.t('administration.ai_artifacts.form.select_campaign_factors')}
+          placeholder={I18n.t('admin.form_select_campaign_factors')}
           allowClear
           showSearch
           filterOption={false}

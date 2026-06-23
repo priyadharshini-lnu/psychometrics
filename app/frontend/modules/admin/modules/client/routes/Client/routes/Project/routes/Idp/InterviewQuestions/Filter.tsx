@@ -24,11 +24,11 @@ export const InterviewQuestionsFilter: React.FC = () => {
 
     resource.uploadFileAction(action, data).then(() => {
       successCallback()
-      message.info(I18n.t('administration.interview_questions.import.success_msg'))
+      message.info(I18n.t('admin.interview_questions_import_success_msg'))
     })
       .catch((error) => {
         failureCallback(error)
-        message.info(I18n.t('administration.interview_questions.import.failure_msg'))
+        message.info(I18n.t('admin.interview_questions_import_failure_msg'))
       })
   }
 
@@ -38,10 +38,10 @@ export const InterviewQuestionsFilter: React.FC = () => {
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.interview_questions.export.success_msg'))
+      message.info(I18n.t('admin.interview_questions_export_success_msg'))
     })
       .catch(() => {
-        message.error(I18n.t('administration.interview_questions.export.failure_msg'))
+        message.error(I18n.t('admin.interview_questions_export_failure_msg'))
       })
   }
 
@@ -49,7 +49,7 @@ export const InterviewQuestionsFilter: React.FC = () => {
     if (action === 'import') {
       dispatch(openModal('ImportModal', {
         handleImport,
-        title: I18n.t('administration.interview_questions.import.action'),
+        title: I18n.t('admin.interview_questions_import_action'),
       }))
     }
 
@@ -70,7 +70,7 @@ export const InterviewQuestionsFilter: React.FC = () => {
       />
       <Button type="primary" disabled={tableLoading} onClick={handleCreateActionModal}>
         <PlusOutlined />
-        {I18n.t('common.actions.create')}
+        {I18n.t('shared.create')}
       </Button>
     </Resource.Filter>
   )

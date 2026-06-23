@@ -27,7 +27,7 @@ export const SkillsFilter: React.FC<Props> = ({
 
     resource.uploadFileAction(action, data).then(() => {
       successCallback()
-      message.info(I18n.t('administration.skills.import.info_msg'))
+      message.info(I18n.t('admin.skills_import_info_msg'))
     })
       .catch((error) => {
         failureCallback(error)
@@ -41,7 +41,7 @@ export const SkillsFilter: React.FC<Props> = ({
 
     resource.uploadFileAction(action, data).then(() => {
       successCallback()
-      message.info(I18n.t('administration.skills.import.success_msg'))
+      message.info(I18n.t('admin.skills_import_success_msg'))
     })
       .catch((error) => {
         failureCallback(error)
@@ -54,10 +54,10 @@ export const SkillsFilter: React.FC<Props> = ({
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.skills.export.success_msg'))
+      message.info(I18n.t('admin.skills_export_success_msg'))
     })
       .catch(() => {
-        message.error(I18n.t('administration.skills.export.failure_msg'))
+        message.error(I18n.t('admin.skills_export_failure_msg'))
       })
   }
 
@@ -67,9 +67,9 @@ export const SkillsFilter: React.FC<Props> = ({
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.skills.export.success_msg'))
+      message.info(I18n.t('admin.skills_export_success_msg'))
     }).catch(() => {
-      message.error(I18n.t('administration.skills.export.failure_msg'))
+      message.error(I18n.t('admin.skills_export_failure_msg'))
     })
   }
 
@@ -78,7 +78,7 @@ export const SkillsFilter: React.FC<Props> = ({
       openModal('SkillsImportModal', {
         handleImport: handleSkillsImport,
         csvFilePath: '/example_csv/skills-sample.csv',
-        title: I18n.t('administration.skills.import_action.skills_title'),
+        title: I18n.t('admin.skills_import_action_skills_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
       })
     }
@@ -86,7 +86,7 @@ export const SkillsFilter: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('SkillsImportModal', {
         handleImport: handleSkillsTranslationsImport,
-        title: I18n.t('administration.skills.import_action.skills_translations_title'),
+        title: I18n.t('admin.skills_import_action_skills_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })
     }
@@ -102,10 +102,10 @@ export const SkillsFilter: React.FC<Props> = ({
           body: {},
           responseType: t.literal('ok'),
         }).then(() => {
-          message.info(I18n.t('administration.skills.export.success_msg'))
+          message.info(I18n.t('admin.skills_export_success_msg'))
         })
           .catch(() => {
-            message.error(I18n.t('administration.skills.export.failure_msg'))
+            message.error(I18n.t('admin.skills_export_failure_msg'))
           })
       }
     }
@@ -121,10 +121,10 @@ export const SkillsFilter: React.FC<Props> = ({
           responseType: t.literal('ok'),
         })
           .then(() => {
-            message.info(I18n.t('administration.skills.export.success_msg'))
+            message.info(I18n.t('admin.skills_export_success_msg'))
           })
           .catch(() => {
-            message.error(I18n.t('administration.skills.export.failure_msg'))
+            message.error(I18n.t('admin.skills_export_failure_msg'))
           })
       }
     }
@@ -137,10 +137,10 @@ export const SkillsFilter: React.FC<Props> = ({
         responseType: t.literal('ok'),
       })
         .then(() => {
-          message.info(I18n.t('administration.skills.vector.generate_embedding_success_msg'))
+          message.info(I18n.t('admin.skills_vector_generate_embedding_success_msg'))
         })
         .catch(() => {
-          message.error(I18n.t('administration.skills.vector.generate_embedding_failure_msg'))
+          message.error(I18n.t('admin.skills_vector_generate_embedding_failure_msg'))
         })
     }
   }
@@ -161,7 +161,7 @@ export const SkillsFilter: React.FC<Props> = ({
       />
       <Button type="primary" disabled={tableLoading} onClick={handleCreateSkillModal}>
         <PlusOutlined />
-        {I18n.t('common.actions.create')}
+        {I18n.t('shared.create')}
       </Button>
     </Resource.Filter>
   )

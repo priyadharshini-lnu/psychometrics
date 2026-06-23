@@ -32,7 +32,7 @@ export const ManageVariablesForm: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="campaign_scoring_variables"
-      readableResourceName={I18n.t('administration.scoring.campaign_scoring_variables')}
+      readableResourceName={I18n.t('admin.scoring_campaign_scoring_variables')}
       resource={data[0]}
       showSuccessMessages
       close={close}

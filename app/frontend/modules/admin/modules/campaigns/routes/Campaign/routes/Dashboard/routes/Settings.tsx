@@ -53,7 +53,7 @@ export const SettingsComponent: React.FC<Props> = ({
     message.success(
       I18n.t(
         'frontend.resource.update_success',
-        { readableResourceName: I18n.t('administration.dashboard.tabs.dashboard') },
+        { readableResourceName: I18n.t('admin.dashboard') },
       ),
     )
   }
@@ -74,13 +74,13 @@ export const SettingsComponent: React.FC<Props> = ({
     uploadImage(data[0].id, formData).then(() => {
       showSuccessMessage()
     }).catch(() => {
-      message.error(I18n.t('administration.dashboard_form.image_upload_failed'))
+      message.error(I18n.t('admin.dashboard_form_image_upload_failed'))
     })
   }
 
   const handleRefresh = () => {
     refresh(dashboard.id).then(() => {
-      message.success(I18n.t('administration.dashboard_form.refresh_success'))
+      message.success(I18n.t('admin.dashboard_form_refresh_success'))
     }).catch((error) => {
       message.error(error)
     })
@@ -95,7 +95,7 @@ export const SettingsComponent: React.FC<Props> = ({
       <Col sm={24} md={16} xl={12} xxl={10}>
         <ResourceForm
           resourceName="dashboards"
-          readableResourceName={I18n.t('administration.dashboard.tabs.dashboard')}
+          readableResourceName={I18n.t('admin.dashboard')}
           resource={dashboard}
           scrollToFirstError
           request={{
@@ -110,7 +110,7 @@ export const SettingsComponent: React.FC<Props> = ({
             <>
               <Form.Item
                 name="enabled"
-                label={I18n.t('administration.dashboard_form.fields.enabled')}
+                label={I18n.t('admin.enabled')}
                 valuePropName="checked"
               >
                 <Switch />
@@ -118,7 +118,7 @@ export const SettingsComponent: React.FC<Props> = ({
               <Form.Item
                 name="dashboardType"
                 label={I18n.t('common.column.type')}
-                getValueProps={value => ({ value: I18n.t(`administration.dashboard.dashboard_types.${value}`) })}
+                getValueProps={value => ({ value: I18n.t(`admin.dashboard_dashboard_types_${value}`) })}
               >
                 <Input disabled />
               </Form.Item>
@@ -131,7 +131,7 @@ export const SettingsComponent: React.FC<Props> = ({
               </Form.Item>
               {dashboard.dashboardType === 'powerbi' && <PowerBIFields />}
               {dashboard.dashboardType === 'oracle_analytics' && <OracleAnalyticsFields />}
-              <Form.Item name="imageUrl" label={I18n.t('administration.dashboard_form.fields.image')}>
+              <Form.Item name="imageUrl" label={I18n.t('admin.image')}>
                 <Upload
                   listType="picture"
                   maxCount={1}
@@ -142,7 +142,7 @@ export const SettingsComponent: React.FC<Props> = ({
                   }] : undefined}
                   beforeUpload={() => false}
                 >
-                  <Button icon={<UploadOutlined />}>{I18n.t('common.actions.upload')}</Button>
+                  <Button icon={<UploadOutlined />}>{I18n.t('shared.upload')}</Button>
                 </Upload>
               </Form.Item>
               <Button
@@ -151,7 +151,7 @@ export const SettingsComponent: React.FC<Props> = ({
                 loading={isLoading(`update@${data[0]?.id}`) || uploadInProgress}
                 className="mb-16"
               >
-                {I18n.t('common.actions.update')}
+                {I18n.t('shared.update')}
               </Button>
             </>
           )}
@@ -179,36 +179,36 @@ const PowerBIFields = () => (
   <>
     <Form.Item
       name="datasetId"
-      label={I18n.t('administration.dashboard_form.fields.dataset_id')}
+      label={I18n.t('admin.dataset_id')}
     >
       <Input />
     </Form.Item>
     <Form.Item
       name="reportId"
-      label={I18n.t('administration.dashboard_form.fields.report_id')}
+      label={I18n.t('admin.report_id')}
     >
       <Input />
     </Form.Item>
     <Form.Item
       name="refreshInterval"
-      label={I18n.t('administration.dashboard_form.fields.refresh_interval')}
+      label={I18n.t('admin.refresh_interval')}
     >
       <Select>
         {[null, 15, 30, 60, 90].map(n => (
           <Select.Option key={n || 'None'} value={n}>
-            {n || I18n.t('administration.dashboard_form.none')}
+            {n || I18n.t('admin.dashboard_form_none')}
           </Select.Option>
         ))}
       </Select>
     </Form.Item>
     <Form.Item
       name="visualHeaderVisibility"
-      label={I18n.t('administration.dashboard_form.fields.visual_header_visibility')}
+      label={I18n.t('admin.visual_header_visibility')}
     >
       <Select
         options={
             ['hide_all', 'show_all', 'keep_original'].map(opt => ({
-              value: opt, label: I18n.t(`administration.dashboard_form.visual_header_visibility_options.${opt}`),
+              value: opt, label: I18n.t(`admin.${opt}`),
             }))
           }
       />
@@ -220,7 +220,7 @@ const OracleAnalyticsFields = () => (
   <>
     <Form.Item
       name="projectPath"
-      label={I18n.t('administration.dashboard_form.fields.project_path')}
+      label={I18n.t('admin.project_path')}
     >
       <Input />
     </Form.Item>
@@ -243,7 +243,7 @@ const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
   <Alert
     message={(
       <>
-        {I18n.t('administration.dashboard.settings.details')}
+        {I18n.t('admin.dashboard_settings_details')}
         {canBeRefreshed
           && (
             <Button
@@ -253,7 +253,7 @@ const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
               loading={refreshRequestInProgress}
               className="float-r"
             >
-              {I18n.t('administration.dashboard.settings.refresh')}
+              {I18n.t('admin.dashboard_settings_refresh')}
             </Button>
           )}
       </>
@@ -263,7 +263,7 @@ const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
         {capacityId && (
           <Form.Item
             label={
-            `${I18n.t('administration.dashboard.settings.capacity_id')}`
+            `${I18n.t('admin.dashboard_settings_capacity_id')}`
           }
             initialValue={capacityId}
             name="capacityId"
@@ -286,7 +286,7 @@ const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
 
         {workspaceId && (
           <Form.Item
-            label={I18n.t('administration.dashboard.settings.workspace_id')}
+            label={I18n.t('admin.dashboard_settings_workspace_id')}
             initialValue={workspaceId}
             name="workspaceId"
           >
@@ -296,7 +296,7 @@ const AdditionalInfoForPowerBi: React.FC<AdditionalInfoForPowerBiProps> = ({
                 <CopyToClipboard
                   text={workspaceId}
                   onCopy={() => {
-                    message.info(I18n.t('common.text.copied'))
+                    message.info(I18n.t('shared.copied'))
                   }}
                 >
                   <CopyOutlined />

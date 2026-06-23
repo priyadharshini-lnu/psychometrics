@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe 'New Campaigns' do
-  let!(:membership) { create(:client_admin_membership) }
+  let!(:membership) { create(:client_admin_membership, :with_application_user) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, project: project) }
   let(:Authorization) { "Basic #{Base64.strict_encode64('key:token')}" }

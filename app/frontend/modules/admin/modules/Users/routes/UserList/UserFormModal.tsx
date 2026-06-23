@@ -25,7 +25,7 @@ export const UserFormModal: React.FC<Props> = ({ close, userTab }) => {
   return (
     <ResourceFormModal
       resourceName="users"
-      readableResourceName={I18n.t('administration.users.user')}
+      readableResourceName={I18n.t('admin.users_user')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -36,21 +36,21 @@ export const UserFormModal: React.FC<Props> = ({ close, userTab }) => {
         <>
           <Form.Item
             name="email"
-            label={I18n.t('common.column.email')}
+            label={I18n.t('shared.email')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="first_name"
-            label={I18n.t('common.column.first_name')}
+            label={I18n.t('shared.first_name')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="last_name"
-            label={I18n.t('common.column.last_name')}
+            label={I18n.t('shared.last_name')}
             rules={[{ required: true }]}
           >
             <Input />

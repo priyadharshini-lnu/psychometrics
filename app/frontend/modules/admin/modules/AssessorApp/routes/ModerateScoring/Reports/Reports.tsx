@@ -63,11 +63,11 @@ export const ReportsComponent: FC<Props> = ({
   let items: Tab[] = [
     {
       key: 'others',
-      label: I18n.t('administration.assessor.moderate_score.other_reports'),
+      label: I18n.t('admin.other_reports'),
       children: (
         <>
           <div className={styles.count}>
-            {I18n.t('administration.assessor.moderate_score.reports_count',
+            {I18n.t('admin.reports_count',
               { count: userReports.length })}
           </div>
           <Space orientation="vertical" size={8} style={{ width: '100%' }}>
@@ -104,14 +104,14 @@ export const ReportsComponent: FC<Props> = ({
   if (mainReportId) {
     items = [{
       key: 'main',
-      label: I18n.t('administration.assessor.moderate_score.main_report'),
+      label: I18n.t('admin.main_report'),
       children: <MainReport reportId={mainReportId} />,
     }, ...items]
   }
 
   return (
     <div className={styles.sidebar}>
-      {header(I18n.t('administration.assessor.moderate_score.reports'), true)}
+      {header(I18n.t('admin.reports'), true)}
       <div>
         <Tabs
           tabBarStyle={{ padding: '0 12px', margin: 0 }}

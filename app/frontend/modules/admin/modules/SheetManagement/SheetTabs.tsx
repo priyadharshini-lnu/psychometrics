@@ -34,7 +34,7 @@ const SheetTabsComponent: FC<Props> = ({ parentResourceType, parentResourceId })
       <TabPane
         tab={(
           <span>
-            {I18n.t('administration.sheets.tabs.rows')}
+            {I18n.t('admin.sheets_tabs_rows')}
           </span>
         )}
         key="rows"
@@ -47,7 +47,7 @@ const SheetTabsComponent: FC<Props> = ({ parentResourceType, parentResourceId })
       <TabPane
         tab={(
           <span>
-            {I18n.t('administration.sheets.tabs.settings')}
+            {I18n.t('admin.sheets_tabs_settings')}
           </span>
           )}
         key="settings"

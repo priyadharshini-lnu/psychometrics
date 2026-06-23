@@ -135,15 +135,15 @@ export const Result = () => {
         body: { userIds: [record.participantId] },
         responseType: t.type({}),
       }).then(() => {
-        message.info(I18n.t('administration.ai_artifacts.generate_result_info_message'))
+        message.info(I18n.t('admin.generate_result_info_message'))
       })
       return
     }
     const isFinalize = action === 'mark_finalized'
-    const titleKey = isFinalize ? 'admin.ai_artifacts_mark_finalized' : 'admin.ai_artifacts_mark_not_finalized'
+    const titleKey = isFinalize ? 'admin.mark_finalized' : 'admin.mark_not_finalized'
     const contentKey = isFinalize
-      ? 'admin.ai_artifacts_mark_finalized_confirm'
-      : 'admin.ai_artifacts_mark_not_finalized_confirm'
+      ? 'admin.mark_finalized_confirm'
+      : 'admin.mark_not_finalized_confirm'
     modal.confirm({
       title: I18n.t(titleKey),
       content: I18n.t(contentKey, { email: record.email }),
@@ -199,7 +199,7 @@ export const Result = () => {
                   )
                     : (
                       <Tooltip
-                        title={I18n.t('administration.ai_artifacts.generated_at_time',
+                        title={I18n.t('admin.generated_at_time',
                           { time: formatedDate(record.artifacts[art].generatedAt) })}
                       >
                         <span>
@@ -220,7 +220,7 @@ export const Result = () => {
 
     return [
       {
-        title: <div style={{ textAlign: 'left' }}>{I18n.t('administration.ai_artifacts.id')}</div>,
+        title: <div style={{ textAlign: 'left' }}>{I18n.t('shared.id')}</div>,
         dataIndex: 'id',
         key: 'id',
         width: 80,
@@ -230,7 +230,7 @@ export const Result = () => {
         ),
       },
       {
-        title: I18n.t('administration.ai_artifacts.name'),
+        title: I18n.t('shared.name'),
         key: 'participantName',
         width: 200,
         fixed: 'left',
@@ -245,14 +245,14 @@ export const Result = () => {
       },
       ...artifactColumns,
       {
-        title: <div style={{ textAlign: 'left' }}>{I18n.t('admin.ai_artifacts_finalized_at')}</div>,
+        title: <div style={{ textAlign: 'left' }}>{I18n.t('admin.finalized_at')}</div>,
         dataIndex: 'artifactResultsFinalizedAt',
         key: 'artifactResultsFinalizedAt',
         width: 200,
         render: finalizedAt => (finalizedAt ? <span>{formatedDate(finalizedAt)}</span> : '-'),
       },
       {
-        title: <div style={{ textAlign: 'left' }}>{I18n.t('admin.actions')}</div>,
+        title: <div style={{ textAlign: 'left' }}>{I18n.t('shared.actions')}</div>,
         key: 'actions',
         width: 80,
         fixed: 'right',
@@ -284,10 +284,10 @@ export const Result = () => {
       handleBulkAction('generate_results')
     } else if (action === 'mark_finalized' || action === 'mark_not_finalized') {
       const isFinalize = action === 'mark_finalized'
-      const titleKey = isFinalize ? 'admin.ai_artifacts_mark_finalized' : 'admin.ai_artifacts_mark_not_finalized'
+      const titleKey = isFinalize ? 'admin.mark_finalized' : 'admin.mark_not_finalized'
       const contentKey = isFinalize
-        ? 'admin.ai_artifacts_mark_finalized_bulk_confirm'
-        : 'admin.ai_artifacts_mark_not_finalized_bulk_confirm'
+        ? 'admin.mark_finalized_bulk_confirm'
+        : 'admin.mark_not_finalized_bulk_confirm'
       modal.confirm({
         title: I18n.t(titleKey),
         content: I18n.t(contentKey),
@@ -307,7 +307,7 @@ export const Result = () => {
       },
       responseType: t.literal('ok'),
     }).then(() => {
-      const nameKey = finalized ? 'admin.ai_artifacts_mark_finalized' : 'admin.ai_artifacts_mark_not_finalized'
+      const nameKey = finalized ? 'admin.mark_finalized' : 'admin.mark_not_finalized'
       message.success(I18n.t('frontend.resource.update_success',
         { readableResourceName: I18n.t(nameKey) }))
     })
@@ -324,7 +324,7 @@ export const Result = () => {
       action: 'export',
       method: 'post',
     }).then(() => {
-      message.info(I18n.t('admin.ai_artifacts_results_export_job_scheduled'))
+      message.info(I18n.t('admin.results_export_job_scheduled'))
     })
   }
 
@@ -339,7 +339,7 @@ export const Result = () => {
         responseType: t.type({}),
       })
         .then(() => {
-          message.info(I18n.t('administration.ai_artifacts.generate_result_info_message'))
+          message.info(I18n.t('admin.generate_result_info_message'))
         })
     }
   }
@@ -358,7 +358,7 @@ export const Result = () => {
         </Flex>
         <Flex gap={8}>
           <Search
-            placeholder={I18n.t('common.actions.search')}
+            placeholder={I18n.t('shared.search')}
             value={getFilteredValue('filterable_fields')}
             onChange={({ target: { value } }) => {
               changeFilter('filterable_fields', value)
@@ -399,7 +399,7 @@ export const Result = () => {
               selectionAllowed: aiArtifact.length !== meta.recordCount,
               hasSelectInAllPages: isAllSelected,
               onSelectionChange: onAllSelect,
-              label: I18n.t('administration.scoring.select_all', { n: meta.recordCount ?? 0 }),
+              label: I18n.t('admin.scoring_select_all', { n: meta.recordCount ?? 0 }),
             }}
             failureMsg={getErrorMsgFromJsonApiRequests(requests)}
             selectedCount={

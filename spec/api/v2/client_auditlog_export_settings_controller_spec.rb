@@ -8,9 +8,6 @@ RSpec.describe Api::V2::Administration::ClientAuditlogExportSettingsController, 
   let(:settings) do
     create(:client_auditlog_export_setting, s3_secret_access_key: 'secret', description: 'desc', client: client)
   end
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'POST /client_auditlog_export_setting/{id}/test_connection' do

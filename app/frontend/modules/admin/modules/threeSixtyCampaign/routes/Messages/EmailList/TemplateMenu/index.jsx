@@ -11,11 +11,11 @@ function TemplateMenu ({ emailTemplates, selectedId }) {
     {
       key: category,
       type: 'group',
-      label: I18n.t(`administration.threesixty_campaigns.email_templates.categories.${category}`),
+      label: I18n.t(`admin.categories_${category}`),
       children: [..._.map(emailTemplates, emailTemplate => (
         {
           key: emailTemplate.id,
-          label: I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`),
+          label: I18n.t(`admin.${emailTemplate.name}_name`),
         }
       ))],
     }

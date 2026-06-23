@@ -10,15 +10,12 @@ RSpec.describe Api::V2::Administration::ProjectLicensesController, type: :reques
     create(:project_license, project: project, license: license, usage_limit: 10, used_number: 5)
   end
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /projects/:project_id/licenses' do
     it 'fetches project Licenses list' do
       get "/api/v2/administration/projects/#{project.id}/licenses",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       licenses = JSON.parse(response.body)
@@ -48,7 +45,7 @@ RSpec.describe Api::V2::Administration::ProjectLicensesController, type: :reques
 
       post "/api/v2/administration/projects/#{project.id}/licenses",
            params: params.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       project_license = ProjectLicense.last
@@ -73,7 +70,7 @@ RSpec.describe Api::V2::Administration::ProjectLicensesController, type: :reques
 
       put "/api/v2/administration/projects/#{project.id}/licenses/#{project_license.id}",
           params: params.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       project_license.reload
@@ -98,7 +95,7 @@ used_number: 0)
 
       put "/api/v2/administration/projects/#{project.id}/licenses/#{project_license.id}",
           params: params.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       body = JSON.parse(response.body)
@@ -122,7 +119,7 @@ usage_limit: 5, used_number: 4)
 
       put "/api/v2/administration/projects/#{project.id}/licenses/#{project_license_with_used.id}",
           params: params.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       body = JSON.parse(response.body)

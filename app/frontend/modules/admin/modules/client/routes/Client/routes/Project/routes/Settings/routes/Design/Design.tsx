@@ -136,7 +136,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
           ])
           updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
             message.success(
-              I18n.t('administration.projects.design_settings.success_update'),
+              I18n.t('admin.success_update'),
             )
             setIsLoading(false)
           })
@@ -186,13 +186,13 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
   const validateAltText = (fieldName: string, value: string): Promise<void> => {
     if (!value || value.trim() === '') {
       return Promise.reject(
-        new Error(I18n.t(`administration.projects.design_settings.${fieldName}_required`)),
+        new Error(I18n.t(`admin.${fieldName}_required`)),
       )
     }
     const validPattern = /^[a-zA-Z0-9\s.,'-]+$/
     if (!validPattern.test(value.trim())) {
       return Promise.reject(
-        new Error(I18n.t('administration.projects.design_settings.alt_text_invalid')),
+        new Error(I18n.t('admin.alt_text_invalid')),
       )
     }
     return Promise.resolve()
@@ -204,7 +204,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
     },
     {
       max: MAX_ALT_TEXT_LENGTH,
-      message: I18n.t('administration.projects.design_settings.alt_text_long'),
+      message: I18n.t('admin.alt_text_long'),
     },
   ]
 
@@ -227,7 +227,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
         >
           <Form.Item
             name="logo"
-            label={I18n.t('administration.projects.design_settings.client_logo_label')}
+            label={I18n.t('admin.client_logo_label')}
             validateStatus={uploadFormErrors.logo ? 'error' : 'success'}
             help={uploadFormErrors.logo?.[0] ?? ''}
           >
@@ -241,13 +241,13 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
               }] : undefined}
               beforeUpload={() => false}
             >
-              <Button icon={<UploadOutlined />}>{I18n.t('administration.projects.design_settings.logo_upload')}</Button>
+              <Button icon={<UploadOutlined />}>{I18n.t('shared.upload')}</Button>
             </Upload>
           </Form.Item>
           {logo && (
             <Form.Item
               name="logoAltText"
-              label={I18n.t('administration.projects.design_settings.alt_text_logo')}
+              label={I18n.t('admin.alt_text_logo')}
               rules={getFieldRules('alt_text_logo')}
             >
               <Input maxLength={MAX_ALT_TEXT_LENGTH} />
@@ -255,7 +255,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
           )}
           <Form.Item
             name="background"
-            label={I18n.t('administration.projects.design_settings.background_label')}
+            label={I18n.t('admin.background_label')}
             validateStatus={uploadFormErrors.background ? 'error' : 'success'}
             help={uploadFormErrors.background?.[0] ?? ''}
           >
@@ -270,19 +270,19 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
               beforeUpload={() => false}
             >
               <Button icon={<UploadOutlined />}>
-                {I18n.t('administration.projects.design_settings.bg_upload')}
+                {I18n.t('shared.upload')}
               </Button>
             </Upload>
           </Form.Item>
-          <Form.Item name="backgroundSize" label={I18n.t('administration.projects.design_settings.background_size')}>
+          <Form.Item name="backgroundSize" label={I18n.t('admin.background_size')}>
             <Radio.Group>
-              <Radio value="cover">{I18n.t('administration.projects.design_settings.background_size_cover')}</Radio>
-              <Radio value="contain">{I18n.t('administration.projects.design_settings.background_size_contain')}</Radio>
+              <Radio value="cover">{I18n.t('admin.background_size_cover')}</Radio>
+              <Radio value="contain">{I18n.t('admin.background_size_contain')}</Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
             name="backgroundOverlay"
-            label={I18n.t('administration.projects.design_settings.background_overlay_label')}
+            label={I18n.t('admin.background_overlay_label')}
             validateStatus={uploadFormErrors.backgroundOverlay ? 'error' : 'success'}
             help={uploadFormErrors.backgroundOverlay?.[0] ?? ''}
           >
@@ -297,13 +297,13 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
               beforeUpload={() => false}
             >
               <Button icon={<UploadOutlined />}>
-                {I18n.t('administration.projects.design_settings.bg_upload')}
+                {I18n.t('shared.upload')}
               </Button>
             </Upload>
           </Form.Item>
           <Form.Item
             name="secondaryLogo"
-            label={I18n.t('administration.projects.design_settings.sec_logo_label')}
+            label={I18n.t('admin.sec_logo_label')}
             validateStatus={uploadFormErrors.secondaryLogo ? 'error' : 'success'}
             help={uploadFormErrors.secondaryLogo?.[0] ?? ''}
           >
@@ -318,36 +318,36 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
               beforeUpload={() => false}
             >
               <Button icon={<UploadOutlined />}>
-                {I18n.t('administration.projects.design_settings.sec_logo_upload')}
+                {I18n.t('shared.upload')}
               </Button>
             </Upload>
           </Form.Item>
           {secondaryLogo && (
             <Form.Item
               name="secondaryLogoAltText"
-              label={I18n.t('administration.projects.design_settings.secondary_logo_alt_text')}
+              label={I18n.t('admin.secondary_logo_alt_text')}
               rules={getFieldRules('secondary_logo_alt_text')}
             >
               <Input maxLength={MAX_ALT_TEXT_LENGTH} />
             </Form.Item>
           )}
-          <Form.Item label={I18n.t('administration.projects.design_settings.background_color')}>
+          <Form.Item label={I18n.t('admin.background_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="backgroundColor">
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#ffffff" />
               </Form.Item>
               <Button onClick={() => resetColor('backgroundColor')}>
-                {I18n.t('administration.projects.design_settings.reset')}
+                {I18n.t('shared.reset')}
               </Button>
             </div>
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.projects.design_settings.primary_color')}
+            label={I18n.t('admin.primary_color')}
           >
             <div className={styles.colorPicker}>
               <Form.Item
                 help={primaryColorHasEnoughContrast ? ''
-                  : I18n.t('administration.projects.design_settings.contrast_ratio_warning')}
+                  : I18n.t('admin.contrast_ratio_warning')}
                 hasFeedback={!primaryColorHasEnoughContrast}
                 validateStatus="error"
                 name="primaryColor"
@@ -355,16 +355,16 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor={DEFAULT_PRIMARY_COLOR} />
               </Form.Item>
               <Button className={styles.colorReset} onClick={() => resetColor('primaryColor')}>
-                {I18n.t('administration.projects.design_settings.reset')}
+                {I18n.t('shared.reset')}
               </Button>
             </div>
           </Form.Item>
-          <Form.Item label={I18n.t('administration.projects.design_settings.error_color')}>
+          <Form.Item label={I18n.t('admin.error_color')}>
             <div className={styles.colorPicker}>
               <Form.Item
                 name="errorColor"
                 help={errorColorHasEnoughContrast ? ''
-                  : I18n.t('administration.projects.design_settings.contrast_ratio_warning_lighter_color',
+                  : I18n.t('admin.contrast_ratio_warning_lighter_color',
                     { name: 'error' })}
                 hasFeedback={!errorColorHasEnoughContrast}
                 validateStatus="error"
@@ -372,49 +372,49 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) =
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#f5222d" />
               </Form.Item>
               <Button className={styles.colorReset} onClick={() => resetColor('errorColor')}>
-                {I18n.t('administration.projects.design_settings.reset')}
+                {I18n.t('shared.reset')}
               </Button>
             </div>
           </Form.Item>
-          <Form.Item label={I18n.t('administration.projects.design_settings.warning_color')}>
+          <Form.Item label={I18n.t('admin.warning_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="warningColor">
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#faad14" />
               </Form.Item>
               <Button onClick={() => resetColor('warningColor')}>
-                {I18n.t('administration.projects.design_settings.reset')}
+                {I18n.t('shared.reset')}
               </Button>
             </div>
           </Form.Item>
-          <Form.Item label={I18n.t('administration.projects.design_settings.success_color')}>
+          <Form.Item label={I18n.t('admin.success_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="successColor">
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#52c41a" />
               </Form.Item>
               <Button onClick={() => resetColor('successColor')}>
-                {I18n.t('administration.projects.design_settings.reset')}
+                {I18n.t('shared.reset')}
               </Button>
             </div>
           </Form.Item>
-          <Form.Item label={I18n.t('administration.projects.design_settings.info_color')}>
+          <Form.Item label={I18n.t('admin.info_color')}>
             <div className={styles.colorPicker}>
               <Form.Item name="infoColor">
                 <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor={DEFAULT_PRIMARY_COLOR} />
               </Form.Item>
               <Button onClick={() => resetColor('infoColor')}>
-                {I18n.t('administration.projects.design_settings.reset')}
+                {I18n.t('shared.reset')}
               </Button>
             </div>
           </Form.Item>
-          <Form.Item name="loginBoxPosition" label={I18n.t('administration.projects.design_settings.position_label')}>
+          <Form.Item name="loginBoxPosition" label={I18n.t('admin.position_label')}>
             <Radio.Group>
-              <Radio value="left">{I18n.t('administration.projects.design_settings.position_left')}</Radio>
-              <Radio value="auto">{I18n.t('administration.projects.design_settings.position_auto')}</Radio>
-              <Radio value="right">{I18n.t('administration.projects.design_settings.position_right')}</Radio>
+              <Radio value="left">{I18n.t('admin.position_left')}</Radio>
+              <Radio value="auto">{I18n.t('admin.position_auto')}</Radio>
+              <Radio value="right">{I18n.t('admin.position_right')}</Radio>
             </Radio.Group>
           </Form.Item>
           <Button type="primary" onClick={onFinish} className="mb-16" loading={isLoading}>
-            {I18n.t('administration.save')}
+            {I18n.t('shared.save')}
           </Button>
         </Form>
       </Col>

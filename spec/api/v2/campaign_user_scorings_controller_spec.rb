@@ -22,8 +22,6 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
     create(:webhook, :with_topics, project_id: campaign.project_id, names: ['campaign_results_available'])
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(campaign_admin) }
 
@@ -39,7 +37,7 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
 
     it 'returns campaign user scorings' do
       get "/api/v2/administration/campaigns/#{campaign_id}/campaign_user_scorings",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(200)
       json_response = JSON.parse(response.body)
@@ -73,7 +71,6 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
            "#{user_id}/change_finalized_campaign_score",
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -100,7 +97,6 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
            'campaign_user_scorings/change_finalized_campaign_score_bulk',
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -116,7 +112,7 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
 
     it 'rescores campaign user' do
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_user_scorings/#{user_id}/rescore",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       campaign_factor_value = CampaignFactorValue.find_by(campaign_id: campaign_id, user_id: user_id)
@@ -138,7 +134,6 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_user_scorings/rescore_bulk",
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -165,7 +160,7 @@ RSpec.describe Api::V2::Administration::CampaignUserScoringsController, type: :r
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_user_scorings/import_external_campaign_scorings",
            params: { file: file },
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'multipart/form-data' }
+           headers: { 'Content-Type' => 'multipart/form-data' }
 
       expect(response).to have_http_status(:ok)
       expect(AdminJobRecord.last.operation).to eq('import_external_campaign_scoring')

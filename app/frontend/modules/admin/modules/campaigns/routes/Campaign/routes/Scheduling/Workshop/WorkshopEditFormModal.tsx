@@ -150,7 +150,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input name="workshop_name" />
@@ -174,7 +174,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
               <Col xs={12} lg={8}>
                 <Form.Item
                   name="time"
-                  label={I18n.t('administration.scheduling.assessment_center_form.time_label')}
+                  label={I18n.t('admin.time_label')}
                 >
                   <TimePicker
                     format="h:mm A"
@@ -190,7 +190,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
 
           <Form.Item
             name="campaignAssessmentGroupId"
-            label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+            label={I18n.t('admin.assessment_center_group')}
             {...fieldLayout}
             rules={[{ required: true }]}
           >
@@ -207,7 +207,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
               <Form.Item
                 label={
                   I18n.t(
-                    'administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling',
+                    'admin.allow_late_cancellation_and_scheduling',
                   )
                 }
                 name="allowLateCancellationAndRescheduling"
@@ -219,38 +219,38 @@ export const WorkshopEditFormModal: FC<Props> = ({
             </>
           )}
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
+            label={I18n.t('admin.video_call_type_label')}
             name="videoCallType"
             rules={[{ required: true }]}
           >
             <Radio.Group onChange={(e) => { setVideoCallType(e.target.value) }}>
               <Radio value="not_available">
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.none')}
+                {I18n.t('admin.video_call_type_none')}
               </Radio>
               <Radio value="internal">
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.internal')}
+                {I18n.t('admin.video_call_type_internal')}
               </Radio>
               <Radio value="custom">
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.custom')}
+                {I18n.t('admin.video_call_type_custom')}
               </Radio>
             </Radio.Group>
           </Form.Item>
           {videoCallType === 'custom' && (
             <Form.Item
-              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
+              label={I18n.t('admin.meeting_link')}
               name="meetingLink"
               rules={[{ required: true },
                 {
                   type: 'url',
                   pattern: /https?:\/\/(.*)/,
-                  message: I18n.t('administration.scheduling.resources.invalid_url'),
+                  message: I18n.t('admin.scheduling_resources_invalid_url'),
                 }]}
             >
               <Input name="workshop_meetinglink" />
             </Form.Item>
           )}
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.disable_cancellation_and_rescheduling')}
+            label={I18n.t('admin.disable_cancellation_and_rescheduling')}
             name="disableCancellationAndRescheduling"
             rules={[{ required: true }]}
             valuePropName="checked"
@@ -259,37 +259,37 @@ export const WorkshopEditFormModal: FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="schedulingLeadTime"
-            label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+            label={I18n.t('admin.scheduling_lead_time_label')}
             {...fieldLayout}
           >
             <InputDuration
               value={60}
               onChange={() => {}}
-              placeholder={I18n.t('administration.components.input_duration.placeholder')}
+              placeholder={I18n.t('admin.components_input_duration_placeholder')}
             />
           </Form.Item>
           {!disableCancellationAndRescheduling && (
             <>
               <Form.Item
                 name="cancellationLeadTime"
-                label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
+                label={I18n.t('admin.cancellation_lead_time_label')}
                 {...fieldLayout}
               >
                 <InputDuration
                   value={60}
                   onChange={() => {}}
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                  placeholder={I18n.t('admin.components_input_duration_placeholder')}
                 />
               </Form.Item>
             </>
           )}
           <Form.Item
             name="workshopManagersIds"
-            label={<Text className="font-normal">{I18n.t('administration.scheduling.info.managers')}</Text>}
+            label={<Text className="font-normal">{I18n.t('admin.scheduling_info_managers')}</Text>}
           >
             <UsersSelectWithTags
               userIdField="userId"
-              placeholder={I18n.t('administration.scheduling.info.search_placehoder')}
+              placeholder={I18n.t('admin.scheduling_info_search_placehoder')}
               users={workshopManagers}
               preSelectedUsers={workshop.workshopManagers}
               onUserSearch={searchKey => handleSearch(searchKey, 'search_managers')}
@@ -297,11 +297,11 @@ export const WorkshopEditFormModal: FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="workshopAssessorsIds"
-            label={<Text className="font-normal">{I18n.t('administration.scheduling.info.assessors')}</Text>}
+            label={<Text className="font-normal">{I18n.t('admin.scheduling_info_assessors')}</Text>}
           >
             <UsersSelectWithTags
               userIdField="userId"
-              placeholder={I18n.t('administration.scheduling.info.search_placehoder')}
+              placeholder={I18n.t('admin.scheduling_info_search_placehoder')}
               users={workshopAssessors}
               preSelectedUsers={workshop.workshopAssessors}
               onUserSearch={searchKey => handleSearch(searchKey, 'search_assessors')}
@@ -309,7 +309,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="totalSeats"
-            label={<Text className="font-normal">{I18n.t('administration.scheduling.info.total_seats')}</Text>}
+            label={<Text className="font-normal">{I18n.t('admin.scheduling_info_total_seats')}</Text>}
           >
             <InputNumber />
           </Form.Item>

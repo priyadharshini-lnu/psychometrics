@@ -40,7 +40,7 @@ export const FormModal: React.FC<Props> = ({ close, reflectionQuestion }) => {
     <ResourceFormModal
       resourceName="reflection_questions"
       resource={reflectionQuestion}
-      readableResourceName={I18n.t('administration.reflection_questions.form.title')}
+      readableResourceName={I18n.t('admin.reflection_questions_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -58,7 +58,7 @@ export const FormModal: React.FC<Props> = ({ close, reflectionQuestion }) => {
         <>
           <Form.Item
             name="question"
-            label={I18n.t('administration.reflection_questions.form.question')}
+            label={I18n.t('admin.reflection_questions_form_question')}
             rules={[
               {
                 required: true,
@@ -73,20 +73,20 @@ export const FormModal: React.FC<Props> = ({ close, reflectionQuestion }) => {
             valuePropName="checked"
           >
             <Checkbox>
-              {I18n.t('administration.reflection_questions.form.mandatory')}
+              {I18n.t('admin.reflection_questions_form_mandatory')}
             </Checkbox>
           </Form.Item>
 
           <Form.Item
             name="minWords"
-            label={I18n.t('administration.reflection_questions.form.min_words')}
+            label={I18n.t('admin.reflection_questions_form_min_words')}
           >
             <InputNumber />
           </Form.Item>
 
           <Form.Item
             name="maxWords"
-            label={I18n.t('administration.reflection_questions.form.max_words')}
+            label={I18n.t('admin.reflection_questions_form_max_words')}
           >
             <InputNumber />
           </Form.Item>

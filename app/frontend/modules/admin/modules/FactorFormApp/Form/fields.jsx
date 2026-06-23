@@ -5,10 +5,10 @@ import { SafeHTML } from '~/components/SafeHTML'
 
 const ScoringStrategyLabel = () => (
   <span>
-    <span className="mr4">{I18n.t('administration.factors.form.scoring_strategy')}</span>
+    <span className="mr4">{I18n.t('admin.factors_form_scoring_strategy')}</span>
     <Tooltip
       title={(
-        <SafeHTML html={I18n.t('administration.factors.form.scoring_strategies_tip')} />
+        <SafeHTML html={I18n.t('admin.factors_form_scoring_strategies_tip')} />
       )}
     >
       <span><QuestionCircleOutlined /></span>

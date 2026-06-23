@@ -40,7 +40,7 @@ const connector = connect(null,
   })
 const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const {
-    runTimedTest, formatSpeed, state: testState, reset: resetTest,
+    runTimedTest, formatSpeed, state: testState, reset: resetTest, abort: abortTest,
   } = useNetworkTest()
   const dispatch = useDispatch()
   const [speed, setSpeed] = useState<{ download: string; upload: string } | null>(null)
@@ -123,7 +123,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const runNetworkTest = async (checkPreloaded = true) => {
     if (checkPreloaded) {
-      const preloadedCheck = checksArray?.find(check => check.checkType === CHECK_TYPE.network)
+      const preloadedCheck = checksArray?.findLast(check => check.checkType === CHECK_TYPE.network)
       if (preloadedCheck) {
         setCheckStatus(preloadedCheck.passed ? CHECK_STATUS.passed : CHECK_STATUS.failed)
 
@@ -408,14 +408,20 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                   }}
                 >
                   <Typography.Text style={{ whiteSpace: 'nowrap', fontSize: '1rem', fontWeight: 500 }}>
+                    {testState.currentTest === 'latency' && I18n.t('enduser.checking_latency')}
                     {testState.currentTest === null && I18n.t('enduser.initializing')}
                     {testState.currentTest === 'download' && I18n.t('enduser.testing_download_speed')}
                     {testState.currentTest === 'upload' && I18n.t('enduser.testing_upload_speed')}
-                    {testState.currentTest === 'latency' && I18n.t('enduser.checking_latency')}
                   </Typography.Text>
-                  {testState.status === 'testing' && (
+                  {testState.status === 'testing'
+                  && (testState.currentTest === 'download' || testState.currentTest === 'upload') && (
                     <Progress
-                      percent={Math.min((testState.elapsedSeconds / 20) * 100, 99)}
+                      percent={(() => {
+                        const phaseProgress = Math.min(testState.elapsedSeconds / 20, 1)
+                        if (testState.currentTest === 'download') return phaseProgress * 50
+                        if (testState.currentTest === 'upload') return 50 + phaseProgress * 49
+                        return 0
+                      })()}
                       showInfo={false}
                       strokeColor="var(--ant-primary-color)"
                       size="small"
@@ -439,7 +445,7 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               </Flex>
             )}
 
-            <Flex justify="space-evenly" style={{ width: '100%' }}>
+            <Flex justify="center" gap={32} style={{ width: '100%' }}>
               {(showDownloadSpeed || testCompleted) && (
                 <Flex vertical style={{ textAlign: 'center' }}>
                   <h1 className="mb-0 mt-0" style={{ color: 'var(--ant-primary-color)' }}>
@@ -532,7 +538,29 @@ const NetworkCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
       </Flex>
 
       <Flex className="w-100" justify="space-between">
-        <Button icon={<DirectionalBackArrowIcon />} onClick={onPrev}>
+        <Button
+          icon={<DirectionalBackArrowIcon />}
+          onClick={() => {
+            if (checkStatus === CHECK_STATUS.pending) {
+              abortTest()
+              return
+            }
+            dispatch(actions.setChecksArray([
+              {
+                checkType: CHECK_TYPE.network,
+                passed: checkStatus === CHECK_STATUS.passed,
+                data: {
+                  downloadSpeed: speed?.download,
+                  uploadSpeed: speed?.upload,
+                },
+              },
+            ]))
+
+            dispatch(actions.setSystemCheckStatusPassed(checkStatus === CHECK_STATUS.passed))
+
+            onPrev()
+          }}
+        >
           {I18n.t('enduser.back')}
         </Button>
 

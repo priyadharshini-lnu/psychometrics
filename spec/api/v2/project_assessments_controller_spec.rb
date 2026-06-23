@@ -8,15 +8,12 @@ RSpec.describe Api::V2::Administration::ProjectAssessmentsController, type: :req
   let!(:project_id) { project.id }
   let!(:project_assessment_id) { project_assessment.id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/projects/:project_id/project_assessments' do
     it 'fetches Assessment list' do
       get "/api/v2/administration/projects/#{project_id}/project_assessments",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       assessments = JSON.parse(response.body)
@@ -46,7 +43,7 @@ RSpec.describe Api::V2::Administration::ProjectAssessmentsController, type: :req
 
       post "/api/v2/administration/projects/#{project_id}/project_assessments",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       assessment = JSON.parse(response.body)
@@ -78,7 +75,7 @@ RSpec.describe Api::V2::Administration::ProjectAssessmentsController, type: :req
 
       put "/api/v2/administration/projects/#{project_id}/project_assessments/#{project_assessment_id}",
           params: body.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       assessment = JSON.parse(response.body)
@@ -92,7 +89,7 @@ RSpec.describe Api::V2::Administration::ProjectAssessmentsController, type: :req
   describe 'DELETE /api/v2/administration/projects/:project_id/project_assessments/:project_assessment_id' do
     it 'deletes Project Assessment' do
       delete "/api/v2/administration/projects/#{project_id}/project_assessments/#{project_assessment_id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')

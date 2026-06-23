@@ -622,6 +622,7 @@ zh:
         roles:
           campaign_admin: 活动管理
           client_admin: 客户管理
+          client_assessor: 客户评估员
           manager: 经理
           member: 用户
           project_admin: 项目管理
@@ -727,6 +728,7 @@ zh:
           admins:
             admin: 管理员
             campaign_admin: 活动管理
+            client_assessor: 客户评估员
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
@@ -736,6 +738,7 @@ zh:
           campaign_admin: 活动管理
           case_study: 案例研究
           client_admin: 客户管理
+          client_assessor: 客户评估员
           hogan: 霍根
           iiht: IIHT
           manager: 经理
@@ -859,6 +862,8 @@ zh:
         bulk_download_idp_reports: 批量下载 IDP 报告
         bulk_download_reports: 批量下载报告
         bulk_download_user_reports: 批量下载用户报告
+        bulk_export_norm_factor_scores: 批量导出规范因子得分
+        bulk_export_raw_factor_scores: 批量导出原始因子得分
         bulk_generate_user_campaign_ai_artifact_results: 批量生成活动 AI 工件结果
         bulk_regenerate_reports: 再生活动报告
         bulk_regenerate_threesixty_reports: 再生三六零主题报告
@@ -871,10 +876,12 @@ zh:
         completion_status_export: 详细完成状态
         copy_as_template_or_campaign: 复制活动作为模板
         copy_dimension: 复制尺寸
+        copy_report: 复制报告
         create_threesixty_campaign: 创建 Threesixty 活动
         data_report_export: 数据报告导出
         export_admin_with_permissions: 带权限的导出管理员
         export_assessment_questions: 出口评估问题
+        export_audit_logs: 导出审计日志
         export_campaign_ai_artifacts: 出口战役AI工件
         export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_datasheet: 导出活动数据表
@@ -964,6 +971,8 @@ zh:
       errors:
         no_plans: 未找到有效的 IDP 计划
     close: 关闭
+    copy_report:
+      failed: 报告复制失败
     details: 详细信息
     errors: 错误
     invalid_job: 该通知对应已删除的记录
@@ -1078,7 +1087,7 @@ zh:
         saville_assessment_name: 萨维尔评估名称
         simulation_assessment_name: 模拟评估名称
         skillvue_assessment_name: Skillvue 评估名称
-        yoodli_scenario_id: Yoodli Scenario ID
+        yoodli_scenario_id: Yoodli 场景 ID
       translations_migrated: 翻译已迁移
     create: 创建
     dashboard: 仪表板
@@ -1464,6 +1473,7 @@ zh:
       external_user_id: Skillvue 候选人 ID
       id: 活动评估 ID
       locales: 地点
+      microsite_assessment_url: 微网站评估网址
       microsite_error_message: 错误信息
       microsite_participant_id: 微网站参与者ID
       microsite_registration_status: 注册状态
@@ -1662,7 +1672,6 @@ zh:
     details:
       additional_time: 额外时间
       assessment_center: 评估中心
-      assessment_center_invites: 评估中心邀请函
       completed_at: 完成于
       completion_status: 完成情况
       hogan_id: 霍根 ID
@@ -1692,11 +1701,6 @@ zh:
     modals:
       remove: 您确定要从该广告系列中删除电子邮件名称为"%{email}"的用户吗？
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 评估员 评估
-      other_assessments: 其他摊款
-      other_assessor_assessments: 其他摊款
-      other_reports: 其他报告
     card:
       duration: 持续时间
       starts_in: 开始于
@@ -1767,23 +1771,19 @@ zh:
       insert: 插入
       'no': 不
       ok: 好的
-      publish: 出版
       reject: 拒绝
       remove: 移除
       reset: 重置
       resolve: 解决
       restore: 恢复
       return_to_home: 返回首页
-      run: 运行
       save: 保存
       schedule: 时间安排
       search: 搜索
-      send: 发送
       sign_in: 登录
       start: 开始
       submit: 提交
       unarchive: 取消存档
-      unpublish: 取消出版
       unresolve: 取消解决
       update: 更新
       upload: 上传
@@ -1796,20 +1796,14 @@ zh:
     column:
       action: 操作
       active: 活跃
-      ai_assistant: AI助手
-      allow_multiple_responses: 允许多个回复
       approval_notification_list: 批准通知用户列表
       approvers_list: 批准人名单
-      assessment: 评估
       assessment_name: 评估名称
       assessments: 评估
-      assessor: 评估员
       category: 类别
       client: 客户
-      code: 代码
       created_at: 创建时间
       created_by: 创建者
-      created_date: 创建日期
       default_language: 默认语言
       description: 说明
       details: 详细信息
@@ -1827,11 +1821,8 @@ zh:
         scoring: 评分 JSON
       key: 钥匙
       last_name: 姓氏
-      linked_activities: 相关活动
       linked_assessment: 关联评估
-      meeting_link: 会议链接
       modified_by: 修改
-      modified_date: 修改日期
       name: 名称
       owner: 业主
       package_id: 包装 ID
@@ -1847,7 +1838,6 @@ zh:
       scheduling: 日程安排
       skills: 技能
       status: 状态
-      tags: 标签
       timing: 时间安排
       token: 代币
       type: 类型
@@ -1859,15 +1849,12 @@ zh:
     messages:
       leave_message: 您确定要离开此页面吗？ 您未保存的任何答案都将丢失。
     model:
-      admins: 管理员
       assessment: 评估
       assessments: 评估
       campaigns: 项目
       completion_statuses: 完成状态
-      datasheet: 数据表
       report: 报告
       reports: 报告
-      sms_contact: 短信联系
       threesixty_campaign: Threesixty 运动得分
     status:
       completed: 已完成
@@ -1938,7 +1925,7 @@ zh:
       shared:
         links:
           about: 关于
-          app_name: "© 2016 AppName"
+          app_name: "© 2016 AppName（简体中文（大陆））"
           contact_us: 联系我们
           privacy: 隐私权
     confirmations:
@@ -2138,6 +2125,7 @@ zh:
     invalid_token: 出错了，请重新加载页面再试。
     max_regeneration_limit: 超出最大再生限制，请联系管理部门。
     messages:
+      content_type_invalid: 内容类型无效
       data_report_blank: 数据报告不存在
       password_complexity:
         digit:
@@ -2895,7 +2883,7 @@ zh:
     ca: 加泰罗尼亚语
     cn: 中文
     cs: 捷克语
-    cy: Cymraeg
+    cy: 威尔士语
     da: 丹麦语
     de: 德语
     el: 希腊文
@@ -2957,9 +2945,7 @@ zh:
   languages_localized:
     sl: 斯洛文什奇纳
   license_usage:
-    active: 活跃
     campaign_name: 活动名称
-    inactive: 不活动
     status_updated_at: 最新状态更新
     status_updated_by: 最后更新
     subject_email: 主题电子邮件
@@ -3475,12 +3461,14 @@ zh:
           admin: 管理员
           admins:
             admin: 管理员
+            client_assessor: 客户评估员
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
           agile: AGILE
           case_study: 案例研究
           client_admin: 客户管理
+          client_assessor: 客户评估员
           hogan: 霍根
           manager: 经理
           member: 用户
@@ -3614,6 +3602,7 @@ zh:
         roles:
           campaign_admin: 活动管理
           client_admin: 客户管理
+          client_assessor: 客户评估员
           manager: 经理
           member: 用户
           project_admin: 项目管理
@@ -3684,12 +3673,14 @@ zh:
           admin: 管理员
           admins:
             admin: 管理员
+            client_assessor: 客户评估员
             project_admin: 项目管理
             regular: 客户管理
             superadmin: 超级管理员
           agile: AGILE
           case_study: 案例研究
           client_admin: 客户管理
+          client_assessor: 客户评估员
           hogan: 霍根
           manager: 经理
           member: 用户
@@ -3948,7 +3939,7 @@ zh:
     formats:
       date: "%d/%m/%y"
       datetimepicker_client: 日/月/年 hh:mm A
-      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z简体中文（大陆）
       datetimepicker_server: "%d/%m/%Y %I:%M %p"
       datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
       datetimepicker_without_time_client: 年/月/日
@@ -3963,7 +3954,6 @@ zh:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 活跃
     allow_multiple_respones: 允许用户提交多个回复
     png: 巴新
     regenerate_link: 再生链接
@@ -4152,6 +4142,7 @@ zh:
       campaign_assessor: 活动评估员
       campaign_user: 活动用户
       client_admin: 客户管理
+      client_assessor: 客户评估员
       project_admin: 项目管理
       superadmin: 超级管理员
     superadmins: 超级管理员

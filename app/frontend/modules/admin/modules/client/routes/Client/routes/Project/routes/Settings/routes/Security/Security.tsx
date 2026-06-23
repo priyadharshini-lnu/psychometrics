@@ -54,7 +54,7 @@ const securityComponent: React.FC<Props> = ({
           resourceBaseUrl={`/administration/projects/${projectId}/security_settings`}
           resource={securitySetting}
           storeManager={{ form }}
-          readableResourceName={I18n.t('administration.security_settings.security_setting')}
+          readableResourceName={I18n.t('admin.security_settings_security_setting')}
           showSuccessMessages
           formProps={{
             layout: 'horizontal',
@@ -71,61 +71,61 @@ const securityComponent: React.FC<Props> = ({
               <>
                 <Form.Item
                   name="enforceStrongPassword"
-                  label={I18n.t('administration.security_setting.enforce_strong')}
+                  label={I18n.t('admin.security_setting_enforce_strong')}
                   valuePropName="checked"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   name="minPasswordLength"
-                  label={I18n.t('administration.security_setting.min_length')}
+                  label={I18n.t('admin.security_setting_min_length')}
                   required
                 >
                   <Input type="number" defaultValue={8} min={8} max={20} />
                 </Form.Item>
                 <Form.Item
                   name="enforcePasswordPolicy"
-                  label={I18n.t('administration.security_setting.enforce_password_policy')}
+                  label={I18n.t('admin.security_setting_enforce_password_policy')}
                   valuePropName="checked"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   name="disablePasswordReuse"
-                  label={I18n.t('administration.security_setting.disable_password_reuse')}
+                  label={I18n.t('admin.security_setting_disable_password_reuse')}
                   valuePropName="checked"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   name="passwordExpiration"
-                  label={I18n.t('administration.security_setting.expiration')}
+                  label={I18n.t('admin.security_setting_expiration')}
                 >
                   <Select defaultValue={securitySetting.passwordExpiration || 'never'}>
-                    <Select.Option value={null}>{I18n.t('administration.security_setting.never')}</Select.Option>
-                    <Select.Option value={30}>{I18n.t('administration.security_setting.30_days')}</Select.Option>
-                    <Select.Option value={90}>{I18n.t('administration.security_setting.90_days')}</Select.Option>
-                    <Select.Option value={180}>{I18n.t('administration.security_setting.180_days')}</Select.Option>
-                    <Select.Option value={365}>{I18n.t('administration.security_setting.365_days')}</Select.Option>
+                    <Select.Option value={null}>{I18n.t('admin.security_setting_never')}</Select.Option>
+                    <Select.Option value={30}>{I18n.t('admin.security_setting_30_days')}</Select.Option>
+                    <Select.Option value={90}>{I18n.t('admin.security_setting_90_days')}</Select.Option>
+                    <Select.Option value={180}>{I18n.t('admin.security_setting_180_days')}</Select.Option>
+                    <Select.Option value={365}>{I18n.t('admin.security_setting_365_days')}</Select.Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
                   name="restrictSequences"
-                  label={I18n.t('administration.security_setting.restrict_sequences')}
+                  label={I18n.t('admin.security_setting_restrict_sequences')}
                   valuePropName="checked"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   name="tfaEnabled"
-                  label={I18n.t('administration.security_setting.tfa_enabled')}
+                  label={I18n.t('admin.security_setting_tfa_enabled')}
                   valuePropName="checked"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   name="lockAccount"
-                  label={I18n.t('administration.security_setting.lock_account')}
+                  label={I18n.t('admin.security_setting_lock_account')}
                   valuePropName="checked"
                 >
                   <Switch />
@@ -134,7 +134,7 @@ const securityComponent: React.FC<Props> = ({
                   <>
                     <Form.Item
                       name="attemptsToLock"
-                      label={I18n.t('administration.security_setting.attempts_to_lock')}
+                      label={I18n.t('admin.security_setting_attempts_to_lock')}
                     >
                       <Select defaultValue={securitySetting.attemptsToLock || 3}>
                         <Select.Option value="3">3</Select.Option>
@@ -144,7 +144,7 @@ const securityComponent: React.FC<Props> = ({
                     </Form.Item>
                     <Form.Item
                       name="autoUnlockTime"
-                      label={I18n.t('administration.security_setting.auto_unlock_time')}
+                      label={I18n.t('admin.security_setting_auto_unlock_time')}
                     >
                       <Select defaultValue={securitySetting.autoUnlockTime || 15}>
                         <Select.Option value={2}>2 mins</Select.Option>
@@ -157,7 +157,7 @@ const securityComponent: React.FC<Props> = ({
                     </Form.Item>
                     <Form.Item
                       name="sendUnlockEmail"
-                      label={I18n.t('administration.security_setting.send_unlock_email')}
+                      label={I18n.t('admin.security_setting_send_unlock_email')}
                       valuePropName="checked"
                     >
                       <Switch />
@@ -166,28 +166,28 @@ const securityComponent: React.FC<Props> = ({
                 )}
                 <Form.Item
                   name="magicLinkExpiryInSeconds"
-                  label={I18n.t('administration.security_setting.magic_link_expiry_duration')}
+                  label={I18n.t('admin.security_setting_magic_link_expiry_duration')}
                   required
                 >
-                  <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                  <InputDuration placeholder={I18n.t('admin.components_input_duration_placeholder')} />
                 </Form.Item>
                 <Form.Item
                   name="sessionInactivityTimeoutInSeconds"
-                  label={I18n.t('administration.security_setting.session_timeout_duration')}
+                  label={I18n.t('admin.security_setting_session_timeout_duration')}
                   required
                 >
-                  <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                  <InputDuration placeholder={I18n.t('admin.components_input_duration_placeholder')} />
                 </Form.Item>
                 <Form.Item
                   name="magicLinkEnabled"
-                  label={I18n.t('administration.security_setting.enable_login_with_magic_link')}
+                  label={I18n.t('admin.security_setting_enable_login_with_magic_link')}
                   valuePropName="checked"
                 >
                   <Switch />
                 </Form.Item>
                 <Form.Item
                   name="disallowPasswordLogin"
-                  label={I18n.t('administration.security_setting.disallow_password_login')}
+                  label={I18n.t('admin.security_setting_disallow_password_login')}
                   valuePropName="checked"
                 >
                   <Switch />
@@ -215,7 +215,7 @@ const securityComponent: React.FC<Props> = ({
                 {!disable_recaptcha && (
                   <Form.Item
                     name="enableRecaptcha"
-                    label={I18n.t('administration.security_setting.enable_recaptcha')}
+                    label={I18n.t('admin.security_setting_enable_recaptcha')}
                     valuePropName="checked"
                   >
                     <Switch />
@@ -229,7 +229,7 @@ const securityComponent: React.FC<Props> = ({
                   loading={isSaving}
                   className="mb-16"
                 >
-                  {I18n.t('administration.save')}
+                  {I18n.t('shared.save')}
                 </Button>
               </>
             )

@@ -30,12 +30,15 @@ module UserScopes
           OR memberships.campaign_id = :campaign_id OR users.role = :role
         },
         client_ids: client_ids, campaign_id: campaign.id, role: User::SUPER_ADMIN_ROLE
-      ).distinct
+      ).where.not(role: User::APPLICATION_ROLE).distinct
     }
 
     scope :with_campaign_user, lambda { |campaign_id|
       campaign = Campaign.find(campaign_id)
-      left_joins(:campaign_users).where({ campaign_users: { campaign_id: campaign.id } }).distinct
+      left_joins(:campaign_users).
+        where({ campaign_users: { campaign_id: campaign.id } }).
+        where.not(role: User::APPLICATION_ROLE).
+        distinct
     }
 
     # Fileter by role
@@ -85,7 +88,9 @@ module UserScopes
     scope :sort_by_full_name_asc, -> { order(first_name: :asc, last_name: :asc) }
     scope :sort_by_full_name_desc, -> { order(first_name: :desc, last_name: :desc) }
     scope :admins, ->(_) { where(project_id: nil) }
-    scope :global_assessors, -> { where(global_assessor: true) }
+    scope :global_assessors, -> { where(global_assessor: true).where.not(role: User::APPLICATION_ROLE) }
+    scope :applications, -> { where(role: User::APPLICATION_ROLE) }
+    scope :not_application, -> { where.not(role: User::APPLICATION_ROLE) }
   end
 
   # rubocop:enable Metrics/BlockLength

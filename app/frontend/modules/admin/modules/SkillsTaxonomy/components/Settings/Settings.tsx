@@ -27,10 +27,10 @@ const Settings: React.FC<PropsFromRedux> = ({ features }) => {
           crumbs={[
             {
               link: () => '/admin',
-              label: () => I18n.t('users.dashboard'),
+              label: () => I18n.t('admin.dashboard'),
             },
             {
-              label: () => I18n.t('administration.navigation.skills_taxonomy'),
+              label: () => I18n.t('admin.navigation_skills_taxonomy'),
             },
           ]}
         />

@@ -217,7 +217,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
           id: system_check_session.id,
           check_type: 'browser',
           passed: true,
-          data: { user_agent: 'Chrome' }
+          data: { browser_name: 'Chrome' }
         }
       end.to change(SystemCheckRecord, :count).by(1)
 
@@ -226,7 +226,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       expect(json_response['id']).to be_present
       expect(json_response['check_type']).to eq('browser')
       expect(json_response['passed']).to be true
-      expect(json_response['data']).to eq({ 'user_agent' => 'Chrome' })
+      expect(json_response['data']).to eq({ 'browser_name' => 'Chrome' })
     end
 
     context 'with invalid check_type' do
@@ -368,7 +368,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
 
     context 'when successful' do
       before do
-        stub_rectify_command(SystemCheckRecords::CompleteMultipartUpload, ok_payload: -> { system_check_record })
+        stub_rectify_command(SystemCheckRecords::ProcessMediaUpload, ok_payload: -> { system_check_record })
       end
 
       it 'returns the updated record' do
@@ -391,7 +391,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
 
     context 'when error occurs' do
       before do
-        stub_rectify_command(SystemCheckRecords::CompleteMultipartUpload, error: -> { 'error message' })
+        stub_rectify_command(SystemCheckRecords::ProcessMediaUpload, error: -> { 'error message' })
       end
 
       it 'returns error' do
@@ -409,6 +409,77 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.parsed_body['error']).to be_present
       end
+    end
+
+    context 'when test_phrase and transcribed_text are provided' do
+      before do
+        stub_rectify_command(SystemCheckRecords::ProcessMediaUpload, ok_payload: -> { system_check_record })
+      end
+
+      it 'accepts phrase verification params and returns the updated record' do
+        put :complete_multipart_upload, params: {
+          campaign_id: campaign.id,
+          id: system_check_record.id,
+          asset_key: 'asset_1',
+          upload_id: 'upload_1',
+          parts: [{ part_number: 1, etag: 'etag1' }],
+          file_size: 1234,
+          content_type: 'video/webm',
+          checksum: 'abc123',
+          test_phrase: 'this is a test recording',
+          locale: 'en',
+          transcribed_text: 'this is a test recording'
+        }
+
+        expect(response).to have_http_status(:ok)
+        expect(response.parsed_body['id']).to eq(system_check_record.id)
+      end
+    end
+  end
+
+  describe '#update' do
+    let(:system_check_session) { create(:system_check_session, user: user) }
+    let(:system_check_record) do
+      create(:system_check_record, :video,
+             system_check_session: system_check_session,
+             passed: false,
+             data: { 'existing_key' => 'existing_value' })
+    end
+
+    before do
+      cookies.signed[:system_check_session_id] = system_check_session.id
+      # Stub face detection settings on any Campaign instance: enabled with 80% threshold
+      # So a ratio of 0.9 (90%) will pass
+      allow_any_instance_of(Campaign).to receive(:face_detection_enabled?).and_return(true)
+      allow_any_instance_of(Campaign).to receive(:minimum_face_detection_ratio).and_return(80)
+    end
+
+    it 'merges new data into existing record data and returns the updated record with computed face_detected' do
+      patch :update, params: {
+        campaign_id: campaign.id,
+        id: system_check_record.id,
+        data: { face_detection_ratio: 0.9 }
+      }
+
+      expect(response).to have_http_status(:ok)
+      json_response = response.parsed_body
+      expect(json_response['id']).to eq(system_check_record.id)
+      # face_detected is computed: ratio (0.9) >= campaign threshold (0.80)
+      expect(json_response['face_detected']).to be_truthy
+      expect(json_response['data']['face_detection_ratio']).to be_present
+      updated_data = system_check_record.reload.data
+      expect(updated_data['existing_key']).to eq('existing_value')
+      expect(updated_data['face_detection_ratio']).to be_present
+    end
+
+    it 'does not overwrite keys not included in the request' do
+      patch :update, params: {
+        campaign_id: campaign.id,
+        id: system_check_record.id,
+        data: { face_detection_ratio: 0.75 }
+      }
+
+      expect(system_check_record.reload.data['existing_key']).to eq('existing_value')
     end
   end
 

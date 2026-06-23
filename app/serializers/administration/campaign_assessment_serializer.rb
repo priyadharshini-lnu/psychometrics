@@ -93,6 +93,7 @@ module Administration
         object,
         [
           'import_results',
+          %w[import_external_scoring import_external_scoring_results],
           'export_raw_results',
           'export_scoring_results',
           'export_raw_factor_scores',

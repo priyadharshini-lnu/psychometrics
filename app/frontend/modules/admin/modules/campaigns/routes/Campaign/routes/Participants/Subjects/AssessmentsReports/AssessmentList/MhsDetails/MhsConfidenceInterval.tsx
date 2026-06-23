@@ -40,7 +40,7 @@ export const MhsConfidenceInterval: FC<Props> = ({
 
     updateMhsConfidenceInterval(campaignId, assessment.id, payload)
       .then(() => {
-        message.success(I18n.t('admin.campaign_assessment_mhs_confidence_interval_update_success'))
+        message.success(I18n.t('admin.confidence_interval_update_success'))
       })
       .catch(() => {
         setConfidenceInterval(!checked)
@@ -64,7 +64,7 @@ export const MhsConfidenceInterval: FC<Props> = ({
             label: { width: '40%' },
             content: { width: '60%' },
           }}
-          label={I18n.t('admin.campaign_assessment_mhs_confidence_interval')}
+          label={I18n.t('admin.confidence_interval')}
         >
           <Switch
             checked={confidenceInterval}

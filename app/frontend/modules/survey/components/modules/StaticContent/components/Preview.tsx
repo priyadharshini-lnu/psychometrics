@@ -6,8 +6,6 @@ import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import { I18nInterface, Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
-import { useImageZoom } from '~/modules/survey/hooks/useImageZoom'
-
 import Previews from './Previews'
 import Text from './Text'
 
@@ -29,8 +27,6 @@ type Props = PropsFromRedux & OwnProps
 
 const Preview: FC<Props> = ({ model, I18n }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-
-  useImageZoom(containerRef)
 
   return (
     <div ref={containerRef}>

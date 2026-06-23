@@ -283,7 +283,7 @@ en:
               blank: Question Name can't be blank
             type:
               blank: Question Title can't be blank
-              inclusion: Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable' or 'StaticContent'
+              inclusion: Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable', 'StaticContent', 'AudioResponse' or 'VideoResponse'
         questions_import_randomization_property_form:
           attributes:
             questions:
@@ -862,6 +862,8 @@ en:
         bulk_download_idp_reports: Bulk Download IDP Reports
         bulk_download_reports: Bulk Download Reports
         bulk_download_user_reports: Bulk Download User Reports
+        bulk_export_norm_factor_scores: Bulk Norm Factor Scores Export
+        bulk_export_raw_factor_scores: Bulk Raw Factor Scores Export
         bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Results
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
@@ -879,6 +881,7 @@ en:
         data_report_export: Data Report Export
         export_admin_with_permissions: Export Admin With Permissions
         export_assessment_questions: Export Assessment Questions
+        export_audit_logs: Export Audit Logs
         export_campaign_ai_artifacts: Export Campaign AI Artifacts
         export_campaign_ai_artifacts_results: Export Campaign AI Artifacts Results
         export_campaign_datasheet: Export Campaign Datasheet
@@ -1671,7 +1674,6 @@ en:
     details:
       additional_time: Additional Time
       assessment_center: Assessment Center
-      assessment_center_invites: Assessment Center Invites
       completed_at: Completed At
       completion_status: Completion status
       hogan_id: Hogan ID
@@ -1701,11 +1703,6 @@ en:
     modals:
       remove: Are you sure you want to remove user with email '%{email}' from this campaign?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Assessor Assessments
-      other_assessments: Other Assessments
-      other_assessor_assessments: Other Assessor Assessments
-      other_reports: Other Reports
     card:
       duration: Duration
       starts_in: 'Starts in:'
@@ -1776,23 +1773,19 @@ en:
       insert: Insert
       'no': 'No'
       ok: OK
-      publish: Publish
       reject: Reject
       remove: Remove
       reset: Reset
       resolve: Resolve
       restore: Restore
       return_to_home: Return to Home
-      run: Run
       save: Save
       schedule: Schedule
       search: Search
-      send: Send
       sign_in: Sign In
       start: Start
       submit: Submit
       unarchive: Unarchive
-      unpublish: Unpublish
       unresolve: Unresolve
       update: Update
       upload: Upload
@@ -1805,20 +1798,14 @@ en:
     column:
       action: Action
       active: Active
-      ai_assistant: AI Assistant
-      allow_multiple_responses: Allow multiple responses
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
-      assessment: Assessment
       assessment_name: Assessment Name
       assessments: Assessments
-      assessor: Assessor
       category: Category
       client: Client
-      code: Code
       created_at: Created At
       created_by: Created By
-      created_date: Created Date
       default_language: Default Language
       description: Description
       details: Details
@@ -1836,11 +1823,8 @@ en:
         scoring: Scoring JSON
       key: Key
       last_name: Last Name
-      linked_activities: Linked Activities
       linked_assessment: Linked Assessment
-      meeting_link: Meeting Link
       modified_by: Modified By
-      modified_date: Modified Date
       name: Name
       owner: Owner
       package_id: Package ID
@@ -1856,7 +1840,6 @@ en:
       scheduling: Scheduling
       skills: Skills
       status: Status
-      tags: Tags
       timing: Timing
       token: Token
       type: Type
@@ -1868,15 +1851,12 @@ en:
     messages:
       leave_message: Are you sure you want to leave this page? Any unsaved answers that you have will be lost.
     model:
-      admins: Admins
       assessment: Assessment
       assessments: Assessments
       campaigns: Campaigns
       completion_statuses: Completion Statuses
-      datasheet: Datasheet
       report: Report
       reports: Reports
-      sms_contact: SMS Contact
       threesixty_campaign: Threesixty Campaign Scores
     status:
       completed: Completed
@@ -2174,6 +2154,7 @@ en:
     invalid_token: Something went wrong. Plese reload the page and try again.
     max_regeneration_limit: Maximum regeneration limit exceeded, contact your administration.
     messages:
+      content_type_invalid: invalid content type
       data_report_blank: Data Report doesn not exist
       password_complexity:
         digit:
@@ -3060,9 +3041,7 @@ en:
     zh-Hant: 繁體中文
     zh-TW: 漢語
   license_usage:
-    active: Active
     campaign_name: Campaign name
-    inactive: Inactive
     status_updated_at: Last status update
     status_updated_by: Last updated by
     subject_email: Subject email
@@ -4071,7 +4050,6 @@ en:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Active
     allow_multiple_respones: Allow users to submit multiple responses
     png: PNG
     regenerate_link: Regenerate Link

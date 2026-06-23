@@ -37,11 +37,14 @@ module Builders
     private
 
     def save_assessment_details
-      @assessment.update!(@assessment_params.slice(
-                            :flow, :norm_rules, :enable_back, :enable_progress, :extra,
-                            :data_sheet_columns, :instructions, :options, :default_norm_id,
-                            :linked_questions, :campaign_factors_list
-                          ))
+      Mobility.with_locale(selected_locale || @assessment.default_language || I18n.default_locale) do
+        @assessment.update!(@assessment_params.slice(
+                              :name, :description, :timing,
+                              :flow, :norm_rules, :enable_back, :enable_progress, :extra,
+                              :data_sheet_columns, :instructions, :options, :default_norm_id,
+                              :linked_questions, :campaign_factors_list
+                            ))
+      end
 
       form = Administration::Assessments::AllBlocksForm.new(
         blocks: @assessment_params[:blocks]

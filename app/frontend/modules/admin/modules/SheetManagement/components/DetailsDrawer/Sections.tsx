@@ -40,7 +40,7 @@ export const HeaderSection: FC<HeaderSectionProps> = ({
           disabled={isFetching}
           onClick={() => toggleDrawer(DrawerModes.Edit, currentSheetRowId)}
         >
-          {I18n.t('administration.sheets.drawers.view.edit_button')}
+          {I18n.t('shared.edit')}
         </Button>
       </Col>
     )}

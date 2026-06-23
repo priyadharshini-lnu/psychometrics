@@ -227,4 +227,55 @@ RSpec.describe SystemCheckRecord, type: :model do
       end
     end
   end
+
+  describe '#meets_face_detection_requirements?' do
+    let(:session) { create(:system_check_session) }
+
+    context 'when record is a video check' do
+      let(:record) do
+        create(:system_check_record, :video,
+               system_check_session: session,
+               passed: true,
+               data: { 'face_detection_ratio' => 0.9 })
+      end
+
+      it 'returns true when ratio meets the minimum' do
+        expect(record.meets_face_detection_requirements?(minimum_ratio: 0.85)).to be true
+      end
+
+      it 'returns true when ratio exactly equals the minimum' do
+        expect(record.meets_face_detection_requirements?(minimum_ratio: 0.9)).to be true
+      end
+
+      it 'returns false when ratio is below the minimum' do
+        expect(record.meets_face_detection_requirements?(minimum_ratio: 0.95)).to be false
+      end
+    end
+
+    context 'when record is not a video check' do
+      let(:record) do
+        create(:system_check_record, :audio,
+               system_check_session: session,
+               passed: true,
+               data: { 'face_detection_ratio' => 0.99 })
+      end
+
+      it 'returns false regardless of the ratio' do
+        expect(record.meets_face_detection_requirements?(minimum_ratio: 0.0)).to be false
+      end
+    end
+
+    context 'when data is nil' do
+      let(:record) do
+        create(:system_check_record, :video,
+               system_check_session: session,
+               passed: false,
+               data: nil)
+      end
+
+      it 'returns false' do
+        expect(record.meets_face_detection_requirements?(minimum_ratio: 0.85)).to be false
+      end
+    end
+  end
 end

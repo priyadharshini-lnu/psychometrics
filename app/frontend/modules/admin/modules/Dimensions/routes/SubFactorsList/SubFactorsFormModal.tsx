@@ -62,7 +62,7 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
     <ResourceFormModal
       resourceName={resourceName}
       resource={subFact}
-      readableResourceName={I18n.t('administration.factors.index.title')}
+      readableResourceName={I18n.t('admin.factors_index_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -74,17 +74,17 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
         <>
           <Form.Item
             name="factorId"
-            label={I18n.t('administration.scoring.factor')}
+            label={I18n.t('admin.scoring_factor')}
           >
             <Select
               showSearch={{ onSearch: searchFactor, filterOption: false }}
-              placeholder={I18n.t('administration.factors.form.search_factors')}
+              placeholder={I18n.t('admin.factors_form_search_factors')}
               options={factors.map(({ id, name }) => ({ value: id, label: name }))}
             />
           </Form.Item>
           <Form.Item
             name="predicate"
-            label={I18n.t('administration.factors.form.predicate')}
+            label={I18n.t('admin.factors_form_predicate')}
           >
             <Select
               options={[
@@ -99,19 +99,19 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
           </Form.Item>
           <Form.Item
             name="value"
-            label={I18n.t('administration.factors.form.value')}
+            label={I18n.t('admin.factors_form_value')}
           >
             <InputNumber />
           </Form.Item>
           <Form.Item
             name="position"
-            label={I18n.t('administration.occupations_factors.list.position')}
+            label={I18n.t('admin.occupations_factors_list_position')}
           >
             <InputNumber />
           </Form.Item>
           <Form.Item
             name="weight"
-            label={I18n.t('administration.occupations_factors.list.weight')}
+            label={I18n.t('admin.occupations_factors_list_weight')}
           >
             <InputNumber />
           </Form.Item>

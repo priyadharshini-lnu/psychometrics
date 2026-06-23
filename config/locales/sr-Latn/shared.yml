@@ -18,6 +18,7 @@ sr-Latn:
     assessment_id: Идентификација процене
     assessment_list: Списак за процену
     assessment_name: Назив процене
+    assessor: Procenjivač
     assessor_approved: Оцењивач одобрио
     assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
@@ -26,15 +27,18 @@ sr-Latn:
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
     back: Назад
     basic: Osnovne
+    bulk_download: Zbirno preuzimanje
     camera: Камера
     camera_preview: Pregled kamere će se pojaviti ovde
     campaign: Кампања
     campaign_id: ID kampanje
     cancel: Otkaži
+    category: Kategorija
     change_password: Promeni lozinku
     clear_filters: Obriši filtere
     client: Клијент
     close: Затвори
+    code: Šifra
     collaborative_learning: Kolaborativno učenje
     completed: Завршено
     configurations: Конфигурације
@@ -43,11 +47,13 @@ sr-Latn:
     controller: Контролер
     cookie_notice: Обавештење о колачићима
     cookies_statement: Изјава о колачићима
+    copied: Kopirano u ostavu
     copied_successfully: Успешно копирано
     copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
     create: Креирај
     created_at: Kreiran u
+    created_by: Kreirao/la
     created_date: Datum kreiranja
     created_successfully: Успешно креирано
     custom_acknowledgment_text: Прилагођени текст захвалнице
@@ -55,11 +61,14 @@ sr-Latn:
     custom_consent_text: Прилагођени текст сагласности
     custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
     data_role: Улога података
+    datasheet: Lista podataka
     decline: Pretraživanje
+    default: Ponuđeno
     delete: Избриши
     description: Opis
     desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
     desktop_or_laptop_required: Потребан десктоп или лаптоп
+    dimension: Dimenzija
     disabled: Онеспособљен
     discard: Баци
     download: Преузми
@@ -69,6 +78,7 @@ sr-Latn:
     edit: Uredi
     edited: Novi
     email: Imejl
+    end_date: Datum završetka
     ending_proctoring_session_msg: Завршавамо сесију надгледања. Молимо сачекајте док сачуvamo ваше одговоре и преусмеримо вас на почетну страницу.
     error: Грешка
     export: Izvoz
@@ -83,12 +93,18 @@ sr-Latn:
     generating: Генерисање
     group_question_max_validation_error: Svaka grupa može da sadrži najviše {{max}} stavke.
     group_question_min_validation_error: Svaka grupa treba da sadrži najmanje {{min}} stavke.
+    icon: Ikonu
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent može da pravi greške. Molimo vas da budete oprezni dok koristite odgovore.
+    import: Uvoz
+    inactive: Neaktivni
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Prezime
+    last_updated: Poslednje izmene
     learning_on_the_job_label: Učenje na poslu
     lets_start: Хајде да почнемо!
+    linked_activities: Povezane aktivnosti
+    linked_assessment: Povezana procena
     loading: Учитавање...
     login: Prijava
     maintenance_in_hours: "%{hours} сати"
@@ -98,11 +114,13 @@ sr-Latn:
     maintenance_time_remaining: Preostalo vreme
     maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
     maintenance_upcoming_title: Предстојеће одржавање
+    manage: Podesi
     manage_cookies: Управљај колачићима
     media_id: ИД медија
     media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    meeting_link: Link za sastanak
     microphones: Микрофони
     mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
     mobile_proctoring_enabled_instructions: За најбоље искуство, пређите на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
@@ -116,13 +134,17 @@ sr-Latn:
     new: Novi
     next: Следеће
     no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
+    no_data_found: Nema pronađenih podataka
     no_results_found: Није пронађено ниједно резултат
+    none: Niko
     not_requested: Још није затражено
     ok: Ok
     options: Опције
+    overview: Преглед
     owner: Власник
     pause: Пауза
     pending: Учешће
+    permissions: Дозволе
     play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
@@ -133,6 +155,7 @@ sr-Latn:
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     project: Пројекат
+    publish: Objavi
     question: Питање
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
@@ -146,20 +169,27 @@ sr-Latn:
     remove: Ukloni
     removed: Uklonjeno
     replace: Замени
+    required: Potrebno
+    reset: Poništi
     reset_password: Poništi lozinku
     response_text: Текст одговора
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
+    run: Trčati
     save: Sačuvaj
     saving_video: Čuvanje video zapisa ... Molimo vas da ne zatvarate ili osvežavate pretraživač
+    schedule_time: Vreme rasporeda
     scoring_details: Детаљи бодовања
     search: Pretraži
     select_camera: Изаберите камеру
+    select_language: Izaberi jezik
     select_microphone: Изаберите микрофон
+    send: Pošalji
     send_email: Pošalji imejl
     show_more: Prikaži još
     something_wrong: Nešto je pošlo naopako. Obratite se svom administratoru.
     speakers: Говорници
+    start_date: Datum početka
     status: Статус
     status_unknown: Status Nepoznat
     stop: Стоп
@@ -178,6 +208,7 @@ sr-Latn:
           one: 'Укупно: 1'
           other: 'Укупно : {{count}}'
           zero: 'Укупно : 0'
+    tags: Oznake
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alatke
     transcription: Транскрипција
@@ -189,11 +220,35 @@ sr-Latn:
     try_again: Покушај поново
     tte_terms_and_condition: Uslovi i privatnost
     type: Tip
+    unpublish: Poništi objavu
     update: Ažuriraj
     update_failed: Ажурирање није успело
     updated_at: Ажурирано у
+    updated_by: Ажурирано од
     updated_successfully: Успешно ажурирано
+    upload: Otpremanje
     user_report_pdf_url_not_generated: Није могуће генерисати везу за преузимање PDF-а
+    user_reports_approval_status_pending_qc: Учешће у КЦ
+    user_reports_approval_status_qc_completed: КК завршен
+    user_reports_assessment_name_not_completed_reason_template: Оцењивање %{names} није завршено
+    user_reports_assessments_name_not_completed_reason_template: Оцењивања %{names} нису завршена
+    user_reports_assessor_not_completed_reason_template: Образац процењивача %{names} није попуњен.
+    user_reports_assessors_not_completed_reason_template: Обрасци процењивача %{names} нису попуњени
+    user_reports_campaign_artifact_results_pending_reason_message: Резултати артефакта кампање нису коначни за овог корисника
+    user_reports_campaign_scoring_pending_reason_message: Резултати кампање нису коначни за овог корисника
+    user_reports_custom_upload_report_reason_message: Пружалац извештаја је прилагођено отпремање.
+    user_reports_external_report_pending_reason_message: Чекање извештаја од провајдера
+    user_reports_lead_assessor_not_completed_reason_template: Образац главног процењивача %{names} није попуњен.
+    user_reports_lead_assessors_not_completed_reason_template: Обрасци главног процењивача %{names} нису попуњени
+    user_reports_no_report_module_reason_message: За овај извештај није пронађен модул извештаја.
+    user_reports_not_prepared_reason_message: Извештај још није припремљен
+    user_reports_pending_approval_reason_template: Статус одобрења је "%{status}"
+    user_reports_pending_final_ai_scoring_approval_reason_message: Уче се коначно одобравање бодовања вештачке интелигенције
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Уче се резултати QC AI
+    user_reports_pending_qc_approval_reason_message: Учешће у току одобрења QC извештаја
+    user_reports_qc_completed_approval_reason_message: Уче се чекање на одобрење коначног извештаја
+    user_reports_report_generating_reason_message: Извештај се генерише
+    user_reports_report_generation_failed_reason_message: Генерација извештаја није успела
     video: Видео
     view: Приказ
     view_audio: Погледај аудио

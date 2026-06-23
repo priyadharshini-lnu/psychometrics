@@ -622,6 +622,7 @@ sr-Latn:
         roles:
           campaign_admin: Administrator kampanje
           client_admin: Administrator klijenta
+          client_assessor: Клијент процењивач
           manager: Menadžer
           member: Korisnik
           project_admin: Administrator projekta
@@ -727,6 +728,7 @@ sr-Latn:
           admins:
             admin: Administratorskog
             campaign_admin: Administrator kampanje
+            client_assessor: Клијент процењивач
             project_admin: Administrator projekta
             regular: Administrator klijenta
             superadmin: Super Administrator
@@ -736,6 +738,7 @@ sr-Latn:
           campaign_admin: Administrator kampanje
           case_study: Studija slučaja
           client_admin: Administrator klijenta
+          client_assessor: Клијент процењивач
           hogan: Hogan
           iiht: OMILjENO
           manager: Menadžer
@@ -859,6 +862,8 @@ sr-Latn:
         bulk_download_idp_reports: Zbirno preuzimanje IDP izveštaji
         bulk_download_reports: Zbirno preuzimanje Izveštaji
         bulk_download_user_reports: Bulk Preuzimanje korisničkih izveštaja
+        bulk_export_norm_factor_scores: Масовни извоз резултата фактора норме
+        bulk_export_raw_factor_scores: Масовни извоз сирових факторских резултата
         bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Rezultati
         bulk_regenerate_reports: Regenerišite izveštaje o kampanji
         bulk_regenerate_threesixty_reports: Regenerišite Threesixty Subject Reports
@@ -871,10 +876,12 @@ sr-Latn:
         completion_status_export: Završetak Status Izvoz
         copy_as_template_or_campaign: Kopiraj kampanju kao šablon
         copy_dimension: Kopiraj dimenziju
+        copy_report: Копирај извештај
         create_threesixty_campaign: Kreirajte Threesixty kampanju
         data_report_export: Izvoz izveštaja o podacima
         export_admin_with_permissions: Izvoz administratora sa dozvolama
         export_assessment_questions: Pitanja za procenu izvoza
+        export_audit_logs: Извоз логова ревизије
         export_campaign_ai_artifacts: Izvozna kampanja AI artefakata
         export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
         export_campaign_datasheet: Радни лист кампање за извоз
@@ -964,6 +971,8 @@ sr-Latn:
       errors:
         no_plans: Nije pronađen aktivan IDP planovi
     close: Zatvorite
+    copy_report:
+      failed: Извештај копије није успео
     details: Detalji
     errors: Greške
     invalid_job: Ovo obaveštenje odgovara izbrisanom zapisu
@@ -1457,6 +1466,7 @@ sr-Latn:
       external_user_id: Skillvue ID kandidata
       id: ID za procenu kampanje
       locales: Ćirilica
+      microsite_assessment_url: УРЛ за процену микросајта
       microsite_error_message: Порука о грешци
       microsite_participant_id: ИД учесника микросајта
       microsite_registration_status: Статус регистрације
@@ -1655,7 +1665,6 @@ sr-Latn:
     details:
       additional_time: Dodatno vreme
       assessment_center: Centar za procenu
-      assessment_center_invites: Centar za procenu poziva
       completed_at: Završen u
       completion_status: Status završetka
       hogan_id: Hogan ID
@@ -1685,11 +1694,6 @@ sr-Latn:
     modals:
       remove: Da li ste sigurni da želite da uklonite korisnika sa e-poštom '%{email}' iz ove kampanje?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Procene procenjivača
-      other_assessments: Ostale procene
-      other_assessor_assessments: Ostale procene procenjivača
-      other_reports: Ostali izveštaji
     card:
       duration: Trajanje
       starts_in: 'Počinje u:'
@@ -1760,23 +1764,19 @@ sr-Latn:
       insert: Umetni
       'no': Ne
       ok: U redu
-      publish: Objavi
       reject: Odbaci
       remove: Ukloni
       reset: Poništi
       resolve: Reši
       restore: Vrati
       return_to_home: Povratak kući
-      run: Trčati
       save: Sačuvaj
       schedule: Raspored
       search: Pretraži
-      send: Pošalji
       sign_in: Upiši se
       start: Počni
       submit: Prosleđivanje
       unarchive: Vrati iz arhive
-      unpublish: Poništi objavu
       unresolve: Nereši
       update: Ažuriraj
       upload: Otpremi
@@ -1789,20 +1789,14 @@ sr-Latn:
     column:
       action: Akcija
       active: Aktivni
-      ai_assistant: AI pomoćnik
-      allow_multiple_responses: Dozvoli više odgovora
       approval_notification_list: Lista korisnika obaveštenja o odobrenju
       approvers_list: Osoba spisak odobravača
-      assessment: Procena
       assessment_name: Ime procene
       assessments: Procene
-      assessor: Procenjivač
       category: Kategorija
       client: Klijent
-      code: Šifra
       created_at: Kreiran u
       created_by: Kreirao/la
-      created_date: Datum kreiranja
       default_language: Podrazumevani jezik
       description: Opis
       details: Detalji
@@ -1820,11 +1814,8 @@ sr-Latn:
         scoring: Bodovanje JSON
       key: Ključ
       last_name: Prezime
-      linked_activities: Povezane aktivnosti
       linked_assessment: Povezana procena
-      meeting_link: Link za sastanak
       modified_by: Modifikovan od strane
-      modified_date: Datum izmene
       name: Ime
       owner: Vlasnik
       package_id: Paket ID
@@ -1840,7 +1831,6 @@ sr-Latn:
       scheduling: Planiranje
       skills: Veљtine
       status: Status
-      tags: Oznake
       timing: Tajming
       token: Simbol
       type: Tip
@@ -1852,15 +1842,12 @@ sr-Latn:
     messages:
       leave_message: Da li ste sigurni da želite da napustite ovu stranicu? Svi nesačuvani odgovori koje imate će biti izgubljeni.
     model:
-      admins: Članovi
       assessment: Procena
       assessments: Procene
       campaigns: Kampanje
       completion_statuses: Statusi završetka
-      datasheet: Lista podataka
       report: Izveštaj
       reports: Izveštaji
-      sms_contact: SMS kontakt
       threesixty_campaign: Rezultati kampanje Threesixty
     status:
       completed: Završeno
@@ -2158,6 +2145,7 @@ sr-Latn:
     invalid_token: Nešto je pošlo naopako. Molimo Vas ponovo učitajte stranicu i pokušajte ponovo.
     max_regeneration_limit: Prekoračena maksimalna granica regeneracije, obratite se svojoj upravi.
     messages:
+      content_type_invalid: неважећи тип садржаја
       data_report_blank: Izveštaj o podacima ne postoji
       password_complexity:
         digit:
@@ -2977,9 +2965,7 @@ sr-Latn:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktivni
     campaign_name: Naziv kampanje
-    inactive: Neaktivni
     status_updated_at: Poslednje ažuriranje statusa
     status_updated_by: Poslednje ažurirano od strane
     subject_email: Naslov e-pošte
@@ -3495,12 +3481,14 @@ sr-Latn:
           admin: Administratorskog
           admins:
             admin: Administratorskog
+            client_assessor: Клијент процењивач
             project_admin: Administrator projekta
             regular: Administrator klijenta
             superadmin: Super Administrator
           agile: GIBGIB
           case_study: Studija slučaja
           client_admin: Administrator klijenta
+          client_assessor: Клијент процењивач
           hogan: Hogan
           manager: Menadžer
           member: Korisnik
@@ -3634,6 +3622,7 @@ sr-Latn:
         roles:
           campaign_admin: Administrator kampanje
           client_admin: Administrator klijenta
+          client_assessor: Клијент процењивач
           manager: Menadžer
           member: Korisnik
           project_admin: Administrator projekta
@@ -3704,12 +3693,14 @@ sr-Latn:
           admin: Administratorskog
           admins:
             admin: Administratorskog
+            client_assessor: Клијент процењивач
             project_admin: Administrator projekta
             regular: Administrator klijenta
             superadmin: Super Administrator
           agile: GIBGIB
           case_study: Studija slučaja
           client_admin: Administrator klijenta
+          client_assessor: Клијент процењивач
           hogan: Hogan
           manager: Menadžer
           member: Korisnik
@@ -3983,7 +3974,6 @@ sr-Latn:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktivni
     allow_multiple_respones: Dozvolite korisnicima da pošalju više odgovora
     png: Mapa sajta
     regenerate_link: Regenerišite vezu
@@ -4172,6 +4162,7 @@ sr-Latn:
       campaign_assessor: Procenjivač kampanje
       campaign_user: Korisnik kampanje
       client_admin: Administrator klijenta
+      client_assessor: Клијент процењивач
       project_admin: Administrator projekta
       superadmin: Super Administrator
     superadmins: Super Administratori

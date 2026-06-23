@@ -88,7 +88,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
             title={I18n.t('common.column.id')}
           />
           <Resource.Column<WorkshopUserAcitivity>
-            title={I18n.t('administration.scheduling.columns.subject')}
+            title={I18n.t('admin.scheduling_columns_subject')}
             id="full_name"
             width="40%"
             render={({ subject }) => (
@@ -108,7 +108,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
             )}
           />
           <Resource.Column<WorkshopUserAcitivity>
-            title={I18n.t('administration.scheduling.columns.assessor')}
+            title={I18n.t('admin.scheduling_columns_assessor')}
             id="assessor"
             width="10%"
             render={({ subject, evaluator }) => (
@@ -123,24 +123,24 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
           />
           <Resource.Column<WorkshopUserAcitivity>
             width="20%"
-            title={I18n.t('administration.scheduling.columns.activity')}
+            title={I18n.t('admin.scheduling_columns_activity')}
             render={({ assessment }) => assessment?.name}
             id="activity"
           />
           <Resource.Column<WorkshopUserAcitivity>
             width="10%"
-            title={I18n.t('administration.scheduling.columns.schedule_time')}
+            title={I18n.t('admin.scheduling_columns_schedule_time')}
             id="scheduleTime"
             render={({ scheduleTime }) => scheduleTime && dayjs(scheduleTime).format('HH:mm')}
           />
           <Resource.Column<WorkshopUserAcitivity>
             width="30%"
-            title={I18n.t('administration.scheduling.columns.meeting_link')}
+            title={I18n.t('admin.scheduling_columns_meeting_link')}
             id="linkedSubjectMeetingLink"
             render={({ linkedSubjectMeetingLink }) => linkedSubjectMeetingLink && (
               <Space>
                 <a href={linkedSubjectMeetingLink} target="_blank" rel="noreferrer">
-                  {I18n.t('administration.scheduling.info.join_meeting')}
+                  {I18n.t('admin.scheduling_info_join_meeting')}
                 </a>
                 <CopyToClipboard
                   text={linkedSubjectMeetingLink}
@@ -152,12 +152,12 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
             )}
           />
           <Resource.Column<WorkshopUserAcitivity>
-            title={I18n.t('common.column.status')}
+            title={I18n.t('shared.status')}
             id="status"
             className={styles.ActivityStatus}
             render={(_, { status }) => (
               <Tag key={status} color={statusToColor[status]}>
-                {I18n.t(`administration.scheduling.status.${status}`)}
+                {I18n.t(`admin.scheduling_status_${status}`)}
               </Tag>
             )}
           />
@@ -203,7 +203,7 @@ const Controls = ({ setShowForm }) => {
   if (resource.meta?.permissions?.createAll) {
     return (
       <Button type="primary" onClick={() => setShowForm(true)}>
-        {I18n.t('administration.scheduling.add_activity')}
+        {I18n.t('admin.scheduling_add_activity')}
       </Button>
     )
   }

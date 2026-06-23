@@ -55,7 +55,7 @@ export const AIArtifactsImportModal: React.FC<OwnProps> = ({
           key="back"
           onClick={close}
         >
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -67,7 +67,7 @@ export const AIArtifactsImportModal: React.FC<OwnProps> = ({
           }
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>,
       ]}
     >
@@ -75,7 +75,7 @@ export const AIArtifactsImportModal: React.FC<OwnProps> = ({
         <a href={csvFilePath}>
           <CloudDownloadOutlined />
           <span className="mls">
-            {I18n.t('administration.ai_artifacts.import.download_example_csv')}
+            {I18n.t('admin.import_download_example_csv')}
           </span>
         </a>
       </div>

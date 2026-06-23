@@ -135,8 +135,8 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
   return (
     <Space orientation="vertical" size="large" style={{ display: 'flex' }}>
       <Panel
-        title={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.title')}
-        description={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.description')}
+        title={I18n.t('admin.basic_info_panel_title')}
+        description={I18n.t('admin.basic_info_panel_description')}
       >
         <Form
           requiredMark={false}
@@ -148,10 +148,10 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           <Row gutter={16}>
             <Col xs={24} sm={12} lg={10}>
               <Form.Item
-                label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
+                label={I18n.t('admin.dates_label')}
                 {...fieldLayout}
                 validateStatus={dateFieldStatus}
-                help={dateFieldStatus === 'success' ? '' : I18n.t('administration.scheduling.errors.date_required')}
+                help={dateFieldStatus === 'success' ? '' : I18n.t('admin.scheduling_errors_date_required')}
               >
                 <DatePicker
                   className="date-picker-input"
@@ -204,13 +204,13 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={24} sm={12} lg={6}>
               <Form.Item
                 name="campaignAssessmentGroupId"
-                label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+                label={I18n.t('admin.assessment_center_group')}
                 {...fieldLayout}
                 rules={[{ required: true }]}
               >
                 <Select
                   placeholder={
-                    I18n.t('administration.scheduling.assessment_center_form.assessment_center_group_placeholder')}
+                    I18n.t('admin.assessment_center_group_placeholder')}
                 >
                   {_.map(assessmentCenterGroups, (assessmentCenterGroup: AssessmentCenterGroup) => (
                     <Select.Option key={assessmentCenterGroup.id} value={assessmentCenterGroup.id}>
@@ -225,7 +225,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={24} sm={12} lg={8}>
               <Form.Item
                 name="timezone"
-                label={I18n.t('administration.scheduling.assessment_center_form.timezone_label')}
+                label={I18n.t('admin.timezone_label')}
                 {...fieldLayout}
                 rules={[{ required: true }]}
               >
@@ -235,7 +235,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={12} sm={6} lg={4}>
               <Form.Item
                 name="time"
-                label={I18n.t('administration.scheduling.assessment_center_form.time_label')}
+                label={I18n.t('admin.time_label')}
                 {...fieldLayout}
                 rules={[{
                   required: true,
@@ -248,16 +248,16 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={12} sm={6} lg={4}>
               <Form.Item
                 name="duration"
-                label={I18n.t('administration.scheduling.assessment_center_form.duration_label')}
+                label={I18n.t('admin.duration_label')}
                 {...fieldLayout}
                 rules={[
                   {
                     validator: durationValidator({
                       minMinutes: 15,
                       maxMinutes: 16 * 60,
-                      minError: I18n.t('administration.scheduling.assessment_center_form.duration_min_error'),
-                      maxError: I18n.t('administration.scheduling.assessment_center_form.duration_max_error'),
-                      requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                      minError: I18n.t('admin.duration_min_error'),
+                      maxError: I18n.t('admin.duration_max_error'),
+                      requiredError: I18n.t('admin.required_error'),
                     }),
                   },
                 ]}
@@ -265,13 +265,13 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                 <InputDuration
                   value=""
                   onChange={() => {}}
-                  placeholder={I18n.t('administration.scheduling.assessment_center_form.duration_placeholder')}
+                  placeholder={I18n.t('admin.duration_placeholder')}
                 />
               </Form.Item>
             </Col>
           </Row>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.disable_cancellation_and_rescheduling')}
+            label={I18n.t('admin.disable_cancellation_and_rescheduling')}
             {...fieldLayout}
             name="disable_cancellation_and_rescheduling"
             rules={[{ required: true }]}
@@ -285,7 +285,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               <Col xs={12} lg={8}>
                 <Form.Item
                   name="cancellation_lead_time"
-                  label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
+                  label={I18n.t('admin.cancellation_lead_time_label')}
                   {...fieldLayout}
                 >
                   <InputDuration
@@ -300,13 +300,13 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Col xs={12} lg={8}>
               <Form.Item
                 name="scheduling_lead_time"
-                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+                label={I18n.t('admin.scheduling_lead_time_label')}
                 {...fieldLayout}
               >
                 <InputDuration
                   value=""
                   onChange={() => {}}
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                  placeholder={I18n.t('admin.components_input_duration_placeholder')}
                 />
               </Form.Item>
             </Col>
@@ -315,7 +315,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           <Form.Item
             label={
                   I18n.t(
-                    'administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling',
+                    'admin.allow_late_cancellation_and_scheduling',
                   )
                 }
             {...fieldLayout}
@@ -327,36 +327,36 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <Switch />
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
+            label={I18n.t('admin.video_call_type_label')}
             {...fieldLayout}
             name="video_call_type"
             rules={[{ required: true }]}
           >
             <Radio.Group onChange={e => setVideoCallType(e.target.value)}>
               <Radio value={0}>
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.none')}
+                {I18n.t('admin.video_call_type_none')}
               </Radio>
               <Radio value={1}>
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.internal')}
+                {I18n.t('admin.video_call_type_internal')}
               </Radio>
               <Radio value={2}>
-                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.custom')}
+                {I18n.t('admin.video_call_type_custom')}
               </Radio>
             </Radio.Group>
           </Form.Item>
           {videoCallType === 2 && (
             <Form.Item
-              label={I18n.t('administration.scheduling.assessment_center_form.meeting_link')}
+              label={I18n.t('admin.meeting_link')}
               name="meeting_link"
               {...fieldLayout}
               rules={[{
                 required: true,
-                message: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                message: I18n.t('admin.required_error'),
               },
-              { type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url') },
+              { type: 'url', message: I18n.t('admin.scheduling_errors_invalid_url') },
               {
                 pattern: /^https:\/\/(.*)/,
-                message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+                message: I18n.t('admin.scheduling_errors_meeting_link_https'),
               }]}
             >
               <Input />
@@ -365,8 +365,8 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
         </Form>
       </Panel>
       <Panel
-        title={I18n.t('administration.scheduling.assessment_center_form.resources_panel.title')}
-        description={I18n.t('administration.scheduling.assessment_center_form.resources_panel.description')}
+        title={I18n.t('admin.resources_panel_title')}
+        description={I18n.t('admin.resources_panel_description')}
       >
         <Form requiredMark={false} className={styles.form} layout="vertical" form={form} initialValues={initialValues}>
           <ResourcesItems />
@@ -377,12 +377,12 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           {
             onCancel && (
               <Button onClick={handleCancel}>
-                {I18n.t('common.actions.cancel')}
+                {I18n.t('shared.cancel')}
               </Button>
             )
           }
           <Button type="primary" onClick={handleNext}>
-            {I18n.t('administration.scheduling.assessment_center_form.next')}
+            {I18n.t('shared.next')}
           </Button>
         </Space>
       </div>

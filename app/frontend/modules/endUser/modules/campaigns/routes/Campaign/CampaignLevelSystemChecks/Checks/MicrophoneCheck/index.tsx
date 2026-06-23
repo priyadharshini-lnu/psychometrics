@@ -11,7 +11,7 @@ import { ButtonWithArrow } from '~/glint'
 import { AudioCheck } from './AudioCheck'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
-  useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
+  useAddSystemCheckRecordMutation, useUpdateSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import {
   AudioOutlined, ExclamationCircleOutlined, ArrowLeftOutlined,
@@ -40,6 +40,9 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const [noAudioDetected, setNoAudioDetected] = useState<boolean>(false)
 
+  const [speechVerificationFailed, setSpeechVerificationFailed] = useState<boolean>(false)
+  const [speechVerificationError, setSpeechVerificationError] = useState<boolean>(false)
+
   const dispatch = useDispatch()
 
   const campaignDetailsForSystemCheck = useSelector(
@@ -51,10 +54,13 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const { campaignId } = useParams() as { campaignId: string}
 
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
+  const [updateSystemCheckRecord] = useUpdateSystemCheckRecordMutation()
   const {
     data:
     systemCheckRequirementsStatus,
   } = useFetchSystemCheckRequirementsStatusQuery({ campaignId })
+
+  const phraseVerificationEnabled = systemCheckRequirementsStatus?.requirements?.audio?.phraseVerificationEnabled ?? false
 
   useEffect(() => {
     const generateRecordId = async () => {
@@ -118,6 +124,12 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     }
   }, [recordId])
 
+  const getErrorI18nKey = () => {
+    if (noAudioDetected) return 'enduser.no_audio_detected'
+    if (speechVerificationFailed) return 'enduser.speech_verification_failed'
+    if (speechVerificationError) return 'enduser.speech_verification_error'
+    return 'enduser.error_uploading_audio_detail'
+  }
 
   const generateDetails = () => {
     const details:InternationalizedDetails[] = []
@@ -128,17 +140,10 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         i18nVars: [],
       })
     } else if (checkStatus === CHECK_STATUS.failed) {
-      if (noAudioDetected) {
-        details.push({
-          i18nKey: 'enduser.no_audio_detected',
-          i18nVars: [],
-        })
-      } else {
-        details.push({
-          i18nKey: 'enduser.error_uploading_audio_detail',
-          i18nVars: [],
-        })
-      }
+      details.push({
+        i18nKey: getErrorI18nKey(),
+        i18nVars: [],
+      })
     } else {
       details.push({
         i18nKey: 'enduser.microphone_check_passed',
@@ -151,8 +156,9 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const handleNext = async () => {
     setIsLoading(true)
-    await addSystemCheckRecord({
+    await updateSystemCheckRecord({
       campaignId,
+      recordId: recordId!,
       record: {
         checkType: CHECK_TYPE.audio,
         passed: checkStatus === CHECK_STATUS.passed,
@@ -242,7 +248,7 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               >
                 <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
                 <h4 className="mt-0">
-                  {noAudioDetected ? I18n.t('enduser.no_audio_detected') : I18n.t('enduser.error_uploading_audio')}
+                  {I18n.t(getErrorI18nKey())}
                 </h4>
               </Flex>
 
@@ -255,6 +261,8 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               <Flex justify="end" gap={4} className="mt-2">
                 <Button onClick={() => {
                   setCheckStatus(CHECK_STATUS.pending)
+                  setSpeechVerificationFailed(false)
+                  setSpeechVerificationError(false)
                 }}
                 >
                   {I18n.t('enduser.rerun_check')}
@@ -285,6 +293,9 @@ export const MicrophoneCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                 setCheckStatus={setCheckStatus}
                 setIsDeviceRequestGranted={setIsDeviceRequestGranted}
                 setNoAudioDetected={setNoAudioDetected}
+                setSpeechVerificationFailed={setSpeechVerificationFailed}
+                setSpeechVerificationError={setSpeechVerificationError}
+                phraseVerificationEnabled={phraseVerificationEnabled}
               />
             )}
         </>

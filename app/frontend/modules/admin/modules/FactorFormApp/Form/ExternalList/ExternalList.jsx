@@ -40,9 +40,9 @@ export default function ExternalList ({
         <table className="table table-bordered">
           <thead>
             <tr>
-              <th key="type">{I18n.t('administration.factors.form.components.ExternalList.table.type')}</th>
-              <th key="jsonpath">{I18n.t('administration.factors.form.components.ExternalList.table.jsonpath')}</th>
-              <th key="actions">{I18n.t('administration.factors.form.components.ExternalList.table.actions')}</th>
+              <th key="type">{I18n.t('admin.factors_form_components_ExternalList_table_type')}</th>
+              <th key="jsonpath">{I18n.t('admin.factors_form_components_ExternalList_table_jsonpath')}</th>
+              <th key="actions">{I18n.t('admin.factors_form_components_ExternalList_table_actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +57,7 @@ export default function ExternalList ({
                   >
                     {TYPES.map(type => (
                       <Select.Option key={type} value={type}>
-                        {I18n.t(`administration.factors.form.components.ExternalList.table.types.${type}`)}
+                        {I18n.t(`admin.factors_form_components_ExternalList_table_types_${type}`)}
                       </Select.Option>
                     ))}
                   </Select>

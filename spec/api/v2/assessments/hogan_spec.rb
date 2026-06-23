@@ -8,10 +8,8 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let(:dimension) { create(:dimension) }
   let(:client) { create(:tenancy) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
-  before(:each) { login_user(superadmin) }
+  before(:each) { sign_in(superadmin) }
   after(:each) { sign_out(superadmin) }
 
   describe 'Create Hogan Assessment' do

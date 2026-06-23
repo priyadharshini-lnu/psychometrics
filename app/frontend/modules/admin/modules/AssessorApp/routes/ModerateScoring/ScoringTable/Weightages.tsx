@@ -112,7 +112,7 @@ const createDataSource = (
 const createColumns = (factors: FactorsMap): ColumnProps<DataType>[] => {
   const baseColumns: ColumnProps<DataType>[] = [
     {
-      title: I18n.t('administration.scoring.weightages.assessorForms'),
+      title: I18n.t('admin.scoring_weightages_assessorForms'),
       dataIndex: 'assessmentName',
       key: 'assessmentName',
       fixed: 'left',

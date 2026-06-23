@@ -18,24 +18,24 @@ export const MultipleResponseTable: FC<Props> = ({ assessorAssessments, onView }
 
   const columns = [
     {
-      title: I18n.t('common.column.name'),
+      title: I18n.t('shared.name'),
       render (assessment) {
         return `${assessment.name} #${assessment.id}`
       },
     },
     {
-      title: I18n.t('administration.assessor.completed_at'),
+      title: I18n.t('admin.assessor_completed_at'),
       render (assessment) {
         return assessment.completed_at ? formatedDate(assessment.completed_at) : null
       },
     },
     {
-      title: I18n.t('assessments.actions.view'),
+      title: I18n.t('shared.view'),
       render (assessorAssessment) {
         return (
           <Button type="link" onClick={() => viewAssessment(assessorAssessment.id)}>
             {assessorAssessment.status === 'completed'
-              ? I18n.t('assessments.actions.view') : I18n.t('assessments.actions.evaluate')}
+              ? I18n.t('shared.view') : I18n.t('assessments.actions.evaluate')}
           </Button>
         )
       },

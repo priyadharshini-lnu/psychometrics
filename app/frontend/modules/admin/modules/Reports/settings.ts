@@ -6,6 +6,7 @@ const settings = {
     [2, 'hogan'],
     [3, 'saville'],
     [4, 'pearson'],
+    [5, 'custom_upload'],
     [6, 'mettl'],
     [7, 'skillvue'],
     [8, 'yoodli'],

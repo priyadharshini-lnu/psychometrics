@@ -7,9 +7,6 @@ RSpec.describe Api::V2::Administration::SkillsJobRolesController, type: :request
   let!(:project) { create(:project) }
   let!(:job_role) { create(:job_role, project: project) }
   let!(:skill) { create(:skill, project: Project.find(project.id)) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /skills_job_roles' do
@@ -23,7 +20,7 @@ RSpec.describe Api::V2::Administration::SkillsJobRolesController, type: :request
 
         get '/api/v2/administration/skills_job_roles',
             params: { project_id: project.id },
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
@@ -38,7 +35,7 @@ RSpec.describe Api::V2::Administration::SkillsJobRolesController, type: :request
         create(:skills_job_role, expected_proficiency_level: 2, project_id: nil)
 
         get '/api/v2/administration/skills_job_roles',
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
@@ -63,7 +60,7 @@ RSpec.describe Api::V2::Administration::SkillsJobRolesController, type: :request
 
       post '/api/v2/administration/skills_job_roles',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       data = JSON.parse(response.body)['data']
@@ -79,7 +76,7 @@ RSpec.describe Api::V2::Administration::SkillsJobRolesController, type: :request
 
       delete "/api/v2/administration/skills_job_roles/#{mapping.id}",
              params: { project_id: project.id }.to_json,
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect { mapping.reload }.to raise_error(ActiveRecord::RecordNotFound)
@@ -109,7 +106,7 @@ RSpec.describe Api::V2::Administration::SkillsJobRolesController, type: :request
       it 'rejects duplicate skill job role mappings' do
         post '/api/v2/administration/skills_job_roles',
              params: invalid_body.to_json,
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:unprocessable_entity)
         json_response = JSON.parse(response.body)

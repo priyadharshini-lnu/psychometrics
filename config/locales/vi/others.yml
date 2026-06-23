@@ -622,6 +622,7 @@ vi:
         roles:
           campaign_admin: Quản trị viên chiến dịch
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           manager: Giám đốc
           member: Người dùng
           project_admin: Quản trị viên dự án
@@ -727,6 +728,7 @@ vi:
           admins:
             admin: Admin
             campaign_admin: Quản trị viên chiến dịch
+            client_assessor: Chuyên viên đánh giá khách hàng
             project_admin: Quản trị viên dự án
             regular: Quản trị viên khách hàng
             superadmin: Siêu quản trị viên
@@ -736,6 +738,7 @@ vi:
           campaign_admin: Quản trị viên chiến dịch
           case_study: Nghiên cứu điển hình
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           hogan: Hogan
           iiht: IIHT
           manager: Giám đốc
@@ -859,6 +862,8 @@ vi:
         bulk_download_idp_reports: Tải xuống hàng loạt báo cáo IDP
         bulk_download_reports: Tải xuống hàng loạt báo cáo
         bulk_download_user_reports: Tải xuống hàng loạt báo cáo người dùng
+        bulk_export_norm_factor_scores: Xuất điểm số Hệ số Tiêu chuẩn theo lô
+        bulk_export_raw_factor_scores: Xuất hàng loạt điểm số yếu tố thô
         bulk_generate_user_campaign_ai_artifact_results: Tạo hàng loạt kết quả tạo tác AI chiến dịch
         bulk_regenerate_reports: Tạo lại báo cáo chiến dịch
         bulk_regenerate_threesixty_reports: Tái tạo Báo cáo Ba Sáu Mươi Chủ Đề
@@ -871,10 +876,12 @@ vi:
         completion_status_export: Xuất trạng thái hoàn thành
         copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
         copy_dimension: Sao chép kích thước
+        copy_report: Sao chép báo cáo
         create_threesixty_campaign: Tạo chiến dịch Threesixty
         data_report_export: Xuất báo cáo dữ liệu
         export_admin_with_permissions: Xuất quản trị viên có quyền
         export_assessment_questions: Câu hỏi đánh giá xuất khẩu
+        export_audit_logs: Xuất nhật ký kiểm toán
         export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
         export_campaign_ai_artifacts_results: Kết quả của Chiến dịch Xuất khẩu Các Tác phẩm Nghệ thuật Trí tuệ Nhân tạo
         export_campaign_datasheet: Bảng dữ liệu chiến dịch xuất khẩu
@@ -964,6 +971,8 @@ vi:
       errors:
         no_plans: Không tìm thấy kế hoạch IDP đang hoạt động
     close: Đóng
+    copy_report:
+      failed: Không sao chép được báo cáo
     details: Chi tiết
     errors: Lỗi
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
@@ -1448,6 +1457,7 @@ vi:
       external_user_id: ID ứng viên Skillvue
       id: ID đánh giá chiến dịch
       locales: Địa điểm
+      microsite_assessment_url: URL đánh giá trang web chuyên biệt
       microsite_error_message: Thông báo lỗi
       microsite_participant_id: Mã số người tham gia trang web chuyên biệt
       microsite_registration_status: Tình trạng đăng ký
@@ -1646,7 +1656,6 @@ vi:
     details:
       additional_time: Thời gian bổ sung
       assessment_center: Trung tâm đánh giá
-      assessment_center_invites: Lời mời của Trung tâm Đánh giá
       completed_at: Hoàn thành lúc
       completion_status: Trạng thái hoàn thành
       hogan_id: Mã Hogan
@@ -1676,11 +1685,6 @@ vi:
     modals:
       remove: Bạn có chắc chắn muốn xóa người dùng có email '%{email}' khỏi chiến dịch này không?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Đánh giá của người đánh giá
-      other_assessments: Các đánh giá khác
-      other_assessor_assessments: Các đánh giá khác của người đánh giá
-      other_reports: Các báo cáo khác
     card:
       duration: Khoảng thời gian
       starts_in: 'Bắt đầu vào:'
@@ -1751,23 +1755,19 @@ vi:
       insert: Chèn
       'no': Không
       ok: OK
-      publish: Xuất bản
       reject: Bác bỏ
       remove: Di dời
       reset: Cài lại
       resolve: Giải quyết
       restore: Khôi phục
       return_to_home: Trở về nhà
-      run: Chạy
       save: Cứu
       schedule: Lịch
       search: Tìm kiếm
-      send: Gửi
       sign_in: Đăng nhập
       start: Bắt đầu
       submit: Trình
       unarchive: Bỏ lưu trữ
-      unpublish: Hủy đăng
       unresolve: Chưa giải quyết
       update: Cập nhật
       upload: Tải lên
@@ -1780,20 +1780,14 @@ vi:
     column:
       action: Hoạt động
       active: Hoạt động
-      ai_assistant: Trợ lý AI
-      allow_multiple_responses: Cho phép nhiều phản hồi
       approval_notification_list: Danh sách người dùng thông báo phê duyệt
       approvers_list: Danh sách người phê duyệt
-      assessment: Thuế
       assessment_name: Tên đánh giá
       assessments: Đánh giá
-      assessor: Giám định viên
       category: Loại
       client: Khách hàng
-      code: Mã
       created_at: Được tạo ra tại
       created_by: Tạo bởi
-      created_date: Ngày tạo
       default_language: Ngôn ngữ mặc định
       description: Sự miêu tả
       details: Chi tiết
@@ -1811,11 +1805,8 @@ vi:
         scoring: Chấm điểm JSON
       key: Chìa khoá
       last_name: Họ
-      linked_activities: Hoạt động liên kết
       linked_assessment: Đánh giá liên kết
-      meeting_link: Liên kết cuộc họp
       modified_by: Sửa đổi bởi
-      modified_date: Ngày sửa đổi
       name: Tên
       owner: Chủ nhân
       package_id: ID gói
@@ -1831,7 +1822,6 @@ vi:
       scheduling: Lập kế hoạch
       skills: Kỹ năng
       status: Trạng thái
-      tags: Tags
       timing: Thời gian
       token: Token
       type: Kiểu
@@ -1843,15 +1833,12 @@ vi:
     messages:
       leave_message: Bạn có chắc chắn muốn rời khỏi trang này không? Bất kỳ câu trả lời nào chưa được lưu mà bạn có sẽ bị mất.
     model:
-      admins: Quản trị viên
       assessment: Thuế
       assessments: Đánh giá
       campaigns: Chiến dịch
       completion_statuses: Trạng thái hoàn thành
-      datasheet: Bảng dữ liệu
       report: Báo cáo
       reports: Báo cáo
-      sms_contact: Liên hệ SMS
       threesixty_campaign: Điểm chiến dịch Threesixty
     status:
       completed: Hoàn thành
@@ -2149,6 +2136,7 @@ vi:
     invalid_token: Có lỗi xảy ra. Vui lòng tải lại trang và thử lại.
     max_regeneration_limit: Vượt quá giới hạn tái tạo tối đa, hãy liên hệ với ban quản trị của bạn.
     messages:
+      content_type_invalid: loại nội dung không hợp lệ
       data_report_blank: Báo cáo dữ liệu không tồn tại
       password_complexity:
         digit:
@@ -2968,9 +2956,7 @@ vi:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Hoạt động
     campaign_name: Tên chiến dịch
-    inactive: Không hoạt động
     status_updated_at: Cập nhật trạng thái cuối cùng
     status_updated_by: Cập nhật lần cuối bởi
     subject_email: Email chủ đề
@@ -3486,12 +3472,14 @@ vi:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Chuyên viên đánh giá khách hàng
             project_admin: Quản trị viên dự án
             regular: Quản trị viên khách hàng
             superadmin: Siêu quản trị viên
           agile: NHANH NHẸN
           case_study: Nghiên cứu điển hình
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           hogan: Hogan
           manager: Giám đốc
           member: Người dùng
@@ -3625,6 +3613,7 @@ vi:
         roles:
           campaign_admin: Quản trị viên chiến dịch
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           manager: Giám đốc
           member: Người dùng
           project_admin: Quản trị viên dự án
@@ -3695,12 +3684,14 @@ vi:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Chuyên viên đánh giá khách hàng
             project_admin: Quản trị viên dự án
             regular: Quản trị viên khách hàng
             superadmin: Siêu quản trị viên
           agile: NHANH NHẸN
           case_study: Nghiên cứu điển hình
           client_admin: Quản trị viên khách hàng
+          client_assessor: Chuyên viên đánh giá khách hàng
           hogan: Hogan
           manager: Giám đốc
           member: Người dùng
@@ -3974,7 +3965,6 @@ vi:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Hoạt động
     allow_multiple_respones: Cho phép người dùng gửi nhiều câu trả lời
     png: PNG
     regenerate_link: Tái tạo liên kết
@@ -4163,6 +4153,7 @@ vi:
       campaign_assessor: Đánh giá viên chiến dịch
       campaign_user: Người dùng chiến dịch
       client_admin: Quản trị viên khách hàng
+      client_assessor: Chuyên viên đánh giá khách hàng
       project_admin: Quản trị viên dự án
       superadmin: Siêu quản trị viên
     superadmins: Quản trị viên cấp cao

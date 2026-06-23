@@ -2,17 +2,6 @@
 zh-Hant:
   administration:
     actions: 行動
-    active_record_audits:
-      action: 行動
-      audit_id: 審計編號
-      auditable_id: 記錄 ID
-      auditable_type: 記錄類型
-      audited_changes: 經審核的變更
-      new_diff:
-        parse_error: 解析包含新變更的 JSON 失敗
-      old_diff:
-        parse_error: 解析包含舊變更的 JSON 失敗
-      title: 經審核的變更
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ zh-Hant:
           design: 設計
           or: 或
     administrators:
-      drawers:
-        edit:
-          first_name_required: 必須填寫名字
-          last_name_required: 必須填寫姓氏
-        view:
-          first_name: 名字
-          last_name: 姓氏
-          title:
-            campaign_admin: 活動管理員
-            client_admin: 客戶管理
-            project_admin: 專案管理員
       list:
         actions:
-          api_keys: API 金鑰
-          edit: 編輯
-          export_admins_with_permissions: 管理員角色和權限匯出
-          export_success: 管理匯出工作已排程成功，請檢查您的通知以瞭解狀態。
-          login: 登入
           spoof:
             login_successful: 登入成功。
-          user_report_events: 報告核准記錄
-        columns:
-          email: 電子郵件
-      modals:
-        delete:
-          cancelText: 取消
-          okText: 好的
-          title: 確認
-    ai_artifacts:
-      artifact_results: 神器結果
-      code: 法典
-      export:
-        success_msg: 正在匯出進行中的 AI 工件。請查看通知中的狀態。
-      export_ai_artifacts: 匯出 AI 產物
-      form:
-        add_assessment: 新增評量
-        ai_assistant: AI助手
-        assessments: 評量
-        campaign_factors: 活動因素
-        configuration: 組態
-        datasheet: 數據表
-        datasheet_columns: 資料表欄
-        include_all_datasheet_columns: 包括所有資料表欄
-        no_assessment_selected: 尚未新增評估。點擊「新增」開始。
-        questions_required: 必須至少選擇一個問題
-        select_ai_assistant: 選擇 AI 助手
-        select_assessment: 選取評量
-        select_campaign_factors: 選取廣告活動因素
-        select_datasheet_columns: 選取資料表欄
-        select_questions: 選擇問題
-        title: AI神器
-      generate: 產生
-      generate_result_info_message: 結果正在產生中，請重新整理頁面以查看更新的結果。
-      generated_at_time: 生成於%{time}
-      generated_value: 產生的價值
-      id: ID
-      import:
-        download_example_csv: 下載 CSV 範例
-        info_msg: 上傳的檔案已被排隊匯入。請查看通知中的狀態。
-      import_action:
-        title: 匯入戰役 AI 工件
-      import_ai_artifacts: 匯入 AI 工件
-      key: 鑰匙
-      name: 名字
-      parsed_dependencies:
-        help: AI 助理用於產生成品結果的使用者剖析相依性
-        title: 剖析的相依性
-        view: 檢視剖析的相依性
-      playground: 操場
-      playground_info: 使用範例資料測試您的構件，以預覽產生的結果。
-      playground_placeholder: 輸入測試數據
-      raw: 生
-      tabs:
-        results: 結果
-        settings: 設定
-      test_generate: 測試產生
-      unsaved_changes: 存在未儲存的變更，請考慮提交表單以從 Playground 產生更新的回應。
-      used_tokens:
-        input_tokens: 輸入標記
-        output_tokens: 輸出標記
-        title: 代幣使用
     ai_assistants:
-      actions:
-        create: 建立 AI 助理
-        edit: 編輯 AI 助理
-        playground: 遊樂場
-      ai_assistants: AI 助理
-      ai_assistants_playground: AI 助理遊樂場
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ zh-Hant:
             no_datasheet_data: 沒有可供用戶%{email}的數據表數據
             user_not_found_in_datasheet: 在行銷活動資料表中找不到使用者
       campaign_ai_artifacts: 活動 AI 成品
-      column:
-        provider: 供應商
-      created_successfully: AI Assistant 已成功建立。
       errors:
         cannot_delete_in_use: 無法刪除 AI 助理「%{name}」，因為它正在使用中。
         development_actions_assistance_not_enabled: 無法產生 AI 驅動的開發動作。請聯絡管理員。
         one_click_idp_assistance_not_enabled: 您目前的計劃不提供人工智慧驅動的 IDP 協助。請聯絡管理員。
         platform_assistant_already_exists: 平台上只允許 1 名 %{type} 型助理。
-      form:
-        add_output_schema_key: 新增輸出模式金鑰
-        dependencies: 依賴
-        description: 說明
-        enter_description: 輸入說明
-        enter_schema_key: 輸入模式金鑰
-        key: 鑰匙
-        name: 名稱
-        output_schema_keys: 輸出模式鍵
-        provider: 供應商
-        remove_output_schema_key: 移除輸出模式鍵
-        schema_key_description_required: 模式關鍵描述為必填項目
-        schema_key_required: 模式鍵為必填項目
-        schema_key_type: 鑰匙類型
-        schema_key_unique: 模式鍵應該是唯一的
-        system_prompt: 系統提示
-        type: 類型
-        user_prompt: 使用者提示
-      revisions:
-        load: 載入成型
-        name: 名字
-        system_prompt: 系統規劃
-        title: AI助理的修訂
-        user_prompt: 使用者提示
-        version: 版本
       selector:
         choose_artifact: 選擇 AI 神器
         choose_schema_key: 選擇結構描述索引鍵
         no_assistants_found: 未找到 AI 助手
         placeholder: 選擇 AI 助手
-      updated_successfully: AI Assistant 已成功更新。
     any: " - 任何 - "
     api:
       campaigns:
@@ -185,10 +62,6 @@ zh-Hant:
       users:
         form:
           campaign_ids_not_existing: 並非所有活動 ID 都存在
-    api_keys:
-      form:
-        description: 說明
-        title: api 鑰匙
     assessment_builder:
       form:
         display_label: 輸入顯示標籤
@@ -196,108 +69,12 @@ zh-Hant:
         value: 價
         value_required: 值是必填的
     assessment_center:
-      cancel_confirmation:
-        message: 您確定要捨棄表單進度嗎？
-        title: 丟棄表格進度
-      current: 當前
       invite:
-        add_invite: 新增邀請
-        assessment_center: 評估中心
-        back: 返回
-        basic_info:
-          allow_preferred_language: 允許偏好的語言
-          assessment_centers: 評估中心
-          assessment_centers_hint: 搜尋查詢範例 '10th August 2023, 8:06 pm
-          assessment_centers_placeholder: 選擇評估中心
-          description: 透過選擇多個評估中心向候選人發出邀請，候選人隨後會從可用的評估中心中選擇單一中心。
-          neurodiversity: 包含神經多樣性問題
-          preferred_language: 允許的語言
-          required_error: 不能是空的
-          title: 基本資訊
-        center_group: 評估中心小組
-        confirm_message: 您確定要刪除邀請函？
-        confirm_message_with_title: 您確定要移除標題為 '%{invite_title}' 的「邀請」嗎？
-        confirm_title: 確認
         exceeded_subjects_count: 廣告系列有 %{users} 主題，每次邀請只能新增 %{count} 主題
-        id: ID
-        invites: 邀請
-        name: 名字
-        name_placeholder: 輸入邀請名稱
-        next: 下一頁
-        not_selected: 未選擇
-        requests: 請求
-        save: 儲存與傳送
-        send_invites:
-          add: 新增
-          add_description: 您可以將邀請標題和說明翻譯成多國語言
-          add_language: 新增語言
-          description: 說明
-          input_label: 新增語言
-          input_placeholder: 選擇其他語言
-          invitation_title: 邀請函標題
-          title: 邀請函 (%{lang})
-        steps:
-          add_subjects: 新增主題
-          basic_info: 基本資訊
-          has_errors: 包含錯誤
-          send_invitation: 發送邀請函
-        subjects:
-          cancel: 取消
-          count: "%{count} 主題"
-          csv_error: 'Row%{index}: 電子郵件 %{email} 的使用者不在此活動中'
-          csv_imported: "%{count} 輸入的科目"
-          description: 您可以透過搜尋單獨新增主題，或大量上傳 csv 檔案。
-          download: 下載
-          file_example: 參考範例檔案上傳子物件資訊。
-          import_from_campaign: 從活動中加入所有
-          import_title: 進口主題
-          import_users: 匯入使用者
-          search_user: 搜尋主題
-          title: 主題
-          upload: 上傳
-          upload_csv: 上傳 CSV
         subjects_count_added: 成功新增主題
-        success:
-          continue: 繼續
-          message: 發送邀請函的工作已經排隊，使用者很快就會收到邀請函。
-        success_message: 邀請已成功移除。
-        success_message_with_title: 標題為 '%{invite_title}' 的邀請函已成功移除。
-        title: 標題
-        workshop:
-          title: 評估中心
-        workshop_list:
-          add: 新增
-          name: 名稱
-          remove_confirm:
-            content: 您確定要移除名稱為 '%{name}' 的評估中心嗎？
-            success: 評估中心已成功移除。
-            title: 確認
-      invite_request:
-        accept: 接受
-        reason: 原因
-        reject: 拒絕
-        remove_confirm:
-          content: 您確定要從 %{subjectName} %{action} %{status} 嗎？
-          success: 來自 %{subjectName} 的 %{status} 已成功完成 %{action}。
-          title: "%{action} %{status}"
-        status: 狀態
-        subject_name: 學科名稱
-        workshop_time: 工作坊時間
-      past: 過去
-      steps:
-        basic_information: 基本資訊
-        facilitators: 促進者
-        invite_options: 邀請選項
-        invite_subjects: 邀請主題
-        send_invitations: 發送邀請函
-      success:
-        call_send_invitation: 您要寄送邀請函嗎？
-        ok: 是
-        skip: 暫時跳過
-        title: 設立評估中心
-      upcoming: 即將推出
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI评分配置仅可添加至AudioResponse、VideoResponse和TextEntry类型的问题中
         doesnt_have_header: "%{sub_header}'沒有標頭"
         invalid_headers: 下列標頭無效： %{headers}
         invalid_question: 問題 ID 無效
@@ -311,11 +88,7 @@ zh-Hant:
       successfully_scheduled: 問題 匯入排程成功。
     assessments:
       assessment: 評估
-      assessment_report: 評估
       copy:
-        copy: 副本
-        copy_assessment: 複製評估
-        name: 名稱
         successfully: 評估 "%{name}" 已成功複製。
       create:
         successfully: 評估「%{name}」已成功建立。
@@ -398,93 +171,10 @@ zh-Hant:
       update:
         successfully: 評估 %{name} 已成功更新。
     assessor:
-      add_subject_modal:
-        assessment: 評估
-        mark_as_lead_assessor: 標記為上述科目的主評人
-        subject: 主題
-        subject_placeholder: 搜尋主題...
-        title: 新增主題
-      assessments:
-        actions:
-          add_subject: 新增主題
-          rescore: 重新評分
-          reset: 重設評估
-          reset_progress: 重設進度
-        bulk_delete_confirmation: 您確定要刪除選取的記錄嗎？
-        bulk_delete_successful: 評稅員評稅已成功刪除
-        reset_confirmation: 您確定要以電子郵件「%{subjectEmail}」重設主題評估嗎？
-        reset_progress_confirmation: 您確定要以電子郵件「%{subjectEmail}」重設主題的進度嗎？
-        reset_progress_successfully: 重設電子郵件標題「%{subjectEmail}」的進度成功。
-        reset_successfully: 以電子郵件「%{subjectEmail}」為主題的重設評估成功。
-        subject_email: 主題電子郵件
-        subject_name: 學科名稱
-      completed_at: 完成於
-      count: "%{count} 評估員"
-      create_assessor: 新增評稅員
-      evaluations: 評估
       mailer:
         subject: 新增評估主題
-      modals:
-        create_assessor:
-          add: 新增
-          cancel: 取消
-          form:
-            add: 新增
-            add_lead_assessor: 新增為首席評估員
-            add_lead_assessor_hint: 請先加入首席評估員表格
-            assessments: 評估
-            assessor: 評稅員
-            assessor_placeholder: 搜尋評估員...
-            lead_assessment: 鉛評估
-            subject: 主題
-            subject_placeholder: 搜尋主題...
-          sheet:
-            assessments: 評估
-            assessments_placeholder: 選擇
-            assessor_email: 評稅員電子郵件
-            assessor_first_name: 評稅員姓名
-            assessor_last_name: 評稅員的姓氏
-            subject_email: 主題的電子郵件
-          title: 新增評稅員
-        import:
-          body: 請參閱匯出功能，擷取可用於在此匯入的範本。
-          title: 進口評估員
       moderate_score:
-        assessor_evaluations: 評估員評估
-        main_report: 主要報告
-        no_completed_assessments: 目前尚未完成評估
         no_results: 沒有任何已回答的問題
-        other_reports: 其他報告
-        overall_scoring: 整體評分
-        recordings: 錄音
-        refresh: 刷新
-        reports: 報告
-        reports_count: "%{count} 報告"
-      overview: 概述
-      remove_confirmation: 您確定要從此活動中移除電子郵件 %{email} 的評估員嗎？
-      statuses:
-        completed: 已完成
-        not_completed: 未完成
-      toolbar:
-        export: 出口評稅員
-        import: 進口評估員
-        tools: 工具
-    assessor_assessment:
-      add: 新增
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: 選擇評估
-      name: 評估員 評估
-    assessor_campaigns:
-      statuses:
-        completed: 已完成
-        in_progress: 進行中
-        not_started: 尚未開始
-    assessor_subjects:
-      statuses:
-        completed: 已完成
-        in_progress: 進行中
-        not_started: 尚未開始
     assigns:
       create:
         successfully: 成功建立新的評估指派
@@ -501,42 +191,6 @@ zh-Hant:
       edit:
         header: 編輯報告指派
     attention: 請注意
-    audit_log:
-      action: 行動
-      audit_logs: 稽核記錄
-      campaign: 活動
-      client: 客戶
-      client_ip: 用戶端 Ip
-      collapse_filters: 折疊篩選器
-      dashboard: 儀表板
-      date_presets:
-        last_30_days: 最近 30 天
-        last_7_days: 最近 7 天
-        last_month: 上個月
-        last_week: 上週
-        today: 今天
-        yesterday: 昨天
-      date_range: 日期範圍
-      expand_filters: 展開篩選器
-      failure_reason: 失敗原因
-      interface: 介面
-      log_date: 記錄日期
-      outcome: 結果
-      payload: 有效載荷
-      project: 專案
-      record_id: 記錄 ID
-      request_id: 請求編號
-      reset: 重設
-      search: 搜尋
-      search_campaign: 依活動搜尋
-      search_client: 依客戶搜尋
-      search_project: 依項目搜尋
-      search_record: 依記錄 ID 搜尋
-      search_user: 依使用者搜尋
-      title: 稽核記錄資訊
-      type: 記錄類型
-      user: 使用者
-      user_agent: 使用者代理
     back: 返回
     block_settings:
       modal:
@@ -749,20 +403,7 @@ zh-Hant:
           missing_user_reports: 邮件用户报告缺失：%{emails}
           no_file_found_in_extracted_zip: 在解压后的ZIP文件中未找到文件
           user_report_not_found: 未找到用户报告，邮箱地址：%{email}
-      bulk_download:
-        data_range_error: 請選擇日期範圍
-        modal:
-          subtitle: 選擇日期範圍，然後為每份報告選擇所需語言
-      generate:
-        modal:
-          subtitle: 選擇每份報告所需的語言
     campaign_templates:
-      campaign_templates: 活動範本
-      column:
-        assessment: 評估
-        campaign: 活動
-        owner: 業主
-        report: 報告
       copy:
         successfully: 客戶租約 %{name} 已成功複製。
       create:
@@ -773,16 +414,6 @@ zh-Hant:
         header: 編輯用戶端
       errors:
         owner_invalid: 模板擁有者必須與評估、報告和尺寸的擁有者相同
-      form:
-        assessment: 評估
-        assessment_placeholder: 選擇評估
-        name: 名稱
-        name_placeholder: 輸入名稱
-        owner: 業主
-        owner_placeholder: 選擇所有者
-        report: 報告
-        report_placeholder: 選擇報告
-        title: 活動範本
       image_fields:
         remove: 移除
       index:
@@ -797,10 +428,6 @@ zh-Hant:
         updated_at: 更新日期
       new:
         header: 新客戶
-      remove_confirm:
-        content: 您確定要移除活動範本「%{name}」嗎？
-        success: 成功移除營業範本「%{name}」。
-        title: 移除活動範本
       resource:
         confirmations:
           delete:
@@ -816,7 +443,6 @@ zh-Hant:
       update:
         successfully: 客戶租約 %{name} 已成功更新。
     campaigns:
-      actions: 管理
       assessment_reports:
         report_approval:
           allow_bulk_approve: 允許批量核准
@@ -866,148 +492,6 @@ zh-Hant:
       assessors:
         spoof:
           successfully: 您已成功登入 %{name}
-      convert_to_template: 轉換為範本
-      copy: 複製
-      delete: 刪除
-      edit: 編輯
-      extend_time_success_message: 活動計時器延長至 %{minutes} 分鐘
-      filters:
-        active: 活躍
-        all: 全部
-        archived: 存檔
-        closed: 關閉
-        inactive: 閒置
-        status: 狀態
-      form:
-        active_notice: 廣告系列狀態將自動更改為在選定的結束日期關閉
-        campaign: 活動
-        copy_factors: 複製因素
-        inactive_notice: 廣告系列狀態將在選定的開始日期自動更改為活動
-        name: 名稱
-        practice_campaign: 實踐活動
-        status: 狀態
-      listing:
-        assessments: 評估
-        id: 同上
-        name: 名稱
-        reports: 報告
-        status: 狀態
-        template: 範本
-        type: 類型
-      menus:
-        add_common_campaign: 新增共同活動
-        add_multi_rater_campaign: 新增多評分活動
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: 活動範本
-            factors: 因素
-          base_settings:
-            active: 活躍
-            archive: 存檔
-            assessment: 評估
-            category: 類別
-            closed: 關閉
-            default_assessment_language: 評估預設語言
-            default_report_language: 報告預設語言
-            empty: 空
-            inactive: 閒置
-            name: 名稱
-            normal: 正常
-            previous: 上一頁
-            select_assessment_language: 選擇評估語言
-            select_report_language: 選擇報告語言
-            skill_rater: 技能評核員
-            standard: 標準
-            status: 狀態
-            type: 類型
-          close:
-            content: 您確定要關閉 Multi Rater Campaign Creator 嗎？ 任何未儲存的自訂工作都會遺失。 請確認您的決定。
-            title: 關閉 Multi Rater Campaign Creator？
-          instructions_creation:
-            empty: 空：從空白調查問卷開始，然後根據您的特定需求自訂。
-            previous: 上一頁： 選擇先前的評估作為起點，並進行修改。
-            standard: 標準： 使用預先設計的範本，其中包含常用的問題與指標。
-            sub_title: 請選擇您想要建立的活動類型。
-            title: 歡迎使用 Multi Rater Campaign Creator！
-          instructions_customization:
-            sub_title: 選擇評估中要包含的範本和因素。
-            title: 自訂您的評估！
-          no_factors:
-            description: 請嘗試其他搜尋關鍵字。
-            title: 未找到任何因素
-          questions:
-            select_all: 全部選擇
-            title: 問題與指標
-          search_factors:
-            description: 請輸入至少 3 個字元，以尋找您要找的因素。
-            title: 開始搜尋
-          success: 多評分活動已成功建立。
-          success_job: 多評分活動建立工作已成功排程。
-      options:
-        description:
-          name: 說明
-          save: 儲存說明
-          save_success: 說明已成功儲存
-        enable_video_call_recording: 啟用視訊通話錄影
-        fixed_time: 固定時間
-        instructions:
-          actions:
-            saved: 指令已成功儲存
-          enable: 啟用指示
-          save: 儲存說明
-        prework_required: 如果前期工作未完成，則不允許中心預訂
-        prework_required_for_invite: 只有在預先工作完成時，才會傳送邀請電子郵件
-        proctoring:
-          enable: 啟用監考
-          identification: 識別
-          identifications:
-            face: 臉部
-            face_and_passport: 臉部與護照
-            passport: 護照
-          integration_type: 整合
-          integration_types:
-            iframe: IFrame
-            ldb: 鎖定瀏覽器
-          proctoring_types:
-            offline: 離線
-            online: 線上
-          rule_types:
-            allow_absence_in_frame: 允許缺席畫面
-            allow_to_use_books: 允許使用書籍
-            allow_to_use_calculator: 允許使用計算機
-            allow_to_use_excel: 允許使用 Excel
-            allow_to_use_human_assistant: 允許使用人工助理
-            allow_to_use_messengers: 允許使用信使
-            allow_to_use_paper: 允許使用紙張
-            allow_to_use_websites: 允許使用網站
-            allow_voices: 允許聲音
-            allow_wrong_gaze_direction: 允許錯誤的注視方向
-          rules: 規則
-          trial: 測試
-          type: 類型
-        show_watermark: 顯示水印
-        watermark_content: 水印內容
-        watermark_info: 如果您沒有新增任何內容，使用者的電子郵件預設會顯示為水印。 您可以使用下列任何一種 pipetext -<br/> {{id}} - 參與者 ID </br>{{first_name}} - 參賽者的名字 </br>{{last_name}} - 參賽者姓氏 </br>{{email}} - 參賽者的電子郵件地址
-      pdf_password: PDF 密碼
-      types:
-        common: 常見問題
-        threesixty: 多評分
-      users:
-        add_user: 新增使用者
-        completion_status: 完成狀態
-        created_by: 建立者
-        email: 電子郵件
-        filters:
-          all: 全部
-          anonymous: 匿名
-          identified: 已識別
-        id: 同上
-        is_active: 活躍
-        name: 名稱
-        no_permission_message: 您無權修改
-        title: 使用者
-        updated_by: 更新日期
       validations:
         dates:
           end: 必須在開始日期之後
@@ -1016,32 +500,7 @@ zh-Hant:
         invalid_campaign_factor_codes: 下列活動 factor_codes 無效： %{codes}
         missing_headers: 遺失標頭
         missing_users: 下列電子郵件不存在： %{emails}
-      import:
-        example_csv: 下載範例 csv
-        success_msg: 匯入已成功上傳
-      modal:
-        title: 匯入外部廣告系列得分
-    client_features:
-      client_features: 客戶特色
-      form:
-        ai_assistants: AI 助理
-        ai_assistants_disabled_by_client: AI 助理被用戶端停用
-        ai_assisted_idp: AI 協助的 IDP
-        ai_assisted_idp_requires_ai_assistants: AI 輔助 IDP 需要啟用 AI 助理功能
-        ai_content_analysis: 人工智能内容分析
-        ai_content_analysis_disabled_by_client: AI内容分析功能已被客户端禁用
-        ai_translation: AI翻译
-        ai_translation_disabled_by_client: AI 翻译功能已被客户端禁用
-        global_skills: 全球技能
-        global_skills_disabled_by_client: 客戶禁用了全局技能
-        idp: IDP
-        idp_disabled_by_client: 客戶端禁用了IDP
-        sms_notification: 簡訊通知
-        sms_notification_disabled_by_client: 用戶端已停用簡訊通知
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: 麵包屑
       archive:
         successfully: 成功
       base:
@@ -1049,7 +508,6 @@ zh-Hant:
         archived: 存檔
         disable: 存檔
         enable: 未歸檔
-      clients: 客戶
       copy:
         successfully: 客戶租約 '%{name}' 已成功複製。
       create:
@@ -1069,392 +527,17 @@ zh-Hant:
       new:
         header: 新客戶
       projects:
-        actions:
-          archive: 存檔
-          unarchive: 未歸檔
-        archive:
-          content: 您確定要將「%{project_name}」歸檔嗎？
-          success: 專案「%{project_name}」已成功歸檔。
-          title: 存檔專案
-        assign_assessments:
-          add_assessment: 新增評估
-          assessments: 評估
-        assign_reports:
-          add_report: 新增報告
-        campaigns:
-          archive:
-            successfully: 活動「%{name}」已成功存檔。
-          copy:
-            error: 廣告系列 '%{name}' 未被複製。
-            successfully: 活動 '%{name}' 已成功複製。
-          create:
-            successfully: 成功建立活動「%{name}」。
-          destroy:
-            successfully: 活動 '%{name}' 已成功刪除。
-          edit:
-            header: 編輯活動
-          export:
-            assessments: 評估
-            assigned_user: 指定使用者
-            completed_user: 已完成使用者
-            created_at: 建立日期
-            header:
-              actions: 行動
-              actual_usage: 實際使用量
-              assessments: 評估
-              campaigns: 活動
-              name: 名稱
-              reports: 報告
-              sub_campaigns: 子系列
-              tests_allocated: 分配的測試
-              users: 使用者
-            id: 同上
-            name: 活動名稱
-            reports: 報告
-            updated_at: 更新日期
-          index:
-            export: 出口
-            new: 新增
-            title: 活動
-          list:
-            assessments: 評估
-            assigned_user: 指定使用者
-            completed_user: 已完成使用者
-            created_at: 建立日期
-            header:
-              actions: 行動
-              actual_usage: 實際使用量
-              assessments: 評估
-              campaigns: 活動
-              name: 名稱
-              reports: 報告
-              sub_campaigns: 子系列
-              tests_allocated: 分配的測試
-              users: 使用者
-            id: 同上
-            name: 活動名稱
-            reports: 報告
-            updated_at: 更新日期
-          new:
-            header: 新活動
-          resource:
-            sub_campaign:
-              create: 建立新子系列
-            tooltips:
-              copy: 複製活動
-              create_report: 新增報告
-              create_user: 新增使用者
-              delete: 刪除活動
-              edit: 編輯活動
-              export: 出口
-          sidebar:
-            archive: 存檔活動
-            copy: 複製活動
-            destroy: 刪除活動
-            disable: 停用
-            edit: 編輯活動
-            enable: 啟用
-            new: 新活動
-            title: 活動的選項
-            view_licenses: 檢視授權
-          sub_campaigns:
-            archive:
-              successfully: 子系列 %{name} 已成功存檔。
-            copy:
-              error: 子系列 %{name} 未被複製。
-              successfully: 子系列 %{name} 已成功複製。
-            create:
-              successfully: 子系列 %{name} 已成功建立。
-            destroy:
-              successfully: 子系列 %{name} 已成功刪除。
-            edit:
-              header: 編輯子系列
-            export:
-              assessments: 評估
-              assigned_user: 指定使用者
-              completed_user: 已完成使用者
-              created_at: 建立日期
-              header:
-                actions: 行動
-                actual_usage: 實際使用量
-                archive_status: 存檔狀態
-                name: 名稱
-                sub_campaign: 子系列
-                tests_allocated: 已分配測試
-                users: 使用者
-              id: 同上
-              name: 子系列名稱
-              reports: 報告
-              updated_at: 更新日期
-            header:
-              actions: 行動
-            index:
-              export: 出口
-              new: 新增
-              title: 子活動
-            list:
-              assessments: 評估
-              assigned_user: 指定使用者
-              completed_user: 已完成使用者
-              created_at: 建立日期
-              header:
-                actions: 行動
-                actual_usage: 實際使用量
-                archive_status: 存檔狀態
-                name: 名稱
-                sub_campaign: 子系列
-                tests_allocated: 已分配測試
-                users: 使用者
-              id: 同上
-              name: 子系列名稱
-              reports: 報告
-              updated_at: 更新日期
-            new:
-              header: 新子系列
-            resource:
-              tooltips:
-                copy: 複製子活動
-                create_report: 新增報告
-                create_user: 新增使用者
-                delete: 刪除子活動
-                edit: 編輯子活動
-            sidebar:
-              archive: 存檔子活動
-              copy: 複製子系列
-              destroy: 刪除子系列
-              disable: 停用
-              edit: 編輯子系列
-              enable: 啟用
-              new: 新子系列
-              title: 子系列的選項
-              view_licenses: 檢視授權
-            toggle_status:
-              successfully: 子系列 %{name} 已成功更新。
-            update:
-              successfully: 子系列 %{name} 已成功更新。
-          toggle_status:
-            successfully: 活動 %{name} 已成功更新。
-          update:
-            successfully: 活動 %{name} 已成功更新。
-        copy:
-          error: 專案 %{name} 未被複製。
-          successfully: 專案 %{name} 已成功複製。
-        create:
-          successfully: 專案 %{name} 已成功建立。
-        destroy:
-          successfully: 專案 %{name} 已成功刪除。
-        edit:
-          header: 編輯專案
-        export:
-          2fa_enabled: 已啟用 2FA
-          actual_usage: 實際使用量
-          admin: 客戶管理員
-          applicable_level: 適用層級
-          archive_status: 狀態
-          assessments: 評估
-          assigned_user: 指定使用者
-          completed_user: 已完成使用者
-          created_at: 建立日期
-          id: 同上
-          name: 專案名稱
-          number: 數量
-          project_admin: 專案管理員
-          reports: 報告
-          tests_allocated: 已分配測試
-          tte_admin: TTE 專案經理
-          updated_at: 修改日期
-          url: 網址
-          users_count: 使用者計數
-        form:
-          2fa: 2 因子驗證
-          2fa_enable: 啟用雙重認證
-          applicable_levels:
-            campaign: 活動結束層級
-            project: 專案結束層級
-            sub_campaign: 子系列結束層級
-          data_privacy: 資料隱私
-          enable_live_chat: 啟用即時交談
-          enable_privacy_links: 啟用隱私權連結
-          live_chat_token: 即時聊天代用幣
-          optional: 選購
-          other_settings: 其他設定
-          privacy_link: 隱私權連結
-          privacy_text: 隱私權文字
-          project_number: 專案編號
-          webhook: Webhook
-          webhook_auth_enabled: 啟用 Webhook 驗證
-          webhook_password: 密碼
-          webhook_username: 使用者名稱
-        header:
-          actions: 行動
-        index:
-          export: 出口
-          new: 新增
-          title: 專案
-          tooltips:
-            create: 建立
-            export: 出口
-        list:
-          2fa_enabled: 已啟用 2FA
-          actual_usage: 實際使用量
-          admin: 客戶管理員
-          applicable_level: 適用層級
-          archive_status: 狀態
-          assessments: 評估
-          assigned_user: 指定使用者
-          completed_user: 已完成使用者
-          created_at: 建立日期
-          id: 同上
-          name: 專案名稱
-          number: 數量
-          project_admin: 專案管理員
-          reports: 報告
-          tests_allocated: 已分配測試
-          tte_admin: TTE 專案經理
-          updated_at: 修改日期
-          url: 網址
-          users_count: 使用者計數
-        new:
-          header: 新專案
-        resource:
-          add_assessment: 新增評估
-          add_report: 新增報告
-          assessments: 評估
-          tooltips:
-            copy: 複製專案
-            create_admin: 建立專案管理員
-            create_report: 新增報告
-            create_user: 新增使用者
-            delete: 刪除專案
-            edit: 編輯專案
-        sidebar:
-          admins: 專案管理員
-          archive: 存檔專案
-          copy: 複製專案
-          design: 編輯設計
-          destroy: 刪除專案
-          disable: 停用
-          edit: 編輯專案
-          enable: 啟用
-          new: 新專案
-          title: 專案的選項
-          view_licenses: 檢視授權
-        status:
-          active: 活躍
-          archived: 存檔
         threesixty_campaigns:
-          base:
-            active: 活躍
-            archived: 存檔
-            disable: 存檔
-            enable: 未歸檔
-          completion_statuses:
-            approved: 已核准
-            completed: 已完成
-            denied: 拒絕
-            in_progress: 進行中
-            not_started: 尚未開始
-          copy:
-            error: 客戶租約 '%{name}' 未被複製。
-            successfully: 客戶租約 '%{name}' 已成功複製。
-          create:
-            successfully: 客戶租約 '%{name}' 已成功建立。
-          designs:
-            form:
-              no_background: 尚無背景資料
-              no_logo: 尚未有標誌
           destroy:
             error: 無法刪除 '%{name}' 因為存在某些主體或評估器的關係。
-            successfully: 客戶租約 '%{name}' 已成功刪除。
-          edit:
-            header: 編輯 360 活動
-          export:
-            admin: 客戶管理
-            assessment: 評價
-            client_admins: 客戶端管理員
-            created_at: 建立於
-            id: 同上
-            name: 名稱
-            report: 報告
-            report_bundle: 報告套件
-            status: 狀態
           index:
-            export: 出口
-            new: 新增 360 活動
             title: 360 活動
-          license:
-            header: "%{name} - 編輯許可證"
-          licenses:
-            update:
-              duplicate_licenses: 您有重複的授權
-              successfully: 授權已成功更新
-          list:
-            admin: 客戶管理
-            assessment: 評價
-            client_admins: 客戶端管理員
-            created_at: 建立於
-            id: 同上
-            name: 名稱
-            report: 報告
-            report_bundle: 報告套件
-            status: 狀態
-            updated_at: 更新日期
-          new:
-            header: 全新 360 活動
           resource:
             confirmations:
               delete:
                 body: "<p>您確定要刪除？</p> <p>此動作無法撤銷。 這將永久刪除<strong>%{name}</strong>活動、子活動及所有關聯。</p> <p>請輸入<strong>%{name}</strong>確認。</p>"
                 title: 刪除<strong>%{name}</strong>?
-              disable:
-                body:
-                  '0': "<p>您確定要歸檔？</p> <p>所有活動、子活動和使用者也將歸檔</p>"
-                  '1': "<p>您確定要歸檔？</p> <p>所有子系列和使用者也將歸檔</p>"
-                  '2': "<p>您確定要歸檔嗎？</p> <p>所有使用者也會被存檔</p>"
-                  '3': "<p>您確定要歸檔嗎？</p> <p>所有使用者也會被存檔</p>"
-                title: 存檔<strong>%{name}</strong>?
-              enable:
-                body:
-                  '0': "<p>您確定要取消存檔嗎？</p>"
-                  '1': "<p>您確定要取消存檔嗎？</p>"
-                  '2': "<p>您確定要取消存檔嗎？</p>"
-                  '3': "<p>您確定要取消存檔嗎？</p>"
-                title: 解除存檔<strong>%{name}</strong>?
-            export_results: 匯出結果
-            raw_results: 原始結果
-            tooltips:
-              campaigns:
-                delete: 刪除活動
-              copy: 複製客戶端
-              create_admin: 建立客戶管理
-              delete: 刪除用戶端
-              disable: 停用用戶端
-              edit: 編輯用戶端
-              enable: 啟用用戶端
-          statistics:
-            index:
-              all_assessments: 所有評估
-              assessment_type: 評估類型
-              title: 統計資料
-          toggle_status:
-            successfully: 客戶租約 %{name} 已成功更新。
-          update:
-            successfully: 客戶租約 %{name} 已成功更新。
-          url: 網址
-        toggle_status:
-          successfully: 專案 %{name} 已成功更新。
-        unarchive:
-          content: 您確定要將 %{project_name} 解壓縮嗎？
-          success: 專案「%{project_name}」已成功解除存檔。
-          title: Unarchive 專案
-        update:
-          successfully: 專案 %{name} 已成功更新。
       registration_codes:
-        actions:
-          add_code: 加入代碼
-        column:
-          code: 代碼
-          usage_stats: 使用統計
         errors:
           count_invalid: 不能小於 used_count = %{use_count}
           criteria: 只能包含字母數字字符、連字符號 (-) 和下劃線 (_)
@@ -1462,13 +545,6 @@ zh-Hant:
           incorrect_domain: 網域格式不正確。
           invalid_end_date: 必須大於開始日期
           license_issue: 許可證數量不足。
-        form:
-          active: 活躍
-          code: 代碼
-          end_date: 結束日期
-          name: 名稱
-          start_date: 開始日期
-          total_count: 總計
       resource:
         confirmations:
           delete:
@@ -1484,25 +560,9 @@ zh-Hant:
         successfully: 客戶租約 %{name} 已成功更新。
     close: 關閉
     common:
-      add: 新增
-      back: 返回
-      cancel: 取消
-      code: 法典
-      disabled: Diasbled
-      download_sample_file: 下載樣本檔案
       enabled: 已啟用
-      import:
-        failure_msg: 匯入檔案時發生錯誤。
-      instructions: 說明
       loading: 載入中...
-      minute: 分
-      name: 名字
-      next: 下一頁
-      reset: 重設
       save: 節省
-      select_all: 全部選取
-      type: 類型
-      unselect_all: 全部取消選擇
     communication_settings: 設定
     communications:
       create:
@@ -1677,86 +737,19 @@ zh-Hant:
       input_duration:
         placeholder: 輸入為「1d 2h 3m
     create: 建立
-    dashboard:
-      capacity_name: 容量名稱
-      choose_file_format: 選擇檔案格式
-      dashboard_types:
-        oracle_analytics: Oracle 分析
-        powerbi: PowerBi
-      dashboards: 儀表板
-      export_dashboard_to_file: 匯出儀表板至檔案
-      export_job_failure: 啟動匯出失敗
-      export_job_success: 匯出工作開始。完成後會通知您。
-      get_started: 開始使用
-      initialize_msg: 初始化此活動的儀表板
-      loading_failed: 儀表板載入失敗。
-      only_export_current_tab: 僅匯出目前的標籤
-      pdf: PDF
-      pptx: PPTX
-      preview:
-        embed_token_error_description: 請檢查設定中的資料集和報告 ID 是否正確。
-        embed_token_error_title: 無法產生 Embed token。
-      settings:
-        capacity_id: 容量 ID
-        details: 詳細資訊
-        refresh: 刷新
-        workspace_id: 工作區 id
-      tabs:
-        accesssheet: 存取表
-        accesssheet_setting: 存取表設定
-        dashboard: 儀表板
-        settings: 設定
-    dashboard_form:
-      fields:
-        dataset_id: 資料集編號
-        enabled: 已啟用
-        image: 圖片
-        project_path: 專案路徑
-        refresh_interval: 刷新間隔 (分鐘)
-        report_id: 報告 ID
-        visual_header_visibility: 可視化標頭可見度
-      image_upload_failed: 圖片上傳失敗。
-      none: 無
-      refresh_success: 資料集的刷新排程成功。
-      visual_header_visibility_options:
-        hide_all: 全部隱藏
-        keep_original: 保持原創
-        show_all: 顯示全部
-    data_exports_modal:
-      title: 選擇日期範圍
     data_reports:
-      columns:
-        created_at: 建立於
-        created_by: 建立者
-        last_updated_by: 最後更新日期
-        name: 名稱
-        owner: 業主
-        password: 密碼
-        status: 狀態
-        udpated_at: 最後更新日期
-      configuration: 組態
       errors:
         factor_code_or_field_name_required: 需要factor_code或field_name
         factor_not_found: 未在評估範圍內發現
         inclusion: 無效類型，有效類型： %{values}
         not_found: 未找到
         not_owned: 非客戶所有
-      form:
-        name: 資料報告
-      messages:
-        runed: 資料報告已成功排程執行
       validations:
         project_and_campaigns_not_allowed: project_ids 和 campaign_ids 不應該一起指定
-        project_not_related_to_client: "%{project_id} 不屬於用戶端"
         project_or_campaign_required: 專案_ids 或 campaign_ids 為必填項目
         sections_required: 各節是必需的
     datasheet:
       threesixty_warning: 您無法從此上傳 360 報告的資料表列。 360 報告的資料表列會從與此報告連結的活動中載入。
-    dates:
-      completed: 完成於
-      end: 結束日期
-      start: 開始日期
-      started: 開始於
     development_action_import:
       errors:
         blank_field: '行 %{row}: %{field} 不能為空白'
@@ -1793,49 +786,11 @@ zh-Hant:
         successfully: 開發動作「%{name}」已成功建立。
       destroy:
         successfully: 開發動作「%{name}」已成功刪除。
-      development_action_types:
-        course: 課程
-        default: 預設
-      duration:
-        max_length: 不能大於1年
-        min_length: 不能少於1分鐘
       edit:
         header: 編輯開發行動
       export:
         details: 檔案詳細資料
-        failure_msg: 匯出翻譯時發生錯誤
-        success_msg: 匯出開發動作正在進行中，請檢查通知中的狀態。
         translation_details: 詳細資訊
-      export_development_action_translations: 以專案為基礎的發展行動翻譯
-      export_development_actions: 基於專案的發展行動
-      form:
-        available_languages: 可用語言
-        client_placeholder: 選擇客戶
-        course_image: 課程圖片
-        course_link: 課程連結
-        description: 說明
-        development_action_type: 發展行動類型
-        duration: 期間
-        end_date: 結束日期
-        learning_style: 學習風格
-        name: 名稱
-        project_placeholder: 選擇專案
-        skills: 技術
-        skills_placeholder: 選擇技能
-        start_date: 開始日期
-        title: 發展行動
-        upload: 上傳
-      global: 全球發展是行動嗎？
-      heading: 發展行動
-      import:
-        download_example_csv: 下載範例 csv
-        failure_msg: 匯入檔案時發生錯誤。
-        info_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
-      import_action:
-        development_actions_title: 匯入開發作業
-        development_actions_translations_title: 導入開發動作翻譯
-      import_development_actions: 發展行動
-      import_development_actions_translations: 發展行動 翻譯
       learning_styles:
         cannot_be_blank: 不能為空白
         invalid: 必須是在職學習、有系統的學習、從他人身上學習其中之一
@@ -1869,32 +824,11 @@ zh-Hant:
       form:
         enable_innovation_styles: 啟用創新風格
         enable_occupations: 啟用職業
-        name: 姓名
-        title: 尺寸
       import_factors:
         import: 進口
         sample_file: 樣本檔案
         successfully: 為維度 %{name} 排程的匯入因子工作。
         title: 進口因素
-      import_modal:
-        after: 之後
-        before: 之前
-        cancel: 取消
-        change_log_input: 變更記錄
-        continue: 繼續
-        error: 錯誤
-        error_occurred: 發生錯誤
-        errors:
-          file_error: 請在繼續之前選擇 JSON 檔案。
-          processing_error: 錯誤處理檔案
-        field: 現場
-        import: 進口
-        import_dimension: 進口尺寸
-        import_scheduled: 輸入排程
-        operation: 操作
-        owner_input_validation: 請選擇物主
-        owner_select: 選擇所有者
-        select_json: 選擇 JSON 檔案
       import_translations:
         error: 匯入尺寸 %{name} 的翻譯時發生錯誤。
         successfully: 預定為維度 %{name} 的匯入翻譯。
@@ -1918,7 +852,6 @@ zh-Hant:
         confirmations:
           delete:
             body: "<p>您確定要刪除此維度嗎？</p>\n"
-            message: 请在文本框中输入下方的维度名称以确认
             title: 刪除<strong>尺寸</strong>？
           toggle_status:
             body: "<p>您確定要 %{status} 這個維度嗎？</p>\n"
@@ -1946,9 +879,6 @@ zh-Hant:
       update:
         successfully: 已成功更新 %{name} 尺寸
     disable: 停用
-    document_titles:
-      project_assessors: 評估員 | %{project}
-      project_participants: 參與者 | %{project}
     enable: 啟用
     errors:
       csv_file_required: 檔案必須是 CSV 檔案
@@ -1969,21 +899,6 @@ zh-Hant:
       edit:
         header: 編輯因子名稱
       form:
-        components:
-          ExternalList:
-            add: 新增
-            table:
-              actions: 行動
-              jsonpath: JSON 路徑
-              type: 類型
-              types:
-                norm_score: 標準分數
-                percentage: 百分比
-                percentile: 百分位數分數
-                score: 得分
-                zscore: Z 得分
-            title: 分數的 JSON 路徑
-        predicate: 谓语
         scoring_strategies:
           custom_formula: 自訂公式
           external_score: 外部評分
@@ -1995,15 +910,9 @@ zh-Hant:
           sub_factors_average: 因子的加權平均值
           sub_factors_conditional_average: 因素的條件加權平均值
           sub_factors_sum: 因子的加權總和
-        scoring_strategies_tip: "<strong>問題 (平均值)：</strong>當有問題與一個因素連結時，這就像目前的計分方法。 <br /> <br /><strong>問題 (SUM)：</strong>與問題 (平均) 相似，但使用 SUM。 <br /> <br /><strong>其他因素的問題 (平均)：</strong>當一個因素有子因素時，這就像目前的計分方法，唯一的改變是增加權重。 <br /> <br /><strong>其他因素的問題 (SUM)：</strong>這與其他因素 (平均值) 相似，但使用 SUM。 <br /> <br /><strong>加權因素總和：</strong>將選定的其他因素的分數乘以其權重相加。"
-        scoring_strategy: 計分策略
-        search_factors: 搜索因素
-        use_sub_factor_norm_score: 使用因子標準分數
-        value: 值
       index:
         icon: 圖示
         new: 新增
-        precision: 精度
         scoring_strategies:
           custom_formula: 自訂公式
           external_score: 外部評分
@@ -2061,10 +970,6 @@ zh-Hant:
         successfully: 因子已成功更新。
       update:
         successfully: "%{name} 系數已成功更新"
-    genders:
-      female: 女性
-      male: 男性
-      not_set: 未設定
     grants:
       common:
         view: 檢視
@@ -2074,100 +979,19 @@ zh-Hant:
           accesssheet_manage: 存取表管理
           accesssheet_settings: 存取表設定
           accesssheet_view: 存取表檢視
-    header:
-      logout:
-        content: 如果你想繼續工作，請按取消。按下確定鍵即可登出目前使用者。
-        title: 你確定要登出嗎？
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: 由於此評估已由使用者 %{email} 指派並開始進行，因此無法為 hogan 評估 %{assessment_name} 新增回應。 您可以為該使用者建立新的 hogan 帳戶，這將允許使用者重新進行評估。
           short_error_message: 無法為 hogan 評估 %{assessment_name} 新增回應，因為此評估已由使用者 %{email} 指派並開始執行。
     idp:
-      actions:
-        remove_confirm: 在文字方塊中輸入以下的目前範本名稱，即可移除範本
-        success: "%{idpName} 已成功移除。"
-      add_idp_template: 新增 IDP 範本
-      ai_assistant: AI助手
-      ai_assisted_idp_enabled: AI 輔助 IDP 啟用
-      ai_enabled: 啟用 AI
-      ai_settings: AI 設定
-      all: 全部
-      appearance: 外觀
-      appearance_hint: 若要修改外觀，請先儲存 IDP 模版，以啟用這些設定。
-      appearance_success: 外觀設定已成功儲存
-      background_image: 背景圖片
-      behavioral_skills: 行為技巧
-      client_skills: 客戶技能
-      delete_skill: 您確定要刪除此技能嗎？刪除後將同時移除所有相關的開發行動。
-      delete_skill_msg: 你確定要刪除這個技能嗎？刪除它也會移除所有相關的開發行動。
-      details_updated: IDP 詳細資料已成功更新
       development_actions:
-        add_from_library: 從庫新增
-        completion: 完成
-        create_development_actions_with_ai: 使用 AI 建立開發動作
-        create_from_ai: 從 AI 創建
-        create_my_own: 創建我自己的
-        custom: 習慣
-        date_range: 開始日期 - 結束日期
-        edit_plan_to_add_development_actions: 編輯計劃，並新增開發動作。
         errors:
           invalid_learning_style: "「%{learning_style}」不是一種有效的學習方式。有效選項為：%{valid_styles}"
           learning_style_blank: 學習風格不能空白
-        generate_by_ai: 由 AI 生成
-        generate_more: 產生更多
-        heading: 技能/發展行動
-        manage_skills: 管理技能
-        no_development_actions: 您沒有開發動作
-      document_ai_assistant: 文件分析 AI 助理
-      edit_template: 編輯 IDP 範本
-      enter_tag_or_skills_error: 選擇至少一個標籤或技能
-      enter_template_description: 說明
-      enter_template_description_error: 範本描述為必填項目。
-      enter_template_name: 名稱
-      enter_template_name_error: 模板名稱為必填項目
       errors:
-        cannot_update_progress_plan_completed: 無法更新進度，因為 IDP 計劃已完成
         skills_required_on_publishing: 請在發布模板之前選擇技能。
         update: 不允許更新，因為 IDP 模版已與使用者 IDP 計劃相關聯。
-      fields:
-        approval_date: 核准日期
-        assigned_data: 指定資料
-        assigned_date: 指定日期
-        completion_date: 完成日期
-        current_job_role: 目前職務
-        division: 部門
-        name: 名稱
-        publish_date: 出版日期
-        review_date: 審核日期
-        target_job_role: 目標職務
-      fields_label: 字段
-      global_skills: 全球技能
-      idp: IDP
-      idp_template: 新增 IDP 範本
-      interview_questions: 面試問題
-      interview_questions_updated: 面試問題更新成功。
-      intro_message: 介紹訊息
-      intro_message_hint: 若要修改介紹訊息，請先儲存 IDP 範本以啟用這些設定。
-      intro_message_success: 簡介資訊已成功保存
-      locales: 區域設置
-      logo_image: 標誌圖片
-      logo_type:
-        both: 美世和客戶標誌
-        client_only: 僅限客戶標誌
-        mercer_only: 僅 Mercer 標誌
-        none: 無標誌
-      logo_type_label: 標誌類型
-      no_interview_questions_selected: 未選擇面試問題
-      no_reflection_questions_selected: 未選擇反思問題
-      none: 無
-      one_click_idp_enabled: 啟用一鍵式 IDP
-      reference_locale: 參考區域設定
-      reflection_questions: 反思問題
-      reflection_questions_hint: 若要修改反思問題，請先儲存 IDP 模版，以啟用這些設定。
-      reflection_questions_updated: 反思問題已成功更新。
-      remove: 移除
-      remove_skill: 移除技能
       revert_skill_to_public:
         errors:
           skill_already_public: 技能已經公開
@@ -2175,47 +999,11 @@ zh-Hant:
         success:
           base_message: 技能「%{skill_name}」現在對您的經理可見
           with_approval: "%{base_message}，您的 IDP 計劃已提交批准"
-      select_by_tags: 依標籤選擇
-      select_interview_question: 開始輸入以搜尋並選擇問題
-      select_reflection_question: 開始打字搜尋並選擇問題
-      select_skill_gap_report: 選擇技能差距報告
-      select_specific_skills: 選擇特定技能
-      selected: 精選
-      self_rating: 啟用自我評級
-      show_reflections: 展覽反思
-      skill_gap_report: 技能差距報告
-      skill_gap_report_ai_assistant: 技能差距報告分析助手
-      skill_source_preference: 技能來源
-      skill_sources:
-        from_ai: 來自一般人工智慧知識
-        from_template: 從範本和映射
-      skills: 技術
       skills_privacy_messages:
         made_private: 技能「%{skill_name}」已被標記為私人技能，並且將對您的經理隱藏
         made_public: 技能「%{skill_name}」現在對您的經理可見
         skill_not_found: 未找到技能
         unauthorized: 未經授權修改此技能
-      skills_updated: IDP 技能更新成功
-      status:
-        draft: 草案
-        published: 已出版
-      status_updated: IDP 狀態更新成功
-      subtitle_text: 字幕文字
-      tab:
-        development_actions: 發展行動
-        interview_questions: 面試問題
-        reflection_questions: 反思問題
-        settings: 設定
-        templates: 範本
-      technical_skills: 技術技能
-      template_details: 範本詳細資訊
-      title_text: 標題文字
-      update_interview_questions: 更新面試問題
-      update_reflection_questions: 更新反思問題
-    idp_setting:
-      manager_approves_idp: 經理核准 IDP
-      manager_can_edit_idp: 管理員可以編輯 IDP
-      require_all_development_actions_complete: 要求完成所有開發行動
     import: 進口
     imports:
       assessments:
@@ -2285,10 +1073,6 @@ zh-Hant:
         successfully: 使用者已成功匯入
       new:
         header: 匯入使用者
-    individual_invite:
-      tabs:
-        assessment_center: 評估中心
-        invitation_status: 邀請狀態
     innovation_styles:
       create:
         successfully: 創新風格 %{name} 已成功建立。
@@ -2297,7 +1081,6 @@ zh-Hant:
       edit:
         header: 編輯創新風格
       form:
-        full_description: 完整描述
         no_icon: 沒有圖示
       index:
         new: 新增
@@ -2359,69 +1142,13 @@ zh-Hant:
       toggle_status:
         successfully: 因子已成功更新。
     integrations:
-      actions:
-        add: 整合
-        back: 回到整合
-        load_mettl_catalog: 負載測量評估目錄
-        load_microsite_catalog: 加载微网站评估目录
-        load_skillvue_catalog: 載入 Skillvue 評估目錄
-      columns:
-        active: 活躍
-        details: 詳細資訊
-        name: 整合名稱
-      details:
-        client_id: 客戶識別碼
-        deployment_id: 部署識別碼
-        platform_access_token_url: 平台存取令牌網址
-        platform_authentication_request_url: 平台認證請求網址
-        platform_host_name: 平台主機名稱
-        platform_id: 平台識別碼
-        platform_public_keyset_url: 平台公開金鑰集 URL
-        provider: 供應商名稱
-        webhookUrl: Webhook URL
-        webhookUrls: Webhook URL
-      integrations: 整合
       load_mettl_success: 載入評估工作已成功掛起
       load_microsite_success: "“加载微网站评估”任务已成功加入队列"
       load_skillvue_success: 載入技能評估工作已成功掛起
       modal:
-        hogan:
-          provider: 供應商
-          providers:
-            mercer: 美世
-            phoenix: 鳳凰城
-        iiht:
-          password: 密碼
-          tenancy_name: 租約名稱
-          tenant_id: 租戶 ID
-          user: 使用者
-        mettl:
-          apiBaseUrl: API 端點
-          apiBaseUrlRequired: 需要 API 端點。
-          privateKey: 私人密碼匙
-          privateKeyRequired: 需要私密金鑰。
-          publicKey: 公開金鑰
-          publicKeyRequired: 需要公開金鑰。
-          servers:
-            mettl_eu: 歐洲
-            mettl_india: 印度
         microsite:
           apiKey: API密钥
           apiKeyRequired: 需要 API 密钥
-        skillvue:
-          apiKey: API 金鑰
-          apiKeyRequired: 需要 API 金鑰
-        yoodli:
-          keyset_url: 鍵組網址
-          launch_url: 啟動網址
-          login_url: 登入網址
-      names:
-        hogan: HOGAN
-        iiht: IIHT
-        mettl: METTL
-        microsite: 专题网站
-        skillvue: Skillvue
-        yoodli: 尤德利
       validations:
         iiht:
           tenancy_name_present: 租戶名稱已出現在其他專案中
@@ -2432,26 +1159,10 @@ zh-Hant:
           api_key_present: 该 API 密钥已在其他项目中存在
         skillvue:
           api_key_present: API 金鑰已存在於其他專案中
-      view_all_schedules: 檢視所有 Mettl 時刻表
     interview_questions:
-      delete_confirmation: 你確定要刪除這個面試問題嗎？
-      description: 描述
       export:
-        action: 出口面試問題
         details: 檔案詳細資料
-        failure_msg: 匯出檔案時出錯。
-        success_msg: 正在匯出面試問題。請檢查通知中的狀態。
-      form:
-        description: 描述
-        mandatory: 命令的
-        question: 鞫
-        question_type: 問題類型
-        question_type_audio: 音訊
-        question_type_video: 視頻
-        time_limit: 時限（秒）
-        title: 面試問題
       import:
-        action: 導入面試問題
         errors:
           invalid_required_column_format: 無效的必要資料行值格式%{row}
           invalid_required_type_format: 無效的 QuestionType 資料行值格式%{row}
@@ -2459,64 +1170,6 @@ zh-Hant:
           missing_description: 缺少描述內容%{row}
           missing_question: 遺漏的問題內容%{row}
           save_failed: 儲存失敗的%{message}
-        failure_msg: 匯入檔案時出錯。
-        success_msg: 正在導入面試問題。請檢查通知中的狀態。
-      question: 鞫
-    invited_subject:
-      add_btn: 新增主題
-      assessment_center: 評估中心：
-      booked_at: 預訂於：
-      column:
-        invitation_status: 邀請狀態
-        participant: 參與者
-        scheduling_details: 排程細節
-      remove_confirm:
-        content: 您確定要移除電子郵件標題「%{subjectEmail}」嗎？
-        success: 包含電子郵件 '%{subjectEmail}' 的主旨已成功移除。
-        title: 移除主題
-      resend_invite:
-        content: 重新傳送邀請給所選主題。你確定要繼續嗎？
-        success: 邀請成功重新發送。
-        title: 重新傳送邀請
-      statuses:
-        accepted: 已接受
-        cancelled: 已取消
-        late_cancelled: 遲到取消
-        late_rescheduled: 遲到改期
-        pending: 待定
-        requested_cancellation: 要求取消
-        requested_cancellation_rejected: 拒絕取消
-        requested_rescheduling: 要求改期
-        requested_rescheduling_rejected: 重新排程 拒絕
-        rescheduled: 改期
-        scheduled: 排程
-      subject: 主題
-    job_role:
-      are_you_sure_to_remove: 您確定要移除嗎？
-      column:
-        job_group: 工作群組
-        skill_name: 技能名稱
-      export:
-        failure_msg: 匯出翻譯時發生錯誤
-        success_msg: 出口開發行動正在進行中。
-      form:
-        code: 代碼
-        description: 說明
-        job_group: 工作群組
-        name: 名稱
-        title: 工作角色
-      import:
-        download_example_csv: 下載範例 csv
-        success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
-      import_action:
-        translations: 匯入工作角色翻譯
-      job_role_details: 工作角色詳情
-      translations: 工作角色翻譯
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: 預期能力等級
-      form:
-        title: 技能工作映射
     job_roles:
       export:
         translations:
@@ -2582,18 +1235,11 @@ zh-Hant:
     meta_title: 管理面板
     navigation:
       approvals: 批准
-      audit_logs: 稽核記錄
-      availability: 可用性
       configuration: 配置
       content: 內容
-      dashboard: 儀表板
       factors: 因素
       innovation_styles: 創新風格
-      logout: 登出
       occupations: 職業
-      registration_codes: 註冊碼
-      skills_taxonomy: 技能分類法
-      users: 使用者
     no_data_found: 未找到資料
     norms:
       copy:
@@ -2609,13 +1255,6 @@ zh-Hant:
         factors: 因素
         inplace_title: 輸入數值
         title: 標準編輯
-      export:
-        success_msg: Norm 匯出工作排程成功，請檢查通知中的狀態。
-      import:
-        download_example_csv: 樣本規範 CSV
-        select_file_validation: 請在提交前選擇擁有者和檔案。
-        success_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
-        title: 規範輸入
       index:
         import: 進口
         new: 新增
@@ -2631,10 +1270,6 @@ zh-Hant:
         updated_by: 更新者
       new:
         header: 新規範
-      norms: 規範
-      remove:
-        confirm: 在文字方塊中輸入以下的標準名稱以確認
-        warning: 您確定要刪除規範"%{name}"
       resource:
         confirmations:
           delete:
@@ -2650,10 +1285,6 @@ zh-Hant:
           copy: 複製規範
           delete: 刪除規範
           edit: 重新命名規範
-      score_types:
-        five_scale: 五個刻度
-        norm_type: 標準類型
-        percentage: 百分比
       sidebar:
         copy: 複製規範
         destroy: 刪除規範
@@ -2661,7 +1292,6 @@ zh-Hant:
         editor: 標準編輯
         export: 出口規範
         title: Norm 的選項
-      title: 標準
       toggle_status:
         successfully: Norm 已成功更新。
       update:
@@ -2677,12 +1307,8 @@ zh-Hant:
       edit:
         header: 編輯職業
       form:
-        alternative_icon: 备用图标
-        color: 颜色
         hint:
           key_career_tracks: '"+「 - 清單，」*" - 粗體。 例如： + *Biology* - 一些描述...'
-        indicative_roles_image: 角色示意图
-        key_career_tracks_image: 主要职业发展路径图
         no_icon: 沒有圖示
       index:
         new: 新增
@@ -2744,49 +1370,15 @@ zh-Hant:
         successfully: 因子已成功更新。
       update:
         successfully: 因子 %{name} 已成功更新。
-    participants:
-      tabs:
-        assessors: 評估員
-        sms_contacts: 簡訊聯絡人
-        subjects: 主題
     piped_text_modal:
-      assessment_center: 評估中心
       assessment_id: 評估 ID
       campaign_id: 活動 ID
       campaign_link: 活动链接
-      campaign_name: 活動名稱
-      campaigns: 活動
-      description: 說明
-      duration: 時間長度
-      end_time: 結束時間
-      insight_page_link: 洞察頁連結
-      insight_page_url: 洞察頁面 URL
-      invite_title: 標題
-      invites: 邀請
       join_link: 加入連結
       magic_link: 魔術連結
       magic_url: 魔術網址
-      platform_url_links: 平台 Url 與連結
       profile_custom_field: 個人資料自訂欄位
-      project_name: 專案名稱
-      projects: 專案
-      report_name: 報告名稱
-      start_time: 開始時間
       text: 正文
-      title: 新增管道文字
-      user_reports: 使用者報告
-      users: 使用者
-    proctoring_sessions:
-      columns:
-        comment: 評論
-        conclusion: 總結
-        links: 連結
-        score: 得分
-        session_id: 會話 ID
-      links:
-        report: 報告
-        review: 回顧
-      resource_name: 測驗環節
     products:
       copy:
         error: 錯誤
@@ -2799,9 +1391,6 @@ zh-Hant:
         create:
           invalid_format: Level 定義必須是一個定義陣列。
           level_definition_must_match_level: 必須完全包含 %{expected} 水準，但 %{actual} 已給出
-          level_description_must_exist: 層級描述不能是空白的
-          level_name_must_exist: 等級名稱不能為空
-          must_be_unique: 必須獨一無二
           proficiency_level_exists: 已存在具有此技能和專案的 ProficiencyLevel
           proficiency_level_exists_for_default: 已退出預設的精通等級
           proficiency_level_exists_for_type: 此類型的精通等級已經存在
@@ -2809,24 +1398,9 @@ zh-Hant:
           skill_must_exist: 技能必須存在於 proficiency_type 'by_skill' 中。
       export:
         details: 詳細資訊
-        failure_msg: 匯出能力等級時發生錯誤
-        success_msg: 輸出開發中的行動
         translations:
           details: 能力等級翻譯
-      fields:
-        level: 等級
-        level_description: 等級描述
-        level_name: 等級名稱
-        proficiency_translations: 能力翻譯
-        proficiency_type: 能力類型
-        skill: 技術
-        skill_name: 技能名稱
-        skill_type: 技能類型
-        title: 能力
       import:
-        actions:
-          proficiency: 進口能力
-          translations: 進口能力翻譯
         errors:
           by_skill_exists_id_missing: 第 %{row_number} 行：技能「%{name}」的熟練程度已經存在。請提供 ID 進行更新。
           by_skill_missing: 行 %{row_number}：對於 'by_skill' 類型，專案和技能必須存在
@@ -2839,11 +1413,7 @@ zh-Hant:
           invalid_skill_type: '行 %{row_number}: 無效的技能類型 "%{skill_type}"。有效的類型是：%{valid_types}'
           missing_columns: 缺少必填欄位：%{fields}。
           skill_not_found: 行 %{row_number}：無效或遺失技能
-        job_queued: 能力等級匯入工作已排隊
       translations:
-        export:
-          failure_msg: 匯出翻譯時發生錯誤
-          success_msg: 出口開發行動正在進行中。
         import:
           errors:
             invalid_csv_format: 無效的 CSV 格式：%{message}。
@@ -2853,14 +1423,6 @@ zh-Hant:
             missing_required_columns: 缺少必填欄位：%{columns}。
             row_id_blank: 行 %{row}：ID 不能為空白
             save_failed: 處理技能 ID %{id} 出錯：%{message}
-      type:
-        by_skill: 按技術
-        by_skill_type: 依技能類型
-        default: 預設
-    profile:
-      change_password: 變更密碼
-      details: 詳細資訊
-      profile: 簡介
     profiles:
       edit:
         success: 個人資料已成功更新。
@@ -2868,331 +1430,21 @@ zh-Hant:
       update:
         edit:
           success: 成功
-    project:
-      tools:
-        workshop_status_export: 工場狀態匯出
-        workshop_status_export_success: 工作坊狀態匯出排程成功。
-    project_features:
-      project_features: 項目特色
-    project_participants:
-      cancel: 取消
-      column_actions: 行動
-      column_campaigns: 活動
-      column_createdAt: 建立於
-      column_created_at: 建立於
-      column_email: 電子郵件
-      column_id: 同上
-      column_name: 名稱
-      delete: 刪除
-      edit: 編輯
-      edit_participant: 編輯參與者
-      filter_campaigns: 沒有活動
-      form_first_name: 名字
-      form_last_name: 姓氏
-      reset_password: 重設密碼
-      save: 節省
-      search_user: 搜尋使用者
-      send_email: 發送電子郵件
-    project_tabs:
-      assessments:
-        column:
-          name: 名稱
-          normalize_factor_scores: 標準化因子分數
-          user_result_validity_in_days: 結果有效性
-        delete:
-          content: 您確定要刪除評估 '%{name}' 嗎？
-          success: 評估 '%{name}' 已成功刪除。
-          title: 刪除評估
-        form:
-          assessment: 評估
-          assessment_placeholder: 選擇評估
-          assessment_required: 需要進行評估
-          normalize_factor_scores: 標準化因子分數
-          user_result_validity_in_days: 結果有效天數
-        title: 評估
-      design: 設計
-      general: 一般
-      privacy: 隱私權
-      profile: 簡介
-      registration: 註冊
-      webhooks:
-        actions:
-          delete:
-            key: 刪除
-            label: 刪除
-          edit:
-            key: 編輯
-            label: 編輯
-          send_test:
-            key: 發送測試
-            label: 傳送測試
-        form:
-          acceptable_rate_limit:
-            label: 可接受的請求上限
-            request_per: 每
-          active:
-            label: 活躍
-            name: 活躍
-          assessments:
-            help_text: 此选项仅影响评估原始响应事件。
-            label: 评估
-            placeholder: 选择评估
-            required: 评估原始响应事件必须至少选择一项评估。
-          auth_type:
-            api_key:
-              label: API 金鑰
-              name: api_key
-              value: api_key_auth
-            api_key_header:
-              format_error: 僅允許使用字母、數字、底線和連字符
-              label: API 金鑰標頭
-              name: apiKeyHeader
-            basic:
-              label: 基本
-              value: basic_auth
-            label: 認證類型
-            name: auth_type
-            no_auth:
-              label: 無
-              value: no_auth
-            oauth:
-              label: OAuth
-              value: OAuauth
-          client_credentials:
-            label: 用戶端認證
-            value: client_credentials
-          client_id:
-            label: 用戶端 ID
-            name: oauth_client_id
-            required: 需要客戶端 ID
-          client_secret:
-            label: 用戶端密碼
-            name: oauth_client_secret
-            required: 需要用戶端密碼
-          description:
-            label: 說明
-            name: 描述
-          grant_type:
-            label: 撥款類型
-            name: oauth_grant_type
-          include_locales:
-            label: 包含翻譯
-            name: include_locales
-          oauth_scope:
-            label: 範圍
-            name: oauth_scope
-            required: 範圍是必填項
-          password:
-            label: 密碼
-            name: 密碼
-          token_url:
-            label: 權杖 URL
-            name: oauth_token_url
-            required: 需要權杖 URL
-          topics:
-            label: 活動
-            list:
-              assessment_assigned: 指定評估
-              assessment_completed: 評估完成
-              assessment_raw_response: 评估原始答复
-              assessment_started: 評估開始
-              assessment_timeout: 評估超時
-              campaign_results_available: 提供活動結果
-              campaign_user_assessment_summary: 活动用户评估摘要
-              campaign_user_status: 活動使用者狀態
-              report_available: 提供報告
-              results_available: 可用結果
-              scheduling_cancelled: 排程取消
-              scheduling_invited: 受邀排程
-              scheduling_rescheduled: 重新排程
-              scheduling_scheduled: 排程 排程
-              workshop_attendance_status: 研讨会出席情况
-          url:
-            label: 網址
-            name: url
-          username:
-            label: 使用者名稱
-            name: 帳號
-        remove_webhook:
-          content: 刪除 %{description}?
-          title: 刪除
-        title: Webhooks
-    project_users:
-      cancel: 取消
-      change_password: 變更密碼
-      column_actions: 行動
-      column_campaigns: 活動
-      column_created_at: 建立於
-      column_email: 電子郵件
-      column_id: 同上
-      column_name: 名稱
-      confirm_delete: 是，刪除
-      confirm_send: 是，發送
-      delete: 刪除
-      delete_error: 無法刪除評估員 '%{name}'，請聯絡您的管理員。
-      delete_success: 評估員 '%{name}' 已成功刪除。
-      edit: 編輯
-      edit_assessor: 編輯評審員
-      filter_campaigns: 沒有活動
-      form_first_name: 名字
-      form_last_name: 姓氏
-      modal_delete_content: 您確定要刪除評估員「%{name}」嗎？
-      modal_delete_title: 刪除評審員
-      modal_reset_email_content: 您確定要傳送密碼重設連結到「%{email}」嗎？
-      model_reset_email: 重設評稅員的密碼
-      no_edit_permission: 您沒有權限編輯評估員「%{name}」。
-      reset_mail_error: 無法傳送重設密碼連結至 '%{email}'，請聯絡您的管理員。
-      reset_mail_success: 重設密碼連結已成功傳送至「%{email}」。
-      save: 節省
-      search_accessor: 搜尋存取器
-      send_email: 發送電子郵件
     projects:
-      addProject: 新增專案
-      assessment_settings:
-        search: 搜尋評估
       clients:
         confirmations:
           detach_from_project:
             body: 身體
             title: 標題
-      columns:
-        project_number: 專案編號
-      design_settings:
-        alt_text_invalid: Alt 文字包含不支援的字元。
-        alt_text_logo: 標誌替代文字
-        alt_text_logo_required: 必須使用 Alt-Text 標誌
-        alt_text_long: 超過 100 個字元的最大限制。
-        background_color: 背景顏色
-        background_label: 背景資料
-        background_overlay_label: 背景覆蓋
-        background_size: 背景尺寸
-        background_size_contain: 包含
-        background_size_cover: 封面
-        bg_upload: 上傳
-        client_logo_label: 客戶標誌
-        contrast_ratio_warning: 注意：使用此主色可能會違反文字可讀性的對比要求。
-        contrast_ratio_warning_lighter_color: 注意：使用此 %{name} 顏色可能會違反文字可讀性的對比要求。 請嘗試使用較深的顏色。
-        copy_text: 正文
-        dashed_button: 虛線
-        default_button: 預設
-        error_color: 錯誤顏色
-        hover_options:
-          danger_item: 危險項目
-          first_menu_item: 第 1 個功能表項目
-        hover_text: 懸停我
-        info_color: 資訊顏色
-        link_text: 連結
-        logo_upload: 上傳
-        position_auto: 自動
-        position_label: 登入方塊位置
-        position_left: 左邊
-        position_right: 對
-        primary_button: 初級
-        primary_color: 原色
-        reset: 重設
-        sec_logo_label: 副標誌
-        sec_logo_upload: 上傳
-        secondary_logo_alt_text: 次要標誌 Alt-Text
-        secondary_logo_alt_text_required: 需要副 Alt-Text 標誌
-        submenu_options:
-          option_one: 選項 1
-          option_title: 項目 1
-          option_two: 選項 2
-        success_color: 成功顏色
-        success_update: 設計設定已成功儲存
-        tab_text_one: 選單
-        tab_text_two: 子選單
-        text_danger: Text(danger)
-        text_success: 文字 (成功)
-        text_warning: Text(warning)
-        warning_color: 警告顏色
-      form:
-        name: 名稱
-        project_number: 專案編號
-        subdomain: 子網域
-        title: 專案
-      general_settings:
-        live_chat: 啟用即時交談
-        locales_label: 地點
-        name_label: 名稱
-        project_number_label: 專案編號
-        save_changes: 儲存變更
-        sub_domain_label: 子網域
-      mettl_schedule_records:
-        actions:
-          edit: 編輯
-        add: 新增時間表
-        assessment_id: 評估 ID
-        assessment_name: 評估名稱
-        candidate_authorization: 啟用候選人授權
-        candidate_screen_capture: 啟用候選人螢幕擷取
-        count: 瀏覽公差計數
-        created_at: 建立於
-        schedule_id: 時間表 ID
-        schedule_name: 附表名稱
-        search: 搜尋
-        secure_browser_enabled: 啟用安全瀏覽器
-        settings: 設定
-        show_remaining_counts: 啟用顯示剩餘計數
-        visual_proctoring_enabled: 啟用視覺化監考
-        web_proctoring_enabled: 啟用網路監考
       privacy_settings:
-        disable_dp: 不允許進一步處理資料
-        dp_consent: 啟用資料處理同意書
-        dp_consent_custom: 自訂資料處理同意書
-        dp_consent_version: 政策版本
         errors:
           cannot_disable_while_campaign_enabled: 無法停用視訊通話錄影，因為此專案中的一個或多個活動已啟用此功能
           min_retention: 不能少於 1 天
-          policy_version_format: 只允許使用整數
-          required: 必要
-        mask_identity_for_examus: Examus Proctoring 的掩模資料
-        mask_identity_for_hogan: Hogan 的面具資料
-        mask_identity_for_iiht: IIHT 的遮罩資料
-        mask_identity_for_mettl: METTL 的掩模資料
-        mask_identity_for_mhs: MHS的掩码数据
-        mask_identity_for_pearson: Pearson 的遮罩資料
-        mask_identity_for_saville: 薩維爾的面具資料
-        mask_identity_for_skillvue: Skillvue 的掩膜資料
-        mask_identity_for_yoodli: Yoodli 的遮罩資料
-        privacy_link: 啟用隱私連結
-        privacy_link_label: 隱私權連結
-        privacy_link_placeholder: 輸入隱私權連結
-        privacy_text: 隱私權文字
-        privacy_text_placeholder: 輸入隱私權文字
-        video_call_recording: 允許視訊通話錄影
-        video_call_recording_expiry_duration: 視訊通話錄影的保留期限（天數）
-        video_call_recording_scope: 啟用所有新活動的視訊錄製
-      profile_settings:
-        form_fields:
-          enabled: 已啟用
-          half_size: 半尺寸
-          locked: 鎖定
-          name: 名稱
-          remove: 移除
-          required: 必須
-          sort: 分類
-        month: 月份
-        never: 從不
-        update_in: 通知個人資料更新
-        year: 年份
-      registration_settings:
-        hide_signup: 隱藏註冊選項
-        require_mobile_number: 需要手機號碼
       users:
         confirmations:
           detach_from_project:
             body: 身體
             title: 標題
-      webhook_settings:
-        add: 新增 Webhook
-        column_active: 活躍
-        column_created_date: 建立日期
-        column_description: 說明
-        column_manage: 管理
-        column_updated_date: 修改日期
-        column_url: 網址
-        search: 搜尋 Webhoook
     questions:
       copy:
         successfully: 問題 "%{name}" 已成功複製。
@@ -3217,72 +1469,15 @@ zh-Hant:
       toggle_status:
         successfully: 更新成功。
     reflection_questions:
-      delete_confirmation: 您確定要刪除這個反省問題嗎？
       export:
-        action: 出口反思問題
         details: 檔案詳細資料
-        failure_msg: 匯出檔案時發生錯誤。
-        success_msg: 匯出反省問題進行中。請在通知中查看狀態。
-      form:
-        mandatory: 必須填寫
-        max_words: 最多字數
-        min_words: 最少字數
-        question: 問題
-        title: 反思問題
       import:
-        action: 輸入反省問題
         errors:
           invalid_max_words_column_format: 無效的最大字數列值格式 %{row}
           invalid_min_words_column_format: 無效的最小字元列數值格式 %{row}
           invalid_required_column_format: 強制列值格式無效 %{row}
           missing_eng_question: 缺少英文問題內容 %{row}
           save_failed: 保存失敗%{message}
-        failure_msg: 匯入檔案時發生錯誤。
-        success_msg: 正在匯入反省問題。請在通知中查看狀態。
-      question: 問題
-    report_approval:
-      approval_statuses:
-        approved: 已核准
-        change_requested: 要求變更
-        not_ready: 未就緒
-        pending_qc: 等待 QC
-        qc_completed: QC 已完成
-        qc_in_progress: QC 進行中
-      bulk_approve_success: "%{sent_for_approval}已送交審核。%{approved}已核准的報告。%{ignored}因 QC 變更/意見而需要手動核准的報告。"
-      columns:
-        actions: 行動
-        approval_status: 核准狀態
-        approved_by: 批准人
-        assessed_by: 经评估
-        campaign_name: 活動名稱
-        qc_by: QC by
-        report_name: 報告名稱
-        subject_email: 主题 邮件
-        user_email: 使用者電子郵件
-        user_name: 使用者名稱
-      dashboard: 儀表板
-      download: 下載
-      report_approval_settings: 報告核准設定
-      report_approvals: 報告核准
-      review: 回顧
-      saving_filters:
-        actions:
-          clear_filters: 清除過濾器
-          delete_filter: 刪除篩選器
-          save_filter: 節省
-          save_new_filter: 儲存為新篩選器
-          saved_filters: 儲存的篩選條件
-        delete_saved_filters: 刪除過濾器
-        edit_filter_name: 儲存的篩選器名稱
-        error_while_deleting: 刪除時發生錯誤
-        error_while_editing: 編輯時出錯
-        error_while_fetching: 出錯了，請再試一次
-        error_while_saving: 儲存篩選器時發生錯誤
-        filter_updated: 篩選器更新
-        no_saved_filters: 沒有儲存的篩選條件
-        save_filter: 儲存的篩選條件
-        set_favorite: 篩選器已設定為最愛
-      submit_or_approve_all: 提交或批准所有
     report_builder:
       campaign_factors:
         add_field: 新增欄位
@@ -3417,22 +1612,6 @@ zh-Hant:
         title: 報告束的選項
       update:
         successfully: 報告套件 %{name} 已成功更新。
-    report_review:
-      abort_qc: 中止 QC
-      approve: 批准
-      approve_changes: 批准變更
-      edit: 編輯
-      remove_approval: 移除核准
-      request_changes: 請求變更
-      review: 回顧
-      send_for_approve: 寄送審批
-      statuses:
-        approved: 已核准
-        change_requested: 要求變更
-        not_ready: 未就緒
-        pending_qc: 等待 QC
-        qc_completed: QC 已完成
-        qc_in_progress: QC 進行中
     report_settings:
       data_source_types:
         assessment: 評價
@@ -3456,9 +1635,6 @@ zh-Hant:
         title: 大量上傳活動因素
         upload_success: 上傳成功
       copy:
-        copy: 副本
-        copy_report: 複製報告
-        name: 名稱
         successfully: 報告 '%{name}' 已成功複製。
       create:
         successfully: 報告 '%{name}' 已成功建立。
@@ -3466,15 +1642,6 @@ zh-Hant:
         successfully: 報告 '%{name}' 已成功刪除。
       edit:
         header: 編輯報告名稱
-      edit_default_language:
-        agreement: 是的，我了解預設語言變更的影響。
-        title: 編輯預設語言
-        tooltip: 編輯預設語言
-        warning:
-          description_li_1: 將預設語言從 RTL 變更為 LTR 語言，或反之亦然，都會影響版面編排。
-          description_li_2: 如果您變更預設語言，就必須重新翻譯報告。
-          description_li_3: 進行此變更之前，請先下載一份報告翻譯。
-          title: 請仔細閱讀說明
       modals:
         remap_assessment:
           new_assessment_name: 新評估名稱
@@ -3484,10 +1651,6 @@ zh-Hant:
       new:
         header: 選擇報告
       preview:
-        comments: 評論
-        hide_resolved: 隱藏 已解決
-        history: 歷史
-        info_to_select_module: 選取要評論的文字模組
         title: 預覽
       regenerate:
         successfully: 成功傳送報告以進行再生
@@ -3517,425 +1680,17 @@ zh-Hant:
         successfully: 報告已成功更新。
       update:
         successfully: 報告 %{name} 已成功更新。
-    reports_language_selection_modal:
-      download: 報告下載
-      generate: 報告產生
     resource:
       remove_confirm:
         message: 您確定要移除此資源嗎？
         title: 移除資源
-    saml_settings:
-      after_signout_url: 登出後的網址
-      cert: 證書
-      config_details:
-        acs_url: 認證消費者服務 URL
-        copied: 已複製 %{element}
-        issuer: 實體 ID/發行人
-        title: 使用下列資訊設定 Idp
-      email_pipetext: 電郵 Pipetext
-      enabled: 已啟用
-      entity_id: 實體 ID/發行人
-      name_identifier_format: 名稱 識別碼
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: SAML 設定
-      save: 儲存設定
-      sso_service_url: SSO 服務網址
-      successfully_saved_msg: SAML 設定已成功儲存。
     save: 節省
-    scheduling:
-      add_activity: 新增活動
-      add_assessment_center: 新增評估中心
-      add_assessor_form:
-        assessment: 評估
-        assessor: 評稅員
-        schedule_time: 排程時間
-      add_subject: 新增主題
-      assessment_center_form:
-        add_more: 新增更多
-        allow_late_cancellation_and_scheduling: 允許延遲取消和排程
-        assessment_center_group: 評估中心小組
-        assessment_center_group_placeholder: 選擇評估中心小組
-        assessor_ids_label: 評估員
-        back: 返回
-        basic_info_panel:
-          description: 請在下方輸入日程資訊，您也可以選擇多個日期來建立多個評估中心。
-          title: 基本資訊
-        cancellation_lead_time_label: 取消的準備時間
-        copy_hint: 複製上述座位、中心經理、評估員和會議與資源配置到下列評估中心。 複製之後，您可以在繼續之前對個別評估中心進行進一步變更。
-        copy_to_all: 複製到其他評估中心
-        create: 建立
-        dates_label: 日期
-        disable_cancellation_and_rescheduling: 停用取消和重新排程
-        duration_label: 時間長度
-        duration_max_error: 不能超過 16 小時
-        duration_min_error: 不得少於 15 分鐘
-        duration_placeholder: 例如：4 小時 30 分
-        manager_ids_label: 中心經理
-        meeting_link: 會議連結
-        meetings_and_resources: 會議與資源
-        name_label: 名稱
-        next: 下一頁
-        required_error: 必須
-        resources_panel:
-          description: 加入您希望主持人可以存取的任何資源的連結。
-          resource_name_placeholder: 資源名稱
-          resource_url_placeholder: 資源連結
-          title: 資源
-          validation_error: 同時輸入名稱和 URL 或移除資源
-        scheduling_lead_time_label: 排程的準備時間
-        seats_label: 座椅
-        time_label: 時間
-        timezone_label: 時區
-        url_label: 網址
-        video_call_type:
-          custom: 自訂
-          internal: 內部
-          none: 無
-        video_call_type_label: 新增視訊通話
-      attendance_status:
-        column_name: 出席狀況
-        dropped_out: 退學
-        late: 遲到
-        no_show: 無演出
-        no_status: 無狀態
-        on_time: 準時
-      attended:
-        attended: 已出席
-        not_attended: 未出席
-      campaign_participants: 活動參與者
-      columns:
-        activity: 活動
-        assessment_center_date_and_time: 評估中心日期和時間
-        assessor: 評稅員
-        assessors: 評估員
-        attendance: 出席率
-        attended: 已出席
-        booked_at: 預訂於
-        campaign_assessment_group: 評估中心小組
-        campaign_name: 活動名稱
-        duration: 時間長度
-        link_to_view_recordings: 查看錄音的連結
-        managers: 管理員
-        meeting_link: 會議連結
-        name: 名稱
-        participants: 參與者
-        prework: 前期工作
-        recording_date: 錄製日期
-        resource_link: 連結
-        resource_name: 名稱
-        schedule_time: 排程時間
-        scheduling_status: 排程狀態
-        seats: 座椅
-        serial_no: 序號
-        start_time: 日期與時間
-        subject: 主題
-        title: 標題
-        view_recording: 查看錄音
-      errors:
-        assessor_already_assigned: 已為此評估指派評估員。 請選擇其他評估或評估員。
-        date_required: 請選擇日期
-        invalid_url: 無效的 URL 格式
-        meeting_link_https: 會議連結必須以 "https://" 開頭
-      id: ID
-      info:
-        allowed: 允許
-        assessors: 評估員
-        booked: 預訂座位
-        campaign_assessment_group: 評估中心小組
-        cancellation_lead_time: 取消前置時間
-        cancellation_tooltip: 使用者可以在 %{date} 之前取消預訂。
-        date: 日期與時間
-        duration: 時間長度
-        join_meeting: 加入房間
-        late_cancellation_and_scheduling: 遲到取消與排程
-        link: 會議連結
-        managers: 中心經理
-        none: 無
-        not_allowed: 不允許
-        recording_enabled: 已啟用錄製
-        remaining: 剩餘座位
-        scheduling_lead_time: 排程前置時間
-        scheduling_tooltip: 使用者可預約時段至 %{date}
-        search_placehoder: 依 ID、電子郵件或姓名搜尋
-        timezone: 時區
-        total_seats: 總座位數
-      resources:
-        confirm_message: 您確定要刪除資源「%{resource_name}」嗎？
-        confirm_title: 需要確認
-        create: 建立資源
-        invalid_url: 無效 URL。 請指定包含 http 或 https 通訊協定的完整 URL。
-        resource: 資源
-        successful_remove: 評估中心資源 %{resource_name} 已成功刪除。
-      schedule_assessments: 安排評估
-      scheduling_statuses:
-        cancelled: 已取消
-        late_cancelled: 遲到取消
-        late_rescheduled: 遲到改期
-        rescheduled: 改期
-        scheduled: 排程
-      search_participant: 搜尋活動參與者
-      status:
-        completed: 已完成
-        dropped_out: 退學
-        in_progress: 進行中
-        late: 遲到
-        no_show: 無演出
-        not_started: 尚未開始
-      status_change_modal:
-        content: 一旦您關閉評估中心，參與者將無法參加任何中心活動。
-        title: 變更評估中心狀態
-      subjects:
-        activities: 活動
-        add_assessor_form: 新增評稅員表格
-        assessments: 評估
-        assessor_forms: 評稅員表格
-        confirm_message: |
-          '您確定要取消電子郵件為 ''%{subject_email}'' 的受試者的參與資格嗎？
-          <br />
-          一旦標記為取消，該受試者將無法參加評估中心。'
-        confirm_title: 需要確認
-        edit_assessor_form: 編輯評估員表格
-        form_title: 安排評估
-        language: 語言
-        language_not_selected: 未選取
-        mark_cancel: 馬克 取消
-        mark_cancel_success: 以電子郵件 %{subject_email} 取消主題的參與。
-        meeting_link_custom: 自訂
-        meeting_link_internal: 內部
-        meeting_link_none: 無
-        meeting_link_title: 會議連結
-        no_change: 無變更
-        override_existing: 覆寫科目的現有時間表
-        preworks: 前期工作
-        re_enroll: 重新註冊
-        re_enroll_confirm_message: 您確定要重新註冊電子郵件 '%{subject_email}' 的主旨嗎？
-        re_enroll_success: 重新註冊的主題與電子郵件%{subject_email} 。
-        schedule: 時間表
-        unschedule: 取消排程
-      tabs:
-        activities: 活動
-        assessment_center: 評估中心
-        invites: 邀請
-        recordings: 錄音
-        resources: 資源
-        subjects: 主題
     scoring:
-      action_prohibited: 禁止行動
-      active: 活躍
-      actual_average: 實際平均值
-      add_factor: 添加因子
-      add_group: 新增群組
-      assessment: 評估
-      assessment_scoring_type: 評估評分類型
-      average: 平均值
-      campaign_scoring_variables: 活動計分變數
-      code: 代碼
-      desc: 您已超過 %{n} 活動因素的最大限制。 無法新增其他因素。 請在繼續之前檢視並管理您現有的因素。
-      description: 說明
-      dimension: 尺寸
-      edit_factor: 編輯因子
       export:
         details: 活動評分
         factors: 出口活動因素
-      factor: 因子
-      factor_group_removed_successfully: 成功移除 Campaign Factor 群組
-      factor_removal_confirmation: 在文字方塊中輸入以下因子名稱以確認
-      factor_removed_successfully: 成功移除 Campaign Factor
-      factors_exported_successfully: 已成功排定匯出活動因子工作
-      factors_imported_successfully: 已成功排定匯入活動因子工作
-      final: 決賽
-      final_score_updated_successfully: 最終得分已成功更新
-      formula: 公式
-      get_started: 開始使用
-      id: 同上
-      import:
-        factors: 匯入活動因素
-      innovation_style_removal_confirmation: 请在文本框中输入下方的创新风格名称以确认
-      name: 名稱
-      no_groups: 無團體出席
-      occupation_removal_confirmation: 请在文本框中输入下方的职业名称以确认
-      output_type: 輸出類型
-      pattern_error: 只允許使用字母數字字符、空格和破折號。
-      profile:
-        years: 年數
-      public: 公眾
-      ranked: 排名
-      remove_all_campaign_factors:
-        confirmation: 在文字方塊中輸入以下的目前活動名稱以確認
-        error: 活動因素移除失敗
-        success: 成功移除活動因素
-        title: 移除活動因素
-        warning: 您即將刪除所有活動因素和使用者的所有相關評分。 您確定要執行此動作？
-      remove_factor_group_confirmation_content: 您確定要移除因子群組 '%{group_name}' 嗎？
-      remove_factor_group_confirmation_title: 移除因子群
-      required_error: 不能是空的
-      save: 節省
-      save_all: 全部保存
-      score_range: 分數範圍
-      score_types:
-        norm_score: 標準分數
-        percentage: 百分比
-        percentile: 百分位數
-        score: 得分
-        zscore: Z 得分
-      scoring: 計分
-      scoring_description: 活動計分允許跨評估報告
-      select_all: 選取所有 %{n} 科目
-      select_assessment_first: 先選擇評估
-      select_factor: 選擇因子
-      show_weightages: 顯示重量
-      subject: 主題
-      subject_list:
-        actions: 行動
-        bulk_mark_finalized: 批量標誌定稿
-        bulk_mark_finalized_confirm: 完成所選使用者的評分後，將產生使用活動因素的使用者報告。 您確定要繼續嗎？
-        bulk_mark_not_finalized: 批量標記尚未確定
-        bulk_mark_not_finalized_confirm: 從選取的使用者移除 finalize 會移除使用活動因素的使用者所產生的報告。 您確定要繼續嗎？
-        bulk_rescore: 大量重新評分
-        bulk_rescore_confirm: 重新計算選取的使用者，您確定要繼續嗎？
-        calculated_date: 計算日期
-        calculation_errors: 計算錯誤
-        export: 出口燒錄
-        export_success: 已成功排程匯出評分工作
-        finalized: 已完成
-        finalized_date: 確定日期
-        import_external_scores: 匯入外部繪圖
-        mark_finalized: 標誌定稿
-        mark_finalized_confirm: 為使用者「%{email}」確定得分，將產生使用活動因素的使用者報告。 您確定要繼續嗎？
-        mark_not_finalized: 標記未定
-        mark_not_finalized_confirm: 移除使用者「%{email}」的 finalize 會移除使用該使用者的 campaign factor 所產生的報告。 您確定要繼續嗎？
-        push_webhook: 推送 webhooks
-        rank: 等級
-        rescore: 重新評分
-        rescore_confirm: 重新計算使用者 '%{email}'，您確定要繼續嗎？
-        tools: 工具
-      tabs:
-        settings: 設定
-        subject_scores: 科目分數
-      type: 類型
-      variables: 變數
-      weightages:
-        assessorForms: 評稅員表格
-        successful_update: 權重已成功更新
-        tools: 工具
-        weightages: 重量
-      weighted_average: 加權平均值
-    scoring_approval:
-      approve_all: 全部批准
-      bulk_approve_success: "%{approved} 分数已批准。"
-      review: 评论
-      score_approvals: AI评分审批
     search: 搜尋
-    security_setting:
-      180_days: 180 天
-      30_days: 30 天
-      365_days: 365 天
-      90_days: 90 天
-      attempts_to_lock: 嘗試鎖定
-      auto_unlock_time: 自動解鎖時間
-      disable_password_reuse: 停用密碼重複使用
-      disallow_password_login: 禁止以密碼登入
-      enable_login_with_magic_link: 啟用魔法連結登入
-      enable_recaptcha: 啟用 reCAPTCHA
-      enforce_password_policy: 在下次登入時強制執行密碼政策
-      enforce_strong: 強化密碼
-      expiration: 密碼到期
-      lock_account: 鎖定帳戶
-      magic_link_expiry_duration: 魔術連結失效時間
-      min_length: 最小密碼長度
-      never: 從不
-      restrict_sequences: 限制連續和重複的字元
-      security: 安全設定
-      send_unlock_email: 傳送解鎖電子郵件
-      session_timeout_duration: 會話超時時間
-      tfa_enabled: 啟用雙重認證
-    security_settings:
-      security_setting: 安全設定
-    settings:
-      admin_roles:
-        confirm_message: 您確定要刪除管理員角色「%{role_name}」嗎？
-      siem:
-        description: 說明
-        destination_type: 目的地類型
-        destination_types:
-          s3: S3
-          s3_compatible: S3 相容
-        enabled: 已啟用
-        readable_resource_name: SIEM 設定
-        s3_access_key_id: 存取鑰匙 ID
-        s3_bucket_folder: S3 垃圾桶資料夾
-        s3_bucket_name: S3 儲存桶名稱
-        s3_endpoint: S3 端點
-        s3_region: S3 區域
-        s3_secret_access_key: 秘密存取鑰匙
-        send_test_log: 傳送測試記錄
-        send_test_log_error_message: 測試記錄尚未傳送至您的水桶，請檢查您的設定
-        send_test_log_success_message: 測試記錄已成功傳送至您的郵筒
-      skill_aliases:
-        alias: 別名
-        confirm_message: 您確定要刪除技能別名「%{skill_alias}」嗎？
-        create: 新增技能別名
-        select_skill: 選擇技能
-        skill: 技術
-        skill_alias: 技能別名
-        successful_remove: 技能別名 '%{skill_alias}' 已成功刪除。
-      tabs:
-        admin_roles: 管理員角色
-        feature_flags: 功能旗標
-        siem: SIEM
-        skill_aliases: 技能別名
-    sheets:
-      column:
-        add_column: 新增欄位
-        not_allowed_for_dashboard_use: 若要在儀表板中使用欄位，欄位必須少於 64 個字元
-        reorder: 重新訂購
-        save_order: 節省訂單
-      drawers:
-        add_edit:
-          cancelText: 取消
-          markdown:
-            preview: 預覽
-            title: Markdown
-          save: 節省
-          saving: 節省
-          success_message_add: 新增記錄
-          success_message_edit: 記錄更新
-          title_add: 新增工作表記錄
-          title_edit: 編輯工作表行記錄
-          validations:
-            required_email: 請輸入電子郵件
-        view:
-          campaign_title: 活動層級記錄
-          edit_button: 編輯
-          project_title: 專案層級記錄
-          title: 工作表列記錄詳細資訊
-      list:
-        header:
-          add_record: 新增記錄
-          search_record: 搜尋記錄
-      modals:
-        delete_records:
-          cancelText: 取消
-          content: 您確定要刪除選取的 {{count}} 記錄嗎？
-          okText: 是，刪除
-          successMessage: "{{count}} 記錄已成功刪除。"
-          title: 刪除 {{count}} 記錄
-        remove_columns:
-          cancelText: 取消
-          content: 刪除欄位 ({{columns}}) 會移除該欄位中所有行的資料
-          okText: 是，刪除
-          successMessage: "{{count}} 已刪除的記錄"
-          title: 刪除欄位
-      tabs:
-        rows: 行數
-        settings: 設定
     skills:
-      applicable_proficiency_levels: 適用的能力等級
-      columns:
-        skill_group: 技能組
-        skill_type: 技能類型
       errors:
         import:
           missing_fields_data: '行 %{line_number}：缺少必填欄位: %{fields}'
@@ -3949,28 +1704,11 @@ zh-Hant:
           query_too_short: 必須填寫，且必須超過 3 個字元
       export:
         details: 詳細資訊
-        failure_msg: 匯出翻譯時發生錯誤
-        success_msg: 出口開發行動正在進行中。
         translations:
           details: 技能翻譯
       form:
         client_placeholder: 選擇客戶
-        description: 說明
-        name: 名稱
         project_placeholder: 選擇專案
-        skill_group: 技能組
-        skill_type: 技能類型
-        title: 技術
-      import:
-        download_example_csv: 下載範例 csv
-        info_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
-        success_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
-      import_action:
-        skills_title: 進口技能
-        skills_translations_title: 輸入技能翻譯
-      skill_details: 技能詳情
-      skill_translations: 技能翻譯
-      title: 技術
       translations:
         import:
           errors:
@@ -3978,152 +1716,13 @@ zh-Hant:
             missing_columns: 缺少必填欄位：%{columns}。
             save_failed: '處理技能 ID %{id} 時出錯: %{message}'
             skill_not_found: 未找到 ID 為 %{id} 的技能
-      vector:
-        generate_embedding: 生成嵌入
-        generate_embedding_failure_msg: 無法排隊完成技能嵌入生成任務。請再試一次。
-        generate_embedding_success_msg: 技能嵌入生成工作已成功排隊。請查看通知中的狀態。
-        label: 向量資料庫
-    sms_histories:
-      columns:
-        first_name: 姓名
-        last_name: 姓氏
-        mobile_no: 手機號碼
-        price: 價格
-        segment_length: 區段長度
-        sent_at: 發送於
-      drawer:
-        title: 簡訊詳情
-      history: 歷史
-      statuses:
-        accepted: 已接受
-        delivered: 已交付
-        failed: 失敗
-        queued: 已排隊
-        scheduled: 排程
-        sent: 發送
-        undelivered: 未交付
     sms_invites:
-      actions:
-        add: 新增簡訊聯絡人
-      columns:
-        created_at: 建立於
-        created_by: 建立者
-        email: 電子郵件
-        first_name: 姓名
-        last_name: 姓氏
-        mobile_no: 手機號碼
-      contacts: 聯絡人
-      form_modal:
-        first_name: 姓名
-        last_name: 姓氏
-        locale: 地點
-        mobile_no: 手機號碼
-        title: 短信邀請
-      import:
-        download_example_csv: 下載範例 CSV
-        success_msg: 上傳的檔案已排隊等待匯入，請在通知中查看狀態。
-        title: SMS 邀請函匯入
       messages:
-        delete_confirm_text: 您確定要移除手機號碼 %{mobile_no} 的簡訊邀請？
-        delete_success: SMS 邀請已成功刪除
         failed_to_sent_invite: 發送邀請至手機號碼 %{mobile_no} 失敗
-      send_sms:
-        fields:
-          link_expiry: 連結到期
-          locale: 地點
-          message: 訊息
-          statuses: 狀態
-          users: 使用者
-        modal:
-          btn_name: 傳送簡訊
-          title: 傳送簡訊
-        pipetext_details: |
-          "{{{first_name}} - 收件人的名
-          <br />
-          {{{last_name}} - 收件人姓氏
-          <br />
-          {{{invite_url}} - 註冊連結"
-        segment_length_msg: 此訊息的估計區段數是 %{segment_length}。
-        segment_length_range_msg: 此訊息的估計區段數介乎 %{min_segment_length} 與 %{max_segment_length} 之間。
-      statuses:
-        all: 全部
-        failed: 失敗
-        invited: 受邀
-        not_invited: 未受邀請
-        registered: 註冊
-      tools:
-        export: 匯出簡訊聯絡人
-        import: 匯入 SMS 聯絡人
-        send_sms: 傳送簡訊
-    sms_records:
-      columns:
-        id: 同上
-        message: 訊息
     smtp_settings:
-      authentication: 驗證
-      authentication_type: 驗證類型
-      authentication_types:
-        cram_md5: 填滿 md5
-        login: 登入
-        plain: 純色
-      enabled: 已啟用
-      encryption: 加密
-      encryption_types:
-        none: 無
-        ssl: SSL
-        tls: TLS
       errors:
         authentication_failed: 使用者名稱或密碼不正確
         host_unreachable: 無法連線至主機。 主機、連接埠或加密方式不正確
-      from_email: 來自電郵
-      from_name: 來自名稱
-      host: 主機
-      password: 密碼
-      port: 港口
-      send_test_email: 傳送測試電子郵件
-      smtp: SMTP
-      test_email_modal:
-        input_hint: 您的電子郵件設定不會儲存，直到測試電子郵件成功傳送為止。
-        input_placeholder: 測試電子郵件 ID
-        title: 測試電子郵件帳號
-      test_modal:
-        success_message: 測試電子郵件已傳送至 %{email_id}。
-        title: 測試 SMTP 設定
-      update_success_msg: SMTP 設定已成功更新。
-      use_sender_verification: 使用寄件者驗證
-      user_name: 使用者名稱
-    stats:
-      assessments:
-        active: 積極的
-        columns:
-          assessment_name: 評估名稱
-          completed: 已完成
-          id: ID
-          in_progress: 進行中
-          ineligible: 不符合資格
-          interrupted: 中斷
-          not_started: 尚未開始
-          timed_out: 超時
-        count: 計數
-        inactive: 不活動
-        percentage: 百分比
-        title: 評估
-      top_metrics:
-        completed: 已完成
-        in_progress: 進行中
-        interrupted: 中斷
-        not_started: 尚未開始
-        timed_out: 超時
-        users: 使用者
-      users:
-        date_presets:
-          last_30_days: 最近 30 天
-          last_7_days: 最近 7 天
-          last_month: 上個月
-          last_week: 上週
-          today: 今天
-          yesterday: 昨天
-        y_title: 使用者數量
     sub_factors:
       destroy:
         successfully: 子因子 %{name} 已成功刪除。
@@ -4233,18 +1832,7 @@ zh-Hant:
           one: '總數 : 1'
           other: '總數 : {{count}}'
           zero: '總數 : 0'
-      more_actions: 更多行動
     taxonomy:
-      import:
-        description: 上传Excel文件以导入或更新您的技能分类体系。此操作将添加新技能、职位角色及熟练程度等级。
-        download_example_file: 下載範例檔案
-        drag_text: 点击或拖拽文件至此区域进行上传
-        error_title: 导入失败
-        file_hint: 支持 .xls 和 .xlsx 文件
-        import_button: 导入分类法
-        success_msg: 上傳的檔案已排隊等待匯入。請在通知中查看狀態。
-      import_action:
-        taxonomy: 匯入技能分類系統
       title: 技能分類學
     templates:
       blocks:
@@ -4337,187 +1925,9 @@ zh-Hant:
       convert_action:
         already_a_template: 已有範本
         has_user_data: 請在轉換為範本之前，從「工具」下拉選項中按一下「重設所有參與者」，手動重設活動。
-      convert_template_modal:
-        cancel: 取消
-        confirm: 確認
-        convert:
-          success: 範本成功轉換
-        convert_option: 將此活動轉換為範本
-        copy:
-          success: 廣告系列範本建立工作已排程成功，請檢查您的通知以瞭解狀態。
-        copy_option: 從此活動建立新範本
-        description: 選擇要如何從此廣告系列建立範本。
-        failed: 範本建立失敗。
-        title: 轉換為範本
-      email_templates:
-        approve_nomination:
-          description: 當直接報告的提名需要核准時，此訊息會傳送給經理
-          name: 批准提名
-        approve_report:
-          description: 此訊息會傳送給受試者的經理，通知他們受試者的報告已準備好接受審核。
-          name: 批准報告
-        categories:
-          approvals: 認證
-          invitations: 邀請函
-          reminders: 提醒事項
-          report_ready: 報告準備就緒
-        consolidated: 綜合
-        custom_message:
-          description: 此訊息可傳送給任何參與評估的人
-          name: 自訂訊息
-        days_repeated: 天，重複
-        evaluator_invite:
-          description: 此訊息將發送給所有身為評鑑員的參與者
-          name: 評估員邀請
-        evaluator_reminder:
-          description: 將發送此訊息以提醒評估員完成待定評估
-          name: 評估員提醒
-          rule_description: 指定邀請排程時自動排程的規則
-          rule_name: 評估員提醒規則
-        from: 來自
-        manager_report_ready:
-          description: 當受試者的報告準備好時，此訊息會傳送給受試者的經理。
-          name: 經理報告準備就緒
-        nomination_denied:
-          description: 當提名被拒絕時，此訊息會傳送給主體
-          name: 否決提名
-        reply_to_email: 回覆電子郵件
-        request_approval:
-          description: 當標的要求核准時，此訊息會傳送給管理員
-          name: 請求批准
-        save: 節省
-        schedule: 時間表
-        schedule_email: 排程電子郵件
-        schedule_email_title: 排程電子郵件
-        schedule_time: 排程時間
-        send_test_email: 傳送測試電子郵件
-        subject: 主題
-        subject_invite:
-          description: 此訊息將發送給受試者，邀請他們參加評估
-          name: 主題邀請
-        subject_reminder:
-          description: 向每位參與者發送訊息，提醒他們參加評估
-          name: 主題提醒
-          rule_description: 指定邀請排程時自動排程的規則
-          rule_name: 主題提醒規則
-        subject_report_ready:
-          description: 當報告完成後，此訊息會傳送給主體
-          name: 主題報告準備就緒
-        times: 時間
-      instruction_templates:
-        evaluate_others:
-          description: 當參與者從入口網站內部評估其他人時，此訊息將會顯示
-          name: 評估他人
-        evaluate_self:
-          description: 當受試者開始自我評估時，會顯示此訊息
-          name: 評估者自我
-        evaluation_help:
-          description: 使用者儀表板上的評估卡會顯示說明文字
-          name: 評估說明
-        evaluator_welcome:
-          description: 此訊息將取代「歡迎訊息」，並僅顯示給目前以評估員身份參加的參加者。
-          name: 歡迎評估人員
-        invite_evaluators:
-          description: 當受試者開始提名評鑑員時，此訊息將會顯示給他們
-          name: 邀請評估人員
-        nomination_help:
-          description: 使用者儀表板提名卡上顯示的說明文字
-          name: 提名協助
-        report_help:
-          description: 使用者儀表板上的報告卡會顯示說明文字
-          name: 報告說明
-        welcome_message:
-          description: 當受試者登入開始評估或檢視其任務清單時，此訊息將會顯示給他們。
-          name: 歡迎詞
-      mail_history:
-        actions: 行動
-        date: 日期
-        download_details: 下載詳細資訊
-        emails_sent: 已傳送的電子郵件
-        recipient: 收件人
-        status: 狀態
-        subject: 主題
-      manage:
-        assessment: 評估
-        dimension: 尺寸
-        manage_relationships: 管理關係...
-        report: 報告
-        title: 管理
-      menu:
-        actions: 行動
-        datasheet:
-          title: 資料表
-        messages:
-          allow_subjects_to_send_reminders: 允許受試者傳送提醒訊息給評估者
-          automatically_send_invites: 自動發送邀請函給新的評估人員
-          title: 訊息
-        participants:
-          columns:
-            action: 行動
-            email: 電子郵件
-            evaluations_completed: 已完成評估
-            evaluations_received: 收到的評估
-            is_subject: 是主題
-            name: 名稱
-          evaluators:
-            add_evaluators: 新增評估員
-            import_evaluators: 進口評估員
-            title: 評估員
-          managers:
-            title: 經理
-          options:
-            evaluator_options: 評估員選項
-            global: 全球選項
-            manager_options: 管理員選項
-            subject_options: 科目選項
-            title: 選項
-          subjects:
-            add_subjects: 新增主題
-            current_job_role: 目前的工作角色
-            email: 電子郵件
-            first_name: 名
-            import_subjects: 進口主題
-            last_name: 姓
-            locale: 語言環境
-            target_job_role: 目標工作角色
-            title: 主題
-          title: 參與者
-        report:
-          menu:
-            report_approval:
-              title: 報告核准設定
-            report_options:
-              title: 報告選項
-          title: 報告
-      messages:
-        email_messages: 電子郵件訊息
-        factor_benchmark_scores_updated: 因子基準分數更新成功
-        instruction_messages: 指示訊息
-        mail_history: 郵件歷史
-        options: 選項
       reports:
-        add_conditions: 新增條件
-        administrator_approves_reports: 管理員批准報告
-        allow_manager_to_view_individual_responses: 允許經理檢視個別回覆
-        disable_report_download: 停用報告下載
-        edit_email: 編輯電子郵件
-        email_manager_when_report_is_ready_for_approval: 報告準備好供核准時，以電子郵件通知管理員
-        email_subject_when_report_becomes_available: 當報告可用時，以電子郵件通知主題
-        email_subjects_manager_when_available: 當報告可用時，寄電子郵件給目標人物的經理
-        make_report_available_to_subject_when: 在下列情況下向目標人物提供報告：
-        manager_approves_reports: 經理核准報告
-        manager_can_access_subject_reports: 經理可以存取主題報告
-        manager_cannot_access_subject_reports: 在符合要求之前，經理無法看到報告
-        report_access: 報告存取
-        report_approval: 報告核准
-        report_availability: 報告可用性
         show:
           title: 主題報告
-        subject_can_access_reports: 主題可存取其報告
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: 將授權標記為停用
-    time_zone: 時區
-    tools: 工具
     translations:
       assessments:
         new:
@@ -4535,14 +1945,6 @@ zh-Hant:
         successfully: 使用者 %{name} 已成功建立。
       destroy:
         successfully: 使用者 %{name} 已成功刪除。
-      list:
-        email: 電子郵件
-      modals:
-        download_idp_reports:
-          error: 排程大量下載 IDP 報告工作失敗。
-          include_reflective_questions: 包含反思性問題
-          success: 大量下載 IDP 報告工作排程成功。
-          title: 大量下載 IDP 報告
       new:
         header: 新使用者
       reset_password:
@@ -4576,24 +1978,15 @@ zh-Hant:
         successfully: 使用者 %{name} 已成功更新。
       toggle_status:
         successfully: 使用者 %{name} 已成功更新。
-      toolbar:
-        title: 工具
       update:
         successfully: 使用者 %{name} 已成功更新。
       user: 使用者
     webhook:
       connection_failure: 無法連線至 webhook URL。 請確認 webhook URL 是否正確。
-      delete_success: Webhook 設定已成功刪除
       request_failure: 請求失敗，狀態代碼為 %{http_status_code}。
     workshop:
-      actions:
-        remove_workshop: 工作坊已成功移除
       errors:
         remove_workshop_failure: 您要刪除的工作坊有排定的主題，您可以將所有主題標記為取消，以刪除工作坊。
-      statuses:
-        closed: 關閉
-        open: 開啟
     workshop_subjects:
       errors:
         update_assessor_for_failure: 由於沒有連結的主題活動，因此無法新增會議詳細資訊。
-    years: 年數

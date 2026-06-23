@@ -86,14 +86,22 @@ export function useNetworkTest () {
 
   useEffect(() => stopTimer, [stopTimer])
 
+  const cleanupAndResetState = useCallback(() => {
+    stopTimer()
+    abortControllerRef.current?.abort()
+    abortControllerRef.current = null
+    setState(INITIAL_STATE)
+  }, [stopTimer])
+
   const reset = useCallback(() => {
     if (!isTestingRef.current) {
-      stopTimer()
-      abortControllerRef.current?.abort()
-      abortControllerRef.current = null
-      setState(INITIAL_STATE)
+      cleanupAndResetState()
     }
-  }, [stopTimer])
+  }, [cleanupAndResetState])
+
+  const abort = useCallback(() => {
+    cleanupAndResetState()
+  }, [cleanupAndResetState])
 
   const runTimedTest = useCallback(async ({
     minimumDownloadSpeedMbps,
@@ -163,5 +171,6 @@ export function useNetworkTest () {
     runTimedTest,
     reset,
     formatSpeed,
+    abort,
   }
 }

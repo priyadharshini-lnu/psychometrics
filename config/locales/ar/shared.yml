@@ -18,6 +18,7 @@ ar:
     assessment_id: رقم التقييم
     assessment_list: قائمة التقييم
     assessment_name: اسم التقييم
+    assessor: مقيم
     assessor_approved: المقيم المعتمد
     assessors_list: قائمة المقيمين
     asset_not_present: الأصل غير موجود
@@ -26,15 +27,18 @@ ar:
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
     back: العودة
     basic: أساسي
+    bulk_download: تحميل بالجملة
     camera: الكاميرا
     camera_preview: ستظهر معاينة الكاميرا هنا
     campaign: حملة
     campaign_id: معرف الحملة
     cancel: إلغاء
+    category: فئة
     change_password: تغيير كلمة المرور
     clear_filters: امسح المُرشحات
     client: العميل
     close: إغلاق
+    code: رمز
     collaborative_learning: التعلم التعاوني
     completed: مكتمل
     configurations: التكوينات
@@ -43,11 +47,13 @@ ar:
     controller: وحدة التحكم
     cookie_notice: إشعار بشأن ملفات تعريف الارتباط
     cookies_statement: بيان ملفات تعريف الارتباط
+    copied: تم النسخ إلى الحافظة
     copied_successfully: تم النسخ بنجاح
     copied_to_clipboard: نسخ إلى الحافظة
     copy: نسخ
     create: إنشاء
     created_at: تم إنشاؤها في
+    created_by: تم إنشاؤه بواسطة
     created_date: تاريخ الإنشاء
     created_successfully: تم إنشاؤه بنجاح
     custom_acknowledgment_text: نص شكر مخصص
@@ -55,11 +61,14 @@ ar:
     custom_consent_text: نص الموافقة المخصص
     custom_consent_text_required: نص الموافقة المخصص مطلوب لدور بيانات وحدة التحكم
     data_role: دور البيانات
+    datasheet: ورقة البيانات
     decline: الانحدار
+    default: الافتراضي
     delete: حذف
     description: وصف
     desktop_or_laptop_recommended: يوصى باستخدام جهاز كمبيوتر مكتبي أو محمول
     desktop_or_laptop_required: يلزم وجود جهاز كمبيوتر مكتبي أو محمول
+    dimension: البعد
     disabled: معاق
     discard: تجاهل
     download: تنزيل
@@ -69,6 +78,7 @@ ar:
     edit: تعديل
     edited: جديد
     email: البريد الإلكتروني
+    end_date: تاريخ الانتهاء
     ending_proctoring_session_msg: نحن بصدد إنهاء جلسة المراقبة. <p>يرجى الانتظار حتى ننتهي من حفظ إجاباتك ونعيد توجيهك إلى الصفحة الرئيسية.</p>
     error: خطأ
     export: تصدير
@@ -83,12 +93,18 @@ ar:
     generating: توليد
     group_question_max_validation_error: يمكن لكل مجموعة أن تحتوي على عناصر(ات) في أقصى حد {{max}}.
     group_question_min_validation_error: يجب أن تحتوي كل مجموعة على الأقل {{min}} عنصر(ات).
+    icon: رمز
     id: معرف
     idp_ai_assistant_disclaimer: قد يحتوي دليل تطوير Lighthouse على أخطاء. لذا يُرجى توخي الحذر عند استخدام الردود.
+    import: استيراد
+    inactive: كسلان
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
     last_name: إسم العائلة
+    last_updated: آخر تحديث
     learning_on_the_job_label: التعلم أثناء العمل
     lets_start: لنبدأ!
+    linked_activities: الأنشطة المرتبطة
+    linked_assessment: التقييم المرتبط
     loading: جاري التحميل...
     login: تسجيل الدخول
     maintenance_in_hours: "%{hours} ساعات"
@@ -98,11 +114,13 @@ ar:
     maintenance_time_remaining: الوقت المتبقي
     maintenance_upcoming_description: سنقوم بإجراء صيانة مجدولة على %{date} لمدة تقارب %{duration} لتحسين تجربتك. خلال هذه الفترة، لن تتمكن من الوصول إلى أي مهام مخصصة أو إكمالها. نقدر صبرك.
     maintenance_upcoming_title: الصيانة القادمة
+    manage: " إدارة"
     manage_cookies: إدارة ملفات تعريف الارتباط
     media_id: معرف الوسائط
     media_preview: معاينة وسائل الإعلام
     media_question_transcriptions: نصوص أسئلة وسائل الإعلام
     media_responses: ردود فعل وسائل الإعلام
+    meeting_link: رابط الاجتماع
     microphones: الميكروفونات
     mobile_proctoring_disabled_instructions: يتطلب هذا التقييم جهاز كمبيوتر مكتبي أو محمول لمتابعة العملية. يرجى التبديل إلى جهاز كمبيوتر لإكمال النشاط.
     mobile_proctoring_enabled_instructions: للحصول على أفضل تجربة، يرجى التبديل إلى جهاز كمبيوتر مكتبي أو محمول إذا كان متاحًا لديك. يمكنك الاستمرار على جهازك المحمول إذا لزم الأمر.
@@ -116,13 +134,17 @@ ar:
     new: جديد
     next: التالي
     no_audio_warning: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون وتشغيله بشكل صحيح.
+    no_data_found: No data found
     no_results_found: لم يتم العثور على نتائج
+    none: اي
     not_requested: لم يتم طلبه بعد
     ok: موافق
     options: خيارات
+    overview: نظرة عامة
     owner: المالك
     pause: توقف مؤقت
     pending: قيد الانتظار
+    permissions: الأذونات
     play: تشغيل
     policy_version: إصدار السياسة
     policy_version_format: يُسمح فقط بالأرقام الصحيحة
@@ -133,6 +155,7 @@ ar:
     proctoring_maintenance_active: يخضع نظام Proctoring حاليًا للصيانة من %{start_time} إلى %{end_time}. يرجى المحاولة مرة أخرى بعد انتهاء فترة الصيانة.
     proctoring_maintenance_upcoming: سيتم إجراء صيانة على نظام المراقبة من %{start_time} إلى %{end_time}.
     project: المشروع
+    publish: النشر
     question: السؤال
     question_id: رقم السؤال
     question_transcription_disabled: النسخ معطل لهذا السؤال
@@ -146,20 +169,27 @@ ar:
     remove: إزالة
     removed: تمت الإزالة
     replace: استبدال
+    required: مطلوب
+    reset: اعاده تعيين
     reset_password: إعادة تعيين كلمة المرور
     response_text: نص الرد
     rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
     rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
+    run: ركض
     save: حفظ
     saving_video: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
+    schedule_time: الجدول الزمني
     scoring_details: تفاصيل النقاط
     search: بحث
     select_camera: اختر كاميرا
+    select_language: إختار اللغة
     select_microphone: اختر ميكروفونًا
+    send: إرسال
     send_email: إرسال بريد إلكتروني
     show_more: عرض المزيد
     something_wrong: حدث خطأ ما. اتصل بالمشرف.
     speakers: المتحدثون
+    start_date: تاريخ البدء
     status: الحالة
     status_unknown: الحالة غير معروفة
     stop: توقف
@@ -172,12 +202,15 @@ ar:
     table:
       entries:
         selected:
-          one: 1 row selected
-          other: "{{count}} rows selected"
+          one: تم تحديد صف واحد
+          other: تم تحديد {{count}} صفًا
+          two: تم تحديد صفين
         total:
-          one: 'Total : 1'
-          other: 'Total : {{count}}'
-          zero: 'Total : 0'
+          one: 'المجموع : 1'
+          other: 'المجموع : {{count}}'
+          two: 'المجموع : 2'
+          zero: 'المجموع : 0'
+    tags: العلامات
     terms_conditions_privacy: بيان الخصوصية
     tools: ادوات
     transcription: نسخ
@@ -189,11 +222,35 @@ ar:
     try_again: حاول مرة أخرى
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة"
     type: نوع
+    unpublish: إلغاء النشر
     update: تحديث
     update_failed: فشل التحديث
     updated_at: تم التحديث في
+    updated_by: تم التحديث بواسطة
     updated_successfully: تم التحديث بنجاح
+    upload: رفع
     user_report_pdf_url_not_generated: تعذر إنشاء رابط تنزيل ملف PDF
+    user_reports_approval_status_pending_qc: في انتظار مراجعة الجودة
+    user_reports_approval_status_qc_completed: اكتمل فحص الجودة
+    user_reports_assessment_name_not_completed_reason_template: لم يتم إكمال التقييم %{names}
+    user_reports_assessments_name_not_completed_reason_template: لم يتم إكمال التقييمات %{names}
+    user_reports_assessor_not_completed_reason_template: نموذج المُقيِّم %{names} لم يتم ملؤه
+    user_reports_assessors_not_completed_reason_template: لم يتم ملء استمارات المُقيِّم %{names}
+    user_reports_campaign_artifact_results_pending_reason_message: لم يتم الانتهاء من نتائج عناصر الحملة لهذا المستخدم
+    user_reports_campaign_scoring_pending_reason_message: لم يتم تحديد النتائج النهائية للحملة بالنسبة لهذا المستخدم
+    user_reports_custom_upload_report_reason_message: مصدر التقرير هو تحميل مخصص
+    user_reports_external_report_pending_reason_message: في انتظار تقرير من المزود
+    user_reports_lead_assessor_not_completed_reason_template: لم يتم ملء نموذج «المُقيِّم الرئيسي» (%{names})
+    user_reports_lead_assessors_not_completed_reason_template: لم يتم ملء استمارات المقيم الرئيسي %{names}
+    user_reports_no_report_module_reason_message: لم يتم العثور على وحدة نمطية لهذا التقرير
+    user_reports_not_prepared_reason_message: لم يتم إعداد التقرير بعد
+    user_reports_pending_approval_reason_template: حالة الموافقة هي «%{status}»
+    user_reports_pending_final_ai_scoring_approval_reason_message: في انتظار الموافقة النهائية على تقييم الذكاء الاصطناعي
+    user_reports_pending_qc_ai_scoring_approval_reason_message: في انتظار الموافقة على تقييم الذكاء الاصطناعي من قسم مراقبة الجودة
+    user_reports_pending_qc_approval_reason_message: في انتظار الموافقة على تقرير مراقبة الجودة
+    user_reports_qc_completed_approval_reason_message: في انتظار الموافقة على التقرير النهائي
+    user_reports_report_generating_reason_message: يجري إعداد التقرير
+    user_reports_report_generation_failed_reason_message: فشل إنشاء التقرير
     video: فيديو
     view: عرض
     view_audio: عرض الصوت

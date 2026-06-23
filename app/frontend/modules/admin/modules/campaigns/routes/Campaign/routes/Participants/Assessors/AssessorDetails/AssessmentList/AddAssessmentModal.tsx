@@ -39,7 +39,7 @@ interface OwnProps {
 
 type Props = OwnProps & PropsFromRedux
 
-const localI18n = (code: string, params = {}) => I18n.t(`administration.assessor.add_subject_modal.${code}`, params)
+const localI18n = (code: string, params = {}) => I18n.t(`admin.assessor_add_subject_modal_${code}`, params)
 
 const AddAssessmentModal: React.FC<Props> = ({
   assessments,

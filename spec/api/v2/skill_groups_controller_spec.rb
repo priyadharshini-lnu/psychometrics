@@ -5,9 +5,6 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::SkillGroupsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project) { create(:project) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/skill_groups' do
@@ -20,7 +17,7 @@ RSpec.describe Api::V2::Administration::SkillGroupsController, type: :request do
 
         get '/api/v2/administration/skill_groups',
             params: { project_id: project.id },
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
@@ -39,7 +36,7 @@ RSpec.describe Api::V2::Administration::SkillGroupsController, type: :request do
 
         get '/api/v2/administration/skill_groups',
             params: { project_id: project.id, 'filter[end_level_groups]' => true },
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)

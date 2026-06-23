@@ -52,14 +52,14 @@ export const WorkshopList: React.FC = () => {
         <Filter openForm={openForm} />
         <Resource.Table pagination>
           <Resource.Column<Workshop>
-            title={I18n.t('common.column.id')}
+            title={I18n.t('shared.id')}
             id="id"
             sorter
             minWidth={100}
             fixed="left"
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.name')}
+            title={I18n.t('shared.name')}
             id="name"
             minWidth={150}
             render={(_, { id, name }) => (
@@ -70,33 +70,33 @@ export const WorkshopList: React.FC = () => {
             sorter
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.start_time')}
+            title={I18n.t('admin.scheduling_columns_start_time')}
             id="startTime"
             minWidth={150}
             render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} />}
             sorter
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.campaign_assessment_group')}
+            title={I18n.t('admin.scheduling_columns_campaign_assessment_group')}
             id="campaignAssessmentGroup.name"
             width={300}
             render={(_, { campaignAssessmentGroup }) => (campaignAssessmentGroup ? campaignAssessmentGroup.name : '-')
             }
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.duration')}
+            title={I18n.t('admin.scheduling_columns_duration')}
             id="duration"
             width={100}
             render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.seats')}
+            title={I18n.t('admin.scheduling_columns_seats')}
             id="duration"
             minWidth={100}
             render={(_, { totalSeats, bookedSeats }) => `${bookedSeats}/${totalSeats}`}
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.managers')}
+            title={I18n.t('admin.scheduling_columns_managers')}
             id="workshopManagers"
             render={(_, { workshopManagers }) => (
               <ResourcesTag resources={workshopManagers} />
@@ -104,7 +104,7 @@ export const WorkshopList: React.FC = () => {
             minWidth={150}
           />
           <Resource.Column<Workshop>
-            title={I18n.t('administration.scheduling.columns.assessors')}
+            title={I18n.t('admin.scheduling_columns_assessors')}
             id="workshopAssessors"
             render={(_, { workshopAssessors }) => (
               <ResourcesTag resources={workshopAssessors} />
@@ -112,7 +112,7 @@ export const WorkshopList: React.FC = () => {
             minWidth={150}
           />
           <Resource.Column<Workshop>
-            title={I18n.t('common.column.action')}
+            title={I18n.t('shared.action')}
             id="action"
             width={100}
             render={(_, workshop) => <Menu workshop={workshop} />}
@@ -140,7 +140,7 @@ const MenuComponent = ({ workshop, setData }) => {
       responseType: WorkshopTR,
     }).then(() => {
       resource.fetch()
-      message.success(I18n.t('administration.workshop.actions.remove_workshop'))
+      message.success(I18n.t('admin.workshop_actions_remove_workshop'))
     }).catch((error) => {
       message.error(error.base[0].title)
     })
@@ -199,7 +199,7 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
           <Button type="primary" onClick={openForm}>
             <PlusOutlined />
             {' '}
-            {I18n.t('administration.scheduling.add_assessment_center')}
+            {I18n.t('admin.scheduling_add_assessment_center')}
           </Button>
         )}
       </Space>

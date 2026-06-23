@@ -84,7 +84,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           align="center"
         />
         <Resource.Column
-          title={`${I18n.t('common.column.name')}`}
+          title={`${I18n.t('shared.name')}`}
           id="name"
           sorter
           width={300}
@@ -106,13 +106,13 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           render={item => item?.description}
         />
         <Resource.Column
-          title={`${I18n.t('common.column.owner')}`}
+          title={`${I18n.t('shared.owner')}`}
           id="owner.name"
           width={200}
           render={(_, { owner }) => (
             owner?.id ? (
               <Link to={`/admin/clients/${owner.id}/projects`}>{owner.name}</Link>
-            ) : <span>{I18n.t('administration.tte')}</span>
+            ) : <span>{I18n.t('admin.tte')}</span>
           )}
         />
         <Resource.Column
@@ -163,13 +163,13 @@ const getActionMenuProps = ({
 
   const handleDelete = () => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
       content: I18n.t('admin.remove_confirmation'),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         removeResource(id)
         message.success(I18n.t('admin.remove_successfully'))
@@ -190,8 +190,8 @@ const getActionMenuProps = ({
   }
 
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
-    { key: 'remove', label: I18n.t('common.actions.remove') },
+    { key: 'edit', label: I18n.t('shared.edit') },
+    { key: 'remove', label: I18n.t('shared.remove') },
   ]
 
   if (library.type !== 'folder') {

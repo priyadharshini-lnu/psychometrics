@@ -10,9 +10,6 @@ RSpec.describe Api::V2::Administration::WorkshopSubjectsController, type: :reque
   let(:workshop) { create(:workshop, campaign_id: campaign_id, campaign_assessment_group: group) }
   let(:workshop_id) { workshop.id }
   let!(:subject) { create(:workshop_subject, workshop: workshop) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user, status: 2)
     another_completed = create(:user_assessment, prework: true, campaign: campaign, subject: subject.user, status: 2)
@@ -29,8 +26,7 @@ RSpec.describe Api::V2::Administration::WorkshopSubjectsController, type: :reque
 
   describe 'GET /campaigns/:campaign_id/workshops/:workshop_id/workshop_subjects' do
     it 'returns workshop subjects list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_subjects",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_subjects"
 
       expect(response).to have_http_status(:ok)
       subject_response = JSON.parse(response.body)['data'].first
@@ -60,7 +56,7 @@ RSpec.describe Api::V2::Administration::WorkshopSubjectsController, type: :reque
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_subjects/#{subject_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       subject_response = JSON.parse(response.body)['data']
@@ -73,8 +69,7 @@ RSpec.describe Api::V2::Administration::WorkshopSubjectsController, type: :reque
     it 'deletes workshop subject' do
       subject_id = subject.id
 
-      delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_subjects/#{subject_id}",
-             headers: { 'Authorization' => authorization }
+      delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_subjects/#{subject_id}"
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')

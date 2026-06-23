@@ -58,8 +58,8 @@ const CompetencyHeader = ({
                   <Popconfirm
                     trigger="click"
                     placement="bottomRight"
-                    title={I18n.t('admin.ai_scoring_appoval_reset_score')}
-                    description={I18n.t('admin.ai_scoring_appoval_reset_score_description')}
+                    title={I18n.t('admin.reset_score')}
+                    description={I18n.t('admin.reset_score_description')}
                     onConfirm={removeScore}
                   >
                     <Button type="text" icon={<ReloadOutlined />} />
@@ -130,14 +130,14 @@ const CompetencyContent = ({
     ) : (
       <Flex vertical gap={8} style={{ padding: 16 }}>
         <Typography.Text strong>
-          {I18n.t('admin.ai_scoring_appoval_rationale')}
+          {I18n.t('admin.rationale')}
         </Typography.Text>
         <Typography.Text>
           {competency.rationale}
         </Typography.Text>
 
         <Typography.Text strong>
-          {I18n.t('admin.ai_scoring_appoval_evidence_from_transcript')}
+          {I18n.t('admin.evidence_from_transcript')}
         </Typography.Text>
         {competency.citations.map((citation, i) => (
           <Evidence

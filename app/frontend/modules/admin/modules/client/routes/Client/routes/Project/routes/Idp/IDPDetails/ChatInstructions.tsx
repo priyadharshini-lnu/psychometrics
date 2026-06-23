@@ -130,7 +130,7 @@ export const ChatInstructions: FC<Props> = ({ idp, fetch }) => {
               <div className="display-flex justify-content-space-between mt8">
                 <Form.Item
                   name="locale"
-                  label={I18n.t('administration.idp.locales')}
+                  label={I18n.t('admin.idp_locales')}
                   initialValue="en"
                 >
                   <Select
@@ -169,7 +169,7 @@ export const ChatInstructions: FC<Props> = ({ idp, fetch }) => {
                           fontWeight: 600,
                         }}
                         >
-                          {I18n.t('administration.idp.reference_locale')}
+                          {I18n.t('admin.idp_reference_locale')}
                         </Typography.Text>
                         <Select
                           style={{ width: 150 }}
@@ -184,7 +184,7 @@ export const ChatInstructions: FC<Props> = ({ idp, fetch }) => {
                           placeholder={I18n.t('select')}
                         >
                           <Select.Option value="">
-                            {I18n.t('common.text.none')}
+                            {I18n.t('shared.none')}
                           </Select.Option>
                           {idp.availableLocales.map(locale => (
                             <Select.Option key={locale} value={locale}>

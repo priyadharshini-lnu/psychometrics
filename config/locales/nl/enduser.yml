@@ -36,6 +36,8 @@ nl:
     browser_not_compatible: Uw browser %{browser_name} is niet compatibel met deze campagne. Gebruik de nieuwste versies van Chrome, Firefox, Safari of Edge voor de beste ervaring.
     browser_not_compatible_description: Gebruik de nieuwste versies van Chrome, Firefox, Safari of Edge voor de beste ervaring.
     browser_not_compatible_detail: Uw browser %{browser_name} is niet compatibel met deze campagne. Gebruik de nieuwste versies van Chrome, Firefox, Safari of Edge voor de beste ervaring.
+    browser_proctoring_description: Je gebruikt de browser %{browser_name}, die mogelijk bepaalde beperkingen heeft met betrekking tot de toezichtfuncties die voor deze campagne zijn ingeschakeld. Voor de beste ervaring raden we je aan Chrome of Edge te gebruiken.
+    browser_proctoring_title: "%{browser_name} Browser gedetecteerd"
     browser_version_fix_description_first: 'Gebruik een ondersteunde browser: Chrome, Firefox, Edge of Safari'
     browser_version_fix_title: De versie van uw browser wordt niet ondersteund.
     camera: Video en audio
@@ -43,6 +45,7 @@ nl:
     camera_check: Camera- en microfoontest
     camera_check_abruptly_ended: De camera is plotseling uitgeschakeld. Schakel je camera in en voer de controle opnieuw uit.
     camera_check_description: Controleer of je camera en microfoon goed werken voor de opname
+    camera_check_failed: Videocontrole mislukt
     camera_check_passed: De video- en audiotest is succesvol doorlopen
     camera_check_record_instruction: Klik op 'Opnemen' en lees de volgende tekst hardop voor
     camera_test_step: Stap voor het testen van video en audio
@@ -69,6 +72,9 @@ nl:
     error_uploading_audio_detail: Er is een fout opgetreden bij het uploaden van je audio
     error_uploading_video: Fout bij het uploaden van de video
     error_uploading_video_detail: Er is een fout opgetreden tijdens het uploaden van de video
+    face_detection_error: Er is een fout opgetreden tijdens de gezichtsherkenning. Controleer of je camera werkt en probeer het nog eens.
+    face_detection_failed: Er is geen gezicht gedetecteerd in de video-opname. Zorg ervoor dat je camera niet wordt afgedekt en dat je gezicht zichtbaar is.
+    face_not_detected_warning: Er is geen gezicht gedetecteerd. Zorg ervoor dat je gezicht zichtbaar is voor de camera.
     fail: Mislukt
     file_submission_already_exists: We hebben uw antwoord op deze vraag al ontvangen. Vernieuw de pagina en neem contact op met uw beheerder als u uw eerdere antwoord nog steeds niet kunt zien.
     follow_these_steps: Volg deze stappen om de problemen op te lossen die tijdens de systeemcontrole zijn vastgesteld
@@ -162,6 +168,8 @@ nl:
     select_video_device: Selecteer videoapparaat
     selected_count: Geselecteerd
     skill_type: Type vaardigheid
+    speech_verification_error: Er is een fout opgetreden bij het verifiëren van uw spraak. Probeer het nog eens.
+    speech_verification_failed: Uw uitspraak kwam niet overeen met de testzin. Probeer het nog eens en spreek de zin duidelijk uit.
     start_campaign_message_proctored: Dit is een campagne met toezicht, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_readiness_check: Start de gereedheidscontrole
@@ -186,10 +194,12 @@ nl:
       one: Ik schreeuw, jij schreeuw, we schreeuwen allemaal om ijs!
       seven: Elke dag is een nieuw begin. Zeg het luid en trots!
       six: Pizza of pasta? Beslissingen zijn moeilijk.
+      ten: Ik ben er klaar voor. Dit is een testopname om te controleren of mijn microfoon goed werkt.
       three: Test, één twee drie, het geluid is zo helder als maar kan!
       two: De snelle bruine vos springt over de luie hond.
     system_check_audio_title: Spreek en herhaal de volgende zin 3 keer.
     system_check_complete: Systeemcontrole voltooid
+    system_check_face_detection: Gezichtsherkenning
     system_check_failed: Systeemcontrole mislukt
     system_check_failed_description: Los de problemen op en voer de systeemcontroles opnieuw uit.
     system_check_failed_message: Sommige systeemcontroles zijn mislukt. Bekijk de details en probeer het opnieuw.
@@ -200,6 +210,7 @@ nl:
     system_check_retake: Nee, ik wil een herkansing
     system_check_run_again: Opnieuw rennen
     system_check_session_not_found: Er is geen sessie voor de systeemcontrole gevonden. Start een nieuwe systeemcontrole.
+    system_check_speech_verification: Stemverificatie
     system_check_start_recording: Opname starten
     system_check_stop_recording: Opname stoppen
     system_check_test_message: leuk om met je te praten
@@ -257,6 +268,10 @@ nl:
     video_overlay_label: Kies je microfoon en camera, klik op ‘Opnemen’ en lees het volgende bericht voor zodra je op de opnameknop hebt gedrukt
     video_overlay_message: Kies je microfoon en camera, klik op ‘Opnemen’ en lees vervolgens de zin die onderaan verschijnt hardop voor.
     video_recorder_label: Videorecorder
+    video_upload_failed_camera_access: Er kan geen toegang worden verkregen tot je camera of microfoon. Controleer de machtigingen van je apparaat en probeer het opnieuw.
+    video_upload_failed_chunk_upload: Een deel van de opname is niet geüpload. Controleer je internetverbinding en probeer het nog eens.
+    video_upload_failed_finalize: De opname is gemaakt, maar kon niet worden opgeslagen. Probeer het nog eens.
+    video_upload_failed_no_recording: Er is geen opname gevonden om te uploaden. Neem de opname alstublieft opnieuw op.
     view_details: Bekijk details
     webgl_api_fix_description_first: Zorg ervoor dat je browser WebGL ondersteunt en dat deze functie in de instellingen is ingeschakeld
     webgl_api_fix_description_second: Werk je grafische stuurprogramma’s bij naar de nieuwste versie

@@ -117,34 +117,34 @@ export const Fields: React.FC<Props> = ({
       )}
     >
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.sort')}
+        title={I18n.t('admin.projects_profile_settings_form_fields_sort')}
         dataIndex="sort"
         width={30}
         render={() => <DragHandle />}
       />
       <Column title="ID" dataIndex="id" />
-      <Column title={I18n.t('administration.projects.profile_settings.form_fields.name')} dataIndex="name" />
+      <Column title={I18n.t('shared.name')} dataIndex="name" />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.required')}
+        title={I18n.t('shared.required')}
         dataIndex="required"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeRequired(row)} checked={row.required} />}
       />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.locked')}
+        title={I18n.t('admin.projects_profile_settings_form_fields_locked')}
         dataIndex="locked"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeLocked(row)} checked={row.locked} />}
       />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.half_size')}
+        title={I18n.t('admin.projects_profile_settings_form_fields_half_size')}
         dataIndex="halfSize"
         render={(_, row:ProfileField) => <Checkbox onChange={() => changeHalfsize(row)} checked={row.halfSize} />}
       />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.remove')}
+        title={I18n.t('shared.remove')}
         dataIndex="remove"
         render={(_, row:ProfileField) => (
           <Button onClick={() => onRemoveField(row)}>
-            {I18n.t('administration.projects.profile_settings.form_fields.remove')}
+            {I18n.t('shared.remove')}
           </Button>
         )}
       />

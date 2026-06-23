@@ -1,12 +1,8 @@
 import React, {
-  useReducer,
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
+  useReducer, useRef, useEffect, useState, useCallback,
 } from 'react'
 import {
-  Button, Flex,
+  Button, Flex, Alert,
 } from 'antd'
 import axios from 'axios'
 import { connect, ConnectedProps } from 'react-redux'
@@ -22,10 +18,8 @@ import FloatingControlBar from '~/components/MediaRecorder/components/FloatingCo
 import PlaybackControlBar from '~/components/MediaRecorder/components/PlaybackControlBar'
 import CountdownOverlay from '~/components/MediaRecorder/components/CountdownOverlay'
 import reducer, {
-  initialState,
-  updateAccess,
-  updateUploading,
-  updateSpeechTestText,
+  initialState, updateAccess, updateUploading, updateSpeechTestText, updateFaceDetection,
+  updateSpeechVerification,
 } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/VideoCheck/reducer'
 import { CheckListStatus } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/interfaces'
 import { useReactMediaRecorder } from '~/components/MediaRecorder/components/MediaRecorder'
@@ -34,9 +28,11 @@ import {
   startAudioLevelMonitoring,
   cleanupAudioMonitoring,
 } from '~/modules/endUser/modules/campaigns/routes/CheckingWizard/services/service'
+import { useSpeechToText } from '~/hooks/useSpeechToText'
 import styles from './styles.less'
 import { CHECK_STATUS } from '../../common'
 import { getRandomVideoTestPhrase } from '../../../../CheckingWizard/services/service'
+import { useFaceDetection } from './useFaceDetection'
 import { CheckList } from '../../../../CheckingWizard/CheckList'
 
 const { I18n } = window
@@ -53,16 +49,17 @@ const connector = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & {
-  nextStep: () => void;
-  onPrev: () => void;
-  directUploadURL?: string;
-  postRecordingCallbackURL?: string;
-  setCheckStatus: (
-    status: CHECK_STATUS.passed | CHECK_STATUS.failed | CHECK_STATUS.pending,
-  ) => void;
-  setIsDeviceRequestGranted: (granted: boolean) => void;
-  onCheckAbruptlyEnded: () => void;
-};
+  nextStep: () => void
+  onPrev: () => void
+  directUploadURL?: string
+  postRecordingCallbackURL?: string
+  setCheckStatus: (status: CHECK_STATUS.passed | CHECK_STATUS.failed | CHECK_STATUS.pending) => void
+  setIsDeviceRequestGranted: (granted: boolean) => void
+  onCheckAbruptlyEnded: () => void
+  setFailureReason: (reason: string | null) => void
+  faceDetectionEnabled: boolean
+  phraseVerificationEnabled: boolean
+}
 
 interface DeviceDetails {
   videoDevices: MediaDeviceInfo[];
@@ -71,13 +68,10 @@ interface DeviceDetails {
 }
 
 const VideoCheckComponent: React.FC<Props> = ({
-  nextStep,
-  onPrev,
-  setCheckStatus,
-  directUploadURL = '',
-  postRecordingCallbackURL = '',
-  setIsDeviceRequestGranted,
-  onCheckAbruptlyEnded,
+  nextStep, onPrev, setCheckStatus, directUploadURL = '',
+  postRecordingCallbackURL = '', setIsDeviceRequestGranted,
+  setFailureReason, onCheckAbruptlyEnded,
+  faceDetectionEnabled, phraseVerificationEnabled,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const mediaStreamRef = useRef<MediaStream | null>(null)
@@ -93,6 +87,11 @@ const VideoCheckComponent: React.FC<Props> = ({
   const assetKeyRef = useRef<string>('')
   const urlsRef = useRef<string[]>([])
   const fileSizeRef = useRef<number>(0)
+  const completeUploadRef = useRef<(blob: Blob) => Promise<void>>(async () => {})
+  const pendingCompleteBlobRef = useRef<Blob | null>(null)
+  const uploadReadyResolverRef = useRef<(() => void) | null>(null)
+  const faceDetectionRatioRef = useRef<number>(0)
+  const stopRecordingRef = useRef<() => Promise<void>>(async () => {})
 
   const [state, dispatch] = useReducer(reducer, initialState)
   const [videoBlob, setVideoBlob] = useState<Blob | null>(null)
@@ -105,31 +104,50 @@ const VideoCheckComponent: React.FC<Props> = ({
   })
   const [selectedVideoDevice, setSelectedVideoDevice] = useState<string>('')
   const [selectedAudioDevice, setSelectedAudioDevice] = useState<string>('')
+  const [isRecording, setIsRecording] = useState<boolean>(false)
   const [isCountingDown, setIsCountingDown] = useState<boolean>(false)
   const [remainingSeconds, setRemainingSeconds] = useState<number>(MAX_DURATION)
   const [videoReady, setVideoReady] = useState<boolean>(false)
 
+  const {
+    startDictation: startSpeech,
+    stopDictation: stopSpeech,
+    transcriptRef,
+  } = useSpeechToText()
 
-  const onStop = React.useCallback(
-    (blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
-      setVisualizing(false)
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop())
-      }
-      cleanupAudioMonitoring({
-        audioContextRef,
-        analyserRef,
-        audioCheckIntervalRef,
-        audioDetectedRef,
-      })
-      dispatch(updateUploading(CheckListStatus.InProgress))
-      setVideoBlob(completeBlob)
-      uploadPart(lastBlob).then(() => {
-        completeUpload(completeBlob)
-      })
-    },
-    [stream],
-  )
+  const {
+    isFaceCurrentlyDetected,
+    faceDetectionRatio,
+    reset: resetFaceDetection,
+    detectionError: faceDetectionError,
+  } = useFaceDetection({ videoRef, isActive: faceDetectionEnabled && isRecording, showOverlay: false })
+
+  useEffect(() => {
+    if (faceDetectionError && faceDetectionEnabled) {
+      setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.face_detection_error')
+    }
+  }, [faceDetectionError, faceDetectionEnabled])
+
+  const onStop = React.useCallback((blobUrl: string, lastBlob: Blob, completeBlob: Blob) => {
+    setVisualizing(false)
+    dispatch(updateUploading(CheckListStatus.InProgress))
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop())
+    }
+    cleanupAudioMonitoring({
+      audioContextRef,
+      analyserRef,
+      audioCheckIntervalRef,
+      audioDetectedRef,
+    })
+    setVideoBlob(completeBlob)
+    pendingCompleteBlobRef.current = completeBlob
+    uploadPart(lastBlob).finally(() => {
+      uploadReadyResolverRef.current?.()
+      uploadReadyResolverRef.current = null
+    })
+  }, [stream])
 
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
 
@@ -150,6 +168,7 @@ const VideoCheckComponent: React.FC<Props> = ({
       fileSizeRef.current += blob.size
     } catch (error) {
       setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.video_upload_failed_chunk_upload')
       dispatch(updateUploading(CheckListStatus.Failed))
     }
   }
@@ -187,21 +206,50 @@ const VideoCheckComponent: React.FC<Props> = ({
     try {
       const checksum = await calculateMD5Checksum(completeBlob)
 
-      await axios.put(postRecordingCallbackURL, {
+      if (phraseVerificationEnabled) {
+        dispatch(updateSpeechVerification(CheckListStatus.InProgress))
+      }
+
+      const { data: record } = await axios.put(postRecordingCallbackURL, {
         upload_id: uploadIdRef.current,
         asset_key: assetKeyRef.current,
         parts: sortedParts,
         file_size: fileSizeRef.current,
         content_type: 'video/webm',
         checksum,
+        test_phrase: state.speechTestText,
+        locale: I18n.locale,
+        transcribed_text: transcriptRef.current,
+        face_detection_ratio: faceDetectionRatioRef.current,
       })
-      setCheckStatus(CHECK_STATUS.passed)
       dispatch(updateUploading(CheckListStatus.Done))
+      dispatch(updateFaceDetection(CheckListStatus.Done))
+
+      if (record.passed) {
+        if (phraseVerificationEnabled) {
+          dispatch(updateSpeechVerification(CheckListStatus.Done))
+        }
+        setCheckStatus(CHECK_STATUS.passed)
+      } else {
+        if (phraseVerificationEnabled && record.phrase_verification_status === 'completed' && !record.phrase_matched) {
+          dispatch(updateSpeechVerification(CheckListStatus.Failed))
+          setFailureReason('enduser.speech_verification_failed')
+        } else if (phraseVerificationEnabled && record.phrase_verification_status === 'error') {
+          dispatch(updateSpeechVerification(CheckListStatus.Failed))
+          setFailureReason('enduser.speech_verification_error')
+        } else if (faceDetectionEnabled && !record.face_detected) {
+          setFailureReason('enduser.face_detection_failed')
+        }
+        setCheckStatus(CHECK_STATUS.failed)
+      }
     } catch (error) {
       setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.video_upload_failed_finalize')
       dispatch(updateUploading(CheckListStatus.Failed))
     }
   }
+
+  completeUploadRef.current = completeUpload
 
   const {
     status,
@@ -243,6 +291,7 @@ const VideoCheckComponent: React.FC<Props> = ({
       if (!mediaStream) {
         dispatch(updateAccess(CheckListStatus.Failed))
         setCheckStatus(CHECK_STATUS.failed)
+        setFailureReason('enduser.video_upload_failed_camera_access')
         setIsDeviceRequestGranted(false)
         return
       }
@@ -277,6 +326,7 @@ const VideoCheckComponent: React.FC<Props> = ({
       )
     } catch (e) {
       setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.video_upload_failed_camera_access')
       dispatch(updateAccess(CheckListStatus.Failed))
     }
   }
@@ -300,8 +350,10 @@ const VideoCheckComponent: React.FC<Props> = ({
   }, [mediaBlobUrl])
 
   useEffect(() => {
-    const random = getRandomVideoTestPhrase()
-    dispatch(updateSpeechTestText(random))
+    if (phraseVerificationEnabled) {
+      const random = getRandomVideoTestPhrase()
+      dispatch(updateSpeechTestText(random))
+    }
     requestAccess()
   }, [
     directUploadURL,
@@ -327,22 +379,26 @@ const VideoCheckComponent: React.FC<Props> = ({
     if (!videoBlob) {
       dispatch(updateUploading(CheckListStatus.Failed))
       setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.video_upload_failed_no_recording')
       return
     }
     dispatch(updateUploading(CheckListStatus.InProgress))
-    completeUpload(videoBlob)
-      .then(() => {
-        setCheckStatus(CHECK_STATUS.passed)
-        dispatch(updateUploading(CheckListStatus.Done))
-      })
-      .catch(() => {
-        setCheckStatus(CHECK_STATUS.failed)
-        dispatch(updateUploading(CheckListStatus.Failed))
-      })
+    completeUpload(videoBlob).catch(() => {
+      setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.video_upload_failed_finalize')
+      dispatch(updateUploading(CheckListStatus.Failed))
+    })
   }
 
   const handleStopRecording = React.useCallback(async (): Promise<void> => {
     try {
+      setIsRecording(false)
+      dispatch(updateFaceDetection(CheckListStatus.InProgress))
+
+      const uploadReadyPromise = new Promise<void>((resolve) => {
+        uploadReadyResolverRef.current = resolve
+      })
+
       stopRecording()
       setVisualizing(false)
 
@@ -357,23 +413,52 @@ const VideoCheckComponent: React.FC<Props> = ({
         mediaStreamRef.current.getTracks().forEach(track => track.stop())
         mediaStreamRef.current = null
       }
+
+      await Promise.all([stopSpeech(), uploadReadyPromise])
+
+      if (pendingCompleteBlobRef.current) {
+        await completeUploadRef.current(pendingCompleteBlobRef.current)
+        pendingCompleteBlobRef.current = null
+      }
+
       if (videoRef.current) {
         videoRef.current.currentTime = 0
       }
     } catch (e) {
       setCheckStatus(CHECK_STATUS.failed)
+      setFailureReason('enduser.video_upload_failed_camera_access')
       dispatch(updateAccess(CheckListStatus.Failed))
     }
-  }, [stopRecording])
+  }, [stopRecording, stopSpeech])
 
-  const handleStartWithCountdown = useCallback(() => {
-    setIsCountingDown(true)
-  }, [])
+  useEffect(() => {
+    faceDetectionRatioRef.current = faceDetectionRatio
+  }, [faceDetectionRatio])
+
+  useEffect(() => {
+    stopRecordingRef.current = handleStopRecording
+  }, [handleStopRecording])
+
+  const handleStartWithCountdown = useCallback(async () => {
+    if (phraseVerificationEnabled) {
+      try {
+        await startSpeech(() => {
+          setIsCountingDown(true)
+        })
+      } catch {
+        setCheckStatus(CHECK_STATUS.failed)
+        setFailureReason('enduser.speech_verification_error')
+      }
+    } else {
+      setIsCountingDown(true)
+    }
+  }, [phraseVerificationEnabled, startSpeech])
 
   const handleCountdownComplete = useCallback(() => {
     setIsCountingDown(false)
     setRemainingSeconds(MAX_DURATION)
     startRecording()
+    setIsRecording(true)
     setVisualizing(true)
   }, [startRecording])
 
@@ -390,7 +475,7 @@ const VideoCheckComponent: React.FC<Props> = ({
         setRemainingSeconds((prev) => {
           if (prev <= 1) {
             clearInterval(interval)
-            handleStopRecording()
+            stopRecordingRef.current()
             return 0
           }
           return prev - 1
@@ -400,7 +485,7 @@ const VideoCheckComponent: React.FC<Props> = ({
       recordingStartedRef.current = false
     }
     return () => clearInterval(interval)
-  }, [status, handleStopRecording])
+  }, [status])
 
   useEffect(() => {
     const getDevices = async () => {
@@ -431,6 +516,7 @@ const VideoCheckComponent: React.FC<Props> = ({
     setVideoBlob(null)
     setVideoReady(false)
     dispatch(updateUploading(CheckListStatus.Pending))
+    dispatch(updateSpeechVerification(CheckListStatus.Pending))
 
     // Reset upload refs
     partIndexRef.current = 0
@@ -456,6 +542,9 @@ const VideoCheckComponent: React.FC<Props> = ({
       videoRef.current.srcObject = null
       videoRef.current.src = ''
     }
+
+    faceDetectionEnabled && resetFaceDetection()
+    dispatch(updateFaceDetection(CheckListStatus.InProgress))
     requestAccess()
   }
 
@@ -519,7 +608,6 @@ const VideoCheckComponent: React.FC<Props> = ({
             <RightOutlined />
           </Button>
         </>
-
       )
     }
 
@@ -538,7 +626,7 @@ const VideoCheckComponent: React.FC<Props> = ({
 
   return (
     <Flex align="center" vertical gap={8}>
-      <Flex className={styles['video-player-parent']}>
+      <Flex className={styles['video-player-parent']} style={{ position: 'relative' }}>
         <VideoRecorder
           videoRef={videoRef}
           mediaUrl={mediaBlobUrl}
@@ -616,6 +704,14 @@ const VideoCheckComponent: React.FC<Props> = ({
           maxRecordingDuration={status === 'recording' ? MAX_DURATION : undefined}
         />
       </Flex>
+
+      {faceDetectionEnabled && status === 'recording' && !isFaceCurrentlyDetected && (
+        <Alert
+          style={{ width: '100%' }}
+          message={I18n.t('enduser.face_not_detected_warning')}
+          type="warning"
+        />
+      )}
 
       {
         status === 'stopped' && (

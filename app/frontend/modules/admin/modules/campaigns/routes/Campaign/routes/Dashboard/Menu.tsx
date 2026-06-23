@@ -28,23 +28,23 @@ export const Menu: React.FC<Props> = ({
   const menuItems: MenuItem[] = []
   !dashboardInitialized && campaignPermissions.viewDashboard && menuItems.push({
     key: '/initialize',
-    label: I18n.t('administration.dashboard.tabs.dashboard'),
+    label: I18n.t('admin.dashboard'),
   })
   dashboardPreviewAvailable && campaignPermissions.viewDashboard && menuItems.push({
     key: '/preview',
-    label: I18n.t('administration.dashboard.tabs.dashboard'),
+    label: I18n.t('admin.dashboard'),
   })
   dashboardInitialized && canManageDashboard && menuItems.push({
     key: '/settings',
-    label: I18n.t('administration.dashboard.tabs.settings'),
+    label: I18n.t('admin.dashboard_tabs_settings'),
   })
   campaignPermissions.viewAccesssheet && menuItems.push({
     key: '/accesssheets',
-    label: I18n.t('administration.dashboard.tabs.accesssheet'),
+    label: I18n.t('admin.dashboard_tabs_accesssheet'),
   })
   campaignPermissions.viewAccesssheetSettings && menuItems.push({
     key: '/accesssheet_settings',
-    label: I18n.t('administration.dashboard.tabs.accesssheet_setting'),
+    label: I18n.t('admin.dashboard_tabs_accesssheet_setting'),
   })
 
   return (

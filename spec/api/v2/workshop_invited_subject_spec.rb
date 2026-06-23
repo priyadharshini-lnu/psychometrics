@@ -7,8 +7,6 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
   let!(:campaign_id) { workshop_invite.campaign_id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let(:user) { create(:user) }
 
   before do
@@ -22,7 +20,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
 
       get "/api/v2/administration/campaigns/#{campaign_id}/workshop_invites/" \
           "#{workshop_invite_id}/workshop_invited_subjects",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       invited_subjects = JSON.parse(response.body)
@@ -49,7 +47,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
       post "/api/v2/administration/campaigns/#{campaign_id}/workshop_invites/" \
            "#{workshop_invite_id}/workshop_invited_subjects",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       invited_subject = JSON.parse(response.body)
@@ -68,7 +66,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
       workshop_invited_subject = create(:workshop_invited_subject, workshop_invite: workshop_invite)
 
       delete "/api/v2/administration/campaigns/#{campaign_id}/workshop_invites/#{workshop_invite_id}/workshop_invited_subjects/#{workshop_invited_subject.id}", # rubocop:disable Layout/LineLength
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(WorkshopInvitedSubject.find_by(id: workshop_invited_subject.id)).to eq(nil)

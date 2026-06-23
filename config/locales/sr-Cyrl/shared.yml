@@ -18,6 +18,7 @@ sr-Cyrl:
     assessment_id: Идентификација процене
     assessment_list: Списак процене
     assessment_name: Назив процене
+    assessor: Саветник
     assessor_approved: Оцењивач одобрио
     assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
@@ -26,15 +27,18 @@ sr-Cyrl:
     authentication_failed: Аутентификација није успела. Покушајте поново.
     back: Назад
     basic: Основне
+    bulk_download: Масовно преузимање
     camera: Камера
     camera_preview: Преглед камере ће се појавити овде
     campaign: Кампања
     campaign_id: ИД кампање
     cancel: Откажи
+    category: Категорија
     change_password: Промена лозинке
     clear_filters: Обриши филтере
     client: Клијент
     close: Затвори
+    code: Код
     collaborative_learning: Колаборативно учење
     completed: Завршено
     configurations: Конфигурације
@@ -43,11 +47,13 @@ sr-Cyrl:
     controller: Контролер
     cookie_notice: Обавештење о колачићима
     cookies_statement: Изјава о колачићима
+    copied: Копирано у међуспремник
     copied_successfully: Успешно копирано
     copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
     create: Креирај
     created_at: Креирано у
+    created_by: Аутор
     created_date: Датум креирања
     created_successfully: Успешно креирано
     custom_acknowledgment_text: Прилагођени текст захвалнице
@@ -55,11 +61,14 @@ sr-Cyrl:
     custom_consent_text: Прилагођени текст сагласности
     custom_consent_text_required: За улогу података контролера потребан је прилагођени текст сагласности.
     data_role: Улога података
+    datasheet: Мапа сајта
     decline: Претраживање
+    default: Подразумевано
     delete: Избриши
     description: Опис
     desktop_or_laptop_recommended: Препоручује се десктоп или лаптоп
     desktop_or_laptop_required: Потребан десктоп или лаптоп
+    dimension: Димензија
     disabled: Онеспособљен
     discard: Баци
     download: Преузми
@@ -69,6 +78,7 @@ sr-Cyrl:
     edit: Уређивање
     edited: Уређивати
     email: Е-пошта
+    end_date: Датум завршетка
     ending_proctoring_session_msg: Завршавамо сесију надгледања. Молимо сачекајте док сачувамо ваше одговоре и преусмеримо вас на почетну страницу.
     error: Грешка
     export: Извоз
@@ -83,12 +93,18 @@ sr-Cyrl:
     generating: Генерисање
     group_question_max_validation_error: Свака група може да садржи највише {{маx}} ставке.
     group_question_min_validation_error: Свака група треба да садржи најмање {{мин}} ставке.
+    icon: Икону
     id: ИД
     idp_ai_assistant_disclaimer: Лигхтхоусе АИ ИДП асистент може да прави грешке. Молимо вас да будете опрезни док користите одговоре.
+    import: Увоз
+    inactive: Неактиван
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     last_name: Презиме
+    last_updated: Последње измене
     learning_on_the_job_label: Учење на послу
     lets_start: Хајде да почнемо!
+    linked_activities: Повезане активности
+    linked_assessment: Повезана процена
     loading: Учитавање...
     login: Пријавите се
     maintenance_in_hours: "%{hours} сати"
@@ -98,11 +114,13 @@ sr-Cyrl:
     maintenance_time_remaining: Преостало време
     maintenance_upcoming_description: Извршићемо планирани одржавање на %{date} током отприлике %{duration} како бисмо побољшали ваше искуство. Током тог периода нећете моћи да приступите или завршите ниједан додељени задатак. Ценимо ваше стрпљење.
     maintenance_upcoming_title: Предстојеће одржавање
+    manage: Управљај
     manage_cookies: Управљај колачићима
     media_id: ИД медија
     media_preview: Преглед за медије
     media_question_transcriptions: Транскрипти медијских питања
     media_responses: Реакције медија
+    meeting_link: Линк за састанак
     microphones: Микрофони
     mobile_proctoring_disabled_instructions: За наставак ове процене потребан је десктоп или лаптоп. Молимо вас да пређете на рачунар како бисте завршили активност.
     mobile_proctoring_enabled_instructions: За најбоље искуство, молимо вас да пређете на десктоп или лаптоп рачунар ако га имате на располагању. Ако је потребно, можете наставити на мобилном уређају.
@@ -116,13 +134,17 @@ sr-Cyrl:
     new: Нови
     next: Следеће
     no_audio_warning: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
+    no_data_found: Није пронађен ниједан податак
     no_results_found: Није пронађено ниједно резултат
+    none: Нико
     not_requested: Још није затражено
     ok: У реду
     options: Опције
+    overview: Преглед
     owner: Власник
     pause: Пауза
     pending: У току
+    permissions: Дозволе
     play: Пуни
     policy_version: Верзија политике
     policy_version_format: Дозвољени су само цели бројеви.
@@ -133,6 +155,7 @@ sr-Cyrl:
     proctoring_maintenance_active: Проктинг је тренутно у одржавању са %{start_time} на %{end_time}. Молимо покушајте поново након завршетка прозора за одржавање.
     proctoring_maintenance_upcoming: Прокторинг ће бити у одржавању од %{start_time} до %{end_time}.
     project: Пројекат
+    publish: Објави
     question: Питање
     question_id: Идентификациони број питања
     question_transcription_disabled: Транскрипција је онемогућена за ово питање
@@ -146,20 +169,27 @@ sr-Cyrl:
     remove: Уклони
     removed: Уклоњена
     replace: Заменити
+    required: потребно
+    reset: Поништи
     reset_password: Поништавање лозинке
     response_text: Текст одговора
     rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
     rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
+    run: Трчати
     save: Сачувај
     saving_video: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
+    schedule_time: Распоред Време
     scoring_details: Детаљи бодовања
     search: Претраге
     select_camera: Изаберите камеру
+    select_language: Изаберите језик
     select_microphone: Изаберите микрофон
+    send: Пошаљи
     send_email: Пошаљи е-пошту
     show_more: Прикажи још
     something_wrong: Нешто је пошло наопако. Контактирајте свог администратора
     speakers: Говорници
+    start_date: Датум почетка
     status: Статус
     status_unknown: Статус непознат
     stop: Стоп
@@ -178,6 +208,7 @@ sr-Cyrl:
           one: 'Укупан : 1'
           other: 'Укупно : {{цоунт}}'
           zero: 'Укупан : 0'
+    tags: Ознаке
     terms_conditions_privacy: Изјава о приватности
     tools: Алатке
     transcription: Транскрипција
@@ -189,11 +220,35 @@ sr-Cyrl:
     try_again: Покушај поново
     tte_terms_and_condition: Услови и приватност
     type: Тип
+    unpublish: Повуци објаву
     update: Ажурирање
     update_failed: Ажурирање није успело
     updated_at: Ажурирано у
+    updated_by: Ажурирано од
     updated_successfully: Успешно ажурирано
+    upload: Отпремање
     user_report_pdf_url_not_generated: Није могуће генерисати везу за преузимање PDF-а
+    user_reports_approval_status_pending_qc: Учешће у КЦ
+    user_reports_approval_status_qc_completed: КК завршено
+    user_reports_assessment_name_not_completed_reason_template: Оценa "%{names}" није завршена
+    user_reports_assessments_name_not_completed_reason_template: Оцењивања %{names} нису завршена
+    user_reports_assessor_not_completed_reason_template: Образац процењивача %{names} није попуњен.
+    user_reports_assessors_not_completed_reason_template: Обрасци процењивача %{names} нису попуњени
+    user_reports_campaign_artifact_results_pending_reason_message: Резултати артефакта кампање нису коначни за овог корисника
+    user_reports_campaign_scoring_pending_reason_message: Резултати кампање нису коначни за овог корисника
+    user_reports_custom_upload_report_reason_message: Пружалац извештаја је прилагођено отпремање.
+    user_reports_external_report_pending_reason_message: Чекање извештаја од пружаоца услуге
+    user_reports_lead_assessor_not_completed_reason_template: Образац главног процењивача %{names} није попуњен.
+    user_reports_lead_assessors_not_completed_reason_template: Обрасци главног процењивача %{names} нису попуњени
+    user_reports_no_report_module_reason_message: За овај извештај није пронађен модул извештаја.
+    user_reports_not_prepared_reason_message: Извештај још није припремљен
+    user_reports_pending_approval_reason_template: Статус одобрења је "%{status}"
+    user_reports_pending_final_ai_scoring_approval_reason_message: Уче се коначно одобравање бодовања вештачке интелигенције
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Уче се резултати QC AI
+    user_reports_pending_qc_approval_reason_message: Учешће у току одобрења QC извештаја
+    user_reports_qc_completed_approval_reason_message: Уче се од одобрења коначног извештаја
+    user_reports_report_generating_reason_message: Извештај се генерише
+    user_reports_report_generation_failed_reason_message: Генерација извештаја није успела
     video: Видео
     view: Приказ
     view_audio: Погледај аудио

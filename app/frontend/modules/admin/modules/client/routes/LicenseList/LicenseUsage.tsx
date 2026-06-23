@@ -51,14 +51,14 @@ const LicenseUsageComponent: React.FC<Props> = () => {
         <Filter />
         <Resource.Table pagination>
           <Resource.Column<LicenseUsage>
-            title={I18n.t('common.column.id')}
+            title={I18n.t('shared.id')}
             id="id"
             dataIndex="id"
             sorter
             width={150}
           />
           <Resource.Column<LicenseUsage>
-            title={I18n.t('license_usage.active')}
+            title={I18n.t('shared.active')}
             id="status"
             dataIndex="status"
             render={(_, licenseUsage) => <ActiveSwitch licenseUsage={licenseUsage} />}
@@ -83,7 +83,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             width={300}
           />
           <Resource.Column<LicenseUsage>
-            title={I18n.t('common.column.created_at')}
+            title={I18n.t('shared.created_at')}
             id="created_at"
             dataIndex="createdAt"
             sorter
@@ -131,7 +131,7 @@ const BreadcrumbsComponent = () => {
       crumbs={[
         {
           link: () => '/admin',
-          label: () => I18n.t('administration.clients.clients'),
+          label: () => I18n.t('admin.clients'),
         },
         {
           link: () => `/admin/clients/${clientId}/projects`,
@@ -139,7 +139,7 @@ const BreadcrumbsComponent = () => {
         },
         {
           link: () => `/admin/clients/${clientId}/licenses`,
-          label: () => I18n.t('administration.breadcrumbs.licenses'),
+          label: () => I18n.t('admin.licenses'),
         },
         {
           label: () => resource.meta?.reportFamilyName || I18n.t('license_usage.usages'),
@@ -177,7 +177,7 @@ const Filter = () => {
 
   return (
     <Resource.Filter
-      placeholder={I18n.t('common.actions.search')}
+      placeholder={I18n.t('shared.search')}
       name="subject_name_or_subject_email_or_campaign_name_cont"
     >
       <Space>
@@ -185,10 +185,10 @@ const Filter = () => {
           onChange={toggleStatusFilter}
         >
           <Radio.Button value="active">
-            {I18n.t('license_usage.active')}
+            {I18n.t('shared.active')}
           </Radio.Button>
           <Radio.Button value="inactive">
-            {I18n.t('license_usage.inactive')}
+            {I18n.t('shared.inactive')}
           </Radio.Button>
         </Radio.Group>
       </Space>

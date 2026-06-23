@@ -2,17 +2,6 @@
 pl:
   administration:
     actions: Akcje
-    active_record_audits:
-      action: Akcja
-      audit_id: Identyfikator audytu
-      auditable_id: Identyfikator rekordu
-      auditable_type: Typ rekordu
-      audited_changes: Kontrolowane zmiany
-      new_diff:
-        parse_error: Nie można przeanalizować kodu JSON z nowymi zmianami
-      old_diff:
-        parse_error: Nie można przeanalizować kodu JSON ze starymi zmianami
-      title: Kontrolowane zmiany
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ pl:
           design: Projekt
           or: Lub
     administrators:
-      drawers:
-        edit:
-          first_name_required: Imię jest wymagane
-          last_name_required: Nazwisko jest wymagane
-        view:
-          first_name: Imię
-          last_name: Nazwisko
-          title:
-            campaign_admin: Administrator kampanii
-            client_admin: Administrator klienta
-            project_admin: Administrator projektu
       list:
         actions:
-          api_keys: Klucze API
-          edit: Redagować
-          export_admins_with_permissions: Eksport ról i uprawnień administratora
-          export_success: Zadanie eksportu administratora zostało zaplanowane pomyślnie. Sprawdź status swojego powiadomienia.
-          login: Login
           spoof:
             login_successful: Logowanie powiodło się.
-          user_report_events: Dzienniki zatwierdzania raportów
-        columns:
-          email: E-mail
-      modals:
-        delete:
-          cancelText: Anuluj
-          okText: Ok
-          title: Potwierdzić
-    ai_artifacts:
-      artifact_results: Wyniki artefaktu
-      code: Kod
-      export:
-        success_msg: Eksport artefaktów AI w trakcie. Proszę sprawdzić status w powiadomieniach.
-      export_ai_artifacts: Eksport artefaktów AI
-      form:
-        add_assessment: Dodaj ocenę
-        ai_assistant: Asystent AI
-        assessments: Oceny
-        campaign_factors: Czynniki kampanii
-        configuration: Konfiguracja
-        datasheet: Arkusz danych
-        datasheet_columns: Kolumny arkusza danych
-        include_all_datasheet_columns: Uwzględnij wszystkie kolumny arkusza danych
-        no_assessment_selected: Nie dodano jeszcze żadnych ocen. Kliknij "Dodaj", aby rozpocząć.
-        questions_required: Należy wybrać co najmniej jedno pytanie
-        select_ai_assistant: Wybierz Asystenta AI
-        select_assessment: Wybierz ocenę
-        select_campaign_factors: Wybieranie czynników kampanii
-        select_datasheet_columns: Wybieranie kolumn arkusza danych
-        select_questions: Wybierz pytania
-        title: Artefakt AI
-      generate: Stworzyć
-      generate_result_info_message: Wyniki są generowane, odśwież stronę, aby zobaczyć zaktualizowane wyniki.
-      generated_at_time: Wygenerowane w %{time}
-      generated_value: Wygenerowana wartość
-      id: ID
-      import:
-        download_example_csv: Pobierz przykładowy CSV
-        info_msg: Przesłany plik został ustawiony w kolejce do importu. Proszę sprawdzić status w powiadomieniach.
-      import_action:
-        title: Artefakty AI w kampanii importowej
-      import_ai_artifacts: Import artefaktów AI
-      key: Klucz
-      name: Nazwa
-      parsed_dependencies:
-        help: Przeanalizowane zależności dla użytkownika używanego przez Asystenta AI do generowania wyników artefaktów
-        title: Przeanalizowane zależności
-        view: Wyświetlanie przeanalizowanych zależności
-      playground: Plac zabaw
-      playground_info: Przetestuj artefakt z przykładowymi danymi, aby wyświetlić podgląd wygenerowanych wyników.
-      playground_placeholder: Wprowadzanie danych testowych
-      raw: SUROWY
-      tabs:
-        results: Wyniki
-        settings: Ustawienia
-      test_generate: Generowanie testowe
-      unsaved_changes: Niezapisane zmiany są obecne, rozważ przesłanie formularza, aby wygenerować zaktualizowaną odpowiedź z Playground.
-      used_tokens:
-        input_tokens: Tokeny wejściowe
-        output_tokens: Tokeny wyjściowe
-        title: Wykorzystanie tokenów
     ai_assistants:
-      actions:
-        create: Stwórz asystenta AI
-        edit: Edytuj asystenta AI
-        playground: Plac zabaw
-      ai_assistants: Asystenci AI
-      ai_assistants_playground: Plac zabaw dla asystentów AI
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ pl:
             no_datasheet_data: Brak dostępnych danych arkusza danych dla %{email} użytkownika
             user_not_found_in_datasheet: Nie znaleziono użytkownika w arkuszu danych kampanii
       campaign_ai_artifacts: Artefakty SI kampanii
-      column:
-        provider: Dostawca
-      created_successfully: Asystent AI został pomyślnie utworzony.
       errors:
         cannot_delete_in_use: Nie można usunąć Asystenta AI "%{name}", ponieważ jest on używany.
         development_actions_assistance_not_enabled: Generowanie akcji programistycznych opartych na sztucznej inteligencji nie jest dostępne. Prosimy o kontakt z administratorem.
         one_click_idp_assistance_not_enabled: Pomoc IDP oparta na sztucznej inteligencji nie jest dostępna w ramach bieżącego planu. Prosimy o kontakt z administratorem.
         platform_assistant_already_exists: Na platformie może przebywać tylko 1 asystent typu %{type}.
-      form:
-        add_output_schema_key: Dodaj klucz schematu wyjściowego
-        dependencies: Zależności
-        description: Opis
-        enter_description: Wprowadź opis
-        enter_schema_key: Wprowadź klucz schematu
-        key: Klucz
-        name: Nazwa
-        output_schema_keys: Klucze schematu wyjściowego
-        provider: Dostawca
-        remove_output_schema_key: Usuń klucz schematu wyjściowego
-        schema_key_description_required: Opis klucza schematu jest wymagany
-        schema_key_required: Klucz schematu jest wymagany
-        schema_key_type: Typ klucza
-        schema_key_unique: Klucze schematu powinny być unikalne
-        system_prompt: Monit systemowy
-        type: Typ
-        user_prompt: Monit użytkownika
-      revisions:
-        load: Załaduj do formy
-        name: Nazwa
-        system_prompt: Propmpt systemu
-        title: Wersje Asystenta AI
-        user_prompt: Monit użytkownika
-        version: Wersja
       selector:
         choose_artifact: Wybierz artefakt AI
         choose_schema_key: Wybierz klucz schematu
         no_assistants_found: Nie znaleziono asystentów AI
         placeholder: Wybierz Asystenta AI
-      updated_successfully: AI Assistant został pomyślnie zaktualizowany.
     any: " -Jakikolwiek- "
     api:
       campaigns:
@@ -185,10 +62,6 @@ pl:
       users:
         form:
           campaign_ids_not_existing: Nie wszystkie identyfikatory kampanii są dostępne
-    api_keys:
-      form:
-        description: Opis
-        title: Klucz API
     assessment_builder:
       form:
         display_label: Wprowadź etykietę wyświetlaną
@@ -196,108 +69,12 @@ pl:
         value: Wartość
         value_required: Wartość jest wymagana
     assessment_center:
-      cancel_confirmation:
-        message: Czy na pewno chcesz odrzucić postęp w wypełnianiu?
-        title: Odrzuć postęp formularza
-      current: Aktualny
       invite:
-        add_invite: Dodaj zaproszenie
-        assessment_center: Centrum oceny zintegrowanej
-        back: Wstecz
-        basic_info:
-          allow_preferred_language: Zezwalaj na preferowany język
-          assessment_centers: Centra oceny
-          assessment_centers_hint: Przykład wyszukiwania "10 sierpnia 2023, 20:06"
-          assessment_centers_placeholder: Wybierz Centra Oceny
-          description: Wysyłaj zaproszenia do kandydatów, wybierając wiele centrów oceny. Następnie kandydaci wybiorą jedno centrum spośród dostępnych.
-          neurodiversity: Uwzględnij pytanie o neuroróżnorodność
-          preferred_language: Dozwolone języki
-          required_error: Nie może być puste
-          title: Podstawowe informacje
-        center_group: Grupa Assessment Center
-        confirm_message: Czy na pewno chcesz usunąć zaproszenie?
-        confirm_message_with_title: Czy na pewno chcesz usunąć zaproszenie z tytułem "%{invite_title}"?
-        confirm_title: Potwierdzić
         exceeded_subjects_count: Kampania składa się z %{users} tematów. Możesz dodać tylko %{count} tematów na zaproszenie
-        id: ID
-        invites: Zaprasza
-        name: Nazwa
-        name_placeholder: Wprowadź nazwę zaproszenia
-        next: Następny
-        not_selected: Nie wybrano
-        requests: Żądania
-        save: Zapisz i wyślij
-        send_invites:
-          add: Dodawać
-          add_description: Tytuł i opis zaproszenia można przetłumaczyć na wiele języków
-          add_language: Dodaj język
-          description: Opis
-          input_label: Dodaj dodatkowy język
-          input_placeholder: Wybierz dodatkowy język
-          invitation_title: Tytuł zaproszenia
-          title: Zaproszenie (%{lang})
-        steps:
-          add_subjects: Dodawanie tematów
-          basic_info: Podstawowa informacja
-          has_errors: zawiera błędy
-          send_invitation: Wyślij zaproszenie
-        subjects:
-          cancel: Anuluj
-          count: "%{count} Tematy"
-          csv_error: 'Wiersz%{index}: użytkownik z adresem e-mail %{email} nie bierze udziału w tej kampanii'
-          csv_imported: "%{count} zaimportowanych tematów"
-          description: Tematy można dodawać pojedynczo, wyszukując lub przesyłając zbiorczo plik csv.
-          download: Pobierać
-          file_example: Zapoznaj się z przykładowym plikiem, aby przesłać informacje o subjektach.
-          import_from_campaign: Dodaj wszystko z kampanii
-          import_title: Importowanie tematów
-          import_users: Importowanie użytkowników
-          search_user: Tematy wyszukiwania
-          title: Tematy
-          upload: Przesyłać
-          upload_csv: Prześlij plik CSV
         subjects_count_added: Tematy zostały dodane
-        success:
-          continue: Kontynuować
-          message: Zadanie wysłania zaproszeń zostało ustawione w kolejce; Użytkownicy otrzymają je wkrótce.
-        success_message: Zaproszenie zostało pomyślnie usunięte.
-        success_message_with_title: Zaproszenie o tytule "%{invite_title}" zostało pomyślnie usunięte.
-        title: Tytuł
-        workshop:
-          title: Centra oceny
-        workshop_list:
-          add: Dodawać
-          name: Nazwa
-          remove_confirm:
-            content: Czy na pewno chcesz usunąć Centrum oceny o nazwie "%{name}"?
-            success: Assessment Center zostało pomyślnie usunięte.
-            title: Potwierdzić
-      invite_request:
-        accept: Akceptować
-        reason: Powód
-        reject: Odrzucać
-        remove_confirm:
-          content: Czy na pewno chcesz %{action} %{status} from %{subjectName}?
-          success: "%{status} z %{subjectName} został pomyślnie %{action}."
-          title: "%{action} %{status}"
-        status: Stan
-        subject_name: Nazwa podmiotu
-        workshop_time: Czas warsztatów
-      past: Przeszłość
-      steps:
-        basic_information: Podstawowe informacje
-        facilitators: Mediatorzy
-        invite_options: Opcje zaproszeń
-        invite_subjects: Zaproś tematy
-        send_invitations: Wysyłanie zaproszeń
-      success:
-        call_send_invitation: Czy chcesz wysłać zaproszenia?
-        ok: Tak
-        skip: Pomiń na razie
-        title: Utworzone centra oceny
-      upcoming: Nadchodzących
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Konfigurację punktacji opartej na sztucznej inteligencji można dodać wyłącznie w przypadku pytań typu „AudioResponse”, „VideoResponse” i „TextEntry”
         doesnt_have_header: '"%{sub_header}" nie ma nagłówka'
         invalid_headers: 'Następujące nagłówki są nieprawidłowe: %{headers}'
         invalid_question: Nieprawidłowy identyfikator pytania
@@ -311,11 +88,7 @@ pl:
       successfully_scheduled: Import pytań został zaplanowany pomyślnie.
     assessments:
       assessment: Ocena
-      assessment_report: Oceny
       copy:
-        copy: kopiować
-        copy_assessment: Ocena kopii
-        name: Nazwa
         successfully: Ocena "%{name}" została skopiowana pomyślnie.
       create:
         successfully: Ocena "%{name}" została utworzona pomyślnie.
@@ -398,93 +171,10 @@ pl:
       update:
         successfully: Ocena %{name} została zaktualizowana pomyślnie.
     assessor:
-      add_subject_modal:
-        assessment: Ocena
-        mark_as_lead_assessor: Oznacz jako głównego asesora w powyższym temacie
-        subject: Temat
-        subject_placeholder: Szukaj tematu..
-        title: Dodaj temat
-      assessments:
-        actions:
-          add_subject: Dodaj temat
-          rescore: Ponowne trafienie
-          reset: Resetowanie oceny
-          reset_progress: Resetuj postęp
-        bulk_delete_confirmation: Czy na pewno chcesz usunąć wybrane rekordy?
-        bulk_delete_successful: Oceny asesora zostały pomyślnie usunięte
-        reset_confirmation: Czy na pewno chcesz zresetować ocenę tematu za pomocą adresu e-mail "%{subjectEmail}"?
-        reset_progress_confirmation: Czy na pewno chcesz zresetować postęp tematu za pomocą wiadomości e-mail "%{subjectEmail}"?
-        reset_progress_successfully: Resetowanie postępu tematu za pomocą wiadomości e-mail "%{subjectEmail}" zakończyło się pomyślnie.
-        reset_successfully: Resetowanie oceny dla tematu za pomocą wiadomości e-mail "%{subjectEmail}" zakończyło się pomyślnie.
-        subject_email: Temat wiadomości e-mail
-        subject_name: Nazwa podmiotu
-      completed_at: Ukończono o
-      count: "%{count} Asesorów"
-      create_assessor: Dodaj asesora
-      evaluations: Oceny
       mailer:
         subject: Dodano nowe tematy do oceny
-      modals:
-        create_assessor:
-          add: Dodawać
-          cancel: Anuluj
-          form:
-            add: Dodawać
-            add_lead_assessor: Dodaj jako głównego asesora
-            add_lead_assessor_hint: Najpierw dodaj formularz głównego asesora
-            assessments: Oceny
-            assessor: Asesor
-            assessor_placeholder: Szukaj Asesora...
-            lead_assessment: Ocena potencjalnego klienta
-            subject: Temat
-            subject_placeholder: Szukany temat...
-          sheet:
-            assessments: Oceny
-            assessments_placeholder: Wybrać
-            assessor_email: Adres e-mail asesora
-            assessor_first_name: Imię asesora
-            assessor_last_name: Nazwisko asesora
-            subject_email: Adres e-mail tematu
-          title: Dodaj asesora
-        import:
-          body: Zapoznaj się z funkcją eksportu, aby wyodrębnić szablon, którego można użyć do importowania tutaj.
-          title: Asesorzy importowi
       moderate_score:
-        assessor_evaluations: Oceny asesorów
-        main_report: Raport główny
-        no_completed_assessments: Nie ma jeszcze zakończonych ocen
         no_results: Nie ma odpowiedzi na żadne pytania
-        other_reports: Inne raporty
-        overall_scoring: Ogólna punktacja
-        recordings: Nagrania
-        refresh: Odświeżyć
-        reports: Raporty
-        reports_count: "%{count} Raporty"
-      overview: Przegląd
-      remove_confirmation: Czy na pewno chcesz usunąć asesora z adresem e-mail %{email} z tej kampanii?
-      statuses:
-        completed: Zakończone
-        not_completed: Nie ukończono
-      toolbar:
-        export: Asesorzy eksportowi
-        import: Asesorzy importowi
-        tools: Narzędzia
-    assessor_assessment:
-      add: Dodawać
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: Wybierz ocenę
-      name: Ocena asesora
-    assessor_campaigns:
-      statuses:
-        completed: Zakończone
-        in_progress: W toku
-        not_started: Nie rozpoczęto
-    assessor_subjects:
-      statuses:
-        completed: Zakończone
-        in_progress: W toku
-        not_started: Nie rozpoczęto
     assigns:
       create:
         successfully: Nowe przypisanie do oceny zostało pomyślnie utworzone
@@ -501,42 +191,6 @@ pl:
       edit:
         header: Edytowanie przypisania raportu
     attention: Uwaga
-    audit_log:
-      action: Akcja
-      audit_logs: Dzienniki audytu
-      campaign: Kampania
-      client: Klient
-      client_ip: Adres IP klienta
-      collapse_filters: Zwiń filtry
-      dashboard: Deska rozdzielcza
-      date_presets:
-        last_30_days: Ostatnie 30 dni
-        last_7_days: Ostatnie 7 dni
-        last_month: Ostatni miesiąc
-        last_week: W zeszłym tygodniu
-        today: Dzisiaj
-        yesterday: Wczoraj
-      date_range: Zakres dat
-      expand_filters: Rozwiń filtry
-      failure_reason: Przyczyna niepowodzenia
-      interface: Interfejs
-      log_date: Data logowania
-      outcome: Wynik
-      payload: Ładunku
-      project: Projekt
-      record_id: Identyfikator rekordu
-      request_id: Identyfikator żądania
-      reset: Resetować
-      search: Szukać
-      search_campaign: Wyszukiwanie według kampanii
-      search_client: Wyszukiwanie według klienta
-      search_project: Wyszukiwanie według projektu
-      search_record: Wyszukiwanie według identyfikatora rekordu
-      search_user: Wyszukiwanie według użytkownika
-      title: Informacje z dziennika inspekcji
-      type: Typ rekordu
-      user: Użytkownik
-      user_agent: Klient użytkownika
     back: Wstecz
     block_settings:
       modal:
@@ -749,20 +403,7 @@ pl:
           missing_user_reports: 'Brakujące raporty użytkowników dotyczące wiadomości e-mail: %{emails}'
           no_file_found_in_extracted_zip: Nie znaleziono pliku w rozpakowanym pliku ZIP.
           user_report_not_found: 'Nie znaleziono raportu użytkownika dla adresu e-mail: %{email}'
-      bulk_download:
-        data_range_error: Wybierz zakres dat
-        modal:
-          subtitle: Wybierz zakres dat, a następnie wybierz wymagany język dla każdego raportu.
-      generate:
-        modal:
-          subtitle: Wybierz wymagany język dla każdego raportu
     campaign_templates:
-      campaign_templates: Szablony kampanii
-      column:
-        assessment: Ocena
-        campaign: Kampania
-        owner: Właściciel
-        report: Sprawozdanie
       copy:
         successfully: Dzierżawa klienta %{name} została pomyślnie skopiowana.
       create:
@@ -773,16 +414,6 @@ pl:
         header: Edytuj klienta
       errors:
         owner_invalid: Właściciel szablonu musi być taki sam jak właściciele oceny, raportu i wymiaru
-      form:
-        assessment: Ocena
-        assessment_placeholder: Wybierz ocenę
-        name: Nazwa
-        name_placeholder: Wpisz nazwę
-        owner: Właściciel
-        owner_placeholder: Wybierz właściciela
-        report: sprawozdanie
-        report_placeholder: Wybieranie raportu
-        title: Szablon kampanii
       image_fields:
         remove: Usunąć
       index:
@@ -797,10 +428,6 @@ pl:
         updated_at: Data aktualizacji
       new:
         header: Nowy klient
-      remove_confirm:
-        content: Czy na pewno chcesz usunąć szablon kampanii "%{name}"?
-        success: Szablon kampanii '%{name}'' został pomyślnie usunięty.
-        title: Usuń szablon kampanii
       resource:
         confirmations:
           delete:
@@ -816,7 +443,6 @@ pl:
       update:
         successfully: Dzierżawa klienta %{name} została pomyślnie zaktualizowana.
     campaigns:
-      actions: Zarządzać
       assessment_reports:
         report_approval:
           allow_bulk_approve: Zezwalaj na zatwierdzanie zbiorcze
@@ -866,148 +492,6 @@ pl:
       assessors:
         spoof:
           successfully: Udało Ci się zalogować jako %{name}
-      convert_to_template: Konwertuj na szablon
-      copy: Kopiować
-      delete: Usunąć
-      edit: Redagować
-      extend_time_success_message: Licznik czasu kampanii wydłużony do %{minutes} minut
-      filters:
-        active: Aktywny
-        all: Cały
-        archived: Archiwizowane
-        closed: Zamknięty
-        inactive: Nieaktywny
-        status: Stan
-      form:
-        active_notice: Status kampanii automatycznie zmieni się na zamknięte w wybranym terminie
-        campaign: Kampania
-        copy_factors: Współczynniki kopiowania
-        inactive_notice: Status kampanii automatycznie zmieni się na aktywne w wybranym dniu rozpoczęcia
-        name: Nazwa
-        practice_campaign: Kampania treningowa
-        status: Stan
-      listing:
-        assessments: Oceny
-        id: ID
-        name: Nazwa
-        reports: Raporty
-        status: Stan
-        template: Szablon
-        type: Typ
-      menus:
-        add_common_campaign: Dodaj wspólną kampanię
-        add_multi_rater_campaign: Dodaj kampanię z wieloma raterami
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: Szablon kampanii
-            factors: Czynników
-          base_settings:
-            active: Aktywny
-            archive: Archiwum
-            assessment: Ocena
-            category: Kategoria
-            closed: Zamknięty
-            default_assessment_language: Domyślny język oceny
-            default_report_language: Domyślny język raportu
-            empty: Pusty
-            inactive: Nieaktywny
-            name: Nazwa
-            normal: Normalny
-            previous: Poprzedni
-            select_assessment_language: Wybierz język oceny
-            select_report_language: Wybierz język raportu
-            skill_rater: Ocena umiejętności
-            standard: Norma
-            status: Stan
-            type: Typ
-          close:
-            content: Czy na pewno chcesz zamknąć Kreator kampanii Multi Rater? Wszelkie niezapisane prace związane z dostosowywaniem zostaną utracone. Potwierdź swoją decyzję.
-            title: Zamknąć Kreator kampanii z wieloma ocenami?
-          instructions_creation:
-            empty: 'Pusty: Zacznij od pustej ankiety i dostosuj ją do swoich konkretnych potrzeb.'
-            previous: 'Wstecz: Wybierz poprzednią ocenę jako punkt wyjścia i wprowadź modyfikacje.'
-            standard: 'Standardowy: Użyj wstępnie zaprojektowanego szablonu z często używanymi pytaniami i wskaźnikami.'
-            sub_title: Wybierz typ kampanii, którą chcesz utworzyć.
-            title: Witamy w Kreatorze Kampanii Multi Rater!
-          instructions_customization:
-            sub_title: Wybierz szablon i czynniki, które mają zostać uwzględnione w ocenie.
-            title: Dostosuj swoją ocenę!
-          no_factors:
-            description: Wypróbuj inne słowa kluczowe.
-            title: Nie znaleziono żadnych czynników
-          questions:
-            select_all: Zaznacz wszystko
-            title: Pytania i wskaźniki
-          search_factors:
-            description: Wpisz co najmniej 3 znaki, aby znaleźć czynniki, których szukasz.
-            title: Rozpocznij wyszukiwanie
-          success: Kampania Multi Rater została pomyślnie stworzona.
-          success_job: Zadanie tworzenia kampanii z wieloma oceniającymi zostało pomyślnie zaplanowane.
-      options:
-        description:
-          name: Opis
-          save: Zapisz opis
-          save_success: Opis zapisany pomyślnie
-        enable_video_call_recording: Włącz nagrywanie rozmów wideo
-        fixed_time: Stały czas
-        instructions:
-          actions:
-            saved: Instrukcje zostały pomyślnie zapisane
-          enable: Włączanie instrukcji
-          save: Zapisz instrukcje
-        prework_required: Nie zezwalaj na rezerwację centrum, jeśli prace wstępne nie zostały zakończone
-        prework_required_for_invite: Wysyłaj wiadomość e-mail z zaproszeniem tylko po zakończeniu prac wstępnych
-        proctoring:
-          enable: Włącz nadzorowanie
-          identification: Identyfikacja
-          identifications:
-            face: Twarz
-            face_and_passport: Twarz i paszport
-            passport: Paszport
-          integration_type: Integracja
-          integration_types:
-            iframe: Ramka IFrame
-            ldb: Przeglądarka blokady
-          proctoring_types:
-            offline: Offline
-            online: Online
-          rule_types:
-            allow_absence_in_frame: Zezwalaj na brak sensu w ramce
-            allow_to_use_books: Zezwalaj na korzystanie z książek
-            allow_to_use_calculator: Zezwól na korzystanie z kalkulatora
-            allow_to_use_excel: Zezwalaj na korzystanie z programu Excel
-            allow_to_use_human_assistant: Zezwalaj na korzystanie z ludzkiego asystenta
-            allow_to_use_messengers: Zezwól na korzystanie z komunikatorów
-            allow_to_use_paper: Zezwól na użycie papieru
-            allow_to_use_websites: Zezwalaj na korzystanie ze stron internetowych
-            allow_voices: Zezwalaj na głosy
-            allow_wrong_gaze_direction: Zezwalaj na niewłaściwy kierunek spojrzenia
-          rules: Zasady
-          trial: Próba nadzorująca
-          type: Typ
-        show_watermark: Pokaż znak wodny
-        watermark_content: Zawartość znaku wodnego
-        watermark_info: Jeśli nie dodasz żadnej treści, domyślnie adres e-mail użytkownika pojawi się jako znak wodny. Możesz użyć dowolnego z następujących potoków:<br> {{id}} - Identyfikator uczestnika </br> {{first_name}} - Imię uczestnika <br> {{last_name}} - Nazwisko uczestnika </br> {{email}} - Adres e-mail uczestnika
-      pdf_password: Hasło PDF
-      types:
-        common: Wspólny
-        threesixty: Wielu oceniających
-      users:
-        add_user: Dodaj użytkownika
-        completion_status: Stan ukończenia
-        created_by: Utworzony przez
-        email: E-mail
-        filters:
-          all: Cały
-          anonymous: Anonimowy
-          identified: Identyfikowane
-        id: ID
-        is_active: Aktywny
-        name: Nazwa
-        no_permission_message: Nie masz uprawnień do modyfikowania
-        title: Użytkowników
-        updated_by: Zaktualizowane przez
       validations:
         dates:
           end: Musi być po dacie rozpoczęcia
@@ -1016,32 +500,7 @@ pl:
         invalid_campaign_factor_codes: 'Następujące factor_codes kampanii są nieprawidłowe: %{codes}'
         missing_headers: Brakujące nagłówki
         missing_users: 'Następujące adresy e-mail nie istnieją: %{emails}'
-      import:
-        example_csv: Pobierz przykładowy plik csv
-        success_msg: Import został przekazany pomyślnie
-      modal:
-        title: Importowanie wyników kampanii zewnętrznej
-    client_features:
-      client_features: Funkcje klienta
-      form:
-        ai_assistants: Asystenci AI
-        ai_assistants_disabled_by_client: Asystenci AI są wyłączeni przez klienta
-        ai_assisted_idp: Dostawca tożsamości wspomagany przez sztuczną inteligencję
-        ai_assisted_idp_requires_ai_assistants: Usługa AI Assisted IDP wymaga włączenia funkcji AI Assistants
-        ai_content_analysis: Analiza treści AI
-        ai_content_analysis_disabled_by_client: Analiza treści AI jest wyłączona przez klienta.
-        ai_translation: Tłumaczenia AI
-        ai_translation_disabled_by_client: Tłumaczenia AI są wyłączone przez klienta.
-        global_skills: Umiejętności globalne
-        global_skills_disabled_by_client: Umiejętności globalne są wyłączone przez klienta
-        idp: PRI
-        idp_disabled_by_client: Dostawca tożsamości jest wyłączony przez klienta
-        sms_notification: Powiadomienie SMS
-        sms_notification_disabled_by_client: Powiadomienia SMS są wyłączone przez klienta
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Bułka tarta
       archive:
         successfully: Pomyślnie
       base:
@@ -1049,7 +508,6 @@ pl:
         archived: Archiwizowane
         disable: Archiwum
         enable: Przywróć z archiwum
-      clients: Klientów
       copy:
         successfully: Dzierżawa klienta "%{name}" została skopiowana pomyślnie.
       create:
@@ -1069,392 +527,17 @@ pl:
       new:
         header: Nowy klient
       projects:
-        actions:
-          archive: Archiwum
-          unarchive: Przywróć z archiwum
-        archive:
-          content: Czy na pewno chcesz zarchiwizować plik '%{project_name}'?
-          success: Projekt "%{project_name}" został pomyślnie zarchiwizowany.
-          title: Projekt archiwalny
-        assign_assessments:
-          add_assessment: Dodaj ocenę
-          assessments: Oceny
-        assign_reports:
-          add_report: Dodaj raport
-        campaigns:
-          archive:
-            successfully: Kampania "%{name}" została pomyślnie zarchiwizowana.
-          copy:
-            error: Kampania "%{name}" nie została skopiowana.
-            successfully: Kampania "%{name}" została skopiowana pomyślnie.
-          create:
-            successfully: Kampania "%{name}" została utworzona pomyślnie.
-          destroy:
-            successfully: Kampania "%{name}" została usunięta.
-          edit:
-            header: Edytuj kampanię
-          export:
-            assessments: Oceny
-            assigned_user: Przypisani użytkownicy
-            completed_user: Ukończoni użytkownicy
-            created_at: Data utworzenia
-            header:
-              actions: Akcje
-              actual_usage: Rzeczywiste użycie
-              assessments: Oceny
-              campaigns: Kampanie
-              name: Nazwa
-              reports: Raporty
-              sub_campaigns: Podkampanie
-              tests_allocated: Przydzielone testy
-              users: Użytkowników
-            id: ID
-            name: Nazwa kampanii
-            reports: Raporty
-            updated_at: Data aktualizacji
-          index:
-            export: Eksport
-            new: Dodawać
-            title: Kampanie
-          list:
-            assessments: Oceny
-            assigned_user: Przypisani użytkownicy
-            completed_user: Ukończoni użytkownicy
-            created_at: Data utworzenia
-            header:
-              actions: Akcje
-              actual_usage: Rzeczywiste użycie
-              assessments: Oceny
-              campaigns: Kampanie
-              name: Nazwa
-              reports: Raporty
-              sub_campaigns: Podkampanie
-              tests_allocated: Przydzielone testy
-              users: Użytkowników
-            id: ID
-            name: Nazwa kampanii
-            reports: Raporty
-            updated_at: Data aktualizacji
-          new:
-            header: Nowa kampania
-          resource:
-            sub_campaign:
-              create: Utwórz nową podkampanię
-            tooltips:
-              copy: Kopiuj kampanię
-              create_report: Dodaj nowy raport
-              create_user: Dodaj nowego użytkownika
-              delete: Usuń kampanię
-              edit: Edytuj kampanię
-              export: Eksport
-          sidebar:
-            archive: Kampania archiwalna
-            copy: Kopiuj kampanię
-            destroy: Usuń kampanię
-            disable: Wyłączać
-            edit: Edytuj kampanię
-            enable: Umożliwiać
-            new: Nowa kampania
-            title: Opcje kampanii
-            view_licenses: Wyświetlanie licencji
-          sub_campaigns:
-            archive:
-              successfully: Podkampania %{name} została pomyślnie zarchiwizowana.
-            copy:
-              error: Kampania podrzędna %{name} nie została skopiowana.
-              successfully: Kampania podrzędna %{name} została pomyślnie skopiowana.
-            create:
-              successfully: Kampania podrzędna %{name} została utworzona pomyślnie.
-            destroy:
-              successfully: Podkampania %{name} została pomyślnie usunięta.
-            edit:
-              header: Edytuj podkampanię
-            export:
-              assessments: Oceny
-              assigned_user: Przypisani użytkownicy
-              completed_user: Ukończoni użytkownicy
-              created_at: Data utworzenia
-              header:
-                actions: Akcje
-                actual_usage: Rzeczywiste użycie
-                archive_status: Stan archiwum
-                name: Nazwa
-                sub_campaign: Podkampanie
-                tests_allocated: Przydzielone testy
-                users: Użytkowników
-              id: ID
-              name: Nazwa podkampanii
-              reports: Raporty
-              updated_at: Data aktualizacji
-            header:
-              actions: Akcje
-            index:
-              export: Eksport
-              new: Dodawać
-              title: Kampanie podrzędne
-            list:
-              assessments: Oceny
-              assigned_user: Przypisani użytkownicy
-              completed_user: Ukończoni użytkownicy
-              created_at: Data utworzenia
-              header:
-                actions: Akcje
-                actual_usage: Rzeczywiste użycie
-                archive_status: Stan archiwum
-                name: Nazwa
-                sub_campaign: Podkampanie
-                tests_allocated: Przydzielone testy
-                users: Użytkowników
-              id: ID
-              name: Nazwa podkampanii
-              reports: Raporty
-              updated_at: Data aktualizacji
-            new:
-              header: Nowa podkampania
-            resource:
-              tooltips:
-                copy: Kopiuj subskrypcję kampanii
-                create_report: Dodaj nowy raport
-                create_user: Dodaj nowego użytkownika
-                delete: Usuń podkampanię
-                edit: Edytuj kampanię podrzędną
-            sidebar:
-              archive: Archiwizuj podkampanię
-              copy: Kopiuj podkampanię
-              destroy: Usuń podkampanię
-              disable: Wyłączać
-              edit: Edytuj podkampanię
-              enable: Umożliwiać
-              new: Nowa podkampania
-              title: Opcje podkampanii
-              view_licenses: Wyświetlanie licencji
-            toggle_status:
-              successfully: Kampania podrzędna %{name} została pomyślnie zaktualizowana.
-            update:
-              successfully: Kampania podrzędna %{name} została pomyślnie zaktualizowana.
-          toggle_status:
-            successfully: Kampania %{name} została pomyślnie zaktualizowana.
-          update:
-            successfully: Kampania %{name} została pomyślnie zaktualizowana.
-        copy:
-          error: Projekt %{name} nie został skopiowany.
-          successfully: Projekt %{name} został pomyślnie skopiowany.
-        create:
-          successfully: Projekt %{name} został utworzony pomyślnie.
-        destroy:
-          successfully: Projekt %{name} został pomyślnie usunięty.
-        edit:
-          header: Edytuj projekt
-        export:
-          2fa_enabled: 2FA włączone
-          actual_usage: Rzeczywiste użycie
-          admin: Administrator klienta
-          applicable_level: Obowiązujący poziom
-          archive_status: Stan
-          assessments: Oceny
-          assigned_user: Przypisani użytkownicy
-          completed_user: Ukończoni użytkownicy
-          created_at: Data utworzenia
-          id: ID
-          name: Nazwa projektu
-          number: Numer
-          project_admin: Administratorzy projektu
-          reports: Raporty
-          tests_allocated: Przydzielone testy
-          tte_admin: Kierownik projektu TTE
-          updated_at: Data modyfikacji
-          url: Adres URL
-          users_count: Liczba użytkowników
-        form:
-          2fa: Uwierzytelnianie dwuskładnikowe
-          2fa_enable: Włącz uwierzytelnianie dwuskładnikowe
-          applicable_levels:
-            campaign: Poziom końcowy kampanii
-            project: Poziom końcowy projektu
-            sub_campaign: Poziom końcowy podkampanii
-          data_privacy: Ochrona danych
-          enable_live_chat: Włącz czat na żywo
-          enable_privacy_links: Włącz łącze do prywatności
-          live_chat_token: Token czatu na żywo
-          optional: Fakultatywny
-          other_settings: Inne ustawienia
-          privacy_link: Link do prywatności
-          privacy_text: Tekst dotyczący prywatności
-          project_number: Numer projektu
-          webhook: Element webhook
-          webhook_auth_enabled: Włącz uwierzytelnianie elementu webhook
-          webhook_password: Hasło
-          webhook_username: Nazwa użytkownika
-        header:
-          actions: Akcje
-        index:
-          export: Eksport
-          new: Dodawać
-          title: Projekty
-          tooltips:
-            create: Tworzyć
-            export: Eksport
-        list:
-          2fa_enabled: 2FA włączone
-          actual_usage: Rzeczywiste użycie
-          admin: Administrator klienta
-          applicable_level: Obowiązujący poziom
-          archive_status: Stan
-          assessments: Oceny
-          assigned_user: Przypisani użytkownicy
-          completed_user: Ukończoni użytkownicy
-          created_at: Data utworzenia
-          id: ID
-          name: Nazwa projektu
-          number: Numer
-          project_admin: Administratorzy projektu
-          reports: Raporty
-          tests_allocated: Przydzielone testy
-          tte_admin: Kierownik projektu TTE
-          updated_at: Data modyfikacji
-          url: Adres URL
-          users_count: Liczba użytkowników
-        new:
-          header: Nowy projekt
-        resource:
-          add_assessment: Dodaj ocenę
-          add_report: Dodaj raport
-          assessments: Oceny
-          tooltips:
-            copy: Kopiuj projekt
-            create_admin: Tworzenie administratora projektu
-            create_report: Dodaj nowy raport
-            create_user: Dodaj nowego użytkownika
-            delete: Usuń projekt
-            edit: Edytuj projekt
-        sidebar:
-          admins: Administratorzy projektu
-          archive: Projekt archiwalny
-          copy: Kopiuj projekt
-          design: Edytuj projekt
-          destroy: Usuń projekt
-          disable: Wyłączać
-          edit: Edytuj projekt
-          enable: Umożliwiać
-          new: Nowy projekt
-          title: Opcje projektu
-          view_licenses: Zobacz licencje
-        status:
-          active: Aktywny
-          archived: Archiwizowane
         threesixty_campaigns:
-          base:
-            active: Aktywny
-            archived: Archiwizowane
-            disable: Archiwum
-            enable: Przywróć z archiwum
-          completion_statuses:
-            approved: Zatwierdzony
-            completed: Zakończone
-            denied: Odmówiony
-            in_progress: W toku
-            not_started: Nie rozpoczęto
-          copy:
-            error: Dzierżawa klienta "%{name}" nie została skopiowana.
-            successfully: Dzierżawa klienta "%{name}" została skopiowana pomyślnie.
-          create:
-            successfully: Dzierżawa klienta "%{name}" została utworzona pomyślnie.
-          designs:
-            form:
-              no_background: Brak tła
-              no_logo: Nie ma jeszcze logo
           destroy:
             error: Nie można usunąć elementu "%{name}", ponieważ istnieją pewne zależne powiązania podmiotów lub oceniających.
-            successfully: Dzierżawa klienta "%{name}" została pomyślnie usunięta.
-          edit:
-            header: Edycja kampanii 360
-          export:
-            admin: Administrator klienta
-            assessment: Montaż
-            client_admins: Administratorzy klienta
-            created_at: Utworzono w
-            id: ID
-            name: Nazwa
-            report: Sprawozdanie
-            report_bundle: Pakiet raportów
-            status: Stan
           index:
-            export: Eksport
-            new: Dodaj kampanię 360
             title: Kampanie 360
-          license:
-            header: "%{name} - Edytuj licencję"
-          licenses:
-            update:
-              duplicate_licenses: Masz zduplikowane licencje
-              successfully: Licencje zostały zaktualizowane pomyślnie
-          list:
-            admin: Administrator klienta
-            assessment: Montaż
-            client_admins: Administratorzy klienta
-            created_at: Utworzono w
-            id: ID
-            name: Nazwa
-            report: Sprawozdanie
-            report_bundle: Pakiet raportów
-            status: Stan
-            updated_at: Data aktualizacji
-          new:
-            header: Nowa kampania 360
           resource:
             confirmations:
               delete:
                 body: "<p>Czy na pewno chcesz usunąć?</p> <p>Tej czynności nie można cofnąć. Spowoduje to trwałe usunięcie kampanii, kampanii podrzędnych i wszystkich powiązań <strong>%{name}</strong> .</p> <p>Wpisz <strong>%{name}</strong> , aby potwierdzić.</p>"
                 title: Usunąć <strong>%{name}</strong>?
-              disable:
-                body:
-                  '0': "<p>Czy na pewno chcesz zarchiwizować?</p> <p>Wszystkie kampanie, podkampanie i użytkownicy również zostaną zarchiwizowani</p>"
-                  '1': "<p>Czy na pewno chcesz zarchiwizować?</p> <p>Wszystkie podkampanie i użytkownicy również zostaną zarchiwizowani</p>"
-                  '2': "<p>Czy na pewno chcesz zarchiwizować?</p> <p>Wszyscy użytkownicy również zostaną zarchiwizowani</p>"
-                  '3': "<p>Czy na pewno chcesz zarchiwizować?</p> <p>Wszyscy użytkownicy również zostaną zarchiwizowani</p>"
-                title: Archiwum <strong>%{name}</strong> ?
-              enable:
-                body:
-                  '0': "<p>Czy na pewno chcesz przywrócić archiwum?</p>"
-                  '1': "<p>Czy na pewno chcesz przywrócić archiwum?</p>"
-                  '2': "<p>Czy na pewno chcesz przywrócić archiwum?</p>"
-                  '3': "<p>Czy na pewno chcesz przywrócić archiwum?</p>"
-                title: Przywróć z archiwum <strong>%{name}</strong> ?
-            export_results: Eksport wyników
-            raw_results: Surowe wyniki
-            tooltips:
-              campaigns:
-                delete: Usuń kampanię
-              copy: Kopiowanie klienta
-              create_admin: Tworzenie administratora klienta
-              delete: Usuń klienta
-              disable: Wyłącz klienta
-              edit: Edytuj klienta
-              enable: Włącz klienta
-          statistics:
-            index:
-              all_assessments: Wszystkie oceny
-              assessment_type: Rodzaj oceny
-              title: Statystyka
-          toggle_status:
-            successfully: Dzierżawa klienta %{name} została pomyślnie zaktualizowana.
-          update:
-            successfully: Dzierżawa klienta %{name} została pomyślnie zaktualizowana.
-          url: Adres URL
-        toggle_status:
-          successfully: Projekt %{name} został zaktualizowany pomyślnie.
-        unarchive:
-          content: Czy na pewno chcesz przywrócić '%{project_name}' z archiwum?
-          success: Projekt '%{project_name}'' został pomyślnie przywrócony z archiwum.
-          title: Przywróć projekt z archiwum
-        update:
-          successfully: Projekt %{name} został zaktualizowany pomyślnie.
       registration_codes:
-        actions:
-          add_code: Dodaj kod
-        column:
-          code: Kod
-          usage_stats: Statystyki użytkowania
         errors:
           count_invalid: nie może być mniejsza niż used_count = %{use_count}
           criteria: może zawierać tylko znaki alfanumeryczne, łącznik (-) i podkreślenie (_)
@@ -1462,13 +545,6 @@ pl:
           incorrect_domain: Nieprawidłowy format domeny.
           invalid_end_date: musi być większa niż data początkowa
           license_issue: Za mało licencji.
-        form:
-          active: Aktywny
-          code: Kod
-          end_date: Data zakończenia
-          name: Nazwa
-          start_date: Data rozpoczęcia
-          total_count: Łączna liczba
       resource:
         confirmations:
           delete:
@@ -1484,25 +560,9 @@ pl:
         successfully: Dzierżawa klienta %{name} została pomyślnie zaktualizowana.
     close: Zamykać
     common:
-      add: Dodawać
-      back: Wstecz
-      cancel: Anuluj
-      code: Kod
-      disabled: Zdiagnozowany
-      download_sample_file: Pobierz przykładowy plik
       enabled: Włączone
-      import:
-        failure_msg: Błąd podczas importowania pliku.
-      instructions: Instrukcje
       loading: Ładowania...
-      minute: minuta
-      name: Nazwa
-      next: Następny
-      reset: Resetować
       save: Zapisać
-      select_all: Zaznacz wszystko
-      type: Typ
-      unselect_all: Odznacz wszystko
     communication_settings: Ustawienia
     communications:
       create:
@@ -1677,86 +737,19 @@ pl:
       input_duration:
         placeholder: Wpisz jako "1d 2h 3m"
     create: Tworzyć
-    dashboard:
-      capacity_name: Nazwa pojemności
-      choose_file_format: Wybierz format pliku
-      dashboard_types:
-        oracle_analytics: Analityka Oracle
-        powerbi: Zasilanie sieciowe
-      dashboards: Pulpity nawigacyjne
-      export_dashboard_to_file: Eksportuj pulpit nawigacyjny do pliku
-      export_job_failure: Nie można rozpocząć eksportu
-      export_job_success: Rozpoczęto zadanie eksportu. Zostaniesz powiadomiony o jego zakończeniu.
-      get_started: Rozpocząć
-      initialize_msg: Zainicjuj pulpit nawigacyjny dla tej kampanii
-      loading_failed: Wczytywanie pulpitu nawigacyjnego nie powiodło się.
-      only_export_current_tab: Eksportuj tylko bieżącą kartę
-      pdf: PDF
-      pptx: Protokół PPTX
-      preview:
-        embed_token_error_description: Sprawdź, czy zestaw danych i identyfikator raportu w ustawieniach są poprawne.
-        embed_token_error_title: Nie można wygenerować tokenu osadzania.
-      settings:
-        capacity_id: Identyfikator pojemności
-        details: Szczegóły
-        refresh: Odświeżyć
-        workspace_id: Identyfikator obszaru roboczego
-      tabs:
-        accesssheet: Arkusz dostępu
-        accesssheet_setting: Ustawienia arkusza dostępu
-        dashboard: Deska rozdzielcza
-        settings: Ustawienia
-    dashboard_form:
-      fields:
-        dataset_id: Identyfikator zestawu danych
-        enabled: Włączone
-        image: Obraz
-        project_path: Ścieżka projektu
-        refresh_interval: Interwał odświeżania (w minutach)
-        report_id: Identyfikator raportu
-        visual_header_visibility: Wizualna widoczność nagłówka
-      image_upload_failed: Przesyłanie obrazu nie powiodło się.
-      none: Żaden
-      refresh_success: Odświeżenie zestawu danych zaplanowane pomyślnie.
-      visual_header_visibility_options:
-        hide_all: Ukryj wszystko
-        keep_original: Zachowaj oryginał
-        show_all: Pokaż wszystkie
-    data_exports_modal:
-      title: Wybierz zakres dat
     data_reports:
-      columns:
-        created_at: Utworzono w
-        created_by: Utworzony przez
-        last_updated_by: Ostatnio zaktualizowane przez
-        name: Nazwa
-        owner: Właściciel
-        password: Hasło
-        status: Stan
-        udpated_at: Ostatnia aktualizacja o
-      configuration: Konfiguracja
       errors:
         factor_code_or_field_name_required: factor_code lub field_name jest wymagane
         factor_not_found: nie znaleziono w zakresie oceny
         inclusion: 'Nieprawidłowy typ, prawidłowe typy: %{values}'
         not_found: Nie znaleziono
         not_owned: nie jest własnością klienta
-      form:
-        name: Raport danych
-      messages:
-        runed: Uruchomienie raportu danych zostało pomyślnie zaplanowane
       validations:
         project_and_campaigns_not_allowed: project_ids i campaign_ids nie powinny być określane razem
-        project_not_related_to_client: "%{project_id} nie należy do klienta"
         project_or_campaign_required: project_ids lub campaign_ids jest wymagane
         sections_required: sekcje jest wymagane
     datasheet:
       threesixty_warning: W tym miejscu nie można przesłać kolumn arkusza danych dla raportu 360. W przypadku raportu 360 kolumny arkusza danych są wczytywane z kampanii, z którą ten raport jest powiązany
-    dates:
-      completed: Ukończono o
-      end: Data zakończenia
-      start: Data rozpoczęcia
-      started: Rozpoczął się o
     development_action_import:
       errors:
         blank_field: 'Wiersz %{row}: %{field} nie może być pusty'
@@ -1793,49 +786,11 @@ pl:
         successfully: Akcja rozwojowa "%{name}" została utworzona pomyślnie.
       destroy:
         successfully: Akcja rozwojowa "%{name}" została pomyślnie usunięta.
-      development_action_types:
-        course: Kurs
-        default: Domyślny
-      duration:
-        max_length: Nie może być dłuższy niż 1 rok
-        min_length: Nie może być krótszy niż 1 minuta
       edit:
         header: Edytuj akcję rozwojową
       export:
         details: Szczegóły pliku
-        failure_msg: Błąd podczas eksportowania tłumaczeń
-        success_msg: Eksport działań rozwojowych w toku. Sprawdź status w powiadomieniach.
         translation_details: Szczegóły
-      export_development_action_translations: Tłumaczenia działań rozwojowych
-      export_development_actions: Działania rozwojowe
-      form:
-        available_languages: Dostępne języki
-        client_placeholder: Wybierz klienta
-        course_image: Obraz kursu
-        course_link: Link do kursu
-        description: Opis
-        development_action_type: Rodzaj działania rozwojowego
-        duration: Czas trwania
-        end_date: Data zakończenia
-        learning_style: Styl uczenia się
-        name: Nazwa
-        project_placeholder: Wybierz projekt
-        skills: Umiejętności
-        skills_placeholder: Wybieranie umiejętności
-        start_date: Data rozpoczęcia
-        title: Działanie na rzecz rozwoju
-        upload: Przesyłać
-      global: Czy Globalny Rozwój jest Działaniem?
-      heading: Działania rozwojowe
-      import:
-        download_example_csv: Pobierz przykładowy plik csv
-        failure_msg: Błąd podczas importowania pliku.
-        info_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-      import_action:
-        development_actions_title: Importowanie działań rozwojowych
-        development_actions_translations_title: Importowanie tłumaczeń działań rozwojowych
-      import_development_actions: Działania rozwojowe
-      import_development_actions_translations: Tłumaczenia działań rozwojowych
       learning_styles:
         cannot_be_blank: Nie może być puste
         invalid: Musi być jednym z on_the_job, structured_learning learning_from_others
@@ -1869,32 +824,11 @@ pl:
       form:
         enable_innovation_styles: Włączanie stylów innowacji
         enable_occupations: Włącz zawody
-        name: Imię
-        title: Wymiary
       import_factors:
         import: Import
         sample_file: Przykładowy plik
         successfully: Zadanie importu czynników zaplanowane dla wymiaru %{name}.
         title: Czynniki importu
-      import_modal:
-        after: Po
-        before: Przed
-        cancel: Anuluj
-        change_log_input: Dziennik zmian
-        continue: Kontynuować
-        error: Błąd
-        error_occurred: Wystąpił błąd
-        errors:
-          file_error: Przed kontynuowaniem wybierz plik JSON.
-          processing_error: Błąd przetwarzania pliku
-        field: Pole
-        import: Import
-        import_dimension: Importuj wymiar
-        import_scheduled: Zaplanowany import
-        operation: Działanie
-        owner_input_validation: Wybierz właściciela
-        owner_select: Wybór właściciela
-        select_json: Wybierz plik JSON
       import_translations:
         error: Błąd podczas importowania tłumaczeń dla wymiaru %{name}.
         successfully: Zaimportuj tłumaczenia zaplanowane dla wymiaru %{name}.
@@ -1918,7 +852,6 @@ pl:
         confirmations:
           delete:
             body: "<p>Czy na pewno chcesz usunąć ten wymiar?</p>\n"
-            message: Wpisz w polu tekstowym nazwę wymiaru podaną poniżej, aby potwierdzić
             title: Usunąć <strong>wymiar</strong> ?
           toggle_status:
             body: "<p>Czy na pewno chcesz %{status} ten wymiar?</p>\n"
@@ -1946,9 +879,6 @@ pl:
       update:
         successfully: Wymiar %{name} został zaktualizowany pomyślnie
     disable: Wyłączać
-    document_titles:
-      project_assessors: Asesorzy | %{project}
-      project_participants: Uczestnicy | %{project}
     enable: Umożliwiać
     errors:
       csv_file_required: Plik musi być plikiem CSV
@@ -1969,21 +899,6 @@ pl:
       edit:
         header: Edytuj nazwę czynnika
       form:
-        components:
-          ExternalList:
-            add: Dodawać
-            table:
-              actions: Akcje
-              jsonpath: Ścieżka JSON
-              type: Typ
-              types:
-                norm_score: Wynik znormalizowany
-                percentage: Procent
-                percentile: Wynik percentyla
-                score: Wynik
-                zscore: Wynik Z
-            title: Ścieżki JSON dla wyników
-        predicate: Orzeczenie
         scoring_strategies:
           custom_formula: Formuła niestandardowa
           external_score: Wynik zewnętrzny
@@ -1995,15 +910,9 @@ pl:
           sub_factors_average: Średnia ważona czynników
           sub_factors_conditional_average: Warunkowa średnia ważona czynników
           sub_factors_sum: Ważona suma czynników
-        scoring_strategies_tip: "<strong>Pytania (średnie):</strong> Jest to jak obecna metoda oceniania, gdy istnieją pytania związane z czynnikiem.<br /> <br /><strong>Pytania (SUM):</strong> Jest to podobne do pytań (średnia), ale przy użyciu funkcji SUMA<br /> <br /><strong>Pytania o inne czynniki (średnia):</strong> Jest to jak obecna metoda oceniania, w której istnieją czynniki cząstkowe dla czynnika, jedyną zmianą jest dodanie wagi.<br /> <br /><strong>Pytania dotyczące innych czynników (SUM):</strong> Jest to podobne do innych czynników (średnia), ale przy użyciu funkcji SUMA<br /> <br /><strong>Ważona suma czynników:</strong> Tutaj wyniki wybranych innych czynników są mnożone przez ich wagi, są dodawane."
-        scoring_strategy: Strategia punktacji
-        search_factors: Czynniki wyszukiwania
-        use_sub_factor_norm_score: Użyj wyniku normy czynników
-        value: Wartość
       index:
         icon: Ikona
         new: Dodawać
-        precision: Precyzja
         scoring_strategies:
           custom_formula: Formuła niestandardowa
           external_score: Wynik zewnętrzny
@@ -2061,10 +970,6 @@ pl:
         successfully: Factor został pomyślnie zaktualizowany.
       update:
         successfully: Czynnik %{name} został pomyślnie zaktualizowany
-    genders:
-      female: Kobieta
-      male: Mężczyzna
-      not_set: Nie ustawiono
     grants:
       common:
         view: Widok
@@ -2074,100 +979,19 @@ pl:
           accesssheet_manage: Zarządzanie arkuszem dostępu
           accesssheet_settings: Ustawienia arkusza dostępu
           accesssheet_view: Widok arkusza dostępu
-    header:
-      logout:
-        content: Naciśnij Anuluj, jeśli chcesz kontynuować pracę. Naciśnij OK, aby wylogować się obecnego użytkownika.
-        title: Jesteś pewien, że chcesz się wylogować?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: Nie można dodać nowej odpowiedzi dla oceny Hogana %{assessment_name}, ponieważ ta ocena jest już przypisana i uruchomiona przez użytkownika %{email}. Możesz utworzyć nowe konto hogan dla tego użytkownika, co pozwoli mu na ponowne przystąpienie do oceny.
           short_error_message: Nie można dodać nowej odpowiedzi dla oceny Hogana %{assessment_name}, ponieważ ta ocena jest już przypisana i uruchomiona przez użytkownika %{email}
     idp:
-      actions:
-        remove_confirm: Wprowadź aktualną nazwę szablonu podaną poniżej w polu tekstowym, aby usunąć szablon
-        success: Plik %{idpName} został pomyślnie usunięty.
-      add_idp_template: Dodaj szablon IDP
-      ai_assistant: Asystent AI
-      ai_assisted_idp_enabled: IDP wspomagane przez sztuczną inteligencję
-      ai_enabled: AI Enabled
-      ai_settings: Ustawienia AI
-      all: Cały
-      appearance: Wygląd
-      appearance_hint: Aby zmodyfikować wygląd, najpierw zapisz szablon IDP, aby włączyć te ustawienia.
-      appearance_success: Ustawienia wyglądu zostały pomyślnie zapisane
-      background_image: Obraz w tle
-      behavioral_skills: Umiejętności behawioralne
-      client_skills: Umiejętności klienta
-      delete_skill: Czy na pewno chcesz usunąć umiejętność? Spowoduje to również usunięcie wszystkich powiązanych działań rozwojowych.
-      delete_skill_msg: Jesteś pewien, że chcesz usunąć tę umiejętność? Usunięcie tego również usunie wszystkie powiązane działania rozwojowe.
-      details_updated: Szczegóły IDP zostały pomyślnie zaktualizowane
       development_actions:
-        add_from_library: Dodaj z biblioteki
-        completion: Ukończenie
-        create_development_actions_with_ai: Twórz działania programistyczne za pomocą sztucznej inteligencji dla
-        create_from_ai: Tworzenie na podstawie sztucznej inteligencji
-        create_my_own: Stwórz swój własny
-        custom: Zwyczaj
-        date_range: Data rozpoczęcia - Data zakończenia
-        edit_plan_to_add_development_actions: Edytuj plan i dodaj działania rozwojowe.
         errors:
           invalid_learning_style: '"%{learning_style}" nie jest prawidłowym stylem uczenia się. Prawidłowe opcje to: %{valid_styles}'
           learning_style_blank: Styl uczenia się nie może być pusty
-        generate_by_ai: Generowane przez sztuczną inteligencję
-        generate_more: Generuj więcej
-        heading: Umiejętności/działania rozwojowe
-        manage_skills: Zarządzanie umiejętnościami
-        no_development_actions: Nie masz żadnych Działań Rozwojowych
-      document_ai_assistant: Asystent AI do analizy dokumentów
-      edit_template: Edytowanie szablonu dostawcy tożsamości
-      enter_tag_or_skills_error: Wybierz co najmniej jeden tag lub umiejętność
-      enter_template_description: Opis
-      enter_template_description_error: Wymagany jest opis szablonu.
-      enter_template_name: Nazwa
-      enter_template_name_error: Nazwa szablonu jest wymagana
       errors:
-        cannot_update_progress_plan_completed: Nie można zaktualizować postępów, ponieważ plan IDP został ukończony.
         skills_required_on_publishing: Wybierz umiejętności przed opublikowaniem szablonu.
         update: Aktualizacja nie jest dozwolona, ponieważ szablon dostawcy tożsamości jest już skojarzony z planem dostawcy tożsamości użytkownika. Zmiany wyglądu zostały zapisane.
-      fields:
-        approval_date: Data zatwierdzenia
-        assigned_data: Przypisane dane
-        assigned_date: Przypisana data
-        completion_date: Data realizacji
-        current_job_role: Obecna rola zawodowa
-        division: Dzielenie
-        name: Nazwa
-        publish_date: Data publikacji
-        review_date: Data przeglądu
-        target_job_role: Docelowa rola zawodowa
-      fields_label: Pola
-      global_skills: Umiejętności globalne
-      idp: IDP
-      idp_template: Dodaj szablon IDP
-      interview_questions: Pytania do rozmowy kwalifikacyjnej
-      interview_questions_updated: Pytania do rozmowy kwalifikacyjnej zostały pomyślnie zaktualizowane.
-      intro_message: Wiadomość wprowadzająca
-      intro_message_hint: Aby zmodyfikować komunikat wprowadzający, najpierw zapisz szablon dostawcy tożsamości, aby włączyć te ustawienia.
-      intro_message_success: Wiadomość wprowadzająca została pomyślnie zapisana
-      locales: Ustawień regionalnych
-      logo_image: Obraz logo
-      logo_type:
-        both: Logo Mercer i Klienta
-        client_only: Tylko logo klienta
-        mercer_only: Tylko logo Mercer
-        none: Bez logo
-      logo_type_label: Typ logo
-      no_interview_questions_selected: Nie wybrano pytań do rozmowy kwalifikacyjnej
-      no_reflection_questions_selected: Nie wybrano pytań do refleksji
-      none: Żaden
-      one_click_idp_enabled: Włączone IDP jednym kliknięciem
-      reference_locale: Referencyjne ustawienia regionalne
-      reflection_questions: Pytania do refleksji
-      reflection_questions_hint: Aby zmodyfikować pytania do refleksji, najpierw zapisz szablon IDP, aby włączyć te ustawienia.
-      reflection_questions_updated: Pytania do refleksji zostały zaktualizowane pomyślnie.
-      remove: Usunąć
-      remove_skill: Usuń umiejętność
       revert_skill_to_public:
         errors:
           skill_already_public: Umiejętność jest już publiczna
@@ -2175,47 +999,11 @@ pl:
         success:
           base_message: Umiejętność "%{skill_name}" jest teraz widoczna dla twojego menedżera.
           with_approval: "%{base_message} i Twój plan IDP został przesłany do zatwierdzenia"
-      select_by_tags: Wybierz według tagów
-      select_interview_question: Zacznij pisać, aby wyszukać i wybrać pytanie
-      select_reflection_question: Zacznij pisać, aby wyszukać i wybrać pytanie
-      select_skill_gap_report: Wybierz raport o brakach w umiejętnościach
-      select_specific_skills: Wybierz konkretne umiejętności
-      selected: Wybrany
-      self_rating: Włącz samoocenę
-      show_reflections: Pokaż odbicia
-      skill_gap_report: Raport o brakach w umiejętnościach
-      skill_gap_report_ai_assistant: Asystent analizy raportu o brakach w umiejętnościach
-      skill_source_preference: Źródło umiejętności
-      skill_sources:
-        from_ai: Z ogólnej wiedzy na temat sztucznej inteligencji
-        from_template: Z szablonu i mapowań
-      skills: Umiejętności
       skills_privacy_messages:
         made_private: Umiejętność "%{skill_name}" została oznaczona jako prywatna i będzie ukryta przed twoim menedżerem.
         made_public: Umiejętność "%{skill_name}" jest teraz widoczna dla twojego menedżera.
         skill_not_found: Nie znaleziono umiejętności
         unauthorized: Nie można modyfikować tej umiejętności
-      skills_updated: Umiejętności IDP zostały pomyślnie zaktualizowane
-      status:
-        draft: Wersja robocza
-        published: Opublikowano
-      status_updated: Status IDP został pomyślnie zaktualizowany
-      subtitle_text: Tekst napisów
-      tab:
-        development_actions: Działania rozwojowe
-        interview_questions: Pytania do rozmowy kwalifikacyjnej
-        reflection_questions: Pytania do refleksji
-        settings: Ustawienia
-        templates: Szablony
-      technical_skills: Umiejętności techniczne
-      template_details: Szczegóły szablonu
-      title_text: Tekst tytułu
-      update_interview_questions: Aktualizuj pytania do rozmowy kwalifikacyjnej
-      update_reflection_questions: Aktualizuj pytania do refleksji
-    idp_setting:
-      manager_approves_idp: Menedżer zatwierdza dostawcę tożsamości
-      manager_can_edit_idp: Menedżer może edytować dostawcę tożsamości
-      require_all_development_actions_complete: Wymagaj ukończenia wszystkich akcji programistycznych
     import: Import
     imports:
       assessments:
@@ -2285,10 +1073,6 @@ pl:
         successfully: Użytkownicy zostali pomyślnie zaimportowani
       new:
         header: Importowanie użytkowników
-    individual_invite:
-      tabs:
-        assessment_center: Centrum oceny zintegrowanej
-        invitation_status: Status zaproszenia
     innovation_styles:
       create:
         successfully: Styl innowacji %{name} został utworzony pomyślnie.
@@ -2297,7 +1081,6 @@ pl:
       edit:
         header: Edytuj styl innowacji
       form:
-        full_description: Pełny opis
         no_icon: Brak ikony
       index:
         new: Dodawać
@@ -2359,69 +1142,13 @@ pl:
       toggle_status:
         successfully: Factor został pomyślnie zaktualizowany.
     integrations:
-      actions:
-        add: Integracji
-        back: Powrót do sekcji Integracje
-        load_mettl_catalog: Załaduj katalog oceny Mettl
-        load_microsite_catalog: Pobierz katalog ocen mikrostron
-        load_skillvue_catalog: Załaduj katalog oceny Skillvue
-      columns:
-        active: Aktywny
-        details: Szczegóły
-        name: Nazwa integracji
-      details:
-        client_id: Identyfikator klienta
-        deployment_id: ID wdrożenia
-        platform_access_token_url: URL tokena dostępu do platformy
-        platform_authentication_request_url: URL Żądania uwierzytelniania platformy
-        platform_host_name: Nazwa hosta platformy
-        platform_id: Identyfikacja platformy
-        platform_public_keyset_url: Publiczny URL kluczy platformy
-        provider: Nazwa dostawcy
-        webhookUrl: Webhook URL
-        webhookUrls: Adresy URL elementów webhook
-      integrations: Integracji
       load_mettl_success: Zadanie Load mettl assessments zostało pomyślnie umieszczone w kolejce
       load_microsite_success: Zadanie dotyczące oceny mikrostron zostało pomyślnie dodane do kolejki
       load_skillvue_success: Zadanie oceny ładowania skillvue zostało pomyślnie umieszczone w kolejce
       modal:
-        hogan:
-          provider: Dostawca
-          providers:
-            mercer: Mercer
-            phoenix: Feniks
-        iiht:
-          password: Hasło
-          tenancy_name: Nazwa najemcy
-          tenant_id: Identyfikator najemcy
-          user: Użytkownik
-        mettl:
-          apiBaseUrl: Punkt końcowy interfejsu API
-          apiBaseUrlRequired: Punkt końcowy interfejsu API jest wymagany.
-          privateKey: Klucz prywatny
-          privateKeyRequired: Wymagany jest klucz prywatny.
-          publicKey: Klucz publiczny
-          publicKeyRequired: Wymagany jest klucz publiczny.
-          servers:
-            mettl_eu: Europa
-            mettl_india: Indie
         microsite:
           apiKey: Klucz API
           apiKeyRequired: Wymagany jest klucz API
-        skillvue:
-          apiKey: Klucz API
-          apiKeyRequired: Wymagany jest klucz API
-        yoodli:
-          keyset_url: URL zestawu kluczy
-          launch_url: Launch URL
-          login_url: URL logowania
-      names:
-        hogan: HOGAN
-        iiht: Międzynarodowa Biblioteka Medyczna (IIH
-        mettl: METTL (Biblioteka METTL)
-        microsite: Mikrostrona
-        skillvue: Umiejętne
-        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Nazwa najemcy jest już obecna w innym projekcie
@@ -2432,26 +1159,10 @@ pl:
           api_key_present: Klucz API występuje już w innym projekcie
         skillvue:
           api_key_present: Klucz API jest już obecny w innym projekcie
-      view_all_schedules: Zobacz wszystkie rozkłady jazdy Mettl
     interview_questions:
-      delete_confirmation: Czy na pewno chcesz usunąć to pytanie podczas rozmowy kwalifikacyjnej?
-      description: Opis
       export:
-        action: Eksportuj pytania do rozmowy kwalifikacyjnej
         details: Szczegóły pliku
-        failure_msg: Błąd podczas eksportowania pliku.
-        success_msg: Eksportowanie pytań do rozmowy kwalifikacyjnej w toku. Sprawdź status w powiadomieniach.
-      form:
-        description: Opis
-        mandatory: Obowiązkowy
-        question: Pytanie
-        question_type: Typ pytania
-        question_type_audio: Dźwięk
-        question_type_video: Wideo
-        time_limit: Limit czasu (s)
-        title: Pytanie do rozmowy kwalifikacyjnej
       import:
-        action: Importowanie pytań do rozmowy kwalifikacyjnej
         errors:
           invalid_required_column_format: Nieprawidłowy format wartości kolumny obowiązkowej %{row}
           invalid_required_type_format: Nieprawidłowy format wartości kolumny Typ pytania %{row}
@@ -2459,64 +1170,6 @@ pl:
           missing_description: Brakująca zawartość opisu %{row}
           missing_question: Brakująca treść pytania %{row}
           save_failed: Zapisywanie nieudanych %{message}
-        failure_msg: Błąd podczas importowania pliku.
-        success_msg: Importowanie pytań do rozmowy kwalifikacyjnej w toku. Sprawdź status w powiadomieniach.
-      question: Pytanie
-    invited_subject:
-      add_btn: Dodaj temat
-      assessment_center: 'Centrum oceny:'
-      booked_at: 'Zarezerwowano w:'
-      column:
-        invitation_status: Status zaproszenia
-        participant: Uczestnik
-        scheduling_details: Szczegóły harmonogramu
-      remove_confirm:
-        content: Czy na pewno chcesz usunąć temat z adresem e-mail "%{subjectEmail}"?
-        success: Temat z adresem e-mail "%{subjectEmail}" został pomyślnie usunięty.
-        title: Usuń temat
-      resend_invite:
-        content: Wyślij ponownie zaproszenie do wybranych tematów. Czy na pewno chcesz kontynuować?
-        success: Zaproszenia zostały pomyślnie wysłane ponownie.
-        title: Wyślij ponownie zaproszenie
-      statuses:
-        accepted: Akceptowane
-        cancelled: Anulowane
-        late_cancelled: Opóźnienie anulowane
-        late_rescheduled: Opóźniona zmiana harmonogramu
-        pending: Oczekujące
-        requested_cancellation: Prośba o anulowanie
-        requested_cancellation_rejected: Anulowanie odrzucone
-        requested_rescheduling: Żądana zmiana terminu
-        requested_rescheduling_rejected: Odrzucenie zmiany harmonogramu
-        rescheduled: Przełożony
-        scheduled: Zaplanowane
-      subject: Temat
-    job_role:
-      are_you_sure_to_remove: Czy na pewno usunąć?
-      column:
-        job_group: Grupa zadań
-        skill_name: Nazwa umiejętności
-      export:
-        failure_msg: Błąd podczas eksportowania tłumaczeń
-        success_msg: Eksport działań rozwojowych w toku.
-      form:
-        code: Kod
-        description: Opis
-        job_group: Grupa zadań
-        name: Nazwa
-        title: Stanowisko
-      import:
-        download_example_csv: Pobierz przykładowy plik csv
-        success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-      import_action:
-        translations: Importowanie tłumaczeń ról zawodowych
-      job_role_details: Szczegóły dotyczące stanowiska
-      translations: Tłumaczenia stanowisk pracy
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: Oczekiwany poziom biegłości
-      form:
-        title: Mapowanie umiejętności zawodowych
     job_roles:
       export:
         translations:
@@ -2582,18 +1235,11 @@ pl:
     meta_title: Panel administracyjny
     navigation:
       approvals: Zatwierdzenia
-      audit_logs: Dzienniki audytu
-      availability: Dostępność
       configuration: Konfiguracja
       content: Zawartość
-      dashboard: Deska rozdzielcza
       factors: Czynników
       innovation_styles: Style innowacji
-      logout: Wyloguj
       occupations: Zawodów
-      registration_codes: Kody rejestracyjne
-      skills_taxonomy: Taksonomia umiejętności
-      users: Użytkowników
     no_data_found: Nie znaleziono danych
     norms:
       copy:
@@ -2609,13 +1255,6 @@ pl:
         factors: Czynników
         inplace_title: Wprowadź wartość
         title: Edytor norm
-      export:
-        success_msg: Zadanie eksportu normy zostało zaplanowane pomyślnie. Sprawdź status w powiadomieniach.
-      import:
-        download_example_csv: Pobierz przykładowy plik csv
-        select_file_validation: Przed wysłaniem wybierz właściciela i plik.
-        success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-        title: Import norm
       index:
         import: Import
         new: Dodawać
@@ -2631,10 +1270,6 @@ pl:
         updated_by: Zaktualizowane przez
       new:
         header: Nowa norma
-      norms: Normy
-      remove:
-        confirm: Wprowadź nazwę normy podaną poniżej w polu tekstowym, aby potwierdzić
-        warning: Czy na pewno chcesz usunąć normę "%{name}"
       resource:
         confirmations:
           delete:
@@ -2650,10 +1285,6 @@ pl:
           copy: Kopiuj normę
           delete: Usuń normę
           edit: Zmień nazwę normy
-      score_types:
-        five_scale: Skala pięciu
-        norm_type: Typ normy
-        percentage: Procent
       sidebar:
         copy: Kopiuj normę
         destroy: Usuń normę
@@ -2661,7 +1292,6 @@ pl:
         editor: Edytor norm
         export: Norma eksportowa
         title: Opcje Normy
-      title: Norma
       toggle_status:
         successfully: Norm został pomyślnie zaktualizowany.
       update:
@@ -2677,12 +1307,8 @@ pl:
       edit:
         header: Edytuj zawód
       form:
-        alternative_icon: Alternatywna ikona
-        color: Kolor
         hint:
           key_career_tracks: '"+" - lista, "*" - pogrubienie. Przykład: + *Biologia* - jakiś opis...'
-        indicative_roles_image: Przykładowe role – ilustracja
-        key_career_tracks_image: Ilustracja przedstawiająca główne ścieżki kariery
         no_icon: Brak ikony
       index:
         new: Dodawać
@@ -2744,49 +1370,15 @@ pl:
         successfully: Factor został pomyślnie zaktualizowany.
       update:
         successfully: Czynnik %{name} został zaktualizowany pomyślnie.
-    participants:
-      tabs:
-        assessors: Asesorów
-        sms_contacts: Kontakty SMS
-        subjects: Tematy
     piped_text_modal:
-      assessment_center: Centrum oceny
       assessment_id: Identyfikator oceny
       campaign_id: Identyfikator kampanii
       campaign_link: Link do kampanii
-      campaign_name: Nazwa kampanii
-      campaigns: Kampanie
-      description: Opis
-      duration: Czas trwania
-      end_time: Czas zakończenia
-      insight_page_link: Link do strony Insight
-      insight_page_url: Adres URL strony statystyk
-      invite_title: Tytuł
-      invites: Zaproszenia
       join_link: Dołącz do linku
       magic_link: Magiczny link
       magic_url: Magiczny adres URL
-      platform_url_links: Adres URL platformy i łącza
       profile_custom_field: Pole niestandardowe profilu
-      project_name: Nazwa projektu
-      projects: Projekty
-      report_name: Nazwa raportu
-      start_time: Czas rozpoczęcia
       text: Tekst
-      title: Dodawanie tekstu z potoku
-      user_reports: Raporty użytkowników
-      users: Użytkownicy
-    proctoring_sessions:
-      columns:
-        comment: Komentarz
-        conclusion: Konkluzja
-        links: Linki
-        score: Wynik
-        session_id: Identyfikator sesji
-      links:
-        report: Sprawozdanie
-        review: Recenzja
-      resource_name: Sesje nadzorujące
     products:
       copy:
         error: Błąd
@@ -2799,9 +1391,6 @@ pl:
         create:
           invalid_format: Definicja poziomu musi być tablicą definicji.
           level_definition_must_match_level: musi zawierać dokładnie %{expected} poziomy, ale podano %{actual}
-          level_description_must_exist: Opis poziomu nie może być pusty
-          level_name_must_exist: Nazwa poziomu nie może być pusta
-          must_be_unique: Musi być unikatowy
           proficiency_level_exists: Poziom biegłości w tej umiejętności i projekcie już istnieje
           proficiency_level_exists_for_default: Poziom biegłości dla domyślnych ustawień już istnieje
           proficiency_level_exists_for_type: Poziom biegłości dla tego typu już istnieje
@@ -2809,24 +1398,9 @@ pl:
           skill_must_exist: Umiejętność musi być obecna, aby proficiency_type "by_skill"
       export:
         details: Szczegóły
-        failure_msg: Błąd podczas eksportowania poziomów biegłości
-        success_msg: Eksport trwających działań rozwojowych
         translations:
           details: Tłumaczenia na poziomie biegłości
-      fields:
-        level: Poziom
-        level_description: Opis poziomu
-        level_name: Nazwa poziomu
-        proficiency_translations: Tłumaczenia biegłości
-        proficiency_type: Rodzaj biegłości
-        skill: Zręczność
-        skill_name: Nazwa umiejętności
-        skill_type: Typ umiejętności
-        title: Biegłość
       import:
-        actions:
-          proficiency: Biegłość w imporcie
-          translations: Tłumaczenia biegłości importowej
         errors:
           by_skill_exists_id_missing: 'Rząd %{row_number}: Poziom zaawansowania umiejętności "%{name}" już istnieje. Podaj identyfikator, aby go zaktualizować.'
           by_skill_missing: 'Wiersz %{row_number}: Projekt i umiejętność muszą być obecne dla typu "by_skill"'
@@ -2839,11 +1413,7 @@ pl:
           invalid_skill_type: 'Wiersz %{row_number}: Nieprawidłowy typ umiejętności "%{skill_type}". Prawidłowe typy to: %{valid_types}'
           missing_columns: 'Brak wymaganych kolumn: %{fields}'
           skill_not_found: 'Wiersz %{row_number}: Nieprawidłowa lub brakująca umiejętność'
-        job_queued: Zadanie importu poziomów biegłości zostało umieszczone w kolejce
       translations:
-        export:
-          failure_msg: Błąd podczas eksportowania tłumaczeń
-          success_msg: Eksport działań rozwojowych w toku.
         import:
           errors:
             invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
@@ -2853,14 +1423,6 @@ pl:
             missing_required_columns: 'Brak wymaganych kolumn: %{columns}'
             row_id_blank: 'Wiersz %{row}: Identyfikator nie może być pusty'
             save_failed: 'Błąd podczas przetwarzania identyfikatora umiejętności %{id}: %{message}'
-      type:
-        by_skill: Według umiejętności
-        by_skill_type: Według rodzaju umiejętności
-        default: Domyślne
-    profile:
-      change_password: Zmień hasło
-      details: Szczegóły
-      profile: Profil
     profiles:
       edit:
         success: Profil został pomyślnie zaktualizowany.
@@ -2868,331 +1430,21 @@ pl:
       update:
         edit:
           success: Profil został pomyślnie zaktualizowany.
-    project:
-      tools:
-        workshop_status_export: Eksport statusu warsztatu
-        workshop_status_export_success: Eksport statusu warsztatu został zaplanowany pomyślnie.
-    project_features:
-      project_features: Cechy projektu
-    project_participants:
-      cancel: Anuluj
-      column_actions: Akcje
-      column_campaigns: Kampanie
-      column_createdAt: Utworzono w
-      column_created_at: Utworzono w
-      column_email: E-mail
-      column_id: ID
-      column_name: Nazwa
-      delete: Usunąć
-      edit: Redagować
-      edit_participant: Edytowanie uczestnika
-      filter_campaigns: Brak kampanii
-      form_first_name: Imię
-      form_last_name: Nazwisko
-      reset_password: Zresetuj hasło
-      save: Zapisać
-      search_user: Szukaj użytkownika
-      send_email: Wyślij wiadomość e-mail
-    project_tabs:
-      assessments:
-        column:
-          name: Nazwa
-          normalize_factor_scores: Normalizowanie wyników czynników
-          user_result_validity_in_days: Ważność wyników
-        delete:
-          content: Czy na pewno chcesz usunąć ocenę '%{name}'?
-          success: Ocena "%{name}" została pomyślnie usunięta.
-          title: Usuń ocenę
-        form:
-          assessment: Ocena
-          assessment_placeholder: Wybierz ocenę
-          assessment_required: Wymagana jest ocena
-          normalize_factor_scores: Normalizowanie wyników czynników
-          user_result_validity_in_days: Ważność wyniku w dniach
-        title: Oceny
-      design: Projekt
-      general: Ogólne
-      privacy: Prywatność
-      profile: Profil
-      registration: Rejestracja
-      webhooks:
-        actions:
-          delete:
-            key: usunąć
-            label: Usunąć
-          edit:
-            key: redagować
-            label: Redagować
-          send_test:
-            key: send_test
-            label: Wyślij test
-        form:
-          acceptable_rate_limit:
-            label: Dopuszczalny limit żądań
-            request_per: Żądania na
-          active:
-            label: Aktywny
-            name: aktywny
-          assessments:
-            help_text: Ten wybór dotyczy wyłącznie zdarzenia „Ocena surowej odpowiedzi”.
-            label: Oceny
-            placeholder: Wybierz oceny
-            required: Należy wybrać co najmniej jedną ocenę dla zdarzenia „Surowa odpowiedź z oceny”.
-          auth_type:
-            api_key:
-              label: Klucz API
-              name: api_key
-              value: api_key_auth
-            api_key_header:
-              format_error: Dozwolone są tylko litery, cyfry, podkreślenia i łączniki
-              label: Nagłówek klucza API
-              name: nagłówek apiKeyHeader
-            basic:
-              label: Podstawowy
-              value: basic_auth
-            label: Typ uwierzytelniania
-            name: auth_type
-            no_auth:
-              label: Żaden
-              value: no_auth
-            oauth:
-              label: Uwierzytelnianie OAuth
-              value: Protokół OAuth
-          client_credentials:
-            label: Poświadczenia klienta
-            value: client_credentials
-          client_id:
-            label: Identyfikator klienta
-            name: oauth_client_id
-            required: Wymagany jest identyfikator klienta
-          client_secret:
-            label: Klucz tajny klienta
-            name: oauth_client_secret
-            required: Wymagany jest klucz tajny klienta
-          description:
-            label: Opis
-            name: opis
-          grant_type:
-            label: Rodzaj dotacji
-            name: oauth_grant_type
-          include_locales:
-            label: Uwzględnij tłumaczenia
-            name: include_locales
-          oauth_scope:
-            label: Zakres
-            name: oauth_scope
-            required: Zakres jest wymagany
-          password:
-            label: Hasło
-            name: hasło
-          token_url:
-            label: Adres URL tokenu
-            name: oauth_token_url
-            required: Adres URL tokena jest wymagany
-          topics:
-            label: Zdarzenia
-            list:
-              assessment_assigned: Przypisana ocena
-              assessment_completed: Ocena zakończona
-              assessment_raw_response: Ocena surowej odpowiedzi
-              assessment_started: Ocena rozpoczęta
-              assessment_timeout: Limit czasu oceny
-              campaign_results_available: Dostępne wyniki kampanii
-              campaign_user_assessment_summary: Podsumowanie oceny użytkowników kampanii
-              campaign_user_status: Status użytkownika kampanii
-              report_available: Dostępny raport
-              results_available: Dostępne wyniki
-              scheduling_cancelled: Planowanie anulowane
-              scheduling_invited: Zaproszenie do planowania
-              scheduling_rescheduled: Planowanie zmienionego terminu
-              scheduling_scheduled: Planowanie zaplanowane
-              workshop_attendance_status: Status obecności na warsztatach
-          url:
-            label: Adres URL
-            name: Adres URL
-          username:
-            label: Nazwa użytkownika
-            name: Nazwa użytkownika
-        remove_webhook:
-          content: Usunąć %{description}?
-          title: Usunąć
-        title: Elementy webhook
-    project_users:
-      cancel: Anuluj
-      change_password: Zmień hasło
-      column_actions: Akcje
-      column_campaigns: Kampanie
-      column_created_at: Utworzono w
-      column_email: E-mail
-      column_id: ID
-      column_name: Nazwa
-      confirm_delete: Tak, usuń
-      confirm_send: Tak, wyślij
-      delete: Usunąć
-      delete_error: Nie można usunąć asesora "%{name}". Skontaktuj się z administratorem.
-      delete_success: Asesor "%{name}" został pomyślnie usunięty.
-      edit: Redagować
-      edit_assessor: Edytuj asesora
-      filter_campaigns: Bez kampanii
-      form_first_name: Imię
-      form_last_name: Nazwisko
-      modal_delete_content: Czy na pewno chcesz usunąć assessor '%{name}'?
-      modal_delete_title: Skreślić asesora
-      modal_reset_email_content: Czy na pewno chcesz wysłać link do resetowania hasła na adres "%{email}"?
-      model_reset_email: Resetowanie hasła asesora
-      no_edit_permission: Nie masz uprawnień do edycji assessora '%{name}'
-      reset_mail_error: Nie można wysłać linku do resetowania hasła na adres "%{email}". Skontaktuj się z administratorem.
-      reset_mail_success: Link do resetowania hasła został pomyślnie wysłany do "%{email}"
-      save: Zapisać
-      search_accessor: Metody dostępu do wyszukiwania
-      send_email: Wyślij wiadomość e-mail
     projects:
-      addProject: Dodaj projekt
-      assessment_settings:
-        search: Ocena wyszukiwania
       clients:
         confirmations:
           detach_from_project:
             body: Ciało
             title: Tytuł
-      columns:
-        project_number: Numer projektu
-      design_settings:
-        alt_text_invalid: Tekst alternatywny zawiera nieobsługiwane znaki.
-        alt_text_logo: Tekst alternatywny logo
-        alt_text_logo_required: Wymagane jest logo w tekście alternatywnym
-        alt_text_long: Przekracza maksymalny limit 100 znaków.
-        background_color: Kolor tła
-        background_label: Tło
-        background_overlay_label: Nakładka tła
-        background_size: Rozmiar tła
-        background_size_contain: Zawierać
-        background_size_cover: Pokryć
-        bg_upload: Przesyłać
-        client_logo_label: Logo klienta
-        contrast_ratio_warning: 'Uwaga: Użycie tego koloru podstawowego może naruszyć wymagany współczynnik kontrastu dla czytelności tekstu.'
-        contrast_ratio_warning_lighter_color: 'Uwaga: Użycie tego koloru %{name} może naruszyć wymagany współczynnik kontrastu dla czytelności tekstu. Spróbuj użyć ciemniejszego koloru.'
-        copy_text: Tekst
-        dashed_button: Kreskowany
-        default_button: Domyślne
-        error_color: Kolor błędu
-        hover_options:
-          danger_item: Niebezpieczny przedmiot
-          first_menu_item: 1. pozycja menu
-        hover_text: Unieś mnie
-        info_color: Kolor informacji
-        link_text: Link
-        logo_upload: Przesyłać
-        position_auto: Automatycznie
-        position_label: Pozycja pola logowania
-        position_left: Lewy
-        position_right: Prawy
-        primary_button: Podstawowe
-        primary_color: Kolor podstawowy
-        reset: Resetować
-        sec_logo_label: Dodatkowe logo
-        sec_logo_upload: Przesyłać
-        secondary_logo_alt_text: Tekst alternatywny logo pomocniczego
-        secondary_logo_alt_text_required: Wymagane jest dodatkowe logo w tekście alternatywnym
-        submenu_options:
-          option_one: Opcja 1
-          option_title: Pozycja 1
-          option_two: Opcja 2
-        success_color: Kolor sukcesu
-        success_update: Ustawienia projektu zostały pomyślnie zapisane
-        tab_text_one: Menu
-        tab_text_two: Podmenu
-        text_danger: Text(danger)
-        text_success: Tekst (sukces)
-        text_warning: Text(warning)
-        warning_color: Kolor ostrzegawczy
-      form:
-        name: Nazwa
-        project_number: Numer projektu
-        subdomain: Subdomena
-        title: Projekt
-      general_settings:
-        live_chat: Włącz czat na żywo
-        locales_label: Ustawień regionalnych
-        name_label: Nazwa
-        project_number_label: Numer projektu
-        save_changes: Zapisz zmiany
-        sub_domain_label: Subdomena
-      mettl_schedule_records:
-        actions:
-          edit: Redagować
-        add: Dodaj harmonogram
-        assessment_id: Identyfikator oceny
-        assessment_name: Nazwa oceny
-        candidate_authorization: Włącz autoryzację kandydata
-        candidate_screen_capture: Włącz przechwytywanie ekranu kandydata
-        count: Liczba tolerancji przeglądania
-        created_at: Utworzono w
-        schedule_id: Identyfikator harmonogramu
-        schedule_name: Nazwa harmonogramu
-        search: Szukać
-        secure_browser_enabled: Włącz bezpieczną przeglądarkę
-        settings: Ustawienia
-        show_remaining_counts: Włącz wyświetlanie pozostałej liczby
-        visual_proctoring_enabled: Włącz nadzór wizualny
-        web_proctoring_enabled: Włącz nadzorowanie sieci Web
       privacy_settings:
-        disable_dp: Nie zezwalaj na dalsze przetwarzanie danych
-        dp_consent: Włącz zgodę na przetwarzanie danych
-        dp_consent_custom: Dostosuj zgodę na przetwarzanie danych
-        dp_consent_version: Wersja zasad
         errors:
           cannot_disable_while_campaign_enabled: Nie można wyłączyć nagrywania rozmów wideo, ponieważ jest ono włączone dla jednej lub więcej kampanii w tym projekcie.
           min_retention: Nie może być krótszy niż 1 dzień
-          policy_version_format: Dozwolone są tylko liczby całkowite
-          required: Wymagane
-        mask_identity_for_examus: Dane maski dla Examus Proctoring
-        mask_identity_for_hogan: Dane maski dla Hogana
-        mask_identity_for_iiht: Dane maski dla IIHT
-        mask_identity_for_mettl: Dane maski dla METTL
-        mask_identity_for_mhs: Dane maski dla MHS
-        mask_identity_for_pearson: Dane maski dla Pearson
-        mask_identity_for_saville: Dane maski dla Saville
-        mask_identity_for_skillvue: Dane maski dla Skillvue
-        mask_identity_for_yoodli: Dane maski dla Yoodli
-        privacy_link: Włącz łącze do prywatności
-        privacy_link_label: Link do prywatności
-        privacy_link_placeholder: Wejdź w link do prywatności
-        privacy_text: Tekst dotyczący prywatności
-        privacy_text_placeholder: Wprowadź tekst prywatności
-        video_call_recording: Zezwalaj na nagrywanie rozmów wideo
-        video_call_recording_expiry_duration: Okres przechowywania nagrań rozmów wideo (w dniach)
-        video_call_recording_scope: Włącz nagrywanie wideo dla wszystkich nowych kampanii
-      profile_settings:
-        form_fields:
-          enabled: Włączone
-          half_size: Połowa rozmiaru
-          locked: Zablokowany
-          name: Nazwa
-          remove: Usunąć
-          required: Wymagane
-          sort: Rodzaj
-        month: Miesiąc
-        never: Nigdy
-        update_in: Powiadom o aktualizacji profilu w
-        year: Rok
-      registration_settings:
-        hide_signup: Ukryj opcję rejestracji
-        require_mobile_number: Wymagaj numeru telefonu komórkowego
       users:
         confirmations:
           detach_from_project:
             body: Ciało
             title: Tytuł
-      webhook_settings:
-        add: Dodawanie elementu webhook
-        column_active: Aktywny
-        column_created_date: Data utworzenia
-        column_description: Opis
-        column_manage: Zarządzać
-        column_updated_date: Data modyfikacji
-        column_url: Adres URL
-        search: Szukaj w Webhoook
     questions:
       copy:
         successfully: Pytanie "%{name}" zostało skopiowane pomyślnie.
@@ -3217,72 +1469,15 @@ pl:
       toggle_status:
         successfully: Zaktualizowano pomyślnie.
     reflection_questions:
-      delete_confirmation: Czy na pewno chcesz usunąć to pytanie do refleksji?
       export:
-        action: Pytania do refleksji eksportowej
         details: Szczegóły pliku
-        failure_msg: Błąd podczas eksportowania pliku.
-        success_msg: Eksportowanie pytań do refleksji w toku. Sprawdź status w powiadomieniach.
-      form:
-        mandatory: Obowiązkowy
-        max_words: Maksymalna liczba słów
-        min_words: Minimalna liczba słów
-        question: Pytanie
-        title: Pytanie do refleksji
       import:
-        action: Importowanie pytań do refleksji
         errors:
           invalid_max_words_column_format: Nieprawidłowy format wartości kolumny Maksymalna liczba słów %{row}
           invalid_min_words_column_format: Nieprawidłowy format wartości kolumny Minimalna liczba słów %{row}
           invalid_required_column_format: Nieprawidłowy obowiązkowy format wartości kolumny %{row}
           missing_eng_question: Brak zawartości pytania w języku angielskim %{row}
           save_failed: Zapisywanie nie powiodło się %{message}
-        failure_msg: Błąd podczas importowania pliku.
-        success_msg: Importowanie pytań do refleksji w toku. Sprawdź status w powiadomieniach.
-      question: Pytanie
-    report_approval:
-      approval_statuses:
-        approved: Zatwierdzony
-        change_requested: Żądana zmiana
-        not_ready: Niegotowy
-        pending_qc: Oczekuje na QC
-        qc_completed: Kontrola jakości zakończona
-        qc_in_progress: Kontrola jakości w toku
-      bulk_approve_success: "%{sent_for_approval} wysłane do zatwierdzenia. Zweryfikowano %{approved} raportów. Raporty %{ignored} wymagają ręcznego zatwierdzenia ze względu na zmiany/komentarze dotyczące kontroli jakości."
-      columns:
-        actions: Akcje
-        approval_status: Stan zatwierdzenia
-        approved_by: Zatwierdzone przez
-        assessed_by: Ocenione przez
-        campaign_name: Nazwa kampanii
-        qc_by: Kontrola jakości według
-        report_name: Nazwa raportu
-        subject_email: Temat wiadomości e-mail
-        user_email: Adres e-mail użytkownika
-        user_name: Nazwa użytkownika
-      dashboard: Deska rozdzielcza
-      download: Pobierać
-      report_approval_settings: Ustawienia zatwierdzania raportów
-      report_approvals: Zatwierdzanie raportów
-      review: Recenzja
-      saving_filters:
-        actions:
-          clear_filters: Wyczyść filtry
-          delete_filter: Usuń filtr
-          save_filter: Zapisać
-          save_new_filter: Zapisz jako nowy filtr
-          saved_filters: Zapisane filtry
-        delete_saved_filters: Filtr usunięty
-        edit_filter_name: Zapisana nazwa filtru
-        error_while_deleting: Błąd podczas usuwania
-        error_while_editing: Błąd podczas edycji
-        error_while_fetching: Coś poszło nie tak, spróbuj ponownie
-        error_while_saving: Błąd podczas zapisywania filtra
-        filter_updated: Zaktualizowano filtr
-        no_saved_filters: Nie ma zapisanych filtrów
-        save_filter: Filtr zapisany
-        set_favorite: Filtr został ustawiony jako ulubiony
-      submit_or_approve_all: Prześlij lub zatwierdź wszystko
     report_builder:
       campaign_factors:
         add_field: Dodaj pole
@@ -3417,22 +1612,6 @@ pl:
         title: Opcje pakietu Report Bundle
       update:
         successfully: Pakiet raportów %{name} został pomyślnie zaktualizowany.
-    report_review:
-      abort_qc: Przerwij kontrolę jakości
-      approve: Zatwierdzić
-      approve_changes: Zatwierdzanie zmian
-      edit: Redagować
-      remove_approval: Usuń zatwierdzenie
-      request_changes: Poproś o zmiany
-      review: Recenzja
-      send_for_approve: Wyślij do zatwierdzenia
-      statuses:
-        approved: Zatwierdzony
-        change_requested: Żądane zmiany
-        not_ready: Nie gotowy
-        pending_qc: Oczekiwanie na kontrolę jakości
-        qc_completed: Kontrola jakości zakończona
-        qc_in_progress: Kontrola jakości w toku
     report_settings:
       data_source_types:
         assessment: Ocena
@@ -3456,9 +1635,6 @@ pl:
         title: Czynniki kampanii przesyłania zbiorczego
         upload_success: Przesłano pomyślnie
       copy:
-        copy: kopiować
-        copy_report: Kopiuj raport
-        name: Nazwa
         successfully: Raport "%{name}" został skopiowany pomyślnie.
       create:
         successfully: Raport "%{name}" został utworzony pomyślnie.
@@ -3466,15 +1642,6 @@ pl:
         successfully: Raport "%{name}" został pomyślnie usunięty.
       edit:
         header: Edytowanie nazwy raportu
-      edit_default_language:
-        agreement: Tak, rozumiem konsekwencje zmiany domyślnego języka.
-        title: Edytuj domyślny język
-        tooltip: Edytuj domyślny język
-        warning:
-          description_li_1: Zmiana domyślnego języka z RTL na LTR lub odwrotnie wpłynie na układ.
-          description_li_2: Jeśli zmienisz domyślny język, będziesz musiał ponownie opracować tłumaczenia raportów.
-          description_li_3: Pobierz kopię tłumaczeń raportów przed dokonaniem tej zmiany.
-          title: Prosimy o uważne przeczytanie instrukcji
       modals:
         remap_assessment:
           new_assessment_name: Nowa nazwa oceny
@@ -3484,10 +1651,6 @@ pl:
       new:
         header: Wybierz pozycję Raport
       preview:
-        comments: Komentarze
-        hide_resolved: Ukryj rozwiązane
-        history: Historia
-        info_to_select_module: Wybierz moduł tekstowy, aby go skomentować
         title: Prapremiera
       regenerate:
         successfully: Raport został pomyślnie wysłany do regeneracji
@@ -3517,422 +1680,17 @@ pl:
         successfully: Raport został zaktualizowany pomyślnie.
       update:
         successfully: Raport %{name} został pomyślnie zaktualizowany.
-    reports_language_selection_modal:
-      download: Raport do pobrania
-      generate: Generowanie raportów
     resource:
       remove_confirm:
         message: Czy na pewno chcesz usunąć ten zasób?
         title: Usuń zasób
-    saml_settings:
-      after_signout_url: Po wylogowaniu się Url
-      cert: Certyfikat
-      config_details:
-        acs_url: Adres URL usługi klienta asercji
-        copied: Skopiowano %{element}
-        issuer: Identyfikator podmiotu/wystawca
-        title: Skonfiguruj dostawcę tożsamości, podając następujące informacje
-      email_pipetext: Potok wiadomości e-mail
-      enabled: Włączone
-      entity_id: Identyfikator podmiotu/wystawca
-      name_identifier_format: Identyfikator nazwy
-      name_identifier_formats:
-        email: urn:oaza:nazwy:tc:SAML:1.1:format-identyfikatora:adres_e-mail
-        persistent: urn:oaza:nazwy:tc:SAML:2.0:format-nazwyid:trwały
-      saml_setting: Ustawienia SAML
-      save: Zapisz ustawienie
-      sso_service_url: Adres URL usługi logowania jednokrotnego
-      successfully_saved_msg: Ustawienia SAML zostały pomyślnie zapisane.
     save: Zapisać
-    scheduling:
-      add_activity: Dodaj aktywność
-      add_assessment_center: Dodaj Centrum oceny
-      add_assessor_form:
-        assessment: Ocena
-        assessor: Asesor
-        schedule_time: Zaplanuj czas
-      add_subject: Dodaj temat
-      assessment_center_form:
-        add_more: Dodaj więcej
-        allow_late_cancellation_and_scheduling: Zezwalaj na późne anulowanie i planowanie
-        assessment_center_group: Grupa Assessment Center
-        assessment_center_group_placeholder: Wybierz grupę Assessment Center
-        assessor_ids_label: Asesorów
-        back: Wstecz
-        basic_info_panel:
-          description: Wprowadź poniżej informacje o harmonogramie. Możesz również wybrać wiele dat, aby utworzyć wiele centrów oceny.
-          title: Podstawowe informacje
-        cancellation_lead_time_label: Czas oczekiwania na odstąpienie od umowy
-        copy_hint: Kopiuje powyższą konfigurację Miejsc, Kierowników Centrum, Asesorów oraz Spotkań i Zasobów do następujących Centrów Oceny. Po skopiowaniu możesz wprowadzić dalsze zmiany w poszczególnych Assessment Center, zanim przejdziesz dalej.
-        copy_to_all: Kopiowanie do innych ośrodków oceny
-        create: Tworzyć
-        dates_label: Daty
-        disable_cancellation_and_rescheduling: Wyłączenie anulowania i zmiany harmonogramu
-        duration_label: Czas trwania
-        duration_max_error: Nie może być dłuższy niż 16 godzin
-        duration_min_error: Nie może być krótszy niż 15 minut
-        duration_placeholder: Np. 4h 30m
-        manager_ids_label: Kierownicy Centrów
-        meeting_link: Link do spotkania
-        meetings_and_resources: Spotkania i zasoby
-        name_label: Nazwa
-        next: Następny
-        required_error: Wymagane
-        resources_panel:
-          description: Dodaj linki do wszystkich zasobów, do których moderatorzy mają mieć dostęp.
-          resource_name_placeholder: Nazwa zasobu
-          resource_url_placeholder: Link do zasobu
-          title: Zasoby
-          validation_error: Wprowadź zarówno nazwę, jak i adres URL lub usuń zasób
-        scheduling_lead_time_label: Czas realizacji harmonogramu
-        seats_label: Miejsc
-        time_label: Godzina
-        timezone_label: Strefa czasowa
-        url_label: Adres URL
-        video_call_type:
-          custom: Zwyczaj
-          internal: Wewnętrzny
-          none: Żaden
-        video_call_type_label: Dodaj rozmowę wideo
-      attendance_status:
-        column_name: Status obecności
-        dropped_out: Odpadł
-        late: Późny
-        no_show: Nie stawił się
-        no_status: Brak statusu
-        on_time: Na czas
-      attended:
-        attended: Uczestniczyło
-        not_attended: Nie nadzorowane
-      campaign_participants: Uczestnicy kampanii
-      columns:
-        activity: Aktywność
-        assessment_center_date_and_time: Data i godzina oceny zintegrowanej
-        assessor: Asesor
-        assessors: Asesorów
-        attendance: Frekwencja
-        attended: Uczestniczyło
-        booked_at: Zarezerwowano o
-        campaign_assessment_group: Grupa Assessment Center
-        campaign_name: Nazwa kampanii
-        duration: Czas trwania
-        link_to_view_recordings: Link do wyświetlenia nagrań
-        managers: Menedżerów
-        meeting_link: Link do spotkania
-        name: Nazwa
-        participants: Uczestników
-        prework: Przygotowanie do pracy
-        recording_date: Data nagrania
-        resource_link: Łącze
-        resource_name: Nazwa
-        schedule_time: Zaplanuj czas
-        scheduling_status: Stan planowania
-        seats: Miejsc
-        serial_no: Nr seryjny
-        start_time: Data i godzina
-        subject: Temat
-        title: Tytuł
-        view_recording: Wyświetl nagranie
-      errors:
-        assessor_already_assigned: Asesor już przypisany do tej oceny. Proszę wybrać inną ocenę lub asesora.
-        date_required: Proszę wybrać datę
-        invalid_url: Nieprawidłowy format adresu URL
-        meeting_link_https: Link do spotkania musi zaczynać się od "https://"
-      id: ID
-      info:
-        allowed: Dozwolone
-        assessors: Asesorów
-        booked: Zarezerwowane miejsca
-        campaign_assessment_group: Grupa Assessment Center
-        cancellation_lead_time: Czas realizacji anulowania
-        cancellation_tooltip: Użytkownik będzie mógł anulować rezerwację do %{date}
-        date: Data i godzina
-        duration: Czas trwania
-        join_meeting: Dołącz do pokoju
-        late_cancellation_and_scheduling: Późne anulowanie i planowanie
-        link: Link do spotkania
-        managers: Kierownicy Centrów
-        none: Żaden
-        not_allowed: Niedozwolone
-        recording_enabled: Nagrywanie włączone
-        remaining: Pozostałe miejsca
-        scheduling_lead_time: Planowanie czasu realizacji
-        scheduling_tooltip: Użytkownik będzie mógł zarezerwować slot do %{date}
-        search_placehoder: Wyszukiwanie według identyfikatora, adresu e-mail lub imienia i nazwiska
-        timezone: Strefa czasowa
-        total_seats: Łączna liczba miejsc
-      resources:
-        confirm_message: Czy na pewno chcesz usunąć zasób "%{resource_name}"?
-        confirm_title: Wymagane potwierdzenie
-        create: Utwórz zasób
-        invalid_url: Nieprawidłowy adres URL. Określ pełny adres URL z protokołem http lub https.
-        resource: Zasób
-        successful_remove: Zasób %{resource_name} Assessment Center został pomyślnie usunięty.
-      schedule_assessments: Zaplanuj oceny
-      scheduling_statuses:
-        cancelled: Anulowane
-        late_cancelled: Późno anulowane
-        late_rescheduled: Spóźniony przełożony
-        rescheduled: Przełożony
-        scheduled: Zaplanowane
-      search_participant: Uczestnicy kampanii w sieci wyszukiwania
-      status:
-        completed: Zakończone
-        dropped_out: Odpadł
-        in_progress: W toku
-        late: Późny
-        no_show: Nie stawił się
-        not_started: Nie rozpoczęto
-      status_change_modal:
-        content: Po zamknięciu centrum oceny uczestnicy nie będą mogli uczestniczyć w żadnych działaniach centrum.
-        title: Zmienianie statusu centrum oceny
-      subjects:
-        activities: Działania
-        add_assessor_form: Dodaj formularz asesora
-        assessments: Oceny
-        assessor_forms: Formularze asesora
-        confirm_message: Czy na pewno chcesz zrezygnować z udziału tematu za pomocą wiadomości e-mail "%{subject_email}"?<br />Po oznaczeniu jako anulowany przedmiot nie będzie mógł wziąć udziału w ocenie zintegrowanej.
-        confirm_title: Wymagane potwierdzenie
-        edit_assessor_form: Formularz Edytuj Asesora
-        form_title: Zaplanuj oceny
-        language: Język
-        language_not_selected: Nie wybrano
-        mark_cancel: Mark Cancel
-        mark_cancel_success: Anulowano udział tematu z adresem e-mail %{subject_email}.
-        meeting_link_custom: Zwyczaj
-        meeting_link_internal: Wewnętrzny
-        meeting_link_none: Żaden
-        meeting_link_title: Link do spotkania
-        no_change: Bez zmian
-        override_existing: Zastępowanie istniejących zestawień dla tematów
-        preworks: Przygotowanie do pracy
-        re_enroll: Ponowna rejestracja
-        re_enroll_confirm_message: Czy na pewno chcesz ponownie zarejestrować temat za pomocą wiadomości e-mail "%{subject_email}"?
-        re_enroll_success: Ponownie zarejestrowany temat z adresem e-mail %{subject_email}.
-        schedule: Harmonogram
-        unschedule: Bez harmonogramu
-      tabs:
-        activities: Działania
-        assessment_center: Centrum oceny zintegrowanej
-        invites: Zaprasza
-        recordings: Nagrania
-        resources: Zasoby
-        subjects: Tematy
     scoring:
-      action_prohibited: Działanie zabronione
-      active: Aktywny
-      actual_average: Rzeczywista średnia
-      add_factor: Dodaj czynnik
-      add_group: Dodaj grupę
-      assessment: Ocena
-      assessment_scoring_type: Typ oceny Typ punktacji
-      average: Średnia
-      campaign_scoring_variables: Zmienne punktacji kampanii
-      code: Kod
-      desc: Przekroczono maksymalny limit %{n} czynników kampanii. Nie można dodawać dodatkowych czynników. Zanim przejdziesz dalej, przejrzyj istniejące czynniki i zarządzaj nimi.
-      description: Opis
-      dimension: Wymiar
-      edit_factor: Czynnik edycji
       export:
         details: Kampanie reklamowe
         factors: Czynniki kampanii eksportowej
-      factor: Czynnik
-      factor_group_removed_successfully: Grupa czynników kampanii została pomyślnie usunięta
-      factor_removal_confirmation: Wprowadź nazwę czynnika podaną poniżej w polu tekstowym, aby potwierdzić
-      factor_removed_successfully: Czynnik kampanii został pomyślnie usunięty
-      factors_exported_successfully: Zadanie eksportu czynników kampanii zostało pomyślnie zaplanowane
-      factors_imported_successfully: Zadanie importu czynników kampanii zostało pomyślnie zaplanowane
-      final: Finał
-      final_score_updated_successfully: Ostateczny wynik został pomyślnie zaktualizowany
-      formula: Formuła
-      get_started: Rozpocząć
-      id: ID
-      import:
-        factors: Importowanie czynników kampanii
-      innovation_style_removal_confirmation: Wpisz nazwę stylu innowacji podaną poniżej w polu tekstowym, aby potwierdzić
-      name: Nazwa
-      no_groups: Brak grup
-      occupation_removal_confirmation: Wpisz nazwę zawodu podaną poniżej w polu tekstowym, aby potwierdzić
-      output_type: Typ wyjścia
-      pattern_error: Dozwolone są tylko znaki alfanumeryczne, spacje i myślniki.
-      profile:
-        years: Lata
-      public: Publiczny
-      ranked: Rankingu
-      remove_all_campaign_factors:
-        confirmation: Wpisz aktualną nazwę kampanii podaną poniżej w polu tekstowym, aby potwierdzić
-        error: Czynniki kampanii usuwają nie powiodły się
-        success: Czynniki kampanii zostały usunięte
-        title: Usuwanie czynników kampanii
-        warning: Za chwilę usuniesz wszystkie czynniki kampanii i wszystkie powiązane wyniki dla użytkowników. Czy na pewno chcesz wykonać tę czynność?
-      remove_factor_group_confirmation_content: Czy na pewno chcesz usunąć grupę czynników '%{group_name}'?
-      remove_factor_group_confirmation_title: Usuń grupę czynników
-      required_error: Nie może być puste
-      save: Zapisać
-      save_all: Zapisz wszystko
-      score_range: Zakres punktów
-      score_types:
-        norm_score: Wynik normy
-        percentage: Procent
-        percentile: Percentyl
-        score: Wynik
-        zscore: Wynik Z
-      scoring: Punktacji
-      scoring_description: Scoring kampanii umożliwia raportowanie między ocenami
-      select_all: Zaznacz wszystkie %{n} tematów
-      select_assessment_first: Najpierw wybierz ocenę
-      select_factor: Wybierz czynnik
-      show_weightages: Pokaż wagi
-      subject: Temat
-      subject_list:
-        actions: Akcje
-        bulk_mark_finalized: Znacznik zbiorczy sfinalizowany
-        bulk_mark_finalized_confirm: Finalizacja wyniku dla wybranych użytkowników spowoduje wygenerowanie raportu, który wykorzystuje współczynnik kampanii dla użytkowników. Czy na pewno chcesz kontynuować?
-        bulk_mark_not_finalized: Znak zbiorczy nie został sfinalizowany
-        bulk_mark_not_finalized_confirm: Usunięcie finalize z wybranych użytkowników spowoduje usunięcie wygenerowanego raportu, który wykorzystuje współczynnik kampanii dla użytkowników. Czy na pewno chcesz kontynuować?
-        bulk_rescore: Zbiorcze ponowne ocenianie
-        bulk_rescore_confirm: Ponowne ocenianie wybranych użytkowników. Czy na pewno chcesz kontynuować?
-        calculated_date: Obliczona data
-        calculation_errors: Błędy w obliczeniach
-        export: Eksport Scorings
-        export_success: Zadanie eksportowania wyników zostało pomyślnie zaplanowane
-        finalized: Sfinalizowana
-        finalized_date: Data sfinalizowania
-        import_external_scores: Importowanie zewnętrznych skryptów
-        mark_finalized: Znak sfinalizowany
-        mark_finalized_confirm: Finalizacja wyniku dla użytkownika "%{email}" spowoduje wygenerowanie raportu, który wykorzystuje współczynnik kampanii dla użytkownika. Czy na pewno chcesz kontynuować?
-        mark_not_finalized: Znak niesfinalizowany
-        mark_not_finalized_confirm: Usunięcie finalize z użytkownika "%{email}" spowoduje usunięcie wygenerowanego raportu, który wykorzystuje współczynnik kampanii dla użytkownika. Czy na pewno chcesz kontynuować?
-        push_webhook: Wypychanie elementów webhook
-        rank: Ranga
-        rescore: Ponowne trafienie
-        rescore_confirm: Ponowne ocenianie użytkownika "%{email}". Czy na pewno chcesz kontynuować?
-        tools: Narzędzia
-      tabs:
-        settings: Ustawienia
-        subject_scores: Wyniki przedmiotu
-      type: Typ
-      variables: Zmiennych
-      weightages:
-        assessorForms: Formularze asesora
-        successful_update: Wagi zostały pomyślnie zaktualizowane
-        tools: Narzędzia
-        weightages: Wagi
-      weighted_average: Średnia ważona
-    scoring_approval:
-      approve_all: Zatwierdź wszystko
-      bulk_approve_success: "%{approved} wyniki zatwierdzone."
-      review: Recenzja
-      score_approvals: Zatwierdzanie wyników AI
     search: Szukać
-    security_setting:
-      180_days: 180 Dni
-      30_days: 30 Dni
-      365_days: 365 Dni
-      90_days: 90 Dni
-      attempts_to_lock: Próby zablokowania
-      auto_unlock_time: Czas automatycznego odblokowania
-      disable_password_reuse: Wyłącz ponowne użycie hasła
-      disallow_password_login: Nie zezwalaj na logowanie za pomocą hasła
-      enable_login_with_magic_link: Włącz logowanie za pomocą magicznego linku
-      enable_recaptcha: Włącz reCAPTCHA
-      enforce_password_policy: Wymuszanie zasad haseł przy następnym logowaniu
-      enforce_strong: Egzekwuj silne hasło
-      expiration: Wygaśnięcie hasła
-      lock_account: Zablokuj konto
-      magic_link_expiry_duration: Czas wygaśnięcia magicznego linku
-      min_length: Minimalna długość hasła
-      never: Nigdy
-      restrict_sequences: Ograniczanie znaków sekwencyjnych i powtarzających się
-      security: Ustawienia zabezpieczeń
-      send_unlock_email: Wyślij wiadomość e-mail odblokowującą
-      session_timeout_duration: Czas trwania limitu czasu sesji
-      tfa_enabled: Włącz uwierzytelnianie dwuskładnikowe
-    security_settings:
-      security_setting: Ustawienia zabezpieczeń
-    settings:
-      admin_roles:
-        confirm_message: Czy na pewno chcesz usunąć rolę administratora '%{role_name}'?
-      siem:
-        description: Opis
-        destination_type: Typ miejsca docelowego
-        destination_types:
-          s3: S3
-          s3_compatible: Kompatybilny z S3
-        enabled: Włączone
-        readable_resource_name: Ustawienia rozwiązania SIEM
-        s3_access_key_id: Identyfikator klucza dostępu
-        s3_bucket_folder: Teczka kubełka S3
-        s3_bucket_name: Nazwa zasobnika S3
-        s3_endpoint: Punkt końcowy S3
-        s3_region: S3 Region
-        s3_secret_access_key: Tajny klucz dostępu
-        send_test_log: Wyślij dziennik testowy
-        send_test_log_error_message: Dziennik testu nie został wysłany do Twojego zasobnika, sprawdź ustawienia
-        send_test_log_success_message: Dziennik testu został pomyślnie wysłany do zasobnika
-      skill_aliases:
-        alias: Pseudonim
-        confirm_message: Czy na pewno chcesz usunąć alias umiejętności '%{skill_alias}'?
-        create: Dodawanie aliasu umiejętności
-        select_skill: Wybierz umiejętność
-        skill: Zręczność
-        skill_alias: Alias umiejętności
-        successful_remove: Alias umiejętności "%{skill_alias}" został pomyślnie usunięty.
-      tabs:
-        admin_roles: Role administratora
-        feature_flags: Flagi funkcji
-        siem: SIEM (SIEM)
-        skill_aliases: Aliasy umiejętności
-    sheets:
-      column:
-        add_column: Dodaj kolumnę
-        not_allowed_for_dashboard_use: Aby kolumna mogła być używana na pulpicie nawigacyjnym, powinna być krótsza niż 64 znaki
-        reorder: Zmienić kolejność
-        save_order: Zapisz zamówienie
-      drawers:
-        add_edit:
-          cancelText: Anuluj
-          markdown:
-            preview: Prapremiera
-            title: Markdown
-          save: Zapisać
-          saving: Oszczędność
-          success_message_add: Dodano nowy rekord
-          success_message_edit: Rekord zaktualizowany
-          title_add: Dodaj rekord arkusza
-          title_edit: Edytowanie rekordu wiersza arkusza
-          validations:
-            required_email: Podaj adres e-mail
-        view:
-          campaign_title: Rekord na poziomie kampanii
-          edit_button: Redagować
-          project_title: Rekord na poziomie projektu
-          title: Szczegóły rekordu wiersza arkusza
-      list:
-        header:
-          add_record: Dodaj rekord
-          search_record: Wyszukiwanie rekordów
-      modals:
-        delete_records:
-          cancelText: Anuluj
-          content: Czy na pewno chcesz usunąć wybrane rekordy {{count}}?
-          okText: Tak, usuń
-          successMessage: Rekordy {{count}} zostały pomyślnie usunięte.
-          title: Usuwanie rekordów {{count}}
-        remove_columns:
-          cancelText: Anuluj
-          content: Usunięcie kolumny ({{columns}}) spowoduje usunięcie danych w tej kolumnie dla wszystkich wierszy
-          okText: Tak, usuń
-          successMessage: "{{count}} usuniętych rekordów"
-          title: Usuwanie kolumn
-      tabs:
-        rows: Wierszy
-        settings: Ustawienia
     skills:
-      applicable_proficiency_levels: Obowiązujące poziomy biegłości
-      columns:
-        skill_group: Grupa umiejętności
-        skill_type: Rodzaj umiejętności
       errors:
         import:
           missing_fields_data: 'Wiersz %{line_number}: Brak wymaganych pól: %{fields}'
@@ -3946,28 +1704,11 @@ pl:
           query_too_short: jest wymagany i musi byćdłuższy niż 3 znaki
       export:
         details: Szczegóły
-        failure_msg: Błąd podczas eksportowania tłumaczeń
-        success_msg: Eksport działań rozwojowych w toku.
         translations:
           details: Tłumaczenia umiejętności
       form:
         client_placeholder: Wybierz klienta
-        description: Opis
-        name: Nazwa
         project_placeholder: Wybierz projekt
-        skill_group: Grupa umiejętności
-        skill_type: Rodzaj umiejętności
-        title: Zręczność
-      import:
-        download_example_csv: Pobierz przykładowy plik csv
-        info_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-        success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-      import_action:
-        skills_title: Umiejętności importowe
-        skills_translations_title: Importowanie tłumaczeń umiejętności
-      skill_details: Szczegóły umiejętności
-      skill_translations: Umiejętności Tłumaczenia
-      title: Umiejętności
       translations:
         import:
           errors:
@@ -3975,147 +1716,13 @@ pl:
             missing_columns: 'Brak wymaganych kolumn: %{columns}'
             save_failed: 'Błąd podczas przetwarzania identyfikatora umiejętności %{id}: %{message}'
             skill_not_found: Nie znaleziono umiejętności o identyfikatorze %{id}
-      vector:
-        generate_embedding: Generowanie osadzania
-        generate_embedding_failure_msg: Nie udało się ustawić zadania generowania umiejętności w kolejce. Proszę, spróbuj ponownie.
-        generate_embedding_success_msg: Zadanie generowania umiejętności zostało pomyślnie zaksięgowane. Proszę sprawdzić status w powiadomieniach.
-        label: Vector DB
-    sms_histories:
-      columns:
-        first_name: Imię
-        last_name: Nazwisko
-        mobile_no: Nr telefonu komórkowego
-        price: Cena
-        segment_length: Długość segmentu
-        sent_at: Wysłano o
-      drawer:
-        title: Szczegóły SMS
-      history: Historia
-      statuses:
-        accepted: Akceptowane
-        delivered: Dostarczane
-        failed: Nie powiodło się
-        queued: Kolejce
-        scheduled: Zaplanowane
-        sent: Wysłane
-        undelivered: Niedostarczone
     sms_invites:
-      actions:
-        add: Dodaj kontakt SMS
-      columns:
-        created_at: Utworzono w
-        created_by: Utworzony przez
-        email: E-mail
-        first_name: Imię
-        last_name: Nazwisko
-        mobile_no: Nr telefonu komórkowego
-      contacts: Kontakty
-      form_modal:
-        first_name: Imię
-        last_name: Nazwisko
-        locale: Ustawień regionalnych
-        mobile_no: Nr telefonu komórkowego
-        title: Zaproszenie SMS
-      import:
-        download_example_csv: Pobierz przykładowy plik CSV
-        success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-        title: Import zaproszeń SMS
       messages:
-        delete_confirm_text: Czy na pewno chcesz usunąć SMS Invite z numerem telefonu komórkowego %{mobile_no}?
-        delete_success: Zaproszenie SMS zostało pomyślnie usunięte
         failed_to_sent_invite: Nie udało się wysłać zaproszenia na telefon komórkowy nie %{mobile_no}
-      send_sms:
-        fields:
-          link_expiry: Wygaśnięcie linku
-          locale: Ustawień regionalnych
-          message: Komunikat
-          statuses: Statusy
-          users: Użytkowników
-        modal:
-          btn_name: Wyślij SMS
-          title: Wyślij SMS
-        pipetext_details: "{{{first_name}}} - Imię odbiorcy<br />{{{last_name}}} - Nazwisko odbiorcy<br />{{{invite_url}}} - Link do rejestracji"
-        segment_length_msg: Szacowana liczba segmentów dla tej wiadomości to %{segment_length}.
-        segment_length_range_msg: Szacowana liczba segmentów dla tej wiadomości wynosi od %{min_segment_length} do %{max_segment_length}.
-      statuses:
-        all: Cały
-        failed: Nie powiodło się
-        invited: Zaproszony
-        not_invited: Nie zaproszono
-        registered: Zarejestrowany
-      tools:
-        export: Eksport kontaktów SMS
-        import: Importowanie kontaktów SMS
-        send_sms: Wyślij SMS
-    sms_records:
-      columns:
-        id: ID
-        message: Komunikat
     smtp_settings:
-      authentication: Uwierzytelnianie
-      authentication_type: Typ uwierzytelniania
-      authentication_types:
-        cram_md5: wkuwanie MD5
-        login: Login
-        plain: Równina
-      enabled: Włączone
-      encryption: Szyfrowanie
-      encryption_types:
-        none: Żaden
-        ssl: Protokół SSL
-        tls: Protokół TLS
       errors:
         authentication_failed: Nazwa użytkownika lub hasło są niepoprawne
         host_unreachable: Nie można połączyć się z hostem. Host, port lub szyfrowanie jest nieprawidłowe
-      from_email: Z wiadomości e-mail
-      from_name: Od imienia i nazwiska
-      host: Gospodarz
-      password: Hasło
-      port: Port
-      send_test_email: Wyślij testową wiadomość e-mail
-      smtp: SMTP
-      test_email_modal:
-        input_hint: Ustawienia poczty e-mail nie zostaną zapisane, dopóki testowa wiadomość e-mail nie zostanie pomyślnie wysłana.
-        input_placeholder: Przetestuj identyfikator e-mail
-        title: Testowy identyfikator e-mail
-      test_modal:
-        success_message: Testowa wiadomość e-mail wysłana do %{email_id}.
-        title: Przetestuj ustawienie SMTP
-      update_success_msg: Ustawienia SMTP zostały zaktualizowane pomyślnie.
-      use_sender_verification: Korzystanie z weryfikacji nadawcy
-      user_name: Nazwa użytkownika
-    stats:
-      assessments:
-        active: Aktywny
-        columns:
-          assessment_name: Nazwa oceny
-          completed: Zakończone
-          id: ID
-          in_progress: W toku
-          ineligible: Niekwalifikowalne
-          interrupted: Przerwane
-          not_started: Nie rozpoczęto
-          timed_out: Upłynął limit czasu
-        count: Liczyć
-        inactive: Nieaktywny
-        percentage: Procent
-        title: Oceny
-      top_metrics:
-        completed: Zakończone
-        in_progress: W toku
-        interrupted: Przerwane
-        not_started: Nie rozpoczęto
-        timed_out: Upłynął limit czasu
-        users: Użytkowników
-      users:
-        date_presets:
-          last_30_days: Ostatnie 30 dni
-          last_7_days: Ostatnie 7 dni
-          last_month: Ostatni miesiąc
-          last_week: W zeszłym tygodniu
-          today: Dzisiaj
-          yesterday: Wczoraj
-        y_title: Liczba użytkowników
     sub_factors:
       destroy:
         successfully: Czynnik podrzędny %{name} został pomyślnie usunięty.
@@ -4225,18 +1832,7 @@ pl:
           one: 'Łącznie: 1'
           other: 'Razem : {{count}}'
           zero: 'Łącznie: 0'
-      more_actions: Więcej akcji
     taxonomy:
-      import:
-        description: Prześlij plik Excel, aby zaimportować lub zaktualizować swoją taksonomię umiejętności. Spowoduje to dodanie nowych umiejętności, stanowisk i poziomów biegłości.
-        download_example_file: Pobierz przykładowy plik
-        drag_text: Kliknij lub przeciągnij plik do tego obszaru, aby go przesłać.
-        error_title: Import nie powiódł się
-        file_hint: Obsługuje pliki .xls i .xlsx
-        import_button: Importuj taksonomię
-        success_msg: Przesłany plik został umieszczony w kolejce do importu. Sprawdź status w powiadomieniach.
-      import_action:
-        taxonomy: Taksonomia importu
       title: Taksonomia
     templates:
       blocks:
@@ -4329,187 +1925,9 @@ pl:
       convert_action:
         already_a_template: Już szablon
         has_user_data: Przed konwersją do szablonu należy ręcznie zresetować kampanię, klikając opcję "Zresetuj wszystkich uczestników" w menu rozwijanym Narzędzia.
-      convert_template_modal:
-        cancel: Anuluj
-        confirm: Potwierdzenie
-        convert:
-          success: Szablon został pomyślnie przekonwertowany
-        convert_option: Przekształć tę kampanię w szablon
-        copy:
-          success: Zadanie tworzenia szablonu kampanii zostało zaplanowane pomyślnie, sprawdź status powiadomień.
-        copy_option: Utwórz nowy szablon na podstawie tej kampanii
-        description: Wybierz sposób utworzenia szablonu z tej kampanii.
-        failed: Tworzenie szablonu nie powiodło się.
-        title: Konwertuj na szablon
-      email_templates:
-        approve_nomination:
-          description: Ta wiadomość jest wysyłana do menedżera, gdy nominacja dokonana przez bezpośredniego podwładnego musi zostać zatwierdzona
-          name: Zatwierdź nominację
-        approve_report:
-          description: Ta wiadomość jest wysyłana do menedżera podmiotu w celu powiadomienia go, że raport tematów jest gotowy do zatwierdzenia
-          name: Zatwierdź raport
-        categories:
-          approvals: Zatwierdzeń
-          invitations: Zaproszenia
-          reminders: Przypomnienia
-          report_ready: Gotowy raport
-        consolidated: Skonsolidowany
-        custom_message:
-          description: Ta wiadomość może zostać wysłana do każdej osoby biorącej udział w ocenie
-          name: Wiadomość niestandardowa
-        days_repeated: dni, powtarzane
-        evaluator_invite:
-          description: Ta wiadomość zostanie wysłana do wszystkich uczestników, którzy są oceniającymi
-          name: Zaproszenie ewaluatora
-        evaluator_reminder:
-          description: Ta wiadomość zostanie wysłana, aby przypomnieć oceniającym o konieczności ukończenia oczekujących ocen
-          name: Przypomnienie dla oceniającego
-          rule_description: Określanie reguł automatycznego planowania zaplanowania zaproszenia
-          rule_name: Zasady przypomnień dla ewaluatora
-        from: Z
-        manager_report_ready:
-          description: Ta wiadomość jest wysyłana do menedżera podmiotu, gdy raport podmiotu jest gotowy
-          name: Gotowy raport menedżera
-        nomination_denied:
-          description: Ta wiadomość jest wysyłana do podmiotów, gdy nominacja zostanie odrzucona
-          name: Odmowa nominacji
-        reply_to_email: Odpowiadanie na e-maile
-        request_approval:
-          description: Ta wiadomość jest wysyłana do menedżerów, gdy podmiot prosi o zatwierdzenie
-          name: Poproś o zatwierdzenie
-        save: Zapisz
-        schedule: Harmonogram
-        schedule_email: Zaplanuj wiadomość e-mail
-        schedule_email_title: Harmonogram e-mail
-        schedule_time: Zaplanuj czas
-        send_test_email: Wyślij testową wiadomość e-mail
-        subject: Temat
-        subject_invite:
-          description: Ta wiadomość zostanie wysłana, aby zaprosić uczestników do udziału w ocenie
-          name: Temat Zaproszenie
-        subject_reminder:
-          description: Wiadomość wysłana do każdego uczestnika w celu przypomnienia mu o udziale w ocenie
-          name: Przypomnienie o temacie
-          rule_description: Określanie reguł automatycznego planowania zaplanowania zaproszenia
-          rule_name: Zasady przypominania o temacie
-        subject_report_ready:
-          description: Ta wiadomość jest wysyłana do podmiotu, gdy jego raport jest gotowy
-          name: Gotowy raport tematyczny
-        times: razy
-      instruction_templates:
-        evaluate_others:
-          description: Ten komunikat będzie wyświetlany, gdy uczestnicy będą oceniać inne osoby z poziomu portalu
-          name: Oceniaj innych
-        evaluate_self:
-          description: Ta wiadomość zostanie wyświetlona uczestnikom, gdy rozpoczną oni samoocenę
-          name: Osoba oceniająca
-        evaluation_help:
-          description: Tekst pomocy wyświetlany na karcie oceny na pulpicie nawigacyjnym użytkownika
-          name: Pomoc dotycząca oceny
-        evaluator_welcome:
-          description: Ta wiadomość zastąpi "Wiadomość powitalną" i będzie wyświetlana uczestnikom, którzy obecnie uczestniczą tylko jako oceniający.
-          name: Witamy Oceniającego
-        invite_evaluators:
-          description: Ten komunikat zostanie wyświetlony uczestnikom, gdy zaczną nominować oceniających
-          name: Zaproś oceniających
-        nomination_help:
-          description: Tekst pomocy wyświetlany na karcie nominacji na pulpicie nawigacyjnym użytkownika
-          name: Pomoc dotycząca nominacji
-        report_help:
-          description: Tekst pomocy wyświetlany na karcie raportu na pulpicie nawigacyjnym użytkownika
-          name: Raporty - Pomoc
-        welcome_message:
-          description: Ten komunikat zostanie wyświetlony uczestnikom, gdy zalogują się w celu rozpoczęcia oceny lub wyświetlenia listy zadań
-          name: Wiadomość powitalna
-      mail_history:
-        actions: Działania
-        date: Data
-        download_details: Pobierz szczegóły
-        emails_sent: Wysłane wiadomości e-mail
-        recipient: Odbiorca
-        status: Status
-        subject: Przedmiot
-      manage:
-        assessment: Ocena
-        dimension: Wymiary
-        manage_relationships: Zarządzaj relacjami...
-        report: Sprawozdanie
-        title: Zarządzać
-      menu:
-        actions: Działania
-        datasheet:
-          title: Arkusz danych
-        messages:
-          allow_subjects_to_send_reminders: Umożliwienie uczestnikom wysyłania przypomnień do oceniających
-          automatically_send_invites: Automatyczne wysyłanie zaproszeń do nowych oceniających
-          title: Wiadomości
-        participants:
-          columns:
-            action: Działanie
-            email: E-mail
-            evaluations_completed: Zakończone oceny
-            evaluations_received: Otrzymane oceny
-            is_subject: Czy temat
-            name: Nazwa
-          evaluators:
-            add_evaluators: Dodaj oceniających
-            import_evaluators: Import Evaluators
-            title: Oceniający
-          managers:
-            title: Menedżerowie
-          options:
-            evaluator_options: Opcje ewaluatora
-            global: Opcje globalne
-            manager_options: Opcje menedżera
-            subject_options: Opcje przedmiotów
-            title: Opcje
-          subjects:
-            add_subjects: Dodawanie tematów
-            current_job_role: Aktualne stanowisko
-            email: E-mail
-            first_name: Imię
-            import_subjects: Importuj przedmioty
-            last_name: Nazwisko
-            locale: Ustawień regionalnych
-            target_job_role: Docelowa rola zawodowa
-            title: Przedmioty
-          title: Uczestników
-        report:
-          menu:
-            report_approval:
-              title: Ustawienia zatwierdzania raportów
-            report_options:
-              title: Opcje raportu
-          title: Sprawozdanie
-      messages:
-        email_messages: Wiadomości e-mail
-        factor_benchmark_scores_updated: Wyniki testu porównawczego czynników zostały pomyślnie zaktualizowane
-        instruction_messages: Komunikaty instrukcji
-        mail_history: Historia poczty
-        options: Opcje
       reports:
-        add_conditions: Dodaj warunki
-        administrator_approves_reports: Administrator zatwierdza raporty
-        allow_manager_to_view_individual_responses: Umożliwienie menedżerowi przeglądania poszczególnych odpowiedzi
-        disable_report_download: Wyłącz pobieranie raportów
-        edit_email: Edytuj wiadomość e-mail
-        email_manager_when_report_is_ready_for_approval: Wyślij wiadomość e-mail do menedżera, gdy raport będzie gotowy do zatwierdzenia
-        email_subject_when_report_becomes_available: Temat wiadomości e-mail, gdy raport będzie dostępny
-        email_subjects_manager_when_available: Wyślij wiadomość e-mail do menedżera podmiotu, gdy raport będzie dostępny
-        make_report_available_to_subject_when: 'Udostępnić raport podmiotowi, gdy:'
-        manager_approves_reports: Menedżer zatwierdza raporty
-        manager_can_access_subject_reports: Menedżer może uzyskać dostęp do raportów tematycznych
-        manager_cannot_access_subject_reports: Menedżer nie może zobaczyć raportu, dopóki nie zostaną spełnione wymagania
-        report_access: Dostęp do raportu
-        report_approval: Zatwierdzenie raportu
-        report_availability: Dostępność raportu
         show:
           title: Raport tematyczny
-        subject_can_access_reports: Podmiot może uzyskać dostęp do swoich raportów
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: Oznacz licencje jako nieaktywne
-    time_zone: Strefa czasowa
-    tools: Narzędzia
     translations:
       assessments:
         new:
@@ -4527,14 +1945,6 @@ pl:
         successfully: Użytkownik %{name} został utworzony pomyślnie.
       destroy:
         successfully: Użytkownik %{name} został pomyślnie usunięty.
-      list:
-        email: E-mail
-      modals:
-        download_idp_reports:
-          error: Nie można zaplanować zadania zbiorczego pobierania raportów IDP nie powiodło się.
-          include_reflective_questions: Dołącz pytania refleksyjne
-          success: Zadanie zbiorczego pobierania raportów IDP zostało zaplanowane pomyślnie.
-          title: Zbiorcze pobieranie raportów IDP
       new:
         header: Nowy użytkownik
       reset_password:
@@ -4568,24 +1978,15 @@ pl:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
       toggle_status:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
-      toolbar:
-        title: Narzędzia
       update:
         successfully: Użytkownik %{name} został pomyślnie zaktualizowany.
       user: Użytkownik
     webhook:
       connection_failure: Nie można nawiązać połączenia z adresem URL elementu webhook. Sprawdź, czy adres URL elementu webhook jest poprawny.
-      delete_success: Ustawienia elementu webhook zostały pomyślnie usunięte
       request_failure: Żądanie nie powiodło się z kodem stanu %{http_status_code}.
     workshop:
-      actions:
-        remove_workshop: Warsztat został usunięty pomyślnie
       errors:
         remove_workshop_failure: Warsztat, który próbujesz usunąć, ma zaplanowane tematy. Możesz usunąć warsztat, oznaczając wszystkie tematy jako anulowane
-      statuses:
-        closed: Zamknięty
-        open: Otwierać
     workshop_subjects:
       errors:
         update_assessor_for_failure: Nie można dodać szczegółów spotkania, ponieważ nie ma powiązanej aktywności tematycznej.
-    years: Lata

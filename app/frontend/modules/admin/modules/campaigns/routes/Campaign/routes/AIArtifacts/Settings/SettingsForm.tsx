@@ -205,7 +205,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
   const operation = () => (isEdit() ? 'update' : 'create')
   const handleShowSuccessMessage = () => {
     let messageText = I18n.lookup(`frontend.ai_artifacts.${operation()}_success`)
-    const readableResourceText = I18n.t('administration.ai_artifacts.form.title')
+    const readableResourceText = I18n.t('admin.form_title')
     messageText = messageText
             || I18n.t(`frontend.resource.${operation()}_success`, { readableResourceName: readableResourceText })
     message.success(messageText)
@@ -256,14 +256,14 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
         >
           <Form.Item
             name="name"
-            label={I18n.t('administration.common.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input onChange={handleSetCode} />
           </Form.Item>
           <Form.Item
             name="code"
-            label={I18n.t('administration.common.code')}
+            label={I18n.t('shared.code')}
             rules={[{ required: true }]}
           >
             <Input onChange={() => setCodeManuallyEdited(true)} />
@@ -272,7 +272,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
             name="instructions"
             label={(
               <Flex align="center" gap={4}>
-                {I18n.t('administration.common.instructions')}
+                {I18n.t('admin.instructions')}
                 {aiAssistant?.advancedPromptingEnabled && (
                   <Tooltip title={I18n.t('admin.campaign_ai_artifacts_instruction_templating_tooltip')}>
                     <span><InfoCircleOutlined style={{ color: '#1890ff' }} /></span>
@@ -290,7 +290,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
           </Form.Item>
           <Form.Item
             name="aiAssistantId"
-            label={I18n.t('administration.ai_artifacts.form.ai_assistant')}
+            label={I18n.t('admin.form_ai_assistant')}
             rules={[{ required: true }]}
           >
             <Select
@@ -299,7 +299,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
               notFoundContent={
                 isAiAssistantsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
               }
-              placeholder={I18n.t('administration.ai_artifacts.form.select_ai_assistant')}
+              placeholder={I18n.t('admin.form_select_ai_assistant')}
             >
               {aiAssistants.map(({ id, name }) => (
                 <Select.Option key={id} value={id}>
@@ -310,7 +310,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
           </Form.Item>
           {aiAssistantId ? (
             <Form.Item>
-              <Card title={I18n.t('administration.ai_artifacts.form.configuration')}>
+              <Card title={I18n.t('admin.form_configuration')}>
                 {(aiAssistant && aiAssistant.dependencies && aiAssistant.dependencies.length > 0) ? (
                   aiAssistant.dependencies.map((dep) => {
                     if (dep === 'assessments') {
@@ -347,8 +347,8 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
             <Card
               title={(
                 <Flex align="center" gap={4}>
-                  {I18n.t('administration.ai_artifacts.playground')}
-                  <Tooltip title={I18n.t('administration.ai_artifacts.playground_info')}>
+                  {I18n.t('admin.playground')}
+                  <Tooltip title={I18n.t('admin.playground_info')}>
                     <span><InfoCircleOutlined /></span>
                   </Tooltip>
                 </Flex>
@@ -364,7 +364,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
                   onChange={(e) => {
                     setTestData(e.target.value)
                   }}
-                  placeholder={I18n.t('administration.ai_artifacts.playground_placeholder')}
+                  placeholder={I18n.t('admin.playground_placeholder')}
                   rows={4}
                 />
                 <Button
@@ -373,11 +373,11 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
                   onClick={() => handleTestGenerate(aiArtifact?.id.toString() as string)}
                   disabled={!testData || isGenerating}
                 >
-                  {I18n.t('administration.ai_artifacts.test_generate')}
+                  {I18n.t('admin.test_generate')}
                 </Button>
 
                 {isDirty && (
-                  <Alert message={I18n.t('administration.ai_artifacts.unsaved_changes')} type="warning" />
+                  <Alert message={I18n.t('admin.unsaved_changes')} type="warning" />
                 )}
                 {isGenerating && (
                   <Flex justify="center" align="center">

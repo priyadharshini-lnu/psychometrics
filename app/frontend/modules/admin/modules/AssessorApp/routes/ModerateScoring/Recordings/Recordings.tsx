@@ -61,7 +61,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
 
   return (
     <div className={styles.sidebar}>
-      {header(I18n.t('administration.assessor.moderate_score.recordings'))}
+      {header(I18n.t('admin.recordings'))}
       <div className={styles.content}>
         <Space orientation="vertical" style={{ width: '100%' }}>
           {userRecordings.map(recording => (
@@ -71,14 +71,14 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
               </div>
               <div className={styles.groupColumn}>
                 <Typography.Text strong>
-                  {I18n.t('administration.scheduling.columns.assessor')}
+                  {I18n.t('admin.scheduling_columns_assessor')}
                   {': '}
                 </Typography.Text>
                 <ContactList contacts={recording.assessors} />
               </div>
               <div className={styles.groupColumn}>
                 <Typography.Text strong>
-                  {I18n.t('administration.scheduling.columns.participants')}
+                  {I18n.t('admin.scheduling_columns_participants')}
                   {': '}
                 </Typography.Text>
                 <ContactList contacts={recording.participants} />
@@ -115,7 +115,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                       icon={<DownloadOutlined />}
                       type="link"
                     >
-                      {I18n.t('common.text.download')}
+                      {I18n.t('shared.download')}
                     </Button>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ const RecordingUrlColumn: React.FC<{
         type="link"
         onClick={() => setOpen(true)}
       >
-        {I18n.t('administration.scheduling.columns.view_recording')}
+        {I18n.t('admin.scheduling_columns_view_recording')}
       </Button>
       <Modal
         open={open}

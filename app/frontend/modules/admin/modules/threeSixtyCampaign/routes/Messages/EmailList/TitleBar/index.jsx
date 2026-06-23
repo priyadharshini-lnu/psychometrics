@@ -6,8 +6,8 @@ import styles from './styles.less'
 
 export default function TitleBar ({ emailTemplate, openModal }) {
   const menuItems = [
-    { key: 'EmailScheduleModal', label: I18n.t('administration.threesixty_campaigns.email_templates.schedule_email') },
-    { key: 'SendTestEmailModal', label: I18n.t('administration.threesixty_campaigns.email_templates.send_test_email') },
+    { key: 'EmailScheduleModal', label: I18n.t('admin.schedule_email') },
+    { key: 'SendTestEmailModal', label: I18n.t('admin.send_test_email') },
   ]
 
   return (
@@ -15,10 +15,10 @@ export default function TitleBar ({ emailTemplate, openModal }) {
       <Row className={styles.titleContainer}>
         <Col md={14} lg={16} xl={18}>
           <div className={styles.title}>
-            {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`)}
+            {I18n.t(`admin.${emailTemplate.name}_name`)}
           </div>
           <div>
-            {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.description`)}
+            {I18n.t(`admin.${emailTemplate.name}_description`)}
           </div>
         </Col>
         <Col md={10} lg={8} xl={6}>
@@ -31,7 +31,7 @@ export default function TitleBar ({ emailTemplate, openModal }) {
                 onClick={() => openModal('EmailScheduleModal', { selectedEmailTemplateId: emailTemplate.id })}
               >
                 <ScheduleOutlined />
-                {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
+                {I18n.t('admin.schedule_email')}
               </Button>
               <Dropdown
                 className="dropdown"

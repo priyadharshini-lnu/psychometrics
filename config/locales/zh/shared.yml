@@ -18,6 +18,7 @@ zh:
     assessment_id: 评估ID
     assessment_list: 评估清单
     assessment_name: 评估名称
+    assessor: 评估员
     assessor_approved: 评估师批准
     assessors_list: 评估员名单
     asset_not_present: 资产不存在
@@ -26,15 +27,18 @@ zh:
     authentication_failed: 身份验证失败。请再试一次。
     back: 返回
     basic: 基本
+    bulk_download: 批量下载
     camera: 相机
     camera_preview: 此处将显示相机预览
     campaign: 活动
     campaign_id: 竞选标识
     cancel: 取消
+    category: 类别
     change_password: 更改密码
     clear_filters: 清除筛选
     client: 客户
     close: 关闭
+    code: 代码
     collaborative_learning: 协作学习
     completed: 已完成
     configurations: 配置
@@ -43,11 +47,13 @@ zh:
     controller: 控制器
     cookie_notice: Cookie 声明
     cookies_statement: Cookies声明
+    copied: 复制到剪贴板
     copied_successfully: 已成功复制
     copied_to_clipboard: 已复制到剪贴板
     copy: 复制
     create: 创建
     created_at: 创建时间
+    created_by: 创建者
     created_date: 创建日期
     created_successfully: 已成功创建
     custom_acknowledgment_text: 自定义致谢文本
@@ -55,11 +61,14 @@ zh:
     custom_consent_text: 自定义同意文本
     custom_consent_text_required: 控制器数据角色需要自定义同意文本
     data_role: 数据角色
+    datasheet: 数据表
     decline: 衰落
+    default: 默认
     delete: 删除
     description: 描述
     desktop_or_laptop_recommended: 推荐使用台式机或笔记本电脑
     desktop_or_laptop_required: 需要台式机或笔记本电脑
+    dimension: 尺寸
     disabled: 已禁用
     discard: 取消
     download: 下载
@@ -69,6 +78,7 @@ zh:
     edit: 编辑
     edited: 新的
     email: 电子邮箱
+    end_date: 结束日期
     ending_proctoring_session_msg: 本次监考环节即将结束。<p>请稍候，我们正在保存您的答题内容并跳转回首页。</p>
     error: 错误
     export: 导出
@@ -83,12 +93,18 @@ zh:
     generating: 生成
     group_question_max_validation_error: 每个组最多可包含{{max}}个物品。
     group_question_min_validation_error: 每个组至少需要包含{{min}}条项。
+    icon: 图标
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP助手可能会犯错。使用回复时请务必小心。
+    import: 进口
+    inactive: 不活动
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
     last_name: 姓
+    last_updated: 最后更新
     learning_on_the_job_label: 边学边学
     lets_start: 开始吧！
+    linked_activities: 相关活动
+    linked_assessment: 关联评估
     loading: 正在加载...
     login: 登录
     maintenance_in_hours: "%{hours} 小时"
@@ -98,11 +114,13 @@ zh:
     maintenance_time_remaining: 剩余时间
     maintenance_upcoming_description: 我们将对 %{date} 进行计划维护，预计持续约 %{duration}，以提升您的使用体验。在此期间，您将无法访问或完成任何分配的任务。感谢您的耐心等待。
     maintenance_upcoming_title: 即将进行的维护
+    manage: 管理
     manage_cookies: 管理Cookie
     media_id: 媒体ID
     media_preview: 媒体预览
     media_question_transcriptions: 媒体提问实录
     media_responses: 媒体反应
+    meeting_link: 会议链接
     microphones: 麦克风
     mobile_proctoring_disabled_instructions: 本次评估需要使用台式机或笔记本电脑才能继续。请切换至计算机以完成此项活动。
     mobile_proctoring_enabled_instructions: 为获得最佳体验，请切换至台式机或笔记本电脑（如有可用）。如需继续，您也可使用移动设备。
@@ -116,13 +134,17 @@ zh:
     new: 新的
     next: 下一页
     no_audio_warning: 未检测到音频。请检查麦克风是否已连接且工作正常。
+    no_data_found: 未找到数据
     no_results_found: 未找到任何结果
+    none: 无
     not_requested: 尚未请求
     ok: 确定
     options: 选项
+    overview: 概述
     owner: 所有者
     pause: 暂停
     pending: 待定
+    permissions: 权限
     play: 播放
     policy_version: 政策版本
     policy_version_format: 仅允许整数
@@ -133,6 +155,7 @@ zh:
     proctoring_maintenance_active: 监考系统正在进行维护，网址将从 %{start_time} 迁移至 %{end_time}。请在维护窗口结束后再次尝试。
     proctoring_maintenance_upcoming: 监考系统将于%{start_time}至%{end_time}期间进行维护。
     project: 项目
+    publish: 出版
     question: 问题
     question_id: 问题ID
     question_transcription_disabled: 此问题已禁用转录功能
@@ -146,20 +169,27 @@ zh:
     remove: 移除
     removed: 已删除
     replace: 替换
+    required: 所需
+    reset: 重置
     reset_password: 重置密码
     response_text: 响应文本
     rte_paste_content_exceeds_char_limit: 文本超过了{{maxCharacterLimit}}的字符限制，无法粘贴。
     rte_paste_content_exceeds_word_limit: 文本超过{{maxWordLimit}}的字数限制，无法粘贴。
+    run: 运行
     save: 保存
     saving_video: 正在保存视频......请不要关闭或刷新浏览器
+    schedule_time: 时间安排
     scoring_details: 计分详情
     search: 搜索
     select_camera: 选择相机
+    select_language: 选择语言
     select_microphone: 选择麦克风
+    send: 发送
     send_email: 发送电子邮件
     show_more: 显示更多
     something_wrong: 出错了，请联系管理员。
     speakers: 演讲嘉宾
+    start_date: 开始日期
     status: 状态
     status_unknown: 状态不明
     stop: 停止
@@ -178,6 +208,7 @@ zh:
           one: '共计 : 1'
           other: '共计 : {{count}}'
           zero: '总计 : 0'
+    tags: 标签
     terms_conditions_privacy: 隐私声明
     tools: 工具
     transcription: 转录
@@ -189,11 +220,35 @@ zh:
     try_again: 重试
     tte_terms_and_condition: 条款和隐私
     type: 类型
+    unpublish: 取消出版
     update: 更新
     update_failed: 更新失败
     updated_at: 更新于
+    updated_by: 更新者：
     updated_successfully: 更新成功
+    upload: 上传
     user_report_pdf_url_not_generated: 无法生成 PDF 下载链接
+    user_reports_approval_status_pending_qc: 待质量检查
+    user_reports_approval_status_qc_completed: 质量检查已完成
+    user_reports_assessment_name_not_completed_reason_template: 评估 %{names} 尚未完成
+    user_reports_assessments_name_not_completed_reason_template: 评估 %{names} 尚未完成
+    user_reports_assessor_not_completed_reason_template: 评估员表格%{names}未填写
+    user_reports_assessors_not_completed_reason_template: 评估员表格 %{names} 尚未填写
+    user_reports_campaign_artifact_results_pending_reason_message: 该用户的活动道具结果尚未最终确定
+    user_reports_campaign_scoring_pending_reason_message: 该用户的活动得分尚未最终确定
+    user_reports_custom_upload_report_reason_message: 报告提供方为自定义上传
+    user_reports_external_report_pending_reason_message: 等待服务提供商发来的报告
+    user_reports_lead_assessor_not_completed_reason_template: "%{names} 中的首席评估员表格尚未填写"
+    user_reports_lead_assessors_not_completed_reason_template: 铅评估员表格 %{names} 尚未填写
+    user_reports_no_report_module_reason_message: 未找到此报表对应的报表模块
+    user_reports_not_prepared_reason_message: 报告尚未完成
+    user_reports_pending_approval_reason_template: 审批状态为“%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: 待最终AI评分审批
+    user_reports_pending_qc_ai_scoring_approval_reason_message: 待质量控制（QC）AI评分审批
+    user_reports_pending_qc_approval_reason_message: 待质量控制报告批准
+    user_reports_qc_completed_approval_reason_message: 待最终报告批准
+    user_reports_report_generating_reason_message: 正在生成报告
+    user_reports_report_generation_failed_reason_message: 报告生成失败
     video: 视频
     view: 查看
     view_audio: 查看音频

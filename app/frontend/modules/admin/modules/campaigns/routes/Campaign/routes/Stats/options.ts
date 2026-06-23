@@ -40,7 +40,7 @@ export const buildHighchartOptions = (
     },
     yAxis: {
       title: {
-        text: I18n.t('administration.stats.users.y_title'),
+        text: I18n.t('admin.stats_users_y_title'),
       },
       minTickInterval: 1,
     },

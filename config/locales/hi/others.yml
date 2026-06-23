@@ -622,6 +622,7 @@ hi:
         roles:
           campaign_admin: अभियान प्रशासक
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक मूल्यांकनकर्ता
           manager: प्रबंधक
           member: उपयोगकर्ता
           project_admin: परियोजना प्रशासक
@@ -727,6 +728,7 @@ hi:
           admins:
             admin: प्रशासक
             campaign_admin: अभियान प्रशासक
+            client_assessor: ग्राहक आकलनकर्ता
             project_admin: परियोजना प्रशासक
             regular: क्लाइंट एडमिन
             superadmin: सुपर एडमिन
@@ -736,6 +738,7 @@ hi:
           campaign_admin: अभियान प्रशासक
           case_study: केस स्टडी
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक मूल्यांकनकर्ता
           hogan: होगन
           iiht: आईआईएचटी
           manager: प्रबंधक
@@ -859,6 +862,8 @@ hi:
         bulk_download_idp_reports: IDP रिपोर्ट्स थोक में डाउनलोड करें
         bulk_download_reports: थोक रिपोर्ट डाउनलोड करें
         bulk_download_user_reports: उपयोगकर्ता रिपोर्टों का थोक डाउनलोड
+        bulk_export_norm_factor_scores: बल्क नॉर्म फैक्टर स्कोर निर्यात
+        bulk_export_raw_factor_scores: थोक कच्चे कारक स्कोर निर्यात
         bulk_generate_user_campaign_ai_artifact_results: बल्क में अभियान एआई कलाकृति परिणाम उत्पन्न करें
         bulk_regenerate_reports: अभियान रिपोर्टें पुनः उत्पन्न करें
         bulk_regenerate_threesixty_reports: थ्रीसिक्स्टी विषय रिपोर्टें पुनः उत्पन्न करें
@@ -871,10 +876,12 @@ hi:
         completion_status_export: पूर्णता स्थिति निर्यात
         copy_as_template_or_campaign: अभियान को टेम्पलेट के रूप में कॉपी करें
         copy_dimension: आयाम की प्रतिलिपि
+        copy_report: रिपोर्ट की प्रतिलिपि
         create_threesixty_campaign: थ्रीसिक्स्टी अभियान बनाएँ
         data_report_export: डेटा रिपोर्ट निर्यात
         export_admin_with_permissions: अनुमतिओं के साथ निर्यात प्रशासक
         export_assessment_questions: निर्यात मूल्यांकन प्रश्न
+        export_audit_logs: ऑडिट लॉग्स निर्यात करें
         export_campaign_ai_artifacts: निर्यात अभियान एआई कलाकृतियाँ
         export_campaign_ai_artifacts_results: निर्यात अभियान एआई कलाकृतियों के परिणाम
         export_campaign_datasheet: निर्यात अभियान डेटाशीट
@@ -964,6 +971,8 @@ hi:
       errors:
         no_plans: कोई सक्रिय आईडीपी योजना नहीं मिली
     close: बंद करें
+    copy_report:
+      failed: रिपोर्ट कॉपी विफल हो गई
     details: विवरण
     errors: त्रुटियाँ
     invalid_job: यह सूचना हटाए गए रिकॉर्ड से संबंधित है।
@@ -1459,6 +1468,7 @@ hi:
       external_user_id: स्किलव्यू उम्मीदवार आईडी
       id: अभियान मूल्यांकन आईडी
       locales: स्थानीय क्षेत्र
+      microsite_assessment_url: माइक्रोसाइट मूल्यांकन यूआरएल
       microsite_error_message: त्रुटि संदेश
       microsite_participant_id: माइक्रोसाइट प्रतिभागी आईडी
       microsite_registration_status: पंजीकरण स्थिति
@@ -1657,7 +1667,6 @@ hi:
     details:
       additional_time: अतिरिक्त समय
       assessment_center: मूल्यांकन केंद्र
-      assessment_center_invites: मूल्यांकन केंद्र आमंत्रण
       completed_at: पर पूरा किया गया
       completion_status: पूर्णता की स्थिति
       hogan_id: होगन आईडी
@@ -1687,11 +1696,6 @@ hi:
     modals:
       remove: क्या आप निश्चित हैं कि आप इस अभियान से '%{email}' ईमेल वाले उपयोगकर्ता को हटाना चाहते हैं?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: मूल्यांकनकर्ता मूल्यांकन
-      other_assessments: अन्य आकलन
-      other_assessor_assessments: अन्य आकलनकर्ता के आकलन
-      other_reports: अन्य रिपोर्टें
     card:
       duration: अवधि
       starts_in: 'में शुरू होता है:'
@@ -1762,23 +1766,19 @@ hi:
       insert: डालें
       'no': नहीं
       ok: ठीक है
-      publish: प्रकाशित करें
       reject: अस्वीकार करें
       remove: हटाएँ
       reset: पुनः आरंभ करें
       resolve: समाधान करें
       restore: पुनर्स्थापित करें
       return_to_home: होम पर लौटें
-      run: दौड़ो
       save: बचाएँ
       schedule: समय-सारणी
       search: खोजें
-      send: भेजें
       sign_in: साइन इन
       start: शुरू करें
       submit: सबमिट करें
       unarchive: अनआर्काइव
-      unpublish: अप्रकाशित करें
       unresolve: अनसुलझा
       update: अपडेट
       upload: अपलोड
@@ -1791,20 +1791,14 @@ hi:
     column:
       action: कार्रवाई
       active: सक्रिय
-      ai_assistant: एआई सहायक
-      allow_multiple_responses: कई प्रतिक्रियाओं की अनुमति दें
       approval_notification_list: अनुमोदन सूचना उपयोगकर्ताओं की सूची
       approvers_list: अनुमोदकों की सूची
-      assessment: मूल्यांकन
       assessment_name: मूल्यांकन का नाम
       assessments: मूल्यांकन
-      assessor: मूल्यांकनकर्ता
       category: श्रेणी
       client: ग्राहक
-      code: कोड
       created_at: पर बनाया गया
       created_by: द्वारा निर्मित
-      created_date: निर्मित तिथि
       default_language: डिफ़ॉल्ट भाषा
       description: विवरण
       details: विवरण
@@ -1822,11 +1816,8 @@ hi:
         scoring: स्कोरिंग JSON
       key: मुख्य
       last_name: आखिरी नाम
-      linked_activities: संबंधित गतिविधियाँ
       linked_assessment: संलग्न मूल्यांकन
-      meeting_link: मीटिंग लिंक
       modified_by: द्वारा संशोधित
-      modified_date: संशोधित तिथि
       name: नाम
       owner: मालिक
       package_id: पैकेज आईडी
@@ -1842,7 +1833,6 @@ hi:
       scheduling: अनुसूचीकरण
       skills: कौशल
       status: स्थिति
-      tags: टैग
       timing: समय
       token: टोकन
       type: प्रकार
@@ -1854,15 +1844,12 @@ hi:
     messages:
       leave_message: क्या आप इस पृष्ठ को छोड़ना चाहते हैं? आपके कोई भी बिना सहेजे गए उत्तर खो जाएँगे।
     model:
-      admins: प्रशासक
       assessment: मूल्यांकन
       assessments: मूल्यांकन
       campaigns: अभियान
       completion_statuses: पूर्णता की स्थितियाँ
-      datasheet: डेटाशीट
       report: रिपोर्ट
       reports: रिपोर्टें
-      sms_contact: एसएमएस संपर्क
       threesixty_campaign: थ्रीसिक्स्टी अभियान स्कोर
     status:
       completed: पूर्ण
@@ -2160,6 +2147,7 @@ hi:
     invalid_token: कुछ गलत हो गया। कृपया पेज रीलोड करें और फिर से प्रयास करें।
     max_regeneration_limit: अधिकतम पुनर्जनन सीमा पार हो गई है, अपने प्रशासन से संपर्क करें।
     messages:
+      content_type_invalid: अमान्य सामग्री का प्रकार
       data_report_blank: डेटा रिपोर्ट मौजूद नहीं है
       password_complexity:
         digit:
@@ -2977,9 +2965,7 @@ hi:
     zh-Hant: चीनी - पारंपरिक
     zh-TW: चीनी (ताइवान)
   license_usage:
-    active: सक्रिय
     campaign_name: अभियान का नाम
-    inactive: निष्क्रिय
     status_updated_at: अंतिम स्थिति अपडेट
     status_updated_by: द्वारा अंतिम बार अपडेट किया गया
     subject_email: विषय ईमेल
@@ -3499,12 +3485,14 @@ hi:
           admin: प्रशासक
           admins:
             admin: प्रशासक
+            client_assessor: ग्राहक आकलनकर्ता
             project_admin: परियोजना प्रशासक
             regular: क्लाइंट एडमिन
             superadmin: सुपर एडमिन
           agile: चपल
           case_study: केस स्टडी
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक आकलनकर्ता
           hogan: होगन
           manager: प्रबंधक
           member: उपयोगकर्ता
@@ -3638,6 +3626,7 @@ hi:
         roles:
           campaign_admin: अभियान प्रशासक
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक आकलनकर्ता
           manager: प्रबंधक
           member: उपयोगकर्ता
           project_admin: परियोजना प्रशासक
@@ -3708,12 +3697,14 @@ hi:
           admin: प्रशासक
           admins:
             admin: प्रशासक
+            client_assessor: ग्राहक आकलनकर्ता
             project_admin: परियोजना प्रशासक
             regular: क्लाइंट एडमिन
             superadmin: सुपर एडमिन
           agile: चपल
           case_study: केस स्टडी
           client_admin: क्लाइंट एडमिन
+          client_assessor: ग्राहक मूल्यांकनकर्ता
           hogan: होगन
           manager: प्रबंधक
           member: उपयोगकर्ता
@@ -3984,7 +3975,6 @@ hi:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: सक्रिय
     allow_multiple_respones: उपयोगकर्ताओं को कई प्रतिक्रियाएँ जमा करने की अनुमति दें
     png: पीएनजी
     regenerate_link: लिंक पुनः उत्पन्न करें
@@ -4173,6 +4163,7 @@ hi:
       campaign_assessor: अभियान मूल्यांकनकर्ता
       campaign_user: अभियान उपयोगकर्ता
       client_admin: क्लाइंट एडमिन
+      client_assessor: ग्राहक आकलनकर्ता
       project_admin: परियोजना प्रशासक
       superadmin: सुपर एडमिन
     superadmins: सुपर एडमिन

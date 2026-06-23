@@ -21,7 +21,7 @@ export const MarkdownEditor: FC<Props> = ({ value, onChange }) => (
         <Row justify="space-between" align="middle">
           <Typography.Text>
             {I18n.t(
-              'administration.sheets.drawers.add_edit.markdown.title',
+              'admin.sheets_drawers_add_edit_markdown_title',
             )}
           </Typography.Text>
           <Tooltip title="Markdown help">
@@ -32,7 +32,7 @@ export const MarkdownEditor: FC<Props> = ({ value, onChange }) => (
       <Col span="12" className={styles.headerRowCol}>
         <Typography.Text>
           {I18n.t(
-            'administration.sheets.drawers.add_edit.markdown.preview',
+            'admin.sheets_drawers_add_edit_markdown_preview',
           )}
         </Typography.Text>
       </Col>

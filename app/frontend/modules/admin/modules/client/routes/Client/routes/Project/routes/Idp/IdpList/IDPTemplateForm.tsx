@@ -92,17 +92,17 @@ const IDPTemplateForm = ({
 
   return (
     <Modal
-      title={I18n.t(idp ? 'administration.idp.edit_template' : 'administration.idp.idp_template')}
+      title={I18n.t(idp ? 'admin.idp_edit_template' : 'admin.idp_idp_template')}
       open={isModalVisible}
       onCancel={close}
       onOk={handleSubmit}
       width="80%"
       style={{ maxWidth: '700px' }}
-      okText={I18n.t('common.actions.add')}
-      cancelText={I18n.t('common.actions.cancel')}
+      okText={I18n.t('shared.add')}
+      cancelText={I18n.t('shared.cancel')}
       footer={[
         <Button key="back" onClick={close}>
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -110,7 +110,7 @@ const IDPTemplateForm = ({
           onClick={handleSubmit}
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.add')}
+          {I18n.t('shared.add')}
         </Button>,
       ]}
     >
@@ -120,44 +120,44 @@ const IDPTemplateForm = ({
       >
         <Row gutter={[16, 16]}>
           <Col xs={24} md={24}>
-            <Card title={I18n.t('administration.idp.template_details')}>
+            <Card title={I18n.t('admin.idp_template_details')}>
               <Form.Item
                 name="name"
-                label={I18n.t('administration.idp.enter_template_name')}
-                rules={[{ required: true, message: I18n.t('administration.idp.enter_template_name_error') }]}
+                label={I18n.t('shared.name')}
+                rules={[{ required: true, message: I18n.t('admin.idp_enter_template_name_error') }]}
               >
-                <Input placeholder={I18n.t('administration.idp.enter_template_name')} />
+                <Input placeholder={I18n.t('shared.name')} />
               </Form.Item>
 
               <Form.Item
                 name="description"
-                label={I18n.t('administration.idp.enter_template_description')}
-                rules={[{ required: true, message: I18n.t('administration.idp.enter_template_description_error') }]}
+                label={I18n.t('shared.name')}
+                rules={[{ required: true, message: I18n.t('admin.idp_enter_template_description_error') }]}
               >
-                <Input placeholder={I18n.t('administration.idp.enter_template_description')} />
+                <Input placeholder={I18n.t('shared.name')} />
               </Form.Item>
 
               <Form.Item
                 name="reportId"
-                label={I18n.t('administration.idp.skill_gap_report')}
+                label={I18n.t('admin.idp_skill_gap_report')}
               >
                 <Select
                   showSearch={{ filterOption: false, onSearch: debouncedFetchReports }}
                   notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
-                  placeholder={I18n.t('administration.idp.select_skill_gap_report')}
+                  placeholder={I18n.t('admin.idp_select_skill_gap_report')}
                 >
                   {reports.map(({ id, name }) => (
                     <Select.Option key={id} value={id}>{name}</Select.Option>
                   ))}
                 </Select>
               </Form.Item>
-              <Form.Item name="selfRatingEnabled" label={I18n.t('administration.idp.self_rating')}>
+              <Form.Item name="selfRatingEnabled" label={I18n.t('admin.idp_self_rating')}>
                 <Switch checkedChildren={I18n.t('yes')} unCheckedChildren={I18n.t('no')} />
               </Form.Item>
               {aiAssistedIdpFeatureEnabled && (
                 <Form.Item
                   name="aiEnabled"
-                  label={I18n.t('administration.idp.ai_enabled')}
+                  label={I18n.t('admin.idp_ai_enabled')}
                   valuePropName="checked"
                 >
                   <Switch />
@@ -168,14 +168,14 @@ const IDPTemplateForm = ({
                   {/* uncomment this when AI Assisted IDP is ready
                   <Form.Item
                     name="aiAssistedIdpEnabled"
-                    label={I18n.t('administration.idp.ai_assisted_idp_enabled')}
+                    label={I18n.t('admin.idp_ai_assisted_idp_enabled')}
                     valuePropName="checked"
                   >
                     <Switch />
                   </Form.Item> */}
                   <Form.Item
                     name="oneClickIdpEnabled"
-                    label={I18n.t('administration.idp.one_click_idp_enabled')}
+                    label={I18n.t('admin.idp_one_click_idp_enabled')}
                     valuePropName="checked"
                   >
                     <Switch />

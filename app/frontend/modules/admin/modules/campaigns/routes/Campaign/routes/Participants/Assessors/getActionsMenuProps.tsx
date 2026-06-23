@@ -27,9 +27,9 @@ export const getActionsMenuProps = ({
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('administration.assessor.remove_confirmation', { email }),
+      content: I18n.t('admin.assessor_remove_confirmation', { email }),
       okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         remove()
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email }))
@@ -40,7 +40,7 @@ export const getActionsMenuProps = ({
   const menuItems: MenuItem[] = []
   permissions.remove && menuItems.push({
     key: 'remove',
-    label: I18n.t('common.actions.remove'),
+    label: I18n.t('shared.remove'),
   })
   permissions.loginAs && menuItems.push({
     key: 'loginAs',
@@ -48,7 +48,7 @@ export const getActionsMenuProps = ({
       <a
         href={`/administration/new_campaigns/${campaignId}/assessors/${id}/spoof`}
       >
-        {I18n.t('frontend.login')}
+        {I18n.t('shared.login')}
       </a>
     ),
   })

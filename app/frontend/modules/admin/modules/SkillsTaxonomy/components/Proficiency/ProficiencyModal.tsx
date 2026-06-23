@@ -75,7 +75,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     const list = form.getFieldValue('levelDefinition') || []
     const duplicate = list.filter(item => String(item.level) === String(value))
     if (duplicate.length > 1) {
-      return Promise.reject(new Error(I18n.t('administration.proficiency_levels.errors.create.must_be_unique')))
+      return Promise.reject(new Error(I18n.t('admin.create_must_be_unique')))
     }
     return Promise.resolve()
   }
@@ -98,7 +98,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
   const columns = [
     {
       key: 'level',
-      title: I18n.t('administration.proficiency_levels.fields.level'),
+      title: I18n.t('admin.fields_level'),
       dataIndex: 'level',
       width: '10%',
       render: (_: unknown, record, index: number) => (
@@ -122,7 +122,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     },
     {
       key: 'name',
-      title: I18n.t('administration.proficiency_levels.fields.level_name'),
+      title: I18n.t('admin.fields_level_name'),
       dataIndex: 'name',
       width: '24%',
       render: (_: unknown, record, index: number) => (
@@ -133,7 +133,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
               validator: (_, value) => (value && value.trim() !== ''
                 ? Promise.resolve()
                 : Promise.reject(new Error(
-                  I18n.t('administration.proficiency_levels.errors.create.level_name_must_exist'),
+                  I18n.t('admin.create_level_name_must_exist'),
                 ))),
             },
           ]}
@@ -146,7 +146,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     },
     {
       key: 'description',
-      title: I18n.t('administration.proficiency_levels.fields.level_description'),
+      title: I18n.t('admin.fields_level_description'),
       dataIndex: 'description',
       render: (_: unknown, record, index: number) => (
         <Form.Item
@@ -156,7 +156,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
               validator: (_, value) => (value && value.trim() !== ''
                 ? Promise.resolve()
                 : Promise.reject(new Error(
-                  I18n.t('administration.proficiency_levels.errors.create.level_description_must_exist'),
+                  I18n.t('admin.create_level_description_must_exist'),
                 ))),
             },
           ]}
@@ -252,7 +252,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
     <ResourceFormModal
       resourceName="proficiency_levels"
       resource={proficiencyLevel ? transformValues(proficiencyLevel) : undefined}
-      readableResourceName={I18n.t('administration.proficiency_levels.fields.title')}
+      readableResourceName={I18n.t('admin.proficiency_levels_fields_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -268,14 +268,14 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
         <>
           <Form.Item
             name="proficiencyType"
-            label={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
+            label={I18n.t('admin.fields_proficiency_type')}
             rules={[{ required: true }]}
           >
             <Select disabled={!!proficiencyLevel?.proficiencyType}>
               {
                 Object.values(convertEnumToObject(ProficiencyTypesEnum)).map(([, value]) => (
                   <Select.Option key={value} value={value}>
-                    {I18n.t(`administration.proficiency_levels.type.${value}`)}
+                    {I18n.t(`admin.type_${value}`)}
                   </Select.Option>
                 ))
               }
@@ -285,7 +285,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
             form.getFieldValue('proficiencyType') === 'by_skill' ? (
               <Form.Item
                 name="skillId"
-                label={I18n.t('administration.proficiency_levels.fields.skill')}
+                label={I18n.t('admin.fields_skill')}
                 rules={[{ required: true }]}
               >
                 <Select
@@ -305,7 +305,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
             (form.getFieldValue('proficiencyType') === 'by_skill_type') ? (
               <Form.Item
                 name="skillType"
-                label={I18n.t('administration.proficiency_levels.fields.skill_type')}
+                label={I18n.t('admin.fields_skill_type')}
                 rules={[{ required: true }]}
               >
                 <Select
@@ -322,7 +322,7 @@ export const ProficiencyModal: React.FC<Props> = ({ close, proficiencyLevel }) =
           }
           <Form.Item
             name="level"
-            label={I18n.t('administration.proficiency_levels.fields.level')}
+            label={I18n.t('admin.fields_level')}
             rules={[{ required: true }]}
           >
             <Select

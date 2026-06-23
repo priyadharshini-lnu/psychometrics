@@ -1564,7 +1564,8 @@ CREATE TABLE public.api_keys (
     encrypted_token_iv character varying,
     created_by_id bigint,
     updated_by_id bigint,
-    description text
+    description text,
+    tenant_id bigint NOT NULL
 );
 
 
@@ -1585,6 +1586,44 @@ CREATE SEQUENCE public.api_keys_id_seq
 --
 
 ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
+
+
+--
+-- Name: application_public_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_public_keys (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    key_id character varying NOT NULL,
+    public_key text NOT NULL,
+    fingerprint character varying,
+    description character varying,
+    disabled boolean DEFAULT false NOT NULL,
+    created_by_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_public_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_public_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_public_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_public_keys_id_seq OWNED BY public.application_public_keys.id;
 
 
 --
@@ -2551,6 +2590,9 @@ CREATE TABLE public.campaign_options (
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
     minimum_upload_speed integer,
     minimum_download_speed integer,
+    face_detection_enabled boolean DEFAULT false NOT NULL,
+    minimum_face_detection_ratio integer DEFAULT 85,
+    phrase_verification_enabled boolean DEFAULT false NOT NULL,
     skip_assessment_level_checks boolean DEFAULT true NOT NULL,
     selective_proctoring_enabled boolean DEFAULT false NOT NULL,
     tenant_id bigint
@@ -3455,7 +3497,9 @@ CREATE TABLE public.data_reports (
     last_updated_by_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    report_type integer DEFAULT 0 NOT NULL,
+    scope integer DEFAULT 0 NOT NULL
 );
 
 
@@ -9914,6 +9958,13 @@ ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api
 
 
 --
+-- Name: application_public_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_public_keys ALTER COLUMN id SET DEFAULT nextval('public.application_public_keys_id_seq'::regclass);
+
+
+--
 -- Name: assessment_assistants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11638,6 +11689,14 @@ ALTER TABLE ONLY public.ai_translation_results
 
 ALTER TABLE ONLY public.api_keys
     ADD CONSTRAINT api_keys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: application_public_keys application_public_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_public_keys
+    ADD CONSTRAINT application_public_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -14159,6 +14218,13 @@ CREATE UNIQUE INDEX index_api_keys_on_key ON public.api_keys USING btree (key);
 
 
 --
+-- Name: index_api_keys_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_tenant_id ON public.api_keys USING btree (tenant_id);
+
+
+--
 -- Name: index_api_keys_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14170,6 +14236,34 @@ CREATE INDEX index_api_keys_on_updated_by_id ON public.api_keys USING btree (upd
 --
 
 CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
+
+
+--
+-- Name: index_application_public_keys_on_key_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_application_public_keys_on_key_id ON public.application_public_keys USING btree (key_id);
+
+
+--
+-- Name: index_application_public_keys_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_public_keys_on_tenant_id ON public.application_public_keys USING btree (tenant_id);
+
+
+--
+-- Name: index_application_public_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_public_keys_on_user_id ON public.application_public_keys USING btree (user_id);
+
+
+--
+-- Name: index_application_public_keys_on_user_id_and_disabled; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_public_keys_on_user_id_and_disabled ON public.application_public_keys USING btree (user_id, disabled);
 
 
 --
@@ -15388,6 +15482,20 @@ CREATE INDEX index_dashboards_on_tenant_id ON public.dashboards USING btree (ten
 --
 
 CREATE INDEX index_data_report_jobs_on_tenant_id ON public.data_report_jobs USING btree (tenant_id);
+
+
+--
+-- Name: index_data_reports_on_report_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_data_reports_on_report_type ON public.data_reports USING btree (report_type);
+
+
+--
+-- Name: index_data_reports_on_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_data_reports_on_scope ON public.data_reports USING btree (scope);
 
 
 --
@@ -21128,6 +21236,14 @@ ALTER TABLE ONLY public.skill_aliases
 
 
 --
+-- Name: application_public_keys fk_rails_63201df07f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_public_keys
+    ADD CONSTRAINT fk_rails_63201df07f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communications fk_rails_639c49fe3d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24095,10 +24211,16 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260616103502'),
-('20260526000001'),
 ('20260615195000'),
+('20260612100749'),
 ('20260612074019'),
+('20260610152535'),
+('20260605122018'),
+('20260605000000'),
+('20260603081303'),
+('20260602120000'),
 ('20260527180000'),
+('20260526000001'),
 ('20260520094000'),
 ('20260514200000'),
 ('20260513115126'),
@@ -25153,3 +25275,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

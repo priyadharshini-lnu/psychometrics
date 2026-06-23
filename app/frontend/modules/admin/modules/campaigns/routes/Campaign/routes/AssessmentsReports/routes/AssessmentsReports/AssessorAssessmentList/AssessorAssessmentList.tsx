@@ -51,17 +51,15 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
 
   const removeAssessorAssessment = (assessorAssessment) => {
     modal.confirm({
-      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
+      title: I18n.t('shared.delete'),
       content: I18n.t(
-        'administration.project_tabs.webhooks.remove_webhook.content',
+        'admin.project_tabs_webhooks_remove_webhook_content',
         {
           description: assessorAssessment.assessmentName,
         },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
-      cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
-      ),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         removeResource(`${assessorAssessment.id}`).then(() => {
           message.info('Success')
@@ -85,22 +83,22 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             pagination={false}
           >
             <Column
-              title={I18n.t('common.column.id')}
+              title={I18n.t('shared.id')}
               dataIndex="assessmentId"
               key="id"
             />
             <Column
-              title={I18n.t('common.column.assessment_name')}
+              title={I18n.t('shared.assessment_name')}
               key="name"
               dataIndex="assessmentName"
             />
             <Column
-              title={I18n.t('common.column.linked_assessment')}
+              title={I18n.t('shared.linked_assessment')}
               key="linkedAssessment"
               render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
             />
             <Column
-              title={I18n.t('common.column.allow_multiple_responses')}
+              title={I18n.t('admin.allow_multiple_responses')}
               key="allowMultipleResponses"
               render={resource => (
                 <Switch
@@ -113,7 +111,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
               )}
             />
             <Column
-              title={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+              title={I18n.t('admin.assessment_center_group')}
               key="assessmentCenterGroups"
               render={resource => (
                 <a
@@ -130,7 +128,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             />
             <Column
               key="manage"
-              title={I18n.t('administration.projects.webhook_settings.column_manage')}
+              title={I18n.t('shared.manage')}
               render={assessorAssessment => (
                 <ConditionalDropdown
                   menu={

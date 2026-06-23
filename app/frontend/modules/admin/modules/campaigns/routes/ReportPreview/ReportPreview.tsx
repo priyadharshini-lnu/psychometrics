@@ -179,14 +179,14 @@ export default function ReportPreview ({
             type="primary"
             onClick={() => startQC(userReport.campaignId, userReport.id)}
           >
-            {I18n.t('administration.report_review.review')}
+            {I18n.t('admin.report_review_review')}
           </Button>,
         )
       }
       if (userReport.approvalStatus === ApprovalStatuses.QCInProgress && userReport.permissions.abortQc) {
         actionList.unshift(
           <Button type="default" onClick={() => abortQC(userReport.campaignId, userReport.id)}>
-            {I18n.t('administration.report_review.abort_qc')}
+            {I18n.t('admin.report_review_abort_qc')}
           </Button>,
         )
       }
@@ -194,8 +194,8 @@ export default function ReportPreview ({
         actionList.unshift(
           <Button type="primary" onClick={() => sendToReview(userReport.campaignId, userReport.id)}>
             {(userReport.permissions.oneLevelQc || userReport.permissions.approversCanEdit)
-              ? I18n.t('administration.report_review.approve_changes')
-              : I18n.t('administration.report_review.send_for_approve')}
+              ? I18n.t('admin.report_review_approve_changes')
+              : I18n.t('admin.report_review_send_for_approve')}
           </Button>,
         )
       }
@@ -211,19 +211,19 @@ export default function ReportPreview ({
             disabled={approved !== modulesCount}
             onClick={() => approveReport(userReport.campaignId, userReport.id)}
           >
-            {I18n.t('administration.report_review.approve')}
+            {I18n.t('admin.report_review_approve')}
           </Button>,
           <Button type="default" onClick={() => requestChanges(userReport.campaignId, userReport.id)}>
             {(userReport.permissions.oneLevelQc || userReport.permissions.approversCanEdit)
-              ? I18n.t('administration.report_review.edit')
-              : I18n.t('administration.report_review.request_changes')}
+              ? I18n.t('admin.report_review_edit')
+              : I18n.t('admin.report_review_request_changes')}
           </Button>,
         ])
       }
       if (userReport.approvalStatus === ApprovalStatuses.Approved && userReport.permissions.manageApproval) {
         actionList.unshift(
           <Button type="primary" onClick={() => removeApproval(userReport.campaignId, userReport.id)}>
-            {I18n.t('administration.report_review.remove_approval')}
+            {I18n.t('admin.report_review_remove_approval')}
           </Button>,
         )
       }
@@ -248,7 +248,7 @@ export default function ReportPreview ({
           disabled={downloadInProgress}
           key="download"
         >
-          {I18n.t('common.text.download')}
+          {I18n.t('shared.download')}
         </Button>,
       )
     }
@@ -264,7 +264,7 @@ export default function ReportPreview ({
 
     return [
       <Tag color={TAG_COLORS[userReport.approvalStatus]}>
-        {I18n.t(`administration.report_review.statuses.${userReport.approvalStatus}`)}
+        {I18n.t(`admin.report_review_statuses_${userReport.approvalStatus}`)}
       </Tag>,
       ...actionList,
     ]
@@ -284,7 +284,7 @@ export default function ReportPreview ({
           }}
           crumbs={[{
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.clients'),
+            label: () => I18n.t('admin.clients'),
           }, {
             link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,

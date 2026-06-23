@@ -66,7 +66,7 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
       method: 'post',
       body: { reflectionQuestions },
     }).then(() => {
-      message.success(I18n.t('administration.idp.reflection_questions_updated'))
+      message.success(I18n.t('admin.idp_reflection_questions_updated'))
       fetch()
     })
   }
@@ -116,14 +116,14 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
   return (
     <Row gutter={[16, 16]}>
       <Col span={16}>
-        <Card title={I18n.t('administration.idp.reflection_questions')}>
+        <Card title={I18n.t('admin.idp_reflection_questions')}>
           <Space orientation="vertical" style={{ width: '100%' }}>
             <Flex gap={16}>
               <Select
                 style={{
                   width: '100%', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
                 }}
-                placeholder={I18n.t('administration.idp.select_reflection_question')}
+                placeholder={I18n.t('admin.idp_select_reflection_question')}
                 showSearch={{
                   filterOption: false,
                   onSearch: (query) => {
@@ -159,12 +159,12 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
                 bordered
                 columns={[
                   {
-                    title: I18n.t('administration.reflection_questions.form.question'),
+                    title: I18n.t('admin.reflection_questions_form_question'),
                     dataIndex: 'question',
                     key: 'question',
                   },
                   {
-                    title: I18n.t('administration.reflection_questions.form.mandatory'),
+                    title: I18n.t('admin.reflection_questions_form_mandatory'),
                     dataIndex: 'mandatory',
                     key: 'mandatory',
                     width: 120,
@@ -176,7 +176,7 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
                     ),
                   },
                   {
-                    title: I18n.t('administration.reflection_questions.form.min_words'),
+                    title: I18n.t('admin.reflection_questions_form_min_words'),
                     dataIndex: 'minWords',
                     key: 'minWords',
                     width: 120,
@@ -190,7 +190,7 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
                     ),
                   },
                   {
-                    title: I18n.t('administration.reflection_questions.form.max_words'),
+                    title: I18n.t('admin.reflection_questions_form_max_words'),
                     dataIndex: 'maxWords',
                     key: 'maxWords',
                     width: 120,
@@ -219,12 +219,12 @@ export const ReflectionQuestionsForm: FC<ReflectionQuestionsFormProps> = ({ idp,
                 ]}
               />
             ) : (
-              <Text type="secondary">{I18n.t('administration.idp.no_reflection_questions_selected')}</Text>
+              <Text type="secondary">{I18n.t('admin.idp_no_reflection_questions_selected')}</Text>
             )}
           </Space>
           <Flex justify="flex-end" className="mt-6">
             <Button onClick={save} type="primary" loading={isUpdating}>
-              {I18n.t('administration.idp.update_reflection_questions')}
+              {I18n.t('admin.idp_update_reflection_questions')}
             </Button>
           </Flex>
         </Card>

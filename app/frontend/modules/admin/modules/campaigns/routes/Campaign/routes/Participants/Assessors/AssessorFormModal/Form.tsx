@@ -19,7 +19,7 @@ import userPresenter from '~/presenters/user'
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }
 
 const { I18n } = window
-const localI18n = (code, params = {}) => I18n.t(`administration.assessor.modals.create_assessor.form.${code}`, params)
+const localI18n = (code, params = {}) => I18n.t(`admin.${code}`, params)
 
 const connecter = connect(
   (state: RootState) => ({
@@ -166,7 +166,7 @@ const Form: React.FC<Props & PropsFromRedux> = ({
       )}
       <AntForm.Item wrapperCol={{ span: 12, offset: 5 }}>
         <Button type="primary" onClick={onClick}>
-          {localI18n('add')}
+          {I18n.t('shared.add')}
         </Button>
       </AntForm.Item>
     </AntForm>

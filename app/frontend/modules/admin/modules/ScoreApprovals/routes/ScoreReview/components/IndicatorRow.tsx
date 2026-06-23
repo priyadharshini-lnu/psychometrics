@@ -59,8 +59,8 @@ const IndicatorHeader = ({
             <Popconfirm
               trigger="click"
               placement="bottomRight"
-              title={I18n.t('admin.ai_scoring_appoval_reset_score')}
-              description={I18n.t('admin.ai_scoring_appoval_reset_score_description')}
+              title={I18n.t('admin.reset_score')}
+              description={I18n.t('admin.reset_score_description')}
               onConfirm={removeScore}
             >
               <Button type="text" icon={<ReloadOutlined />} />
@@ -93,12 +93,12 @@ const IndicatorHeader = ({
 
 const IndicatorContent = ({ factor, onSeek, playingCitationKey }) => (
   <Flex vertical gap={8}>
-    <Typography.Text strong>{I18n.t('admin.ai_scoring_appoval_rationale')}</Typography.Text>
+    <Typography.Text strong>{I18n.t('admin.rationale')}</Typography.Text>
     <Typography.Text>
       {factor.rationale}
     </Typography.Text>
 
-    <Typography.Text strong>{I18n.t('admin.ai_scoring_appoval_evidence_from_transcript')}</Typography.Text>
+    <Typography.Text strong>{I18n.t('admin.evidence_from_transcript')}</Typography.Text>
     {factor.citations.map((citation, i) => (
       <Evidence
         key={i}

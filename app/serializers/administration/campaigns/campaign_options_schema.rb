@@ -43,6 +43,9 @@ module Administration
           required(:skip_assessment_level_checks).filled(:bool?)
           required(:minimum_upload_speed).maybe(:int?)
           required(:minimum_download_speed).maybe(:int?)
+          required(:face_detection_enabled).filled(:bool?)
+          required(:minimum_face_detection_ratio).maybe(:int?)
+          required(:phrase_verification_enabled).filled(:bool?)
         end
       end
     end

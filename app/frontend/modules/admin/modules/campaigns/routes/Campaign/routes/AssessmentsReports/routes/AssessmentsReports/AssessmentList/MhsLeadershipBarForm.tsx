@@ -51,7 +51,7 @@ export const MhsLeadershipBarForm: FC<Props> = ({
 
     updateMhsLeadershipBar(campaignId, assessment.id, payload)
       .then(() => {
-        message.success(I18n.t('admin.campaign_assessment_mhs_leadership_bar_update_success'))
+        message.success(I18n.t('admin.leadership_bar_update_success'))
       })
       .catch(() => {
         setLeadershipBar(!leadershipBar)
@@ -77,7 +77,7 @@ export const MhsLeadershipBarForm: FC<Props> = ({
             label: { width: '40%' },
             content: { width: '60%' },
           }}
-          label={I18n.t('admin.campaign_assessment_mhs_leadership_bar')}
+          label={I18n.t('admin.leadership_bar')}
         >
           <Switch
             checked={leadershipBar}
@@ -88,7 +88,7 @@ export const MhsLeadershipBarForm: FC<Props> = ({
         </Descriptions.Item>
       </Descriptions>
       <Modal
-        title={I18n.t('admin.campaign_assessment_mhs_leadership_bar')}
+        title={I18n.t('admin.leadership_bar')}
         open={confirmModalVisible}
         getContainer={false}
         closable={false}

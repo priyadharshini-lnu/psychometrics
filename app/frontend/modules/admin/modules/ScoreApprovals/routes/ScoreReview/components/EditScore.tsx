@@ -50,17 +50,17 @@ export const EditScore = ({
       <Space>
         <Switch checked={notApplicable} onChange={onToggleNotApplicable} />
         {' '}
-        {I18n.t('admin.ai_scoring_appoval_score_not_applicable')}
+        {I18n.t('admin.score_not_applicable')}
       </Space>
       <Flex orientation="vertical" gap={4}>
-        <Typography.Text>{I18n.t('admin.ai_scoring_appoval_new_score')}</Typography.Text>
+        <Typography.Text>{I18n.t('admin.new_score')}</Typography.Text>
         <InputNumber disabled={notApplicable} value={tempValue} onChange={handleChange} style={{ width: '100%' }} />
         {showScoreWarning && !notApplicable && (
           <Typography.Text type="danger">{I18n.t('validations.blank')}</Typography.Text>
         )}
       </Flex>
       <Flex orientation="vertical" gap={4}>
-        <Typography.Text>{I18n.t('admin.ai_scoring_appoval_reason_for_changes')}</Typography.Text>
+        <Typography.Text>{I18n.t('admin.reason_for_changes')}</Typography.Text>
         <Input.TextArea rows={4} value={reason} onChange={e => setReason(e.target.value)} />
       </Flex>
       <Space>

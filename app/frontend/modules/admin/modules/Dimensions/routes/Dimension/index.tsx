@@ -33,13 +33,13 @@ const DimensionComponent: React.FC = () => {
 
   const menuItems: ItemType[] = useMemo(() => {
     const items: ItemType[] = [
-      { key: '/factors', label: I18n.t('administration.navigation.factors') },
+      { key: '/factors', label: I18n.t('admin.navigation_factors') },
     ]
     if (dimensions?.occupationsEnabled) {
-      items.push({ key: '/occupations', label: I18n.t('administration.navigation.occupations') })
+      items.push({ key: '/occupations', label: I18n.t('admin.navigation_occupations') })
     }
     if (dimensions?.innovationStylesEnabled) {
-      items.push({ key: '/innovation_styles', label: I18n.t('administration.navigation.innovation_styles') })
+      items.push({ key: '/innovation_styles', label: I18n.t('admin.navigation_innovation_styles') })
     }
     return items
   }, [dimensionId, dimensions])
@@ -53,10 +53,10 @@ const DimensionComponent: React.FC = () => {
 
   const breadcrumbTitle = useMemo(() => (
     {
-      '/factors': I18n.t('administration.navigation.factors'),
-      '/occupations': I18n.t('administration.navigation.occupations'),
-      '/innovation_styles': I18n.t('administration.navigation.innovation_styles'),
-    }[activePath] || I18n.t('administration.navigation.factors')
+      '/factors': I18n.t('admin.navigation_factors'),
+      '/occupations': I18n.t('admin.navigation_occupations'),
+      '/innovation_styles': I18n.t('admin.navigation_innovation_styles'),
+    }[activePath] || I18n.t('admin.navigation_factors')
   ), [activePath])
 
   if (!dimensions) return null
@@ -65,8 +65,8 @@ const DimensionComponent: React.FC = () => {
     <div>
       <Breadcrumb
         crumbs={[
-          { link: () => '/admin', label: () => I18n.t('users.dashboard') },
-          { link: () => '/admin/dimensions', label: () => I18n.t('administration.dimensions.index.title') },
+          { link: () => '/admin', label: () => I18n.t('admin.dashboard') },
+          { link: () => '/admin/dimensions', label: () => I18n.t('admin.dimensions_index_title') },
           { label: () => dimensions.name },
           { label: () => breadcrumbTitle },
         ]}

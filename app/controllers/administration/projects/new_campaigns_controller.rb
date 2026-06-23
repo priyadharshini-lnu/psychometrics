@@ -263,6 +263,7 @@ module Administration
           :system_check_enabled, :system_check_validity, :allow_continue_with_warning,
           :skip_assessment_level_checks, :selective_proctoring_enabled,
           :minimum_upload_speed, :minimum_download_speed,
+          :face_detection_enabled, :minimum_face_detection_ratio, :phrase_verification_enabled,
           rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                      allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
                      allow_to_use_messengers allow_wrong_gaze_direction

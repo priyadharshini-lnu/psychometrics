@@ -264,9 +264,16 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
               </div>
             )}
             {!permissionGranted && !mediaUrl && !showRecordNote && (
-              <div className={styles.overlay} role="status" aria-live="polite">
+              <motion.div
+                className={styles.overlay}
+                role="status"
+                aria-live="polite"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 0 }}
+                transition={{ duration: 1.2 }}
+              >
                 <p>{I18n.t('shared.camera_preview')}</p>
-              </div>
+              </motion.div>
             )}
 
             {/* No audio warning overlay - top left */}

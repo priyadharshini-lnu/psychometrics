@@ -622,6 +622,7 @@ cs:
         roles:
           campaign_admin: Správce kampaně
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           manager: Manažer
           member: Uživatel
           project_admin: Administrátor projektu
@@ -727,6 +728,7 @@ cs:
           admins:
             admin: Admin
             campaign_admin: Správce kampaně
+            client_assessor: Hodnotitel klienta
             project_admin: Administrátor projektu
             regular: Administrátor klienta
             superadmin: Super administrátor
@@ -736,6 +738,7 @@ cs:
           campaign_admin: Správce kampaně
           case_study: Případová studie
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           hogan: Hogan
           iiht: IIHT
           manager: Manažer
@@ -859,6 +862,8 @@ cs:
         bulk_download_idp_reports: Hromadné stahování zpráv IDP
         bulk_download_reports: Hromadné stahování zpráv
         bulk_download_user_reports: Hromadné stahování uživatelských zpráv
+        bulk_export_norm_factor_scores: Hromadný export skóre faktorových norm, faktorů
+        bulk_export_raw_factor_scores: Hromadný export skóre surových faktorů
         bulk_generate_user_campaign_ai_artifact_results: Hromadné generování výsledků artefaktů AI kampaně
         bulk_regenerate_reports: Regenerovat zprávy o kampani
         bulk_regenerate_threesixty_reports: Regenerovat třistašedesát předmětových zpráv
@@ -871,10 +876,12 @@ cs:
         completion_status_export: Export stavu dokončení
         copy_as_template_or_campaign: Kopírování kampaně jako šablony
         copy_dimension: Kopírovat rozměr
+        copy_report: Kopírovat zprávu
         create_threesixty_campaign: Vytvořit kampaň Threesixty
         data_report_export: Export datové zprávy
         export_admin_with_permissions: Export správce s oprávněními
         export_assessment_questions: Otázky pro posouzení vývozu
+        export_audit_logs: Exportovat protokoly auditu
         export_campaign_ai_artifacts: AI artefakty exportní kampaně
         export_campaign_ai_artifacts_results: Výsledky exportu artefaktů AI kampaně
         export_campaign_datasheet: Technický list exportní kampaně
@@ -964,6 +971,8 @@ cs:
       errors:
         no_plans: Nebyly nalezeny žádné aktivní plány IDP
     close: Zavřít
+    copy_report:
+      failed: Kopírování zprávy se nezdařilo
     details: Podrobnosti na
     errors: Chyby
     invalid_job: Toto oznámení odpovídá smazanému záznamu
@@ -1466,6 +1475,7 @@ cs:
       external_user_id: ID kandidáta Skillvue
       id: ID hodnocení kampaně
       locales: Lokality
+      microsite_assessment_url: URL pro vyhodnocení mikrostránky
       microsite_error_message: Chybová zpráva
       microsite_participant_id: ID účastníka mikrowebu
       microsite_registration_status: Stav registrace
@@ -1664,7 +1674,6 @@ cs:
     details:
       additional_time: Další čas
       assessment_center: Hodnotící centrum
-      assessment_center_invites: Pozvánky do hodnotícího centra
       completed_at: Konec
       completion_status: Stav dokončení
       hogan_id: Hogan ID
@@ -1694,11 +1703,6 @@ cs:
     modals:
       remove: Jste si jisti, že chcete z této kampaně odstranit uživatele s e-mailem '%{email}'?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Hodnocení hodnotitele
-      other_assessments: Další hodnocení
-      other_assessor_assessments: Ostatní hodnocení Assessor Assessments
-      other_reports: Další zprávy
     card:
       duration: Doba trvání
       starts_in: 'Začíná za:'
@@ -1769,23 +1773,19 @@ cs:
       insert: Vložte
       'no': Ne
       ok: OK
-      publish: Zveřejnit
       reject: Odmítat
       remove: Odstranit
       reset: Obnovit
       resolve: Vyřešit
       restore: Obnovit
       return_to_home: Návrat na domovskou stránku
-      run: Spustit
       save: Uložit
       schedule: Plán
       search: Hledat
-      send: Odeslat
       sign_in: Přihlásit se
       start: Spustit
       submit: Odeslat
       unarchive: Odebrat z archivu
-      unpublish: Zrušení publikování
       unresolve: Označit jako nevyřešené
       update: Aktualizovat
       upload: Nahrát
@@ -1798,20 +1798,14 @@ cs:
     column:
       action: Akce
       active: Aktivní
-      ai_assistant: Asistent AI
-      allow_multiple_responses: Povolit více odpovědí
       approval_notification_list: Seznam uživatelů oznámení o schválení
       approvers_list: Seznam schvalovatelů
-      assessment: Hodnocení
       assessment_name: Název hodnocení
       assessments: Hodnocení
-      assessor: Posuzovatel
       category: Kategorie
       client: Klient
-      code: Kód
       created_at: Vytvořeno v
       created_by: Vytvořil
-      created_date: Datum vytvoření
       default_language: Výchozí jazyk
       description: Popis
       details: Podrobnosti na
@@ -1829,11 +1823,8 @@ cs:
         scoring: Bodování JSON
       key: Klíč
       last_name: Příjmení
-      linked_activities: Související činnosti
       linked_assessment: Související hodnocení
-      meeting_link: Odkaz na setkání
       modified_by: Upraveno podle
-      modified_date: Datum úpravy
       name: Název
       owner: Majitel
       package_id: ID balíčku
@@ -1849,7 +1840,6 @@ cs:
       scheduling: Plánování
       skills: Dovednosti
       status: Stav
-      tags: Štítky
       timing: Časování
       token: Token
       type: Typ
@@ -1861,15 +1851,12 @@ cs:
     messages:
       leave_message: Opravdu chcete opustit tuto stránku? Všechny neuložené odpovědi budou ztraceny.
     model:
-      admins: Administrátoři
       assessment: Hodnocení
       assessments: Hodnocení
       campaigns: Kampaně
       completion_statuses: Statuty dokončení
-      datasheet: Datový list
       report: Nahlásit
       reports: Zprávy
-      sms_contact: SMS kontakt
       threesixty_campaign: Výsledky kampaně Threesixty
     status:
       completed: Dokončeno
@@ -2140,6 +2127,7 @@ cs:
     invalid_token: Něco se pokazilo. Znovu načtěte stránku a zkuste to znovu.
     max_regeneration_limit: Překročení maximálního limitu regenerace, kontaktujte svou správu.
     messages:
+      content_type_invalid: neplatný typ obsahu
       data_report_blank: Datová zpráva neexistuje
       password_complexity:
         digit:
@@ -2959,9 +2947,7 @@ cs:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktivní
     campaign_name: Název kampaně
-    inactive: Neaktivní
     status_updated_at: Poslední aktualizace stavu
     status_updated_by: Naposledy aktualizoval
     subject_email: Předmět e-mailu
@@ -3477,12 +3463,14 @@ cs:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Hodnotitel klienta
             project_admin: Administrátor projektu
             regular: Administrátor klienta
             superadmin: Super administrátor
           agile: AGILE
           case_study: Případová studie
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           hogan: Hogan
           manager: Manažer
           member: Uživatel
@@ -3616,6 +3604,7 @@ cs:
         roles:
           campaign_admin: Správce kampaně
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           manager: Manažer
           member: Uživatel
           project_admin: Administrátor projektu
@@ -3686,12 +3675,14 @@ cs:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Hodnotitel klienta
             project_admin: Administrátor projektu
             regular: Administrátor klienta
             superadmin: Super administrátor
           agile: AGILE
           case_study: Případová studie
           client_admin: Administrátor klienta
+          client_assessor: Hodnotitel klienta
           hogan: Hogan
           manager: Manažer
           member: Uživatel
@@ -3965,7 +3956,6 @@ cs:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktivní
     allow_multiple_respones: Umožnit uživatelům odeslat více odpovědí
     png: PNG
     regenerate_link: Regenerovat odkaz
@@ -4154,6 +4144,7 @@ cs:
       campaign_assessor: Posuzovatel kampaní
       campaign_user: Uživatel kampaně
       client_admin: Administrátor klienta
+      client_assessor: Hodnotitel klienta
       project_admin: Administrátor projektu
       superadmin: Super administrátor
     superadmins: Superadministrátoři

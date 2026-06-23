@@ -89,8 +89,8 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="assessments"
-      title={I18n.t('administration.assessments.copy.copy_assessment')}
-      readableResourceName={I18n.t('administration.assessments.copy.copy_assessment')}
+      title={I18n.t('admin.assessments_copy_assessment')}
+      readableResourceName={I18n.t('admin.assessments_copy_assessment')}
       close={close}
       scrollToFirstError
       request={{ createResource: copy }}
@@ -98,7 +98,7 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
       storeManager={{ form }}
       formProps={{
         initialValues: {
-          name: `${assessment.name} - ${I18n.t('administration.assessments.copy.copy')}`,
+          name: `${assessment.name} - ${I18n.t('admin.assessments_copy')}`,
           ownerId: assessment?.owner?.id,
         },
       }}
@@ -107,14 +107,14 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.assessments.copy.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true, transform: value => value.trim() }]}
           >
             <Input name="assessment_name" />
           </Form.Item>
           <Form.Item
             name="ownerId"
-            label={I18n.t('common.column.owner')}
+            label={I18n.t('shared.owner')}
           >
             <Select
               showSearch={{

@@ -46,6 +46,13 @@ class SystemCheckRecord < ApplicationRecord
     download_speed >= minimum_download_speed && upload_speed >= minimum_upload_speed
   end
 
+  def meets_face_detection_requirements?(minimum_ratio:)
+    return false unless video?
+
+    ratio = data&.dig('face_detection_ratio').to_f
+    ratio >= minimum_ratio
+  end
+
   private
 
   def passed_changed_to_true?

@@ -7,8 +7,6 @@ RSpec.describe Api::V2::Administration::WorkshopInvitedSubjectsController, type:
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
   let!(:campaign_id) { workshop_invite.campaign_id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let(:user) { create(:user) }
 
   before do
@@ -35,7 +33,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitedSubjectsController, type:
       end
 
       get "/api/v2/administration/campaigns/#{campaign_id}/workshop_invited_subjects",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       invited_subjects = JSON.parse(response.body)
@@ -62,7 +60,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitedSubjectsController, type:
 
       post "/api/v2/administration/campaigns/#{campaign_id}/workshop_invited_subjects/" \
            "#{workshop_invited_subject.id}/reject_request",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       invited_subjects = JSON.parse(response.body)
@@ -91,7 +89,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitedSubjectsController, type:
 
       post "/api/v2/administration/campaigns/#{campaign_id}/workshop_invited_subjects/" \
            "#{workshop_invited_subject.id}/accept_request",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       invited_subjects = JSON.parse(response.body)

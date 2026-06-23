@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe 'Campaigns' do
-  let!(:membership) { create(:client_admin_membership) }
+  let!(:membership) { create(:client_admin_membership, :with_application_user) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, project: project) }
   let(:campaign_two) { create(:campaign, project: project) }

@@ -44,7 +44,7 @@ const CopyNormsFormModal: React.FC<Props> = ({
     body: values,
   }).then((response: Norm) => {
     resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount + 1 : 0 })
-    message.success(I18n.t('administration.norms.copy.successfully', { name: response.name }))
+    message.success(I18n.t('admin.norms_copy_successfully', { name: response.name }))
   })
 
   const {
@@ -61,8 +61,8 @@ const CopyNormsFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="norm"
-      title={I18n.t('administration.norms.sidebar.copy')}
-      readableResourceName={I18n.t('administration.norms.sidebar.copy')}
+      title={I18n.t('admin.norms_sidebar_copy')}
+      readableResourceName={I18n.t('admin.norms_sidebar_copy')}
       close={close}
       scrollToFirstError
       request={{ createResource: copy }}
@@ -85,7 +85,7 @@ const CopyNormsFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="ownerId"
-            label={I18n.t('common.column.owner')}
+            label={I18n.t('shared.owner')}
           >
             <Select
               showSearch={{
@@ -98,7 +98,7 @@ const CopyNormsFormModal: React.FC<Props> = ({
               }}
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
-              <Select.Option>{I18n.t('administration.tte')}</Select.Option>
+              <Select.Option>{I18n.t('admin.tte')}</Select.Option>
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}

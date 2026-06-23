@@ -6,11 +6,8 @@ require_relative 'concerns/taggable_api_endpoints_shared_examples'
 RSpec.describe Api::V2::Administration::CampaignsController, type: :request do
   let!(:campaign) { create(:campaign) }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
   let!(:idp_template) { create(:idp_template) }
   let!(:include_resource_meta) { 'permissions' }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before(:each) do
     sign_in(superadmin)
   end
@@ -23,7 +20,7 @@ RSpec.describe Api::V2::Administration::CampaignsController, type: :request do
     it 'Show Campaign' do
       get "/api/v2/administration/campaigns/#{campaign.id}",
           params: { include_resource_meta: include_resource_meta },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       campaign_response = JSON.parse(response.body)['data']
@@ -57,7 +54,7 @@ RSpec.describe Api::V2::Administration::CampaignsController, type: :request do
 
       patch "/api/v2/administration/campaigns/#{campaign.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       campaign_response = JSON.parse(response.body)['data']
@@ -97,7 +94,7 @@ RSpec.describe Api::V2::Administration::CampaignsController, type: :request do
              evaluator: create(:user))
 
       get "/api/v2/administration/campaigns/#{campaign.id}/all_assessments",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       assessments_response = JSON.parse(response.body)['data']

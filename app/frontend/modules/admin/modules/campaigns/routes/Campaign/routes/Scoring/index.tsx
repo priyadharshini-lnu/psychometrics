@@ -41,11 +41,11 @@ const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const menuItems: MenuItem[] = [
     ...(campaignPermissions.viewCampaignScoring ? [{
       key: '/subject_scores',
-      label: I18n.t('administration.scoring.tabs.subject_scores'),
+      label: I18n.t('admin.scoring_tabs_subject_scores'),
     }] : []),
     ...(campaignPermissions.viewCampaignScoringSetting ? [{
       key: '/settings',
-      label: I18n.t('administration.scoring.tabs.settings'),
+      label: I18n.t('admin.scoring_tabs_settings'),
     }] : [])]
 
   return (

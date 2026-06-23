@@ -63,7 +63,7 @@ export const Siem: React.FC<Props> = () => {
         {settings.platformError && <Alert message={settings.platformError} type="error" />}
         <ResourceForm
           resourceName="clientAuditlogExportSetting"
-          readableResourceName={I18n.t('administration.settings.siem.readable_resource_name')}
+          readableResourceName={I18n.t('admin.settings_siem_readable_resource_name')}
           requestScope="clients"
           showSuccessMessages
           resource={settings}
@@ -82,7 +82,7 @@ export const Siem: React.FC<Props> = () => {
             <>
               <Form.Item
                 name="active"
-                label={I18n.t('administration.settings.siem.enabled')}
+                label={I18n.t('admin.settings_siem_enabled')}
                 valuePropName="checked"
               >
                 <Switch />
@@ -90,35 +90,35 @@ export const Siem: React.FC<Props> = () => {
 
               <Form.Item
                 name="destinationType"
-                label={I18n.t('administration.settings.siem.destination_type')}
+                label={I18n.t('admin.settings_siem_destination_type')}
               >
                 <Select>
                   <Select.Option value="s3">
-                    {I18n.t('administration.settings.siem.destination_types.s3')}
+                    {I18n.t('admin.settings_siem_destination_types_s3')}
                   </Select.Option>
                   <Select.Option value="s3_compatible">
-                    {I18n.t('administration.settings.siem.destination_types.s3_compatible')}
+                    {I18n.t('admin.settings_siem_destination_types_s3_compatible')}
                   </Select.Option>
                 </Select>
               </Form.Item>
 
               <Form.Item
                 name="s3Region"
-                label={I18n.t('administration.settings.siem.s3_region')}
+                label={I18n.t('admin.settings_siem_s3_region')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="s3BucketName"
-                label={I18n.t('administration.settings.siem.s3_bucket_name')}
+                label={I18n.t('admin.settings_siem_s3_bucket_name')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="s3BucketFolder"
-                label={I18n.t('administration.settings.siem.s3_bucket_folder')}
+                label={I18n.t('admin.settings_siem_s3_bucket_folder')}
               >
                 <Input />
               </Form.Item>
@@ -126,7 +126,7 @@ export const Siem: React.FC<Props> = () => {
               {destinationType === 's3_compatible' && (
                 <Form.Item
                   name="s3Endpoint"
-                  label={I18n.t('administration.settings.siem.s3_endpoint')}
+                  label={I18n.t('admin.settings_siem_s3_endpoint')}
                 >
                   <Input />
                 </Form.Item>
@@ -134,21 +134,21 @@ export const Siem: React.FC<Props> = () => {
 
               <Form.Item
                 name="description"
-                label={I18n.t('administration.settings.siem.description')}
+                label={I18n.t('shared.description')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="s3AccessKeyId"
-                label={I18n.t('administration.settings.siem.s3_access_key_id')}
+                label={I18n.t('admin.settings_siem_s3_access_key_id')}
               >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="s3SecretAccessKey"
-                label={I18n.t('administration.settings.siem.s3_secret_access_key')}
+                label={I18n.t('admin.settings_siem_s3_secret_access_key')}
               >
                 {passwordToBeChanged
                   ? <Input.Password />
@@ -187,10 +187,10 @@ const TestConnection: React.FC<{ settings: ClientAuditlogExportSetting, clientId
       method: 'post',
       id: settings.id,
     }).then(() => {
-      message.success(I18n.t('administration.settings.siem.send_test_log_success_message'))
+      message.success(I18n.t('admin.settings_siem_send_test_log_success_message'))
       setIsLoading(false)
     }).catch(() => {
-      message.error(I18n.t('administration.settings.siem.send_test_log_error_message'))
+      message.error(I18n.t('admin.settings_siem_send_test_log_error_message'))
       setIsLoading(false)
     })
   }
@@ -201,7 +201,7 @@ const TestConnection: React.FC<{ settings: ClientAuditlogExportSetting, clientId
       loading={isLoading}
       onClick={() => handleTestConnection()}
     >
-      {I18n.t('administration.settings.siem.send_test_log')}
+      {I18n.t('admin.settings_siem_send_test_log')}
     </Button>
   )
 }

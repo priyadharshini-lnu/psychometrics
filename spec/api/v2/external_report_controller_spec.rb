@@ -8,16 +8,12 @@ RSpec.describe Api::V2::Administration::ExternalReportsController, type: :reques
   let!(:saville_assessment) do
     create(:assessment, :saville, external_settings: { assessment_id: 'a830e4ab-bc66-4238-92e0-6e6fd3fd1edf' })
   end
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/external_reports/' do
     it 'returns external report list for Hogan' do
       get '/api/v2/administration/external_reports/',
-          params: { 'filter[type_eq]' => 'hogan', 'filter[assessment_ids_in]' => hogan_assessment.id },
-          headers: { 'Authorization' => authorization }
+          params: { 'filter[type_eq]' => 'hogan', 'filter[assessment_ids_in]' => hogan_assessment.id }
 
       expect(response).to have_http_status(200)
       parsed_response = JSON.parse(response.body)['data']
@@ -28,8 +24,7 @@ RSpec.describe Api::V2::Administration::ExternalReportsController, type: :reques
 
     it 'returns external report list for Saville' do
       get '/api/v2/administration/external_reports/',
-          params: { 'filter[type_eq]' => 'saville', 'filter[assessment_ids_in]' => saville_assessment.id },
-          headers: { 'Authorization' => authorization }
+          params: { 'filter[type_eq]' => 'saville', 'filter[assessment_ids_in]' => saville_assessment.id }
 
       expect(response).to have_http_status(200)
       parsed_response = JSON.parse(response.body)['data']

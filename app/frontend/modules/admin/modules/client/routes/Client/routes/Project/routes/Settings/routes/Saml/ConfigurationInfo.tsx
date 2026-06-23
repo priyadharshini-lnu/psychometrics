@@ -14,11 +14,11 @@ const { I18n } = window
 
 export const ConfigurationInfo: React.FC<Props> = ({ assertionConsumerServiceUrl, issuer }) => (
   <Alert
-    message={I18n.t('administration.saml_settings.config_details.title')}
+    message={I18n.t('admin.saml_settings_config_details_title')}
     description={(
       <Form layout="vertical">
         <Form.Item
-          label={I18n.t('administration.saml_settings.config_details.acs_url')}
+          label={I18n.t('admin.saml_settings_config_details_acs_url')}
           initialValue={assertionConsumerServiceUrl}
           name="acsUrl"
         >
@@ -29,8 +29,8 @@ export const ConfigurationInfo: React.FC<Props> = ({ assertionConsumerServiceUrl
                 text={assertionConsumerServiceUrl}
                 onCopy={() => {
                   message.info(
-                    I18n.t('administration.saml_settings.config_details.copied',
-                      { element: I18n.t('administration.saml_settings.config_details.acs_url') }),
+                    I18n.t('admin.saml_settings_config_details_copied',
+                      { element: I18n.t('admin.saml_settings_config_details_acs_url') }),
                   )
                 }}
               >
@@ -41,7 +41,7 @@ export const ConfigurationInfo: React.FC<Props> = ({ assertionConsumerServiceUrl
         </Form.Item>
 
         <Form.Item
-          label={I18n.t('administration.saml_settings.config_details.issuer')}
+          label={I18n.t('admin.saml_settings_config_details_issuer')}
           initialValue={issuer}
           name="issuer"
         >
@@ -52,8 +52,8 @@ export const ConfigurationInfo: React.FC<Props> = ({ assertionConsumerServiceUrl
                 text={issuer}
                 onCopy={() => {
                   message.info(
-                    I18n.t('administration.saml_settings.config_details.copied',
-                      { element: I18n.t('administration.saml_settings.config_details.issuer') }),
+                    I18n.t('admin.saml_settings_config_details_copied',
+                      { element: I18n.t('admin.saml_settings_config_details_issuer') }),
                   )
                 }}
               >

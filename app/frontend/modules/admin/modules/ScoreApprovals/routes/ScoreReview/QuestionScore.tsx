@@ -146,7 +146,7 @@ export const QuestionScore = ({
       <Typography.Title level={4}>
         <Space size="middle">
           <AIEditorIcon style={{ color: 'var(--ant-primary-color)', fontSize: 22 }} />
-          {I18n.t('admin.ai_scoring_appoval_responses')}
+          {I18n.t('admin.responses')}
         </Space>
       </Typography.Title>
       <Flex gap={24} align="flex-start">
@@ -232,20 +232,20 @@ export const QuestionScore = ({
       <Flex justify="flex-end" gap={12}>
         {!approved && allowApprove && (
           <Popconfirm
-            title={I18n.t('admin.ai_scoring_appoval_discard_question_confirm_title')}
-            description={I18n.t('admin.ai_scoring_appoval_discard_question_confirm_description')}
+            title={I18n.t('admin.discard_question_confirm_title')}
+            description={I18n.t('admin.discard_question_confirm_description')}
             onConfirm={() => discardQuestion(question.id)}
             okText={I18n.t('shared.ok')}
             cancelText={I18n.t('shared.cancel')}
           >
             <Button icon={<ReloadOutlined />}>
-              {I18n.t('admin.ai_scoring_appoval_discard_question')}
+              {I18n.t('admin.discard_question')}
             </Button>
           </Popconfirm>
         )}
         {!approved && allowApprove && (
           <Button type="primary" onClick={() => approveQuestion(question.id)}>
-            {I18n.t('admin.ai_scoring_appoval_approve_question')}
+            {I18n.t('admin.approve_question')}
           </Button>
         )}
         {!lastQuestion && (

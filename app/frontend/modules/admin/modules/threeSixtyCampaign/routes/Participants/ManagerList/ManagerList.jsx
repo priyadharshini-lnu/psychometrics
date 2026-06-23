@@ -38,7 +38,7 @@ export default function ManagerList ({
           <UserOutlined />
           <span className="mlm">
             {`${total}
-          ${I18n.t('administration.threesixty_campaigns.menu.participants.managers.title')}`}
+          ${I18n.t('admin.managers_title')}`}
           </span>
         </Col>
         <Col span={20} className="text-align-r">

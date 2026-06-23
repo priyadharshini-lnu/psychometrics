@@ -47,7 +47,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
     }))
 
     if (isSuperAdmin(currentUser)) {
-      clientsOptions.unshift({ label: I18n.t('administration.tte'), value: null })
+      clientsOptions.unshift({ label: I18n.t('admin.tte'), value: null })
     }
 
     return clientsOptions
@@ -57,7 +57,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
     <ResourceFormModal
       resourceName="dimensions"
       resource={dimension}
-      readableResourceName={I18n.t('administration.dimensions.form.title')}
+      readableResourceName={I18n.t('admin.dimensions_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -69,7 +69,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.dimensions.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true, message: I18n.t('admin.name_required') }]}
           >
             <Input />
@@ -77,7 +77,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
 
           <Form.Item
             name="ownerId"
-            label={I18n.t('common.column.owner')}
+            label={I18n.t('shared.owner')}
             initialValue={dimension?.owner?.id || null}
             rules={[
               {
@@ -103,10 +103,10 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
           </Form.Item>
           <Flex gap="small" align="center">
             <Form.Item name="occupationsEnabled" valuePropName="checked" style={{ flex: 1 }}>
-              <Checkbox>{I18n.t('administration.dimensions.form.enable_occupations')}</Checkbox>
+              <Checkbox>{I18n.t('admin.dimensions_form_enable_occupations')}</Checkbox>
             </Form.Item>
             <Form.Item name="innovationStylesEnabled" valuePropName="checked" style={{ flex: 1 }}>
-              <Checkbox>{I18n.t('administration.dimensions.form.enable_innovation_styles')}</Checkbox>
+              <Checkbox>{I18n.t('admin.dimensions_form_enable_innovation_styles')}</Checkbox>
             </Form.Item>
           </Flex>
         </>

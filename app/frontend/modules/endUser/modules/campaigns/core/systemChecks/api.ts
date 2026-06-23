@@ -7,7 +7,7 @@ import {
 export const systemChecksAPI = createApi({
   reducerPath: 'systemChecksAPI',
   baseQuery: baseQuery(),
-  tagTypes: ['SystemCheckSession', 'SystemCheckRecord'],
+  tagTypes: ['SystemCheckSession'],
   endpoints: builder => ({
     addSystemCheckSession: builder.mutation<SystemCheckRecord, {
       campaignId: string,
@@ -28,7 +28,19 @@ export const systemChecksAPI = createApi({
         method: 'POST',
         body: record,
       }),
-      invalidatesTags: ['SystemCheckRecord'],
+    }),
+
+    updateSystemCheckRecord: builder.mutation<SystemCheckAddedRecord, {
+      campaignId: string,
+      recordId: string,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      record: any,
+    }>({
+      query: ({ campaignId, recordId, record }) => ({
+        url: `campaigns/${campaignId}/system_check_records/${recordId}`,
+        method: 'PATCH',
+        body: record,
+      }),
     }),
 
     completeSystemCheckSession: builder.mutation<SystemCheckRecord, {
@@ -64,6 +76,7 @@ export const systemChecksAPI = createApi({
 export const {
   useAddSystemCheckSessionMutation,
   useAddSystemCheckRecordMutation,
+  useUpdateSystemCheckRecordMutation,
   useCompleteSystemCheckSessionMutation,
   useFetchSystemCheckResultsQuery,
   useFetchSystemCheckRequirementsStatusQuery,

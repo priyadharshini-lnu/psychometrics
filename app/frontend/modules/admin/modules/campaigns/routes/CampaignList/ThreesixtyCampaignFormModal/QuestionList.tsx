@@ -104,16 +104,16 @@ const QuestionList = ({ questions, onSelect }: Props) => {
   return (
     <div className={styles.questionList}>
       <Typography.Title level={4}>
-        {I18n.t('administration.campaigns.modals.create_threesixity.questions.title')}
+        {I18n.t('admin.threesixity_questions_title')}
       </Typography.Title>
       <Typography.Paragraph>
-        {I18n.t('administration.campaigns.modals.create_threesixity.questions.title')}
+        {I18n.t('admin.threesixity_questions_title')}
       </Typography.Paragraph>
       {questionsData ? (
         <>
           <Typography.Paragraph>
             <Checkbox checked={selectAll} onChange={handleSelectAll}>
-              {I18n.t('administration.campaigns.modals.create_threesixity.questions.select_all')}
+              {I18n.t('admin.threesixity_questions_select_all')}
             </Checkbox>
           </Typography.Paragraph>
           <Tree

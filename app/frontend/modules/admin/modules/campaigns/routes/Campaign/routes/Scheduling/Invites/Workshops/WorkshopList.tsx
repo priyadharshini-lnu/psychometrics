@@ -43,12 +43,12 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           <Button type="primary" onClick={() => openModal('WorkshopAddFormModal')}>
             <PlusOutlined />
             {' '}
-            {I18n.t('administration.assessment_center.invite.workshop_list.add')}
+            {I18n.t('shared.add')}
           </Button>
         </Resource.Filter>
         <Resource.Table pagination>
           <Resource.Column<WorkshopShort>
-            title={I18n.t('administration.assessment_center.invite.workshop_list.name')}
+            title={I18n.t('shared.name')}
             id="startTime"
             sorter
             width="90%"
@@ -56,7 +56,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           />
           <Resource.Column<WorkshopShort>
             id="remove"
-            title={I18n.t('common.actions.remove')}
+            title={I18n.t('shared.remove')}
             render={(_, workshop) => <RemoveWorkshop campaignId={campaignId} inviteId={inviteId} workshop={workshop} />}
             width={100}
           />
@@ -79,12 +79,12 @@ const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, campaignId:string, inv
 
   const removeWorkshop = ({ id, startTime }: WorkshopShort) => {
     modal.confirm({
-      title: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.title'),
-      content: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.content',
+      title: I18n.t('shared.confirm'),
+      content: I18n.t('admin.invite_workshop_list_remove_confirm_content',
         { name: formatWorkshopDate(startTime) }),
       onOk: () => {
         removeRelationships('workshops', [id]).then(() => {
-          message.success(I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.success'))
+          message.success(I18n.t('admin.invite_workshop_list_remove_confirm_success'))
           resource.setData(resource.data.filter(r => r.id !== id))
         })
       },

@@ -284,7 +284,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       })
 
       const result = await response.json()
-      if (result === 'ok') {
+      if (response.ok) {
         setRequestStatus(requestKey, null)
         resolve(result)
       } else {

@@ -157,15 +157,15 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
 
       handleSuccess(responseData)
     } catch (e) {
-      const errorMessage = e?.message || I18n.t('common.errors.something_wrong')
+      const errorMessage = e?.message || I18n.t('shared.something_wrong')
       handleError({ errorMessage, artifactId: id })
     }
   }
 
   const generateResultWithConfirm = (id: string, setIsGenerating: (value: boolean) => void) => {
     modal.confirm({
-      title: I18n.t('admin.ai_artifacts_generate_results'),
-      content: I18n.t('admin.ai_artifacts_generate_result_confirm', { email: userArtifactsResults.email }),
+      title: I18n.t('admin.generate_results'),
+      content: I18n.t('admin.generate_result_confirm', { email: userArtifactsResults.email }),
       onOk: () => {
         setIsGenerating(true)
         generateResult(id).finally(() => setIsGenerating(false))
@@ -175,7 +175,7 @@ export const ArtifactResultsDrawer: React.FC<ArtifactResultsDrawerProps> = ({
 
   return (
     <Drawer
-      title={I18n.t('administration.ai_artifacts.artifact_results')}
+      title={I18n.t('admin.artifact_results')}
       placement="right"
       closable
       onClose={close}

@@ -17,13 +17,13 @@ const getMenuProps = ({
   const menuItems: MenuItem[] = []
   permissions.import && menuItems.push({
     key: 'import',
-    label: I18n.t('administration.assessor.toolbar.import'),
+    label: I18n.t('admin.assessor_toolbar_import'),
   })
   permissions.export && menuItems.push({
     key: 'export',
     label: (
       <a href={`/administration/new_campaigns/${campaignId}/assessors.csv`}>
-        {I18n.t('administration.assessor.toolbar.export')}
+        {I18n.t('admin.assessor_toolbar_export')}
       </a>
     ),
   })
@@ -57,7 +57,7 @@ const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) 
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.assessor.toolbar.tools')}</span>
+        <span>{I18n.t('shared.tools')}</span>
         <DownOutlined />
       </Button>
     )}

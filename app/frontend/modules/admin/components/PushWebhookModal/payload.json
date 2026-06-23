@@ -77,6 +77,44 @@
       "event_time": "2023-02-01T20:21:39.802+05:30"
     }
   },
+  "assessment_assigned": {
+    "event_name": "assessment_assigned",
+    "event_id": "9b2b8b39-df86-4ca3-b3c7-f95d1d3c0280",
+    "data": {
+      "assessment": {
+        "id": 703,
+        "name": "Test HBRI"
+      },
+      "evaluator": {
+        "id": 34621,
+        "name": "Test Subject",
+        "email": null,
+        "user_external_id": null,
+        "campaign_user_external_id": null
+      },
+      "subject": {
+        "id": 34621,
+        "name": "Test Subject",
+        "email": null,
+        "campaign_user_external_id": null,
+        "user_external_id": null
+      },
+      "project": {
+        "id": 1938,
+        "name": "aug sept"
+      },
+      "client": {
+        "id": 1937,
+        "name": "QA sept 2022 testing"
+      },
+      "campaign": {
+        "id": 10536,
+        "name": "ITR 2022 Common"
+      },
+      "locale": null,
+      "event_time": "2023-01-31T20:56:23.975+05:30"
+    }
+  },
   "assessment_timeout": {
     "event_name": "assessment_timeout",
     "event_id": "ea6a3293-5f69-4f0c-b9b5-603d9f953fa7",
@@ -378,6 +416,45 @@
       "campaign": {
         "id": 1,
         "name": "AA Campaign"
+      },
+      "locale": null,
+      "event_time": "2024-06-12T19:43:56.648+05:30"
+    }
+  },
+  "campaign_user_assessment_summary": {
+    "event_name": "campaign_user_assessment_summary",
+    "event_id": "92a0213a-b865-45cc-adad-d9e8c8f8e869",
+    "data": {
+      "assessments": [
+        {
+          "id": 1,
+          "name": "Test HBRI",
+          "status": "Not Started"
+        },
+        {
+          "id": 2,
+          "name": "Agile",
+          "status": "Completed"
+        }
+      ],
+      "subject": {
+        "id": 34621,
+        "name": "Test Subject",
+        "email": null,
+        "campaign_user_external_id": null,
+        "user_external_id": null
+      },
+      "project": {
+        "id": 1938,
+        "name": "aug sept"
+      },
+      "client": {
+        "id": 1937,
+        "name": "QA sept 2022 testing"
+      },
+      "campaign": {
+        "id": 10536,
+        "name": "ITR 2022 Common"
       },
       "locale": null,
       "event_time": "2024-06-12T19:43:56.648+05:30"

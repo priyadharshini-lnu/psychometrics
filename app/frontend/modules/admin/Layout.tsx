@@ -19,7 +19,7 @@ const Main: React.FC = () => (
     </DefaultAntThemeWrapper>
     )}
   >
-    <title>{I18n.t('administration.meta_title')}</title>
+    <title>{I18n.t('admin.meta_title')}</title>
     <MainMenu />
     <Outlet />
     <IncorrectResponseErrorModal />

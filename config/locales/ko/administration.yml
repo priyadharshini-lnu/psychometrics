@@ -2,17 +2,6 @@
 ko:
   administration:
     actions: 작업
-    active_record_audits:
-      action: 액션
-      audit_id: 감사 ID
-      auditable_id: 레코드 ID
-      auditable_type: 레코드 유형
-      audited_changes: 감사된 변경 사항
-      new_diff:
-        parse_error: 새로운 변경 사항이 있는 JSON을 구문 분석하지 못했습니다
-      old_diff:
-        parse_error: 이전 변경 사항으로 JSON 구문 분석에 실패했습니다
-      title: 감사된 변경 사항
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ ko:
           design: 디자인
           or: 또는
     administrators:
-      drawers:
-        edit:
-          first_name_required: 이름 필수 입력
-          last_name_required: 성은 필수 입력 사항입니다
-        view:
-          first_name: 이름
-          last_name: 성
-          title:
-            campaign_admin: 캠페인 관리자
-            client_admin: 클라이언트 관리자
-            project_admin: 프로젝트 관리자
       list:
         actions:
-          api_keys: API 키
-          edit: 편집
-          export_admins_with_permissions: 관리자 역할 및 권한 내보내기
-          export_success: 관리자 내보내기 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
-          login: 로그인
           spoof:
             login_successful: 로그인에 성공했습니다.
-          user_report_events: 보고서 승인 로그
-        columns:
-          email: 이메일
-      modals:
-        delete:
-          cancelText: 취소
-          okText: 확인
-          title: 확인
-    ai_artifacts:
-      artifact_results: 아티팩트 결과
-      code: 코드
-      export:
-        success_msg: 진행 중인 AI 아티팩트 내보내기. 알림에서 상태를 확인해 주세요.
-      export_ai_artifacts: AI 산출물 수출
-      form:
-        add_assessment: 평가 추가
-        ai_assistant: AI 어시스턴트
-        assessments: 평가
-        campaign_factors: 캠페인 요인
-        configuration: 구성
-        datasheet: 데이터시트
-        datasheet_columns: 데이터시트 열
-        include_all_datasheet_columns: 모든 데이터시트 열 포함
-        no_assessment_selected: 아직 추가된 평가가 없습니다. 시작하려면 "추가"를 클릭하십시오.
-        questions_required: 하나 이상의 질문을 선택해야 합니다.
-        select_ai_assistant: AI 어시스턴트 선택
-        select_assessment: 평가 선택
-        select_campaign_factors: 캠페인 요인 선택
-        select_datasheet_columns: 데이터시트 열 선택
-        select_questions: 질문 선택
-        title: AI 아티팩트
-      generate: 창조하다
-      generate_result_info_message: 결과가 생성되고 있으니 페이지를 새로 고쳐 업데이트된 결과를 확인하세요.
-      generated_at_time: "%{time}에 생성됨"
-      generated_value: 생성된 가치
-      id: 아이디
-      import:
-        download_example_csv: CSV 예제 다운로드
-        info_msg: 업로드된 파일이 가져오기 대기열에 들어갔습니다. 알림에서 상태를 확인해 주세요.
-      import_action:
-        title: 캠페인 AI 아티팩트 가져오기
-      import_ai_artifacts: AI 산출물 가져오기
-      key: 열쇠
-      name: 이름
-      parsed_dependencies:
-        help: 아티팩트 결과 생성을 위해 AI Assistant에서 사용하는 사용자에 대한 구문 분석된 종속성
-        title: 구문 분석된 종속성
-        view: 구문 분석된 종속성 보기
-      playground: 운동장
-      playground_info: 샘플 데이터로 아티팩트를 테스트하여 생성된 결과를 미리 봅니다.
-      playground_placeholder: 테스트 데이터 입력
-      raw: 날것의
-      tabs:
-        results: 결과
-        settings: 설정
-      test_generate: 테스트 생성
-      unsaved_changes: 저장되지 않은 변경 사항이 있는 경우 양식을 제출하여 Playground에서 업데이트된 응답을 생성하는 것이 좋습니다.
-      used_tokens:
-        input_tokens: 입력 토큰
-        output_tokens: 출력 토큰
-        title: 토큰 사용
     ai_assistants:
-      actions:
-        create: AI 어시스턴트 만들기
-        edit: AI 어시스턴트 편집
-        playground: 놀이터
-      ai_assistants: AI 어시스턴트
-      ai_assistants_playground: AI 어시스턴트 플레이그라운드
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ ko:
             no_datasheet_data: 사용자 %{email}에 사용할 수 있는 데이터시트 데이터가 없습니다.
             user_not_found_in_datasheet: 캠페인 데이터시트에서 사용자를 찾을 수 없음
       campaign_ai_artifacts: 캠페인 AI 아티팩트
-      column:
-        provider: 공급자
-      created_successfully: AI 어시스턴트가 성공적으로 생성되었습니다.
       errors:
         cannot_delete_in_use: AI 어시스턴트 '%{name}'을 사용 중이므로 삭제할 수 없습니다.
         development_actions_assistance_not_enabled: AI 기반 개발 작업 생성은 사용할 수 없습니다. 관리자에게 문의하십시오.
         one_click_idp_assistance_not_enabled: AI 기반 IDP 지원은 현재 요금제에서 사용할 수 없습니다. 관리자에게 문의하십시오.
         platform_assistant_already_exists: 플랫폼에는 %{type} 유형의 어시스턴트 1명만 허용됩니다.
-      form:
-        add_output_schema_key: 출력 스키마 키 추가
-        dependencies: 종속성
-        description: 설명
-        enter_description: 설명 입력
-        enter_schema_key: 스키마 키 입력
-        key: 키
-        name: 이름
-        output_schema_keys: 출력 스키마 키
-        provider: 공급자
-        remove_output_schema_key: 출력 스키마 키 제거
-        schema_key_description_required: 스키마 키 설명은 필수입니다.
-        schema_key_required: 스키마 키가 필요합니다.
-        schema_key_type: 키 유형
-        schema_key_unique: 스키마 키는 고유해야 합니다.
-        system_prompt: 시스템 프롬프트
-        type: 유형
-        user_prompt: 사용자 프롬프트
-      revisions:
-        load: 형태에 로드
-        name: 이름
-        system_prompt: 시스템 구성
-        title: AI 어시스턴트 개정
-        user_prompt: 사용자 프롬프트
-        version: 버전
       selector:
         choose_artifact: AI 아티팩트 선택
         choose_schema_key: 스키마 키 선택
         no_assistants_found: AI 어시스턴트를 찾을 수 없습니다.
         placeholder: AI 어시스턴트 선택
-      updated_successfully: AI 어시스턴트가 성공적으로 업데이트되었습니다.
     any: " - 모든 - "
     api:
       campaigns:
@@ -185,10 +62,6 @@ ko:
       users:
         form:
           campaign_ids_not_existing: 모든 캠페인 ID가 존재하는 것은 아닙니다
-    api_keys:
-      form:
-        description: 설명
-        title: aPI 키
     assessment_builder:
       form:
         display_label: 디스플레이 라벨 입력
@@ -196,108 +69,12 @@ ko:
         value: 값
         value_required: 값은 필수입니다.
     assessment_center:
-      cancel_confirmation:
-        message: 양식 진행 상황을 삭제하시겠습니까?
-        title: 양식 진행률 삭제
-      current: 현재
       invite:
-        add_invite: 초대 추가
-        assessment_center: 평가 센터
-        back: 뒤로
-        basic_info:
-          allow_preferred_language: 기본 언어 허용
-          assessment_centers: 평가 센터
-          assessment_centers_hint: 검색 쿼리 예시 '2023년 8월 10일 오후 8시 6분'
-          assessment_centers_placeholder: 평가 센터 선택
-          description: 여러 평가 센터를 선택하여 응시자에게 초대장을 발급합니다. 그러면 응시자는 사용 가능한 센터 중에서 단일 센터를 선택합니다.
-          neurodiversity: 신경 다양성 질문 포함
-          preferred_language: 허용되는 언어
-          required_error: 비어 있을 수 없음
-          title: 기본 정보
-        center_group: 평가 센터 그룹
-        confirm_message: 초대를 삭제하시겠습니까?
-        confirm_message_with_title: 제목이 '%{invite_title}'인 초대를 제거하시겠습니까?
-        confirm_title: 확인
         exceeded_subjects_count: 캠페인에 %{users} 주체가 있습니다. 초대당 %{count}명의 주체만 추가할 수 있습니다
-        id: ID
-        invites: 초대
-        name: 이름
-        name_placeholder: 초대 이름 입력
-        next: 다음
-        not_selected: 선택되지 않음
-        requests: 요청
-        save: 저장 및 전송
-        send_invites:
-          add: 추가
-          add_description: 초대 제목과 설명을 여러 언어로 번역할 수 있습니다
-          add_language: 언어 추가
-          description: 설명
-          input_label: 추가 언어 추가
-          input_placeholder: 추가 언어 선택
-          invitation_title: 초대 제목
-          title: 초대 (%{lang})
-        steps:
-          add_subjects: 주제 추가
-          basic_info: 기본 정보
-          has_errors: 오류 포함
-          send_invitation: 초대 보내기
-        subjects:
-          cancel: 취소
-          count: "%{count} 주제"
-          csv_error: '행%{index}: 이메일 %{email}을 사용하는 사용자가 이 캠페인에 없습니다'
-          csv_imported: 가져온 %{count} 피사체
-          description: 검색을 통해 피사체를 개별적으로 추가하거나 CSV 파일을 일괄 업로드할 수 있습니다.
-          download: 다운로드
-          file_example: 예제 파일을 참조하여 서브젝트 정보를 업로드하세요.
-          import_from_campaign: 캠페인에서 모두 추가
-          import_title: 주제 가져오기
-          import_users: 사용자 가져오기
-          search_user: 주제 검색
-          title: 주제
-          upload: 업로드
-          upload_csv: CSV 업로드
         subjects_count_added: 주제 추가 성공
-        success:
-          continue: 계속하기
-          message: 초대를 보내는 작업이 대기열에 추가되었으므로 사용자는 곧 초대를 받게 됩니다.
-        success_message: 초대가 성공적으로 제거되었습니다.
-        success_message_with_title: 제목이 '%{invite_title}'인 초대가 성공적으로 제거되었습니다.
-        title: 제목
-        workshop:
-          title: 평가 센터
-        workshop_list:
-          add: 추가
-          name: 이름
-          remove_confirm:
-            content: "'%{name}'이라는 이름의 평가 센터를 제거하시겠습니까?"
-            success: 평가 센터가 성공적으로 제거되었습니다.
-            title: 확인
-      invite_request:
-        accept: 수락
-        reason: 이유
-        reject: 거부
-        remove_confirm:
-          content: "%{subjectName}에서 %{action} %{status}하시겠습니까?"
-          success: "%{subjectName}의 %{status}이 성공적으로 %{action}되었습니다."
-          title: "%{action} %{status}"
-        status: 상태
-        subject_name: 제목 이름
-        workshop_time: 워크샵 시간
-      past: 과거
-      steps:
-        basic_information: 기본 정보
-        facilitators: 퍼실리테이터
-        invite_options: 초대 옵션
-        invite_subjects: 대상 초대
-        send_invitations: 초대 보내기
-      success:
-        call_send_invitation: 초대를 보내시겠습니까?
-        ok: 예
-        skip: 지금은 건너뛰기
-        title: 평가 센터 생성
-      upcoming: 예정
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI 채점 설정은 AudioResponse, VideoResponse 및 TextEntry 유형의 문제에만 추가할 수 있습니다.
         doesnt_have_header: "'%{sub_header}'에 헤더가 없습니다"
         invalid_headers: '다음 헤더가 잘못되었습니다: %{headers}'
         invalid_question: 잘못된 질문 ID
@@ -311,11 +88,7 @@ ko:
       successfully_scheduled: 질문 가져오기가 성공적으로 예약되었습니다.
     assessments:
       assessment: 평가
-      assessment_report: 평가
       copy:
-        copy: 복사
-        copy_assessment: 복사 평가
-        name: 이름
         successfully: 평가 "%{name}"이(가) 성공적으로 복사되었습니다.
       create:
         successfully: 평가 "%{name}"을(를) 성공적으로 생성했습니다.
@@ -398,93 +171,10 @@ ko:
       update:
         successfully: 평가 %{name}이 성공적으로 업데이트되었습니다.
     assessor:
-      add_subject_modal:
-        assessment: 평가
-        mark_as_lead_assessor: 위 주제에 대한 리드 어시스터로 표시
-        subject: 제목
-        subject_placeholder: 검색 제목...
-        title: 제목 추가
-      assessments:
-        actions:
-          add_subject: 제목 추가
-          rescore: 재점수
-          reset: 평가 초기화
-          reset_progress: 진행 상황 재설정
-        bulk_delete_confirmation: 선택한 레코드를 삭제하시겠습니까?
-        bulk_delete_successful: 평가자 평가가 성공적으로 삭제되었습니다
-        reset_confirmation: '"%{subjectEmail}" 이메일의 주제에 대한 평가를 재설정하시겠습니까?'
-        reset_progress_confirmation: '"%{subjectEmail}" 이메일의 주제에 대한 진행률을 초기화하시겠습니까?'
-        reset_progress_successfully: '"%{subjectEmail}" 이메일의 주제에 대한 진행 상황 재설정에 성공했습니다.'
-        reset_successfully: '"%{subjectEmail}" 이메일의 주제에 대한 평가 재설정에 성공했습니다.'
-        subject_email: 제목 이메일
-        subject_name: 제목 이름
-      completed_at: 완료 시점
-      count: "%{count} 평가자"
-      create_assessor: 평가자 추가
-      evaluations: 평가
       mailer:
         subject: 평가에 새로운 과목이 추가되었습니다
-      modals:
-        create_assessor:
-          add: 추가
-          cancel: 취소
-          form:
-            add: 추가
-            add_lead_assessor: 리드 평가자로 추가
-            add_lead_assessor_hint: 먼저 리드 평가자 양식을 추가하세요
-            assessments: 평가
-            assessor: 평가자
-            assessor_placeholder: 검색 평가자...
-            lead_assessment: 리드 평가
-            subject: 제목
-            subject_placeholder: 검색 제목...
-          sheet:
-            assessments: 평가
-            assessments_placeholder: 선택
-            assessor_email: 평가자 이메일
-            assessor_first_name: 평가자 이름
-            assessor_last_name: 평가자 성
-            subject_email: 수신자 이메일
-          title: 평가자 추가
-        import:
-          body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
-          title: 평가자 가져오기
       moderate_score:
-        assessor_evaluations: 평가자 평가
-        main_report: 주요 보고서
-        no_completed_assessments: 아직 완료된 평가가 없습니다
         no_results: 답변된 질문이 없습니다
-        other_reports: 기타 보고서
-        overall_scoring: 전체 점수
-        recordings: 녹음
-        refresh: 새로 고침
-        reports: 보고서
-        reports_count: "%{count} 보고서"
-      overview: 개요
-      remove_confirmation: 이메일 %{email}을 사용하는 평가자를 이 캠페인에서 제거하시겠습니까?
-      statuses:
-        completed: 완료
-        not_completed: 완료되지 않음
-      toolbar:
-        export: 내보내기 평가자
-        import: 평가자 가져오기
-        tools: 도구
-    assessor_assessment:
-      add: 추가
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: 평가 선택
-      name: 평가자 평가
-    assessor_campaigns:
-      statuses:
-        completed: 완료
-        in_progress: 진행 중
-        not_started: 시작되지 않음
-    assessor_subjects:
-      statuses:
-        completed: 완료
-        in_progress: 진행 중
-        not_started: 시작되지 않음
     assigns:
       create:
         successfully: 평가에 대한 새 과제가 성공적으로 생성되었습니다
@@ -501,42 +191,6 @@ ko:
       edit:
         header: 보고서 할당 편집
     attention: 주의
-    audit_log:
-      action: 액션
-      audit_logs: 감사 로그
-      campaign: 캠페인
-      client: 클라이언트
-      client_ip: 클라이언트 아이피
-      collapse_filters: 필터 축소
-      dashboard: 대시보드
-      date_presets:
-        last_30_days: 지난 30일
-        last_7_days: 지난 7일
-        last_month: 지난 달
-        last_week: 지난 주
-        today: 오늘
-        yesterday: 어제
-      date_range: 날짜 범위
-      expand_filters: 필터 확장
-      failure_reason: 실패 이유
-      interface: 인터페이스
-      log_date: 로그 날짜
-      outcome: 결과
-      payload: 페이로드
-      project: 프로젝트
-      record_id: 레코드 ID
-      request_id: 요청 ID
-      reset: 초기화
-      search: 검색
-      search_campaign: 캠페인으로 검색
-      search_client: 클라이언트별 검색
-      search_project: 프로젝트별로 검색
-      search_record: 레코드 ID로 검색
-      search_user: 사용자별 검색
-      title: 감사 로그 정보
-      type: 레코드 유형
-      user: 사용자
-      user_agent: 사용자 에이전트
     back: 뒤로
     block_settings:
       modal:
@@ -749,20 +403,7 @@ ko:
           missing_user_reports: '이메일 관련 누락된 사용자 보고서: %{emails}'
           no_file_found_in_extracted_zip: 추출된 ZIP 파일에서 파일을 찾을 수 없습니다.
           user_report_not_found: 이메일 주소 %{email}에 대한 사용자 보고서를 찾을 수 없습니다.
-      bulk_download:
-        data_range_error: 날짜 범위를 선택하세요.
-        modal:
-          subtitle: 날짜 범위를 선택한 다음 각 보고서에 필요한 언어를 선택합니다.
-      generate:
-        modal:
-          subtitle: 각 보고서에 필요한 언어를 선택하세요.
     campaign_templates:
-      campaign_templates: 캠페인 템플릿
-      column:
-        assessment: 평가
-        campaign: 캠페인
-        owner: 소유자
-        report: 신고
       copy:
         successfully: 클라이언트 테넌시 %{name}을(를) 성공적으로 복사했습니다.
       create:
@@ -773,16 +414,6 @@ ko:
         header: 클라이언트 편집
       errors:
         owner_invalid: 템플릿 소유자는 평가, 보고서 및 차원의 소유자와 동일해야 합니다
-      form:
-        assessment: 평가
-        assessment_placeholder: 평가 선택
-        name: 이름
-        name_placeholder: 이름 입력
-        owner: 소유자
-        owner_placeholder: 소유자 선택
-        report: 보고
-        report_placeholder: 보고서 선택
-        title: 캠페인 템플릿
       image_fields:
         remove: 제거
       index:
@@ -797,10 +428,6 @@ ko:
         updated_at: 업데이트 날짜
       new:
         header: 신규 고객
-      remove_confirm:
-        content: 캠페인 템플릿 '%{name}'을 제거하시겠습니까?
-        success: 캠패인 템플릿 '%{name}''을 성공적으로 제거했습니다.
-        title: 캠페인 템플릿 제거
       resource:
         confirmations:
           delete:
@@ -816,7 +443,6 @@ ko:
       update:
         successfully: 클라이언트 테넌시 %{name}이(가) 업데이트되었습니다.
     campaigns:
-      actions: 관리
       assessment_reports:
         report_approval:
           allow_bulk_approve: 일괄 승인 허용
@@ -866,148 +492,6 @@ ko:
       assessors:
         spoof:
           successfully: 이름 %{name}으로 로그인했습니다
-      convert_to_template: 템플릿으로 변환
-      copy: 복사
-      delete: 삭제
-      edit: 편집
-      extend_time_success_message: 캠페인 타이머가 %{minutes}분으로 연장되었습니다
-      filters:
-        active: 활성
-        all: 모두
-        archived: 아카이브
-        closed: 닫힘
-        inactive: 비활성
-        status: 상태
-      form:
-        active_notice: 캠페인 상태는 선택한 종료일에 자동으로 폐쇄됩니다.
-        campaign: 캠페인
-        copy_factors: 카피 팩터
-        inactive_notice: 캠페인 상태는 선택한 시작일에 자동으로 활성화됩니다.
-        name: 이름
-        practice_campaign: 실천 캠페인
-        status: 상태
-      listing:
-        assessments: 평가
-        id: ID
-        name: 이름
-        reports: 보고서
-        status: 상태
-        template: 템플릿
-        type: 유형
-      menus:
-        add_common_campaign: 공통 캠페인 추가
-        add_multi_rater_campaign: 멀티 평가자 캠페인 추가
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: 캠페인 템플릿
-            factors: 요인
-          base_settings:
-            active: 활성
-            archive: 아카이브
-            assessment: 평가
-            category: 범주
-            closed: 닫힘
-            default_assessment_language: 평가 기본 언어
-            default_report_language: 기본 언어 보고
-            empty: 비어 있음
-            inactive: 비활성
-            name: 이름
-            normal: 보통
-            previous: 이전 게시물
-            select_assessment_language: 평가 언어 선택
-            select_report_language: 보고서 언어 선택
-            skill_rater: 스킬 평가자
-            standard: 표준
-            status: 상태
-            type: 유형
-          close:
-            content: 멀티 평가자 캠페인 크리에이터를 닫으시겠습니까? 저장하지 않은 사용자 지정 작업은 모두 손실됩니다. 결정을 확인해 주세요.
-            title: 멀티 레이터 캠페인 크리에이터를 닫으시겠습니까?
-          instructions_creation:
-            empty: '비어 있음: 빈 설문조사로 시작하여 특정 요구 사항에 따라 사용자 지정합니다.'
-            previous: '이전: 이전 평가를 시작점으로 선택하고 수정합니다.'
-            standard: '표준: 일반적으로 사용되는 질문 및 지표가 포함된 미리 디자인된 템플릿을 사용합니다.'
-            sub_title: 만들고자 하는 캠페인 유형을 선택하세요.
-            title: 멀티 레이터 캠페인 크리에이터에 오신 것을 환영합니다!
-          instructions_customization:
-            sub_title: 평가에 포함할 템플릿과 요소를 선택합니다.
-            title: 평가를 맞춤 설정하세요!
-          no_factors:
-            description: 다른 검색 키워드를 사용해 보세요.
-            title: 인자를 찾을 수 없음
-          questions:
-            select_all: 모두 선택
-            title: 질문 및 지표
-          search_factors:
-            description: 원하는 요소를 찾으려면 최소 3자 이상을 입력하세요.
-            title: 검색 시작
-          success: 멀티 레이터 캠페인이 성공적으로 생성되었습니다.
-          success_job: 멀티 레이터 캠페인 생성 작업이 성공적으로 예약되었습니다.
-      options:
-        description:
-          name: 설명
-          save: 설명 저장
-          save_success: 설명이 성공적으로 저장되었습니다
-        enable_video_call_recording: 영상 통화 녹화 사용
-        fixed_time: 고정 시간
-        instructions:
-          actions:
-            saved: 지침이 성공적으로 저장되었습니다
-          enable: 지침 사용
-          save: 지침 저장
-        prework_required: 사전 작업이 완료되지 않은 경우 센터 예약을 허용하지 않습니다
-        prework_required_for_invite: 사전 작업이 완료된 경우에만 초대 이메일 보내기
-        proctoring:
-          enable: 감독 활성화
-          identification: 신원 확인
-          identifications:
-            face: 얼굴
-            face_and_passport: 얼굴 및 여권
-            passport: 여권
-          integration_type: 통합
-          integration_types:
-            iframe: IFrame
-            ldb: 잠금 브라우저
-          proctoring_types:
-            offline: 오프라인
-            online: 온라인
-          rule_types:
-            allow_absence_in_frame: 프레임 내 부재 허용
-            allow_to_use_books: 책 사용 허용
-            allow_to_use_calculator: 계산기 사용 허용
-            allow_to_use_excel: Excel 사용 허용
-            allow_to_use_human_assistant: 인간 도우미 사용 허용
-            allow_to_use_messengers: 메신저 사용 허용
-            allow_to_use_paper: Paper 사용 허용
-            allow_to_use_websites: 웹사이트 사용 허용
-            allow_voices: 음성 허용
-            allow_wrong_gaze_direction: 잘못된 시선 방향 허용
-          rules: 규칙
-          trial: 시험 감독
-          type: 유형
-        show_watermark: 워터마크 표시
-        watermark_content: 워터마크 콘텐츠
-        watermark_info: 콘텐츠를 추가하지 않으면 기본적으로 사용자의 이메일이 워터마크로 표시됩니다. 다음 파이펫 텍스트 중 하나를 사용할 수 있습니다 -<br/> {{id}} - 참가자 아이디 </br>{{first_name}} - 참가자 이름 </br>{마지막_이름}} - 참가자 성 </br>{이메일}} - 참가자 이메일
-      pdf_password: PDF 비밀번호
-      types:
-        common: 공통
-        threesixty: 멀티 레이터
-      users:
-        add_user: 사용자 추가
-        completion_status: 완료 상태
-        created_by: 만든 사람
-        email: 이메일
-        filters:
-          all: 모두
-          anonymous: 익명
-          identified: 식별됨
-        id: ID
-        is_active: 활성
-        name: 이름
-        no_permission_message: 수정할 수 있는 권한이 없습니다
-        title: 사용자
-        updated_by: 업데이트 담당자
       validations:
         dates:
           end: 시작일 이후여야 합니다
@@ -1016,32 +500,7 @@ ko:
         invalid_campaign_factor_codes: '다음 캠페인 요인 _ 코드가 잘못되었습니다: %{codes}'
         missing_headers: 누락된 헤더
         missing_users: '다음 이메일이 없습니다: %{emails}'
-      import:
-        example_csv: 예제 파일 다운로드
-        success_msg: 가져오기가 성공적으로 업로드되었습니다
-      modal:
-        title: 외부 캠페인 점수 가져오기
-    client_features:
-      client_features: 클라이언트 기능
-      form:
-        ai_assistants: AI 어시스턴트
-        ai_assistants_disabled_by_client: AI Assistants는 클라이언트에 의해 비활성화됩니다.
-        ai_assisted_idp: AI 지원 IDP
-        ai_assisted_idp_requires_ai_assistants: AI 지원 IDP를 사용하려면 AI 어시스턴트 기능을 활성화해야 합니다.
-        ai_content_analysis: 인공지능 콘텐츠 분석
-        ai_content_analysis_disabled_by_client: AI 콘텐츠 분석은 클라이언트에 의해 비활성화되었습니다.
-        ai_translation: 인공지능 번역
-        ai_translation_disabled_by_client: AI 번역 기능은 클라이언트 측에서 비활성화되었습니다.
-        global_skills: 글로벌 기술
-        global_skills_disabled_by_client: 클라이언트에 의해 글로벌 스킬이 비활성화됨
-        idp: IDP
-        idp_disabled_by_client: 클라이언트에서 IDP를 사용하지 않도록 설정했습니다.
-        sms_notification: SMS 알림
-        sms_notification_disabled_by_client: 클라이언트에서 SMS 알림을 사용하지 않도록 설정했습니다.
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: 이동 경로
       archive:
         successfully: 성공적
       base:
@@ -1049,7 +508,6 @@ ko:
         archived: 아카이브
         disable: 아카이브
         enable: 보관 해제
-      clients: 클라이언트
       copy:
         successfully: 클라이언트 테넌시 '%{name}'이(가) 성공적으로 복사되었습니다.
       create:
@@ -1069,392 +527,17 @@ ko:
       new:
         header: 신규 고객
       projects:
-        actions:
-          archive: 아카이브
-          unarchive: 보관 해제
-        archive:
-          content: "'%{project_name}'을 보관하시겠습니까?"
-          success: 프로젝트 '%{project_name}'이 성공적으로 아카이브되었습니다.
-          title: 아카이브 프로젝트
-        assign_assessments:
-          add_assessment: 평가 추가
-          assessments: 평가
-        assign_reports:
-          add_report: 보고서 추가
-        campaigns:
-          archive:
-            successfully: 캠페인 '%{name}'이 성공적으로 아카이브되었습니다.
-          copy:
-            error: 캠페인 '%{name}'이 복사되지 않았습니다.
-            successfully: 캠페인 '%{name}'이 성공적으로 복사되었습니다.
-          create:
-            successfully: 캠페인 '%{name}'을 성공적으로 만들었습니다.
-          destroy:
-            successfully: 캠페인 '%{name}'이 성공적으로 삭제되었습니다.
-          edit:
-            header: 캠페인 편집
-          export:
-            assessments: 평가
-            assigned_user: 할당된 사용자
-            completed_user: 완료된 사용자
-            created_at: 생성된 날짜
-            header:
-              actions: 작업
-              actual_usage: 실제 사용량
-              assessments: 평가
-              campaigns: 캠페인
-              name: 이름
-              reports: 보고서
-              sub_campaigns: 하위 캠페인
-              tests_allocated: 할당된 시험
-              users: 사용자
-            id: ID
-            name: 캠페인 이름
-            reports: 보고서
-            updated_at: 업데이트 날짜
-          index:
-            export: 내보내기
-            new: 추가
-            title: 캠페인
-          list:
-            assessments: 평가
-            assigned_user: 할당된 사용자
-            completed_user: 완료된 사용자
-            created_at: 생성된 날짜
-            header:
-              actions: 작업
-              actual_usage: 실제 사용량
-              assessments: 평가
-              campaigns: 캠페인
-              name: 이름
-              reports: 보고서
-              sub_campaigns: 하위 캠페인
-              tests_allocated: 할당된 시험
-              users: 사용자
-            id: ID
-            name: 캠페인 이름
-            reports: 보고서
-            updated_at: 업데이트 날짜
-          new:
-            header: 새로운 캠페인
-          resource:
-            sub_campaign:
-              create: 새 하위 캠페인 만들기
-            tooltips:
-              copy: 카피 캠페인
-              create_report: 새 보고서 추가
-              create_user: 새 사용자 추가
-              delete: 캠페인 삭제
-              edit: 캠페인 편집
-              export: 내보내기
-          sidebar:
-            archive: 아카이브 캠페인
-            copy: 캠페인 복사
-            destroy: 캠페인 삭제
-            disable: 비활성화
-            edit: 캠페인 편집
-            enable: 사용
-            new: 새로운 캠페인
-            title: 캠페인 옵션
-            view_licenses: 라이선스 보기
-          sub_campaigns:
-            archive:
-              successfully: 하위 캠페인 %{name}을(를) 성공적으로 보관했습니다.
-            copy:
-              error: 하위 캠페인 %{name}을(를) 복사하지 못했습니다.
-              successfully: 하위 캠페인 %{name}을(를) 복사했습니다.
-            create:
-              successfully: 하위 캠페인 %{name}을(를) 성공적으로 만들었습니다.
-            destroy:
-              successfully: 하위 캠페인 %{name}을(를) 성공적으로 삭제했습니다.
-            edit:
-              header: 하위 캠페인 편집
-            export:
-              assessments: 평가
-              assigned_user: 할당된 사용자
-              completed_user: 완료된 사용자
-              created_at: 생성된 날짜
-              header:
-                actions: 작업
-                actual_usage: 실제 사용량
-                archive_status: 아카이브 상태
-                name: 이름
-                sub_campaign: 하위 캠페인
-                tests_allocated: 할당된 테스트
-                users: 사용자
-              id: ID
-              name: 하위 캠페인 이름
-              reports: 보고서
-              updated_at: 업데이트 날짜
-            header:
-              actions: 작업
-            index:
-              export: 내보내기
-              new: 추가
-              title: 하위 캠페인
-            list:
-              assessments: 평가
-              assigned_user: 할당된 사용자
-              completed_user: 완료된 사용자
-              created_at: 생성된 날짜
-              header:
-                actions: 작업
-                actual_usage: 실제 사용량
-                archive_status: 아카이브 상태
-                name: 이름
-                sub_campaign: 하위 캠페인
-                tests_allocated: 할당된 테스트
-                users: 사용자
-              id: ID
-              name: 하위 캠페인 이름
-              reports: 보고서
-              updated_at: 업데이트 날짜
-            new:
-              header: 새로운 하위 캠페인
-            resource:
-              tooltips:
-                copy: 하위 캠페인 복사
-                create_report: 새 보고서 추가
-                create_user: 새 사용자 추가
-                delete: 하위 캠페인 삭제
-                edit: 하위 캠페인 편집
-            sidebar:
-              archive: 아카이브 하위 캠페인
-              copy: 하위 캠페인 복사
-              destroy: 하위 캠페인 삭제
-              disable: 비활성화
-              edit: 하위 캠페인 편집
-              enable: 사용
-              new: 새로운 하위 캠페인
-              title: 하위 캠페인의 옵션
-              view_licenses: 라이선스 보기
-            toggle_status:
-              successfully: 하위 캠페인 %{name}이 업데이트되었습니다.
-            update:
-              successfully: 하위 캠페인 %{name}이 업데이트되었습니다.
-          toggle_status:
-            successfully: 캠페인 %{name}이 성공적으로 업데이트되었습니다.
-          update:
-            successfully: 캠페인 %{name}이 성공적으로 업데이트되었습니다.
-        copy:
-          error: 프로젝트 %{name}을(를) 복사하지 못했습니다.
-          successfully: 프로젝트 %{name}을 성공적으로 복사했습니다.
-        create:
-          successfully: 프로젝트 %{name}이 성공적으로 생성되었습니다.
-        destroy:
-          successfully: 프로젝트 %{name}을(를) 성공적으로 삭제했습니다.
-        edit:
-          header: 프로젝트 편집
-        export:
-          2fa_enabled: 2FA 사용
-          actual_usage: 실제 사용량
-          admin: 클라이언트 관리자
-          applicable_level: 적용 가능한 수준
-          archive_status: 상태
-          assessments: 평가
-          assigned_user: 할당된 사용자
-          completed_user: 완료된 사용자
-          created_at: 생성된 날짜
-          id: ID
-          name: 프로젝트 이름
-          number: 번호
-          project_admin: 프로젝트 관리자
-          reports: 보고서
-          tests_allocated: 할당된 테스트
-          tte_admin: TTE 프로젝트 관리자
-          updated_at: 수정된 날짜
-          url: URL
-          users_count: 사용자 수
-        form:
-          2fa: 2단계 인증
-          2fa_enable: 2단계 인증 사용
-          applicable_levels:
-            campaign: 캠페인 종료 레벨
-            project: 프로젝트 종료 수준
-            sub_campaign: 하위 캠페인 종료 레벨
-          data_privacy: 데이터 개인 정보 보호
-          enable_live_chat: 실시간 채팅 사용
-          enable_privacy_links: 개인정보 보호 링크 활성화
-          live_chat_token: 라이브 채팅 토큰
-          optional: 선택 사항
-          other_settings: 기타 설정
-          privacy_link: 개인정보 보호 링크
-          privacy_text: 개인정보 보호 텍스트
-          project_number: 프로젝트 번호
-          webhook: 웹훅
-          webhook_auth_enabled: 웹훅 인증 사용
-          webhook_password: 비밀번호
-          webhook_username: 사용자 이름
-        header:
-          actions: 작업
-        index:
-          export: 내보내기
-          new: 추가
-          title: 프로젝트
-          tooltips:
-            create: 만들기
-            export: 내보내기
-        list:
-          2fa_enabled: 2FA 사용
-          actual_usage: 실제 사용량
-          admin: 클라이언트 관리자
-          applicable_level: 적용 가능한 수준
-          archive_status: 상태
-          assessments: 평가
-          assigned_user: 할당된 사용자
-          completed_user: 완료된 사용자
-          created_at: 생성된 날짜
-          id: ID
-          name: 프로젝트 이름
-          number: 번호
-          project_admin: 프로젝트 관리자
-          reports: 보고서
-          tests_allocated: 할당된 테스트
-          tte_admin: TTE 프로젝트 관리자
-          updated_at: 수정된 날짜
-          url: URL
-          users_count: 사용자 수
-        new:
-          header: 새 프로젝트
-        resource:
-          add_assessment: 평가 추가
-          add_report: 보고서 추가
-          assessments: 평가
-          tooltips:
-            copy: 프로젝트 복사
-            create_admin: 프로젝트 관리자 만들기
-            create_report: 새 보고서 추가
-            create_user: 새 사용자 추가
-            delete: 프로젝트 삭제
-            edit: 프로젝트 편집
-        sidebar:
-          admins: 프로젝트 관리자
-          archive: 아카이브 프로젝트
-          copy: 프로젝트 복사
-          design: 디자인 편집
-          destroy: 프로젝트 삭제
-          disable: 비활성화
-          edit: 프로젝트 편집
-          enable: 사용
-          new: 새 프로젝트
-          title: 프로젝트의 옵션
-          view_licenses: 라이선스 보기
-        status:
-          active: 활성
-          archived: 아카이브
         threesixty_campaigns:
-          base:
-            active: 활성
-            archived: 아카이브
-            disable: 아카이브
-            enable: 보관 해제
-          completion_statuses:
-            approved: 승인됨
-            completed: 완료
-            denied: 거부됨
-            in_progress: 진행 중
-            not_started: 시작되지 않음
-          copy:
-            error: 클라이언트 테넌시 '%{name}'이(가) 복사되지 않았습니다.
-            successfully: 클라이언트 테넌시 '%{name}'이(가) 성공적으로 복사되었습니다.
-          create:
-            successfully: 클라이언트 테넌시 '%{name}'을(를) 성공적으로 만들었습니다.
-          designs:
-            form:
-              no_background: 아직 배경 없음
-              no_logo: 아직 로고 없음
           destroy:
             error: 피험자 또는 평가자의 종속 연결이 일부 존재하므로 '%{name}'을 삭제할 수 없습니다.
-            successfully: 클라이언트 테넌시 '%{name}'이(가) 성공적으로 삭제되었습니다.
-          edit:
-            header: 360 캠페인 편집
-          export:
-            admin: 클라이언트 관리자
-            assessment: 어설션
-            client_admins: 클라이언트 관리자
-            created_at: 만든 곳
-            id: ID
-            name: 이름
-            report: 신고
-            report_bundle: 보고서 번들
-            status: 상태
           index:
-            export: 내보내기
-            new: 360 캠페인 추가
             title: 360 캠페인
-          license:
-            header: "%{name} - 라이선스 수정"
-          licenses:
-            update:
-              duplicate_licenses: 라이선스가 중복되어 있습니다
-              successfully: 라이선스가 성공적으로 업데이트되었습니다
-          list:
-            admin: 클라이언트 관리자
-            assessment: 어설션
-            client_admins: 클라이언트 관리자
-            created_at: 만든 곳
-            id: ID
-            name: 이름
-            report: 신고
-            report_bundle: 보고서 번들
-            status: 상태
-            updated_at: 업데이트 날짜
-          new:
-            header: 새로운 360 캠페인
           resource:
             confirmations:
               delete:
                 body: "<p>정말 삭제하시겠습니까?</p> <p>이 작업은 실행 취소할 수 없습니다. 그러면 <strong>%{name}</strong> 캠페인, 하위 캠페인 및 모든 연결이 영구적으로 삭제됩니다.</p> <p>확인하려면 <strong>%{name}을</strong> 입력하세요.</p>"
                 title: "<strong>%{name}</strong> 삭제하시겠습니까?"
-              disable:
-                body:
-                  '0': "<p>정말 아카이브하시겠습니까?</p> <p>모든 캠페인, 하위 캠페인 및 사용자도 보관됩니다</p>"
-                  '1': "<p>정말 아카이브하시겠습니까?</p> <p>모든 하위 캠페인과 사용자도 아카이브됩니다</p>"
-                  '2': "<p>정말 아카이브하시겠습니까?</p> <p>모든 사용자도 보관됩니다</p>"
-                  '3': "<p>정말 아카이브하시겠습니까?</p> <p>모든 사용자도 보관됩니다</p>"
-                title: 아카이브 <strong>%{name}</strong>?
-              enable:
-                body:
-                  '0': "<p>정말 아카이브를 취소하시겠습니까?</p>"
-                  '1': "<p>정말 아카이브를 취소하시겠습니까?</p>"
-                  '2': "<p>정말 아카이브를 취소하시겠습니까?</p>"
-                  '3': "<p>정말 아카이브를 취소하시겠습니까?</p>"
-                title: "<strong>%{name}}</strong> 보관 취소 ?"
-            export_results: 내보내기 결과
-            raw_results: 원시 결과
-            tooltips:
-              campaigns:
-                delete: 캠페인 삭제
-              copy: 클라이언트 복사
-              create_admin: 클라이언트 관리자 만들기
-              delete: 클라이언트 삭제
-              disable: 클라이언트 비활성화
-              edit: 클라이언트 편집
-              enable: 클라이언트 사용
-          statistics:
-            index:
-              all_assessments: 모든 평가
-              assessment_type: 평가 유형
-              title: 통계
-          toggle_status:
-            successfully: 클라이언트 테넌시 %{name}이(가) 업데이트되었습니다.
-          update:
-            successfully: 클라이언트 테넌시 %{name}이(가) 업데이트되었습니다.
-          url: Url
-        toggle_status:
-          successfully: 프로젝트 %{name}이 성공적으로 업데이트되었습니다.
-        unarchive:
-          content: "'%{project_name}'의 보관을 해제하시겠습니까?"
-          success: 프로젝트 '%{project_name}''이 성공적으로 보관 해제되었습니다.
-          title: 프로젝트 아카이브 해제
-        update:
-          successfully: 프로젝트 %{name}이 성공적으로 업데이트되었습니다.
       registration_codes:
-        actions:
-          add_code: 코드 추가
-        column:
-          code: 코드
-          usage_stats: 사용 통계
         errors:
           count_invalid: 사용 횟수 = %{use_count}보다 작을 수 없습니다
           criteria: 영숫자, 하이픈(-) 및 밑줄(_) 문자만 포함할 수 있습니다
@@ -1462,13 +545,6 @@ ko:
           incorrect_domain: 잘못된 도메인 형식입니다.
           invalid_end_date: 이 시작 날짜보다 커야 합니다
           license_issue: 라이선스가 충분하지 않습니다.
-        form:
-          active: 활성
-          code: 코드
-          end_date: 종료 날짜
-          name: 이름
-          start_date: 시작 날짜
-          total_count: 총 개수
       resource:
         confirmations:
           delete:
@@ -1484,25 +560,9 @@ ko:
         successfully: 클라이언트 테넌시 %{name}이(가) 업데이트되었습니다.
     close: 닫기
     common:
-      add: 추가
-      back: 뒤로
-      cancel: 취소
-      code: 코드
-      disabled: 디아스블레드
-      download_sample_file: 샘플 파일 다운로드
       enabled: 활성화됨
-      import:
-        failure_msg: 파일을 가져오는 동안 오류가 발생했습니다.
-      instructions: 지시
       loading: 로드...
-      minute: 분
-      name: 이름
-      next: 다음
-      reset: 초기화
       save: 저장
-      select_all: 모두 선택
-      type: 유형
-      unselect_all: 모두 선택 취소
     communication_settings: 설정
     communications:
       create:
@@ -1677,86 +737,19 @@ ko:
       input_duration:
         placeholder: "'1일 2시간 3분'으로 입력합니다"
     create: 만들기
-    dashboard:
-      capacity_name: 용량 이름
-      choose_file_format: 파일 형식 선택
-      dashboard_types:
-        oracle_analytics: 오라클 애널리틱스
-        powerbi: PowerBi
-      dashboards: 대시보드
-      export_dashboard_to_file: 대시보드를 파일로 내보내기
-      export_job_failure: 내보내기를 시작하지 못했습니다.
-      export_job_success: 내보내기 작업이 시작되었습니다. 완료되면 알림이 전송됩니다.
-      get_started: 시작하기
-      initialize_msg: 이 캠페인의 대시보드 초기화하기
-      loading_failed: 대시보드 로딩에 실패했습니다.
-      only_export_current_tab: 현재 탭만 내보내기
-      pdf: PDF
-      pptx: PPTX
-      preview:
-        embed_token_error_description: 설정에서 데이터 세트 및 보고서 ID가 올바른지 확인하세요.
-        embed_token_error_title: 임베드 토큰을 생성할 수 없습니다.
-      settings:
-        capacity_id: 용량 ID
-        details: 세부 정보
-        refresh: 새로 고침
-        workspace_id: 워크스페이스 ID
-      tabs:
-        accesssheet: 액세스 시트
-        accesssheet_setting: 액세스 시트 설정
-        dashboard: 대시보드
-        settings: 설정
-    dashboard_form:
-      fields:
-        dataset_id: 데이터 세트 ID
-        enabled: 활성화됨
-        image: 이미지
-        project_path: 프로젝트 경로
-        refresh_interval: 새로 고침 간격(분)
-        report_id: 신고 ID
-        visual_header_visibility: 시각적 헤더 가시성
-      image_upload_failed: 이미지 업로드에 실패했습니다.
-      none: 없음
-      refresh_success: 데이터 집합 새로 고침이 성공적으로 예약되었습니다.
-      visual_header_visibility_options:
-        hide_all: 모두 숨기기
-        keep_original: 원본 유지
-        show_all: 모두 보기
-    data_exports_modal:
-      title: 날짜 범위 선택
     data_reports:
-      columns:
-        created_at: 만든 곳
-        created_by: 만든 사람
-        last_updated_by: 마지막 업데이트 날짜
-        name: 이름
-        owner: 소유자
-        password: 비밀번호
-        status: 상태
-        udpated_at: 마지막 업데이트 날짜
-      configuration: 구성
       errors:
         factor_code_or_field_name_required: factor_code 또는 field_name 요구됩니다
         factor_not_found: 평가 범위에서 찾을 수 없음
         inclusion: '잘못된 유형, 유효한 유형: %{values}'
         not_found: 찾을 수 없음
         not_owned: 클라이언트 소유가 아님
-      form:
-        name: 데이터 보고서
-      messages:
-        runed: 데이터 보고서가 성공적으로 실행되도록 예약되었습니다
       validations:
         project_and_campaigns_not_allowed: 프로젝트_아이디와 캠페인_아이디를 함께 지정해서는 안 됩니다
-        project_not_related_to_client: "%{project_id}가 클라이언트의 소유가 아닙니다"
         project_or_campaign_required: 프로젝트_아이디 또는 캠페인_아이디가 필요합니다
         sections_required: 섹션이 필요합니다
     datasheet:
       threesixty_warning: 여기에서 360 보고서의 데이터시트 열을 업로드할 수 없습니다. 360 보고서의 경우 이 보고서가 연결된 캠페인에서 데이터시트 열이 로드됩니다
-    dates:
-      completed: 완료 시점
-      end: 종료 날짜
-      start: 시작 날짜
-      started: 시작 위치
     development_action_import:
       errors:
         blank_field: '행 %{row}: %{field}는 비워 둘 수 없습니다'
@@ -1793,49 +786,11 @@ ko:
         successfully: 개발 작업 "%{name}"을 성공적으로 만들었습니다.
       destroy:
         successfully: 개발 작업 "%{name}"을(를) 성공적으로 삭제했습니다.
-      development_action_types:
-        course: 코스
-        default: 기본값
-      duration:
-        max_length: 1 년을 초과 할 수 없습니다
-        min_length: 1 분 미만일 수 없습니다
       edit:
         header: 개발 작업 편집
       export:
         details: 파일 세부 정보
-        failure_msg: 번역 내보내기 중 오류 발생
-        success_msg: 개발 작업 내보내기가 진행 중입니다. 알림에서 상태를 확인하세요.
         translation_details: 세부 정보
-      export_development_action_translations: 프로젝트 기반 개발 작업 번역
-      export_development_actions: 프로젝트 기반 개발 작업
-      form:
-        available_languages: 사용 가능한 언어
-        client_placeholder: 클라이언트 선택
-        course_image: 코스 이미지
-        course_link: 코스 링크
-        description: 설명
-        development_action_type: 개발 활동 유형
-        duration: 지속
-        end_date: 종료 날짜
-        learning_style: 학습 스타일
-        name: 이름
-        project_placeholder: 프로젝트 선택
-        skills: 기술
-        skills_placeholder: 기술 선택
-        start_date: 시작 날짜
-        title: 개발 작업
-        upload: 업로드
-      global: 글로벌 개발 활동이란?
-      heading: 개발 작업
-      import:
-        download_example_csv: 예제 csv 다운로드
-        failure_msg: 파일을 가져오는 동안 오류가 발생했습니다.
-        info_msg: 업로드한 파일이 가져오기 대기열에 추가되었습니다. 알림에서 상태를 확인하세요.
-      import_action:
-        development_actions_title: 개발 작업 가져오기
-        development_actions_translations_title: 개발 작업 가져오기 번역
-      import_development_actions: 개발 작업
-      import_development_actions_translations: 개발 작업 번역
       learning_styles:
         cannot_be_blank: 비워 둘 수 없습니다
         invalid: 온더워크, 구조화된_학습, 타인으로부터_학습 중 하나에 해당해야 합니다
@@ -1869,32 +824,11 @@ ko:
       form:
         enable_innovation_styles: 혁신 스타일 활성화
         enable_occupations: 직종 사용
-        name: 이름
-        title: 치수
       import_factors:
         import: 가져오기
         sample_file: 샘플 파일
         successfully: 차원 %{name}에 대해 예약된 가져오기 요소 작업입니다.
         title: 가져오기 요소
-      import_modal:
-        after: 이후
-        before: 이전
-        cancel: 취소
-        change_log_input: 변경 로그
-        continue: 계속하기
-        error: 오류
-        error_occurred: 오류가 발생했습니다.
-        errors:
-          file_error: 계속하기 전에 JSON 파일을 선택해 주세요.
-          processing_error: 오류 처리 파일
-        field: 필드
-        import: 가져오기
-        import_dimension: 차원 가져오기
-        import_scheduled: 예약 가져오기
-        operation: 운영
-        owner_input_validation: 소유자를 선택해 주세요.
-        owner_select: 소유자 선택
-        select_json: JSON 파일 선택
       import_translations:
         error: 차원 %{name}에 대한 번역을 가져오는 동안 오류가 발생했습니다.
         successfully: 차원 %{name}에 대해 예약된 번역을 가져옵니다.
@@ -1918,7 +852,6 @@ ko:
         confirmations:
           delete:
             body: "<p>이 차원을 삭제하시겠습니까?</p>\n"
-            message: 확인하려면 아래에 제시된 차원 이름을 텍스트 상자에 입력하세요
             title: "<strong>차원</strong> 삭제 ?"
           toggle_status:
             body: "<p>이 차원을 %{status}화하시겠습니까?</p>\n"
@@ -1946,9 +879,6 @@ ko:
       update:
         successfully: "%{name} 차원이 성공적으로 업데이트되었습니다."
     disable: 비활성화
-    document_titles:
-      project_assessors: 평가자 | %{project}
-      project_participants: 참가자 | %{project}
     enable: 사용
     errors:
       csv_file_required: 파일은 CSV 파일이어야 합니다.
@@ -1969,21 +899,6 @@ ko:
       edit:
         header: 팩터 이름 편집
       form:
-        components:
-          ExternalList:
-            add: 추가
-            table:
-              actions: 작업
-              jsonpath: JSON 경로
-              type: 유형
-              types:
-                norm_score: 표준 점수
-                percentage: 백분율
-                percentile: 백분위 점수
-                score: 점수
-                zscore: Z 점수
-            title: 점수의 JSON 경로
-        predicate: 술어
         scoring_strategies:
           custom_formula: 사용자 지정 공식
           external_score: 외부 점수
@@ -1995,15 +910,9 @@ ko:
           sub_factors_average: 요소의 가중 평균
           sub_factors_conditional_average: 요인의 조건부 가중 평균
           sub_factors_sum: 요소의 가중치 합계
-        scoring_strategies_tip: "<strong>문제(평균):</strong> 요인에 연결된 문제가 있는 경우 현재 채점 방법과 같습니다. <br /> <br />문제 <strong>(합계):</strong> 문제(평균)과 비슷하지만, 합계가 사용됩니다 <br /> <br /><strong>기타 요인의 문제(평균):</strong> 한 요인에 하위 요인이 있는 경우 현재 채점 방식과 같지만 가중치가 추가된다는 점만 변경됩니다. <br /> <br />기타 요인 <strong>(합계) 문제:</strong> 기타 요인(평균)과 비슷하지만 합계가 사용됩니다 <br /> <br /><strong>가중치 합산:</strong> 선택한 다른 요인의 점수에 가중치를 곱하여 합산합니다."
-        scoring_strategy: 득점 전략
-        search_factors: 검색 요소
-        use_sub_factor_norm_score: 팩터 표준 점수 사용
-        value: 값
       index:
         icon: 아이콘
         new: 추가
-        precision: 정밀도
         scoring_strategies:
           custom_formula: 사용자 지정 공식
           external_score: 외부 점수
@@ -2061,10 +970,6 @@ ko:
         successfully: 팩터가 성공적으로 업데이트되었습니다.
       update:
         successfully: "%{name} 요소가 성공적으로 업데이트되었습니다."
-    genders:
-      female: 여성
-      male: 남성
-      not_set: 설정되지 않음
     grants:
       common:
         view: 보기
@@ -2074,100 +979,19 @@ ko:
           accesssheet_manage: 액세스 시트 관리
           accesssheet_settings: 액세스 시트 설정
           accesssheet_view: 액세스 시트 보기
-    header:
-      logout:
-        content: 작업을 계속하고 싶다면 취소 버튼을 누르세요. 현재 사용자를 로그아웃하려면 확인 버튼을 누르세요.
-        title: 정말 로그아웃하시겠습니까?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: 이 평가는 사용자 %{assessment_name}에 의해 이미 할당되어 시작되었으므로 호건 평가 %{email}에 새 응답을 추가할 수 없습니다. 이 사용자에 대한 호건 계정을 새로 만들면 사용자가 평가에 다시 응시할 수 있습니다.
           short_error_message: 이 평가는 사용자 %{assessment_name}에 의해 이미 할당되어 시작되었으므로 호건 평가 %{email}에 새 응답을 추가할 수 없습니다
     idp:
-      actions:
-        remove_confirm: 템플릿을 제거하려면 아래 텍스트 상자에 현재 템플릿 이름을 입력합니다
-        success: "%{idpName}이(가) 성공적으로 제거되었습니다."
-      add_idp_template: IDP 템플릿 추가
-      ai_assistant: AI 어시스턴트
-      ai_assisted_idp_enabled: AI 지원 IDP 사용
-      ai_enabled: AI 사용
-      ai_settings: AI 설정
-      all: 모두
-      appearance: 모양
-      appearance_hint: 모양을 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
-      appearance_success: 모양 설정이 성공적으로 저장됨
-      background_image: 배경 이미지
-      behavioral_skills: 행동 기술
-      client_skills: 클라이언트 기술
-      delete_skill: 이 스킬을 삭제하시겠습니까? 삭제하면 관련된 모든 개발 작업도 삭제됩니다.
-      delete_skill_msg: 이 스킬을 삭제할 게 확실한가요? 삭제하면 관련된 모든 개발 작업도 제거됩니다.
-      details_updated: IDP 세부 정보 업데이트 성공
       development_actions:
-        add_from_library: 라이브러리에서 추가
-        completion: 완료
-        create_development_actions_with_ai: AI를 사용하여 개발 액션 생성
-        create_from_ai: AI로 만들기
-        create_my_own: 나만의 만들기
-        custom: 관습
-        date_range: 시작 날짜 - 종료 날짜
-        edit_plan_to_add_development_actions: 계획을 편집하고 개발 작업을 추가합니다.
         errors:
           invalid_learning_style: "'%{learning_style}'은 유효한 학습 스타일이 아닙니다. 유효한 옵션은 다음과 같습니다%{valid_styles}"
           learning_style_blank: 학습 스타일은 비어 있을 수 없습니다.
-        generate_by_ai: AI로 생성
-        generate_more: 더 많은 생성
-        heading: 기술/개발 조치
-        manage_skills: 기술 관리
-        no_development_actions: 개발 작업이 없습니다.
-      document_ai_assistant: 문서 분석 AI 어시스턴트
-      edit_template: IDP 템플릿 편집
-      enter_tag_or_skills_error: 태그 또는 스킬을 하나 이상 선택합니다.
-      enter_template_description: 설명
-      enter_template_description_error: 템플릿 설명은 필수입니다.
-      enter_template_name: 이름
-      enter_template_name_error: 템플릿 이름은 필수입니다
       errors:
-        cannot_update_progress_plan_completed: IDP 계획이 완료되었으므로 진행 상황을 업데이트할 수 없습니다.
         skills_required_on_publishing: 템플릿을 게시하기 전에 기술을 선택하세요.
         update: IDP 템플릿이 이미 사용자 IDP 요금제에 연결되어 있으므로 업데이트할 수 없습니다.
-      fields:
-        approval_date: 승인일
-        assigned_data: 할당된 데이터
-        assigned_date: 할당된 날짜
-        completion_date: 완료 날짜
-        current_job_role: 현재 직무
-        division: 부서
-        name: 이름
-        publish_date: 게시 날짜
-        review_date: 검토 날짜
-        target_job_role: 목표 직무 역할
-      fields_label: 필드
-      global_skills: 글로벌 기술
-      idp: IDP
-      idp_template: IDP 템플릿 추가
-      interview_questions: 면접 질문
-      interview_questions_updated: 면접 질문이 성공적으로 업데이트되었습니다.
-      intro_message: 소개 메시지
-      intro_message_hint: 소개 메시지를 수정하려면 먼저 IDP 템플릿을 저장하여 해당 설정을 활성화하세요.
-      intro_message_success: 소개 메시지가 성공적으로 저장되었습니다.
-      locales: 로케일
-      logo_image: 로고 이미지
-      logo_type:
-        both: 머서 및 고객 로고
-        client_only: 고객 로고만
-        mercer_only: 머서 로고만 해당
-        none: 로고 없음
-      logo_type_label: 로고 유형
-      no_interview_questions_selected: 면접 질문 선택 없음
-      no_reflection_questions_selected: 선택된 반영 문제 없음
-      none: 없음
-      one_click_idp_enabled: 원클릭 IDP 사용
-      reference_locale: 참조 로케일
-      reflection_questions: 성찰 질문
-      reflection_questions_hint: 반영 문제를 수정하려면 먼저 IDP 템플릿을 저장하여 이러한 설정을 활성화하세요.
-      reflection_questions_updated: 반영 문제가 성공적으로 업데이트되었습니다.
-      remove: 제거
-      remove_skill: 스킬 제거
       revert_skill_to_public:
         errors:
           skill_already_public: 스킬은 이미 공개되어 있습니다.
@@ -2175,47 +999,11 @@ ko:
         success:
           base_message: 이제 '%{skill_name}' 스킬이 관리자에게 표시됩니다.
           with_approval: "%{base_message} IDP 플랜이 승인을 위해 제출되었습니다."
-      select_by_tags: 태그별 선택
-      select_interview_question: 입력을 시작하여 질문 검색 및 선택
-      select_reflection_question: 입력하여 질문 검색 및 선택
-      select_skill_gap_report: 스킬 갭 보고서 선택
-      select_specific_skills: 특정 기술 선택
-      selected: 선택됨
-      self_rating: 자체 평가 활성화
-      show_reflections: 반사 표시
-      skill_gap_report: 기술 격차 보고서
-      skill_gap_report_ai_assistant: 기술 격차 보고서 분석 도우미
-      skill_source_preference: 스킬 소스
-      skill_sources:
-        from_ai: 일반 AI 지식에서
-        from_template: 템플릿 및 매핑에서
-      skills: 기술
       skills_privacy_messages:
         made_private: 스킬 '%{skill_name}'이 비공개로 표시되어 관리자에게 숨겨집니다.
         made_public: 이제 '%{skill_name}' 스킬이 관리자에게 표시됩니다.
         skill_not_found: 스킬을 찾을 수 없음
         unauthorized: 이 기술을 수정할 수 있는 권한이 없음
-      skills_updated: IDP 스킬 업데이트 성공
-      status:
-        draft: 초안
-        published: 게시됨
-      status_updated: IDP 상태 업데이트 성공
-      subtitle_text: 자막 텍스트
-      tab:
-        development_actions: 개발 작업
-        interview_questions: 면접 질문
-        reflection_questions: 성찰 질문
-        settings: 설정
-        templates: 템플릿
-      technical_skills: 기술 역량
-      template_details: 템플릿 세부 정보
-      title_text: 제목 텍스트
-      update_interview_questions: 면접 질문 업데이트
-      update_reflection_questions: 반영 질문 업데이트
-    idp_setting:
-      manager_approves_idp: 관리자가 IDP를 승인합니다
-      manager_can_edit_idp: 관리자가 IDP를 편집할 수 있습니다
-      require_all_development_actions_complete: 모든 개발 작업이 완료되어야 함
     import: 가져오기
     imports:
       assessments:
@@ -2285,10 +1073,6 @@ ko:
         successfully: 사용자를 성공적으로 가져왔습니다
       new:
         header: 사용자 가져오기
-    individual_invite:
-      tabs:
-        assessment_center: 평가 센터
-        invitation_status: 초대 상태
     innovation_styles:
       create:
         successfully: 혁신 스타일 %{name}을(를) 성공적으로 만들었습니다.
@@ -2297,7 +1081,6 @@ ko:
       edit:
         header: 혁신 스타일 편집
       form:
-        full_description: 전체 설명
         no_icon: 아이콘 없음
       index:
         new: 추가
@@ -2359,69 +1142,13 @@ ko:
       toggle_status:
         successfully: 팩터가 성공적으로 업데이트되었습니다.
     integrations:
-      actions:
-        add: 통합
-        back: 통합으로 돌아가기
-        load_mettl_catalog: 메틀 평가 카탈로그 로드
-        load_microsite_catalog: 마이크로사이트 평가 카탈로그 불러오기
-        load_skillvue_catalog: 스킬뷰 평가 카탈로그 로드
-      columns:
-        active: 활성
-        details: 세부 정보
-        name: 통합 이름
-      details:
-        client_id: 클라이언트 ID
-        deployment_id: 배치 ID
-        platform_access_token_url: 플랫폼 접근 토큰 URL
-        platform_authentication_request_url: 플랫폼 인증 요청 URL
-        platform_host_name: 플랫폼 호스트 이름
-        platform_id: 플랫폼 ID
-        platform_public_keyset_url: 플랫폼 공개 키셋 URL
-        provider: 공급자 이름
-        webhookUrl: 웹훅 URL
-        webhookUrls: 웹훅 URL
-      integrations: 통합
       load_mettl_success: 메틀 평가 로드 작업이 성공적으로 대기열에 추가되었습니다
       load_microsite_success: 마이크로사이트 평가 작업이 큐에 성공적으로 추가되었습니다
       load_skillvue_success: 스킬뷰 평가 작업 로드가 성공적으로 대기열에 추가되었습니다.
       modal:
-        hogan:
-          provider: 공급자
-          providers:
-            mercer: Mercer
-            phoenix: Phoenix
-        iiht:
-          password: 비밀번호
-          tenancy_name: 테넌시 이름
-          tenant_id: 테넌트 ID
-          user: 사용자
-        mettl:
-          apiBaseUrl: API 엔드포인트
-          apiBaseUrlRequired: API 엔드포인트가 필요합니다.
-          privateKey: 개인 키
-          privateKeyRequired: 개인 키가 필요합니다.
-          publicKey: 공개 키
-          publicKeyRequired: 공개 키가 필요합니다.
-          servers:
-            mettl_eu: 유럽
-            mettl_india: 인도
         microsite:
           apiKey: API 키
           apiKeyRequired: API 키가 필요합니다
-        skillvue:
-          apiKey: API 키
-          apiKeyRequired: API 키가 필요합니다.
-        yoodli:
-          keyset_url: 키셋 URL
-          launch_url: 출시 URL
-          login_url: 로그인 URL
-      names:
-        hogan: HOGAN
-        iiht: IIHT
-        mettl: METTL
-        microsite: 마이크로사이트
-        skillvue: 스킬뷰
-        yoodli: 유들리
       validations:
         iiht:
           tenancy_name_present: 테넌시 이름이 다른 프로젝트에 이미 존재합니다
@@ -2432,26 +1159,10 @@ ko:
           api_key_present: API 키가 다른 프로젝트에 이미 존재합니다
         skillvue:
           api_key_present: API 키가 다른 프로젝트에 이미 존재합니다.
-      view_all_schedules: 모든 Mettl 일정 보기
     interview_questions:
-      delete_confirmation: 이 인터뷰 질문을 삭제하시겠습니까?
-      description: 설명
       export:
-        action: 수출 면접 질문
         details: 파일 세부 정보
-        failure_msg: 파일을 내보내는 동안 오류가 발생했습니다.
-        success_msg: 인터뷰 질문 내보내기가 진행 중입니다. 알림에서 상태를 확인하십시오.
-      form:
-        description: 설명
-        mandatory: 필수
-        question: 질문
-        question_type: 질문 유형
-        question_type_audio: 오디오
-        question_type_video: 비디오
-        time_limit: 시간 제한(초)
-        title: 면접 질문
       import:
-        action: 인터뷰 질문 가져오기
         errors:
           invalid_required_column_format: 잘못된 필수 열 값 형식 %{row}
           invalid_required_type_format: 잘못된 QuestionType 열 값 형식 %{row}
@@ -2459,64 +1170,6 @@ ko:
           missing_description: 누락된 설명 콘텐츠 %{row}
           missing_question: 누락된 질문 콘텐츠 %{row}
           save_failed: 실패한 %{message} 저장
-        failure_msg: 파일을 가져오는 동안 오류가 발생했습니다.
-        success_msg: 인터뷰 질문 가져오기가 진행 중입니다. 알림에서 상태를 확인하십시오.
-      question: 질문
-    invited_subject:
-      add_btn: 제목 추가
-      assessment_center: '평가 센터:'
-      booked_at: '예약됨:'
-      column:
-        invitation_status: 초대 상태
-        participant: 참가자
-        scheduling_details: 예약 세부 정보
-      remove_confirm:
-        content: "'%{subjectEmail}' 이메일의 제목을 제거하시겠습니까?"
-        success: 이메일 '%{subjectEmail}''이 포함된 제목을 성공적으로 제거했습니다.
-        title: 제목 제거
-      resend_invite:
-        content: 선택한 주제에 초대장을 다시 보냅니다. 계속 진행하시겠습니까?
-        success: 초대장이 성공적으로 재전송되었습니다.
-        title: 초대 다시 보내기
-      statuses:
-        accepted: 수락됨
-        cancelled: 취소됨
-        late_cancelled: 늦게 취소됨
-        late_rescheduled: 늦은 일정 변경
-        pending: 보류 중
-        requested_cancellation: 취소 요청
-        requested_cancellation_rejected: 취소 거부됨
-        requested_rescheduling: 일정 변경 요청
-        requested_rescheduling_rejected: 일정 변경 거부됨
-        rescheduled: 일정 변경
-        scheduled: 예약됨
-      subject: 제목
-    job_role:
-      are_you_sure_to_remove: 정말 제거하시겠습니까?
-      column:
-        job_group: 작업 그룹
-        skill_name: 기술 이름
-      export:
-        failure_msg: 번역 내보내기 중 오류 발생
-        success_msg: 진행 중인 개발 작업 내보내기.
-      form:
-        code: 코드
-        description: 설명
-        job_group: 작업 그룹
-        name: 이름
-        title: 직무 역할
-      import:
-        download_example_csv: 예제 파일 다운로드
-        success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
-      import_action:
-        translations: 직무 역할 번역 가져오기
-      job_role_details: 직무 역할 세부 정보
-      translations: 직무 역할 번역
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: 예상 숙련도 수준
-      form:
-        title: 스킬 작업 매핑
     job_roles:
       export:
         translations:
@@ -2582,18 +1235,11 @@ ko:
     meta_title: 관리 패널
     navigation:
       approvals: 승인
-      audit_logs: 감사 로그
-      availability: 가용성
       configuration: 구성
       content: 콘텐츠
-      dashboard: 대시보드
       factors: 요인
       innovation_styles: 혁신 스타일
-      logout: 로그아웃
       occupations: 직업
-      registration_codes: 등록 코드
-      skills_taxonomy: 기술 분류
-      users: 사용자
     no_data_found: 데이터를 찾을 수 없습니다
     norms:
       copy:
@@ -2609,13 +1255,6 @@ ko:
         factors: 요인
         inplace_title: 값 입력
         title: 규범 편집기
-      export:
-        success_msg: 정상 내보내기 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
-      import:
-        download_example_csv: 샘플 규범 CSV
-        select_file_validation: 제출하기 전에 소유자와 파일을 선택해 주세요.
-        success_msg: 업로드한 파일이 가져오기 대기열에 추가되었습니다. 알림에서 상태를 확인하세요.
-        title: 규범 가져오기
       index:
         import: 가져오기
         new: 추가
@@ -2631,10 +1270,6 @@ ko:
         updated_by: 업데이트 날짜
       new:
         header: 새로운 표준
-      norms: 규범
-      remove:
-        confirm: 아래 텍스트 상자에 규범 이름을 입력하여 확인합니다
-        warning: '"%{name}" 규범을 삭제하시겠습니까?'
       resource:
         confirmations:
           delete:
@@ -2650,10 +1285,6 @@ ko:
           copy: 규범 복사
           delete: 규범 삭제
           edit: 규범 이름 바꾸기
-      score_types:
-        five_scale: 다섯 가지 척도
-        norm_type: 규범 유형
-        percentage: 백분율
       sidebar:
         copy: 규범 복사
         destroy: 규범 삭제
@@ -2661,7 +1292,6 @@ ko:
         editor: 규범 편집기
         export: 내보내기 규범
         title: Norm의 옵션
-      title: 표준
       toggle_status:
         successfully: 규범이 성공적으로 업데이트되었습니다.
       update:
@@ -2677,12 +1307,8 @@ ko:
       edit:
         header: 직업 수정
       form:
-        alternative_icon: 대체 아이콘
-        color: 색상
         hint:
           key_career_tracks: '"+" - 목록, "*" - 굵게 예: + *생물학* - 일부 설명...'
-        indicative_roles_image: 역할 예시 이미지
-        key_career_tracks_image: 주요 경력 경로 이미지
         no_icon: 아이콘 없음
       index:
         new: 추가
@@ -2744,49 +1370,15 @@ ko:
         successfully: 팩터가 성공적으로 업데이트되었습니다.
       update:
         successfully: 인자 %{name}을(를) 업데이트했습니다.
-    participants:
-      tabs:
-        assessors: 평가자
-        sms_contacts: SMS 연락처
-        subjects: 주제
     piped_text_modal:
-      assessment_center: 평가 센터
       assessment_id: 평가 ID
       campaign_id: 캠페인 ID
       campaign_link: 캠페인 링크
-      campaign_name: 캠페인 이름
-      campaigns: 캠페인
-      description: 설명
-      duration: 기간
-      end_time: 종료 시간
-      insight_page_link: 인사이트 페이지 링크
-      insight_page_url: 인사이트 페이지 URL
-      invite_title: 제목
-      invites: 초대
       join_link: 가입 링크
       magic_link: 매직 링크
       magic_url: 매직 URL
-      platform_url_links: 플랫폼 URL 및 링크
       profile_custom_field: 프로필 사용자 지정 필드
-      project_name: 프로젝트 이름
-      projects: 프로젝트
-      report_name: 보고서 이름
-      start_time: 시작 시간
       text: 텍스트
-      title: 파이프 텍스트 추가
-      user_reports: 사용자 보고서
-      users: 사용자
-    proctoring_sessions:
-      columns:
-        comment: 댓글
-        conclusion: 결론
-        links: 링크
-        score: 점수
-        session_id: 세션 ID
-      links:
-        report: 신고
-        review: 검토
-      resource_name: 감독 세션
     products:
       copy:
         error: 오류
@@ -2799,9 +1391,6 @@ ko:
         create:
           invalid_format: 레벨 정의는 정의의 배열이어야 합니다.
           level_definition_must_match_level: 정확히 %{expected} 레벨을 포함해야 하지만 %{actual} 레벨이 제공되었습니다.
-          level_description_must_exist: 수준 설명은 비워둘 수 없습니다.
-          level_name_must_exist: 레벨 이름은 비워둘 수 없습니다.
-          must_be_unique: 고유해야 합니다.
           proficiency_level_exists: 이 스킬과 프로젝트의 숙련도 레벨이 이미 존재합니다.
           proficiency_level_exists_for_default: 기본 숙련도 레벨은 이미 종료되었습니다.
           proficiency_level_exists_for_type: 이 유형에 대한 숙련도 레벨이 이미 존재합니다.
@@ -2809,24 +1398,9 @@ ko:
           skill_must_exist: 숙련도_유형 'by_skill'에는 스킬이 있어야 합니다.
       export:
         details: 세부 정보
-        failure_msg: 숙련도 레벨 내보내기 중 오류 발생
-        success_msg: 진행 중인 개발 작업 내보내기
         translations:
           details: 숙련도 수준 번역
-      fields:
-        level: 레벨
-        level_description: 레벨 설명
-        level_name: 레벨 이름
-        proficiency_translations: 숙련도 번역
-        proficiency_type: 숙련도 유형
-        skill: 스킬
-        skill_name: 기술 이름
-        skill_type: 스킬 유형
-        title: 숙련도
       import:
-        actions:
-          proficiency: 가져오기 숙련도
-          translations: 숙련도 번역 가져오기
         errors:
           by_skill_exists_id_missing: '행 %{row_number}: 스킬 ''''%{name}''''에 대한 숙련도 수준이 이미 존재합니다. 업데이트하려면 ID를 제공하십시오.'
           by_skill_missing: '행 %{row_number}: ''by_skill'' 유형에 대해 프로젝트와 스킬이 있어야 합니다.'
@@ -2839,11 +1413,7 @@ ko:
           invalid_skill_type: '행 %{row_number}: 잘못된 스킬 유형 "%{skill_type}". 유효한 유형은 다음과 같습니다: %{valid_types}'
           missing_columns: '누락된 필수 열: %{fields}'
           skill_not_found: '행 %{row_number}: 유효하지 않거나 누락된 스킬입니다.'
-        job_queued: 숙련도 수준 가져오기 작업이 대기열에 추가되었습니다.
       translations:
-        export:
-          failure_msg: 번역 내보내기 중 오류 발생
-          success_msg: 진행 중인 개발 작업 내보내기.
         import:
           errors:
             invalid_csv_format: '잘못된 CSV 형식: %{message}'
@@ -2853,14 +1423,6 @@ ko:
             missing_required_columns: '누락된 필수 열: %{columns}'
             row_id_blank: '행 %{row}: ID는 비워 둘 수 없습니다.'
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
-      type:
-        by_skill: 기술별
-        by_skill_type: 기술 유형별
-        default: 기본값
-    profile:
-      change_password: 비밀번호 변경
-      details: 세부 정보
-      profile: 프로필
     profiles:
       edit:
         success: 프로필이 성공적으로 업데이트되었습니다.
@@ -2868,331 +1430,21 @@ ko:
       update:
         edit:
           success: 성공
-    project:
-      tools:
-        workshop_status_export: 워크샵 상태 내보내기
-        workshop_status_export_success: 워크샵 상태 내보내기가 성공적으로 예약되었습니다.
-    project_features:
-      project_features: 프로젝트 특징
-    project_participants:
-      cancel: 취소
-      column_actions: 작업
-      column_campaigns: 캠페인
-      column_createdAt: 만든 곳
-      column_created_at: 만든 곳
-      column_email: 이메일
-      column_id: ID
-      column_name: 이름
-      delete: 삭제
-      edit: 편집
-      edit_participant: 참가자 수정
-      filter_campaigns: 캠페인 없음
-      form_first_name: 이름
-      form_last_name: 성
-      reset_password: 비밀번호 재설정
-      save: 저장
-      search_user: 사용자 검색
-      send_email: 이메일 보내기
-    project_tabs:
-      assessments:
-        column:
-          name: 이름
-          normalize_factor_scores: 팩터 점수 정규화
-          user_result_validity_in_days: 결과 유효성
-        delete:
-          content: 평가 '%{name}'을 삭제하시겠습니까?
-          success: 평가 '%{name}'이(가) 성공적으로 삭제되었습니다.
-          title: 평가 삭제
-        form:
-          assessment: 평가
-          assessment_placeholder: 평가 선택
-          assessment_required: 평가가 필요합니다
-          normalize_factor_scores: 팩터 점수 정규화
-          user_result_validity_in_days: 결과 유효 기간(일)
-        title: 평가
-      design: 디자인
-      general: 일반
-      privacy: 개인정보 보호
-      profile: 프로필
-      registration: 등록
-      webhooks:
-        actions:
-          delete:
-            key: 삭제
-            label: 삭제
-          edit:
-            key: 편집
-            label: 편집
-          send_test:
-            key: send_test
-            label: 테스트 보내기
-        form:
-          acceptable_rate_limit:
-            label: 허용되는 요청 한도
-            request_per: 요청 당
-          active:
-            label: 활성
-            name: 활성
-          assessments:
-            help_text: 이 선택 사항은 평가 원시 응답 이벤트에만 영향을 미칩니다.
-            label: 평가
-            placeholder: 평가 선택
-            required: 평가 원시 응답 이벤트에 대해 최소한 하나의 평가가 선택되어야 합니다.
-          auth_type:
-            api_key:
-              label: API 키
-              name: api_key
-              value: API_KEY_AUTH
-            api_key_header:
-              format_error: 문자, 숫자, 밑줄, 하이픈만 허용됩니다.
-              label: API 키 헤더
-              name: api키헤더
-            basic:
-              label: 기본
-              value: 기본_인증
-            label: 인증 유형
-            name: auth_type
-            no_auth:
-              label: 없음
-              value: no_auth
-            oauth:
-              label: OAuth
-              value: 오인증
-          client_credentials:
-            label: 클라이언트 자격 증명
-            value: client_credentials
-          client_id:
-            label: 클라이언트 ID
-            name: oauth_client_id
-            required: 클라이언트 ID가 필요합니다.
-          client_secret:
-            label: 클라이언트 암호
-            name: oauth_client_secret
-            required: 클라이언트 암호가 필요합니다.
-          description:
-            label: 설명
-            name: 설명
-          grant_type:
-            label: 보조금 유형
-            name: oauth_grant_type
-          include_locales:
-            label: 번역 포함
-            name: 포함_로컬
-          oauth_scope:
-            label: 범위
-            name: oauth_scope
-            required: 범위가 필요합니다.
-          password:
-            label: 비밀번호
-            name: 비밀번호
-          token_url:
-            label: 토큰 URL
-            name: oauth_token_url
-            required: 토큰 URL이 필요합니다.
-          topics:
-            label: 이벤트
-            list:
-              assessment_assigned: 평가 할당됨
-              assessment_completed: 평가 완료
-              assessment_raw_response: 평가 원시 응답
-              assessment_started: 평가 시작
-              assessment_timeout: 평가 시간 초과
-              campaign_results_available: 캠페인 결과 사용 가능
-              campaign_user_assessment_summary: 캠페인 사용자 평가 요약
-              campaign_user_status: 캠페인 사용자 상태
-              report_available: 보고서 사용 가능
-              results_available: 사용 가능한 결과
-              scheduling_cancelled: 예약 취소됨
-              scheduling_invited: 초대된 일정 예약하기
-              scheduling_rescheduled: 일정 예약 변경
-              scheduling_scheduled: 예약 예약
-              workshop_attendance_status: 워크숍 참석 현황
-          url:
-            label: Url
-            name: url
-          username:
-            label: 사용자 이름
-            name: 사용자 이름
-        remove_webhook:
-          content: "%{description} 삭제하시겠습니까?"
-          title: 삭제
-        title: 웹훅
-    project_users:
-      cancel: 취소
-      change_password: 비밀번호 변경
-      column_actions: 작업
-      column_campaigns: 캠페인
-      column_created_at: 만든 곳
-      column_email: 이메일
-      column_id: ID
-      column_name: 이름
-      confirm_delete: 예, 삭제
-      confirm_send: 예, 전송
-      delete: 삭제
-      delete_error: 평가자 '%{name}'을(를) 삭제할 수 없습니다. 관리자에게 문의하세요.
-      delete_success: 평가자 '%{name}'이(가) 성공적으로 삭제되었습니다.
-      edit: 편집
-      edit_assessor: 평가자 수정
-      filter_campaigns: 캠페인이 없는 경우
-      form_first_name: 이름
-      form_last_name: 성
-      modal_delete_content: 평가자 '%{name}'을 삭제하시겠습니까?
-      modal_delete_title: 평가자 삭제
-      modal_reset_email_content: 비밀번호 재설정 링크를 '%{email}'로 보내시겠습니까?
-      model_reset_email: 평가자의 비밀번호 재설정
-      no_edit_permission: 평가자 '%{name}'을(를) 편집할 수 있는 권한이 없습니다
-      reset_mail_error: "'%{email}'로 비밀번호 재설정 링크를 보낼 수 없습니다. 관리자에게 문의하세요."
-      reset_mail_success: 비밀번호 재설정 링크가 '%{email}'로 성공적으로 전송되었습니다
-      save: 저장
-      search_accessor: 액세스 권한 검색
-      send_email: 이메일 보내기
     projects:
-      addProject: 프로젝트 추가
-      assessment_settings:
-        search: 검색 평가
       clients:
         confirmations:
           detach_from_project:
             body: 본문
             title: 제목
-      columns:
-        project_number: 프로젝트 번호
-      design_settings:
-        alt_text_invalid: 대체 텍스트에 지원되지 않는 문자가 포함되어 있습니다.
-        alt_text_logo: 로고 대체 텍스트
-        alt_text_logo_required: 대체 텍스트 로고 필수
-        alt_text_long: 최대 100자 제한을 초과합니다.
-        background_color: 배경색
-        background_label: 배경
-        background_overlay_label: 배경 오버레이
-        background_size: 배경 크기
-        background_size_contain: 포함
-        background_size_cover: 커버
-        bg_upload: 업로드
-        client_logo_label: 클라이언트 로고
-        contrast_ratio_warning: '참고: 이 기본 색상을 사용하면 텍스트 가독성을 위한 대비 비율 요구 사항을 위반할 수 있습니다.'
-        contrast_ratio_warning_lighter_color: '참고: 이 %{name} 색상을 사용하면 텍스트 가독성을 위한 대비 비율 요구 사항을 위반할 수 있습니다. 더 어두운 색상을 사용해 보세요.'
-        copy_text: 텍스트
-        dashed_button: 대시
-        default_button: 기본값
-        error_color: 오류 색상
-        hover_options:
-          danger_item: 위험 항목
-          first_menu_item: 첫 번째 메뉴 항목
-        hover_text: 나를 가리키기
-        info_color: 정보 색상
-        link_text: 링크
-        logo_upload: 업로드
-        position_auto: 자동
-        position_label: 로그인 상자 위치
-        position_left: 왼쪽
-        position_right: 오른쪽
-        primary_button: 기본
-        primary_color: 기본 색상
-        reset: 초기화
-        sec_logo_label: 보조 로고
-        sec_logo_upload: 업로드
-        secondary_logo_alt_text: 보조 로고 대체 텍스트
-        secondary_logo_alt_text_required: 보조 대체 텍스트 로고 필수
-        submenu_options:
-          option_one: 옵션 1
-          option_title: 항목 1
-          option_two: 옵션 2
-        success_color: 성공 색상
-        success_update: 디자인 설정이 성공적으로 저장되었습니다
-        tab_text_one: 메뉴
-        tab_text_two: 하위 메뉴
-        text_danger: 텍스트(위험)
-        text_success: 텍스트(성공)
-        text_warning: 텍스트(경고)
-        warning_color: 경고 색상
-      form:
-        name: 이름
-        project_number: 프로젝트 번호
-        subdomain: 하위 도메인
-        title: 프로젝트
-      general_settings:
-        live_chat: 실시간 채팅 사용
-        locales_label: 로캘
-        name_label: 이름
-        project_number_label: 프로젝트 번호
-        save_changes: 변경 사항 저장
-        sub_domain_label: 하위 도메인
-      mettl_schedule_records:
-        actions:
-          edit: 편집
-        add: 일정 추가
-        assessment_id: 평가 ID
-        assessment_name: 평가 이름
-        candidate_authorization: 후보자 인증 사용
-        candidate_screen_capture: 후보 화면 캡처 활성화
-        count: 브라우징 허용 횟수
-        created_at: 만든 곳
-        schedule_id: 스케줄 ID
-        schedule_name: 일정 이름
-        search: 검색
-        secure_browser_enabled: 보안 브라우저 사용
-        settings: 설정
-        show_remaining_counts: 남은 횟수 표시 활성화
-        visual_proctoring_enabled: 시각적 감독 활성화
-        web_proctoring_enabled: 웹 감독 활성화
       privacy_settings:
-        disable_dp: 추가 데이터 처리 허용 안 함
-        dp_consent: 데이터 처리 동의 활성화
-        dp_consent_custom: 데이터 처리 동의 사용자 지정
-        dp_consent_version: 정책 버전
         errors:
           cannot_disable_while_campaign_enabled: 이 프로젝트에서 하나 이상의 캠페인에 화상 통화 녹화가 활성화되어 있으므로 비활성화할 수 없습니다.
           min_retention: 1일 미만일 수 없음
-          policy_version_format: 정수만 허용됩니다
-          required: 필수
-        mask_identity_for_examus: Examus 감독을 위한 마스크 데이터
-        mask_identity_for_hogan: Hogan의 마스크 데이터
-        mask_identity_for_iiht: IIHT용 마스크 데이터
-        mask_identity_for_mettl: METTL용 마스크 데이터
-        mask_identity_for_mhs: MHS용 마스크 데이터
-        mask_identity_for_pearson: 피어슨의 마스크 데이터
-        mask_identity_for_saville: Saville의 마스크 데이터
-        mask_identity_for_skillvue: 스킬뷰용 마스크 데이터
-        mask_identity_for_yoodli: Yoodli의 마스크 데이터
-        privacy_link: 개인정보 링크 사용
-        privacy_link_label: 개인정보 보호 링크
-        privacy_link_placeholder: 개인정보 보호 링크 입력
-        privacy_text: 개인 정보 텍스트
-        privacy_text_placeholder: 개인정보 보호 텍스트 입력
-        video_call_recording: 영상 통화 녹화 허용
-        video_call_recording_expiry_duration: 영상 통화 녹화의 보존 기간(일 단위)
-        video_call_recording_scope: 모든 신규 캠페인에 동영상 녹화 사용
-      profile_settings:
-        form_fields:
-          enabled: 활성화됨
-          half_size: 하프 사이즈
-          locked: 잠김
-          name: 이름
-          remove: 제거
-          required: 필수
-          sort: 정렬
-        month: 월
-        never: 절대로
-        update_in: 프로필 업데이트 알림
-        year: 연도
-      registration_settings:
-        hide_signup: 가입 옵션 숨기기
-        require_mobile_number: 휴대폰 번호 필요
       users:
         confirmations:
           detach_from_project:
             body: 본문
             title: 제목
-      webhook_settings:
-        add: 웹훅 추가
-        column_active: 활성
-        column_created_date: 생성 날짜
-        column_description: 설명
-        column_manage: 관리
-        column_updated_date: 수정된 날짜
-        column_url: URL
-        search: 웹훅 검색
     questions:
       copy:
         successfully: 질문 "%{name}"을 성공적으로 복사했습니다.
@@ -3217,72 +1469,15 @@ ko:
       toggle_status:
         successfully: 업데이트에 성공했습니다.
     reflection_questions:
-      delete_confirmation: 이 성찰 질문을 삭제하시겠습니까?
       export:
-        action: 내보내기 반영 질문
         details: 파일 세부 정보
-        failure_msg: 파일을 내보내는 동안 오류가 발생했습니다.
-        success_msg: 반성 문제 내보내기가 진행 중입니다. 알림에서 상태를 확인하세요.
-      form:
-        mandatory: 필수
-        max_words: 최대 단어 수
-        min_words: 최소 단어
-        question: 질문
-        title: 반성 질문
       import:
-        action: 반영 문제 가져오기
         errors:
           invalid_max_words_column_format: 잘못된 최대 단어 열 값 형식 %{row}입니다.
           invalid_min_words_column_format: 잘못된 최소 단어 열 값 형식 %{row}입니다.
           invalid_required_column_format: 잘못된 필수 열 값 형식 %{row}이(가) 잘못되었습니다.
           missing_eng_question: 누락된 영어 문제 콘텐츠 %{row}
           save_failed: 저장 실패 %{message}
-        failure_msg: 파일을 가져오는 동안 오류가 발생했습니다.
-        success_msg: 반영 문제 가져오기가 진행 중입니다. 알림에서 상태를 확인하세요.
-      question: 질문
-    report_approval:
-      approval_statuses:
-        approved: 승인됨
-        change_requested: 변경 요청
-        not_ready: 준비되지 않음
-        pending_qc: 대기 중인 QC
-        qc_completed: QC 완료
-        qc_in_progress: QC 진행 중
-      bulk_approve_success: 승인을 위해 %{sent_for_approval} 보고서를 보냈습니다. 승인된 %{approved} 보고서가 승인되었습니다. 무시된 %{ignored} 보고서는 QC 변경/의견으로 인해 수동 승인이 필요합니다.
-      columns:
-        actions: 작업
-        approval_status: 승인 상태
-        approved_by: 승인자
-        assessed_by: 평가자
-        campaign_name: 캠페인 이름
-        qc_by: QC 기준
-        report_name: 보고서 이름
-        subject_email: 제목 이메일
-        user_email: 사용자 이메일
-        user_name: 사용자 이름
-      dashboard: 대시보드
-      download: 다운로드
-      report_approval_settings: 보고서 승인 설정
-      report_approvals: 보고서 승인
-      review: 검토
-      saving_filters:
-        actions:
-          clear_filters: 필터 지우기
-          delete_filter: 필터 삭제
-          save_filter: 저장
-          save_new_filter: 새 필터로 저장
-          saved_filters: 저장된 필터
-        delete_saved_filters: 필터 삭제됨
-        edit_filter_name: 필터 이름 저장
-        error_while_deleting: 삭제 중 오류
-        error_while_editing: 편집 중 오류
-        error_while_fetching: 문제가 발생했습니다 , 다시 시도하세요
-        error_while_saving: 필터 저장 중 오류
-        filter_updated: 필터 업데이트
-        no_saved_filters: 저장된 필터가 없습니다
-        save_filter: 저장된 필터
-        set_favorite: 필터가 즐겨찾기로 설정되었습니다
-      submit_or_approve_all: 모두 제출 또는 승인
     report_builder:
       campaign_factors:
         add_field: 필드 추가
@@ -3417,22 +1612,6 @@ ko:
         title: 보고서 번들 옵션
       update:
         successfully: 보고서 번들 %{name}을(를) 업데이트했습니다.
-    report_review:
-      abort_qc: QC 중단
-      approve: 승인
-      approve_changes: 변경 사항 승인
-      edit: 편집
-      remove_approval: 승인 제거
-      request_changes: 변경 요청
-      review: 검토
-      send_for_approve: 승인을 위해 보내기
-      statuses:
-        approved: 승인됨
-        change_requested: 요청된 변경 사항
-        not_ready: 준비되지 않음
-        pending_qc: 대기 중인 QC
-        qc_completed: QC 완료
-        qc_in_progress: QC 진행 중
     report_settings:
       data_source_types:
         assessment: 평가
@@ -3456,9 +1635,6 @@ ko:
         title: 대량 업로드 캠페인 요소
         upload_success: 업로드 성공
       copy:
-        copy: 복사
-        copy_report: 보고서 복사
-        name: 이름
         successfully: "'%{name}' 보고서를 성공적으로 복사했습니다."
       create:
         successfully: "'%{name}' 보고서를 성공적으로 만들었습니다."
@@ -3466,15 +1642,6 @@ ko:
         successfully: "'%{name}' 보고서를 성공적으로 삭제했습니다."
       edit:
         header: 보고서 이름 수정
-      edit_default_language:
-        agreement: 예, 기본 언어 변경의 의미를 이해합니다.
-        title: 기본 언어 편집
-        tooltip: 기본 언어 편집
-        warning:
-          description_li_1: 기본 언어를 RTL에서 LTR 언어로 또는 그 반대로 변경하면 레이아웃에 영향을 미칩니다.
-          description_li_2: 기본 언어를 변경하면 보고서 번역을 다시 작업해야 합니다.
-          description_li_3: 이 변경을 수행하기 전에 보고서 번역본을 다운로드하세요.
-          title: 지침을 주의 깊게 읽어주세요.
       modals:
         remap_assessment:
           new_assessment_name: 새 평가 이름
@@ -3484,10 +1651,6 @@ ko:
       new:
         header: 보고서 선택
       preview:
-        comments: 댓글
-        hide_resolved: 해결됨 숨기기
-        history: 역사
-        info_to_select_module: 댓글을 달 텍스트 모듈을 선택합니다
         title: 미리 보기
       regenerate:
         successfully: 재생을 위해 보고서를 성공적으로 전송했습니다
@@ -3517,425 +1680,17 @@ ko:
         successfully: 보고서가 성공적으로 업데이트되었습니다.
       update:
         successfully: 보고서 %{name} 성공적으로 업데이트되었습니다.
-    reports_language_selection_modal:
-      download: 보고서 다운로드
-      generate: 보고서 생성
     resource:
       remove_confirm:
         message: 이 리소스를 제거하시겠습니까?
         title: 리소스 제거
-    saml_settings:
-      after_signout_url: 로그아웃 후 URL
-      cert: 인증서
-      config_details:
-        acs_url: 어설션 소비자 서비스 URL
-        copied: 복사한 %{element}
-        issuer: 엔티티 ID/발급자
-        title: 다음 정보를 사용하여 Idp를 구성합니다
-      email_pipetext: 이메일 Pipetext
-      enabled: 활성화됨
-      entity_id: 법인 ID/발급자
-      name_identifier_format: 이름 식별자
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-형식:이메일주소
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: SAML 설정
-      save: 설정 저장
-      sso_service_url: SSO 서비스 URL
-      successfully_saved_msg: SAML 설정이 성공적으로 저장되었습니다.
     save: 저장
-    scheduling:
-      add_activity: 활동 추가
-      add_assessment_center: 평가 센터 추가
-      add_assessor_form:
-        assessment: 평가
-        assessor: 평가자
-        schedule_time: 스케줄 시간
-      add_subject: 제목 추가
-      assessment_center_form:
-        add_more: 더 보기
-        allow_late_cancellation_and_scheduling: 늦은 취소 및 예약 허용
-        assessment_center_group: 평가 센터 그룹
-        assessment_center_group_placeholder: 평가 센터 그룹 선택
-        assessor_ids_label: 평가자
-        back: 뒤로
-        basic_info_panel:
-          description: 아래에 일정 정보를 입력하세요. 여러 날짜를 선택하여 여러 평가 센터를 만들 수도 있습니다.
-          title: 기본 정보
-        cancellation_lead_time_label: 취소 리드 타임
-        copy_hint: 위의 좌석, 센터 관리자, 평가자 및 미팅 및 리소스 구성을 다음 평가 센터에 복사합니다. 복사한 후 계속 진행하기 전에 개별 평가 센터를 추가로 변경할 수 있습니다.
-        copy_to_all: 다른 평가 센터로 복사
-        create: 만들기
-        dates_label: 날짜
-        disable_cancellation_and_rescheduling: 취소 및 일정 변경 비활성화
-        duration_label: 기간
-        duration_max_error: 16시간을 초과할 수 없습니다
-        duration_min_error: 15분 미만일 수 없습니다
-        duration_placeholder: '예: 4시간 30분'
-        manager_ids_label: 센터 관리자
-        meeting_link: 미팅 링크
-        meetings_and_resources: 미팅 및 리소스
-        name_label: 이름
-        next: 다음
-        required_error: 필수
-        resources_panel:
-          description: 진행자가 액세스할 수 있도록 하려는 리소스에 대한 링크를 추가합니다.
-          resource_name_placeholder: 리소스 이름
-          resource_url_placeholder: 리소스 링크
-          title: 리소스
-          validation_error: 이름과 URL을 모두 입력하거나 리소스를 제거합니다
-        scheduling_lead_time_label: 스케줄링 리드 타임
-        seats_label: 좌석
-        time_label: 시간
-        timezone_label: 시간대
-        url_label: URL
-        video_call_type:
-          custom: 사용자 지정
-          internal: 내부
-          none: 없음
-        video_call_type_label: 화상 통화 추가
-      attendance_status:
-        column_name: 출석 상태
-        dropped_out: 탈락
-        late: Late
-        no_show: 노쇼
-        no_status: 상태 없음
-        on_time: 정시에
-      attended:
-        attended: 참석
-        not_attended: 참석하지 않음
-      campaign_participants: 캠페인 참가자
-      columns:
-        activity: 활동
-        assessment_center_date_and_time: 평가 센터 날짜 및 시간
-        assessor: 평가자
-        assessors: 평가자
-        attendance: 출석
-        attended: 참석
-        booked_at: 예약 장소
-        campaign_assessment_group: 평가 센터 그룹
-        campaign_name: 캠페인 이름
-        duration: 기간
-        link_to_view_recordings: 녹화 보기 링크
-        managers: 관리자
-        meeting_link: 미팅 링크
-        name: 이름
-        participants: 참가자
-        prework: 사전 작업
-        recording_date: 녹음 날짜
-        resource_link: 링크
-        resource_name: 이름
-        schedule_time: 스케줄 시간
-        scheduling_status: 예약 상태
-        seats: 좌석
-        serial_no: 일련번호
-        start_time: 날짜 및 시간
-        subject: 제목
-        title: 제목
-        view_recording: 녹화 보기
-      errors:
-        assessor_already_assigned: 이 평가에 이미 평가자가 배정되었습니다. 다른 평가 또는 평가자를 선택하십시오.
-        date_required: 날짜를 선택하세요
-        invalid_url: 잘못된 URL 형식
-        meeting_link_https: 미팅 링크는 "https://"로 시작해야 합니다
-      id: ID
-      info:
-        allowed: 허용됨
-        assessors: 평가자
-        booked: 예약된 좌석
-        campaign_assessment_group: 평가 센터 그룹
-        cancellation_lead_time: 취소 리드 타임
-        cancellation_tooltip: 사용자는 %{date}까지 예약을 취소할 수 있습니다
-        date: 날짜 및 시간
-        duration: 기간
-        join_meeting: 조인 룸
-        late_cancellation_and_scheduling: 늦은 취소 및 예약
-        link: 미팅 링크
-        managers: 센터 관리자
-        none: 없음
-        not_allowed: 허용되지 않음
-        recording_enabled: 녹음 활성화
-        remaining: 남은 좌석 수
-        scheduling_lead_time: 스케줄링 리드 타임
-        scheduling_tooltip: 사용자가 %{date}까지 슬롯을 예약할 수 있습니다
-        search_placehoder: 아이디, 이메일 또는 이름으로 검색
-        timezone: 시간대
-        total_seats: 총 좌석 수
-      resources:
-        confirm_message: 리소스 '%{resource_name}'을 삭제하시겠습니까?
-        confirm_title: 확인 필요
-        create: 리소스 만들기
-        invalid_url: 잘못된 URL입니다. http 또는 https 프로토콜이 포함된 전체 URL을 지정합니다.
-        resource: 리소스
-        successful_remove: 평가 센터 리소스 %{resource_name}을(를) 성공적으로 삭제했습니다.
-      schedule_assessments: 평가 일정 예약
-      scheduling_statuses:
-        cancelled: 취소됨
-        late_cancelled: 늦게 취소됨
-        late_rescheduled: 늦은 일정 변경
-        rescheduled: 일정 변경
-        scheduled: 예약됨
-      search_participant: 캠페인 참가자 검색
-      status:
-        completed: 완료
-        dropped_out: 탈락
-        in_progress: 진행 중
-        late: Late
-        no_show: 노쇼
-        not_started: 시작되지 않음
-      status_change_modal:
-        content: 평가 센터를 닫으면 참가자는 센터 활동에 참여할 수 없습니다.
-        title: 평가 센터 상태 변경
-      subjects:
-        activities: 활동
-        add_assessor_form: 평가자 양식 추가
-        assessments: 평가
-        assessor_forms: 평가자 양식
-        confirm_message: |
-          "'%{subject_email}' 이메일을 사용하는 피험자의 참여를 취소하시겠습니까?
-          <br />
-          취소됨으로 표시되면 이 과목은 평가 센터에 참여할 수 없습니다.\n"
-        confirm_title: 확인 필요
-        edit_assessor_form: 평가자 양식 편집
-        form_title: 평가 일정 예약
-        language: 언어
-        language_not_selected: 선택되지 않음
-        mark_cancel: 마크 취소
-        mark_cancel_success: 이메일 %{subject_email} 주제 참여 취소.
-        meeting_link_custom: 사용자 지정
-        meeting_link_internal: 내부
-        meeting_link_none: 없음
-        meeting_link_title: 미팅 링크
-        no_change: 변경 없음
-        override_existing: 과목에 대한 기존 스케줄 재정의
-        preworks: 사전 작업
-        re_enroll: 재등록
-        re_enroll_confirm_message: "'%{subject_email}' 이메일로 주제를 다시 등록하시겠습니까?"
-        re_enroll_success: 이메일로 주제를 재등록 %{subject_email}.
-        schedule: 일정
-        unschedule: 일정 취소
-      tabs:
-        activities: 활동
-        assessment_center: 평가 센터
-        invites: 초대
-        recordings: 녹음
-        resources: 리소스
-        subjects: 주제
     scoring:
-      action_prohibited: 금지된 행동
-      active: 활성
-      actual_average: 실제 평균
-      add_factor: 팩터 추가
-      add_group: 그룹 추가
-      assessment: 평가
-      assessment_scoring_type: 평가 채점 유형
-      average: 평균
-      campaign_scoring_variables: 캠페인 점수 변수
-      code: 코드
-      desc: 캠페인 요소의 최대 한도인 %{n}개를 초과했습니다. 추가 요소를 추가할 수 없습니다. 계속 진행하기 전에 기존 요소를 검토하고 관리하세요.
-      description: 설명
-      dimension: 차원
-      edit_factor: 편집 계수
       export:
         details: 캠페인 점수
         factors: 수출 캠페인 요소
-      factor: 요인
-      factor_group_removed_successfully: 캠페인 팩터 그룹이 성공적으로 제거되었습니다
-      factor_removal_confirmation: 아래 텍스트 상자에 인자 이름을 입력하여 확인합니다
-      factor_removed_successfully: 캠페인 팩터가 성공적으로 제거되었습니다
-      factors_exported_successfully: 캠페인 요소 내보내기 작업이 성공적으로 예약되었습니다
-      factors_imported_successfully: 캠페인 요소 가져오기 작업이 성공적으로 예약되었습니다
-      final: 최종
-      final_score_updated_successfully: 최종 점수가 성공적으로 업데이트되었습니다
-      formula: 공식
-      get_started: 시작하기
-      id: ID
-      import:
-        factors: 캠페인 요소 가져오기
-      innovation_style_removal_confirmation: 확인하려면 아래에 제시된 혁신 스타일 이름을 텍스트 상자에 입력하세요
-      name: 이름
-      no_groups: 현재 그룹 없음
-      occupation_removal_confirmation: 확인하려면 아래에 제시된 직종명을 텍스트 상자에 입력하세요
-      output_type: 출력 유형
-      pattern_error: 영숫자, 공백 및 대시만 허용됩니다.
-      profile:
-        years: 년
-      public: 공개
-      ranked: 순위
-      remove_all_campaign_factors:
-        confirmation: 아래 텍스트 상자에 현재 캠페인 이름을 입력하여 확인합니다
-        error: 캠페인 요인 제거 실패
-        success: 캠페인 요인 제거 성공
-        title: 캠페인 요소 제거
-        warning: 모든 캠페인 요소와 사용자에 대한 모든 관련 점수를 삭제하려고 합니다. 이 작업을 수행하시겠습니까?
-      remove_factor_group_confirmation_content: "'%{group_name}' 요소 그룹을 제거하시겠습니까?"
-      remove_factor_group_confirmation_title: 팩터 그룹 제거
-      required_error: 비어 있을 수 없음
-      save: 저장
-      save_all: 모두 저장
-      score_range: 점수 범위
-      score_types:
-        norm_score: 표준 점수
-        percentage: 백분율
-        percentile: 백분위수
-        score: 점수
-        zscore: Z 점수
-      scoring: 득점
-      scoring_description: 캠페인 스코어링을 통해 평가 전반에 걸쳐 보고할 수 있습니다
-      select_all: 모든 %{n} 과목 선택
-      select_assessment_first: 평가 우선 선택
-      select_factor: 팩터 선택
-      show_weightages: 가중치 표시
-      subject: 제목
-      subject_list:
-        actions: 작업
-        bulk_mark_finalized: 벌크 마크 확정
-        bulk_mark_finalized_confirm: 선택한 사용자에 대한 점수를 확정하면 해당 사용자의 캠페인 요소를 사용한 보고서가 생성됩니다. 계속 진행하시겠습니까?
-        bulk_mark_not_finalized: 벌크 마크 미확정
-        bulk_mark_not_finalized_confirm: 선택한 사용자에서 최종 결정을 제거하면 해당 사용자의 캠페인 인자를 사용하는 생성된 보고서가 제거됩니다. 계속 진행하시겠습니까?
-        bulk_rescore: 대량 재점수
-        bulk_rescore_confirm: 선택한 사용자를 점수화합니다. 계속 진행하시겠습니까?
-        calculated_date: 계산된 날짜
-        calculation_errors: 계산 오류
-        export: 내보내기 점수
-        export_success: 점수 내보내기 작업이 성공적으로 예약되었습니다
-        finalized: 확정
-        finalized_date: 확정 날짜
-        import_external_scores: 외부 점수 가져오기
-        mark_finalized: 완료 표시
-        mark_finalized_confirm: 사용자 '%{email}'에 대한 점수를 확정하면 해당 사용자에 대한 캠페인 요소를 사용한 보고서가 생성됩니다. 계속 진행하시겠습니까?
-        mark_not_finalized: 완료되지 않음 표시
-        mark_not_finalized_confirm: 사용자 '%{email}'에서 최종 처리를 제거하면 해당 사용자에 대한 캠페인 인자를 사용하는 생성된 보고서가 제거됩니다. 계속 진행하시겠습니까?
-        push_webhook: 푸시 웹훅
-        rank: 순위
-        rescore: 재점수
-        rescore_confirm: 사용자 '%{email}'을 복원하는 중입니다. 계속 진행하시겠습니까?
-        tools: 도구
-      tabs:
-        settings: 설정
-        subject_scores: 과목 점수
-      type: 유형
-      variables: 변수
-      weightages:
-        assessorForms: 평가자 양식
-        successful_update: 가중치가 성공적으로 업데이트되었습니다
-        tools: 도구
-        weightages: 가중치
-      weighted_average: 가중 평균
-    scoring_approval:
-      approve_all: 모두 승인
-      bulk_approve_success: "%{approved} 점수 승인됨."
-      review: 리뷰
-      score_approvals: AI 채점 승인
     search: 검색
-    security_setting:
-      180_days: 180일
-      30_days: 30일
-      365_days: 365일
-      90_days: 90일
-      attempts_to_lock: 잠금 시도
-      auto_unlock_time: 자동 잠금 해제 시간
-      disable_password_reuse: 비밀번호 재사용 비활성화
-      disallow_password_login: 비밀번호 로그인 허용
-      enable_login_with_magic_link: 매직링크로 로그인 사용
-      enable_recaptcha: 재캡차 사용
-      enforce_password_policy: 다음 로그인 시 비밀번호 정책 적용
-      enforce_strong: 강력한 비밀번호 적용
-      expiration: 비밀번호 만료
-      lock_account: 계정 잠금
-      magic_link_expiry_duration: 매직 링크 만료 기간
-      min_length: 최소 비밀번호 길이
-      never: 절대로
-      restrict_sequences: 순차적이고 반복적인 문자 제한
-      security: 보안 설정
-      send_unlock_email: 잠금 해제 이메일 보내기
-      session_timeout_duration: 세션 시간 초과 기간
-      tfa_enabled: 2단계 인증 사용
-    security_settings:
-      security_setting: 보안 설정
-    settings:
-      admin_roles:
-        confirm_message: 관리자 역할 '%{role_name}'을 삭제하시겠습니까?
-      siem:
-        description: 설명
-        destination_type: 대상 유형
-        destination_types:
-          s3: S3
-          s3_compatible: S3 호환
-        enabled: 활성화됨
-        readable_resource_name: SIEM 설정
-        s3_access_key_id: 액세스 키 ID
-        s3_bucket_folder: S3 버킷 폴더
-        s3_bucket_name: S3 버킷 이름
-        s3_endpoint: S3 엔드포인트
-        s3_region: S3 지역
-        s3_secret_access_key: 비밀 액세스 키
-        send_test_log: 테스트 로그 보내기
-        send_test_log_error_message: 테스트 로그가 버킷으로 전송되지 않았습니다. 설정을 확인하세요
-        send_test_log_success_message: 테스트 로그가 버킷으로 성공적으로 전송되었습니다
-      skill_aliases:
-        alias: Alias
-        confirm_message: 스킬 별칭 '%{skill_alias}'를 삭제하시겠습니까?
-        create: 스킬 별칭 추가
-        select_skill: 스킬 선택
-        skill: 스킬
-        skill_alias: 스킬 별칭
-        successful_remove: 스킬 별칭 '%{skill_alias}'를 성공적으로 삭제했습니다.
-      tabs:
-        admin_roles: 관리자 역할
-        feature_flags: 기능 플래그
-        siem: SIEM
-        skill_aliases: 스킬 별칭
-    sheets:
-      column:
-        add_column: 열 추가
-        not_allowed_for_dashboard_use: 대시보드에서 사용할 열의 경우 64자 미만이어야 합니다
-        reorder: 재주문
-        save_order: 주문 저장
-      drawers:
-        add_edit:
-          cancelText: 취소
-          markdown:
-            preview: 미리 보기
-            title: 마크다운
-          save: 저장
-          saving: 저장
-          success_message_add: 새 기록 추가
-          success_message_edit: 기록 업데이트
-          title_add: 시트 레코드 추가
-          title_edit: 시트 행 레코드 편집
-          validations:
-            required_email: 이메일을 입력하세요
-        view:
-          campaign_title: 캠페인 레벨 기록
-          edit_button: 편집
-          project_title: 프로젝트 수준 기록
-          title: 시트 행 레코드 세부 정보
-      list:
-        header:
-          add_record: 레코드 추가
-          search_record: 기록 검색
-      modals:
-        delete_records:
-          cancelText: 취소
-          content: 선택한 {{count}} 레코드를 삭제하시겠습니까?
-          okText: 예, 삭제
-          successMessage: "{카운트}} 레코드가 성공적으로 삭제되었습니다."
-          title: 카운트}} 레코드 삭제
-        remove_columns:
-          cancelText: 취소
-          content: 열({{columns}})을 삭제하면 모든 행에 대해 이 열의 데이터가 제거됩니다
-          okText: 예, 삭제
-          successMessage: "{카운트}} 삭제된 레코드"
-          title: 열 삭제
-      tabs:
-        rows: 행
-        settings: 설정
     skills:
-      applicable_proficiency_levels: 적용 가능한 숙련도 수준
-      columns:
-        skill_group: 스킬 그룹
-        skill_type: 스킬 유형
       errors:
         import:
           missing_fields_data: '줄 %{line_number}: 누락된 필수 필드: %{fields}'
@@ -3949,28 +1704,11 @@ ko:
           query_too_short: 는 필수이며 3자 이상이어야 합니다
       export:
         details: 세부 정보
-        failure_msg: 번역 내보내기 중 오류 발생
-        success_msg: 진행 중인 개발 작업 내보내기.
         translations:
           details: 스킬 번역
       form:
         client_placeholder: 클라이언트 선택
-        description: 설명
-        name: 이름
         project_placeholder: 프로젝트 선택
-        skill_group: 스킬 그룹
-        skill_type: 스킬 유형
-        title: 스킬
-      import:
-        download_example_csv: 예제 파일 다운로드
-        info_msg: 업로드한 파일이 가져오기 대기열에 추가되었습니다. 알림에서 상태를 확인하세요.
-        success_msg: 업로드한 파일이 가져오기 대기열에 추가되었습니다. 알림에서 상태를 확인하세요.
-      import_action:
-        skills_title: 스킬 가져오기
-        skills_translations_title: 스킬 번역 가져오기
-      skill_details: 기술 세부 정보
-      skill_translations: 기술 번역
-      title: 기술
       translations:
         import:
           errors:
@@ -3978,152 +1716,13 @@ ko:
             missing_columns: '누락된 필수 열: %{columns}'
             save_failed: '오류 처리 스킬 ID %{id}: %{message}'
             skill_not_found: 아이디가 %{id}인 스킬을 찾을 수 없습니다
-      vector:
-        generate_embedding: 삽입 생성
-        generate_embedding_failure_msg: 기술 임베딩 생성 작업을 대기열에 넣지 못했습니다. 다시 시도해 주세요.
-        generate_embedding_success_msg: 기술 임베딩 생성 작업이 성공적으로 대기열에 들어왔습니다. 알림에서 상태를 확인해 주세요.
-        label: 벡터 DB
-    sms_histories:
-      columns:
-        first_name: 이름
-        last_name: 성
-        mobile_no: 모바일 번호
-        price: 가격
-        segment_length: 세그먼트 길이
-        sent_at: 보낸 주소
-      drawer:
-        title: SMS 세부 정보
-      history: 역사
-      statuses:
-        accepted: 수락됨
-        delivered: 배달됨
-        failed: 실패
-        queued: 대기열
-        scheduled: 예약됨
-        sent: 보낸
-        undelivered: 배달되지 않음
     sms_invites:
-      actions:
-        add: SMS 연락처 추가
-      columns:
-        created_at: 만든 곳
-        created_by: 만든 사람
-        email: 이메일
-        first_name: 이름
-        last_name: 성
-        mobile_no: 모바일 번호
-      contacts: 연락처
-      form_modal:
-        first_name: 이름
-        last_name: 성
-        locale: 로캘
-        mobile_no: 모바일 번호
-        title: SMS 초대
-      import:
-        download_example_csv: CSV 예제 다운로드
-        success_msg: 업로드한 파일이 가져오기 대기열에 추가되었습니다. 알림에서 상태를 확인하세요.
-        title: SMS 초대 가져오기
       messages:
-        delete_confirm_text: 휴대폰 번호 %{mobile_no}로 SMS 초대를 제거하시겠습니까?
-        delete_success: SMS 초대가 성공적으로 삭제되었습니다
         failed_to_sent_invite: 모바일 번호 %{mobile_no}로 초대를 보내지 못했습니다
-      send_sms:
-        fields:
-          link_expiry: 링크 만료
-          locale: 로캘
-          message: 메시지
-          statuses: 상태
-          users: 사용자
-        modal:
-          btn_name: SMS 보내기
-          title: SMS 보내기
-        pipetext_details: |
-          "{{{first_name}}} - 받는 사람 이름
-           <br />
-           {{{last_name}}} - 수신자 성
-           <br />
-           {{{invite_url}}} - 등록 링크"
-        segment_length_msg: 이 메시지의 예상 세그먼트 수는 %{segment_length}입니다.
-        segment_length_range_msg: 이 메시지의 예상 세그먼트 수는 %{min_segment_length}에서 %{max_segment_length} 사이입니다.
-      statuses:
-        all: 모두
-        failed: 실패
-        invited: 초대됨
-        not_invited: 초대받지 않음
-        registered: 등록됨
-      tools:
-        export: SMS 연락처 내보내기
-        import: SMS 연락처 가져오기
-        send_sms: SMS 보내기
-    sms_records:
-      columns:
-        id: ID
-        message: 메시지
     smtp_settings:
-      authentication: 인증
-      authentication_type: 인증 유형
-      authentication_types:
-        cram_md5: cram MD5
-        login: 로그인
-        plain: 일반
-      enabled: 활성화됨
-      encryption: 암호화
-      encryption_types:
-        none: 없음
-        ssl: SSL
-        tls: TLS
       errors:
         authentication_failed: 사용자 아이디 또는 비밀번호가 올바르지 않습니다
         host_unreachable: 호스트에 연결할 수 없습니다. 호스트, 포트 또는 암호화가 올바르지 않습니다
-      from_email: 이메일에서
-      from_name: 이름에서
-      host: 호스트
-      password: 비밀번호
-      port: 포트
-      send_test_email: 테스트 이메일 보내기
-      smtp: SMTP
-      test_email_modal:
-        input_hint: 테스트 이메일이 성공적으로 전송될 때까지 이메일 설정은 저장되지 않습니다.
-        input_placeholder: 이메일 ID 테스트
-        title: 이메일 ID 테스트
-      test_modal:
-        success_message: 테스트 이메일을 %{email_id}로 보냈습니다.
-        title: SMTP 설정 테스트
-      update_success_msg: SMTP 설정이 성공적으로 업데이트되었습니다.
-      use_sender_verification: 발신자 인증 사용
-      user_name: 사용자 이름
-    stats:
-      assessments:
-        active: 활동적인
-        columns:
-          assessment_name: 평가 이름
-          completed: 완료
-          id: ID
-          in_progress: 진행 중
-          ineligible: 부적격
-          interrupted: 중단됨
-          not_started: 시작되지 않음
-          timed_out: 시간 초과
-        count: 개수
-        inactive: 비활성
-        percentage: 백분율
-        title: 평가
-      top_metrics:
-        completed: 완료
-        in_progress: 진행 중
-        interrupted: 중단됨
-        not_started: 시작되지 않음
-        timed_out: 시간 초과
-        users: 사용자
-      users:
-        date_presets:
-          last_30_days: 지난 30일
-          last_7_days: 지난 7일
-          last_month: 지난 달
-          last_week: 지난 주
-          today: 오늘
-          yesterday: 어제
-        y_title: 사용자 수
     sub_factors:
       destroy:
         successfully: 하위 요소 %{name}이(가) 성공적으로 삭제되었습니다.
@@ -4233,18 +1832,7 @@ ko:
           one: '합계 : 1'
           other: '합계 : {{count}}'
           zero: '합계 : 0'
-      more_actions: 더 많은 작업
     taxonomy:
-      import:
-        description: 스킬 분류 체계를 가져오거나 업데이트하려면 Excel 파일을 업로드하세요. 이렇게 하면 새로운 스킬, 직무 역할 및 숙련도 수준이 추가됩니다.
-        download_example_file: 예제 파일 다운로드
-        drag_text: 파일을 이 영역에 클릭하거나 드래그하여 업로드하세요
-        error_title: 가져오기 실패
-        file_hint: ".xls 및 .xlsx 파일을 지원합니다."
-        import_button: 수입 분류 체계
-        success_msg: 업로드한 파일을 가져오기 위해 대기 중입니다. 알림에서 상태를 확인하세요.
-      import_action:
-        taxonomy: 스킬 분류 가져오기
       title: 기술 분류
     templates:
       blocks:
@@ -4337,187 +1925,9 @@ ko:
       convert_action:
         already_a_template: 이미 템플릿이 있습니다.
         has_user_data: 템플릿으로 변환하기 전에 도구 드롭다운에서 '모든 참가자 초기화'를 클릭하여 캠페인을 수동으로 초기화하세요.
-      convert_template_modal:
-        cancel: 취소
-        confirm: 확인
-        convert:
-          success: 템플릿이 성공적으로 변환되었습니다.
-        convert_option: 이 캠페인을 템플릿으로 변환
-        copy:
-          success: 캠페인 템플릿 생성 작업이 성공적으로 예약되었습니다. 알림에서 상태를 확인하세요.
-        copy_option: 이 캠페인에서 새 템플릿 만들기
-        description: 이 캠페인에서 템플릿을 만드는 방법을 선택합니다.
-        failed: 템플릿을 만들지 못했습니다.
-        title: 템플릿으로 변환
-      email_templates:
-        approve_nomination:
-          description: 이 메시지는 직속 상사가 작성한 지명을 승인해야 할 때 관리자에게 전송됩니다
-          name: 추천 승인
-        approve_report:
-          description: 이 메시지는 피험자의 관리자에게 전송되어 피험자 보고서가 승인될 준비가 되었음을 알립니다
-          name: 보고서 승인
-        categories:
-          approvals: 승인
-          invitations: 초대
-          reminders: 리마인더
-          report_ready: 보고서 준비
-        consolidated: 통합
-        custom_message:
-          description: 이 메시지는 평가에 참여하는 모든 사람에게 보낼 수 있습니다
-          name: 사용자 지정 메시지
-        days_repeated: 일, 반복
-        evaluator_invite:
-          description: 이 메시지는 평가자인 모든 참가자에게 전송됩니다
-          name: 평가자 초대
-        evaluator_reminder:
-          description: 이 메시지는 평가자에게 보류 중인 평가를 완료하도록 상기시키기 위해 전송됩니다
-          name: 평가자 알림
-          rule_description: 초대가 예약되는 시기를 자동으로 예약하는 규칙 지정하기
-          rule_name: 평가자 알림 규칙
-        from: 에서
-        manager_report_ready:
-          description: 이 메시지는 피험자의 보고서가 준비되면 피험자의 관리자에게 전송됩니다
-          name: 관리자 보고서 준비
-        nomination_denied:
-          description: 지명이 거부되면 이 메시지는 피지명자에게 전송됩니다
-          name: 추천 거부됨
-        reply_to_email: 이메일에 답장하기
-        request_approval:
-          description: 이 메시지는 주체가 승인을 요청할 때 관리자에게 전송됩니다
-          name: 승인 요청
-        save: 저장
-        schedule: 일정
-        schedule_email: 이메일 예약
-        schedule_email_title: 이메일 예약
-        schedule_time: 스케줄 시간
-        send_test_email: 테스트 이메일 보내기
-        subject: 제목
-        subject_invite:
-          description: 이 메시지는 피험자가 평가에 참여하도록 초대하기 위해 전송됩니다
-          name: 제목 초대
-        subject_reminder:
-          description: 각 참가자에게 평가에 참여하도록 상기시키는 메시지를 보냅니다
-          name: 제목 알림
-          rule_description: 초대가 예약되는 시기를 자동으로 예약하는 규칙 지정하기
-          rule_name: 제목 알림 규칙
-        subject_report_ready:
-          description: 보고서가 준비되면 이 메시지가 대상자에게 전송됩니다
-          name: 주제 보고서 준비
-        times: 횟수
-      instruction_templates:
-        evaluate_others:
-          description: 참가자가 포털 내에서 다른 참가자를 평가할 때 이 메시지가 표시됩니다
-          name: 다른 사람 평가하기
-        evaluate_self:
-          description: 이 메시지는 피험자가 자가 평가를 시작할 때 피험자에게 표시됩니다
-          name: 평가자 셀프
-        evaluation_help:
-          description: 사용자 대시보드의 평가 카드에 표시되는 도움말 텍스트
-          name: 평가 도움말
-        evaluator_welcome:
-          description: 이 메시지는 '환영 메시지'를 덮어쓰며 현재 평가자로 참여하고 있는 참가자에게만 표시됩니다.
-          name: 평가자 환영
-        invite_evaluators:
-          description: 평가자 지명을 시작하면 이 메시지가 피험자에게 표시됩니다
-          name: 평가자 초대하기
-        nomination_help:
-          description: 사용자 대시보드의 추천 카드에 표시되는 도움말 텍스트
-          name: 추천 도움말
-        report_help:
-          description: 사용자 대시보드의 성적표에 표시되는 도움말 텍스트
-          name: 보고서 도움말
-        welcome_message:
-          description: 이 메시지는 학습자가 평가를 시작하거나 과제 목록을 보기 위해 로그인할 때 과목에 표시됩니다
-          name: 환영 메시지
-      mail_history:
-        actions: 작업
-        date: 날짜
-        download_details: 세부 정보 다운로드
-        emails_sent: 이메일 전송
-        recipient: 수신자
-        status: 상태
-        subject: 제목
-      manage:
-        assessment: 평가
-        dimension: 치수
-        manage_relationships: 관계 관리...
-        report: 신고
-        title: 관리
-      menu:
-        actions: 작업
-        datasheet:
-          title: 데이터시트
-        messages:
-          allow_subjects_to_send_reminders: 피험자가 평가자에게 미리 알림을 보낼 수 있도록 허용하기
-          automatically_send_invites: 새 평가자에게 자동으로 초대장 보내기
-          title: 메시지
-        participants:
-          columns:
-            action: 액션
-            email: 이메일
-            evaluations_completed: 평가 완료
-            evaluations_received: 받은 평가
-            is_subject: 제목
-            name: 이름
-          evaluators:
-            add_evaluators: 평가자 추가
-            import_evaluators: 평가자 가져오기
-            title: 평가자
-          managers:
-            title: 관리자
-          options:
-            evaluator_options: 평가자 옵션
-            global: 글로벌 옵션
-            manager_options: 관리자 옵션
-            subject_options: 제목 옵션
-            title: 옵션
-          subjects:
-            add_subjects: 주제 추가
-            current_job_role: 현재 직무 역할
-            email: Email
-            first_name: 이름
-            import_subjects: 주제 가져오기
-            last_name: 성
-            locale: 로캘
-            target_job_role: 대상 직무 역할
-            title: 주제
-          title: 참가자
-        report:
-          menu:
-            report_approval:
-              title: 보고서 승인 설정
-            report_options:
-              title: 보고서 옵션
-          title: 신고
-      messages:
-        email_messages: 이메일 메시지
-        factor_benchmark_scores_updated: 팩터 벤치마크 점수가 성공적으로 업데이트되었습니다
-        instruction_messages: 지시 메시지
-        mail_history: 메일 기록
-        options: 옵션
       reports:
-        add_conditions: 조건 추가
-        administrator_approves_reports: 관리자가 보고서를 승인합니다.
-        allow_manager_to_view_individual_responses: 관리자가 개별 응답을 볼 수 있도록 허용
-        disable_report_download: 보고서 다운로드 비활성화
-        edit_email: 이메일 수정
-        email_manager_when_report_is_ready_for_approval: 보고서가 승인될 준비가 되면 관리자에게 이메일 보내기
-        email_subject_when_report_becomes_available: 보고서를 사용할 수 있게 되면 이메일 제목
-        email_subjects_manager_when_available: 보고서를 사용할 수 있게 되면 주제의 관리자에게 이메일 보내기
-        make_report_available_to_subject_when: '피험자가 언제 보고서를 사용할 수 있도록 설정하세요:'
-        manager_approves_reports: 관리자가 보고서를 승인합니다.
-        manager_can_access_subject_reports: 관리자가 주제 보고서에 액세스할 수 있습니다.
-        manager_cannot_access_subject_reports: 요구 사항이 충족될 때까지 관리자는 보고서를 볼 수 없습니다.
-        report_access: 보고서 액세스
-        report_approval: 보고서 승인
-        report_availability: 보고서 가용성
         show:
           title: 주제 보고서
-        subject_can_access_reports: 주체가 자신의 보고서에 액세스할 수 있습니다.
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: 라이선스를 비활성화된 것으로 표시
-    time_zone: 시간대
-    tools: 도구
     translations:
       assessments:
         new:
@@ -4535,14 +1945,6 @@ ko:
         successfully: 사용자 %{name}을(를) 성공적으로 만들었습니다.
       destroy:
         successfully: 사용자 %{name}을(를) 성공적으로 삭제했습니다.
-      list:
-        email: 이메일
-      modals:
-        download_idp_reports:
-          error: IDP 보고서 대량 다운로드 작업을 예약하지 못했습니다.
-          include_reflective_questions: 성찰적 질문 포함
-          success: IDP 보고서 대량 다운로드 작업이 성공적으로 예약되었습니다.
-          title: IDP 보고서 대량 다운로드
       new:
         header: 새 사용자
       reset_password:
@@ -4576,24 +1978,15 @@ ko:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       toggle_status:
         successfully: 사용자 %{name}이 업데이트되었습니다.
-      toolbar:
-        title: 도구
       update:
         successfully: 사용자 %{name}이 업데이트되었습니다.
       user: 사용자
     webhook:
       connection_failure: 웹훅 URL에 연결할 수 없습니다. 웹훅 URL이 올바른지 확인하세요...
-      delete_success: 웹훅 설정이 성공적으로 삭제되었습니다
       request_failure: 상태 코드 %{http_status_code}로 요청에 실패했습니다.
     workshop:
-      actions:
-        remove_workshop: 워크샵 제거 성공
       errors:
         remove_workshop_failure: 삭제하려는 워크샵에 예약된 과목이 있습니다. 모든 과목을 취소됨으로 표시하여 워크샵을 삭제할 수 있습니다
-      statuses:
-        closed: 닫힘
-        open: 열기
     workshop_subjects:
       errors:
         update_assessor_for_failure: 연결된 주제 활동이 없으므로 미팅 세부 정보를 추가할 수 없습니다.
-    years: 년

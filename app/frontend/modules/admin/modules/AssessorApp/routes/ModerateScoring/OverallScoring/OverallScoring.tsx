@@ -69,7 +69,7 @@ export const OverallScoring = ({ header, refresh }) => {
 
   return (
     <div className={styles.sidebar}>
-      {header(I18n.t('administration.assessor.moderate_score.overall_scoring'))}
+      {header(I18n.t('admin.overall_scoring'))}
       <div className={styles.content}>
         <div className={styles.factors}>
           {factorGroups.map(group => (

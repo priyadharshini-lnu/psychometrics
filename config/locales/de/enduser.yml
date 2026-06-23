@@ -36,6 +36,8 @@ de:
     browser_not_compatible: Ihr Browser %{browser_name} ist mit dieser Kampagne nicht kompatibel. Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
     browser_not_compatible_description: Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
     browser_not_compatible_detail: Ihr Browser %{browser_name} ist mit dieser Kampagne nicht kompatibel. Verwenden Sie die neuesten Versionen von Chrome, Firefox, Safari oder Edge, um ein optimales Erlebnis zu gewährleisten.
+    browser_proctoring_description: Sie verwenden den Browser „%{browser_name}“, der hinsichtlich der für diese Kampagne aktivierten Überwachungsfunktionen möglicherweise gewisse Einschränkungen aufweist. Für ein optimales Erlebnis empfehlen wir die Verwendung von Chrome oder Edge.
+    browser_proctoring_title: "%{browser_name} Browser erkannt"
     browser_version_fix_description_first: 'Verwenden Sie einen unterstützten Browser: Chrome, Firefox, Edge oder Safari'
     browser_version_fix_title: Die Version Ihres Browsers wird nicht unterstützt.
     camera: Video und Audio
@@ -43,6 +45,7 @@ de:
     camera_check: Kamera- und Mikrofontest
     camera_check_abruptly_ended: Die Kamera wurde plötzlich ausgeschaltet. Bitte schalten Sie Ihre Kamera ein und führen Sie die Überprüfung erneut durch.
     camera_check_description: Bitte überprüfen Sie, ob Ihre Kamera und Ihr Mikrofon für die Aufnahme ordnungsgemäß funktionieren
+    camera_check_failed: Die Videoüberprüfung ist fehlgeschlagen
     camera_check_passed: Video- und Audio-Test erfolgreich bestanden
     camera_check_record_instruction: Klicken Sie auf „Aufnehmen“ und lesen Sie den folgenden Text laut vor
     camera_test_step: Schritt zur Überprüfung von Bild und Ton
@@ -69,6 +72,9 @@ de:
     error_uploading_audio_detail: Beim Hochladen Ihrer Audiodatei ist ein Fehler aufgetreten
     error_uploading_video: Fehler beim Hochladen des Videos
     error_uploading_video_detail: Beim Hochladen des Videos ist ein Fehler aufgetreten
+    face_detection_error: Bei der Gesichtserkennung ist ein Fehler aufgetreten. Bitte stellen Sie sicher, dass Ihre Kamera funktioniert, und versuchen Sie es erneut.
+    face_detection_failed: In der Videoaufnahme wurde kein Gesicht erkannt. Bitte stellen Sie sicher, dass Ihre Kamera nicht verdeckt ist und Ihr Gesicht sichtbar ist.
+    face_not_detected_warning: Es wurde kein Gesicht erkannt. Bitte stellen Sie sicher, dass Ihr Gesicht für die Kamera sichtbar ist.
     fail: Fehlschlag
     file_submission_already_exists: Wir haben Ihre Antwort auf diese Frage bereits erhalten. Bitte aktualisieren Sie die Seite. Sollten Sie Ihre vorherige Antwort dennoch nicht sehen können, wenden Sie sich bitte an Ihren Administrator.
     follow_these_steps: Befolgen Sie diese Schritte, um die bei der Systemprüfung festgestellten Probleme zu beheben
@@ -162,6 +168,8 @@ de:
     select_video_device: Videogerät auswählen
     selected_count: Ausgewählte
     skill_type: Fertigkeitstyp
+    speech_verification_error: Bei der Überprüfung Ihrer Sprache ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
+    speech_verification_failed: Ihre Äußerung stimmte nicht mit der Testphrase überein. Bitte versuchen Sie es erneut und sprechen Sie die Phrase deutlich aus.
     start_campaign_message_proctored: Dies ist eine überwachte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     start_campaign_message_timed: Dies ist eine zeitlich begrenzte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     start_readiness_check: Startbereitschaftsprüfung starten
@@ -186,10 +194,12 @@ de:
       one: Ich schreie, du schreist, wir alle schreien nach Eiscreme!
       seven: Jeder Tag ist ein neuer Anfang, sagen Sie es laut und stolz!
       six: Pizza oder Pasta? Die Entscheidung fällt schwer.
+      ten: Ich bin bereit. Dies ist eine Testaufnahme, um zu überprüfen, ob mein Mikrofon ordnungsgemäß funktioniert.
       three: Test, eins, zwei, drei, der Ton ist so klar wie nur möglich!
       two: Der schnelle braune Fuchs springt über den faulen Hund.
     system_check_audio_title: Bitte sprechen Sie und wiederholen Sie den folgenden Satz 3 Mal.
     system_check_complete: Systemprüfung abgeschlossen
+    system_check_face_detection: Gesichtserkennung
     system_check_failed: Systemprüfung fehlgeschlagen
     system_check_failed_description: Bitte beheben Sie die Probleme und führen Sie die Systemprüfungen erneut durch.
     system_check_failed_message: Einige Systemprüfungen sind fehlgeschlagen. Bitte überprüfen Sie die Details und versuchen Sie es erneut.
@@ -200,6 +210,7 @@ de:
     system_check_retake: Nein, ich möchte die Wiederholung
     system_check_run_again: Wieder laufen
     system_check_session_not_found: Die Systemprüfungssitzung wurde nicht gefunden. Bitte starten Sie eine neue Systemprüfung.
+    system_check_speech_verification: Sprachverifizierung
     system_check_start_recording: Aufnahme starten
     system_check_stop_recording: Aufnahme stoppen
     system_check_test_message: schön, mit Ihnen zu sprechen
@@ -257,6 +268,10 @@ de:
     video_overlay_label: Wählen Sie Ihr Mikrofon und Ihre Kamera aus, klicken Sie auf „Aufnehmen“ und lesen Sie die folgende Nachricht vor, sobald Sie die Aufnahmetaste gedrückt haben
     video_overlay_message: Wähle dein Mikrofon und deine Kamera aus, klicke auf „Aufnehmen“ und lies dann den Satz vor, der unten angezeigt wird.
     video_recorder_label: Videorekorder
+    video_upload_failed_camera_access: Der Zugriff auf Ihre Kamera oder Ihr Mikrofon ist nicht möglich. Bitte überprüfen Sie die Berechtigungen Ihres Geräts und versuchen Sie es erneut.
+    video_upload_failed_chunk_upload: Ein Teil der Aufnahme konnte nicht hochgeladen werden. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
+    video_upload_failed_finalize: Die Aufnahme wurde zwar aufgezeichnet, konnte jedoch nicht gespeichert werden. Bitte versuchen Sie es erneut.
+    video_upload_failed_no_recording: Es wurde keine Aufnahme zum Hochladen gefunden. Bitte nehmen Sie die Aufnahme erneut auf.
     view_details: Details anzeigen
     webgl_api_fix_description_first: Stellen Sie sicher, dass Ihr Browser WebGL unterstützt und dass diese Funktion in den Einstellungen aktiviert ist
     webgl_api_fix_description_second: Aktualisieren Sie Ihre Grafiktreiber auf die neueste Version

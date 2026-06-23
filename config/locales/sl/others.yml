@@ -622,6 +622,7 @@ sl:
         roles:
           campaign_admin: Skrbnik oglaševalske akcije
           client_admin: Skrbnik odjemalca
+          client_assessor: Ocenjevalec strank
           manager: Menedžer
           member: Uporabnik
           project_admin: Skrbnik projekta
@@ -727,6 +728,7 @@ sl:
           admins:
             admin: Admin
             campaign_admin: Skrbnik oglaševalske akcije
+            client_assessor: Ocenjevalec strank
             project_admin: Skrbnik projekta
             regular: Skrbnik odjemalca
             superadmin: Super skrbnik
@@ -736,6 +738,7 @@ sl:
           campaign_admin: Skrbnik oglaševalske akcije
           case_study: Študija primera
           client_admin: Skrbnik odjemalca
+          client_assessor: Ocenjevalec strank
           hogan: Hogan
           iiht: IIHT
           manager: Menedžer
@@ -859,6 +862,8 @@ sl:
         bulk_download_idp_reports: Množični prenos poročil IDP
         bulk_download_reports: Poročila o množičnem prenosu
         bulk_download_user_reports: Prenos poročil uporabnikov v velikem obsegu
+        bulk_export_norm_factor_scores: Izvoz skupnih ocen normativnih faktorjev
+        bulk_export_raw_factor_scores: Izvoz skupnih surovih faktornih točk
         bulk_generate_user_campaign_ai_artifact_results: Množično ustvarjanje rezultatov artefaktov AI kampanje
         bulk_regenerate_reports: Vnovična generacija poročil o oglaševalskih akcijah
         bulk_regenerate_threesixty_reports: Obnovite poročila o treh šestdesetih predmetih
@@ -871,10 +876,12 @@ sl:
         completion_status_export: Izvoz stanja dokončanja
         copy_as_template_or_campaign: Kopiranje kampanje kot predloge
         copy_dimension: Kopiraj dimenzijo
+        copy_report: Kopiraj poročilo
         create_threesixty_campaign: Ustvarite kampanjo Threesixty
         data_report_export: Izvoz poročila o podatkih
         export_admin_with_permissions: Izvoz skrbnika z dovoljenji
         export_assessment_questions: Vprašanja za oceno izvoza
+        export_audit_logs: Izvoz dnevnikov revizij
         export_campaign_ai_artifacts: Artefakti umetne inteligence izvoznih kampanj
         export_campaign_ai_artifacts_results: Izvoz rezultatov kampanje AI artefaktov
         export_campaign_datasheet: Tehnični list izvozne kampanje
@@ -964,6 +971,8 @@ sl:
       errors:
         no_plans: Ni bilo najdenih aktivnih načrtov IDP
     close: Blizu
+    copy_report:
+      failed: Kopiranje poročila ni uspelo
     details: Podrobnosti
     errors: Napake
     invalid_job: To obvestilo ustreza izbrisanemu zapisu
@@ -1463,6 +1472,7 @@ sl:
       external_user_id: ID kandidata za Skillvue
       id: ID kampanje
       locales: Lokalizacije
+      microsite_assessment_url: URL za oceno mikrospletne strani
       microsite_error_message: Napaka
       microsite_participant_id: ID udeleženca na mikrospletni strani
       microsite_registration_status: Stanje registracije
@@ -1661,7 +1671,6 @@ sl:
     details:
       additional_time: Dodatni čas
       assessment_center: Ocenjevalni center
-      assessment_center_invites: Vabila ocenjevalnega centra
       completed_at: Zaključek ob
       completion_status: Status dokončanja
       hogan_id: Hogan ID
@@ -1691,11 +1700,6 @@ sl:
     modals:
       remove: Ali ste prepričani, da želite odstraniti uporabnika z e-poštnim naslovom '%{email}' iz te kampanje?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Ocenjevanje ocenjevalcev
-      other_assessments: Druga ocenjevanja
-      other_assessor_assessments: Druga ocenjevanja ocenjevalcev
-      other_reports: Druga poročila
     card:
       duration: Trajanje
       starts_in: 'Začetek:'
@@ -1766,23 +1770,19 @@ sl:
       insert: Vstaviti
       'no': Ne
       ok: V redu
-      publish: Objavite
       reject: Zavrne
       remove: Odstranite
       reset: Ponastavitev
       resolve: Reševanje
       restore: Obnovitev
       return_to_home: Vrnitev na domačo stran
-      run: Teči
       save: Shrani
       schedule: Načrtuj
       search: Iskanje
-      send: Pošlji
       sign_in: Prijava
       start: Začetek
       submit: Pošlji
       unarchive: Odprava arhiviranja
-      unpublish: Odprava objave
       unresolve: Nerazrešitev
       update: Posodobitev
       upload: Naložite
@@ -1795,20 +1795,14 @@ sl:
     column:
       action: Aktivnost
       active: Aktivni
-      ai_assistant: Pomočnik za umetno inteligenco
-      allow_multiple_responses: Omogočanje več odgovorov
       approval_notification_list: Seznam uporabnikov obvestila o odobritvi
       approvers_list: Seznam odobritev
-      assessment: Ocena
       assessment_name: Ime ocenjevanja
       assessments: Ocenjevanja
-      assessor: Ocenjevalec
       category: Kategorija
       client: Odjemalec
-      code: Koda
       created_at: Ustvarjeno
       created_by: Ustvaril
-      created_date: Ustvarjeno dne
       default_language: Privzeti jezik
       description: Opis
       details: Podrobnosti
@@ -1826,11 +1820,8 @@ sl:
         scoring: Točkovanje JSON
       key: Ključ
       last_name: Priimek
-      linked_activities: Povezane dejavnosti
       linked_assessment: Povezana ocena
-      meeting_link: Povezava do srečanja
       modified_by: Spremenil
-      modified_date: Datum spremembe
       name: Ime
       owner: Lastnik
       package_id: ID paketa
@@ -1846,7 +1837,6 @@ sl:
       scheduling: Razporejanje
       skills: Spretnosti
       status: Status
-      tags: Tags
       timing: Čas
       token: Žeton
       type: Vrsta
@@ -1858,15 +1848,12 @@ sl:
     messages:
       leave_message: Ste prepričani, da želite zapustiti to stran? Vsi neshranjeni odgovori, ki jih imate, bodo izgubljeni.
     model:
-      admins: Skrbniki
       assessment: Ocena
       assessments: Ocenjevanje
       campaigns: Kampanje
       completion_statuses: Statusi dokončanja
-      datasheet: Podatkovni list
       report: Poročilo
       reports: Poročila
-      sms_contact: SMS stik
       threesixty_campaign: Rezultati kampanje Threesixty
     status:
       completed: Dokončano
@@ -2164,6 +2151,7 @@ sl:
     invalid_token: Prišlo je do napake. Osvežite stran in poskusite znova.
     max_regeneration_limit: Presežena najvišja meja regeneracije, se obrnite na svojo upravo.
     messages:
+      content_type_invalid: neveljavna vrsta vsebine
       data_report_blank: Poročilo o podatkih ne obstaja
       password_complexity:
         digit:
@@ -2983,9 +2971,7 @@ sl:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktivni
     campaign_name: Ime kampanje
-    inactive: Neaktiven
     status_updated_at: Zadnja posodobitev stanja
     status_updated_by: Nazadnje posodobil
     subject_email: Zadevni e-poštni naslov
@@ -3501,12 +3487,14 @@ sl:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Ocenjevalec strank
             project_admin: Skrbnik projekta
             regular: Skrbnik odjemalca
             superadmin: Super skrbnik
           agile: AGILE
           case_study: Študija primera
           client_admin: Skrbnik odjemalca
+          client_assessor: Ocenjevalec strank
           hogan: Hogan
           manager: Menedžer
           member: Uporabnik
@@ -3640,6 +3628,7 @@ sl:
         roles:
           campaign_admin: Skrbnik oglaševalske akcije
           client_admin: Skrbnik odjemalca
+          client_assessor: Ocenjevalec strank
           manager: Menedžer
           member: Uporabnik
           project_admin: Skrbnik projekta
@@ -3710,12 +3699,14 @@ sl:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Ocenjevalec strank
             project_admin: Skrbnik projekta
             regular: Skrbnik odjemalca
             superadmin: Super skrbnik
           agile: AGILE
           case_study: Študija primera
           client_admin: Skrbnik odjemalca
+          client_assessor: Ocenjevalec strank
           hogan: Hogan
           manager: Menedžer
           member: Uporabnik
@@ -3989,7 +3980,6 @@ sl:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktivni
     allow_multiple_respones: Omogočanje uporabnikom, da pošljejo več odgovorov
     png: PNG
     regenerate_link: Obnovi povezavo
@@ -4178,6 +4168,7 @@ sl:
       campaign_assessor: Ocenjevalec kampanje
       campaign_user: Uporabnik oglaševalske akcije
       client_admin: Skrbnik odjemalca
+      client_assessor: Ocenjevalec strank
       project_admin: Skrbnik projekta
       superadmin: Super skrbnik
     superadmins: Super skrbniki

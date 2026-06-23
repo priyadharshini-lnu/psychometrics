@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::AssessmentConsentSettingResource < Api::V2::Administration::BaseResource
-  attributes :id, :assessment_id, :custom_consent_texts, :data_role, :policy_version, :custom_acknowledgment_texts
+  attributes :assessment_id, :custom_consent_texts, :data_role, :policy_version, :custom_acknowledgment_texts
 
   has_one :assessment, class_name: 'Assessment'
 

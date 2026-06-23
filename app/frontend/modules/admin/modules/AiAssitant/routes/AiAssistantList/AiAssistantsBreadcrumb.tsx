@@ -12,7 +12,7 @@ export const AiAssistantsBreadcrumb: React.FC = () => (
           label: () => I18n.t('users.dashboard'),
         },
         {
-          label: () => I18n.t('administration.ai_assistants.ai_assistants'),
+          label: () => I18n.t('admin.ai_assistants'),
         },
       ]}
     />

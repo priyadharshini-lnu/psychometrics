@@ -34,7 +34,7 @@ export const JobRolesFilters: React.FC<Props> = ({
     resource.uploadFileAction(action, data)
       .then(() => {
         successCallback()
-        message.info(I18n.t('administration.job_role.import.success_msg'))
+        message.info(I18n.t('admin.job_role_import_success_msg'))
       })
       .catch((error) => {
         failureCallback(error)
@@ -50,9 +50,9 @@ export const JobRolesFilters: React.FC<Props> = ({
       action,
       method: 'post',
     }).then(() => {
-      message.info(I18n.t('administration.job_role.export.success_msg'))
+      message.info(I18n.t('admin.job_role_export_success_msg'))
     }).catch(() => {
-      message.error(I18n.t('administration.job_role.export.failure_msg'))
+      message.error(I18n.t('admin.job_role_export_failure_msg'))
     })
   }
 
@@ -60,7 +60,7 @@ export const JobRolesFilters: React.FC<Props> = ({
     if (action === 'import_translations') {
       openModal('JobRolesImportModal', {
         handleImport: handleTranslationsImport,
-        title: I18n.t('administration.job_role.import_action.translations'),
+        title: I18n.t('admin.job_role_import_action_translations'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })
     } else if (action === 'export_translations') {
@@ -77,7 +77,7 @@ export const JobRolesFilters: React.FC<Props> = ({
       />
       <Button type="primary" disabled={tableLoading} onClick={handleCreateJobRoleModal}>
         <PlusOutlined />
-        {I18n.t('common.actions.create')}
+        {I18n.t('shared.create')}
       </Button>
     </Resource.Filter>
   )

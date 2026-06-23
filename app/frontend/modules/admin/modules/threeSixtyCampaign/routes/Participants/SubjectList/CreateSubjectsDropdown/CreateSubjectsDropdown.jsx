@@ -5,8 +5,8 @@ const { I18n } = window
 
 const CreateSubjectsDropdown = ({ openModal }) => {
   const menuItems = [
-    { key: 'add', label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects') },
-    { key: 'import', label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.import_subjects') },
+    { key: 'add', label: I18n.t('admin.add_subjects') },
+    { key: 'import', label: I18n.t('admin.import_subjects') },
   ]
   const handleMenuClick = ({ key }) => {
     if (key === 'add') {
@@ -25,7 +25,7 @@ const CreateSubjectsDropdown = ({ openModal }) => {
     >
       <Button type="primary">
         <PlusOutlined />
-        <span>{I18n.t('administration.threesixty_campaigns.menu.participants.subjects.add_subjects')}</span>
+        <span>{I18n.t('admin.add_subjects')}</span>
         <DownOutlined />
       </Button>
     </Dropdown>

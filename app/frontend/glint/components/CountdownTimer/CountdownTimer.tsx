@@ -3,7 +3,7 @@ import {
 } from 'react'
 import { Statistic, notification as antdNotification, StatisticProps } from 'antd'
 import cs from 'classnames'
-
+import { SafeTimer } from '../SafeTimer'
 import styles from './styles.less'
 
 export type Notification = {
@@ -18,6 +18,7 @@ type CountdownTimerProps = StatisticProps & {
   notificationPoints?: Notification[]
   notificationDuration?: number
   notificationTemplate?: (minutes: number, seconds: number) => string
+  safeTimer?: boolean
 }
 
 const SECONDS_PER_DAY = 60 * 60 * 24
@@ -63,6 +64,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   notificationTemplate,
   notificationDuration = 15,
   className,
+  safeTimer,
   ...rest
 }) => {
   const [countDownValue, setCountDownValue] = useState<number | undefined>(undefined)
@@ -165,14 +167,25 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   return (
     <>
       <span role="alert" aria-live="assertive" className="sr-only">{announcement}</span>
-      <Statistic.Countdown
-        className={cs(styles.timer, className)}
-        value={countDownValue}
-        onFinish={() => onFinish && onFinish()}
-        format={timerFormat}
-        onChange={handleTimerChange}
-        {...rest}
-      />
+      {safeTimer ? (
+        <SafeTimer
+          className={cs(styles.timer, className)}
+          remainingTime={seconds || 0}
+          onFinish={() => onFinish && onFinish()}
+          format={timerFormat}
+          onChange={handleTimerChange}
+          {...rest}
+        />
+      ) : (
+        <Statistic.Countdown
+          className={cs(styles.timer, className)}
+          value={countDownValue}
+          onFinish={() => onFinish && onFinish()}
+          format={timerFormat}
+          onChange={handleTimerChange}
+          {...rest}
+        />
+      )}
     </>
   )
 }

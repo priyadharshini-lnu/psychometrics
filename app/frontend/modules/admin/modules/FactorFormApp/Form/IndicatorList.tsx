@@ -205,13 +205,13 @@ const IndicatorList: React.FC<Props> = ({
 
   const columns: TableColumnsType<Indicator> = [
     {
-      title: I18n.t('admin.name'),
+      title: I18n.t('shared.name'),
       dataIndex: 'name',
       key: 'name',
       render: text => <span>{text || '-'}</span>,
     },
     {
-      title: I18n.t('admin.description'),
+      title: I18n.t('shared.description'),
       dataIndex: 'description',
       key: 'description',
       render: text => (
@@ -237,7 +237,7 @@ const IndicatorList: React.FC<Props> = ({
       render: text => <span>{text || 0}</span>,
     },
     {
-      title: I18n.t('admin.actions'),
+      title: I18n.t('shared.actions'),
       key: 'actions',
       width: 100,
       render: (_: unknown, __: Indicator, index: number) => (
@@ -297,8 +297,8 @@ const IndicatorList: React.FC<Props> = ({
         open={isModalVisible}
         onOk={saveIndicator}
         onCancel={closeModal}
-        okText={I18n.t('admin.save')}
-        cancelText={I18n.t('admin.cancel')}
+        okText={I18n.t('shared.save')}
+        cancelText={I18n.t('shared.cancel')}
         width={800}
         getContainer={false}
       >
@@ -308,7 +308,7 @@ const IndicatorList: React.FC<Props> = ({
           onValuesChange={handleScoreRangeChange}
         >
           <AntForm.Item
-            label={I18n.t('admin.name')}
+            label={I18n.t('shared.name')}
             name="name"
             rules={[
               { required: true, message: I18n.t('admin.name_required') },
@@ -319,7 +319,7 @@ const IndicatorList: React.FC<Props> = ({
           </AntForm.Item>
 
           <AntForm.Item
-            label={I18n.t('admin.description')}
+            label={I18n.t('shared.description')}
             name="description"
           >
             <Input.TextArea placeholder={I18n.t('admin.enter_description')} rows={3} />

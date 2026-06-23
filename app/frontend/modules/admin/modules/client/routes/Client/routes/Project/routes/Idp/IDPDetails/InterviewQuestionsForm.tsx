@@ -78,7 +78,7 @@ export const InterviewQuestionsForm: FC<InterviewQuestionsFormProps> = ({ idp, f
       method: 'post',
       body: { interviewQuestions },
     }).then(() => {
-      message.success(I18n.t('administration.idp.interview_questions_updated'))
+      message.success(I18n.t('admin.idp_interview_questions_updated'))
       fetch()
     })
   }
@@ -147,12 +147,12 @@ export const InterviewQuestionsForm: FC<InterviewQuestionsFormProps> = ({ idp, f
   return (
     <Row gutter={[16, 16]}>
       <Col span={16}>
-        <Card title={I18n.t('administration.idp.interview_questions')}>
+        <Card title={I18n.t('admin.idp_interview_questions')}>
           <Space orientation="vertical" style={{ width: '100%' }}>
             <Flex gap={16}>
               <Select
                 style={{ width: '100%' }}
-                placeholder={I18n.t('administration.idp.select_reflection_question')}
+                placeholder={I18n.t('admin.idp_select_reflection_question')}
                 showSearch={{
                   filterOption: false,
                   onSearch: (query) => {
@@ -209,18 +209,18 @@ export const InterviewQuestionsForm: FC<InterviewQuestionsFormProps> = ({ idp, f
                         ),
                       },
                       {
-                        title: I18n.t('administration.interview_questions.form.question'),
+                        title: I18n.t('admin.interview_questions_form_question'),
                         dataIndex: 'question',
                         key: 'question',
                       },
                       {
-                        title: I18n.t('administration.interview_questions.form.question_type'),
+                        title: I18n.t('admin.interview_questions_form_question_type'),
                         dataIndex: 'questionType',
                         key: 'questionType',
                         width: 120,
                       },
                       {
-                        title: I18n.t('administration.interview_questions.form.mandatory'),
+                        title: I18n.t('admin.interview_questions_form_mandatory'),
                         dataIndex: 'mandatory',
                         key: 'mandatory',
                         width: 120,
@@ -232,7 +232,7 @@ export const InterviewQuestionsForm: FC<InterviewQuestionsFormProps> = ({ idp, f
                         ),
                       },
                       {
-                        title: I18n.t('administration.interview_questions.form.time_limit'),
+                        title: I18n.t('admin.interview_questions_form_time_limit'),
                         dataIndex: 'timeLimit',
                         key: 'timeLimit',
                         width: 120,
@@ -262,12 +262,12 @@ export const InterviewQuestionsForm: FC<InterviewQuestionsFormProps> = ({ idp, f
                 </SortableContext>
               </DndContext>
             ) : (
-              <Text type="secondary">{I18n.t('administration.idp.no_interview_questions_selected')}</Text>
+              <Text type="secondary">{I18n.t('admin.idp_no_interview_questions_selected')}</Text>
             )}
           </Space>
           <Flex justify="flex-end" className="mt-6">
             <Button onClick={save} type="primary" loading={isUpdating}>
-              {I18n.t('administration.idp.update_interview_questions')}
+              {I18n.t('admin.idp_update_interview_questions')}
             </Button>
           </Flex>
         </Card>

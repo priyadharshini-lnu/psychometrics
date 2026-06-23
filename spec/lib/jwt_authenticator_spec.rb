@@ -5,7 +5,8 @@ require 'rails_helper'
 RSpec.describe JwtAuthenticator do
   let(:project) { create(:project) }
   let(:user) { create(:user, project: project) }
-  let(:api_key) { create(:api_key, user: user) }
+  let(:application_user) { create(:application_user) }
+  let(:api_key) { create(:api_key, user: application_user) }
 
   describe '.get_user_by_client_jwt' do
     let(:jwt_key) do

@@ -622,6 +622,7 @@ it:
         roles:
           campaign_admin: Admin della campagna
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           manager: Manager
           member: Utente
           project_admin: Progetto Admin
@@ -727,6 +728,7 @@ it:
           admins:
             admin: Admin
             campaign_admin: Admin della campagna
+            client_assessor: Valutatore clienti
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
@@ -736,6 +738,7 @@ it:
           campaign_admin: Admin della campagna
           case_study: Studio di caso
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -859,6 +862,8 @@ it:
         bulk_download_idp_reports: Download in blocco dei rapporti IDP
         bulk_download_reports: Report scaricati in blocco
         bulk_download_user_reports: Scaricamento massivo dei rapporti utente
+        bulk_export_norm_factor_scores: Esportazione dei punteggi del fattore di normalizzazione in blocco
+        bulk_export_raw_factor_scores: Esportazione in blocco dei punteggi grezzi dei fattori
         bulk_generate_user_campaign_ai_artifact_results: Genera in blocco i risultati degli artefatti AI della campagna
         bulk_regenerate_reports: Rigenerare i rapporti della campagna
         bulk_regenerate_threesixty_reports: Rigenerare trecentosessanta rapporti di soggetto
@@ -871,10 +876,12 @@ it:
         completion_status_export: Esporta dello stato di completamento
         copy_as_template_or_campaign: Copiare la campagna come modello
         copy_dimension: Copiare la dimensione
+        copy_report: Copia rapporto
         create_threesixty_campaign: Creare una campagna Threesixty
         data_report_export: Esporta di rapporti di dati
         export_admin_with_permissions: Esportare l'amministratore con i permessi
         export_assessment_questions: Domande di valutazione sull'esportazione
+        export_audit_logs: Esportazione dei registri di audit
         export_campaign_ai_artifacts: Artefatti AI della Campagna di Esportazione
         export_campaign_ai_artifacts_results: Esporta risultati della campagna AI Artifacts
         export_campaign_datasheet: Scheda tecnica della campagna di esportazione
@@ -964,6 +971,8 @@ it:
       errors:
         no_plans: Non sono stati trovati piani IDP attivi
     close: Chiudere
+    copy_report:
+      failed: La copia del report non è andata a buon fine
     details: Dettagli
     errors: Errori
     invalid_job: Questa notifica corrisponde al record cancellato
@@ -1454,6 +1463,7 @@ it:
       external_user_id: ID candidato Skillvue
       id: ID di valutazione della campagna
       locales: Località
+      microsite_assessment_url: URL del microsito da valutare
       microsite_error_message: Messaggio di errore
       microsite_participant_id: ID partecipante al microsito
       microsite_registration_status: Stato della registrazione
@@ -1652,7 +1662,6 @@ it:
     details:
       additional_time: Tempo supplementare
       assessment_center: Centro di valutazione
-      assessment_center_invites: Inviti all'Assessment Center
       completed_at: Completati
       completion_status: Stato di completamento
       hogan_id: Hogan ID
@@ -1682,11 +1691,6 @@ it:
     modals:
       remove: Si è sicuri di voler rimuovere l'utente con email '%{email}' da questa campagna?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Valutatore Assessment
-      other_assessments: Altre valutazioni
-      other_assessor_assessments: Altre Assessment dell'Assessore
-      other_reports: Altri rapporti
     card:
       duration: Durata
       starts_in: 'Inizia in:'
@@ -1757,23 +1761,19 @@ it:
       insert: Inserire
       'no': 'No'
       ok: OK
-      publish: Pubblicare
       reject: Rigettare
       remove: Rimuovere
       reset: Reset
       resolve: Risolvere
       restore: Ripristino
       return_to_home: Torna alla Home
-      run: Correre
       save: Salva
       schedule: Programma
       search: Cerca
-      send: Inviare
       sign_in: Accedi
       start: Inizio
       submit: Invia
       unarchive: Disarchivio
-      unpublish: Non pubblicare
       unresolve: Non risolvere
       update: Aggiorna
       upload: Caricare
@@ -1786,20 +1786,14 @@ it:
     column:
       action: Azioni
       active: Attivi
-      ai_assistant: Assistente AI
-      allow_multiple_responses: Consentire risposte multiple
       approval_notification_list: Elenco degli utenti della notifica di approvazione
       approvers_list: Elenco degli approvatori
-      assessment: Valutazione
       assessment_name: Nome dell’assessment
       assessments: Assessment
-      assessor: Valutatore
       category: Categoria
       client: Cliente
-      code: Codice
       created_at: Creato il
       created_by: Creato da
-      created_date: Data di creazione
       default_language: Lingua predefinita
       description: Descrizione
       details: Dettagli
@@ -1817,11 +1811,8 @@ it:
         scoring: Punteggio JSON
       key: Chiave
       last_name: Cognome
-      linked_activities: Campagne collegate
       linked_assessment: Valutazione collegata
-      meeting_link: Collegamento alla riunione
       modified_by: Modificato da
-      modified_date: Data di modifica
       name: Nome
       owner: Proprietario
       package_id: ID pacchetto
@@ -1837,7 +1828,6 @@ it:
       scheduling: Programmazione
       skills: Competenze
       status: Stato
-      tags: Tag
       timing: Tempistica
       token: Gettone
       type: Tipo
@@ -1849,15 +1839,12 @@ it:
     messages:
       leave_message: È sicuro di voler lasciare questa pagina? Tutte le risposte non salvate andranno perse.
     model:
-      admins: Amministratori
       assessment: Valutazione
       assessments: Assessment
       campaigns: Campagne
       completion_statuses: Stati di completamento
-      datasheet: Scheda tecnica
       report: Rapporto
       reports: Report
-      sms_contact: Contatto SMS
       threesixty_campaign: Punteggi della campagna Threesixty
     status:
       completed: Completati
@@ -2128,6 +2115,7 @@ it:
     invalid_token: Qualcosa è andato storto. Ricaricare la pagina e riprovare.
     max_regeneration_limit: Superato il limite massimo di rigenerazione, contattare l'amministrazione.
     messages:
+      content_type_invalid: tipo di contenuto non valido
       data_report_blank: Il rapporto dati non esiste
       password_complexity:
         digit:
@@ -2947,9 +2935,7 @@ it:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Attivi
     campaign_name: Nome della campagna
-    inactive: Inattivo
     status_updated_at: Ultimo aggiornamento di stato
     status_updated_by: Ultimo aggiornamento da
     subject_email: Oggetto e-mail
@@ -3465,12 +3451,14 @@ it:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Valutatore clienti
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
           agile: AGILE
           case_study: Studio di caso
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           hogan: Hogan
           manager: Manager
           member: Utente
@@ -3604,6 +3592,7 @@ it:
         roles:
           campaign_admin: Admin della campagna
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           manager: Manager
           member: Utente
           project_admin: Progetto Admin
@@ -3674,12 +3663,14 @@ it:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Valutatore clienti
             project_admin: Progetto Admin
             regular: Amministratore del cliente
             superadmin: Super Admin
           agile: AGILE
           case_study: Studio di caso
           client_admin: Amministratore del cliente
+          client_assessor: Valutatore clienti
           hogan: Hogan
           manager: Manager
           member: Utente
@@ -3953,7 +3944,6 @@ it:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Attivi
     allow_multiple_respones: Consentire agli utenti di inviare risposte multiple
     png: PNG
     regenerate_link: Link rigenerato
@@ -4142,6 +4132,7 @@ it:
       campaign_assessor: Valutatore della campagna
       campaign_user: Utente della campagna
       client_admin: Amministratore del cliente
+      client_assessor: Valutatore clienti
       project_admin: Progetto Admin
       superadmin: Super Admin
     superadmins: Super amministratori

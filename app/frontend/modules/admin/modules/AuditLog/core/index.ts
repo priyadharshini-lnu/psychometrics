@@ -108,6 +108,17 @@ export const fetchActions = (type: string): ApiAction<Actions> => ({
   },
 })
 
+export const SCHEDULE_EXPORT = 'assessors/audit_log/SCHEDULE_EXPORT'
+
+export const scheduleExport = (filters: Record<string, unknown>): ApiAction<{ message: string }> => ({
+  type: SCHEDULE_EXPORT,
+  request: {
+    method: 'post',
+    url: '/administration/audit_logs/schedule_export',
+    body: { filters },
+  },
+})
+
 export const fetchCurrent = (id): ApiAction<Log> => ({
   type: FETCH_CURRENT,
   request: {
@@ -121,6 +132,7 @@ const HANDLERS = {
   [FETCH]: (state: State, { response }: ApiActionResponse<State>) => ({ ...state, ...response }),
   [FETCH_CURRENT]: (state: State, { response }: ApiActionResponse<State>) => setIn(state, 'current', response),
   [FETCH_ACTIONS]: (state: State, { response }: ApiActionResponse<Actions>) => setIn(state, 'actions', response),
+  [SCHEDULE_EXPORT]: (state: State) => state,
 }
 
 export default createReducer(HANDLERS, defaultState)

@@ -69,7 +69,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="norms"
       resource={norm}
-      readableResourceName={I18n.t('administration.norms.title')}
+      readableResourceName={I18n.t('admin.norms_title')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -83,7 +83,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('common.column.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input name="client_name" />
@@ -91,7 +91,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
 
           <Form.Item
             name="ownerId"
-            label={I18n.t('common.column.owner')}
+            label={I18n.t('shared.owner')}
             initialValue={norm?.owner?.id || null}
           >
             <Select
@@ -105,7 +105,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
               }}
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
-              {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('administration.tte')}</Select.Option>}
+              {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.tte')}</Select.Option>}
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}
@@ -114,7 +114,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
 
           <Form.Item
             name="dimensionId"
-            label={I18n.t('common.column.dimension')}
+            label={I18n.t('shared.dimension')}
             rules={[{ required: true }]}
           >
             <Select
@@ -136,7 +136,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
 
           <Form.Item
             name="normType"
-            label={I18n.t('administration.norms.score_types.norm_type')}
+            label={I18n.t('admin.norms_score_types_norm_type')}
             rules={[{ required: true }]}
           >
             <Select
@@ -145,10 +145,10 @@ export const NormsFormModalComponent: React.FC<Props> = ({
               filterOption={false}
             >
               <Select.Option key="five_scale" value="five_scale">
-                {I18n.t('administration.norms.score_types.five_scale')}
+                {I18n.t('admin.norms_score_types_five_scale')}
               </Select.Option>
               <Select.Option key="percentile" value="percentile">
-                {I18n.t('administration.norms.score_types.percentage')}
+                {I18n.t('admin.norms_score_types_percentage')}
               </Select.Option>
             </Select>
           </Form.Item>

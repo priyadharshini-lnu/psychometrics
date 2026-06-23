@@ -8,9 +8,6 @@ RSpec.describe Api::V2::Administration::CampaignScoringVariablesController, type
   let(:campaign_id) { campaign.id }
   let!(:campaign_options) { campaign.campaign_options }
   let(:campaign_option_id) { campaign_options.id.to_s }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     campaign_options.update(campaign_scoring_variables: 'test = 1')
     sign_in(superadmin)
@@ -18,8 +15,7 @@ RSpec.describe Api::V2::Administration::CampaignScoringVariablesController, type
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_scoring_variables' do
     it 'fetches campaign scoring variables' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_scoring_variables",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_scoring_variables"
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data'].first
@@ -41,7 +37,7 @@ RSpec.describe Api::V2::Administration::CampaignScoringVariablesController, type
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_scoring_variables/#{campaign_option_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       cfg = JSON.parse(response.body)['data']
@@ -62,7 +58,7 @@ RSpec.describe Api::V2::Administration::CampaignScoringVariablesController, type
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_scoring_variables/#{campaign_option_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       errors = JSON.parse(response.body)['errors']

@@ -47,7 +47,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
       .then(() => {
         close()
         setErrors(null)
-        message.success(I18n.t('administration.smtp_settings.test_modal.success_message', { email_id: email }), 5)
+        message.success(I18n.t('admin.smtp_settings_test_modal_success_message', { email_id: email }), 5)
       })
       .catch(setErrors)
   }
@@ -55,7 +55,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
   return (
     <Modal
       width={650}
-      title={I18n.t('administration.smtp_settings.test_modal.title')}
+      title={I18n.t('admin.smtp_settings_test_modal_title')}
       open
       onCancel={close}
       footer={[
@@ -65,7 +65,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
           onClick={handleOnSubmit}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.send')}
+          {I18n.t('shared.send')}
         </Button>,
       ]}
     >

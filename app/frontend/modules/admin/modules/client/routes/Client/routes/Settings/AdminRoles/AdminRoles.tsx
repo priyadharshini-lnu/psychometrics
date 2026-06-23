@@ -123,12 +123,12 @@ const getActionsMenuProps = ({
     modal.confirm({
       title: I18n.t('shared.confirm'),
       content: I18n.t(
-        'administration.settings.admin_roles.confirm_message',
+        'admin.settings_admin_roles_confirm_message',
         { role_name: role.name },
       ),
       okText: I18n.t('shared.ok'),
       cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
+        'shared.cancel',
       ),
       onOk: async () => {
         await resource.removeResource(role.id).then(() => {

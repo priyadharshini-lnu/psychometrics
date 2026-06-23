@@ -13,8 +13,8 @@ const { I18n } = window
 
 const CreateCampaignDropdown: React.FC<Props> = ({ openModal, projectId }) => {
   const menuItems = [
-    { key: 'add_common_campaign', label: I18n.t('administration.campaigns.menus.add_common_campaign') },
-    { key: 'add_360_campaign', label: I18n.t('administration.campaigns.menus.add_multi_rater_campaign') },
+    { key: 'add_common_campaign', label: I18n.t('admin.campaigns_menus_add_common_campaign') },
+    { key: 'add_360_campaign', label: I18n.t('admin.campaigns_menus_add_multi_rater_campaign') },
   ]
   const handleMenuClick = ({ key }) => {
     if (key === 'add_common_campaign') {

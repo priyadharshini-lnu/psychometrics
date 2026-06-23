@@ -28,7 +28,7 @@ export default function MailHistory ({
 
   const columns = [
     {
-      title: I18n.t('administration.threesixty_campaigns.mail_history.status'),
+      title: I18n.t('shared.status'),
       fixed: windowWidth > 800 ? 'left' : undefined,
       dataIndex: 'status',
       key: 'status',
@@ -39,17 +39,17 @@ export default function MailHistory ({
       },
     },
     {
-      title: I18n.t('administration.threesixty_campaigns.mail_history.recipient'),
+      title: I18n.t('admin.threesixty_campaigns_mail_history_recipient'),
       dataIndex: 'recipient',
       key: 'recipient',
     },
     {
-      title: I18n.t('administration.threesixty_campaigns.mail_history.subject'),
+      title: I18n.t('admin.threesixty_campaigns_mail_history_subject'),
       dataIndex: 'subject',
       key: 'subjects',
     },
     {
-      title: I18n.t('administration.threesixty_campaigns.mail_history.date'),
+      title: I18n.t('admin.threesixty_campaigns_mail_history_date'),
       dataIndex: 'scheduledDate',
       key: 'scheduledDate',
       render: (date, record) => (
@@ -60,12 +60,12 @@ export default function MailHistory ({
       ),
     },
     {
-      title: I18n.t('administration.threesixty_campaigns.mail_history.emails_sent'),
+      title: I18n.t('admin.threesixty_campaigns_mail_history_emails_sent'),
       dataIndex: 'emailsSent',
       key: 'emailsSent',
     },
     {
-      title: I18n.t('administration.threesixty_campaigns.mail_history.actions'),
+      title: I18n.t('shared.actions'),
       fixed: windowWidth > 800 ? 'right' : undefined,
       key: 'actions',
       render: (_, record) => (
@@ -115,7 +115,7 @@ const ActionMenu = ({
         <a
           href={`/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedulId}/download.csv`}
         >
-          {I18n.t('administration.threesixty_campaigns.mail_history.download_details')}
+          {I18n.t('admin.threesixty_campaigns_mail_history_download_details')}
         </a>
       ),
     },

@@ -30,7 +30,7 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
     <>
       <Resource.Table pagination>
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={skill => (
@@ -39,14 +39,14 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
           width={10}
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('administration.interview_questions.question')}
+          title={I18n.t('admin.interview_questions_question')}
           id="question"
           width={300}
           render={item => <Typography.Text copyable>{item.question}</Typography.Text>}
           sorter
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('administration.interview_questions.description')}
+          title={I18n.t('shared.description')}
           id="description"
           render={item => (
             <Typography.Text ellipsis>
@@ -55,31 +55,31 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
           )}
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('administration.interview_questions.form.question_type')}
+          title={I18n.t('admin.interview_questions_form_question_type')}
           id="question_type"
           width={120}
           render={item => item.questionType}
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('administration.interview_questions.form.time_limit')}
+          title={I18n.t('admin.interview_questions_form_time_limit')}
           id="time_limit"
           width={120}
           render={item => maskUp(item.timeLimit)}
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('administration.interview_questions.form.mandatory')}
+          title={I18n.t('admin.interview_questions_form_mandatory')}
           id="question_type"
           width={100}
           render={item => (item.mandatory ? I18n.t('yes') : I18n.t('no'))}
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.updated_at')}
           id="updated_at"
           width={150}
           sorter
         />
         <Resource.Column<InterviewQuestion>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, interviewQuestion) => (
             <Dropdown
@@ -93,8 +93,8 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
       </Resource.Table>
       <ConfirmationModal
         open={!!confirmationId}
-        title={I18n.t('common.actions.delete')}
-        message={I18n.t('administration.interview_questions.delete_confirmation')}
+        title={I18n.t('shared.delete')}
+        message={I18n.t('admin.interview_questions_delete_confirmation')}
         onConfirm={handleDelete}
         onCancel={(e) => {
           e.stopPropagation()
@@ -127,7 +127,7 @@ const Dropdown: React.FC<DropDownProps> = ({ interviewQuestion, openModal, setCo
                 }}
                 className="ps-0"
               >
-                {I18n.t('common.actions.edit')}
+                {I18n.t('shared.edit')}
               </Button>),
           },
           interviewQuestion.allowDelete && {
@@ -140,7 +140,7 @@ const Dropdown: React.FC<DropDownProps> = ({ interviewQuestion, openModal, setCo
                 }}
                 className="ps-0"
               >
-                {I18n.t('common.actions.delete')}
+                {I18n.t('shared.delete')}
               </Button>),
           },
         ].filter(m => m) as MenuItem[],

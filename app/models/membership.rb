@@ -148,7 +148,7 @@ class Membership < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name campaign_id project_id campaign_id client_id]
+    %w[id name campaign_id project_id campaign_id client_id user_id]
   end
 
   # Save HRIS data from form

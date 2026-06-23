@@ -622,6 +622,7 @@ id:
         roles:
           campaign_admin: Admin Kampanye
           client_admin: Admin Klien
+          client_assessor: Penilai Klien
           manager: Manajer
           member: Pengguna
           project_admin: Admin Proyek
@@ -727,6 +728,7 @@ id:
           admins:
             admin: Admin
             campaign_admin: Admin Kampanye
+            client_assessor: Penilai Klien
             project_admin: Admin Proyek
             regular: Admin Klien
             superadmin: Super Admin
@@ -736,6 +738,7 @@ id:
           campaign_admin: Admin Kampanye
           case_study: Studi kasus
           client_admin: Admin Klien
+          client_assessor: Penilai Klien
           hogan: Hogan
           iiht: IIHT
           manager: Manajer
@@ -859,6 +862,8 @@ id:
         bulk_download_idp_reports: Unduh Laporan IDP Massal
         bulk_download_reports: Laporan Unduh Massal
         bulk_download_user_reports: Unduh Laporan Pengguna Secara Massal
+        bulk_export_norm_factor_scores: Ekspor Skor Faktor Norma Secara Massal
+        bulk_export_raw_factor_scores: Ekspor Skor Faktor Mentah Secara Massal
         bulk_generate_user_campaign_ai_artifact_results: Hasilkan Hasil Artefak AI Kampanye Secara Massal
         bulk_regenerate_reports: Buat Ulang Laporan Kampanye
         bulk_regenerate_threesixty_reports: Buat Ulang Laporan Subjek Threesixty
@@ -871,10 +876,12 @@ id:
         completion_status_export: Ekspor Status Penyelesaian
         copy_as_template_or_campaign: Salin Kampanye sebagai Templat
         copy_dimension: Salin Dimensi
+        copy_report: Salin Laporan
         create_threesixty_campaign: Buat Kampanye Threesixty
         data_report_export: Ekspor Laporan Data
         export_admin_with_permissions: Ekspor Admin Dengan Izin
         export_assessment_questions: Pertanyaan Penilaian Ekspor
+        export_audit_logs: Ekspor Catatan Audit
         export_campaign_ai_artifacts: Ekspor Artefak AI Kampanye
         export_campaign_ai_artifacts_results: Hasil Kampanye Ekspor Artefak AI
         export_campaign_datasheet: Lembar Data Kampanye Ekspor
@@ -964,6 +971,8 @@ id:
       errors:
         no_plans: Tidak ada paket IDP aktif yang ditemukan
     close: Tutup
+    copy_report:
+      failed: Penyalinan laporan gagal
     details: Rincian
     errors: Kesalahan
     invalid_job: Notifikasi ini sesuai dengan catatan yang dihapus
@@ -1458,6 +1467,7 @@ id:
       external_user_id: ID Kandidat Skillvue
       id: ID Penilaian Kampanye
       locales: Lokal
+      microsite_assessment_url: URL Penilaian Situs Mikro
       microsite_error_message: Pesan Kesalahan
       microsite_participant_id: ID Peserta Situs Mikro
       microsite_registration_status: Status Pendaftaran
@@ -1656,7 +1666,6 @@ id:
     details:
       additional_time: Waktu tambahan
       assessment_center: Pusat Penilaian
-      assessment_center_invites: Undangan Pusat Penilaian
       completed_at: Selesai
       completion_status: Status penyelesaian
       hogan_id: Hogan ID
@@ -1686,11 +1695,6 @@ id:
     modals:
       remove: Apakah Anda yakin ingin menghapus pengguna dengan email '%{email}' dari kampanye ini?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Penilaian Penilai
-      other_assessments: Penilaian Lainnya
-      other_assessor_assessments: Penilaian Penilai Lainnya
-      other_reports: Laporan Lainnya
     card:
       duration: Durasi
       starts_in: 'Mulai masuk:'
@@ -1761,23 +1765,19 @@ id:
       insert: Memasukkan
       'no': Tidak
       ok: OKE
-      publish: Menerbitkan
       reject: Menolak
       remove: Menghapus
       reset: Atur ulang
       resolve: Menyelesaikan
       restore: Mengembalikan
       return_to_home: Kembali ke Rumah
-      run: Lari
       save: Simpan
       schedule: Jadwal
       search: Pencarian
-      send: Kirim
       sign_in: Tandatangan
       start: Mulai
       submit: Tunduk
       unarchive: Tidak diarsipkan
-      unpublish: Batalkan penerbitan
       unresolve: Tidak terselesaikan
       update: Memperbarui
       upload: Unggah
@@ -1790,20 +1790,14 @@ id:
     column:
       action: Tindakan
       active: Aktif
-      ai_assistant: Asisten AI
-      allow_multiple_responses: Mengizinkan beberapa respons
       approval_notification_list: Daftar Pengguna Notifikasi Persetujuan
       approvers_list: Daftar Persetujuan
-      assessment: Penilaian
       assessment_name: Nama Penilaian
       assessments: Penilaian
-      assessor: Penilai
       category: Kategori
       client: Klien
-      code: Kode
       created_at: Dibuat di
       created_by: Dibuat oleh
-      created_date: Tanggal Dibuat
       default_language: Bahasa Default
       description: Deskripsi
       details: Rincian
@@ -1821,11 +1815,8 @@ id:
         scoring: Penilaian JSON
       key: Kunci
       last_name: Nama Belakang
-      linked_activities: Aktivitas Tertaut
       linked_assessment: Penilaian Tertaut
-      meeting_link: Tautan Rapat
       modified_by: Dimodifikasi oleh
-      modified_date: Tanggal Dimodifikasi
       name: Nama
       owner: Pemilik
       package_id: ID Paket
@@ -1841,7 +1832,6 @@ id:
       scheduling: Penjadwalan
       skills: Keterampilan
       status: Status
-      tags: Tags
       timing: Waktu
       token: Tanda
       type: Jenis
@@ -1853,15 +1843,12 @@ id:
     messages:
       leave_message: Apakah Anda yakin ingin meninggalkan halaman ini? Setiap jawaban yang belum disimpan yang Anda miliki akan hilang.
     model:
-      admins: Admin
       assessment: Penilaian
       assessments: Penilaian
       campaigns: Kampanye
       completion_statuses: Status Penyelesaian
-      datasheet: Lembar data
       report: Lapor
       reports: Laporan
-      sms_contact: Kontak SMS
       threesixty_campaign: Skor Kampanye Threesixty
     status:
       completed: Selesai
@@ -2159,6 +2146,7 @@ id:
     invalid_token: Ada yang salah, silakan muat ulang halaman dan coba lagi.
     max_regeneration_limit: Batas regenerasi maksimum terlampaui, hubungi administrasi Anda.
     messages:
+      content_type_invalid: jenis konten tidak valid
       data_report_blank: Laporan Data tidak ada
       password_complexity:
         digit:
@@ -2978,9 +2966,7 @@ id:
   languages_localized:
     sl: Slovenia
   license_usage:
-    active: Aktif
     campaign_name: Nama kampanye
-    inactive: Aktif
     status_updated_at: Pembaruan status terakhir
     status_updated_by: Terakhir diperbarui oleh
     subject_email: Email subjek
@@ -3496,12 +3482,14 @@ id:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Penilai Klien
             project_admin: Admin Proyek
             regular: Admin Klien
             superadmin: Super Admin
           agile: LINCAH
           case_study: Studi kasus
           client_admin: Admin Klien
+          client_assessor: Penilai Klien
           hogan: Hogan
           manager: Manajer
           member: Pengguna
@@ -3635,6 +3623,7 @@ id:
         roles:
           campaign_admin: Admin Kampanye
           client_admin: Admin Klien
+          client_assessor: Penilai Klien
           manager: Manajer
           member: Pengguna
           project_admin: Admin Proyek
@@ -3705,12 +3694,14 @@ id:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Penilai Klien
             project_admin: Admin Proyek
             regular: Admin Klien
             superadmin: Super Admin
           agile: LINCAH
           case_study: Studi kasus
           client_admin: Admin Klien
+          client_assessor: Penilai Klien
           hogan: Hogan
           manager: Manajer
           member: Pengguna
@@ -3984,7 +3975,6 @@ id:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktif
     allow_multiple_respones: Mengizinkan pengguna mengirimkan beberapa respons
     png: PNG
     regenerate_link: Buat ulang Tautan
@@ -4173,6 +4163,7 @@ id:
       campaign_assessor: Penilai Kampanye
       campaign_user: Pengguna Kampanye
       client_admin: Admin Klien
+      client_assessor: Penilai Klien
       project_admin: Admin Proyek
       superadmin: Super Admin
     superadmins: Admin Super

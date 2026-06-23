@@ -42,16 +42,13 @@ RSpec.describe Api::V2::Administration::CampaignFactorValuesController, type: :r
            relationship: Relationship.assessor_relationship)
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let!(:api_key) { create(:api_key, user: assessor) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
 
   before { sign_in(assessor) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_factor_values' do
     it 'fetches campaign factors list' do
       get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_values",
-          params: { 'filter[user_id_eq]' => user.id },
-          headers: { 'Authorization' => authorization }
+          params: { 'filter[user_id_eq]' => user.id }
 
       expect(response).to have_http_status(:ok)
       cf = JSON.parse(response.body)['data'].first
@@ -81,7 +78,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorValuesController, type: :r
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_values/" \
            "save_assessor_scoring_factor_value?filter[user_id_eq]=#{user.id}",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       factor_value = campaign_factor.campaign_factor_values.find_by(user_id: user.id)

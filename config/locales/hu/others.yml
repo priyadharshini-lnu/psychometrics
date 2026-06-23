@@ -622,6 +622,7 @@ hu:
         roles:
           campaign_admin: Kampány adminisztrátora
           client_admin: Ügyfél rendszergazda
+          client_assessor: Ügyfélértékelő
           manager: Menedzser
           member: Felhasználó
           project_admin: Projekt adminisztrátor
@@ -727,6 +728,7 @@ hu:
           admins:
             admin: Admin
             campaign_admin: Kampány adminisztrátora
+            client_assessor: Ügyfélértékelő
             project_admin: Projekt adminisztrátor
             regular: Ügyfél rendszergazda
             superadmin: Szuper adminisztrátor
@@ -736,6 +738,7 @@ hu:
           campaign_admin: Kampány adminisztrátora
           case_study: Esettanulmány
           client_admin: Ügyfél rendszergazda
+          client_assessor: Ügyfélértékelő
           hogan: Hogan
           iiht: IIHT
           manager: Menedzser
@@ -859,6 +862,8 @@ hu:
         bulk_download_idp_reports: IDP-jelentések tömeges letöltése
         bulk_download_reports: Jelentések tömeges letöltése
         bulk_download_user_reports: Felhasználói jelentések tömeges letöltése
+        bulk_export_norm_factor_scores: Tömeges normatív tényező pontszámok exportálása
+        bulk_export_raw_factor_scores: Nyers tényezőpontszámok tömeges exportja
         bulk_generate_user_campaign_ai_artifact_results: Kampány AI-műtermékek eredményeinek tömeges generálása
         bulk_regenerate_reports: Kampányjelentések újragenerálása
         bulk_regenerate_threesixty_reports: Háromhatven tárgyi jelentés újragenerálása
@@ -871,10 +876,12 @@ hu:
         completion_status_export: Teljesítési állapotok exportálása
         copy_as_template_or_campaign: Kampány másolása sablonként
         copy_dimension: Méret másolása
+        copy_report: Jelentés másolása
         create_threesixty_campaign: Hozzon létre Threesixty kampányt
         data_report_export: Adatjelentés exportálása
         export_admin_with_permissions: Rendszergazda exportálása engedélyekkel
         export_assessment_questions: Exportértékelési kérdések
+        export_audit_logs: Naplófájlok exportálása
         export_campaign_ai_artifacts: Export kampány AI tárgyak
         export_campaign_ai_artifacts_results: Exportálás Kampány AI-artefaktumok Eredmények
         export_campaign_datasheet: Kampányadatlap exportálása
@@ -964,6 +971,8 @@ hu:
       errors:
         no_plans: Nem található aktív IDP-terv
     close: Bezár
+    copy_report:
+      failed: A jelentés másolása nem sikerült
     details: Részletek
     errors: Hibák
     invalid_job: Ez az értesítés a törölt rekordnak felel meg
@@ -1454,6 +1463,7 @@ hu:
       external_user_id: Skillvue jelölt azonosítója
       id: Kampányértékelési azonosító
       locales: Helyszínek
+      microsite_assessment_url: A mikroweboldal értékelésének URL-címe
       microsite_error_message: Hibaüzenet
       microsite_participant_id: Mikrooldal résztvevői azonosító
       microsite_registration_status: Regisztrációs állapot
@@ -1652,7 +1662,6 @@ hu:
     details:
       additional_time: További idő
       assessment_center: Assessment Center
-      assessment_center_invites: Értékelőközpont-meghívók
       completed_at: 'Befejezve:'
       completion_status: Teljesítési állapotok
       hogan_id: Hogan ID
@@ -1682,11 +1691,6 @@ hu:
     modals:
       remove: Biztosan el akarod távolítani a(z) "%{email}" e-mail címmel rendelkező felhasználót ebből a kampányból?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Értékelő értékelések
-      other_assessments: Egyéb értékelések
-      other_assessor_assessments: Egyéb értékelő értékelések
-      other_reports: Egyéb jelentések
     card:
       duration: Időtartam
       starts_in: 'Kezdődik:'
@@ -1757,23 +1761,19 @@ hu:
       insert: Beilleszt
       'no': Nem
       ok: OKÉ
-      publish: Közzététel
       reject: Elutasít
       remove: Távolítsa el a
       reset: Reset
       resolve: Feloldás
       restore: Visszaállítás
       return_to_home: Vissza a kezdőlapra
-      run: Fut
       save: Mentés
       schedule: Menetrend
       search: Keresés
-      send: Küldje el a
       sign_in: Bejelentkezés
       start: Indítsa el a  oldalt
       submit: Előterjeszt
       unarchive: Unarchive
-      unpublish: Unpublish
       unresolve: Megoldhatatlan
       update: Frissítés
       upload: Feltöltés
@@ -1786,20 +1786,14 @@ hu:
     column:
       action: Akció
       active: Aktív
-      ai_assistant: AI asszisztens
-      allow_multiple_responses: Több válasz engedélyezése
       approval_notification_list: Jóváhagyási értesítés felhasználóinak listája
       approvers_list: Jóváhagyók listája
-      assessment: Értékelés
       assessment_name: Értékelés neve
       assessments: Értékelések
-      assessor: Adófelügyelő
       category: Kategória
       client: Ügyfél
-      code: 'Kód:'
       created_at: Létrehozva
       created_by: 'Készítette:'
-      created_date: Létrehozás dátuma
       default_language: Alapértelmezett nyelv
       description: Leírás
       details: Részletek
@@ -1817,11 +1811,8 @@ hu:
         scoring: JSON-pontozás
       key: Kulcs
       last_name: Vezetéknév
-      linked_activities: Összekapcsolt tevékenységek
       linked_assessment: Kapcsolt értékelés
-      meeting_link: Értekezlet linkje
       modified_by: Módosította
-      modified_date: Módosítás dátuma
       name: Név
       owner: Tulajdonos
       package_id: Csomag azonosítója
@@ -1837,7 +1828,6 @@ hu:
       scheduling: Ütemezési
       skills: Készségek
       status: Állapot
-      tags: Címkék
       timing: Időzítés
       token: Token
       type: Típus
@@ -1849,15 +1839,12 @@ hu:
     messages:
       leave_message: Biztosan el akarja hagyni ezt az oldalt? Minden nem mentett válaszod elveszne.
     model:
-      admins: Adminisztrátorok
       assessment: Értékelés
       assessments: Értékelések
       campaigns: Kampányok
       completion_statuses: Teljesítési állapotok
-      datasheet: Adatlap
       report: Jelentés
       reports: Jelentések
-      sms_contact: SMS kapcsolat
       threesixty_campaign: Threesixty kampány pontszámok
     status:
       completed: Befejezett
@@ -2155,6 +2142,7 @@ hu:
     invalid_token: Valami elromlott, kérjük, töltse újra az oldalt, és próbálja meg újra.
     max_regeneration_limit: Túllépte a maximális regenerációs korlátot, forduljon az adminisztrációhoz.
     messages:
+      content_type_invalid: érvénytelen tartalomtípus
       data_report_blank: Az adatjelentés nem létezik
       password_complexity:
         digit:
@@ -2961,9 +2949,7 @@ hu:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktív
     campaign_name: Kampány neve
-    inactive: Inaktív
     status_updated_at: Utolsó állapotfrissítés
     status_updated_by: 'Utoljára frissítette:'
     subject_email: Tárgy e-mail
@@ -3479,12 +3465,14 @@ hu:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Ügyfélértékelő
             project_admin: Projekt adminisztrátor
             regular: Ügyfél rendszergazda
             superadmin: Szuper adminisztrátor
           agile: FÜRGE
           case_study: Esettanulmány
           client_admin: Ügyfél rendszergazda
+          client_assessor: Ügyfélértékelő
           hogan: Hogan
           manager: Menedzser
           member: Felhasználó
@@ -3618,6 +3606,7 @@ hu:
         roles:
           campaign_admin: Kampány adminisztrátora
           client_admin: Ügyfél rendszergazda
+          client_assessor: Ügyfélértékelő
           manager: Menedzser
           member: Felhasználó
           project_admin: Projekt adminisztrátor
@@ -3688,12 +3677,14 @@ hu:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Ügyfélértékelő
             project_admin: Projekt adminisztrátor
             regular: Ügyfél rendszergazda
             superadmin: Szuper adminisztrátor
           agile: FÜRGE
           case_study: Esettanulmány
           client_admin: Ügyfél rendszergazda
+          client_assessor: Ügyfélértékelő
           hogan: Hogan
           manager: Menedzser
           member: Felhasználó
@@ -3967,7 +3958,6 @@ hu:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktív
     allow_multiple_respones: Több válasz beküldésének engedélyezése a felhasználók számára
     png: PNG
     regenerate_link: Hivatkozás újragenerálása
@@ -4156,6 +4146,7 @@ hu:
       campaign_assessor: Kampány értékelője
       campaign_user: Kampány felhasználója
       client_admin: Ügyfél rendszergazda
+      client_assessor: Ügyfélértékelő
       project_admin: Projekt adminisztrátor
       superadmin: Szuper adminisztrátor
     superadmins: Szuperadminisztrátorok

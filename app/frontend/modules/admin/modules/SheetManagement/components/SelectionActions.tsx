@@ -75,7 +75,7 @@ const SelectionActionsComponent: FC<Props> = ({
     setSelectedRowKeys([])
     fetch(parentResourceType, parentResourceId, sheetType, tableConfigs)
     message.success(
-      I18n.t('administration.sheets.modals.delete_records.successMessage', {
+      I18n.t('admin.sheets_modals_delete_records_successMessage', {
         count: selectedCount,
       }),
     )
@@ -83,18 +83,18 @@ const SelectionActionsComponent: FC<Props> = ({
 
   const openConfirmModalForDelete = (): void => {
     modal.confirm({
-      title: I18n.t('administration.sheets.modals.delete_records.title', {
+      title: I18n.t('admin.sheets_modals_delete_records_title', {
         count: selectedCount,
       }),
       content: I18n.t(
-        'administration.sheets.modals.delete_records.content',
+        'admin.sheets_modals_delete_records_content',
         { count: selectedCount },
       ),
       icon: <ExclamationCircleOutlined />,
-      okText: I18n.t('administration.sheets.modals.delete_records.okText'),
+      okText: I18n.t('admin.sheets_modals_delete_records_okText'),
       okType: 'danger',
       cancelText: I18n.t(
-        'administration.sheets.modals.delete_records.cancelText',
+        'admin.sheets_modals_delete_records_cancelText',
       ),
       onOk: handleBatchDelete,
     })

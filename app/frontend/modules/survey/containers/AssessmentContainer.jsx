@@ -15,6 +15,7 @@ import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
+import { protectContent } from '~/utils/contentProtection'
 import { ParallaxWrapper } from '../components/ParallaxBackground/ParallaxWrapper'
 import { RecordingProvider } from '~/context/RecordingContext'
 
@@ -39,7 +40,10 @@ class AssessmentContainer extends Component {
     const dbResult = result || null
     // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
     // store.init(data, type, dbResult, rstore)
-    if (initialized) return null
+    if (initialized) {
+      this.toggleContentProtection()
+      return null
+    }
 
     rstore.dispatch({
       type: INIT,
@@ -65,16 +69,60 @@ class AssessmentContainer extends Component {
     if (!getStore()) {
       setStore(rstore)
     }
+
+    this.toggleContentProtection()
+  }
+
+  componentDidUpdate ({ data: prevData }) {
+    const previousCopyEnabled = prevData?.extra?.enable_copy_content
+    const { data: currentData } = this.props
+    const currentCopyEnabled = currentData?.extra?.enable_copy_content
+
+    if (previousCopyEnabled !== currentCopyEnabled) {
+      this.toggleContentProtection()
+    }
   }
 
   componentWillUnmount () {
+    this.teardownContentProtection()
     // store.reset()
+  }
+
+  isContentCopyEnabled = () => {
+    const { data } = this.props
+    return data?.extra?.enable_copy_content === true
+  }
+
+  setupContentProtection = () => {
+    if (!this.containerRef || this.teardownProtection || this.isContentCopyEnabled()) return
+
+    this.teardownProtection = protectContent(() => this.containerRef)
+  }
+
+  teardownContentProtection = () => {
+    this.teardownProtection?.()
+    this.teardownProtection = null
+  }
+
+  toggleContentProtection = () => {
+    this.teardownContentProtection()
+    this.setupContentProtection()
   }
 
   render () {
     const {
-      disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser, showEnhanceWithAI = false,
-      preventOverflow, skipInstructions, onSubmit, selectiveProctoringEnabled, isProctored,
+      disabled,
+      selectedLocale,
+      type,
+      showAsSinglePage,
+      data,
+      renderedByEnduser,
+      showEnhanceWithAI = false,
+      preventOverflow,
+      skipInstructions,
+      onSubmit,
+      selectiveProctoringEnabled,
+      isProctored,
     } = this.props
 
     const { loading } = this.state
@@ -91,7 +139,11 @@ class AssessmentContainer extends Component {
             {type === 'preview_assessment' && <Header langs={this.langPartial} />}
             <DndProvider backend={HTML5Backend}>
               <div
+                ref={(node) => {
+                  this.containerRef = node
+                }}
                 translate="no"
+                data-content-protected={this.isContentCopyEnabled() ? undefined : true}
                 className={containerStyles.previewContainer}
                 dir={selectedLocale === 'ar' ? 'rtl' : 'ltr'}
               >

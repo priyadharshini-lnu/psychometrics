@@ -18,6 +18,7 @@ sl:
     assessment_id: ID ocene
     assessment_list: Seznam ocen
     assessment_name: Ime ocene
+    assessor: Ocenjevalec
     assessor_approved: Ocenjevalec odobril
     assessors_list: Seznam ocenjevalcev
     asset_not_present: Sredstvo ni prisotno
@@ -26,15 +27,18 @@ sl:
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
     back: Nazaj
     basic: Osnoven
+    bulk_download: Hkratni prenos večih datotek
     camera: Kamera
     camera_preview: Predogled kamere bo prikazan tukaj
     campaign: Kampanja
     campaign_id: ID kampanje
     cancel: Prekliči
+    category: Kategorija
     change_password: Spremeni geslo
     clear_filters: Počistite filtre
     client: Stranka
     close: Zapri
+    code: Koda
     collaborative_learning: Sodelovalno učenje
     completed: Zaključeno
     configurations: Konfiguracije
@@ -43,11 +47,13 @@ sl:
     controller: Krmilnik
     cookie_notice: Obvestilo o piškotkih
     cookies_statement: Izjava o piškotkih
+    copied: Kopirano v odložišče
     copied_successfully: Kopiranje je uspelo
     copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
     create: Ustvari
     created_at: Ustvarjeno
+    created_by: Ustvaril
     created_date: Ustvarjeno dne
     created_successfully: Uspešno ustvarjeno
     custom_acknowledgment_text: Besedilo zahvale po meri
@@ -55,11 +61,14 @@ sl:
     custom_consent_text: Besedilo soglasja po meri
     custom_consent_text_required: Za vlogo upravljavca podatkov je potrebno prilagojeno besedilo soglasja.
     data_role: Vloga podatkov
+    datasheet: Podatkovni list
     decline: Upad
+    default: Privzeto
     delete: Izbriši
     description: Opis
     desktop_or_laptop_recommended: Priporočljiv namizni ali prenosni računalnik
     desktop_or_laptop_required: Potreben namizni ali prenosni računalnik
+    dimension: Dimenzija
     disabled: Invalidi
     discard: Zavrzi
     download: Prenesi
@@ -69,6 +78,7 @@ sl:
     edit: Uredi
     edited: Novo
     email: E-pošta
+    end_date: Datum zaključka
     ending_proctoring_session_msg: Zaključujemo nadzorovano izpolnjevanje vprašalnika. <p>Prosimo, počakajte, medtem ko shranjujemo vaše odgovore in vas preusmerjamo nazaj na začetno stran.</p>
     error: Napaka
     export: Izvoz
@@ -83,12 +93,18 @@ sl:
     generating: Generiranje
     group_question_max_validation_error: Vsaka skupina lahko vsebuje največ {{max}} elementov.
     group_question_min_validation_error: Vsaka skupina mora vsebovati vsaj {{min}} element(e).
+    icon: Ikona
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent lahko naredi napake. Prosimo, bodite previdni pri uporabi odgovorov.
+    import: Uvoz
+    inactive: Neaktiven
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     last_name: Priimek
+    last_updated: Zadnja posodobitev
     learning_on_the_job_label: Učenje na delovnem mestu
     lets_start: Začnimo!
+    linked_activities: Povezane dejavnosti
+    linked_assessment: Povezana ocena
     loading: Nalaganje...
     login: Prijava
     maintenance_in_hours: "%{hours} ure"
@@ -98,11 +114,13 @@ sl:
     maintenance_time_remaining: Preostali čas
     maintenance_upcoming_description: Na spletni strani %{date} bomo izvedli redno vzdrževanje, ki bo trajalo približno %{duration}, da bi izboljšali vašo izkušnjo. V tem času ne boste mogli dostopati do dodeljenih nalog ali jih opraviti. Zahvaljujemo se vam za potrpežljivost.
     maintenance_upcoming_title: Prihajajoče vzdrževanje
+    manage: Upravljaj
     manage_cookies: Upravljanje piškotkov
     media_id: Medijska identifikacijska številka
     media_preview: Predogled za medije
     media_question_transcriptions: Prepisi vprašanj medijev
     media_responses: Odzivi medijev
+    meeting_link: Povezava do srečanja
     microphones: Mikrofoni
     mobile_proctoring_disabled_instructions: Za nadaljevanje te ocene potrebujete namizni ali prenosni računalnik. Preklopite na računalnik, da dokončate dejavnost.
     mobile_proctoring_enabled_instructions: Za najboljšo izkušnjo preklopite na namizni ali prenosni računalnik, če ga imate na voljo. Po potrebi lahko nadaljujete na mobilni napravi.
@@ -116,13 +134,17 @@ sl:
     new: Novo
     next: Naprej
     no_audio_warning: Zvok ni zaznan. Preverite, ali je mikrofon priključen in deluje pravilno.
+    no_data_found: Podatkov ni mogoče najti
     no_results_found: Ni bilo najdenih rezultatov
+    none: Nobena
     not_requested: Še ni zahtevano
     ok: Ok
     options: Možnosti
+    overview: Pregled
     owner: Lastnik
     pause: Premor
     pending: V obravnavi
+    permissions: Dovoljenja
     play: Igraj
     policy_version: Različica politike
     policy_version_format: Dovoljena so samo cela števila.
@@ -133,6 +155,7 @@ sl:
     proctoring_maintenance_active: Proctoring je trenutno v vzdrževanju od %{start_time} do %{end_time}. Poskusite ponovno po koncu vzdrževanja.
     proctoring_maintenance_upcoming: Nadzor bo v vzdrževanju od %{start_time} do %{end_time}.
     project: Projekt
+    publish: Objavite
     question: Vprašanje
     question_id: ID vprašanja
     question_transcription_disabled: Prepisovanje je za to vprašanje onemogočeno.
@@ -146,20 +169,27 @@ sl:
     remove: Odstranite
     removed: Odstranjen
     replace: Zamenjaj
+    required: obvezno
+    reset: Ponastavi
     reset_password: Ponastavitev gesla
     response_text: Odgovor
     rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
     rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
+    run: Teči
     save: Shrani
     saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
+    schedule_time: Urnik časa
     scoring_details: Podrobnosti o točkovanju
     search: Iskanje
     select_camera: Izberite kamero
+    select_language: Izberite jezik
     select_microphone: Izberite mikrofon
+    send: Pošlji
     send_email: Pošlji e-pošto
     show_more: Pokaži več
     something_wrong: Nekaj je šlo narobe. Obrnite se na skrbnika.
     speakers: Govorniki
+    start_date: Datum začetka
     status: Status
     status_unknown: Status neznan
     stop: Stop
@@ -178,6 +208,7 @@ sl:
           one: 'Skupaj: 1'
           other: 'Skupaj: {{count}}'
           zero: 'Skupaj: 0'
+    tags: Tags
     terms_conditions_privacy: Izjava o zasebnosti
     tools: Orodja
     transcription: Transkripcija
@@ -189,11 +220,35 @@ sl:
     try_again: Poskusi znova
     tte_terms_and_condition: Pogoji uporabe in politika zasebnosti
     type: Vrsta
+    unpublish: Odprava objave
     update: Posodobitev
     update_failed: Posodobitev ni uspela
     updated_at: Posodobljeno dne
+    updated_by: 'Posodobil:'
     updated_successfully: Posodobljeno uspešno
+    upload: Upload
     user_report_pdf_url_not_generated: Povezave za prenos datoteke PDF ni bilo mogoče ustvariti
+    user_reports_approval_status_pending_qc: V postopku kakovostnega nadzora
+    user_reports_approval_status_qc_completed: Kontrola kakovosti zaključena
+    user_reports_assessment_name_not_completed_reason_template: Ocena »%{names}« ni zaključena
+    user_reports_assessments_name_not_completed_reason_template: Ocene %{names} niso zaključene
+    user_reports_assessor_not_completed_reason_template: Obrazec ocenjevalca %{names} ni izpolnjen
+    user_reports_assessors_not_completed_reason_template: Obrazci ocenjevalcev %{names} niso izpolnjeni
+    user_reports_campaign_artifact_results_pending_reason_message: Rezultati artefaktov kampanje za tega uporabnika še niso dokončni
+    user_reports_campaign_scoring_pending_reason_message: Rezultati kampanje za tega uporabnika še niso dokončni
+    user_reports_custom_upload_report_reason_message: Poročilo je bilo naloženo s strani uporabnika
+    user_reports_external_report_pending_reason_message: Čakamo na poročilo od ponudnika
+    user_reports_lead_assessor_not_completed_reason_template: Obrazec za glavnega ocenjevalca %{names} ni izpolnjen
+    user_reports_lead_assessors_not_completed_reason_template: Obrazci glavnega ocenjevalca %{names} niso izpolnjeni
+    user_reports_no_report_module_reason_message: Za to poročilo ni bilo najdeno nobeno poročevalsko modul
+    user_reports_not_prepared_reason_message: Poročilo še ni pripravljeno
+    user_reports_pending_approval_reason_template: Status odobritve je »%{status}«
+    user_reports_pending_final_ai_scoring_approval_reason_message: Čaka se na končno odobritev ocene s pomočjo umetne inteligence
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Čaka se na odobritev ocene QC AI
+    user_reports_pending_qc_approval_reason_message: Čaka se na odobritev poročila o nadzoru kakovosti
+    user_reports_qc_completed_approval_reason_message: Čaka se na končno odobritev poročila
+    user_reports_report_generating_reason_message: Poročilo se pripravlja
+    user_reports_report_generation_failed_reason_message: Priprava poročila ni uspela
     video: Video
     view: Pogled
     view_audio: Poglej avdio

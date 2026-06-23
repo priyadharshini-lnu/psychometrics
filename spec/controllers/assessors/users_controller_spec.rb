@@ -88,6 +88,7 @@ RSpec.describe Assessors::UsersController, type: :controller do
       reports = create_list(:report, 2)
       create(:campaign_report, campaign: assessors_campaign, report: reports[0], assessor_access: true)
       create(:campaign_report, campaign: assessors_campaign, report: reports[1], assessor_access: false)
+      create(:module, page: create(:page, report: reports[0]))
 
       user_report1 = create(:user_report, campaign: assessors_campaign, user: subject_user, report: reports[0])
       create(:user_report_pdf, :with_pdf, user_report: user_report1)

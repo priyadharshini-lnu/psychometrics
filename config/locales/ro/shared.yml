@@ -18,6 +18,7 @@ ro:
     assessment_id: ID evaluare
     assessment_list: Lista de evaluare
     assessment_name: Denumirea evaluării
+    assessor: Evaluator
     assessor_approved: Evaluator aprobat
     assessors_list: Lista evaluatorilor
     asset_not_present: Activul nu este prezent
@@ -26,15 +27,18 @@ ro:
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
     back: Înapoi
     basic: Bază
+    bulk_download: Descărcare în bloc
     camera: Cameră foto
     camera_preview: Previzualizarea camerei va apărea aici
     campaign: Campanie
     campaign_id: ID-ul campaniei
     cancel: Anulați
+    category: Categorie
     change_password: Schimbați parola
     clear_filters: Ștergeți filtrele
     client: Client
     close: Închide
+    code: Cod
     collaborative_learning: Învățare colaborativă
     completed: Finalizat
     configurations: Configurații
@@ -43,11 +47,13 @@ ro:
     controller: Controler
     cookie_notice: Notificare privind cookie-urile
     cookies_statement: Declarație privind cookie-urile
+    copied: Copiat în clipboard
     copied_successfully: Copierea s-a efectuat cu succes
     copied_to_clipboard: Copiată în clipboard
     copy: Copiere
     create: Creează
     created_at: Creat la
+    created_by: Creat de
     created_date: Data creării
     created_successfully: S-a creat cu succes
     custom_acknowledgment_text: Text personalizat de mulțumire
@@ -55,11 +61,14 @@ ro:
     custom_consent_text: Text personalizat pentru consimțământ
     custom_consent_text_required: Este necesar un text personalizat de consimțământ pentru rolul de controlor de date
     data_role: Rolul datelor
+    datasheet: Fișă tehnică
     decline: Declin
+    default: Implicit
     delete: Șterge
     description: Descriere
     desktop_or_laptop_recommended: Recomandat pentru desktop sau laptop
     desktop_or_laptop_required: Este necesar un computer desktop sau laptop
+    dimension: Dimensiune
     disabled: Persoane cu dizabilități
     discard: Ignoră
     download: Descărcare
@@ -69,6 +78,7 @@ ro:
     edit: Editați
     edited: Nou
     email: E-mail
+    end_date: Data de încheiere
     ending_proctoring_session_msg: Încheiem sesiunea de supraveghere. <p>Vă rugăm să așteptați până când vă salvăm răspunsurile și vă redirecționăm către pagina principală.</p>
     error: Eroare
     export: Exportați
@@ -83,12 +93,18 @@ ro:
     generating: Generare
     group_question_max_validation_error: Fiecare grup poate conține cel mult {{max}} element(e).
     group_question_min_validation_error: Fiecare grup trebuie să conțină cel puțin {{min}} element(e).
+    icon: Icoană
     id: ID
     idp_ai_assistant_disclaimer: Asistentul IDP Lighthouse AI poate face greșeli. Te rog să fii atent când folosești răspunsurile.
+    import: Importa
+    inactive: Inactivă
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     last_name: Numele de familie
+    last_updated: Ultima actualizare
     learning_on_the_job_label: Învățarea la locul de muncă
     lets_start: Să începem!
+    linked_activities: Activități legate
+    linked_assessment: Evaluare legată
     loading: Se încarcă...
     login: Autentificare
     maintenance_in_hours: "%{hours} ore"
@@ -98,11 +114,13 @@ ro:
     maintenance_time_remaining: Timp rămas
     maintenance_upcoming_description: Vom efectua lucrări de întreținere programate pe %{date} timp de aproximativ %{duration} pentru a îmbunătăți experiența dvs. În acest interval, nu veți putea accesa sau finaliza niciuna dintre sarcinile atribuite. Vă mulțumim pentru răbdare.
     maintenance_upcoming_title: Întreținere viitoare
+    manage: Gestionați
     manage_cookies: Gestionarea cookie-urilor
     media_id: ID media
     media_preview: Previzualizare media
     media_question_transcriptions: Transcrieri ale întrebărilor adresate de mass-media
     media_responses: Răspunsurile mass-media
+    meeting_link: Link întâlnire
     microphones: Microfoane
     mobile_proctoring_disabled_instructions: Pentru a continua această evaluare, aveți nevoie de un computer desktop sau laptop. Vă rugăm să treceți la un computer pentru a finaliza activitatea.
     mobile_proctoring_enabled_instructions: Pentru o experiență optimă, vă rugăm să utilizați un computer desktop sau laptop, dacă aveți unul la dispoziție. Puteți continua pe dispozitivul mobil, dacă este necesar.
@@ -116,13 +134,17 @@ ro:
     new: Nou
     next: Următorul
     no_audio_warning: Nu s-a detectat sunet. Verificați dacă microfonul este conectat și funcționează corect.
+    no_data_found: Nu s-au găsit date
     no_results_found: Nu s-au găsit rezultate
+    none: Niciunul
     not_requested: Nu a fost încă solicitat
     ok: Bine
     options: Opțiuni
+    overview: Prezentare generală
     owner: Proprietar
     pause: Pauză
     pending: În așteptare
+    permissions: Permisiuni
     play: Joacă
     policy_version: Versiunea politicii
     policy_version_format: Sunt permise numai numere întregi
@@ -133,6 +155,7 @@ ro:
     proctoring_maintenance_active: Proctoring este în prezent în curs de întreținere, de la %{start_time} la %{end_time}. Vă rugăm să încercați din nou după perioada de întreținere.
     proctoring_maintenance_upcoming: Proctoring va fi în curs de întreținere de la %{start_time} la %{end_time}.
     project: Proiect
+    publish: Publicare
     question: Întrebare
     question_id: ID întrebare
     question_transcription_disabled: Transcrierea este dezactivată pentru această întrebare.
@@ -146,20 +169,27 @@ ro:
     remove: Eliminați
     removed: Scos
     replace: Înlocuiți
+    required: necesare
+    reset: Reseta
     reset_password: Resetați parola
     response_text: Textul răspunsului
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
+    run: Alerga
     save: Salvați
     saving_video: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
+    schedule_time: Timp de programare
     scoring_details: Detalii privind punctajul
     search: Căutare
     select_camera: Alege o cameră
+    select_language: Selectați limba
     select_microphone: Alegeți un microfon
+    send: Trimiteți
     send_email: Trimite e-mail
     show_more: Afișează mai mult
     something_wrong: Ceva nu a mers bine. Contactați administratorul.
     speakers: Vorbitori
+    start_date: Data de începere
     status: Stare
     status_unknown: Stare necunoscută
     stop: Oprește-te
@@ -178,6 +208,7 @@ ro:
           one: 'Total: 1'
           other: 'Total: {{count}}'
           zero: 'Total: 0'
+    tags: Tags
     terms_conditions_privacy: Declarație de confidențialitate
     tools: Instrumente
     transcription: Transcriere
@@ -189,11 +220,35 @@ ro:
     try_again: Încercați din nou
     tte_terms_and_condition: Termeni și confidențialitate
     type: Tip
+    unpublish: Nepublicați
     update: Actualizați
     update_failed: Actualizarea a eșuat
     updated_at: Actualizat la
+    updated_by: Actualizat de
     updated_successfully: Actualizat cu succes
+    upload: Încărca
     user_report_pdf_url_not_generated: Nu s-a putut genera linkul de descărcare a fișierului PDF
+    user_reports_approval_status_pending_qc: În așteptarea controlului de calitate
+    user_reports_approval_status_qc_completed: Controlul calității a fost finalizat
+    user_reports_assessment_name_not_completed_reason_template: Evaluarea „%{names}” nu este finalizată
+    user_reports_assessments_name_not_completed_reason_template: Evaluările de pe %{names} nu au fost finalizate
+    user_reports_assessor_not_completed_reason_template: Formularul evaluatorului %{names} nu este completat
+    user_reports_assessors_not_completed_reason_template: Formularele evaluatorilor %{names} nu sunt completate
+    user_reports_campaign_artifact_results_pending_reason_message: Rezultatele artefactelor din campanie nu sunt definitive pentru acest utilizator
+    user_reports_campaign_scoring_pending_reason_message: Rezultatele campaniei nu sunt definitive pentru acest utilizator
+    user_reports_custom_upload_report_reason_message: Furnizorul raportului este o încărcare personalizată
+    user_reports_external_report_pending_reason_message: În așteptarea raportului de la furnizor
+    user_reports_lead_assessor_not_completed_reason_template: Formularul evaluatorului principal de la %{names} nu este completat
+    user_reports_lead_assessors_not_completed_reason_template: Formularele evaluatorului principal %{names} nu sunt completate
+    user_reports_no_report_module_reason_message: Nu s-a găsit niciun modul de raport pentru acest raport
+    user_reports_not_prepared_reason_message: Raportul nu a fost încă întocmit
+    user_reports_pending_approval_reason_template: Starea aprobării este „%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: În așteptarea aprobării finale a punctajului generat de IA
+    user_reports_pending_qc_ai_scoring_approval_reason_message: În așteptarea aprobării punctajului generat de IA în cadrul controlului calității
+    user_reports_pending_qc_approval_reason_message: În așteptarea aprobării raportului de control al calității
+    user_reports_qc_completed_approval_reason_message: În așteptarea aprobării raportului final
+    user_reports_report_generating_reason_message: Se generează raportul
+    user_reports_report_generation_failed_reason_message: Generarea raportului a eșuat
     video: Video
     view: Vizualizare
     view_audio: Vizualizați audio

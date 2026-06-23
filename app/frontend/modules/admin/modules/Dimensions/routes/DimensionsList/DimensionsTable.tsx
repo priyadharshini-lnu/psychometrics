@@ -32,10 +32,10 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
     const suffixes: string[] = []
 
     if (innovationStylesEnabled) {
-      suffixes.push(I18n.t('administration.navigation.innovation_styles'))
+      suffixes.push(I18n.t('admin.navigation_innovation_styles'))
     }
     if (occupationsEnabled) {
-      suffixes.push(I18n.t('administration.navigation.occupations'))
+      suffixes.push(I18n.t('admin.navigation_occupations'))
     }
 
     return suffixes.length ? `${name} (${suffixes.join(' / ')})` : name
@@ -45,7 +45,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
     <>
       <Resource.Table pagination>
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={dimension => dimension?.id && (
@@ -54,21 +54,21 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           width={100}
         />
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.active')}
+          title={I18n.t('shared.active')}
           id="disabled"
           sorter
           render={dimension => <ActiveSwitch dimension={dimension} />}
           width={100}
         />
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           sorter
           render={renderColumnName}
           width={300}
         />
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.owner')}
+          title={I18n.t('shared.owner')}
           id="owner"
           render={(dimension) => {
             const ownerName = dimension.owner?.name
@@ -82,12 +82,12 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
               )
             }
 
-            return I18n.t('administration.tte')
+            return I18n.t('admin.tte')
           }}
           width={300}
         />
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.created_at')}
+          title={I18n.t('shared.created_at')}
           id="created_at"
           dataIndex="createdAt"
           sorter
@@ -97,7 +97,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.last_updated')}
           id="updated_at"
           dataIndex="updatedAt"
           sorter
@@ -107,7 +107,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<Dimension>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, dimension) => (
             <Dropdown
@@ -149,10 +149,10 @@ const Dropdown: React.FC<DropDownProps> = ({ dimension, openModal }) => {
         responseType: ExportDimensionResponseTR,
       })
       message.success(
-        I18n.t('administration.dimensions.export_json.successfully', { name: dimension.name }),
+        I18n.t('admin.dimensions_export_json_successfully', { name: dimension.name }),
       )
     } catch (error) {
-      message.error(I18n.t('common.error'))
+      message.error(I18n.t('shared.error'))
     }
   }
 
@@ -183,22 +183,22 @@ const getActionsMenuProps = ({
   const menuItems = [
     dimension && {
       key: 'edit',
-      label: I18n.t('common.actions.edit'),
+      label: I18n.t('shared.edit'),
       onClick: () => openModal('DimensionsFormModal', { dimension }),
     },
     dimension && {
       key: 'remove',
-      label: I18n.t('common.actions.remove'),
+      label: I18n.t('shared.remove'),
       onClick: () => openModal('RemoveDimensionModal', { dimension }),
     },
     canCopy && {
       key: 'copy',
-      label: I18n.t('common.actions.copy'),
+      label: I18n.t('shared.copy'),
       onClick: copyDimension,
     },
     canExportJson && {
       key: 'export_json',
-      label: I18n.t('administration.dimensions.resource.tooltips.export_json'),
+      label: I18n.t('admin.dimensions_resource_tooltips_export_json'),
       onClick: exportDimension,
     },
   ].filter(m => m) as ItemType[]

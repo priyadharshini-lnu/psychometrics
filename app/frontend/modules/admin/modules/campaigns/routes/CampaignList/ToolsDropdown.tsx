@@ -31,7 +31,7 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
   const menuItems:MenuItem[] = []
   permissions.workshopStatusExport && menuItems.push({
     key: 'workshopStatusExport',
-    label: I18n.t('administration.project.tools.workshop_status_export'),
+    label: I18n.t('admin.project_tools_workshop_status_export'),
   })
 
   const exportMenuItems = [
@@ -72,7 +72,7 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
       openModal('UserFilterModal', {
         id: projectId,
         action: exportWorkshopStatus,
-        onSuccess: () => { message.success(I18n.t('administration.project.tools.workshop_status_export_success')) },
+        onSuccess: () => { message.success(I18n.t('admin.project_tools_workshop_status_export_success')) },
       })
     }
     if (key === 'exportCompletion') {
@@ -103,7 +103,7 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
       innerElement={(
         <Button>
           <ToolOutlined />
-          <span>{I18n.t('administration.users.toolbar.title')}</span>
+          <span>{I18n.t('shared.tools')}</span>
           <DownOutlined />
         </Button>
       )}

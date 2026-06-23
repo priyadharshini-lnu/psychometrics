@@ -2,15 +2,42 @@
 vi:
   admin:
     accept_na_values: Chấp nhận giá trị N/A
+    acceptable_rate_limit_label: Giới hạn yêu cầu được chấp nhận
+    acceptable_rate_limit_request_per: yêu cầu mỗi
     actions: Các hành động
+    actions_add_code: Thêm mã
+    actions_archive: Lưu trữ
+    actions_playground: Sân chơi
+    actions_unarchive: Bỏ lưu trữ
+    active: Hoạt động
+    active_label: Hoạt động
+    active_name: Hoạt động
+    active_record_audits_audit_id: Mã kiểm toán
+    active_record_audits_auditable_id: ID bản ghi
+    active_record_audits_auditable_type: Loại bản ghi
+    active_record_audits_audited_changes: Các thay đổi đã được kiểm toán
+    active_record_audits_new_diff_parse_error: Không thể phân tích cú pháp JSON với các thay đổi mới
+    active_record_audits_old_diff_parse_error: Không thể phân tích cú pháp JSON với các thay đổi cũ
+    active_record_audits_title: Các thay đổi đã được kiểm toán
+    activity: Hoạt động
+    activity_period: Thời gian hoạt động
     add_admin: Thêm quản trị viên
     add_admin_role: Thêm vai trò quản trị viên
+    add_btn: Thêm chủ đề
     add_campaign_admin: Thêm quản trị viên chiến dịch
     add_client_admin: Thêm quản trị viên khách hàng
+    add_conditions: Thêm điều kiện
+    add_evaluators: Thêm người đánh giá
     add_indicator: Thêm chỉ báo
+    add_lead_assessor: Thêm làm Giám định viên chính
+    add_lead_assessor_hint: Vui lòng thêm Biểu mẫu đánh giá chính trước
+    add_more: Thêm nhiều hơn
     add_new_folder: Thêm thư mục mới
+    add_output_schema_key: Thêm khóa lược đồ đầu ra
     add_project: Thêm dự án
     add_project_admin: Thêm quản trị viên dự án
+    add_report: Thêm báo cáo
+    add_subjects: Thêm chủ đề
     add_threesixty_campaign_admin: Thêm quản trị viên chiến dịch
     add_word_count: Thêm số từ
     admin_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của quản trị viên trước khi tải xuống
@@ -20,24 +47,15 @@ vi:
     admin_role_deleted: Vai trò quản trị viên '%{role_name}' đã bị xóa thành công.
     admin_roles: Vai trò quản trị viên
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
+    administrator_approves_reports: Quản trị viên phê duyệt báo cáo
+    administrators_list_columns_email: E-mail
     admins: Quản trị viên
     advanced: Nâng cao
+    advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
     agile: NHANH NHẸN
     ai_artifact_result_generation_admin_job_failed: Không thể tạo đối tượng '%{artifact_name}' cho người dùng '%{user_email}'
     ai_artifact_result_stale: Kết quả có thể đã lỗi thời vì các phụ thuộc của mô hình AI đã thay đổi kể từ lần tạo kết quả gần nhất. Hãy xem xét việc tạo lại mô hình để sử dụng các phụ thuộc mới nhất.
     ai_artifacts: Đồ tạo tác AI
-    ai_artifacts_finalized_at: Đã hoàn tất vào
-    ai_artifacts_generate_result_confirm: Việc tạo kết quả thành phần cho người dùng '%{email}' sẽ xóa báo cáo hiện có đang phụ thuộc vào thành phần AI này. Bạn có chắc chắn muốn tiếp tục không?
-    ai_artifacts_generate_results: Tạo kết quả
-    ai_artifacts_mark_finalized: Đã hoàn tất
-    ai_artifacts_mark_finalized_bulk_confirm: Việc hoàn tất kết quả phân tích cho tất cả người dùng đã chọn sẽ tạo ra các báo cáo sử dụng các kết quả phân tích AI. Bạn có chắc chắn muốn tiếp tục không?
-    ai_artifacts_mark_finalized_confirm: Việc hoàn tất kết quả tài liệu cho người dùng '%{email}' sẽ tạo ra báo cáo sử dụng tài liệu AI dành cho người dùng này. Bạn có chắc chắn muốn tiếp tục không?
-    ai_artifacts_mark_not_finalized: Chưa hoàn tất
-    ai_artifacts_mark_not_finalized_bulk_confirm: Việc hủy xác nhận đối với tất cả người dùng đã chọn sẽ xóa các báo cáo đã tạo sử dụng các thành phần AI. Bạn có chắc chắn muốn tiếp tục không?
-    ai_artifacts_mark_not_finalized_confirm: Việc xóa trạng thái "finalize" khỏi tài khoản người dùng "%{email}" sẽ xóa báo cáo đã tạo sử dụng tài nguyên AI của người dùng đó. Bạn có chắc chắn muốn tiếp tục không?
-    ai_artifacts_output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
-    ai_artifacts_results_export: Xuất kết quả
-    ai_artifacts_results_export_job_scheduled: Công việc xuất kết quả của AI Artifacts đã được lên lịch thành công.
     ai_assistant: Trợ lý Trí tuệ Nhân tạo
     ai_assistant_model_id_label: ID mô hình
     ai_assistant_model_label: Mẫu
@@ -46,21 +64,14 @@ vi:
     ai_assistant_required: Trợ lý AI là bắt buộc
     ai_assistant_select_dependencies: Chọn các phụ thuộc
     ai_assistants: Trợ lý AI
-    ai_assistants_advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
-    ai_assistants_campaign_id_placeholder: Nhập mã chiến dịch
-    ai_assistants_cannot_change_type_when_in_use: Không thể thay đổi loại Trợ lý AI “%{name}” vì nó hiện đang được sử dụng.
-    ai_assistants_no_rendered_output: Không có đầu ra được hiển thị
-    ai_assistants_provider_change_confirm_title: Thay đổi nhà cung cấp?
-    ai_assistants_provider_previously_used_warning: Trợ lý này trước đây đã tạo ra kết quả với "%{from}". Việc thay đổi thành "%{to}" có thể làm thay đổi cách thức hoạt động của trợ lý đối với các yêu cầu tạo kết quả trong tương lai.
-    ai_assistants_render_button: Mẫu kết xuất
-    ai_assistants_rendered_prompt: Lời nhắc được hiển thị
-    ai_assistants_template_and_campaign_required: Vui lòng cung cấp cả mẫu và ID chiến dịch
-    ai_assistants_template_render_failed: Không thể hiển thị mẫu
-    ai_assistants_test_render: Kết xuất thử nghiệm
-    ai_assistants_test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
-    ai_assistants_type_locked_tooltip: Trợ lý này hiện đang được sử dụng và không thể thay đổi loại của nó.
+    ai_assistants_disabled_by_client: Trợ lý AI bị vô hiệu hóa bởi khách hàng
+    ai_assistants_playground: Sân chơi trợ lý AI
+    ai_assisted_idp: IDP hỗ trợ AI
     ai_assisted_idp_disabled_by_client: Chức năng AI Assisted IDP đã bị vô hiệu hóa bởi khách hàng.
     ai_assisted_idp_feature_disabled: Tính năng AI Assisted IDP đã bị vô hiệu hóa cho dự án này.
+    ai_assisted_idp_requires_ai_assistants: AI Assisted IDP yêu cầu bật tính năng Trợ lý AI
+    ai_content_analysis: Phân tích nội dung bằng trí tuệ nhân tạo (AI)
+    ai_content_analysis_disabled_by_client: Phân tích nội dung AI đã bị vô hiệu hóa bởi khách hàng.
     ai_idp_assistant_configure_dependencies: Cấu hình các phụ thuộc của AI
     ai_idp_assistant_configure_dependencies_description: Cấu hình dữ liệu phụ thuộc mà Trợ lý AI của IDP có thể truy cập làm bối cảnh. Điều này chỉ áp dụng khi trợ lý được cấu hình để chấp nhận các phụ thuộc.
     ai_idp_assistant_dependencies_updated: Các phụ thuộc đã được cập nhật thành công.
@@ -69,28 +80,7 @@ vi:
     ai_score_approval_no_answer: Câu trả lời không được cung cấp cho câu hỏi này.
     ai_score_approval_no_transcription: Không có bản chép lời cho câu hỏi này.
     ai_scored: AI đã ghi bàn
-    ai_scoring_appoval_approve_all_questions: Chấp thuận tất cả các câu hỏi
-    ai_scoring_appoval_approve_question: Xác nhận câu hỏi
-    ai_scoring_appoval_back: Đặt lại điểm số
-    ai_scoring_appoval_change_reason: Lý do thay đổi
-    ai_scoring_appoval_change_score: Điểm số đã thay đổi
-    ai_scoring_appoval_change_score_log: Nhật ký thay đổi điểm số
-    ai_scoring_appoval_discard_all_questions: Đặt lại tất cả câu hỏi
-    ai_scoring_appoval_discard_all_questions_description: Điều này sẽ đặt lại tất cả điểm số cho tất cả câu hỏi và xóa bỏ bất kỳ thay đổi nào đã được áp dụng. Hành động này không thể hoàn tác. Bạn có chắc chắn không?
-    ai_scoring_appoval_discard_all_questions_title: Đặt lại điểm của tất cả các câu hỏi?
-    ai_scoring_appoval_discard_question: Đặt lại điểm câu hỏi
-    ai_scoring_appoval_discard_question_confirm_description: Điều này sẽ đặt lại tất cả điểm số cho câu hỏi này và xóa bỏ bất kỳ thay đổi nào đã được áp dụng. Bạn có chắc chắn không?
-    ai_scoring_appoval_discard_question_confirm_title: Đặt lại điểm câu hỏi?
-    ai_scoring_appoval_discarded_changes: Các thay đổi đã bị loại bỏ
-    ai_scoring_appoval_evidence_from_transcript: Bằng chứng từ bản ghi âm
-    ai_scoring_appoval_new_score: Điểm mới
     ai_scoring_appoval_next: Câu hỏi tiếp theo
-    ai_scoring_appoval_rationale: Lý do
-    ai_scoring_appoval_reason_for_changes: Lý do thay đổi
-    ai_scoring_appoval_reset_score: Đặt lại điểm số
-    ai_scoring_appoval_reset_score_description: Điểm số sẽ được khôi phục về giá trị AI ban đầu.
-    ai_scoring_appoval_responses: Phản hồi của Trí tuệ nhân tạo
-    ai_scoring_appoval_score_not_applicable: Điểm không áp dụng
     ai_scoring_approval: Phê duyệt điểm số AI
     ai_scoring_approval_digest_mailer_access_link_intro: 'Bạn có thể truy cập các quyết định phê duyệt điểm số qua liên kết sau:'
     ai_scoring_approval_digest_mailer_approved_body_intro: Các kết quả chấm điểm sau đây đã được phê duyệt.
@@ -114,61 +104,176 @@ vi:
     ai_scoring_refresh_score_confirm_title: Cập nhật điểm AI?
     ai_scoring_rescore_queued: Quá trình chấm điểm lại bằng AI đang được xử lý. Vui lòng làm mới trang sau một lát.
     ai_translation: Dịch thuật bằng Trí tuệ nhân tạo
+    ai_translation_disabled_by_client: Chức năng dịch thuật AI đã bị vô hiệu hóa bởi khách hàng.
     all_corner_rounded: Tất cả các góc đều được bo tròn.
     allow_ai_rescoring: Cho phép đánh giá lại bằng AI
     allow_continue_with_warning_system_check: Cho phép người dùng tiếp tục với các cảnh báo khi quá trình kiểm tra hệ thống không thành công
+    allow_late_cancellation_and_scheduling: Cho phép hủy và lên lịch muộn
+    allow_manager_to_view_individual_responses: Cho phép Quản lý xem các phản hồi cá nhân.
+    allow_multiple_responses: Cho phép nhiều phản hồi
+    allow_subjects_to_send_reminders: Cho phép người được đánh giá gửi lời nhắc nhở cho người đánh giá.
+    alt_text_invalid: Văn bản thay thế chứa các ký tự không được hỗ trợ.
+    alt_text_logo: Logo Alt-Text
+    alt_text_logo_required: Logo văn bản thay thế là bắt buộc
+    alt_text_long: Vượt quá giới hạn tối đa là 100 ký tự.
     api_keys: Khóa API
+    api_keys_form_title: Khóa API
+    application: Ứng dụng
+    application_add: Thêm ứng dụng
+    application_name: Tên ứng dụng
+    application_name_already_taken: Đã tồn tại cho khách hàng này
+    application_name_format_hint: Chỉ được phép sử dụng chữ cái và số, với một khoảng trắng giữa các từ
+    applications: Ứng dụng
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
+    approve_all_questions: Chấp thuận tất cả các câu hỏi
+    approve_nomination_description: Thông báo này được gửi đến người quản lý khi một đề cử, được thực hiện bởi một báo cáo trực tiếp, cần được phê duyệt
+    approve_nomination_name: Phê duyệt đề cử
+    approve_question: Xác nhận câu hỏi
+    approve_report_description: Thông báo này được gửi đến người quản lý của chủ thể để thông báo cho họ rằng báo cáo của chủ thể đã sẵn sàng để phê duyệt
+    approve_report_name: Phê duyệt báo cáo
+    archive: Lưu trữ
+    archive_content: Bạn có chắc chắn muốn lưu trữ '%{project_name}' không?
+    archive_success: Dự án '%{project_name}' đã được lưu trữ thành công.
+    archive_title: Dự án lưu trữ
+    artifact_results: Kết quả hiện vật
     assessment: Đánh giá
-    assessment_center_activity: Hoạt động
-    assessment_center_assessor: Chuyên viên thẩm định
-    assessment_center_attendance: Tỷ lệ tham dự
-    assessment_center_attendance_status: Tình trạng tham dự
-    assessment_center_campaigns_tab: Các chiến dịch
-    assessment_center_date_and_time: Ngày & Giờ
-    assessment_center_join_room: Tham gia phòng
-    assessment_center_meeting_link: Liên kết cuộc họp
-    assessment_center_participants_tab: Người tham gia
-    assessment_center_prework: Bài tập chuẩn bị
-    assessment_center_schedule_time: Lên lịch thời gian
-    assessment_center_scheduling_status: Tình trạng lên lịch
-    assessment_center_search_participants: Tìm kiếm người tham gia...
+    assessment_center: 'Trung tâm đánh giá:'
+    assessment_center_group: Nhóm Trung tâm Đánh giá
+    assessment_center_group_placeholder: Chọn Nhóm Trung tâm Đánh giá
+    assessment_center_invites: Thư mời tham gia Trung tâm Đánh giá
+    assessment_ids: Mã đánh giá
+    assessment_placeholder: Chọn Đánh giá
     assessment_question_not_supported: Loại câu hỏi này hiện tại chưa được hỗ trợ.
+    assessment_required: Đánh giá là bắt buộc
     assessments: Đánh giá
+    assessments_assessment_report: Đánh giá
+    assessments_copy: Sao chép
     assessments_copy_as_microsite: Sao chép dưới dạng bài đánh giá microsite
+    assessments_copy_assessment: Bản sao đánh giá
+    assessments_help_text: Lựa chọn này chỉ ảnh hưởng đến sự kiện Phản hồi thô của Đánh giá.
+    assessments_label: Đánh giá
     assessments_not_mhs: Tất cả các đánh giá phải là loại MHS.
+    assessments_placeholder: Chọn các bài đánh giá
     assessments_reports: Đánh giá & Báo cáo
+    assessments_required: Ít nhất một đánh giá phải được chọn cho sự kiện Phản hồi thô của đánh giá.
+    assessor: Giám định viên
+    assessor_add_subject_modal_assessment: Đánh giá
+    assessor_add_subject_modal_mark_as_lead_assessor: Đánh dấu là đánh giá viên chính cho môn học trên
+    assessor_add_subject_modal_subject: Chủ thể
+    assessor_add_subject_modal_subject_placeholder: Chủ đề tìm kiếm..
+    assessor_add_subject_modal_title: Thêm chủ đề
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Chọn đánh giá
+    assessor_assessment_name: Đánh giá của người đánh giá
+    assessor_assessments: Đánh giá của người đánh giá
+    assessor_assessments_actions_add_subject: Thêm chủ đề
+    assessor_assessments_actions_rescore: Ghi điểm lại
+    assessor_assessments_actions_reset: Đặt lại đánh giá
+    assessor_assessments_actions_reset_progress: Đặt lại tiến trình
+    assessor_assessments_bulk_delete_confirmation: Bạn có chắc chắn muốn xóa các bản ghi đã chọn không?
+    assessor_assessments_bulk_delete_successful: Đánh giá của người đánh giá đã bị xóa thành công
+    assessor_assessments_reset_confirmation: Bạn có chắc chắn muốn đặt lại đánh giá cho chủ đề bằng email "%{subjectEmail}" không?
+    assessor_assessments_reset_progress_confirmation: Bạn có chắc chắn muốn đặt lại tiến trình cho chủ đề bằng email "%{subjectEmail}" không?
+    assessor_assessments_reset_progress_successfully: Đặt lại tiến trình cho chủ đề có email "%{subjectEmail}" đã thành công.
+    assessor_assessments_reset_successfully: Đặt lại đánh giá cho chủ đề có email "%{subjectEmail}" đã thành công.
+    assessor_assessments_subject_email: Email chủ đề
+    assessor_assessments_subject_name: Tên chủ đề
+    assessor_campaigns_statuses_completed: Hoàn thành
+    assessor_campaigns_statuses_in_progress: Đang tiến hành
+    assessor_campaigns_statuses_not_started: Chưa bắt đầu
+    assessor_completed_at: Hoàn thành lúc
+    assessor_count: Đánh giá viên
+    assessor_create_assessor: Thêm đánh giá viên
     assessor_dashboard: Bảng điều khiển đánh giá viên
+    assessor_email: Email của thẩm định viên
+    assessor_evaluations: Đánh giá của người đánh giá
+    assessor_first_name: Tên của giám định viên
     assessor_form: Biểu mẫu đánh giá viên
+    assessor_ids_label: Đánh giá viên
+    assessor_last_name: Họ của giám định viên
+    assessor_modals_import_body: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
+    assessor_modals_import_title: Giám định viên nhập khẩu
+    assessor_overview: Tổng quan
+    assessor_placeholder: Tìm kiếm thẩm định viên...
+    assessor_remove_confirmation: Bạn có chắc chắn muốn xóa người đánh giá có email %{email} khỏi chiến dịch này không?
+    assessor_statuses_completed: Hoàn thành
+    assessor_statuses_not_completed: Chưa hoàn thành
+    assessor_subjects_statuses_completed: Hoàn thành
+    assessor_subjects_statuses_in_progress: Đang tiến hành
+    assessor_subjects_statuses_not_started: Chưa bắt đầu
+    assessor_toolbar_export: Giám định viên xuất khẩu
+    assessor_toolbar_import: Giám định viên nhập khẩu
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
     assistant_toolbar_not_a_valid_operation: 'Hoạt động không xác định: %{operation}.'
     assistant_validation_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
+    attendance: Tỷ lệ tham dự
+    attendance_status: Tình trạng tham dự
     audit_log_impersonated_by: Được đóng giả bởi
+    audit_log_title: Thông tin nhật ký kiểm toán
+    audit_log_type: Loại bản ghi
     audit_logs: Nhật ký kiểm tra
+    audit_logs_export_failed: Không thể lên lịch tác vụ xuất dữ liệu. Vui lòng thử lại.
+    audit_logs_export_queued: Công việc xuất dữ liệu đã được lên lịch thành công.
     audit_reports: Báo cáo kiểm toán
+    auth_type_api_key_header_format_error: Chỉ cho phép chữ cái, số, dấu gạch dưới và dấu gạch nối
+    auth_type_api_key_header_label: Tiêu đề khóa API
+    auth_type_api_key_header_name: Tiêu đề apiKeyHeader
+    auth_type_api_key_label: Khóa API
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: Cơ bản
+    auth_type_basic_value: basic_auth
+    auth_type_label: Loại xác thực
+    auth_type_name: auth_type
+    auth_type_no_auth_label: Không ai
+    auth_type_no_auth_value: no_auth
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Điểm số này được điều chỉnh tự động và không thể thay đổi
     auto_placeholder: Tự động
+    automatically_send_invites: Tự động gửi lời mời đến các đánh giá viên mới
     availability: Sẵn sàng
-    available_languages: Báo cáo có sẵn bằng ngôn ngữ
+    available_languages: Ngôn ngữ có sẵn
     average: Trung bình
+    back: Đặt lại điểm số
     back_to_main: Menu chính
+    background_color: Màu nền
+    background_label: Nền
+    background_overlay_label: Lớp phủ nền
+    background_size: Kích thước nền
+    background_size_contain: Chứa
+    background_size_cover: Che
+    basic_info_panel_description: Vui lòng nhập thông tin lịch trình bên dưới. Bạn cũng có thể chọn nhiều ngày để tạo nhiều trung tâm đánh giá.
+    basic_info_panel_title: Thông tin cơ bản
     block_editor_add_question: Thêm câu hỏi
     block_editor_question_randomization: Xáo trộn câu hỏi
     block_options: Tùy chọn khối
     block_settings: Cài đặt khối
     blocks_new_button: Khối mới
     blocks_title: Khối
+    booked_at: 'Đặt tại:'
+    breadcrumbs_norms_editor: Trình chỉnh sửa định mức
+    bulk_assessment_download_date_range_required: Vui lòng chọn khoảng thời gian
+    bulk_assessment_download_export_type: Loại xuất khẩu
+    bulk_assessment_download_export_type_required: Vui lòng chọn loại xuất
+    bulk_assessment_download_help_text: 'Lưu ý: Nếu các bài đánh giá được liên kết với các chiều khác nhau, tệp xslx đã tải xuống sẽ chứa các trang tính riêng biệt cho từng chiều.'
+    bulk_assessment_download_modal_subtitle: Chọn khoảng thời gian và loại xuất, sau đó xuất các bài đánh giá đã chọn.
+    bulk_assessment_download_no_data_found: Đối với khoảng thời gian và các bài đánh giá đã chọn, không tìm thấy dữ liệu nào. Vui lòng thử với khoảng thời gian hoặc các bài đánh giá khác.
+    bulk_assessment_download_norm_factor_scores: Điểm hệ số chuẩn hóa
+    bulk_assessment_download_raw_factor_scores: Điểm yếu tố thô
     bulk_assets_modal_choose_csv: Chọn tệp CSV
     bulk_assets_modal_choose_zip: Chọn tệp ZIP
     bulk_assets_modal_not_csv_file_error: Chỉ chấp nhận các tệp CSV cho việc tải lên CSV. Vui lòng tải lên một tệp CSV hợp lệ.
     bulk_assets_modal_subtitle: 'Vui lòng tải lên <b>một tệp CSV</b> (với các tiêu đề: user_email, file_name) và <b>một tệp ZIP</b> (chứa các tệp PDF có tên trùng khớp với tên tệp trong CSV). Tệp ZIP phải có dung lượng dưới %{max_file_size} MB.'
     bulk_assets_modal_title: Tải lên các tệp CSV và ZIP
+    bulk_export_assessments_file: Tệp xuất kết quả đánh giá hàng loạt
+    bulk_export_invalid_params: Các tham số xuất hàng loạt không hợp lệ
     bulk_upload_ai_artifacts: Tải lên hàng loạt hiện vật AI
+    campaign: Chiến dịch
+    campaign_admin: Quản trị viên chiến dịch
     campaign_ai_artifact_updated_successfully: Chiến dịch AI hiện vật được cập nhật thành công
     campaign_ai_artifacts_instruction_templating_tooltip: Bạn có thể sử dụng các lệnh nâng cao bằng cách áp dụng mẫu lệnh với cú pháp mẫu Liquid và các biến có sẵn. Vui lòng tham khảo tài liệu hướng dẫn để biết thêm chi tiết.
-    campaign_ai_artifacts_results_export_details: Các sản phẩm trí tuệ nhân tạo (AI) của chiến dịch đã tạo ra kết quả.
     campaign_assessment_actions_disable_caching: Tắt bộ nhớ đệm đánh giá
     campaign_assessment_actions_enable_caching: Bật bộ nhớ đệm đánh giá
     campaign_assessment_column_caching_enabled: Đã bật bộ nhớ đệm đánh giá
@@ -201,71 +306,230 @@ vi:
     campaign_assessment_modals_enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
     campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
     campaign_factors: Các yếu tố chiến dịch
+    campaign_id_placeholder: Nhập mã chiến dịch
     campaign_name: Tên chiến dịch
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: Mã báo cáo bên ngoài
-          language_id: Mã ngôn ngữ
-          norm: Tiêu chuẩn
-          norm_id: Mã tiêu chuẩn
-          suitability_id: Mã phù hợp
-        labels:
-          assessment_ids: Mã đánh giá
-          available_languages: Các ngôn ngữ có sẵn
-          campaign_report_id: Mã báo cáo chiến dịch
-          check_details: Xem chi tiết
-          default_language: Ngôn ngữ mặc định
-          external_settings: Cài đặt bên ngoài
-          provider: Nhà cung cấp
-          report_pdf_status: Trạng thái báo cáo PDF
-          user_report_id: Mã báo cáo của người dùng
+    campaign_report_generate_modal_subtitle: Chọn ngôn ngữ cần thiết cho từng báo cáo.
+    campaign_report_id: Mã báo cáo chiến dịch
+    campaign_results_export_details: Các sản phẩm trí tuệ nhân tạo (AI) của chiến dịch đã tạo ra kết quả.
     campaign_templates: Mẫu chiến dịch
+    campaign_templates_campaign_templates: Mẫu chiến dịch
+    campaign_templates_column_assessment: Đánh giá
+    campaign_templates_column_campaign: Chiến dịch
+    campaign_templates_column_owner: Chủ nhân
+    campaign_templates_column_report: Báo cáo
+    campaign_templates_form_assessment: Đánh giá
+    campaign_templates_form_assessment_placeholder: Chọn đánh giá
+    campaign_templates_form_name_placeholder: Nhập tên
+    campaign_templates_form_owner: Chủ nhân
+    campaign_templates_form_owner_placeholder: Chọn chủ sở hữu
+    campaign_templates_form_report: Báo cáo
+    campaign_templates_form_report_placeholder: Chọn báo cáo
+    campaign_templates_form_title: Mẫu chiến dịch
+    campaign_templates_remove_confirm_content: Bạn có chắc chắn muốn xóa mẫu chiến dịch '%{name}' không?
+    campaign_templates_remove_confirm_success: Bản mẫu Campaing '%{name}'' đã bị xóa thành công.
+    campaign_templates_remove_confirm_title: Xóa mẫu chiến dịch
     campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
     campaigns: Chiến dịch
+    campaigns_convert_to_template: Chuyển đổi sang mẫu
+    campaigns_extend_time_success_message: Bộ hẹn giờ chiến dịch được mở rộng đến %{minutes} phút
+    campaigns_external_scores_import_modal_title: Nhập điểm chiến dịch bên ngoài
+    campaigns_filters_active: Hoạt động
+    campaigns_filters_all: Tất cả
+    campaigns_filters_archived: Lưu trữ
+    campaigns_filters_closed: Khép kín
+    campaigns_filters_inactive: Không hoạt động
+    campaigns_filters_status: Tình trạng
+    campaigns_form_active_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành đóng vào ngày kết thúc đã chọn
+    campaigns_form_campaign: Chiến dịch
+    campaigns_form_copy_factors: Yếu tố sao chép
+    campaigns_form_inactive_notice: Trạng thái chiến dịch sẽ tự động thay đổi thành hoạt động vào ngày bắt đầu đã chọn
+    campaigns_form_practice_campaign: Chiến dịch thực hành
+    campaigns_listing_assessments: Đánh giá
+    campaigns_listing_reports: Báo cáo
+    campaigns_listing_template: Mẫu
+    campaigns_menus_add_common_campaign: Thêm chiến dịch chung
+    campaigns_menus_add_multi_rater_campaign: Thêm chiến dịch Multi Rater
+    campaigns_pdf_password: Mật khẩu PDF
+    campaigns_tab: Các chiến dịch
+    campaigns_types_common: Thường
+    campaigns_types_threesixty: Nhiều người đánh giá
+    campaigns_users_add_user: Thêm người dùng
+    campaigns_users_completion_status: Trạng thái hoàn thành
+    campaigns_users_created_by: Tạo bởi
+    campaigns_users_filters_all: Tất cả
+    campaigns_users_filters_anonymous: Vô danh
+    campaigns_users_filters_identified: Xác định
+    campaigns_users_is_active: Hoạt động
+    campaigns_users_no_permission_message: Bạn không có quyền sửa đổi
+    campaigns_users_title: Người dùng
+    campaigns_users_updated_by: Cập nhật bởi
     cancel: Hủy
+    cancel_confirmation_message: Bạn có chắc chắn muốn loại bỏ tiến trình biểu mẫu không?
+    cancel_confirmation_title: Tiến trình loại bỏ biểu mẫu
     cancellation_and_rescheduling_disabled: Chức năng hủy bỏ và thay đổi lịch trình đã bị vô hiệu hóa.
+    cancellation_lead_time_label: Thời gian hủy bỏ
+    cannot_change_type_when_in_use: Không thể thay đổi loại Trợ lý AI “%{name}” vì nó hiện đang được sử dụng.
     captcha: Xác minh Captcha
     case_study: Nghiên cứu điển hình
     casual: Thường ngày
+    categories_approvals: Phê duyệt
+    categories_invitations: Lời mời
+    categories_reminders: Nhắc nhở
+    categories_report_ready: Báo cáo sẵn sàng
+    category: Loại
     cell_save_msg: Các thay đổi hợp lệ sẽ được lưu tự động ngay khi bạn rời khỏi ô sau khi chỉnh sửa.
+    change_reason: Lý do thay đổi
+    change_score: Điểm số đã thay đổi
+    change_score_log: Nhật ký thay đổi điểm số
     characters: nhân vật
     chat_instructions_success: Hướng dẫn trò chuyện đã được lưu thành công
+    check_details: Xem chi tiết
     children_factor_type: Yếu tố liên quan đến trẻ em
     client: Khách hàng thuê nhà
+    client_admin: Quản trị viên khách hàng
     client_admins: Quản trị viên khách hàng
+    client_credentials_label: Thông tin đăng nhập khách hàng
+    client_credentials_value: client_credentials
+    client_features: Tính năng khách hàng
+    client_id_label: ID khách hàng
+    client_id_name: oauth_client_id
+    client_id_required: ID khách hàng là bắt buộc
+    client_ids: Mã khách hàng
+    client_ip: IP khách hàng
+    client_logo_label: Logo khách hàng
+    client_secret_label: Bí mật khách hàng
+    client_secret_name: oauth_client_secret
+    client_secret_required: Bí mật khách hàng là bắt buộc
     client_selection_instruction: Chọn một khách hàng để tiếp tục vào bảng điều khiển quản trị.
     client_selection_sign_out: Đăng xuất
     client_selection_title: Chọn khách hàng
     clients: Thuê khách hàng
     clients_search_placeholder: Tìm kiếm khách hàng
+    closed: Khép kín
     code_required: Mã là bắt buộc
+    collapse_filters: Thu gọn bộ lọc
+    column_code: Mã số
+    column_invitation_status: Tình trạng lời mời
+    column_participant: Người tham gia
+    column_provider: Cung cấp
+    column_scheduling_details: Chi tiết lịch trình
+    column_usage_stats: Số liệu thống kê sử dụng
     common: Đánh giá TTE
     common_assessment: Đánh giá TTE
+    common_disabled: Đã tắt
+    common_download_sample_file: Tải xuống tệp mẫu
+    common_enabled: Kích hoạt
+    common_import_failure_msg: Lỗi khi nhập tệp.
+    common_minute: phút
+    common_select_all: Chọn tất cả
+    common_type: Kiểu
+    common_unselect_all: Bỏ chọn tất cả
     communication_center: Trung tâm truyền thông
     communications: Truyền thông
+    communications_form_insert_piped_text: Chèn văn bản có đường dẫn
     completed: Hoàn thành
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
+    components_input_duration_placeholder: Nhập là '1d 2h 3m'
     concise: Ngắn gọn
+    confidence_interval: Khoảng tin cậy
+    confidence_interval_update_success: Khoảng tin cậy đã được cập nhật thành công.
+    configuration: Cấu hình
     configure_model_answer_title: Cấu hình câu trả lời mẫu và từ khóa
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
     confirmation_required: Yêu cầu xác nhận
     confirmation_required_details: Bạn có chắc chắn muốn xóa tệp "%{resource_name}" trong thư mục "%{resource}" không?
+    consolidated: Hợp nhất
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: Đã sao chép
     copied_url_success: URL đã được sao chép vào khay nhớ tạm thành công
     copy_ai_artifacts: Sao chép các tác phẩm nghệ thuật do AI tạo ra
+    copy_hint: Sao chép cấu hình Chỗ ngồi, Quản lý Trung tâm, Đánh giá viên và Cuộc họp & Tài nguyên ở trên cho các Trung tâm Đánh giá sau. Sau khi sao chép, bạn có thể thực hiện các thay đổi khác đối với các Trung tâm Đánh giá riêng lẻ trước khi tiếp tục.
     copy_image_url: Sao chép URL hình ảnh
+    copy_report_scheduled: Tác vụ sao chép báo cáo đã được lên lịch.
+    copy_text: Nhắn tin
+    copy_to_all: Sao chép đến các Trung tâm Đánh giá khác
     copy_url: Sao chép URL
     country: Quốc gia
+    course: Khoá
+    create_ai_assistants: Tạo Trợ lý Trí tuệ Nhân tạo (AI)
     create_client: Tạo khách hàng
     create_indicator: Tạo chỉ báo
-    current_job_role: Vị trí công việc hiện tại
+    create_level_description_must_exist: Mô tả cấp độ không được để trống
+    create_level_name_must_exist: Tên cấp độ không được để trống.
+    create_must_be_unique: Phải là duy nhất
+    created_successfully: Trợ lý AI đã được tạo thành công.
+    current: Dòng
+    current_job_role: Vai trò công việc hiện tại
+    custom_formula: Công thức tùy chỉnh
+    custom_message_description: Thông báo này có thể được gửi cho bất kỳ ai tham gia đánh giá
+    custom_message_name: Tin nhắn tùy chỉnh
     custom_upload: Tải lên tùy chỉnh
     dashboard: Bảng điều khiển
+    dashboard_capacity_name: Tên công suất
+    dashboard_choose_file_format: Chọn định dạng tệp
+    dashboard_dashboard_types_oracle_analytics: Phân tích Oracle
+    dashboard_dashboard_types_powerbi: PowerBi
+    dashboard_dashboards: Dashboards
+    dashboard_export_dashboard_to_file: Xuất Bảng điều khiển sang tệp
+    dashboard_export_job_failure: Không bắt đầu xuất được
+    dashboard_export_job_success: Công việc xuất đã bắt đầu. Bạn sẽ được thông báo khi nó hoàn tất.
+    dashboard_form_image_upload_failed: Tải lên hình ảnh không thành công.
+    dashboard_form_none: Không ai
+    dashboard_form_refresh_success: Làm mới tập dữ liệu được lên lịch thành công.
+    dashboard_get_started: Bắt đầu
+    dashboard_initialize_msg: Khởi tạo bảng điều khiển cho chiến dịch này
+    dashboard_loading_failed: Tải bảng điều khiển không thành công.
+    dashboard_only_export_current_tab: Chỉ xuất tab hiện tại
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: Vui lòng kiểm tra xem Tập dữ liệu và ID báo cáo trong cài đặt có chính xác không.
+    dashboard_preview_embed_token_error_title: Không thể tạo mã thông báo nhúng.
+    dashboard_settings_capacity_id: ID dung lượng
+    dashboard_settings_details: Chi tiết
+    dashboard_settings_refresh: Làm tươi
+    dashboard_settings_workspace_id: ID không gian làm việc
+    dashboard_tabs_accesssheet: Bảng truy cập
+    dashboard_tabs_accesssheet_setting: Cài đặt bảng truy cập
+    dashboard_tabs_settings: Cài đặt
     dashboards: Dashboards
+    dashed_button: Gạch ngang
+    data_exports_modal_title: Chọn phạm vi ngày
+    data_range_error: Vui lòng chọn khoảng thời gian.
     data_reports: Báo cáo dữ liệu
+    data_reports_columns_created_at: Được tạo ra tại
+    data_reports_columns_created_by: Tạo bởi
+    data_reports_columns_last_updated_by: Cập nhật lần cuối bởi
+    data_reports_columns_password: Mật khẩu
+    data_reports_columns_udpated_at: Cập nhật lần cuối lúc
+    data_reports_configuration: Cấu hình
+    data_reports_form_name: Báo cáo dữ liệu
+    data_reports_messages_runed: Báo cáo dữ liệu đã được lên lịch chạy thành công
+    dataset_id: ID tập dữ liệu
     datasheet: Bảng dữ liệu
+    date_and_time: Ngày & Giờ
+    date_presets_last_30_days: 30 ngày qua
+    date_presets_last_6_months: 6 tháng qua
+    date_presets_last_7_days: 7 ngày qua
+    date_presets_last_month: Tháng trước
+    date_presets_last_week: Tuần trước
+    date_presets_last_year: Năm ngoái
+    date_presets_today: Hôm nay
+    date_presets_yesterday: Hôm qua
+    date_range: Phạm vi ngày
+    date_range_required: Phải điền khoảng thời gian
+    dates_completed: Hoàn thành lúc
+    dates_end: Ngày kết thúc
+    dates_label: Ngày
+    dates_start: Ngày bắt đầu
+    dates_started: Bắt đầu lúc
+    days_repeated: ngày, lặp lại
     declined: Từ chối
+    default: Mặc định
+    default_assessment_language: Ngôn ngữ mặc định cho đánh giá
+    default_button: Mặc định
+    default_language: Ngôn ngữ mặc định
+    default_report_language: Báo cáo ngôn ngữ mặc định
     define_max_score_text: Xác định điểm số của "%{maxScore}" (điểm số tối đa)
     define_min_score_text: Xác định điểm số tối thiểu (%{minScore}).
     define_optional_score_range_text: Định nghĩa điểm số từ %{minScore} đến %{maxScore} (tùy chọn)
@@ -273,10 +537,40 @@ vi:
     definition: Định nghĩa
     delete_ok_text: Có, xóa
     denied: Bị từ chối
+    dependencies: Phụ thuộc
     description: Mô tả
+    description_name: Sự miêu tả
+    description_save: Lưu mô tả
+    description_save_success: Mô tả đã lưu thành công
     descriptive_text: Văn bản mô tả
     development_actions: Hành động phát triển
+    development_actions_duration_max_length: Không được lớn hơn 1 năm
+    development_actions_duration_min_length: Không được dưới 1 phút
+    development_actions_export_development_action_translations: Bản dịch hành động phát triển
+    development_actions_export_development_actions: Hành động phát triển
+    development_actions_export_failure_msg: Lỗi khi xuất bản dịch
+    development_actions_export_success_msg: Xuất các hành động phát triển đang được tiến hành. Vui lòng kiểm tra trạng thái trong thông báo.
+    development_actions_form_available_languages: Ngôn ngữ có sẵn
+    development_actions_form_client_placeholder: Chọn một khách hàng
+    development_actions_form_course_image: Hình ảnh khóa học
+    development_actions_form_course_link: Liên kết khóa học
+    development_actions_form_development_action_type: Loại hành động phát triển
+    development_actions_form_duration: Khoảng thời gian
+    development_actions_form_learning_style: Phong cách học tập
+    development_actions_form_project_placeholder: Chọn một dự án
+    development_actions_form_skills: Kỹ năng
+    development_actions_form_skills_placeholder: Chọn kỹ năng
     development_actions_form_tags: thẻ
+    development_actions_form_title: Hành động phát triển
+    development_actions_global: Phát triển toàn cầu có phải là hành động không?
+    development_actions_heading: Hành động phát triển
+    development_actions_import_action_development_actions_title: Hành động phát triển nhập khẩu
+    development_actions_import_action_development_actions_translations_title: Bản dịch hành động phát triển nhập khẩu
+    development_actions_import_development_actions: Hành động phát triển
+    development_actions_import_development_actions_translations: Bản dịch hành động phát triển
+    development_actions_import_download_example_csv: Tải xuống ví dụ csv
+    development_actions_import_failure_msg: Lỗi khi nhập tệp.
+    development_actions_import_info_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
     digest_delivery_mode:
       form_label: Chế độ giao hàng tóm tắt
       immediate: Ngay lập tức - Gửi ngay khi có đơn hàng số lượng lớn.
@@ -297,16 +591,68 @@ vi:
       wednesday: Thứ Tư
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
+    dimensions_destroy_successfully: Thứ nguyên %{name} đã bị xóa thành công.
+    dimensions_export_json_successfully: Xuất JSON được lên lịch cho thứ nguyên %{name}.
+    dimensions_form_enable_innovation_styles: Cho phép các phong cách đổi mới
+    dimensions_form_enable_occupations: Kích hoạt nghề nghiệp
+    dimensions_form_title: Kích thước
+    dimensions_import_factors_sample_file: Tệp mẫu
+    dimensions_import_factors_title: Các yếu tố nhập khẩu
+    dimensions_import_modal_after: Sau
+    dimensions_import_modal_before: Trước
+    dimensions_import_modal_change_log_input: Nhật ký thay đổi
+    dimensions_import_modal_error: Lỗi
+    dimensions_import_modal_error_occurred: Đã xảy ra lỗi
+    dimensions_import_modal_errors_file_error: Vui lòng chọn một tệp JSON trước khi tiếp tục.
+    dimensions_import_modal_errors_processing_error: Lỗi xử lý tệp
+    dimensions_import_modal_field: Trường
+    dimensions_import_modal_import_dimension: Kích thước nhập khẩu
+    dimensions_import_modal_import_scheduled: Nhập theo lịch trình
+    dimensions_import_modal_operation: Hoạt động
+    dimensions_import_modal_owner_input_validation: Vui lòng chọn chủ sở hữu.
+    dimensions_import_modal_owner_select: Chọn chủ sở hữu
+    dimensions_import_modal_select_json: Chọn tệp JSON
+    dimensions_index_title: Kích thước
+    dimensions_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa Thứ nguyên này không?</p>\n"
+    dimensions_resource_confirmations_delete_message: Hãy nhập tên chiều được nêu dưới đây vào ô văn bản để xác nhận
+    dimensions_resource_tooltips_export_json: Xuất JSON để nhập vào nền tảng khác
+    dimensions_translations_export: Xuất tất cả
+    dimensions_translations_header: Dịch thuật yếu tố
+    disable_caching_content: Bạn có chắc chắn muốn tắt bộ nhớ đệm cho đánh giá này không?
+    disable_caching_successfully: Bộ nhớ đệm đã bị vô hiệu hóa cho đánh giá này.
+    disable_caching_title: Tắt bộ nhớ đệm đánh giá?
+    disable_cancellation_and_rescheduling: Vô hiệu hóa việc hủy bỏ và thay đổi lịch trình
+    disable_dp: Không cho phép xử lý dữ liệu thêm
     disable_proctoring: Tắt tính năng giám sát
+    disable_report_download: Tắt tính năng tải xuống báo cáo
     disallow_lead_assessor_moderation: Không cho phép Trưởng ban đánh giá thực hiện việc kiểm duyệt
     disallow_lead_assessor_moderation_info: Điểm số sẽ được tính tự động dựa trên tất cả các biểu mẫu do người đánh giá gửi lên và người đánh giá chính không thể thay đổi điểm số này từ màn hình kiểm duyệt
+    discard_all_questions: Đặt lại tất cả câu hỏi
+    discard_all_questions_description: Điều này sẽ đặt lại tất cả điểm số cho tất cả câu hỏi và xóa bỏ bất kỳ thay đổi nào đã được áp dụng. Hành động này không thể hoàn tác. Bạn có chắc chắn không?
+    discard_all_questions_title: Đặt lại điểm của tất cả các câu hỏi?
+    discard_question: Đặt lại điểm câu hỏi
+    discard_question_confirm_description: Điều này sẽ đặt lại tất cả điểm số cho câu hỏi này và xóa bỏ bất kỳ thay đổi nào đã được áp dụng. Bạn có chắc chắn không?
+    discard_question_confirm_title: Đặt lại điểm câu hỏi?
+    discarded_changes: Các thay đổi đã bị loại bỏ
+    document_titles_project_assessors: Thẩm định viên | %{project}
+    document_titles_project_participants: Đối tượng tham gia | %{project}
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
     download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
+    download_example_csv: Tải xuống ví dụ csv
+    dp_consent: Bật sự đồng ý xử lý dữ liệu
+    dp_consent_custom: Tùy chỉnh sự đồng ý về xử lý dữ liệu
+    dp_consent_version: Phiên bản chính sách
     duration: Thời lượng
+    duration_label: Khoảng thời gian
+    duration_max_error: Không được lớn hơn 16 giờ
+    duration_min_error: Không được dưới 15 phút
     duration_must_be_positive: Thời gian phải là số dương
+    duration_placeholder: 'Ví dụ: 4h 30m'
+    edit_ai_assistants: Chỉnh sửa Trợ lý AI
     edit_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
     edit_client_admin: Chỉnh sửa quản trị viên khách hàng
+    edit_email: Chỉnh sửa email
     edit_folder: Chỉnh sửa thư mục
     edit_indicator: Chỉnh sửa chỉ báo
     edit_job_roles: Chỉnh sửa vai trò công việc
@@ -315,35 +661,106 @@ vi:
     edit_permission_denied: Bạn không có quyền chỉnh sửa quản trị viên '%{name}'
     edit_project_admin: Chỉnh sửa quản trị viên dự án
     edit_threesixty_campaign_admin: Chỉnh sửa quản trị viên chiến dịch
+    email_manager_when_report_is_ready_for_approval: Quản lý email khi báo cáo đã sẵn sàng để phê duyệt
+    email_messages: Tin nhắn email
+    email_subject_when_report_becomes_available: Tiêu đề email khi báo cáo có sẵn
+    email_subjects_manager_when_available: Gửi email cho người quản lý của chủ đề email khi báo cáo có sẵn.
     empty: Trống
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    enable_caching_content: Bạn có chắc chắn muốn bật bộ nhớ đệm cho đánh giá này không?
+    enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
+    enable_caching_title: Bật bộ nhớ đệm đánh giá?
     enable_enhance_with_ai_client_level: Vui lòng kích hoạt tính năng "Enhance with AI" ở cấp độ khách hàng.
+    enable_face_detection: Bật tính năng nhận diện khuôn mặt
     enable_maintenance: Bật chế độ bảo trì
     enable_mobile_proctoring: Bật Chế độ Giám sát Trực tuyến trên Thiết bị Di động
+    enable_phrase_verification: Bật tính năng xác minh bằng cụm từ
     enable_system_check: Bật tính năng Kiểm tra hệ thống
     enable_transcription: Bật tính năng chuyển văn bản
     enable_transcription_msg: Bật tính năng Chuyển văn bản để sử dụng đánh giá bằng trí tuệ nhân tạo (AI) cho các câu hỏi trả lời bằng video/âm thanh.
+    enable_video_call_recording: Bật tính năng ghi âm cuộc gọi video
+    enabled: Kích hoạt
     end: kết thúc
     end_time: Thời gian kết thúc
     end_time_must_be_after_start_time: Thời gian kết thúc phải sau thời gian bắt đầu.
     enhance_with_ai: Nâng cao với Trí tuệ nhân tạo (AI)
     enhance_with_ai_requires_ai_assistants: Để sử dụng tính năng "Enhance with AI", bạn cần kích hoạt tính năng "AI Assistants".
+    enter_client_ids: Nhập ID khách hàng
     enter_description: Nhập mô tả
     enter_name: Nhập tên
+    enter_project_ids: Nhập mã dự án
     enter_question_id: Nhập ID câu hỏi
+    enter_report_ids: Nhập mã báo cáo
+    enter_schema_key: Nhập khóa lược đồ
     error: Lỗi
+    error_color: Màu lỗi
+    errors_csv_file_required: Tệp phải là tệp CSV
+    errors_error_msg: Có điều gì đó không ổn. Vui lòng làm mới trang và nếu sự cố vẫn tiếp diễn, hãy liên hệ với quản trị viên của bạn
+    errors_min_retention: Không được ít hơn 1 ngày
+    errors_policy_version_format: Chỉ cho phép các số nguyên
+    errors_required: yêu cầu
     estimated_tokens: token (ước tính)
+    evaluate_others_description: Thông báo này sẽ được hiển thị khi người tham gia đánh giá những người khác từ bên trong cổng thông tin
+    evaluate_others_name: Đánh giá người khác
+    evaluate_self_description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ bắt đầu tự đánh giá
+    evaluate_self_name: Tự đánh giá
+    evaluation_help_description: Văn bản trợ giúp hiển thị trên thẻ đánh giá trên bảng điều khiển của người dùng
+    evaluation_help_name: Trợ giúp đánh giá
     evaluation_status: Trạng thái đánh giá
     evaluation_status_not_done: Trạng thái đánh giá không phải là "Xong" đối với một hoặc nhiều đối tượng được chọn. Hãy đảm bảo rằng tất cả người dùng được chọn đã hoàn thành đánh giá hoặc đánh dấu là xong.
+    evaluations_completed: Đánh giá đã hoàn thành
+    evaluations_received: Đánh giá đã nhận
+    evaluator_invite_description: Tin nhắn này sẽ được gửi đến tất cả những người tham gia là người đánh giá
+    evaluator_invite_name: Lời mời đánh giá
+    evaluator_reminder_description: Thông báo này sẽ được gửi để nhắc nhở người đánh giá hoàn thành các đánh giá đang chờ xử lý
+    evaluator_reminder_name: Nhắc nhở người đánh giá
+    evaluator_reminder_rule_description: Chỉ định các quy tắc để tự động lên lịch khi lời mời được lên lịch
+    evaluator_reminder_rule_name: Quy tắc nhắc nhở người đánh giá
+    evaluator_welcome_description: Thông báo này sẽ ghi đè "Tin nhắn chào mừng" và chỉ hiển thị cho những người tham gia hiện đang tham gia với tư cách là người đánh giá.
+    evaluator_welcome_name: Chào mừng người đánh giá
+    evaluators_title: Người đánh giá
+    evidence_from_transcript: Bằng chứng từ bản ghi âm
+    expand_filters: Mở rộng bộ lọc
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
+    export_admins_with_permissions: Xuất vai trò và quyền của quản trị viên
+    export_ai_artifacts: Xuất hiện vật AI
     export_campaigns_queued: Các tác vụ xuất đã được xếp hàng. Vui lòng kiểm tra thông báo để lấy liên kết tải xuống.
     export_compact_completion_status: Gọn nhẹ
     export_completion_status: Tình trạng hoàn thành xuất khẩu
     export_completion_statuses_scheduled: Công việc xuất trạng thái hoàn thành đã được lên lịch thành công.
     export_detailed_completion_status: Chi tiết
+    export_failure_msg: Lỗi khi xuất mức độ thành thạo
+    export_success: Tác vụ xuất dữ liệu quản trị viên đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
+    export_success_msg: Xuất các hành động phát triển đang được tiến hành
+    export_to_csv: Xuất sang CSV
+    export_with_inactive_users: Xuất với người dùng không hoạt động
+    external_report_id: Mã báo cáo bên ngoài
+    external_score: Điểm số bên ngoài
+    external_settings: Cài đặt bên ngoài
+    factor_benchmark_scores_updated: Điểm chuẩn yếu tố được cập nhật thành công
     factor_feedback: Phản hồi yếu tố
     factor_selection: Lựa chọn yếu tố
     factors: Các yếu tố
+    factors_form_components_ExternalList_table_jsonpath: Đường dẫn JSON
+    factors_form_components_ExternalList_table_types_norm_score: Điểm chuẩn
+    factors_form_components_ExternalList_table_types_percentage: Tỷ lệ phần trăm
+    factors_form_components_ExternalList_table_types_percentile: Điểm phần trăm
+    factors_form_components_ExternalList_table_types_score: Điểm
+    factors_form_components_ExternalList_table_types_zscore: Điểm Z
+    factors_form_components_ExternalList_title: Đường dẫn JSON cho điểm số
+    factors_form_predicate: Động từ
+    factors_form_scoring_strategies_custom_formula: Công thức tùy chỉnh
+    factors_form_scoring_strategies_tip: "<strong>Câu hỏi (Trung bình):</strong> Điều này giống như phương pháp chấm điểm hiện tại khi có các câu hỏi liên quan đến một yếu tố.<br /> <br /><strong>Câu hỏi (SUM):</strong> Điều này giống như Câu hỏi (Trung bình), nhưng sử dụng SUM<br /> <br /><strong>Câu hỏi về các yếu tố khác (trung bình):</strong> Điều này giống như phương pháp chấm điểm hiện tại khi có các yếu tố phụ cho một yếu tố, chỉ thay đổi là thêm trọng số.<br /> <br /><strong>Câu hỏi về các yếu tố khác (SUM):</strong> Điều này giống như các yếu tố khác (Trung bình), nhưng sử dụng SUM<br /> <br />Tổng <strong>các yếu tố có trọng số:</strong> Tại đây, điểm số của các yếu tố khác được chọn được nhân với trọng số của chúng được cộng lại."
+    factors_form_scoring_strategy: Chiến lược tính điểm
+    factors_form_search_factors: Các yếu tố tìm kiếm
+    factors_form_use_sub_factor_norm_score: Sử dụng điểm định mức Yếu tố
+    factors_form_value: Giá trị
+    factors_index_precision: Độ chính xác
+    factors_index_scoring_strategy: Chiến lược tính điểm
+    factors_index_sub_factors: Các yếu tố phụ
+    factors_index_title: Yếu tố
+    factors_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa Yếu tố này không?</p>\n"
+    failure_reason: Lý do thất bại
     feature_ai_assistants_description: Kích hoạt trợ lý ảo được hỗ trợ bởi trí tuệ nhân tạo (AI) để nâng cao trải nghiệm người dùng.
     feature_ai_assisted_idp_description: Sử dụng trí tuệ nhân tạo (AI) để hỗ trợ đưa ra các đề xuất cho Kế hoạch Phát triển Cá nhân.
     feature_ai_content_analysis_description: Kích hoạt phân tích nội dung được hỗ trợ bởi trí tuệ nhân tạo (AI) cho các bài đánh giá.
@@ -358,25 +775,96 @@ vi:
     feature_idp_description: Kích hoạt Kế hoạch Phát triển Cá nhân cho các thành viên tham gia.
     feature_not_available: Tính năng này hiện không khả dụng
     feature_sms_notification_description: Bật thông báo SMS cho lời mời và nhắc nhở chiến dịch.
+    fields_level: Mức
+    fields_level_description: Mô tả cấp độ
+    fields_level_name: Tên cấp độ
+    fields_proficiency_translations: Dịch thuật thành thạo
+    fields_proficiency_type: Loại thông thạo
+    fields_skill: Kỹ năng
+    fields_skill_name: Tên kỹ năng
+    fields_skill_type: Loại kỹ năng
     file_size_must_be_less_than_mb: Tệp {{name}} vượt quá kích thước tối đa là {{max_size_mb}} MB
     file_upload_failed: Không tải lên được {{name}}
     fill_empty_score_msg: Điền vào tất cả các điểm cuối cùng trước khi lưu.
+    filter_by_client: Lọc theo khách hàng
+    filter_by_client_help: Chọn một khách hàng để tải các dự án của khách hàng đó
     final_score_empty_err_msg: Kết quả cuối cùng của "%{factor_name}" không được để trống.
     final_score_empty_msg: Tổng số tiền không thể để trống.
+    finalized_at: Đã hoàn tất vào
+    fingerprint: Dấu vân tay
+    first_name_required: Tên riêng là bắt buộc
     fix_grammar: Sửa lỗi ngữ pháp
+    fixed_time: Thời gian cố định
+    form_active: Hoạt động
+    form_add_assessment: Thêm đánh giá
+    form_ai_assistant: Trợ lý AI
+    form_assessment_required: Đánh giá là bắt buộc
+    form_assessments: Đánh giá
+    form_campaign_factors: Các yếu tố chiến dịch
+    form_code: Mã số
+    form_configuration: Cấu hình
+    form_datasheet: Bảng dữ liệu
+    form_datasheet_columns: Cột bảng dữ liệu
+    form_end_date: Ngày kết thúc
+    form_include_all_datasheet_columns: Bao gồm tất cả các cột biểu dữ liệu
+    form_name: Tên
+    form_no_assessment_selected: Chưa có đánh giá nào được thêm vào. Nhấp vào "Thêm" để bắt đầu.
+    form_questions_required: Ít nhất một câu hỏi phải được chọn
+    form_select_ai_assistant: Chọn Trợ lý AI
+    form_select_assessment: Chọn Đánh giá
+    form_select_campaign_factors: Chọn các yếu tố chiến dịch
+    form_select_datasheet_columns: Chọn cột biểu dữ liệu
+    form_select_questions: Chọn câu hỏi
+    form_start_date: Ngày bắt đầu
+    form_title: Tạo tác AI
+    form_total_count: Tổng số
     formal: Chính thức
     from: Từ
+    genders_female: Nữ giới
+    genders_male: Nam giới
+    genders_not_set: Chưa thiết lập
+    generate: Đẻ ra
+    generate_result_confirm: Việc tạo kết quả thành phần cho người dùng '%{email}' sẽ xóa báo cáo hiện có đang phụ thuộc vào thành phần AI này. Bạn có chắc chắn muốn tiếp tục không?
+    generate_result_info_message: Kết quả đang được tạo, vui lòng làm mới trang để xem kết quả cập nhật.
+    generate_results: Tạo kết quả
     generate_transcription: Tạo bản chép lời
+    generated_at_time: Được tạo tại %{time}
+    generated_value: Giá trị được tạo ra
+    global_skills: Kỹ năng toàn cầu
+    global_skills_disabled_by_client: Kỹ năng toàn cầu bị vô hiệu hóa bởi khách hàng
+    grant_type_label: Loại tài trợ
+    grant_type_name: oauth_grant_type
     graphic: Đồ họa
     graphic_slider: Thanh trượt hình ảnh
     handoff_client_mismatch: Mã xác thực không hợp lệ đối với khách hàng này
     handoff_invalid_token: Mã xác thực không hợp lệ hoặc đã hết hạn
     handoff_token_expired: Mã xác thực đã hết hạn hoặc đã được sử dụng
     handoff_user_disabled: Tài khoản của bạn đã bị vô hiệu hóa
+    has_api_keys: Có khóa API
+    has_public_keys: Có khóa công khai
+    header_logout_content: Nhấn Hủy nếu bạn muốn tiếp tục công việc. Nhấn Ok để đăng xuất người dùng hiện tại.
+    header_logout_title: Bạn có chắc chắn muốn đăng xuất.
+    hide_all: Ẩn tất cả
     hide_middle_scores: Ẩn điểm số trung bình
     high: Cao
     hogan: Hogan
     hogan_assessment: Đánh giá Hogan
+    hogan_provider: Cung cấp
+    hogan_providers_mercer: Mercer
+    hogan_providers_phoenix: Phượng hoàng
+    hover_options_danger_item: Vật phẩm nguy hiểm
+    hover_options_first_menu_item: Món đầu tiên trong thực đơn
+    hover_text: Di chuột lên đây
+    idp: IDP
+    idp_actions_remove_confirm: Nhập tên mẫu hiện tại được cung cấp bên dưới trong hộp văn bản để xóa mẫu
+    idp_actions_success: "%{idpName} đã bị xóa thành công."
+    idp_add_idp_template: Thêm mẫu IDP
+    idp_ai_assistant: Trợ lý AI
+    idp_ai_assisted_idp_enabled: Hỗ trợ nhận dạng người dùng bằng trí tuệ nhân tạo (AI)
+    idp_ai_enabled: Được trang bị trí tuệ nhân tạo (AI)
+    idp_ai_settings: Cài đặt Trí tuệ Nhân tạo
+    idp_all: Tất cả
+    idp_appearance: Bề ngoài
     idp_appearance_body: Nội dung
     idp_appearance_color: Màu sắc
     idp_appearance_cover: Bìa
@@ -387,6 +875,7 @@ vi:
     idp_appearance_guideline_position_second: Trang thứ hai (sau trang bìa)
     idp_appearance_guideline_position_second_last: Trang áp chót (trước trang cuối cùng)
     idp_appearance_guidelines: Hướng dẫn
+    idp_appearance_hint: Để sửa đổi giao diện, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
     idp_appearance_idp_skills: Kỹ năng của người di dời nội địa
     idp_appearance_last: Cuối cùng
     idp_appearance_per_page_font_settings: Cài đặt phông chữ cho từng trang
@@ -399,20 +888,136 @@ vi:
     idp_appearance_show_guidelines: Hiển thị trang hướng dẫn
     idp_appearance_size: Kích thước
     idp_appearance_subtitle: Phụ đề
+    idp_appearance_success: Cài đặt giao diện đã được lưu thành công.
     idp_appearance_title: Tiêu đề
+    idp_background_image: Hình nền
+    idp_behavioral_skills: Kỹ năng hành vi
+    idp_client_skills: Kỹ năng khách hàng
+    idp_delete_skill: Bạn có chắc chắn muốn xóa kỹ năng này không? Việc xóa sẽ loại bỏ tất cả các hành động phát triển liên quan.
+    idp_delete_skill_msg: Bạn có chắc chắn muốn xóa kỹ năng này không? Xóa nó cũng sẽ xóa tất cả các hành động phát triển có liên quan.
+    idp_details_updated: Thông tin chi tiết về IDP đã được cập nhật thành công.
+    idp_development_actions_add_from_library: Thêm từ Thư viện
+    idp_development_actions_completion: Hoàn thành
+    idp_development_actions_create_development_actions_with_ai: Tạo hành động phát triển với AI cho
+    idp_development_actions_create_from_ai: Sáng tạo từ AI
+    idp_development_actions_create_my_own: Tạo của riêng tôi
+    idp_development_actions_custom: Phong tục
+    idp_development_actions_date_range: Ngày bắt đầu - Ngày kết thúc
+    idp_development_actions_edit_plan_to_add_development_actions: Chỉnh sửa Kế hoạch và thêm Hành động Phát triển.
+    idp_development_actions_errors_invalid_learning_style: "“%{learning_style}” không phải là một kiểu học hợp lệ. Các tùy chọn hợp lệ là: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: Phong cách học tập không thể trống
+    idp_development_actions_generate_by_ai: Tạo bằng AI
+    idp_development_actions_generate_more: Tạo thêm
+    idp_development_actions_heading: Hành động phát triển
+    idp_development_actions_manage_skills: Quản lý kỹ năng
+    idp_development_actions_no_development_actions: Không có hành động phát triển
+    idp_disabled_by_client: IDP bị vô hiệu hóa bởi khách hàng
+    idp_document_ai_assistant: Trợ lý AI phân tích tài liệu
+    idp_edit_template: Chỉnh sửa mẫu IDP
+    idp_enter_tag_or_skills_error: Chọn ít nhất một thẻ hoặc kỹ năng
+    idp_enter_template_description_error: Mô tả mẫu là bắt buộc.
+    idp_enter_template_name_error: Tên mẫu là bắt buộc
+    idp_errors_cannot_update_progress_plan_completed: Không thể cập nhật tiến độ vì kế hoạch IDP đã hoàn thành.
+    idp_errors_skills_required_on_publishing: Vui lòng chọn kỹ năng trước khi xuất bản mẫu.
+    idp_errors_update: Không được phép cập nhật vì mẫu IDP đã được liên kết với gói IDP của người dùng. Các thay đổi về ngoại hình đã được lưu.
+    idp_fields_approval_date: Ngày phê duyệt
+    idp_fields_assigned_data: Dữ liệu được chỉ định
+    idp_fields_assigned_date: Ngày chỉ định
+    idp_fields_completion_date: Ngày hoàn thành
+    idp_fields_current_job_role: Vai trò công việc hiện tại
+    idp_fields_division: Sư đoàn
+    idp_fields_label: Lĩnh vực
+    idp_fields_name: Tên
+    idp_fields_publish_date: Ngày xuất bản
+    idp_fields_review_date: Ngày đánh giá
+    idp_fields_target_job_role: Vai trò công việc mục tiêu
+    idp_global_skills: Kỹ năng toàn cầu
+    idp_idp: IDP
+    idp_idp_template: Thêm mẫu IDP
+    idp_interview_questions: Câu hỏi phỏng vấn
+    idp_interview_questions_updated: Câu hỏi phỏng vấn được cập nhật thành công.
+    idp_intro_message: Thông điệp giới thiệu
+    idp_intro_message_hint: Để sửa đổi thông báo giới thiệu, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
+    idp_intro_message_success: Tin nhắn giới thiệu được lưu thành công
+    idp_locales: Địa điểm
+    idp_logo_image: Hình ảnh logo
+    idp_logo_type_both: Logo Mercer và Khách hàng
+    idp_logo_type_client_only: Chỉ logo khách hàng
+    idp_logo_type_label: Loại logo
+    idp_logo_type_mercer_only: Chỉ logo Mercer
+    idp_logo_type_none: Không có logo
+    idp_no_interview_questions_selected: Không có câu hỏi phỏng vấn nào được chọn
+    idp_no_reflection_questions_selected: Không chọn Câu hỏi phản ánh
+    idp_none: Không ai
+    idp_one_click_idp_enabled: Bật IDP chỉ với một cú nhấp chuột
     idp_plan_reset_success: Kế hoạch đã được đặt lại thành công
+    idp_reference_locale: Ngôn ngữ tham khảo
+    idp_reflection_questions: Câu hỏi suy ngẫm
+    idp_reflection_questions_hint: Để sửa đổi các câu hỏi phản ánh, trước tiên vui lòng lưu mẫu IDP để bật các cài đặt này.
+    idp_reflection_questions_updated: Câu hỏi suy ngẫm được cập nhật thành công.
+    idp_remove_skill: Loại bỏ kỹ năng
+    idp_revert_skill_to_public_errors_skill_already_public: Kỹ năng đã được công khai
+    idp_revert_skill_to_public_errors_skill_not_found: Không tìm thấy kỹ năng
+    idp_revert_skill_to_public_success_base_message: Kỹ năng '%{skill_name}' hiện hiển thị cho người quản lý của bạn
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} và kế hoạch IDP của bạn đã được gửi đi để xin phê duyệt"
+    idp_select_by_tags: Chọn theo thẻ
+    idp_select_interview_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
+    idp_select_reflection_question: Bắt đầu nhập để tìm kiếm và chọn câu hỏi
+    idp_select_skill_gap_report: Chọn báo cáo khoảng cách kỹ năng
+    idp_select_specific_skills: Chọn kỹ năng cụ thể
+    idp_selected: Chọn
+    idp_self_rating: Bật tự đánh giá
+    idp_setting_manager_approves_idp: Người quản lý phê duyệt IDP
+    idp_setting_manager_can_edit_idp: Người quản lý có thể chỉnh sửa IDP
+    idp_setting_require_all_development_actions_complete: Yêu cầu hoàn tất tất cả các hành động phát triển
+    idp_show_reflections: Hiển thị phản chiếu
+    idp_skill_gap_report: Báo cáo khoảng cách kỹ năng
+    idp_skill_gap_report_ai_assistant: Trợ lý phân tích báo cáo khoảng cách kỹ năng
+    idp_skill_source_preference: Nguồn kỹ năng
+    idp_skill_sources_from_ai: Từ kiến thức AI chung
+    idp_skill_sources_from_template: Từ Template & Mappings
+    idp_skills: Kỹ năng
+    idp_skills_privacy_messages_made_private: Kỹ năng '%{skill_name}' đã được đánh dấu là riêng tư và sẽ bị ẩn với người quản lý của bạn
+    idp_skills_privacy_messages_made_public: Kỹ năng '%{skill_name}' hiện hiển thị với người quản lý của bạn
+    idp_skills_privacy_messages_skill_not_found: Không tìm thấy kỹ năng
+    idp_skills_privacy_messages_unauthorized: Không được phép sửa đổi kỹ năng này
+    idp_skills_updated: Kỹ năng IDP đã được cập nhật thành công.
+    idp_status_draft: Bản nháp
+    idp_status_published: Đã xuất bản
+    idp_status_updated: Trạng thái IDP đã được cập nhật thành công.
+    idp_subtitle_text: Văn bản phụ đề
+    idp_tab_development_actions: Hành động phát triển
+    idp_tab_interview_questions: Câu hỏi phỏng vấn
+    idp_tab_reflection_questions: Câu hỏi suy ngẫm
+    idp_tab_settings: Cài đặt
+    idp_tab_templates: Mẫu
+    idp_technical_skills: Kỹ năng kỹ thuật
+    idp_template_details: Chi tiết mẫu
     idp_templates: Mẫu IDP
+    idp_title_text: Văn bản tiêu đề
+    idp_update_interview_questions: Cập nhật câu hỏi phỏng vấn
+    idp_update_reflection_questions: Cập nhật câu hỏi phản ánh
     iiht: IIHT
     iiht_assessment: Đánh giá IIHT
+    iiht_password: Mật khẩu
+    iiht_tenancy_name: Tên thuê nhà
+    iiht_tenant_id: ID đối tượng thuê
+    iiht_user: Người dùng
+    image: Ảnh
+    import_action_title: Nhập hiện vật AI của chiến dịch
+    import_actions_proficiency: Thành thạo nhập khẩu
+    import_actions_translations: Bản dịch thành thạo nhập khẩu
     import_ai_artifacts: Nhập hiện vật AI
     import_csv_assessment_group_error: 'Dòng %{index}: Người dùng có địa chỉ email %{email} đã được mời tham gia ''%{workshopInviteName}''.'
     import_csv_error: 'Hàng %{index}: người dùng có %{email} email không có trong chiến dịch này'
     import_csv_parsing_error: 'Lỗi phân tích cú pháp CSV: %{message}'
     import_description: Nhập người dùng từ tệp CSV. Mỗi hàng phải chứa một địa chỉ email.
+    import_download_example_csv: Tải xuống ví dụ csv
     import_download_sample: Tải xuống CSV mẫu
     import_error: Nhập không thành công. Vui lòng thử lại.
     import_error_saving_data: 'Lỗi lưu dữ liệu cho %{email}: %{message}'
     import_errors_title: Lỗi nhập khẩu
+    import_evaluators: Nhà đánh giá nhập khẩu
     import_external_scoring_action: Nhập tính điểm bên ngoài
     import_external_scoring_body: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
     import_external_scoring_data_description: Nhập dữ liệu tính điểm bên ngoài cho đánh giá và chiến dịch được chỉ định
@@ -420,20 +1025,177 @@ vi:
     import_external_scoring_success_msg: Nhập đã được tải lên thành công
     import_external_scoring_upload: Tải lên
     import_file_required: Vui lòng chọn tệp CSV để tải lên.
+    import_info_msg: Tệp đã tải lên đã được xếp hàng đợi để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    import_job_queued: Công việc nhập trình độ thành thạo đã được xếp hàng
     import_queued_success: Công việc nhập đối tượng đã được lên lịch thành công. Vui lòng kiểm tra thông báo của bạn để biết trạng thái.
     import_sample_file_label: 'Tệp mẫu:'
     import_scenario_id_mismatch: 'Mã kịch bản không khớp đối với %{email}: %{expected_id} dự kiến, nhưng CSV chứa các mã kịch bản khác nhau'
+    import_subjects: Đối tượng nhập khẩu
+    import_success_msg: Nhập đã được tải lên thành công
     import_successfully_saved: Lưu thành công kết quả bên ngoài cho %{email} với mục tiêu %{goals_count}
     import_title: Nhập chủ đề từ CSV
     import_upload: Tải lên
     import_users: Nhập người dùng
+    inactive: Không hoạt động
+    include_locales_label: Bao gồm bản dịch
+    include_locales_name: include_locales
+    index_title: Dự án
+    individual_invite_tabs_assessment_center: Trung tâm đánh giá
+    individual_invite_tabs_invitation_status: Tình trạng lời mời
+    info_color: Thông tin Màu sắc
+    innovation_styles_form_full_description: Mô tả đầy đủ
+    innovation_styles_index_title: Phong cách đổi mới
+    innovation_styles_list_position: Vị trí
+    innovation_styles_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa phong cách đổi mới này không?</p>\n"
+    instruction_messages: Thông điệp hướng dẫn
+    instructions: Hướng dẫn
+    instructions_actions_saved: Hướng dẫn được lưu thành công
+    instructions_enable: Bật hướng dẫn
+    instructions_save: Lưu hướng dẫn
+    integrations_actions_add: Tích hợp
+    integrations_actions_back: Quay lại tích hợp
+    integrations_actions_load_mettl_catalog: Tải danh mục đánh giá Mettl
+    integrations_actions_load_microsite_catalog: Tải danh mục đánh giá microsite
+    integrations_actions_load_skillvue_catalog: Tải danh mục đánh giá Skillvue
+    integrations_columns_active: Hoạt động
+    integrations_columns_details: Chi tiết
+    integrations_columns_name: Tên tích hợp
+    integrations_details_client_id: ID khách hàng
+    integrations_details_deployment_id: ID triển khai
+    integrations_details_platform_access_token_url: URL mã truy cập nền tảng
+    integrations_details_platform_authentication_request_url: URL yêu cầu xác thực nền tảng
+    integrations_details_platform_host_name: Tên máy chủ nền tảng
+    integrations_details_platform_id: ID nền tảng
+    integrations_details_platform_public_keyset_url: URL bộ khóa công khai của nền tảng
+    integrations_details_provider: Tên nhà cung cấp
+    integrations_details_webhookUrl: Webhook URL
+    integrations_details_webhookUrls: URL Webhook
+    integrations_integrations: Tích hợp
+    integrations_load_mettl_success: Tải công việc đánh giá mettl được xếp hàng thành công
+    integrations_load_microsite_success: Công việc đánh giá microsite đã được xếp vào hàng đợi thành công
+    integrations_load_skillvue_success: Tải công việc đánh giá skillvue được xếp hàng thành công
+    integrations_names_hogan: Hogan
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: Mettl
+    integrations_names_microsite: Trang web chuyên biệt
+    integrations_names_skillvue: Kỹ năng
+    integrations_names_yoodli: Yoodli
+    integrations_view_all_schedules: Xem tất cả lịch trình Mettl
+    interface: Giao diện
     internal: Nội bộ
+    interview_questions_delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi phỏng vấn này không?
+    interview_questions_export_action: Xuất câu hỏi phỏng vấn
+    interview_questions_export_failure_msg: Lỗi trong khi xuất tệp.
+    interview_questions_export_success_msg: Đang xuất câu hỏi phỏng vấn. Vui lòng kiểm tra trạng thái trong thông báo.
+    interview_questions_form_mandatory: Bắt buộc
+    interview_questions_form_question: Câu hỏi
+    interview_questions_form_question_type: Loại câu hỏi
+    interview_questions_form_question_type_audio: Âm thanh
+    interview_questions_form_question_type_video: Video
+    interview_questions_form_time_limit: Giới hạn thời gian (giây)
+    interview_questions_form_title: Câu hỏi phỏng vấn
+    interview_questions_import_action: Nhập câu hỏi phỏng vấn
+    interview_questions_import_failure_msg: Lỗi khi nhập tệp.
+    interview_questions_import_success_msg: Đang nhập câu hỏi phỏng vấn. Vui lòng kiểm tra trạng thái trong thông báo.
+    interview_questions_question: Câu hỏi
+    invalid_client_ids: ID khách hàng không hợp lệ
+    invalid_confidence_interval: Khoảng tin cậy phải là 0 hoặc 1.
     invalid_csv_header: CSV chứa tiêu đề không hợp lệ.
+    invalid_json: Cấu hình không phải là JSON hợp lệ
+    invalid_leadership_bar: Thanh lãnh đạo phải là 0 hoặc 1
+    invalid_norm_option: Tùy chọn Norm phải nằm trong khoảng từ 0 đến 3.
+    invalid_project_ids: 'Các ID dự án không hợp lệ: %{ids}'
     invalid_question_ids: 'Không tìm thấy các mã câu hỏi sau trong bài kiểm tra này: %{ids}'
+    invalid_report_ids: Mã báo cáo không hợp lệ
+    invite_add_invite: Thêm lời mời
+    invite_assessment_center: Trung tâm đánh giá
+    invite_basic_info_allow_preferred_language: Cho phép ngôn ngữ ưa thích
+    invite_basic_info_assessment_centers: Trung tâm đánh giá
+    invite_basic_info_assessment_centers_hint: Ví dụ về cụm từ tìm kiếm '10 tháng 8 năm 2023, 8:06 tối'
+    invite_basic_info_assessment_centers_placeholder: Chọn Trung tâm Đánh giá
+    invite_basic_info_description: Đưa ra lời mời cho ứng viên bằng cách chọn nhiều trung tâm đánh giá. Sau đó, các ứng viên sẽ chọn một trung tâm duy nhất từ những trung tâm có sẵn.
+    invite_basic_info_neurodiversity: Bao gồm câu hỏi đa dạng thần kinh
+    invite_basic_info_preferred_language: Ngôn ngữ được phép
+    invite_basic_info_required_error: Không thể trống rỗng
+    invite_basic_info_title: Thông tin cơ bản
+    invite_center_group: Nhóm Trung tâm Đánh giá
+    invite_confirm_message: Bạn có chắc chắn muốn xóa lời mời không?
+    invite_confirm_message_with_title: Bạn có chắc chắn muốn xóa Lời mời có tiêu đề '%{invite_title}' không?
+    invite_evaluators_description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ bắt đầu đề cử người đánh giá
+    invite_evaluators_name: Mời người đánh giá
+    invite_invites: Lời mời
+    invite_name_placeholder: Nhập tên lời mời
+    invite_not_selected: Không được chọn
+    invite_request_accept: Chấp nhận
+    invite_request_reason: Lý do
+    invite_request_reject: Bác bỏ
+    invite_request_remove_confirm_content: Bạn có chắc chắn muốn %{action} %{status} từ %{subjectName} không?
+    invite_request_remove_confirm_success: "%{status} Từ %{subjectName}, liên kết %{action} đã được truy cập thành công."
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: Tên chủ đề
+    invite_request_workshop_time: Thời gian hội thảo
+    invite_requests: Yêu cầu
+    invite_save: Lưu và gửi
+    invite_send_invites_add_description: Bạn có thể dịch tiêu đề và mô tả lời mời sang nhiều ngôn ngữ
+    invite_send_invites_add_language: Thêm ngôn ngữ
+    invite_send_invites_input_label: Thêm ngôn ngữ bổ sung
+    invite_send_invites_input_placeholder: Chọn ngôn ngữ bổ sung
+    invite_send_invites_invitation_title: Tiêu đề lời mời
+    invite_send_invites_title: Lời mời (%{lang})
+    invite_steps_add_subjects: Thêm chủ đề
+    invite_steps_basic_info: Thông tin cơ bản
+    invite_steps_has_errors: chứa lỗi
+    invite_steps_send_invitation: Gửi lời mời
+    invite_subjects_count: Đối tượng
+    invite_subjects_csv_error: 'Dòng %{index}: người dùng có địa chỉ email %{email} không nằm trong chiến dịch này'
+    invite_subjects_csv_imported: "%{count} đối tượng đã nhập"
+    invite_subjects_description: Bạn có thể thêm chủ đề riêng lẻ bằng cách tìm kiếm hoặc tải lên hàng loạt tệp csv.
+    invite_subjects_download: Tải về
+    invite_subjects_file_example: Tham khảo tệp ví dụ để tải lên thông tin subjecs.
+    invite_subjects_import_from_campaign: Thêm tất cả từ chiến dịch
+    invite_subjects_import_title: Đối tượng nhập khẩu
+    invite_subjects_import_users: Nhập người dùng
+    invite_subjects_search_user: Đối tượng tìm kiếm
+    invite_subjects_title: Đối tượng
+    invite_subjects_upload_csv: Tải lên CSV
+    invite_success_message: Lời mời đã bị xóa thành công.
+    invite_success_message_with_title: Lời mời có tiêu đề '%{invite_title}' đã bị xóa thành công.
+    invite_title: Tiêu đề
+    invite_workshop_list_remove_confirm_content: Bạn có chắc chắn muốn xóa Trung tâm Đánh giá có tên '%{name}' không?
+    invite_workshop_list_remove_confirm_success: Trung tâm Đánh giá đã được gỡ bỏ thành công.
+    invite_workshop_list_remove_confirm_title: Xác nhận
+    invite_workshop_title: Trung tâm đánh giá
+    is_subject: Chủ đề là
+    job_role_are_you_sure_to_remove: Bạn chắc chắn muốn xóa?
+    job_role_column_job_group: Nhóm công việc
+    job_role_column_skill_name: Tên kỹ năng
+    job_role_export_failure_msg: Lỗi khi xuất bản dịch
+    job_role_export_success_msg: Xuất các hành động phát triển đang được tiến hành.
+    job_role_form_code: Mã số
+    job_role_form_description: Sự miêu tả
+    job_role_form_job_group: Nhóm công việc
+    job_role_form_name: Tên
+    job_role_form_title: Vai trò công việc
+    job_role_import_action_translations: Nhập bản dịch vai trò công việc
+    job_role_import_download_example_csv: Tải xuống ví dụ csv
+    job_role_import_success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    job_role_job_role_details: Chi tiết về vị trí công việc
+    job_role_skill_mapping_column_expected_proficiency_level: Mức độ thành thạo dự kiến
+    job_role_skill_mapping_form_title: Lập bản đồ công việc kỹ năng
+    job_role_translations: Bản dịch vai trò công việc
     job_roles: Vai trò công việc
+    join_room: Tham gia phòng
+    keep_original: Giữ nguyên bản
+    key: Chìa khoá
+    key_id: Mã định danh
     keywords: Từ khóa
     keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
+    language_id: Mã ngôn ngữ
+    last_name_required: Họ là bắt buộc
+    lead_assessment: Đánh giá khách hàng tiềm năng
     lead_assessor_form: Phiếu đánh giá của Trưởng nhóm đánh giá
+    leadership_bar: Thanh lãnh đạo
+    leadership_bar_update_success: Thanh công cụ Lãnh đạo đã được cập nhật thành công.
     learning_from_others: Học tập hợp tác [20]
     level: Cấp độ
     level_apply: Đăng ký
@@ -446,22 +1208,63 @@ vi:
     lighthouse_logo_alt_text: Logo Ngọn hải đăng
     lighthouse_question: Câu hỏi về ngọn hải đăng
     lighthouse_question_id: Mã câu hỏi Lighthouse
-    linked_assessments: Các bài đánh giá liên quan
+    link_text: Liên kết
+    linked_assessments: Đánh giá liên kết
+    locale: Locale
+    log_date: Ngày ghi nhật ký
     logged_in: Đã đăng nhập
+    login: Đăng nhập
     low: Thấp
+    mail_history: Lịch sử thư
+    main_report: Báo cáo chính
     maintenance: Bảo trì
     maintenance_settings: Cài đặt bảo trì
     maintenance_settings_description: Quản lý các khung thời gian bảo trì hệ thống và cài đặt
+    make_report_available_to_subject_when: 'Cho phép người liên quan xem báo cáo khi:'
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
+    manager_approves_reports: Quản lý phê duyệt báo cáo
+    manager_can_access_subject_reports: Quản lý có thể truy cập các báo cáo liên quan.
+    manager_cannot_access_subject_reports: Quản lý không thể xem báo cáo cho đến khi các yêu cầu được đáp ứng.
+    manager_ids_label: Quản lý trung tâm
+    manager_report_ready_description: Thông báo này được gửi đến người quản lý của chủ thể sau khi báo cáo của chủ thể đã sẵn sàng
+    manager_report_ready_name: Báo cáo của người quản lý đã sẵn sàng
+    managers_title: Quản lý
+    mark_finalized: Đã hoàn tất
+    mark_finalized_bulk_confirm: Việc hoàn tất kết quả phân tích cho tất cả người dùng đã chọn sẽ tạo ra các báo cáo sử dụng các kết quả phân tích AI. Bạn có chắc chắn muốn tiếp tục không?
+    mark_finalized_confirm: Việc hoàn tất kết quả tài liệu cho người dùng '%{email}' sẽ tạo ra báo cáo sử dụng tài liệu AI dành cho người dùng này. Bạn có chắc chắn muốn tiếp tục không?
+    mark_licenses_as_deactivated: Đánh dấu giấy phép là đã vô hiệu hóa
+    mark_not_finalized: Chưa hoàn tất
+    mark_not_finalized_bulk_confirm: Việc hủy xác nhận đối với tất cả người dùng đã chọn sẽ xóa các báo cáo đã tạo sử dụng các thành phần AI. Bạn có chắc chắn muốn tiếp tục không?
+    mark_not_finalized_confirm: Việc xóa trạng thái "finalize" khỏi tài khoản người dùng "%{email}" sẽ xóa báo cáo đã tạo sử dụng tài nguyên AI của người dùng đó. Bạn có chắc chắn muốn tiếp tục không?
+    mask_identity_for_examus: Dữ liệu mặt nạ cho Examus Proctoring
+    mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
+    mask_identity_for_iiht: Dữ liệu mặt nạ cho IIHT
+    mask_identity_for_mettl: Dữ liệu mặt nạ cho METTL
+    mask_identity_for_mhs: Dữ liệu mặt nạ cho MHS
+    mask_identity_for_pearson: Dữ liệu mặt nạ cho Pearson
+    mask_identity_for_saville: Dữ liệu mặt nạ cho Saville
+    mask_identity_for_skillvue: Dữ liệu mặt nạ cho Skillvue
+    mask_identity_for_yoodli: Mặt nạ dữ liệu cho Yoodli
     max_value: Giá trị tối đa
     mean: Trung bình
     media_files_label: Tệp
     media_library: Thư viện phương tiện
     media_library_page_title: Thư viện phương tiện - Bảng điều khiển - Mercer Lighthouse
     meeting: Hội nghị
+    meeting_link: Liên kết cuộc họp
+    meetings_and_resources: Cuộc họp & Tài nguyên
     messages: Thư
+    meta_title: Bảng điều khiển
     mettl: METTL
+    mettl_apiBaseUrl: Điểm cuối API
+    mettl_apiBaseUrlRequired: Điểm cuối API là bắt buộc.
     mettl_assessment: Đánh giá Mettl
+    mettl_privateKey: Khóa riêng tư
+    mettl_privateKeyRequired: Khóa riêng là bắt buộc.
+    mettl_publicKey: Khóa công khai
+    mettl_publicKeyRequired: Khóa công khai là bắt buộc.
+    mettl_servers_mettl_eu: Châu Âu
+    mettl_servers_mettl_india: Ấn Độ
     mhs: Trường Trung học MHS
     mhs_assessment: Đánh giá MHS
     mhs_assessment_name: Tên đánh giá MHS
@@ -477,24 +1280,75 @@ vi:
     min_value: Giá trị nhỏ nhất
     minimum_10_words: Tối thiểu 10 từ
     minimum_download_speed: Tốc độ tải xuống tối thiểu (tính bằng Mbps)
+    minimum_face_detection_ratio: Tỷ lệ phát hiện khuôn mặt tối thiểu
     minimum_system_check_validity: Thời gian kiểm tra hệ thống tối thiểu cho chiến dịch phải là 15 phút
     minimum_upload_speed: Tốc độ tải lên tối thiểu (tính bằng Mbps)
     missing_min_max_values: Giá trị tối thiểu và tối đa là bắt buộc.
+    modal_convert_option: Chuyển đổi chiến dịch này thành mẫu.
+    modal_convert_success: Mẫu đã được chuyển đổi thành công
+    modal_copy_option: Tạo một mẫu mới từ chiến dịch này
+    modal_copy_success: Công việc tạo mẫu chiến dịch đã được lên lịch thành công, vui lòng kiểm tra thông báo để biết trạng thái.
+    modal_description: Chọn cách bạn muốn tạo mẫu từ chiến dịch này.
+    modal_failed: Việc tạo mẫu đã thất bại.
+    modal_subtitle: Chọn khoảng thời gian và sau đó chọn ngôn ngữ cần thiết cho từng báo cáo.
+    modal_title: Chuyển đổi sang mẫu
     model_answer: Câu trả lời mẫu
     model_answer_placeholder: Nhập câu trả lời mẫu để đánh giá bằng AI.
     must_be_a_valid_url: URL không hợp lệ. Vui lòng nhập URL đầy đủ kèm theo giao thức http hoặc https
     name: Tên
     name_max_length: Tên không được vượt quá %{length} ký tự.
     name_required: Tên là bắt buộc
+    navigation_audit_logs: Nhật ký kiểm tra
+    navigation_factors: Yếu tố
+    navigation_innovation_styles: Phong cách đổi mới
+    navigation_logout: Đăng xuất
+    navigation_occupations: Nghề
+    navigation_registration_codes: Mã đăng ký
+    navigation_skills_taxonomy: Phân loại kỹ năng
+    navigation_users: Người dùng
     new_folder: Thư mục mới
+    new_score: Điểm mới
+    no_assessments_found: Mã kiểm toán
     no_client_access: Bạn không có quyền truy cập vào khách hàng này
     no_clients_found: Không tìm thấy khách hàng nào
+    no_completed_assessments: Chưa có đánh giá hoàn thành
     no_file_selected: Không có tệp nào được chọn
     no_notifications: Không có thông báo
     no_question_mappings: Không có bản đồ câu hỏi nào có sẵn
+    no_rendered_output: Không có đầu ra được hiển thị
     no_status: Không có trạng thái
+    nomination_denied_description: Thông báo này được gửi đến các đối tượng khi đề cử bị từ chối
+    nomination_denied_name: Đề cử bị từ chối
+    nomination_help_description: Văn bản trợ giúp hiển thị trên thẻ đề cử trên bảng điều khiển của người dùng
+    nomination_help_name: Trợ giúp đề cử
+    norm: Chuẩn
     norm_editor_numeric_value_error: Chỉ cho phép các giá trị số (số nguyên hoặc số thập phân).
+    norm_id: ID định mức
+    norm_option: Tùy chọn tiêu chuẩn
+    norm_option_form_select: Chọn tùy chọn tiêu chuẩn
+    norm_option_update_success: Tùy chọn Norm đã được cập nhật thành công.
+    norm_region: Vùng Norm
+    norm_region_form_select: Chọn Khu vực tiêu chuẩn
+    norm_region_update_success: Khu vực Norm đã được cập nhật thành công.
+    normal: Bình thường
+    normalize_factor_scores: Chuẩn hóa điểm số yếu tố
     norms: Tiêu chuẩn
+    norms_copy_successfully: Định mức "%{name}" đã được sao chép thành công.
+    norms_export_success_msg: Công việc xuất định mức được lên lịch thành công. Vui lòng kiểm tra trạng thái trong thông báo.
+    norms_import_download_example_csv: Tải xuống ví dụ csv
+    norms_import_select_file_validation: Vui lòng chọn chủ sở hữu và tệp trước khi gửi.
+    norms_import_success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    norms_import_title: Định mức nhập khẩu
+    norms_index_import: Nhập khẩu
+    norms_remove_confirm: Nhập tên tiêu chuẩn được cung cấp bên dưới vào hộp văn bản để xác nhận
+    norms_remove_warning: Bạn có chắc chắn muốn xóa tiêu chuẩn "%{name}" không
+    norms_score_types_five_scale: Năm thang đo
+    norms_score_types_norm_type: Loại định mức
+    norms_score_types_percentage: Tỷ lệ phần trăm
+    norms_sidebar_copy: Sao chép định mức
+    norms_sidebar_editor: Trình chỉnh sửa định mức
+    norms_sidebar_export: Định mức xuất khẩu
+    norms_title: Chuẩn
     not_completed: Chưa hoàn thành
     not_completed_tooltip: "%{completed} người đánh giá được chỉ định nhưng chỉ %{submitted} đã hoàn thành đánh giá"
     notes: Ghi chú
@@ -503,16 +1357,51 @@ vi:
     notification_bell_icon_alt_text: Biểu tượng chuông thông báo
     notifications: Thông báo
     number: Số
+    oauth_scope_label: Phạm vi
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: Phạm vi là bắt buộc
     occupations: Nghề
+    occupations_factors_list_condition: Điều kiện
+    occupations_factors_list_position: Vị trí
+    occupations_factors_list_weight: Trọng lượng
+    occupations_form_alternative_icon: Biểu tượng thay thế
+    occupations_form_color: Màu sắc
+    occupations_form_indicative_roles_image: Hình ảnh minh họa các vai trò
+    occupations_form_key_career_tracks_image: Hình ảnh các lộ trình nghề nghiệp chính
+    occupations_index_title: Nghề
+    occupations_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa nghề nghiệp này không?</p>\n"
     on_the_job: Trong công việc [70]
     only_editable_on_create: Tùy chọn này chỉ có thể chỉnh sửa khi đang tạo.
     options: Tùy chọn
+    options_evaluator_options: Tùy chọn đánh giá
+    options_global: Tùy chọn toàn cầu
+    options_manager_options: Tùy chọn Quản lý
+    options_subject_options: Chủ đề tùy chọn
+    options_title: Tùy chọn
     organisational: NHANH NHẸN
     original_text: Văn bản gốc
+    other_assessments: Các đánh giá khác
+    other_assessor_assessments: Các đánh giá khác của người đánh giá
+    other_reports: Các báo cáo khác
     others: Các mục khác
+    outcome: Kết quả
+    output_schema_key_constraint: Khóa phải bắt đầu bằng chữ thường và chỉ có thể chứa chữ thường, số và dấu gạch dưới
+    output_schema_keys: Các khóa lược đồ đầu ra
     overall: Tổng thể
     overall_score: Điểm tổng cộng
+    overall_scoring: Điểm tổng thể
+    parsed_dependencies_help: Các phần phụ thuộc được phân tích cú pháp cho người dùng được Trợ lý AI sử dụng để tạo kết quả tạo tác
+    parsed_dependencies_title: Các phụ thuộc được phân tích cú pháp
+    parsed_dependencies_view: Xem các phần phụ thuộc được phân tích cú pháp
     participants: Tham gia
+    participants_tab: Người tham gia
+    participants_tabs_assessors: Đánh giá viên
+    participants_tabs_sms_contacts: Danh bạ SMS
+    participants_tabs_subjects: Đối tượng
+    password_label: Mật khẩu
+    password_name: Mật khẩu
+    past: Quá khứ
+    payload: Tải trọng
     pearson: Pearson
     pearson_assessment: Đánh giá Pearson
     permissions:
@@ -710,7 +1599,7 @@ vi:
           view: Cảnh
         messages:
           email: Email
-          instructions: Chỉ thị
+          instructions: Mã kiểm toán
           options: Tùy chọn
           title: Thư
         norms:
@@ -825,7 +1714,7 @@ vi:
         view: Cảnh
       messages:
         email: Email
-        instructions: Chỉ thị
+        instructions: Mã kiểm toán
         options: Tùy chọn
         title: Thư
       norms:
@@ -940,27 +1829,221 @@ vi:
         view: Cảnh
         view_recordings: Xem bản ghi
     permissions_360_campaigns: Quyền truy cập dành riêng cho các chiến dịch 360
+    permissions_updated: Quyền truy cập đã được cập nhật thành công
     piped_text: Văn bản được truyền qua ống
+    piped_text_modal_assessment_center: Trung tâm đánh giá
+    piped_text_modal_campaign_link: Liên kết chiến dịch
+    piped_text_modal_campaign_name: Tên chiến dịch
+    piped_text_modal_campaigns: Chiến dịch
+    piped_text_modal_duration: Khoảng thời gian
+    piped_text_modal_end_time: Thời gian kết thúc
+    piped_text_modal_insight_page_link: Liên kết trang Insight
+    piped_text_modal_insight_page_url: URL trang thông tin chi tiết
+    piped_text_modal_invite_title: Tiêu đề
+    piped_text_modal_invites: Lời mời
+    piped_text_modal_magic_link: Liên kết ma thuật
+    piped_text_modal_magic_url: URL ma thuật
+    piped_text_modal_platform_url_links: Địa chỉ URL và các liên kết của nền tảng
+    piped_text_modal_project_name: Tên dự án
+    piped_text_modal_projects: Dự án
+    piped_text_modal_report_name: Tên báo cáo
+    piped_text_modal_start_time: Thời gian bắt đầu
+    piped_text_modal_title: Thêm văn bản đường ống
+    piped_text_modal_user_reports: Báo cáo của người dùng
+    piped_text_modal_users: Người dùng
+    playground: Sân chơi
+    playground_info: Kiểm tra cấu phần phần mềm của bạn với dữ liệu mẫu để xem trước kết quả được tạo.
+    playground_placeholder: Nhập dữ liệu thử nghiệm
+    position_auto: Xe ô tô
+    position_label: Vị trí hộp đăng nhập
+    position_left: Bên trái
+    position_right: Bên phải
     precision: Độ chính xác
+    preview_report: Xem trước báo cáo
+    previous: Trước
+    prework: Bài tập chuẩn bị
+    prework_required: Không cho phép đặt phòng trung tâm nếu các công việc trước chưa hoàn thành
+    prework_required_for_invite: Chỉ gửi email mời khi hoàn tất Pre-Work
+    primary_button: Cấp 1
+    primary_color: Màu cơ bản
     privacy: Sự riêng tư
+    privacy_link: Bật liên kết quyền riêng tư
+    privacy_link_label: Liên kết quyền riêng tư
+    privacy_link_placeholder: Nhập liên kết quyền riêng tư
+    privacy_text: Văn bản bảo mật
+    privacy_text_placeholder: Nhập văn bản bảo mật
     proctoring: Giám sát
+    proctoring_allow_on_assessment_center: Cho phép có giám thị tại trung tâm đánh giá
+    proctoring_enable: Bật giám sát
     proctoring_errors_timed_only: Chức năng giám sát có chọn lọc chỉ có thể được kích hoạt cho các bài kiểm tra có giới hạn thời gian.
     proctoring_fixed_time_required: Bật "Thời gian cố định" để chọn tùy chọn này
+    proctoring_identification: Xác định
+    proctoring_identifications:
+      face: Mặt
+      face_and_passport: Mặt và hộ chiếu
+      passport: Hộ chiếu
+    proctoring_integration_type: Tích hợp
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: Trình duyệt khóa
     proctoring_mode_all: Bật tính năng giám sát trong tất cả các bài kiểm tra
     proctoring_mode_all_except_ac: Bật tính năng giám sát cho tất cả các bài kiểm tra, trừ trung tâm đánh giá
+    proctoring_rule_types_allow_absence_in_frame: Cho phép vắng mặt trong khung hình
+    proctoring_rule_types_allow_to_use_books: Cho phép sử dụng Sách
+    proctoring_rule_types_allow_to_use_calculator: Cho phép sử dụng máy tính
+    proctoring_rule_types_allow_to_use_excel: Cho phép sử dụng Excel
+    proctoring_rule_types_allow_to_use_human_assistant: Cho phép sử dụng trợ lý con người
+    proctoring_rule_types_allow_to_use_messengers: Cho phép sử dụng trình nhắn tin
+    proctoring_rule_types_allow_to_use_paper: Cho phép sử dụng Giấy
+    proctoring_rule_types_allow_to_use_websites: Cho phép sử dụng trang web
+    proctoring_rule_types_allow_voices: Cho phép giọng nói
+    proctoring_rule_types_allow_wrong_gaze_direction: Cho phép hướng nhìn sai
+    proctoring_rules: Quy tắc
+    proctoring_sessions_columns_comment: Bình luận
+    proctoring_sessions_columns_completed_at: Hoàn thành lúc
+    proctoring_sessions_columns_conclusion: Kết thúc
+    proctoring_sessions_columns_links: Liên kết
+    proctoring_sessions_columns_score: Điểm
+    proctoring_sessions_columns_session_id: ID phiên
+    proctoring_sessions_columns_started_at: Bắt đầu lúc
+    proctoring_sessions_links_report: Báo cáo
+    proctoring_sessions_links_review: Xem xét
+    proctoring_sessions_resource_name: Các buổi giám sát
     proctoring_settings: Cài đặt giám sát
+    proctoring_trial: Phiên tòa giám sát
+    proctoring_type: Kiểu
+    proctoring_types:
+      offline: Ngoại tuyến
+      online: Trực tuyến
     professional: Chuyên nghiệp
     proficiency: Năng lực
     proficiency_level: Khóa API
     proficiency_levels: Mức độ thành thạo
+    proficiency_levels_fields_title: Thông thạo
+    profile: Hồ sơ
+    profile_change_password: Thay đổi mật khẩu
     profile_details: Chi tiết hồ sơ
+    project: Dự án
+    project_admin: Quản trị viên dự án
     project_admins: Quản trị viên dự án
+    project_assessor: Chuyên gia đánh giá dự án
+    project_features: Tính năng dự án
+    project_ids: Mã dự án
+    project_ids_required: project_ids là trường bắt buộc đối với loại báo cáo này
+    project_licenses: Giấy phép dự án
     project_manager: Quản lý dự án
+    project_not_related_to_client: Dự án “%{project_id}” không thuộc về khách hàng
     project_number: Số dự án
+    project_participants_column_campaigns: Chiến dịch
+    project_participants_column_createdAt: Được tạo ra tại
+    project_participants_column_created_at: Được tạo ra tại
+    project_participants_edit_participant: Chỉnh sửa người tham gia
+    project_participants_filter_campaigns: Không có chiến dịch
+    project_participants_search_user: Tìm kiếm người dùng
+    project_participants_send_email: Gửi email
+    project_path: Lộ trình dự án
     project_settings: Cài đặt dự án
+    project_tabs_assessments_column_normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+    project_tabs_assessments_column_user_result_validity_in_days: Hiệu lực của kết quả
+    project_tabs_assessments_delete_content: Bạn có chắc chắn muốn xóa đánh giá '%{name}' không?
+    project_tabs_assessments_delete_success: Đánh giá '%{name}' đã bị xóa thành công.
+    project_tabs_assessments_delete_title: Xóa đánh giá
+    project_tabs_assessments_title: Đánh giá
+    project_tabs_design: Thiết kế
+    project_tabs_general: Tổng quát
+    project_tabs_privacy: Sự riêng tư
+    project_tabs_profile: Hồ sơ
+    project_tabs_registration: Đăng ký
+    project_tabs_webhooks_actions_delete_key: Xóa bỏ
+    project_tabs_webhooks_actions_edit_key: Biên tập
+    project_tabs_webhooks_actions_send_test_key: send_test
+    project_tabs_webhooks_actions_send_test_label: Gửi bài kiểm tra
+    project_tabs_webhooks_remove_webhook_content: Xóa %{description}?
+    project_tabs_webhooks_title: Webhook
+    project_tools_workshop_status_export: Xuất trạng thái xưởng
+    project_tools_workshop_status_export_success: Xuất trạng thái xưởng đã được lên lịch thành công.
+    project_users_change_password: Thay đổi mật khẩu
+    project_users_column_campaigns: Chiến dịch
+    project_users_column_created_at: Được tạo ra tại
+    project_users_confirm_delete: Có, xóa
+    project_users_confirm_send: Có, gửi
+    project_users_delete_error: Không thể xóa đánh giá viên '%{name}'. Vui lòng liên hệ với quản trị viên của bạn.
+    project_users_delete_success: Người đánh giá '%{name}' đã bị xóa thành công.
+    project_users_edit_assessor: Chỉnh sửa đánh giá viên
+    project_users_filter_campaigns: Không có chiến dịch
+    project_users_modal_delete_content: Bạn có chắc chắn muốn xóa người đánh giá '%{name}' không?
+    project_users_modal_delete_title: Xóa đánh giá viên
+    project_users_modal_reset_email_content: Bạn có chắc chắn muốn gửi liên kết đặt lại mật khẩu đến '%{email}' không?
+    project_users_model_reset_email: Đặt lại mật khẩu của người đánh giá
+    project_users_no_edit_permission: Bạn không có quyền chỉnh sửa người đánh giá '%{name}'
+    project_users_reset_mail_error: Không thể gửi liên kết đặt lại mật khẩu đến '%{email}'. Vui lòng liên hệ với quản trị viên của bạn.
+    project_users_reset_mail_success: Đặt lại liên kết mật khẩu được gửi thành công đến '%{email}'
+    project_users_search_accessor: Trình truy cập tìm kiếm
+    project_users_send_email: Gửi email
     projects: Dự án
+    projects_addProject: Thêm dự án
+    projects_assessment_settings_search: Đánh giá tìm kiếm
+    projects_columns_project_number: Số dự án
+    projects_form_project_number: Số dự án
+    projects_form_subdomain: Tên miền phụ
+    projects_form_title: Dự án
+    projects_general_settings_live_chat: Bật trò chuyện trực tiếp
+    projects_general_settings_locales_label: Địa điểm
+    projects_general_settings_project_number_label: Số dự án
+    projects_general_settings_save_changes: Lưu thay đổi
+    projects_general_settings_sub_domain_label: Tên miền phụ
+    projects_mettl_schedule_records_add: Thêm lịch trình
+    projects_mettl_schedule_records_assessment_id: ID đánh giá
+    projects_mettl_schedule_records_assessment_name: Tên đánh giá
+    projects_mettl_schedule_records_candidate_authorization: Bật ủy quyền ứng viên
+    projects_mettl_schedule_records_candidate_screen_capture: Bật chụp màn hình ứng viên
+    projects_mettl_schedule_records_count: Số lượng dung sai duyệt web
+    projects_mettl_schedule_records_created_at: Được tạo ra tại
+    projects_mettl_schedule_records_schedule_id: ID lịch trình
+    projects_mettl_schedule_records_schedule_name: Tên lịch trình
+    projects_mettl_schedule_records_secure_browser_enabled: Bật trình duyệt bảo mật
+    projects_mettl_schedule_records_settings: Cài đặt
+    projects_mettl_schedule_records_show_remaining_counts: Bật hiển thị số lượng còn lại
+    projects_mettl_schedule_records_visual_proctoring_enabled: Bật giám sát trực quan
+    projects_mettl_schedule_records_web_proctoring_enabled: Bật giám sát web
+    projects_profile_settings_form_fields_enabled: Kích hoạt
+    projects_profile_settings_form_fields_half_size: Kích thước một nửa
+    projects_profile_settings_form_fields_locked: Khóa
+    projects_profile_settings_form_fields_sort: Sắp xếp
+    projects_profile_settings_month: Tháng
+    projects_profile_settings_never: Không bao giờ
+    projects_profile_settings_update_in: Thông báo cập nhật hồ sơ trong
+    projects_profile_settings_year: Năm
+    projects_registration_settings_hide_signup: Ẩn tùy chọn đăng ký
+    projects_registration_settings_require_mobile_number: Yêu cầu số điện thoại di động
+    projects_webhook_settings_add: Thêm Webhook
+    projects_webhook_settings_column_active: Hoạt động
+    projects_webhook_settings_column_created_date: Ngày tạo
+    projects_webhook_settings_column_description: Sự miêu tả
+    projects_webhook_settings_column_updated_date: Ngày sửa đổi
+    projects_webhook_settings_column_url: Địa chỉ
+    projects_webhook_settings_search: Tìm kiếm Webhoook
     prompt: Gợi ý
+    provider: Cung cấp
+    provider_change_confirm_title: Thay đổi nhà cung cấp?
+    provider_previously_used_warning: Trợ lý này trước đây đã tạo ra kết quả với "%{from}". Việc thay đổi thành "%{to}" có thể làm thay đổi cách thức hoạt động của trợ lý đối với các yêu cầu tạo kết quả trong tương lai.
     psychometric: Tâm lý học
+    public_key: Khóa công khai
+    public_key_add: Thêm khóa công khai
+    public_key_cannot_be_changed: không thể thay đổi sau khi tạo
+    public_key_copy_private_key: Sao chép khóa riêng
+    public_key_created: Khóa công khai đã được tạo thành công
+    public_key_generate: Tạo cặp khóa
+    public_key_generate_button: Tạo cặp khóa RSA
+    public_key_generate_info: Hệ thống sẽ tạo ra một cặp khóa RSA 2048-bit. Chỉ khóa công khai mới được lưu trữ. Hãy sao chép và lưu giữ khóa riêng một cách an toàn — khóa này sẽ không được hiển thị lại.
+    public_key_invalid_format: phải là một khóa công khai RSA hợp lệ ở định dạng PEM
+    public_key_must_be_public: phải là khóa công khai, không phải khóa riêng tư
+    public_key_paste_placeholder: Hãy dán khóa công khai RSA của bạn ở định dạng PEM vào đây (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Khóa công khai (PEM)
+    public_key_private_key_copied: Khóa riêng tư đã được sao chép vào khay nhớ tạm
+    public_key_private_key_label: Khóa riêng (PEM)
+    public_key_private_key_warning: Đây là lần duy nhất khóa riêng sẽ được hiển thị. Hãy sao chép nó ngay bây giờ và lưu giữ an toàn.
+    public_keys: Khóa công khai
     question_center: Trung tâm câu hỏi
     question_center_page_title: Trung tâm câu hỏi - Bảng điều khiển - Mercer Lighthouse
     question_editor_change_type: Thay đổi loại
@@ -987,11 +2070,33 @@ vi:
     question_type_video_response: Video phản hồi
     questions: Câu hỏi
     questions_new_button: Câu hỏi mới
+    questions_percentage: Câu hỏi (TỔNG / TỔNG TỐI ĐA)
+    questions_sum: Câu hỏi (SUM)
     questions_title: Câu hỏi
     questions_type: Loại
     range_min_max: Dải sản phẩm%{min} - %{max}
+    rationale: Lý do
+    raw: SỐNG
+    reason_for_changes: Lý do thay đổi
     recents: Các bài viết gần đây
+    record_id: ID bản ghi
+    recordings: Ghi
     reflection_questions: Câu hỏi suy ngẫm
+    reflection_questions_delete_confirmation: Bạn có chắc chắn muốn xóa Câu hỏi suy ngẫm này không?
+    reflection_questions_export_action: Xuất câu hỏi phản ánh
+    reflection_questions_export_failure_msg: Lỗi trong khi xuất tệp.
+    reflection_questions_export_success_msg: Đang xuất các câu hỏi phản ánh. Vui lòng kiểm tra trạng thái trong thông báo.
+    reflection_questions_form_mandatory: Bắt buộc
+    reflection_questions_form_max_words: Số từ tối đa
+    reflection_questions_form_min_words: Số từ tối thiểu
+    reflection_questions_form_question: Câu hỏi
+    reflection_questions_form_title: Câu hỏi phản ánh
+    reflection_questions_import_action: Nhập câu hỏi phản ánh
+    reflection_questions_import_failure_msg: Lỗi khi nhập tệp.
+    reflection_questions_import_success_msg: Đang tiến hành nhập câu hỏi phản ánh. Vui lòng kiểm tra trạng thái trong thông báo.
+    reflection_questions_question: Câu hỏi
+    refresh: Làm tươi
+    refresh_interval: Khoảng thời gian làm mới (phút)
     regenerate_transcriptions_action: Tạo lại bản chép lời
     regenerate_transcriptions_confirm_content: Bạn có chắc chắn muốn tạo lại bản chép lời cho bài đánh giá này không? Thao tác này sẽ xử lý lại tất cả các bản chép lời chưa hoàn thành.
     regenerate_transcriptions_confirm_title: Tạo lại bản chép lời
@@ -999,33 +2104,174 @@ vi:
     registration_codes: Mã đăng ký
     registration_settings: Cài đặt đăng ký
     remove_children_to_change_type: Xóa tất cả các phần tử con để thay đổi loại.
+    remove_confirm_content: Bạn có chắc chắn muốn xóa chủ đề có email '%{subjectEmail}' không?
+    remove_confirm_success: Chủ đề có email '%{subjectEmail}'' đã bị xóa thành công.
+    remove_confirm_title: Xóa chủ đề
     remove_confirmation: Bạn có chắc chắn muốn xóa mục này không?
+    remove_output_schema_key: Xóa khóa lược đồ đầu ra
     remove_successfully: Tệp phương tiện đã được xóa thành công.
+    render_button: Mẫu kết xuất
+    rendered_prompt: Lời nhắc được hiển thị
+    reply_to_email: Trả lời email
+    report_access: Quyền truy cập báo cáo
     report_alias_save_confirmation: Nếu bạn muốn lưu TẤT CẢ các thay đổi trong Report Builder và cả trong Aliases, vui lòng nhấp vào nút 'LƯU'. Trang sẽ được tải lại và các thay đổi của bạn sẽ được áp dụng thành công.
+    report_approval: Phê duyệt báo cáo
+    report_approval_allow_bulk_approve: Cho phép phê duyệt hàng loạt
+    report_approval_allow_qc_bulk_submit: Cho phép gửi hàng loạt QC
+    report_approval_approval_statuses_approved: Tán thành
+    report_approval_approval_statuses_change_requested: Yêu cầu thay đổi
+    report_approval_approval_statuses_not_ready: Chưa sẵn sàng
+    report_approval_approval_statuses_pending_qc: QC đang chờ xử lý
+    report_approval_approval_statuses_qc_completed: QC đã hoàn thành
+    report_approval_approval_statuses_qc_in_progress: QC đang tiến hành
+    report_approval_approvers: Người phê duyệt
+    report_approval_approvers_can_edit: Người phê duyệt có thể chỉnh sửa
+    report_approval_approvers_not_required: Không yêu cầu người phê duyệt
+    report_approval_bulk_approve_success: "%{sent_for_approval} đã được gửi để phê duyệt. %{approved} báo cáo đã được phê duyệt. %{ignored} báo cáo yêu cầu phê duyệt thủ công do các thay đổi / nhận xét QC."
+    report_approval_columns_approval_status: Trạng thái phê duyệt
+    report_approval_columns_approved_by: Được chấp thuận bởi
+    report_approval_columns_assessed_by: Được đánh giá bởi
+    report_approval_columns_campaign_name: Tên chiến dịch
+    report_approval_columns_qc_by: QC Bởi
+    report_approval_columns_report_name: Tên báo cáo
+    report_approval_columns_subject_email: Email chủ đề
+    report_approval_columns_user_email: Email người dùng
+    report_approval_columns_user_name: Tên người dùng
+    report_approval_digest_delivery_mode_form_label: Chế độ phân phối thông báo
+    report_approval_digest_frequency_daily: Nhật báo
+    report_approval_digest_frequency_form_label: Tần số tiêu hóa
+    report_approval_digest_frequency_weekdays: Các ngày trong tuần
+    report_approval_digest_frequency_weekly: Tuần
+    report_approval_digest_time: Thời gian tiêu hóa
+    report_approval_digest_timezone: Múi giờ thông báo
+    report_approval_digest_weekdays_form_label: Digest (Các) ngày trong tuần
+    report_approval_digest_weekdays_friday: Thứ sáu
+    report_approval_digest_weekdays_monday: Thứ hai
+    report_approval_digest_weekdays_saturday: Thứ bảy
+    report_approval_digest_weekdays_sunday: Chủ nhật
+    report_approval_digest_weekdays_thursday: Thứ năm
+    report_approval_digest_weekdays_tuesday: Thứ ba
+    report_approval_digest_weekdays_wednesday: Thứ tư
+    report_approval_do_not_send_notifications: Không gửi email cho người dùng [QC, Người phê duyệt & Thông báo phê duyệt]
+    report_approval_modal_title: Cài đặt phê duyệt báo cáo
+    report_approval_notification_users: Người dùng thông báo phê duyệt
+    report_approval_qc_users: Người dùng QC
+    report_approval_remove_modal_success: 'Cài đặt phê duyệt cho id báo cáo: %{reportId} đã bị xóa thành công '
+    report_approval_remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho id báo cáo: %{reportId} không?'
+    report_approval_report: Báo cáo
+    report_approval_review: Xem xét
+    report_approval_saving_filters_actions_clear_filters: Xóa bộ lọc
+    report_approval_saving_filters_actions_delete_filter: Xóa bộ lọc
+    report_approval_saving_filters_actions_save_new_filter: Lưu dưới dạng bộ lọc mới
+    report_approval_saving_filters_actions_saved_filters: Bộ lọc đã lưu
+    report_approval_saving_filters_delete_saved_filters: Bộ lọc đã xóa
+    report_approval_saving_filters_edit_filter_name: Tên bộ lọc đã lưu
+    report_approval_saving_filters_error_while_deleting: Lỗi khi xóa
+    report_approval_saving_filters_error_while_editing: Lỗi trong khi chỉnh sửa
+    report_approval_saving_filters_error_while_fetching: Đã xảy ra sự cố, hãy thử lại
+    report_approval_saving_filters_error_while_saving: Lỗi khi lưu bộ lọc
+    report_approval_saving_filters_filter_updated: Đã cập nhật bộ lọc
+    report_approval_saving_filters_no_saved_filters: Không có bộ lọc được lưu
+    report_approval_saving_filters_save_filter: Bộ lọc đã lưu
+    report_approval_saving_filters_set_favorite: Bộ lọc đã được đặt làm yêu thích
+    report_approval_send_digest_emails: Gửi email thông báo
+    report_approval_settings: Cài đặt phê duyệt báo cáo
+    report_approval_submit_or_approve_all: Gửi hoặc Phê duyệt tất cả
     report_approvals: Phê duyệt báo cáo
+    report_availability: Tình trạng sẵn có của báo cáo
     report_condition_not_met: Cần %{required} %{relationship} đánh giá, nhưng chỉ có %{actual}
     report_conditions_not_met_detailed: Báo cáo cho %{user} không đáp ứng các điều kiện sẵn có. %{conditions}
     report_denied: Báo cáo cho %{user} đã bị từ chối
+    report_help_description: Văn bản trợ giúp hiển thị trên thẻ báo cáo trên bảng điều khiển của người dùng
+    report_help_name: Báo cáo trợ giúp
+    report_id: ID báo cáo
+    report_ids: Mã báo cáo
+    report_ids_required: Phải có mã báo cáo
     report_name: Tên báo cáo
     report_no_evaluations: Báo cáo cho %{user} không có sẵn - không nhận được đánh giá.
     report_not_generated: Báo cáo cho %{user} đáp ứng các điều kiện khả dụng nhưng chưa được tạo. Vui lòng tạo báo cáo trước.
     report_on_hold: Báo cáo cho %{user} hiện đang bị tạm dừng
+    report_pdf_status: Trạng thái báo cáo PDF
+    report_review_abort_qc: Hủy bỏ QC
+    report_review_approve: Chấp nhận
+    report_review_approve_changes: Phê duyệt thay đổi
+    report_review_edit: Biên tập
+    report_review_remove_approval: Xóa phê duyệt
+    report_review_request_changes: Yêu cầu thay đổi
+    report_review_review: Xem xét
+    report_review_send_for_approve: Gửi để phê duyệt
+    report_review_statuses_approved: Tán thành
+    report_review_statuses_change_requested: Thay đổi được yêu cầu
+    report_review_statuses_not_ready: Chưa sẵn sàng
+    report_review_statuses_pending_qc: QC đang chờ xử lý
+    report_review_statuses_qc_completed: QC đã hoàn thành
+    report_review_statuses_qc_in_progress: QC đang tiến hành
     report_status: Trạng thái báo cáo
+    report_type: Loại báo cáo
+    report_types:
+      active_clients_projects: Khách hàng và dự án đang triển khai
+      client_assessment_counts: Việc đánh giá khách hàng rất quan trọng
+      hogan_usage_report: Việc sử dụng công cụ đánh giá Hogan
+      json_data_report: Báo cáo dữ liệu JSON
+      pearson_usage_report: Việc sử dụng các bài kiểm tra của Pearson
+      report_usage_summary: Tóm tắt báo cáo về tình hình sử dụng
+      saville_usage_report: Cách sử dụng công cụ đánh giá Saville
+      user_created_dates: Ngày do người dùng tạo
+      user_reports_export: Xuất báo cáo người dùng
     reports: Báo cáo
+    reports_copy_copy: Sao chép
+    reports_copy_copy_report: Sao chép báo cáo
+    reports_count: Báo cáo
+    reports_edit_default_language_agreement: Vâng, tôi hiểu rõ những hậu quả của việc thay đổi ngôn ngữ mặc định.
+    reports_edit_default_language_title: Chỉnh sửa ngôn ngữ mặc định
+    reports_edit_default_language_tooltip: Chỉnh sửa ngôn ngữ mặc định
+    reports_edit_default_language_warning_description_li_1: Thay đổi ngôn ngữ mặc định từ RTL sang LTR hoặc ngược lại sẽ ảnh hưởng đến bố cục.
+    reports_edit_default_language_warning_description_li_2: Nếu bạn thay đổi ngôn ngữ mặc định, bạn sẽ phải chỉnh sửa lại bản dịch của báo cáo.
+    reports_edit_default_language_warning_description_li_3: Tải xuống bản dịch của báo cáo trước khi thực hiện thay đổi này.
+    reports_edit_default_language_warning_title: Xin vui lòng đọc kỹ hướng dẫn.
+    reports_language_selection_modal_download: Tải báo cáo
+    reports_language_selection_modal_generate: Báo cáo được tạo
     reports_limit_exceeded: Tải xuống hàng loạt được giới hạn ở 1000 tệp báo cáo. Nếu bạn đã chọn nhiều ngôn ngữ, vui lòng giảm bớt nó.
     reports_not_found: Không tìm thấy báo cáo. Vui lòng tạo báo cáo trước khi tải xuống.
+    reports_preview_comments: Ý kiến
+    reports_preview_hide_resolved: Ẩn đã giải quyết
+    reports_preview_history: Lịch sử
+    reports_preview_info_to_select_module: Chọn một mô-đun văn bản để nhận xét
+    request_approval_description: Thông báo này được gửi đến người quản lý khi một chủ thể yêu cầu phê duyệt
+    request_approval_name: Yêu cầu phê duyệt
+    request_id: ID yêu cầu
+    required_error: yêu cầu
     rescore_responses_content: Điều này sẽ tính lại điểm cho các câu trả lời của môn học này. Bật tùy chọn "Cho phép đánh giá lại bằng AI" để đánh giá lại các câu trả lời bằng AI cho các câu hỏi sử dụng AI.
+    resend_invite_content: Gửi lại lời mời đến các chủ đề đã chọn. Bạn có chắc chắn muốn tiếp tục?
+    resend_invite_success: Lời mời được gửi lại thành công.
+    resend_invite_title: Gửi lại lời mời
     reset_idp_plan: Đặt lại kế hoạch
     reset_idp_plan_confirmation: Bạn có chắc chắn muốn đặt lại kế hoạch?
     reset_idp_plan_title: Đặt lại kế hoạch
+    reset_score: Đặt lại điểm số
+    reset_score_description: Điểm số sẽ được khôi phục về giá trị AI ban đầu.
+    resources_panel_description: Thêm liên kết đến bất kỳ tài nguyên nào bạn muốn người hướng dẫn có quyền truy cập.
+    resources_panel_resource_name_placeholder: Tên tài nguyên
+    resources_panel_resource_url_placeholder: Liên kết tài nguyên
+    resources_panel_title: Tài nguyên
+    resources_panel_validation_error: Nhập cả Tên và URL hoặc xóa tài nguyên
     response_meta: Phản hồi Meta
+    responses: Phản hồi của Trí tuệ nhân tạo
     result: Kết quả
     results: Kết quả
+    results_export: Xuất kết quả
+    results_export_job_scheduled: Công việc xuất kết quả của AI Artifacts đã được lên lịch thành công.
+    revisions_load: Tải vào biểu mẫu
+    revisions_system_prompt: Hệ thống Propmpt
+    revisions_title: Các bản sửa đổi của Trợ lý AI
+    revisions_user_prompt: Nhắc nhở người dùng
+    revisions_version: Phiên bản
     role: Vai trò
     role_campaign_admin: Quản trị chiến dịch
     role_client_admin: Quản trị khách hàng
     role_project_admin: Quản trị dự án
     role_superadmin: Quản trị viên cao cấp
+    run: Chạy
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
     saml_idp_certificate_label: Chứng chỉ
     saml_idp_entity_id_label: ID thực thể/Tổ chức phát hành
@@ -1075,6 +2321,23 @@ vi:
     saml_service_provider_updated_date: Ngày cập nhật
     saml_service_providers: Nhà cung cấp dịch vụ
     saml_settings: Cài đặt SAML
+    saml_settings_after_signout_url: Sau khi đăng xuất Url
+    saml_settings_cert: Chứng chỉ
+    saml_settings_config_details_acs_url: URL dịch vụ người tiêu dùng xác nhận
+    saml_settings_config_details_copied: Đã sao chép %{element}
+    saml_settings_config_details_issuer: ID thực thể/Tổ chức phát hành
+    saml_settings_config_details_title: Định cấu hình Idp với các thông tin sau
+    saml_settings_email_pipetext: Văn bản đường ống email
+    saml_settings_enabled: Kích hoạt
+    saml_settings_enforced: Thực thi SAML
+    saml_settings_entity_id: ID thực thể/Tổ chức phát hành
+    saml_settings_name_identifier_format: Mã định danh tên
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    saml_settings_saml: SAML
+    saml_settings_save: Lưu cài đặt
+    saml_settings_sso_service_url: URL dịch vụ SSO
+    saml_settings_successfully_saved_msg: Cài đặt SAML đã được lưu thành công.
     save: Lưu
     save_assessment_for_scoring_management: Lưu đánh giá trước khi bắt đầu chấm điểm.
     save_block: Lưu khối
@@ -1093,7 +2356,136 @@ vi:
       user_full_name_cont: Tên người dùng
     saville: Saville
     saville_assessment: Đánh giá Saville
+    schedule: Lịch
+    schedule_email: Lên lịch email
+    schedule_email_title: Lên lịch email
+    schedule_time: Lên lịch thời gian
     scheduling: Lập kế hoạch
+    scheduling_add_activity: Thêm hoạt động
+    scheduling_add_assessment_center: Thêm Trung tâm Đánh giá
+    scheduling_add_assessor_form_assessment: Đánh giá
+    scheduling_add_assessor_form_assessor: Giám định viên
+    scheduling_add_assessor_form_schedule_time: Lịch trình thời gian
+    scheduling_add_subject: Thêm chủ đề
+    scheduling_attendance_status_column_name: Tình trạng tham dự
+    scheduling_attendance_status_dropped_out: Bỏ học
+    scheduling_attendance_status_late: Muộn
+    scheduling_attendance_status_no_show: Vắng mặt
+    scheduling_attendance_status_no_status: Không có trạng thái
+    scheduling_attendance_status_on_time: Đúng giờ
+    scheduling_attended_attended: Tham dự
+    scheduling_attended_not_attended: Không tham dự
+    scheduling_campaign_participants: Người tham gia chiến dịch
+    scheduling_columns_activity: Hoạt động
+    scheduling_columns_assessment_center_date_and_time: Ngày giờ của trung tâm đánh giá
+    scheduling_columns_assessor: Giám định viên
+    scheduling_columns_assessors: Đánh giá viên
+    scheduling_columns_attendance: Tham dự
+    scheduling_columns_attended: Tham dự
+    scheduling_columns_booked_at: Đặt phòng tại
+    scheduling_columns_campaign_assessment_group: Nhóm Trung tâm Đánh giá
+    scheduling_columns_campaign_name: Tên chiến dịch
+    scheduling_columns_duration: Khoảng thời gian
+    scheduling_columns_link_to_view_recordings: Liên kết để xem bản ghi âm
+    scheduling_columns_managers: Quản lý
+    scheduling_columns_meeting_link: Liên kết cuộc họp
+    scheduling_columns_participants: Tham gia
+    scheduling_columns_prework: Làm việc trước
+    scheduling_columns_recording_date: Ngày ghi
+    scheduling_columns_resource_link: Liên kết
+    scheduling_columns_schedule_time: Lịch trình thời gian
+    scheduling_columns_scheduling_status: Trạng thái lập lịch
+    scheduling_columns_seats: Ghế
+    scheduling_columns_serial_no: Số sê-ri
+    scheduling_columns_start_time: Ngày giờ
+    scheduling_columns_subject: Chủ thể
+    scheduling_columns_title: Tiêu đề
+    scheduling_columns_view_recording: Xem bản ghi
+    scheduling_errors_assessor_already_assigned: Người đánh giá đã được chỉ định cho bài đánh giá này. Vui lòng chọn một đánh giá hoặc đánh giá khác.
+    scheduling_errors_date_required: Vui lòng chọn ngày
+    scheduling_errors_invalid_url: Định dạng URL không hợp lệ
+    scheduling_errors_meeting_link_https: Liên kết cuộc họp phải bắt đầu bằng "https://"
+    scheduling_info_allowed: Cho phép
+    scheduling_info_assessors: Đánh giá viên
+    scheduling_info_booked: Chỗ ngồi đã đặt
+    scheduling_info_campaign_assessment_group: Nhóm Trung tâm Đánh giá
+    scheduling_info_cancellation_lead_time: Thời gian hủy bỏ
+    scheduling_info_cancellation_tooltip: Người dùng sẽ có thể hủy đặt chỗ cho đến %{date}
+    scheduling_info_date: Ngày giờ
+    scheduling_info_duration: Khoảng thời gian
+    scheduling_info_join_meeting: Tham gia phòng
+    scheduling_info_late_cancellation_and_scheduling: Hủy muộn và lên lịch
+    scheduling_info_link: Liên kết cuộc họp
+    scheduling_info_managers: Quản lý trung tâm
+    scheduling_info_none: Không ai
+    scheduling_info_not_allowed: Không được phép
+    scheduling_info_recording_enabled: Đã bật ghi âm
+    scheduling_info_remaining: Số chỗ còn lại
+    scheduling_info_scheduling_lead_time: Lên lịch thời gian thực hiện
+    scheduling_info_scheduling_tooltip: Người dùng sẽ có thể đặt một vị trí cho đến %{date}
+    scheduling_info_search_placehoder: Tìm kiếm theo id, email hoặc tên
+    scheduling_info_timezone: Múi giờ
+    scheduling_info_total_seats: Tổng số chỗ ngồi
+    scheduling_lead_time_label: Thời gian dẫn để lên lịch
+    scheduling_resources_confirm_message: Bạn có chắc chắn muốn xóa tài nguyên '%{resource_name}' không?
+    scheduling_resources_confirm_title: Cần xác nhận
+    scheduling_resources_create: Tạo tài nguyên
+    scheduling_resources_invalid_url: URL không hợp lệ. Chỉ định url hoàn chỉnh với giao thức http hoặc https trong đó.
+    scheduling_resources_resource: Tài nguyên
+    scheduling_resources_successful_remove: Tài nguyên %{resource_name} của Trung tâm Đánh giá đã bị xóa thành công.
+    scheduling_schedule_assessments: Lên lịch đánh giá
+    scheduling_scheduling_statuses_cancelled: Bị hủy bỏ
+    scheduling_scheduling_statuses_late_cancelled: Hủy đặt chỗ muộn
+    scheduling_scheduling_statuses_late_rescheduled: Đã hoãn lại
+    scheduling_scheduling_statuses_rescheduled: Dời
+    scheduling_scheduling_statuses_scheduled: Dự kiến
+    scheduling_search_participant: Người tham gia chiến dịch tìm kiếm
+    scheduling_status: Tình trạng lên lịch
+    scheduling_status_change_modal_content: Khi bạn đóng trung tâm đánh giá, người tham gia sẽ không thể tham gia vào bất kỳ hoạt động nào của trung tâm.
+    scheduling_status_change_modal_title: Thay đổi trạng thái trung tâm đánh giá
+    scheduling_status_completed: Hoàn thành
+    scheduling_status_dropped_out: Bỏ học
+    scheduling_status_in_progress: Đang tiến hành
+    scheduling_status_late: Muộn
+    scheduling_status_no_show: Vắng mặt
+    scheduling_status_not_started: Chưa bắt đầu
+    scheduling_subjects_activities: Hoạt động
+    scheduling_subjects_add_assessor_form: Thêm biểu mẫu đánh giá viên
+    scheduling_subjects_assessments: Đánh giá
+    scheduling_subjects_assessor_forms: Biểu mẫu đánh giá viên
+    scheduling_subjects_confirm_message: Bạn có chắc chắn muốn hủy bỏ sự tham gia của chủ đề với email '%{subject_email}' không?<br />Sau khi được đánh dấu là bị hủy, đối tượng này sẽ không thể tham gia vào trung tâm đánh giá.
+    scheduling_subjects_confirm_title: Cần xác nhận
+    scheduling_subjects_edit_assessor_form: Chỉnh sửa biểu mẫu đánh giá viên
+    scheduling_subjects_form_title: Lên lịch đánh giá
+    scheduling_subjects_language: Ngôn ngữ
+    scheduling_subjects_language_not_selected: Không được chọn
+    scheduling_subjects_mark_cancel: Đánh dấu Hủy
+    scheduling_subjects_mark_cancel_success: Hủy tham gia chủ đề với email %{subject_email}.
+    scheduling_subjects_meeting_link_custom: Phong tục
+    scheduling_subjects_meeting_link_internal: Nội
+    scheduling_subjects_meeting_link_none: Không ai
+    scheduling_subjects_meeting_link_title: Liên kết cuộc họp
+    scheduling_subjects_no_change: Không thay đổi
+    scheduling_subjects_override_existing: Ghi đè lịch trình hiện có cho các môn học
+    scheduling_subjects_preworks: Làm việc trước
+    scheduling_subjects_re_enroll: Đăng ký lại
+    scheduling_subjects_re_enroll_confirm_message: Bạn có chắc chắn muốn đăng ký lại môn học với địa chỉ email '%{subject_email}' không?
+    scheduling_subjects_re_enroll_success: Học viên đã đăng ký lại với địa chỉ email %{subject_email}.
+    scheduling_subjects_schedule: Lịch
+    scheduling_subjects_unschedule: Hủy lên lịch
+    scheduling_tabs_activities: Hoạt động
+    scheduling_tabs_assessment_center: Trung tâm đánh giá
+    scheduling_tabs_invites: Lời mời
+    scheduling_tabs_recordings: Ghi
+    scheduling_tabs_resources: Tài nguyên
+    scheduling_tabs_subjects: Đối tượng
+    schema_key_description_required: Mô tả khóa lược đồ là bắt buộc
+    schema_key_required: Khóa lược đồ là bắt buộc
+    schema_key_type: Loại phím
+    schema_key_unique: Các khóa lược đồ phải là duy nhất.
+    scope: Phạm vi
+    scope_client: Khách hàng
+    scope_global: Toàn cầu
     score: Điểm
     score_approval_not_allowed_to_approve: Bạn không được phép phê duyệt điểm số này.
     score_approval_not_allowed_to_discard: Bạn không được phép loại bỏ điểm số này.
@@ -1102,56 +2494,342 @@ vi:
     score_max: Điểm tối đa
     score_min: Điểm tối thiểu
     score_must_be_in_between_min_and_max: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
+    score_not_applicable: Điểm không áp dụng
     score_range_info: 'Phạm vi điểm: %{min} - %{max}'
     score_with_ai: Đạt điểm cao với Trí tuệ nhân tạo
     scores_finalized: Kết quả đã được chốt và không thể thay đổi
     scoring: Ghi
+    scoring_action_prohibited: Hành động bị cấm
+    scoring_active: Hoạt động
+    scoring_actual_average: Trung bình thực tế
+    scoring_add_factor: Thêm yếu tố
+    scoring_add_group: Thêm nhóm
     scoring_approval_add_settings: Thêm cài đặt
     scoring_approval_allow_bulk_approve: Cho phép phê duyệt hàng loạt
     scoring_approval_allow_bulk_approve_scores: Cho phép phê duyệt điểm hàng loạt
     scoring_approval_allow_one_level_approve: Cho phép phê duyệt một cấp
+    scoring_approval_approve_all: Phê duyệt tất cả
     scoring_approval_approver_users: Người phê duyệt
     scoring_approval_approvers: Người phê duyệt
     scoring_approval_assessment: Đánh giá
     scoring_approval_assessor_users: Người dùng đánh giá
+    scoring_approval_bulk_approve_success: "%{approved} Điểm đã được phê duyệt."
     scoring_approval_do_not_send_notifications: Không gửi thông báo
     scoring_approval_modal_title: Cài đặt phê duyệt điểm số
     scoring_approval_notification_users: Thông báo phê duyệt cho người dùng
     scoring_approval_remove_modal_success: 'Cài đặt phê duyệt cho ID đánh giá: %{assessmentId} đã được xóa thành công.'
     scoring_approval_remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho ID đánh giá: %{assessmentId}?'
+    scoring_approval_review: Xem xét
+    scoring_approval_score_approvals: Ứng dụng đánh giá và phê duyệt bằng trí tuệ nhân tạo (AI)
+    scoring_assessment: Đánh giá
+    scoring_assessment_scoring_type: Loại điểm đánh giá
+    scoring_average: Trung bình
+    scoring_campaign_scoring_variables: Biến tính điểm chiến dịch
+    scoring_desc: Bạn đã vượt quá giới hạn tối đa của %{n} yếu tố chiến dịch. Các yếu tố bổ sung không thể được thêm vào. Vui lòng xem xét và quản lý các yếu tố hiện có của bạn trước khi tiếp tục.
+    scoring_dimension: Kích thước
+    scoring_edit_factor: Chỉnh sửa yếu tố
+    scoring_export_factors: Các yếu tố chiến dịch xuất khẩu
+    scoring_factor: Nhân tố
+    scoring_factor_group_removed_successfully: Nhóm Yếu tố chiến dịch đã bị xóa thành công
+    scoring_factor_removal_confirmation: Nhập tên yếu tố được cung cấp bên dưới trong hộp văn bản để xác nhận
+    scoring_factor_removed_successfully: Yếu tố chiến dịch đã bị xóa thành công
+    scoring_factors_exported_successfully: Xuất công việc yếu tố chiến dịch đã được lên lịch thành công
+    scoring_factors_imported_successfully: Nhập công việc yếu tố chiến dịch đã được lên lịch thành công
+    scoring_final: Cuối cùng
+    scoring_final_score_updated_successfully: Điểm chung cuộc đã được cập nhật thành công
+    scoring_formula: Công thức
+    scoring_get_started: Bắt đầu
+    scoring_import_factors: Các yếu tố chiến dịch nhập khẩu
+    scoring_innovation_style_removal_confirmation: Hãy nhập tên kiểu sáng tạo được nêu dưới đây vào ô văn bản để xác nhận
+    scoring_no_groups: Không có nhóm nào có mặt
+    scoring_occupation_removal_confirmation: Hãy nhập tên nghề nghiệp được liệt kê bên dưới vào ô văn bản để xác nhận
+    scoring_output_type: Loại đầu ra
+    scoring_pattern_error: Chỉ cho phép ký tự chữ và số, dấu cách và dấu gạch ngang.
+    scoring_profile_years: Tuổi
+    scoring_public: Công cộng
+    scoring_ranked: Xếp hạng
+    scoring_remove_all_campaign_factors_confirmation: Nhập tên chiến dịch hiện tại được cung cấp bên dưới trong hộp văn bản để xác nhận
+    scoring_remove_all_campaign_factors_error: Các yếu tố chiến dịch loại bỏ không thành công
+    scoring_remove_all_campaign_factors_success: Các yếu tố chiến dịch đã bị xóa thành công
+    scoring_remove_all_campaign_factors_title: Loại bỏ các yếu tố chiến dịch
+    scoring_remove_all_campaign_factors_warning: Bạn sắp xóa tất cả các yếu tố chiến dịch và tất cả các điểm liên quan cho người dùng. Bạn có chắc chắn muốn thực hiện hành động này không?
+    scoring_remove_factor_group_confirmation_content: Bạn có chắc chắn muốn loại bỏ nhóm thừa số '%{group_name}' không?
+    scoring_remove_factor_group_confirmation_title: Loại bỏ nhóm yếu tố
+    scoring_required_error: Không thể trống rỗng
+    scoring_save_all: Lưu tất cả
+    scoring_score_range: Phạm vi điểm số
+    scoring_score_types_norm_score: Điểm định mức
+    scoring_score_types_percentage: Tỷ lệ phần trăm
+    scoring_score_types_percentile: Phần trăm
+    scoring_score_types_score: Điểm
+    scoring_score_types_zscore: Điểm Z
+    scoring_scoring: Ghi
+    scoring_scoring_description: Campaign Scoring cho phép báo cáo trên các bài đánh giá
+    scoring_select_all: Chọn tất cả %{n} chủ đề
+    scoring_select_assessment_first: Chọn Đánh giá trước
+    scoring_select_factor: Chọn yếu tố
+    scoring_show_weightages: Hiển thị trọng số
+    scoring_subject: Chủ thể
+    scoring_subject_list_bulk_mark_finalized: Đánh dấu hàng loạt đã hoàn thành
+    scoring_subject_list_bulk_mark_finalized_confirm: Điểm cuối cùng cho những người dùng đã chọn sẽ tạo báo cáo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+    scoring_subject_list_bulk_mark_not_finalized: Dấu hàng loạt chưa hoàn tất
+    scoring_subject_list_bulk_mark_not_finalized_confirm: Xóa hoàn tất khỏi người dùng đã chọn sẽ xóa báo cáo được tạo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+    scoring_subject_list_bulk_rescore: Chấm điểm lại hàng loạt
+    scoring_subject_list_bulk_rescore_confirm: Chấm điểm lại những người dùng đã chọn. Bạn có chắc chắn muốn tiếp tục?
+    scoring_subject_list_calculated_date: Ngày tính toán
+    scoring_subject_list_calculation_errors: Lỗi tính toán
+    scoring_subject_list_export: Chấm điểm xuất khẩu
+    scoring_subject_list_export_success: Công việc xuất điểm đã được lên lịch thành công
+    scoring_subject_list_finalized: Hoàn thành
+    scoring_subject_list_finalized_date: Ngày hoàn tất
+    scoring_subject_list_import_external_scores: Nhập điểm bên ngoài
+    scoring_subject_list_mark_finalized: Đánh dấu đã hoàn thiện
+    scoring_subject_list_mark_finalized_confirm: Điểm cuối cùng cho người dùng '%{email}' sẽ tạo báo cáo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+    scoring_subject_list_mark_not_finalized: Đánh dấu chưa hoàn tất
+    scoring_subject_list_mark_not_finalized_confirm: Xóa finalize khỏi người dùng '%{email}' sẽ xóa báo cáo được tạo sử dụng yếu tố chiến dịch cho người dùng. Bạn có chắc chắn muốn tiếp tục?
+    scoring_subject_list_push_webhook: Webhook đẩy
+    scoring_subject_list_rank: Thứ hạng
+    scoring_subject_list_rescore: Ghi điểm lại
+    scoring_subject_list_rescore_confirm: Chấm điểm lại người dùng '%{email}'. Bạn có chắc chắn muốn tiếp tục?
     scoring_supported_only_for_ai_questions: Điểm số chỉ được tính cho các câu hỏi có hỗ trợ trí tuệ nhân tạo (AI) đối với yếu tố hiện đang được chọn.
+    scoring_tabs_settings: Cài đặt
+    scoring_tabs_subject_scores: Điểm môn học
     scoring_value_info: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
     scoring_value_out_of_range_err_msg: Điểm số cho "%{factor_name}" phải nằm trong khoảng từ %{min} đến %{max}.
+    scoring_variables: Biến
+    scoring_weightages_assessorForms: Biểu mẫu đánh giá viên
+    scoring_weightages_successful_update: Trọng số đã được cập nhật thành công
+    scoring_weightages_weightages: Trọng số
+    scoring_weighted_average: Trung bình gia quyền
     search_admins: Quản trị viên tìm kiếm
+    search_campaign: Tìm kiếm theo chiến dịch
+    search_client: Tìm kiếm theo khách hàng
     search_job_role: Tìm kiếm vị trí công việc
+    search_participants: Tìm kiếm người tham gia...
+    search_project: Tìm kiếm theo dự án
+    search_record: Tìm kiếm theo ID bản ghi
+    search_user: Tìm kiếm theo người dùng
+    seats_label: Ghế
+    sec_logo_label: Logo phụ
+    secondary_logo_alt_text: Văn bản thay thế logo phụ
+    secondary_logo_alt_text_required: Logo văn bản thay thế phụ là bắt buộc
+    security_setting_180_days: 180 ngày
+    security_setting_30_days: 30 ngày
+    security_setting_365_days: 365 ngày
+    security_setting_90_days: 90 ngày
+    security_setting_attempts_to_lock: Cố gắng khóa
+    security_setting_auto_unlock_time: Thời gian tự động mở khóa
+    security_setting_disable_password_reuse: Tắt sử dụng lại mật khẩu
+    security_setting_disallow_password_login: Không cho phép đăng nhập mật khẩu
+    security_setting_enable_login_with_magic_link: Bật Đăng nhập bằng liên kết ma thuật
+    security_setting_enable_recaptcha: Bật reCAPTCHA
+    security_setting_enforce_password_policy: Thực thi chính sách mật khẩu khi đăng nhập tiếp theo
+    security_setting_enforce_strong: Thực thi mật khẩu mạnh
+    security_setting_expiration: Hết hạn mật khẩu
+    security_setting_lock_account: Khóa tài khoản
+    security_setting_magic_link_expiry_duration: Thời gian hết hạn liên kết ma thuật
+    security_setting_min_length: Độ dài mật khẩu tối thiểu
+    security_setting_never: Không bao giờ
+    security_setting_restrict_sequences: Hạn chế các ký tự tuần tự và lặp đi lặp lại
+    security_setting_security: Cài đặt bảo mật
+    security_setting_send_unlock_email: Gửi email mở khóa
+    security_setting_session_timeout_duration: Thời gian chờ phiên
+    security_setting_tfa_enabled: Bật xác thực hai yếu tố
+    security_settings_security_setting: Cài đặt bảo mật
     select_admin_role: Chọn vai trò quản trị viên
+    select_assessment_language: Chọn ngôn ngữ đánh giá
+    select_client: Chọn khách hàng
     select_end_time: Chọn Thời gian kết thúc
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ
+    select_project_ids_required: Chọn các project_ids bắt buộc
+    select_projects: Chọn các dự án
+    select_projects_required: Vui lòng chọn ít nhất một dự án
     select_question: Tìm kiếm câu hỏi theo tên hoặc ID
+    select_report_ids_required: Chọn các report_ids cần thiết
+    select_report_language: Chọn ngôn ngữ báo cáo
+    select_report_type: Chọn loại báo cáo
     select_start_time: Chọn Thời gian bắt đầu
     selective_proctoring: Giám sát có chọn lọc
     send_email: Gửi email
+    send_test_email: Gửi email thử nghiệm
     set_min_max_scores_warning: Vui lòng thiết lập điểm tối thiểu và tối đa cho yếu tố này để cấu hình điểm số AI.
     settings: Cài đặt
+    settings_admin_roles_confirm_message: Bạn có chắc chắn muốn xóa vai trò quản trị viên '%{role_name}' không?
     settings_saved_successfully: Cài đặt đã được lưu thành công
+    settings_siem_destination_type: Loại điểm đến
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: Tương thích S3
+    settings_siem_enabled: Kích hoạt
+    settings_siem_readable_resource_name: Cài đặt SIEM
+    settings_siem_s3_access_key_id: ID khóa truy cập
+    settings_siem_s3_bucket_folder: Thư mục vùng lưu trữ S3
+    settings_siem_s3_bucket_name: Tên nhóm S3
+    settings_siem_s3_endpoint: Điểm cuối S3
+    settings_siem_s3_region: Khu vực S3
+    settings_siem_s3_secret_access_key: Khóa truy cập bí mật
+    settings_siem_send_test_log: Gửi nhật ký kiểm tra
+    settings_siem_send_test_log_error_message: Nhật ký thử nghiệm chưa được gửi đến vùng lưu trữ của bạn, hãy kiểm tra cài đặt của bạn
+    settings_siem_send_test_log_success_message: Nhật ký thử nghiệm đã được gửi thành công đến vùng lưu trữ của bạn
+    settings_skill_aliases_alias: Biệt danh
+    settings_skill_aliases_confirm_message: Bạn có chắc chắn muốn xóa bí danh kỹ năng '%{skill_alias}' không?
+    settings_skill_aliases_create: Thêm bí danh kỹ năng
+    settings_skill_aliases_select_skill: Chọn kỹ năng
+    settings_skill_aliases_skill: Kỹ năng
+    settings_skill_aliases_skill_alias: Bí danh kỹ năng
+    settings_skill_aliases_successful_remove: Bí danh kỹ năng '%{skill_alias}' đã bị xóa thành công.
+    settings_tabs_admin_roles: Vai trò quản trị viên
+    settings_tabs_feature_flags: Cờ tính năng
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: Bí danh kỹ năng
+    sheets_column_add_column: Thêm cột
+    sheets_column_not_allowed_for_dashboard_use: Đối với cột được sử dụng trong bảng điều khiển, nó phải nhỏ hơn 64 ký tự
+    sheets_column_reorder: Reorder
+    sheets_column_save_order: Lưu đơn hàng
+    sheets_drawers_add_edit_cancelText: Hủy bỏ
+    sheets_drawers_add_edit_markdown_preview: Download
+    sheets_drawers_add_edit_markdown_title: Đánh dấu
+    sheets_drawers_add_edit_save: Cứu
+    sheets_drawers_add_edit_saving: Tiết kiệm
+    sheets_drawers_add_edit_success_message_add: Đã thêm bản ghi mới
+    sheets_drawers_add_edit_success_message_edit: Cập nhật hồ sơ
+    sheets_drawers_add_edit_title_add: Thêm bản ghi Trang tính
+    sheets_drawers_add_edit_title_edit: Chỉnh sửa bản ghi hàng trang tính
+    sheets_drawers_add_edit_validations_required_email: Vui lòng nhập email
+    sheets_drawers_view_campaign_title: Bản ghi cấp chiến dịch
+    sheets_drawers_view_project_title: Hồ sơ cấp dự án
+    sheets_drawers_view_title: Chi tiết bản ghi Sheet Row
+    sheets_list_header_add_record: Thêm bản ghi
+    sheets_list_header_search_record: Tìm kiếm bản ghi
+    sheets_modals_delete_records_cancelText: Hủy bỏ
+    sheets_modals_delete_records_content: Bạn có chắc chắn muốn xóa các bản ghi {{count}} đã chọn không?
+    sheets_modals_delete_records_okText: Có, xóa
+    sheets_modals_delete_records_successMessage: "{{count}} bản ghi đã bị xóa thành công."
+    sheets_modals_delete_records_title: Xóa bản ghi {{count}}
+    sheets_modals_remove_columns_cancelText: Hủy bỏ
+    sheets_modals_remove_columns_content: Xóa một cột ({{columns}}) sẽ xóa dữ liệu trong cột này cho tất cả các hàng
+    sheets_modals_remove_columns_okText: Có, xóa
+    sheets_modals_remove_columns_successMessage: "{{count}} hồ sơ bị xóa"
+    sheets_modals_remove_columns_title: Xóa cột
+    sheets_tabs_rows: Hàng
+    sheets_tabs_settings: Cài đặt
+    show_all: Hiển thị tất cả
     show_all_assessment_responses: Hiển thị tất cả phản hồi đánh giá
     show_middle_scores: Hiển thị thêm điểm số của "%{count}" (tùy chọn)...
     show_original: Hiển thị bản gốc
     show_submenu: Hiển thị menu phụ
     show_translated: Hiển thị bản dịch
+    show_watermark: Hiển thị hình mờ
+    sidebar_title: Các lựa chọn của dự án
     siem: SIEM
     simulation: Mô phỏng
     simulation_assessment: Đánh giá mô phỏng
     skill_aliases: Bí danh kỹ năng
+    skill_rater: Người đánh giá kỹ năng
     skills: Kỹ năng
+    skills_applicable_proficiency_levels: Mức độ thông thạo áp dụng
+    skills_columns_skill_group: Nhóm kỹ năng
+    skills_columns_skill_type: Loại kỹ năng
+    skills_export_failure_msg: Lỗi khi xuất bản dịch
+    skills_export_success_msg: Xuất các hành động phát triển đang được tiến hành.
+    skills_form_skill_group: Nhóm kỹ năng
+    skills_form_skill_type: Loại kỹ năng
+    skills_form_title: Kỹ năng
+    skills_import_action_skills_title: Kỹ năng nhập khẩu
+    skills_import_action_skills_translations_title: Bản dịch kỹ năng nhập khẩu
+    skills_import_download_example_csv: Tải xuống ví dụ csv
+    skills_import_info_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    skills_import_success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    skills_skill_details: Chi tiết kỹ năng
+    skills_skill_translations: Kỹ năng dịch thuật
     skills_taxonomy: Phân loại kỹ năng
+    skills_title: Kỹ năng
+    skills_vector_generate_embedding: Tạo nhúng
+    skills_vector_generate_embedding_failure_msg: Không thể xếp hàng công việc tạo nhúng kỹ năng. Vui lòng thử lại.
+    skills_vector_generate_embedding_success_msg: Công việc tạo nhúng kỹ năng đã được xếp hàng thành công. Vui lòng kiểm tra trạng thái trong thông báo.
+    skills_vector_label: Cơ sở dữ liệu vectơ
     skillvue: Kỹ năng
+    skillvue_apiKey: Khóa API
+    skillvue_apiKeyRequired: Khóa API là bắt buộc
     skillvue_assessment: Đánh giá Skillvue
     skip_assessment_level_checks: Bỏ qua các bước kiểm tra hệ thống theo cấp độ đánh giá
     slot_name: Tên vị trí
+    sms_contact: Liên hệ SMS
     sms_histories: Lịch sử SMS
+    sms_histories_columns_mobile_no: Số điện thoại di động
+    sms_histories_columns_price: Giá
+    sms_histories_columns_segment_length: Độ dài phân đoạn
+    sms_histories_columns_sent_at: Gửi lúc
+    sms_histories_drawer_title: Chi tiết SMS
+    sms_histories_history: Lịch sử
+    sms_histories_statuses_accepted: Chấp nhận
+    sms_histories_statuses_delivered: Gửi
+    sms_histories_statuses_failed: Thất bại
+    sms_histories_statuses_queued: Đã xếp hàng
+    sms_histories_statuses_scheduled: Dự kiến
+    sms_histories_statuses_sent: Gửi
+    sms_histories_statuses_undelivered: Chưa giao hàng
     sms_invites: Lời mời SMS
+    sms_invites_actions_add: Thêm liên hệ SMS
+    sms_invites_columns_created_at: Được tạo ra tại
+    sms_invites_columns_created_by: Tạo bởi
+    sms_invites_columns_mobile_no: Số điện thoại di động
+    sms_invites_contacts: Liên hệ
+    sms_invites_form_modal_locale: Locale
+    sms_invites_form_modal_mobile_no: Số điện thoại di động
+    sms_invites_form_modal_title: Lời mời SMS
+    sms_invites_import_download_example_csv: Tải xuống ví dụ csv
+    sms_invites_import_success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    sms_invites_import_title: Nhập lời mời SMS
+    sms_invites_messages_delete_confirm_text: Bạn có chắc chắn muốn xóa Lời mời SMS bằng số điện thoại di động %{mobile_no} không?
+    sms_invites_messages_delete_success: Lời mời SMS đã bị xóa thành công
+    sms_invites_send_sms_fields_link_expiry: Hết hạn liên kết
+    sms_invites_send_sms_fields_locale: Locale
+    sms_invites_send_sms_fields_message: Thông điệp
+    sms_invites_send_sms_fields_statuses: Trạng thái
+    sms_invites_send_sms_fields_users: Người dùng
+    sms_invites_send_sms_modal_btn_name: Gửi SMS
+    sms_invites_send_sms_modal_title: Gửi SMS
+    sms_invites_send_sms_pipetext_details: "{{{first_name}}} - Tên người nhận<br />{{{last_name}}} - Họ người nhận<br />{{{invite_url}}} - Liên kết đăng ký"
+    sms_invites_send_sms_segment_length_msg: Số phân đoạn ước tính cho thư này là %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: Số phân đoạn ước tính cho thư này nằm trong khoảng từ %{min_segment_length} đến %{max_segment_length}.
+    sms_invites_statuses_all: Tất cả
+    sms_invites_statuses_failed: Thất bại
+    sms_invites_statuses_invited: Mời
+    sms_invites_statuses_not_invited: Không được mời
+    sms_invites_statuses_registered: Đăng ký
+    sms_invites_tools_export: Xuất danh bạ SMS
+    sms_invites_tools_import: Nhập danh bạ SMS
+    sms_invites_tools_send_sms: Gửi SMS
+    sms_notification: Thông báo SMS
+    sms_notification_disabled_by_client: Thông báo SMS bị vô hiệu hóa bởi khách hàng
+    sms_records_columns_message: Thông điệp
+    smtp_settings: Cài đặt SMTP
+    smtp_settings_authentication: Xác thực
+    smtp_settings_authentication_type: Loại xác thực
+    smtp_settings_authentication_types_cram_md5: Chồi máu MD5
+    smtp_settings_authentication_types_login: Đăng nhập
+    smtp_settings_authentication_types_plain: Đồng bằng
+    smtp_settings_enabled: Kích hoạt
+    smtp_settings_encryption: Mã hóa
+    smtp_settings_encryption_types_none: Không ai
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: Từ email
+    smtp_settings_from_name: Từ tên
+    smtp_settings_host: Chủ nhà
+    smtp_settings_password: Mật khẩu
+    smtp_settings_port: Cảng
+    smtp_settings_send_test_email: Gửi email thử nghiệm
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: Cài đặt email của bạn sẽ không được lưu cho đến khi email thử nghiệm được gửi thành công.
+    smtp_settings_test_email_modal_input_placeholder: ID email thử nghiệm
+    smtp_settings_test_email_modal_title: ID email thử nghiệm
+    smtp_settings_test_modal_success_message: Email thử nghiệm được gửi đến %{email_id}.
+    smtp_settings_test_modal_title: Kiểm tra cài đặt SMTP
+    smtp_settings_update_success_msg: Cài đặt SMTP đã được cập nhật thành công.
+    smtp_settings_use_sender_verification: Sử dụng xác minh người gửi
+    smtp_settings_user_name: Tên người dùng
     specialty_questions: Các câu hỏi chuyên sâu
     sso_email_mismatch: Bạn đang đăng nhập vào một tài khoản khác trên nhà cung cấp dịch vụ xác thực. Vui lòng đăng xuất khỏi nhà cung cấp dịch vụ xác thực và thử lại.
     sso_enforced: Áp dụng SSO
@@ -1183,30 +2861,166 @@ vi:
     sso_settings_slo_url: URL dịch vụ SLO
     sso_settings_sso_url: URL dịch vụ SSO
     sso_settings_tab: Đăng nhập một lần (SSO)
+    standard: Chuẩn
     standard_deviation: Độ lệch chuẩn
     standard_questions: Các câu hỏi thường gặp
     start: bắt đầu
     start_time: Thời gian bắt đầu
     static_content: Nội dung tĩnh
     stats: Thống kê
+    stats_assessments_active: Hoạt động
+    stats_assessments_columns_assessment_name: Tên đánh giá
+    stats_assessments_columns_completed: Hoàn thành
+    stats_assessments_columns_in_progress: Đang tiến hành
+    stats_assessments_columns_ineligible: Không đủ điều kiện
+    stats_assessments_columns_interrupted: Gián đoạn
+    stats_assessments_columns_not_started: Chưa bắt đầu
+    stats_assessments_columns_timed_out: Hết thời gian chờ
+    stats_assessments_count: Đếm
+    stats_assessments_inactive: Không hoạt động
+    stats_assessments_percentage: Tỷ lệ phần trăm
+    stats_assessments_title: Đánh giá
+    stats_top_metrics_completed: Hoàn thành
+    stats_top_metrics_in_progress: Đang tiến hành
+    stats_top_metrics_interrupted: Gián đoạn
+    stats_top_metrics_not_started: Chưa bắt đầu
+    stats_top_metrics_timed_out: Hết thời gian chờ
+    stats_top_metrics_users: Người dùng
+    stats_users_date_presets_last_30_days: 30 ngày qua
+    stats_users_date_presets_last_7_days: 7 ngày qua
+    stats_users_date_presets_last_month: Tháng trước
+    stats_users_date_presets_last_week: Tuần trước
+    stats_users_date_presets_today: Hôm nay
+    stats_users_date_presets_yesterday: Hôm qua
+    stats_users_y_title: Số lượng người dùng
+    status_active: Hoạt động
+    status_archived: Lưu trữ
     status_details: Chi tiết trạng thái
+    statuses_accepted: Chấp nhận
+    statuses_cancelled: Bị hủy bỏ
+    statuses_late_cancelled: Hủy đặt chỗ muộn
+    statuses_late_rescheduled: Đã hoãn lại
+    statuses_pending: Chờ
+    statuses_requested_cancellation: Yêu cầu hủy bỏ
+    statuses_requested_cancellation_rejected: Hủy bỏ bị từ chối
+    statuses_requested_rescheduling: Yêu cầu lên lịch lại
+    statuses_requested_rescheduling_rejected: Lên lịch lại bị từ chối
+    statuses_rescheduled: Dời
+    statuses_scheduled: Dự kiến
+    steps_basic_information: Thông tin cơ bản
+    steps_facilitators: Điều phối viên
+    steps_invite_options: Tùy chọn mời
+    steps_invite_subjects: Mời các môn học
+    steps_send_invitations: Gửi lời mời
     structured_learning: Học chính thức [10]
+    sub_factor_questions: Câu hỏi về các yếu tố khác (Trung bình)
+    sub_factor_questions_sum: Câu hỏi về các yếu tố khác (SUM)
+    sub_factors_average: Trung bình gia quyền của các yếu tố
+    sub_factors_conditional_average: Trung bình gia quyền có điều kiện của các yếu tố
+    sub_factors_sum: Tổng các yếu tố có trọng số
     subdomain: Tên miền phụ
     subdomain_admin_keyword: không thể sử dụng mẫu tên miền phụ dành riêng cho quản trị viên
     subdomain_invalid_format: Định dạng tên miền phụ không đúng.
     subdomain_reserved: Tên miền phụ %{value} đã được đặt trước
     subdomain_too_long_max_32: Tên miền phụ quá dài (tối đa 32 ký tự)
+    subject: Chủ thể
+    subject_can_access_reports: Người dùng có thể truy cập các báo cáo của mình.
+    subject_email: Email của chủ đề
+    subject_invite_description: Tin nhắn này sẽ được gửi để mời các đối tượng tham gia đánh giá
+    subject_invite_name: Lời mời đối tượng
     subject_part_of_other_invite: Người dùng có địa chỉ email %{user_email} đã được mời tham gia '%{workshop_invite_name}'.
+    subject_placeholder: Chủ đề tìm kiếm...
+    subject_reminder_description: Tin nhắn gửi đến từng người tham gia để nhắc nhở họ tham gia đánh giá
+    subject_reminder_name: Nhắc nhở chủ đề
+    subject_reminder_rule_description: Chỉ định các quy tắc để tự động lên lịch khi lời mời được lên lịch
+    subject_reminder_rule_name: Quy tắc nhắc nhở chủ đề
+    subject_report_ready_description: Thông báo này được gửi đến một chủ đề sau khi báo cáo của họ đã sẵn sàng
+    subject_report_ready_name: Báo cáo chủ đề đã sẵn sàng
+    subjects_title: Đối tượng
+    submenu_options_option_one: Tùy chọn 1
+    submenu_options_option_title: Mục 1
+    submenu_options_option_two: Tùy chọn 2
+    success_call_send_invitation: Bạn có muốn gửi lời mời không?
+    success_color: Màu sắc thành công
+    success_ok: Đúng
+    success_skip: Bỏ qua ngay bây giờ
+    success_title: Các trung tâm đánh giá được tạo ra
+    success_update: Cài đặt thiết kế đã được lưu thành công
+    suitability_id: Mã phù hợp
     superadmin_use_root_domain: Quản trị viên cấp cao phải đăng nhập qua miền chính
     switch_client: Chuyển đổi ứng dụng khách
-    target_job_role: Vị trí công việc mục tiêu
+    system_prompt: Nhắc nhở hệ thống
+    tab_text_one: Thực đơn
+    tab_text_two: Thực đơn con
+    table_more_actions: Hành động khác
+    tabs_results: Kết quả
+    tabs_settings: Cài đặt
+    target_job_role: Vai trò công việc mục tiêu
+    taxonomy_import_action_taxonomy: Phân loại nhập khẩu
+    taxonomy_import_description: Tải lên tệp Excel để nhập hoặc cập nhật hệ thống phân loại kỹ năng của bạn. Điều này sẽ thêm các kỹ năng mới, vị trí công việc và mức độ thành thạo.
+    taxonomy_import_download_example_file: Tải xuống tệp ví dụ
+    taxonomy_import_drag_text: Nhấp chuột hoặc kéo tệp vào khu vực này để tải lên.
+    taxonomy_import_error_title: Nhập khẩu thất bại
+    taxonomy_import_file_hint: Hỗ trợ các tệp .xls và .xlsx.
+    taxonomy_import_import_button: Nhập khẩu phân loại
+    taxonomy_import_success_msg: Tệp đã tải lên đã được xếp hàng để nhập. Vui lòng kiểm tra trạng thái trong thông báo.
+    taxonomy_title: Phân loại kỹ năng
+    template_and_campaign_required: Vui lòng cung cấp cả mẫu và ID chiến dịch
+    template_render_failed: Không thể hiển thị mẫu
+    test_generate: Tạo thử nghiệm
+    test_render: Kết xuất thử nghiệm
+    test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
+    text_danger: Văn bản (cảnh báo)
+    text_success: Thông báo thành công
+    text_warning: Văn bản (cảnh báo)
     this_field_is_required: Trường này là bắt buộc.
+    threesixity_advance_settings_campaign_template: Mẫu chiến dịch
+    threesixity_advance_settings_factors: Yếu tố
+    threesixity_close_content: Bạn có chắc chắn muốn đóng Multi Rater Campaign Creator không? Mọi công việc tùy chỉnh chưa lưu sẽ bị mất. Vui lòng xác nhận quyết định của bạn.
+    threesixity_close_title: Đóng Multi Rater Campaign Creator?
+    threesixity_instructions_creation_empty: 'Trống: Bắt đầu với một bản khảo sát trống và tùy chỉnh nó theo nhu cầu cụ thể của bạn.'
+    threesixity_instructions_creation_previous: 'Trước đó: Chọn một bài đánh giá trước đó làm điểm xuất phát và thực hiện các điều chỉnh.'
+    threesixity_instructions_creation_standard: 'Tiêu chuẩn: Sử dụng mẫu có sẵn với các câu hỏi và chỉ số thường được sử dụng.'
+    threesixity_instructions_creation_sub_title: Vui lòng chọn loại chiến dịch bạn muốn tạo.
+    threesixity_instructions_creation_title: Chào mừng bạn đến với Trình tạo chiến dịch Multi Rater!
+    threesixity_instructions_customization_sub_title: Chọn mẫu và các yếu tố để đưa vào đánh giá.
+    threesixity_instructions_customization_title: Tùy chỉnh đánh giá của bạn!
+    threesixity_no_factors_description: Vui lòng thử một số từ khóa tìm kiếm khác.
+    threesixity_no_factors_title: Không tìm thấy yếu tố nào
+    threesixity_questions_select_all: Chọn tất cả
+    threesixity_questions_title: Câu hỏi và chỉ số
+    threesixity_search_factors_description: Vui lòng nhập ít nhất 3 ký tự để tìm các yếu tố bạn đang tìm kiếm.
+    threesixity_search_factors_title: Bắt đầu tìm kiếm của bạn
+    threesixity_success: Chiến dịch Multi Rater đã được tạo thành công.
+    threesixity_success_job: Công việc tạo Chiến dịch Multi Rater đã được lên lịch thành công.
     threesixty: Chiến dịch 360
+    threesixty_campaigns_mail_history_date: Ngày
+    threesixty_campaigns_mail_history_download_details: Chi tiết tải xuống
+    threesixty_campaigns_mail_history_emails_sent: Email đã gửi
+    threesixty_campaigns_mail_history_recipient: Người nhận
+    threesixty_campaigns_mail_history_subject: Chủ thể
+    threesixty_campaigns_manage_assessment: Đánh giá
+    threesixty_campaigns_manage_dimension: Kích thước
+    threesixty_campaigns_manage_manage_relationships: Quản lý các mối quan hệ...
+    threesixty_campaigns_manage_report: Báo cáo
+    threesixty_campaigns_menu_datasheet_title: Bảng dữ liệu
+    threesixty_campaigns_menu_messages_title: Thư
+    threesixty_campaigns_menu_participants_title: Tham gia
+    threesixty_campaigns_menu_report_menu_report_approval_title: Cài đặt phê duyệt báo cáo
+    threesixty_campaigns_menu_report_menu_report_options_title: Tùy chọn báo cáo
+    threesixty_campaigns_menu_report_title: Báo cáo
+    time_label: Thời gian
+    time_zone: Múi giờ
     timed_label: 'Đã lên lịch: %{time_text}'
     timelines: Lịch trình
+    times: lần
     timezone: Múi giờ
+    timezone_label: Múi giờ
     timing: Thời điểm
     to: Đến
+    token_url_label: URL mã thông báo
+    token_url_name: oauth_token_url
+    token_url_required: URL mã thông báo là bắt buộc
     tone: Giọng điệu
     toolbar_ai_insight: Nhận định về Trí tuệ Nhân tạo
     toolbar_ai_suggestion: Đề xuất của Trí tuệ nhân tạo
@@ -1215,6 +3029,22 @@ vi:
     toolbar_text_replaced: Nội dung đã được thay thế!
     toolbar_what_changed_and_why: Điều gì đã thay đổi và tại sao
     tools: Công cụ
+    topics_label: Sự kiện
+    topics_list_assessment_assigned: Đánh giá được giao
+    topics_list_assessment_completed: Đánh giá đã hoàn thành
+    topics_list_assessment_raw_response: Đánh giá Phản hồi thô
+    topics_list_assessment_started: Đánh giá bắt đầu
+    topics_list_assessment_timeout: Thời gian chờ đánh giá
+    topics_list_campaign_results_available: Kết quả chiến dịch có sẵn
+    topics_list_campaign_user_assessment_summary: Tóm tắt đánh giá người dùng chiến dịch
+    topics_list_campaign_user_status: Trạng thái người dùng chiến dịch
+    topics_list_report_available: Báo cáo có sẵn
+    topics_list_results_available: Kết quả có sẵn
+    topics_list_scheduling_cancelled: Lên lịch bị hủy
+    topics_list_scheduling_invited: Lên lịch được mời
+    topics_list_scheduling_rescheduled: Lên lịch lại
+    topics_list_scheduling_scheduled: Lên lịch lên lịch
+    topics_list_workshop_attendance_status: Trạng thái tham dự hội thảo
     transcription_record_not_found: Không tìm thấy bản ghi chép.
     transcription_schedule_failed: Không thể lên lịch công việc chuyển đổi văn bản
     transcription_scheduled: Công việc chuyển đổi văn bản đã được lên lịch. Vui lòng đóng cửa sổ pop-up và kiểm tra trạng thái thông báo.
@@ -1227,32 +3057,84 @@ vi:
     translation_assistant_not_configured: Trợ lý Dịch thuật chưa được cấu hình
     translations:
       title: Bản dịch
+    translations_export_failure_msg: Lỗi khi xuất bản dịch
+    translations_export_success_msg: Xuất các hành động phát triển đang được tiến hành.
+    tte: TTE
+    type_by_skill: Theo kỹ năng
+    type_by_skill_type: Theo loại kỹ năng
+    type_default: Mặc định
+    type_locked_tooltip: Trợ lý này hiện đang được sử dụng và không thể thay đổi loại của nó.
+    unarchive_content: Bạn có chắc chắn muốn hủy lưu trữ '%{project_name}' không?
+    unarchive_success: Dự án '%{project_name}'' đã được hủy lưu trữ thành công.
+    unarchive_title: Hủy lưu trữ dự án
+    unsaved_changes: Có các thay đổi chưa lưu, hãy cân nhắc gửi biểu mẫu để tạo phản hồi cập nhật từ Playground.
+    upcoming: Sắp tới
     update_success: "%{readableResourceName} đã được cập nhật thành công"
+    updated_successfully: Trợ lý AI đã được cập nhật thành công.
     upload: Tải lên
     upload_media: Tải lên phương tiện truyền thông
     upload_required: Vui lòng thêm ít nhất một tệp để tải lên
     upload_success: Tải lên thành công
+    url_label: Địa chỉ
+    url_name: Địa chỉ
+    used_tokens_input_tokens: Mã thông báo đầu vào
+    used_tokens_output_tokens: Mã thông báo đầu ra
+    used_tokens_title: Sử dụng token
+    user: Người dùng
+    user_agent: Tác nhân người dùng
+    user_prompt: Nhắc nhở người dùng
     user_report_events: Sự kiện báo cáo người dùng
+    user_report_id: Mã báo cáo của người dùng
+    user_result_validity_in_days: Hiệu lực kết quả tính bằng ngày
+    username_label: Tên người dùng
+    username_name: Tên người dùng
     users: Người dùng
+    users_modals_download_idp_reports_error: Không thể lên lịch công việc Tải xuống hàng loạt Báo cáo IDP không thành công.
+    users_modals_download_idp_reports_include_reflective_questions: Bao gồm các câu hỏi suy ngẫm
+    users_modals_download_idp_reports_success: Công việc Tải xuống hàng loạt Báo cáo IDP đã được lên lịch thành công.
+    users_modals_download_idp_reports_title: Tải xuống hàng loạt báo cáo IDP
+    users_user: Người dùng
     validation_error: Vui lòng điền đầy đủ các trường thông tin bắt buộc.
     validity: Thời hạn hiệu lực
     very_high: Rất cao
     very_low: Rất thấp
+    video_call_recording: Cho phép ghi âm cuộc gọi video
+    video_call_recording_expiry_duration: Thời gian lưu trữ bản ghi cuộc gọi video (tính bằng ngày)
+    video_call_recording_scope: Bật tính năng ghi video cho tất cả các chiến dịch mới.
+    video_call_type_custom: Phong tục
+    video_call_type_internal: Nội
+    video_call_type_label: Thêm cuộc gọi video
+    video_call_type_none: Không ai
     view_licenses: Xem giấy phép
+    visual_header_visibility: Khả năng hiển thị tiêu đề trực quan
     wait_for_upload_completion: Vui lòng đợi cho đến khi tất cả các tệp được tải lên xong
     waiting: Chờ đợi
+    warning_color: Màu cảnh báo
+    watermark_content: Nội dung hình mờ
+    watermark_info: Nếu bạn không thêm bất kỳ nội dung nào, theo mặc định, email của người dùng sẽ xuất hiện dưới dạng dấu nước. Bạn có thể sử dụng bất kỳ văn bản đường ống nào sau đây -<br> {{id}} - ID người tham gia </br> {{first_name}} - Tên người tham gia <br> {{last_name}} - Họ của người tham gia </br> {{email}} - Email người tham gia
+    webhook_delete_success: Cài đặt Webhook đã bị xóa thành công
     weight: Cân nặng
+    welcome_message_description: Thông báo này sẽ được hiển thị cho các đối tượng khi họ đăng nhập để bắt đầu đánh giá hoặc xem danh sách nhiệm vụ của họ
+    welcome_message_name: Thông điệp chào mừng
     what_to_look_for: Những điều cần lưu ý
     what_to_look_for_placeholder: Bằng chứng về hành vi, hành động hoặc kết quả thể hiện yếu tố này.
     words: Từ
+    workshop_actions_remove_workshop: Xưởng bị loại bỏ thành công
+    workshop_statuses_closed: Khép kín
+    workshop_statuses_open: Mở
     workshops: Hội thảo
     writing_assistant_not_configured: Trợ lý Viết chưa được cấu hình
     x_axis_interval_label: Khoảng cách trục X
     y_axis_interval_label: Khoảng cách trục tung
     year: Quốc gia
+    year_range: Khoảng năm
+    years: Tuổi
     yoodli: Yoodli
     yoodli_activity_id: ID hoạt động Yoodli
     yoodli_assessment: Đánh giá Yoodli
     yoodli_email_id: ID email ứng viên Yoodli
     yoodli_external_assessment_id: ID đánh giá Yoodli
+    yoodli_keyset_url: URL bộ khóa
+    yoodli_launch_url: URL khởi chạy
+    yoodli_login_url: URL đăng nhập
     you_are_here: Bạn đang ở đây

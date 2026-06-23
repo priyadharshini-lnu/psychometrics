@@ -2,17 +2,6 @@
 ru:
   administration:
     actions: Действия
-    active_record_audits:
-      action: Действие
-      audit_id: Идентификатор аудита
-      auditable_id: Идентификатор записи
-      auditable_type: Тип записи
-      audited_changes: Проверенные изменения
-      new_diff:
-        parse_error: Не удалось проанализировать JSON с новыми изменениями
-      old_diff:
-        parse_error: Не удалось проанализировать JSON со старыми изменениями
-      title: Проверенные изменения
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ ru:
           design: Дизайн
           or: Или
     administrators:
-      drawers:
-        edit:
-          first_name_required: Имя обязательно
-          last_name_required: Фамилия обязательна
-        view:
-          first_name: Имя
-          last_name: Фамилия
-          title:
-            campaign_admin: Администратор кампании
-            client_admin: Администратор клиента
-            project_admin: Администратор проекта
       list:
         actions:
-          api_keys: API-ключи
-          edit: Редактировать
-          export_admins_with_permissions: Экспорт ролей и разрешений администратора
-          export_success: Задание экспорта администратора было успешно запланировано. Пожалуйста, проверьте уведомление о статусе.
-          login: Вход
           spoof:
             login_successful: Вход успешен.
-          user_report_events: Журналы утверждения отчетов
-        columns:
-          email: Электронная почта
-      modals:
-        delete:
-          cancelText: Отменить
-          okText: Хорошо
-          title: Подтвердить
-    ai_artifacts:
-      artifact_results: Результаты поиска артефактов
-      code: Код
-      export:
-        success_msg: Экспорт артефактов ИИ в процессе. Пожалуйста, проверьте статус в уведомлениях.
-      export_ai_artifacts: Экспорт артефактов искусственного интеллекта
-      form:
-        add_assessment: Добавить оценку
-        ai_assistant: AI-помощник
-        assessments: Оценки
-        campaign_factors: Факторы кампании
-        configuration: Конфигурация
-        datasheet: Технические характеристики
-        datasheet_columns: Столбцы таблицы данных
-        include_all_datasheet_columns: Включить все столбцы таблицы данных
-        no_assessment_selected: Оценок еще нет. Нажмите «Добавить», чтобы начать.
-        questions_required: Необходимо выбрать хотя бы один вопрос
-        select_ai_assistant: Выбрать AI-помощника
-        select_assessment: Выбрать оценку
-        select_campaign_factors: Выберите факторы кампании
-        select_datasheet_columns: Выбрать столбцы таблицы данных
-        select_questions: Выберите вопросы
-        title: Искусственный интеллект
-      generate: Генерировать
-      generate_result_info_message: Результаты обрабатываются, пожалуйста, обновите страницу, чтобы увидеть обновленные результаты.
-      generated_at_time: Создано на сайте %{time}
-      generated_value: Созданная стоимость
-      id: ID
-      import:
-        download_example_csv: Скачать пример CSV
-        info_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-      import_action:
-        title: Импорт артефактов искусственного интеллекта кампании
-      import_ai_artifacts: Импорт артефактов искусственного интеллекта
-      key: Ключ
-      name: Имя
-      parsed_dependencies:
-        help: Анализированные зависимости для пользователя, используемые ИИ-помощником для генерации результатов артефакта
-        title: Анализируемые зависимости
-        view: Просмотр проанализированных зависимостей
-      playground: Игровая площадка
-      playground_info: Протестируйте свой артефакт с помощью примеров данных, чтобы предварительно просмотреть сгенерированные результаты.
-      playground_placeholder: Введите тестовые данные
-      raw: RAW
-      tabs:
-        results: Результаты
-        settings: Настройки
-      test_generate: Тест Создать
-      unsaved_changes: Несохраненные изменения присутствуют, рассмотрите возможность отправки формы для получения обновленного ответа от Playground.
-      used_tokens:
-        input_tokens: Входные токены
-        output_tokens: Выходные токены
-        title: Использование токенов
     ai_assistants:
-      actions:
-        create: Создать AI-помощника
-        edit: Редактировать AI-помощник
-        playground: Игровая площадка
-      ai_assistants: ИИ-помощники
-      ai_assistants_playground: Игровая площадка AI Assistant
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ ru:
             no_datasheet_data: Данные технического паспорта для пользователя%{email} отсутствуют.
             user_not_found_in_datasheet: Пользователь не найден в таблице данных кампании
       campaign_ai_artifacts: Артефакты искусственного интеллекта кампании
-      column:
-        provider: Провайдер
-      created_successfully: AI Assistant был успешно создан.
       errors:
         cannot_delete_in_use: Невозможно удалить AI Assistant «%{name}», поскольку он используется.
         development_actions_assistance_not_enabled: Генерация действий по развитию на основе искусственного интеллекта недоступна. Обратитесь к администратору.
         one_click_idp_assistance_not_enabled: Помощь IDP на базе искусственного интеллекта недоступна в рамках вашего текущего тарифного плана. Обратитесь к администратору.
         platform_assistant_already_exists: На платформе разрешается находиться только 1 помощнику типа «%{type}».
-      form:
-        add_output_schema_key: Добавить ключ схемы вывода
-        dependencies: Зависимости
-        description: Описание
-        enter_description: Введите описание
-        enter_schema_key: Введите ключ схемы
-        key: Ключ
-        name: Имя
-        output_schema_keys: Ключи схемы вывода
-        provider: Провайдер
-        remove_output_schema_key: Удалить ключ схемы вывода
-        schema_key_description_required: Описание ключа схемы является обязательным
-        schema_key_required: Требуется ключ схемы
-        schema_key_type: Тип клавиши
-        schema_key_unique: Ключи схемы должны быть уникальными
-        system_prompt: Системный запрос
-        type: Тип
-        user_prompt: Подсказка пользователю
-      revisions:
-        load: Загрузить в форму
-        name: Имя
-        system_prompt: Система Propmpt
-        title: Изменения в AI Assistant
-        user_prompt: Подсказка пользователю
-        version: Версия
       selector:
         choose_artifact: Выбрать артефакт ИИ
         choose_schema_key: Выбрать ключ схемы
         no_assistants_found: Не найдено AI-помощников
         placeholder: Выбрать AI-помощника
-      updated_successfully: AI Assistant был успешно обновлен.
     any: " - Любой - "
     api:
       campaigns:
@@ -185,10 +62,6 @@ ru:
       users:
         form:
           campaign_ids_not_existing: Не все идентификаторы кампаний существуют
-    api_keys:
-      form:
-        description: Описание
-        title: ключ API
     assessment_builder:
       form:
         display_label: Введите метку дисплея
@@ -196,108 +69,12 @@ ru:
         value: Ценность
         value_required: Значение обязательно
     assessment_center:
-      cancel_confirmation:
-        message: Вы уверены, что хотите отменить прогресс формы?
-        title: Отмена прогресса формы
-      current: Текущий
       invite:
-        add_invite: Добавить приглашение
-        assessment_center: Центр оценки
-        back: Назад
-        basic_info:
-          allow_preferred_language: Разрешить предпочтительный язык
-          assessment_centers: Центры оценки
-          assessment_centers_hint: Пример поискового запроса «10 августа 2023 года, 20:06»
-          assessment_centers_placeholder: Выберите центры оценки
-          description: Выдайте приглашения кандидатам, выбрав несколько центров оценки. Затем кандидаты выберут один центр из доступных.
-          neurodiversity: Включить вопрос о нейроразнообразии
-          preferred_language: Разрешенные языки
-          required_error: Не может быть пустым
-          title: Основная информация
-        center_group: Группа оценочного центра
-        confirm_message: Вы уверены, что хотите удалить приглашение?
-        confirm_message_with_title: Вы уверены, что хотите удалить приглашение с названием «%{invite_title}»?
-        confirm_title: Подтвердить
         exceeded_subjects_count: Кампания имеет %{users} тем. Вы можете добавить только %{count} тем на каждое приглашение.
-        id: ID
-        invites: Приглашает
-        name: Имя
-        name_placeholder: Введите имя приглашения
-        next: Далее
-        not_selected: Не выбрано
-        requests: Запросы
-        save: Сохранить и отправить
-        send_invites:
-          add: Добавить
-          add_description: Вы можете перевести название и описание приглашения на несколько языков.
-          add_language: Добавить язык
-          description: Описание
-          input_label: Добавить дополнительный язык
-          input_placeholder: Выберите дополнительный язык
-          invitation_title: Название приглашения
-          title: Приглашение (%{lang})
-        steps:
-          add_subjects: Добавить предметы
-          basic_info: Основная информация
-          has_errors: содержит ошибки
-          send_invitation: Отправить приглашение
-        subjects:
-          cancel: Отменить
-          count: "%{count} Предметы"
-          csv_error: "%{index}: пользователь с адресом электронной почты %{email} не участвует в этой кампании"
-          csv_imported: "%{count} импортированные предметы"
-          description: Вы можете добавлять предметы по отдельности, выполнив поиск, или загрузить файл CSV.
-          download: Скачать
-          file_example: См. файл с примером для загрузки информации о предметах.
-          import_from_campaign: Добавить все из кампании
-          import_title: Импорт предметов
-          import_users: Импорт пользователей
-          search_user: Поиск предметов
-          title: Предметы
-          upload: Загрузить
-          upload_csv: Загрузить CSV
         subjects_count_added: Предметы успешно добавлены
-        success:
-          continue: Продолжить
-          message: Задача отправки приглашений поставлена в очередь; пользователи получат их в ближайшее время.
-        success_message: Приглашение удалено успешно.
-        success_message_with_title: Приглашение с названием «%{invite_title}» было успешно удалено.
-        title: Название
-        workshop:
-          title: Центры оценки
-        workshop_list:
-          add: Добавить
-          name: Имя
-          remove_confirm:
-            content: Вы уверены, что хотите удалить Центр оценки с именем «%{name}»?
-            success: Центр оценки был удален успешно.
-            title: Подтвердить
-      invite_request:
-        accept: Принять
-        reason: Причина
-        reject: Отклонить
-        remove_confirm:
-          content: Вы уверены, что хотите удалить %{status} из %{subjectName}?
-          success: "%{status} с сайта %{subjectName} был успешно выполнен %{action}."
-          title: "%{action} %{status}"
-        status: Статус
-        subject_name: Название предмета
-        workshop_time: Время проведения семинара
-      past: Прошлое
-      steps:
-        basic_information: Основная информация
-        facilitators: Фасилитаторы
-        invite_options: Параметры приглашения
-        invite_subjects: Пригласить участников
-        send_invitations: Отправить приглашения
-      success:
-        call_send_invitation: Вы хотите отправить приглашения?
-        ok: Да
-        skip: Пропустить на данный момент
-        title: Созданы центры оценки
-      upcoming: Предстоящие
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: Настройки оценки с использованием ИИ можно добавить только для вопросов типов «AudioResponse», «VideoResponse» и «TextEntry»
         doesnt_have_header: "«%{sub_header}» не имеет заголовка"
         invalid_headers: 'Следующие заголовки являются недействительными: %{headers}'
         invalid_question: Неверный идентификатор вопроса
@@ -311,11 +88,7 @@ ru:
       successfully_scheduled: Импорт вопросов был успешно запланирован.
     assessments:
       assessment: Оценка
-      assessment_report: Оценки
       copy:
-        copy: копия
-        copy_assessment: Оценка копирования
-        name: Имя
         successfully: Оценка «%{name}» была успешно скопирована.
       create:
         successfully: Оценка «%{name}» была успешно создана.
@@ -398,93 +171,10 @@ ru:
       update:
         successfully: Оценка %{name} была успешно обновлена.
     assessor:
-      add_subject_modal:
-        assessment: Оценка
-        mark_as_lead_assessor: Пометить в качестве ведущего оценщика по вышеуказанному предмету
-        subject: Тема
-        subject_placeholder: Поиск по теме...
-        title: Добавить тему
-      assessments:
-        actions:
-          add_subject: Добавить тему
-          rescore: Пересчет
-          reset: Сбросить оценку
-          reset_progress: Сбросить прогресс
-        bulk_delete_confirmation: Вы уверены, что хотите удалить выбранные записи?
-        bulk_delete_successful: Оценки оценщиков были успешно удалены.
-        reset_confirmation: Вы уверены, что хотите сбросить оценку для предмета с адресом электронной почты «%{subjectEmail}»?
-        reset_progress_confirmation: Вы уверены, что хотите сбросить прогресс для предмета с адресом электронной почты «%{subjectEmail}»?
-        reset_progress_successfully: Сброс прогресса для субъекта с адресом электронной почты «%{subjectEmail}» выполнен успешно.
-        reset_successfully: Сброс оценки для предмета с адресом электронной почты «%{subjectEmail}» выполнен успешно.
-        subject_email: Тема письма
-        subject_name: Название предмета
-      completed_at: Завершено в
-      count: "%{count} Оценщики"
-      create_assessor: Добавить оценщика
-      evaluations: Оценки
       mailer:
         subject: Добавлены новые предметы для вашей оценки
-      modals:
-        create_assessor:
-          add: Добавить
-          cancel: Отменить
-          form:
-            add: Добавить
-            add_lead_assessor: Добавить в качестве ведущего оценщика
-            add_lead_assessor_hint: Пожалуйста, сначала добавьте форму ведущего оценщика.
-            assessments: Оценки
-            assessor: оценщик
-            assessor_placeholder: Поиск оценщика...
-            lead_assessment: Оценка свинца
-            subject: Тема
-            subject_placeholder: Поиск по теме...
-          sheet:
-            assessments: Оценки
-            assessments_placeholder: Выбрать
-            assessor_email: Электронная почта оценщика
-            assessor_first_name: Имя оценщика
-            assessor_last_name: Фамилия оценщика
-            subject_email: Электронная почта субъекта
-          title: Добавить оценщика
-        import:
-          body: Обратитесь к функции «Экспорт», чтобы извлечь шаблон, который можно использовать для импорта здесь.
-          title: Эксперты по импорту
       moderate_score:
-        assessor_evaluations: Оценки экспертов
-        main_report: Основной отчет
-        no_completed_assessments: Пока нет завершенных оценок
         no_results: Нет ответов на вопросы
-        other_reports: Другие отчеты
-        overall_scoring: Общий балл
-        recordings: Записи
-        refresh: Обновить
-        reports: Отчеты
-        reports_count: "%{count} Отчеты"
-      overview: Обзор
-      remove_confirmation: Вы уверены, что хотите удалить оценщика с адресом электронной почты %{email} из этой кампании?
-      statuses:
-        completed: Завершено
-        not_completed: Не завершено
-      toolbar:
-        export: Эксперты по экспорту
-        import: Эксперты по импорту
-        tools: Инструменты
-    assessor_assessment:
-      add: Добавить
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: Выберите оценку
-      name: Оценка оценщика
-    assessor_campaigns:
-      statuses:
-        completed: Завершено
-        in_progress: В процессе
-        not_started: Не начато
-    assessor_subjects:
-      statuses:
-        completed: Завершено
-        in_progress: В процессе
-        not_started: Не начато
     assigns:
       create:
         successfully: Новое назначение для оценки было успешно создано
@@ -501,42 +191,6 @@ ru:
       edit:
         header: Изменить назначение отчета
     attention: Внимание
-    audit_log:
-      action: Действие
-      audit_logs: Журналы аудита
-      campaign: Кампания
-      client: Клиент
-      client_ip: IP-адрес клиента
-      collapse_filters: Свернуть фильтры
-      dashboard: Панель управления
-      date_presets:
-        last_30_days: Последние 30 дней
-        last_7_days: Последние 7 дней
-        last_month: В прошлом месяце
-        last_week: На прошлой неделе
-        today: Сегодня
-        yesterday: Вчера
-      date_range: Диапазон дат
-      expand_filters: Развернуть фильтры
-      failure_reason: Причина сбоя
-      interface: Интерфейс
-      log_date: Дата регистрации
-      outcome: Результат
-      payload: Полезная нагрузка
-      project: Проект
-      record_id: Идентификатор записи
-      request_id: Идентификатор запроса
-      reset: Сброс
-      search: Поиск
-      search_campaign: Поиск по кампании
-      search_client: Поиск по клиенту
-      search_project: Поиск по проекту
-      search_record: Поиск по идентификатору записи
-      search_user: Поиск по пользователю
-      title: Информация журнала аудита
-      type: Тип записи
-      user: Пользователь
-      user_agent: Пользовательский агент
     back: Назад
     block_settings:
       modal:
@@ -749,20 +403,7 @@ ru:
           missing_user_reports: 'Отсутствующие отчеты пользователей по электронной почте: %{emails}'
           no_file_found_in_extracted_zip: Файл не найден в извлеченном ZIP-архиве
           user_report_not_found: 'Отчет пользователя не найден для адреса электронной почты: %{email}'
-      bulk_download:
-        data_range_error: Выберите диапазон дат
-        modal:
-          subtitle: Выберите диапазон дат, а затем выберите необходимый язык для каждого отчета.
-      generate:
-        modal:
-          subtitle: Выберите нужный язык для каждого отчета
     campaign_templates:
-      campaign_templates: Шаблоны кампаний
-      column:
-        assessment: Оценка
-        campaign: Кампания
-        owner: Владелец
-        report: Отчет
       copy:
         successfully: Клиентская аренда %{name} была успешно скопирована.
       create:
@@ -773,16 +414,6 @@ ru:
         header: Редактировать клиента
       errors:
         owner_invalid: Владелец шаблона должен быть тем же, что и владельцы оценки, отчета и измерения.
-      form:
-        assessment: Оценка
-        assessment_placeholder: Выберите оценку
-        name: Имя
-        name_placeholder: Введите имя
-        owner: Владелец
-        owner_placeholder: Выберите владельца
-        report: отчет
-        report_placeholder: Выберите отчет
-        title: Шаблон кампании
       image_fields:
         remove: Удалить
       index:
@@ -797,10 +428,6 @@ ru:
         updated_at: Дата обновления
       new:
         header: Новый клиент
-      remove_confirm:
-        content: Вы уверены, что хотите удалить шаблон кампании «%{name}»?
-        success: Шаблон кампании «%{name}» был успешно удален.
-        title: Удалить шаблон кампании
       resource:
         confirmations:
           delete:
@@ -816,7 +443,6 @@ ru:
       update:
         successfully: Клиентская аренда %{name} была успешно обновлена.
     campaigns:
-      actions: Управлять
       assessment_reports:
         report_approval:
           allow_bulk_approve: Разрешить массовое утверждение
@@ -866,148 +492,6 @@ ru:
       assessors:
         spoof:
           successfully: Вы успешно вошли в систему как %{name}
-      convert_to_template: Преобразовать в шаблон
-      copy: Копировать
-      delete: Удалить
-      edit: Редактировать
-      extend_time_success_message: Время проведения кампании продлено до %{minutes} минут
-      filters:
-        active: Активный
-        all: Все
-        archived: Архив
-        closed: Закрыто
-        inactive: Неактивный
-        status: Статус
-      form:
-        active_notice: Статус кампании автоматически изменится на «закрыта» в выбранную дату и время окончания.
-        campaign: Кампания
-        copy_factors: Копировать факторы
-        inactive_notice: Статус кампании автоматически изменится на активный в выбранную дату и время начала.
-        name: Имя
-        practice_campaign: Практическая кампания
-        status: Статус
-      listing:
-        assessments: Оценки
-        id: ID
-        name: Имя
-        reports: Отчеты
-        status: Статус
-        template: Шаблон
-        type: Тип
-      menus:
-        add_common_campaign: Добавить общую кампанию
-        add_multi_rater_campaign: Добавить кампанию с несколькими оценщиками
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: Шаблон кампании
-            factors: Факторы
-          base_settings:
-            active: Активный
-            archive: Архив
-            assessment: Оценка
-            category: Категория
-            closed: Закрыто
-            default_assessment_language: Язык оценки по умолчанию
-            default_report_language: Сообщить о языке по умолчанию
-            empty: Пустой
-            inactive: Неактивный
-            name: Имя
-            normal: Нормальный
-            previous: Предыдущий
-            select_assessment_language: Выберите язык оценки
-            select_report_language: Выберите язык отчета
-            skill_rater: Оценщик навыков
-            standard: Стандартный
-            status: Статус
-            type: Тип
-          close:
-            content: Вы уверены, что хотите закрыть Multi Rater Campaign Creator? Все несохраненные настройки будут утеряны. Пожалуйста, подтвердите свое решение.
-            title: Закрыть Multi Rater Campaign Creator?
-          instructions_creation:
-            empty: 'Пустой: начните с пустого опроса и настройте его в соответствии со своими конкретными потребностями.'
-            previous: 'Предыдущий: Выберите предыдущую оценку в качестве отправной точки и внесите изменения.'
-            standard: 'Стандарт: Используйте заранее разработанный шаблон с часто используемыми вопросами и индикаторами.'
-            sub_title: Выберите тип кампании, которую вы хотите создать.
-            title: Добро пожаловать в Multi Rater Campaign Creator!
-          instructions_customization:
-            sub_title: Выберите шаблон и факторы, которые будут включены в оценку.
-            title: Настройте свою оценку!
-          no_factors:
-            description: Попробуйте другие ключевые слова для поиска.
-            title: Факторы не найдены
-          questions:
-            select_all: Выбрать все
-            title: Вопросы и индикаторы
-          search_factors:
-            description: Введите не менее 3 символов, чтобы найти нужные вам факторы.
-            title: Начните поиск
-          success: Кампания Multi Rater была успешно создана.
-          success_job: Задание по созданию кампании Multi Rater было успешно запланировано.
-      options:
-        description:
-          name: Описание
-          save: Сохранить описание
-          save_success: Описание успешно сохранено
-        enable_video_call_recording: Включить запись видеозвонков
-        fixed_time: Фиксированное время
-        instructions:
-          actions:
-            saved: Инструкции успешно сохранены
-          enable: Включить инструкции
-          save: Сохранить инструкции
-        prework_required: Не разрешать бронирование центра, если предварительные работы не завершены
-        prework_required_for_invite: Отправлять приглашение по электронной почте только после завершения предварительной работы
-        proctoring:
-          enable: Включить контроль
-          identification: Идентификация
-          identifications:
-            face: Лицо
-            face_and_passport: Лицо и паспорт
-            passport: Паспорт
-          integration_type: Интеграция
-          integration_types:
-            iframe: IFrame
-            ldb: Браузер с блокировкой
-          proctoring_types:
-            offline: В автономном режиме
-            online: Онлайн
-          rule_types:
-            allow_absence_in_frame: Разрешить отсутствие в кадре
-            allow_to_use_books: Разрешить использование книг
-            allow_to_use_calculator: Разрешить использование калькулятора
-            allow_to_use_excel: Разрешить использование Excel
-            allow_to_use_human_assistant: Разрешить использование помощника-человека
-            allow_to_use_messengers: Разрешить использование мессенджеров
-            allow_to_use_paper: Разрешить использование бумаги
-            allow_to_use_websites: Разрешить использование веб-сайтов
-            allow_voices: Разрешить голоса
-            allow_wrong_gaze_direction: Разрешить неправильное направление взгляда
-          rules: Правила
-          trial: Проба просмотра
-          type: Тип
-        show_watermark: Показать водяной знак
-        watermark_content: Водяной знак Содержание
-        watermark_info: 'Если вы не добавите никакого контента, по умолчанию в качестве водяного знака будет отображаться адрес электронной почты пользователя. Вы можете использовать любой из следующих пипетекстов: -<br/> {{id}} - Идентификатор участника </br> {{first_name}} - Имя участника </br> {{last_name}} - Фамилия участника </br> {{email}} - Адрес электронной почты участника'
-      pdf_password: Пароль PDF
-      types:
-        common: Общее
-        threesixty: Мультирейтер
-      users:
-        add_user: Добавить пользователя
-        completion_status: Статус завершения
-        created_by: Создано
-        email: Электронная почта
-        filters:
-          all: Все
-          anonymous: Анонимный
-          identified: Идентифицированный
-        id: ID
-        is_active: Активный
-        name: Имя
-        no_permission_message: У вас нет разрешения на изменение
-        title: Пользователи
-        updated_by: Обновлено
       validations:
         dates:
           end: должно быть после даты начала
@@ -1016,32 +500,7 @@ ru:
         invalid_campaign_factor_codes: 'Следующие коды кампании являются недействительными: %{codes}'
         missing_headers: Отсутствующие заголовки
         missing_users: 'Следующие адреса электронной почты не существуют: %{emails}'
-      import:
-        example_csv: Скачать пример csv
-        success_msg: Импорт был успешно загружен
-      modal:
-        title: Импорт внешних оценок кампании
-    client_features:
-      client_features: Особенности клиента
-      form:
-        ai_assistants: ИИ-помощники
-        ai_assistants_disabled_by_client: AI Assistants отключен клиентом
-        ai_assisted_idp: ИИ-поддерживаемая IDP
-        ai_assisted_idp_requires_ai_assistants: Для использования AI Assisted IDP необходимо включить функцию AI Assistants.
-        ai_content_analysis: Анализ контента с помощью искусственного интеллекта
-        ai_content_analysis_disabled_by_client: Анализ контента с помощью искусственного интеллекта отключен клиентом
-        ai_translation: AI Переводы
-        ai_translation_disabled_by_client: AI Translations отключено клиентом
-        global_skills: Глобальные навыки
-        global_skills_disabled_by_client: Global Skills отключен клиентом
-        idp: ВПЛ
-        idp_disabled_by_client: IDP отключен клиентом
-        sms_notification: SMS-уведомление
-        sms_notification_disabled_by_client: SMS-уведомления отключены клиентом
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: Хлебные крошки
       archive:
         successfully: Успешно
       base:
@@ -1049,7 +508,6 @@ ru:
         archived: Архив
         disable: Архив
         enable: Разархивировать
-      clients: Клиенты
       copy:
         successfully: Клиентская аренда «%{name}» успешно скопирована.
       create:
@@ -1069,392 +527,17 @@ ru:
       new:
         header: Новый клиент
       projects:
-        actions:
-          archive: Архив
-          unarchive: Разархивировать
-        archive:
-          content: Вы уверены, что хотите архивировать «%{project_name}»?
-          success: Проект «%{project_name}» был успешно заархивирован.
-          title: Архивный проект
-        assign_assessments:
-          add_assessment: Добавить оценку
-          assessments: Оценки
-        assign_reports:
-          add_report: Добавить отчет
-        campaigns:
-          archive:
-            successfully: Кампания «%{name}» была успешно заархивирована.
-          copy:
-            error: Кампания «%{name}» не была скопирована.
-            successfully: Кампания «%{name}» была успешно скопирована.
-          create:
-            successfully: Кампания «%{name}» была успешно создана.
-          destroy:
-            successfully: Кампания «%{name}» была успешно удалена.
-          edit:
-            header: Редактировать кампанию
-          export:
-            assessments: Оценки
-            assigned_user: Назначенные пользователи
-            completed_user: Завершенные пользователи
-            created_at: Дата создания
-            header:
-              actions: Действия
-              actual_usage: Фактическое использование
-              assessments: Оценки
-              campaigns: Кампании
-              name: Имя
-              reports: Отчеты
-              sub_campaigns: Подкампании
-              tests_allocated: Выделенные тесты
-              users: Пользователи
-            id: ID
-            name: Название кампании
-            reports: Отчеты
-            updated_at: Дата обновления
-          index:
-            export: Экспорт
-            new: Добавить
-            title: Кампании
-          list:
-            assessments: Оценки
-            assigned_user: Назначенные пользователи
-            completed_user: Завершенные пользователи
-            created_at: Дата создания
-            header:
-              actions: Действия
-              actual_usage: Фактическое использование
-              assessments: Оценки
-              campaigns: Кампании
-              name: Имя
-              reports: Отчеты
-              sub_campaigns: Подкампании
-              tests_allocated: Выделенные тесты
-              users: Пользователи
-            id: ID
-            name: Название кампании
-            reports: Отчеты
-            updated_at: Дата обновления
-          new:
-            header: Новая кампания
-          resource:
-            sub_campaign:
-              create: Создать новую подкампанию
-            tooltips:
-              copy: Копировать кампанию
-              create_report: Добавить новый отчет
-              create_user: Добавить нового пользователя
-              delete: Удалить кампанию
-              edit: Редактировать кампанию
-              export: Экспорт
-          sidebar:
-            archive: Архив кампании
-            copy: Копировать кампанию
-            destroy: Удалить кампанию
-            disable: Отключить
-            edit: Редактировать кампанию
-            enable: Включить
-            new: Новая кампания
-            title: Варианты кампании
-            view_licenses: Просмотр лицензий
-          sub_campaigns:
-            archive:
-              successfully: Подкампания «%{name}» была успешно заархивирована.
-            copy:
-              error: Подкампания «%{name}» не была скопирована.
-              successfully: Подкампания «%{name}» была успешно скопирована.
-            create:
-              successfully: Подкампания «%{name}» была успешно создана.
-            destroy:
-              successfully: Подкампания «%{name}» была успешно удалена.
-            edit:
-              header: Редактировать подкампанию
-            export:
-              assessments: Оценки
-              assigned_user: Назначенные пользователи
-              completed_user: Завершенные пользователи
-              created_at: Дата создания
-              header:
-                actions: Действия
-                actual_usage: Фактическое использование
-                archive_status: Статус архива
-                name: Имя
-                sub_campaign: Подкампании
-                tests_allocated: Выделенные тесты
-                users: Пользователи
-              id: ID
-              name: Название подкампании
-              reports: Отчеты
-              updated_at: Дата обновления
-            header:
-              actions: Действия
-            index:
-              export: Экспорт
-              new: Добавить
-              title: Подкампании
-            list:
-              assessments: Оценки
-              assigned_user: Назначенные пользователи
-              completed_user: Завершенные пользователи
-              created_at: Дата создания
-              header:
-                actions: Действия
-                actual_usage: Фактическое использование
-                archive_status: Статус архива
-                name: Имя
-                sub_campaign: Подкампании
-                tests_allocated: Выделенные тесты
-                users: Пользователи
-              id: ID
-              name: Название подкампании
-              reports: Отчеты
-              updated_at: Дата обновления
-            new:
-              header: Новая подкампания
-            resource:
-              tooltips:
-                copy: Копировать подкампанию
-                create_report: Добавить новый отчет
-                create_user: Добавить нового пользователя
-                delete: Удалить подкампанию
-                edit: Редактировать подкампанию
-            sidebar:
-              archive: Архив подкампании
-              copy: Копировать подкампанию
-              destroy: Удалить подкампанию
-              disable: Отключить
-              edit: Редактировать подкампанию
-              enable: Включить
-              new: Новая подкампания
-              title: Параметры подкампании
-              view_licenses: Просмотр лицензий
-            toggle_status:
-              successfully: Подкампания «%{name}» была успешно обновлена.
-            update:
-              successfully: Подкампания «%{name}» была успешно обновлена.
-          toggle_status:
-            successfully: Кампания «%{name}» была успешно обновлена.
-          update:
-            successfully: Кампания «%{name}» была успешно обновлена.
-        copy:
-          error: Проект «%{name}» не был скопирован.
-          successfully: Проект «%{name}» был успешно скопирован.
-        create:
-          successfully: Проект «%{name}» был успешно создан.
-        destroy:
-          successfully: Проект «%{name}» был успешно удален.
-        edit:
-          header: Редактировать проект
-        export:
-          2fa_enabled: Включена двухфакторная аутентификация
-          actual_usage: Фактическое использование
-          admin: Администратор клиента
-          applicable_level: Применимый уровень
-          archive_status: Статус
-          assessments: Оценки
-          assigned_user: Назначенные пользователи
-          completed_user: Завершенные пользователи
-          created_at: Дата создания
-          id: ID
-          name: Название проекта
-          number: Номер
-          project_admin: Администраторы проекта
-          reports: Отчеты
-          tests_allocated: Выделенные тесты
-          tte_admin: Менеджер проекта TTE
-          updated_at: Дата изменения
-          url: URL
-          users_count: Количество пользователей
-        form:
-          2fa: Двухфакторная аутентификация
-          2fa_enable: Включить двухфакторную аутентификацию
-          applicable_levels:
-            campaign: Уровень окончания кампании
-            project: Уровень завершения проекта
-            sub_campaign: Уровень окончания подкампании
-          data_privacy: Конфиденциальность данных
-          enable_live_chat: Включить онлайн-чат
-          enable_privacy_links: Включить ссылку конфиденциальности
-          live_chat_token: Токен для живого чата
-          optional: Необязательный
-          other_settings: Другие настройки
-          privacy_link: Ссылка на политику конфиденциальности
-          privacy_text: Текст о конфиденциальности
-          project_number: Номер проекта
-          webhook: Веб-хук
-          webhook_auth_enabled: Включить аутентификацию веб-хуков
-          webhook_password: Пароль
-          webhook_username: Имя пользователя
-        header:
-          actions: Действия
-        index:
-          export: Экспорт
-          new: Добавить
-          title: Проекты
-          tooltips:
-            create: Создать
-            export: Экспорт
-        list:
-          2fa_enabled: Включена двухфакторная аутентификация
-          actual_usage: Фактическое использование
-          admin: Администратор клиента
-          applicable_level: Применимый уровень
-          archive_status: Статус
-          assessments: Оценки
-          assigned_user: Назначенные пользователи
-          completed_user: Завершенные пользователи
-          created_at: Дата создания
-          id: ID
-          name: Название проекта
-          number: Номер
-          project_admin: Администраторы проекта
-          reports: Отчеты
-          tests_allocated: Выделенные тесты
-          tte_admin: Менеджер проекта TTE
-          updated_at: Дата изменения
-          url: URL
-          users_count: Количество пользователей
-        new:
-          header: Новый проект
-        resource:
-          add_assessment: Добавить оценку
-          add_report: Добавить отчет
-          assessments: Оценки
-          tooltips:
-            copy: Копировать проект
-            create_admin: Создать администратора проекта
-            create_report: Добавить новый отчет
-            create_user: Добавить нового пользователя
-            delete: Удалить проект
-            edit: Редактировать проект
-        sidebar:
-          admins: Администраторы проекта
-          archive: Архивный проект
-          copy: Копировать проект
-          design: Редактировать дизайн
-          destroy: Удалить проект
-          disable: Отключить
-          edit: Редактировать проект
-          enable: Включить
-          new: Новый проект
-          title: Варианты проекта
-          view_licenses: Просмотр лицензий
-        status:
-          active: Активный
-          archived: Архив
         threesixty_campaigns:
-          base:
-            active: Активный
-            archived: Архив
-            disable: Архив
-            enable: Разархивировать
-          completion_statuses:
-            approved: Утверждено
-            completed: Завершено
-            denied: Отклонено
-            in_progress: В процессе
-            not_started: Не начато
-          copy:
-            error: Клиентская аренда «%{name}» не была скопирована.
-            successfully: Клиентская аренда «%{name}» успешно скопирована.
-          create:
-            successfully: Клиентская аренда «%{name}» была успешно создана.
-          designs:
-            form:
-              no_background: Пока нет информации
-              no_logo: Логотип еще не добавлен
           destroy:
             error: Невозможно удалить «%{name}», поскольку существуют некоторые зависимые связи между субъектами или оценщиками.
-            successfully: Клиентская аренда «%{name}» была успешно удалена.
-          edit:
-            header: Редактировать кампанию 360
-          export:
-            admin: Администратор клиента
-            assessment: Оценка
-            client_admins: Администраторы клиентов
-            created_at: Создано в
-            id: ID
-            name: Имя
-            report: Отчет
-            report_bundle: Пакет отчетов
-            status: Статус
           index:
-            export: Экспорт
-            new: Добавить кампанию 360
             title: 360 кампаний
-          license:
-            header: "%{name} - Редактировать лицензию"
-          licenses:
-            update:
-              duplicate_licenses: У вас есть дубликаты лицензий
-              successfully: Лицензии были успешно обновлены
-          list:
-            admin: Администратор клиента
-            assessment: Оценка
-            client_admins: Администраторы клиентов
-            created_at: Создано в
-            id: ID
-            name: Имя
-            report: Отчет
-            report_bundle: Пакет отчетов
-            status: Статус
-            updated_at: Дата обновления
-          new:
-            header: Новая кампания 360
           resource:
             confirmations:
               delete:
                 body: "<p>Вы уверены, что хотите удалить?</p> <p>Это действие нельзя отменить. Это приведет к окончательному удалению кампании <strong>%{name}</strong>, подкампаний и всех связей. </p> <p>Введите <strong>%{name}</strong> для подтверждения. </p>"
                 title: Удалить <strong>%{name}</strong>?
-              disable:
-                body:
-                  '0': "<p>Вы уверены, что хотите архивировать?</p> <p>Все кампании, подкампании и пользователи также будут архивированы</p>"
-                  '1': "<p>Вы уверены, что хотите архивировать?</p> <p>Все подкампании и пользователи также будут архивированы</p>"
-                  '2': "<p>Вы уверены, что хотите архивировать?</p> <p>Все пользователи также будут архивированы</p>"
-                  '3': "<p>Вы уверены, что хотите архивировать?</p> <p>Все пользователи также будут архивированы</p>"
-                title: Архив <strong>%{name}</strong> ?
-              enable:
-                body:
-                  '0': "<p>Вы уверены, что хотите удалить из архива?</p>"
-                  '1': "<p>Вы уверены, что хотите удалить из архива?</p>"
-                  '2': "<p>Вы уверены, что хотите удалить из архива?</p>"
-                  '3': "<p>Вы уверены, что хотите удалить из архива?</p>"
-                title: Разархивировать <strong>%{name}</strong> ?
-            export_results: Экспорт результатов
-            raw_results: Необработанные результаты
-            tooltips:
-              campaigns:
-                delete: Удалить кампанию
-              copy: Копировать клиент
-              create_admin: Создать администратора клиента
-              delete: Удалить клиента
-              disable: Отключить клиент
-              edit: Редактировать клиента
-              enable: Включить клиент
-          statistics:
-            index:
-              all_assessments: Все оценки
-              assessment_type: Тип оценки
-              title: Статистика
-          toggle_status:
-            successfully: Клиентская аренда %{name} была успешно обновлена.
-          update:
-            successfully: Клиентская аренда %{name} была успешно обновлена.
-          url: Url
-        toggle_status:
-          successfully: Проект «%{name}» был успешно обновлен.
-        unarchive:
-          content: Вы уверены, что хотите удалить из архива «%{project_name}»?
-          success: Проект «%{project_name}» был успешно разархивирован.
-          title: Разархивировать проект
-        update:
-          successfully: Проект «%{name}» был успешно обновлен.
       registration_codes:
-        actions:
-          add_code: Добавить код
-        column:
-          code: Код
-          usage_stats: Статистика использования
         errors:
           count_invalid: не может быть меньше, чем used_count =%{use_count}
           criteria: может содержать только буквенно-цифровые символы, дефис (-) и подчеркивание (_)
@@ -1462,13 +545,6 @@ ru:
           incorrect_domain: Неверный формат домена.
           invalid_end_date: должна быть больше даты начала
           license_issue: Недостаточно лицензий.
-        form:
-          active: Активный
-          code: Код
-          end_date: Дата окончания
-          name: Имя
-          start_date: Дата начала
-          total_count: Общее количество
       resource:
         confirmations:
           delete:
@@ -1484,25 +560,9 @@ ru:
         successfully: Клиентская аренда %{name} была успешно обновлена.
     close: Закрыть
     common:
-      add: Добавить
-      back: Назад
-      cancel: Отменить
-      code: Код
-      disabled: Диасблед
-      download_sample_file: Скачать файл-образец
       enabled: Включено
-      import:
-        failure_msg: Ошибка при импорте файла.
-      instructions: Инструкции
       loading: Загрузка...
-      minute: минута
-      name: Имя
-      next: Далее
-      reset: Сброс
       save: Сохранить
-      select_all: Выбрать все
-      type: Тип
-      unselect_all: Отменить выбор всего
     communication_settings: Настройки
     communications:
       create:
@@ -1677,86 +737,19 @@ ru:
       input_duration:
         placeholder: Введите как «1 дн. 2 ч. 3 мин.».
     create: Создать
-    dashboard:
-      capacity_name: Название мощности
-      choose_file_format: Выберите формат файла
-      dashboard_types:
-        oracle_analytics: Oracle Analytics
-        powerbi: PowerBi
-      dashboards: Панели инструментов
-      export_dashboard_to_file: Экспорт панели инструментов в файл
-      export_job_failure: Не удалось начать экспорт
-      export_job_success: Запуск экспорта. Вы получите уведомление по завершении.
-      get_started: Начать
-      initialize_msg: Инициализировать панель управления для этой кампании
-      loading_failed: Не удалось загрузить панель инструментов.
-      only_export_current_tab: Экспорт только текущей вкладки
-      pdf: PDF
-      pptx: PPTX
-      preview:
-        embed_token_error_description: Пожалуйста, проверьте, верны ли настройки набора данных и идентификатора отчета.
-        embed_token_error_title: Не удается сгенерировать токен Embed.
-      settings:
-        capacity_id: Идентификатор емкости
-        details: Подробности
-        refresh: Обновить
-        workspace_id: Идентификатор рабочего пространства
-      tabs:
-        accesssheet: Лист доступа
-        accesssheet_setting: Настройки листа доступа
-        dashboard: Панель управления
-        settings: Настройки
-    dashboard_form:
-      fields:
-        dataset_id: Идентификатор набора данных
-        enabled: Включено
-        image: Изображение
-        project_path: Путь проекта
-        refresh_interval: Интервал обновления (минуты)
-        report_id: Идентификатор отчета
-        visual_header_visibility: Визуальная видимость заголовка
-      image_upload_failed: Не удалось загрузить изображение.
-      none: Нет
-      refresh_success: Обновление набора данных запланировано успешно.
-      visual_header_visibility_options:
-        hide_all: Скрыть все
-        keep_original: Сохранить оригинал
-        show_all: Показать все
-    data_exports_modal:
-      title: Выберите диапазон дат
     data_reports:
-      columns:
-        created_at: Создано в
-        created_by: Создано
-        last_updated_by: Последнее обновление
-        name: Имя
-        owner: Владелец
-        password: Пароль
-        status: Статус
-        udpated_at: Последнее обновление
-      configuration: Конфигурация
       errors:
         factor_code_or_field_name_required: factor_code или field_name является обязательным
         factor_not_found: не обнаружено в рамках оценки
         inclusion: 'недействительный тип, допустимые типы: %{values}'
         not_found: не найдено
         not_owned: не принадлежит клиенту
-      form:
-        name: Отчет о данных
-      messages:
-        runed: Отчет по данным был успешно запланирован для запуска.
       validations:
         project_and_campaigns_not_allowed: project_ids и campaign_ids не должны указываться вместе
-        project_not_related_to_client: "%{project_id} не принадлежит клиенту"
         project_or_campaign_required: project_ids или campaign_ids обязательны
         sections_required: требуется разделы
     datasheet:
       threesixty_warning: Отсюда нельзя загрузить столбцы таблицы данных для отчета 360. Для отчета 360 столбцы таблицы данных загружаются из кампании, с которой связан этот отчет.
-    dates:
-      completed: Завершено в
-      end: Дата окончания
-      start: Дата начала
-      started: Начало
     development_action_import:
       errors:
         blank_field: 'Строка %{row}: %{field} не может быть пустой'
@@ -1793,49 +786,11 @@ ru:
         successfully: Действие по развитию «%{name}» было успешно создано.
       destroy:
         successfully: Действие по разработке «%{name}» было успешно удалено.
-      development_action_types:
-        course: Курс
-        default: По умолчанию
-      duration:
-        max_length: Не может превышать 1 год
-        min_length: Не может быть менее 1 минуты
       edit:
         header: Редактировать действие по развитию
       export:
         details: Сведения о файле
-        failure_msg: Ошибка при экспорте переводов
-        success_msg: Экспорт действий по развитию в процессе. Пожалуйста, проверьте статус в уведомлениях.
         translation_details: Подробности
-      export_development_action_translations: Разработка Действия Переводы
-      export_development_actions: Действия по развитию
-      form:
-        available_languages: Доступные языки
-        client_placeholder: Выберите клиента
-        course_image: Изображение курса
-        course_link: Ссылка на курс
-        description: Описание
-        development_action_type: Тип мер по развитию
-        duration: Продолжительность
-        end_date: Дата окончания
-        learning_style: Стиль обучения
-        name: Имя
-        project_placeholder: Выберите проект
-        skills: Навыки
-        skills_placeholder: Выберите навыки
-        start_date: Дата начала
-        title: Действия по развитию
-        upload: Загрузить
-      global: Является ли глобальное развитие действием?
-      heading: Действия по развитию
-      import:
-        download_example_csv: Скачать пример csv
-        failure_msg: Ошибка при импорте файла.
-        info_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-      import_action:
-        development_actions_title: Действия по развитию импорта
-        development_actions_translations_title: Импорт действий по развитию Переводы
-      import_development_actions: Действия по развитию
-      import_development_actions_translations: Действия по развитию Переводы
       learning_styles:
         cannot_be_blank: Не может быть пустым
         invalid: 'Должно быть одним из следующих: on_the_job, structured_learning, learning_from_others'
@@ -1869,32 +824,11 @@ ru:
       form:
         enable_innovation_styles: Включить стили инноваций
         enable_occupations: Включить профессии
-        name: Имя
-        title: Размеры
       import_factors:
         import: Импорт
         sample_file: Пример файла
         successfully: Импорт факторов задания, запланированного для измерения %{name}.
         title: Факторы импорта
-      import_modal:
-        after: После
-        before: До
-        cancel: Отменить
-        change_log_input: Журнал изменений
-        continue: Продолжить
-        error: Ошибка
-        error_occurred: Произошла ошибка
-        errors:
-          file_error: Перед продолжением выберите файл JSON.
-          processing_error: Ошибка при обработке файла
-        field: Поле
-        import: Импорт
-        import_dimension: Импорт измерения
-        import_scheduled: Импорт запланирован
-        operation: Операция
-        owner_input_validation: Пожалуйста, выберите владельца
-        owner_select: Выберите владельца
-        select_json: Выберите файл JSON
       import_translations:
         error: Ошибка при импорте переводов для измерения «%{name}».
         successfully: Импорт переводов, запланированных для измерения «%{name}».
@@ -1918,7 +852,6 @@ ru:
         confirmations:
           delete:
             body: "<p>Вы уверены, что хотите удалить это измерение?</p>\n"
-            message: Введите в текстовое поле название измерения, указанное ниже, для подтверждения
             title: Удалить <strong>Размер</strong> ?
           toggle_status:
             body: "<p>Вы уверены, что хотите удалить это измерение (%{status})?</p>\n"
@@ -1946,9 +879,6 @@ ru:
       update:
         successfully: "%{name} размер был успешно обновлен"
     disable: Отключить
-    document_titles:
-      project_assessors: Оценщики | %{project}
-      project_participants: Участники | %{project}
     enable: Включить
     errors:
       csv_file_required: Файл должен быть файлом CSV.
@@ -1969,21 +899,6 @@ ru:
       edit:
         header: Изменить название фактора
       form:
-        components:
-          ExternalList:
-            add: Добавить
-            table:
-              actions: Действия
-              jsonpath: JSON Path
-              type: Тип
-              types:
-                norm_score: Нормированный балл
-                percentage: Процент
-                percentile: Процентный балл
-                score: Счет
-                zscore: Z-показатель
-            title: JSON-пути для оценок
-        predicate: предикат
         scoring_strategies:
           custom_formula: Индивидуальная формула
           external_score: Внешний балл
@@ -1995,15 +910,9 @@ ru:
           sub_factors_average: Средневзвешенное значение факторов
           sub_factors_conditional_average: Условная взвешенная средняя факторов
           sub_factors_sum: Взвешенная сумма факторов
-        scoring_strategies_tip: " <strong>Вопросы (среднее значение):</strong> это похоже на текущий метод оценки, когда есть вопросы, связанные с фактором. <br /> <br /> <strong>Вопросы (СУММА):</strong> Это похоже на «Вопросы (среднее значение)», но с использованием СУММЫ. <br /> <br /> <strong>Вопросы других факторов (среднее значение):</strong> Это похоже на текущий метод подсчета баллов, когда для фактора есть подфакторы, единственное изменение — добавление веса. <br /> <br /> <strong>Вопросы других факторов (СУММА):</strong> Это похоже на Другие факторы (Среднее), но с использованием СУММЫ <br /> <br /> <strong>Взвешенная сумма факторов:</strong> Здесь баллы выбранных других факторов умножаются на их веса и суммируются."
-        scoring_strategy: Стратегия подсчета очков
-        search_factors: Факторы поиска
-        use_sub_factor_norm_score: Использовать нормативный балл факторов
-        value: Значение
       index:
         icon: Икона
         new: Добавить
-        precision: Точность
         scoring_strategies:
           custom_formula: Индивидуальная формула
           external_score: Внешний балл
@@ -2061,10 +970,6 @@ ru:
         successfully: Фактор был успешно обновлен.
       update:
         successfully: "%{name} фактор был успешно обновлен"
-    genders:
-      female: Женский
-      male: Мужчина
-      not_set: Не установлено
     grants:
       common:
         view: Просмотр
@@ -2074,100 +979,19 @@ ru:
           accesssheet_manage: Лист доступа Управление
           accesssheet_settings: Настройки листа доступа
           accesssheet_view: Просмотр листа доступа
-    header:
-      logout:
-        content: Нажмите «Отмена», если хотите продолжить работу. Нажмите «ОК», чтобы выйти из системы под текущим именем пользователя.
-        title: Вы уверены, что хотите выйти из системы?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: Невозможно добавить новый ответ для оценки Hogan %{assessment_name}, так как эта оценка уже назначена и запущена пользователем %{email}. Вы можете создать новую учетную запись Hogan для этого пользователя, что позволит ему повторно пройти оценку.
           short_error_message: Невозможно добавить новый ответ для оценки Hogan %{assessment_name}, так как эта оценка уже назначена и запущена пользователем %{email}.
     idp:
-      actions:
-        remove_confirm: Введите текущее название шаблона, указанное ниже, в текстовое поле, чтобы удалить шаблон.
-        success: "%{idpName} был удален успешно."
-      add_idp_template: Добавить шаблон IDP
-      ai_assistant: AI-помощник
-      ai_assisted_idp_enabled: С поддержкой AI IDP
-      ai_enabled: С поддержкой искусственного интеллекта
-      ai_settings: Настройки ИИ
-      all: Все
-      appearance: Внешний вид
-      appearance_hint: Чтобы изменить внешний вид, сначала сохраните шаблон IDP, чтобы активировать эти настройки.
-      appearance_success: Настройки внешнего вида успешно сохранены
-      background_image: Фоновое изображение
-      behavioral_skills: Поведенческие навыки
-      client_skills: Навыки работы с клиентами
-      delete_skill: Вы уверены, что хотите удалить этот навык? При удалении будут также удалены все связанные с ним действия по развитию.
-      delete_skill_msg: Вы уверены, что хотите удалить этот навык? При удалении будут также удалены все связанные с ним действия по развитию.
-      details_updated: Данные IDP успешно обновлены
       development_actions:
-        add_from_library: Добавить из библиотеки
-        completion: Завершение
-        create_development_actions_with_ai: Создавайте действия по развитию с помощью ИИ для
-        create_from_ai: Создать с помощью ИИ
-        create_my_own: Создать свой собственный
-        custom: Пользовательский
-        date_range: Дата начала - Дата окончания
-        edit_plan_to_add_development_actions: Измените план, чтобы добавить действия по разработке.
         errors:
           invalid_learning_style: "«%{learning_style}» не является допустимым стилем обучения. Допустимые варианты: %{valid_styles}"
           learning_style_blank: Стиль обучения не может быть пустым
-        generate_by_ai: Создано с помощью ИИ
-        generate_more: Генерировать больше
-        heading: Навыки/Действия по развитию
-        manage_skills: Управление навыками
-        no_development_actions: У вас нет действий по развитию
-      document_ai_assistant: Помощник по анализу документов с искусственным интеллектом
-      edit_template: Редактировать шаблон IDP
-      enter_tag_or_skills_error: Выберите хотя бы один тег или навык
-      enter_template_description: Описание
-      enter_template_description_error: Требуется описание шаблона.
-      enter_template_name: Имя
-      enter_template_name_error: Требуется название шаблона
       errors:
-        cannot_update_progress_plan_completed: Невозможно обновить прогресс, поскольку план IDP завершен.
         skills_required_on_publishing: Перед публикацией шаблона выберите навыки.
         update: Обновление не разрешено, поскольку шаблон IDP уже связан с планом IDP пользователя.
-      fields:
-        approval_date: Дата утверждения
-        assigned_data: Назначенные данные
-        assigned_date: Дата назначения
-        completion_date: Дата завершения
-        current_job_role: Текущая должность
-        division: Разделение
-        name: Имя
-        publish_date: Дата публикации
-        review_date: Дата проверки
-        target_job_role: Целевая должность
-      fields_label: Поля
-      global_skills: Глобальные навыки
-      idp: ВПЛ
-      idp_template: Добавить шаблон IDP
-      interview_questions: Вопросы для собеседования
-      interview_questions_updated: Вопросы для собеседования успешно обновлены.
-      intro_message: Вступительное сообщение
-      intro_message_hint: Чтобы изменить вступительное сообщение, сначала сохраните шаблон IDP, чтобы активировать эти настройки.
-      intro_message_success: Вступительное сообщение успешно сохранено
-      locales: Локаль
-      logo_image: Изображение логотипа
-      logo_type:
-        both: Логотипы Mercer и клиента
-        client_only: Только логотип клиента
-        mercer_only: Только логотип Mercer
-        none: Без логотипов
-      logo_type_label: Тип логотипа
-      no_interview_questions_selected: Не выбраны вопросы для собеседования
-      no_reflection_questions_selected: Нет вопросов для размышления
-      none: Нет
-      one_click_idp_enabled: Включение IDP одним щелчком мыши
-      reference_locale: Справочная локаль
-      reflection_questions: Вопросы для размышления
-      reflection_questions_hint: Чтобы изменить вопросы для размышления, сначала сохраните шаблон IDP, чтобы активировать эти настройки.
-      reflection_questions_updated: Вопросы для размышления успешно обновлены.
-      remove: Удалить
-      remove_skill: Удалить навык
       revert_skill_to_public:
         errors:
           skill_already_public: Навык уже публичный
@@ -2175,47 +999,11 @@ ru:
         success:
           base_message: Навык «%{skill_name}» теперь виден вашему менеджеру.
           with_approval: "%{base_message} и ваш план IDP был представлен на утверждение"
-      select_by_tags: Выбрать по тегам
-      select_interview_question: Начните вводить текст для поиска и выберите вопрос
-      select_reflection_question: Начните вводить текст для поиска и выберите вопрос
-      select_skill_gap_report: Выбрать отчет о пробелах в навыках
-      select_specific_skills: Выберите конкретные навыки
-      selected: Выбранные
-      self_rating: Включить самооценку
-      show_reflections: Показать отражения
-      skill_gap_report: Отчет о дефиците квалифицированных кадров
-      skill_gap_report_ai_assistant: Ассистент по анализу отчетов о дефиците квалифицированных кадров
-      skill_source_preference: Источник навыков
-      skill_sources:
-        from_ai: Из общих знаний об ИИ
-        from_template: Из шаблона и сопоставлений
-      skills: Навыки
       skills_privacy_messages:
         made_private: Навык «%{skill_name}» был помечен как частный и будет скрыт от вашего менеджера.
         made_public: Навык «%{skill_name}» теперь виден вашему менеджеру.
         skill_not_found: Навык не найден
         unauthorized: Не имеете права изменять этот навык
-      skills_updated: Навыки IDP успешно обновлены
-      status:
-        draft: Проект
-        published: Опубликовано
-      status_updated: Статус IDP обновлен успешно
-      subtitle_text: Текст субтитров
-      tab:
-        development_actions: Действия по развитию
-        interview_questions: Вопросы для собеседования
-        reflection_questions: Вопросы для размышления
-        settings: Настройки
-        templates: Шаблоны
-      technical_skills: Технические навыки
-      template_details: Детали шаблона
-      title_text: Текст заголовка
-      update_interview_questions: Обновление вопросов для собеседования
-      update_reflection_questions: Обновление вопросов для размышления
-    idp_setting:
-      manager_approves_idp: Менеджер утверждает IDP
-      manager_can_edit_idp: Менеджер может редактировать IDP
-      require_all_development_actions_complete: Требовать завершения всех действий по разработке
     import: Импорт
     imports:
       assessments:
@@ -2285,10 +1073,6 @@ ru:
         successfully: Пользователи были успешно импортированы
       new:
         header: Импорт пользователей
-    individual_invite:
-      tabs:
-        assessment_center: Центр оценки
-        invitation_status: Статус приглашения
     innovation_styles:
       create:
         successfully: Инновационный стиль «%{name}» был успешно создан.
@@ -2297,7 +1081,6 @@ ru:
       edit:
         header: Редактировать стиль инноваций
       form:
-        full_description: Полное описание
         no_icon: Нет значка
       index:
         new: Добавить
@@ -2359,69 +1142,13 @@ ru:
       toggle_status:
         successfully: Фактор был успешно обновлен.
     integrations:
-      actions:
-        add: Интеграции
-        back: Вернуться к интеграциям
-        load_mettl_catalog: Загрузить каталог оценок Mettl
-        load_microsite_catalog: Загрузить каталог оценки микросайтов
-        load_skillvue_catalog: Загрузить каталог оценок Skillvue
-      columns:
-        active: Активный
-        details: Подробности
-        name: Название интеграции
-      details:
-        client_id: Идентификатор клиента
-        deployment_id: Идентификатор развертывания
-        platform_access_token_url: URL-адрес токена доступа к платформе
-        platform_authentication_request_url: URL-адрес запроса аутентификации платформы
-        platform_host_name: Имя хоста платформы
-        platform_id: Идентификатор платформы
-        platform_public_keyset_url: URL публичного набора ключей платформы
-        provider: Название провайдера
-        webhookUrl: URL веб-хука
-        webhookUrls: URL-адреса веб-хуков
-      integrations: Интеграции
       load_mettl_success: Задание по оценке mettl успешно добавлено в очередь
       load_microsite_success: Задание по оценке микросайтов успешно добавлено в очередь
       load_skillvue_success: Задание по загрузке оценок Skillvue успешно добавлено в очередь
       modal:
-        hogan:
-          provider: Провайдер
-          providers:
-            mercer: Мерсер
-            phoenix: Феникс
-        iiht:
-          password: Пароль
-          tenancy_name: Название аренды
-          tenant_id: Идентификационный номер арендатора
-          user: Пользователь
-        mettl:
-          apiBaseUrl: Конечная точка API
-          apiBaseUrlRequired: Требуется конечная точка API.
-          privateKey: Частный ключ
-          privateKeyRequired: Требуется закрытый ключ.
-          publicKey: Открытый ключ
-          publicKeyRequired: Требуется открытый ключ.
-          servers:
-            mettl_eu: Европа
-            mettl_india: Индия
         microsite:
           apiKey: Ключ API
           apiKeyRequired: Требуется ключ API
-        skillvue:
-          apiKey: Ключ API
-          apiKeyRequired: Требуется ключ API
-        yoodli:
-          keyset_url: URL набора клавиш
-          launch_url: URL запуска
-          login_url: URL для входа
-      names:
-        hogan: HOGAN
-        iiht: IIHT
-        mettl: METTL
-        microsite: Микросайт
-        skillvue: Skillvue
-        yoodli: Yoodli
       validations:
         iiht:
           tenancy_name_present: Название аренды уже присутствует в другом проекте
@@ -2432,26 +1159,10 @@ ru:
           api_key_present: Ключ API уже используется в другом проекте
         skillvue:
           api_key_present: Ключ API уже присутствует в другом проекте
-      view_all_schedules: Просмотреть все расписания Mettl
     interview_questions:
-      delete_confirmation: Вы уверены, что хотите удалить этот вопрос интервью?
-      description: Описание
       export:
-        action: Вопросы для собеседования по экспорту
         details: Сведения о файле
-        failure_msg: Ошибка при экспорте файла.
-        success_msg: Экспорт вопросов для собеседования в процессе. Пожалуйста, проверьте статус в уведомлениях.
-      form:
-        description: Описание
-        mandatory: Обязательный
-        question: Вопрос
-        question_type: Тип вопроса
-        question_type_audio: Аудио
-        question_type_video: Видео
-        time_limit: Временной лимит (сек.)
-        title: Вопрос для собеседования
       import:
-        action: Импорт вопросов для собеседования
         errors:
           invalid_required_column_format: Недопустимый формат обязательного значения столбца%{row}
           invalid_required_type_format: Недопустимый формат значения столбца QuestionType%{row}
@@ -2459,64 +1170,6 @@ ru:
           missing_description: Отсутствует описание содержимого %{row}
           missing_question: Отсутствует содержание вопроса %{row}
           save_failed: Сбережение не удалось%{message}
-        failure_msg: Ошибка при импорте файла.
-        success_msg: Импорт вопросов для собеседования в процессе. Пожалуйста, проверьте статус в уведомлениях.
-      question: Вопрос
-    invited_subject:
-      add_btn: Добавить тему
-      assessment_center: 'Центр оценки:'
-      booked_at: 'Забронировано в:'
-      column:
-        invitation_status: Статус приглашения
-        participant: Участник
-        scheduling_details: Детали расписания
-      remove_confirm:
-        content: Вы уверены, что хотите удалить тему с адресом электронной почты «%{subjectEmail}»?
-        success: Тема с электронным адресом «%{subjectEmail}» была успешно удалена.
-        title: Удалить тему
-      resend_invite:
-        content: Повторно отправить приглашение выбранным участникам. Вы уверены, что хотите продолжить?
-        success: Приглашения успешно отправлены повторно.
-        title: Повторно отправить приглашение
-      statuses:
-        accepted: Принято
-        cancelled: Отменено
-        late_cancelled: Позднее отменен
-        late_rescheduled: Позднее перенесено
-        pending: В ожидании
-        requested_cancellation: Запрошенная отмена
-        requested_cancellation_rejected: Отмена отклонена
-        requested_rescheduling: Запрос на перенос сроков
-        requested_rescheduling_rejected: Перенос отклонен
-        rescheduled: Перенесенный
-        scheduled: Запланированный
-      subject: Тема
-    job_role:
-      are_you_sure_to_remove: Вы уверены, что хотите удалить?
-      column:
-        job_group: Группа должностей
-        skill_name: Название навыка
-      export:
-        failure_msg: Ошибка при экспорте переводов
-        success_msg: Экспорт текущих действий по развитию.
-      form:
-        code: Код
-        description: Описание
-        job_group: Группа должностей
-        name: Имя
-        title: Должностные обязанности
-      import:
-        download_example_csv: Скачать пример csv
-        success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-      import_action:
-        translations: Импорт переводов должностных инструкций
-      job_role_details: Подробная информация о должности
-      translations: Перевод должностных инструкций
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: Ожидаемый уровень владения языком
-      form:
-        title: Сопоставление навыков и профессий
     job_roles:
       export:
         translations:
@@ -2582,18 +1235,11 @@ ru:
     meta_title: Панель управления
     navigation:
       approvals: Утверждения
-      audit_logs: Журналы аудита
-      availability: Доступность
       configuration: Конфигурация
       content: Содержание
-      dashboard: Панель управления
       factors: Факторы
       innovation_styles: Стили инноваций
-      logout: Выход из системы
       occupations: Профессии
-      registration_codes: Регистрационные коды
-      skills_taxonomy: Таксономия навыков
-      users: Пользователи
     no_data_found: Данные не найдены
     norms:
       copy:
@@ -2609,13 +1255,6 @@ ru:
         factors: Факторы
         inplace_title: Введите значение
         title: Редактор норм
-      export:
-        success_msg: Задание экспорта норм успешно запланировано. Проверьте статус в уведомлениях.
-      import:
-        download_example_csv: Скачать пример csv
-        select_file_validation: Перед отправкой выберите владельца и файл.
-        success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-        title: Импорт норм
       index:
         import: Импорт
         new: Добавить
@@ -2631,10 +1270,6 @@ ru:
         updated_by: Обновлено
       new:
         header: Новая норма
-      norms: Нормы
-      remove:
-        confirm: Введите название нормы, указанное ниже, в текстовое поле для подтверждения
-        warning: Вы уверены, что хотите удалить норму «%{name}»?
       resource:
         confirmations:
           delete:
@@ -2650,10 +1285,6 @@ ru:
           copy: Копировать норму
           delete: Удалить норму
           edit: Переименовать Норм
-      score_types:
-        five_scale: Пятибалльная шкала
-        norm_type: Тип нормы
-        percentage: Процент
       sidebar:
         copy: Копировать норму
         destroy: Удалить норму
@@ -2661,7 +1292,6 @@ ru:
         editor: Редактор норм
         export: Экспортная норма
         title: Варианты Норма
-      title: Норма
       toggle_status:
         successfully: Норма была успешно обновлена.
       update:
@@ -2677,12 +1307,8 @@ ru:
       edit:
         header: Изменить профессию
       form:
-        alternative_icon: Альтернативная иконка
-        color: Цвет
         hint:
           key_career_tracks: "«+» — список, «*» — жирный шрифт. Пример: + *Биология* — некоторое описание..."
-        indicative_roles_image: Иллюстрация типичных ролей
-        key_career_tracks_image: Изображение основных направлений карьерного роста
         no_icon: Нет значка
       index:
         new: Добавить
@@ -2744,49 +1370,15 @@ ru:
         successfully: Фактор был успешно обновлен.
       update:
         successfully: Фактор %{name} был успешно обновлен.
-    participants:
-      tabs:
-        assessors: Оценщики
-        sms_contacts: SMS-контакты
-        subjects: Предметы
     piped_text_modal:
-      assessment_center: Центр оценки
       assessment_id: Идентификатор оценки
       campaign_id: Идентификатор кампании
       campaign_link: Ссылка на кампанию
-      campaign_name: Название кампании
-      campaigns: Кампании
-      description: Описание
-      duration: Продолжительность
-      end_time: Время окончания
-      insight_page_link: Ссылка на страницу «Insight»
-      insight_page_url: URL страницы с аналитической информацией
-      invite_title: Название
-      invites: Приглашает
       join_link: Присоединиться к ссылке
       magic_link: Магическая ссылка
       magic_url: Магический URL
-      platform_url_links: URL-адрес платформы и ссылки
       profile_custom_field: Пользовательское поле профиля
-      project_name: Название проекта
-      projects: Проекты
-      report_name: Название отчета
-      start_time: Время начала
       text: Текст
-      title: Добавить текст в трубе
-      user_reports: Отчеты пользователей
-      users: Пользователи
-    proctoring_sessions:
-      columns:
-        comment: Комментарий
-        conclusion: Заключение
-        links: Ссылки
-        score: Счет
-        session_id: Идентификатор сеанса
-      links:
-        report: Отчет
-        review: Обзор
-      resource_name: Сессии прокторинга
     products:
       copy:
         error: Ошибка
@@ -2799,9 +1391,6 @@ ru:
         create:
           invalid_format: Определение уровня должно быть массивом определений.
           level_definition_must_match_level: должно содержать ровно %{expected} уровней, но было предоставлено %{actual}
-          level_description_must_exist: Описание уровня не может быть пустым
-          level_name_must_exist: Название уровня не может быть пустым
-          must_be_unique: Должно быть уникальным
           proficiency_level_exists: Уровень владения этим навыком и проектом уже существует.
           proficiency_level_exists_for_default: Уровень владения языком по умолчанию уже существует.
           proficiency_level_exists_for_type: Уровень владения этим типом уже существует.
@@ -2809,24 +1398,9 @@ ru:
           skill_must_exist: Навык должен присутствовать для типа навыка 'by_skill'
       export:
         details: Подробности
-        failure_msg: Ошибка при экспорте уровней владения языком
-        success_msg: Экспорт текущих действий по развитию
         translations:
           details: Уровень владения языком Переводы
-      fields:
-        level: Уровень
-        level_description: Описание уровня
-        level_name: Название уровня
-        proficiency_translations: Профессиональные переводы
-        proficiency_type: Тип владения
-        skill: Навык
-        skill_name: Название навыка
-        skill_type: Тип навыка
-        title: Профессионализм
       import:
-        actions:
-          proficiency: Импорт Профессионализм
-          translations: Импорт профессиональных переводов
         errors:
           by_skill_exists_id_missing: 'Строка %{row_number}: Уровень владения навыком «%{name}» уже существует. Укажите ID для его обновления.'
           by_skill_missing: "%{row_number} строка: для типа «by_skill» должны присутствовать Project и Skill."
@@ -2839,11 +1413,7 @@ ru:
           invalid_skill_type: 'Строка %{row_number}: Недопустимый тип навыка «%{skill_type}». Допустимые типы: %{valid_types}'
           missing_columns: 'Отсутствуют обязательные столбцы: %{fields}'
           skill_not_found: 'Строка %{row_number}: Недопустимый или отсутствующий навык'
-        job_queued: Задание импорта уровней владения языком поставлено в очередь
       translations:
-        export:
-          failure_msg: Ошибка при экспорте переводов
-          success_msg: Экспорт текущих действий по развитию.
         import:
           errors:
             invalid_csv_format: 'Недопустимый формат CSV: %{message}'
@@ -2853,14 +1423,6 @@ ru:
             missing_required_columns: 'Отсутствуют обязательные столбцы: %{columns}'
             row_id_blank: 'Строка %{row}: ID не может быть пустым'
             save_failed: 'Ошибка при обработке идентификатора навыка %{id}: %{message}'
-      type:
-        by_skill: По навыкам
-        by_skill_type: По типу навыков
-        default: По умолчанию
-    profile:
-      change_password: Изменить пароль
-      details: Подробности
-      profile: Профиль
     profiles:
       edit:
         success: Профиль был успешно обновлен.
@@ -2868,331 +1430,21 @@ ru:
       update:
         edit:
           success: Профиль был успешно обновлен.
-    project:
-      tools:
-        workshop_status_export: Экспорт статуса мастерской
-        workshop_status_export_success: Экспорт статуса мастерской был успешно запланирован.
-    project_features:
-      project_features: Особенности проекта
-    project_participants:
-      cancel: Отменить
-      column_actions: Действия
-      column_campaigns: Кампании
-      column_createdAt: Создано в
-      column_created_at: Создано в
-      column_email: Электронная почта
-      column_id: ID
-      column_name: Имя
-      delete: Удалить
-      edit: Редактировать
-      edit_participant: Редактировать участника
-      filter_campaigns: Нет кампаний
-      form_first_name: Имя
-      form_last_name: Фамилия
-      reset_password: Сбросить пароль
-      save: Сохранить
-      search_user: Поиск пользователя
-      send_email: Отправить электронное письмо
-    project_tabs:
-      assessments:
-        column:
-          name: Имя
-          normalize_factor_scores: Нормализация факторных оценок
-          user_result_validity_in_days: Достоверность результатов
-        delete:
-          content: Вы уверены, что хотите удалить оценку «%{name}»?
-          success: Оценка «%{name}» была успешно удалена.
-          title: Удалить оценку
-        form:
-          assessment: Оценка
-          assessment_placeholder: Выбрать оценку
-          assessment_required: Требуется оценка
-          normalize_factor_scores: Нормализация факторных оценок
-          user_result_validity_in_days: Срок действия результата в днях
-        title: Оценки
-      design: Дизайн
-      general: Общее
-      privacy: Конфиденциальность
-      profile: Профиль
-      registration: Регистрация
-      webhooks:
-        actions:
-          delete:
-            key: удалить
-            label: Удалить
-          edit:
-            key: редактировать
-            label: Редактировать
-          send_test:
-            key: send_test
-            label: Отправить тест
-        form:
-          acceptable_rate_limit:
-            label: Допустимый лимит запросов
-            request_per: запросов за
-          active:
-            label: Активный
-            name: активный
-          assessments:
-            help_text: Этот выбор влияет только на событие «Необработанный ответ оценки».
-            label: Оценки
-            placeholder: Выбрать оценки
-            required: Для события «Необработанный ответ оценки» необходимо выбрать как минимум одну оценку.
-          auth_type:
-            api_key:
-              label: Ключ API
-              name: api_key
-              value: api_key_auth
-            api_key_header:
-              format_error: Допускаются только буквы, цифры, подчеркивания и дефисы.
-              label: Заголовок API-ключа
-              name: apiKeyHeader
-            basic:
-              label: Базовый
-              value: базовая_аутентификация
-            label: Тип аутентификации
-            name: тип авторизации
-            no_auth:
-              label: Нет
-              value: без_аутентификации
-            oauth:
-              label: OAuth
-              value: oauth
-          client_credentials:
-            label: Учетные данные клиента
-            value: клиентские_учетные_данные
-          client_id:
-            label: Идентификатор клиента
-            name: oauth_client_id
-            required: Требуется идентификатор клиента
-          client_secret:
-            label: Секретный ключ клиента
-            name: oauth_client_secret
-            required: Требуется секретный ключ клиента
-          description:
-            label: Описание
-            name: описание
-          grant_type:
-            label: Тип гранта
-            name: oauth_grant_type
-          include_locales:
-            label: Включить переводы
-            name: include_locales
-          oauth_scope:
-            label: Объем
-            name: oauth_scope
-            required: Требуется объем
-          password:
-            label: Пароль
-            name: пароль
-          token_url:
-            label: URL токена
-            name: oauth_token_url
-            required: Требуется URL-адрес токена
-          topics:
-            label: События
-            list:
-              assessment_assigned: Назначенная оценка
-              assessment_completed: Оценка завершена
-              assessment_raw_response: Оценка необработанных ответов
-              assessment_started: Начало оценки
-              assessment_timeout: Таймаут оценки
-              campaign_results_available: Результаты кампании доступны
-              campaign_user_assessment_summary: Краткий отчет по оценке пользователей в рамках кампании
-              campaign_user_status: Статус пользователя кампании
-              report_available: Отчет доступен
-              results_available: Результаты доступны
-              scheduling_cancelled: Расписание отменено
-              scheduling_invited: Планирование приглашенных
-              scheduling_rescheduled: Перенос графика
-              scheduling_scheduled: Планирование Запланировано
-              workshop_attendance_status: Статус посещения семинара
-          url:
-            label: Url
-            name: URL
-          username:
-            label: Имя пользователя
-            name: имя пользователя
-        remove_webhook:
-          content: Удалить «%{description}»?
-          title: Удалить
-        title: Веб-хуки
-    project_users:
-      cancel: Отменить
-      change_password: Изменить пароль
-      column_actions: Действия
-      column_campaigns: Кампании
-      column_created_at: Создано в
-      column_email: Электронная почта
-      column_id: ID
-      column_name: Имя
-      confirm_delete: Да, удалить
-      confirm_send: Да, отправить
-      delete: Удалить
-      delete_error: Не удалось удалить оценщика «%{name}». Обратитесь к администратору.
-      delete_success: Оценщик «%{name}» был успешно удален.
-      edit: Редактировать
-      edit_assessor: Редактировать оценщика
-      filter_campaigns: Без кампаний
-      form_first_name: Имя
-      form_last_name: Фамилия
-      modal_delete_content: Вы уверены, что хотите удалить оценщика «%{name}»?
-      modal_delete_title: Удалить оценщика
-      modal_reset_email_content: Вы уверены, что хотите отправить ссылку для сброса пароля на адрес «%{email}»?
-      model_reset_email: Сбросить пароль оценщика
-      no_edit_permission: У вас нет прав на редактирование оценщика «%{name}».
-      reset_mail_error: Не удалось отправить ссылку для сброса пароля на адрес «%{email}». Обратитесь к администратору.
-      reset_mail_success: Ссылка для сброса пароля успешно отправлена на адрес '%{email}'
-      save: Сохранить
-      search_accessor: Поиск аксессоров
-      send_email: Отправить электронное письмо
     projects:
-      addProject: Добавить проект
-      assessment_settings:
-        search: Оценка поиска
       clients:
         confirmations:
           detach_from_project:
             body: Тело
             title: Название
-      columns:
-        project_number: Номер проекта
-      design_settings:
-        alt_text_invalid: Альтернативный текст содержит неподдерживаемые символы.
-        alt_text_logo: Альтернативный текст логотипа
-        alt_text_logo_required: Требуется альтернативный текст логотипа
-        alt_text_long: Превышает максимальный лимит в 100 символов.
-        background_color: Цвет фона
-        background_label: Предпосылки
-        background_overlay_label: Фоновая накладка
-        background_size: Размер фона
-        background_size_contain: Содержи
-        background_size_cover: Обложка
-        bg_upload: Загрузить
-        client_logo_label: Логотип клиента
-        contrast_ratio_warning: 'Примечание: Использование этого основного цвета может нарушить требование к коэффициенту контрастности для читаемости текста.'
-        contrast_ratio_warning_lighter_color: 'Примечание: Использование этого цвета %{name} может нарушить требование к коэффициенту контрастности для читаемости текста. Попробуйте использовать более темный цвет.'
-        copy_text: Текст
-        dashed_button: Пунктирная линия
-        default_button: По умолчанию
-        error_color: Цвет ошибки
-        hover_options:
-          danger_item: Опасный предмет
-          first_menu_item: 1-й пункт меню
-        hover_text: Наведи курсор
-        info_color: Информация Цвет
-        link_text: Ссылка
-        logo_upload: Загрузить
-        position_auto: Авто
-        position_label: Положение окна входа в систему
-        position_left: Левый
-        position_right: Право
-        primary_button: Первичный
-        primary_color: Основной цвет
-        reset: Сброс
-        sec_logo_label: Вторичный логотип
-        sec_logo_upload: Загрузить
-        secondary_logo_alt_text: Вторичный логотип Alt-Text
-        secondary_logo_alt_text_required: Требуется дополнительный альтернативный текст логотипа
-        submenu_options:
-          option_one: Вариант 1
-          option_title: Пункт 1
-          option_two: Вариант 2
-        success_color: Цвет успеха
-        success_update: Настройки дизайна были успешно сохранены
-        tab_text_one: Меню
-        tab_text_two: подменю
-        text_danger: Текст (опасность)
-        text_success: Текст (успех)
-        text_warning: Текст (предупреждение)
-        warning_color: Цвет предупреждения
-      form:
-        name: Имя
-        project_number: Номер проекта
-        subdomain: Субдомен
-        title: Проект
-      general_settings:
-        live_chat: Включить онлайн-чат
-        locales_label: Локаль
-        name_label: Имя
-        project_number_label: Номер проекта
-        save_changes: Сохранить изменения
-        sub_domain_label: Субдомен
-      mettl_schedule_records:
-        actions:
-          edit: Редактировать
-        add: Добавить расписание
-        assessment_id: Идентификатор оценки
-        assessment_name: Название оценки
-        candidate_authorization: Включить авторизацию кандидатов
-        candidate_screen_capture: Включить захват экрана кандидата
-        count: Просмотр количества толерантности
-        created_at: Создано в
-        schedule_id: Идентификатор расписания
-        schedule_name: Название расписания
-        search: Поиск
-        secure_browser_enabled: Включить безопасный браузер
-        settings: Настройки
-        show_remaining_counts: Включить отображение оставшегося количества
-        visual_proctoring_enabled: Включить визуальный контроль
-        web_proctoring_enabled: Включить веб-контроль
       privacy_settings:
-        disable_dp: Не разрешать дальнейшую обработку данных
-        dp_consent: Разрешить обработку данных
-        dp_consent_custom: Настройка согласия на обработку данных
-        dp_consent_version: Версия политики
         errors:
           cannot_disable_while_campaign_enabled: Невозможно отключить запись видеозвонков, поскольку она включена для одной или нескольких кампаний в этом проекте.
           min_retention: Не может быть менее 1 дня
-          policy_version_format: Допускаются только целые числа
-          required: Обязательно
-        mask_identity_for_examus: Данные маски для Examus Proctoring
-        mask_identity_for_hogan: Данные маски для Hogan
-        mask_identity_for_iiht: Данные маски для IIHT
-        mask_identity_for_mettl: Данные маски для METTL
-        mask_identity_for_mhs: Данные маски для MHS
-        mask_identity_for_pearson: Данные маски для Пирсона
-        mask_identity_for_saville: Данные маски для Saville
-        mask_identity_for_skillvue: Данные маски для Skillvue
-        mask_identity_for_yoodli: Данные маски для Yoodli
-        privacy_link: Включить ссылку конфиденциальности
-        privacy_link_label: Ссылка на политику конфиденциальности
-        privacy_link_placeholder: Введите ссылку на политику конфиденциальности
-        privacy_text: Текст о конфиденциальности
-        privacy_text_placeholder: Введите текст о конфиденциальности
-        video_call_recording: Разрешить запись видеозвонков
-        video_call_recording_expiry_duration: Срок хранения записей видеозвонков (в днях)
-        video_call_recording_scope: Включить запись видео для всех новых кампаний
-      profile_settings:
-        form_fields:
-          enabled: Включено
-          half_size: Половина размера
-          locked: Заблокировано
-          name: Имя
-          remove: Удалить
-          required: Обязательно
-          sort: Сортировать
-        month: Месяц
-        never: Никогда
-        update_in: Уведомлять об обновлении профиля в
-        year: Год
-      registration_settings:
-        hide_signup: Скрыть опцию регистрации
-        require_mobile_number: Требовать номер мобильного телефона
       users:
         confirmations:
           detach_from_project:
             body: Тело
             title: Название
-      webhook_settings:
-        add: Добавить веб-хук
-        column_active: Активный
-        column_created_date: Дата создания
-        column_description: Описание
-        column_manage: Управлять
-        column_updated_date: Дата изменения
-        column_url: URL
-        search: Поиск Webhook
     questions:
       copy:
         successfully: Вопрос «%{name}» был успешно скопирован.
@@ -3217,72 +1469,15 @@ ru:
       toggle_status:
         successfully: Обновление успешно завершено.
     reflection_questions:
-      delete_confirmation: Вы уверены, что хотите удалить этот вопрос для размышления?
       export:
-        action: Вопросы для размышления об экспорте
         details: Сведения о файле
-        failure_msg: Ошибка при экспорте файла.
-        success_msg: Экспорт вопросов для размышления в процессе. Пожалуйста, проверьте статус в уведомлениях.
-      form:
-        mandatory: Обязательный
-        max_words: Максимальное количество слов
-        min_words: Минимальное количество слов
-        question: Вопрос
-        title: Вопрос для размышления
       import:
-        action: Вопросы для размышления об импорте
         errors:
           invalid_max_words_column_format: Недопустимый формат значения столбца «Максимальное количество слов»%{row}
           invalid_min_words_column_format: Недопустимый формат значения столбца «Минимальное количество слов»%{row}
           invalid_required_column_format: Недопустимый формат обязательного значения столбца%{row}
           missing_eng_question: Отсутствует содержание вопроса по английскому языку%{row}
           save_failed: Сбережение не удалось%{message}
-        failure_msg: Ошибка при импорте файла.
-        success_msg: Импорт вопросов для размышления в процессе. Пожалуйста, проверьте статус в уведомлениях.
-      question: Вопрос
-    report_approval:
-      approval_statuses:
-        approved: Утверждено
-        change_requested: Запрос на изменение
-        not_ready: Не готов
-        pending_qc: Ожидание контроля качества
-        qc_completed: Контроль качества завершен
-        qc_in_progress: Контроль качества в процессе
-      bulk_approve_success: "%{sent_for_approval} отправлено на утверждение. Отчеты %{approved} утверждены. Отчеты %{ignored} требуют ручного утверждения из-за изменений/комментариев по контролю качества."
-      columns:
-        actions: Действия
-        approval_status: Статус утверждения
-        approved_by: Утверждено
-        assessed_by: Оценка
-        campaign_name: Название кампании
-        qc_by: QC By
-        report_name: Название отчета
-        subject_email: Тема письма
-        user_email: Электронная почта пользователя
-        user_name: Имя пользователя
-      dashboard: Панель управления
-      download: Скачать
-      report_approval_settings: Настройки утверждения отчетов
-      report_approvals: Утверждение отчетов
-      review: Обзор
-      saving_filters:
-        actions:
-          clear_filters: Очистить фильтры
-          delete_filter: Удалить фильтр
-          save_filter: Сохранить
-          save_new_filter: Сохранить как новый фильтр
-          saved_filters: Сохраненные фильтры
-        delete_saved_filters: Фильтр удален
-        edit_filter_name: Имя фильтра сохранено
-        error_while_deleting: Ошибка при удалении
-        error_while_editing: Ошибка при редактировании
-        error_while_fetching: Что-то пошло не так, попробуйте еще раз
-        error_while_saving: Ошибка при сохранении фильтра
-        filter_updated: Фильтр обновлен
-        no_saved_filters: Нет сохраненных фильтров
-        save_filter: Фильтр сохранен
-        set_favorite: Фильтр добавлен в избранное
-      submit_or_approve_all: Отправить или утвердить все
     report_builder:
       campaign_factors:
         add_field: Добавить поле
@@ -3417,22 +1612,6 @@ ru:
         title: Параметры пакета отчетов
       update:
         successfully: Пакет отчетов «%{name}» успешно обновлен.
-    report_review:
-      abort_qc: Прервать контроль качества
-      approve: Утвердить
-      approve_changes: Утвердить изменения
-      edit: Редактировать
-      remove_approval: Удалить одобрение
-      request_changes: Запросить изменения
-      review: Обзор
-      send_for_approve: Отправить на утверждение
-      statuses:
-        approved: Утверждено
-        change_requested: Запрошенные изменения
-        not_ready: Не готов
-        pending_qc: Ожидание контроля качества
-        qc_completed: Контроль качества завершен
-        qc_in_progress: Контроль качества в процессе
     report_settings:
       data_source_types:
         assessment: Оценка
@@ -3456,9 +1635,6 @@ ru:
         title: Факторы массовой загрузки кампании
         upload_success: Загрузка успешно завершена
       copy:
-        copy: копия
-        copy_report: Копировать отчет
-        name: Имя
         successfully: Отчет «%{name}» успешно скопирован.
       create:
         successfully: Отчет «%{name}» был успешно создан.
@@ -3466,15 +1642,6 @@ ru:
         successfully: Отчет «%{name}» был успешно удален.
       edit:
         header: Изменить название отчета
-      edit_default_language:
-        agreement: Да, я понимаю последствия изменения языка по умолчанию.
-        title: Изменить язык по умолчанию
-        tooltip: Изменить язык по умолчанию
-        warning:
-          description_li_1: Изменение языка по умолчанию с RTL на LTR или наоборот повлияет на макет.
-          description_li_2: При изменении языка по умолчанию вам придется переделать переводы отчетов.
-          description_li_3: Перед внесением этого изменения загрузите копию переводов отчета.
-          title: Внимательно прочтите инструкции
       modals:
         remap_assessment:
           new_assessment_name: Новое название оценки
@@ -3484,10 +1651,6 @@ ru:
       new:
         header: Выбрать отчет
       preview:
-        comments: Комментарии
-        hide_resolved: Скрыть решенные
-        history: История
-        info_to_select_module: Выберите текстовый модуль для комментирования
         title: Предварительный просмотр
       regenerate:
         successfully: Отчет успешно отправлен для повторной генерации
@@ -3517,425 +1680,17 @@ ru:
         successfully: Отчет был успешно обновлен.
       update:
         successfully: Отчет «%{name}» был успешно обновлен.
-    reports_language_selection_modal:
-      download: Скачать отчет
-      generate: Создание отчета
     resource:
       remove_confirm:
         message: Вы уверены, что хотите удалить этот ресурс?
         title: Удалить ресурс
-    saml_settings:
-      after_signout_url: После выхода URL
-      cert: Сертификат
-      config_details:
-        acs_url: URL службы утверждения потребителя
-        copied: Копировано с %{element}
-        issuer: Идентификатор субъекта/эмитента
-        title: Настройте Idp с помощью следующей информации
-      email_pipetext: Электронная почта Pipetext
-      enabled: Включено
-      entity_id: Идентификатор субъекта/эмитента
-      name_identifier_format: Идентификатор имени
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-      saml_setting: Настройка SAML
-      save: Сохранить настройки
-      sso_service_url: URL службы SSO
-      successfully_saved_msg: Настройки SAML успешно сохранены.
     save: Сохранить
-    scheduling:
-      add_activity: Добавить активность
-      add_assessment_center: Добавить центр оценки
-      add_assessor_form:
-        assessment: Оценка
-        assessor: оценщик
-        schedule_time: Расписание времени
-      add_subject: Добавить тему
-      assessment_center_form:
-        add_more: Добавить еще
-        allow_late_cancellation_and_scheduling: Разрешить позднюю отмену и планирование
-        assessment_center_group: Группа оценочного центра
-        assessment_center_group_placeholder: Выберите группу оценочного центра
-        assessor_ids_label: Оценщики
-        back: Назад
-        basic_info_panel:
-          description: Введите информацию о расписании ниже. Вы также можете выбрать несколько дат, чтобы создать несколько центров оценки.
-          title: Основная информация
-        cancellation_lead_time_label: Срок отмены
-        copy_hint: Копирует вышеуказанную конфигурацию «Места», «Менеджеры центра», «Оценщики» и «Встречи и ресурсы» в следующие центры оценки. После копирования вы можете внести дополнительные изменения в отдельные центры оценки, прежде чем продолжить.
-        copy_to_all: Копировать в другие центры оценки
-        create: Создать
-        dates_label: Даты
-        disable_cancellation_and_rescheduling: Отключить отмену и перенос
-        duration_label: Продолжительность
-        duration_max_error: Не может превышать 16 часов
-        duration_min_error: Не может быть менее 15 минут
-        duration_placeholder: Например, 4 часа 30 минут
-        manager_ids_label: Менеджеры центра
-        meeting_link: Ссылка на встречу
-        meetings_and_resources: Встречи и ресурсы
-        name_label: Имя
-        next: Далее
-        required_error: Обязательно
-        resources_panel:
-          description: Добавьте ссылки на любые ресурсы, к которым вы хотите предоставить доступ фасилитаторам.
-          resource_name_placeholder: Название ресурса
-          resource_url_placeholder: Ссылка на ресурс
-          title: Ресурсы
-          validation_error: Введите имя и URL или удалите ресурс
-        scheduling_lead_time_label: Время выполнения для планирования
-        seats_label: Сиденья
-        time_label: Время
-        timezone_label: Часовой пояс
-        url_label: URL
-        video_call_type:
-          custom: Пользовательский
-          internal: Внутренний
-          none: Нет
-        video_call_type_label: Добавить видеозвонок
-      attendance_status:
-        column_name: Статус посещаемости
-        dropped_out: Бросил учебу
-        late: Поздно
-        no_show: Не явился
-        no_status: Без статуса
-        on_time: В срок
-      attended:
-        attended: Присутствовал
-        not_attended: Не присутствовал
-      campaign_participants: Участники кампании
-      columns:
-        activity: Деятельность
-        assessment_center_date_and_time: Дата и время проведения оценки в центре оценки
-        assessor: оценщик
-        assessors: Оценщики
-        attendance: Посещаемость
-        attended: Присутствовал
-        booked_at: Забронировано в
-        campaign_assessment_group: Группа оценочного центра
-        campaign_name: Название кампании
-        duration: Продолжительность
-        link_to_view_recordings: Ссылка для просмотра записей
-        managers: Менеджеры
-        meeting_link: Ссылка на встречу
-        name: Имя
-        participants: Участники
-        prework: Предварительная работа
-        recording_date: Дата записи
-        resource_link: Ссылка
-        resource_name: Имя
-        schedule_time: Расписание времени
-        scheduling_status: Статус планирования
-        seats: Сиденья
-        serial_no: Серийный номер
-        start_time: Дата и время
-        subject: Тема
-        title: Название
-        view_recording: Просмотреть запись
-      errors:
-        assessor_already_assigned: Оценщик уже назначен для этой оценки. Выберите другую оценку или другого оценщика.
-        date_required: Пожалуйста, выберите дату
-        invalid_url: Неверный формат URL-адреса
-        meeting_link_https: Ссылка для участия в совещании должна начинаться с «https://»
-      id: ID
-      info:
-        allowed: Разрешено
-        assessors: Оценщики
-        booked: Забронированные места
-        campaign_assessment_group: Группа оценочного центра
-        cancellation_lead_time: Срок отмены
-        cancellation_tooltip: Пользователь может отменить бронирование до %{date}
-        date: Дата и время
-        duration: Продолжительность
-        join_meeting: Присоединиться к комнате
-        late_cancellation_and_scheduling: Поздний отказ и изменение графика
-        link: Ссылка на встречу
-        managers: Менеджеры центра
-        none: Нет
-        not_allowed: Не разрешено
-        recording_enabled: Запись включена
-        remaining: Оставшиеся места
-        scheduling_lead_time: Время выполнения заказа
-        scheduling_tooltip: Пользователь сможет забронировать место до %{date}
-        search_placehoder: Поиск по идентификатору, электронной почте или имени
-        timezone: Часовой пояс
-        total_seats: Общее количество мест
-      resources:
-        confirm_message: Вы уверены, что хотите удалить ресурс «%{resource_name}»?
-        confirm_title: Требуется подтверждение
-        create: Создать ресурс
-        invalid_url: Неверный URL. Укажите полный URL с протоколом http или https.
-        resource: Ресурс
-        successful_remove: Ресурс «Центр оценки» %{resource_name} был успешно удален.
-      schedule_assessments: График оценок
-      scheduling_statuses:
-        cancelled: Отменено
-        late_cancelled: Позднее отменен
-        late_rescheduled: Позднее перенесено
-        rescheduled: Перенесенный
-        scheduled: Запланированный
-      search_participant: Участники поисковой кампании
-      status:
-        completed: Завершено
-        dropped_out: Бросил учебу
-        in_progress: В процессе
-        late: Поздно
-        no_show: Не явился
-        not_started: Не начато
-      status_change_modal:
-        content: После закрытия центра оценки участники не смогут участвовать в каких-либо мероприятиях центра.
-        title: Изменить статус центра оценки
-      subjects:
-        activities: Деятельность
-        add_assessor_form: Добавить форму оценщика
-        assessments: Оценки
-        assessor_forms: Формы оценщика
-        confirm_message: |
-          Вы уверены, что хотите отменить участие кандидата с адресом электронной почты «%{subject_email}»?
-          <br />
-          После отмены этот кандидат не сможет принять участие в оценке в центре оценки.
-        confirm_title: Требуется подтверждение
-        edit_assessor_form: Редактировать форму оценщика
-        form_title: График оценок
-        language: Язык
-        language_not_selected: Не выбрано
-        mark_cancel: Отменить
-        mark_cancel_success: Отменено участие субъекта с адресом электронной почты %{subject_email}.
-        meeting_link_custom: Пользовательский
-        meeting_link_internal: Внутренний
-        meeting_link_none: Нет
-        meeting_link_title: Ссылка на встречу
-        no_change: Без изменений
-        override_existing: Переопределить существующие расписания для предметов
-        preworks: Предварительная работа
-        re_enroll: Повторная регистрация
-        re_enroll_confirm_message: Вы уверены, что хотите повторно зарегистрировать предмет с адресом электронной почты «%{subject_email}»?
-        re_enroll_success: Повторно зарегистрированный субъект с адресом электронной почты %{subject_email}.
-        schedule: Расписание
-        unschedule: Незапланированный
-      tabs:
-        activities: Деятельность
-        assessment_center: Центр оценки
-        invites: Приглашает
-        recordings: Записи
-        resources: Ресурсы
-        subjects: Предметы
     scoring:
-      action_prohibited: Запрещенные действия
-      active: Активный
-      actual_average: Фактическое среднее значение
-      add_factor: Добавить фактор
-      add_group: Добавить группу
-      assessment: Оценка
-      assessment_scoring_type: Тип оценки
-      average: Среднее
-      campaign_scoring_variables: Переменные оценки кампании
-      code: Код
-      desc: Вы превысили максимальный лимит факторов кампании %{n}. Дополнительные факторы не могут быть добавлены. Пожалуйста, просмотрите и управляйте существующими факторами, прежде чем продолжить.
-      description: Описание
-      dimension: Размер
-      edit_factor: Коэффициент редактирования
       export:
         details: Оценки кампаний
         factors: Факторы экспортной кампании
-      factor: Фактор
-      factor_group_removed_successfully: Группа «Фактор кампании» удалена успешно
-      factor_removal_confirmation: Введите название фактора, указанное ниже, в текстовое поле для подтверждения
-      factor_removed_successfully: Фактор кампании был удален успешно
-      factors_exported_successfully: Задание экспорта факторов кампании было успешно запланировано
-      factors_imported_successfully: Задание импорта факторов кампании было успешно запланировано.
-      final: Финальный
-      final_score_updated_successfully: Окончательный счет был успешно обновлен
-      formula: Формула
-      get_started: Начать
-      id: ID
-      import:
-        factors: Импорт факторов кампании
-      innovation_style_removal_confirmation: Введите название стиля инновации, указанное ниже, в текстовое поле для подтверждения
-      name: Имя
-      no_groups: Групп нет
-      occupation_removal_confirmation: Введите название профессии, указанное ниже, в текстовое поле для подтверждения
-      output_type: Тип вывода
-      pattern_error: Допускаются только буквенно-цифровые символы, пробелы и тире.
-      profile:
-        years: Годы
-      public: Общественный
-      ranked: Рейтинг
-      remove_all_campaign_factors:
-        confirmation: Введите название текущей кампании, указанное ниже, в текстовое поле для подтверждения.
-        error: Факторы кампании удаляют неудачные
-        success: Факторы кампании удалены успешно
-        title: Удалить факторы кампании
-        warning: Вы собираетесь удалить все факторы кампании и все связанные с ними оценки пользователей. Вы уверены, что хотите выполнить это действие?
-      remove_factor_group_confirmation_content: Вы уверены, что хотите удалить группу факторов «%{group_name}»?
-      remove_factor_group_confirmation_title: Удалить группу факторов
-      required_error: Не может быть пустым
-      save: Сохранить
-      save_all: Сохранить все
-      score_range: Диапазон баллов
-      score_types:
-        norm_score: Нормативный балл
-        percentage: Процент
-        percentile: Процентиль
-        score: Счет
-        zscore: Z-показатель
-      scoring: Оценка
-      scoring_description: Оценка кампании позволяет создавать отчеты по всем оценкам.
-      select_all: Выбрать все предметы «%{n}»
-      select_assessment_first: Выберите сначала оценку
-      select_factor: Выбрать фактор
-      show_weightages: Показать веса
-      subject: Тема
-      subject_list:
-        actions: Действия
-        bulk_mark_finalized: Окончательная массовая отметка
-        bulk_mark_finalized_confirm: Окончательная оценка для выбранных пользователей сгенерирует отчет, в котором используется коэффициент кампании для пользователей. Вы уверены, что хотите продолжить?
-        bulk_mark_not_finalized: Массовая отметка не завершена
-        bulk_mark_not_finalized_confirm: Удаление финализации из выбранных пользователей приведет к удалению сгенерированного отчета, в котором используется коэффициент кампании для пользователей. Вы уверены, что хотите продолжить?
-        bulk_rescore: Массовое пересчитывание баллов
-        bulk_rescore_confirm: Переоценка выбранных пользователей. Вы уверены, что хотите продолжить?
-        calculated_date: Рассчитанная дата
-        calculation_errors: Ошибки расчета
-        export: Экспорт оценок
-        export_success: Задание экспорта результатов было успешно запланировано
-        finalized: Завершено
-        finalized_date: Дата завершения
-        import_external_scores: Импорт внешних оценок
-        mark_finalized: Марк Окончательный
-        mark_finalized_confirm: Окончательный балл для пользователя «%{email}» сгенерирует отчет, в котором используется коэффициент кампании для данного пользователя. Вы уверены, что хотите продолжить?
-        mark_not_finalized: Отметка «Не окончательная»
-        mark_not_finalized_confirm: Удаление финализации из пользователя «%{email}» приведет к удалению сгенерированного отчета, в котором используется коэффициент кампании для пользователя. Вы уверены, что хотите продолжить?
-        push_webhook: Push-веб-хуки
-        rank: Ранг
-        rescore: Пересчет
-        rescore_confirm: Пересчет баллов пользователя «%{email}». Вы уверены, что хотите продолжить?
-        tools: Инструменты
-      tabs:
-        settings: Настройки
-        subject_scores: Оценки по предметам
-      type: Тип
-      variables: Переменные
-      weightages:
-        assessorForms: Формы оценщика
-        successful_update: Весовые коэффициенты были успешно обновлены.
-        tools: Инструменты
-        weightages: Весовые коэффициенты
-      weighted_average: Средневзвешенное
-    scoring_approval:
-      approve_all: Утвердить все
-      bulk_approve_success: "%{approved} одобренные результаты."
-      review: Обзор
-      score_approvals: Утверждение оценок ИИ
     search: Поиск
-    security_setting:
-      180_days: 180 дней
-      30_days: 30 дней
-      365_days: 365 дней
-      90_days: 90 дней
-      attempts_to_lock: Попытки блокировки
-      auto_unlock_time: Время автоматической разблокировки
-      disable_password_reuse: Отключить повторное использование пароля
-      disallow_password_login: Запретить вход по паролю
-      enable_login_with_magic_link: Включить вход с помощью магической ссылки
-      enable_recaptcha: Включить reCAPTCHA
-      enforce_password_policy: Принудительно применять политику паролей при следующем входе в систему
-      enforce_strong: Принудительное использование надежных паролей
-      expiration: Истечение срока действия пароля
-      lock_account: Блокировка учетной записи
-      magic_link_expiry_duration: Срок действия магической ссылки
-      min_length: Минимальная длина пароля
-      never: Никогда
-      restrict_sequences: Ограничить последовательные и повторяющиеся символы
-      security: Настройки безопасности
-      send_unlock_email: Отправить письмо для разблокировки
-      session_timeout_duration: Продолжительность таймаута сеанса
-      tfa_enabled: Включить двухфакторную аутентификацию
-    security_settings:
-      security_setting: Настройка безопасности
-    settings:
-      admin_roles:
-        confirm_message: Вы уверены, что хотите удалить роль администратора «%{role_name}»?
-      siem:
-        description: Описание
-        destination_type: Тип направления
-        destination_types:
-          s3: S3
-          s3_compatible: Совместимость с S3
-        enabled: Включено
-        readable_resource_name: Настройки SIEM
-        s3_access_key_id: Идентификатор доступа
-        s3_bucket_folder: Папка S3 Bucket
-        s3_bucket_name: Имя корзины S3
-        s3_endpoint: Конечная точка S3
-        s3_region: Регион S3
-        s3_secret_access_key: Секретный ключ доступа
-        send_test_log: Отправить журнал тестирования
-        send_test_log_error_message: Журнал тестирования не был отправлен в ваш букет, проверьте настройки.
-        send_test_log_success_message: Журнал тестирования успешно отправлен в ваш букет
-      skill_aliases:
-        alias: Псевдоним
-        confirm_message: Вы уверены, что хотите удалить псевдоним навыка «%{skill_alias}»?
-        create: Добавить псевдоним навыка
-        select_skill: Выбрать навык
-        skill: Навык
-        skill_alias: Псевдоним навыка
-        successful_remove: Псевдоним навыка «%{skill_alias}» был успешно удален.
-      tabs:
-        admin_roles: Роли администратора
-        feature_flags: Флаги функций
-        siem: SIEM
-        skill_aliases: Псевдонимы навыков
-    sheets:
-      column:
-        add_column: Добавить столбец
-        not_allowed_for_dashboard_use: Для использования в панели инструментов столбец должен содержать менее 64 символов.
-        reorder: Переупорядочить
-        save_order: Сохранить заказ
-      drawers:
-        add_edit:
-          cancelText: Отменить
-          markdown:
-            preview: Предварительный просмотр
-            title: Скидка
-          save: Сохранить
-          saving: Сохранение
-          success_message_add: Добавлен новый рекорд
-          success_message_edit: Запись обновлена
-          title_add: Добавить запись листа
-          title_edit: Редактировать запись строки листа
-          validations:
-            required_email: Введите адрес электронной почты
-        view:
-          campaign_title: Запись на уровне кампании
-          edit_button: Редактировать
-          project_title: Запись на уровне проекта
-          title: Детали записи ряда листа
-      list:
-        header:
-          add_record: Добавить запись
-          search_record: Поиск записей
-      modals:
-        delete_records:
-          cancelText: Отменить
-          content: Вы уверены, что хотите удалить выбранные {{count}} записи?
-          okText: Да, удалить
-          successMessage: "{{count}} записей было успешно удалено."
-          title: Удалить {{count}} записей
-        remove_columns:
-          cancelText: Отменить
-          content: Удаление столбца ({{columns}}) приведет к удалению данных в этом столбце для всех строк.
-          okText: Да, удалить
-          successMessage: "{{count}} записей удалено"
-          title: Удалить столбцы
-      tabs:
-        rows: Ряды
-        settings: Настройки
     skills:
-      applicable_proficiency_levels: Применимые уровни владения языком
-      columns:
-        skill_group: Группа навыков
-        skill_type: Тип навыка
       errors:
         import:
           missing_fields_data: 'Строка %{line_number}: отсутствуют обязательные поля: %{fields}'
@@ -3949,28 +1704,11 @@ ru:
           query_too_short: требуется и должен состоять из более чем 3 символов
       export:
         details: Подробности
-        failure_msg: Ошибка при экспорте переводов
-        success_msg: Экспорт текущих действий по развитию.
         translations:
           details: Переводы навыков
       form:
         client_placeholder: Выберите клиента
-        description: Описание
-        name: Имя
         project_placeholder: Выберите проект
-        skill_group: Группа навыков
-        skill_type: Тип навыка
-        title: Навык
-      import:
-        download_example_csv: Скачать пример csv
-        info_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-        success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-      import_action:
-        skills_title: Импорт навыков
-        skills_translations_title: Импорт навыков Переводы
-      skill_details: Подробная информация о навыке
-      skill_translations: Навыки Переводы
-      title: Навыки
       translations:
         import:
           errors:
@@ -3978,152 +1716,13 @@ ru:
             missing_columns: 'Отсутствуют обязательные столбцы: %{columns}'
             save_failed: 'Ошибка при обработке идентификатора навыка %{id}: %{message}'
             skill_not_found: Навык с ID %{id} не найден
-      vector:
-        generate_embedding: Создать вставку
-        generate_embedding_failure_msg: Не удалось поставить в очередь задание по генерации встраивания навыков. Повторите попытку.
-        generate_embedding_success_msg: Задание по генерации встраивания навыков успешно добавлено в очередь. Пожалуйста, проверьте статус в уведомлениях.
-        label: Векторная база данных
-    sms_histories:
-      columns:
-        first_name: Имя
-        last_name: Фамилия
-        mobile_no: Номер мобильного телефона
-        price: Цена
-        segment_length: Длина сегмента
-        sent_at: Отправлено
-      drawer:
-        title: Детали SMS
-      history: История
-      statuses:
-        accepted: Принято
-        delivered: Доставлено
-        failed: Неудача
-        queued: В очереди
-        scheduled: Запланированный
-        sent: Отправлено
-        undelivered: Недоставлено
     sms_invites:
-      actions:
-        add: Добавить SMS-контакт
-      columns:
-        created_at: Создано в
-        created_by: Создано
-        email: Электронная почта
-        first_name: Имя
-        last_name: Фамилия
-        mobile_no: Номер мобильного телефона
-      contacts: Контакты
-      form_modal:
-        first_name: Имя
-        last_name: Фамилия
-        locale: Локаль
-        mobile_no: Номер мобильного телефона
-        title: Приглашение по SMS
-      import:
-        download_example_csv: Скачать пример CSV
-        success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-        title: Импорт SMS-приглашений
       messages:
-        delete_confirm_text: Вы уверены, что хотите удалить SMS Invite с номером мобильного телефона%{mobile_no}
-        delete_success: SMS-приглашение удалено успешно
         failed_to_sent_invite: Не удалось отправить приглашение на мобильный номер%{mobile_no}
-      send_sms:
-        fields:
-          link_expiry: Срок действия ссылки
-          locale: Локаль
-          message: Сообщение
-          statuses: Статусы
-          users: Пользователи
-        modal:
-          btn_name: Отправить SMS
-          title: Отправить SMS
-        pipetext_details: |
-          {{{first_name}}} — имя получателя
-          <br />
-          {{{last_name}}} — фамилия получателя
-          <br />
-          {{{invite_url}}} — ссылка для регистрации
-        segment_length_msg: Предполагаемое количество сегментов для этого сообщения составляет %{segment_length}.
-        segment_length_range_msg: Предполагаемое количество сегментов для этого сообщения составляет от %{min_segment_length} до %{max_segment_length}.
-      statuses:
-        all: Все
-        failed: Неудача
-        invited: Приглашенный
-        not_invited: Не приглашен
-        registered: Зарегистрированный
-      tools:
-        export: Экспорт SMS-контактов
-        import: Импорт SMS-контактов
-        send_sms: Отправить SMS
-    sms_records:
-      columns:
-        id: ID
-        message: Сообщение
     smtp_settings:
-      authentication: Аутентификация
-      authentication_type: Тип аутентификации
-      authentication_types:
-        cram_md5: cram md5
-        login: Вход
-        plain: Простой
-      enabled: Включено
-      encryption: Шифрование
-      encryption_types:
-        none: Нет
-        ssl: SSL
-        tls: TLS
       errors:
         authentication_failed: Неверное имя пользователя или пароль
         host_unreachable: Невозможно подключиться к хосту. Неверный хост, порт или шифрование.
-      from_email: Из электронного письма
-      from_name: От имени
-      host: Хост
-      password: Пароль
-      port: Порт
-      send_test_email: Отправить тестовое письмо
-      smtp: SMTP
-      test_email_modal:
-        input_hint: Настройки электронной почты не будут сохранены до тех пор, пока тестовое письмо не будет успешно отправлено.
-        input_placeholder: Тестовый адрес электронной почты
-        title: Тестовый адрес электронной почты
-      test_modal:
-        success_message: Тестовое письмо отправлено на адрес %{email_id}.
-        title: Проверить настройки SMTP
-      update_success_msg: Настройки SMTP были успешно обновлены.
-      use_sender_verification: Используйте проверку отправителя
-      user_name: Имя пользователя
-    stats:
-      assessments:
-        active: Активный
-        columns:
-          assessment_name: Название оценки
-          completed: Завершено
-          id: ID
-          in_progress: В процессе
-          ineligible: Неприемлемый
-          interrupted: Прервано
-          not_started: Не начато
-          timed_out: Время истекло
-        count: Граф
-        inactive: Неактивный
-        percentage: Процент
-        title: Оценки
-      top_metrics:
-        completed: Завершено
-        in_progress: В процессе
-        interrupted: Прервано
-        not_started: Не начато
-        timed_out: Время истекло
-        users: Пользователи
-      users:
-        date_presets:
-          last_30_days: Последние 30 дней
-          last_7_days: Последние 7 дней
-          last_month: В прошлом месяце
-          last_week: На прошлой неделе
-          today: Сегодня
-          yesterday: Вчера
-        y_title: Количество пользователей
     sub_factors:
       destroy:
         successfully: Подфактор «%{name}» был успешно удален.
@@ -4233,18 +1832,7 @@ ru:
           one: 'Всего: 1'
           other: 'Всего: {{count}}'
           zero: 'Всего: 0'
-      more_actions: Дополнительные действия
     taxonomy:
-      import:
-        description: Загрузите файл Excel, чтобы импортировать или обновить свою таксономию навыков. Это добавит новые навыки, должностные роли и уровни квалификации.
-        download_example_file: Скачать файл с примером
-        drag_text: Щелкните или перетащите файл в эту область, чтобы загрузить его.
-        error_title: Импорт не удался
-        file_hint: Поддерживает файлы .xls и .xlsx
-        import_button: Импорт таксономии
-        success_msg: Загруженный файл помещен в очередь на импорт. Пожалуйста, проверьте статус в уведомлениях.
-      import_action:
-        taxonomy: Импорт таксономии навыков
       title: Таксономия навыков
     templates:
       blocks:
@@ -4337,187 +1925,9 @@ ru:
       convert_action:
         already_a_template: Уже есть шаблон
         has_user_data: Перед преобразованием в шаблон вручную сбросьте настройки кампании, нажав «Сбросить всех участников» в раскрывающемся меню «Инструменты».
-      convert_template_modal:
-        cancel: Отменить
-        confirm: Подтвердить
-        convert:
-          success: Шаблон успешно преобразован
-        convert_option: Превратить эту кампанию в шаблон
-        copy:
-          success: Задание по созданию шаблона кампании было успешно запланировано. Пожалуйста, проверьте свои уведомления, чтобы узнать о статусе.
-        copy_option: Создать новый шаблон на основе этой кампании
-        description: Выберите, как вы хотите создать шаблон из этой кампании.
-        failed: Создание шаблона не удалось.
-        title: Преобразовать в шаблон
-      email_templates:
-        approve_nomination:
-          description: Это сообщение отправляется руководителю, когда необходимо утвердить кандидатуру, выдвинутую непосредственным подчиненным.
-          name: Утвердить кандидатуру
-        approve_report:
-          description: Это сообщение отправляется менеджеру субъекта, чтобы уведомить его о том, что отчет по субъекту готов к утверждению.
-          name: Утвердить отчет
-        categories:
-          approvals: Утверждения
-          invitations: Приглашения
-          reminders: Напоминания
-          report_ready: Отчет готов
-        consolidated: Консолидированный
-        custom_message:
-          description: Это сообщение может быть отправлено любому участнику оценки.
-          name: Пользовательское сообщение
-        days_repeated: дни, повторяющиеся
-        evaluator_invite:
-          description: Это сообщение будет отправлено всем участникам, которые являются оценщиками.
-          name: Приглашение оценщика
-        evaluator_reminder:
-          description: Это сообщение будет отправлено, чтобы напомнить экспертам о необходимости завершить незавершенные оценки.
-          name: Напоминание для оценщика
-          rule_description: Укажите правила для автоматического планирования при планировании приглашения
-          rule_name: Правила напоминания для оценщиков
-        from: Из
-        manager_report_ready:
-          description: Это сообщение отправляется менеджеру субъекта, как только отчет субъекта будет готов.
-          name: Отчет менеджера готов
-        nomination_denied:
-          description: Это сообщение отправляется субъектам, когда номинация отклонена.
-          name: Номинация отклонена
-        reply_to_email: Ответить на электронное письмо
-        request_approval:
-          description: Это сообщение отправляется менеджерам, когда субъект запрашивает одобрение.
-          name: Запросить одобрение
-        save: Сохранить
-        schedule: Расписание
-        schedule_email: Расписание Электронная почта
-        schedule_email_title: Расписание Электронная почта
-        schedule_time: Расписание времени
-        send_test_email: Отправить тестовое письмо
-        subject: Тема
-        subject_invite:
-          description: Это сообщение будет отправлено для приглашения участников к участию в оценке.
-          name: Тема приглашения
-        subject_reminder:
-          description: Сообщение, отправленное каждому участнику, чтобы напомнить им об участии в оценке
-          name: Напоминание о предмете
-          rule_description: Укажите правила для автоматического планирования при планировании приглашения
-          rule_name: Правила напоминаний по темам
-        subject_report_ready:
-          description: Это сообщение отправляется субъекту, как только его отчет готов.
-          name: Тема отчета Готов
-        times: раз
-      instruction_templates:
-        evaluate_others:
-          description: Это сообщение будет отображаться, когда участники будут оценивать других изнутри портала.
-          name: Оценивайте других
-        evaluate_self:
-          description: Это сообщение будет отображаться участникам, когда они начнут самооценку.
-          name: Оценщик «Я»
-        evaluation_help:
-          description: Справка, отображаемая на карте оценки на панели управления пользователя
-          name: Помощь в оценке
-        evaluator_welcome:
-          description: Это сообщение заменит «Приветственное сообщение» и будет отображаться участникам, которые в данный момент участвуют только в качестве оценщиков.
-          name: Приветствие оценщика
-        invite_evaluators:
-          description: Это сообщение будет отображаться субъектам, когда они начнут выдвигать кандидатов в оценщики.
-          name: Пригласить оценщиков
-        nomination_help:
-          description: Справка, отображаемая на карточке номинации на панели управления пользователя
-          name: Помощь в номинации
-        report_help:
-          description: Справка, отображаемая в отчете на панели управления пользователя
-          name: Отчеты Справка
-        welcome_message:
-          description: Это сообщение будет отображаться участникам, когда они войдут в систему, чтобы начать оценку или просмотреть свой список задач.
-          name: Приветственное сообщение
-      mail_history:
-        actions: Действия
-        date: Дата
-        download_details: Скачать подробную информацию
-        emails_sent: Отправленные электронные письма
-        recipient: Получатель
-        status: Статус
-        subject: Тема
-      manage:
-        assessment: Оценка
-        dimension: Размеры
-        manage_relationships: Управление отношениями...
-        report: Отчет
-        title: Управлять
-      menu:
-        actions: Действия
-        datasheet:
-          title: Технические характеристики
-        messages:
-          allow_subjects_to_send_reminders: Разрешить испытуемым отправлять напоминания оценщикам
-          automatically_send_invites: Автоматически отправлять приглашения новым оценщикам
-          title: Сообщения
-        participants:
-          columns:
-            action: Действие
-            email: Электронная почта
-            evaluations_completed: Завершенные оценки
-            evaluations_received: Полученные оценки
-            is_subject: Является предметом
-            name: Имя
-          evaluators:
-            add_evaluators: Добавить оценщиков
-            import_evaluators: Эксперты по импорту
-            title: Оценщики
-          managers:
-            title: Менеджеры
-          options:
-            evaluator_options: Параметры оценщика
-            global: Глобальные параметры
-            manager_options: Параметры менеджера
-            subject_options: Предметные опции
-            title: Варианты
-          subjects:
-            add_subjects: Добавить предметы
-            current_job_role: Текущая должность
-            email: Электронная почта
-            first_name: Имя
-            import_subjects: Импорт предметов
-            last_name: Фамилия
-            locale: Локаль
-            target_job_role: Целевая должность
-            title: Предметы
-          title: Участники
-        report:
-          menu:
-            report_approval:
-              title: Настройки утверждения отчетов
-            report_options:
-              title: Параметры отчета
-          title: Отчет
-      messages:
-        email_messages: Электронные сообщения
-        factor_benchmark_scores_updated: Оценки факторов успешно обновлены
-        instruction_messages: Инструкции
-        mail_history: История почты
-        options: Варианты
       reports:
-        add_conditions: Добавить условия
-        administrator_approves_reports: Администратор утверждает отчеты
-        allow_manager_to_view_individual_responses: Разрешить менеджеру просматривать индивидуальные ответы
-        disable_report_download: Отключить загрузку отчетов
-        edit_email: Редактировать электронную почту
-        email_manager_when_report_is_ready_for_approval: Управление электронной почтой, когда отчет готов к утверждению
-        email_subject_when_report_becomes_available: Тема письма, когда отчет будет доступен
-        email_subjects_manager_when_available: Уведомить руководителя по электронной почте, когда отчет будет готов
-        make_report_available_to_subject_when: 'Предоставить отчет субъекту, когда:'
-        manager_approves_reports: Менеджер утверждает отчеты
-        manager_can_access_subject_reports: Менеджер может получить доступ к отчетам по предмету
-        manager_cannot_access_subject_reports: Менеджер не может просматривать отчет, пока не будут выполнены требования.
-        report_access: Доступ к отчетам
-        report_approval: Утверждение отчета
-        report_availability: Доступность отчета
         show:
           title: Тематический отчет
-        subject_can_access_reports: Субъект может получить доступ к своим отчетам
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: Пометить лицензии как деактивированные
-    time_zone: Часовой пояс
-    tools: Инструменты
     translations:
       assessments:
         new:
@@ -4535,14 +1945,6 @@ ru:
         successfully: Пользователь %{name} был успешно создан.
       destroy:
         successfully: Пользователь %{name} был успешно удален.
-      list:
-        email: Электронная почта
-      modals:
-        download_idp_reports:
-          error: Не удалось запланировать задание массовой загрузки отчетов IDP.
-          include_reflective_questions: Включите вопросы для размышления
-          success: Задание массовой загрузки отчетов IDP было успешно запланировано.
-          title: Массовая загрузка отчетов IDP
       new:
         header: Новый пользователь
       reset_password:
@@ -4576,24 +1978,15 @@ ru:
         successfully: Пользователь %{name} был успешно обновлен.
       toggle_status:
         successfully: Пользователь %{name} был успешно обновлен.
-      toolbar:
-        title: Инструменты
       update:
         successfully: Пользователь %{name} был успешно обновлен.
       user: Пользователь
     webhook:
       connection_failure: Невозможно подключиться к URL-адресу веб-хука. Проверьте, верно ли указан URL-адрес веб-хука.
-      delete_success: Настройки веб-хука были успешно удалены
       request_failure: Запрос завершился с кодом состояния %{http_status_code}.
     workshop:
-      actions:
-        remove_workshop: Семинар удален успешно
       errors:
         remove_workshop_failure: Семинар, который вы пытаетесь удалить, имеет запланированные темы. Вы можете удалить семинар, пометив все темы как отмененные.
-      statuses:
-        closed: Закрыто
-        open: Открыть
     workshop_subjects:
       errors:
         update_assessor_for_failure: Детали встречи не могут быть добавлены, так как нет связанной тематической деятельности.
-    years: Годы

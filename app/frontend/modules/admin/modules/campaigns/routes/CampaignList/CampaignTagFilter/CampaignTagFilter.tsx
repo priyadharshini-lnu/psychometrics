@@ -5,6 +5,7 @@ import {
   Space, Spin, Select, Tag as AntTag,
 } from 'antd'
 import _ from 'lodash'
+import { useNavigate } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import { Tag } from '~/modules/admin/core/tags'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
@@ -25,6 +26,7 @@ export const CampaignTagFilter: FC<Props> = ({
   removeFilter,
   initialSelectedTags = [],
 }) => {
+  const navigate = useNavigate()
   const {
     data: tags,
     fetch: fetchTags,
@@ -58,10 +60,31 @@ export const CampaignTagFilter: FC<Props> = ({
     })
   }, 300), [])
 
+  const updateTagFilterInUrl = (tags: string[]) => {
+    const params = new URLSearchParams(window.location.search)
+
+    Array.from(params.keys()).forEach((key) => {
+      if (key.startsWith('filters[taggedWith]')) {
+        params.delete(key)
+      }
+    })
+
+    tags.forEach((tag) => {
+      params.append('filters[taggedWith][]', tag)
+    })
+
+    navigate(
+      {
+        search: params.toString(),
+      },
+    )
+  }
+
   const handleTagSelect = (value: string) => {
     const updatedTags = [...selectedTags, value]
     setSelectedTags(updatedTags)
     changeFilter(FILTER_NAME, updatedTags)
+    updateTagFilterInUrl(updatedTags)
   }
 
   const handleTagClose = (removedTag: string) => {
@@ -73,6 +96,8 @@ export const CampaignTagFilter: FC<Props> = ({
     } else {
       changeFilter(FILTER_NAME, updatedTags)
     }
+
+    updateTagFilterInUrl(updatedTags)
   }
 
   const dropdownOptions = tags.filter(({ name }) => !selectedTags.includes(name))

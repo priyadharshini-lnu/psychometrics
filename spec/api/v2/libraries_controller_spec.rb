@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
   let(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:include_resource_meta) { 'permissions' }
   let!(:library) { create(:library) }
 
@@ -16,7 +14,7 @@ RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
   describe 'GET /api/v2/libraries' do
     it 'returns libraries list' do
       get '/api/v2/administration/libraries',
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       libraries = JSON.parse(response.body)
@@ -57,7 +55,6 @@ RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
       post '/api/v2/administration/libraries',
            params: body.merge({ files: [file] }),
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json',
              'Accept' => 'application/vnd.api+json'
            }
@@ -92,7 +89,6 @@ RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
 
       post '/api/v2/administration/libraries/create_from_upload',
            params: body,
-           headers: { 'Authorization' => authorization },
            as: :json
 
       expect(response).to have_http_status(:created)
@@ -125,7 +121,6 @@ RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
             file: file
           },
           headers: {
-            'Authorization' => authorization,
             'Content-Type' => 'application/vnd.api+json',
             'Accept' => 'application/vnd.api+json'
           }
@@ -145,7 +140,6 @@ RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
     it 'deletes an existing library' do
       delete "/api/v2/administration/libraries/#{library.id}",
              headers: {
-               'Authorization' => authorization,
                'Content-Type' => 'application/vnd.api+json',
                'Accept' => 'application/vnd.api+json'
              }
@@ -161,7 +155,6 @@ RSpec.describe Api::V2::Administration::LibrariesController, type: :request do
       it 'deletes an existing nested library' do
         delete "/api/v2/administration/libraries/#{child_library.id}",
                headers: {
-                 'Authorization' => authorization,
                  'Content-Type' => 'application/vnd.api+json',
                  'Accept' => 'application/vnd.api+json'
                }

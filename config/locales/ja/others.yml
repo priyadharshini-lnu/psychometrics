@@ -622,6 +622,7 @@ ja:
         roles:
           campaign_admin: キャンペーン管理者
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           manager: マネージャー
           member: ユーザー
           project_admin: プロジェクト管理者
@@ -727,6 +728,7 @@ ja:
           admins:
             admin: 管理者
             campaign_admin: キャンペーン管理者
+            client_assessor: クライアント評価担当者
             project_admin: プロジェクト管理者
             regular: クライアント管理者
             superadmin: スーパー管理者
@@ -736,6 +738,7 @@ ja:
           campaign_admin: キャンペーン管理者
           case_study: ケーススタディ
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           hogan: ホーガン
           iiht: IIHT
           manager: マネージャー
@@ -859,6 +862,8 @@ ja:
         bulk_download_idp_reports: IDP レポートの一括ダウンロード
         bulk_download_reports: レポートの一括ダウンロード
         bulk_download_user_reports: ユーザーレポートの一括ダウンロード
+        bulk_export_norm_factor_scores: バルク・ノーム・ファクター得点のエクスポート
+        bulk_export_raw_factor_scores: 未加工のファクター得点の一括エクスポート
         bulk_generate_user_campaign_ai_artifact_results: キャンペーン AI アーティファクト結果の一括生成
         bulk_regenerate_reports: キャンペーン・レポートの再生成
         bulk_regenerate_threesixty_reports: スリーシックスティ課題レポートを再生
@@ -871,10 +876,12 @@ ja:
         completion_status_export: 完成状況のエクスポート
         copy_as_template_or_campaign: キャンペーンをテンプレートとしてコピーする
         copy_dimension: コピー寸法
+        copy_report: レポートをコピー
         create_threesixty_campaign: クリエイト・スリーシックスティ・キャンペーン
         data_report_export: データ・レポート・エクスポート
         export_admin_with_permissions: 権限を持つ管理者のエクスポート
         export_assessment_questions: 輸出評価に関する質問
+        export_audit_logs: 監査ログのエクスポート
         export_campaign_ai_artifacts: エクスポートキャンペーンAIアーティファクト
         export_campaign_ai_artifacts_results: キャンペーンAIアーティファクト結果のエクスポート
         export_campaign_datasheet: キャンペーンデータシートのエクスポート
@@ -964,6 +971,8 @@ ja:
       errors:
         no_plans: アクティブな IDP プランが見つかりませんでした
     close: 閉じる
+    copy_report:
+      failed: レポートのコピーに失敗しました
     details: 詳細
     errors: エラー
     invalid_job: この通知は削除されたレコードに対応する
@@ -1467,6 +1476,7 @@ ja:
       external_user_id: スキルビュー候補者ID
       id: キャンペーン・アセスメントID
       locales: ロケール
+      microsite_assessment_url: マイクロサイトの評価用URL
       microsite_error_message: エラーメッセージ
       microsite_participant_id: マイクロサイト参加者ID
       microsite_registration_status: 登録状況
@@ -1665,7 +1675,6 @@ ja:
     details:
       additional_time: 追加時間
       assessment_center: アセスメント・センター
-      assessment_center_invites: アセスメント・センター招待
       completed_at: 完成
       completion_status: 完成状況
       hogan_id: ホーガンID
@@ -1695,11 +1704,6 @@ ja:
     modals:
       remove: メール '%{email}' を持つユーザーをこのキャンペーンから削除しますか?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: アセッサーの評価
-      other_assessments: その他の評価
-      other_assessor_assessments: その他の査定
-      other_reports: その他のレポート
     card:
       duration: 期間
       starts_in: で始まる：
@@ -1770,23 +1774,19 @@ ja:
       insert: 挿入
       'no': いいえ
       ok: OK
-      publish: 出版
       reject: リジェクト
       remove: 削除
       reset: リセット
       resolve: 解決
       restore: 復元
       return_to_home: ホームに戻る
-      run: 走る
       save: 保存
       schedule: スケジュール
       search: 検索
-      send: 送信
       sign_in: サインイン
       start: 開始
       submit: 投稿する
       unarchive: アーカイブを解除
-      unpublish: 未発表
       unresolve: 未解決にする
       update: 更新
       upload: アップロード
@@ -1799,20 +1799,14 @@ ja:
     column:
       action: アクション
       active: アクティブ
-      ai_assistant: AIアシスタント
-      allow_multiple_responses: 複数の回答を許可する
       approval_notification_list: 承認通知ユーザーリスト
       approvers_list: 承認者リスト
-      assessment: 評価
       assessment_name: 評価名
       assessments: アセスメント
-      assessor: アセッサ
       category: カテゴリー
       client: クライアント
-      code: コード
       created_at: 作成日時：
       created_by: 作成者
-      created_date: 作成日
       default_language: デフォルト言語
       description: 説明
       details: 詳細
@@ -1830,11 +1824,8 @@ ja:
         scoring: JSONの採点
       key: キー
       last_name: ラストネーム
-      linked_activities: リンクされた活動
       linked_assessment: 連動アセスメント
-      meeting_link: ミーティングリンク
       modified_by: 変更者
-      modified_date: 変更日
       name: 名称
       owner: オーナー
       package_id: パッケージID
@@ -1850,7 +1841,6 @@ ja:
       scheduling: スケジューリング
       skills: スキル
       status: ステータス
-      tags: タグ
       timing: タイミング
       token: トークン
       type: タイプ
@@ -1862,15 +1852,12 @@ ja:
     messages:
       leave_message: 保存していない回答はすべて失われます。
     model:
-      admins: 管理者
       assessment: 評価
       assessments: アセスメント
       campaigns: キャンペーン
       completion_statuses: 完了状況
-      datasheet: データシート
       report: レポート
       reports: レポート
-      sms_contact: SMSコンタクト
       threesixty_campaign: Threesixtyキャンペーンスコア
     status:
       completed: 完成
@@ -2141,6 +2128,7 @@ ja:
     invalid_token: ページを再読み込みしてやり直してください。
     max_regeneration_limit: 最大再生回数の制限を超えました。
     messages:
+      content_type_invalid: 無効なコンテンツタイプ
       data_report_blank: データレポートが存在しない
       password_complexity:
         digit:
@@ -2960,9 +2948,7 @@ ja:
   languages_localized:
     sl: スロヴェンシュチナ
   license_usage:
-    active: アクティブ
     campaign_name: キャンペーン名
-    inactive: 活動休止中
     status_updated_at: 最終更新日
     status_updated_by: 最終更新者
     subject_email: 件名電子メール
@@ -3478,12 +3464,14 @@ ja:
           admin: 管理者
           admins:
             admin: 管理者
+            client_assessor: クライアント評価担当者
             project_admin: プロジェクト管理者
             regular: クライアント管理者
             superadmin: スーパー管理者
           agile: AGILE
           case_study: ケーススタディ
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           hogan: ホーガン
           manager: マネージャー
           member: ユーザー
@@ -3617,6 +3605,7 @@ ja:
         roles:
           campaign_admin: キャンペーン管理者
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           manager: マネージャー
           member: ユーザー
           project_admin: プロジェクト管理者
@@ -3687,12 +3676,14 @@ ja:
           admin: 管理者
           admins:
             admin: 管理者
+            client_assessor: クライアント評価担当者
             project_admin: プロジェクト管理者
             regular: クライアント管理者
             superadmin: スーパー管理者
           agile: AGILE
           case_study: ケーススタディ
           client_admin: クライアント管理者
+          client_assessor: クライアント評価担当者
           hogan: ホーガン
           manager: マネージャー
           member: ユーザー
@@ -3966,7 +3957,6 @@ ja:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: アクティブ
     allow_multiple_respones: ユーザーが複数の回答を提出できるようにする
     png: PNG
     regenerate_link: リンク再生
@@ -4155,6 +4145,7 @@ ja:
       campaign_assessor: キャンペーン・アセッサ
       campaign_user: キャンペーンユーザー
       client_admin: クライアント管理者
+      client_assessor: クライアント評価担当者
       project_admin: プロジェクト管理者
       superadmin: スーパー管理者
     superadmins: スーパー管理者

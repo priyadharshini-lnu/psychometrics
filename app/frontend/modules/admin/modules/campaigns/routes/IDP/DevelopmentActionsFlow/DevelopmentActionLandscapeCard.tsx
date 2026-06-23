@@ -70,7 +70,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
         <Flex gap={12} flex={1} justify="space-between" align="center">
           <h4 className={`m-0 self-end ${styles.heading}`}>{name}</h4>
           {editMode && (
-            <Tooltip title={I18n.t('administration.idp.remove_skill')}>
+            <Tooltip title={I18n.t('admin.idp_remove_skill')}>
               <Button
                 type="default"
                 shape="circle"
@@ -92,10 +92,10 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
             <Empty description="" style={{ marginInlineStart: '-2rem' }} />
             <Flex vertical align="start" style={{ marginInlineStart: '-2rem' }}>
               <strong className="ta-s">
-                {I18n.t('administration.idp.development_actions.no_development_actions')}
+                {I18n.t('admin.idp_development_actions_no_development_actions')}
               </strong>
               <Typography.Text type="secondary" className="ta-s">
-                {I18n.t('administration.idp.development_actions.edit_plan_to_add_development_actions')}
+                {I18n.t('admin.idp_development_actions_edit_plan_to_add_development_actions')}
               </Typography.Text>
             </Flex>
           </Flex>
@@ -110,7 +110,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
             onClick={onShowCustomDevelopmentAction}
             className="p-0"
           >
-            {I18n.t('administration.idp.development_actions.create_my_own')}
+            {I18n.t('admin.idp_development_actions_create_my_own')}
           </Button>
           <Button
             type="link"
@@ -118,7 +118,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
             onClick={onAddDevelopmentAction}
             className="p-0"
           >
-            {I18n.t('administration.idp.development_actions.add_from_library')}
+            {I18n.t('admin.idp_development_actions_add_from_library')}
           </Button>
           {aiAssistantsEnabled && (
             <Button
@@ -127,7 +127,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
               onClick={onShowAIGeneratedDevelopmentActions}
               className="p-0"
             >
-              {I18n.t('administration.idp.development_actions.create_from_ai')}
+              {I18n.t('admin.idp_development_actions_create_from_ai')}
             </Button>
           )}
         </Flex>
@@ -143,7 +143,7 @@ React.FC<DevelopmentActionLandscapeCardProps> = ({
         )}
       >
         <Typography.Text>
-          {I18n.t('administration.idp.delete_skill_msg')}
+          {I18n.t('admin.idp_delete_skill_msg')}
         </Typography.Text>
       </Modal>
     </Flex>
@@ -212,7 +212,7 @@ const Card = ({
     >
       {isTablet ? (
         <Flex flex={1} className={styles.label}>
-          {I18n.t('administration.idp.development_actions.completion')}
+          {I18n.t('admin.idp_development_actions_completion')}
         </Flex>
       ) : null}
       <Flex
@@ -342,7 +342,7 @@ const Card = ({
           >
             {isTablet ? (
               <Flex flex={1} className={styles.label}>
-                {I18n.t('administration.idp.development_actions.date_range')}
+                {I18n.t('admin.idp_development_actions_date_range')}
               </Flex>
             ) : null}
             <DateRange

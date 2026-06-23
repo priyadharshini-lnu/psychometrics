@@ -48,12 +48,12 @@ const CopyCampaignModal: React.FC<Props> = ({
   return (
     <Modal
       width={650}
-      title={I18n.t('administration.campaigns.copy')}
+      title={I18n.t('shared.copy')}
       open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          {I18n.t('threesixty.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -61,21 +61,21 @@ const CopyCampaignModal: React.FC<Props> = ({
           onClick={handleOnConfirm}
           loading={isLoading}
         >
-          {I18n.t('threesixty.save')}
+          {I18n.t('shared.save')}
         </Button>,
       ]}
     >
       <Form form={form} layout="vertical" initialValues={{ copyCampaignFactors: true, copyCampaignAiArtifacts: true }}>
         <Form.Item
           name="name"
-          label={I18n.t('common.column.name')}
+          label={I18n.t('shared.name')}
           initialValue={`Copy of ${campaign.name}`}
         >
           <Input />
         </Form.Item>
         <Form.Item
           name="status"
-          label={I18n.t('administration.campaigns.form.status')}
+          label={I18n.t('shared.status')}
           required
           initialValue={STATUSES.ACTIVE}
         >
@@ -86,13 +86,13 @@ const CopyCampaignModal: React.FC<Props> = ({
         </Form.Item>
         <Form.Item
           name="startDate"
-          label={I18n.t('administration.dates.start')}
+          label={I18n.t('admin.dates_start')}
         >
           <DatePicker showTime format={format} disabledDate={disabledDate} />
         </Form.Item>
         <Form.Item
           name="endDate"
-          label={I18n.t('administration.dates.end')}
+          label={I18n.t('admin.dates_end')}
         >
           <DatePicker showTime format={format} disabledDate={disabledDate} />
         </Form.Item>
@@ -101,7 +101,7 @@ const CopyCampaignModal: React.FC<Props> = ({
           valuePropName="checked"
         >
           <Checkbox defaultChecked>
-            {I18n.t('administration.campaigns.form.copy_factors')}
+            {I18n.t('admin.campaigns_form_copy_factors')}
           </Checkbox>
         </Form.Item>
         <Form.Item

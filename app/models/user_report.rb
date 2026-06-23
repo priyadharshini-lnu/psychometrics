@@ -125,10 +125,25 @@ class UserReport < ApplicationRecord
     return unless has_approval_workflow?
 
     if threesixty?
-      ready! if threesixty_subject.evaluation_status_completed?
-    elsif all_assessments_are_scored?
+      ready! if threesixty_report_ready_for_approval?
+    elsif common_report_ready_for_approval?
       ready!
     end
+  end
+
+  def common_report_ready_for_approval?
+    return false unless all_assessments_are_scored?
+    return false if report.campaign_factors.present? && !campaign_user&.campaign_scores_finalized?
+    return false if report.campaign_ai_artifacts.present? && !campaign_user&.campaign_artifact_results_finalized?
+
+    true
+  end
+
+  def threesixty_report_ready_for_approval?
+    return false unless threesixty_subject&.evaluation_status_completed?
+    return false if report.campaign_ai_artifacts.present? && !campaign_user&.campaign_artifact_results_finalized?
+
+    true
   end
 
   def has_approval_workflow?

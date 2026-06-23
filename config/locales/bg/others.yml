@@ -622,6 +622,7 @@ bg:
         roles:
           campaign_admin: Администратор на кампанията
           client_admin: Администратор на клиенти
+          client_assessor: Оценител на клиенти
           manager: Ръководител
           member: Потребител
           project_admin: Администратор на проекта
@@ -727,6 +728,7 @@ bg:
           admins:
             admin: Администратор
             campaign_admin: Администратор на кампанията
+            client_assessor: Оценител на клиенти
             project_admin: Администратор на проекта
             regular: Администратор на клиенти
             superadmin: Супер администратор
@@ -736,6 +738,7 @@ bg:
           campaign_admin: Администратор на кампанията
           case_study: Пример от практиката
           client_admin: Администратор на клиенти
+          client_assessor: Оценител на клиенти
           hogan: Хоган
           iiht: ИИХТ
           manager: Ръководител
@@ -859,6 +862,8 @@ bg:
         bulk_download_idp_reports: Групово изтегляне на отчети за IDP
         bulk_download_reports: Групово изтегляне на отчети
         bulk_download_user_reports: Групово изтегляне на потребителски отчети
+        bulk_export_norm_factor_scores: Експорт на резултатите за фактора „Норма за обем“
+        bulk_export_raw_factor_scores: Експорт на сурови факторни резултати в масов формат
         bulk_generate_user_campaign_ai_artifact_results: Групово генериране на резултати от AI артефакт на кампанията
         bulk_regenerate_reports: Генериране на отчети за кампании
         bulk_regenerate_threesixty_reports: Регенерирайте тришестдесет тематични доклада
@@ -871,10 +876,12 @@ bg:
         completion_status_export: Експортиране на състоянието на завършване
         copy_as_template_or_campaign: Копиране на кампанията като шаблон
         copy_dimension: Копиране на величината
+        copy_report: Копиране на отчета
         create_threesixty_campaign: Създайте кампания Threesixty
         data_report_export: Експортиране на отчети за данни
         export_admin_with_permissions: Експортиране на администратор с разрешения
         export_assessment_questions: Въпроси за оценка на износа
+        export_audit_logs: Експортиране на аудиторски логове
         export_campaign_ai_artifacts: Изкуствени артефакти от Експортната кампания
         export_campaign_ai_artifacts_results: Експортиране на резултатите от AI артефактите на кампанията
         export_campaign_datasheet: Технически спецификации на кампанията за износ
@@ -964,6 +971,8 @@ bg:
       errors:
         no_plans: Не са намерени активни планове за вътрешно разселени лица
     close: Затварям
+    copy_report:
+      failed: Копирането на отчета се провали
     details: Подробности
     errors: Грешки
     invalid_job: Това уведомление съответства на изтрит запис
@@ -1454,6 +1463,7 @@ bg:
       external_user_id: Skillvue ID на кандидата
       id: ИД на теста на кампанията
       locales: Локали
+      microsite_assessment_url: URL за оценка на микросайта
       microsite_error_message: Съобщение за грешка
       microsite_participant_id: Идентификационен номер на участника в микросайта
       microsite_registration_status: Статус на регистрацията
@@ -1652,7 +1662,6 @@ bg:
     details:
       additional_time: Допълнително време
       assessment_center: Център за оценяване
-      assessment_center_invites: Покани за център за оценяване
       completed_at: Завършено в
       completion_status: Статус на завършване
       hogan_id: Хоган Ид
@@ -1682,11 +1691,6 @@ bg:
     modals:
       remove: Сигурни ли сте, че искате да премахнете потребител с имейл '%{email}' от тази кампания?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Оценки на оценителя
-      other_assessments: Други оценки
-      other_assessor_assessments: Други оценки на оценителя
-      other_reports: Други доклади
     card:
       duration: Продължителност
       starts_in: 'Започва в:'
@@ -1757,23 +1761,19 @@ bg:
       insert: Вмъквам
       'no': Не
       ok: ОК
-      publish: Публикувайте
       reject: Отхвърлям
       remove: Премахнете
       reset: Нулирайте
       resolve: Разрешете проблема
       restore: Възстановете
       return_to_home: Връщане към дома
-      run: Бягам
       save: Запазете
       schedule: Разписание
       search: Търсете
-      send: Изпратете
       sign_in: Влизане
       start: НЗапочнете
       submit: Изпрати
       unarchive: Разрхивирайте
-      unpublish: Отмяна на публикацията
       unresolve: Неразрешете
       update: Актуализирайте
       upload: Качете
@@ -1786,20 +1786,14 @@ bg:
     column:
       action: Действие
       active: Активен
-      ai_assistant: AI асистент
-      allow_multiple_responses: Разрешаване на множество отговори
       approval_notification_list: Списък с потребители на известие за одобрение
       approvers_list: Списък на одобряващите
-      assessment: Оценка
       assessment_name: Име на оценяването
       assessments: Оценки
-      assessor: Оценител
       category: Категория
       client: Клиент
-      code: Код
       created_at: Създаден в
       created_by: Създаден от
-      created_date: Дата на създаване
       default_language: Език по подразбиране
       description: Описание
       details: Подробности
@@ -1817,11 +1811,8 @@ bg:
         scoring: Оценяване на JSON
       key: Ключ
       last_name: Презиме
-      linked_activities: Свързани дейности
       linked_assessment: Свързано оценяване
-      meeting_link: Връзка към срещата
       modified_by: Променено от
-      modified_date: Дата на промяна
       name: Име
       owner: Собственик
       package_id: Идентификационен номер на пакета
@@ -1837,7 +1828,6 @@ bg:
       scheduling: Планиране
       skills: Умения
       status: Статус
-      tags: Етикети
       timing: Времето
       token: Символ
       type: Вид
@@ -1849,15 +1839,12 @@ bg:
     messages:
       leave_message: Сигурни ли сте, че искате да напуснете тази страница? Всички незапазени отговори, които имате, ще бъдат загубени.
     model:
-      admins: Администратори
       assessment: Оценка
       assessments: Оценки
       campaigns: Кампании
       completion_statuses: Състояния на завършване
-      datasheet: Лист с данни
       report: Доклад
       reports: Доклади
-      sms_contact: SMS контакт
       threesixty_campaign: Тришестдесет резултата от кампанията
     status:
       completed: Завършен
@@ -2155,6 +2142,7 @@ bg:
     invalid_token: Нещо се е объркало. Моля, презаредете страницата и опитайте отново.
     max_regeneration_limit: Максималната граница на регенерация е надвишена, свържете се с вашата администрация.
     messages:
+      content_type_invalid: невалиден тип съдържание
       data_report_blank: Отчет за данни не съществува
       password_complexity:
         digit:
@@ -2974,9 +2962,7 @@ bg:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Активен
     campaign_name: Име на кампанията
-    inactive: Неактивен
     status_updated_at: Последна актуализация на състоянието
     status_updated_by: Последна актуализация от
     subject_email: Имейл с тема
@@ -3492,12 +3478,14 @@ bg:
           admin: Администратор
           admins:
             admin: Администратор
+            client_assessor: Оценител на клиенти
             project_admin: Администратор на проекта
             regular: Администратор на клиенти
             superadmin: Супер администратор
           agile: ПОДВИЖЕН
           case_study: Пример от практиката
           client_admin: Администратор на клиенти
+          client_assessor: Оценител на клиенти
           hogan: Хоган
           manager: Ръководител
           member: Потребител
@@ -3631,6 +3619,7 @@ bg:
         roles:
           campaign_admin: Администратор на кампанията
           client_admin: Администратор на клиенти
+          client_assessor: Оценител на клиенти
           manager: Ръководител
           member: Потребител
           project_admin: Администратор на проекта
@@ -3701,12 +3690,14 @@ bg:
           admin: Администратор
           admins:
             admin: Администратор
+            client_assessor: Оценител на клиенти
             project_admin: Администратор на проекта
             regular: Администратор на клиенти
             superadmin: Супер администратор
           agile: ПОДВИЖЕН
           case_study: Пример от практиката
           client_admin: Администратор на клиенти
+          client_assessor: Оценител на клиенти
           hogan: Хоган
           manager: Ръководител
           member: Потребител
@@ -3980,7 +3971,6 @@ bg:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Активен
     allow_multiple_respones: Разрешаване на потребителите да изпращат няколко отговора
     png: PNG
     regenerate_link: Регенериране на връзка
@@ -4169,6 +4159,7 @@ bg:
       campaign_assessor: Оценител на кампанията
       campaign_user: Потребител на кампанията
       client_admin: Администратор на клиенти
+      client_assessor: Оценител на клиенти
       project_admin: Администратор на проекта
       superadmin: Супер администратор
     superadmins: Супер администратори

@@ -36,6 +36,8 @@ cs:
     browser_not_compatible: Váš prohlížeč %{browser_name} není s touto kampaní kompatibilní. Pro optimální fungování použijte nejnovější verzi prohlížeče Chrome, Firefox, Safari nebo Edge.
     browser_not_compatible_description: Pro optimální fungování webu používejte nejnovější verze prohlížečů Chrome, Firefox, Safari nebo Edge.
     browser_not_compatible_detail: Váš prohlížeč %{browser_name} není s touto kampaní kompatibilní. Pro optimální fungování použijte nejnovější verzi prohlížeče Chrome, Firefox, Safari nebo Edge.
+    browser_proctoring_description: Používáte prohlížeč %{browser_name}, který může mít určitá omezení ohledně funkcí dohledu aktivovaných pro tuto kampaň. Pro co nejlepší zážitek doporučujeme používat prohlížeč Chrome nebo Edge.
+    browser_proctoring_title: "%{browser_name} Zjištěný prohlížeč"
     browser_version_fix_description_first: 'Použijte některý z podporovaných prohlížečů: Chrome, Firefox, Edge nebo Safari'
     browser_version_fix_title: Vaše verze prohlížeče není podporována.
     camera: Video a audio
@@ -43,6 +45,7 @@ cs:
     camera_check: Test kamery a mikrofonu
     camera_check_abruptly_ended: Kamera byla náhle vypnuta. Zapněte prosím kameru a zkontrolujte to znovu.
     camera_check_description: Zkontrolujte, zda kamera a mikrofon správně fungují pro nahrávání
+    camera_check_failed: Ověření videa se nezdařilo
     camera_check_passed: Kontrola obrazu a zvuku proběhla úspěšně
     camera_check_record_instruction: Klikněte na tlačítko „Nahrát“ a přečtěte nahlas následující text
     camera_test_step: Krok pro testování obrazu a zvuku
@@ -69,6 +72,9 @@ cs:
     error_uploading_audio_detail: Při nahrávání zvukového souboru došlo k chybě
     error_uploading_video: Chyba při nahrávání videa
     error_uploading_video_detail: Při nahrávání videa došlo k chybě
+    face_detection_error: Při detekci obličeje došlo k chybě. Zkontrolujte, zda kamera funguje, a zkuste to znovu.
+    face_detection_failed: Ve videozáznamu nebyl rozpoznán obličej. Ujistěte se prosím, že kamera není zakrytá a že je váš obličej viditelný.
+    face_not_detected_warning: Nebyla rozpoznána tvář. Ujistěte se prosím, že je vaše tvář viditelná pro kameru.
     fail: Neúspěch
     file_submission_already_exists: Vaše odpověď na tuto otázku již máme. Obnovte prosím stránku a pokud se vám předchozí odpověď stále nezobrazuje, obraťte se prosím na správce.
     follow_these_steps: Postupujte podle následujících kroků, abyste vyřešili problémy zjištěné při kontrole systému
@@ -162,6 +168,8 @@ cs:
     select_video_device: Vybrat video zařízení
     selected_count: Vybrané stránky
     skill_type: Typ dovednosti
+    speech_verification_error: Při ověřování vaší řeči došlo k chybě. Zkuste to prosím znovu.
+    speech_verification_failed: Vaše výslovnost se neshodovala s testovací frází. Zkuste to prosím znovu a frázi vyslovte zřetelně.
     start_campaign_message_proctored: Toto je dozorovaná kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_campaign_message_timed: Toto je časově omezená kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_readiness_check: Spustit kontrolu připravenosti
@@ -186,10 +194,12 @@ cs:
       one: Strč prst skrz krk!
       seven: Každý den je nový začátek. Řekněte to nahlas a hrdě!
       six: Pizza nebo těstoviny? Těžká rozhodnutí.
+      ten: Jsem připraven. Toto je zkušební nahrávka, která má ověřit, zda mi mikrofon správně funguje.
       three: Zkouška, raz, dva, tři, zvuk je čistý, jak jen může být.
       two: Šíleně žluťoučký kůň úpěl ďábelské ódy.
     system_check_audio_title: Vyslovte a třikrát zopakujte následující větu.
     system_check_complete: Kontrola systému dokončena
+    system_check_face_detection: Rozpoznávání obličejů
     system_check_failed: Kontrola systému se nezdařila
     system_check_failed_description: Vyřešte prosím tyto problémy a znovu spusťte kontrolu systému.
     system_check_failed_message: Některé systémové kontroly selhaly. Zkontrolujte prosím podrobnosti a zkuste to znovu.
@@ -200,6 +210,7 @@ cs:
     system_check_retake: Ne, chci to zkusit znovu
     system_check_run_again: Zkusit znovu
     system_check_session_not_found: Nenašla se žádná relace kontroly systému. Spusťte prosím novou kontrolu systému.
+    system_check_speech_verification: Ověření řeči
     system_check_start_recording: Spuštění nahrávání
     system_check_stop_recording: Zastavit nahrávání
     system_check_test_message: je skvělé si s vámi popovídat
@@ -257,6 +268,10 @@ cs:
     video_overlay_label: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté, co stisknete tlačítko Nahrát, přečtěte následující zprávu
     video_overlay_message: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté nahlas přečtěte větu, která se zobrazí v dolní části obrazovky.
     video_recorder_label: Videorekordér
+    video_upload_failed_camera_access: Nelze získat přístup k vaší kameře nebo mikrofonu. Zkontrolujte prosím oprávnění zařízení a zkuste to znovu.
+    video_upload_failed_chunk_upload: Část nahrávky se nepodařilo nahrát. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
+    video_upload_failed_finalize: Záznam byl pořízen, ale nepodařilo se jej uložit. Zkuste to prosím znovu.
+    video_upload_failed_no_recording: Nenašel se žádný záznam k nahrání. Nahrajte jej prosím znovu.
     view_details: Zobrazit podrobnosti
     webgl_api_fix_description_first: Ujistěte se, že váš prohlížeč podporuje WebGL a že je tato funkce v nastavení zapnutá
     webgl_api_fix_description_second: Aktualizujte ovladače grafické karty na nejnovější verzi

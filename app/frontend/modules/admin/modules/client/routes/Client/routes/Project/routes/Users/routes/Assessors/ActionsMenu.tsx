@@ -40,11 +40,11 @@ export const ActionsMenu: FC<Props> = ({
       })
     }
     innerElement={(
-      <Tooltip title={I18n.t('administration.table.more_actions')}>
+      <Tooltip title={I18n.t('admin.table_more_actions')}>
         <Button
           id={`menu-button_projects-assessors-${id}`}
           type="link"
-          aria-label={I18n.t('administration.table.more_actions')}
+          aria-label={I18n.t('admin.table_more_actions')}
           aria-controls={`menu_projects-assessors-${id}`}
           aria-haspopup
         >
@@ -76,23 +76,23 @@ const getMenuDropdownProps = ({
   const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
-    label: I18n.t('administration.project_users.edit'),
+    label: I18n.t('shared.edit'),
   })
   permissions.resetPassword && menuItems.push({
     key: 'resetPassword',
-    label: I18n.t('administration.project_users.change_password'),
+    label: I18n.t('admin.project_users_change_password'),
   })
   permissions.sendMail && menuItems.push({
     key: 'sendMail',
     label: (
       <a href={`mailto:${email}`} target="_blank" rel="noreferrer noopener">
-        {I18n.t('administration.project_users.send_email')}
+        {I18n.t('admin.project_users_send_email')}
       </a>
     ),
   })
   permissions.remove && menuItems.push({
     key: 'remove',
-    label: I18n.t('administration.project_users.delete'),
+    label: I18n.t('shared.delete'),
   })
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {

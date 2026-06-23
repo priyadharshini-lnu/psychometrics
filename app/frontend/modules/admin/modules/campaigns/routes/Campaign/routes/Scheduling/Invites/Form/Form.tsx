@@ -61,10 +61,10 @@ export const InvitesForm = () => {
 
   const handleCancel = () => {
     modal.confirm({
-      title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
-      content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
+      title: I18n.t('admin.cancel_confirmation_title'),
+      content: I18n.t('admin.cancel_confirmation_message'),
+      okText: I18n.t('shared.confirm'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => routeUtils.moveTo(navigate, prefixPath, '/invites'),
     })
   }
@@ -78,25 +78,25 @@ export const InvitesForm = () => {
             current={step}
             items={[
               {
-                title: I18n.t('administration.assessment_center.invite.steps.basic_info'),
+                title: I18n.t('admin.invite_steps_basic_info'),
                 ...(errors?.workshopIds ? {
-                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  description: I18n.t('admin.invite_steps_has_errors'),
                   status: 'error',
                   onClick: () => { errors?.workshopIds && setStep(0) },
                 } : {}),
               },
               {
-                title: I18n.t('administration.assessment_center.invite.steps.add_subjects'),
+                title: I18n.t('admin.invite_steps_add_subjects'),
                 ...(errors?.subjects ? {
-                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  description: I18n.t('admin.invite_steps_has_errors'),
                   status: 'error',
                   onClick: () => { setStep(1) },
                 } : {}),
               },
               {
-                title: I18n.t('administration.assessment_center.invite.steps.send_invitation'),
+                title: I18n.t('admin.invite_steps_send_invitation'),
                 ...(_.some(errors, (e, key) => key.includes('translations')) ? {
-                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  description: I18n.t('admin.invite_steps_has_errors'),
                   status: 'error',
                   onClick: () => { setStep(2) },
                 } : {}),

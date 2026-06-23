@@ -9,11 +9,10 @@ export default function TitleBar ({ instructionTemplate, toggleEnabled }) {
       <Row className={styles.titleContainer}>
         <Col md={14} lg={16} xl={18}>
           <div className={styles.title}>
-            {I18n.t(`administration.threesixty_campaigns.instruction_templates.${instructionTemplate.name}.name`)}
+            {I18n.t(`admin.${instructionTemplate.name}_name`)}
           </div>
           <div>
-            {/* eslint-disable-next-line max-len */}
-            {I18n.t(`administration.threesixty_campaigns.instruction_templates.${instructionTemplate.name}.description`)}
+            {I18n.t(`admin.${instructionTemplate.name}_description`)}
           </div>
         </Col>
         <Col md={10} lg={8} xl={6}>

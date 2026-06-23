@@ -85,7 +85,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
         body: values,
       }).then((data: Campaign) => {
         addInReduxStore(data)
-        message.success(I18n.t('administration.campaigns.modals.create_threesixity.success'))
+        message.success(I18n.t('admin.threesixity_success'))
         close()
       })
       setShowAdvancedSettingsForm(false)
@@ -96,7 +96,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
         body: values,
       }).then((result) => {
         if (result === 'ok') {
-          message.success(I18n.t('administration.campaigns.modals.create_threesixity.success_job'))
+          message.success(I18n.t('admin.threesixity_success_job'))
           close()
         }
       })
@@ -121,7 +121,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
       method: 'post',
       body,
     }).then(() => {
-      message.success(I18n.t('administration.campaigns.modals.create_threesixity.success_job'))
+      message.success(I18n.t('admin.threesixity_success_job'))
       close()
     })
   }
@@ -129,14 +129,14 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   const handleClose = () => {
     if (showAdvancedSettingsForm) {
       modal.confirm({
-        title: I18n.t('administration.campaigns.modals.create_threesixity.close.title'),
+        title: I18n.t('admin.threesixity_close_title'),
         content: I18n.t(
-          'administration.campaigns.modals.create_threesixity.close.content',
+          'admin.threesixity_close_content',
         ),
         icon: <ExclamationCircleOutlined />,
         okType: 'danger',
         cancelText: I18n.t(
-          'administration.common.cancel',
+          'shared.cancel',
         ),
         onOk: () => {
           close()
@@ -152,7 +152,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
       width="100%"
       title={(
         <Typography.Title level={3} style={{ margin: 0 }}>
-          {I18n.t('administration.campaigns.menus.add_multi_rater_campaign')}
+          {I18n.t('admin.campaigns_menus_add_multi_rater_campaign')}
         </Typography.Title>
       )}
       open

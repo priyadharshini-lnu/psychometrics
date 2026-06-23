@@ -12,12 +12,14 @@ module Api
           proc do
             required(:name).filled(:string)
             required(:configuration).filled(:string)
+            required(:report_type).filled(:string)
+            optional(:scope).maybe(:string, included_in?: %w[client global])
           end
         end
 
         def self.relationships(_type)
           [
-            { name: :owner, resource: :clients, relationship: :one, required: true },
+            { name: :owner, resource: :clients, relationship: :one, required: false },
             { name: :last_updated_by, resource: :users, relationship: :one, required: false }
           ]
         end

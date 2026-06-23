@@ -30,7 +30,7 @@ module Assessments
       #     'scoring' => { 'Accountability' => nil, 'Grit' => nil }
       #   }
       # ]
-      def call # rubocop:disable Metrics/PerceivedComplexity
+      def call # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
         headers = rows[0]
         sub_headers = rows[1]
         questions = rows[2..]
@@ -51,6 +51,9 @@ module Assessments
                 factor_name, _, scores = factor_score.rpartition(':')
                 hash['scoring'][factor_name] = scores
               end
+            elsif header == 'AI Scoring Config'
+              hash['ai_scoring_config'] ||= {}
+              parse_ai_scoring_config(hash['ai_scoring_config'], sub_header, column_value)
             else
               Utility::Hash.set_nested_key(hash, "#{header.tr(' ', '_').downcase}.#{sub_header}", column_value)
             end
@@ -59,6 +62,41 @@ module Assessments
         end
 
         broadcast :ok, processed_rows
+      end
+
+      private
+
+      def parse_ai_scoring_config(config_hash, sub_header, column_value)
+        column_value.strip.split(/\r?\n/).each do |line|
+          factor_name, value = split_factor_line(line)
+          next if factor_name.blank?
+
+          config_hash[factor_name] ||= {}
+
+          if sub_header == 'what_to_look_for'
+            config_hash[factor_name]['what_to_look_for'] = value
+          elsif sub_header == 'score_definitions'
+            config_hash[factor_name]['score_definitions'] = parse_score_definitions(value)
+          end
+        end
+      end
+
+      def split_factor_line(line)
+        separator_index = line.index(': ')
+        return [nil, nil] unless separator_index
+
+        factor_name = line[0...separator_index].strip
+        value = line[(separator_index + 2)..].strip
+        [factor_name, value]
+      end
+
+      def parse_score_definitions(value)
+        value.split('|').filter_map do |pair|
+          score, _, definition = pair.partition(':')
+          next if score.blank?
+
+          { 'score' => score.strip, 'definition' => definition.strip }
+        end
       end
     end
   end

@@ -50,11 +50,19 @@ module SystemCheckSessions
     end
 
     def video_requirements
-      { required: has_video_questions? }
+      {
+        required: has_video_questions?,
+        face_detection_enabled: campaign.face_detection_enabled?,
+        minimum_face_detection_ratio: campaign.minimum_face_detection_ratio,
+        phrase_verification_enabled: campaign.phrase_verification_enabled?
+      }
     end
 
     def audio_requirements
-      { required: has_audio_questions? && !has_video_questions? }
+      {
+        required: has_audio_questions? && !has_video_questions?,
+        phrase_verification_enabled: campaign.phrase_verification_enabled?
+      }
     end
 
     def has_video_questions?

@@ -622,6 +622,7 @@ sk:
         roles:
           campaign_admin: Správca kampane
           client_admin: Správca klienta
+          client_assessor: Hodnotiteľ klienta
           manager: Manažér
           member: Užívateľ
           project_admin: Správca projektu
@@ -727,6 +728,7 @@ sk:
           admins:
             admin: Admin
             campaign_admin: Správca kampane
+            client_assessor: Hodnotiteľ klienta
             project_admin: Správca projektu
             regular: Správca klienta
             superadmin: Super správca
@@ -736,6 +738,7 @@ sk:
           campaign_admin: Správca kampane
           case_study: Prípadová štúdia
           client_admin: Správca klienta
+          client_assessor: Hodnotiteľ klienta
           hogan: Hogan
           iiht: IIHT
           manager: Manažér
@@ -859,6 +862,8 @@ sk:
         bulk_download_idp_reports: Hromadné sťahovanie správ IDP
         bulk_download_reports: Hromadné stiahnutie správ
         bulk_download_user_reports: Hromadné sťahovanie hlásení používateľov
+        bulk_export_norm_factor_scores: Hromadný export skóre faktorových noriem
+        bulk_export_raw_factor_scores: Hromadný export skóre surových faktorov
         bulk_generate_user_campaign_ai_artifact_results: Hromadné generovanie výsledkov artefaktov AI kampane
         bulk_regenerate_reports: Opätovné generovanie prehľadov kampaní
         bulk_regenerate_threesixty_reports: Regenerujte správy o predmetoch Threesixty
@@ -871,10 +876,12 @@ sk:
         completion_status_export: Export stavu dokončenia
         copy_as_template_or_campaign: Kopírovanie kampane ako šablóny
         copy_dimension: Kopírovať kótu
+        copy_report: Kopírovať správu
         create_threesixty_campaign: Vytvorte kampaň Threesixty
         data_report_export: Export zostavy údajov
         export_admin_with_permissions: Exportovať správcu s povoleniami
         export_assessment_questions: Otázky na hodnotenie exportu
+        export_audit_logs: Exportovať protokoly auditu
         export_campaign_ai_artifacts: AI artefakty exportnej kampane
         export_campaign_ai_artifacts_results: Exportovať výsledky kampane AI artefaktov
         export_campaign_datasheet: Technický list exportnej kampane
@@ -964,6 +971,8 @@ sk:
       errors:
         no_plans: Nenašli sa žiadne aktívne plány IDP
     close: Zavrieť
+    copy_report:
+      failed: Kopírovanie správy sa nepodarilo
     details: Detaily
     errors: Chyby
     invalid_job: Toto oznámenie zodpovedá vymazanému záznamu
@@ -1454,6 +1463,7 @@ sk:
       external_user_id: Skillvue ID kandidáta
       id: Identifikátor hodnotenia kampane
       locales: Locales
+      microsite_assessment_url: URL adresa hodnotenia mikrostránky
       microsite_error_message: Chybová správa
       microsite_participant_id: ID účastníka mikrostránky
       microsite_registration_status: Stav registrácie
@@ -1652,7 +1662,6 @@ sk:
     details:
       additional_time: Dodatočný čas
       assessment_center: Hodnotiace centrum
-      assessment_center_invites: Pozvánky do hodnotiaceho centra
       completed_at: Dokončené v
       completion_status: Stav dokončenia
       hogan_id: Hogan ID
@@ -1682,11 +1691,6 @@ sk:
     modals:
       remove: Naozaj chcete z tejto kampane odstrániť používateľa s e-mailom %{email}?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Hodnotenia hodnotiteľov
-      other_assessments: Iné hodnotenia
-      other_assessor_assessments: Ďalšie hodnotenia hodnotiteľov
-      other_reports: Ďalšie správy
     card:
       duration: Trvanie
       starts_in: 'Začína sa v:'
@@ -1757,23 +1761,19 @@ sk:
       insert: Vložiť
       'no': Nie
       ok: OK
-      publish: Publikovať
       reject: Odmietnuť
       remove: Odstránenie stránky
       reset: Obnovenie
       resolve: Vyriešiť
       restore: Obnovenie
       return_to_home: Návrat domov
-      run: Bežať
       save: Uložiť
       schedule: Rozvrh
       search: Vyhľadávanie
-      send: Odoslať
       sign_in: Zaregistrovať sa
       start: Štart
       submit: Predložiť
       unarchive: Zrušiť archiváciu
-      unpublish: Zrušenie zverejnenia
       unresolve: Neriešené
       update: Aktualizácia
       upload: Nahrať
@@ -1786,20 +1786,14 @@ sk:
     column:
       action: Akcia
       active: Aktívny
-      ai_assistant: Asistent AI
-      allow_multiple_responses: Povolenie viacerých odpovedí
       approval_notification_list: Zoznam používateľov upozornení na schválenie
       approvers_list: Zoznam schvaľovateľov
-      assessment: Hodnotenie
       assessment_name: Názov hodnotenia
       assessments: Hodnotenia
-      assessor: Hodnotiteľ
       category: Kategória
       client: Klient
-      code: Kód
       created_at: Vytvorené v
       created_by: Vytvoril
-      created_date: Dátum vytvorenia
       default_language: Predvolený jazyk
       description: Popis
       details: Detaily
@@ -1817,11 +1811,8 @@ sk:
         scoring: Bodovanie JSON
       key: Kľúč
       last_name: Priezvisko
-      linked_activities: Prepojené aktivity
       linked_assessment: Prepojené hodnotenie
-      meeting_link: Prepojenie na stretnutie
       modified_by: Upravené
-      modified_date: Dátum úpravy
       name: Meno
       owner: Vlastník
       package_id: ID balíka
@@ -1837,7 +1828,6 @@ sk:
       scheduling: Plánovanie
       skills: Zručnosti
       status: Stav
-      tags: Tagy
       timing: Načasovanie
       token: Token
       type: Typ
@@ -1849,15 +1839,12 @@ sk:
     messages:
       leave_message: Naozaj chcete opustiť túto stránku? Všetky neuložené odpovede, ktoré máte, sa stratia.
     model:
-      admins: Správcovia
       assessment: Hodnotenie
       assessments: Hodnotenia
       campaigns: Kampane
       completion_statuses: Stavy dokončenia
-      datasheet: Dátový hárok
       report: Správa
       reports: Správy
-      sms_contact: SMS kontakt
       threesixty_campaign: Trišesťdesiat výsledkov kampane
     status:
       completed: Dokončený
@@ -2155,6 +2142,7 @@ sk:
     invalid_token: Niečo sa pokazilo. Znovu načítajte stránku a skúste to znova.
     max_regeneration_limit: Prekročenie maximálneho limitu regenerácie, kontaktujte svoju správu.
     messages:
+      content_type_invalid: neplatný typ obsahu
       data_report_blank: Zostava údajov neexistuje
       password_complexity:
         digit:
@@ -2974,9 +2962,7 @@ sk:
   languages_localized:
     sl: Slovensko
   license_usage:
-    active: Aktívny
     campaign_name: Názov kampane
-    inactive: Neaktívny
     status_updated_at: Posledná aktualizácia stavu
     status_updated_by: Naposledy aktualizované používateľom
     subject_email: Predmetný e-mail
@@ -3492,12 +3478,14 @@ sk:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Hodnotiteľ klienta
             project_admin: Správca projektu
             regular: Správca klienta
             superadmin: Super správca
           agile: ŽIVÝ
           case_study: Prípadová štúdia
           client_admin: Správca klienta
+          client_assessor: Hodnotiteľ klienta
           hogan: Hogan
           manager: Manažér
           member: Užívateľ
@@ -3631,6 +3619,7 @@ sk:
         roles:
           campaign_admin: Správca kampane
           client_admin: Správca klienta
+          client_assessor: Hodnotiteľ klienta
           manager: Manažér
           member: Užívateľ
           project_admin: Správca projektu
@@ -3701,12 +3690,14 @@ sk:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Hodnotiteľ klienta
             project_admin: Správca projektu
             regular: Správca klienta
             superadmin: Super správca
           agile: ŽIVÝ
           case_study: Prípadová štúdia
           client_admin: Správca klienta
+          client_assessor: Hodnotiteľ klienta
           hogan: Hogan
           manager: Manažér
           member: Užívateľ
@@ -3980,7 +3971,6 @@ sk:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktívny
     allow_multiple_respones: Povolenie používateľom odosielať viacero odpovedí
     png: PNG
     regenerate_link: Obnoviť prepojenie
@@ -4169,6 +4159,7 @@ sk:
       campaign_assessor: Hodnotiteľ kampane
       campaign_user: Používateľ kampane
       client_admin: Správca klienta
+      client_assessor: Hodnotiteľ klienta
       project_admin: Správca projektu
       superadmin: Super správca
     superadmins: Super správcovia

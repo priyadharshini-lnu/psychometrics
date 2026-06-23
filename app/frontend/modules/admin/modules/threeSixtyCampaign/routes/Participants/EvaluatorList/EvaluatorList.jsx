@@ -41,7 +41,7 @@ export default function EvaluatorList ({
           <UserOutlined />
           <span className="mlm">
             {`${total}
-          ${I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.title')}`}
+          ${I18n.t('admin.evaluators_title')}`}
           </span>
         </Col>
         <Col span={20} className="text-align-r">

@@ -70,21 +70,21 @@ export const General: React.FC = () => {
         >
           {() => (
             <>
-              <Form.Item name="name" label={I18n.t('administration.projects.general_settings.name_label')} required>
+              <Form.Item name="name" label={I18n.t('shared.name')} required>
                 <Input name="general_settings_name" />
               </Form.Item>
-              <Form.Item name="subdomain" label={I18n.t('administration.projects.general_settings.sub_domain_label')}>
+              <Form.Item name="subdomain" label={I18n.t('admin.projects_general_settings_sub_domain_label')}>
                 <Input name="general_settings_subdomain" />
               </Form.Item>
               <Form.Item
                 name="number"
-                label={I18n.t('administration.projects.general_settings.project_number_label')}
+                label={I18n.t('admin.projects_general_settings_project_number_label')}
                 required
               >
                 <Input name="general_settings_number" />
               </Form.Item>
 
-              <Form.Item name="locales" label={I18n.t('administration.projects.general_settings.locales_label')}>
+              <Form.Item name="locales" label={I18n.t('admin.projects_general_settings_locales_label')}>
                 <Select mode="multiple">
                   {availableLocales.map(locale => (
                     <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
@@ -98,14 +98,14 @@ export const General: React.FC = () => {
                     setEnableLiveChatChecked(e.target.checked)
                   }}
                 >
-                  {I18n.t('administration.projects.general_settings.live_chat')}
+                  {I18n.t('admin.projects_general_settings_live_chat')}
                 </Checkbox>
               </Form.Item>
               <Form.Item name="liveChatToken" label="Live Chat Token" hidden={!enableLiveChatChecked}>
                 <Input />
               </Form.Item>
               <Button type="primary" htmlType="submit" className="mb-16">
-                {I18n.t('administration.projects.general_settings.save_changes')}
+                {I18n.t('admin.projects_general_settings_save_changes')}
               </Button>
             </>
           )}

@@ -622,6 +622,7 @@ th:
         roles:
           campaign_admin: ผู้ดูแลระบบแคมเปญ
           client_admin: ผู้ดูแลระบบไคลเอ็นต์
+          client_assessor: ผู้ประเมินลูกค้า
           manager: ผู้จัดการ
           member: ผู้ใช้
           project_admin: ผู้ดูแลระบบโครงการ
@@ -727,6 +728,7 @@ th:
           admins:
             admin: ผู้ดูแลระบบ
             campaign_admin: ผู้ดูแลระบบแคมเปญ
+            client_assessor: ผู้ประเมินลูกค้า
             project_admin: ผู้ดูแลระบบโครงการ
             regular: ผู้ดูแลระบบไคลเอ็นต์
             superadmin: ผู้ดูแลระบบขั้นสูง
@@ -736,6 +738,7 @@ th:
           campaign_admin: ผู้ดูแลระบบแคมเปญ
           case_study: กรณีศึกษา
           client_admin: ผู้ดูแลระบบไคลเอ็นต์
+          client_assessor: ผู้ประเมินลูกค้า
           hogan: โฮแกน
           iiht: ไอเอชที
           manager: ผู้จัดการ
@@ -859,6 +862,8 @@ th:
         bulk_download_idp_reports: ดาวน์โหลดรายงาน IDP จำนวนมาก
         bulk_download_reports: รายงานการดาวน์โหลดจำนวนมาก
         bulk_download_user_reports: ดาวน์โหลดรายงานผู้ใช้จำนวนมาก
+        bulk_export_norm_factor_scores: คะแนนปัจจัยมาตรฐานแบบกลุ่ม ส่งออก
+        bulk_export_raw_factor_scores: การส่งออกคะแนนปัจจัยดิบแบบกลุ่ม
         bulk_generate_user_campaign_ai_artifact_results: สร้างผลลัพธ์สิ่งประดิษฐ์ AI ของแคมเปญจํานวนมาก
         bulk_regenerate_reports: สร้างรายงานแคมเปญใหม่
         bulk_regenerate_threesixty_reports: สร้างรายงานเรื่อง Threesixty ใหม่
@@ -871,10 +876,12 @@ th:
         completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์
         copy_as_template_or_campaign: คัดลอกแคมเปญเป็นเทมเพลต
         copy_dimension: คัดลอกมิติ
+        copy_report: คัดลอกรายงาน
         create_threesixty_campaign: สร้างแคมเปญ Threesixty
         data_report_export: การส่งออกรายงานข้อมูล
         export_admin_with_permissions: ส่งออกผู้ดูแลระบบที่มีสิทธิ์
         export_assessment_questions: คําถามการประเมินการส่งออก
+        export_audit_logs: ส่งออกบันทึกการตรวจสอบ
         export_campaign_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI ของแคมเปญ
         export_campaign_ai_artifacts_results: ผลลัพธ์ของแคมเปญส่งออก AI อาร์ติแฟกต์
         export_campaign_datasheet: แผ่นข้อมูลแคมเปญการส่งออก
@@ -964,6 +971,8 @@ th:
       errors:
         no_plans: ไม่พบแผน IDP ที่ใช้งานอยู่
     close: ปิด
+    copy_report:
+      failed: รายงานสำเนาล้มเหลว
     details: รายละเอียด
     errors: ข้อ ผิด พลาด
     invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
@@ -1451,6 +1460,7 @@ th:
       external_user_id: รหัสผู้สมัคร Skillvue
       id: รหัสการประเมินแคมเปญ
       locales: ตำแหน่ง
+      microsite_assessment_url: URL สำหรับการประเมินไมโครไซต์
       microsite_error_message: ข้อความแสดงข้อผิดพลาด
       microsite_participant_id: รหัสผู้เข้าร่วมไมโครไซต์
       microsite_registration_status: สถานะการลงทะเบียน
@@ -1649,7 +1659,6 @@ th:
     details:
       additional_time: เวลาเพิ่มเติม
       assessment_center: ศูนย์ประเมินผล
-      assessment_center_invites: คําเชิญของศูนย์ประเมิน
       completed_at: เสร็จสิ้น
       completion_status: สถานะการเสร็จสมบูรณ์
       hogan_id: รหัส Hogan
@@ -1679,11 +1688,6 @@ th:
     modals:
       remove: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้ที่มีอีเมล '%{email}' ออกจากแคมเปญนี้?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: การประเมินผู้ประเมิน
-      other_assessments: การประเมินอื่นๆ
-      other_assessor_assessments: การประเมินผู้ประเมินอื่น ๆ
-      other_reports: รายงานอื่นๆ
     card:
       duration: ระยะเวลา
       starts_in: 'เริ่มต้นใน:'
@@ -1754,23 +1758,19 @@ th:
       insert: สอด
       'no': ไม่ใช่
       ok: ตกลง, ได้
-      publish: เผยแพร่
       reject: ปฏิเสธ
       remove: เอาออก
       reset: รีเซ็ต
       resolve: แก้ปัญหา
       restore: คืนค่า
       return_to_home: กลับหน้าแรก
-      run: วิ่ง
       save: บันทึก
       schedule: ตาราง
       search: ค้นหา
-      send: ส่ง
       sign_in: เข้าสู่ระบบ
       start: เริ่ม
       submit: ส่ง
       unarchive: ยกเลิกเก็บถาวร
-      unpublish: เผยแพร่
       unresolve: ยังไม่ได้แก้ไข
       update: อัปเดต
       upload: อัพโหลด
@@ -1783,20 +1783,14 @@ th:
     column:
       action: ดำเนินการ
       active: เปิดใช้งาน
-      ai_assistant: ผู้ช่วย AI
-      allow_multiple_responses: อนุญาตการตอบกลับหลายรายการ
       approval_notification_list: รายชื่อผู้ใช้การแจ้งเตือนการอนุมัติ
       approvers_list: รายชื่อผู้อนุมัติ
-      assessment: การประเมิน
       assessment_name: ชื่อการประเมิน
       assessments: การประเมิน
-      assessor: ผู้ประเมิน
       category: หมวดหมู่
       client: ลูกค้า
-      code: โค้ด
       created_at: สร้างเมื่อ
       created_by: สร้างโดย
-      created_date: วันที่สร้าง
       default_language: ภาษาเริ่มต้น
       description: คำอธิบาย
       details: รายละเอียด
@@ -1814,11 +1808,8 @@ th:
         scoring: การให้คะแนน JSON
       key: กุญแจ
       last_name: นามสกุล
-      linked_activities: กิจกรรมที่เชื่อมโยง
       linked_assessment: การประเมินแบบเชื่อมโยง
-      meeting_link: ลิงค์การประชุม
       modified_by: แก้ไขโดย
-      modified_date: วันที่แก้ไข
       name: ชื่อ
       owner: เจ้าของ
       package_id: รหัสแพ็กเกจ
@@ -1834,7 +1825,6 @@ th:
       scheduling: กำหนดการ
       skills: ทักษะ
       status: สถานะ
-      tags: แท็ก
       timing: เวลา
       token: สัญลักษณ์
       type: ประเภท
@@ -1846,15 +1836,12 @@ th:
     messages:
       leave_message: คุณแน่ใจหรือไม่ว่าต้องการออกจากหน้านี้? คําตอบที่ยังไม่ได้บันทึกที่คุณมีจะสูญหายไป
     model:
-      admins: ผู้ดูแลระบบ
       assessment: การประเมิน
       assessments: การประเมิน
       campaigns: แคมเปญ
       completion_statuses: สถานะการเสร็จสมบูรณ์
-      datasheet: เอกสารข้อมูล
       report: รายงาน
       reports: รายงาน
-      sms_contact: ติดต่อ SMS
       threesixty_campaign: คะแนนแคมเปญ Threesixty
     status:
       completed: เสร็จสมบูรณ์
@@ -2152,6 +2139,7 @@ th:
     invalid_token: มีบางอย่างผิดพลาด กรุณาโหลดหน้าจอใหม่แล้วลองอีกครั้ง
     max_regeneration_limit: เกินขีดจํากัดการฟื้นฟูสูงสุด โปรดติดต่อฝ่ายบริหารของคุณ
     messages:
+      content_type_invalid: ประเภทเนื้อหาไม่ถูกต้อง
       data_report_blank: ไม่มีรายงานข้อมูล
       password_complexity:
         digit:
@@ -2971,9 +2959,7 @@ th:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: เปิดใช้งาน
     campaign_name: ชื่อแคมเปญ
-    inactive: เกียจคร้าน
     status_updated_at: การอัปเดตสถานะล่าสุด
     status_updated_by: อัพเดทล่าสุดโดย
     subject_email: อีเมลเรื่อง
@@ -3489,12 +3475,14 @@ th:
           admin: ผู้ดูแลระบบ
           admins:
             admin: ผู้ดูแลระบบ
+            client_assessor: ผู้ประเมินลูกค้า
             project_admin: ผู้ดูแลระบบโครงการ
             regular: ผู้ดูแลระบบไคลเอ็นต์
             superadmin: ผู้ดูแลระบบขั้นสูง
           agile: ว่องไว
           case_study: กรณีศึกษา
           client_admin: ผู้ดูแลระบบไคลเอ็นต์
+          client_assessor: ผู้ประเมินลูกค้า
           hogan: โฮแกน
           manager: ผู้จัดการ
           member: ผู้ใช้
@@ -3628,6 +3616,7 @@ th:
         roles:
           campaign_admin: ผู้ดูแลระบบแคมเปญ
           client_admin: ผู้ดูแลระบบไคลเอ็นต์
+          client_assessor: ผู้ประเมินลูกค้า
           manager: ผู้จัดการ
           member: ผู้ใช้
           project_admin: ผู้ดูแลระบบโครงการ
@@ -3698,12 +3687,14 @@ th:
           admin: ผู้ดูแลระบบ
           admins:
             admin: ผู้ดูแลระบบ
+            client_assessor: ผู้ประเมินลูกค้า
             project_admin: ผู้ดูแลระบบโครงการ
             regular: ผู้ดูแลระบบไคลเอ็นต์
             superadmin: ผู้ดูแลระบบขั้นสูง
           agile: ว่องไว
           case_study: กรณีศึกษา
           client_admin: ผู้ดูแลระบบไคลเอ็นต์
+          client_assessor: ผู้ประเมินลูกค้า
           hogan: โฮแกน
           manager: ผู้จัดการ
           member: ผู้ใช้
@@ -3977,7 +3968,6 @@ th:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%B %Y, %l:%M %p %:z"
   universal_links:
-    active: เปิดใช้งาน
     allow_multiple_respones: อนุญาตให้ผู้ใช้ส่งคําตอบหลายรายการ
     png: ภาพ PNG
     regenerate_link: สร้างลิงค์ใหม่
@@ -4166,6 +4156,7 @@ th:
       campaign_assessor: ผู้ประเมินแคมเปญ
       campaign_user: ผู้ใช้แคมเปญ
       client_admin: ผู้ดูแลระบบไคลเอ็นต์
+      client_assessor: ผู้ประเมินลูกค้า
       project_admin: ผู้ดูแลระบบโครงการ
       superadmin: ผู้ดูแลระบบขั้นสูง
     superadmins: ผู้ดูแลระบบขั้นสูง

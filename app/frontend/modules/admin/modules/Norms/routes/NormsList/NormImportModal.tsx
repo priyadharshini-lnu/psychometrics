@@ -53,17 +53,17 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
 
     resource.uploadFileAction(action, data).then(() => {
       successCallback()
-      message.info(I18n.t('administration.norms.import.success_msg'))
+      message.info(I18n.t('admin.norms_import_success_msg'))
     })
       .catch((error) => {
-        message.error(I18n.t('administration.common.import.failure_msg'))
+        message.error(I18n.t('admin.common_import_failure_msg'))
         failureCallback(error)
       })
   }
 
   const handleUpload = () => {
     if (!file) {
-      message.error(I18n.t('administration.norms.import.select_file_validation'))
+      message.error(I18n.t('admin.norms_import_select_file_validation'))
       return
     }
     const data = new FormData()
@@ -85,12 +85,12 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.norms.import.title')}
+      title={I18n.t('admin.norms_import_title')}
       open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -108,7 +108,7 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
         <a href="/example_csv/import_norm_sample_file.csv">
           <CloudDownloadOutlined />
           <span className="mls">
-            {I18n.t('administration.norms.import.download_example_csv')}
+            {I18n.t('admin.norms_import_download_example_csv')}
           </span>
         </a>
       </div>
@@ -130,7 +130,7 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
         </Form.Item>
         <Form.Item
           name="ownerId"
-          label={I18n.t('common.column.owner')}
+          label={I18n.t('shared.owner')}
           initialValue={null}
         >
           <Select
@@ -139,7 +139,7 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
             notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             placeholder="Select an Owner"
           >
-            {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('administration.tte')}</Select.Option>}
+            {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.tte')}</Select.Option>}
             {clients.map(({ id, name }) => (
               <Select.Option key={id} value={id}>{name}</Select.Option>
             ))}

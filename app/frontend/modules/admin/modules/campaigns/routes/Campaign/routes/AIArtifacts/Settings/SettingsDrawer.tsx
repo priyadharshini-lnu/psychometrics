@@ -20,7 +20,7 @@ export const SettingsDrawer: React.FC<Props> = ({ onClose, isOpen, aiArtifact })
 
   const isEdit = () => (!!aiArtifact?.id)
   const getTitle = () => `${isEdit() ? I18n.t('common.actions.edit') : I18n.t('common.actions.add')}
-     ${I18n.t('administration.ai_artifacts.form.title')}`
+     ${I18n.t('admin.form_title')}`
 
   const handleClose = () => {
     onClose()
@@ -55,7 +55,7 @@ export const SettingsDrawer: React.FC<Props> = ({ onClose, isOpen, aiArtifact })
             type="primary"
             onClick={handleSubmit}
           >
-            {I18n.t('common.actions.submit')}
+            {I18n.t('shared.submit')}
           </Button>
         </Space>
       )}

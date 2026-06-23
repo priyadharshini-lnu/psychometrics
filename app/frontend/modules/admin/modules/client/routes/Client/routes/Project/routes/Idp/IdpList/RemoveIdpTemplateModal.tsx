@@ -17,7 +17,7 @@ const RemoveIdTemplate: React.FC<OwnProps> = ({
 }) => {
   const handleOnConfirm = () => {
     removeIdp(idp.id).then(() => {
-      message.info(I18n.t('administration.idp.actions.success', { idpName: idp.name }))
+      message.info(I18n.t('admin.idp_actions_success', { idpName: idp.name }))
     }).catch((error) => {
       message.error(error?.base?.[0]?.title)
     })
@@ -27,7 +27,7 @@ const RemoveIdTemplate: React.FC<OwnProps> = ({
   return (
     <AnswerableConfirmationModal
       requiredAnswer={idp.name}
-      confirmationMessage={I18n.t('administration.idp.actions.remove_confirm')}
+      confirmationMessage={I18n.t('admin.idp_actions_remove_confirm')}
       onConfirm={handleOnConfirm}
       onCancel={close}
     />

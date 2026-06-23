@@ -36,6 +36,8 @@ ko:
     browser_not_compatible: 사용 중인 브라우저%{browser_name}는 이 캠페인과 호환되지 않습니다. 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
     browser_not_compatible_description: 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
     browser_not_compatible_detail: 사용 중인 브라우저%{browser_name}는 이 캠페인과 호환되지 않습니다. 최상의 환경을 위해 Chrome, Firefox, Safari 또는 Edge의 최신 버전을 사용해 주세요.
+    browser_proctoring_description: 현재 %{browser_name} 브라우저를 사용 중이신데, 이 캠페인에서 활성화된 감독 기능에 대해 일부 제한이 있을 수 있습니다. 최상의 환경을 위해 Chrome 또는 Edge를 사용하시기를 권장합니다.
+    browser_proctoring_title: "%{browser_name} 브라우저 감지됨"
     browser_version_fix_description_first: '지원되는 브라우저를 사용하세요: Chrome, Firefox, Edge 또는 Safari'
     browser_version_fix_title: 사용 중인 브라우저 버전은 지원되지 않습니다.
     camera: 동영상 및 오디오
@@ -43,6 +45,7 @@ ko:
     camera_check: 카메라 및 마이크 테스트
     camera_check_abruptly_ended: 카메라가 갑자기 꺼졌습니다. 카메라를 켜고 검사를 다시 실행해 주세요.
     camera_check_description: 녹화를 위해 카메라와 마이크가 제대로 작동하는지 확인하세요
+    camera_check_failed: 동영상 확인에 실패했습니다
     camera_check_passed: 영상 및 음향 점검을 성공적으로 마쳤습니다
     camera_check_record_instruction: "‘녹음’을 클릭하고 다음 문장을 소리 내어 읽어보세요"
     camera_test_step: 영상 및 오디오 테스트 단계
@@ -69,6 +72,9 @@ ko:
     error_uploading_audio_detail: 오디오 업로드 중에 오류가 발생했습니다
     error_uploading_video: 동영상 업로드 오류
     error_uploading_video_detail: 동영상을 업로드하는 과정에서 오류가 발생했습니다
+    face_detection_error: 얼굴 인식 중에 오류가 발생했습니다. 카메라가 정상적으로 작동하는지 확인한 후 다시 시도해 주세요.
+    face_detection_failed: 동영상에서 얼굴이 감지되지 않았습니다. 카메라에 가리는 것이 없는지, 그리고 얼굴이 잘 보이는지 확인해 주세요.
+    face_not_detected_warning: 얼굴이 감지되지 않았습니다. 카메라에 얼굴이 잘 보이도록 해 주세요.
     fail: 실패
     file_submission_already_exists: 이 질문에 대한 귀하의 답변은 이미 접수되었습니다. 페이지를 새로 고쳐 주시고, 그래도 이전 답변이 보이지 않는다면 관리자에게 문의해 주십시오.
     follow_these_steps: 시스템 점검 중에 발견된 문제를 해결하려면 다음 단계를 따르십시오
@@ -162,6 +168,8 @@ ko:
     select_video_device: 비디오 장치 선택
     selected_count: 선택됨
     skill_type: 스킬 유형
+    speech_verification_error: 음성 확인 과정에서 오류가 발생했습니다. 다시 시도해 주세요.
+    speech_verification_failed: 말하신 내용이 테스트 문구와 일치하지 않습니다. 다시 시도하시고 문구를 명확하게 말해 주세요.
     start_campaign_message_proctored: 이 캠페인은 감독 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_campaign_message_timed: 이 캠페인은 시간 제한이 있는 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_readiness_check: 준비 상태 확인 시작
@@ -186,10 +194,12 @@ ko:
       one: 나도 비명을 지르고, 당신도 비명을 지르고, 우리 모두 아이스크림을 원합니다!
       seven: 매일이 새로운 시작입니다. 큰 소리로 자랑스럽게 말하세요!
       six: 피자 아니면 파스타? 결정은 어렵습니다.
+      ten: 준비됐습니다. 이 녹음은 마이크가 제대로 작동하는지 확인하기 위한 테스트 녹음입니다.
       three: 테스트, 하나 둘 셋, 소리가 깨끗하게 들립니다!
       two: 재빠른 갈색 여우가 게으른 개를 뛰어넘습니다.
     system_check_audio_title: 다음 문장을 3번 말하고 반복해 주세요.
     system_check_complete: 시스템 점검 완료
+    system_check_face_detection: 얼굴 인식
     system_check_failed: 시스템 확인에 실패했습니다
     system_check_failed_description: 문제를 해결하신 후 시스템 검사를 다시 실행해 주십시오.
     system_check_failed_message: 일부 시스템 확인에 실패했습니다. 세부 내용을 확인한 후 다시 시도해 주십시오.
@@ -200,6 +210,7 @@ ko:
     system_check_retake: 아니요, 재응시하고 싶습니다
     system_check_run_again: 다시 실행
     system_check_session_not_found: 시스템 점검 세션을 찾을 수 없습니다. 새로운 시스템 점검을 시작해 주십시오.
+    system_check_speech_verification: 음성 인증
     system_check_start_recording: 녹화 시작
     system_check_stop_recording: 녹화 중지
     system_check_test_message: 만나서 반가웠습니다
@@ -257,6 +268,10 @@ ko:
     video_overlay_label: 마이크와 카메라를 선택한 후 ‘녹화’를 클릭하고, 녹화 버튼을 누르면 다음 메시지를 한 번 읽어주세요.
     video_overlay_message: 마이크와 카메라를 선택한 후 ‘녹화’를 클릭하고, 화면 하단에 표시되는 문장을 소리 내어 읽어주세요.
     video_recorder_label: 비디오 레코더
+    video_upload_failed_camera_access: 카메라나 마이크에 접근할 수 없습니다. 기기의 권한 설정을 확인한 후 다시 시도해 주세요.
+    video_upload_failed_chunk_upload: 녹화 파일 중 일부가 업로드되지 않았습니다. 인터넷 연결 상태를 확인하신 후 다시 시도해 주세요.
+    video_upload_failed_finalize: 녹화가 진행되었으나 저장되지 않았습니다. 다시 시도해 주십시오.
+    video_upload_failed_no_recording: 업로드할 녹화 파일이 없습니다. 다시 녹화해 주세요.
     view_details: 자세히 보기
     webgl_api_fix_description_first: 사용 중인 브라우저가 WebGL을 지원하는지 확인하고, 설정에서 WebGL이 활성화되어 있는지 확인하세요
     webgl_api_fix_description_second: 그래픽 드라이버를 최신 버전으로 업데이트하세요

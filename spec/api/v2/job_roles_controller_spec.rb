@@ -5,9 +5,6 @@ RSpec.describe Api::V2::Administration::JobRolesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:project) { create(:project) }
   let!(:job_group) { create(:job_group, project: project) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/job_roles' do
@@ -17,8 +14,7 @@ RSpec.describe Api::V2::Administration::JobRolesController, type: :request do
         create(:job_role, project: nil)
         create(:job_role, project: create(:project))
 
-        get '/api/v2/administration/job_roles', params: { project_id: project.id },
-headers: { 'Authorization' => authorization }
+        get '/api/v2/administration/job_roles', params: { project_id: project.id }
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
@@ -35,7 +31,7 @@ headers: { 'Authorization' => authorization }
         create_list(:job_role, 2, project: nil) # Global roles
         create(:job_role, project: create(:project)) # Different project
 
-        get '/api/v2/administration/job_roles', headers: { 'Authorization' => authorization }
+        get '/api/v2/administration/job_roles'
 
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
@@ -60,7 +56,7 @@ headers: { 'Authorization' => authorization }
       }
 
       post "/api/v2/administration/job_roles?project_id=#{project.id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       expect(project.job_roles.count).to eq(1)
@@ -83,7 +79,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       }
 
       patch "/api/v2/administration/job_roles/#{job_role.id}?project_id=#{project.id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(job_role.reload.description).to eq('new')
@@ -95,7 +91,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       job_role = create(:job_role, project: project, job_group: job_group)
 
       delete "/api/v2/administration/job_roles/#{job_role.id}?project_id=#{project.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect { job_role.reload }.to raise_error(ActiveRecord::RecordNotFound)
@@ -118,7 +114,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
         }
 
         post "/api/v2/administration/job_roles?project_id=#{project.id}", params: invalid_body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:unprocessable_entity)
         json_response = JSON.parse(response.body)

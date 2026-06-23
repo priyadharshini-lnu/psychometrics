@@ -45,7 +45,7 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
   return (
     <ResourceFormModal
       resourceName="user"
-      readableResourceName={I18n.t('administration.users.user')}
+      readableResourceName={I18n.t('admin.users_user')}
       requestScope="campaigns"
       resourceBaseUrl={`/administration/new_campaigns/${campaignId}/users`}
       resource={user}

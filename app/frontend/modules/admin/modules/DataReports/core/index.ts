@@ -4,11 +4,17 @@ export const DataReportTR = t.type({
   id: t.string,
   name: t.string,
   updatedAt: t.string,
-  configuration: t.string,
-  owner: t.type({
-    id: t.string,
-    name: t.string,
-  }),
+  configuration: t.union([t.string, t.null]),
+  reportType: t.string,
+  scope: t.string,
+  owner: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.null,
+    t.undefined,
+  ]),
   lastUpdatedBy: t.union([
     t.type({
       id: t.string,

@@ -31,17 +31,17 @@ export const NormsEditorBreadcrumb: React.FC = () => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('users.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
             link: () => '/admin/norms',
-            label: () => I18n.t('administration.breadcrumbs.norms'),
+            label: () => I18n.t('admin.norms'),
           },
           {
             label: () => norm?.name,
           },
           {
-            label: () => I18n.t('administration.breadcrumbs.norms_editor'),
+            label: () => I18n.t('admin.breadcrumbs_norms_editor'),
           },
         ]}
       />

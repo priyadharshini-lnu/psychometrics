@@ -17,9 +17,6 @@ RSpec.describe Api::V2::Administration::Campaigns::FactorBenchmarkScoresControll
     create(:factor_benchmark_score, campaign_id: campaign_id, assessment_id: assessment_id, factor_id: factor.id)
     create(:factor_benchmark_score, campaign_id: campaign_id, assessment_id: assessment_id, factor_id: factor3.id)
   end
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'POST /api/v2/administration/campaigns/{campaign_id}/factor_benchmark_scores/bulk_create' do
@@ -36,7 +33,7 @@ RSpec.describe Api::V2::Administration::Campaigns::FactorBenchmarkScoresControll
       }
 
       post "/api/v2/administration/campaigns/#{campaign_id}/factor_benchmark_scores/bulk_create", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(200)
       expect(FactorBenchmarkScore.count).to eq(2)

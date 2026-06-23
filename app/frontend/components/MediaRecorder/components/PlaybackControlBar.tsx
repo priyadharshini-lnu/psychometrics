@@ -35,7 +35,7 @@ const PlaybackControlBar: React.FC<PlaybackControlBarProps> = ({
 
     const rect = progressRef.current.getBoundingClientRect()
     const x = _.clamp(clientX - rect.left, 0, rect.width)
-    const percent = x / rect.width
+    const percent = isRtl(I18n.locale) ? (rect.width - x) / rect.width : x / rect.width
     const nextTime = percent * duration
 
     videoRef.current.currentTime = nextTime

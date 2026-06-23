@@ -622,6 +622,7 @@ ko:
         roles:
           campaign_admin: 캠페인 관리자
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           manager: 관리자
           member: 사용자
           project_admin: 프로젝트 관리자
@@ -727,6 +728,7 @@ ko:
           admins:
             admin: 관리자
             campaign_admin: 캠페인 관리자
+            client_assessor: 고객 평가 담당자
             project_admin: 프로젝트 관리자
             regular: 클라이언트 관리자
             superadmin: 슈퍼 관리자
@@ -736,6 +738,7 @@ ko:
           campaign_admin: 캠페인 관리자
           case_study: 사례 연구
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           hogan: Hogan
           iiht: IIHT
           manager: 관리자
@@ -859,6 +862,8 @@ ko:
         bulk_download_idp_reports: IDP 보고서 대량 다운로드
         bulk_download_reports: 보고서 대량 다운로드
         bulk_download_user_reports: 사용자 보고서 대량 다운로드
+        bulk_export_norm_factor_scores: 대량 규범 요인 점수 내보내기
+        bulk_export_raw_factor_scores: 원시 요인 점수 일괄 내보내기
         bulk_generate_user_campaign_ai_artifact_results: 캠페인 AI 아티팩트 결과 대량 생성
         bulk_regenerate_reports: 캠페인 보고서 재생성
         bulk_regenerate_threesixty_reports: 주제 보고서 3십 개 재생성하기
@@ -871,10 +876,12 @@ ko:
         completion_status_export: 완료 상태 내보내기
         copy_as_template_or_campaign: 캠페인을 템플릿으로 복사
         copy_dimension: 복사 차원
+        copy_report: 보고서 복사
         create_threesixty_campaign: 쓰리식스티 캠페인 만들기
         data_report_export: 데이터 보고서 내보내기
         export_admin_with_permissions: 권한이 있는 관리자 내보내기
         export_assessment_questions: 수출 평가 질문
+        export_audit_logs: 감사 로그 내보내기
         export_campaign_ai_artifacts: 수출 캠페인 AI 아티팩트
         export_campaign_ai_artifacts_results: 캠페인 AI 아티팩트 결과 내보내기
         export_campaign_datasheet: 캠페인 데이터시트 내보내기
@@ -964,6 +971,8 @@ ko:
       errors:
         no_plans: 활성 IDP 플랜을 찾을 수 없습니다.
     close: 닫기
+    copy_report:
+      failed: 보고서 복사에 실패했습니다.
     details: 세부 정보
     errors: 오류
     invalid_job: 이 알림은 삭제된 레코드에 해당합니다
@@ -1454,6 +1463,7 @@ ko:
       external_user_id: 스킬뷰 응시자 ID
       id: 캠페인 평가 ID
       locales: 로캘
+      microsite_assessment_url: 마이크로사이트 평가 URL
       microsite_error_message: 오류 메시지
       microsite_participant_id: 마이크로사이트 참가자 ID
       microsite_registration_status: 등록 상태
@@ -1652,7 +1662,6 @@ ko:
     details:
       additional_time: 추가 시간
       assessment_center: 평가 센터
-      assessment_center_invites: 평가 센터 초대
       completed_at: 완료 시점
       completion_status: 완료 상태
       hogan_id: 호건 아이디
@@ -1682,11 +1691,6 @@ ko:
     modals:
       remove: 이메일 '%{email}'을 사용하는 사용자를 이 캠페인에서 제거하시겠습니까?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 평가자 평가
-      other_assessments: 기타 평가
-      other_assessor_assessments: 기타 평가자 평가
-      other_reports: 기타 보고서
     card:
       duration: 기간
       starts_in: '시작됩니다:'
@@ -1757,23 +1761,19 @@ ko:
       insert: 삽입
       'no': 아니요
       ok: 확인
-      publish: 게시
       reject: 거절하다
       remove: 제거
       reset: 초기화
       resolve: 해결
       restore: 복원
       return_to_home: 집으로 돌아가기
-      run: 실행
       save: 저장
       schedule: 일정
       search: 검색
-      send: 보내기
       sign_in: 서명하세요
       start: 시작
       submit: 전송
       unarchive: 보관 해제
-      unpublish: 게시 취소
       unresolve: 해결 취소
       update: 업데이트
       upload: 업로드
@@ -1786,20 +1786,14 @@ ko:
     column:
       action: 액션
       active: 활성
-      ai_assistant: AI 어시스턴트
-      allow_multiple_responses: 여러 개의 응답 허용
       approval_notification_list: 승인 알림 사용자 목록
       approvers_list: 승인자 목록
-      assessment: 평가
       assessment_name: 평가 이름
       assessments: 평가
-      assessor: 평가자
       category: 카테고리
       client: 클라이언트
-      code: 코드
       created_at: 만든 곳
       created_by: 만든 사람
-      created_date: 생성 날짜
       default_language: 기본 언어
       description: 설명
       details: 세부 정보
@@ -1817,11 +1811,8 @@ ko:
         scoring: JSON 채점
       key: 키
       last_name: 성
-      linked_activities: 연계 활동
       linked_assessment: 연계 평가
-      meeting_link: 미팅 링크
       modified_by: 수정자
-      modified_date: 수정된 날짜
       name: 이름
       owner: 소유자
       package_id: 패키지 ID
@@ -1837,7 +1828,6 @@ ko:
       scheduling: 일정 예약
       skills: 기술
       status: 상태
-      tags: 태그
       timing: 타이밍
       token: 토큰
       type: 유형
@@ -1849,15 +1839,12 @@ ko:
     messages:
       leave_message: 이 페이지를 나가시겠습니까? 저장하지 않은 답변은 모두 손실됩니다.
     model:
-      admins: 관리자
       assessment: 평가
       assessments: 평가
       campaigns: 캠페인
       completion_statuses: 완료 상태
-      datasheet: 데이터시트
       report: 신고
       reports: 보고서
-      sms_contact: SMS 연락처
       threesixty_campaign: 쓰리식스티 캠페인 점수
     status:
       completed: 완료
@@ -2134,6 +2121,7 @@ ko:
     invalid_token: 문제가 발생했습니다. 페이지를 새로고침하고 다시 시도하세요.
     max_regeneration_limit: 최대 재생 한도가 초과되었으니 관리팀에 문의하세요.
     messages:
+      content_type_invalid: 잘못된 콘텐츠 유형
       data_report_blank: 데이터 보고서가 존재하지 않습니다
       password_complexity:
         digit:
@@ -2953,9 +2941,7 @@ ko:
   languages_localized:
     sl: 슬로벤슈치나
   license_usage:
-    active: 활성
     campaign_name: 캠페인 이름
-    inactive: 비활성
     status_updated_at: 마지막 상태 업데이트
     status_updated_by: 마지막 업데이트 날짜
     subject_email: 제목 이메일
@@ -3471,12 +3457,14 @@ ko:
           admin: 관리자
           admins:
             admin: 관리자
+            client_assessor: 고객 평가 담당자
             project_admin: 프로젝트 관리자
             regular: 클라이언트 관리자
             superadmin: 슈퍼 관리자
           agile: AGILE
           case_study: 사례 연구
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           hogan: Hogan
           manager: 관리자
           member: 사용자
@@ -3610,6 +3598,7 @@ ko:
         roles:
           campaign_admin: 캠페인 관리자
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           manager: 관리자
           member: 사용자
           project_admin: 프로젝트 관리자
@@ -3680,12 +3669,14 @@ ko:
           admin: 관리자
           admins:
             admin: 관리자
+            client_assessor: 고객 평가 담당자
             project_admin: 프로젝트 관리자
             regular: 클라이언트 관리자
             superadmin: 슈퍼 관리자
           agile: AGILE
           case_study: 사례 연구
           client_admin: 클라이언트 관리자
+          client_assessor: 고객 평가 담당자
           hogan: Hogan
           manager: 관리자
           member: 사용자
@@ -3959,7 +3950,6 @@ ko:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 활성
     allow_multiple_respones: 사용자가 여러 개의 응답을 제출할 수 있도록 허용
     png: PNG
     regenerate_link: 링크 다시 생성
@@ -4148,6 +4138,7 @@ ko:
       campaign_assessor: 캠페인 평가자
       campaign_user: 캠페인 사용자
       client_admin: 클라이언트 관리자
+      client_assessor: 고객 평가 담당자
       project_admin: 프로젝트 관리자
       superadmin: 슈퍼 관리자
     superadmins: 슈퍼 관리자

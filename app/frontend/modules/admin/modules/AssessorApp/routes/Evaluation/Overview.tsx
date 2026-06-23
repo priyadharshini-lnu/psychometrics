@@ -36,8 +36,8 @@ const Overview = ({
         {(userInfo.user?.age || userInfo.user?.gender) && (
           <div className={styles.additional}>
             {_.compact([
-              userInfo.user?.age ? I18n.t('administration.years', { count: userInfo.user.age }) : null,
-              userInfo.user?.gender ? I18n.t(`administration.genders.${userInfo.user.gender}`) : null,
+              userInfo.user?.age ? I18n.t('admin.years', { count: userInfo.user.age }) : null,
+              userInfo.user?.gender ? I18n.t(`admin.genders_${userInfo.user.gender}`) : null,
             ]).join(', ')}
           </div>
         )}

@@ -75,14 +75,14 @@ export const IndividualInvite = () => {
             key: 'subjects',
             label: (
               <Space>
-                {I18n.t('administration.individual_invite.tabs.invitation_status')}
+                {I18n.t('admin.individual_invite_tabs_invitation_status')}
               </Space>
             ),
             children: <SubjectList />,
           },
           {
             key: 'assessment_center',
-            label: I18n.t('administration.individual_invite.tabs.assessment_center'),
+            label: I18n.t('admin.individual_invite_tabs_assessment_center'),
             children: <WorkshopList />,
           },
         ]}

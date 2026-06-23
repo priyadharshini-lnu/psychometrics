@@ -36,6 +36,8 @@ hr:
     browser_not_compatible: Vaš preglednik %{browser_name} nije kompatibilan s ovom kampanjom. Koristite najnovije verzije Chromea, Firefoxa, Safarija ili Edgea za najbolje iskustvo.
     browser_not_compatible_description: Koristite najnovije verzije Chromea, Firefoxa, Safarija ili Edgea za najbolje iskustvo.
     browser_not_compatible_detail: Vaš preglednik %{browser_name} nije kompatibilan s ovom kampanjom. Koristite najnovije verzije Chromea, Firefoxa, Safarija ili Edgea za najbolje iskustvo.
+    browser_proctoring_description: Koristite preglednik%{browser_name}, koji može imati određena ograničenja u vezi s nadzornim značajkama omogućenim za ovu kampanju. Za najbolje iskustvo preporučujemo korištenje Chromea ili Edgea.
+    browser_proctoring_title: "%{browser_name} Detektiran preglednik"
     browser_version_fix_description_first: 'Koristite podržani preglednik: Chrome, Firefox, Edge ili Safari'
     browser_version_fix_title: Vaša verzija preglednika nije podržana.
     camera: Video i audio
@@ -43,6 +45,7 @@ hr:
     camera_check: Test kamere i mikrofona
     camera_check_abruptly_ended: Kamera je iznenada isključena. Molimo omogućite kameru i ponovno pokrenite provjeru.
     camera_check_description: Provjerite radi li vaša kamera i mikrofon ispravno za snimanje.
+    camera_check_failed: Provjera videa nije uspjela
     camera_check_passed: Provjera videozapisa i zvuka uspješno prošla.
     camera_check_record_instruction: Kliknite na Snimi i naglas pročitajte sljedeći odlomak.
     camera_test_step: Korak za test videozapisa i zvuka
@@ -69,6 +72,9 @@ hr:
     error_uploading_audio_detail: Došlo je do pogreške pri učitavanju vašeg zvuka.
     error_uploading_video: Greška pri učitavanju videa
     error_uploading_video_detail: Došlo je do pogreške pri učitavanju videa.
+    face_detection_error: Došlo je do pogreške tijekom detekcije lica. Molimo provjerite radi li vaša kamera i pokušajte ponovno.
+    face_detection_failed: Lice nije prepoznato na videozapisu. Molimo provjerite je li kamera neprekrivena i lice vam je vidljivo.
+    face_not_detected_warning: Nije detektirano lice. Molimo osigurajte da je vaše lice vidljivo kameri.
     fail: Neuspjeh
     file_submission_already_exists: Već imamo vašu prijavu za ovo pitanje. Molimo osvježite stranicu, a ako i dalje ne vidite svoju prethodnu prijavu, obratite se administratoru.
     follow_these_steps: Slijedite ove korake kako biste riješili probleme otkrivene tijekom provjere sustava.
@@ -162,6 +168,8 @@ hr:
     select_video_device: Odaberite video uređaj
     selected_count: Odabrano
     skill_type: Vrsta vještine
+    speech_verification_error: Došlo je do pogreške tijekom provjere vašeg govora. Molimo pokušajte ponovno.
+    speech_verification_failed: Vaš govor nije odgovarao testnoj frazi. Molimo pokušajte ponovno i izgovorite frazu jasno.
     start_campaign_message_proctored: Ovo je nadzirana kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_campaign_message_timed: Ovo je vremenski ograničena kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_readiness_check: Pokreni provjeru spremnosti
@@ -186,10 +194,12 @@ hr:
       one: Ja volim, ti voliš, svi volimo sladoled!
       seven: Svaki dan je novi početak. Recite to glasno i ponosno!
       six: Pizza ili tjestenina? Odluke su teške.
+      ten: Spreman sam. Ovo je testna snimka kako bih potvrdio da moj mikrofon ispravno radi.
       three: Testiranje, jedan, dva, tri, zvuk je jasan koliko god može biti!
       two: Žućkasti đak čita džepnu knjigu s ljubičastim šarenim ćilom.
     system_check_audio_title: Molimo, ponovite sljedeću rečenicu 3 puta.
     system_check_complete: Provjera sustava dovršena
+    system_check_face_detection: Detekcija lica
     system_check_failed: Provjera sustava nije uspjela
     system_check_failed_description: Molimo riješite probleme i ponovno pokrenite provjere sustava.
     system_check_failed_message: Neke provjere sustava nisu uspjele. Molimo provjerite detalje i pokušajte ponovno.
@@ -200,6 +210,7 @@ hr:
     system_check_retake: Ne, želim ponovno snimati
     system_check_run_again: Pokušati ponovno
     system_check_session_not_found: Sesija provjere sustava nije pronađena. Molimo pokrenite novu provjeru sustava.
+    system_check_speech_verification: Verifikacija govora
     system_check_start_recording: Započnite snimanje
     system_check_stop_recording: Zaustaviti snimanje
     system_check_test_message: bilo mi je drago razgovarati s tobom
@@ -257,6 +268,10 @@ hr:
     video_overlay_label: Odaberite mikrofon i kameru, kliknite na Snimi, a zatim pročitajte sljedeću poruku čim pritisnete gumb Snimi.
     video_overlay_message: Odaberite mikrofon i kameru, kliknite na Snimi, a zatim naglas pročitajte rečenicu koja se pojavljuje na dnu.
     video_recorder_label: Videorekorder
+    video_upload_failed_camera_access: Nije moguće pristupiti vašoj kameri ili mikrofona. Provjerite dozvole na svom uređaju i pokušajte ponovno.
+    video_upload_failed_chunk_upload: Dio snimke nije uspio biti prenesen. Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
+    video_upload_failed_finalize: Snimanje je započelo, ali nije uspjelo spremiti. Molimo pokušajte ponovno.
+    video_upload_failed_no_recording: Nije pronađena snimka za učitavanje. Molimo snimite ponovno.
     view_details: Prikaži detalje
     webgl_api_fix_description_first: Provjerite podržava li vaš preglednik WebGL i je li omogućen u postavkama.
     webgl_api_fix_description_second: Ažurirajte grafičke upravljačke programe na najnoviju verziju.

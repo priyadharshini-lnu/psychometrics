@@ -100,7 +100,7 @@ const DetailsDrawerComponent: FC<Props> = ({
 
   return (
     <Drawer
-      title={I18n.t('administration.sheets.drawers.view.title')}
+      title={I18n.t('admin.sheets_drawers_view_title')}
       placement="right"
       closable
       onClose={() => toggleDrawer(DrawerModes.None)}
@@ -111,7 +111,7 @@ const DetailsDrawerComponent: FC<Props> = ({
         <>
           <HeaderSection
             title={I18n.t(
-              'administration.sheets.drawers.view.campaign_title',
+              'admin.sheets_drawers_view_campaign_title',
             )}
             isFetching={isFetching}
             toggleDrawer={toggleDrawer}
@@ -128,7 +128,7 @@ const DetailsDrawerComponent: FC<Props> = ({
       && (
         <>
           <HeaderSection
-            title={I18n.t('administration.sheets.drawers.view.project_title')}
+            title={I18n.t('admin.sheets_drawers_view_project_title')}
             isFetching={isFetching}
             toggleDrawer={toggleDrawer}
             currentSheetRowId={currentSheetRowId}

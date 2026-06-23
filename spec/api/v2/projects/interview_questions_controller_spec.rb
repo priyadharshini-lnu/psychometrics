@@ -5,9 +5,7 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, type: :request do
   let!(:project) { create(:project) }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
   let!(:client_admin) { create(:client_admin, client: project.client) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:project_id) { project.id }
   let!(:idp_template) { create(:idp_template, project_id: project.id) }
   let!(:interview_question) { create(:interview_question, project_id: project.id, question: 'test question') }
@@ -22,7 +20,7 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
     it 'returns interview questions' do
       get "/api/v2/administration/projects/#{project_id}/interview_questions",
           params: { 'filter[project_id_eq]' => project_id },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data'].first
@@ -57,7 +55,6 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
       post "/api/v2/administration/projects/#{project_id}/interview_questions",
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -80,7 +77,6 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
       post "/api/v2/administration/projects/#{project_id}/interview_questions",
            params: body.to_json,
            headers: {
-             'Authorization' => authorization,
              'Content-Type' => 'application/vnd.api+json'
            }
 
@@ -115,7 +111,6 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
       put "/api/v2/administration/projects/#{project_id}/interview_questions/#{interview_question.id}",
           params: body.to_json,
           headers: {
-            'Authorization' => authorization,
             'Content-Type' => 'application/vnd.api+json'
           }
 
@@ -139,7 +134,6 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
       put "/api/v2/administration/projects/#{project_id}/interview_questions/#{interview_question.id}",
           params: body.to_json,
           headers: {
-            'Authorization' => authorization,
             'Content-Type' => 'application/vnd.api+json'
           }
 
@@ -150,7 +144,7 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
   describe 'DELETE /projects/:project_id/interview_questions/:id' do
     it 'deletes an interview question' do
       delete "/api/v2/administration/projects/#{project_id}/interview_questions/#{interview_question.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
     end
@@ -160,7 +154,7 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
       allow_any_instance_of(InterviewQuestion).to receive(:destroy).and_return(false)
 
       delete "/api/v2/administration/projects/#{project_id}/interview_questions/#{interview_question.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:bad_request)
     end
@@ -169,7 +163,7 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
   describe 'POST /projects/:project_id/interview_questions/export' do
     it 'queues export job successfully' do
       post "/api/v2/administration/projects/#{project_id}/interview_questions/export",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
     end
@@ -184,8 +178,7 @@ RSpec.describe Api::V2::Administration::Projects::InterviewQuestionsController, 
 
     it 'queues import job' do
       post "/api/v2/administration/projects/#{project_id}/interview_questions/import",
-           params: { file: file, project_id: project_id },
-           headers: { 'Authorization' => authorization }
+           params: { file: file, project_id: project_id }
 
       expect(response).to have_http_status(:ok)
     end

@@ -60,14 +60,14 @@ export const InvitesTable = () => {
         <Filter openForm={openForm} />
         <Resource.Table pagination>
           <Resource.Column
-            title={I18n.t('administration.assessment_center.invite.id')}
+            title={I18n.t('shared.id')}
             id="id"
             sorter
             width={100}
             render={(_, { id }) => <Link to={`${location.pathname}/${id}/subjects`}>{id}</Link>}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('administration.assessment_center.invite.title')}
+            title={I18n.t('admin.invite_title')}
             id="title"
             sorter
             render={(_, { title }) => (
@@ -82,7 +82,7 @@ export const InvitesTable = () => {
             width={250}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('administration.assessment_center.invite.name')}
+            title={I18n.t('shared.name')}
             id="name"
             sorter
             render={(_, { name }) => (
@@ -97,7 +97,7 @@ export const InvitesTable = () => {
             width={250}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('administration.assessment_center.invite.assessment_center')}
+            title={I18n.t('admin.invite_assessment_center')}
             id="assessmentCenter"
             render={data => (
               data.workshops[0] ? (
@@ -107,21 +107,21 @@ export const InvitesTable = () => {
                   </Tag>
                   {data.workshops.length > 1 && `+${data.workshops.length - 1}`}
                 </>
-              ) : I18n.t('administration.assessment_center.invite.not_selected')
+              ) : I18n.t('admin.invite_not_selected')
             )}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('administration.assessment_center.invite.center_group')}
+            title={I18n.t('admin.invite_center_group')}
             id="campaignAssessmentGroupName"
             minWidth={300}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('administration.assessment_center.invite.subjects.title')}
+            title={I18n.t('admin.invite_subjects_title')}
             id="subjectsCount"
             minWidth={100}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('common.column.action')}
+            title={I18n.t('shared.action')}
             id="actions"
             render={data => (
               <ConditionalDropdown
@@ -150,12 +150,12 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
   const { resource } = useResourceContext<WorkshopInvite, { permissions: { create: boolean } }>()
 
   return (
-    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
+    <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
       {resource.meta.permissions.create && (
         <Button type="primary" onClick={openForm}>
           <PlusOutlined />
           {' '}
-          {I18n.t('administration.assessment_center.invite.add_invite')}
+          {I18n.t('admin.invite_add_invite')}
         </Button>
       )}
     </Resource.Filter>
@@ -177,10 +177,10 @@ const getActionsMenuProps = ({
   const handleOnConfirm = () => resource.removeResource(workshopInvite.id).then(() => {
     message.success(
       workshopInvite.title
-        ? I18n.t('administration.assessment_center.invite.success_message_with_title', {
+        ? I18n.t('admin.invite_success_message_with_title', {
           invite_title: workshopInvite.title,
         })
-        : I18n.t('administration.assessment_center.invite.success_message'),
+        : I18n.t('admin.invite_success_message'),
     )
   }).catch(() => {
     message.error(I18n.t('common.errors.something_wrong'))
@@ -188,14 +188,14 @@ const getActionsMenuProps = ({
 
   const handleRemove = () => {
     modal.confirm({
-      title: I18n.t('administration.assessment_center.invite.confirm_title'),
+      title: I18n.t('shared.confirm'),
       content: workshopInvite.title
-        ? I18n.t('administration.assessment_center.invite.confirm_message_with_title', {
+        ? I18n.t('admin.invite_confirm_message_with_title', {
           invite_title: workshopInvite.title,
         })
-        : I18n.t('administration.assessment_center.invite.confirm_message'),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
+        : I18n.t('admin.invite_confirm_message'),
+      okText: I18n.t('shared.confirm'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: handleOnConfirm,
     })
   }
@@ -207,13 +207,13 @@ const getActionsMenuProps = ({
   const menuItems:MenuItem[] = []
   resource.meta.permissions?.update && menuItems.push({
     key: 'edit',
-    label: I18n.t('common.actions.edit'),
+    label: I18n.t('shared.edit'),
     onClick: handleEditInvite,
   })
 
   resource.meta.permissions?.remove && menuItems.push({
     key: 'remove',
-    label: I18n.t('common.actions.remove'),
+    label: I18n.t('shared.remove'),
     onClick: handleRemove,
   })
 

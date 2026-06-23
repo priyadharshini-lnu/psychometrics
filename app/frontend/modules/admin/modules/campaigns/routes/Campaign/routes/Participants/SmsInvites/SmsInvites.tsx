@@ -24,9 +24,9 @@ export const SmsInvites = () => {
     <div style={{ padding: 20 }}>
       <div className={styles.controls}>
         <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
-          <Radio.Button value="invites">{I18n.t('administration.sms_invites.contacts')}</Radio.Button>
+          <Radio.Button value="invites">{I18n.t('admin.sms_invites_contacts')}</Radio.Button>
           <Radio.Button value="history">
-            {I18n.t('administration.sms_histories.history')}
+            {I18n.t('admin.sms_histories_history')}
           </Radio.Button>
         </Radio.Group>
       </div>

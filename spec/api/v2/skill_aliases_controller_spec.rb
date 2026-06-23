@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::SkillAliasesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:client) { create(:tenancy) }
   let(:client_id) { client.id }
   let!(:project) { Project.find(create(:project, parent: client).id) }
@@ -20,7 +18,7 @@ RSpec.describe Api::V2::Administration::SkillAliasesController, type: :request d
 
   describe 'GET /api/v2/administration/clients/{client_id}/skill_aliases' do
     it 'returns skill alias list' do
-      get "/api/v2/administration/clients/#{client_id}/skill_aliases", headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/clients/#{client_id}/skill_aliases"
 
       expect(response).to have_http_status(200)
       skill_aliases_response = JSON.parse(response.body)['data'].find { |d| d['id'] == skill_alias.id.to_s }
@@ -43,7 +41,7 @@ RSpec.describe Api::V2::Administration::SkillAliasesController, type: :request d
       }
 
       post "/api/v2/administration/clients/#{client_id}/skill_aliases", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(201)
       skill_alias_response = JSON.parse(response.body)['data']
@@ -55,8 +53,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
 
   describe 'GET /api/v2/administration/clients/{client_id}/skill_aliases/{skill_alias_id}' do
     it 'returns a specific skill alias' do
-      get "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}"
 
       expect(response).to have_http_status(200)
       skill_alias_response = JSON.parse(response.body)['data']
@@ -81,7 +78,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       }
 
       patch "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(200)
       skill_alias_response = JSON.parse(response.body)['data']
@@ -95,7 +92,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
   describe 'DELETE /api/v2/administration/clients/{client_id}/skill_aliases/{skill_alias_id}' do
     it 'deletes a skill alias' do
       delete "/api/v2/administration/clients/#{client_id}/skill_aliases/#{skill_alias_id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(204)
       expect(response.body).to be_empty

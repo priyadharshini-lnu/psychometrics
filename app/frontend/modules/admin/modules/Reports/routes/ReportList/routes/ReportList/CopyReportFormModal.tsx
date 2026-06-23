@@ -70,26 +70,26 @@ const CopyReportFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="assessments"
-      title={I18n.t('administration.reports.copy.copy_report')}
-      readableResourceName={I18n.t('administration.reports.copy.copy_report')}
+      title={I18n.t('admin.reports_copy_copy_report')}
+      readableResourceName={I18n.t('admin.reports_copy_copy_report')}
       close={close}
       scrollToFirstError
       request={{ createResource: copy }}
       modalProps={{ width: 550 }}
-      formProps={{ initialValues: { name: `${report.name} - ${I18n.t('administration.reports.copy.copy')}` } }}
+      formProps={{ initialValues: { name: `${report.name} - ${I18n.t('admin.reports_copy_copy')}` } }}
     >
       {() => (
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.reports.copy.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true, transform: value => value.trim() }]}
           >
             <Input name="report_name" />
           </Form.Item>
           <Form.Item
             name="ownerId"
-            label={I18n.t('common.column.owner')}
+            label={I18n.t('shared.owner')}
             initialValue={report?.owner?.id || null}
           >
             <Select

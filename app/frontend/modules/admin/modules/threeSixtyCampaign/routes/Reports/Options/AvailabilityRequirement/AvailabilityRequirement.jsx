@@ -22,7 +22,7 @@ export default function AvailabilityRequirement ({
         role="button"
         tabIndex={0}
       >
-        {I18n.t('administration.threesixty_campaigns.reports.add_conditions')}
+        {I18n.t('admin.add_conditions')}
       </div>
     )
   }

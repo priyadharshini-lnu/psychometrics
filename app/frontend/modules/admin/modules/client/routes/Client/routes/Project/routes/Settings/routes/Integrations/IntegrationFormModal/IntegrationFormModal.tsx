@@ -46,7 +46,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="integrations"
-      readableResourceName={I18n.t('administration.integrations.integrations')}
+      readableResourceName={I18n.t('admin.integrations_integrations')}
       requestScope="campaigns"
       resourceBaseUrl={`/administration/projects/${projectId}/integrations`}
       resource={integration}
@@ -60,7 +60,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="active"
-            label={I18n.t('administration.integrations.columns.active')}
+            label={I18n.t('admin.integrations_columns_active')}
             initialValue={false}
             valuePropName="checked"
           >
@@ -68,7 +68,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="name"
-            label={I18n.t('administration.integrations.columns.name')}
+            label={I18n.t('admin.integrations_columns_name')}
             rules={[{ required: true }]}
           >
             <Select
@@ -77,7 +77,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
               disabled={!!integration}
             >
               {integrationNames.map(
-                name => <Option key={name} value={name}>{I18n.t(`administration.integrations.names.${name}`)}</Option>,
+                name => <Option key={name} value={name}>{I18n.t(`admin.integrations_names_${name}`)}</Option>,
               )}
             </Select>
           </Form.Item>

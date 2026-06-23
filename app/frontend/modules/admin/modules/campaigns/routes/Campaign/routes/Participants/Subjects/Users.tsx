@@ -144,7 +144,7 @@ const UserList: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('administration.campaigns.users.title')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('admin.campaigns_users_title')}`}</span>
         </Col>
         <Flex gap={8}>
           <ToolsDropdown
@@ -162,12 +162,12 @@ const UserList: React.FC<Props> = ({
             className={styles.userTypeFilter}
             onChange={handleUserTypeFilterChange}
           >
-            <Option value="All" key="All">{I18n.t('administration.campaigns.users.filters.all')}</Option>
-            <Option value="true" key="true">{I18n.t('administration.campaigns.users.filters.anonymous')}</Option>
-            <Option value="false" key="false">{I18n.t('administration.campaigns.users.filters.identified')}</Option>
+            <Option value="All" key="All">{I18n.t('admin.campaigns_users_filters_all')}</Option>
+            <Option value="true" key="true">{I18n.t('admin.campaigns_users_filters_anonymous')}</Option>
+            <Option value="false" key="false">{I18n.t('admin.campaigns_users_filters_identified')}</Option>
           </Select>
           <Search
-            placeholder={I18n.t('common.actions.search')}
+            placeholder={I18n.t('shared.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
@@ -176,7 +176,7 @@ const UserList: React.FC<Props> = ({
             <div className={styles.newUserButton}>
               <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
                 <PlusOutlined />
-                <span>{I18n.t('administration.campaigns.users.add_user')}</span>
+                <span>{I18n.t('admin.campaigns_users_add_user')}</span>
               </Button>
             </div>
           )}
@@ -195,7 +195,7 @@ const UserList: React.FC<Props> = ({
             sticky={{ offsetHeader: 50 }}
           >
             <Column
-              title={I18n.t('administration.campaigns.users.id')}
+              title={I18n.t('shared.id')}
               key="id"
               sorter
               fixed={windowWidth > 800 ? 'left' : undefined}
@@ -208,7 +208,7 @@ const UserList: React.FC<Props> = ({
               width={100}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.is_active')}
+              title={I18n.t('admin.campaigns_users_is_active')}
               key="campaignUsersActive"
               filters={[
                 { text: 'Active', value: true },
@@ -220,7 +220,7 @@ const UserList: React.FC<Props> = ({
                   active, id,
                 }) => (
                   <Tooltip title={
-                    permissions.edit ? '' : I18n.t('administration.campaigns.users.no_permission_message')}
+                    permissions.edit ? '' : I18n.t('admin.campaigns_users_no_permission_message')}
                   >
                     <Switch
                       disabled={!permissions.edit}
@@ -237,13 +237,13 @@ const UserList: React.FC<Props> = ({
               width={100}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.name')}
+              title={I18n.t('shared.name')}
               key="fullName"
               dataIndex="fullName"
               width={200}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.email')}
+              title={I18n.t('shared.email')}
               key="email"
               sorter
               sortOrder={getSortOrder('email')}
@@ -251,7 +251,7 @@ const UserList: React.FC<Props> = ({
               width={200}
             />
             <Column
-              title={I18n.t('administration.dates.started')}
+              title={I18n.t('admin.dates_started')}
               key="campaignUsersStartedAt"
               dataIndex="startedAt"
               sorter
@@ -259,7 +259,7 @@ const UserList: React.FC<Props> = ({
               width={200}
             />
             <Column
-              title={I18n.t('administration.dates.completed')}
+              title={I18n.t('admin.dates_completed')}
               key="campaignUsersCompletedAt"
               dataIndex="completedAt"
               sorter
@@ -267,7 +267,7 @@ const UserList: React.FC<Props> = ({
               width={200}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.completion_status')}
+              title={I18n.t('admin.campaigns_users_completion_status')}
               key="campaignUsersCompletionStatus"
               dataIndex="completionStatus"
               sorter
@@ -284,7 +284,7 @@ const UserList: React.FC<Props> = ({
               width={200}
             />
             <Column
-              title={I18n.t('common.column.status')}
+              title={I18n.t('shared.status')}
               key="campaignUsersStatus"
               dataIndex="status"
               sorter
@@ -301,19 +301,19 @@ const UserList: React.FC<Props> = ({
               width={200}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.created_by')}
+              title={I18n.t('admin.campaigns_users_created_by')}
               key="createdBy"
               dataIndex="createdBy"
               width={200}
             />
             <Column
-              title={I18n.t('administration.campaigns.users.updated_by')}
+              title={I18n.t('admin.campaigns_users_updated_by')}
               key="updatedBy"
               dataIndex="updatedBy"
               width={200}
             />
             <Column
-              title={I18n.t('common.column.action')}
+              title={I18n.t('shared.action')}
               key="action"
               fixed={windowWidth > 800 ? 'right' : undefined}
               render={(user: User) => (
@@ -335,11 +335,11 @@ const UserList: React.FC<Props> = ({
                     <Button
                       id={`menu-button_campaign-subjects-${user.email}`}
                       type="link"
-                      aria-label={I18n.t('administration.table.more_actions')}
+                      aria-label={I18n.t('admin.table_more_actions')}
                       aria-controls={`menu_campaign-subjects-${user.email}`}
                       aria-haspopup
                     >
-                      <Tooltip title={I18n.t('administration.table.more_actions')}>
+                      <Tooltip title={I18n.t('admin.table_more_actions')}>
                         <span><MoreOutlined /></span>
                       </Tooltip>
                     </Button>
@@ -390,13 +390,13 @@ const getActionsMenuProps = ({
 
   const handleDelete = () => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
       content: I18n.t('campaign_users.modals.remove', { email }),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         remove()
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email }))
@@ -407,7 +407,7 @@ const getActionsMenuProps = ({
   const menuItems:MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
-    label: I18n.t('frontend.edit'),
+    label: I18n.t('shared.edit'),
   })
   permissions.loginAs && menuItems.push({
     key: 'loginAs',
@@ -415,17 +415,17 @@ const getActionsMenuProps = ({
       <a
         href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/spoof`}
       >
-        {I18n.t('frontend.login')}
+        {I18n.t('shared.login')}
       </a>
     ),
   })
   permissions.resetPassword && menuItems.push({
     key: 'changePassword',
-    label: I18n.t('users.actions.reset_password.option'),
+    label: I18n.t('shared.reset_password'),
   })
   permissions.remove && menuItems.push({
     key: 'remove',
-    label: I18n.t('common.actions.remove'),
+    label: I18n.t('shared.remove'),
   })
 
   permissions.pushWebhook && menuItems.push({

@@ -7,8 +7,6 @@ RSpec.describe Api::V2::Administration::ThreesixtyCampaignsController, type: :re
   let!(:project) { create(:project, client: client) }
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:dimension) { create(:dimension, :with_factor) }
   let!(:assessment) { create(:assessment, category: 'threesixty', dimension_id: dimension.id) }
   let!(:campaign_template) { create(:campaign_template, assessment: assessment) }
@@ -35,7 +33,7 @@ RSpec.describe Api::V2::Administration::ThreesixtyCampaignsController, type: :re
 
       post "/api/v2/administration/projects/#{project_id}/threesixty_campaigns/create_campaign",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       response_body = response.body

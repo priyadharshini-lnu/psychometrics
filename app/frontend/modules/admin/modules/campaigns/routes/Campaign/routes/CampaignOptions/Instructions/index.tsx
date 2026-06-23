@@ -70,7 +70,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
       projectId, campaignId, { ...options, ...selectedLeftLocale }, leftLocale,
     ).then(() => {
       setSavingInProgress(false)
-      message.success(I18n.t('administration.campaigns.options.instructions.actions.saved'))
+      message.success(I18n.t('admin.instructions_actions_saved'))
     })
   }
 
@@ -134,7 +134,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
           loading={savingInProgress}
         >
           <SaveOutlined />
-          {I18n.t('administration.campaigns.options.instructions.save')}
+          {I18n.t('admin.instructions_save')}
         </Button>
       </Col>
     </Row>

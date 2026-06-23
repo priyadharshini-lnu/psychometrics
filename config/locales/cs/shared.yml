@@ -18,6 +18,7 @@ cs:
     assessment_id: ID hodnocení
     assessment_list: Seznam hodnocení
     assessment_name: Název hodnocení
+    assessor: Posuzovatel
     assessor_approved: Schváleno hodnotitelem
     assessors_list: Seznam hodnotitelů
     asset_not_present: Aktivum není k dispozici
@@ -26,15 +27,18 @@ cs:
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
     back: Zpět
     basic: Základní
+    bulk_download: Hromadné stahování
     camera: Fotoaparát
     camera_preview: Tady se zobrazí náhled fotoaparátu
     campaign: Kampaň
     campaign_id: Identifikace kampaně
     cancel: Zrušit
+    category: Kategorie
     change_password: Změna hesla
     clear_filters: Vymazat filtry
     client: Klient
     close: Zavřít
+    code: Kód
     collaborative_learning: Společné učení
     completed: Dokončeno
     configurations: Konfigurace
@@ -43,11 +47,13 @@ cs:
     controller: Řídicí jednotka
     cookie_notice: Oznámení o souborech cookie
     cookies_statement: Prohlášení o souborech cookie
+    copied: Zkopírováno do schránky
     copied_successfully: Kopírování proběhlo úspěšně
     copied_to_clipboard: Zkopírováno do schránky
     copy: Kopírovat
     create: Vytvořit
     created_at: Vytvořeno v
+    created_by: Vytvořil
     created_date: Datum vytvoření
     created_successfully: Úspěšně vytvořeno
     custom_acknowledgment_text: Vlastní text poděkování
@@ -55,11 +61,14 @@ cs:
     custom_consent_text: Vlastní text souhlasu
     custom_consent_text_required: Pro roli správce dat je vyžadován vlastní text souhlasu.
     data_role: Role dat
+    datasheet: Datový list
     decline: Úpadek
+    default: Výchozí
     delete: Odstranit
     description: Popis
     desktop_or_laptop_recommended: Doporučeno pro stolní počítače nebo notebooky
     desktop_or_laptop_required: Požadován stolní počítač nebo notebook
+    dimension: Rozměr
     disabled: Nezpůsobilý
     discard: Zrušit
     download: Stáhnout
@@ -69,6 +78,7 @@ cs:
     edit: Upravit
     edited: Nové
     email: E-mail
+    end_date: Datum ukončení
     ending_proctoring_session_msg: Tuto relaci s dohledem ukončujeme. <p>Počkejte prosím, než uložíme vaše odpovědi a přesměrujeme vás zpět na úvodní stránku.</p>
     error: Chyba
     export: Export
@@ -83,12 +93,18 @@ cs:
     generating: Generování
     group_question_max_validation_error: Každá skupina může obsahovat nejvýše {{max}} položku.
     group_question_min_validation_error: Každá skupina musí obsahovat alespoň {{min}} položku.
+    icon: Ikona
     id: ID
     idp_ai_assistant_disclaimer: Asistent IDP v Lighthouse AI může dělat chyby. Buďte prosím opatrní při používání odpovědí.
+    import: Import
+    inactive: Neaktivní
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     last_name: Příjmení
+    last_updated: Poslední aktualizace
     learning_on_the_job_label: Učení se přímo v práci
     lets_start: Tak jdeme na to!
+    linked_activities: Související činnosti
+    linked_assessment: Související hodnocení
     loading: Načítání...
     login: Přihlášení
     maintenance_in_hours: "%{hours} hodiny"
@@ -98,11 +114,13 @@ cs:
     maintenance_time_remaining: Zbývající čas
     maintenance_upcoming_description: Budeme provádět plánovanou údržbu na %{date} po dobu přibližně %{duration}, abychom vylepšili vaše uživatelské prostředí. Během této doby nebudete moci přistupovat k žádným přiděleným úkolům ani je dokončovat. Děkujeme za vaši trpělivost.
     maintenance_upcoming_title: Nadcházející údržba
+    manage: Spravovat
     manage_cookies: Správa souborů cookie
     media_id: Identifikátor média
     media_preview: Náhled pro média
     media_question_transcriptions: Přepisy otázek médií
     media_responses: Reakce médií
+    meeting_link: Odkaz na setkání
     microphones: Mikrofony
     mobile_proctoring_disabled_instructions: K pokračování v tomto hodnocení je zapotřebí stolní počítač nebo notebook. Přepněte se prosím na počítač, abyste mohli aktivitu dokončit.
     mobile_proctoring_enabled_instructions: Pro nejlepší zážitek přejděte na stolní počítač nebo notebook, pokud je máte k dispozici. V případě potřeby můžete pokračovat na svém mobilním zařízení.
@@ -116,13 +134,17 @@ cs:
     new: Nové
     next: Další
     no_audio_warning: Nebylo detekováno žádné zvukové zařízení. Zkontrolujte, zda je mikrofon připojen a správně funguje.
+    no_data_found: Nebyly nalezeny žádné údaje
     no_results_found: Nenalezeny žádné výsledky
+    none: Žádné
     not_requested: Dosud nepožadováno
     ok: OK
     options: Možnosti
+    overview: Přehled
     owner: Majitel
     pause: Pauza
     pending: Čeká na vyřízení
+    permissions: Oprávnění
     play: Hrát
     policy_version: Verze politiky
     policy_version_format: Povolena jsou pouze celá čísla.
@@ -133,6 +155,7 @@ cs:
     proctoring_maintenance_active: Služba Proctoring je momentálně v údržbě z %{start_time} na %{end_time}. Zkuste to znovu po skončení údržby.
     proctoring_maintenance_upcoming: Proctoring bude od %{start_time} do %{end_time} v údržbě.
     project: Projekt
+    publish: Zveřejnit
     question: Otázka
     question_id: ID otázky
     question_transcription_disabled: Přepis je pro tuto otázku zakázán.
@@ -146,20 +169,27 @@ cs:
     remove: Odstranit
     removed: Odstraněno
     replace: Nahradit
+    required: požadované
+    reset: Obnovení
     reset_password: Obnovit heslo
     response_text: Odpověď
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
+    run: Spustit
     save: Uložit
     saving_video: Ukládání videa... Prosím, nezavírejte ani neobnovujte prohlížeč
+    schedule_time: Časový plán
     scoring_details: Podrobnosti o bodování
     search: Hledat
     select_camera: Vyberte kameru
+    select_language: Vybrat jazyk
     select_microphone: Vyberte mikrofon
+    send: Odeslat
     send_email: Odeslat e-mail
     show_more: Zobrazit více
     something_wrong: Něco se pokazilo. Kontaktujte správce.
     speakers: Řečníci
+    start_date: Datum zahájení
     status: Stav
     status_unknown: Stav neznámý
     stop: Zastavit
@@ -178,6 +208,7 @@ cs:
           one: 'Celkem : 1'
           other: 'Celkem : {{count}}'
           zero: 'Celkem : 0'
+    tags: Štítky
     terms_conditions_privacy: Prohlášení o ochraně soukromí
     tools: Nářadí
     transcription: Přepis
@@ -189,11 +220,35 @@ cs:
     try_again: Zkusit znovu
     tte_terms_and_condition: Smluvní podmínky a ochrana soukromí
     type: Typ
+    unpublish: Zrušení publikování
     update: Aktualizovat
     update_failed: Aktualizace se nezdařila
     updated_at: Aktualizováno dne
+    updated_by: Aktualizováno uživatelem
     updated_successfully: Aktualizace úspěšně dokončena
+    upload: Nahrát
     user_report_pdf_url_not_generated: Odkaz ke stažení souboru PDF se nepodařilo vygenerovat
+    user_reports_approval_status_pending_qc: Čeká na kontrolu kvality
+    user_reports_approval_status_qc_completed: Kontrola kvality dokončena
+    user_reports_assessment_name_not_completed_reason_template: Hodnocení „%{names}“ nebylo dokončeno
+    user_reports_assessments_name_not_completed_reason_template: Hodnocení %{names} nebyla dokončena
+    user_reports_assessor_not_completed_reason_template: Formulář posuzovatele „%{names}“ není vyplněn
+    user_reports_assessors_not_completed_reason_template: Formuláře pro posuzovatele %{names} nejsou vyplněny
+    user_reports_campaign_artifact_results_pending_reason_message: Výsledky artefaktů kampaně nejsou pro tohoto uživatele ještě konečné
+    user_reports_campaign_scoring_pending_reason_message: Výsledky kampaně pro tohoto uživatele ještě nejsou konečné
+    user_reports_custom_upload_report_reason_message: Poskytovatel zprávy je vlastní nahraný soubor
+    user_reports_external_report_pending_reason_message: Čekáme na zprávu od poskytovatele
+    user_reports_lead_assessor_not_completed_reason_template: Formulář hlavního hodnotitele z adresy %{names} není vyplněn
+    user_reports_lead_assessors_not_completed_reason_template: Formuláře hlavního hodnotitele %{names} nejsou vyplněny
+    user_reports_no_report_module_reason_message: Pro tento report nebyl nalezen žádný modul
+    user_reports_not_prepared_reason_message: Zpráva ještě není hotová
+    user_reports_pending_approval_reason_template: Stav schválení je „%{status}“
+    user_reports_pending_final_ai_scoring_approval_reason_message: Čeká se na konečné schválení hodnocení umělou inteligencí
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Čeká se na schválení hodnocení QC AI
+    user_reports_pending_qc_approval_reason_message: Čeká se na schválení zprávy o kontrole kvality
+    user_reports_qc_completed_approval_reason_message: Čeká se na schválení závěrečné zprávy
+    user_reports_report_generating_reason_message: Zpráva se právě generuje
+    user_reports_report_generation_failed_reason_message: Vytvoření zprávy se nezdařilo
     video: Video
     view: Zobrazit
     view_audio: Zobrazit zvuk

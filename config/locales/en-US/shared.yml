@@ -18,6 +18,7 @@ en-US:
     assessment_id: Assessment ID
     assessment_list: Assessment List
     assessment_name: Assessment Name
+    assessor: Assessor
     assessor_approved: Assessor Approved
     assessors_list: Assessors List
     asset_not_present: Asset not present
@@ -26,15 +27,18 @@ en-US:
     authentication_failed: Authentication failed. Please try again.
     back: Back
     basic: Basic
+    bulk_download: Bulk Download
     camera: Camera
     camera_preview: Camera preview will appear here
     campaign: Campaign
     campaign_id: Campaign ID
     cancel: Cancel
+    category: Category
     change_password: Change Password
     clear_filters: Clear Filters
     client: Client
     close: Close
+    code: Code
     collaborative_learning: Collaborative Learning
     completed: Completed
     configurations: Configurations
@@ -43,11 +47,13 @@ en-US:
     controller: Controller
     cookie_notice: Cookie Notice
     cookies_statement: Cookies Statement
+    copied: Copied to clipboard
     copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
     create: Create
     created_at: Created At
+    created_by: Created By
     created_date: Created Date
     created_successfully: Created successfully
     custom_acknowledgment_text: Custom Acknowledgment Text
@@ -55,11 +61,14 @@ en-US:
     custom_consent_text: Custom Consent Text
     custom_consent_text_required: Custom consent text is required for controller data role
     data_role: Data Role
+    datasheet: Datasheet
     decline: Decline
+    default: Default
     delete: Delete
     description: Description
     desktop_or_laptop_recommended: Desktop or Laptop Recommended
     desktop_or_laptop_required: Desktop or Laptop Required
+    dimension: Dimension
     disabled: Disabled
     discard: Discard
     download: Download
@@ -69,6 +78,7 @@ en-US:
     edit: Edit
     edited: New
     email: Email
+    end_date: End date
     ending_proctoring_session_msg: We are ending the proctoring session. <p>Please wait while we save your responses and redirect back to the home page.</p>
     error: Error
     export: Export
@@ -83,12 +93,18 @@ en-US:
     generating: Generating
     group_question_max_validation_error: Each group can contain at most {{max}} item(s).
     group_question_min_validation_error: Each group needs to contain at least {{min}} item(s).
+    icon: Icon
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse Development Guide can make mistakes. Please be careful while using the responses.
+    import: Import
+    inactive: Inactive
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     last_name: Last Name
+    last_updated: Last Updated
     learning_on_the_job_label: Learning on the Job
     lets_start: Let's start!
+    linked_activities: Linked Activities
+    linked_assessment: Linked Assessment
     loading: Loading...
     login: Login
     maintenance_in_hours: "%{hours} hours"
@@ -98,11 +114,13 @@ en-US:
     maintenance_time_remaining: Time Remaining
     maintenance_upcoming_description: We'll be performing scheduled maintenance on %{date} for approximately %{duration} to enhance your experience. During this time, you won't be able to access or complete any assigned tasks. We appreciate your patience.
     maintenance_upcoming_title: Upcoming Maintenance
+    manage: Manage
     manage_cookies: Manage Cookies
     media_id: Media ID
     media_preview: Media Preview
     media_question_transcriptions: Media Question Transcriptions
     media_responses: Media Responses
+    meeting_link: Meeting Link
     microphones: Microphones
     mobile_proctoring_disabled_instructions: This assessment requires a desktop or laptop to continue. Please switch to a computer to complete the activity.
     mobile_proctoring_enabled_instructions: For the best experience, please switch to a desktop or laptop if you have one available. You can continue on your mobile device if needed.
@@ -116,13 +134,17 @@ en-US:
     new: New
     next: Next
     no_audio_warning: No audio detected. Please check if your microphone is connected and working properly.
+    no_data_found: No data found
     no_results_found: No results found
+    none: None
     not_requested: Not Yet Requested
     ok: Ok
     options: Options
+    overview: Overview
     owner: Owner
     pause: Pause
     pending: Pending
+    permissions: Permissions
     play: Play
     policy_version: Policy Version
     policy_version_format: Only whole numbers are allowed
@@ -133,6 +155,7 @@ en-US:
     proctoring_maintenance_active: Proctoring is currently under maintenance from %{start_time} to %{end_time}. Please try again after the maintenance window.
     proctoring_maintenance_upcoming: Proctoring will be under maintenance from %{start_time} to %{end_time}.
     project: Project
+    publish: Publish
     question: Question
     question_id: Question ID
     question_transcription_disabled: Transcription is disabled for this question
@@ -146,20 +169,27 @@ en-US:
     remove: Remove
     removed: Removed
     replace: Replace
+    required: Audit ID
+    reset: Reset
     reset_password: Reset Password
     response_text: Response Text
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
+    run: Run
     save: Save
     saving_video: Saving Video... Please do not close or refresh the browser
+    schedule_time: Schedule Time
     scoring_details: Scoring Details
     search: Search
     select_camera: Select a Camera
+    select_language: Select language
     select_microphone: Select a Microphone
+    send: Send
     send_email: Send email
     show_more: Show More
     something_wrong: Something went wrong. Contact your administrator.
     speakers: Speakers
+    start_date: Start date
     status: Status
     status_unknown: Status Unknown
     stop: Stop
@@ -178,6 +208,7 @@ en-US:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+    tags: Tags
     terms_conditions_privacy: Privacy Statement
     tools: Tools
     transcription: Transcription
@@ -189,11 +220,35 @@ en-US:
     try_again: Try Again
     tte_terms_and_condition: Terms & Privacy
     type: Type
+    unpublish: Unpublish
     update: Update
     update_failed: Update failed
     updated_at: Updated At
+    updated_by: Updated By
     updated_successfully: Updated successfully
+    upload: Upload
     user_report_pdf_url_not_generated: PDF download link could not be generated
+    user_reports_approval_status_pending_qc: Pending QC
+    user_reports_approval_status_qc_completed: QC completed
+    user_reports_assessment_name_not_completed_reason_template: Assessment %{names} is not completed
+    user_reports_assessments_name_not_completed_reason_template: Assessments %{names} are not completed
+    user_reports_assessor_not_completed_reason_template: Assessor form %{names} is not completed
+    user_reports_assessors_not_completed_reason_template: Assessor forms %{names} are not completed
+    user_reports_campaign_artifact_results_pending_reason_message: Campaign artifact results are not finalized for this user
+    user_reports_campaign_scoring_pending_reason_message: Campaign scores are not finalized for this user
+    user_reports_custom_upload_report_reason_message: Report provider is custom upload
+    user_reports_external_report_pending_reason_message: Waiting for report from provider
+    user_reports_lead_assessor_not_completed_reason_template: Lead assessor form %{names} is not completed
+    user_reports_lead_assessors_not_completed_reason_template: Lead assessor forms %{names} are not completed
+    user_reports_no_report_module_reason_message: No report module found for this report
+    user_reports_not_prepared_reason_message: Report is not yet prepared
+    user_reports_pending_approval_reason_template: Approval status is '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: Pending final AI scoring approval
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Pending QC AI scoring approval
+    user_reports_pending_qc_approval_reason_message: Pending QC report approval
+    user_reports_qc_completed_approval_reason_message: Pending final report approval
+    user_reports_report_generating_reason_message: Report is being generated
+    user_reports_report_generation_failed_reason_message: Report generation failed
     video: Video
     view: View
     view_audio: View Audio

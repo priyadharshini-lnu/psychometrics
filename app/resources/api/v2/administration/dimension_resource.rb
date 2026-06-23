@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DimensionResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :disabled, :created_at, :updated_at, :occupations_enabled, :innovation_styles_enabled
+  attributes :name, :disabled, :created_at, :updated_at, :occupations_enabled, :innovation_styles_enabled
 
   has_one :owner
   ransack_filters %i[filterable_fields]

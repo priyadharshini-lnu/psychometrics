@@ -72,14 +72,14 @@ export const SendInvitation: FC<Props> = ({
             <Panel
               key={code}
               collapsible
-              title={I18n.t('administration.assessment_center.invite.send_invites.title',
+              title={I18n.t('admin.invite_send_invites_title',
                 { lang: I18n.t(`languages.${lang.locale}`) })}
-              description={I18n.t('administration.assessment_center.invite.send_invites.description')}
+              description={I18n.t('admin.invite_send_invites_description')}
             >
               <Row>
                 <Col sm={24} md={12} lg={8}>
                   <Form.Item
-                    label={I18n.t('administration.assessment_center.invite.send_invites.invitation_title')}
+                    label={I18n.t('admin.invite_send_invites_invitation_title')}
                     validateStatus={errors?.[`translations/${index}/title`] ? 'error' : undefined}
                     hasFeedback={!!errors?.[`translations/${index}/title`]}
                     help={errors?.[`translations/${index}/title`]?.title}
@@ -95,7 +95,7 @@ export const SendInvitation: FC<Props> = ({
                   </Form.Item>
 
                   <Form.Item
-                    label={I18n.t('administration.assessment_center.invite.send_invites.description')}
+                    label={I18n.t('admin.invite_send_invites_description')}
                     validateStatus={errors?.[`translations/${index}/description`] ? 'error' : undefined}
                     hasFeedback={!!errors?.[`translations/${index}/description`]}
                     help={errors?.[`translations/${index}/description`]?.title}
@@ -117,19 +117,19 @@ export const SendInvitation: FC<Props> = ({
 
         {allowedLanguages?.length > 0 ? (
           <Panel
-            title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}
-            description={I18n.t('administration.assessment_center.invite.send_invites.add_description')}
+            title={I18n.t('admin.invite_send_invites_add_language')}
+            description={I18n.t('admin.invite_send_invites_add_description')}
           >
             <Row>
               <Col sm={24} md={12} lg={8}>
                 <Form.Item
                   name="add_lang"
-                  label={I18n.t('administration.assessment_center.invite.send_invites.input_label')}
+                  label={I18n.t('admin.invite_send_invites_input_label')}
                 >
                   <Row gutter={12}>
                     <Col flex="1">
                       <Select
-                        placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
+                        placeholder={I18n.t('admin.invite_send_invites_input_placeholder')}
                         options={allowedLanguages.map(lang => (
                           {
                             value: lang,
@@ -140,7 +140,7 @@ export const SendInvitation: FC<Props> = ({
                       />
                     </Col>
                     <Button type="primary" onClick={addLang}>
-                      {I18n.t('administration.assessment_center.invite.send_invites.add')}
+                      {I18n.t('shared.add')}
                     </Button>
                   </Row>
                 </Form.Item>
@@ -155,17 +155,17 @@ export const SendInvitation: FC<Props> = ({
           {
             onCancel && (
               <Button onClick={handleCancel} disabled={isLoading}>
-                {I18n.t('common.actions.cancel')}
+                {I18n.t('shared.cancel')}
               </Button>
             )
           }
-          <Button disabled={isLoading} onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
+          <Button disabled={isLoading} onClick={prev}>{I18n.t('shared.back')}</Button>
           <Button
             loading={isLoading}
             type="primary"
             onClick={submit}
           >
-            {I18n.t('administration.assessment_center.invite.save')}
+            {I18n.t('admin.invite_save')}
           </Button>
         </Space>
       </div>

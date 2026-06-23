@@ -26,7 +26,7 @@ export const DetailsDrawer: FC<Props> = ({
 
   return (
     <Drawer
-      title={I18n.t('administration.sms_histories.drawer.title')}
+      title={I18n.t('admin.sms_histories_drawer_title')}
       placement="right"
       closable
       onClose={close}
@@ -41,7 +41,7 @@ export const DetailsDrawer: FC<Props> = ({
           column={1}
         >
           <Descriptions.Item
-            label={I18n.t('administration.sms_records.columns.id')}
+            label={I18n.t('shared.id')}
             key="id"
             className="va-t w-30"
             labelStyle={{ width: '40%' }}
@@ -50,7 +50,7 @@ export const DetailsDrawer: FC<Props> = ({
             {smsRecord.id}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('administration.sms_records.columns.message')}
+            label={I18n.t('admin.sms_records_columns_message')}
             key="message"
             className="va-t w-30"
           >

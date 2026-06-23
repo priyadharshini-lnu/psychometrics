@@ -167,6 +167,7 @@ Rails.application.routes.draw do
       resources :audit_logs do
         collection do
           get :actions
+          post :schedule_export
         end
       end
 
@@ -392,6 +393,8 @@ Rails.application.routes.draw do
             end
             collection do
               get :other
+              post :bulk_export_raw_factor_scores
+              post :bulk_export_norm_factor_scores
             end
           end
           resources :user_assessments, only: [:destroy] do
@@ -982,7 +985,7 @@ as: :simulation_progress_notification
           end
         end
 
-        resources :system_check_records, only: [], controller: 'system_check_sessions' do
+        resources :system_check_records, only: [:update], controller: 'system_check_sessions' do
           member do
             post :upload_media_url
             put :complete_multipart_upload
@@ -1361,6 +1364,17 @@ as: :simulation_progress_notification
                 member do
                   post :toggle_status
                 end
+              end
+            end
+          end
+          jsonapi_resources :applications, only: %i[index show create] do
+            member do
+              post :activate
+              post :deactivate
+            end
+            jsonapi_resources :public_keys, only: %i[index create update] do
+              collection do
+                post :generate_key_pair
               end
             end
           end

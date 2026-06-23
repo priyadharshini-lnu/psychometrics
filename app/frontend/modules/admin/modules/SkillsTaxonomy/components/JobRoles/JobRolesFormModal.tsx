@@ -69,7 +69,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
     <ResourceFormModal
       resourceName="jobRole"
       resource={jobRole ? transformValues(jobRole) : undefined}
-      readableResourceName={I18n.t('administration.job_role.form.title')}
+      readableResourceName={I18n.t('admin.job_role_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -82,7 +82,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.job_role.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input />
@@ -90,7 +90,7 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
 
           <Form.Item
             name="code"
-            label={I18n.t('administration.job_role.form.code')}
+            label={I18n.t('shared.code')}
             rules={[{ required: true }]}
           >
             <Input />
@@ -98,14 +98,14 @@ export const JobRolesFormModal: React.FC<Props> = ({ close, jobRole }) => {
 
           <Form.Item
             name="description"
-            label={I18n.t('administration.job_role.form.description')}
+            label={I18n.t('shared.description')}
           >
             <Input.TextArea />
           </Form.Item>
 
           <Form.Item
             name="jobGroupId"
-            label={I18n.t('administration.job_role.form.job_group')}
+            label={I18n.t('admin.job_role_form_job_group')}
           >
             <Select
               showSearch={{ filterOption: false, onSearch: debouncedFetchJobGroups }}

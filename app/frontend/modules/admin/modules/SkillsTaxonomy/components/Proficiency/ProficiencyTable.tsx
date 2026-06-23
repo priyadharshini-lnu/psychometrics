@@ -23,16 +23,16 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
 
   const handleMappingDeletion = (proficiencyLevel: ProficiencyLevel) => {
     modal.confirm({
-      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
+      title: I18n.t('shared.delete'),
       content: I18n.t(
-        'administration.project_tabs.webhooks.remove_webhook.content',
+        'admin.project_tabs_webhooks_remove_webhook_content',
         {
           description: proficiencyLevel.id,
         },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
+      okText: I18n.t('shared.ok'),
       cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
+        'shared.cancel',
       ),
       onOk: async () => {
         resource.removeResource(proficiencyLevel.id).then(() => {
@@ -54,17 +54,17 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
             dataSource={record.levelDefinition}
             columns={[
               {
-                title: I18n.t('administration.proficiency_levels.fields.level'),
+                title: I18n.t('admin.fields_level'),
                 key: 'level',
                 dataIndex: 'level',
               },
               {
-                title: I18n.t('administration.proficiency_levels.fields.level_name'),
+                title: I18n.t('admin.fields_level_name'),
                 key: 'name',
                 dataIndex: 'name',
               },
               {
-                title: I18n.t('administration.proficiency_levels.fields.level_description'),
+                title: I18n.t('admin.fields_level_description'),
                 key: 'description',
                 dataIndex: 'description',
               },
@@ -75,7 +75,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       }}
     >
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('common.column.id')}
+        title={I18n.t('shared.id')}
         id="id"
         sorter
         render={proficiencyLevel => (
@@ -84,12 +84,12 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         width={200}
       />
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('administration.proficiency_levels.fields.proficiency_type')}
+        title={I18n.t('admin.fields_proficiency_type')}
         id="proficiency_type"
         render={(_, proficiencyLevel) => (
           <div>
             <Typography.Text>
-              {I18n.t(`administration.proficiency_levels.type.${proficiencyLevel.proficiencyType}`)}
+              {I18n.t(`admin.type_${proficiencyLevel.proficiencyType}`)}
             </Typography.Text>
           </div>
         )}
@@ -102,7 +102,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         width={200}
       />
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('administration.proficiency_levels.fields.skill_name')}
+        title={I18n.t('admin.fields_skill_name')}
         id="skill.name"
         render={(_, proficiencyLevel) => (
           <div>
@@ -113,7 +113,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         width={300}
       />
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('administration.proficiency_levels.fields.skill_type')}
+        title={I18n.t('admin.fields_skill_type')}
         id="skill_type"
         render={proficiencyLevel => (
           <Typography.Text>
@@ -134,7 +134,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       />
 
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('administration.proficiency_levels.fields.level')}
+        title={I18n.t('admin.fields_level')}
         id="level"
         render={(_, proficiencyLevel) => (
           <div>
@@ -149,7 +149,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       />
 
       <Resource.Column<ProficiencyLevel>
-        title={I18n.t('common.column.action')}
+        title={I18n.t('shared.action')}
         id="action"
         render={(_, proficiencyLevel) => (
           <Dropdown
@@ -191,7 +191,7 @@ const getActionsMenuProps = ({ proficiencyLevel, onDelete, openModal }: ActionMe
           onClick={() => openModal(proficiencyLevel)}
           className="ps-0"
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     proficiencyLevel && {
@@ -203,7 +203,7 @@ const getActionsMenuProps = ({ proficiencyLevel, onDelete, openModal }: ActionMe
           className="ps-0"
           danger
         >
-          {I18n.t('common.actions.delete')}
+          {I18n.t('shared.delete')}
         </Button>),
     },
   ].filter(m => m) as MenuItem[]

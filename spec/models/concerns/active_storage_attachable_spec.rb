@@ -90,7 +90,7 @@ describe ActiveStorageAttachable do
 
     it 'fails to attach' do
       expect { @invalid_assessment.save! }.
-        to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Poster has an invalid content type')
+        to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Poster invalid content type')
     end
   end
 

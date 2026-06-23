@@ -18,11 +18,11 @@ export const SuccessPage = () => {
     <div className={styles.success}>
       <CheckCircleFilled className={styles.icon} size={40} />
       <div className={styles.message}>
-        {I18n.t('administration.assessment_center.invite.success.message')}
+        {I18n.t('admin.invite_success_message')}
       </div>
       <div>
         <Button type="primary" onClick={next}>
-          {I18n.t('administration.assessment_center.invite.success.continue')}
+          {I18n.t('shared.continue')}
         </Button>
       </div>
     </div>

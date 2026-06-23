@@ -256,7 +256,7 @@ const TasksListComponent: React.FC<Props> = ({
       },
     }).then((response: (Task[] & {responseMeta: { approved: number, ignored: number, qc_completed: number } })) => {
       const { responseMeta } = response
-      message.success(I18n.t('administration.scoring_approval.bulk_approve_success',
+      message.success(I18n.t('admin.scoring_approval_bulk_approve_success',
         {
           approved: responseMeta.approved,
         }))
@@ -272,7 +272,7 @@ const TasksListComponent: React.FC<Props> = ({
       {type === 'myTasks' && (
         <Flex justify="end" align="center" className="m-5">
           <Button type="primary" onClick={submitAll} disabled={!selected.length}>
-            {I18n.t('administration.scoring_approval.approve_all')}
+            {I18n.t('admin.scoring_approval_approve_all')}
           </Button>
         </Flex>
       )}
@@ -310,7 +310,7 @@ const TasksListComponent: React.FC<Props> = ({
           fixed="left"
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.subject_email')}
+          title={I18n.t('admin.report_approval_columns_subject_email')}
           dataIndex={['subject', 'email']}
           key="subject_email"
           {...filterProps(
@@ -371,7 +371,7 @@ const TasksListComponent: React.FC<Props> = ({
         />
         <Column
           width={150}
-          title={I18n.t('administration.report_approval.columns.assessed_by')}
+          title={I18n.t('admin.report_approval_columns_assessed_by')}
           key="assessedBy"
           render={({ scoreAssessedBy }) => (
             <>
@@ -381,7 +381,7 @@ const TasksListComponent: React.FC<Props> = ({
         />
         <Column
           width={150}
-          title={I18n.t('administration.report_approval.columns.approved_by')}
+          title={I18n.t('admin.report_approval_columns_approved_by')}
           key="approvedBy"
           render={({ scoreApprovedBy }) => (
             <>
@@ -408,12 +408,12 @@ const TasksListComponent: React.FC<Props> = ({
           )}
         />
         <Column
-          title={I18n.t('administration.report_approval.columns.actions')}
+          title={I18n.t('shared.actions')}
           key="link"
           render={({ id }) => (
             <Space>
               <Link to={`/admin/ai_scoring_approvals/${id}/review`}>
-                {I18n.t('administration.report_approval.review')}
+                {I18n.t('admin.report_approval_review')}
               </Link>
             </Space>
           )}
@@ -436,10 +436,10 @@ const TasksListComponent: React.FC<Props> = ({
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.report_approval.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
-            label: () => I18n.t('administration.scoring_approval.score_approvals'),
+            label: () => I18n.t('admin.scoring_approval_score_approvals'),
           },
         ]}
       />

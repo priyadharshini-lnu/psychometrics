@@ -206,6 +206,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'norms' => [],
       'permissions' => {
         'reset_results' => policy.reset?,
+        'toggle_prework' => policy.toggle_prework?,
+        'toggle_require_scheduling' => policy.toggle_require_scheduling?,
         'update_additional_time' => policy.update_additional_time?,
         'update_norm' => policy.update_norm?,
         'rescore_response' => policy.rescore_response?,
