@@ -92,6 +92,7 @@ features:
   ai_content_analysis_enabled: <%= ENV.fetch('AI_CONTENT_ANALYSIS_ENABLED', 'false') == 'true' %>
   client_admin_sso_enabled: <%= ENV.fetch('CLIENT_ADMIN_SSO_ENABLED', 'true') == 'true' %>
   assessment_content_protection_enabled: <%= ENV.fetch('ASSESSMENT_CONTENT_PROTECTION_ENABLED', 'false') == 'true' %>
+  client_scope_filter_disabled: <%= ENV.fetch('DISABLE_CLIENT_SCOPE_FILTER', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -1355,6 +1356,7 @@ providers:
           - D3B327C6-EEB7-4CDE-AD40-FC45896E3DDA
           - C5C50E25-7610-4703-A46D-FD4A3E628545
           - 5FC302E6-953B-44F7-B78B-B78C1325E433
+          - 26942103-8F21-45D6-94B9-D0E75568AD2F
 
         report_ids:
           - 0B623B16-D4CC-4992-B560-7584348D49E8
@@ -1592,6 +1594,8 @@ providers:
         report_ids:
           - E10E68CF-9B20-4C35-8867-81E2D767718F
     norms:
+      - id: 26942103-8F21-45D6-94B9-D0E75568AD2F
+        name: Professionals & Managers (AUS, IA, 2021)
       - id: 998C485C-B931-416D-8404-9B284160F688
         name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
       - id: 846B63CF-358A-43F0-9835-A95D8F38D860

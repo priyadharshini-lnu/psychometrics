@@ -131,15 +131,9 @@ RSpec.describe AdminSubdomain do
       expect(described_class.host_options_for(user: user, project: project)).to eq({})
     end
 
-    it 'returns empty options when user is an assessor without admin privileges' do
+    it 'returns host options when user is an assessor without admin privileges' do
       allow(user).to receive(:is?).with(:assessor).and_return(true)
       allow(user).to receive(:is?).with(:client_admin, :project_admin, :campaign_admin).and_return(false)
-      expect(described_class.host_options_for(user: user, project: project)).to eq({})
-    end
-
-    it 'returns host options when user is an assessor with admin privileges' do
-      allow(user).to receive(:is?).with(:assessor).and_return(true)
-      allow(user).to receive(:is?).with(:client_admin, :project_admin, :campaign_admin).and_return(true)
       expect(described_class.host_options_for(user: user, project: project)).to eq({ host: 'adnoc-admin.tte.com' })
     end
 
