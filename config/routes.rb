@@ -364,6 +364,7 @@ Rails.application.routes.draw do
               post :export_scoring_results
               post :export_normed_results
               post :export_raw_factor_scores
+              post :export_ai_factor_scores
               post :export_external_results
               post :export_occupations
               post :import_results
