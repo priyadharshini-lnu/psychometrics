@@ -15,6 +15,8 @@ class UserAssessment < ApplicationRecord
   belongs_to :norm
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
+  belongs_to :score_assessed_by, class_name: 'User', optional: true
+  belongs_to :score_approved_by, class_name: 'User', optional: true
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by

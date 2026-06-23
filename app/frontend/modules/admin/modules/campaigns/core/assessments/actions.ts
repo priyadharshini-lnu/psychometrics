@@ -20,6 +20,7 @@ const EXPORT_RAW_RESULTS = 'campaigns/userAssessments/EXPORT_RAW_RESULT'
 const EXPORT_SCORING_RESULTS = 'campaigns/userAssessments/EXPORT_SCORING_RESULTS'
 const EXPORT_NORMED_RESULTS = 'campaigns/userAssessments/EXPORT_NORMED_RESULTS'
 const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RESULTS'
+const EXPORT_AI_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_AI_FACTOR_RESULTS'
 const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESULTS'
 const EXPORT_OCCUPATIONS = 'campaigns/assessments/EXPORT_OCCUPATIONS'
 
@@ -338,6 +339,16 @@ export const exportRawFactorScores = (campaignId: number, assessmentId: number, 
     method: 'post',
     body,
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_raw_factor_scores`,
+    loader: true,
+  },
+})
+
+export const exportAiFactorScores = (campaignId: number, assessmentId: number, body: object = {}) => ({
+  type: EXPORT_AI_FACTOR_SCORES,
+  request: {
+    method: 'post',
+    body,
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_ai_factor_scores`,
     loader: true,
   },
 })
