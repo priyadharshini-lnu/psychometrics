@@ -42,8 +42,16 @@ module AdminSubdomain
     prefix.delete_suffix(ADMIN_SUFFIX)
   end
 
+  def client_admin_subdomain(raw_subdomain)
+    return nil if raw_subdomain.blank?
+
+    "#{raw_subdomain}#{ADMIN_SUFFIX}"
+  end
+
   def admin_host_for(client)
-    "#{client.subdomain}#{ADMIN_SUFFIX}.#{Settings.domain}"
+    return nil if client.blank?
+
+    "#{client_admin_subdomain(client.subdomain)}.#{Settings.domain}"
   end
 
   def admin_url_for(client, path: '/admin', params: {})
@@ -57,7 +65,6 @@ module AdminSubdomain
   def host_options_for(user:, project:)
     return {} if user.nil?
     return {} if user.superadmin?
-    return {} if user.is?(:assessor) && !user.is?(:client_admin, :project_admin, :campaign_admin)
 
     client = project&.tte
     return {} unless client && client_admin_sso_enabled?

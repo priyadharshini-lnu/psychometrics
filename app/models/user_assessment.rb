@@ -220,12 +220,11 @@ class UserAssessment < ApplicationRecord
   end
 
   def real_meeting_link(user)
-    if meeting_internal? && meeting_room.present? && meeting_room.external_id.present?
-      route = user.admin? ? :admin_meeting_url : :meeting_url
-      Utility::Url.generate(route, room_id: meeting_room.id, subdomain: user.subdomain)
-    elsif meeting_custom?
-      meeting_link
-    end
+    return meeting_link if meeting_custom?
+    return unless meeting_internal? && meeting_room.present? && meeting_room.external_id.present?
+
+    route = user.admin? ? :admin_meeting_url : :meeting_url
+    Utility::Url.generate(route, room_id: meeting_room.id, subdomain: subdomain_for(user))
   end
 
   def complete!
@@ -567,6 +566,12 @@ class UserAssessment < ApplicationRecord
   end
 
   private
+
+  def subdomain_for(user)
+    return if user.superadmin?
+
+    user.admin? ? AdminSubdomain.client_admin_subdomain(tenant&.subdomain) : user.subdomain
+  end
 
   def calculated_expiry_date
     assessment.extra['timer']&.seconds&.from_now

@@ -99,12 +99,11 @@ class Workshop < ApplicationRecord
   end
 
   def real_meeting_link(user)
-    if video_call_internal? && meeting_room.present? && meeting_room.external_id.present?
-      route = user.admin? ? :admin_meeting_url : :meeting_url
-      Utility::Url.generate(route, room_id: meeting_room.id, subdomain: user.subdomain)
-    elsif video_call_custom?
-      meeting_link
-    end
+    return meeting_link if video_call_custom?
+    return unless video_call_internal? && meeting_room.present? && meeting_room.external_id.present?
+
+    route = user.admin? ? :admin_meeting_url : :meeting_url
+    Utility::Url.generate(route, room_id: meeting_room.id, subdomain: subdomain_for(user))
   end
 
   def removeable?
@@ -122,5 +121,13 @@ class Workshop < ApplicationRecord
     updated_record_count = result.cmd_status.split.last.to_i
 
     raise ::Workshops::SeatsNotAvailableError if updated_record_count.zero?
+  end
+
+  private
+
+  def subdomain_for(user)
+    return if user.superadmin?
+
+    user.admin? ? AdminSubdomain.client_admin_subdomain(tenant&.subdomain) : user.subdomain
   end
 end

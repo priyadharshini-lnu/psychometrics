@@ -1369,7 +1369,7 @@ de:
     code_usage_limit_reached: Code-Nutzungslimit erreicht, bitte kontaktieren Sie den Administrator
     complete_prev: Schließen Sie alle vorherigen Bewertungen ab.
     complete_tasks: Bitte erledigen Sie die folgenden Aufgaben, bevor Sie diese Maßnahme ergreifen.
-    dashboard_instructions: Dir wurden mehrere Aktivitäten zugewiesen, die du abschließen musst. Stelle sicher, dass alle dir zugewiesenen Aktivitäten in allen Events abgeschlossen sind.
+    dashboard_instructions: Ihnen wurden mehrere Aufgaben zugewiesen. Bitte stellen Sie sicher, dass Sie alle zugewiesenen Aufgaben abschließen.
     dashboard_menu:
       campaign: Event
       direct_reportees: Direkte Berichte
