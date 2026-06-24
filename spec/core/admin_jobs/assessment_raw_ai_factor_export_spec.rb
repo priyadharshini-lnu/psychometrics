@@ -44,8 +44,7 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
     csv = Roo::CSV.new(active_storage_file_path(job_record.file))
 
     expect(csv.row(1)).to eq([
-      'Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-      'Relationship', 'Started At', 'Completed At', 'Score Calculated At', 'Status',
+      'Result ID', 'Subject Name', 'Subject Email', 'Started At', 'Completed At', 'Score Calculated At', 'Status',
       'AI Scoring Status', 'Approval Status', 'Approval Status Updated At', 'Score Assessed By',
       'Score Approved By', 'Score Assessed At', 'Score Approved At', 'factor 1'
     ])
@@ -54,9 +53,6 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
       users_result.encoded_id,
       'Subject, User',
       subject.email,
-      'Evaluator, User',
-      evaluator.email,
-      user_assessment.relationship&.name,
       users_result.created_at.to_s,
       users_result.completed_at.to_s,
       user_assessment.score_calculated_at.to_s,
@@ -80,7 +76,7 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
     csv = Roo::CSV.new(active_storage_file_path(job_record.file))
 
     expect(csv.last_row).to eq(2)
-    expect(csv.row(2)[10]).to eq('pending')
+    expect(csv.row(2)[7]).to eq('pending')
     expect(csv.row(2)[-1]).to eq('3.5')
   end
 
@@ -101,7 +97,7 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
 
       csv = Roo::CSV.new(active_storage_file_path(job_record.file))
 
-      expect(csv.row(2)[10]).to eq('pending')
+      expect(csv.row(2)[7]).to eq('pending')
       expect(csv.row(2)[-1]).to eq('3.5')
     end
 
@@ -111,7 +107,7 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
 
       csv = Roo::CSV.new(active_storage_file_path(job_record.file))
 
-      expect(csv.row(2)[10]).to eq('failed')
+      expect(csv.row(2)[7]).to eq('failed')
       expect(csv.row(2)[-1]).to eq('3.5')
     end
 
@@ -121,7 +117,7 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
 
       csv = Roo::CSV.new(active_storage_file_path(job_record.file))
 
-      expect(csv.row(2)[10]).to eq('processing')
+      expect(csv.row(2)[7]).to eq('processing')
       expect(csv.row(2)[-1]).to eq('3.5')
     end
   end
@@ -234,12 +230,12 @@ RSpec.describe AdminJobs::AssessmentRawAIFactorExport do
     csv = Roo::CSV.new(active_storage_file_path(job_record.file))
     row = csv.row(2)
 
-    expect(row[11]).to eq('pending')
+    expect(row[8]).to eq('pending')
+    expect(row[9]).to be_nil
+    expect(row[10]).to eq('')
+    expect(row[11]).to eq('')
     expect(row[12]).to be_nil
-    expect(row[13]).to eq('')
-    expect(row[14]).to eq('')
-    expect(row[15]).to be_nil
-    expect(row[16]).to be_nil
+    expect(row[13]).to be_nil
   end
 
   it 'excludes inactive campaign users by default' do

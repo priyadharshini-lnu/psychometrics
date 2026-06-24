@@ -4,8 +4,7 @@ module AdminJobs
   class AssessmentRawAIFactorExport < BaseExportAssessment
     def headers
       factor_names = ordered_factors.map(&:name)
-      ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-       'Relationship', 'Started At', 'Completed At', 'Score Calculated At', 'Status',
+      ['Result ID', 'Subject Name', 'Subject Email', 'Started At', 'Completed At', 'Score Calculated At', 'Status',
        'AI Scoring Status', 'Approval Status', 'Approval Status Updated At', 'Score Assessed By',
        'Score Approved By', 'Score Assessed At', 'Score Approved At', *factor_names]
     end
@@ -19,9 +18,6 @@ module AdminJobs
         user_result.encoded_id,
         user_name(user_result.subject.first_name, user_result.subject.last_name),
         user_result.subject.email,
-        user_name(user_result.evaluator.first_name, user_result.evaluator.last_name),
-        user_result.evaluator.email,
-        ua.relationship&.name,
         user_result.created_at.to_s,
         user_result.completed_at.to_s,
         ua.score_calculated_at.to_s,
@@ -42,11 +38,8 @@ module AdminJobs
                       where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id,
                                                 status: UserAssessment::DEEMED_COMPLETED_STATUS }).
                       where.not(ai_scoring_status: nil).
-                      includes(:norm, :subject, :evaluator, :ai_factor_scores,
-                               user_assessment: [
-                                 :relationship,
-                                 { score_assessed_by: [], score_approved_by: [] }
-                               ])
+                      includes(:norm, :subject, :ai_factor_scores,
+                               user_assessment: [{ score_assessed_by: [], score_approved_by: [] }])
 
       users_results = filter_active_campaign_users(users_results) unless include_inactive_users
 
