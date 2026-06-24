@@ -14,6 +14,8 @@ file_host: <%= ENV["FILE_HOST"] %>
 cloudfront_domain: <%= ENV["CLOUDFRONT_DOMAIN"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 real_env: <%= ENV["REAL_ENV"] %>
+sentry_url: <%= ENV.fetch('SENTRY_URL', '') %>
+sentry_debug: <%= ENV.fetch('SENTRY_DEBUG', 'false') %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
 skip_recaptcha_for_ips: <%= ENV.fetch('SKIP_RECAPTCHA_FOR_IPS', '').split(',').map(&:strip) %>

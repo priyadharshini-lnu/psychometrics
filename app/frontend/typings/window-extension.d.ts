@@ -35,6 +35,7 @@ declare global {
         id: number
         name: string
         subdomain: string
+        logo_url?: string | null
         sso_enforced?: boolean
         has_active_session: boolean
       }[]
