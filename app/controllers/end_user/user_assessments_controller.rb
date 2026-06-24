@@ -4,6 +4,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
   include AssessmentUtilities
   include AsyncRequestHandler
+  include AddCookie
 
   layout 'layouts/end_user'
 
@@ -75,7 +76,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   def pass
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
     if @current_project.available_locales.include?(lang.to_s)
-      cookies[:locale] = lang
+      add_cookie(:locale, lang)
       current_user&.user_profile&.update(locale: lang)
     end
     set_locale
@@ -90,7 +91,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   def begin
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
     if @current_project.available_locales.include?(lang.to_s)
-      cookies[:locale] = lang
+      add_cookie(:locale, lang)
       current_user&.user_profile&.update(locale: lang)
     end
     set_locale

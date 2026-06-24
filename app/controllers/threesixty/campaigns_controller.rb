@@ -3,6 +3,7 @@
 module Threesixty
   class CampaignsController < ApplicationController
     include ::Threesixty::InitialState
+    include AddCookie
 
     layout 'layouts/end_user'
     before_action :set_locale
@@ -51,7 +52,7 @@ module Threesixty
     end
 
     def change_locale
-      cookies[:locale] = params[:locale] if I18n.available_locales.include?(params[:locale]&.to_sym)
+      add_cookie(:locale, params[:locale]) if I18n.available_locales.include?(params[:locale]&.to_sym)
       set_locale
     end
 

@@ -3,6 +3,7 @@
 module Administration
   module ClientAdminAuthentication
     extend ActiveSupport::Concern
+    include AddCookie
 
     private
 
@@ -10,7 +11,7 @@ module Administration
       return if params[:handoff_token].blank?
       return unless Current.client_admin_context?
 
-      cookies[:locale] = LocaleValidator.sanitize(params[:locale]) if params[:locale].present?
+      add_cookie(:locale, LocaleValidator.sanitize(params[:locale])) if params[:locale].present?
 
       result = AdminAuth::ConsumeHandoffToken.call(
         params[:handoff_token],

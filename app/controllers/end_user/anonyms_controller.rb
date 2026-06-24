@@ -8,6 +8,7 @@ module EndUser
     include ControllerUtilities
     include AuthenticateAnonymousUser
     include AssessmentUtilities
+    include AddCookie
 
     layout 'layouts/end_user'
 
@@ -34,7 +35,7 @@ module EndUser
         @user_assessment.update(selected_locale: params[:lang])
 
         if @current_project.available_locales.include?(params[:lang])
-          cookies[:locale] = params[:lang]
+          add_cookie(:locale, params[:lang])
           current_user.user_profile.update_column(:locale, params[:lang])
         end
       end
