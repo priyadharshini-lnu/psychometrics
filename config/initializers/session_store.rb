@@ -15,11 +15,12 @@
 # same_site: 'Lax' is the secure default. CrossSiteCookies middleware
 # upgrades to 'None' only for iframe/proctoring contexts.
 secure = Settings.protocol == 'https'
+tld_length = Settings.domain == 'localhost' ? 0 : 2
 
 require_relative '../../lib/middlewares/db_session_scoper'
 
 Rails.application.config.session_store Middlewares::DbSessionScoper,
                                        key: '_psychometrics_session',
-                                       tld_length: 2,
+                                       tld_length: tld_length,
                                        same_site: 'Lax',
                                        secure: secure
