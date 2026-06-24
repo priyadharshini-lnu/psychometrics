@@ -418,7 +418,10 @@ class UserAssessment < ApplicationRecord
   end
 
   def auto_approve_scoring!
-    update!(approval_status: 'auto_approved', approval_status_updated_at: Time.current)
+    transaction do
+      users_result.ai_factor_scores.where.not(scoring_type: :aggregated).update_all(status: :auto_approved)
+      update!(approval_status: 'auto_approved', approval_status_updated_at: Time.current)
+    end
   end
 
   def update_norm!(norm_id)
