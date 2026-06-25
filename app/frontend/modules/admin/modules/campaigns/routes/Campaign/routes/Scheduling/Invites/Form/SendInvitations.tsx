@@ -74,7 +74,7 @@ export const SendInvitation: FC<Props> = ({
               collapsible
               title={I18n.t('admin.invite_send_invites_title',
                 { lang: I18n.t(`languages.${lang.locale}`) })}
-              description={I18n.t('admin.invite_send_invites_description')}
+              description={I18n.t('shared.description')}
             >
               <Row>
                 <Col sm={24} md={12} lg={8}>
@@ -95,7 +95,7 @@ export const SendInvitation: FC<Props> = ({
                   </Form.Item>
 
                   <Form.Item
-                    label={I18n.t('admin.invite_send_invites_description')}
+                    label={I18n.t('shared.description')}
                     validateStatus={errors?.[`translations/${index}/description`] ? 'error' : undefined}
                     hasFeedback={!!errors?.[`translations/${index}/description`]}
                     help={errors?.[`translations/${index}/description`]?.title}
