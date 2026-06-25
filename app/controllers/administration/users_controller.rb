@@ -116,42 +116,13 @@ class Administration::UsersController < Administration::BaseController
   protected
 
   def login_as_other_admin
-    return spoof_on_root_domain unless AdminSubdomain.client_admin_sso_enabled?
-
-    return spoof_on_root_domain unless resource.is?(:client_admin, :project_admin, :campaign_admin, :client_assessor)
-
-    clients = resource.clients_with_admin_access
-    return spoof_via_client_selection if clients.size > 1
-
-    client = clients.first
-    return spoof_on_root_domain unless client
-
-    spoof_via_handoff(client)
-  end
-
-  def spoof_via_handoff(client)
     audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
     siem_log_impersonation_event(resource, 'Admin')
-    redirect_via_handoff(resource, client, impersonated_by: current_user)
-  end
 
-  def spoof_via_client_selection
-    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
-    siem_log_impersonation_event(resource, 'Admin')
-    redirect_to administration_client_selection_path(spoof_user_id: resource.id)
-  end
-
-  def spoof_on_root_domain
-    redirect_url = if resource.assessors.exists?
-                     assessors_dashboard_path
-                   else
-                     "#{admin_path}/user_availabilities"
-                   end
-    audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
-    siem_log_impersonation_event(resource, 'Admin')
-    impersonate_as_admin(resource)
+    fallback_redirect_url = resource.assessors.exists? ? assessors_dashboard_path : "#{admin_path}/user_availabilities"
     flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
-    redirect_to redirect_url
+
+    spoof_admin_routing(resource, fallback_redirect_url: fallback_redirect_url)
   end
 
   def login_as_end_user

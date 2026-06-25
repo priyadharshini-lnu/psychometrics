@@ -83,13 +83,15 @@ module Administration
     end
 
     def spoof
-      audit! :sign_in_as, resource.user, payload: { sign_in_as: resource.user.email }
+      target_user = resource.user
+      client = resource.client.root
+
+      audit! :sign_in_as, target_user, payload: { sign_in_as: target_user.email }
       role_name = resource.role.to_s.humanize.titleize
-      siem_log_impersonation_event(resource.user, role_name)
-      impersonate_as_admin(resource.user)
-      redirect_url ||= admin_path
+      siem_log_impersonation_event(target_user, role_name)
+
       flash.now[:success] = t('administration.memberships.spoof.successfully', name: resource.decorate.display_name)
-      redirect_to redirect_url
+      spoof_admin_routing(target_user, client: client, fallback_redirect_url: admin_path)
     end
 
     def reset_password
