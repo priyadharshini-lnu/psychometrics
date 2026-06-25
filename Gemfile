@@ -10,7 +10,7 @@ gem 'erb',                        '< 5.0' # Pin to avoid frozen string issues in
 gem 'rack',                       '~> 3.2.6'
 
 gem 'barnes', '~> 0.0.7'
-gem 'faraday', '~> 1.10.5'
+gem 'faraday', '~> 2.14.3'
 gem 'jbuilder', '~> 2.12.0'
 gem 'jquery-rails', '~> 4.4.0'
 gem 'jwt', '~> 2.10'

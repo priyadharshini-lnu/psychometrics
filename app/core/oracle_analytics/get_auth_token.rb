@@ -20,8 +20,8 @@ module OracleAnalytics
       Rails.cache.fetch(self.class.cache_key, expires_in: 55.minutes) do
         client = Faraday.new(config[:base_api_url]) do |connection|
           connection.request :url_encoded
+          connection.request :authorization, :basic, secrets[:client_id], secrets[:client_secret]
           connection.adapter Faraday.default_adapter
-          connection.basic_auth(secrets[:client_id], secrets[:client_secret])
 
           connection.headers['Accept'] = 'application/json'
           connection.headers['Content-Type'] = 'application/x-www-form-urlencoded'

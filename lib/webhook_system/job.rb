@@ -104,7 +104,7 @@ module WebhookSystem
         faraday.response :encoding
         faraday.adapter Faraday.default_adapter
         if subscription.basic_auth? && subscription.username.present? && subscription.password.present?
-          faraday.request :basic_auth, subscription.username, subscription.password
+          faraday.request :authorization, :basic, subscription.username, subscription.password
         end
         if subscription.api_key_auth? && subscription.api_key.present?
           if subscription.api_key_header.present?
