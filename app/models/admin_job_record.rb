@@ -123,7 +123,8 @@ class AdminJobRecord < ApplicationRecord
     export_campaign_datasheet: 97,
     rescore_ai_scoring: 98,
     regenerate_assessment_transcriptions: 99,
-    copy_report: 100
+    copy_report: 100,
+    assessment_raw_ai_factor_export: 104
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

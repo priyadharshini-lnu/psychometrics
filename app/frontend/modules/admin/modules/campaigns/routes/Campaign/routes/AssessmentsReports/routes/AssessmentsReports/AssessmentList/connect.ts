@@ -8,9 +8,9 @@ import {
 import { isRequestInProgress } from '~/core/request'
 import {
   rescoreResponses, remove, exportRawResults, exportScoringResults, exportOccupations,
-  exportNormedResults, exportRawFactorScores, enableUniversalLink, exportExternalResults, updateExternalConfig,
-  updatePrework, updateWorkshopActivity, toggleRequireScheduling, toggleAutoAssign, updateMettlSchedule,
-  normalizeFactorScores, updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
+  exportNormedResults, exportRawFactorScores, exportAiFactorScores, enableUniversalLink, exportExternalResults,
+  updateExternalConfig, updatePrework, updateWorkshopActivity, toggleRequireScheduling, toggleAutoAssign,
+  updateMettlSchedule, normalizeFactorScores, updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
   updatePearsonVariation, toggleAssessmentCaching, updateMhsConfidenceInterval, updateMhsLeadershipBar,
   updateMhsNormRegion, updateMhsNormOption, regenerateTranscriptions, updateProctoringSettings,
   UPDATE_PROCTORING_SETTINGS,
@@ -38,6 +38,7 @@ const connecter = connect(
     exportScoringResults,
     exportNormedResults,
     exportRawFactorScores,
+    exportAiFactorScores,
     exportExternalResults,
     exportOccupations,
     enableUniversalLink,

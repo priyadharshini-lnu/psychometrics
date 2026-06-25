@@ -30,6 +30,7 @@ module Administration
           required(:export_raw_results).filled(:bool?)
           required(:export_scoring_results).filled(:bool?)
           required(:export_raw_factor_scores).filled(:bool?)
+          required(:export_ai_factor_scores).filled(:bool?)
           required(:export_normed_results).filled(:bool?)
           required(:export_external_results).filled(:bool?)
           required(:rescore_responses).filled(:bool?)

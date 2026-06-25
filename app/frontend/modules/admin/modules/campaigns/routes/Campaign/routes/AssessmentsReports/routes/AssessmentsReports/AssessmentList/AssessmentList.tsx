@@ -30,6 +30,7 @@ const AssessmentList: React.FC<Props> = ({
   exportScoringResults,
   exportNormedResults,
   exportRawFactorScores,
+  exportAiFactorScores,
   exportExternalResults,
   exportOccupations,
   updateMettlSchedule,
@@ -301,6 +302,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportScoringResults,
                     exportNormedResults,
                     exportRawFactorScores,
+                    exportAiFactorScores,
                     exportOccupations,
                     normalizeFactorScores: (
                       () => normalizeFactorScores(parsedCampaignId, assessment.id)
