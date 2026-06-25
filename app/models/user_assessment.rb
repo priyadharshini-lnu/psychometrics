@@ -15,8 +15,6 @@ class UserAssessment < ApplicationRecord
   belongs_to :norm
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
-  belongs_to :score_assessed_by, class_name: 'User', optional: true
-  belongs_to :score_approved_by, class_name: 'User', optional: true
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by, class_name: 'User'
@@ -418,10 +416,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def auto_approve_scoring!
-    transaction do
-      users_result.ai_factor_scores.where.not(scoring_type: :aggregated).update_all(status: :auto_approved)
-      update!(approval_status: 'auto_approved', approval_status_updated_at: Time.current)
-    end
+    update!(approval_status: 'auto_approved', approval_status_updated_at: Time.current)
   end
 
   def update_norm!(norm_id)

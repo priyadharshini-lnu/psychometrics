@@ -27,7 +27,6 @@ export const APPROVAL_STATUS = {
   pending: <Tag color="blue">{I18n.t('shared.pending')}</Tag>,
   assessor_approved: <Tag color="orange">{I18n.t('shared.assessor_approved')}</Tag>,
   approver_approved: <Tag color="green">{I18n.t('shared.approved')}</Tag>,
-  auto_approved: <Tag color="green">{I18n.t('shared.auto_approved')}</Tag>,
 }
 
 const connecter = connect(
@@ -400,7 +399,6 @@ const TasksListComponent: React.FC<Props> = ({
               { id: 'pending', name: I18n.t('shared.pending') },
               { id: 'assessor_approved', name: I18n.t('shared.assessor_approved') },
               { id: 'approver_approved', name: I18n.t('shared.approved') },
-              { id: 'auto_approved', name: I18n.t('shared.auto_approved') },
             ],
           )}
           render={({ approvalStatus }) => (

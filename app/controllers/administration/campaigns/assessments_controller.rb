@@ -47,18 +47,6 @@ module Administration
         head :ok
       end
 
-      def export_ai_factor_scores
-        audit! :export_ai_factor_scores, assessment, campaign: campaign,
-               payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }
-        AdminJob.call(
-          :assessment_raw_ai_factor_export,
-          { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: include_inactive_users },
-          current_user
-        )
-
-        head :ok
-      end
-
       def export_normed_results
         audit! :export_normed_results, assessment, campaign: campaign,
                payload: { campaign_id: campaign.id, campaign_assessment_id: campaign_assessment&.id }

@@ -9,7 +9,7 @@ import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
   rescoreResponses, remove, exportRawResults, exportScoringResults,
-  exportNormedResults, exportRawFactorScores, exportAiFactorScores, exportExternalResults,
+  exportNormedResults, exportRawFactorScores, exportExternalResults,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -38,7 +38,6 @@ const connector = connect(
     exportScoringResults,
     exportNormedResults,
     exportRawFactorScores,
-    exportAiFactorScores,
     exportExternalResults,
   },
 )
@@ -62,7 +61,6 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   exportScoringResults,
   exportNormedResults,
   exportRawFactorScores,
-  exportAiFactorScores,
   exportExternalResults,
   onTableChange,
 }) => {
@@ -114,7 +112,6 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       exportScoringResults,
                       exportNormedResults,
                       exportRawFactorScores,
-                      exportAiFactorScores,
                       exportExternalResults,
                       optionsOverrides: { remove: false, updateExternalConfig: false },
                       message,

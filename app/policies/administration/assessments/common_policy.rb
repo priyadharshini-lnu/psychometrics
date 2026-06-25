@@ -33,12 +33,6 @@ module Administration
         ))
       end
 
-      def export_ai_factor_scores?
-        @record.has_ai_questions? && @record.dimension.present? && (@user.is?(:superadmin) || @user.has_permission?(
-          :results, :scores, project_id: project_id, campaign_id: campaign_id
-        ))
-      end
-
       def export_external_results?
         !@record.common? && (@user.is?(:superadmin) || @user.has_permission?(
           :results, :scores, project_id: project_id, campaign_id: campaign_id

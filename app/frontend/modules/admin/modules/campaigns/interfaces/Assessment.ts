@@ -42,8 +42,7 @@ export default interface Assessment {
     exportScoringResults: boolean
     exportNormedResults: boolean
     exportRawFactorScores: boolean
-    exportExternalResults: boolean,
-    exportAiFactorScores: boolean,
+    exportExternalResults: boolean
     exportOccupations: boolean
     importResults: boolean
     remove: boolean
