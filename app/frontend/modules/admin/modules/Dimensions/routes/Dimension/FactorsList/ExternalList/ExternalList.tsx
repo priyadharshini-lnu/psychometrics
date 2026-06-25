@@ -6,7 +6,7 @@ import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '../SubFactorList/styles.less'
 
 const { I18n } = window
-const EXTERNAL_SCORING = 'external_scoring'
+const EXTERNAL_SCORING = 'externalScoring'
 
 const TYPES = [
   'score',
