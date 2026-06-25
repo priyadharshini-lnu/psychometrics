@@ -49,7 +49,7 @@ module UsersResults
         evaluation_session_id: nil,
         score_calculated: false,
         score_calculated_at: nil,
-        approval_status: :pending,
+        approval_status: nil,
         approval_status_updated_at: nil,
         score_assessed_by_id: nil,
         score_approved_by_id: nil,

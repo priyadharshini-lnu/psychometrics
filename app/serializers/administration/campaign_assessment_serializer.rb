@@ -96,6 +96,7 @@ module Administration
           'export_raw_results',
           'export_scoring_results',
           'export_raw_factor_scores',
+          'export_ai_factor_scores',
           'export_normed_results',
           'export_external_results',
           'export_occupations',
