@@ -43,6 +43,7 @@ export interface ActionMenuData {
   exportScoringResults: AssessmentListProps['exportScoringResults']
   exportNormedResults: AssessmentListProps['exportNormedResults']
   exportRawFactorScores: AssessmentListProps['exportRawFactorScores']
+  exportAiFactorScores: AssessmentListProps['exportAiFactorScores']
   exportOccupations?: AssessmentListProps['exportOccupations']
   normalizeFactorScores?: AssessmentListProps['normalizeFactorScores']
   exportExternalResults: AssessmentListProps['exportExternalResults']
@@ -51,7 +52,7 @@ export interface ActionMenuData {
 
 export const getActionsMenuProps = ({
   projectId, campaignId, assessment, openModal, rescoreResponses, regenerateTranscriptions, exportRawResults,
-  exportScoringResults, exportNormedResults, exportRawFactorScores, normalizeFactorScores,
+  exportScoringResults, exportNormedResults, exportRawFactorScores, exportAiFactorScores, normalizeFactorScores,
   exportExternalResults, updateExternalConfig, optionsOverrides, message, modal, exportOccupations,
 }:ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
@@ -111,6 +112,14 @@ export const getActionsMenuProps = ({
     })
   }
 
+  const handleAiFactorExport = () => {
+    openModal('UserFilterModal', {
+      ids: [campaignId, id],
+      action: exportAiFactorScores,
+      onSuccess: () => { message.success(I18n.t('campaign_assessment.messages.raw_ai_factor_export_scheduled')) },
+    })
+  }
+
   const handleExternalResultExport = () => {
     exportExternalResults(campaignId, id).then(() => {
       message.success(I18n.t('campaign_assessment.messages.external_results_export_scheduled'))
@@ -164,6 +173,10 @@ export const getActionsMenuProps = ({
   permissions.exportRawFactorScores && exportGroupItems.push({
     key: 'export_raw_scores',
     label: I18n.t('campaign_assessment.actions.export_raw_scores'),
+  })
+  permissions.exportAiFactorScores && exportGroupItems.push({
+    key: 'export_raw_ai_scores',
+    label: I18n.t('campaign_assessment.actions.export_raw_ai_scores'),
   })
   permissions.exportExternalResults && exportGroupItems.push({
     key: 'export_external',
@@ -231,6 +244,9 @@ export const getActionsMenuProps = ({
     }
     if (key === 'export_raw_scores') {
       return handleRawFactorExport()
+    }
+    if (key === 'export_raw_ai_scores') {
+      return handleAiFactorExport()
     }
     if (key === 'export_external') {
       return handleExternalResultExport()

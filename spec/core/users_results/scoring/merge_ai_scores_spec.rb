@@ -35,10 +35,10 @@ describe UsersResults::Scoring::MergeAIScores do
                factor: factor1,
                question: question1,
                score: 4.0,
-               status: :approver_approved)
+               status: :auto_approved)
       end
 
-      it 'merges AI scores into scoring' do
+      it 'merges auto-approved AI scores into scoring' do
         result = described_class.call!(users_result)
 
         expect(result.keys).to include(factor1.id.to_s)

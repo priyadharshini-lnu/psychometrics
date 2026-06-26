@@ -7,7 +7,7 @@ RSpec.describe Microsite::AnswerConverters::TfGrid do
 
   describe '.build_answers' do
     context 'with all answered (true/false)' do
-      it 'converts to MatrixTable format with scale/choice/value' do
+      it 'converts to MatrixTable format with scale/choice/value/recode_value' do
         result = {
           'kind' => 'tf_grid',
           'choices' => { 's1' => 'true', 's2' => 'false', 's3' => 'true' }
@@ -15,32 +15,30 @@ RSpec.describe Microsite::AnswerConverters::TfGrid do
         response = described_class.build_answers(result, question)
 
         expect(response['answers']).to contain_exactly(
-          { 'scale' => 0, 'choice' => 0, 'value' => true },  # s1 = true
-          { 'scale' => 1, 'choice' => 1, 'value' => true },  # s2 = false
-          { 'scale' => 0, 'choice' => 2, 'value' => true }   # s3 = true
+          { 'scale' => 0, 'value' => true, 'choice' => 0, 'recode_value' => 1 },  # s1 = true
+          { 'scale' => 1, 'value' => true, 'choice' => 1, 'recode_value' => 2 },  # s2 = false
+          { 'scale' => 0, 'value' => true, 'choice' => 2, 'recode_value' => 1 }   # s3 = true
         )
-        expect(response['not_applicable']).to eq({})
+        expect(response['not_applicable']).to be_nil
       end
 
       it 'extracts choice index from statement ID regardless of hash order' do
-        # Simulate out-of-order hash keys (s3 first, then s1, then s2)
         result = {
           'kind' => 'tf_grid',
           'choices' => { 's3' => 'true', 's1' => 'false', 's2' => 'true' }
         }
         response = described_class.build_answers(result, question)
 
-        # Should correctly map: s1→0, s2→1, s3→2 regardless of hash key order
         expect(response['answers']).to contain_exactly(
-          { 'scale' => 1, 'choice' => 0, 'value' => true },  # s1 = false
-          { 'scale' => 0, 'choice' => 1, 'value' => true },  # s2 = true
-          { 'scale' => 0, 'choice' => 2, 'value' => true }   # s3 = true
+          { 'scale' => 1, 'value' => true, 'choice' => 0, 'recode_value' => 2 },  # s1 = false
+          { 'scale' => 0, 'value' => true, 'choice' => 1, 'recode_value' => 1 },  # s2 = true
+          { 'scale' => 0, 'value' => true, 'choice' => 2, 'recode_value' => 1 }   # s3 = true
         )
       end
     end
 
     context 'with unknown/Cannot Say responses' do
-      it 'marks unknown choices as not_applicable' do
+      it 'includes unknown responses with scale 2 and recode_value 3' do
         result = {
           'kind' => 'tf_grid',
           'choices' => { 's1' => 'true', 's2' => 'unknown', 's3' => 'false' }
@@ -48,10 +46,11 @@ RSpec.describe Microsite::AnswerConverters::TfGrid do
         response = described_class.build_answers(result, question)
 
         expect(response['answers']).to contain_exactly(
-          { 'scale' => 0, 'choice' => 0, 'value' => true },  # s1 = true
-          { 'scale' => 1, 'choice' => 2, 'value' => true }   # s3 = false
+          { 'scale' => 0, 'value' => true, 'choice' => 0, 'recode_value' => 1 },  # s1 = true
+          { 'scale' => 2, 'value' => true, 'choice' => 1, 'recode_value' => 3 },  # s2 = unknown
+          { 'scale' => 1, 'value' => true, 'choice' => 2, 'recode_value' => 2 }   # s3 = false
         )
-        expect(response['not_applicable']).to eq({ '1' => true }) # s2 is not applicable
+        expect(response['not_applicable']).to be_nil
       end
 
       it 'handles all unknown responses' do
@@ -61,8 +60,11 @@ RSpec.describe Microsite::AnswerConverters::TfGrid do
         }
         response = described_class.build_answers(result, question)
 
-        expect(response['answers']).to eq([])
-        expect(response['not_applicable']).to eq({ '0' => true, '1' => true })
+        expect(response['answers']).to contain_exactly(
+          { 'scale' => 2, 'value' => true, 'choice' => 0, 'recode_value' => 3 },
+          { 'scale' => 2, 'value' => true, 'choice' => 1, 'recode_value' => 3 }
+        )
+        expect(response['not_applicable']).to be_nil
       end
     end
 
@@ -81,12 +83,13 @@ RSpec.describe Microsite::AnswerConverters::TfGrid do
         response = described_class.build_answers(result, question)
 
         expect(response['answers']).to contain_exactly(
-          { 'scale' => 0, 'choice' => 0, 'value' => true },
-          { 'scale' => 1, 'choice' => 1, 'value' => true },
-          { 'scale' => 0, 'choice' => 3, 'value' => true },
-          { 'scale' => 1, 'choice' => 4, 'value' => true }
+          { 'scale' => 0, 'value' => true, 'choice' => 0, 'recode_value' => 1 },
+          { 'scale' => 1, 'value' => true, 'choice' => 1, 'recode_value' => 2 },
+          { 'scale' => 2, 'value' => true, 'choice' => 2, 'recode_value' => 3 },
+          { 'scale' => 0, 'value' => true, 'choice' => 3, 'recode_value' => 1 },
+          { 'scale' => 1, 'value' => true, 'choice' => 4, 'recode_value' => 2 }
         )
-        expect(response['not_applicable']).to eq({ '2' => true })
+        expect(response['not_applicable']).to be_nil
       end
     end
 
@@ -103,13 +106,13 @@ RSpec.describe Microsite::AnswerConverters::TfGrid do
     end
   end
 
-  describe 'scale constants' do
-    it 'has TRUE_SCALE as 0' do
-      expect(described_class::TRUE_SCALE).to eq(0)
+  describe 'constants' do
+    it 'has correct SCALE_VALUES mapping' do
+      expect(described_class::SCALE_VALUES).to eq('true' => 0, 'false' => 1, 'unknown' => 2)
     end
 
-    it 'has FALSE_SCALE as 1' do
-      expect(described_class::FALSE_SCALE).to eq(1)
+    it 'has correct RECODE_VALUES mapping' do
+      expect(described_class::RECODE_VALUES).to eq('true' => 1, 'false' => 2, 'unknown' => 3)
     end
   end
 end

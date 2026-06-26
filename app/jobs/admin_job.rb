@@ -31,6 +31,7 @@ class AdminJob < ApplicationJob
     assessment_scoring_export: AdminJobs::AssessmentRawExport,
     assessment_norm_export: AdminJobs::AssessmentNormExport,
     assessment_raw_factor_export: AdminJobs::AssessmentRawFactorExport,
+    assessment_raw_ai_factor_export: AdminJobs::AssessmentRawAIFactorExport,
     external_assessment_export: AdminJobs::ExternalAssessmentExport,
     import_sms_invites: AdminJobs::ImportSmsInvites,
     send_sms_invites: AdminJobs::SendSmsInvites,

@@ -15,6 +15,8 @@ end
 Rails.application.config.to_prepare do
   ActiveSupport.on_load(:active_storage_attachment) do
     include AttachmentAIAssistanceExtensions
+
+    instance_variable_set(:@tenant_config_options, { has_global_records: true, optional: true })
     include Tenantable
 
     tenant_source :record
