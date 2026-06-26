@@ -853,6 +853,7 @@ sr-Latn:
       operations:
         add_campaign_reports: Dodajte izveštaje o kampanji
         assessment_norm_export: Normed Rezultati Izvoz
+        assessment_raw_ai_factor_export: Извоз сирих факторских оцена вештачке интелигенције
         assessment_raw_factor_export: Rav Factor Rezultati Izvoz
         assessment_raw_result_export: Sirovi rezultati Izvoz
         assessment_scoring_export: Bodovanje Rezultati Izvoz
@@ -1022,6 +1023,7 @@ sr-Latn:
       evaluate: Procenite
       export: Izvoz
       export_normed: Normirani faktorski rezultati
+      export_raw_ai_scores: Сирови АИ фактор резултати
       export_raw_labels: Sirovo (sa etiketama)
       export_raw_scores: Rav Factor Rezultati
       export_raw_without_labels: Sirovo (bez etiketa)
@@ -1442,6 +1444,7 @@ sr-Latn:
       export_external: Spoljnih
       export_normed: Normirani faktorski rezultati
       export_occupations: Zanimanja
+      export_raw_ai_scores: Сирови АИ фактор резултати
       export_raw_labels: Sirovo (sa etiketama)
       export_raw_scores: Rav Factor Rezultati
       export_raw_without_labels: Sirovo (bez etiketa)
@@ -1495,6 +1498,7 @@ sr-Latn:
       no_participants_selected: Molimo vas da izaberete najmanje jednog učesnika da biste nastavili.
       norm_results_export_scheduled: Procena Normed Rezultati izvoz posao je uspešno zakazan
       normalize_factor_scores_scheduled: Normalizacija faktora rezultata posao je uspešno zakazan.
+      raw_ai_factor_export_scheduled: Задатак за извоз процене сировог АИ фактора је успешно заказан
       raw_factor_export_scheduled: Procena Sirovi faktor izvoz posao je uspešno zakazan
       raw_results_export_scheduled: Procena Rav Results izvoz posao je uspešno zakazan
       scoring_results_export_scheduled: Procena Bodovanje Rezultati izvoz posao je uspešno zakazan

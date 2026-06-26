@@ -25,6 +25,7 @@ fr:
     audio: Audio
     audio_devices: Périphériques audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
+    auto_approved: Approuvé automatiquement
     back: Retour
     basic: Basique
     bulk_download: Téléchargement en masse

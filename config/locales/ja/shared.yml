@@ -25,6 +25,7 @@ ja:
     audio: オーディオ
     audio_devices: オーディオ機器
     authentication_failed: 認証に失敗しました。もう一度お試しください。
+    auto_approved: 自動承認
     back: 戻る
     basic: 基本的な
     bulk_download: 一括ダウンロード

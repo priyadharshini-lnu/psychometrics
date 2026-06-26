@@ -25,6 +25,7 @@ sr-Latn:
     audio: Аудио
     audio_devices: Аудио уређаји
     authentication_failed: Autentifikacija nije uspela. Pokušajte ponovo.
+    auto_approved: Ауто одобрено
     back: Назад
     basic: Osnovne
     bulk_download: Zbirno preuzimanje

@@ -25,6 +25,7 @@ id:
     audio: Audio
     audio_devices: Perangkat Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
+    auto_approved: Disetujui Otomatis
     back: Kembali
     basic: Dasar
     bulk_download: Unduh Massal

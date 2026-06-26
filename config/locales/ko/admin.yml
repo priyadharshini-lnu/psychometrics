@@ -3025,6 +3025,7 @@ ko:
     timezone: 타임존
     timezone_label: 시간대
     timing: 시기
+    title: 메시지
     to: "~에게"
     token_url_label: 토큰 URL
     token_url_name: oauth_token_url

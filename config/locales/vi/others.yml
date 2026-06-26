@@ -853,6 +853,7 @@ vi:
       operations:
         add_campaign_reports: Thêm báo cáo chiến dịch
         assessment_norm_export: Xuất kết quả theo tiêu chuẩn
+        assessment_raw_ai_factor_export: Xuất điểm số yếu tố AI thô
         assessment_raw_factor_export: Xuất điểm yếu tố thô
         assessment_raw_result_export: Xuất kết quả thô
         assessment_scoring_export: Xuất kết quả tính điểm
@@ -1022,6 +1023,7 @@ vi:
       evaluate: Đánh giá
       export: Xuất khẩu
       export_normed: Điểm yếu tố định mức
+      export_raw_ai_scores: Điểm số yếu tố AI thô
       export_raw_labels: Thô (có nhãn)
       export_raw_scores: Điểm yếu tố thô
       export_raw_without_labels: Nguyên (không có nhãn)
@@ -1433,6 +1435,7 @@ vi:
       export_external: Ngoài
       export_normed: Điểm yếu tố định mức
       export_occupations: Nghề
+      export_raw_ai_scores: Điểm số yếu tố AI thô
       export_raw_labels: Thô (có nhãn)
       export_raw_scores: Điểm yếu tố thô
       export_raw_without_labels: Nguyên (không có nhãn)
@@ -1486,6 +1489,7 @@ vi:
       no_participants_selected: Vui lòng chọn ít nhất một người tham gia để tiếp tục.
       norm_results_export_scheduled: Công việc xuất kết quả theo tiêu chuẩn đánh giá đã được lên lịch thành công
       normalize_factor_scores_scheduled: Công việc chuẩn hóa điểm yếu tố đã được lên lịch thành công.
+      raw_ai_factor_export_scheduled: Tác vụ xuất dữ liệu thô về Hệ số AI đã được lên lịch thành công
       raw_factor_export_scheduled: Đánh giá công việc xuất Raw Factor đã được lên lịch thành công
       raw_results_export_scheduled: Công việc xuất Kết quả thô của Đánh giá đã được lên lịch thành công
       scoring_results_export_scheduled: Công việc xuất kết quả chấm điểm đánh giá đã được lên lịch thành công

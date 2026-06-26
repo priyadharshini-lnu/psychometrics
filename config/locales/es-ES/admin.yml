@@ -3025,6 +3025,7 @@ es-ES:
     timezone: Zona horaria
     timezone_label: Zona horaria
     timing: Momento oportuno
+    title: Mensajes
     to: A
     token_url_label: Token URL
     token_url_name: oauth_token_url

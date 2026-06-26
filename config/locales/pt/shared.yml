@@ -25,6 +25,7 @@ pt:
     audio: Áudio
     audio_devices: Dispositivos de áudio
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
+    auto_approved: Aprovado automaticamente
     back: Voltar
     basic: Básico
     bulk_download: Transferência em massa

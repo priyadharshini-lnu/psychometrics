@@ -3025,6 +3025,7 @@ pt:
     timezone: Fuso horário
     timezone_label: Fuso horário
     timing: Momento certo
+    title: Mensagens
     to: Para
     token_url_label: Token URL
     token_url_name: oauth_token_url

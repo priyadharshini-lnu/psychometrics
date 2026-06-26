@@ -25,6 +25,7 @@ cs:
     audio: Audio
     audio_devices: Zvuková zařízení
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
+    auto_approved: Automaticky schváleno
     back: Zpět
     basic: Základní
     bulk_download: Hromadné stahování

@@ -853,6 +853,7 @@ fr:
       operations:
         add_campaign_reports: Ajouter des rapports de campagne
         assessment_norm_export: Exportation des résultats normalisés
+        assessment_raw_ai_factor_export: Exportation des scores bruts du « Raw AI Factor »
         assessment_raw_factor_export: Scores factoriels bruts Exportation
         assessment_raw_result_export: Exportation des résultats bruts
         assessment_scoring_export: Exportation des résultats de notation
@@ -1022,6 +1023,7 @@ fr:
       evaluate: Évaluer
       export: Exportation
       export_normed: Scores factoriels normalisés
+      export_raw_ai_scores: Scores bruts du facteur IA
       export_raw_labels: Brut (avec étiquettes)
       export_raw_scores: Scores factoriels bruts
       export_raw_without_labels: Brut (sans étiquette)
@@ -1439,6 +1441,7 @@ fr:
       export_external: Externe
       export_normed: Scores factoriels normalisés
       export_occupations: Professions
+      export_raw_ai_scores: Scores bruts du facteur IA
       export_raw_labels: Brut (avec étiquettes)
       export_raw_scores: Scores factoriels bruts
       export_raw_without_labels: Brut (sans étiquette)
@@ -1492,6 +1495,7 @@ fr:
       no_participants_selected: Veuillez sélectionner au moins un participant pour continuer.
       norm_results_export_scheduled: La tâche d'exportation des résultats normalisés de l'évaluation a été programmée avec succès
       normalize_factor_scores_scheduled: Le travail de normalisation des scores factoriels a été planifié avec succès.
+      raw_ai_factor_export_scheduled: La tâche d'exportation « Assessment Raw AI Factor » a été planifiée avec succès
       raw_factor_export_scheduled: Le job d'exportation de l'évaluation des facteurs bruts a été planifié avec succès
       raw_results_export_scheduled: La tâche d'exportation des résultats bruts de l'évaluation a été programmée avec succès
       scoring_results_export_scheduled: Résultats de la notation de l'évaluation Le travail d'exportation a été programmé avec succès

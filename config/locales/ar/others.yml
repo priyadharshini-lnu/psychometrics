@@ -853,6 +853,7 @@ ar:
       operations:
         add_campaign_reports: إضافة تقارير الحملة
         assessment_norm_export: تصدير النتائج المعيارية
+        assessment_raw_ai_factor_export: تصدير درجات عامل الذكاء الاصطناعي الأولية
         assessment_raw_factor_export: تصدير درجات العامل الخام
         assessment_raw_result_export: تصدير النتائج الأولية
         assessment_scoring_export: تصدير نتائج التسجيل
@@ -1022,6 +1023,7 @@ ar:
       evaluate: تقييم
       export: التصدير
       export_normed: درجات العامل المعياري
+      export_raw_ai_scores: الدرجات الأولية لعامل الذكاء الاصطناعي
       export_raw_labels: خام (مع ملصقات)
       export_raw_scores: درجات العامل الخام
       export_raw_without_labels: خام (بدون ملصقات)
@@ -1452,6 +1454,7 @@ ar:
       export_external: خارجي
       export_normed: درجات العامل المعياري
       export_occupations: مهن
+      export_raw_ai_scores: الدرجات الأولية لعامل الذكاء الاصطناعي
       export_raw_labels: خام (مع ملصقات)
       export_raw_scores: درجات العامل الخام
       export_raw_without_labels: خام (بدون ملصقات)
@@ -1505,6 +1508,7 @@ ar:
       no_participants_selected: يرجى تحديد مشارك واحد على الأقل للمتابعة.
       norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
       normalize_factor_scores_scheduled: تمت جدولة وظيفة تطبيع درجات العامل بنجاح.
+      raw_ai_factor_export_scheduled: تم جدولة مهمة تصدير «عامل الذكاء الاصطناعي الخام» بنجاح
       raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
       raw_results_export_scheduled: تمت جدولة مهمة تصدير النتائج الأولية للتقييم بنجاح
       scoring_results_export_scheduled: تمت جدولة مهمة تصدير نتائج تسجيل التقييم بنجاح

@@ -853,6 +853,7 @@ de:
       operations:
         add_campaign_reports: Kampagnenberichte hinzufügen
         assessment_norm_export: Export von normierten Ergebnissen
+        assessment_raw_ai_factor_export: Export der Rohwerte des KI-Faktors
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Export von Rohergebnissen
         assessment_scoring_export: Export der Bewertungsergebnisse
@@ -1022,6 +1023,7 @@ de:
       evaluate: Bewerten Sie
       export: Exportieren
       export_normed: Genormte Faktor-Scores
+      export_raw_ai_scores: Rohwerte des KI-Faktors
       export_raw_labels: Roh (mit Etiketten)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Roh (ohne Etiketten)
@@ -1453,6 +1455,7 @@ de:
       export_external: Extern
       export_normed: Normierte Faktorwerte
       export_occupations: Berufe
+      export_raw_ai_scores: Rohwerte des KI-Faktors
       export_raw_labels: Roh (mit Etiketten)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Roh (ohne Etiketten)
@@ -1506,6 +1509,7 @@ de:
       no_participants_selected: Bitte wählen Sie mindestens einen Teilnehmer aus, um fortzufahren.
       norm_results_export_scheduled: Exportauftrag für genormte Bewertungsergebnisse wurde erfolgreich geplant
       normalize_factor_scores_scheduled: Der Auftrag zur Normalisierung der Faktorwerte wurde erfolgreich geplant.
+      raw_ai_factor_export_scheduled: Der Exportauftrag für den „Assessment Raw AI Factor“ wurde erfolgreich geplant.
       raw_factor_export_scheduled: Bewertung Raw Factor-Exportauftrag wurde erfolgreich geplant
       raw_results_export_scheduled: Exportauftrag für Bewertungsrohdaten wurde erfolgreich geplant
       scoring_results_export_scheduled: Bewertungsergebnisse Exportauftrag wurde erfolgreich geplant

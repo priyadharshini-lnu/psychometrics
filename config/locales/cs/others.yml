@@ -853,6 +853,7 @@ cs:
       operations:
         add_campaign_reports: Přidání zpráv o kampani
         assessment_norm_export: Export normalizovaných výsledků
+        assessment_raw_ai_factor_export: Export surových skóre faktoru AI
         assessment_raw_factor_export: Vývoz nezpracovaných skóre faktorů
         assessment_raw_result_export: Export nezpracovaných výsledků
         assessment_scoring_export: Export výsledků bodování
@@ -1022,6 +1023,7 @@ cs:
       evaluate: Vyhodnocení
       export: Export
       export_normed: Normované skóre faktorů
+      export_raw_ai_scores: Hodnoty faktoru „Raw AI“
       export_raw_labels: Surové (s etiketami)
       export_raw_scores: Surové skóre faktorů
       export_raw_without_labels: Surové (bez štítků)
@@ -1451,6 +1453,7 @@ cs:
       export_external: Externí
       export_normed: Normované skóre faktorů
       export_occupations: Povolání
+      export_raw_ai_scores: Hodnoty faktoru „Raw AI“
       export_raw_labels: Surové (s etiketami)
       export_raw_scores: Surové skóre faktorů
       export_raw_without_labels: Surové (bez štítků)
@@ -1504,6 +1507,7 @@ cs:
       no_participants_selected: Vyberte alespoň jednoho účastníka, který má pokračovat.
       norm_results_export_scheduled: Exportní úloha Assessment Normed Results byla úspěšně naplánována
       normalize_factor_scores_scheduled: Úloha normalizace skóre faktorů byla úspěšně naplánována.
+      raw_ai_factor_export_scheduled: Úloha exportu surových hodnot faktoru AI byla úspěšně naplánována
       raw_factor_export_scheduled: Úloha exportu Assessment Raw Factor byla úspěšně naplánována
       raw_results_export_scheduled: Úloha exportu surových výsledků hodnocení byla úspěšně naplánována
       scoring_results_export_scheduled: Výsledky bodového hodnocení Exportní úloha byla úspěšně naplánována

@@ -25,6 +25,7 @@ ru:
     audio: Аудио
     audio_devices: Аудиоустройства
     authentication_failed: Аутентификация не удалась. Повторите попытку.
+    auto_approved: Автоматическое одобрение
     back: Назад
     basic: Базовый
     bulk_download: Массовая загрузка

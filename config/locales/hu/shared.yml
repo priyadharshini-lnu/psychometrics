@@ -25,6 +25,7 @@ hu:
     audio: Audio
     audio_devices: Hangeszközök
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
+    auto_approved: Automatikus jóváhagyás
     back: Vissza
     basic: Alapvető
     bulk_download: Tömeges letöltés

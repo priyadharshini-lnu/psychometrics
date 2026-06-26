@@ -853,6 +853,7 @@ ru:
       operations:
         add_campaign_reports: Добавить отчеты по кампаниям
         assessment_norm_export: Экспорт нормированных результатов
+        assessment_raw_ai_factor_export: Экспорт исходных оценок по фактору ИИ
         assessment_raw_factor_export: Экспорт сырых факторов
         assessment_raw_result_export: Экспорт необработанных результатов
         assessment_scoring_export: Экспорт результатов оценки
@@ -1022,6 +1023,7 @@ ru:
       evaluate: Оценить
       export: Экспорт
       export_normed: Нормированные баллы факторов
+      export_raw_ai_scores: Оценки по фактору «Raw AI»
       export_raw_labels: Сырой (с этикетками)
       export_raw_scores: Сырые факторы
       export_raw_without_labels: Сырой (без этикеток)
@@ -1451,6 +1453,7 @@ ru:
       export_external: Внешний
       export_normed: Нормированные баллы факторов
       export_occupations: Профессии
+      export_raw_ai_scores: Оценки по фактору «Raw AI»
       export_raw_labels: Сырой (с этикетками)
       export_raw_scores: Сырые факторы
       export_raw_without_labels: Сырой (без этикеток)
@@ -1504,6 +1507,7 @@ ru:
       no_participants_selected: Пожалуйста, выберите хотя бы одного участника, чтобы продолжить.
       norm_results_export_scheduled: Задание экспорта нормированных результатов оценки было успешно запланировано.
       normalize_factor_scores_scheduled: Нормализация факторных оценок задания была успешно запланирована.
+      raw_ai_factor_export_scheduled: Задание на экспорт исходных данных «Raw AI Factor» было успешно запланировано
       raw_factor_export_scheduled: Задание экспорта необработанных данных оценки было успешно запланировано.
       raw_results_export_scheduled: Задание экспорта необработанных результатов оценки было успешно запланировано.
       scoring_results_export_scheduled: Задание экспорта результатов оценки было успешно запланировано.

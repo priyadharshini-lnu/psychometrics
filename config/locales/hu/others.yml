@@ -853,6 +853,7 @@ hu:
       operations:
         add_campaign_reports: Kampányjelentések hozzáadása
         assessment_norm_export: Normed eredmények exportálása
+        assessment_raw_ai_factor_export: Nyers AI-tényező pontszámok exportálása
         assessment_raw_factor_export: Nyers tényezőpontszámok exportálása
         assessment_raw_result_export: Nyers eredmények exportálása
         assessment_scoring_export: Pontozási eredmények exportálása
@@ -1022,6 +1023,7 @@ hu:
       evaluate: Kiértékel
       export: Exportálás
       export_normed: Normed Factor pontszámok
+      export_raw_ai_scores: Nyers AI-tényező pontszámok
       export_raw_labels: Nyers (címkékkel)
       export_raw_scores: Nyers faktor pontszámok
       export_raw_without_labels: Nyers (címke nélkül)
@@ -1439,6 +1441,7 @@ hu:
       export_external: Külső
       export_normed: Normed Factor pontszámok
       export_occupations: Foglalkozások
+      export_raw_ai_scores: Nyers AI-tényező pontszámok
       export_raw_labels: Nyers (címkékkel)
       export_raw_scores: Nyers faktor pontszámok
       export_raw_without_labels: Nyers (címke nélkül)
@@ -1492,6 +1495,7 @@ hu:
       no_participants_selected: Kérjük, válasszon ki legalább egy résztvevőt a folytatáshoz.
       norm_results_export_scheduled: Az értékelés Normed Results exportálási feladatának ütemezése sikeresen megtörtént
       normalize_factor_scores_scheduled: A faktor pontszámok normalizálása feladat ütemezése sikeresen megtörtént.
+      raw_ai_factor_export_scheduled: Az „Assessment Raw AI Factor” exportálási feladat ütemezése sikeresen megtörtént
       raw_factor_export_scheduled: Az értékelési nyers tényező exportálási feladatának ütemezése sikeresen megtörtént
       raw_results_export_scheduled: Az értékelés nyers eredményeinek exportálási feladata sikeresen ütemezve lett
       scoring_results_export_scheduled: Az értékelési pontozási eredmények exportálási feladatának ütemezése sikeresen megtörtént

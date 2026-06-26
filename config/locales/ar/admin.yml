@@ -3025,6 +3025,7 @@ ar:
     timezone: المنطقة الزمنية
     timezone_label: المنطقة الزمنية
     timing: التوقيت
+    title: الرسائل
     to: إلى
     token_url_label: عنوان URL للرمز المميز
     token_url_name: oauth_token_url

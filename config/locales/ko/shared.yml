@@ -25,6 +25,7 @@ ko:
     audio: 오디오
     audio_devices: 오디오 장치
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
+    auto_approved: 자동 승인
     back: 뒤로
     basic: 기초의
     bulk_download: 대량 다운로드

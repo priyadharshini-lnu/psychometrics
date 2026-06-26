@@ -3025,6 +3025,7 @@ cs:
     timezone: Časové pásmo
     timezone_label: Časové pásmo
     timing: Načasování
+    title: Zprávy
     to: K
     token_url_label: Adresa URL tokenu
     token_url_name: oauth_token_url

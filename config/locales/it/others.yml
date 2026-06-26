@@ -853,6 +853,7 @@ it:
       operations:
         add_campaign_reports: Aggiungere i rapporti della campagna
         assessment_norm_export: Esporta dei risultati normalizzati
+        assessment_raw_ai_factor_export: Esportazione dei punteggi grezzi del fattore AI
         assessment_raw_factor_export: Punteggi fattoriali grezzi Esporta
         assessment_raw_result_export: Esporta dei risultati grezzi
         assessment_scoring_export: Esporta dei risultati del punteggio
@@ -1022,6 +1023,7 @@ it:
       evaluate: Valutare
       export: Esporta
       export_normed: Punteggi fattoriali normalizzati
+      export_raw_ai_scores: Punteggi grezzi del fattore IA
       export_raw_labels: Crudo (con etichette)
       export_raw_scores: Punteggi grezzi dei fattori
       export_raw_without_labels: Crudo (senza etichette)
@@ -1439,6 +1441,7 @@ it:
       export_external: Esterno
       export_normed: Punteggi fattoriali normalizzati
       export_occupations: Occupazioni
+      export_raw_ai_scores: Punteggi grezzi del fattore IA
       export_raw_labels: Crudo (con etichette)
       export_raw_scores: Punteggi grezzi dei fattori
       export_raw_without_labels: Crudo (senza etichette)
@@ -1492,6 +1495,7 @@ it:
       no_participants_selected: Si prega di selezionare almeno un partecipante per procedere.
       norm_results_export_scheduled: Il lavoro di esportazione dei risultati normalizzati della valutazione è stato pianificato con successo
       normalize_factor_scores_scheduled: Il lavoro di normalizzazione dei punteggi dei fattori è stato pianificato con successo.
+      raw_ai_factor_export_scheduled: Il processo di esportazione dei dati grezzi del fattore AI è stato pianificato con successo
       raw_factor_export_scheduled: Il lavoro di esportazione del Fattore grezzo di valutazione è stato pianificato con successo
       raw_results_export_scheduled: Il lavoro di esportazione dei risultati grezzi della valutazione è stato pianificato con successo
       scoring_results_export_scheduled: Il lavoro di esportazione dei risultati della valutazione è stato pianificato con successo

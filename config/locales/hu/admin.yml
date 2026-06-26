@@ -3022,6 +3022,7 @@ hu:
     timezone: Időzóna
     timezone_label: Időzóna
     timing: Időzítés
+    title: Üzenetek
     to: 'Címzett:'
     token_url_label: Jogkivonat URL-címe
     token_url_name: oauth_token_url

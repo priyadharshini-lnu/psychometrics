@@ -3022,6 +3022,7 @@ bg:
     timezone: Часова зона
     timezone_label: Часови пояс
     timing: Време
+    title: Съобщения
     to: Към
     token_url_label: URL адрес на токен
     token_url_name: oauth_token_url

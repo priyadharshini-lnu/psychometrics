@@ -25,6 +25,7 @@ vi:
     audio: Âm thanh
     audio_devices: Thiết bị âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
+    auto_approved: Tự động phê duyệt
     back: Quay lại
     basic: Cơ bản
     bulk_download: Tải xuống hàng loạt

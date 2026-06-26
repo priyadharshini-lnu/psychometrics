@@ -853,6 +853,7 @@ zh:
       operations:
         add_campaign_reports: 添加活动报告
         assessment_norm_export: 标准结果导出
+        assessment_raw_ai_factor_export: 原始AI因子得分导出
         assessment_raw_factor_export: 原始因子得分 导出
         assessment_raw_result_export: 原始结果导出
         assessment_scoring_export: 评分结果导出
@@ -1022,6 +1023,7 @@ zh:
       evaluate: 评估
       export: 导出
       export_normed: 标准因子得分
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 原装（带标签）
       export_raw_scores: 原始因子得分
       export_raw_without_labels: 原装（无标签）
@@ -1449,6 +1451,7 @@ zh:
       export_external: 外部
       export_normed: 标准因子得分
       export_occupations: 职业
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 原装（带标签）
       export_raw_scores: 原始因子得分
       export_raw_without_labels: 原装（无标签）
@@ -1502,6 +1505,7 @@ zh:
       no_participants_selected: 请选择至少一名参与者继续。
       norm_results_export_scheduled: 评估标准化结果导出工作已成功安排
       normalize_factor_scores_scheduled: 因子得分标准化工作已成功调度。
+      raw_ai_factor_export_scheduled: "“评估原始 AI 因子导出”任务已成功安排"
       raw_factor_export_scheduled: 评估原始因子导出工作已成功安排
       raw_results_export_scheduled: 评估原始结果导出工作已成功安排
       scoring_results_export_scheduled: 评估评分结果 已成功安排导出工作

@@ -25,6 +25,7 @@ hr:
     audio: Audio
     audio_devices: Zvučni uređaji
     authentication_failed: Autentifikacija nije uspjela. Molim te, pokušaj ponovno.
+    auto_approved: Automatski odobreno
     back: Natrag
     basic: Osnovni
     bulk_download: Skupno preuzimanje

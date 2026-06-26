@@ -25,6 +25,7 @@ it:
     audio: Audio
     audio_devices: Dispositivi audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
+    auto_approved: Approvazione automatica
     back: Indietro
     basic: Basico
     bulk_download: Scaricamento in blocco

@@ -3017,6 +3017,7 @@ sr-Latn:
     timezone: Временска зона
     timezone_label: Vremenska zona
     timing: Временски распоред
+    title: Поруке
     to: Да
     token_url_label: URL tokena
     token_url_name: oauth_token_url

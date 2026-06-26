@@ -25,6 +25,7 @@ sk:
     audio: Audio
     audio_devices: Zvukové zariadenia
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
+    auto_approved: Automaticky schválené
     back: Späť
     basic: Základný
     bulk_download: Hromadné sťahovanie

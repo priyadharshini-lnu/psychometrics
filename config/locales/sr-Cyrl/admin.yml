@@ -3029,6 +3029,7 @@ sr-Cyrl:
     timezone: Временска зона
     timezone_label: Временска зона
     timing: Временски распоред
+    title: Поруке
     to: Да
     token_url_label: Токен УРЛ
     token_url_name: оаутх_токен_урл

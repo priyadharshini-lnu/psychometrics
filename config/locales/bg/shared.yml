@@ -25,6 +25,7 @@ bg:
     audio: Аудио
     audio_devices: Аудиоустройства
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
+    auto_approved: Автоматично одобрено
     back: Назад
     basic: Основен
     bulk_download: Групово изтегляне

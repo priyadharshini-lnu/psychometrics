@@ -853,6 +853,7 @@ th:
       operations:
         add_campaign_reports: เพิ่มรายงานแคมเปญ
         assessment_norm_export: การส่งออกผลลัพธ์ตามบรรทัดฐาน
+        assessment_raw_ai_factor_export: คะแนนปัจจัย AI ดิบ ส่งออก
         assessment_raw_factor_export: การส่งออกคะแนนปัจจัยดิบ
         assessment_raw_result_export: การส่งออกผลลัพธ์ดิบ
         assessment_scoring_export: การส่งออกผลการให้คะแนน
@@ -1022,6 +1023,7 @@ th:
       evaluate: การประเมิน
       export: ส่งออก
       export_normed: คะแนนปัจจัยปกติ
+      export_raw_ai_scores: คะแนนปัจจัย AI ดิบ
       export_raw_labels: ดิบ (พร้อมฉลาก)
       export_raw_scores: คะแนนปัจจัยดิบ
       export_raw_without_labels: ดิบ (ไม่มีฉลาก)
@@ -1436,6 +1438,7 @@ th:
       export_external: ภายนอก
       export_normed: คะแนนปัจจัยปกติ
       export_occupations: อาชีพ
+      export_raw_ai_scores: คะแนนปัจจัย AI ดิบ
       export_raw_labels: ดิบ (พร้อมฉลาก)
       export_raw_scores: คะแนนปัจจัยดิบ
       export_raw_without_labels: ดิบ (ไม่มีฉลาก)
@@ -1489,6 +1492,7 @@ th:
       no_participants_selected: โปรดเลือกผู้เข้าร่วมอย่างน้อยหนึ่งคนเพื่อดําเนินการต่อ
       norm_results_export_scheduled: งานส่งออกผลการประเมินตามบรรทัดฐานถูกกําหนดเวลาเรียบร้อยแล้ว
       normalize_factor_scores_scheduled: งานการทําให้เป็นมาตรฐานคะแนนปัจจัยถูกกําหนดเวลาเรียบร้อยแล้ว
+      raw_ai_factor_export_scheduled: งานส่งออกปัจจัย AI ดิบของการประเมินได้รับการกำหนดเวลาสำเร็จแล้ว
       raw_factor_export_scheduled: การประเมิน Raw Factor ส่งออกงานถูกกําหนดเวลาเรียบร้อยแล้ว
       raw_results_export_scheduled: งานส่งออกผลลัพธ์ดิบการประเมินถูกกําหนดเวลาเรียบร้อยแล้ว
       scoring_results_export_scheduled: งานส่งออกผลการให้คะแนนการประเมินถูกกําหนดเวลาเรียบร้อยแล้ว

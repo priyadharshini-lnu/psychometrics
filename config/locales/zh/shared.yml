@@ -25,6 +25,7 @@ zh:
     audio: 音频
     audio_devices: 音频设备
     authentication_failed: 身份验证失败。请再试一次。
+    auto_approved: 自动批准
     back: 返回
     basic: 基本
     bulk_download: 批量下载

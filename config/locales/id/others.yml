@@ -853,6 +853,7 @@ id:
       operations:
         add_campaign_reports: Menambahkan Laporan Kampanye
         assessment_norm_export: Ekspor Hasil Normasi
+        assessment_raw_ai_factor_export: Ekspor Skor Faktor AI Mentah
         assessment_raw_factor_export: Ekspor Skor Faktor Mentah
         assessment_raw_result_export: Ekspor Hasil Mentah
         assessment_scoring_export: Ekspor Hasil Penilaian
@@ -1022,6 +1023,7 @@ id:
       evaluate: Mengevaluasi
       export: Ekspor
       export_normed: Skor Faktor Norma
+      export_raw_ai_scores: Skor Faktor AI Mentah
       export_raw_labels: Mentah (dengan label)
       export_raw_scores: Skor Faktor Mentah
       export_raw_without_labels: Mentah (tanpa label)
@@ -1443,6 +1445,7 @@ id:
       export_external: Eksternal
       export_normed: Skor Faktor Norma
       export_occupations: Pekerjaan
+      export_raw_ai_scores: Skor Faktor AI Mentah
       export_raw_labels: Mentah (dengan label)
       export_raw_scores: Skor Faktor Mentah
       export_raw_without_labels: Mentah (tanpa label)
@@ -1496,6 +1499,7 @@ id:
       no_participants_selected: Silakan pilih setidaknya satu peserta untuk melanjutkan.
       norm_results_export_scheduled: Pekerjaan ekspor Hasil Bernorma Penilaian berhasil dijadwalkan
       normalize_factor_scores_scheduled: Pekerjaan skor faktor normalisasi berhasil dijadwalkan.
+      raw_ai_factor_export_scheduled: Tugas ekspor "Assessment Raw AI Factor" telah dijadwalkan dengan sukses
       raw_factor_export_scheduled: Pekerjaan ekspor Faktor Mentah Penilaian berhasil dijadwalkan
       raw_results_export_scheduled: Pekerjaan ekspor Hasil Mentah Penilaian berhasil dijadwalkan
       scoring_results_export_scheduled: Pekerjaan ekspor Hasil Penilaian Penilaian berhasil dijadwalkan

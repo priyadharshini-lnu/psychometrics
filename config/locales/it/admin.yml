@@ -3025,6 +3025,7 @@ it:
     timezone: Fuso orario
     timezone_label: Fuso orario
     timing: Tempistica
+    title: Messaggi
     to: A
     token_url_label: Token URL
     token_url_name: oauth_token_url

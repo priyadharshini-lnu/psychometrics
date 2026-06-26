@@ -25,6 +25,7 @@ nl:
     audio: Audio
     audio_devices: Audioapparatuur
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
+    auto_approved: Automatisch goedgekeurd
     back: Terug
     basic: Basisch
     bulk_download: Bulk downloaden

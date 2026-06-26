@@ -853,6 +853,7 @@ zh-HK:
       operations:
         add_campaign_reports: 新增戰役報告
         assessment_norm_export: 標準化結果匯出
+        assessment_raw_ai_factor_export: 原始AI因子得分导出
         assessment_raw_factor_export: 原始因子分數匯出
         assessment_raw_result_export: 原始結果匯出
         assessment_scoring_export: 計分結果匯出
@@ -1022,6 +1023,7 @@ zh-HK:
       evaluate: 評價
       export: 出口
       export_normed: 範式因子分數
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 原始版（附標籤）
       export_raw_scores: 原始因子分數
       export_raw_without_labels: 原始版（無標籤）
@@ -1453,6 +1455,7 @@ zh-HK:
       export_external: 外
       export_normed: 範式因子分數
       export_occupations: 職業
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 原始版（附標籤）
       export_raw_scores: 原始因子分數
       export_raw_without_labels: 原始版（無標籤）
@@ -1506,6 +1509,7 @@ zh-HK:
       no_participants_selected: 請選擇至少一名參與者繼續。
       norm_results_export_scheduled: 評估標準化結果出口工作已順利排程
       normalize_factor_scores_scheduled: 標準化因子分數的作業已順利排程。
+      raw_ai_factor_export_scheduled: "“评估原始 AI 因子导出任务”已成功安排"
       raw_factor_export_scheduled: 評估 原始原料出口工作已順利排定
       raw_results_export_scheduled: 評估原始結果匯出工作已順利安排
       scoring_results_export_scheduled: 評估評分結果出口工作順利排定

@@ -25,6 +25,7 @@ ar:
     audio: الصوت
     audio_devices: أجهزة الصوت
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
+    auto_approved: تمت الموافقة تلقائيًا
     back: العودة
     basic: أساسي
     bulk_download: تحميل بالجملة
