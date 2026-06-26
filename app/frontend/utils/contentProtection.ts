@@ -18,6 +18,7 @@ const ENHANCED_EDITABLE_TARGET_SELECTOR = [
 ].join(', ')
 
 const PASTE_BLOCK_TARGET_SELECTOR = 'input, textarea, [contenteditable="true"]'
+const COPY_ALLOWED_TARGET_SELECTOR = '[data-allow-content-copy="1"]'
 
 const isContentProtectionEnabled = () => (
   window.PsyGlobalState?.features?.[CONTENT_PROTECTION_FEATURE] === true
@@ -68,6 +69,7 @@ const isShortcutPressed = (event: KeyboardEvent, key: string, code: string) => {
 
 const isPrintShortcut = (event: KeyboardEvent) => isShortcutPressed(event, 'p', 'KeyP')
 const isSaveShortcut = (event: KeyboardEvent) => isShortcutPressed(event, 's', 'KeyS')
+const isSelectAllShortcut = (event: KeyboardEvent) => isShortcutPressed(event, 'a', 'KeyA')
 
 const blockPrintShortcut = (event: KeyboardEvent) => {
   if (!isPrintShortcut(event)) return
@@ -165,6 +167,40 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
     event.stopPropagation()
   }
 
+  const selectionIntersectsProtectedContent = () => {
+    const container = getContainer()
+    const selection = window.getSelection()
+
+    if (!container || !selection || selection.isCollapsed || selection.rangeCount === 0) return false
+
+    for (let index = 0; index < selection.rangeCount; index += 1) {
+      if (selection.getRangeAt(index).intersectsNode(container)) return true
+    }
+
+    return false
+  }
+
+  const isCopyAllowedTarget = (target: EventTarget | null) => {
+    const targetElement = toTargetElement(target)
+
+    return Boolean(targetElement?.closest(COPY_ALLOWED_TARGET_SELECTOR))
+  }
+
+  const isInsideProtectedContainer = (target: EventTarget | null) => {
+    const container = getContainer()
+    const targetElement = toTargetElement(target)
+
+    return Boolean(container && targetElement && container.contains(targetElement))
+  }
+
+  const blockClipboardEvent = (event: ClipboardEvent) => {
+    if (isCopyAllowedTarget(event.target)) return
+    if (!isInsideProtectedContainer(event.target) && !selectionIntersectsProtectedContent()) return
+
+    event.preventDefault()
+    event.stopImmediatePropagation()
+  }
+
   const blockPasteEvent = (event: ClipboardEvent) => {
     if (!shouldBlockPasteTarget(event.target)) return
 
@@ -189,9 +225,7 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
   }
 
   const blockSelectionShortcut = (event: KeyboardEvent) => {
-    const key = event.key?.toLowerCase()
-    const modifierPressed = event.ctrlKey || event.metaKey
-    if (!modifierPressed || key !== 's') return
+    if (!isSelectAllShortcut(event)) return
     if (!shouldProtectEventTarget(event.target)) return
 
     event.preventDefault()
@@ -199,8 +233,8 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
     event.stopImmediatePropagation()
   }
 
-  document.addEventListener('copy', blockEvent, true)
-  document.addEventListener('cut', blockEvent, true)
+  document.addEventListener('copy', blockClipboardEvent, true)
+  document.addEventListener('cut', blockClipboardEvent, true)
   document.addEventListener('paste', blockPasteEvent, true)
   document.addEventListener('contextmenu', blockEvent, true)
   document.addEventListener('selectstart', blockEvent, true)
@@ -209,8 +243,8 @@ export const protectContent = (getContainer: () => HTMLElement | null) => {
   enablePrintBlocking()
 
   return () => {
-    document.removeEventListener('copy', blockEvent, true)
-    document.removeEventListener('cut', blockEvent, true)
+    document.removeEventListener('copy', blockClipboardEvent, true)
+    document.removeEventListener('cut', blockClipboardEvent, true)
     document.removeEventListener('paste', blockPasteEvent, true)
     document.removeEventListener('contextmenu', blockEvent, true)
     document.removeEventListener('selectstart', blockEvent, true)
