@@ -56,7 +56,7 @@ module UsersResults
 
       def ai_scores
         @ai_scores ||= ::AI::FactorScore.
-                       where(users_result: users_result, status: :approver_approved).
+                       where(users_result: users_result, status: %i[approver_approved auto_approved]).
                        includes(:factor)
       end
 
@@ -75,7 +75,7 @@ module UsersResults
           map[factor_id]['results'] << {
             'value' => record.final_score.to_f,
             'question_id' => record.question_id,
-            'max_value' => record.factor.scale_max || 5.0,
+            'max_value' => record.factor.score_max || 5.0,
             'value_sum' => record.final_score.to_f,
             'ai_metadata' => {
               'confidence' => record.confidence,

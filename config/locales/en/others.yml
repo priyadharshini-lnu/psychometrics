@@ -853,6 +853,7 @@ en:
       operations:
         add_campaign_reports: Add Campaign Reports
         assessment_norm_export: Normed Results Export
+        assessment_raw_ai_factor_export: Raw AI Factor Scores Export
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
         assessment_scoring_export: Scoring Results Export
@@ -1022,6 +1023,7 @@ en:
       evaluate: Evaluate
       export: Export
       export_normed: Normed Factor Scores
+      export_raw_ai_scores: Raw AI factor Scores
       export_raw_labels: Raw (with labels)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
@@ -1451,6 +1453,7 @@ en:
       export_external: External
       export_normed: Normed Factor Scores
       export_occupations: Occupations
+      export_raw_ai_scores: Raw AI factor Scores
       export_raw_labels: Raw (with labels)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
@@ -1504,6 +1507,7 @@ en:
       no_participants_selected: Please select at least one participant to proceed.
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
       normalize_factor_scores_scheduled: Normalizing factor scores job was scheduled successfully.
+      raw_ai_factor_export_scheduled: Assessment Raw AI Factor export job was scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
       raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
       scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully

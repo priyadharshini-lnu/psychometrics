@@ -57,7 +57,7 @@ module AI
           result_data = {
             'value' => score_record.final_score.to_f,
             'question_id' => score_record.question_id,
-            'max_value' => score_record.factor.scale_max || 5.0,
+            'max_value' => score_record.factor.score_max || 5.0,
             'value_sum' => score_record.final_score.to_f
           }
 
