@@ -16,7 +16,7 @@ id:
         assessment_exists: Pengaturan persetujuan penilaian AI untuk penilaian ini sudah ada.
         validates_admins: Administrator tidak memiliki akses ke kampanye.
       already_assigned?: Tidak dapat menautkan penilaian ini - sudah ditetapkan ke '%{linked_assessor_form_name}'.
-      already_invited: Pengguna ini sudah ada di pusat penilaian yang ingin Anda tambahkan.
+      already_exists: Pusat penilaian yang ingin Anda tambahkan sudah ada.
       assessor_assessment:
         already_added: Penilaian Penilai sudah ditambahkan ke kampanye.
         lead_already_added: Hanya satu Penilaian Penilai Prospek yang dapat ditambahkan ke kampanye.

@@ -853,6 +853,7 @@ sr-Cyrl:
       operations:
         add_campaign_reports: Додајте извештаје о кампањи
         assessment_norm_export: Извоз нормираних резултата
+        assessment_raw_ai_factor_export: Извоз сирих факторских оцена вештачке интелигенције
         assessment_raw_factor_export: Рав фактор Резултати Извоз
         assessment_raw_result_export: Рав Резултати Извоз
         assessment_scoring_export: Бодовање Резултати Извоз
@@ -1022,6 +1023,7 @@ sr-Cyrl:
       evaluate: Процените
       export: Извоз
       export_normed: Резултати нормираних фактора
+      export_raw_ai_scores: Сирови АИ фактор резултати
       export_raw_labels: Сирово (са етикетама)
       export_raw_scores: Резултати сировог фактора
       export_raw_without_labels: Сирово (без етикета)
@@ -1433,6 +1435,7 @@ sr-Cyrl:
       export_external: Спољних
       export_normed: Резултати нормираних фактора
       export_occupations: Занимања
+      export_raw_ai_scores: Сирови АИ фактор резултати
       export_raw_labels: Сирово (са етикетама)
       export_raw_scores: Резултати сировог фактора
       export_raw_without_labels: Сирово (без етикета)
@@ -1486,6 +1489,7 @@ sr-Cyrl:
       no_participants_selected: Молимо вас да изаберете најмање једног учесника да бисте наставили.
       norm_results_export_scheduled: Процена Нормирани резултати извоз посао је успешно заказан
       normalize_factor_scores_scheduled: Нормализација фактор резултата посао је успешно заказан.
+      raw_ai_factor_export_scheduled: Задатак за извоз процене сировог АИ фактора је успешно заказан
       raw_factor_export_scheduled: Процена Рав фактор извоз посао је успешно заказан
       raw_results_export_scheduled: Процена Рав Резултати извоз посао је успешно заказан
       scoring_results_export_scheduled: Процена Резултати бодовања Извозни посао је успешно заказан

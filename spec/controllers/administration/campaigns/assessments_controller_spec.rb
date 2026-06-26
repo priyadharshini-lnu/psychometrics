@@ -107,6 +107,26 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
     end
   end
 
+  describe '[POST] export_ai_factor_scores' do
+    it 'schedules ai factor score export job with include inactive users payload' do
+      allow_any_instance_of(CampaignAssessment).to receive(:has_ai_questions?).and_return(true)
+
+      expect(AdminJob).to receive(:call).with(
+        :assessment_raw_ai_factor_export,
+        { assessment_id: assessment.id, campaign_id: campaign.id, include_inactive_users: true },
+        current_user
+      )
+
+      post :export_ai_factor_scores, params: {
+        id: assessment.id,
+        new_campaign_id: campaign.id,
+        include_inactive_users: 'true'
+      }, as: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe '[POST] bulk_export_raw_factor_scores' do
     let(:start_time) { Time.zone.parse('2026-01-01 00:00:00') }
     let(:end_time) { Time.zone.parse('2026-01-31 23:59:59') }

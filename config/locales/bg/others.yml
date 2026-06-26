@@ -853,6 +853,7 @@ bg:
       operations:
         add_campaign_reports: Добавяне на отчети за кампании
         assessment_norm_export: Експортиране на нормирани резултати
+        assessment_raw_ai_factor_export: Експорт на суровите резултати по AI Factor
         assessment_raw_factor_export: Експорт на сурови фактори
         assessment_raw_result_export: Експортиране на необработени резултати
         assessment_scoring_export: Експортиране на резултатите от оценяването
@@ -1022,6 +1023,7 @@ bg:
       evaluate: Оценявам
       export: Експорт
       export_normed: Нормирани факторни резултати
+      export_raw_ai_scores: Резултати по фактора „Raw AI“
       export_raw_labels: Суров (с етикети)
       export_raw_scores: Сурови фактори
       export_raw_without_labels: Суров (без етикети)
@@ -1439,6 +1441,7 @@ bg:
       export_external: Външен
       export_normed: Нормирани факторни резултати
       export_occupations: Професии
+      export_raw_ai_scores: Резултати по фактора „Raw AI“
       export_raw_labels: Суров (с етикети)
       export_raw_scores: Сурови фактори
       export_raw_without_labels: Суров (без етикети)
@@ -1492,6 +1495,7 @@ bg:
       no_participants_selected: Моля, изберете поне един участник, за да продължите.
       norm_results_export_scheduled: Задачата за експортиране на нормирани резултати за оценка беше планирана успешно
       normalize_factor_scores_scheduled: Нормализиране на факторните резултати беше планирано успешно.
+      raw_ai_factor_export_scheduled: Задачата за експортиране на „Assessment Raw AI Factor“ беше планирана успешно
       raw_factor_export_scheduled: Оценка Заданието за износ на необработен фактор беше планирано успешно
       raw_results_export_scheduled: Задачата за експортиране на необработени резултати от оценяването беше планирана успешно
       scoring_results_export_scheduled: Задачата за експортиране на резултатите от оценката беше планирана успешно

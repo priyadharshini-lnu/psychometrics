@@ -25,6 +25,7 @@ th:
     audio: เสียง
     audio_devices: อุปกรณ์เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
+    auto_approved: อนุมัติโดยอัตโนมัติ
     back: กลับ
     basic: พื้นฐาน
     bulk_download: ดาวน์โหลดจำนวนมาก

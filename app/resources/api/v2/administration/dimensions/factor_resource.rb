@@ -5,7 +5,7 @@ class Api::V2::Administration::Dimensions::FactorResource < Api::V2::Administrat
              :icon_url, :score_min, :score_max, :use_sub_factor_norm_score,
              :score_definitions, :what_to_look_for, :use_percentage, :custom_formula,
              :factors_sub_factors, :child_factor_type, :created_at, :updated_at,
-             :questions_count_by_assessment_details
+             :questions_count_by_assessment_details, :external_scoring
 
   has_many :sub_factors, relation_name: :factors_sub_factors, class_name: 'FactorsSubFactor'
   has_many :parent_factors

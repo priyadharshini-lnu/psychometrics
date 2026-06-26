@@ -19,7 +19,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :score_approved_by, class_name: 'User', optional: true
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
-  belongs_to :created_by
+  belongs_to :created_by, class_name: 'User'
   include Tenantable
 
   belongs_to :assessor, primary_key: :user_id, foreign_key: :evaluator_id

@@ -25,6 +25,7 @@ hi:
     audio: ऑडियो
     audio_devices: ऑडियो उपकरण
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
+    auto_approved: स्वतः अनुमोदित
     back: वापस
     basic: मूलभूत
     bulk_download: थोक डाउनलोड

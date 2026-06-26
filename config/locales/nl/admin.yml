@@ -3025,6 +3025,7 @@ nl:
     timezone: Tijdzone
     timezone_label: Tijdzone
     timing: Tijdstip
+    title: Berichten
     to: Aan
     token_url_label: Token-URL
     token_url_name: oauth_token_url

@@ -16,7 +16,7 @@ pl:
         assessment_exists: Ustawienie zatwierdzania punktacji AI dla tej oceny już istnieje.
         validates_admins: Administratorzy nie mają dostępu do kampanii.
       already_assigned?: Nie można połączyć tej oceny — jest ona już przypisana do "%{linked_assessor_form_name}".
-      already_invited: Ten użytkownik istnieje już w centrum oceny zintegrowanej, które próbujesz dodać.
+      already_exists: Centrum oceny, które próbujesz dodać, już istnieje.
       assessor_assessment:
         already_added: Ocena asesora została już dodana do kampanii.
         lead_already_added: Do kampanii można dodać tylko jedną ocenę głównego asesora.

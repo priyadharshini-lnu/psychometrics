@@ -3029,6 +3029,7 @@ hi:
     timezone: समय क्षेत्र
     timezone_label: समय क्षेत्र
     timing: समय
+    title: संदेश
     to: के लिए
     token_url_label: टोकन यूआरएल
     token_url_name: ओएथ_टोकन_यूआरएल

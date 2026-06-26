@@ -853,6 +853,7 @@ es-ES:
       operations:
         add_campaign_reports: Añadir informes de campaña
         assessment_norm_export: Exportación de resultados normalizados
+        assessment_raw_ai_factor_export: Exportación de puntuaciones brutas del factor IA
         assessment_raw_factor_export: Factor bruto Puntuaciones Exportación
         assessment_raw_result_export: Exportación de resultados brutos
         assessment_scoring_export: Exportación de resultados
@@ -1022,6 +1023,7 @@ es-ES:
       evaluate: Evalúe
       export: Exportar
       export_normed: Puntuaciones factoriales normalizadas
+      export_raw_ai_scores: Puntuaciones brutas del factor IA
       export_raw_labels: En bruto (con etiquetas)
       export_raw_scores: Puntuación bruta de los factores
       export_raw_without_labels: En bruto (sin etiquetas)
@@ -1453,6 +1455,7 @@ es-ES:
       export_external: Exterior
       export_normed: Puntuaciones factoriales normalizadas
       export_occupations: Ocupaciones
+      export_raw_ai_scores: Puntuaciones brutas del factor IA
       export_raw_labels: En bruto (con etiquetas)
       export_raw_scores: Puntuación bruta de los factores
       export_raw_without_labels: En bruto (sin etiquetas)
@@ -1506,6 +1509,7 @@ es-ES:
       no_participants_selected: Seleccione al menos un participante para continuar.
       norm_results_export_scheduled: El trabajo de exportación de los resultados de la evaluación se ha programado correctamente
       normalize_factor_scores_scheduled: La tarea de normalización de las puntuaciones de los factores se ha programado correctamente.
+      raw_ai_factor_export_scheduled: Se ha programado correctamente la tarea de exportación del factor de IA sin procesar de la evaluación
       raw_factor_export_scheduled: Evaluación El trabajo de exportación de factores brutos se ha programado correctamente
       raw_results_export_scheduled: El trabajo de exportación de los resultados brutos de la evaluación se programó correctamente
       scoring_results_export_scheduled: Se ha programado con éxito la exportación de los resultados de la evaluación

@@ -16,7 +16,7 @@ it:
         assessment_exists: L'impostazione di approvazione del punteggio AI per questa valutazione esiste già.
         validates_admins: Gli amministratori non hanno accesso alla campagna.
       already_assigned?: 'Non è possibile collegare questa valutazione: è già assegnata a ''%{linked_assessor_form_name}''.'
-      already_invited: Questo utente esiste già nel centro di valutazione che si sta cercando di aggiungere.
+      already_exists: Il centro di valutazione che stai cercando di aggiungere esiste già.
       assessor_assessment:
         already_added: Valutazione dell'assessore già aggiunta alla campagna.
         lead_already_added: È possibile aggiungere una sola valutazione del Lead Assessor alla campagna.

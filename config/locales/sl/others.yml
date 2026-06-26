@@ -853,6 +853,7 @@ sl:
       operations:
         add_campaign_reports: Dodajanje poročil o oglaševalskih akcijah
         assessment_norm_export: Izvoz normiranih rezultatov
+        assessment_raw_ai_factor_export: Izvoz surovih rezultatov AI Factor
         assessment_raw_factor_export: Izvoz rezultatov neobdelanih faktorjev
         assessment_raw_result_export: Izvoz neobdelanih rezultatov
         assessment_scoring_export: Izvoz rezultatov točkovanja
@@ -1022,6 +1023,7 @@ sl:
       evaluate: Oceni
       export: Izvoz
       export_normed: Normirani faktorski rezultati
+      export_raw_ai_scores: Ocene surovega AI-faktorja
       export_raw_labels: Surovo (z nalepkami)
       export_raw_scores: Ocenjevanja surovih faktorjev
       export_raw_without_labels: Surovo (brez nalepk)
@@ -1448,6 +1450,7 @@ sl:
       export_external: Zunanji
       export_normed: Normirani faktorski rezultati
       export_occupations: Poklicev
+      export_raw_ai_scores: Ocene surovega AI-faktorja
       export_raw_labels: Surovo (z nalepkami)
       export_raw_scores: Ocenjevanja surovih faktorjev
       export_raw_without_labels: Surovo (brez nalepk)
@@ -1501,6 +1504,7 @@ sl:
       no_participants_selected: Za nadaljevanje izberite vsaj enega udeleženca.
       norm_results_export_scheduled: Izvozno delo ocenjevanja normiranih rezultatov je bilo uspešno načrtovano
       normalize_factor_scores_scheduled: Delo normalizacije faktorjev je bilo uspešno načrtovano.
+      raw_ai_factor_export_scheduled: Naloga za izvoz surovih podatkov AI Factor je bila uspešno načrtovana
       raw_factor_export_scheduled: Izvozno delo ocenjevanja surovega faktorja je bilo uspešno načrtovano
       raw_results_export_scheduled: Uspešno je bilo načrtovano delo izvoza neobdelanih rezultatov ocenjevanja
       scoring_results_export_scheduled: Uspešno je bilo načrtovano delo izvoza rezultatov ocenjevanja

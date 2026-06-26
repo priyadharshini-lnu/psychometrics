@@ -853,6 +853,7 @@ ja:
       operations:
         add_campaign_reports: キャンペーンレポートの追加
         assessment_norm_export: 標準化結果のエクスポート
+        assessment_raw_ai_factor_export: AIファクターの生スコアのエクスポート
         assessment_raw_factor_export: 生のファクター・スコア 輸出
         assessment_raw_result_export: 生の結果エクスポート
         assessment_scoring_export: 採点結果のエクスポート
@@ -1022,6 +1023,7 @@ ja:
       evaluate: 評価
       export: 輸出
       export_normed: 標準化因子スコア
+      export_raw_ai_scores: AIファクターの生スコア
       export_raw_labels: 生（ラベル付き）
       export_raw_scores: 生のファクタースコア
       export_raw_without_labels: 生（ラベルなし）
@@ -1452,6 +1454,7 @@ ja:
       export_external: 外部
       export_normed: 標準化因子スコア
       export_occupations: 職業
+      export_raw_ai_scores: AIファクターの生スコア
       export_raw_labels: 生（ラベル付き）
       export_raw_scores: 生のファクタースコア
       export_raw_without_labels: 生（ラベルなし）
@@ -1505,6 +1508,7 @@ ja:
       no_participants_selected: 少なくとも1人の参加者を選択して続行してください。
       norm_results_export_scheduled: Assessment Normed Results エクスポート・ジョブが正常にスケジュールされました。
       normalize_factor_scores_scheduled: 因子スコアの正規化ジョブは正常にスケジュールされました。
+      raw_ai_factor_export_scheduled: "「Assessment Raw AI Factor」のエクスポートジョブが正常にスケジュールされました"
       raw_factor_export_scheduled: アセスメントRaw Factorのエクスポートジョブが正常にスケジュールされました。
       raw_results_export_scheduled: アセスメント生結果のエクスポートジョブが正常にスケジュールされました。
       scoring_results_export_scheduled: 評価採点結果エクスポートジョブは正常にスケジュールされました。

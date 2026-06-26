@@ -25,6 +25,7 @@ de:
     audio: Audio
     audio_devices: Audiogeräte
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
+    auto_approved: Automatisch genehmigt
     back: Zurück
     basic: Grundlegend
     bulk_download: Massendownload

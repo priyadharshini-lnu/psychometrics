@@ -853,6 +853,7 @@ hi:
       operations:
         add_campaign_reports: अभियान रिपोर्ट जोड़ें
         assessment_norm_export: मानकीकृत परिणाम निर्यात
+        assessment_raw_ai_factor_export: कच्चे एआई फैक्टर स्कोर निर्यात
         assessment_raw_factor_export: कच्चे कारक स्कोर निर्यात
         assessment_raw_result_export: कच्चे परिणाम निर्यात
         assessment_scoring_export: स्कोरिंग परिणाम निर्यात
@@ -1022,6 +1023,7 @@ hi:
       evaluate: मूल्यांकन करें
       export: निर्यात
       export_normed: मानकीकृत कारक स्कोर
+      export_raw_ai_scores: कच्चे एआई कारक स्कोर
       export_raw_labels: कच्चा (लेबल सहित)
       export_raw_scores: कच्चे कारक स्कोर
       export_raw_without_labels: कच्चा (बिना लेबल के)
@@ -1444,6 +1446,7 @@ hi:
       export_external: बाह्य
       export_normed: मानकीकृत कारक स्कोर
       export_occupations: व्यवसाय
+      export_raw_ai_scores: कच्चे एआई कारक स्कोर
       export_raw_labels: कच्चा (लेबल सहित)
       export_raw_scores: कच्चे कारक स्कोर
       export_raw_without_labels: कच्चा (बिना लेबल के)
@@ -1497,6 +1500,7 @@ hi:
       no_participants_selected: कृपया आगे बढ़ने के लिए कम से कम एक प्रतिभागी चुनें।
       norm_results_export_scheduled: मूल्यांकन मानकीकृत परिणामों का निर्यात कार्य सफलतापूर्वक निर्धारित किया गया।
       normalize_factor_scores_scheduled: नॉर्मलाइज़िंग फैक्टर स्कोर का काम सफलतापूर्वक निर्धारित किया गया।
+      raw_ai_factor_export_scheduled: मूल्यांकन रॉ एआई फैक्टर एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया था
       raw_factor_export_scheduled: मूल्यांकन रॉ फैक्टर एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया था।
       raw_results_export_scheduled: मूल्यांकन कच्चे परिणाम निर्यात कार्य सफलतापूर्वक निर्धारित किया गया था।
       scoring_results_export_scheduled: मूल्यांकन स्कोरिंग परिणामों का एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित किया गया।

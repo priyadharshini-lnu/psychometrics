@@ -25,6 +25,7 @@ zh-Hant:
     audio: 音频
     audio_devices: 音频设备
     authentication_failed: 驗證失敗。請再試一次。
+    auto_approved: 自动批准
     back: 返回
     basic: 基本
     bulk_download: 大量下載

@@ -3025,6 +3025,7 @@ ru:
     timezone: Часовой пояс
     timezone_label: Часовой пояс
     timing: График
+    title: Сообщения
     to: К
     token_url_label: URL токена
     token_url_name: oauth_token_url

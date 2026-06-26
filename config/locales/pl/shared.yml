@@ -25,6 +25,7 @@ pl:
     audio: Audio
     audio_devices: Urządzenia audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
+    auto_approved: Automatyczne zatwierdzenie
     back: Powrót
     basic: Podstawowy
     bulk_download: Pobieranie zbiorcze

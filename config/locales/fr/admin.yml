@@ -3025,6 +3025,7 @@ fr:
     timezone: Fuseau horaire
     timezone_label: Fuseau horaire
     timing: Calendrier
+    title: Messages
     to: À
     token_url_label: URL du jeton
     token_url_name: oauth_token_url

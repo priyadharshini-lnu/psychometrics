@@ -853,6 +853,7 @@ hr:
       operations:
         add_campaign_reports: Dodavanje izvješća kampanje
         assessment_norm_export: Izvoz normiranih rezultata
+        assessment_raw_ai_factor_export: Izvoz sirovih AI faktorskih bodova
         assessment_raw_factor_export: Izvoz rezultata sirovih faktora
         assessment_raw_result_export: Izvoz neobrađenih rezultata
         assessment_scoring_export: Izvoz rezultata bodovanja
@@ -1022,6 +1023,7 @@ hr:
       evaluate: Procijeniti
       export: Izvoz
       export_normed: Rezultati normiranih faktora
+      export_raw_ai_scores: Sirovi AI faktorski rezultati
       export_raw_labels: Sirovo (s naljepnicama)
       export_raw_scores: Rezultati sirovih faktora
       export_raw_without_labels: Sirovo (bez naljepnica)
@@ -1439,6 +1441,7 @@ hr:
       export_external: Vanjski
       export_normed: Rezultati normiranih faktora
       export_occupations: Zanimanja
+      export_raw_ai_scores: Sirovi AI faktorski rezultati
       export_raw_labels: Sirovo (s naljepnicama)
       export_raw_scores: Rezultati sirovih faktora
       export_raw_without_labels: Sirovo (bez naljepnica)
@@ -1492,6 +1495,7 @@ hr:
       no_participants_selected: Odaberite barem jednog sudionika za nastavak.
       norm_results_export_scheduled: Uspješno je zakazan zadatak izvoza normiranih rezultata
       normalize_factor_scores_scheduled: Posao normalizacije rezultata faktora uspješno je zakazan.
+      raw_ai_factor_export_scheduled: 'Procjena sirovog AI faktora: posao izvoza je uspješno zakazan'
       raw_factor_export_scheduled: Uspješno je zakazan posao izvoza Procjene sirovog faktora
       raw_results_export_scheduled: Uspješno je zakazan zadatak izvoza neobrađenih rezultata procjene
       scoring_results_export_scheduled: Uspješno je zakazan zadatak izvoza rezultata ocjenjivanja

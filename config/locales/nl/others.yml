@@ -853,6 +853,7 @@ nl:
       operations:
         add_campaign_reports: Campagnerapporten toevoegen
         assessment_norm_export: Export van genormaliseerde resultaten
+        assessment_raw_ai_factor_export: Exporteren van ruwe AI-factorscores
         assessment_raw_factor_export: Ruwe factorscores Export
         assessment_raw_result_export: Export van ruwe resultaten
         assessment_scoring_export: Resultaten exporteren
@@ -1022,6 +1023,7 @@ nl:
       evaluate: Evalueer
       export: Exporteer
       export_normed: Genormeerde factorscores
+      export_raw_ai_scores: Ruwe AI-factorscores
       export_raw_labels: Rauw (met labels)
       export_raw_scores: Ruwe factorscores
       export_raw_without_labels: Rauw (zonder labels)
@@ -1439,6 +1441,7 @@ nl:
       export_external: Extern
       export_normed: Genormeerde factorscores
       export_occupations: Beroepen
+      export_raw_ai_scores: Ruwe AI-factorscores
       export_raw_labels: Rauw (met labels)
       export_raw_scores: Ruwe factorscores
       export_raw_without_labels: Rauw (zonder labels)
@@ -1492,6 +1495,7 @@ nl:
       no_participants_selected: Selecteer ten minste één deelnemer om door te gaan.
       norm_results_export_scheduled: Exporttaak Assessment Normed Results is met succes gepland
       normalize_factor_scores_scheduled: De taak voor het normaliseren van factorscores is met succes ingepland.
+      raw_ai_factor_export_scheduled: De exporttaak voor de beoordeling van de 'Raw AI Factor' is succesvol ingepland
       raw_factor_export_scheduled: Beoordeling Raw Factor exporttaak is succesvol gepland
       raw_results_export_scheduled: De exporttaak Assessment Raw Results is met succes ingepland
       scoring_results_export_scheduled: Beoordelingsscores exporttaak is met succes ingepland

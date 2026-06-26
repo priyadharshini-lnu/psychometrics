@@ -16,7 +16,7 @@ zh:
         assessment_exists: 该评估的AI评分审批设置已存在。
         validates_admins: 管理员无法访问该活动。
       already_assigned?: 无法链接此评估 - 它已分配给"%{linked_assessor_form_name}"。
-      already_invited: 该用户已存在于您要添加的评估中心。
+      already_exists: 您尝试添加的评估中心已存在。
       assessor_assessment:
         already_added: 评估员评估已加入竞选活动。
         lead_already_added: 活动中只能添加一个 "主要评估员评估"。

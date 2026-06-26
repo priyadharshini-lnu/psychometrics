@@ -58,6 +58,8 @@ module Administration
         :client_search,
         :project_search,
         :campaign_search,
+        :record_type_in,
+        :action_in,
         record_type_in: [],
         action_in: []
       )

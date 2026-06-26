@@ -3025,6 +3025,7 @@ de:
     timezone: Zeitzone
     timezone_label: Zeitzone
     timing: Zeitpunkt
+    title: Nachrichten
     to: An
     token_url_label: Token-URL
     token_url_name: oauth_token_url

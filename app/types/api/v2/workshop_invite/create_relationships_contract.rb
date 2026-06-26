@@ -16,7 +16,7 @@ module Api
           end
 
           if workshop_invite.workshop_ids.intersect?(result[:data].collect { |e| e[:id].to_i })
-            key.failure(:already_invited)
+            key.failure(:already_exists)
           end
         end
       end

@@ -853,6 +853,7 @@ ko:
       operations:
         add_campaign_reports: 캠페인 보고서 추가
         assessment_norm_export: 표준화된 결과 내보내기
+        assessment_raw_ai_factor_export: 원시 AI 요인 점수 내보내기
         assessment_raw_factor_export: 원시 팩터 점수 내보내기
         assessment_raw_result_export: 원시 결과 내보내기
         assessment_scoring_export: 채점 결과 내보내기
@@ -1022,6 +1023,7 @@ ko:
       evaluate: 평가
       export: 내보내기
       export_normed: 표준화된 요인 점수
+      export_raw_ai_scores: AI 요인 원점수
       export_raw_labels: 원시(레이블 포함)
       export_raw_scores: 원시 요인 점수
       export_raw_without_labels: 원시(레이블 없음)
@@ -1439,6 +1441,7 @@ ko:
       export_external: 외부
       export_normed: 표준화된 요인 점수
       export_occupations: 직업
+      export_raw_ai_scores: AI 요인 원점수
       export_raw_labels: 원시(레이블 포함)
       export_raw_scores: 원시 요인 점수
       export_raw_without_labels: 원시(레이블 없음)
@@ -1492,6 +1495,7 @@ ko:
       no_participants_selected: 진행하려면 최소 한 명의 참가자를 선택하십시오.
       norm_results_export_scheduled: 평가 표준 결과 내보내기 작업이 성공적으로 예약되었습니다
       normalize_factor_scores_scheduled: 요인 점수 정규화 작업이 성공적으로 예약되었습니다.
+      raw_ai_factor_export_scheduled: "'Assessment Raw AI Factor' 내보내기 작업이 성공적으로 예약되었습니다."
       raw_factor_export_scheduled: 평가 원시 팩터 내보내기 작업이 성공적으로 예약되었습니다
       raw_results_export_scheduled: 평가 원시 결과 내보내기 작업이 성공적으로 예약되었습니다
       scoring_results_export_scheduled: 평가 채점 결과 내보내기 작업이 성공적으로 예약되었습니다

@@ -853,6 +853,7 @@ pt:
       operations:
         add_campaign_reports: Adicionar relatórios de campanha
         assessment_norm_export: Exportação de resultados normalizados
+        assessment_raw_ai_factor_export: Exportação de pontuações brutas do Fator IA
         assessment_raw_factor_export: Pontuação dos factores brutos Exportação
         assessment_raw_result_export: Exportação de resultados brutos
         assessment_scoring_export: Exportação de resultados de avaliação
@@ -1022,6 +1023,7 @@ pt:
       evaluate: Avaliar
       export: Exportação
       export_normed: Pontuação normalizada dos factores
+      export_raw_ai_scores: Pontuações brutas do fator IA
       export_raw_labels: Em bruto (com etiquetas)
       export_raw_scores: Pontuação bruta dos factores
       export_raw_without_labels: Em bruto (sem rótulos)
@@ -1451,6 +1453,7 @@ pt:
       export_external: Externo
       export_normed: Pontuação normalizada dos factores
       export_occupations: Profissões
+      export_raw_ai_scores: Pontuações brutas do fator IA
       export_raw_labels: Em bruto (com etiquetas)
       export_raw_scores: Pontuação bruta dos factores
       export_raw_without_labels: Em bruto (sem rótulos)
@@ -1504,6 +1507,7 @@ pt:
       no_participants_selected: Selecione pelo menos um participante para prosseguir.
       norm_results_export_scheduled: A tarefa de exportação Assessment Normed Results foi agendada com êxito
       normalize_factor_scores_scheduled: A tarefa de normalização das pontuações dos factores foi agendada com êxito.
+      raw_ai_factor_export_scheduled: A tarefa de exportação do «Fator de IA Bruto» da Avaliação foi agendada com sucesso
       raw_factor_export_scheduled: Avaliação O trabalho de exportação do Raw Fator foi agendado com sucesso
       raw_results_export_scheduled: A tarefa de exportação dos resultados brutos da avaliação foi agendada com êxito
       scoring_results_export_scheduled: Resultados da avaliação A tarefa de exportação foi agendada com êxito

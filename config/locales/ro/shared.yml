@@ -25,6 +25,7 @@ ro:
     audio: Audio
     audio_devices: Dispozitive audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
+    auto_approved: Aprobat automat
     back: Înapoi
     basic: Bază
     bulk_download: Descărcare în bloc

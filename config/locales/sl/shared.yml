@@ -25,6 +25,7 @@ sl:
     audio: Avdio
     audio_devices: Avdio naprave
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
+    auto_approved: Samodejno odobreno
     back: Nazaj
     basic: Osnoven
     bulk_download: Hkratni prenos večih datotek

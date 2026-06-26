@@ -16,7 +16,7 @@ sl:
         assessment_exists: Nastavitev odobritve AI Scoring za to oceno že obstaja.
         validates_admins: Skrbniki nimajo dostopa do kampanje.
       already_assigned?: Te ocene ni mogoče povezati - že je dodeljena '%{linked_assessor_form_name}'.
-      already_invited: Ta uporabnik že obstaja v ocenjevalnem centru, ki ga poskušate dodati.
+      already_exists: Ocenjevalni center, ki ga poskušate dodati, že obstaja.
       assessor_assessment:
         already_added: Ocena ocenjevalca je že dodana v kampanjo.
         lead_already_added: V kampanjo je mogoče dodati samo eno oceno glavnega ocenjevalca.

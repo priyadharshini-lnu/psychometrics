@@ -3025,6 +3025,7 @@ ja:
     timezone: タイムゾーン
     timezone_label: タイムゾーン
     timing: タイミング
+    title: メッセージ
     to: 宛てに
     token_url_label: トークンURL
     token_url_name: oauth_token_url

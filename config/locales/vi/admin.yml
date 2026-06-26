@@ -3017,6 +3017,7 @@ vi:
     timezone: Múi giờ
     timezone_label: Múi giờ
     timing: Thời điểm
+    title: Tin nhắn
     to: Đến
     token_url_label: URL mã thông báo
     token_url_name: oauth_token_url

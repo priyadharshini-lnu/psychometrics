@@ -10,7 +10,6 @@ import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
-import { formatWorkshopDate } from '~/utils/workshop'
 import styles from '../styles.less'
 
 const { I18n } = window
@@ -155,7 +154,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
                     I18n.t('admin.invite_basic_info_assessment_centers_placeholder')
                   }
                   options={assessmetnCenters.map(workshop => ({
-                    label: formatWorkshopDate(workshop.startTime), value: workshop.id,
+                    label: workshop.name, value: workshop.id,
                   }))}
                   onSelect={changeWorkshops}
                   value={null}
@@ -164,7 +163,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
               <Col span={24}>
                 {selectedWorkshops.map(workshop => (
                   <Tag closable onClose={() => removeWorkshop(workshop.id)}>
-                    {formatWorkshopDate(workshop.startTime)}
+                    {workshop.name}
                   </Tag>
                 ))}
               </Col>

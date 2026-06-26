@@ -853,6 +853,7 @@ zh-Hant:
       operations:
         add_campaign_reports: 新增活動報告
         assessment_norm_export: 標準化結果匯出
+        assessment_raw_ai_factor_export: 原始AI因子得分导出
         assessment_raw_factor_export: 原始因子得分 出口
         assessment_raw_result_export: 原始結果匯出
         assessment_scoring_export: 計分結果匯出
@@ -1022,6 +1023,7 @@ zh-Hant:
       evaluate: 評估
       export: 出口
       export_normed: 標準化因子分數
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 未經處理（帶標籤）
       export_raw_scores: 原始因子分數
       export_raw_without_labels: 未經加工（無標籤）
@@ -1439,6 +1441,7 @@ zh-Hant:
       export_external: 外部
       export_normed: 標準化因子分數
       export_occupations: 職業
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 未經處理（帶標籤）
       export_raw_scores: 原始因子分數
       export_raw_without_labels: 未經加工（無標籤）
@@ -1492,6 +1495,7 @@ zh-Hant:
       no_participants_selected: 請選擇至少一名參與者繼續。
       norm_results_export_scheduled: 評估標準化結果匯出工作排程成功
       normalize_factor_scores_scheduled: Normalizing factor scores 工作排程成功。
+      raw_ai_factor_export_scheduled: "“评估原始 AI 因子导出”任务已成功安排"
       raw_factor_export_scheduled: 評估原始因子匯出工作排程成功
       raw_results_export_scheduled: 評估原始結果匯出工作排程成功
       scoring_results_export_scheduled: 評估計分結果 輸出工作排程成功

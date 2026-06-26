@@ -853,6 +853,7 @@ pl:
       operations:
         add_campaign_reports: Dodawanie raportów kampanii
         assessment_norm_export: Eksport wyników unormowanych
+        assessment_raw_ai_factor_export: Eksport surowych wyników wskaźnika AI
         assessment_raw_factor_export: Eksport surowych wyników czynników
         assessment_raw_result_export: Eksport surowych wyników
         assessment_scoring_export: Eksport wyników punktacji
@@ -1022,6 +1023,7 @@ pl:
       evaluate: Oceniać
       export: Eksport
       export_normed: Unormowane wyniki czynników
+      export_raw_ai_scores: Wyniki surowego wskaźnika AI
       export_raw_labels: Surowe (z etykietami)
       export_raw_scores: Surowe wyniki czynników
       export_raw_without_labels: Surowe (bez etykiet)
@@ -1443,6 +1445,7 @@ pl:
       export_external: Zewnętrzny
       export_normed: Unormowane wyniki czynników
       export_occupations: Zawodów
+      export_raw_ai_scores: Wyniki surowego wskaźnika AI
       export_raw_labels: Surowe (z etykietami)
       export_raw_scores: Surowe wyniki czynników
       export_raw_without_labels: Surowe (bez etykiet)
@@ -1496,6 +1499,7 @@ pl:
       no_participants_selected: Wybierz co najmniej jednego uczestnika, aby kontynuować.
       norm_results_export_scheduled: Zadanie eksportu unormowanych wyników oceny zostało pomyślnie zaplanowane
       normalize_factor_scores_scheduled: Zadanie normalizacji wyników czynnika zostało zaplanowane pomyślnie.
+      raw_ai_factor_export_scheduled: Zadanie eksportu surowych danych „AI Factor” zostało pomyślnie zaplanowane
       raw_factor_export_scheduled: Zadanie eksportu nieprzetworzonego czynnika oceny zostało pomyślnie zaplanowane
       raw_results_export_scheduled: Zadanie eksportu nieprzetworzonych wyników oceny zostało pomyślnie zaplanowane
       scoring_results_export_scheduled: Zadanie eksportu wyników oceniania oceny zostało pomyślnie zaplanowane

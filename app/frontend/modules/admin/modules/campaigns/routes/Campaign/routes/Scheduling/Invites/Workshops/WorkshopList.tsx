@@ -14,7 +14,6 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { WorkshopAddFormModal } from './WorkshopAddFormModal'
-import { formatWorkshopDate } from '~/utils/workshop'
 import { useResources } from '~/hooks/useResources'
 
 
@@ -34,7 +33,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           trackUrl: true,
           responseType: WorkshopShortTR,
           apiConfig: {
-            fields: { workshops: ['id', 'start_time'] },
+            fields: { workshops: ['id', 'start_time', 'name'] },
           },
         }}
         name="workshops"
@@ -49,10 +48,10 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
         <Resource.Table pagination>
           <Resource.Column<WorkshopShort>
             title={I18n.t('shared.name')}
-            id="startTime"
+            id="name"
             sorter
             width="90%"
-            render={(_, { startTime }) => formatWorkshopDate(startTime)}
+            render={(_, { name }) => name}
           />
           <Resource.Column<WorkshopShort>
             id="remove"
@@ -77,11 +76,11 @@ const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, campaignId:string, inv
 
   const { resource } = useResourceContext<WorkshopShort>()
 
-  const removeWorkshop = ({ id, startTime }: WorkshopShort) => {
+  const removeWorkshop = ({ id, name }: WorkshopShort) => {
     modal.confirm({
       title: I18n.t('shared.confirm'),
       content: I18n.t('admin.invite_workshop_list_remove_confirm_content',
-        { name: formatWorkshopDate(startTime) }),
+        { name }),
       onOk: () => {
         removeRelationships('workshops', [id]).then(() => {
           message.success(I18n.t('admin.invite_workshop_list_remove_confirm_success'))

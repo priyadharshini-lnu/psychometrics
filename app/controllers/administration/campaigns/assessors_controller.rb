@@ -117,12 +117,14 @@ module Administration
       end
 
       def spoof
-        audit! :sign_in_as, resource.user, payload: { id: resource.user.id, sign_in_as: resource.user.email },
+        target_user = resource.user
+        audit! :sign_in_as, target_user, payload: { id: target_user.id, sign_in_as: target_user.email },
                campaign: campaign
-        siem_log_impersonation_event(resource.user, 'Admin')
-        impersonate_as_admin(resource.user)
-        flash.now[:success] = t('.successfully', name: resource.user.decorate.display_name)
-        redirect_to assessors_dashboard_path
+        siem_log_impersonation_event(target_user, 'Admin')
+
+        flash.now[:success] = t('.successfully', name: target_user.decorate.display_name)
+        spoof_admin_routing(target_user, client: campaign.project.parent,
+fallback_redirect_url: assessors_dashboard_path)
       end
 
       private

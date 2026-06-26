@@ -16,7 +16,7 @@ sk:
         assessment_exists: Nastavenie schvaľovania bodovania AI pre toto hodnotenie už existuje.
         validates_admins: Správcovia nemajú prístup ku kampani.
       already_assigned?: Toto hodnotenie nie je možné prepojiť - je už priradené k %{linked_assessor_form_name}'.
-      already_invited: Tento používateľ už existuje v hodnotiacom centre, ktoré sa pokúšate pridať.
+      already_exists: Hodnotiace centrum, ktoré sa snažíte pridať, už existuje.
       assessor_assessment:
         already_added: Hodnotenie hodnotiteľa už bolo pridané do kampane.
         lead_already_added: Do kampane je možné pridať iba jedno hodnotenie hlavného hodnotiteľa.

@@ -25,6 +25,7 @@ sr-Cyrl:
     audio: Аудио
     audio_devices: Аудио уређаји
     authentication_failed: Аутентификација није успела. Покушајте поново.
+    auto_approved: Ауто одобрено
     back: Назад
     basic: Основне
     bulk_download: Масовно преузимање

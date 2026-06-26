@@ -3017,6 +3017,7 @@ sl:
     timezone: Časovni pas
     timezone_label: Časovni pas
     timing: Časovni razpored
+    title: Sporočila
     to: Za
     token_url_label: URL žetona
     token_url_name: oauth_token_url
