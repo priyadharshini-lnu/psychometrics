@@ -16,7 +16,7 @@ vi:
         assessment_exists: Cài đặt phê duyệt điểm số AI cho bài đánh giá này đã tồn tại.
         validates_admins: Quản trị viên không có quyền truy cập vào chiến dịch.
       already_assigned?: Không thể liên kết đánh giá này - nó đã được gán cho '%{linked_assessor_form_name}'.
-      already_invited: Người dùng này đã tồn tại trong trung tâm đánh giá mà bạn đang cố gắng thêm.
+      already_exists: Trung tâm đánh giá mà bạn đang cố gắng thêm đã tồn tại rồi.
       assessor_assessment:
         already_added: Đánh giá của người đánh giá đã được thêm vào chiến dịch.
         lead_already_added: Chỉ có thể thêm một Đánh giá chuyên gia chính vào chiến dịch.

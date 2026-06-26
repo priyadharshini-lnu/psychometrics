@@ -16,7 +16,7 @@ fr:
         assessment_exists: Le paramètre d'approbation de la notation IA pour cette évaluation existe déjà.
         validates_admins: Les administrateurs n'ont pas accès à la campagne.
       already_assigned?: Impossible de lier cette évaluation - elle est déjà attribuée à "%{linked_assessor_form_name}".
-      already_invited: Cet utilisateur existe déjà dans le centre d'évaluation que vous essayez d'ajouter.
+      already_exists: Le centre d'évaluation que vous essayez d'ajouter existe déjà.
       assessor_assessment:
         already_added: Évaluation de l'Assesseur déjà ajoutée à la campagne.
         lead_already_added: Une seule évaluation de l'évaluateur principal peut être ajoutée à la campagne.

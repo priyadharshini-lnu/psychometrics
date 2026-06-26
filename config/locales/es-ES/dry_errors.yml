@@ -16,7 +16,7 @@ es-ES:
         assessment_exists: Ya existe una configuración de aprobación de puntuación de IA para esta evaluación.
         validates_admins: Los administradores no tienen acceso a la campaña.
       already_assigned?: 'No se puede vincular esta evaluación: ya está asignada a ''%{linked_assessor_form_name}''.'
-      already_invited: Este usuario ya existe en el centro de evaluación que intenta añadir.
+      already_exists: El centro de evaluación que estás intentando añadir ya existe.
       assessor_assessment:
         already_added: Evaluador Evaluación ya añadida a la campaña.
         lead_already_added: Sólo se puede añadir una evaluación de evaluador principal a la campaña.

@@ -16,7 +16,7 @@ hu:
         assessment_exists: Az értékeléshez már létezik AI pontozási jóváhagyási beállítás.
         validates_admins: Az adminisztrátorok nem férnek hozzá a kampányhoz.
       already_assigned?: Nem lehet összekapcsolni ezt az értékelést - már hozzá van rendelve a(z) %{linked_assessor_form_name}'-hoz.
-      already_invited: Ez a felhasználó már létezik a hozzáadni kívánt értékelőközpontban.
+      already_exists: Az értékelőközpont, amelyet hozzáadni próbál, már létezik.
       assessor_assessment:
         already_added: Értékelő értékelés már hozzáadva a kampányhoz.
         lead_already_added: Csak egy vezető értékelői értékelés adható hozzá a kampányhoz.

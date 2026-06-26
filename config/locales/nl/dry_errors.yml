@@ -16,7 +16,7 @@ nl:
         assessment_exists: De instelling voor AI-scoring voor deze beoordeling bestaat al.
         validates_admins: Beheerders hebben geen toegang tot de campagne.
       already_assigned?: Kan deze beoordeling niet koppelen - ze is al toegewezen aan '%{linked_assessor_form_name}'.
-      already_invited: Deze gebruiker bestaat al in het beoordelingscentrum dat u probeert toe te voegen.
+      already_exists: Het assessmentcentrum dat u probeert toe te voegen, bestaat al.
       assessor_assessment:
         already_added: Assessor Beoordeling al toegevoegd aan campagne.
         lead_already_added: Er kan slechts één Lead Assessor Assessment aan een campagne worden toegevoegd.

@@ -16,7 +16,7 @@ ja:
         assessment_exists: この評価に対するAI採点の承認設定は既に存在します。
         validates_admins: 管理者はキャンペーンにアクセスできません。
       already_assigned?: このアセスメントをリンクすることはできません - 既に '%{linked_assessor_form_name}' に割り当てられています。
-      already_invited: このユーザーは、追加しようとしている評価センターにすでに存在します。
+      already_exists: 追加しようとしているアセスメントセンターは、すでに存在しています。
       assessor_assessment:
         already_added: アセッサーの評価はすでにキャンペーンに追加されている。
         lead_already_added: キャンペーンに追加できるリードアセッサーアセスメントは1つだけです。

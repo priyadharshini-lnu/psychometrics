@@ -16,7 +16,7 @@ ar:
         assessment_exists: إعداد الموافقة على التقييم الآلي لهذا التقييم موجود بالفعل.
         validates_admins: لا يمكن للمسؤولين الوصول إلى الحملة.
       already_assigned?: لا يمكن ربط هذا التقييم - تم تعيينه بالفعل إلى '%{linked_assessor_form_name}'.
-      already_invited: هذا المستخدم موجود بالفعل في مركز التقييم الذي تحاول إضافته.
+      already_exists: مركز التقييم الذي تحاول إضافته موجود بالفعل.
       assessor_assessment:
         already_added: تمت إضافة تقييم المقيم بالفعل إلى الحملة.
         lead_already_added: يمكن إضافة تقييم مقيم رئيسي واحد فقط إلى الحملة.

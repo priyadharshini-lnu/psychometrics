@@ -16,7 +16,7 @@ de:
         assessment_exists: Die Einstellung für die KI-Bewertung für diese Beurteilung ist bereits vorhanden.
         validates_admins: Administratoren haben keinen Zugriff auf die Kampagne.
       already_assigned?: Diese Bewertung kann nicht verknüpft werden - sie ist bereits '%{linked_assessor_form_name}' zugewiesen.
-      already_invited: Dieser Benutzer existiert bereits in dem Assessment Center, das Sie hinzufügen möchten.
+      already_exists: Das Assessment-Center, das Sie hinzufügen möchten, existiert bereits.
       assessor_assessment:
         already_added: Assessor Bewertung bereits zur Kampagne hinzugefügt.
         lead_already_added: Zu einer Kampagne kann nur eine Beurteilung des Hauptbeurteilers hinzugefügt werden.
