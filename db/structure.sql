@@ -1589,6 +1589,41 @@ ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
 
 
 --
+-- Name: application_ip_whitelist_entries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_ip_whitelist_entries (
+    id bigint NOT NULL,
+    application_setting_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    ip_or_cidr inet NOT NULL,
+    description text,
+    enabled boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_ip_whitelist_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_ip_whitelist_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_ip_whitelist_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_ip_whitelist_entries_id_seq OWNED BY public.application_ip_whitelist_entries.id;
+
+
+--
 -- Name: application_public_keys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1624,6 +1659,39 @@ CREATE SEQUENCE public.application_public_keys_id_seq
 --
 
 ALTER SEQUENCE public.application_public_keys_id_seq OWNED BY public.application_public_keys.id;
+
+
+--
+-- Name: application_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_settings (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    ip_whitelisting_enabled boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_settings_id_seq OWNED BY public.application_settings.id;
 
 
 --
@@ -9958,10 +10026,24 @@ ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api
 
 
 --
+-- Name: application_ip_whitelist_entries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_ip_whitelist_entries ALTER COLUMN id SET DEFAULT nextval('public.application_ip_whitelist_entries_id_seq'::regclass);
+
+
+--
 -- Name: application_public_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.application_public_keys ALTER COLUMN id SET DEFAULT nextval('public.application_public_keys_id_seq'::regclass);
+
+
+--
+-- Name: application_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_settings ALTER COLUMN id SET DEFAULT nextval('public.application_settings_id_seq'::regclass);
 
 
 --
@@ -11692,11 +11774,27 @@ ALTER TABLE ONLY public.api_keys
 
 
 --
+-- Name: application_ip_whitelist_entries application_ip_whitelist_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_ip_whitelist_entries
+    ADD CONSTRAINT application_ip_whitelist_entries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: application_public_keys application_public_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.application_public_keys
     ADD CONSTRAINT application_public_keys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: application_settings application_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_settings
+    ADD CONSTRAINT application_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -13588,6 +13686,20 @@ CREATE UNIQUE INDEX idx_on_ai_assistant_id_key_1d1a169fc1 ON public.ai_assistant
 
 
 --
+-- Name: idx_on_application_setting_id_e570a8a095; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_e570a8a095 ON public.application_ip_whitelist_entries USING btree (application_setting_id);
+
+
+--
+-- Name: idx_on_application_setting_id_enabled_f85a302e40; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_enabled_f85a302e40 ON public.application_ip_whitelist_entries USING btree (application_setting_id, enabled);
+
+
+--
 -- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14239,6 +14351,20 @@ CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
+-- Name: index_application_ip_whitelist_entries_on_ip_or_cidr; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_ip_whitelist_entries_on_ip_or_cidr ON public.application_ip_whitelist_entries USING btree (ip_or_cidr);
+
+
+--
+-- Name: index_application_ip_whitelist_entries_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_ip_whitelist_entries_on_tenant_id ON public.application_ip_whitelist_entries USING btree (tenant_id);
+
+
+--
 -- Name: index_application_public_keys_on_key_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14264,6 +14390,20 @@ CREATE INDEX index_application_public_keys_on_user_id ON public.application_publ
 --
 
 CREATE INDEX index_application_public_keys_on_user_id_and_disabled ON public.application_public_keys USING btree (user_id, disabled);
+
+
+--
+-- Name: index_application_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_settings_on_tenant_id ON public.application_settings USING btree (tenant_id);
+
+
+--
+-- Name: index_application_settings_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_application_settings_on_user_id ON public.application_settings USING btree (user_id);
 
 
 --
@@ -20580,6 +20720,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 
 --
+-- Name: application_ip_whitelist_entries fk_rails_3973e593f4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_ip_whitelist_entries
+    ADD CONSTRAINT fk_rails_3973e593f4 FOREIGN KEY (application_setting_id) REFERENCES public.application_settings(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports_accesses fk_rails_3a283de8a1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -23372,6 +23520,14 @@ ALTER TABLE ONLY public.profile_field_values
 
 
 --
+-- Name: application_settings fk_rails_da47b0ce69; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_settings
+    ADD CONSTRAINT fk_rails_da47b0ce69 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessments fk_rails_da7f5005f0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24210,6 +24366,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260618120212'),
+('20260618120113'),
 ('20260616103502'),
 ('20260615195000'),
 ('20260612100749'),

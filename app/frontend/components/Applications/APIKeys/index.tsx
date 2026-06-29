@@ -16,7 +16,7 @@ export const ApplicationAPIKeys: React.FC<Props> = ({ applicationId }) => {
 
   const config = {
     responseType: APIKeyTR,
-    basePath: `users/${applicationId}`,
+    basePath: `applications/${applicationId}`,
   }
 
   const openModal = (apiKey?: APIKey) => {
@@ -26,17 +26,19 @@ export const ApplicationAPIKeys: React.FC<Props> = ({ applicationId }) => {
 
   return (
     <Resource<APIKey, BaseMeta> config={config} name="api_keys">
-      <APIKeysFilter openModal={() => openModal()} />
-      <APIKeysTable openModal={openModal} />
-      {isModalOpen && (
-        <APIKeysFormModal
-          apiKey={selectedApiKey}
-          close={() => {
-            setSelectedApiKey(undefined)
-            setIsModalOpen(false)
-          }}
-        />
-      )}
+      <div className="pl">
+        <APIKeysFilter openModal={() => openModal()} />
+        <APIKeysTable openModal={openModal} />
+        {isModalOpen && (
+          <APIKeysFormModal
+            apiKey={selectedApiKey}
+            close={() => {
+              setSelectedApiKey(undefined)
+              setIsModalOpen(false)
+            }}
+          />
+        )}
+      </div>
     </Resource>
   )
 }

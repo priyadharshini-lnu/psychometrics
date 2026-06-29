@@ -6,6 +6,7 @@ module Api
       include Pundit
 
       before_action :set_request_interface
+      before_action :authorize_request_ip
       before_action :auth
       before_action :ensure_project
       before_action :pundit_authorize
@@ -17,12 +18,12 @@ module Api
 
       def auth
         @api_key      = fetch_api_key
-        @current_user = api_key&.user
-        raise Api::Errors::InvalidAuthentication unless api_key
+        @current_user = @api_key&.user
+        raise Api::Errors::InvalidAuthentication unless @api_key
         raise Api::Errors::InvalidAuthentication, 'API User is disabled' if @current_user&.disabled
       end
 
-      attr_reader :current_user, :api_key
+      attr_reader :current_user
 
       def user
         user_id_type = request.headers['X-USER-ID-TYPE']
@@ -102,6 +103,24 @@ module Api
 
       def set_request_interface
         request.env['interface'] = 'api'
+      end
+
+      def find_application
+        key_value, = ActionController::HttpAuthentication::Basic.user_name_and_password(request)
+        return if key_value.blank?
+
+        ::Users::Application.joins(:api_keys).find_by(api_keys: { key: key_value, disabled: false })
+      end
+
+      def authorize_request_ip
+        application = find_application
+
+        raise Api::Errors::InvalidAuthentication unless application
+
+        application_setting = application&.application_setting
+        return if application_setting.ip_allowed?(request.remote_ip)
+
+        raise Api::Errors::InvalidAuthentication
       end
     end
   end

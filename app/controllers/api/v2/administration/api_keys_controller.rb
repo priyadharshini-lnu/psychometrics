@@ -7,7 +7,7 @@ module Api
 
     def meta_details
       {
-        user: -> { { email: User.find(params[:user_id]).email } }
+        user: -> { { email: ::Users::Application.find(params[:application_id]).email } }
       }
     end
   end

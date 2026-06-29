@@ -6,6 +6,8 @@ RSpec.describe Users::Application, type: :model do
   let(:tenant) { create(:tenancy) }
   let(:application_user) { build(:application_user, tenant: tenant) }
 
+  it { should have_many(:api_keys).inverse_of(:application) }
+
   describe 'validations' do
     it 'is valid with an alphanumeric name' do
       application_user.first_name = 'Lighthouse API'

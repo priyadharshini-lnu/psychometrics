@@ -8,6 +8,7 @@ class Api::V2::Administration::ApiKeyResource < Api::V2::Administration::BaseRes
   audit_log_for :update, payload: '*', parent_resource: ->(_, record) { { client: record.tenant } }
 
   before_create do
+    @model.user_id = context[:params][:application_id]
     @model.created_by_id = context[:user].id
   end
 
@@ -16,7 +17,7 @@ class Api::V2::Administration::ApiKeyResource < Api::V2::Administration::BaseRes
   end
 
   def self.records(options = {})
-    ApiKey.where(user_id: options[:context][:params][:user_id])
+    ApiKey.where(user_id: options[:context][:params][:application_id])
   end
 
   def created_at
@@ -28,7 +29,7 @@ class Api::V2::Administration::ApiKeyResource < Api::V2::Administration::BaseRes
   end
 
   def assign_key_and_token
-    @model.user_id = context[:params][:user_id]
+    @model.user_id = context[:params][:application_id]
     @model.key = loop do
       possible_key = SecureRandom.uuid
       break possible_key unless ::ApiKey.exists?(key: possible_key)

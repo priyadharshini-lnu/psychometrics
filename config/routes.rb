@@ -1373,9 +1373,16 @@ as: :simulation_progress_notification
               post :activate
               post :deactivate
             end
+            jsonapi_resources :api_keys, only: %i[index create update]
             jsonapi_resources :public_keys, only: %i[index create update] do
               collection do
                 post :generate_key_pair
+              end
+            end
+            jsonapi_resources :application_settings, only: %i[index create update]
+            jsonapi_resources :application_ip_whitelist_entries, only: %i[index create update destroy] do
+              collection do
+                post :bulk_create
               end
             end
           end
@@ -1433,7 +1440,6 @@ as: :simulation_progress_notification
               get :current_user_details
               post :change_locale
             end
-            jsonapi_resources :api_keys, only: %i[index create update]
           end
           jsonapi_resources :campaign_templates
           jsonapi_resources :assessments, concerns: :taggable do

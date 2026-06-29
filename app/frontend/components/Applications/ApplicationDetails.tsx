@@ -11,7 +11,12 @@ import {
 } from '~/modules/admin/modules/client/core/applications'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
-import { ApplicationOverview, ApplicationAPIKeys, ApplicationPublicKeys } from '~/components/Applications'
+import {
+  ApplicationOverview,
+  ApplicationAPIKeys,
+  ApplicationPublicKeys,
+  ApplicationSettings,
+} from '~/components/Applications'
 import { ApplicationPermissions } from './ApplicationPermissions'
 import { AdminTypes } from '~/modules/admin/modules/Admins/constants'
 
@@ -80,9 +85,12 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   }
 
   const getActiveTab = (): string => {
-    if (pathname.includes('/api_keys')) return 'api_keys'
-    if (pathname.includes('/public_keys')) return 'public_keys'
-    if (pathname.includes('/permissions')) return 'permissions'
+    const lastSegment = pathname.split('/').filter(Boolean).pop()
+
+    if (lastSegment === 'api_keys') return 'api_keys'
+    if (lastSegment === 'public_keys') return 'public_keys'
+    if (lastSegment === 'permissions') return 'permissions'
+    if (lastSegment === 'settings') return 'settings'
     return 'overview'
   }
 
@@ -128,6 +136,11 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
               scopeFilter={permissionsConfig.scopeFilter}
             />
           ),
+        },
+        {
+          key: 'settings',
+          label: I18n.t('admin.settings'),
+          children: <ApplicationSettings applicationId={applicationId} />,
         },
       ]
       : []),

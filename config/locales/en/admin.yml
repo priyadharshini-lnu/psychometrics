@@ -123,6 +123,20 @@ en:
     application_name: Application Name
     application_name_already_taken: Already exists for this client
     application_name_format_hint: Only letters and numbers are allowed, with a single space between words
+    application_settings_at_least_one_ip_required: Please enable at least one IP address entry before enabling IP whitelisting
+    application_settings_confirm_delete_ip: Are you sure you want to delete this IP address?
+    application_settings_edit_ip_address: Edit IP Address / CIDR Range
+    application_settings_enable_ip_whitelisting: Enable IP Whitelisting
+    application_settings_invalid_ip_format: Invalid IP address or CIDR format
+    application_settings_ip_addresses: IP Addresses / CIDR Ranges
+    application_settings_ip_deleted_successfully: IP address deleted successfully
+    application_settings_ip_description_placeholder: e.g., Office network or Production server
+    application_settings_ip_input_placeholder: e.g., 192.168.1.1 or 10.0.0.0/24
+    application_settings_ip_or_cidr: IP Address or CIDR Range
+    application_settings_ip_required: IP address or CIDR range is required
+    application_settings_ip_updated_successfully: IP address updated successfully
+    application_settings_ip_whitelisting_disabled_success: IP whitelisting disabled successfully
+    application_settings_ip_whitelisting_enabled_success: IP whitelisting enabled successfully
     applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
     approve_all_questions: Approve All Questions

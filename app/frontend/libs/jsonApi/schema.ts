@@ -48,6 +48,9 @@ import { Schema as factorsSchema } from '~/modules/admin/modules/campaigns/core/
 import { Schema as blocksSchema } from '~/modules/admin/modules/QuestionCenter/core/blocks'
 import { Schema as applicationsSchema } from '~/modules/admin/modules/client/core/applications'
 import { Schema as publicKeysSchema } from '~/modules/admin/modules/client/core/publicKeys'
+import { Schema as applicationSettingsSchema } from '~/modules/admin/modules/client/core/applicationSettings'
+import { Schema as applicationIpWhitelistEntriesSchema }
+  from '~/modules/admin/modules/client/core/applicationIpWhitelistEntries'
 
 export const Schema = {
   clients: clientSchema,
@@ -95,4 +98,6 @@ export const Schema = {
   blocks: blocksSchema,
   applications: applicationsSchema,
   public_keys: publicKeysSchema,
+  application_settings: applicationSettingsSchema,
+  application_ip_whitelist_entries: applicationIpWhitelistEntriesSchema,
 }
