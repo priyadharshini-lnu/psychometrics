@@ -54,6 +54,9 @@ hashids_length:
   default: 6
 saml_enforced_email_domains:
   - mercer.com
+data_reports:
+  user_access_review:
+    email_domains: <%= ENV.fetch('USER_ACCESS_REVIEW_EMAIL_DOMAINS', 'thetalententerprise.com,mercer.com,marsh.com').split(',').map(&:strip).reject(&:empty?) %>
 features:
   rails_log_to_json: <%= ENV.fetch('RAILS_LOG_TO_JSON', 'true') == 'true' %>
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>

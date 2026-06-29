@@ -21,6 +21,11 @@ module AdminJobs
         raise NotImplementedError, "#{name} must implement .file_extension"
       end
 
+      def self.file_name(report_name:, extension:)
+        timestamp = Time.current.strftime('%Y%m%d')
+        "#{timestamp}_#{report_name.parameterize(separator: '_')}.#{extension}"
+      end
+
       protected
 
       def config

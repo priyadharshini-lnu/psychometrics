@@ -16,7 +16,8 @@ module Api
       'user_created_dates' => Api::V2::DataReport::UserCreatedDatesExportContract,
       'pearson_usage_report' => Api::V2::DataReport::PearsonUsageReportContract,
       'client_assessment_counts' => Api::V2::DataReport::ClientAssessmentCountsContract,
-      'active_clients_projects' => Api::V2::DataReport::ActiveClientsProjectsContract
+      'active_clients_projects' => Api::V2::DataReport::ActiveClientsProjectsContract,
+      'user_access_review' => Api::V2::DataReport::UserAccessReviewContract
     }.freeze
 
     def create_contract_based_on_report_type
